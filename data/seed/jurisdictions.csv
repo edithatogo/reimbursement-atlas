@@ -1,0 +1,20 @@
+jurisdiction,region,included_in_first_wave,notes
+Australia,Oceania,True,Generated seed jurisdiction row; validate before analysis.
+United States,North America,True,Generated seed jurisdiction row; validate before analysis.
+England,Europe,True,Generated seed jurisdiction row; validate before analysis.
+Canada - Ontario,North America,True,Generated seed jurisdiction row; validate before analysis.
+Canada - British Columbia,North America,False,Generated seed jurisdiction row; validate before analysis.
+Canada - Alberta,North America,False,Generated seed jurisdiction row; validate before analysis.
+New Zealand,Oceania,True,Generated seed jurisdiction row; validate before analysis.
+Germany,Europe,True,Generated seed jurisdiction row; validate before analysis.
+France,Europe,True,Generated seed jurisdiction row; validate before analysis.
+Netherlands,Europe,True,Generated seed jurisdiction row; validate before analysis.
+Belgium,Europe,False,Generated seed jurisdiction row; validate before analysis.
+Japan,Asia,True,Generated seed jurisdiction row; validate before analysis.
+Taiwan,Asia,True,Generated seed jurisdiction row; validate before analysis.
+South Korea,Asia,False,Generated seed jurisdiction row; validate before analysis.
+Switzerland,Europe,True,Generated seed jurisdiction row; validate before analysis.
+Denmark,Europe,False,Generated seed jurisdiction row; validate before analysis.
+Norway,Europe,False,Generated seed jurisdiction row; validate before analysis.
+Sweden,Europe,False,Generated seed jurisdiction row; validate before analysis.
+Singapore,Asia,False,Generated seed jurisdiction row; validate before analysis.

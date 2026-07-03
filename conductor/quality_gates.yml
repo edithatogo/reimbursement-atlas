@@ -1,0 +1,32 @@
+version: 1
+updated: "2026-07-03"
+gates:
+  - id: registry-validation
+    applies_to: ["data/seed/*.jsonl", "data/seed/*.csv"]
+    required_checks:
+      - pydantic model validation
+      - duplicate id check
+      - analysis required-source reference check
+      - graph regeneration check
+  - id: parser-fixture
+    applies_to: ["src/reimburse_atlas/parsers/**", "tests/fixtures/**"]
+    required_checks:
+      - fixture provenance present
+      - parser emits typed contracts
+      - restricted descriptors absent from committed fixtures
+      - unit tests cover missing-field and invalid-amount cases
+  - id: mapping-review
+    applies_to: ["data/derived/crosswalks/**"]
+    required_checks:
+      - confidence value present
+      - evidence methods present
+      - reviewer status present
+      - clinical-review flag for high-impact outputs
+  - id: release
+    applies_to: ["dist/**", "hf-dataset/**"]
+    required_checks:
+      - licence gate pass
+      - secret scan pass
+      - SBOM generated
+      - checksums generated
+      - dataset card updated

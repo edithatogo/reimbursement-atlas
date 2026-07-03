@@ -1,0 +1,27 @@
+version: 1
+updated: "2026-07-03"
+risks:
+  - id: R-001
+    title: Apparent price differences are actually bundling differences
+    severity: high
+    mitigation: Store payment unit, professional/facility component flags and caveats on every item.
+  - id: R-002
+    title: Restricted terminology or descriptors accidentally committed
+    severity: high
+    mitigation: Local-only ontology cache, licence gates, review checklist and explicit non-goals.
+  - id: R-003
+    title: Crosswalks imply false equivalence
+    severity: high
+    mitigation: Store candidate mappings with relationship, confidence and reviewer status; label exploratory outputs.
+  - id: R-004
+    title: Published drug prices misread as net prices
+    severity: high
+    mitigation: Maintain price-opacity fields and caveats; distinguish public/list/reimbursement/net concepts.
+  - id: R-005
+    title: Parser fragility from PDFs and changing source formats
+    severity: medium
+    mitigation: Prefer tier_1 sources for first slice; version fixtures and checksums; keep tier_2 parsers semi-manual.
+  - id: R-006
+    title: Bleeding-edge dependency churn breaks CI
+    severity: medium
+    mitigation: Use Renovate grouping, Pixi lockfiles, optional imports and scheduled dependency windows.

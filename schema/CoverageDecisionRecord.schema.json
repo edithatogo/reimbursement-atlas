@@ -1,0 +1,205 @@
+{
+  "$defs": {
+    "ProvenanceRecord": {
+      "additionalProperties": false,
+      "description": "Minimal provenance metadata for a derived record.",
+      "properties": {
+        "source_id": {
+          "pattern": "^[a-z0-9_]+$",
+          "title": "Source Id",
+          "type": "string"
+        },
+        "source_url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Url"
+        },
+        "retrieved_at": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Retrieved At"
+        },
+        "effective_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Effective Date"
+        },
+        "source_version": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Version"
+        },
+        "licence_class": {
+          "default": "unknown",
+          "enum": [
+            "permissive",
+            "public_reuse_unclear",
+            "restricted",
+            "unknown"
+          ],
+          "title": "Licence Class",
+          "type": "string"
+        },
+        "transformation_notes": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Transformation Notes"
+        }
+      },
+      "required": [
+        "source_id"
+      ],
+      "title": "ProvenanceRecord",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Normalised coverage or HTA decision metadata.",
+  "properties": {
+    "source_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source Id",
+      "type": "string"
+    },
+    "decision_id": {
+      "minLength": 1,
+      "title": "Decision Id",
+      "type": "string"
+    },
+    "jurisdiction": {
+      "minLength": 1,
+      "title": "Jurisdiction",
+      "type": "string"
+    },
+    "technology_name": {
+      "minLength": 1,
+      "title": "Technology Name",
+      "type": "string"
+    },
+    "technology_domain": {
+      "minLength": 1,
+      "title": "Technology Domain",
+      "type": "string"
+    },
+    "decision_status": {
+      "enum": [
+        "covered",
+        "covered_with_restrictions",
+        "not_covered",
+        "deferred",
+        "under_review",
+        "unknown"
+      ],
+      "title": "Decision Status",
+      "type": "string"
+    },
+    "decision_date": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Decision Date"
+    },
+    "evidence_standard": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Evidence Standard"
+    },
+    "restriction_summary": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Restriction Summary"
+    },
+    "economic_notes": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Economic Notes"
+    },
+    "provenance": {
+      "$ref": "#/$defs/ProvenanceRecord"
+    }
+  },
+  "required": [
+    "source_id",
+    "decision_id",
+    "jurisdiction",
+    "technology_name",
+    "technology_domain",
+    "decision_status",
+    "provenance"
+  ],
+  "title": "CoverageDecisionRecord",
+  "type": "object"
+}

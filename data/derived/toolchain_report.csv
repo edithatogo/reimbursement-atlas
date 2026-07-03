@@ -1,0 +1,24 @@
+name,kind,available,version,path,notes
+python,runtime,True,3.13.5,active Python interpreter,Linux x86_64 via python
+ruff,python-package,True,0.15.20,python environment,installed
+basedpyright,python-package,True,1.39.9,python environment,installed
+pytest,python-package,True,9.1.1,python environment,installed
+pytest-cov,python-package,True,7.1.0,python environment,installed
+hypothesis,python-package,True,6.156.1,python environment,installed
+mutmut,python-package,True,3.6.0,python environment,installed
+scalene,python-package,True,2.3.0,python environment,installed
+bandit,python-package,True,1.9.4,python environment,installed
+pip-audit,python-package,True,2.10.1,python environment,installed
+polars,python-package,True,1.42.1,python environment,installed
+pyarrow,python-package,True,24.0.0,python environment,installed
+duckdb,python-package,True,1.5.4,python environment,installed
+lancedb,python-package,True,0.34.0,python environment,installed
+pydantic,python-package,True,2.13.4,python environment,installed
+defusedxml,python-package,True,0.7.1,python environment,installed
+fastapi,python-package,True,0.139.0,python environment,installed
+mcp,python-package,True,1.28.1,python environment,installed
+uv,cli,True,,PATH,found on PATH
+pixi,cli,False,,,not found on PATH
+mojo,cli,False,,,not found on PATH
+node,cli,True,,PATH,found on PATH
+npm,cli,True,,PATH,found on PATH

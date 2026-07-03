@@ -1,0 +1,126 @@
+{
+  "duckdb_path": null,
+  "parquet_enabled": false,
+  "table_count": 17,
+  "tables": [
+    {
+      "csv_path": "source_registry/source_registry.csv",
+      "jsonl_path": "source_registry/source_registry.jsonl",
+      "name": "source_registry",
+      "rows": 60,
+      "sha256": "ec22a6c76e24b7832a964b132306027f90f8874aae4d96aeee0e875af3a986df"
+    },
+    {
+      "csv_path": "analysis_catalogue/analysis_catalogue.csv",
+      "jsonl_path": "analysis_catalogue/analysis_catalogue.jsonl",
+      "name": "analysis_catalogue",
+      "rows": 25,
+      "sha256": "2de0bfccb4643101b41983f1e8d5444fa0b0998f387c314d4aa130576722fddc"
+    },
+    {
+      "csv_path": "ontology_registry/ontology_registry.csv",
+      "jsonl_path": "ontology_registry/ontology_registry.jsonl",
+      "name": "ontology_registry",
+      "rows": 14,
+      "sha256": "467ee1a6afcb8307b2159512a1a37ff57b6ed0aa0f965a90da11097e123e01dd"
+    },
+    {
+      "csv_path": "source_versions/source_versions.csv",
+      "jsonl_path": "source_versions/source_versions.jsonl",
+      "name": "source_versions",
+      "rows": 6,
+      "sha256": "699021593202cc2a5a53d1b0c3fc13f88ab0c2260d369162b83e189f9819e31f"
+    },
+    {
+      "csv_path": "source_snapshots/source_snapshots.csv",
+      "jsonl_path": "source_snapshots/source_snapshots.jsonl",
+      "name": "source_snapshots",
+      "rows": 6,
+      "sha256": "dadb91bc66b8ef327c43be7961b79bcde30ed43b0d46bd771804d1eed0917543"
+    },
+    {
+      "csv_path": "source_status/source_status.csv",
+      "jsonl_path": "source_status/source_status.jsonl",
+      "name": "source_status",
+      "rows": 5,
+      "sha256": "8ad3c805ff638915711f15e0d27645fed23bbf66f88f6c7d8c3fd7d6224aadb2"
+    },
+    {
+      "csv_path": "sample_schedule_items/sample_schedule_items.csv",
+      "jsonl_path": "sample_schedule_items/sample_schedule_items.jsonl",
+      "name": "sample_schedule_items",
+      "rows": 5,
+      "sha256": "8581420d87d5a8239ceeb43795281c15ae3d34b5dff0738fb438890a49631f4d"
+    },
+    {
+      "csv_path": "analysis_recipes/analysis_recipes.csv",
+      "jsonl_path": "analysis_recipes/analysis_recipes.jsonl",
+      "name": "analysis_recipes",
+      "rows": 5,
+      "sha256": "3596f72fc4538c827c60b5702f88e407fbb106be45d83cd6d593dba6f9079616"
+    },
+    {
+      "csv_path": "ontology_concepts/ontology_concepts.csv",
+      "jsonl_path": "ontology_concepts/ontology_concepts.jsonl",
+      "name": "ontology_concepts",
+      "rows": 6,
+      "sha256": "6b436a2e7ab7732801aa4e32f8d2e5b962d9d1259e9ceaa62bb499cb237d8e77"
+    },
+    {
+      "csv_path": "ontology_mapping_templates/ontology_mapping_templates.csv",
+      "jsonl_path": "ontology_mapping_templates/ontology_mapping_templates.jsonl",
+      "name": "ontology_mapping_templates",
+      "rows": 3,
+      "sha256": "3c7d0d1dfda5027fb4c324a0a9dcdab53d322d0a5bca26dd877a991bad1d7a2a"
+    },
+    {
+      "csv_path": "vertical_schedule_items/vertical_schedule_items.csv",
+      "jsonl_path": "vertical_schedule_items/vertical_schedule_items.jsonl",
+      "name": "vertical_schedule_items",
+      "rows": 10,
+      "sha256": "30c966a02ee122f526c423033fd8d9905df94d120058d25513162b80dd78dee9"
+    },
+    {
+      "csv_path": "vertical_coverage_decisions/vertical_coverage_decisions.csv",
+      "jsonl_path": "vertical_coverage_decisions/vertical_coverage_decisions.jsonl",
+      "name": "vertical_coverage_decisions",
+      "rows": 2,
+      "sha256": "2a7590aab50382ea6025a29584861041325ddf83e9550a595af4a496d599ffa5"
+    },
+    {
+      "csv_path": "vertical_crosswalk_candidates/vertical_crosswalk_candidates.csv",
+      "jsonl_path": "vertical_crosswalk_candidates/vertical_crosswalk_candidates.jsonl",
+      "name": "vertical_crosswalk_candidates",
+      "rows": 4,
+      "sha256": "21d757ca990fb5ee6f93e3c903ed630cd054abb28e644ed3d8b1acaa0025b496"
+    },
+    {
+      "csv_path": "vertical_crosswalk_review_queue/vertical_crosswalk_review_queue.csv",
+      "jsonl_path": "vertical_crosswalk_review_queue/vertical_crosswalk_review_queue.jsonl",
+      "name": "vertical_crosswalk_review_queue",
+      "rows": 4,
+      "sha256": "1dc135e2e17c523c91c5804f45d73d89631d7a0fc8613bf83414d6f79f5638b9"
+    },
+    {
+      "csv_path": "vertical_median_payment_by_source/vertical_median_payment_by_source.csv",
+      "jsonl_path": "vertical_median_payment_by_source/vertical_median_payment_by_source.jsonl",
+      "name": "vertical_median_payment_by_source",
+      "rows": 5,
+      "sha256": "bb1c3ab6a0eedc3dbb41715247025920b54c77a25bdf6379ee4f35e9f39e2f87"
+    },
+    {
+      "csv_path": "vertical_priced_share/vertical_priced_share.csv",
+      "jsonl_path": "vertical_priced_share/vertical_priced_share.jsonl",
+      "name": "vertical_priced_share",
+      "rows": 5,
+      "sha256": "8f05378fbc2c0135ccdca4d78e124460aa943e4bcf9eb76dd179df1eb8e9ca2c"
+    },
+    {
+      "csv_path": "vertical_policy_signal_matrix/vertical_policy_signal_matrix.csv",
+      "jsonl_path": "vertical_policy_signal_matrix/vertical_policy_signal_matrix.jsonl",
+      "name": "vertical_policy_signal_matrix",
+      "rows": 6,
+      "sha256": "eeecb2d968eaed7400db8a1c30914980973c0cc2211340830e73775a05c61de1"
+    }
+  ]
+}

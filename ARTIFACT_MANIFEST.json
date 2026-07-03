@@ -1,0 +1,35 @@
+{
+  "created_at": "2026-07-03T13:36:56.621333+00:00",
+  "updated_at": "2026-07-03",
+  "root": "reimbursement-atlas-conductor",
+  "base_commit_before_update": "a84a78f43f749a37e06e520bd98fcaaf99a8994e",
+  "note": "Archive hashes are provided in the external manifest because including exact archive hash inside the git archive is circular.",
+  "counts": {
+    "files": 146,
+    "sources": 60,
+    "analyses": 25,
+    "ontologies": 14,
+    "source_versions": 3
+  },
+  "tests": {
+    "last_local_command": "PYTHONPATH=src python -m pytest -q",
+    "last_local_result": "17 passed, 4 skipped"
+  },
+  "important_files": [
+    "REQUIREMENTS.md",
+    "DESIGN.md",
+    "docs/SOURCES.md",
+    "docs/ANALYSES.md",
+    "docs/IMPLEMENTATION_BLUEPRINT.md",
+    "docs/DATA_MODEL.md",
+    "docs/PILOT_VERTICAL_SLICE.md",
+    "conductor/INDEX.md",
+    "conductor/backlog.yml",
+    "data/seed/source_registry.jsonl",
+    "data/seed/analysis_catalogue.jsonl",
+    "data/seed/source_versions.jsonl",
+    "src/reimburse_atlas/contracts.py",
+    "src/reimburse_atlas/graph.py",
+    "apps/dashboard/package.json"
+  ]
+}

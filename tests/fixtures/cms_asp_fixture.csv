@@ -1,0 +1,3 @@
+hcpcs_code,short_description,long_description,payment_limit,billing_unit,effective_date,notes
+J0001,Example biologic injection,synthetic injectable biological,87.65,1 mg,2026-07-01,
+J0002,Example enzyme infusion,synthetic infusion product,412.10,10 mg,2026-07-01,separately payable in Part B context

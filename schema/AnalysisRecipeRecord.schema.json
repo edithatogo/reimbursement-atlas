@@ -1,0 +1,72 @@
+{
+  "additionalProperties": false,
+  "description": "Machine-readable analysis recipe for workflow planning and GitHub issues.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "analysis_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Analysis Id",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "design",
+        "prototype",
+        "blocked",
+        "production"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "required_tables": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Required Tables",
+      "type": "array"
+    },
+    "output_tables": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Output Tables",
+      "type": "array"
+    },
+    "quality_gates": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Quality Gates",
+      "type": "array"
+    },
+    "policy_question": {
+      "minLength": 1,
+      "title": "Policy Question",
+      "type": "string"
+    },
+    "caveats": {
+      "minLength": 1,
+      "title": "Caveats",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "analysis_id",
+    "status",
+    "required_tables",
+    "output_tables",
+    "quality_gates",
+    "policy_question",
+    "caveats"
+  ],
+  "title": "AnalysisRecipeRecord",
+  "type": "object"
+}

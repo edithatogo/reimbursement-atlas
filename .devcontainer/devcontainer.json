@@ -1,0 +1,29 @@
+{
+  "name": "reimbursement-atlas-conductor",
+  "image": "mcr.microsoft.com/devcontainers/python:3.13-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "24"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "charliermarsh.ruff",
+        "detachhead.basedpyright",
+        "ms-python.python",
+        "redhat.vscode-yaml",
+        "astro-build.astro-vscode"
+      ],
+      "settings": {
+        "python.analysis.typeCheckingMode": "strict",
+        "editor.formatOnSave": true,
+        "ruff.nativeServer": true
+      }
+    }
+  },
+  "postCreateCommand": "curl -fsSL https://pixi.sh/install.sh | bash && ~/.pixi/bin/pixi install",
+  "remoteEnv": {
+    "PYTHONPATH": "${containerWorkspaceFolder}/src"
+  }
+}

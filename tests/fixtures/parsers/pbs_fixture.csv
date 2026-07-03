@@ -1,0 +1,3 @@
+code_system,code,label,description,published_price,currency,payment_unit,effective_from,restriction_text,setting,source_version
+PBS item,99999A,Example enzyme replacement therapy,Synthetic high-cost medicine placeholder,1200.00,AUD,dispensed_item,2026-07-01,Authority required,community_or_hospital,synthetic_pbs_2026_07
+PBS item,88888B,Example biologic medicine,Synthetic biologic placeholder,650.00,AUD,dispensed_item,2026-07-01,Restriction applies,community_or_hospital,synthetic_pbs_2026_07

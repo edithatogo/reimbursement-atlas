@@ -1,0 +1,143 @@
+version: 2
+updated: "2026-07-03"
+epics:
+  - id: SRC-001
+    title: First-wave source versioning and fixtures
+    phase: slice
+    workstream: sources
+    priority: must
+    issues:
+      - title: Add source-version schema for MBS, CMS CLFS and NHS genomic directory
+        labels: ["type:data-source", "phase:1-slice", "risk:licence"]
+      - title: Add tiny permissive parser fixtures with provenance metadata
+        labels: ["type:parser", "phase:1-slice", "good-first-issue"]
+      - title: Add URL/licence verification checklist for first-wave sources
+        labels: ["risk:licence", "type:data-source"]
+  - id: PARSE-001
+    title: Parser contract implementation
+    phase: slice
+    workstream: ingestion
+    priority: must
+    issues:
+      - title: Implement MBS XML parser prototype to ScheduleItemRecord
+        labels: ["type:parser", "phase:1-slice", "needs-clinical-review"]
+      - title: Implement CMS CLFS parser prototype to ScheduleItemRecord
+        labels: ["type:parser", "phase:1-slice"]
+      - title: Implement NHS genomic directory parser prototype
+        labels: ["type:parser", "phase:1-slice"]
+      - title: Implement PBS API CSV parser prototype to ScheduleItemRecord
+        labels: ["type:parser", "phase:1-slice", "type:medicines"]
+      - title: Implement CMS ASP parser prototype to ScheduleItemRecord
+        labels: ["type:parser", "phase:1-slice", "type:medicines"]
+      - title: Implement CMS PFS parser prototype to ScheduleItemRecord
+        labels: ["type:parser", "phase:1-slice", "risk:licence"]
+  - id: MAP-001
+    title: Candidate crosswalk pipeline
+    phase: slice
+    workstream: mappings
+    priority: should
+    issues:
+      - title: Define genomics/pathology basket and mapping evidence fields
+        labels: ["type:mapping", "needs-clinical-review"]
+      - title: Add LOINC/HPO/HGNC local-only adapter conventions
+        labels: ["type:ontology", "risk:licence"]
+      - title: Build candidate crosswalk review queue format
+        labels: ["type:mapping", "phase:1-slice"]
+  - id: ANA-001
+    title: Source openness and access-readiness index
+    phase: slice
+    workstream: analytics
+    priority: should
+    issues:
+      - title: Validate source scoring rubric against first-wave sources
+        labels: ["type:analysis", "phase:1-slice"]
+      - title: Add sensitivity analysis for readiness grade thresholds
+        labels: ["type:analysis", "good-first-issue"]
+  - id: DASH-001
+    title: Seed graph dashboard
+    phase: slice
+    workstream: dashboard
+    priority: should
+    issues:
+      - title: Read generated graph CSV files in Astro dashboard
+        labels: ["type:dashboard", "phase:1-slice"]
+      - title: Add source detail route and analysis detail route
+        labels: ["type:dashboard", "phase:1-slice"]
+  - id: DX-001
+    title: Developer experience and release hardening
+    phase: design
+    workstream: dx
+    priority: should
+    issues:
+      - title: Add devcontainer and codespaces settings
+        labels: ["type:automation", "good-first-issue"]
+      - title: Add SBOM and SLSA provenance release jobs
+        labels: ["type:security", "phase:2-expansion"]
+      - title: Convert backlog YAML to GitHub issues
+        labels: ["type:automation", "phase:1-slice"]
+  - id: LIVE-001
+    title: Reviewed live-source validation
+    phase: slice
+    workstream: ingestion
+    priority: must
+    issues:
+      - title: Add SourceSnapshotRecord and local cache provenance schema
+        labels: ["type:data-source", "risk:licence", "phase:1-slice"]
+      - title: Validate MBS parser against one manually downloaded XML release
+        labels: ["type:parser", "phase:1-slice", "needs-clinical-review"]
+      - title: Validate CMS CLFS parser against one public file without CPT descriptor redistribution
+        labels: ["type:parser", "risk:licence", "phase:1-slice"]
+      - title: Validate PBS API CSV parser against a reviewed monthly public extract
+        labels: ["type:parser", "phase:1-slice", "type:medicines"]
+      - title: Validate CMS ASP parser against July 2026 payment-limit files
+        labels: ["type:parser", "phase:1-slice", "type:medicines"]
+      - title: Validate CMS PFS parser against RVU26C with CPT descriptor safeguards
+        labels: ["type:parser", "risk:licence", "phase:1-slice"]
+      - title: Add public data policy check to CI for raw cache safeguards
+        labels: ["type:security", "risk:licence", "phase:1-slice"]
+  - id: IFACE-001
+    title: Read-only interfaces
+    phase: design
+    workstream: interfaces
+    priority: should
+    issues:
+      - title: Harden CLI command surface and output contracts
+        labels: ["type:cli", "phase:1-slice"]
+      - title: Add optional read-only FastAPI smoke test
+        labels: ["type:api", "good-first-issue"]
+      - title: Draft read-only MCP server implementation plan
+        labels: ["type:mcp", "phase:2-expansion"]
+  - id: DASH-002
+    title: Generated artefact dashboard tables
+    phase: slice
+    workstream: dashboard
+    priority: should
+    issues:
+      - title: Add readiness table views to Astro dashboard
+        labels: ["type:dashboard", "phase:1-slice"]
+      - title: Add crosswalk review queue view to Astro dashboard
+        labels: ["type:dashboard", "type:mapping"]
+  - id: PUB-001
+    title: Publication and dataset release readiness
+    phase: slice
+    workstream: publication
+    priority: must
+    issues:
+      - title: Add reviewed-source bundle workflow to live-source validation docs
+        labels: ["type:data-source", "risk:licence", "phase:1-slice"]
+      - title: Add seed JSONL CSV synchronisation gate to CI
+        labels: ["type:automation", "phase:1-slice"]
+      - title: Add candidate publication manifest for Hugging Face dataset release
+        labels: ["type:publication", "risk:licence", "phase:1-slice"]
+      - title: Add dashboard table for policy signal matrix and analysis recipes
+        labels: ["type:dashboard", "type:analysis"]
+  - id: ONT-001
+    title: Local-only terminology seed workflow
+    phase: slice
+    workstream: ontology
+    priority: should
+    issues:
+      - title: Add synthetic ontology concept seed parser and mapping templates
+        labels: ["type:ontology", "risk:licence", "phase:1-slice"]
+      - title: Define local adapter contracts for RxNav-in-a-Box style services
+        labels: ["type:ontology", "type:mcp", "phase:2-expansion"]

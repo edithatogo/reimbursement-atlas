@@ -1,0 +1,61 @@
+{
+  "additionalProperties": false,
+  "description": "Current public-source observation used to prioritise acquisition.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "source_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source Id",
+      "type": "string"
+    },
+    "observed_at": {
+      "minLength": 1,
+      "title": "Observed At",
+      "type": "string"
+    },
+    "status_label": {
+      "minLength": 1,
+      "title": "Status Label",
+      "type": "string"
+    },
+    "evidence_url": {
+      "format": "uri",
+      "maxLength": 2083,
+      "minLength": 1,
+      "title": "Evidence Url",
+      "type": "string"
+    },
+    "evidence_note": {
+      "minLength": 1,
+      "title": "Evidence Note",
+      "type": "string"
+    },
+    "recommended_action": {
+      "minLength": 1,
+      "title": "Recommended Action",
+      "type": "string"
+    },
+    "retrieval_priority": {
+      "maximum": 5,
+      "minimum": 1,
+      "title": "Retrieval Priority",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "source_id",
+    "observed_at",
+    "status_label",
+    "evidence_url",
+    "evidence_note",
+    "recommended_action",
+    "retrieval_priority"
+  ],
+  "title": "SourceStatusRecord",
+  "type": "object"
+}

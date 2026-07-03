@@ -1,0 +1,85 @@
+{
+  "additionalProperties": false,
+  "description": "Candidate mapping between two reimbursement items or terminology codes.",
+  "properties": {
+    "left_source_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Left Source Id",
+      "type": "string"
+    },
+    "right_source_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Right Source Id",
+      "type": "string"
+    },
+    "left_code": {
+      "minLength": 1,
+      "title": "Left Code",
+      "type": "string"
+    },
+    "right_code": {
+      "minLength": 1,
+      "title": "Right Code",
+      "type": "string"
+    },
+    "relationship": {
+      "enum": [
+        "exact",
+        "narrower",
+        "broader",
+        "related",
+        "unmapped"
+      ],
+      "title": "Relationship",
+      "type": "string"
+    },
+    "confidence": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Confidence",
+      "type": "number"
+    },
+    "evidence_methods": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Evidence Methods",
+      "type": "array"
+    },
+    "reviewer_status": {
+      "default": "unreviewed",
+      "enum": [
+        "unreviewed",
+        "machine_reviewed",
+        "clinician_reviewed",
+        "rejected"
+      ],
+      "title": "Reviewer Status",
+      "type": "string"
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Notes"
+    }
+  },
+  "required": [
+    "left_source_id",
+    "right_source_id",
+    "left_code",
+    "right_code",
+    "relationship",
+    "confidence"
+  ],
+  "title": "CrosswalkCandidate",
+  "type": "object"
+}

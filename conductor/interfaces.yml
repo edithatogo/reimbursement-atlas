@@ -1,0 +1,47 @@
+version: 1
+updated: "2026-07-03"
+interfaces:
+  cli:
+    status: scaffolded
+    current_commands:
+      - sources
+      - analyses
+      - score-sources
+      - export-graph
+      - validate
+      - snapshot
+      - export-schema
+    next_commands:
+      - ingest-source
+      - build-mart
+      - propose-crosswalks
+      - run-analysis
+  python_api:
+    status: scaffolded
+    stable_modules:
+      - reimburse_atlas.models
+      - reimburse_atlas.contracts
+      - reimburse_atlas.registry
+      - reimburse_atlas.graph
+      - reimburse_atlas.scoring
+    experimental_modules:
+      - reimburse_atlas.warehouse
+  mcp:
+    status: planned
+    candidate_tools:
+      - search_sources
+      - get_source
+      - search_analyses
+      - get_analysis_dependencies
+      - lookup_schedule_item
+      - explain_mapping_candidate
+      - run_source_readiness_score
+  http_api:
+    status: planned
+    candidate_routes:
+      - GET /sources
+      - GET /sources/{id}
+      - GET /analyses
+      - GET /graph
+      - POST /crosswalk/candidates
+      - POST /analysis/{id}/run

@@ -1,0 +1,29 @@
+name: Add analysis
+description: Propose or refine a policy analysis.
+title: "[analysis]: "
+labels: ["type:analysis"]
+body:
+  - type: input
+    id: analysis_id
+    attributes:
+      label: Analysis id
+    validations:
+      required: true
+  - type: textarea
+    id: policy_insight
+    attributes:
+      label: Policy insight
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Required sources
+    validations:
+      required: true
+  - type: textarea
+    id: caveats
+    attributes:
+      label: Caveats
+    validations:
+      required: true

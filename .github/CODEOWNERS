@@ -1,0 +1,5 @@
+* @reimbursement-atlas/maintainers
+docs/** @reimbursement-atlas/policy
+data/seed/** @reimbursement-atlas/data-governance
+src/** @reimbursement-atlas/engineering
+apps/dashboard/** @reimbursement-atlas/dashboard

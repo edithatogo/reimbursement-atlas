@@ -1,0 +1,34 @@
+name: Add or validate source
+description: Add a public reimbursement source or improve source metadata.
+title: "[source]: "
+labels: ["type:data-source"]
+body:
+  - type: input
+    id: source_id
+    attributes:
+      label: Source id
+      placeholder: au_mbs
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Primary URL
+    validations:
+      required: true
+  - type: dropdown
+    id: access
+    attributes:
+      label: Access tier
+      options:
+        - tier_1
+        - tier_2
+        - tier_3
+    validations:
+      required: true
+  - type: textarea
+    id: licence
+    attributes:
+      label: Licence notes
+    validations:
+      required: true

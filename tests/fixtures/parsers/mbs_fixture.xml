@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mbs>
+  <item>
+    <code>110</code>
+    <label>Specialist initial attendance</label>
+    <description>Professional attendance by a specialist for initial consultation.</description>
+    <domain>medical_services</domain>
+    <schedule_fee>95.60</schedule_fee>
+    <currency>AUD</currency>
+    <payment_unit>attendance</payment_unit>
+    <effective_from>2026-07-01</effective_from>
+    <restriction_text>Referral required.</restriction_text>
+    <setting>outpatient</setting>
+    <source_version>synthetic_mbs_2026_07</source_version>
+  </item>
+  <item>
+    <code>132</code>
+    <label>Consultant physician initial complex assessment</label>
+    <description>Complex consultant physician assessment and management plan.</description>
+    <domain>medical_services</domain>
+    <schedule_fee>290.35</schedule_fee>
+    <currency>AUD</currency>
+    <payment_unit>attendance</payment_unit>
+    <effective_from>2026-07-01</effective_from>
+    <restriction_text>Requires eligible referral and written plan.</restriction_text>
+    <setting>outpatient</setting>
+    <source_version>synthetic_mbs_2026_07</source_version>
+  </item>
+</mbs>

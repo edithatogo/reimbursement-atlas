@@ -1,0 +1,208 @@
+# Reimbursement Atlas Conductor
+
+A design-first repository for comparing public reimbursement schedules across US CMS, Australian MBS/PBS, and other public billing, tariff, drug, diagnostic, hospital and coverage-decision systems.
+
+This repository has moved from a design scaffold into a first executable, no-network vertical slice. It defines the context-management layer, policy requirements, source registry, analysis catalogue, ontology strategy, test strategy, dashboard architecture and automation plan, and now includes parser prototypes, readiness tables, reviewed-source bundle tooling, publication manifests and generated vertical-slice artefacts.
+
+## Why this exists
+
+Public reimbursement schedules encode policy choices: what gets paid, who can access it, what is bundled, what is restricted, what is visible, and what remains hidden behind local discretion, negotiated rebates or confidential deeds.
+
+The atlas is designed to answer questions like:
+
+- Do schedules reward procedural activity more than cognitive care?
+- Does public genomic test coverage translate into diffusion?
+- Which systems are transparent versus merely public?
+- Where do coverage restrictions create inequity or access delays?
+- Which prices are comparable, and which are artefacts of bundling?
+- Which ontologies are needed to make cross-jurisdictional mappings credible?
+
+## Repository shape
+
+```text
+.
+├── conductor/                 # Context management system for future agents
+├── docs/                      # Requirements, sources, analyses, governance, roadmap
+├── data/seed/                 # Permissively shareable seed registries and graph files
+├── src/reimburse_atlas/       # Typed contracts, parsers, readiness, ingestion and API scaffolds
+├── tests/                     # Unit, property, integration, e2e and smoke tests
+├── apps/dashboard/            # Astro 7 + Cosmograph dashboard scaffold
+├── mojo/                      # Mojo design notes and future kernels
+├── schema/                    # Generated JSON schema targets
+├── .github/                   # Actions, templates, security and automation
+└── infra/huggingface/         # Dataset/Space publishing scaffold
+```
+
+## Initial stack
+
+- Python 3.13 package with Pydantic v2, Polars, Arrow, DuckDB and LanceDB.
+- Pixi for reproducible multi-environment development.
+- uv/uv_build for Python package builds.
+- Ruff in strict, preview-heavy mode; basedpyright in strict mode.
+- Pytest, Hypothesis, mutmut, Scalene, Bandit and pip-audit, now install-tested through `uv` for the Python core.
+- Astro 7 dashboard scaffold using Cosmograph for graph exploration.
+- Mojo reserved for high-throughput parsers, similarity kernels and mapping accelerators once design stabilises.
+
+## Current seed and generated assets
+
+- `data/seed/source_registry.*`: 60 public or partly public schedule/source families.
+- `data/seed/analysis_catalogue.*`: 25 policy-relevant analyses.
+- `data/seed/ontology_registry.*`: ontology/licensing/mapping strategy.
+- `data/seed/ontology_concepts.*` and `ontology_mapping_templates.*`: synthetic local-only terminology workflow seeds.
+- `data/seed/analysis_recipes.*`: workflow-ready MoSCoW-style analysis recipes and quality gates.
+- `data/seed/source_versions.*`: first-wave source-version and parser-target fixtures.
+- `data/seed/source_status.*`: current public-source observations and recommended acquisition actions.
+- `data/seed/graph_nodes.csv` and `data/seed/graph_edges.csv`: generated graph for Cosmograph.
+- `data/seed/source_readiness.*` and `data/seed/analysis_readiness.*`: generated readiness tables.
+- `data/seed/first_wave_ingestion_plan.*`: generated parser/source-version task tables.
+- `data/seed/source_acquisition_plan.*` and `data/seed/ingestion_readiness.*`: licence-gated acquisition/readiness tables.
+- `data/derived/vertical_slice/*`: generated no-network parser/crosswalk/policy-signal demonstration artefacts.
+- `data/seed/source_snapshots.*`: checksum/provenance records for committed synthetic fixtures.
+- `data/derived/seed_lake/*`: local JSONL/CSV lake materialisation and manifest.
+- `data/derived/publication_manifest.json`: candidate public/Hugging Face dataset publication manifest.
+- `data/derived/toolchain_report.*`: local installed-toolchain availability report.
+- `data/derived/v6_validation_run.json`: last local v6 validation-run summary.
+- `apps/dashboard/public/data/*`: dashboard-safe generated CSV copies.
+- `schema/`: generated from Pydantic models after running `pixi run schema-export`.
+
+## First local commands
+
+```bash
+pixi install
+pixi run seed-validate
+pixi run public-data-policy
+pixi run graph-seed
+pixi run readiness
+pixi run ingestion-plan
+pixi run acquisition-plan
+pixi run vertical-slice
+pixi run source-snapshots
+pixi run ontology-seed
+pixi run seed-sync
+pixi run seed-sync-check
+pixi run publication-manifest
+pixi run toolchain-report
+pixi run seed-lake
+pixi run dashboard-seed
+pixi run qa
+pixi run dashboard-dev
+```
+
+Without Pixi:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+PYTHONPATH=src pytest tests/unit tests/smoke -q
+```
+
+Installed-toolchain path used in v6:
+
+```bash
+uv venv .venv
+source .venv/bin/activate
+uv pip install -e '.[dev,api,mcp,test-goblin]'
+PYTHONPATH=src ruff check .
+PYTHONPATH=src ruff format --check .
+PYTHONPATH=src basedpyright
+PYTHONPATH=src pytest --cov=src/reimburse_atlas --cov-report=term-missing --cov-report=xml --cov-fail-under=90 -q
+PYTHONPATH=src bandit -q -c pyproject.toml -r src scripts
+uv build
+```
+
+
+## Current executable commands
+
+```bash
+PYTHONPATH=src reimbursement-atlas validate
+PYTHONPATH=src reimbursement-atlas score-sources
+PYTHONPATH=src reimbursement-atlas source-status
+PYTHONPATH=src reimbursement-atlas readiness data/seed
+PYTHONPATH=src reimbursement-atlas ingestion-plan data/seed
+PYTHONPATH=src reimbursement-atlas acquisition-plan data/seed
+PYTHONPATH=src reimbursement-atlas vertical-slice data/derived/vertical_slice
+PYTHONPATH=src reimbursement-atlas source-snapshots data/seed
+PYTHONPATH=src reimbursement-atlas snapshot-local-file --source-version-id au_pbs_seed_fixture tests/fixtures/pbs_fixture.csv --content-type text/csv
+PYTHONPATH=src reimbursement-atlas parse-local-source --source-version-id au_pbs_seed_fixture tests/fixtures/pbs_fixture.csv
+PYTHONPATH=src reimbursement-atlas reviewed-source-bundle --source-version-id au_pbs_seed_fixture --content-type text/csv tests/fixtures/pbs_fixture.csv
+PYTHONPATH=src reimbursement-atlas validate-seed-files
+PYTHONPATH=src reimbursement-atlas publication-manifest data/derived/publication_manifest.json
+PYTHONPATH=src reimbursement-atlas seed-lake data/derived/seed_lake
+PYTHONPATH=src reimbursement-atlas export-graph data/seed
+PYTHONPATH=src reimbursement-atlas snapshot
+```
+
+The first development slice now focuses on MBS, PBS, CMS CLFS, CMS PFS, CMS ASP and the NHS genomic test directory, emitting typed `ScheduleItemRecord`, `CoverageDecisionRecord` and `CrosswalkCandidate` objects before any broader ingestion work.
+
+## Design stance
+
+The project should stay design-led until the following are mature:
+
+1. source registry and licence gating;
+2. ontology and terminology strategy;
+3. crosswalk model;
+4. first-wave analysis definitions;
+5. dashboard information architecture;
+6. GitHub project automation and issue taxonomy;
+7. reproducible extract-transform-load conventions.
+
+No restricted ontology dumps, proprietary code-system descriptors, UMLS data, CPT text, DSM-5 text or confidential drug pricing data should be committed.
+
+Typed contracts now cover provenance, schedule items, coverage decisions and crosswalk candidates. Parser development should target those contracts before live ingestion.
+
+
+## Implementation status after the current pass
+
+- First-wave parser prototypes: MBS XML-like, PBS CSV-like, CMS CLFS CSV-like, CMS PFS CSV-like, CMS ASP CSV-like and NHS genomic-directory-like fixtures.
+- Generated local vertical slice: 10 schedule items, 2 coverage decisions, 4 candidate crosswalk records, 4 review-queue rows and 6 policy-signal rows from synthetic fixtures.
+- Generated fixture snapshot records: 6 checksum/provenance rows to gate future live-source validation.
+- Generated source-status observations: 5 current public-source acquisition notes for MBS, PBS, CLFS, PFS and ASP.
+- Generated readiness artefacts: 60 source rows and 25 analysis rows.
+- API scaffold: optional read-only FastAPI factory in `src/reimburse_atlas/api.py`.
+- MCP scaffold: read-only tool manifest in `mcp/tools.seed.json` plus a lazy optional server in `src/reimburse_atlas/mcp_server.py`.
+- Dashboard now loads generated CSV files from `apps/dashboard/public/data/`, including source status, analysis recipes, ontology concepts, crosswalk review queue and policy-signal outputs.
+
+The generated demonstration data are synthetic and intended to test the system design. Live-source ingestion remains gated behind licence/provenance review.
+
+
+## Optional API and MCP surfaces
+
+The core package remains usable without FastAPI or the MCP SDK. The optional surfaces are lazy-imported and read-only:
+
+```bash
+pixi run -e api api-dev
+pixi run -e mcp mcp-dev
+```
+
+The MCP dependency is constrained to the stable 1.x line for now; live fetching, restricted ontology access and write operations remain out of scope until licence/provenance gates are production-ready.
+
+
+
+## v6 installed-toolchain and quality-gate layer
+
+The v6 pass installed and exercised the Python development stack locally rather than leaving it as CI-only scaffolding. The core package now passes Ruff, Ruff format check, basedpyright strict type checking, Bandit, `compileall`, `uv build`, and a 90% coverage gate over the core library.
+
+The `test-goblin` extra is now a compatibility profile built from Hypothesis, mutmut and pytest-randomly. This keeps the intended goblin-style adversarial testing direction without depending on an unresolved placeholder package.
+
+See:
+
+- `docs/LOCAL_TOOLCHAIN_VALIDATION.md`
+- `docs/TEST_GOBLIN_COMPATIBILITY.md`
+- `docs/COVERAGE_POLICY.md`
+
+## v5 reviewed-source and publication layer
+
+The current pass adds a safer path from synthetic fixtures to real public-source validation:
+
+```bash
+PYTHONPATH=src reimbursement-atlas reviewed-source-bundle \
+  --source-version-id au_pbs_seed_fixture \
+  --content-type text/csv \
+  tests/fixtures/pbs_fixture.csv
+
+PYTHONPATH=src reimbursement-atlas validate-seed-files
+PYTHONPATH=src reimbursement-atlas publication-manifest data/derived/publication_manifest.json
+```
+
+The reviewed-source bundle writes checksum metadata, derived rows, validation reports and a bundle-local publication manifest without copying the raw file. This is the intended workflow for manually downloaded MBS, PBS, CMS and NHS source files.

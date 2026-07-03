@@ -1,0 +1,26 @@
+analysis_id,bottleneck_source_score,difficulty,mean_source_score,missing_source_count,missing_sources,ready_for_prototype,required_source_count,stage,title
+hospital_professional_unbundling,14,high,14.0,0,,True,8,design,Hospital-professional unbundling map
+patient_cost_exposure,14,high,14.0,0,,True,5,design,Patient cost exposure and gap risk
+substitution_and_volume_control,14,medium,14.0,0,,True,4,design,Substitution and volume-control evaluation
+coverage_to_utilisation_lag,12,medium,13.33,0,,True,6,design,Coverage-to-utilisation lag after listing
+hospital_outpatient_carveout,12,high,13.67,0,,True,6,design,Hospital outpatient carve-out and bundling comparison
+ontology_maturity_score,12,low,13.67,0,,True,6,design,Ontology and mapping maturity score
+terminology_coverage_completeness,12,low,13.6,0,,True,5,prototype,Terminology coverage and ontology-dependency audit
+device_and_prosthesis_visibility,10,high,13.0,0,,True,6,design,Device and prosthesis price visibility comparison
+cognitive_vs_procedural_ratio,9,medium,11.5,0,,True,6,design,Cognitive versus procedural reward index
+equity_weighting_and_rural_loadings,9,medium,12.5,0,,True,6,design,Equity weighting and rurality adjustments
+medicine_access_restriction_text,9,medium,12.33,0,,True,6,design,Medicine restriction-text strictness index
+medicine_substitution_and_price_ladders,9,high,12.43,0,,True,7,design,"Medicine substitution, reference pricing and price ladder analysis"
+price_revision_velocity,9,medium,13.17,0,,True,6,design,Price revision velocity and indexation discipline
+published_vs_effective_price_opacity,9,medium,12.57,0,,True,7,design,Published versus effective price opacity score
+telehealth_payment_architecture,9,medium,13.0,0,,True,5,design,Telehealth payment architecture and parity rules
+ai_diagnostics_reimbursement_readiness,7,high,12.2,0,,False,5,design,AI diagnostics reimbursement readiness
+coverage_decision_architecture,7,low,9.0,0,,False,5,design,Coverage decision architecture comparison
+genomics_coverage_price_diffusion,7,medium,11.8,0,,False,5,design,"Genomics coverage, price and diffusion atlas"
+innovation_time_to_reimbursement,7,medium,10.43,0,,False,7,design,Time from evidence/approval to reimbursement
+primary_care_longitudinal_incentives,7,medium,11.6,0,,False,5,design,Primary-care longitudinal incentive architecture
+rare_disease_reimbursement_pathways,7,high,9.43,0,,False,7,design,Rare disease and ultra-orphan reimbursement pathways
+global_public_schedule_access_index,5,low,11.43,0,,False,7,prototype,Global public schedule access and reproducibility index
+local_discretion_postcode_lottery,5,medium,9.0,0,,False,6,design,Local discretion and postcode-lottery index
+local_vs_national_discretion,5,medium,11.0,0,,False,6,design,Local versus national coverage discretion map
+schedule_transparency_benchmark,5,low,11.2,0,,False,40,design,Schedule transparency benchmark

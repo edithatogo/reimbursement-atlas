@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "tools": [
+    {
+      "name": "atlas.snapshot",
+      "mode": "read_only",
+      "description": "Return project counts and first-wave readiness summary."
+    },
+    {
+      "name": "atlas.search_sources",
+      "mode": "read_only",
+      "description": "Search public reimbursement source metadata."
+    },
+    {
+      "name": "atlas.source_status",
+      "mode": "read_only",
+      "description": "Return current public-source observations and recommended acquisition actions."
+    },
+    {
+      "name": "atlas.analysis_readiness",
+      "mode": "read_only",
+      "description": "Return analysis readiness and bottleneck-source rows."
+    },
+    {
+      "name": "atlas.ingestion_plan",
+      "mode": "read_only",
+      "description": "Return the cautious first-wave ingestion plan without fetching live data."
+    },
+    {
+      "name": "atlas.crosswalk_review_queue",
+      "mode": "read_only",
+      "description": "Return locally generated candidate crosswalk records for human review."
+    }
+  ]
+}

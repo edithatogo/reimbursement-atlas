@@ -1,0 +1,66 @@
+{
+  "additionalProperties": false,
+  "description": "A planned source acquisition that has not necessarily been fetched.",
+  "properties": {
+    "source_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source Id",
+      "type": "string"
+    },
+    "version_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Version Id",
+      "type": "string"
+    },
+    "url": {
+      "format": "uri",
+      "maxLength": 2083,
+      "minLength": 1,
+      "title": "Url",
+      "type": "string"
+    },
+    "expected_format": {
+      "minLength": 1,
+      "title": "Expected Format",
+      "type": "string"
+    },
+    "parser_name": {
+      "minLength": 1,
+      "title": "Parser Name",
+      "type": "string"
+    },
+    "acquisition_mode": {
+      "minLength": 1,
+      "title": "Acquisition Mode",
+      "type": "string"
+    },
+    "licence_gate": {
+      "minLength": 1,
+      "title": "Licence Gate",
+      "type": "string"
+    },
+    "cache_policy": {
+      "minLength": 1,
+      "title": "Cache Policy",
+      "type": "string"
+    },
+    "notes": {
+      "minLength": 1,
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "source_id",
+    "version_id",
+    "url",
+    "expected_format",
+    "parser_name",
+    "acquisition_mode",
+    "licence_gate",
+    "cache_policy",
+    "notes"
+  ],
+  "title": "SourceAcquisitionPlan",
+  "type": "object"
+}

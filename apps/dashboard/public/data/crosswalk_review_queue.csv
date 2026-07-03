@@ -1,0 +1,5 @@
+confidence,evidence_methods,left_code,left_source_id,priority,recommended_action,relationship,review_note,right_code,right_source_id
+0.545,token_jaccard,73358,au_mbs,medium,triage,unmapped,"Do not use in policy estimates until a domain reviewer confirms scope, code semantics, setting and unit equivalence.",81479,us_cms_clfs
+0.267,token_jaccard,110,au_mbs,low,park,unmapped,"Do not use in policy estimates until a domain reviewer confirms scope, code semantics, setting and unit equivalence.",81479,us_cms_clfs
+0.133,token_jaccard,73358,au_mbs,low,park,unmapped,"Do not use in policy estimates until a domain reviewer confirms scope, code semantics, setting and unit equivalence.",G0452,us_cms_clfs
+0.118,token_jaccard,110,au_mbs,low,park,unmapped,"Do not use in policy estimates until a domain reviewer confirms scope, code semantics, setting and unit equivalence.",G0452,us_cms_clfs

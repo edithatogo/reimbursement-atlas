@@ -1,0 +1,103 @@
+{
+  "additionalProperties": false,
+  "description": "A single source-version ingestion task.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "source_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source Id",
+      "type": "string"
+    },
+    "source_version_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source Version Id",
+      "type": "string"
+    },
+    "jurisdiction": {
+      "minLength": 1,
+      "title": "Jurisdiction",
+      "type": "string"
+    },
+    "domain": {
+      "minLength": 1,
+      "title": "Domain",
+      "type": "string"
+    },
+    "source_url": {
+      "format": "uri",
+      "maxLength": 2083,
+      "minLength": 1,
+      "title": "Source Url",
+      "type": "string"
+    },
+    "expected_format": {
+      "minLength": 1,
+      "title": "Expected Format",
+      "type": "string"
+    },
+    "parser_name": {
+      "minLength": 1,
+      "title": "Parser Name",
+      "type": "string"
+    },
+    "output_contract": {
+      "enum": [
+        "ScheduleItemRecord",
+        "CoverageDecisionRecord",
+        "SourceRecord"
+      ],
+      "title": "Output Contract",
+      "type": "string"
+    },
+    "network_policy": {
+      "enum": [
+        "fixture_only",
+        "manual_download",
+        "live_fetch_allowed"
+      ],
+      "title": "Network Policy",
+      "type": "string"
+    },
+    "licence_gate": {
+      "enum": [
+        "permissive",
+        "public_reuse_review",
+        "restricted_local_only"
+      ],
+      "title": "Licence Gate",
+      "type": "string"
+    },
+    "priority": {
+      "maximum": 5,
+      "minimum": 1,
+      "title": "Priority",
+      "type": "integer"
+    },
+    "rationale": {
+      "minLength": 1,
+      "title": "Rationale",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "source_id",
+    "source_version_id",
+    "jurisdiction",
+    "domain",
+    "source_url",
+    "expected_format",
+    "parser_name",
+    "output_contract",
+    "network_policy",
+    "licence_gate",
+    "priority",
+    "rationale"
+  ],
+  "title": "IngestionTaskRecord",
+  "type": "object"
+}

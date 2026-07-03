@@ -1,0 +1,73 @@
+{
+  "additionalProperties": false,
+  "description": "Small concept record for local ontology graph and mapping prototypes.",
+  "properties": {
+    "terminology_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Terminology Id",
+      "type": "string"
+    },
+    "code": {
+      "minLength": 1,
+      "title": "Code",
+      "type": "string"
+    },
+    "label": {
+      "minLength": 1,
+      "title": "Label",
+      "type": "string"
+    },
+    "domain": {
+      "minLength": 1,
+      "title": "Domain",
+      "type": "string"
+    },
+    "concept_class": {
+      "minLength": 1,
+      "title": "Concept Class",
+      "type": "string"
+    },
+    "licence_scope": {
+      "enum": [
+        "synthetic",
+        "permissive",
+        "local_only",
+        "restricted"
+      ],
+      "title": "Licence Scope",
+      "type": "string"
+    },
+    "synonyms": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Synonyms",
+      "type": "array"
+    },
+    "mapping_targets": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Mapping Targets",
+      "type": "array"
+    },
+    "notes": {
+      "minLength": 1,
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "terminology_id",
+    "code",
+    "label",
+    "domain",
+    "concept_class",
+    "licence_scope",
+    "notes"
+  ],
+  "title": "OntologyConceptRecord",
+  "type": "object"
+}

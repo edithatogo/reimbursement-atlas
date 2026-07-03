@@ -1,0 +1,190 @@
+{
+  "generated_by": "scripts/make_toolchain_report.py",
+  "rows": [
+    {
+      "available": true,
+      "kind": "runtime",
+      "name": "python",
+      "notes": "Linux x86_64 via python",
+      "path": "active Python interpreter",
+      "version": "3.13.5"
+    },
+    {
+      "available": true,
+      "kind": "python-package",
+      "name": "ruff",
+      "notes": "installed",
+      "path": "python environment",
+      "version": "0.15.20"
+    },
+    {
+      "available": true,
+      "kind": "python-package",
+      "name": "basedpyright",
+      "notes": "installed",
+      "path": "python environment",
+      "version": "1.39.9"
+    },
+    {
+      "available": true,
+      "kind": "python-package",
+      "name": "pytest",
+      "notes": "installed",
+      "path": "python environment",
+      "version": "9.1.1"
+    },
+    {
+      "available": true,
+      "kind": "python-package",
+      "name": "pytest-cov",
+      "notes": "installed",
+      "path": "python environment",
+      "version": "7.1.0"
+    },
+    {
+      "available": true,
+      "kind": "python-package",
+      "name": "hypothesis",
+      "notes": "installed",
+      "path": "python environment",
+      "version": "6.156.1"
+    },
+    {
+      "available": true,
+      "kind": "python-package",
+      "name": "mutmut",
+      "notes": "installed",
+      "path": "python environment",
+      "version": "3.6.0"
+    },
+    {
+      "available": true,
+      "kind": "python-package",
+      "name": "scalene",
+      "notes": "installed",
+      "path": "python environment",
+      "version": "2.3.0"
+    },
+    {
+      "available": true,
+      "kind": "python-package",
+      "name": "bandit",
+      "notes": "installed",
+      "path": "python environment",
+      "version": "1.9.4"
+    },
+    {
+      "available": true,
+      "kind": "python-package",
+      "name": "pip-audit",
+      "notes": "installed",
+      "path": "python environment",
+      "version": "2.10.1"
+    },
+    {
+      "available": true,
+      "kind": "python-package",
+      "name": "polars",
+      "notes": "installed",
+      "path": "python environment",
+      "version": "1.42.1"
+    },
+    {
+      "available": true,
+      "kind": "python-package",
+      "name": "pyarrow",
+      "notes": "installed",
+      "path": "python environment",
+      "version": "24.0.0"
+    },
+    {
+      "available": true,
+      "kind": "python-package",
+      "name": "duckdb",
+      "notes": "installed",
+      "path": "python environment",
+      "version": "1.5.4"
+    },
+    {
+      "available": true,
+      "kind": "python-package",
+      "name": "lancedb",
+      "notes": "installed",
+      "path": "python environment",
+      "version": "0.34.0"
+    },
+    {
+      "available": true,
+      "kind": "python-package",
+      "name": "pydantic",
+      "notes": "installed",
+      "path": "python environment",
+      "version": "2.13.4"
+    },
+    {
+      "available": true,
+      "kind": "python-package",
+      "name": "defusedxml",
+      "notes": "installed",
+      "path": "python environment",
+      "version": "0.7.1"
+    },
+    {
+      "available": true,
+      "kind": "python-package",
+      "name": "fastapi",
+      "notes": "installed",
+      "path": "python environment",
+      "version": "0.139.0"
+    },
+    {
+      "available": true,
+      "kind": "python-package",
+      "name": "mcp",
+      "notes": "installed",
+      "path": "python environment",
+      "version": "1.28.1"
+    },
+    {
+      "available": true,
+      "kind": "cli",
+      "name": "uv",
+      "notes": "found on PATH",
+      "path": "PATH",
+      "version": ""
+    },
+    {
+      "available": false,
+      "kind": "cli",
+      "name": "pixi",
+      "notes": "not found on PATH",
+      "path": "",
+      "version": ""
+    },
+    {
+      "available": false,
+      "kind": "cli",
+      "name": "mojo",
+      "notes": "not found on PATH",
+      "path": "",
+      "version": ""
+    },
+    {
+      "available": true,
+      "kind": "cli",
+      "name": "node",
+      "notes": "found on PATH",
+      "path": "PATH",
+      "version": ""
+    },
+    {
+      "available": true,
+      "kind": "cli",
+      "name": "npm",
+      "notes": "found on PATH",
+      "path": "PATH",
+      "version": ""
+    }
+  ],
+  "schema_version": "1.0"
+}

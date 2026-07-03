@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":semanticCommits", ":dependencyDashboard"],
+  "labels": ["type:ci"],
+  "packageRules": [
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "github actions"
+    },
+    {
+      "matchFileNames": ["apps/dashboard/package.json"],
+      "groupName": "dashboard dependencies"
+    },
+    {
+      "matchPackageNames": ["ruff", "basedpyright", "pytest", "hypothesis", "polars", "duckdb", "pyarrow", "lancedb"],
+      "groupName": "python data tooling"
+    }
+  ]
+}

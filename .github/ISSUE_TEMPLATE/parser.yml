@@ -1,0 +1,19 @@
+name: Parser task
+description: Implement or improve a source parser.
+title: "[parser]: "
+labels: ["type:parser"]
+body:
+  - type: input
+    id: source_id
+    attributes:
+      label: Source id
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Provenance requirements
+  - type: textarea
+    id: tests
+    attributes:
+      label: Tests required

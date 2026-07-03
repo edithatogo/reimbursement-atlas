@@ -1,0 +1,65 @@
+version: 1
+updated: "2026-07-03"
+epics:
+  - id: conductor-foundation
+    title: Conductor project memory and handoff system
+    phase: "0-design"
+    status: done
+    workstream: conductor
+    issues:
+      - title: Define canonical project context
+        labels: ["type:design", "phase:0-design"]
+      - title: Create decision log and ADR template
+        labels: ["type:design", "phase:0-design"]
+  - id: source-registry
+    title: Public reimbursement source registry
+    phase: "0-design"
+    status: ready
+    workstream: sources
+    issues:
+      - title: Add source quality scoring fields
+        labels: ["type:data-source", "phase:0-design"]
+      - title: Validate first-wave source URLs and licences
+        labels: ["risk:licence", "type:data-source"]
+  - id: analysis-catalogue
+    title: Policy analysis catalogue
+    phase: "0-design"
+    status: ready
+    workstream: analytics
+    issues:
+      - title: Select first service basket
+        labels: ["type:analysis", "needs-clinical-review"]
+      - title: Draft genomics demonstrator protocol
+        labels: ["type:analysis", "phase:1-slice"]
+  - id: first-ingestion-slice
+    title: MBS/CMS/PBS first ingestion slice
+    phase: "1-slice"
+    status: inbox
+    workstream: ingestion
+    issues:
+      - title: Implement MBS XML parser
+        labels: ["type:parser", "phase:1-slice"]
+      - title: Implement CMS CLFS parser
+        labels: ["type:parser", "phase:1-slice"]
+      - title: Implement PBS CSV/API parser
+        labels: ["type:parser", "phase:1-slice"]
+  - id: dashboard-seed
+    title: Astro and Cosmograph seed dashboard
+    phase: "1-slice"
+    status: ready
+    workstream: dashboard
+    issues:
+      - title: Render source-analysis-ontology graph from seed CSV
+        labels: ["type:dashboard", "phase:1-slice"]
+      - title: Add source detail page
+        labels: ["type:dashboard", "good-first-issue"]
+  - id: ontology-governance
+    title: Ontology adapters and licence gates
+    phase: "1-slice"
+    status: ready
+    workstream: ontologies
+    issues:
+      - title: Implement restricted local-only cache convention
+        labels: ["type:ontology", "risk:licence"]
+      - title: Add RxNav endpoint configuration
+        labels: ["type:ontology", "phase:1-slice"]

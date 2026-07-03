@@ -1,0 +1,7 @@
+terminology_id,code,label,domain,concept_class,licence_scope,synonyms,mapping_targets,notes
+loinc,81247-9,Master HL7 genetic variant reporting panel,genomics,laboratory_observation,synthetic,genetic variant report|molecular variant report,hpo:HP:0000118,Synthetic concept inspired by common terminology use; not an official redistributed LOINC row.
+hpo,HP:0000118,Phenotypic abnormality,phenotype,phenotype_root,synthetic,abnormal phenotype|clinical feature,,Synthetic concept for ontology-adapter testing only.
+atc,L04AB01,Etanercept,medicines,drug_classification,synthetic,TNF inhibitor|biologic therapy,rxnorm:214555,Synthetic concept for ATC/RxNorm mapping workflow testing only.
+rxnorm,214555,Etanercept injectable product,medicines,clinical_drug,synthetic,etanercept injection|etanercept product,,Synthetic concept for RxNav/RxNorm local-adapter testing only.
+icd11,MG30,Chronic pain,diagnosis,diagnosis_category,synthetic,persistent pain|chronic pain disorder,,Synthetic ICD-style concept for mapping workflow testing only.
+hgnc,HGNC:11998,TP53,genomics,gene_symbol,synthetic,tumor protein p53|p53,loinc:81247-9,Synthetic HGNC-style concept for gene-test mapping workflow testing only.

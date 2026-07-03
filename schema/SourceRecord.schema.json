@@ -1,0 +1,121 @@
+{
+  "additionalProperties": false,
+  "description": "A public reimbursement schedule or contextual data source.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "jurisdiction": {
+      "minLength": 1,
+      "title": "Jurisdiction",
+      "type": "string"
+    },
+    "system": {
+      "minLength": 1,
+      "title": "System",
+      "type": "string"
+    },
+    "schedule": {
+      "minLength": 1,
+      "title": "Schedule",
+      "type": "string"
+    },
+    "domain": {
+      "minLength": 1,
+      "title": "Domain",
+      "type": "string"
+    },
+    "access_tier": {
+      "enum": [
+        "tier_1",
+        "tier_2",
+        "tier_3"
+      ],
+      "title": "Access Tier",
+      "type": "string"
+    },
+    "format": {
+      "minLength": 1,
+      "title": "Format",
+      "type": "string"
+    },
+    "primary_url": {
+      "format": "uri",
+      "maxLength": 2083,
+      "minLength": 1,
+      "title": "Primary Url",
+      "type": "string"
+    },
+    "licence_notes": {
+      "minLength": 1,
+      "title": "Licence Notes",
+      "type": "string"
+    },
+    "reliability": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "title": "Reliability",
+      "type": "string"
+    },
+    "machine_readable": {
+      "title": "Machine Readable",
+      "type": "boolean"
+    },
+    "historical_versions": {
+      "title": "Historical Versions",
+      "type": "boolean"
+    },
+    "utilisation_data": {
+      "title": "Utilisation Data",
+      "type": "boolean"
+    },
+    "refresh_cadence": {
+      "minLength": 1,
+      "title": "Refresh Cadence",
+      "type": "string"
+    },
+    "data_owner": {
+      "minLength": 1,
+      "title": "Data Owner",
+      "type": "string"
+    },
+    "tags": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Tags",
+      "type": "array"
+    },
+    "notes": {
+      "minLength": 1,
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "jurisdiction",
+    "system",
+    "schedule",
+    "domain",
+    "access_tier",
+    "format",
+    "primary_url",
+    "licence_notes",
+    "reliability",
+    "machine_readable",
+    "historical_versions",
+    "utilisation_data",
+    "refresh_cadence",
+    "data_owner",
+    "notes"
+  ],
+  "title": "SourceRecord",
+  "type": "object"
+}

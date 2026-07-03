@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MBS>
+  <Item>
+    <ItemNum>73358</ItemNum>
+    <ItemLabel>Synthetic constitutional genomic analysis</ItemLabel>
+    <ItemDescription>Synthetic genomic test fixture for mapping design only.</ItemDescription>
+    <ScheduleFee>1200.00</ScheduleFee>
+    <ItemStartDate>2026-07-01</ItemStartDate>
+    <Restriction>Clinical suspicion of monogenic disease; synthetic eligibility text.</Restriction>
+    <Setting>outpatient</Setting>
+    <Domain>laboratory</Domain>
+  </Item>
+  <Item>
+    <ItemNum>110</ItemNum>
+    <ItemLabel>Synthetic specialist initial attendance</ItemLabel>
+    <ItemDescription>Synthetic consult fixture for fee-relativity design only.</ItemDescription>
+    <ScheduleFee>95.60</ScheduleFee>
+    <ItemStartDate>2026-07-01</ItemStartDate>
+    <Setting>outpatient</Setting>
+    <Domain>medical_services</Domain>
+  </Item>
+</MBS>

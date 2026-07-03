@@ -1,0 +1,69 @@
+{
+  "additionalProperties": false,
+  "description": "Template for a reviewable mapping assertion between terminology families.",
+  "properties": {
+    "left_terminology_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Left Terminology Id",
+      "type": "string"
+    },
+    "left_code": {
+      "minLength": 1,
+      "title": "Left Code",
+      "type": "string"
+    },
+    "right_terminology_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Right Terminology Id",
+      "type": "string"
+    },
+    "right_code": {
+      "minLength": 1,
+      "title": "Right Code",
+      "type": "string"
+    },
+    "relationship": {
+      "enum": [
+        "exact",
+        "narrower",
+        "broader",
+        "related",
+        "candidate"
+      ],
+      "title": "Relationship",
+      "type": "string"
+    },
+    "review_status": {
+      "default": "template",
+      "enum": [
+        "template",
+        "machine_generated",
+        "reviewed",
+        "rejected"
+      ],
+      "title": "Review Status",
+      "type": "string"
+    },
+    "evidence_method": {
+      "minLength": 1,
+      "title": "Evidence Method",
+      "type": "string"
+    },
+    "notes": {
+      "minLength": 1,
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "left_terminology_id",
+    "left_code",
+    "right_terminology_id",
+    "right_code",
+    "relationship",
+    "evidence_method",
+    "notes"
+  ],
+  "title": "OntologyMappingTemplate",
+  "type": "object"
+}

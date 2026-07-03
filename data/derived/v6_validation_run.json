@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "generated_by": "manual v6 validation run",
+  "date": "2026-07-03",
+  "checks": [
+    {
+      "name": "uv install",
+      "status": "pass",
+      "notes": "Installed project extras dev, api, mcp and test-goblin in .venv."
+    },
+    {
+      "name": "ruff check",
+      "status": "pass",
+      "notes": "All checks passed."
+    },
+    {
+      "name": "ruff format --check",
+      "status": "pass",
+      "notes": "207 files already formatted."
+    },
+    {
+      "name": "basedpyright",
+      "status": "pass",
+      "notes": "0 errors, 0 warnings, 0 notes."
+    },
+    {
+      "name": "pytest coverage",
+      "status": "pass",
+      "notes": "70 passed; total core-library coverage 93.37%; threshold 90%."
+    },
+    {
+      "name": "bandit",
+      "status": "pass",
+      "notes": "Bandit completed; retained warehouse SQL literal guard is annotated."
+    },
+    {
+      "name": "compileall",
+      "status": "pass",
+      "notes": "src, scripts and tests compiled."
+    },
+    {
+      "name": "uv build",
+      "status": "pass",
+      "notes": "Source distribution and wheel built successfully."
+    },
+    {
+      "name": "pip-audit --strict",
+      "status": "blocked",
+      "notes": "Could not resolve pypi.org from this runtime."
+    },
+    {
+      "name": "dashboard npm install",
+      "status": "blocked",
+      "notes": "npm package-lock generation timed out in this runtime."
+    }
+  ]
+}

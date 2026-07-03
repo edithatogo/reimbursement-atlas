@@ -1,0 +1,3 @@
+pbs_item_code,drug_name,form_strength,dispensed_price_max_quantity,general_patient_charge,effective_date,restriction
+1234A,Example enzyme replacement vial,synthetic vial 10 mg,812.40,31.60,2026-07-01,Authority required for confirmed metabolic indication
+5678B,Example oral therapy tablet,synthetic tablet 5 mg,41.23,31.60,2026-07-01,

@@ -1,0 +1,83 @@
+{
+  "additionalProperties": false,
+  "description": "A planned policy analysis using one or more sources.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "title": {
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "purpose": {
+      "minLength": 1,
+      "title": "Purpose",
+      "type": "string"
+    },
+    "difficulty": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "title": "Difficulty",
+      "type": "string"
+    },
+    "policy_insight": {
+      "minLength": 1,
+      "title": "Policy Insight",
+      "type": "string"
+    },
+    "required_sources": {
+      "items": {
+        "pattern": "^[a-z0-9_]+$",
+        "type": "string"
+      },
+      "title": "Required Sources",
+      "type": "array"
+    },
+    "primary_output": {
+      "minLength": 1,
+      "title": "Primary Output",
+      "type": "string"
+    },
+    "methods": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Methods",
+      "type": "array"
+    },
+    "caveats": {
+      "minLength": 1,
+      "title": "Caveats",
+      "type": "string"
+    },
+    "stage": {
+      "default": "design",
+      "enum": [
+        "design",
+        "prototype",
+        "production"
+      ],
+      "title": "Stage",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "purpose",
+    "difficulty",
+    "policy_insight",
+    "required_sources",
+    "primary_output",
+    "caveats"
+  ],
+  "title": "AnalysisRecord",
+  "type": "object"
+}

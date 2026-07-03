@@ -1,0 +1,5 @@
+confidence,evidence_methods,left_code,left_source_id,notes,relationship,reviewer_status,right_code,right_source_id
+0.545,"[""token_jaccard""]",73358,au_mbs,Machine-generated candidate; requires domain review before policy use.,unmapped,unreviewed,81479,us_cms_clfs
+0.267,"[""token_jaccard""]",110,au_mbs,Machine-generated candidate; requires domain review before policy use.,unmapped,unreviewed,81479,us_cms_clfs
+0.133,"[""token_jaccard""]",73358,au_mbs,Machine-generated candidate; requires domain review before policy use.,unmapped,unreviewed,G0452,us_cms_clfs
+0.118,"[""token_jaccard""]",110,au_mbs,Machine-generated candidate; requires domain review before policy use.,unmapped,unreviewed,G0452,us_cms_clfs

@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+title: Reimbursement Atlas Conductor
+message: "If you use this design scaffold, please cite it."
+type: software
+authors:
+  - family-names: "Dylan"
+version: 0.1.0
+date-released: 2026-07-03
+license: MIT

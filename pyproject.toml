@@ -1,0 +1,276 @@
+[build-system]
+requires = ["uv_build>=0.11.26,<0.12"]
+build-backend = "uv_build"
+
+[project]
+name = "reimbursement-atlas"
+version = "0.1.0"
+description = "Bleeding-edge comparative reimbursement atlas for CMS, MBS/PBS and global public billing schedules."
+readme = "README.md"
+requires-python = ">=3.13"
+license = "MIT"
+authors = [{ name = "Dylan and collaborators" }]
+keywords = ["health-economics", "reimbursement", "cms", "mbs", "pbs", "hta", "polars", "duckdb", "lancedb", "mojo"]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Healthcare Industry",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3.13",
+  "Typing :: Typed",
+]
+dependencies = [
+  "polars>=1.35.0",
+  "pyarrow>=22.0.0",
+  "duckdb>=1.4.0",
+  "lancedb>=0.25.0",
+  "pydantic>=2.12.0",
+  "pydantic-settings>=2.12.0",
+  "typer>=0.20.0",
+  "rich>=14.0.0",
+  "orjson>=3.11.0",
+  "httpx>=0.28.0",
+  "tenacity>=9.1.0",
+  "structlog>=25.0.0",
+  "networkx>=3.5",
+  "defusedxml>=0.7.1",
+]
+
+[project.optional-dependencies]
+api = [
+  "fastapi>=0.139.0",
+  "uvicorn[standard]>=0.49.0",
+]
+mcp = [
+  "mcp>=1.28,<2",
+]
+dev = [
+  "basedpyright>=1.35.0",
+  "ruff>=0.14.0",
+  "pytest>=9.0.0",
+  "pytest-cov>=7.0.0",
+  "pytest-xdist>=3.8.0",
+  "pytest-randomly>=4.0.0",
+  "hypothesis>=6.148.0",
+  "mutmut>=3.3.0",
+  "scalene>=1.5.0",
+  "bandit[toml]>=1.8.0",
+  "pip-audit>=2.9.0",
+  "pre-commit>=4.3.0",
+  "interrogate>=1.7.0",
+  "mkdocs-material>=9.6.0",
+]
+test-goblin = [
+  "hypothesis>=6.148.0",
+  "mutmut>=3.3.0",
+  "pytest-randomly>=4.0.0",
+]
+
+[project.scripts]
+reimbursement-atlas = "reimburse_atlas.cli:app"
+
+[tool.uv.build-backend]
+module-name = "reimburse_atlas"
+module-root = "src"
+
+[tool.pixi.project]
+channels = ["conda-forge", "https://conda.modular.com/max-nightly/"]
+platforms = ["osx-arm64", "linux-64", "linux-aarch64"]
+
+[tool.pixi.dependencies]
+python = ">=3.13"
+uv = ">=0.11.0"
+ruff = ">=0.14.0"
+basedpyright = ">=1.35.0"
+pytest = ">=9.0.0"
+polars = ">=1.35.0"
+pyarrow = ">=22.0.0"
+duckdb = ">=1.4.0"
+
+[tool.pixi.feature.mojo.dependencies]
+max = "*"
+
+[tool.pixi.feature.dashboard.dependencies]
+nodejs = ">=24.0.0"
+
+[tool.pixi.feature.api.dependencies]
+fastapi = ">=0.139.0"
+uvicorn = ">=0.49.0"
+
+[tool.pixi.feature.mcp.pypi-dependencies]
+mcp = ">=1.28,<2"
+
+[tool.pixi.environments]
+default = { features = [], solve-group = "default" }
+mojo = { features = ["mojo"], solve-group = "default" }
+dashboard = { features = ["dashboard"], solve-group = "default" }
+api = { features = ["api"], solve-group = "default" }
+mcp = { features = ["mcp"], solve-group = "default" }
+
+[tool.pixi.tasks]
+format = "ruff format . && ruff check . --fix"
+format-check = "ruff format --check ."
+lint = "ruff check ."
+typecheck = "basedpyright"
+unit = "pytest tests/unit -q"
+smoke = "pytest tests/smoke -q"
+property = "pytest tests/property -q"
+integration = "pytest tests/integration -q"
+e2e = "pytest tests/e2e -q"
+test = "pytest -q"
+coverage = "pytest --cov=src/reimburse_atlas --cov-report=term-missing --cov-report=xml --cov-fail-under=90"
+mutation = "mutmut run --paths-to-mutate src/reimburse_atlas"
+profile = "scalene src/reimburse_atlas/cli.py -- --help"
+qa = { depends-on = ["format-check", "lint", "typecheck", "seed-sync-check", "coverage", "smoke"] }
+schema-export = "python scripts/export_json_schema.py"
+seed-validate = "python scripts/validate_seed_data.py"
+seed-sync = "python scripts/sync_seed_csvs.py"
+seed-sync-check = "python scripts/validate_seed_sync.py"
+public-data-policy = "python scripts/check_public_data_policy.py"
+graph-seed = "python scripts/make_graph_seed.py"
+project-issues = "python scripts/create_github_project_items.py"
+ingestion-plan = "python scripts/make_ingestion_plan.py"
+acquisition-plan = "reimbursement-atlas acquisition-plan data/seed"
+readiness = "python scripts/make_readiness_tables.py"
+vertical-slice = "python scripts/make_vertical_slice.py"
+dashboard-seed = "python scripts/sync_dashboard_seed.py"
+source-snapshots = "python scripts/make_source_snapshots.py"
+ontology-seed = "python scripts/make_ontology_seed.py"
+publication-manifest = "python scripts/make_publication_manifest.py"
+toolchain-report = "python scripts/make_toolchain_report.py"
+snapshot = "reimbursement-atlas snapshot"
+dashboard-dev = "cd apps/dashboard && npm run dev"
+dashboard-build = "cd apps/dashboard && npm run build"
+seed-lake = "reimbursement-atlas seed-lake data/derived/seed_lake"
+api-dev = "uvicorn reimburse_atlas.api:create_app --factory --reload"
+mcp-dev = "python -c \"from reimburse_atlas.mcp_server import run; run()\""
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+preview = true
+fix = true
+unsafe-fixes = false
+extend-exclude = [
+  ".git",
+  ".venv",
+  "dist",
+  "build",
+  "apps/dashboard/node_modules",
+]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+  "COM812",
+  "ISC001",
+  "D203",
+  "D213",
+  "T201",
+  "S101",
+  "FBT001",
+  "FBT002",
+  "PLR0913",
+  "PLR0917",
+  "TD002",
+  "TD003",
+  "FIX002",
+  "CPY001",
+  "TC001",
+  "TC002",
+  "TC003",
+  "DOC201",
+  "DOC501",
+  "S603",
+  "S607",
+  "INP001",
+  "S404",
+  "S405",
+  "S314",
+  "N817",
+  "PLR2004",
+  "ANN401",
+  "PLC0415",
+  "B008",
+  "PLC1901",
+  "C901",
+  "PERF401",
+  "PLW0108",
+  "UP046",
+  "UP047",
+  "PLR6201",
+  "S608",
+]
+
+unfixable = ["ERA001"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["ANN", "D", "S101", "PLR2004", "PLR0133", "RUF069"]
+"scripts/**/*.py" = ["T201"]
+"src/reimburse_atlas/cli.py" = ["T201"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.basedpyright]
+typeCheckingMode = "strict"
+pythonVersion = "3.13"
+venvPath = "."
+venv = ".venv"
+include = ["src", "scripts"]
+exclude = ["apps/dashboard/node_modules", "dist", "build"]
+reportUnknownMemberType = "error"
+reportUnknownParameterType = "error"
+reportUnknownVariableType = "error"
+reportMissingTypeStubs = "warning"
+reportPrivateUsage = "warning"
+
+[tool.pytest.ini_options]
+minversion = "9.0"
+addopts = [
+  "--strict-markers",
+  "--strict-config",
+  "--doctest-modules",
+  "--durations=10",
+]
+testpaths = ["tests"]
+markers = [
+  "unit: fast isolated unit tests",
+  "integration: tests requiring local data engines or larger fixtures",
+  "e2e: end-to-end workflow tests",
+  "smoke: critical repository health checks",
+  "property: Hypothesis property-based tests",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["src/reimburse_atlas"]
+omit = [
+  "src/reimburse_atlas/api.py",
+  "src/reimburse_atlas/cli.py",
+  "src/reimburse_atlas/mcp_server.py",
+  "src/reimburse_atlas/parsers/base.py",
+  "src/reimburse_atlas/warehouse.py",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+fail_under = 90
+
+[tool.mutmut]
+source_paths = ["src/reimburse_atlas"]
+pytest_add_cli_args = ["-q"]
+pytest_add_cli_args_test_selection = ["tests/unit"]
+also_copy = ["data/seed"]
+mutate_only_covered_lines = true
+timeout_multiplier = 10.0
+timeout_constant = 1.0
+
+[tool.bandit]
+exclude_dirs = ["tests", "apps/dashboard"]
+skips = ["B101"]
+
+[tool.interrogate]
+fail-under = 90
+exclude = ["tests", "apps/dashboard"]
+verbose = 1

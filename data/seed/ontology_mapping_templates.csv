@@ -1,0 +1,4 @@
+evidence_method,left_code,left_terminology_id,notes,relationship,review_status,right_code,right_terminology_id
+seed_mapping_target_hint,L04AB01,atc,Synthetic mapping template for review workflow testing only.,candidate,template,214555,rxnorm
+seed_mapping_target_hint,HGNC:11998,hgnc,Synthetic mapping template for review workflow testing only.,candidate,template,81247-9,loinc
+seed_mapping_target_hint,81247-9,loinc,Synthetic mapping template for review workflow testing only.,candidate,template,HP:0000118,hpo

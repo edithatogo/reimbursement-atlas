@@ -1,0 +1,3 @@
+test_code,test_name,eligibility,evidence_standard,economic_notes,effective_from,source_version
+R999,Synthetic rare disease panel,Specialist genomic medicine service request required,clinical utility and eligibility criteria,coverage not price,2026-04-01,synthetic_nhs_gtd_2026
+R998,Synthetic pharmacogenomic test,Defined prescribing scenario required,clinical validity and utility,coverage not price,2026-04-01,synthetic_nhs_gtd_2026

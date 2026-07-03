@@ -1,0 +1,34 @@
+name: Data smoke
+
+on:
+  pull_request:
+    paths:
+      - "data/**"
+      - "src/reimburse_atlas/**"
+      - "scripts/**"
+  workflow_dispatch:
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: prefix-dev/setup-pixi@v0.10.0
+      - name: Validate seed registries
+        run: pixi run seed-validate
+      - name: Public data policy
+        run: pixi run public-data-policy
+      - name: Export JSON schemas
+        run: pixi run schema-export
+      - name: Generate no-network data artefacts
+        run: |
+          pixi run readiness
+          pixi run ingestion-plan
+          pixi run acquisition-plan
+          pixi run vertical-slice
+          pixi run source-snapshots
+          pixi run ontology-seed
+          pixi run seed-sync
+          pixi run seed-sync-check
+          pixi run publication-manifest
+          pixi run seed-lake

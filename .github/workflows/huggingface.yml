@@ -1,0 +1,16 @@
+name: Hugging Face publish scaffold
+
+on:
+  workflow_dispatch:
+
+jobs:
+  dataset-dry-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: prefix-dev/setup-pixi@v0.10.0
+      - name: List upload candidates
+        run: pixi run python scripts/hf_upload_dataset.py
+      - name: Stop before upload
+        run: |
+          echo "This scaffold intentionally does not upload until licence gates are implemented."

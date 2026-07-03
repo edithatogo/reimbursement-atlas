@@ -1,0 +1,25 @@
+---
+import Graph from "../components/Graph.tsx";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Reimbursement Atlas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <main>
+      <h1>Reimbursement Atlas</h1>
+      <p>
+        Seed dashboard for public reimbursement sources, planned policy analyses, source versions
+        and ontology mapping strategy. The data loaded here are generated artefacts, not raw
+        restricted schedule dumps.
+      </p>
+      <nav>
+        <a href="/readiness/">Readiness tables</a>
+      </nav>
+      <Graph client:only="react" />
+    </main>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+access_tier,component_access_tier,component_historical_versions,component_machine_readable,component_reliability,component_utilisation_data,domain,grade,jurisdiction,schedule,score,source_id,system
+tier_1,4,2,3,3,2,utilisation,A,Australia,MBS and PBS utilisation and expenditure statistics,14,au_aihw_mbs_pbs_stats,AIHW/Services Australia
+tier_1,4,2,3,3,2,hospital,A,Australia,IHACPA National Efficient Price / NWAU,14,au_ihacpa_nep,National Health Reform
+tier_1,4,2,3,3,2,medical_services,A,Australia,Medicare Benefits Schedule,14,au_mbs,Medicare
+tier_1,4,2,3,3,2,medicines,A,Australia,Pharmaceutical Benefits Schedule,14,au_pbs,PBS
+tier_1,4,2,3,3,2,medicines,A,Switzerland,Specialities List,14,ch_specialities_list,FOPH
+tier_1,4,2,3,3,2,hospital,A,Switzerland,SwissDRG catalogues,14,ch_swissdrg,SwissDRG
+tier_1,4,2,3,3,2,hospital,A,Germany,G-DRG catalogues,14,de_gdrg,InEK
+tier_1,4,2,3,3,2,hospital,A,Denmark,DRG tariffs and cost weights,14,dk_drg,Danish Health Data Authority
+tier_1,4,2,3,3,2,hospital_specialist,A,Netherlands,DBC care products and tariffs,14,nl_nza_dbc,NZa
+tier_1,4,2,3,3,2,medicines_devices,A,New Zealand,Pharmaceutical Schedule,14,nz_pharmac,PHARMAC
+tier_1,4,2,3,3,2,contextual,A,Multi-country,Health statistics and expenditure indicators,14,oecd_health_stats,OECD
+tier_1,4,2,3,3,2,hospital,A,Sweden,NordDRG weights,14,se_norddrg,Socialstyrelsen
+tier_1,4,2,3,3,2,medicines,A,Sweden,Medicine price and subsidy database,14,se_tlv,TLV
+tier_1,4,2,3,3,2,medical_services,A,Taiwan,Medical service payment standards,14,tw_nhi_services,National Health Insurance
+tier_1,4,2,3,3,2,hospital,A,England,NHS Payment Scheme / national prices,14,uk_nhs_payment_scheme,NHS England
+tier_1,4,2,3,3,2,medicines,A,United States,Average Sales Price Drug Pricing Files,14,us_cms_asp,Medicare Part B
+tier_1,4,2,3,3,2,laboratory,A,United States,Clinical Laboratory Fee Schedule,14,us_cms_clfs,Medicare
+tier_1,4,2,3,3,2,community_care,A,United States,Home Health Prospective Payment System,14,us_cms_home_health,Medicare
+tier_1,4,2,3,3,2,palliative_end_of_life,A,United States,Hospice Payment System,14,us_cms_hospice,Medicare
+tier_1,4,2,3,3,2,hospital_inpatient,A,United States,Inpatient Prospective Payment System,14,us_cms_ipps,Medicare
+tier_1,4,2,3,3,2,hospital_outpatient,A,United States,Outpatient Prospective Payment System,14,us_cms_opps,Medicare
+tier_1,4,2,3,3,2,medical_services,A,United States,Physician Fee Schedule,14,us_cms_pfs,Medicare
+tier_1,4,2,3,3,2,post_acute,A,United States,Skilled Nursing Facility Prospective Payment System,14,us_cms_snf,Medicare
+tier_1,4,2,3,3,2,contextual,A,Multi-country,Global Health Observatory,14,who_gho,WHO
+tier_1,4,2,3,1,2,medical_services,A,Belgium,NomenSoft nomenclature,12,be_inami,INAMI/RIZIV
+tier_1,4,2,3,1,2,medical_services,A,Brazil,"SIGTAP procedures, medicines and OPM table",12,br_sigtap,SUS
+tier_1,4,2,3,3,0,genomics,A,England,National Genomic Test Directory,12,uk_genomic_test_directory,NHS Genomic Medicine Service
+tier_2,2,2,3,3,2,costs,A,England,NHS reference costs / patient-level costing outputs,12,uk_nhs_reference_costs,NHS England
+tier_1,4,2,3,3,0,hospital_outpatient,A,United States,Ambulatory Surgical Center Payment System,12,us_cms_asc,Medicare
+tier_1,4,2,3,3,0,devices_equipment,A,United States,DMEPOS Fee Schedule,12,us_cms_dmepos,Medicare
+tier_1,4,2,3,3,0,coverage_decisions,A,United States,Medicare Coverage Database,12,us_cms_mcd,Medicare
+tier_2,2,2,3,3,2,medicines,A,United States,Part D Prescriber and Drug Spending Public Use Files,12,us_cms_partd_puf,Medicare Part D
+tier_2,2,2,3,3,0,medicines,B,Finland,Medicine reimbursement and price data,10,fi_kela_reimbursements,Kela
+tier_2,2,2,3,1,2,devices,B,France,Liste des Produits et Prestations,10,fr_lpp,Assurance Maladie
+tier_2,2,2,3,1,2,medical_services,B,Norway,Tariffs for reimbursement claims,10,no_helfo_tariffs,Helfo
+tier_2,2,2,0,3,2,hospital,B,Canada,Case Mix Groups and resource intensity weights,9,ca_ciihi_cmg,CIHI
+tier_2,2,2,0,3,2,medical_services,B,Canada - Ontario,Schedule of Benefits,9,ca_on_ohip,OHIP
+tier_2,2,2,0,3,2,medical_services,B,Germany,Einheitlicher Bewertungsmaßstab,9,de_ebm,GKV/KBV
+tier_2,2,2,0,3,2,medical_services,B,Japan,National medical fee schedule,9,jp_mhlw_fee,MHLW
+tier_2,2,2,0,3,2,medicines,B,Japan,NHI Drug Price Standard,9,jp_nhi_drug_prices,MHLW
+tier_2,2,2,0,3,2,medicines,B,England,Drug Tariff,9,uk_nhs_drug_tariff,NHSBSA
+tier_2,2,2,3,1,0,medicines,B,Ireland,Reimbursement lists and community drug schemes,8,ie_hse_reimbursement,HSE/PCRS
+tier_2,2,2,3,1,0,price_benchmarks,B,Singapore,Hospital bills and fee benchmarks,8,sg_fee_benchmarks,Ministry of Health
+tier_2,2,2,0,3,0,coverage_decisions,C,Australia,MSAC Public Summary Documents,7,au_msac,MSAC
+tier_2,2,2,0,3,0,coverage_decisions,C,Australia,PBAC Public Summary Documents,7,au_pbac,PBAC
+tier_2,2,2,0,1,2,medical_services,C,Canada - Alberta,Schedule of Medical Benefits,7,ca_ab_somb,AHCIP
+tier_2,2,2,0,1,2,medical_services,C,Canada - British Columbia,Medical Services Commission Payment Schedule,7,ca_bc_msp,MSP
+tier_2,2,2,0,1,2,medical_services,C,Switzerland,TARMED/TARDOC outpatient tariffs,7,ch_tarmed_tardoc,Compulsory health insurance
+tier_2,2,2,0,1,2,medical_services,C,France,CCAM/NGAP tariffs,7,fr_ccam,Assurance Maladie
+tier_2,2,2,0,3,0,coverage_decisions,C,France,HAS decisions and evaluations,7,fr_haspub,HAS
+tier_2,2,2,0,1,2,hospital,C,India,Health Benefit Packages and rates,7,in_abpmjay_hbp,AB-PMJAY
+tier_2,2,2,0,3,0,medicines,C,Italy,AIFA reimbursed medicines and pricing decisions,7,it_aifa_reimbursement,AIFA
+tier_2,2,2,0,3,0,coverage_decisions,C,England,NICE technology appraisal and diagnostics guidance,7,uk_nice_guidance,NICE
+tier_2,2,2,0,1,0,medical_services,C,Canada - Quebec,Physician remuneration agreements and tariffs,5,ca_qc_ramq,RAMQ
+tier_2,2,2,0,1,0,medicines,C,Spain,BIFIMED medicine financing and price information,5,es_bifimed,Ministry of Health
+tier_2,2,2,0,1,0,coverage_decisions,C,Israel,National Health Basket and technology updates,5,is_hta_catalogue,Ministry of Health
+tier_3,0,2,0,1,2,medical_services,C,South Korea,Fee schedules and claims data references,5,kr_hira,HIRA/NHI
+tier_3,0,2,0,1,2,medical_services,C,United States,State Fee-for-Service Schedules,5,us_medicaid_state_fees,Medicaid
+tier_2,2,2,0,1,0,medical_services,C,South Africa,Uniform Patient Fee Schedule,5,za_upfs,National Department of Health
+tier_3,0,2,0,1,0,medical_services,D,Mexico,Published medical service unit costs and tariffs,3,mx_imss_costs,IMSS

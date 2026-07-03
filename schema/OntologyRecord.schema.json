@@ -1,0 +1,46 @@
+{
+  "additionalProperties": false,
+  "description": "Ontology, classification, or terminology that may enrich mappings.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "name": {
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "domain": {
+      "minLength": 1,
+      "title": "Domain",
+      "type": "string"
+    },
+    "licence_risk": {
+      "minLength": 1,
+      "title": "Licence Risk",
+      "type": "string"
+    },
+    "repo_strategy": {
+      "minLength": 1,
+      "title": "Repo Strategy",
+      "type": "string"
+    },
+    "mapping_use": {
+      "minLength": 1,
+      "title": "Mapping Use",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "domain",
+    "licence_risk",
+    "repo_strategy",
+    "mapping_use"
+  ],
+  "title": "OntologyRecord",
+  "type": "object"
+}
