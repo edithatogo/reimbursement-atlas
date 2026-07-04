@@ -1,7 +1,7 @@
 {
   "duckdb_path": "seed_lake.duckdb",
   "parquet_enabled": true,
-  "table_count": 19,
+  "table_count": 24,
   "tables": [
     {
       "csv_path": "source_registry/source_registry.csv",
@@ -154,6 +154,46 @@
       "parquet_path": "vertical_mapping_evidence_matrix/vertical_mapping_evidence_matrix.parquet",
       "rows": 8,
       "sha256": "86f90cba77a5f0bf448aff67bdeb16395b489ee7a5ee19cbf89b3f9b8099ef80"
+    },
+    {
+      "csv_path": "repo_workflow_uses/repo_workflow_uses.csv",
+      "jsonl_path": "repo_workflow_uses/repo_workflow_uses.jsonl",
+      "name": "repo_workflow_uses",
+      "parquet_path": "repo_workflow_uses/repo_workflow_uses.parquet",
+      "rows": 39,
+      "sha256": "dabb9bd71a95fd20c0042abe8921f0e7636268bc26fc248ec5e80b5c8ee46422"
+    },
+    {
+      "csv_path": "repo_workflow_policy/repo_workflow_policy.csv",
+      "jsonl_path": "repo_workflow_policy/repo_workflow_policy.jsonl",
+      "name": "repo_workflow_policy",
+      "parquet_path": "repo_workflow_policy/repo_workflow_policy.parquet",
+      "rows": 40,
+      "sha256": "e2ec114b93082539fbd080c95fc805acfeb713c2a9866dd8ac382b77ace70bb0"
+    },
+    {
+      "csv_path": "repo_automation_controls/repo_automation_controls.csv",
+      "jsonl_path": "repo_automation_controls/repo_automation_controls.jsonl",
+      "name": "repo_automation_controls",
+      "parquet_path": "repo_automation_controls/repo_automation_controls.parquet",
+      "rows": 12,
+      "sha256": "9b8f557b3a0f4276fcf9112704b4e9963df3232e47a8f2b99cfe4d540fc3737b"
+    },
+    {
+      "csv_path": "repo_action_sha_pin_plan/repo_action_sha_pin_plan.csv",
+      "jsonl_path": "repo_action_sha_pin_plan/repo_action_sha_pin_plan.jsonl",
+      "name": "repo_action_sha_pin_plan",
+      "parquet_path": "repo_action_sha_pin_plan/repo_action_sha_pin_plan.parquet",
+      "rows": 38,
+      "sha256": "233c69745a3bbc14eb2f0d62e305d4e864f153b938472cd1b727648c3c6f093a"
+    },
+    {
+      "csv_path": "sbom_summary/sbom_summary.csv",
+      "jsonl_path": "sbom_summary/sbom_summary.jsonl",
+      "name": "sbom_summary",
+      "parquet_path": "sbom_summary/sbom_summary.parquet",
+      "rows": 2,
+      "sha256": "db941e657979223824dcc9a9efcfee1d0f860435629cd29781023ae4201cce20"
     }
   ]
 }

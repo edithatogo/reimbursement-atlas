@@ -86,6 +86,18 @@ DEFAULT_PUBLICATION_PATHS = (
     Path("data/derived/external_quality_gates.csv"),
     Path("data/derived/optional_toolchain_installs.json"),
     Path("data/derived/optional_toolchain_installs.csv"),
+    Path("data/derived/repo_automation/workflow_uses.jsonl"),
+    Path("data/derived/repo_automation/workflow_uses.csv"),
+    Path("data/derived/repo_automation/workflow_policy.jsonl"),
+    Path("data/derived/repo_automation/workflow_policy.csv"),
+    Path("data/derived/repo_automation/automation_controls.jsonl"),
+    Path("data/derived/repo_automation/automation_controls.csv"),
+    Path("data/derived/repo_automation/action_sha_pin_plan.jsonl"),
+    Path("data/derived/repo_automation/action_sha_pin_plan.csv"),
+    Path("data/derived/sbom/sbom_summary.jsonl"),
+    Path("data/derived/sbom/sbom_summary.csv"),
+    Path("data/derived/sbom/cyclonedx-python.json"),
+    Path("data/derived/sbom/cyclonedx-dashboard.json"),
 )
 
 

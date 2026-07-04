@@ -47,3 +47,8 @@ The repo is now in the reviewed-source preparation and mapping-workbench phase. 
 Start with `docs/MANUAL_ACQUISITION_PACK.md`, `docs/MAPPING_WORKBENCH.md`, `docs/OPTIONAL_TOOLCHAIN_INSTALLS.md`, `docs/LIVE_SOURCE_VALIDATION_PLAYBOOK.md`, `docs/MBS_TXT_PAIR_PARSER.md`, and `conductor/sessions/2026-07-04-v9-toolchain-and-mapping-workbench.md`.
 
 Immediate next step: manually download the July 2026 MBS item-map and descriptor TXT files, place them in `data/raw_live/au_mbs/`, run `reviewed-mbs-txt-pair-bundle`, and commit only derived rows/provenance after reviewing licence and validation warnings.
+
+## 2026-07-04 v11 current focus
+
+The current focus is CI/CD and supply-chain hardening before first live-source ingestion. The repo now emits workflow policy, automation-control, action SHA-pinning and SBOM artefacts. The next network-enabled step is to resolve all tag-pinned GitHub Actions references in `data/derived/repo_automation/action_sha_pin_plan.csv` to full commit SHAs, then make zizmor blocking instead of advisory.
+

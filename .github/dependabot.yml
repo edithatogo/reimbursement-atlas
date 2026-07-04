@@ -4,11 +4,26 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
+    groups:
+      github-actions:
+        patterns: ["*"]
   - package-ecosystem: "npm"
     directory: "/apps/dashboard"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
+    groups:
+      dashboard-dependencies:
+        patterns: ["*"]
   - package-ecosystem: "uv"
     directory: "/"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
+    groups:
+      python-dependencies:
+        patterns: ["*"]

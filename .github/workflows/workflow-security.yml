@@ -1,0 +1,53 @@
+name: Workflow security analysis
+
+on:
+  pull_request:
+    paths:
+      - ".github/**"
+      - "scripts/make_repo_automation_matrix.py"
+      - "src/reimburse_atlas/automation.py"
+  push:
+    branches: [main]
+    paths:
+      - ".github/**"
+  schedule:
+    - cron: "23 2 * * 2"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  workflow-policy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: prefix-dev/setup-pixi@v0.10.0
+      - name: Generate repository automation policy matrix
+        run: pixi run repo-automation
+      - name: Upload workflow policy artefacts
+        uses: actions/upload-artifact@v6
+        with:
+          name: workflow-policy
+          path: data/derived/repo_automation/
+          retention-days: 14
+
+  zizmor:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
+      - name: Run zizmor GitHub Actions audit
+        run: |
+          uv tool run zizmor --min-severity medium --format sarif .github > zizmor.sarif || true
+      - name: Upload zizmor SARIF
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: zizmor.sarif

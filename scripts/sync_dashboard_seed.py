@@ -33,6 +33,11 @@ FILES = [
     Path("data/derived/manual_acquisition_pack/acquisition_steps.csv"),
     Path("data/derived/external_quality_gates.csv"),
     Path("data/derived/optional_toolchain_installs.csv"),
+    Path("data/derived/repo_automation/workflow_uses.csv"),
+    Path("data/derived/repo_automation/workflow_policy.csv"),
+    Path("data/derived/repo_automation/automation_controls.csv"),
+    Path("data/derived/repo_automation/action_sha_pin_plan.csv"),
+    Path("data/derived/sbom/sbom_summary.csv"),
 ]
 
 

@@ -18,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - uses: prefix-dev/setup-pixi@v0.10.0
       - name: Regenerate schemas, graph, readiness, ingestion plan and vertical slice
         run: |
@@ -28,6 +30,8 @@ jobs:
           pixi run acquisition-plan
           pixi run vertical-slice
           pixi run source-snapshots
+          pixi run repo-automation
+          pixi run sbom
           pixi run seed-lake
           pixi run dashboard-seed
           pixi run project-issues

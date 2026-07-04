@@ -17,6 +17,12 @@ from reimburse_atlas.acquisition_pack import (
     write_manual_acquisition_pack,
 )
 from reimburse_atlas.analysis import analysis_readiness_rows, source_readiness_rows
+from reimburse_atlas.automation import (
+    automation_control_records,
+    scan_workflow_uses,
+    workflow_policy_records,
+    workflow_policy_summary,
+)
 from reimburse_atlas.graph import build_seed_graph, write_graph_csvs
 from reimburse_atlas.ingest import (
     build_first_wave_ingestion_plan,
@@ -65,6 +71,7 @@ from reimburse_atlas.registry import (
     source_ids,
 )
 from reimburse_atlas.review_queue import build_crosswalk_review_queue, review_rows
+from reimburse_atlas.sbom import build_dashboard_sbom, build_python_sbom, sbom_summary, write_sbom
 from reimburse_atlas.scoring import score_sources
 from reimburse_atlas.validation import all_seed_pairs_ok, seed_pair_statuses
 from reimburse_atlas.vector_index import (
@@ -669,6 +676,73 @@ def publication_manifest(
             indent=2,
         )
     )
+
+
+@app.command("repo-automation")
+def repo_automation(
+    output_dir: Annotated[
+        Path,
+        typer.Argument(help="Directory for repository automation policy artefacts."),
+    ] = (project_root() / "data" / "derived" / "repo_automation"),
+) -> None:
+    """Write workflow-use, workflow-policy and automation-control tables."""
+    root = project_root()
+    output_dir.mkdir(parents=True, exist_ok=True)
+    uses = [record.as_row() for record in scan_workflow_uses(root)]
+    policy_records = workflow_policy_records(root)
+    policies = [record.as_row() for record in policy_records]
+    controls = [record.as_row() for record in automation_control_records(root)]
+    sha_pin_plan = [
+        {
+            **row,
+            "priority": "high" if row["pin_class"] in {"floating", "unknown"} else "medium",
+            "recommended_action": (
+                "Resolve the action tag to a 40-character commit SHA and preserve the "
+                "human-readable version as a trailing comment."
+            ),
+        }
+        for row in uses
+        if row["pin_class"] not in {"sha", "local", "docker"}
+    ]
+    write_jsonl(uses, output_dir / "workflow_uses.jsonl")
+    write_csv(uses, output_dir / "workflow_uses.csv")
+    write_jsonl(policies, output_dir / "workflow_policy.jsonl")
+    write_csv(policies, output_dir / "workflow_policy.csv")
+    write_jsonl(controls, output_dir / "automation_controls.jsonl")
+    write_csv(controls, output_dir / "automation_controls.csv")
+    write_jsonl(sha_pin_plan, output_dir / "action_sha_pin_plan.jsonl")
+    write_csv(sha_pin_plan, output_dir / "action_sha_pin_plan.csv")
+    console.print_json(
+        json.dumps(
+            {
+                "workflow_uses": len(uses),
+                "workflow_policy_records": len(policies),
+                "automation_controls": len(controls),
+                "action_sha_pin_plan": len(sha_pin_plan),
+                "summary": workflow_policy_summary(policy_records),
+            },
+            indent=2,
+        )
+    )
+
+
+@app.command("sbom")
+def sbom_command(
+    output_dir: Annotated[
+        Path,
+        typer.Argument(help="Directory for generated CycloneDX SBOM files."),
+    ] = (project_root() / "data" / "derived" / "sbom"),
+) -> None:
+    """Generate minimal CycloneDX SBOMs for Python and dashboard dependency locks."""
+    output_dir.mkdir(parents=True, exist_ok=True)
+    python_bom = build_python_sbom(project_root())
+    dashboard_bom = build_dashboard_sbom(project_root())
+    write_sbom(python_bom, output_dir / "cyclonedx-python.json")
+    write_sbom(dashboard_bom, output_dir / "cyclonedx-dashboard.json")
+    rows = [sbom_summary(python_bom), sbom_summary(dashboard_bom)]
+    write_jsonl(rows, output_dir / "sbom_summary.jsonl")
+    write_csv(rows, output_dir / "sbom_summary.csv")
+    console.print_json(json.dumps({"sbom_count": len(rows), "rows": rows}, indent=2))
 
 
 @app.command("reviewed-source-bundle")

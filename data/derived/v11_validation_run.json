@@ -1,0 +1,84 @@
+{
+  "checks": [
+    {
+      "id": "ruff_check",
+      "outcome": "passed"
+    },
+    {
+      "id": "ruff_format_check",
+      "outcome": "passed"
+    },
+    {
+      "details": "0 errors, 0 warnings, 0 notes",
+      "id": "basedpyright",
+      "outcome": "passed"
+    },
+    {
+      "details": "101 passed; coverage 91.12%; threshold 90%",
+      "id": "pytest_coverage",
+      "outcome": "passed"
+    },
+    {
+      "details": "expected annotated nosec warnings only",
+      "id": "bandit",
+      "outcome": "passed"
+    },
+    {
+      "id": "compileall",
+      "outcome": "passed"
+    },
+    {
+      "id": "uv_build",
+      "outcome": "passed"
+    },
+    {
+      "id": "npm_ci",
+      "outcome": "passed"
+    },
+    {
+      "details": "0 vulnerabilities",
+      "id": "npm_audit",
+      "outcome": "passed"
+    },
+    {
+      "details": "7 static pages built",
+      "id": "astro_build",
+      "outcome": "passed"
+    },
+    {
+      "id": "seed_sync",
+      "outcome": "passed"
+    },
+    {
+      "id": "public_data_policy",
+      "outcome": "passed"
+    },
+    {
+      "id": "pip_audit_strict",
+      "outcome": "blocked_network"
+    },
+    {
+      "id": "pixi_available",
+      "outcome": "missing_tool"
+    },
+    {
+      "id": "mojo_available_uv_tool",
+      "outcome": "passed"
+    },
+    {
+      "details": "Fails only because remaining GitHub Actions references are tag-pinned rather than SHA-pinned.",
+      "id": "zizmor_workflow_security",
+      "outcome": "failed"
+    }
+  ],
+  "generated_at": "2026-07-04T16:08:25.928400+00:00",
+  "notes": "v11 adds repo automation policy, SBOM generation, Scorecard/zizmor workflows and release attestation hooks.",
+  "repo_automation_summary": {
+    "fail": 0,
+    "not_applicable": 0,
+    "pass": 30,
+    "warn": 10
+  },
+  "schema_version": "validation-run-v1",
+  "version": "v11"
+}

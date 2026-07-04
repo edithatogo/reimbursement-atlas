@@ -25,3 +25,11 @@ Decision: reviewed-source bundle snapshot exports redact `local_path`, and MBS T
 
 Rationale: derived bundles may be shared for review before publication, so they should not leak private raw-cache paths. MBS item-map and descriptor files are separate public source files and need an explicit join contract.
 
+## 2026-07-04 — v11 repo automation, SBOM and provenance gates
+
+Decision: Treat repository automation as a measurable dataset and add generated workflow policy, SBOM and provenance artefacts.
+
+Rationale: The project will publish derived reimbursement datasets; CI/CD posture, release provenance and raw-data publication safeguards must be visible and testable before live-source ingestion expands.
+
+Consequences: v11 adds workflow scanning, action pin classification, OpenSSF Scorecard, zizmor SARIF workflow, release attestations, SBOM summaries and an action SHA-pinning queue. Zizmor remains non-green until tag-pinned actions are migrated to full SHAs in a network-enabled environment.
+

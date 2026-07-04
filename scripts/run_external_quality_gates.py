@@ -35,6 +35,18 @@ def main() -> None:
             timeout_seconds=60,
         ),
         run_external_quality_gate(
+            gate_id="zizmor_workflow_security",
+            command=("uv", "tool", "run", "zizmor", "--min-severity", "medium", ".github"),
+            cwd=root,
+            timeout_seconds=180,
+        ),
+        run_external_quality_gate(
+            gate_id="repo_automation_matrix",
+            command=("uv", "run", "python", "scripts/make_repo_automation_matrix.py"),
+            cwd=root,
+            timeout_seconds=120,
+        ),
+        run_external_quality_gate(
             gate_id="mojo_available_uv_tool",
             command=("uv", "tool", "run", "--from", "mojo-compiler", "mojo", "--version"),
             cwd=root,

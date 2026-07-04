@@ -1,0 +1,38 @@
+---
+import DataTable from "../../components/DataTable.astro";
+import Layout from "../../components/Layout.astro";
+---
+
+<Layout title="Reimbursement Atlas automation">
+  <h1>Repository automation and supply-chain posture</h1>
+  <p>
+    These tables expose CI/CD, workflow policy, SBOM and automation controls as dashboard-safe
+    metadata. They are designed for maintainer review before GitHub branch protection and release
+    publication gates are made mandatory.
+  </p>
+  <DataTable
+    title="Automation controls"
+    fileName="automation_controls.csv"
+    columns={["id", "category", "status", "maturity", "evidence", "recommended_next_step"]}
+  />
+  <DataTable
+    title="Workflow policy observations"
+    fileName="workflow_policy.csv"
+    columns={["workflow", "gate", "status", "severity", "evidence", "recommended_action"]}
+  />
+  <DataTable
+    title="GitHub Action references"
+    fileName="workflow_uses.csv"
+    columns={["workflow", "line", "uses", "pin_class", "policy_status", "policy_note"]}
+  />
+  <DataTable
+    title="Action SHA pin plan"
+    fileName="action_sha_pin_plan.csv"
+    columns={["workflow", "line", "uses", "pin_class", "priority", "recommended_action"]}
+  />
+  <DataTable
+    title="SBOM summaries"
+    fileName="sbom_summary.csv"
+    columns={["name", "ecosystem", "component_count", "spec_version", "sha256"]}
+  />
+</Layout>

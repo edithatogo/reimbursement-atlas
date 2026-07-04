@@ -174,6 +174,29 @@ def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:  
         if table_path.exists():
             source_tables[f"vertical_{table_name}"] = _read_jsonl(table_path)
 
+    derived_jsonl_tables = {
+        "repo_workflow_uses": root / "data" / "derived" / "repo_automation" / "workflow_uses.jsonl",
+        "repo_workflow_policy": root
+        / "data"
+        / "derived"
+        / "repo_automation"
+        / "workflow_policy.jsonl",
+        "repo_automation_controls": root
+        / "data"
+        / "derived"
+        / "repo_automation"
+        / "automation_controls.jsonl",
+        "repo_action_sha_pin_plan": root
+        / "data"
+        / "derived"
+        / "repo_automation"
+        / "action_sha_pin_plan.jsonl",
+        "sbom_summary": root / "data" / "derived" / "sbom" / "sbom_summary.jsonl",
+    }
+    for table_name, table_path in derived_jsonl_tables.items():
+        if table_path.exists():
+            source_tables[table_name] = _read_jsonl(table_path)
+
     parquet_available = _optional_import_available("pyarrow")
     duckdb_available = _optional_import_available("duckdb")
     duckdb_path = base / "seed_lake.duckdb"

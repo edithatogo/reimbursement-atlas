@@ -2,8 +2,8 @@
   "records": [
     {
       "command": "uv tool run --from mojo-compiler mojo --version",
-      "cwd": "/mnt/data/work_v10/reimbursement-atlas-conductor",
-      "generated_at": "2026-07-04T15:08:11.843608+00:00",
+      "cwd": "/mnt/data/reimbursement-atlas-conductor-work",
+      "generated_at": "2026-07-04T16:06:35.847128+00:00",
       "id": "mojo_uv_tool_probe",
       "notes": "Gate passed in the active runtime.",
       "outcome": "passed",
@@ -13,8 +13,8 @@
     },
     {
       "command": "bash -lc pixi --version",
-      "cwd": "/mnt/data/work_v10/reimbursement-atlas-conductor",
-      "generated_at": "2026-07-04T15:08:12.147249+00:00",
+      "cwd": "/mnt/data/reimbursement-atlas-conductor-work",
+      "generated_at": "2026-07-04T16:06:36.131407+00:00",
       "id": "official_pixi_on_path",
       "notes": "Gate could not start because the executable is unavailable in this runtime.",
       "outcome": "missing_tool",
@@ -24,8 +24,8 @@
     },
     {
       "command": "bash -lc curl -I -fsSL https://pixi.sh/install.sh >/dev/null",
-      "cwd": "/mnt/data/work_v10/reimbursement-atlas-conductor",
-      "generated_at": "2026-07-04T15:08:12.177894+00:00",
+      "cwd": "/mnt/data/reimbursement-atlas-conductor-work",
+      "generated_at": "2026-07-04T16:06:36.159660+00:00",
       "id": "official_pixi_installer_reachable",
       "notes": "Gate is installed but could not reach its external advisory/network service.",
       "outcome": "blocked_network",

@@ -317,3 +317,18 @@ Generated v9 artefacts include:
 - `schema/MappingEvidenceRecord.schema.json`
 
 See `docs/MANUAL_ACQUISITION_PACK.md`, `docs/MAPPING_WORKBENCH.md`, and `docs/OPTIONAL_TOOLCHAIN_INSTALLS.md`.
+
+## v11 CI/CD and supply-chain hardening
+
+The repository now treats GitHub automation as a first-class, dashboard-visible dataset. New generated artefacts include workflow-use scanning, workflow policy observations, automation controls, an action SHA-pinning queue, and minimal CycloneDX-style SBOMs for Python and the Astro dashboard.
+
+Key commands:
+
+```bash
+PYTHONPATH=src uv run reimbursement-atlas repo-automation
+PYTHONPATH=src uv run reimbursement-atlas sbom
+PYTHONPATH=src uv run python scripts/run_external_quality_gates.py
+```
+
+The release workflow now includes GitHub artifact attestation hooks for Python distributions, source archives and generated SBOMs. The remaining deliberate workflow-security warning is that most GitHub Actions references are tag-pinned rather than commit-SHA pinned; `data/derived/repo_automation/action_sha_pin_plan.csv` is the generated migration queue.
+

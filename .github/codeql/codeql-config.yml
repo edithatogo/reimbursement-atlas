@@ -1,0 +1,13 @@
+name: Reimbursement Atlas CodeQL config
+
+paths:
+  - src
+  - scripts
+  - apps/dashboard/src
+paths-ignore:
+  - apps/dashboard/node_modules
+  - data/raw_live
+  - data/local_cache
+  - data/derived/seed_lake
+  - dist
+  - build
