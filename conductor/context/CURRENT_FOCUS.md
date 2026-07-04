@@ -43,3 +43,16 @@ The repo is now in the first executable vertical-slice plus reviewed-source-bund
 ## Next agent handoff
 
 Start with `docs/LOCAL_TOOLCHAIN_VALIDATION.md`, `docs/DASHBOARD_VALIDATION.md`, `docs/MUTATION_TESTING.md`, `docs/COVERAGE_POLICY.md`, `docs/FIRST_EXECUTABLE_SLICE.md` and `docs/LIVE_SOURCE_VALIDATION_PLAYBOOK.md`, then inspect `scripts/make_vertical_slice.py`, `src/reimburse_atlas/parsers/`, `src/reimburse_atlas/local_sources.py`, `src/reimburse_atlas/analysis/` and `conductor/sessions/2026-07-04-v7-dashboard-node-and-mutation.md`.
+
+## v8 source-file and external-gate artefacts
+
+- `data/seed/source_files.*`
+- `schema/SourceFileRecord.schema.json`
+- `docs/EXACT_SOURCE_FILES.md`
+- `docs/MBS_TXT_PAIR_PARSER.md`
+- `docs/EXTERNAL_QUALITY_GATES.md`
+- `docs/ADRs/0017-exact-source-file-records.md`
+- `docs/ADRs/0018-external-quality-gates-are-classified.md`
+- `conductor/sessions/2026-07-04-v8-source-files-and-external-gates.md`
+
+Immediate next step: validate `parse-mbs-txt-pair` against manually downloaded July 2026 MBS TXT files in `data/raw_live/au_mbs/`, then create a reviewed-source bundle or derived-only reviewed output without committing raw files.

@@ -237,3 +237,35 @@ See:
 - `docs/MUTATION_TESTING.md`
 - `docs/ADRs/0015-locked-dashboard-build.md`
 - `docs/ADRs/0016-mutmut-nightly-not-pr-blocker.md`
+
+## v8 source-file and external-gate layer
+
+The v8 pass adds an exact source-file acquisition layer and an MBS TXT-pair parser for the current item-map/descriptor file pattern.
+
+New commands:
+
+```bash
+PYTHONPATH=src reimbursement-atlas source-files
+PYTHONPATH=src reimbursement-atlas parse-mbs-txt-pair \
+  data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT \
+  data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT
+PYTHONPATH=src python scripts/run_external_quality_gates.py
+```
+
+New public metadata outputs:
+
+- `data/seed/source_files.*`
+- `schema/SourceFileRecord.schema.json`
+- `data/derived/external_quality_gates.*`
+- `apps/dashboard/public/data/source_files.csv`
+- `apps/dashboard/public/data/external_quality_gates.csv`
+
+The external quality gate report distinguishes installed-but-network-blocked gates from missing tools. In the current runtime, `pip-audit` is installed but blocked by DNS access to `pypi.org`; `npm audit` passes; Pixi and Mojo executables are not present on `PATH`.
+
+See:
+
+- `docs/EXACT_SOURCE_FILES.md`
+- `docs/MBS_TXT_PAIR_PARSER.md`
+- `docs/EXTERNAL_QUALITY_GATES.md`
+- `docs/ADRs/0017-exact-source-file-records.md`
+- `docs/ADRs/0018-external-quality-gates-are-classified.md`

@@ -18,6 +18,7 @@ REQUIRED_DASHBOARD_DATA = (
     "graph_nodes.csv",
     "graph_edges.csv",
     "source_status.csv",
+    "source_files.csv",
     "source_readiness.csv",
     "source_acquisition_plan.csv",
     "source_snapshots.csv",
@@ -27,6 +28,7 @@ REQUIRED_DASHBOARD_DATA = (
     "ontology_registry.csv",
     "ontology_concepts.csv",
     "ontology_mapping_templates.csv",
+    "external_quality_gates.csv",
 )
 
 

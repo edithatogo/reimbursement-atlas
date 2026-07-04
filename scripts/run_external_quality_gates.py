@@ -1,0 +1,49 @@
+"""Run external toolchain gates and record pass/fail/blocked status."""
+
+from __future__ import annotations
+
+from reimburse_atlas.registry import project_root
+from reimburse_atlas.toolchain import run_external_quality_gate, write_external_quality_gate_records
+
+
+def main() -> None:
+    """Run network/toolchain-sensitive gates with honest classification."""
+    root = project_root()
+    records = [
+        run_external_quality_gate(
+            gate_id="pip_audit_strict",
+            command=("uv", "run", "--extra", "dev", "pip-audit", "--strict"),
+            cwd=root,
+            timeout_seconds=180,
+        ),
+        run_external_quality_gate(
+            gate_id="npm_audit_dashboard",
+            command=("npm", "audit", "--omit=dev", "--audit-level=moderate"),
+            cwd=root / "apps" / "dashboard",
+            timeout_seconds=120,
+        ),
+        run_external_quality_gate(
+            gate_id="pixi_available",
+            command=("pixi", "--version"),
+            cwd=root,
+            timeout_seconds=30,
+        ),
+        run_external_quality_gate(
+            gate_id="mojo_available",
+            command=("mojo", "--version"),
+            cwd=root,
+            timeout_seconds=30,
+        ),
+    ]
+    json_path, csv_path = write_external_quality_gate_records(
+        records,
+        json_path=root / "data" / "derived" / "external_quality_gates.json",
+        csv_path=root / "data" / "derived" / "external_quality_gates.csv",
+    )
+    print(f"Wrote {json_path} and {csv_path}")
+    for record in records:
+        print(f"{record.id}: {record.outcome}")
+
+
+if __name__ == "__main__":
+    main()

@@ -82,6 +82,10 @@ uv = ">=0.11.0"
 ruff = ">=0.14.0"
 basedpyright = ">=1.35.0"
 pytest = ">=9.0.0"
+pytest-cov = ">=7.0.0"
+hypothesis = ">=6.148.0"
+bandit = ">=1.8.0"
+pip-audit = ">=2.9.0"
 polars = ">=1.35.0"
 pyarrow = ">=22.0.0"
 duckdb = ">=1.4.0"
@@ -118,6 +122,8 @@ integration = "pytest tests/integration -q"
 e2e = "pytest tests/e2e -q"
 test = "pytest -q"
 coverage = "pytest --cov=src/reimburse_atlas --cov-report=term-missing --cov-report=xml --cov-fail-under=90"
+bandit = "bandit -q -c pyproject.toml -r src scripts"
+pip-audit = "pip-audit --strict"
 mutation = "mutmut run --paths-to-mutate src/reimburse_atlas"
 profile = "scalene src/reimburse_atlas/cli.py -- --help"
 qa = { depends-on = ["format-check", "lint", "typecheck", "seed-sync-check", "coverage", "smoke"] }
@@ -137,6 +143,7 @@ source-snapshots = "python scripts/make_source_snapshots.py"
 ontology-seed = "python scripts/make_ontology_seed.py"
 publication-manifest = "python scripts/make_publication_manifest.py"
 toolchain-report = "python scripts/make_toolchain_report.py"
+external-quality-gates = "python scripts/run_external_quality_gates.py"
 snapshot = "reimbursement-atlas snapshot"
 dashboard-dev = "cd apps/dashboard && npm run dev"
 dashboard-build = "cd apps/dashboard && npm run build"
@@ -206,7 +213,7 @@ unfixable = ["ERA001"]
 [tool.ruff.lint.per-file-ignores]
 "tests/**/*.py" = ["ANN", "D", "S101", "PLR2004", "PLR0133", "RUF069"]
 "scripts/**/*.py" = ["T201"]
-"src/reimburse_atlas/cli.py" = ["T201"]
+"src/reimburse_atlas/cli.py" = ["T201", "PLR0914"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"

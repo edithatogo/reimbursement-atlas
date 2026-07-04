@@ -1,0 +1,4 @@
+item_number|descriptor
+73358|Whole exome sequencing for rare disease, synthetic descriptor
+66512|Biochemical genetics screen, synthetic descriptor
+99999|Descriptor-only synthetic item

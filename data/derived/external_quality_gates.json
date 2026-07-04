@@ -1,0 +1,49 @@
+{
+  "records": [
+    {
+      "command": "uv run --extra dev pip-audit --strict",
+      "cwd": "/mnt/data/reimbursement-atlas-conductor-v8-work",
+      "generated_at": "2026-07-04T09:57:30.162059+00:00",
+      "id": "pip_audit_strict",
+      "notes": "Gate is installed but could not reach its external advisory/network service.",
+      "outcome": "blocked_network",
+      "return_code": 1,
+      "stderr_excerpt": "WARNING: The directory '/home/oai/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag. Traceback (most recent call last): File \"/mnt/data/reimbursement-atlas-conductor-v8-work/.venv/lib/python3.13/site-packages/urllib3/connection.py\", line 204, in _new_conn sock = connection.create_connection( (self._dns_host, self.port), ...<2 lines>... socket_options=self.socket_options, ) File \"/mnt/data/reimbursement-atlas-conductor-v8-work/.venv/lib/python3.13/site-packages/urllib3/util/connection.py\", line 60, in create_connection for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM): ~~~~~~~~~~~~~~~~~~^^^^^^^^^\u2026",
+      "stdout_excerpt": ""
+    },
+    {
+      "command": "npm audit --omit=dev --audit-level=moderate",
+      "cwd": "/mnt/data/reimbursement-atlas-conductor-v8-work/apps/dashboard",
+      "generated_at": "2026-07-04T09:57:31.290999+00:00",
+      "id": "npm_audit_dashboard",
+      "notes": "Gate passed in the active runtime.",
+      "outcome": "passed",
+      "return_code": 0,
+      "stderr_excerpt": "",
+      "stdout_excerpt": "found 0 vulnerabilities"
+    },
+    {
+      "command": "pixi --version",
+      "cwd": "/mnt/data/reimbursement-atlas-conductor-v8-work",
+      "generated_at": "2026-07-04T09:57:31.993147+00:00",
+      "id": "pixi_available",
+      "notes": "Executable is not available in this runtime.",
+      "outcome": "missing_tool",
+      "return_code": null,
+      "stderr_excerpt": "[Errno 2] No such file or directory: 'pixi'",
+      "stdout_excerpt": ""
+    },
+    {
+      "command": "mojo --version",
+      "cwd": "/mnt/data/reimbursement-atlas-conductor-v8-work",
+      "generated_at": "2026-07-04T09:57:31.996044+00:00",
+      "id": "mojo_available",
+      "notes": "Executable is not available in this runtime.",
+      "outcome": "missing_tool",
+      "return_code": null,
+      "stderr_excerpt": "[Errno 2] No such file or directory: 'mojo'",
+      "stdout_excerpt": ""
+    }
+  ],
+  "schema_version": "external-quality-gates-v1"
+}

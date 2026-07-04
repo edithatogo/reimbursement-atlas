@@ -270,3 +270,32 @@ flowchart LR
     P --> D[Dashboard-safe artefacts]
     P --> H[Future HF dataset]
 ```
+
+## v8 exact source-file layer
+
+```mermaid
+flowchart TD
+    A[SourceRecord] --> B[SourceVersionRecord]
+    B --> C[SourceFileRecord]
+    C --> D{Acquisition mode}
+    D -->|manual_download| E[data/raw_live ignored]
+    D -->|api_rate_limited| F[rate-limited API request]
+    D -->|licence_clickthrough_manual| G[human licence review]
+    E --> H[Parser]
+    F --> H
+    G --> H
+    H --> I[Derived contract rows]
+    I --> J[Publication manifest]
+    C --> K[Dashboard source-file table]
+```
+
+```mermaid
+flowchart LR
+    Q[External quality gate] --> R{Outcome}
+    R --> P[passed]
+    R --> F[failed]
+    R --> B[blocked_network]
+    R --> M[missing_tool]
+    R --> T[timed_out]
+    B --> N[Do not claim pass; retry in network-capable CI]
+```

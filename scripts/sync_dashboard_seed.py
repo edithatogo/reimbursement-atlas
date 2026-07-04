@@ -14,6 +14,7 @@ FILES = [
     Path("data/seed/analysis_readiness.csv"),
     Path("data/seed/first_wave_ingestion_plan.csv"),
     Path("data/seed/source_acquisition_plan.csv"),
+    Path("data/seed/source_files.csv"),
     Path("data/seed/ingestion_readiness.csv"),
     Path("data/seed/source_snapshots.csv"),
     Path("data/seed/source_status.csv"),
@@ -28,6 +29,7 @@ FILES = [
     Path("data/derived/vertical_slice/median_payment_by_source.csv"),
     Path("data/derived/vertical_slice/priced_share.csv"),
     Path("data/derived/vertical_slice/policy_signal_matrix.csv"),
+    Path("data/derived/external_quality_gates.csv"),
 ]
 
 

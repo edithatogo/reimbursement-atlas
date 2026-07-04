@@ -26,6 +26,8 @@ jobs:
         run: pixi run typecheck
       - name: Tests with coverage
         run: pixi run coverage
+      - name: External quality-gate classification
+        run: pixi run external-quality-gates
 
   dashboard:
     runs-on: ubuntu-latest
@@ -40,3 +42,6 @@ jobs:
       - name: Build dashboard
         working-directory: apps/dashboard
         run: npm run build
+      - name: Audit dashboard production dependencies
+        working-directory: apps/dashboard
+        run: npm audit --omit=dev --audit-level=moderate

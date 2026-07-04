@@ -113,3 +113,21 @@ Build a bleeding-edge, reproducible comparative reimbursement atlas that maps pu
 | Should | Add documentation for local QA, coverage policy and test-goblin compatibility. | Implemented |
 | Could | Run full mutation testing and Scalene profiling on every commit. | Deferred to nightly/long-running CI |
 | Won't now | Treat optional API, MCP, dashboard and warehouse scaffolds as production surfaces. | Deferred |
+
+## v8 requirements refinement
+
+### Must
+
+- Maintain exact `SourceFileRecord` metadata for every live-source file, landing page, endpoint, or licence gate before parser promotion.
+- Keep CMS/AMA-gated CLFS downloads manual-only and prevent CPT descriptor redistribution.
+- Record external quality gates as `passed`, `failed`, `blocked_network`, `missing_tool`, or `timed_out`.
+
+### Should
+
+- Validate the MBS TXT pair parser against the real `20260701_MBSONLINE_IMAP.TXT` and `20260701_MBSONLINE_DESC.TXT` files in an ignored local cache.
+- Surface source-file and external-gate status in the dashboard and Conductor handoff.
+
+### Could
+
+- Add pair/multi-file reviewed-source bundle support for MBS item-map plus descriptor files.
+- Add an OSV or GitHub Advisory fallback when `pip-audit` cannot reach PyPI.

@@ -15,6 +15,7 @@ from reimburse_atlas.models import (
     AnalysisRecipeRecord,
     AnalysisRecord,
     OntologyRecord,
+    SourceFileRecord,
     SourceRecord,
     SourceStatusRecord,
     SourceVersionRecord,
@@ -90,6 +91,14 @@ def load_source_status(path: Path | None = None) -> list[SourceStatusRecord]:
     """Load current source-status observations."""
     status_path = path or project_root() / "data" / "seed" / "source_status.jsonl"
     return parse_records(SourceStatusRecord, read_jsonl(status_path))
+
+
+def load_source_files(path: Path | None = None) -> list[SourceFileRecord]:
+    """Load exact source-file, landing-page and endpoint acquisition records."""
+    files_path = path or project_root() / "data" / "seed" / "source_files.jsonl"
+    if not files_path.exists():
+        return []
+    return parse_records(SourceFileRecord, read_jsonl(files_path))
 
 
 def load_analysis_recipes(path: Path | None = None) -> list[AnalysisRecipeRecord]:

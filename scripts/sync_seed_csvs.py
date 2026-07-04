@@ -8,6 +8,7 @@ from reimburse_atlas.registry import project_root, read_jsonl
 TABLES = (
     "source_registry",
     "source_versions",
+    "source_files",
     "source_status",
     "source_snapshots",
     "analysis_catalogue",

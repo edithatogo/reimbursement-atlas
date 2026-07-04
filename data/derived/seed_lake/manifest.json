@@ -1,7 +1,7 @@
 {
   "duckdb_path": null,
   "parquet_enabled": false,
-  "table_count": 17,
+  "table_count": 18,
   "tables": [
     {
       "csv_path": "source_registry/source_registry.csv",
@@ -28,8 +28,15 @@
       "csv_path": "source_versions/source_versions.csv",
       "jsonl_path": "source_versions/source_versions.jsonl",
       "name": "source_versions",
-      "rows": 6,
-      "sha256": "699021593202cc2a5a53d1b0c3fc13f88ab0c2260d369162b83e189f9819e31f"
+      "rows": 11,
+      "sha256": "276c9d7d967774f54bb5211c28585c51842b597a8038b92a40f09197ac57d250"
+    },
+    {
+      "csv_path": "source_files/source_files.csv",
+      "jsonl_path": "source_files/source_files.jsonl",
+      "name": "source_files",
+      "rows": 7,
+      "sha256": "9e9c742e34fa93ffb637659daea685cc64bd641f7ed3d636b0d15d4698494893"
     },
     {
       "csv_path": "source_snapshots/source_snapshots.csv",

@@ -117,6 +117,42 @@ class SourceStatusRecord(FrozenModel):
     retrieval_priority: int = Field(ge=1, le=5)
 
 
+class SourceFileRecord(FrozenModel):
+    """Exact file, endpoint or landing page needed for a source-version acquisition."""
+
+    id: SourceId
+    source_id: SourceId
+    source_version_id: SourceId
+    file_label: NonEmptyStr
+    file_name: NonEmptyStr
+    source_url: HttpUrl
+    file_role: Literal[
+        "primary",
+        "supplementary",
+        "landing_page",
+        "licence_gate",
+        "api_endpoint",
+    ]
+    expected_format: NonEmptyStr
+    acquisition_mode: Literal[
+        "manual_download",
+        "manual_extract",
+        "api_rate_limited",
+        "landing_page_review",
+        "licence_clickthrough_manual",
+    ]
+    licence_gate: Literal[
+        "permissive_candidate",
+        "public_reuse_review",
+        "restricted_or_licence_review",
+        "metadata_only",
+    ]
+    parser_hint: NonEmptyStr
+    expected_record_count: int | None = Field(default=None, ge=0)
+    current_observation: NonEmptyStr
+    notes: NonEmptyStr
+
+
 class AnalysisRecipeRecord(FrozenModel):
     """Machine-readable analysis recipe for workflow planning and GitHub issues."""
 

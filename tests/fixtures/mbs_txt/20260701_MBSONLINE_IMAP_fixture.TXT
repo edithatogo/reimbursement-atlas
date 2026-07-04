@@ -1,0 +1,3 @@
+item_number|category|schedule_fee|start_date|restriction
+73358|genomics|1200.00|01/07/2026|eligible patients only
+66512|pathology|42.50|01/07/2026|

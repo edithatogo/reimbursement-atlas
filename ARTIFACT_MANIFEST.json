@@ -1,20 +1,16 @@
 {
-  "created_at": "2026-07-03T13:36:56.621333+00:00",
-  "updated_at": "2026-07-03",
-  "root": "reimbursement-atlas-conductor",
-  "base_commit_before_update": "a84a78f43f749a37e06e520bd98fcaaf99a8994e",
-  "note": "Archive hashes are provided in the external manifest because including exact archive hash inside the git archive is circular.",
+  "base_commit_before_update": "cfff184",
   "counts": {
-    "files": 146,
-    "sources": 60,
     "analyses": 25,
+    "files": 146,
+    "graph_edges": 383,
+    "graph_nodes": 205,
     "ontologies": 14,
-    "source_versions": 3
+    "source_files": 7,
+    "source_versions": 11,
+    "sources": 60
   },
-  "tests": {
-    "last_local_command": "PYTHONPATH=src python -m pytest -q",
-    "last_local_result": "17 passed, 4 skipped"
-  },
+  "created_at": "2026-07-03T13:36:56.621333+00:00",
   "important_files": [
     "REQUIREMENTS.md",
     "DESIGN.md",
@@ -30,6 +26,20 @@
     "data/seed/source_versions.jsonl",
     "src/reimburse_atlas/contracts.py",
     "src/reimburse_atlas/graph.py",
-    "apps/dashboard/package.json"
-  ]
+    "apps/dashboard/package.json",
+    "data/seed/source_files.jsonl",
+    "docs/EXACT_SOURCE_FILES.md",
+    "docs/MBS_TXT_PAIR_PARSER.md",
+    "docs/EXTERNAL_QUALITY_GATES.md",
+    "data/derived/external_quality_gates.json",
+    "data/derived/v8_validation_run.json"
+  ],
+  "note": "Archive hashes are provided in the external manifest because including exact archive hash inside the git archive is circular.",
+  "root": "reimbursement-atlas-conductor",
+  "tests": {
+    "external_quality_gates": "pip-audit blocked_network due DNS; npm audit passed; pixi/mojo missing in runtime",
+    "last_local_dashboard_quality": "npm ci, npm audit --omit=dev --audit-level=moderate, npm run build all passed",
+    "last_local_python_quality": "ruff check, ruff format --check, basedpyright, pytest --cov --cov-fail-under=90, bandit, compileall, uv build all passed"
+  },
+  "updated_at": "2026-07-04"
 }

@@ -40,6 +40,8 @@ jobs:
         run: pixi run bandit -r src -c pyproject.toml
       - name: pip-audit
         run: pixi run pip-audit
+      - name: External quality-gate classification artifact
+        run: pixi run external-quality-gates
 
 
   dashboard-security:

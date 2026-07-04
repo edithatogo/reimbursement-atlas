@@ -1,0 +1,31 @@
+{
+  "base_commit": "cfff184",
+  "counts": {
+    "data/derived/vertical_slice/coverage_decisions.csv": 2,
+    "data/derived/vertical_slice/schedule_items.csv": 10,
+    "data/seed/analysis_catalogue.csv": 25,
+    "data/seed/graph_edges.csv": 383,
+    "data/seed/graph_nodes.csv": 205,
+    "data/seed/source_files.csv": 7,
+    "data/seed/source_registry.csv": 60,
+    "data/seed/source_versions.csv": 11
+  },
+  "external_quality_gate_outcomes": {
+    "mojo_available": "missing_tool",
+    "npm_audit_dashboard": "passed",
+    "pip_audit_strict": "blocked_network",
+    "pixi_available": "missing_tool"
+  },
+  "generated_at": "2026-07-04T10:01:38.804471+00:00",
+  "notes": [
+    "Raw live source downloads were not committed.",
+    "CMS CLFS 26CLABQ3 is represented as metadata/licence-gated; AMA click-through is not automated.",
+    "MBS TXT parser is validated against synthetic fixtures and ready for a local reviewed file check."
+  ],
+  "schema_version": "v8-validation-run-v1",
+  "summary": {
+    "dashboard_quality_gates": "passed: npm ci, npm audit, npm run build",
+    "external_quality_gates": "recorded separately; pip-audit blocked by DNS, npm audit passed, pixi/mojo missing",
+    "python_quality_gates": "passed: ruff, ruff format, basedpyright, pytest coverage, bandit, compileall, uv build"
+  }
+}

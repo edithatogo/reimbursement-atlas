@@ -27,12 +27,13 @@ from reimburse_atlas.ingestion import (
 from reimburse_atlas.ingestion import (
     write_ingestion_plan as write_acquisition_plan,
 )
-from reimburse_atlas.io import write_csv, write_jsonl
+from reimburse_atlas.io import pydantic_rows, write_csv, write_jsonl
 from reimburse_atlas.licensing import evaluate_licence_gates
 from reimburse_atlas.parsers import (
     parse_cms_asp_csv,
     parse_cms_clfs_csv,
     parse_cms_pfs_csv,
+    parse_mbs_txt_pair,
     parse_mbs_xml,
     parse_nhs_genomic_directory_csv,
     parse_pbs_csv,
@@ -51,6 +52,7 @@ from reimburse_atlas.registry import (
     load_ontology_concepts,
     load_ontology_mapping_templates,
     load_ontology_registry,
+    load_source_files,
     load_source_registry,
     load_source_status,
     load_source_versions,
@@ -100,6 +102,23 @@ def source_status() -> None:
             record.status_label,
             str(record.retrieval_priority),
             record.recommended_action,
+        )
+    console.print(table)
+
+
+@app.command("source-files")
+def source_files() -> None:
+    """Show exact first-wave source files, endpoints and licence gates."""
+    table = Table(title="Exact source-file acquisition records")
+    for column in ("id", "source_id", "mode", "licence_gate", "file_name"):
+        table.add_column(column)
+    for record in load_source_files():
+        table.add_row(
+            record.id,
+            record.source_id,
+            record.acquisition_mode,
+            record.licence_gate,
+            record.file_name,
         )
     console.print(table)
 
@@ -314,6 +333,37 @@ def parse_local_source_command(
     console.print_json(json.dumps({**asdict(result)}, default=str, indent=2))
 
 
+@app.command("parse-mbs-txt-pair")
+def parse_mbs_txt_pair_command(
+    item_map_path: Annotated[Path, typer.Argument(help="Reviewed local MBS item-map TXT file.")],
+    descriptor_path: Annotated[
+        Path,
+        typer.Argument(help="Reviewed local MBS descriptor TXT file."),
+    ],
+    output_dir: Annotated[
+        Path,
+        typer.Option(help="Directory for derived normalised MBS TXT rows."),
+    ] = (project_root() / "data" / "derived" / "reviewed_sources"),
+) -> None:
+    """Parse the current MBS item-map and descriptor TXT pair into derived rows."""
+    records = parse_mbs_txt_pair(item_map_path, descriptor_path)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    rows = pydantic_rows(records)
+    jsonl_path = write_jsonl(rows, output_dir / "au_mbs_20260701_txt_pair_schedule_items.jsonl")
+    csv_path = write_csv(rows, output_dir / "au_mbs_20260701_txt_pair_schedule_items.csv")
+    console.print_json(
+        json.dumps(
+            {
+                "record_count": len(records),
+                "jsonl_path": str(jsonl_path),
+                "csv_path": str(csv_path),
+                "raw_files_copied": False,
+            },
+            indent=2,
+        )
+    )
+
+
 @app.command("vertical-slice")
 def vertical_slice(
     output_dir: Annotated[
@@ -328,7 +378,6 @@ def vertical_slice(
         policy_signal_matrix,
         priced_share,
     )
-    from reimburse_atlas.io import pydantic_rows
 
     fixtures = project_root() / "tests" / "fixtures"
     mbs_records = parse_mbs_xml(fixtures / "mbs_fragment.xml")
@@ -390,6 +439,7 @@ def export_graph(
         load_analysis_catalogue(),
         load_ontology_registry(),
         load_source_versions(),
+        load_source_files(),
         load_analysis_recipes(),
         load_ontology_concepts(),
         load_ontology_mapping_templates(),
@@ -416,25 +466,40 @@ def validate() -> None:
     ontologies_ = load_ontology_registry()
     versions_ = load_source_versions()
     status_ = load_source_status()
+    files_ = load_source_files()
     ids_ = source_ids(sources_)
     missing = missing_analysis_sources(analyses_, ids_)
     missing_versions = missing_source_version_sources(versions_, ids_)
     duplicates = duplicate_source_ids(sources_)
     missing_status_sources = sorted({record.source_id for record in status_} - ids_)
+    version_ids_ = {record.id for record in versions_}
+    missing_file_sources = sorted({record.source_id for record in files_} - ids_)
+    missing_file_versions = sorted({record.source_version_id for record in files_} - version_ids_)
     payload = {
         "source_count": len(sources_),
         "analysis_count": len(analyses_),
         "ontology_count": len(ontologies_),
         "source_version_count": len(versions_),
+        "source_file_count": len(files_),
         "source_status_count": len(status_),
         "access_tier_counts": access_tier_counts(sources_),
         "duplicate_source_ids": duplicates,
         "missing_analysis_sources": missing,
         "missing_source_version_sources": missing_versions,
         "missing_status_sources": missing_status_sources,
+        "missing_file_sources": missing_file_sources,
+        "missing_file_versions": missing_file_versions,
     }
     console.print_json(json.dumps(payload, indent=2))
-    if missing or missing_versions or missing_status_sources or duplicates:
+    has_validation_errors = any((
+        missing,
+        missing_versions,
+        missing_status_sources,
+        missing_file_sources,
+        missing_file_versions,
+        duplicates,
+    ))
+    if has_validation_errors:
         raise typer.Exit(code=1)
 
 
@@ -550,6 +615,7 @@ def snapshot() -> None:
     ontologies_ = load_ontology_registry()
     versions_ = load_source_versions()
     status_ = load_source_status()
+    files_ = load_source_files()
     tasks = build_first_wave_ingestion_plan(sources_, versions_)
     ready_analyses = [
         row
@@ -563,6 +629,7 @@ def snapshot() -> None:
         "analysis_count": len(analyses_),
         "ontology_count": len(ontologies_),
         "source_version_count": len(versions_),
+        "source_file_count": len(files_),
         "source_status_count": len(status_),
         "ingestion_task_count": len(tasks),
         "prototype_ready_analysis_count": len(ready_analyses),
@@ -588,6 +655,7 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         AnalysisRecipeRecord,
         AnalysisRecord,
         OntologyRecord,
+        SourceFileRecord,
         SourceRecord,
         SourceStatusRecord,
         SourceVersionRecord,
@@ -598,6 +666,7 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
     models = (
         SourceRecord,
         SourceStatusRecord,
+        SourceFileRecord,
         AnalysisRecord,
         AnalysisRecipeRecord,
         OntologyRecord,

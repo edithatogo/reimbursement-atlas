@@ -12,6 +12,7 @@ from reimburse_atlas.models import (
     AnalysisRecipeRecord,
     AnalysisRecord,
     OntologyRecord,
+    SourceFileRecord,
     SourceRecord,
     SourceVersionRecord,
 )
@@ -49,6 +50,7 @@ def build_seed_graph(
     analyses: list[AnalysisRecord],
     ontologies: list[OntologyRecord],
     versions: list[SourceVersionRecord] | None = None,
+    source_files: list[SourceFileRecord] | None = None,
     recipes: list[AnalysisRecipeRecord] | None = None,
     ontology_concepts: list[OntologyConceptRecord] | None = None,
     ontology_mapping_templates: list[OntologyMappingTemplate] | None = None,
@@ -93,6 +95,24 @@ def build_seed_graph(
             ),
         )
         edges.append(_edge(version_node, f"source:{version.source_id}", "version_of"))
+
+    for source_file in source_files or []:
+        file_node = f"source_file:{source_file.id}"
+        add_node(
+            _node(
+                file_node,
+                source_file.file_label,
+                "source_file",
+                file_role=source_file.file_role,
+                acquisition_mode=source_file.acquisition_mode,
+                licence_gate=source_file.licence_gate,
+                expected_format=source_file.expected_format,
+            ),
+        )
+        edges.extend((
+            _edge(file_node, f"version:{source_file.source_version_id}", "file_for_version"),
+            _edge(file_node, f"source:{source_file.source_id}", "file_for_source"),
+        ))
 
     for analysis in analyses:
         analysis_node = f"analysis:{analysis.id}"

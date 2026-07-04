@@ -97,6 +97,7 @@ def compare_seed_pair(table_name: str, seed_dir: Path | None = None) -> SeedFile
 DEFAULT_SEED_PAIRS = (
     "source_registry",
     "source_versions",
+    "source_files",
     "source_status",
     "source_snapshots",
     "analysis_catalogue",

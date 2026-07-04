@@ -20,6 +20,11 @@ import Layout from "../../components/Layout.astro";
     columns={["source_id", "version_id", "acquisition_mode", "expected_format", "licence_gate", "cache_policy"]}
   />
   <DataTable
+    title="Exact source files and licence gates"
+    fileName="source_files.csv"
+    columns={["id", "source_id", "file_name", "acquisition_mode", "licence_gate", "current_observation"]}
+  />
+  <DataTable
     title="Source snapshots"
     fileName="source_snapshots.csv"
     columns={["source_version_id", "snapshot_id", "content_type", "byte_count", "sha256", "licence_gate"]}

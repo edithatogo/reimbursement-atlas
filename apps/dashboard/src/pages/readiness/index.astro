@@ -24,4 +24,9 @@ import Layout from "../../components/Layout.astro";
     fileName="ingestion_readiness.csv"
     columns={["source_id", "version_id", "parser_name", "readiness_grade", "blocking_issues"]}
   />
+  <DataTable
+    title="External quality gates"
+    fileName="external_quality_gates.csv"
+    columns={["id", "outcome", "command", "notes"]}
+  />
 </Layout>

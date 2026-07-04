@@ -91,6 +91,7 @@ def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:
         "analysis_catalogue": _read_jsonl(seed_dir / "analysis_catalogue.jsonl"),
         "ontology_registry": _read_jsonl(seed_dir / "ontology_registry.jsonl"),
         "source_versions": _read_jsonl(seed_dir / "source_versions.jsonl"),
+        "source_files": _read_jsonl(seed_dir / "source_files.jsonl"),
         "source_snapshots": _read_jsonl(seed_dir / "source_snapshots.jsonl"),
         "source_status": _read_jsonl(seed_dir / "source_status.jsonl"),
         "sample_schedule_items": _read_jsonl(seed_dir / "sample_schedule_items.jsonl"),

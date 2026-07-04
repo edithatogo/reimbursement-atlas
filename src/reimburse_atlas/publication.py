@@ -48,6 +48,8 @@ DEFAULT_PUBLICATION_PATHS = (
     Path("data/seed/source_registry.csv"),
     Path("data/seed/source_versions.jsonl"),
     Path("data/seed/source_versions.csv"),
+    Path("data/seed/source_files.jsonl"),
+    Path("data/seed/source_files.csv"),
     Path("data/seed/source_status.jsonl"),
     Path("data/seed/source_status.csv"),
     Path("data/seed/source_snapshots.jsonl"),
@@ -76,6 +78,8 @@ DEFAULT_PUBLICATION_PATHS = (
     Path("data/derived/vertical_slice/crosswalk_review_queue.csv"),
     Path("data/derived/vertical_slice/policy_signal_matrix.jsonl"),
     Path("data/derived/vertical_slice/policy_signal_matrix.csv"),
+    Path("data/derived/external_quality_gates.json"),
+    Path("data/derived/external_quality_gates.csv"),
 )
 
 

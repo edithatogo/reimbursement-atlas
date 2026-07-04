@@ -87,6 +87,8 @@ def build_first_wave_ingestion_plan(
         if source is None or source.id not in FIRST_WAVE_PARSERS:
             continue
         parser_name, output_contract, priority = FIRST_WAVE_PARSERS[source.id]
+        if source.id == "au_mbs" and "txt" in version.format.lower():
+            parser_name = "parse_mbs_txt_pair"
         tasks.append(
             IngestionTaskRecord(
                 id=f"ingest_{version.id}",
