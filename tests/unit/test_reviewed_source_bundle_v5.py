@@ -22,4 +22,7 @@ def test_build_reviewed_source_bundle(repo_root: Path, tmp_path: Path) -> None:
     assert result.parsed_jsonl_path.exists()
     assert result.validation_report_path.exists()
     assert result.publication_manifest_path.exists()
+    snapshot_text = result.snapshot_jsonl_path.read_text(encoding="utf-8")
+    assert "pbs_fixture.csv" not in snapshot_text
+    assert '"local_path": null' in snapshot_text
     assert "raw_file_copied" in result.publication_manifest_path.read_text(encoding="utf-8")

@@ -1,0 +1,92 @@
+{
+  "checks": [
+    {
+      "command": "uv run --all-extras ruff check .",
+      "id": "ruff_check",
+      "status": "passed"
+    },
+    {
+      "command": "uv run --all-extras ruff format --check .",
+      "id": "ruff_format_check",
+      "status": "passed"
+    },
+    {
+      "command": "uv run --all-extras basedpyright",
+      "id": "basedpyright",
+      "status": "passed"
+    },
+    {
+      "command": "uv run --all-extras pytest --cov=src/reimburse_atlas --cov-report=term-missing --cov-report=xml --cov-fail-under=90 -q",
+      "id": "pytest_coverage",
+      "observed": "94 passed; 91.45% coverage",
+      "status": "passed"
+    },
+    {
+      "command": "uv run --all-extras bandit -q -c pyproject.toml -r src scripts",
+      "id": "bandit",
+      "observed": "passed with expected annotated SQL-literal warnings only",
+      "status": "passed"
+    },
+    {
+      "command": "uv run --all-extras python -m compileall -q src scripts tests",
+      "id": "compileall",
+      "status": "passed"
+    },
+    {
+      "command": "uv build",
+      "id": "uv_build",
+      "status": "passed"
+    },
+    {
+      "command": "cd apps/dashboard && npm ci",
+      "id": "npm_ci",
+      "status": "passed"
+    },
+    {
+      "command": "cd apps/dashboard && npm audit --omit=dev --audit-level=moderate",
+      "id": "npm_audit",
+      "observed": "0 vulnerabilities",
+      "status": "passed"
+    },
+    {
+      "command": "cd apps/dashboard && npm run build",
+      "id": "astro_build",
+      "observed": "6 static pages built; Vite chunk-size warning only",
+      "status": "passed"
+    },
+    {
+      "command": "uv run --extra dev pip-audit --strict",
+      "id": "pip_audit_strict",
+      "observed": "DNS failure resolving pypi.org",
+      "status": "blocked_network"
+    },
+    {
+      "command": "pixi --version / curl https://pixi.sh/install.sh",
+      "id": "pixi_official",
+      "observed": "official executable missing; installer host DNS blocked",
+      "status": "blocked_network_or_missing_tool"
+    },
+    {
+      "command": "uv tool run --from mojo-compiler mojo --version",
+      "id": "mojo_via_uv_tool",
+      "observed": "Mojo 0.26.2.0",
+      "status": "passed"
+    },
+    {
+      "command": "uv run --all-extras python scripts/check_public_data_policy.py",
+      "id": "public_data_policy",
+      "observed": "no raw/local cache paths tracked and no generated metadata leaks absolute local paths",
+      "status": "passed"
+    },
+    {
+      "command": "reimbursement-atlas reviewed-mbs-txt-pair-bundle tests/fixtures/mbs_txt/...",
+      "id": "mbs_pair_bundle_cli_smoke",
+      "observed": "3 derived schedule items; bundle snapshots redacted",
+      "status": "passed"
+    }
+  ],
+  "commit_label": "v10 mbs pair bundles and redacted source metadata",
+  "generated_at": "2026-07-04T15:14:01.782680+00:00",
+  "schema_version": "validation-run-v1",
+  "version": "v10"
+}

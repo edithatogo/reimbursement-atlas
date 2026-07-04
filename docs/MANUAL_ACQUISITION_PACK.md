@@ -32,8 +32,8 @@ data/raw_live/<source_id>/<file_name>
 
 1. Review the MBS downloads page and download the July 2026 item-map and descriptor TXT files.
 2. Place them under `data/raw_live/au_mbs/`.
-3. Snapshot each file with `reimbursement-atlas snapshot-local-file`.
-4. Parse the pair with `reimbursement-atlas parse-mbs-txt-pair`.
+3. Run `reimbursement-atlas reviewed-mbs-txt-pair-bundle` to snapshot both files and emit a derived-only bundle.
+4. Inspect `validation_report.json`, especially joined-row and descriptor-only-row counts.
 5. Run `reimbursement-atlas publication-manifest` and `python scripts/check_public_data_policy.py`.
 
 The same pattern should be used for CMS CLFS, PBS API/CSV, CMS ASP and CMS PFS once their licence gates

@@ -237,9 +237,9 @@
       "available": false,
       "kind": "cli",
       "name": "official-pixi-on-path",
-      "notes": "same-named executable is not the expected official tool",
-      "path": "/home/oai/.local/bin/pixi",
-      "version": "The database needs to be migrated."
+      "notes": "not found on PATH",
+      "path": "",
+      "version": ""
     },
     {
       "available": false,

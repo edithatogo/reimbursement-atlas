@@ -2,7 +2,7 @@
 
 A design-first repository for comparing public reimbursement schedules across US CMS, Australian MBS/PBS, and other public billing, tariff, drug, diagnostic, hospital and coverage-decision systems.
 
-This repository has moved from a design scaffold into a first executable, no-network vertical slice. It defines the context-management layer, policy requirements, source registry, analysis catalogue, ontology strategy, test strategy, dashboard architecture and automation plan, and now includes parser prototypes, readiness tables, reviewed-source bundle tooling, publication manifests and generated vertical-slice artefacts.
+This repository has moved from a design scaffold into a first executable, no-network vertical slice. It defines the context-management layer, policy requirements, source registry, analysis catalogue, ontology strategy, test strategy, dashboard architecture and automation plan, and now includes parser prototypes, readiness tables, reviewed-source bundle tooling, redacted MBS TXT-pair bundle support, publication manifests and generated vertical-slice artefacts.
 
 ## Why this exists
 
@@ -128,6 +128,7 @@ PYTHONPATH=src reimbursement-atlas source-snapshots data/seed
 PYTHONPATH=src reimbursement-atlas snapshot-local-file --source-version-id au_pbs_seed_fixture tests/fixtures/pbs_fixture.csv --content-type text/csv
 PYTHONPATH=src reimbursement-atlas parse-local-source --source-version-id au_pbs_seed_fixture tests/fixtures/pbs_fixture.csv
 PYTHONPATH=src reimbursement-atlas reviewed-source-bundle --source-version-id au_pbs_seed_fixture --content-type text/csv tests/fixtures/pbs_fixture.csv
+PYTHONPATH=src reimbursement-atlas reviewed-mbs-txt-pair-bundle tests/fixtures/mbs_txt/20260701_MBSONLINE_IMAP_fixture.TXT tests/fixtures/mbs_txt/20260701_MBSONLINE_DESC_fixture.TXT
 PYTHONPATH=src reimbursement-atlas validate-seed-files
 PYTHONPATH=src reimbursement-atlas publication-manifest data/derived/publication_manifest.json
 PYTHONPATH=src reimbursement-atlas seed-lake data/derived/seed_lake
@@ -269,6 +270,25 @@ See:
 - `docs/EXTERNAL_QUALITY_GATES.md`
 - `docs/ADRs/0017-exact-source-file-records.md`
 - `docs/ADRs/0018-external-quality-gates-are-classified.md`
+
+
+## v10 redacted MBS TXT-pair bundle layer
+
+The v10 pass hardens reviewed-source bundles for publication review and adds a dedicated two-file MBS TXT workflow. Bundle snapshot exports now redact `local_path` so private raw-cache paths do not leak into derived artefacts. The MBS TXT-pair command snapshots both the item-map and descriptor files, joins them by MBS item code, emits derived `ScheduleItemRecord` rows, and writes pair-specific validation statistics.
+
+New command:
+
+```bash
+PYTHONPATH=src reimbursement-atlas reviewed-mbs-txt-pair-bundle \
+  data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT \
+  data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT \
+  --output-dir data/derived/reviewed_source_bundles
+```
+
+See:
+
+- `docs/MBS_REVIEWED_PAIR_BUNDLE.md`
+- `docs/ADRs/0021-redacted-reviewed-source-bundles-and-mbs-pairing.md`
 
 ## v9 optional toolchain, acquisition-pack and mapping-workbench layer
 

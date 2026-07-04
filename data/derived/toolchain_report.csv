@@ -28,7 +28,7 @@ react-dom,node-package,True,19.2.7,apps/dashboard/package-lock.json,locked
 uv.lock,lockfile,True,,uv.lock,present
 dashboard package-lock,lockfile,True,,apps/dashboard/package-lock.json,present
 uv,cli,True,uv 0.10.0,/opt/pyvenv/bin/uv,probe passed
-official-pixi-on-path,cli,False,The database needs to be migrated.,/home/oai/.local/bin/pixi,same-named executable is not the expected official tool
+official-pixi-on-path,cli,False,,,not found on PATH
 mojo-on-path,cli,False,,,not found on PATH
 mojo-via-uv-tool,cli,True,Mojo 0.26.2.0 (d627decc),/opt/pyvenv/bin/uv,probe passed
 node,cli,True,v22.16.0,/opt/nvm/versions/node/v22.16.0/bin/node,probe passed

@@ -375,6 +375,34 @@ def parse_mbs_txt_pair_command(
     )
 
 
+@app.command("reviewed-mbs-txt-pair-bundle")
+def reviewed_mbs_txt_pair_bundle_command(
+    item_map_path: Annotated[Path, typer.Argument(help="Reviewed local MBS item-map TXT file.")],
+    descriptor_path: Annotated[
+        Path,
+        typer.Argument(help="Reviewed local MBS descriptor TXT file."),
+    ],
+    output_dir: Annotated[
+        Path,
+        typer.Option(help="Directory for derived-only reviewed MBS TXT-pair bundles."),
+    ] = (project_root() / "data" / "derived" / "reviewed_source_bundles"),
+    retrieved_at: Annotated[
+        str | None,
+        typer.Option(help="Optional ISO-8601 retrieval timestamp for both local files."),
+    ] = None,
+) -> None:
+    """Create a derived-only reviewed-source bundle for an MBS TXT file pair."""
+    from reimburse_atlas.local_sources import build_mbs_txt_pair_bundle
+
+    result = build_mbs_txt_pair_bundle(
+        item_map_path=item_map_path,
+        descriptor_path=descriptor_path,
+        output_dir=output_dir,
+        retrieved_at=retrieved_at,
+    )
+    console.print_json(json.dumps(asdict(result), default=str, indent=2))
+
+
 @app.command("manual-acquisition-pack")
 def manual_acquisition_pack(
     output_dir: Annotated[

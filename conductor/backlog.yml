@@ -85,6 +85,10 @@ epics:
         labels: ["type:data-source", "risk:licence", "phase:1-slice"]
       - title: Validate MBS parser against one manually downloaded XML release
         labels: ["type:parser", "phase:1-slice", "needs-clinical-review"]
+      - title: Add derived-only MBS TXT pair bundle workflow with path-redacted snapshots
+        labels: ["type:parser", "risk:licence", "phase:1-slice"]
+      - title: Review first real July 2026 MBS TXT pair bundle outputs
+        labels: ["type:data-source", "needs-clinical-review", "phase:1-slice"]
       - title: Validate CMS CLFS parser against one public file without CPT descriptor redistribution
         labels: ["type:parser", "risk:licence", "phase:1-slice"]
       - title: Validate PBS API CSV parser against a reviewed monthly public extract

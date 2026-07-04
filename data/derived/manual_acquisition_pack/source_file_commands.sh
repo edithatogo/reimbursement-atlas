@@ -7,13 +7,13 @@ set -euo pipefail
 # URL: https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/650f3eec0dfb990fca25692100069854/1bc94358d4f276d3ca257ccf0000aa73/%24FILE/20260701_MBSONLINE_IMAP.TXT
 mkdir -p data/raw_live/au_mbs
 # Snapshot: reimbursement-atlas snapshot-local-file --source-version-id au_mbs_20260701_txt_pair --content-type text/plain data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT
-# Parse: # Parse after both MBS TXT files are present: reimbursement-atlas parse-mbs-txt-pair data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT --output-dir data/derived/reviewed_sources/au_mbs_20260701_txt_pair
+# Parse: # Bundle after both MBS TXT files are present: reimbursement-atlas reviewed-mbs-txt-pair-bundle data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT --output-dir data/derived/reviewed_sources/au_mbs_20260701_txt_pair
 
 # step_002: MBS 20260701 item descriptors TXT
 # URL: https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/650f3eec0dfb990fca25692100069854/1bc94358d4f276d3ca257ccf0000aa73/%24FILE/20260701_MBSONLINE_DESC.TXT
 mkdir -p data/raw_live/au_mbs
 # Snapshot: reimbursement-atlas snapshot-local-file --source-version-id au_mbs_20260701_txt_pair --content-type text/plain data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT
-# Parse: # Parse after both MBS TXT files are present: reimbursement-atlas parse-mbs-txt-pair data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT --output-dir data/derived/reviewed_sources/au_mbs_20260701_txt_pair
+# Parse: # Bundle after both MBS TXT files are present: reimbursement-atlas reviewed-mbs-txt-pair-bundle data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT --output-dir data/derived/reviewed_sources/au_mbs_20260701_txt_pair
 
 # step_003: CMS 26CLABQ3 file page
 # URL: https://www.cms.gov/medicare/payment/fee-schedules/clinical-laboratory-fee-schedule-clfs/files/26clabq3

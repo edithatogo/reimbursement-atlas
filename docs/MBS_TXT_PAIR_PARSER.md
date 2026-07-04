@@ -38,3 +38,14 @@ The output is `ScheduleItemRecord`. Raw MBS files remain local-only until reuse 
 ## Test fixture
 
 Synthetic fixtures live under `tests/fixtures/mbs_txt/` and prove that item-map prices can be joined to descriptors while descriptor-only rows remain explicit.
+## Reviewed bundle command
+
+For reviewed live-source validation, prefer the pair-bundle command because it snapshots both raw files and redacts local paths in bundle metadata:
+
+```bash
+PYTHONPATH=src reimbursement-atlas reviewed-mbs-txt-pair-bundle \
+  data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT \
+  data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT \
+  --output-dir data/derived/reviewed_source_bundles
+```
+

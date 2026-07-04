@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 
 from reimburse_atlas.registry import project_root
-from reimburse_atlas.repo_policy import disallowed_tracked_paths
+from reimburse_atlas.repo_policy import disallowed_public_metadata_values, disallowed_tracked_paths
 
 
 def tracked_files(root: Path) -> list[str]:
@@ -29,13 +29,24 @@ def tracked_files(root: Path) -> list[str]:
 
 def main() -> None:
     """Run public-data publication policy checks."""
-    violations = disallowed_tracked_paths(tracked_files(project_root()))
-    if violations:
-        print("Disallowed raw/local data paths are tracked:")
-        for path in violations:
-            print(f"- {path}")
+    root = project_root()
+    tracked = tracked_files(root)
+    path_violations = disallowed_tracked_paths(tracked)
+    metadata_violations = disallowed_public_metadata_values(root, tracked)
+    if path_violations or metadata_violations:
+        if path_violations:
+            print("Disallowed raw/local data paths are tracked:")
+            for path in path_violations:
+                print(f"- {path}")
+        if metadata_violations:
+            print("Generated public metadata leaks absolute local paths:")
+            for path in metadata_violations:
+                print(f"- {path}")
         sys.exit(1)
-    print("Public-data policy check passed: no raw/local cache paths are tracked.")
+    print(
+        "Public-data policy check passed: no raw/local cache paths are tracked "
+        "and no generated metadata leaks absolute local paths."
+    )
 
 
 if __name__ == "__main__":

@@ -17,7 +17,7 @@ def test_manual_acquisition_steps_capture_mbs_pair_and_metadata_only() -> None:
     assert len(steps) == len(source_files)
     mbs_steps = [step for step in steps if step.source_id == "au_mbs"]
     assert mbs_steps
-    assert any("parse-mbs-txt-pair" in step.parse_command for step in mbs_steps)
+    assert any("reviewed-mbs-txt-pair-bundle" in step.parse_command for step in mbs_steps)
     metadata_steps = [step for step in steps if step.raw_handling == "metadata_only"]
     assert metadata_steps
     assert all(step.snapshot_command.startswith("# Metadata-only") for step in metadata_steps)
@@ -46,4 +46,4 @@ def test_write_manual_acquisition_pack_outputs_files(tmp_path) -> None:  # type:
     assert jsonl_path.exists()
     assert csv_path.exists()
     assert "Manual acquisition pack" in readme_path.read_text(encoding="utf-8")
-    assert "parse-mbs-txt-pair" in shell_path.read_text(encoding="utf-8")
+    assert "reviewed-mbs-txt-pair-bundle" in shell_path.read_text(encoding="utf-8")

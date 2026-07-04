@@ -24,11 +24,23 @@ PYTHONPATH=src reimbursement-atlas reviewed-source-bundle \
 
 For real reviewed files, place the raw file under an ignored path such as `data/raw_live/au_pbs/` and run the same command against that path.
 
+## MBS TXT pair support
+
+MBS TXT validation uses a paired command because the item-map and descriptor files are separate:
+
+```bash
+PYTHONPATH=src reimbursement-atlas reviewed-mbs-txt-pair-bundle \
+  data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT \
+  data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT
+```
+
+See `docs/MBS_REVIEWED_PAIR_BUNDLE.md` for the pair-specific join and validation contract.
+
 ## Publication rule
 
 Bundle outputs are not automatically publishable. A reviewer must confirm:
 
 1. the source-specific licence allows derived redistribution;
-2. local filesystem paths do not leak into public metadata;
+2. bundle snapshot files keep `local_path` redacted;
 3. restricted descriptors, CPT text, UMLS/RxNorm dumps, DSM-5 text or confidential net prices are not included;
 4. coverage is not inferred from price-file presence.

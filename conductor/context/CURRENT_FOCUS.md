@@ -1,12 +1,12 @@
 # Current focus
 
-The repo is now in the reviewed-source preparation and mapping-workbench phase. v9 adds optional-toolchain probes, manual acquisition-pack generation, deterministic mapping evidence and vector seed exports.
+The repo is now in the reviewed-source preparation and mapping-workbench phase. v10 adds a redacted reviewed-source metadata rule and a dedicated MBS TXT-pair bundle workflow.
 
 ## Immediate focus
 
 1. Keep all public artefacts dashboard-safe and licence-safe.
 2. Validate manually downloaded live sources only through `data/raw_live/` plus snapshot metadata and derived-only outputs.
-3. Use the manual acquisition pack to guide the first real MBS July 2026 TXT-pair parse.
+3. Use the manual acquisition pack to guide the first real MBS July 2026 TXT-pair bundle parse.
 4. Treat mapping evidence and vector search outputs as review queues, not equivalence statements.
 5. Keep CLI/API/MCP surfaces read-only until acquisition and licence controls are mature.
 6. Keep quality gates green: Ruff, basedpyright, Bandit, compileall, uv build, >90% coverage, npm audit and Astro build.
@@ -27,6 +27,12 @@ The repo is now in the reviewed-source preparation and mapping-workbench phase. 
 - `data/derived/optional_toolchain_installs.*`
 - `apps/dashboard/public/data/*`
 
+## v10 artefacts
+
+- `docs/MBS_REVIEWED_PAIR_BUNDLE.md`
+- `docs/ADRs/0021-redacted-reviewed-source-bundles-and-mbs-pairing.md`
+- `conductor/sessions/2026-07-04-v10-mbs-pair-bundles.md`
+
 ## v9 artefacts
 
 - `docs/MANUAL_ACQUISITION_PACK.md`
@@ -40,4 +46,4 @@ The repo is now in the reviewed-source preparation and mapping-workbench phase. 
 
 Start with `docs/MANUAL_ACQUISITION_PACK.md`, `docs/MAPPING_WORKBENCH.md`, `docs/OPTIONAL_TOOLCHAIN_INSTALLS.md`, `docs/LIVE_SOURCE_VALIDATION_PLAYBOOK.md`, `docs/MBS_TXT_PAIR_PARSER.md`, and `conductor/sessions/2026-07-04-v9-toolchain-and-mapping-workbench.md`.
 
-Immediate next step: manually download the July 2026 MBS item-map and descriptor TXT files, place them in `data/raw_live/au_mbs/`, snapshot them, parse with `parse-mbs-txt-pair`, and commit only derived rows and provenance metadata.
+Immediate next step: manually download the July 2026 MBS item-map and descriptor TXT files, place them in `data/raw_live/au_mbs/`, run `reviewed-mbs-txt-pair-bundle`, and commit only derived rows/provenance after reviewing licence and validation warnings.

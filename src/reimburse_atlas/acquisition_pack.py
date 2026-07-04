@@ -128,8 +128,9 @@ def _snapshot_command(record: SourceFileRecord, suggested_path: Path) -> str:
 def _parse_command(record: SourceFileRecord, suggested_path: Path, derived_root: Path) -> str:
     if "parse_mbs_txt_pair" in record.parser_hint:
         return (
-            "# Parse after both MBS TXT files are present: reimbursement-atlas "
-            "parse-mbs-txt-pair data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT "
+            "# Bundle after both MBS TXT files are present: reimbursement-atlas "
+            "reviewed-mbs-txt-pair-bundle "
+            "data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT "
             "data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT "
             f"--output-dir {shlex.quote(str(derived_root / 'au_mbs_20260701_txt_pair'))}"
         )

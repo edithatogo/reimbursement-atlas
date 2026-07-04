@@ -25,7 +25,7 @@ These observations are encoded in `data/seed/source_status.*` so they can be sur
 
 | Source | Current observation | Next action |
 |---|---|---|
-| MBS | 20260701 item-map and descriptor TXT files visible on the MBS downloads page. | Download locally, snapshot, and add TXT parser tests before raw mirroring. |
+| MBS | 20260701 item-map and descriptor TXT files visible on the MBS downloads page. | Download locally and run the redacted `reviewed-mbs-txt-pair-bundle` workflow before any publication decision. |
 | PBS | PBS API is the current distribution mechanism; JSON and CSV downloads are supported and public API access is rate-limited. | Use API CSV or selected endpoints with explicit rate limiting and schedule-code metadata. |
 | CMS CLFS | CY 2026 Q3 `26CLABQ3` file visible. | Download locally, snapshot, and parse payment fields while avoiding restricted CPT descriptor redistribution. |
 | CMS PFS | 2026 RVU files visible, including RVU26A/RVU26B/RVU26C. | Download locally, derive facility/non-facility payment fields, and keep CPT governance separate. |
@@ -96,6 +96,19 @@ Review before publication:
 1. `validation_report.json` confirms parse success and record count.
 2. `source_snapshots.jsonl` records checksum and byte size.
 3. `publication_manifest.json` warns whether human licence review is still required.
-4. Parsed rows should be inspected for restricted descriptors or local filesystem leakage.
+4. Parsed rows should be inspected for restricted descriptors, and bundle snapshots should keep `local_path` redacted.
 
 Do not use a successful bundle as evidence that the source can be redistributed. It only proves that the local file was checksummed and parsed into the project contracts.
+## v10 MBS TXT-pair bundle workflow
+
+Use `reviewed-mbs-txt-pair-bundle` for the July 2026 MBS TXT pair rather than the generic one-file bundle command:
+
+```bash
+PYTHONPATH=src reimbursement-atlas reviewed-mbs-txt-pair-bundle \
+  data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT \
+  data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT \
+  --output-dir data/derived/reviewed_source_bundles
+```
+
+The bundle snapshots both files, redacts local raw paths in `source_snapshots.*`, joins descriptors to item-map rows by item code, and writes pair-specific validation statistics. See `docs/MBS_REVIEWED_PAIR_BUNDLE.md`.
+
