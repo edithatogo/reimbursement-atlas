@@ -84,4 +84,11 @@ def test_automation_controls_are_stable_for_repo_root() -> None:
     root = Path(__file__).resolve().parents[2]
     controls = automation_control_records(root)
     ids = {record.id for record in controls}
-    assert {"ci_python_quality", "renovate", "dependabot", "data_publication_gates"} <= ids
+    expected = {
+        "ci_python_quality",
+        "renovate",
+        "dependabot",
+        "data_publication_gates",
+        "local_quality_orchestrator",
+    }
+    assert expected <= ids

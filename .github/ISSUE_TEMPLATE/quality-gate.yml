@@ -1,0 +1,34 @@
+name: Quality gate or automation
+about: Add or harden CI/CD, security, supply-chain or repo automation
+title: "Quality gate: <gate name>"
+labels: ["automation", "quality"]
+body:
+  - type: textarea
+    id: gate
+    attributes:
+      label: Gate description
+      description: What should this gate prove, and should it be blocking, advisory or scheduled?
+    validations:
+      required: true
+  - type: dropdown
+    id: class
+    attributes:
+      label: Gate class
+      options:
+        - blocking PR gate
+        - blocking release gate
+        - advisory PR gate
+        - scheduled/nightly gate
+        - manual maintainer gate
+    validations:
+      required: true
+  - type: checkboxes
+    id: evidence
+    attributes:
+      label: Evidence outputs
+      options:
+        - label: JSONL/CSV evidence generated
+        - label: Dashboard copy synced
+        - label: CI workflow updated
+        - label: Release-readiness matrix updated
+        - label: Documentation and ADR updated

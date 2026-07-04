@@ -1,0 +1,33 @@
+name: Source onboarding
+about: Add or review a reimbursement source family or exact source file
+title: "Source onboarding: <jurisdiction/source>"
+labels: ["source", "data-governance"]
+body:
+  - type: textarea
+    id: source
+    attributes:
+      label: Source description
+      description: Jurisdiction, schedule family, exact source files/endpoints and why it matters.
+    validations:
+      required: true
+  - type: dropdown
+    id: licence
+    attributes:
+      label: Licence / redistribution gate
+      options:
+        - permissive metadata only
+        - public but raw redistribution unclear
+        - click-through / restricted terms
+        - local-only / do not publish raw
+    validations:
+      required: true
+  - type: checkboxes
+    id: gates
+    attributes:
+      label: Required gates
+      options:
+        - label: Source registry row added or updated
+        - label: Exact source-file record added when applicable
+        - label: Snapshot/provenance strategy documented
+        - label: Derived-only publication policy reviewed
+        - label: Public-data policy check passes

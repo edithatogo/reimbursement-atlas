@@ -37,7 +37,14 @@ FILES = [
     Path("data/derived/repo_automation/workflow_policy.csv"),
     Path("data/derived/repo_automation/automation_controls.csv"),
     Path("data/derived/repo_automation/action_sha_pin_plan.csv"),
+    Path("data/derived/repo_automation/action_pin_resolution.csv"),
     Path("data/derived/sbom/sbom_summary.csv"),
+    Path("data/derived/local_quality_gates/local_quality_gates.csv"),
+    Path("data/derived/local_quality_gates/local_quality_gate_specs.csv"),
+    Path("data/derived/architecture/import_edges.csv"),
+    Path("data/derived/architecture/layer_policy.csv"),
+    Path("data/derived/architecture/import_cycles.csv"),
+    Path("data/derived/release_readiness/release_gates.csv"),
 ]
 
 

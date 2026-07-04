@@ -1,0 +1,37 @@
+name: Analysis recipe
+about: Propose or refine a policy-relevant analysis
+title: "Analysis recipe: <short title>"
+labels: ["analysis", "policy"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Policy question
+      description: What decision, trade-off or reimbursement behaviour should the analysis illuminate?
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Required sources and mappings
+      description: List source families, item-code mappings, ontologies or crosswalk assumptions.
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Stage
+      options:
+        - seed
+        - prototype
+        - validated
+        - publication-ready
+    validations:
+      required: true
+  - type: checkboxes
+    id: quality
+    attributes:
+      label: Quality criteria
+      options:
+        - label: Includes reproducibility criteria
+        - label: Identifies caveats around list price vs effective price
+        - label: Identifies equity/access relevance
+        - label: Adds dashboard-safe output fields

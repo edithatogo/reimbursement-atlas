@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from dataclasses import asdict
 from pathlib import Path
-from typing import Annotated
+from typing import Annotated, cast
 
 import typer
 from rich.console import Console
@@ -40,6 +40,11 @@ from reimburse_atlas.ingestion import (
 )
 from reimburse_atlas.io import pydantic_rows, write_csv, write_jsonl
 from reimburse_atlas.licensing import evaluate_licence_gates
+from reimburse_atlas.local_quality import (
+    QualityGateProfile,
+    run_quality_gate_profile,
+    write_quality_gate_run,
+)
 from reimburse_atlas.parsers import (
     parse_cms_asp_csv,
     parse_cms_clfs_csv,
@@ -726,6 +731,43 @@ def repo_automation(
     )
 
 
+@app.command("local-quality-gates")
+def local_quality_gates_command(
+    profile: Annotated[
+        str,
+        typer.Option(help="Quality-gate profile: quick, ci, release or nightly."),
+    ] = "ci",
+    output_dir: Annotated[
+        Path,
+        typer.Option(help="Directory for local quality-gate run artefacts."),
+    ] = (project_root() / "data" / "derived" / "local_quality_gates"),
+    dry_run: Annotated[
+        bool,
+        typer.Option(help="Write planned gates without executing them."),
+    ] = False,
+) -> None:
+    """Run or preview the local quality-gate profile used by CI/CD."""
+    if profile not in {"quick", "ci", "release", "nightly"}:
+        msg = "profile must be one of: quick, ci, release, nightly"
+        raise typer.BadParameter(msg)
+    records, summary = run_quality_gate_profile(
+        cast("QualityGateProfile", profile),
+        dry_run=dry_run,
+    )
+    paths = write_quality_gate_run(records, summary, output_dir=output_dir)
+    console.print_json(
+        json.dumps(
+            {
+                "summary": summary.as_row(),
+                "paths": [str(path) for path in paths],
+            },
+            indent=2,
+        )
+    )
+    if summary.blocking_failures and not dry_run:
+        raise typer.Exit(code=1)
+
+
 @app.command("sbom")
 def sbom_command(
     output_dir: Annotated[
@@ -743,6 +785,57 @@ def sbom_command(
     write_jsonl(rows, output_dir / "sbom_summary.jsonl")
     write_csv(rows, output_dir / "sbom_summary.csv")
     console.print_json(json.dumps({"sbom_count": len(rows), "rows": rows}, indent=2))
+
+
+@app.command("architecture-report")
+def architecture_report_command(
+    output_dir: Annotated[
+        Path,
+        typer.Argument(help="Directory for generated architecture-boundary artefacts."),
+    ] = (project_root() / "data" / "derived" / "architecture"),
+) -> None:
+    """Generate architecture-boundary import graph and layer-policy artefacts."""
+    from reimburse_atlas.architecture import build_architecture_report, write_architecture_report
+
+    report = build_architecture_report()
+    paths = write_architecture_report(report, output_dir=output_dir)
+    console.print_json(
+        json.dumps(
+            {"summary": report.summary.as_row(), "paths": [str(path) for path in paths]},
+            indent=2,
+        )
+    )
+    if not report.summary.architecture_ready:
+        raise typer.Exit(code=1)
+
+
+@app.command("release-readiness")
+def release_readiness_command(
+    output_dir: Annotated[
+        Path,
+        typer.Argument(help="Directory for generated release-readiness artefacts."),
+    ] = (project_root() / "data" / "derived" / "release_readiness"),
+    allow_blockers: Annotated[
+        bool,
+        typer.Option(help="Exit zero even when required release blockers remain."),
+    ] = False,
+) -> None:
+    """Generate the consolidated public-release readiness matrix."""
+    from reimburse_atlas.release_readiness import (
+        build_release_readiness_report,
+        write_release_readiness_report,
+    )
+
+    report = build_release_readiness_report()
+    paths = write_release_readiness_report(report, output_dir=output_dir)
+    console.print_json(
+        json.dumps(
+            {"summary": report.summary.as_row(), "paths": [str(path) for path in paths]},
+            indent=2,
+        )
+    )
+    if report.summary.required_blocker_count and not allow_blockers:
+        raise typer.Exit(code=1)
 
 
 @app.command("reviewed-source-bundle")

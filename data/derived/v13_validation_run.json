@@ -1,0 +1,38 @@
+{
+  "version": "v13",
+  "commit_label": "v13 architecture release-readiness gates",
+  "validation_time_utc": "2026-07-04T17:42:00Z",
+  "local_quality_profile": {
+    "profile": "ci",
+    "gate_count": 16,
+    "passed": 16,
+    "blocking_failures": 0
+  },
+  "tests": {
+    "pytest": "122 passed",
+    "coverage_percent": 90.66,
+    "coverage_threshold_percent": 90
+  },
+  "architecture": {
+    "module_count": 56,
+    "edge_count": 138,
+    "layer_violation_count": 0,
+    "internal_cycle_count": 0,
+    "architecture_ready": true
+  },
+  "release_readiness": {
+    "gate_count": 20,
+    "required_blocker_count": 1,
+    "public_release_ready": false,
+    "blocking_reason": "pip-audit strict remains blocked by network/DNS in this sandbox"
+  },
+  "dashboard": {
+    "npm_audit": "passed",
+    "astro_build": "passed"
+  },
+  "external_caveats": [
+    "pip-audit strict advisory lookup blocked by network/DNS",
+    "official Pixi executable unavailable in this sandbox",
+    "zizmor flags tag-pinned actions until SHA pin plan is resolved"
+  ]
+}

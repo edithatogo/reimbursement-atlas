@@ -332,3 +332,18 @@ PYTHONPATH=src uv run python scripts/run_external_quality_gates.py
 
 The release workflow now includes GitHub artifact attestation hooks for Python distributions, source archives and generated SBOMs. The remaining deliberate workflow-security warning is that most GitHub Actions references are tag-pinned rather than commit-SHA pinned; `data/derived/repo_automation/action_sha_pin_plan.csv` is the generated migration queue.
 
+
+## v13 architecture and release-readiness layer
+
+The repository now emits architecture and release-readiness evidence as first-class artefacts:
+
+```bash
+pixi run architecture-report
+pixi run release-readiness
+PYTHONPATH=src reimbursement-atlas architecture-report
+PYTHONPATH=src reimbursement-atlas release-readiness --allow-blockers
+```
+
+Architecture checks scan internal `reimburse_atlas` imports, enforce the `foundation -> parsing -> analysis -> orchestration -> interface` boundary model and report import cycles. Release readiness consolidates local quality gates, external quality-gate classification, workflow policy, SBOMs, dashboard build, public-data policy and publication manifests.
+
+Current sandbox status: local quality gates and architecture checks pass; public release remains blocked until `pip-audit --strict` can complete in a network-enabled environment and GitHub Action SHA pinning is resolved.

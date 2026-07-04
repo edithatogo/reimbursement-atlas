@@ -36,4 +36,6 @@ jobs:
           pixi run seed-sync
           pixi run seed-sync-check
           pixi run publication-manifest
+          pixi run architecture-report
+          pixi run release-readiness || true
           pixi run seed-lake

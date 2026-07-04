@@ -33,3 +33,11 @@ Rationale: The project will publish derived reimbursement datasets; CI/CD postur
 
 Consequences: v11 adds workflow scanning, action pin classification, OpenSSF Scorecard, zizmor SARIF workflow, release attestations, SBOM summaries and an action SHA-pinning queue. Zizmor remains non-green until tag-pinned actions are migrated to full SHAs in a network-enabled environment.
 
+
+## 2026-07-04 — v13 architecture boundaries and release readiness
+
+Decision: Treat internal architecture and release readiness as generated, dashboard-visible quality gates.
+
+Rationale: The project now spans parsers, analysis, CLI/API/MCP, dashboard, public-data governance and CI/CD. Static import-boundary checks and a consolidated readiness matrix make drift and external blockers visible before public release.
+
+Consequences: v13 adds `architecture-report` and `release-readiness` commands, CI hooks, dashboard exports, ADRs and release-gate artefacts. Public release remains blocked until network-dependent `pip-audit --strict` can complete and optional hardening warnings are resolved.

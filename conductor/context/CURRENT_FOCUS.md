@@ -52,3 +52,17 @@ Immediate next step: manually download the July 2026 MBS item-map and descriptor
 
 The current focus is CI/CD and supply-chain hardening before first live-source ingestion. The repo now emits workflow policy, automation-control, action SHA-pinning and SBOM artefacts. The next network-enabled step is to resolve all tag-pinned GitHub Actions references in `data/derived/repo_automation/action_sha_pin_plan.csv` to full commit SHAs, then make zizmor blocking instead of advisory.
 
+
+## 2026-07-04 v13 current focus
+
+The current focus is now release-readiness convergence. Local Python, Node, dashboard, SBOM, public-data and architecture gates are machine-readable. Remaining work is mostly external: run `pip-audit --strict` in network-enabled CI, validate official Pixi in a normal environment, resolve GitHub Action refs to immutable SHAs, then make `zizmor` blocking.
+
+New artefacts:
+
+- `data/derived/architecture/*`
+- `data/derived/release_readiness/*`
+- `docs/ARCHITECTURE_BOUNDARIES.md`
+- `docs/RELEASE_READINESS.md`
+- `docs/ADRs/0024-architecture-boundaries-as-generated-quality-gate.md`
+- `docs/ADRs/0025-release-readiness-matrix.md`
+- `conductor/sessions/2026-07-04-v13-architecture-release-readiness.md`

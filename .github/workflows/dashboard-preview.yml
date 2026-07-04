@@ -34,6 +34,7 @@ jobs:
           pixi run source-snapshots
           pixi run repo-automation
           pixi run sbom
+          pixi run architecture-report
           pixi run dashboard-seed
       - name: Install dashboard dependencies
         working-directory: apps/dashboard

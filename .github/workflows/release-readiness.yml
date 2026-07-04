@@ -1,0 +1,43 @@
+name: Release readiness
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: apps/dashboard/package-lock.json
+      - name: Run local CI quality gates
+        run: uv run --all-extras python scripts/run_local_quality_gates.py --profile ci
+      - name: External gate classification
+        run: uv run --all-extras python scripts/run_external_quality_gates.py || true
+      - name: Architecture report
+        run: uv run --all-extras python scripts/make_architecture_report.py
+      - name: Release readiness matrix
+        run: uv run --all-extras python scripts/make_release_readiness.py || true
+      - name: Upload release-readiness evidence
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: release-readiness
+          path: |
+            data/derived/local_quality_gates/
+            data/derived/external_quality_gates.*
+            data/derived/architecture/
+            data/derived/release_readiness/
+          retention-days: 14

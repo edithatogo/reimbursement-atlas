@@ -191,7 +191,42 @@ def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:  
         / "derived"
         / "repo_automation"
         / "action_sha_pin_plan.jsonl",
+        "repo_action_pin_resolution": root
+        / "data"
+        / "derived"
+        / "repo_automation"
+        / "action_pin_resolution.jsonl",
         "sbom_summary": root / "data" / "derived" / "sbom" / "sbom_summary.jsonl",
+        "local_quality_gates": root
+        / "data"
+        / "derived"
+        / "local_quality_gates"
+        / "local_quality_gates.jsonl",
+        "local_quality_gate_specs": root
+        / "data"
+        / "derived"
+        / "local_quality_gates"
+        / "local_quality_gate_specs.jsonl",
+        "architecture_import_edges": root
+        / "data"
+        / "derived"
+        / "architecture"
+        / "import_edges.jsonl",
+        "architecture_layer_policy": root
+        / "data"
+        / "derived"
+        / "architecture"
+        / "layer_policy.jsonl",
+        "architecture_import_cycles": root
+        / "data"
+        / "derived"
+        / "architecture"
+        / "import_cycles.jsonl",
+        "release_readiness_gates": root
+        / "data"
+        / "derived"
+        / "release_readiness"
+        / "release_gates.jsonl",
     }
     for table_name, table_path in derived_jsonl_tables.items():
         if table_path.exists():

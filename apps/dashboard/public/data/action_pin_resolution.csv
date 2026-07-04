@@ -1,0 +1,48 @@
+action,current_uses,line,notes,ref,resolved_sha,status,suggested_uses,workflow
+actions/checkout,actions/checkout@v6,15,Network/DNS blocked while resolving action tag.,v6,,blocked_network,,.github/workflows/ci.yml
+prefix-dev/setup-pixi,prefix-dev/setup-pixi@v0.10.0,18,Earlier action-pin lookup showed network/DNS was blocked.,v0.10.0,,blocked_network,,.github/workflows/ci.yml
+actions/checkout,actions/checkout@v6,47,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/ci.yml
+actions/setup-node,actions/setup-node@v6,50,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/ci.yml
+actions/checkout,actions/checkout@v6,18,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/dashboard-preview.yml
+actions/setup-node,actions/setup-node@v6,21,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/dashboard-preview.yml
+prefix-dev/setup-pixi,prefix-dev/setup-pixi@v0.10.0,26,Earlier action-pin lookup showed network/DNS was blocked.,v0.10.0,,blocked_network,,.github/workflows/dashboard-preview.yml
+actions/checkout,actions/checkout@v6,18,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/data-smoke.yml
+prefix-dev/setup-pixi,prefix-dev/setup-pixi@v0.10.0,21,Earlier action-pin lookup showed network/DNS was blocked.,v0.10.0,,blocked_network,,.github/workflows/data-smoke.yml
+actions/checkout,actions/checkout@v6,13,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/huggingface.yml
+prefix-dev/setup-pixi,prefix-dev/setup-pixi@v0.10.0,16,Earlier action-pin lookup showed network/DNS was blocked.,v0.10.0,,blocked_network,,.github/workflows/huggingface.yml
+actions/checkout,actions/checkout@v6,15,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/mutation-nightly.yml
+prefix-dev/setup-pixi,prefix-dev/setup-pixi@v0.10.0,18,Earlier action-pin lookup showed network/DNS was blocked.,v0.10.0,,blocked_network,,.github/workflows/mutation-nightly.yml
+actions/checkout,actions/checkout@v6,16,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/release-readiness.yml
+astral-sh/setup-uv,astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39,19,Already pinned to a full SHA.,fac544c07dec837d0ccb6301d7b5580bf5edae39,,skipped_sha,,.github/workflows/release-readiness.yml
+actions/setup-node,actions/setup-node@v6,20,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/release-readiness.yml
+actions/upload-artifact,actions/upload-artifact@v6,35,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/release-readiness.yml
+actions/checkout,actions/checkout@v6,17,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/release.yml
+prefix-dev/setup-pixi,prefix-dev/setup-pixi@v0.10.0,20,Earlier action-pin lookup showed network/DNS was blocked.,v0.10.0,,blocked_network,,.github/workflows/release.yml
+actions/attest,actions/attest@v4,30,Earlier action-pin lookup showed network/DNS was blocked.,v4,,blocked_network,,.github/workflows/release.yml
+actions/attest,actions/attest@v4,34,Earlier action-pin lookup showed network/DNS was blocked.,v4,,blocked_network,,.github/workflows/release.yml
+actions/attest,actions/attest@v4,38,Earlier action-pin lookup showed network/DNS was blocked.,v4,,blocked_network,,.github/workflows/release.yml
+softprops/action-gh-release,softprops/action-gh-release@v3,41,Earlier action-pin lookup showed network/DNS was blocked.,v3,,blocked_network,,.github/workflows/release.yml
+actions/checkout,actions/checkout@v6,20,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/repo-automation.yml
+prefix-dev/setup-pixi,prefix-dev/setup-pixi@v0.10.0,23,Earlier action-pin lookup showed network/DNS was blocked.,v0.10.0,,blocked_network,,.github/workflows/repo-automation.yml
+actions/checkout,actions/checkout@v6,20,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/scorecard.yml
+ossf/scorecard-action,ossf/scorecard-action@v2.4.2,24,Earlier action-pin lookup showed network/DNS was blocked.,v2.4.2,,blocked_network,,.github/workflows/scorecard.yml
+github/codeql-action/upload-sarif,github/codeql-action/upload-sarif@v4,30,Earlier action-pin lookup showed network/DNS was blocked.,v4,,blocked_network,,.github/workflows/scorecard.yml
+actions/checkout,actions/checkout@v6,20,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/security.yml
+github/codeql-action/init,github/codeql-action/init@v4,23,Earlier action-pin lookup showed network/DNS was blocked.,v4,,blocked_network,,.github/workflows/security.yml
+github/codeql-action/analyze,github/codeql-action/analyze@v4,27,Earlier action-pin lookup showed network/DNS was blocked.,v4,,blocked_network,,.github/workflows/security.yml
+actions/checkout,actions/checkout@v6,36,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/security.yml
+actions/dependency-review-action,actions/dependency-review-action@v5,39,Earlier action-pin lookup showed network/DNS was blocked.,v5,,blocked_network,,.github/workflows/security.yml
+actions/checkout,actions/checkout@v6,44,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/security.yml
+prefix-dev/setup-pixi,prefix-dev/setup-pixi@v0.10.0,47,Earlier action-pin lookup showed network/DNS was blocked.,v0.10.0,,blocked_network,,.github/workflows/security.yml
+actions/checkout,actions/checkout@v6,59,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/security.yml
+actions/setup-node,actions/setup-node@v6,62,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/security.yml
+actions/checkout,actions/checkout@v6,16,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/uv-quality.yml
+astral-sh/setup-uv,astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39,19,Already pinned to a full SHA.,fac544c07dec837d0ccb6301d7b5580bf5edae39,,skipped_sha,,.github/workflows/uv-quality.yml
+actions/setup-node,actions/setup-node@v6,20,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/uv-quality.yml
+actions/upload-artifact,actions/upload-artifact@v6,29,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/uv-quality.yml
+actions/checkout,actions/checkout@v6,24,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/workflow-security.yml
+prefix-dev/setup-pixi,prefix-dev/setup-pixi@v0.10.0,27,Earlier action-pin lookup showed network/DNS was blocked.,v0.10.0,,blocked_network,,.github/workflows/workflow-security.yml
+actions/upload-artifact,actions/upload-artifact@v6,33,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/workflow-security.yml
+actions/checkout,actions/checkout@v6,45,Earlier action-pin lookup showed network/DNS was blocked.,v6,,blocked_network,,.github/workflows/workflow-security.yml
+astral-sh/setup-uv,astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39,48,Already pinned to a full SHA.,fac544c07dec837d0ccb6301d7b5580bf5edae39,,skipped_sha,,.github/workflows/workflow-security.yml
+github/codeql-action/upload-sarif,github/codeql-action/upload-sarif@v4,53,Earlier action-pin lookup showed network/DNS was blocked.,v4,,blocked_network,,.github/workflows/workflow-security.yml

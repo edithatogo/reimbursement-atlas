@@ -32,6 +32,10 @@ jobs:
         run: pixi run repo-automation
       - name: Generate SBOMs
         run: pixi run sbom
+      - name: Architecture report
+        run: pixi run architecture-report
+      - name: Release readiness matrix
+        run: pixi run release-readiness || true
       - name: Tests with coverage
         run: pixi run coverage
       - name: External quality-gate classification

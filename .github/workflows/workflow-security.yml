@@ -27,6 +27,8 @@ jobs:
       - uses: prefix-dev/setup-pixi@v0.10.0
       - name: Generate repository automation policy matrix
         run: pixi run repo-automation
+      - name: Generate action SHA resolution evidence
+        run: pixi run action-pin-resolution || true
       - name: Upload workflow policy artefacts
         uses: actions/upload-artifact@v6
         with:

@@ -30,9 +30,42 @@ import Layout from "../../components/Layout.astro";
     fileName="action_sha_pin_plan.csv"
     columns={["workflow", "line", "uses", "pin_class", "priority", "recommended_action"]}
   />
+
+  <DataTable
+    title="Action pin resolution"
+    fileName="action_pin_resolution.csv"
+    columns={["workflow", "line", "current_uses", "status", "suggested_uses", "notes"]}
+  />
   <DataTable
     title="SBOM summaries"
     fileName="sbom_summary.csv"
     columns={["name", "ecosystem", "component_count", "spec_version", "sha256"]}
+  />
+
+  <DataTable
+    title="Local quality-gate run"
+    fileName="local_quality_gates.csv"
+    columns={["id", "category", "status", "blocking", "duration_seconds", "notes"]}
+  />
+  <DataTable
+    title="Local quality-gate specifications"
+    fileName="local_quality_gate_specs.csv"
+    columns={["id", "category", "command", "profiles", "blocking", "timeout_seconds"]}
+  />
+
+  <DataTable
+    title="Architecture layer policy"
+    fileName="layer_policy.csv"
+    columns={["id", "source_layer", "target_layer", "status", "edge_count", "recommended_action"]}
+  />
+  <DataTable
+    title="Internal import edges"
+    fileName="import_edges.csv"
+    columns={["source_module", "target_module", "source_layer", "target_layer", "allowed", "reason"]}
+  />
+  <DataTable
+    title="Release-readiness gates"
+    fileName="release_gates.csv"
+    columns={["id", "category", "status", "required", "evidence", "recommended_action"]}
   />
 </Layout>

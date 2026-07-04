@@ -145,3 +145,20 @@ epics:
         labels: ["type:ontology", "risk:licence", "phase:1-slice"]
       - title: Define local adapter contracts for RxNav-in-a-Box style services
         labels: ["type:ontology", "type:mcp", "phase:2-expansion"]
+
+  - id: REL-001
+    title: Release readiness and architecture gates
+    phase: hardening
+    workstream: automation
+    priority: must
+    issues:
+      - title: Add architecture-boundary import graph checks to CI
+        labels: ["type:architecture", "type:automation", "phase:hardening"]
+      - title: Add release-readiness matrix with required-blocker counts
+        labels: ["type:release", "type:automation", "phase:hardening"]
+      - title: Resolve GitHub Action SHA pinning plan and make zizmor blocking
+        labels: ["type:security", "type:supply-chain", "phase:hardening"]
+      - title: Run pip-audit strict in network-enabled CI before public release
+        labels: ["type:security", "phase:hardening"]
+      - title: Maintain structured issue forms for source, analysis and quality work
+        labels: ["type:repo-automation", "phase:hardening"]
