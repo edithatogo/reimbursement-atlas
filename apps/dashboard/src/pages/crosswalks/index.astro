@@ -19,4 +19,9 @@ import Layout from "../../components/Layout.astro";
     fileName="crosswalk_candidates.csv"
     columns={["left_source_id", "left_code", "right_source_id", "right_code", "relationship", "confidence", "evidence_methods"]}
   />
+  <DataTable
+    title="Mapping evidence matrix"
+    fileName="mapping_evidence_matrix.csv"
+    columns={["left_source_id", "left_code", "right_source_id", "right_code", "token_jaccard", "hash_cosine", "price_ratio", "confidence", "review_priority"]}
+  />
 </Layout>

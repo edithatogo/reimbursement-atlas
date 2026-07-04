@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import csv
 import hashlib
+import importlib
 import json
+import re
 import shutil
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -22,6 +24,7 @@ class SeedLakeTable:
     jsonl_path: str
     csv_path: str
     sha256: str
+    parquet_path: str | None = None
 
 
 @dataclass(frozen=True)
@@ -77,7 +80,58 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:
+def _optional_import_available(name: str) -> bool:
+    try:
+        __import__(name)
+    except ModuleNotFoundError:
+        return False
+    return True
+
+
+def _write_optional_parquet(rows: list[dict[str, Any]], path: Path) -> Path | None:
+    if not _optional_import_available("pyarrow"):
+        return None
+    pa = importlib.import_module("pyarrow")
+    pq = importlib.import_module("pyarrow.parquet")
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    table = pa.Table.from_pylist([_csv_safe_row(row) for row in rows] or [{"empty": ""}])
+    write_table = pq.write_table
+    write_table(table, path)
+    return path
+
+
+def _write_optional_duckdb(
+    tables: list[SeedLakeTable],
+    *,
+    base: Path,
+    database_path: Path,
+) -> None:
+    duckdb = importlib.import_module("duckdb")
+
+    if database_path.exists():
+        database_path.unlink()
+    con = duckdb.connect(str(database_path))
+    try:
+        for table in tables:
+            table_name = _safe_table_name(table.name)
+            csv_path = base / table.csv_path
+            con.execute(
+                f"create or replace table {table_name} as select * from read_csv_auto(?)",  # nosec B608
+                [str(csv_path)],
+            )
+    finally:
+        con.close()
+
+
+def _safe_table_name(name: str) -> str:
+    if re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", name) is None:
+        msg = f"Unsafe table name: {name}"
+        raise ValueError(msg)
+    return name
+
+
+def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:  # noqa: PLR0914
     """Materialise seed registries into JSONL/CSV and optional analytical formats."""
     root = project_root()
     base = output_dir or root / "data" / "derived" / "seed_lake"
@@ -114,10 +168,15 @@ def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:
         "median_payment_by_source",
         "priced_share",
         "policy_signal_matrix",
+        "mapping_evidence_matrix",
     ):
         table_path = vertical_dir / f"{table_name}.jsonl"
         if table_path.exists():
             source_tables[f"vertical_{table_name}"] = _read_jsonl(table_path)
+
+    parquet_available = _optional_import_available("pyarrow")
+    duckdb_available = _optional_import_available("duckdb")
+    duckdb_path = base / "seed_lake.duckdb"
 
     tables: list[SeedLakeTable] = []
     for name, rows in source_tables.items():
@@ -127,6 +186,7 @@ def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:
         csv_path = table_dir / f"{name}.csv"
         _write_jsonl(rows, jsonl_path)
         _write_csv(rows, csv_path)
+        parquet_path = _write_optional_parquet(rows, table_dir / f"{name}.parquet")
         tables.append(
             SeedLakeTable(
                 name=name,
@@ -134,10 +194,21 @@ def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:
                 jsonl_path=str(jsonl_path.relative_to(base)),
                 csv_path=str(csv_path.relative_to(base)),
                 sha256=_sha256(jsonl_path),
+                parquet_path=(
+                    str(parquet_path.relative_to(base)) if parquet_path is not None else None
+                ),
             )
         )
 
-    manifest = SeedLakeManifest(table_count=len(tables), tables=tuple(tables))
+    if duckdb_available:
+        _write_optional_duckdb(tables, base=base, database_path=duckdb_path)
+
+    manifest = SeedLakeManifest(
+        table_count=len(tables),
+        tables=tuple(tables),
+        duckdb_path=str(duckdb_path.relative_to(base)) if duckdb_available else None,
+        parquet_enabled=parquet_available,
+    )
     manifest_path = base / "manifest.json"
     manifest_path.write_text(json.dumps(asdict(manifest), indent=2, sort_keys=True) + "\n")
     return manifest

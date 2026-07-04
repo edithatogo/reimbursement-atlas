@@ -269,3 +269,31 @@ See:
 - `docs/EXTERNAL_QUALITY_GATES.md`
 - `docs/ADRs/0017-exact-source-file-records.md`
 - `docs/ADRs/0018-external-quality-gates-are-classified.md`
+
+## v9 optional toolchain, acquisition-pack and mapping-workbench layer
+
+The v9 pass adds three practical next-step layers:
+
+1. **Optional toolchain probes** that distinguish `passed`, `blocked_network`, `missing_tool` and `wrong_tool`. Mojo now probes successfully via `uv tool run --from mojo-compiler mojo --version`. Pixi is only accepted if the official Prefix.dev executable is available; a wrong same-named PyPI executable is explicitly classified as `wrong_tool`.
+2. **Manual acquisition pack** generation from exact source-file records. This creates a human-reviewed checklist, snapshot commands and parse commands while keeping raw files under ignored `data/raw_live/` paths.
+3. **Mapping workbench** outputs, including a deterministic mapping evidence matrix and vector seed files for future Arrow/LanceDB-backed candidate search.
+
+New commands:
+
+```bash
+pixi run manual-acquisition-pack
+pixi run optional-toolchains
+pixi run vector-seed
+PYTHONPATH=src reimbursement-atlas manual-acquisition-pack
+PYTHONPATH=src reimbursement-atlas vector-seed --build-lance
+```
+
+Generated v9 artefacts include:
+
+- `data/derived/manual_acquisition_pack/*`
+- `data/derived/vertical_slice/mapping_evidence_matrix.*`
+- `data/derived/vector_seed/schedule_item_vectors.*`
+- `data/derived/optional_toolchain_installs.*`
+- `schema/MappingEvidenceRecord.schema.json`
+
+See `docs/MANUAL_ACQUISITION_PACK.md`, `docs/MAPPING_WORKBENCH.md`, and `docs/OPTIONAL_TOOLCHAIN_INSTALLS.md`.

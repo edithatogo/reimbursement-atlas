@@ -11,6 +11,11 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
+from reimburse_atlas.acquisition_pack import (
+    acquisition_pack_summary,
+    build_manual_acquisition_steps,
+    write_manual_acquisition_pack,
+)
 from reimburse_atlas.analysis import analysis_readiness_rows, source_readiness_rows
 from reimburse_atlas.graph import build_seed_graph, write_graph_csvs
 from reimburse_atlas.ingest import (
@@ -62,6 +67,12 @@ from reimburse_atlas.registry import (
 from reimburse_atlas.review_queue import build_crosswalk_review_queue, review_rows
 from reimburse_atlas.scoring import score_sources
 from reimburse_atlas.validation import all_seed_pairs_ok, seed_pair_statuses
+from reimburse_atlas.vector_index import (
+    VectorIndexDependencyError,
+    build_lancedb_index,
+    schedule_item_vector_rows,
+    write_arrow_vector_seed,
+)
 
 app = typer.Typer(no_args_is_help=True, add_completion=False)
 console = Console()
@@ -364,6 +375,33 @@ def parse_mbs_txt_pair_command(
     )
 
 
+@app.command("manual-acquisition-pack")
+def manual_acquisition_pack(
+    output_dir: Annotated[
+        Path,
+        typer.Option(help="Directory for manual reviewed-source acquisition-pack files."),
+    ] = (project_root() / "data" / "derived" / "manual_acquisition_pack"),
+) -> None:
+    """Generate a licence-aware manual acquisition checklist from source-file records."""
+    steps = build_manual_acquisition_steps(load_source_files())
+    jsonl_path, csv_path, readme_path, shell_path = write_manual_acquisition_pack(
+        steps,
+        output_dir=output_dir,
+    )
+    console.print_json(
+        json.dumps(
+            {
+                **acquisition_pack_summary(steps),
+                "jsonl_path": str(jsonl_path),
+                "csv_path": str(csv_path),
+                "readme_path": str(readme_path),
+                "shell_path": str(shell_path),
+            },
+            indent=2,
+        )
+    )
+
+
 @app.command("vertical-slice")
 def vertical_slice(
     output_dir: Annotated[
@@ -374,6 +412,7 @@ def vertical_slice(
     """Parse local first-wave fixtures into normalised contracts."""
     from reimburse_atlas.analysis import (
         build_crosswalk_candidates,
+        build_mapping_evidence_matrix,
         median_payment_by_source,
         policy_signal_matrix,
         priced_share,
@@ -397,6 +436,11 @@ def vertical_slice(
         for source_id, share in priced_share(schedule_records).items()
     ]
     signal_rows = policy_signal_matrix(schedule_records, coverage_records)
+    mapping_rows = build_mapping_evidence_matrix(
+        mbs_records,
+        [*clfs_records, *pfs_records],
+        threshold=0.05,
+    )
     write_jsonl(pydantic_rows(schedule_records), output_dir / "schedule_items.jsonl")
     write_csv(pydantic_rows(schedule_records), output_dir / "schedule_items.csv")
     write_jsonl(pydantic_rows(coverage_records), output_dir / "coverage_decisions.jsonl")
@@ -411,6 +455,8 @@ def vertical_slice(
     write_csv(priced_rows, output_dir / "priced_share.csv")
     write_jsonl(signal_rows, output_dir / "policy_signal_matrix.jsonl")
     write_csv(signal_rows, output_dir / "policy_signal_matrix.csv")
+    write_jsonl(pydantic_rows(mapping_rows), output_dir / "mapping_evidence_matrix.jsonl")
+    write_csv(pydantic_rows(mapping_rows), output_dir / "mapping_evidence_matrix.csv")
     console.print_json(
         json.dumps(
             {
@@ -419,7 +465,58 @@ def vertical_slice(
                 "crosswalk_candidates": len(crosswalks),
                 "crosswalk_review_rows": len(review_queue),
                 "policy_signal_rows": len(signal_rows),
+                "mapping_evidence_rows": len(mapping_rows),
                 "output_dir": str(output_dir),
+            },
+            indent=2,
+        )
+    )
+
+
+@app.command("vector-seed")
+def vector_seed(
+    output_dir: Annotated[
+        Path,
+        typer.Option(help="Directory for local Arrow/LanceDB vector-search prototypes."),
+    ] = (project_root() / "data" / "derived" / "vector_seed"),
+    build_lance: Annotated[
+        bool,
+        typer.Option(help="Also build a local LanceDB table under the output directory."),
+    ] = False,
+) -> None:
+    """Build deterministic lexical vector seed data for schedule-item search."""
+    fixtures = project_root() / "tests" / "fixtures"
+    schedule_records = [
+        *parse_mbs_xml(fixtures / "mbs_fragment.xml"),
+        *parse_pbs_csv(fixtures / "pbs_fixture.csv"),
+        *parse_cms_clfs_csv(fixtures / "cms_clfs_fixture.csv"),
+        *parse_cms_pfs_csv(fixtures / "cms_pfs_fixture.csv"),
+        *parse_cms_asp_csv(fixtures / "cms_asp_fixture.csv"),
+    ]
+    rows = schedule_item_vector_rows(schedule_records)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    jsonl_path = write_jsonl(rows, output_dir / "schedule_item_vectors.jsonl")
+    csv_path = write_csv(rows, output_dir / "schedule_item_vectors.csv")
+    arrow_path: str | None
+    lance_path: str | None = None
+    try:
+        arrow_path = str(write_arrow_vector_seed(rows, output_dir / "schedule_item_vectors.arrow"))
+    except VectorIndexDependencyError as exc:
+        arrow_path = None
+        console.print(f"Arrow vector seed skipped: {exc}")
+    if build_lance:
+        try:
+            lance_path = str(build_lancedb_index(rows, database_dir=output_dir / "lancedb"))
+        except VectorIndexDependencyError as exc:
+            console.print(f"LanceDB vector seed skipped: {exc}")
+    console.print_json(
+        json.dumps(
+            {
+                "vector_rows": len(rows),
+                "jsonl_path": str(jsonl_path),
+                "csv_path": str(csv_path),
+                "arrow_path": arrow_path,
+                "lancedb_path": lance_path,
             },
             indent=2,
         )
@@ -643,6 +740,7 @@ def snapshot() -> None:
 def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")) -> None:
     """Export JSON schemas for registries and derived contracts."""
     from reimburse_atlas.adapters import SourceAcquisitionPlan
+    from reimburse_atlas.analysis.mapping_evidence import MappingEvidenceRecord
     from reimburse_atlas.contracts import (
         CoverageDecisionRecord,
         CrosswalkCandidate,
@@ -676,6 +774,7 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         SourceSnapshotRecord,
         CoverageDecisionRecord,
         CrosswalkCandidate,
+        MappingEvidenceRecord,
         IngestionTaskRecord,
         SourceAcquisitionPlan,
         OntologyConceptRecord,

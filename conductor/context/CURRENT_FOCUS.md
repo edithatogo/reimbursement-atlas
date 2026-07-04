@@ -1,16 +1,16 @@
 # Current focus
 
-The repo is now in the first executable vertical-slice plus reviewed-source-bundle phase, with v7 adding installed Python and Node quality gates plus a build-tested dashboard.
+The repo is now in the reviewed-source preparation and mapping-workbench phase. v9 adds optional-toolchain probes, manual acquisition-pack generation, deterministic mapping evidence and vector seed exports.
 
 ## Immediate focus
 
 1. Keep all public artefacts dashboard-safe and licence-safe.
-2. Mature fixture-backed parsers for MBS, PBS, CMS CLFS, CMS PFS, CMS ASP and NHS genomic test directory records.
-3. Add live-source validation only through manually reviewed local cache/provenance gates and reviewed-source bundles.
-4. Use readiness tables to prioritise analyses and sources rather than broadening ingestion prematurely.
+2. Validate manually downloaded live sources only through `data/raw_live/` plus snapshot metadata and derived-only outputs.
+3. Use the manual acquisition pack to guide the first real MBS July 2026 TXT-pair parse.
+4. Treat mapping evidence and vector search outputs as review queues, not equivalence statements.
 5. Keep CLI/API/MCP surfaces read-only until acquisition and licence controls are mature.
-6. Keep the Python quality gate green: Ruff, basedpyright, Bandit, compileall, uv build and >90% core library coverage.
-7. Keep the dashboard lockfile/build gate green with `npm ci`, `npm audit` and `npm run build`.
+6. Keep quality gates green: Ruff, basedpyright, Bandit, compileall, uv build, >90% coverage, npm audit and Astro build.
+7. Record optional toolchain status honestly; Mojo is available via uv tool, while official Pixi may be blocked by container DNS or missing.
 
 ## Current generated artefacts
 
@@ -18,41 +18,26 @@ The repo is now in the first executable vertical-slice plus reviewed-source-bund
 - `data/seed/analysis_readiness.*`
 - `data/seed/first_wave_ingestion_plan.*`
 - `data/seed/source_status.*`
+- `data/seed/source_files.*`
 - `data/derived/vertical_slice/*`
+- `data/derived/vertical_slice/mapping_evidence_matrix.*`
+- `data/derived/manual_acquisition_pack/*`
+- `data/derived/vector_seed/schedule_item_vectors.*`
 - `data/derived/publication_manifest.json`
-- `data/seed/analysis_recipes.*`
-- `data/seed/ontology_concepts.*`
+- `data/derived/optional_toolchain_installs.*`
 - `apps/dashboard/public/data/*`
 
-## v7 dashboard and mutation artefacts
+## v9 artefacts
 
-- `docs/DASHBOARD_VALIDATION.md`
-- `docs/MUTATION_TESTING.md`
-- `docs/ADRs/0015-locked-dashboard-build.md`
-- `docs/ADRs/0016-mutmut-nightly-not-pr-blocker.md`
-- `conductor/sessions/2026-07-04-v7-dashboard-node-and-mutation.md`
-
-## v6 quality-gate artefacts
-
-- `docs/LOCAL_TOOLCHAIN_VALIDATION.md`
-- `docs/TEST_GOBLIN_COMPATIBILITY.md`
-- `docs/COVERAGE_POLICY.md`
-- `docs/ADRs/0013-installed-toolchain-and-quality-gates.md`
-- `docs/ADRs/0014-defusedxml-for-local-source-validation.md`
+- `docs/MANUAL_ACQUISITION_PACK.md`
+- `docs/MAPPING_WORKBENCH.md`
+- `docs/OPTIONAL_TOOLCHAIN_INSTALLS.md`
+- `docs/ADRs/0019-official-toolchain-gates-and-wrong-tool-detection.md`
+- `docs/ADRs/0020-deterministic-vector-mapping-before-embeddings.md`
+- `conductor/sessions/2026-07-04-v9-toolchain-and-mapping-workbench.md`
 
 ## Next agent handoff
 
-Start with `docs/LOCAL_TOOLCHAIN_VALIDATION.md`, `docs/DASHBOARD_VALIDATION.md`, `docs/MUTATION_TESTING.md`, `docs/COVERAGE_POLICY.md`, `docs/FIRST_EXECUTABLE_SLICE.md` and `docs/LIVE_SOURCE_VALIDATION_PLAYBOOK.md`, then inspect `scripts/make_vertical_slice.py`, `src/reimburse_atlas/parsers/`, `src/reimburse_atlas/local_sources.py`, `src/reimburse_atlas/analysis/` and `conductor/sessions/2026-07-04-v7-dashboard-node-and-mutation.md`.
+Start with `docs/MANUAL_ACQUISITION_PACK.md`, `docs/MAPPING_WORKBENCH.md`, `docs/OPTIONAL_TOOLCHAIN_INSTALLS.md`, `docs/LIVE_SOURCE_VALIDATION_PLAYBOOK.md`, `docs/MBS_TXT_PAIR_PARSER.md`, and `conductor/sessions/2026-07-04-v9-toolchain-and-mapping-workbench.md`.
 
-## v8 source-file and external-gate artefacts
-
-- `data/seed/source_files.*`
-- `schema/SourceFileRecord.schema.json`
-- `docs/EXACT_SOURCE_FILES.md`
-- `docs/MBS_TXT_PAIR_PARSER.md`
-- `docs/EXTERNAL_QUALITY_GATES.md`
-- `docs/ADRs/0017-exact-source-file-records.md`
-- `docs/ADRs/0018-external-quality-gates-are-classified.md`
-- `conductor/sessions/2026-07-04-v8-source-files-and-external-gates.md`
-
-Immediate next step: validate `parse-mbs-txt-pair` against manually downloaded July 2026 MBS TXT files in `data/raw_live/au_mbs/`, then create a reviewed-source bundle or derived-only reviewed output without committing raw files.
+Immediate next step: manually download the July 2026 MBS item-map and descriptor TXT files, place them in `data/raw_live/au_mbs/`, snapshot them, parse with `parse-mbs-txt-pair`, and commit only derived rows and provenance metadata.

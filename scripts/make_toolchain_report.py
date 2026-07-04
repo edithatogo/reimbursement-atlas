@@ -1,4 +1,4 @@
-"""Generate a local toolchain availability report without shelling out to tools."""
+"""Generate a local toolchain availability report with lightweight CLI probes."""
 
 from __future__ import annotations
 
@@ -6,12 +6,15 @@ import csv
 import json
 import platform
 import shutil
+import subprocess  # nosec B404
 import sys
 from dataclasses import asdict, dataclass
 from importlib import metadata
 from itertools import starmap
 from pathlib import Path
 from typing import cast
+
+from reimburse_atlas.toolchain import classify_gate_result
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_JSON_PATH = REPO_ROOT / "data" / "derived" / "toolchain_report.json"
@@ -37,7 +40,14 @@ PYTHON_PACKAGES: tuple[tuple[str, str, str], ...] = (
     ("mcp", "python-package", "mcp"),
 )
 
-CLI_TOOLS: tuple[str, ...] = ("uv", "pixi", "mojo", "node", "npm")
+CLI_PROBES: tuple[tuple[str, tuple[str, ...]], ...] = (
+    ("uv", ("uv", "--version")),
+    ("official-pixi-on-path", ("pixi", "--version")),
+    ("mojo-on-path", ("mojo", "--version")),
+    ("mojo-via-uv-tool", ("uv", "tool", "run", "--from", "mojo-compiler", "mojo", "--version")),
+    ("node", ("node", "--version")),
+    ("npm", ("npm", "--version")),
+)
 
 NODE_PACKAGES: tuple[str, ...] = (
     "astro",
@@ -140,16 +150,70 @@ def lockfile_row(path: Path, name: str) -> ToolchainRow:
     )
 
 
-def cli_row(name: str) -> ToolchainRow:
-    """Return one executable availability row using PATH lookup only."""
-    path = shutil.which(name)
+def cli_probe_row(name: str, command: tuple[str, ...]) -> ToolchainRow:
+    """Return one executable availability row using PATH lookup and a short probe."""
+    executable = command[0]
+    path = shutil.which(executable)
+    if path is None:
+        return ToolchainRow(
+            name=name,
+            kind="cli",
+            available=False,
+            version="",
+            path="",
+            notes="not found on PATH",
+        )
+    try:
+        completed = subprocess.run(  # nosec B603
+            command,
+            check=False,
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
+    except subprocess.TimeoutExpired:
+        return ToolchainRow(
+            name=name,
+            kind="cli",
+            available=False,
+            version="",
+            path=path,
+            notes="probe timed out",
+        )
+    except OSError as exc:
+        return ToolchainRow(
+            name=name,
+            kind="cli",
+            available=False,
+            version="",
+            path=path,
+            notes=f"probe failed: {exc}",
+        )
+    outcome = classify_gate_result(completed.returncode, completed.stdout, completed.stderr)
+    version = (
+        (completed.stdout or completed.stderr).strip().splitlines()[0]
+        if (completed.stdout or completed.stderr).strip()
+        else ""
+    )
+    if outcome == "passed":
+        notes = "probe passed"
+        available = True
+    elif outcome == "wrong_tool":
+        notes = "same-named executable is not the expected official tool"
+        available = False
+    elif outcome == "blocked_network":
+        notes = "probe reached an external-network blocker"
+        available = False
+    else:
+        notes = f"probe outcome: {outcome}"
+        available = False
     return ToolchainRow(
         name=name,
         kind="cli",
-        available=path is not None,
-        version="",
-        path="PATH" if path is not None else "",
-        notes="found on PATH" if path is not None else "not found on PATH",
+        available=available,
+        version=version,
+        path=path,
+        notes=notes,
     )
 
 
@@ -171,7 +235,7 @@ def build_rows() -> list[ToolchainRow]:
         lockfile_row(UV_LOCKFILE, "uv.lock"),
         lockfile_row(DASHBOARD_LOCKFILE, "dashboard package-lock"),
     ))
-    rows.extend(cli_row(name) for name in CLI_TOOLS)
+    rows.extend(starmap(cli_probe_row, CLI_PROBES))
     return rows
 
 

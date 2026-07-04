@@ -1,0 +1,100 @@
+{
+  "additionalProperties": false,
+  "description": "Feature row used to explain a candidate reimbursement crosswalk.",
+  "properties": {
+    "left_source_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Left Source Id",
+      "type": "string"
+    },
+    "right_source_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Right Source Id",
+      "type": "string"
+    },
+    "left_code": {
+      "minLength": 1,
+      "title": "Left Code",
+      "type": "string"
+    },
+    "right_code": {
+      "minLength": 1,
+      "title": "Right Code",
+      "type": "string"
+    },
+    "token_jaccard": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Token Jaccard",
+      "type": "number"
+    },
+    "hash_cosine": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Hash Cosine",
+      "type": "number"
+    },
+    "price_ratio": {
+      "anyOf": [
+        {
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Price Ratio"
+    },
+    "same_domain": {
+      "title": "Same Domain",
+      "type": "boolean"
+    },
+    "same_currency": {
+      "title": "Same Currency",
+      "type": "boolean"
+    },
+    "confidence": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Confidence",
+      "type": "number"
+    },
+    "review_priority": {
+      "maximum": 5,
+      "minimum": 1,
+      "title": "Review Priority",
+      "type": "integer"
+    },
+    "evidence_methods": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Evidence Methods",
+      "type": "array"
+    },
+    "notes": {
+      "minLength": 1,
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "left_source_id",
+    "right_source_id",
+    "left_code",
+    "right_code",
+    "token_jaccard",
+    "hash_cosine",
+    "same_domain",
+    "same_currency",
+    "confidence",
+    "review_priority",
+    "evidence_methods",
+    "notes"
+  ],
+  "title": "MappingEvidenceRecord",
+  "type": "object"
+}

@@ -78,8 +78,14 @@ DEFAULT_PUBLICATION_PATHS = (
     Path("data/derived/vertical_slice/crosswalk_review_queue.csv"),
     Path("data/derived/vertical_slice/policy_signal_matrix.jsonl"),
     Path("data/derived/vertical_slice/policy_signal_matrix.csv"),
+    Path("data/derived/vertical_slice/mapping_evidence_matrix.jsonl"),
+    Path("data/derived/vertical_slice/mapping_evidence_matrix.csv"),
+    Path("data/derived/manual_acquisition_pack/acquisition_steps.jsonl"),
+    Path("data/derived/manual_acquisition_pack/acquisition_steps.csv"),
     Path("data/derived/external_quality_gates.json"),
     Path("data/derived/external_quality_gates.csv"),
+    Path("data/derived/optional_toolchain_installs.json"),
+    Path("data/derived/optional_toolchain_installs.csv"),
 )
 
 

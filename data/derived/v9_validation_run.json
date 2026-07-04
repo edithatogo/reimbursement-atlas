@@ -1,0 +1,106 @@
+{
+  "checks": [
+    {
+      "command": "uv run --all-extras ruff check .",
+      "id": "ruff_check",
+      "outcome": "passed"
+    },
+    {
+      "command": "uv run --all-extras ruff format --check .",
+      "id": "ruff_format_check",
+      "outcome": "passed"
+    },
+    {
+      "command": "uv run --all-extras basedpyright",
+      "details": "0 errors, 0 warnings, 0 notes",
+      "id": "basedpyright",
+      "outcome": "passed"
+    },
+    {
+      "command": "uv run --all-extras pytest --cov=src/reimburse_atlas --cov-report=term-missing --cov-report=xml --cov-fail-under=90 -q",
+      "details": "91 passed; 91.65% coverage; threshold 90%",
+      "id": "pytest_coverage",
+      "outcome": "passed"
+    },
+    {
+      "command": "uv run --all-extras bandit -q -c pyproject.toml -r src scripts",
+      "details": "expected annotated SQL-literal warnings only",
+      "id": "bandit",
+      "outcome": "passed"
+    },
+    {
+      "command": "uv run --all-extras python -m compileall -q src scripts tests",
+      "id": "compileall",
+      "outcome": "passed"
+    },
+    {
+      "command": "uv build",
+      "id": "uv_build",
+      "outcome": "passed"
+    },
+    {
+      "command": "npm ci",
+      "cwd": "apps/dashboard",
+      "id": "npm_ci",
+      "outcome": "passed"
+    },
+    {
+      "command": "npm audit --omit=dev --audit-level=moderate",
+      "cwd": "apps/dashboard",
+      "details": "0 vulnerabilities",
+      "id": "npm_audit",
+      "outcome": "passed"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "apps/dashboard",
+      "details": "Astro check/build passed; 6 static pages built",
+      "id": "astro_build",
+      "outcome": "passed"
+    },
+    {
+      "command": "uv run --all-extras python scripts/check_public_data_policy.py",
+      "id": "public_data_policy",
+      "outcome": "passed"
+    },
+    {
+      "command": "uv run --all-extras python scripts/validate_seed_sync.py",
+      "id": "seed_sync",
+      "outcome": "passed"
+    },
+    {
+      "command": "uv run --all-extras python -m reimburse_atlas.cli validate",
+      "id": "cli_validate",
+      "outcome": "passed"
+    },
+    {
+      "command": "uv run --extra dev pip-audit --strict",
+      "details": "pypi.org DNS resolution failed in active runtime",
+      "id": "pip_audit_strict",
+      "outcome": "blocked_network"
+    },
+    {
+      "command": "curl -I -fsSL https://pixi.sh/install.sh >/dev/null",
+      "details": "pixi.sh DNS resolution failed in active runtime",
+      "id": "official_pixi_installer",
+      "outcome": "blocked_network"
+    },
+    {
+      "command": "pixi --version",
+      "details": "same-named PyPI/pixiv tool detected; not official prefix-dev Pixi",
+      "id": "official_pixi_on_path",
+      "outcome": "wrong_tool"
+    },
+    {
+      "command": "uv tool run --from mojo-compiler mojo --version",
+      "details": "Mojo 0.26.2.0",
+      "id": "mojo_uv_tool",
+      "outcome": "passed"
+    }
+  ],
+  "commit_before_export": "bf15ee6",
+  "generated_at": "2026-07-04T11:41:54.899214+00:00",
+  "notes": "Python, Node, Arrow, DuckDB and LanceDB development stack validated locally; official Pixi remains external-network blocked in this container.",
+  "schema_version": "validation-run-v1",
+  "version": "v9"
+}

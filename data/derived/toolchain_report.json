@@ -229,41 +229,49 @@
       "available": true,
       "kind": "cli",
       "name": "uv",
-      "notes": "found on PATH",
-      "path": "PATH",
-      "version": ""
+      "notes": "probe passed",
+      "path": "/opt/pyvenv/bin/uv",
+      "version": "uv 0.10.0"
     },
     {
       "available": false,
       "kind": "cli",
-      "name": "pixi",
+      "name": "official-pixi-on-path",
+      "notes": "same-named executable is not the expected official tool",
+      "path": "/home/oai/.local/bin/pixi",
+      "version": "The database needs to be migrated."
+    },
+    {
+      "available": false,
+      "kind": "cli",
+      "name": "mojo-on-path",
       "notes": "not found on PATH",
       "path": "",
       "version": ""
     },
     {
-      "available": false,
+      "available": true,
       "kind": "cli",
-      "name": "mojo",
-      "notes": "not found on PATH",
-      "path": "",
-      "version": ""
+      "name": "mojo-via-uv-tool",
+      "notes": "probe passed",
+      "path": "/opt/pyvenv/bin/uv",
+      "version": "Mojo 0.26.2.0 (d627decc)"
     },
     {
       "available": true,
       "kind": "cli",
       "name": "node",
-      "notes": "found on PATH",
-      "path": "PATH",
-      "version": ""
+      "notes": "probe passed",
+      "path": "/opt/nvm/versions/node/v22.16.0/bin/node",
+      "version": "v22.16.0"
     },
     {
       "available": true,
       "kind": "cli",
       "name": "npm",
-      "notes": "found on PATH",
-      "path": "PATH",
-      "version": ""
+      "notes": "probe passed",
+      "path": "/opt/nvm/versions/node/v22.16.0/bin/npm",
+      "version": "10.9.2"
     }
   ],
   "schema_version": "1.0"

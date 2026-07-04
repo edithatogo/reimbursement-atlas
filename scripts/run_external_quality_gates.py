@@ -24,15 +24,21 @@ def main() -> None:
         ),
         run_external_quality_gate(
             gate_id="pixi_available",
-            command=("pixi", "--version"),
+            command=("bash", "-lc", "pixi --version"),
             cwd=root,
             timeout_seconds=30,
         ),
         run_external_quality_gate(
-            gate_id="mojo_available",
-            command=("mojo", "--version"),
+            gate_id="pixi_installer_reachable",
+            command=("bash", "-lc", "curl -I -fsSL https://pixi.sh/install.sh >/dev/null"),
             cwd=root,
-            timeout_seconds=30,
+            timeout_seconds=60,
+        ),
+        run_external_quality_gate(
+            gate_id="mojo_available_uv_tool",
+            command=("uv", "tool", "run", "--from", "mojo-compiler", "mojo", "--version"),
+            cwd=root,
+            timeout_seconds=240,
         ),
     ]
     json_path, csv_path = write_external_quality_gate_records(

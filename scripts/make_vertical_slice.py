@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from reimburse_atlas.analysis import (
     build_crosswalk_candidates,
+    build_mapping_evidence_matrix,
     median_payment_by_source,
     policy_signal_matrix,
     priced_share,
@@ -21,7 +22,7 @@ from reimburse_atlas.registry import project_root
 from reimburse_atlas.review_queue import build_crosswalk_review_queue, review_rows
 
 
-def main() -> None:
+def main() -> None:  # noqa: PLR0914
     """Parse local fixtures and write derived vertical-slice artefacts."""
     root = project_root()
     fixtures = root / "tests" / "fixtures"
@@ -44,6 +45,11 @@ def main() -> None:
         for source_id, share in priced_share(schedule_records).items()
     ]
     signal_rows = policy_signal_matrix(schedule_records, coverage_records)
+    mapping_rows = build_mapping_evidence_matrix(
+        mbs_records,
+        [*clfs_records, *pfs_records],
+        threshold=0.05,
+    )
 
     write_jsonl(pydantic_rows(schedule_records), out / "schedule_items.jsonl")
     write_csv(pydantic_rows(schedule_records), out / "schedule_items.csv")
@@ -59,13 +65,16 @@ def main() -> None:
     write_jsonl(priced_rows, out / "priced_share.jsonl")
     write_csv(signal_rows, out / "policy_signal_matrix.csv")
     write_jsonl(signal_rows, out / "policy_signal_matrix.jsonl")
+    write_csv(pydantic_rows(mapping_rows), out / "mapping_evidence_matrix.csv")
+    write_jsonl(pydantic_rows(mapping_rows), out / "mapping_evidence_matrix.jsonl")
     print(
         "Wrote vertical slice: "
         f"{len(schedule_records)} schedule items, "
         f"{len(coverage_records)} coverage decisions, "
         f"{len(crosswalks)} crosswalk candidates, "
         f"{len(review_queue)} review rows, "
-        f"{len(signal_rows)} policy signal rows"
+        f"{len(signal_rows)} policy signal rows, "
+        f"{len(mapping_rows)} mapping evidence rows"
     )
 
 

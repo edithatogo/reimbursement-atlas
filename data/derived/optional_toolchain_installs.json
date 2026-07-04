@@ -1,0 +1,38 @@
+{
+  "records": [
+    {
+      "command": "uv tool run --from mojo-compiler mojo --version",
+      "cwd": "/mnt/data/reimbursement-atlas-work-v9",
+      "generated_at": "2026-07-04T11:34:32.973542+00:00",
+      "id": "mojo_uv_tool_probe",
+      "notes": "Gate passed in the active runtime.",
+      "outcome": "passed",
+      "return_code": 0,
+      "stderr_excerpt": "",
+      "stdout_excerpt": "Mojo 0.26.2.0 (d627decc)"
+    },
+    {
+      "command": "bash -lc pixi --version",
+      "cwd": "/mnt/data/reimbursement-atlas-work-v9",
+      "generated_at": "2026-07-04T11:34:33.239326+00:00",
+      "id": "official_pixi_on_path",
+      "notes": "A same-named executable exists but is not the expected official tool.",
+      "outcome": "wrong_tool",
+      "return_code": 1,
+      "stderr_excerpt": "",
+      "stdout_excerpt": "The database needs to be migrated. Run `pixi migrate`."
+    },
+    {
+      "command": "bash -lc curl -I -fsSL https://pixi.sh/install.sh >/dev/null",
+      "cwd": "/mnt/data/reimbursement-atlas-work-v9",
+      "generated_at": "2026-07-04T11:34:33.459020+00:00",
+      "id": "official_pixi_installer_reachable",
+      "notes": "Gate is installed but could not reach its external advisory/network service.",
+      "outcome": "blocked_network",
+      "return_code": 6,
+      "stderr_excerpt": "curl: (6) Could not resolve host: pixi.sh",
+      "stdout_excerpt": ""
+    }
+  ],
+  "schema_version": "external-quality-gates-v1"
+}

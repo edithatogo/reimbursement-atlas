@@ -29,7 +29,10 @@ FILES = [
     Path("data/derived/vertical_slice/median_payment_by_source.csv"),
     Path("data/derived/vertical_slice/priced_share.csv"),
     Path("data/derived/vertical_slice/policy_signal_matrix.csv"),
+    Path("data/derived/vertical_slice/mapping_evidence_matrix.csv"),
+    Path("data/derived/manual_acquisition_pack/acquisition_steps.csv"),
     Path("data/derived/external_quality_gates.csv"),
+    Path("data/derived/optional_toolchain_installs.csv"),
 ]
 
 

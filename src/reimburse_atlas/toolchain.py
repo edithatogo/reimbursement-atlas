@@ -10,7 +10,14 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Literal
 
-GateOutcome = Literal["passed", "failed", "blocked_network", "missing_tool", "timed_out"]
+GateOutcome = Literal[
+    "passed",
+    "failed",
+    "blocked_network",
+    "missing_tool",
+    "timed_out",
+    "wrong_tool",
+]
 
 NETWORK_MARKERS = (
     "temporary failure in name resolution",
@@ -22,6 +29,11 @@ MISSING_TOOL_MARKERS = (
     "no such file or directory",
     "command not found",
     "not found on path",
+)
+WRONG_TOOL_MARKERS = (
+    "the database needs to be migrated",
+    "run `pixi migrate`",
+    "pixiv-api",
 )
 
 
@@ -51,6 +63,8 @@ def classify_gate_result(return_code: int, stdout: str, stderr: str) -> GateOutc
     combined = f"{stdout}\n{stderr}".lower()
     if any(marker in combined for marker in NETWORK_MARKERS):
         return "blocked_network"
+    if any(marker in combined for marker in WRONG_TOOL_MARKERS):
+        return "wrong_tool"
     if return_code == 127 or any(marker in combined for marker in MISSING_TOOL_MARKERS):
         return "missing_tool"
     return "failed"
@@ -167,5 +181,6 @@ def _notes_for_outcome(outcome: GateOutcome) -> str:
             "Gate could not start because the executable is unavailable in this runtime."
         ),
         "timed_out": "Gate did not finish inside the configured timeout.",
+        "wrong_tool": "A same-named executable exists but is not the expected official tool.",
     }
     return notes[outcome]

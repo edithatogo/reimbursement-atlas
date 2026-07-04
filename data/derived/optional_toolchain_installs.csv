@@ -1,0 +1,4 @@
+id,command,cwd,outcome,return_code,generated_at,stdout_excerpt,stderr_excerpt,notes
+mojo_uv_tool_probe,uv tool run --from mojo-compiler mojo --version,/mnt/data/reimbursement-atlas-work-v9,passed,0,2026-07-04T11:34:32.973542+00:00,Mojo 0.26.2.0 (d627decc),,Gate passed in the active runtime.
+official_pixi_on_path,bash -lc pixi --version,/mnt/data/reimbursement-atlas-work-v9,wrong_tool,1,2026-07-04T11:34:33.239326+00:00,The database needs to be migrated. Run `pixi migrate`.,,A same-named executable exists but is not the expected official tool.
+official_pixi_installer_reachable,bash -lc curl -I -fsSL https://pixi.sh/install.sh >/dev/null,/mnt/data/reimbursement-atlas-work-v9,blocked_network,6,2026-07-04T11:34:33.459020+00:00,,curl: (6) Could not resolve host: pixi.sh,Gate is installed but could not reach its external advisory/network service.
