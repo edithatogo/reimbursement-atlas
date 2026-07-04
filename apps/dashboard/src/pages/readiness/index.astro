@@ -1,37 +1,27 @@
 ---
+import DataTable from "../../components/DataTable.astro";
+import Layout from "../../components/Layout.astro";
 ---
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Reimbursement Atlas readiness</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-  <body>
-    <main>
-      <h1>Readiness artefacts</h1>
-      <p>
-        These CSVs are dashboard-safe generated metadata. They should not include proprietary
-        descriptors, restricted ontology dumps, or confidential net prices.
-      </p>
-      <ul>
-        <li><a href="/data/source_readiness.csv">Source readiness CSV</a></li>
-        <li><a href="/data/analysis_readiness.csv">Analysis readiness CSV</a></li>
-        <li><a href="/data/first_wave_ingestion_plan.csv">First-wave ingestion plan CSV</a></li>
-        <li><a href="/data/source_acquisition_plan.csv">Source acquisition plan CSV</a></li>
-        <li><a href="/data/ingestion_readiness.csv">Ingestion readiness CSV</a></li>
-        <li><a href="/data/source_snapshots.csv">Source snapshots CSV</a></li>
-        <li><a href="/data/source_status.csv">Source status CSV</a></li>
-        <li><a href="/data/analysis_recipes.csv">Analysis recipes CSV</a></li>
-        <li><a href="/data/ontology_concepts.csv">Ontology concepts CSV</a></li>
-        <li><a href="/data/ontology_mapping_templates.csv">Ontology mapping templates CSV</a></li>
-        <li><a href="/data/schedule_items.csv">Vertical-slice schedule items CSV</a></li>
-        <li><a href="/data/crosswalk_candidates.csv">Vertical-slice crosswalk candidates CSV</a></li>
-        <li><a href="/data/crosswalk_review_queue.csv">Crosswalk review queue CSV</a></li>
-        <li><a href="/data/median_payment_by_source.csv">Median payment by source CSV</a></li>
-        <li><a href="/data/priced_share.csv">Priced share CSV</a></li>
-        <li><a href="/data/policy_signal_matrix.csv">Policy signal matrix CSV</a></li>
-      </ul>
-      <p><a href="/">Back to graph</a></p>
-    </main>
-  </body>
-</html>
+
+<Layout title="Reimbursement Atlas readiness">
+  <h1>Readiness artefacts</h1>
+  <p>
+    These CSVs are dashboard-safe generated metadata. They should not include proprietary
+    descriptors, restricted ontology dumps, or confidential net prices.
+  </p>
+  <DataTable
+    title="Source readiness"
+    fileName="source_readiness.csv"
+    columns={["source_id", "jurisdiction", "schedule", "domain", "grade", "score"]}
+  />
+  <DataTable
+    title="Analysis readiness"
+    fileName="analysis_readiness.csv"
+    columns={["analysis_id", "policy_domain", "readiness_grade", "score", "priority"]}
+  />
+  <DataTable
+    title="Ingestion readiness"
+    fileName="ingestion_readiness.csv"
+    columns={["source_id", "version_id", "parser_name", "readiness_grade", "blocking_issues"]}
+  />
+</Layout>

@@ -28,3 +28,7 @@ data/raw_live/
 .hypothesis/
 .mutmut-cache/
 *.pyc
+
+# Generated local dashboard/type/mutation artefacts
+apps/dashboard/.astro/
+mutants/

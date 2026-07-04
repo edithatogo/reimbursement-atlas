@@ -36,7 +36,7 @@ jobs:
           node-version: 24
       - name: Install dashboard dependencies
         working-directory: apps/dashboard
-        run: npm install
+        run: npm ci
       - name: Build dashboard
         working-directory: apps/dashboard
         run: npm run build

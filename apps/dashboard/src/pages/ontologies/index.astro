@@ -1,0 +1,27 @@
+---
+import DataTable from "../../components/DataTable.astro";
+import Layout from "../../components/Layout.astro";
+---
+
+<Layout title="Reimbursement Atlas ontologies">
+  <h1>Ontologies</h1>
+  <p>
+    Ontology pages use synthetic concepts and mapping templates to exercise workflows without
+    redistributing restricted terminology releases.
+  </p>
+  <DataTable
+    title="Ontology registry"
+    fileName="ontology_registry.csv"
+    columns={["id", "name", "domain", "licence", "local_only", "mapping_use"]}
+  />
+  <DataTable
+    title="Synthetic ontology concepts"
+    fileName="ontology_concepts.csv"
+    columns={["terminology_id", "code", "label", "domain", "concept_class", "licence_scope", "mapping_targets"]}
+  />
+  <DataTable
+    title="Ontology mapping templates"
+    fileName="ontology_mapping_templates.csv"
+    columns={["id", "source_terminology_id", "target_terminology_id", "mapping_method", "review_required", "licence_note"]}
+  />
+</Layout>

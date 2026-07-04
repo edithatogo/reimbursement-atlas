@@ -1,0 +1,91 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Reimbursement Atlas" } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+      body {
+        margin: 0;
+      }
+      main {
+        margin: 0 auto;
+        max-width: 1180px;
+        padding: 2rem;
+      }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin: 1rem 0 2rem;
+      }
+      nav a,
+      .button-link {
+        border: 1px solid currentColor;
+        border-radius: 999px;
+        color: inherit;
+        padding: 0.35rem 0.75rem;
+        text-decoration: none;
+      }
+      section {
+        margin: 2rem 0;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th,
+      td {
+        border-bottom: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+        max-width: 26rem;
+        padding: 0.45rem 0.55rem;
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        font-size: 0.9rem;
+      }
+      td {
+        font-size: 0.88rem;
+      }
+      .table-scroll {
+        overflow-x: auto;
+      }
+      .muted {
+        opacity: 0.78;
+      }
+      code {
+        border-radius: 0.25rem;
+        padding: 0.1rem 0.25rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <nav aria-label="Dashboard sections">
+        <a href="/">Graph</a>
+        <a href="/sources/">Sources</a>
+        <a href="/analyses/">Analyses</a>
+        <a href="/crosswalks/">Crosswalks</a>
+        <a href="/ontologies/">Ontologies</a>
+        <a href="/readiness/">Readiness</a>
+      </nav>
+      <slot />
+    </main>
+  </body>
+</html>

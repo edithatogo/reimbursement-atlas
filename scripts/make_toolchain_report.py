@@ -11,6 +11,7 @@ from dataclasses import asdict, dataclass
 from importlib import metadata
 from itertools import starmap
 from pathlib import Path
+from typing import cast
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_JSON_PATH = REPO_ROOT / "data" / "derived" / "toolchain_report.json"
@@ -37,6 +38,20 @@ PYTHON_PACKAGES: tuple[tuple[str, str, str], ...] = (
 )
 
 CLI_TOOLS: tuple[str, ...] = ("uv", "pixi", "mojo", "node", "npm")
+
+NODE_PACKAGES: tuple[str, ...] = (
+    "astro",
+    "@astrojs/check",
+    "@astrojs/react",
+    "@cosmograph/react",
+    "papaparse",
+    "typescript",
+    "react",
+    "react-dom",
+)
+
+DASHBOARD_LOCKFILE = REPO_ROOT / "apps" / "dashboard" / "package-lock.json"
+UV_LOCKFILE = REPO_ROOT / "uv.lock"
 
 
 @dataclass(frozen=True)
@@ -74,6 +89,57 @@ def package_row(name: str, kind: str, distribution: str) -> ToolchainRow:
     )
 
 
+def node_package_row(name: str) -> ToolchainRow:
+    """Return one dashboard package row from package-lock metadata."""
+    if not DASHBOARD_LOCKFILE.exists():
+        return ToolchainRow(
+            name=name,
+            kind="node-package",
+            available=False,
+            version="",
+            path="",
+            notes="apps/dashboard/package-lock.json missing",
+        )
+    payload: object = json.loads(DASHBOARD_LOCKFILE.read_text(encoding="utf-8"))
+    packages_raw: object = {}
+    if isinstance(payload, dict):
+        payload_dict = cast("dict[str, object]", payload)
+        packages_raw = payload_dict.get("packages", {})
+    packages = cast("dict[str, object]", packages_raw) if isinstance(packages_raw, dict) else {}
+    entry_raw = packages.get(f"node_modules/{name}")
+    if not isinstance(entry_raw, dict):
+        return ToolchainRow(
+            name=name,
+            kind="node-package",
+            available=False,
+            version="",
+            path="apps/dashboard/package-lock.json",
+            notes="not found in dashboard lockfile",
+        )
+    entry = cast("dict[str, object]", entry_raw)
+    version = entry.get("version")
+    return ToolchainRow(
+        name=name,
+        kind="node-package",
+        available=True,
+        version=version if isinstance(version, str) else "",
+        path="apps/dashboard/package-lock.json",
+        notes="locked",
+    )
+
+
+def lockfile_row(path: Path, name: str) -> ToolchainRow:
+    """Return one row indicating whether a reproducibility lockfile exists."""
+    return ToolchainRow(
+        name=name,
+        kind="lockfile",
+        available=path.exists(),
+        version="",
+        path=str(path.relative_to(REPO_ROOT)) if path.exists() else "",
+        notes="present" if path.exists() else "missing",
+    )
+
+
 def cli_row(name: str) -> ToolchainRow:
     """Return one executable availability row using PATH lookup only."""
     path = shutil.which(name)
@@ -100,6 +166,11 @@ def build_rows() -> list[ToolchainRow]:
         ),
     ]
     rows.extend(starmap(package_row, PYTHON_PACKAGES))
+    rows.extend(node_package_row(name) for name in NODE_PACKAGES)
+    rows.extend((
+        lockfile_row(UV_LOCKFILE, "uv.lock"),
+        lockfile_row(DASHBOARD_LOCKFILE, "dashboard package-lock"),
+    ))
     rows.extend(cli_row(name) for name in CLI_TOOLS)
     return rows
 

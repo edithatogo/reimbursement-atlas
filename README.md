@@ -40,7 +40,7 @@ The atlas is designed to answer questions like:
 - uv/uv_build for Python package builds.
 - Ruff in strict, preview-heavy mode; basedpyright in strict mode.
 - Pytest, Hypothesis, mutmut, Scalene, Bandit and pip-audit, now install-tested through `uv` for the Python core.
-- Astro 7 dashboard scaffold using Cosmograph for graph exploration.
+- Astro 7 dashboard using Cosmograph for graph exploration, with a committed npm lockfile and local static build validation.
 - Mojo reserved for high-throughput parsers, similarity kernels and mapping accelerators once design stabilises.
 
 ## Current seed and generated assets
@@ -61,8 +61,9 @@ The atlas is designed to answer questions like:
 - `data/derived/seed_lake/*`: local JSONL/CSV lake materialisation and manifest.
 - `data/derived/publication_manifest.json`: candidate public/Hugging Face dataset publication manifest.
 - `data/derived/toolchain_report.*`: local installed-toolchain availability report.
-- `data/derived/v6_validation_run.json`: last local v6 validation-run summary.
+- `data/derived/v6_validation_run.json` and `v7_validation_run.json`: local validation-run summaries.
 - `apps/dashboard/public/data/*`: dashboard-safe generated CSV copies.
+- `apps/dashboard/package-lock.json`: locked Node dependency graph for CI and Hugging Face Space builds.
 - `schema/`: generated from Pydantic models after running `pixi run schema-export`.
 
 ## First local commands
@@ -85,6 +86,7 @@ pixi run toolchain-report
 pixi run seed-lake
 pixi run dashboard-seed
 pixi run qa
+pixi run dashboard-build
 pixi run dashboard-dev
 ```
 
@@ -206,3 +208,32 @@ PYTHONPATH=src reimbursement-atlas publication-manifest data/derived/publication
 ```
 
 The reviewed-source bundle writes checksum metadata, derived rows, validation reports and a bundle-local publication manifest without copying the raw file. This is the intended workflow for manually downloaded MBS, PBS, CMS and NHS source files.
+
+
+## v7 dashboard and Node validation layer
+
+The v7 pass installed the dashboard dependencies, generated `apps/dashboard/package-lock.json`, changed dashboard CI to `npm ci`, and made the Astro/Cosmograph dashboard build locally. The dashboard now has static routes for sources, analyses, crosswalks, ontologies and readiness tables, all reading from dashboard-safe generated CSV artefacts.
+
+The build uses a local Astro config alias for `gl-bench` so Cosmograph works under the Astro 7 / Vite 8 / Rolldown path without patching package files.
+
+Validated commands now include:
+
+```bash
+uv sync --all-extras
+uv run ruff check .
+uv run ruff format --check .
+uv run basedpyright
+uv run pytest --cov=src/reimburse_atlas --cov-report=term-missing --cov-report=xml --cov-fail-under=90 -q
+uv run bandit -q -c pyproject.toml -r src scripts
+uv build
+cd apps/dashboard && npm ci && npm audit --omit=dev --audit-level=moderate && npm run build
+```
+
+`pip-audit` is installed but remained blocked here by DNS resolution to `pypi.org`. Full mutmut is now wired correctly, but the configured run generated 3,673 mutants across 45 files and should remain a scheduled/manual gate rather than a fast PR blocker.
+
+See:
+
+- `docs/DASHBOARD_VALIDATION.md`
+- `docs/MUTATION_TESTING.md`
+- `docs/ADRs/0015-locked-dashboard-build.md`
+- `docs/ADRs/0016-mutmut-nightly-not-pr-blocker.md`

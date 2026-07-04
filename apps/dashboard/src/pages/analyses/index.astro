@@ -1,0 +1,32 @@
+---
+import DataTable from "../../components/DataTable.astro";
+import Layout from "../../components/Layout.astro";
+---
+
+<Layout title="Reimbursement Atlas analyses">
+  <h1>Analyses</h1>
+  <p>
+    Analysis recipes make the policy questions explicit, including required tables, quality gates and
+    caveats before any result is treated as evidence.
+  </p>
+  <DataTable
+    title="Analysis recipes"
+    fileName="analysis_recipes.csv"
+    columns={["analysis_id", "policy_question", "status", "required_tables", "quality_gates", "caveats"]}
+  />
+  <DataTable
+    title="Policy signal matrix"
+    fileName="policy_signal_matrix.csv"
+    columns={["source_id", "policy_use", "schedule_item_count", "price_observability", "patient_amount_observability", "item_restriction_share"]}
+  />
+  <DataTable
+    title="Median payment by source"
+    fileName="median_payment_by_source.csv"
+    columns={["source_id", "median_payment", "priced_item_count"]}
+  />
+  <DataTable
+    title="Priced share"
+    fileName="priced_share.csv"
+    columns={["source_id", "priced_share", "schedule_item_count"]}
+  />
+</Layout>

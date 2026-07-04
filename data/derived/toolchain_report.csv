@@ -1,5 +1,5 @@
 name,kind,available,version,path,notes
-python,runtime,True,3.13.5,active Python interpreter,Linux x86_64 via python
+python,runtime,True,3.13.5,active Python interpreter,Linux x86_64 via python3
 ruff,python-package,True,0.15.20,python environment,installed
 basedpyright,python-package,True,1.39.9,python environment,installed
 pytest,python-package,True,9.1.1,python environment,installed
@@ -17,6 +17,16 @@ pydantic,python-package,True,2.13.4,python environment,installed
 defusedxml,python-package,True,0.7.1,python environment,installed
 fastapi,python-package,True,0.139.0,python environment,installed
 mcp,python-package,True,1.28.1,python environment,installed
+astro,node-package,True,7.0.6,apps/dashboard/package-lock.json,locked
+@astrojs/check,node-package,True,0.9.9,apps/dashboard/package-lock.json,locked
+@astrojs/react,node-package,True,6.0.1,apps/dashboard/package-lock.json,locked
+@cosmograph/react,node-package,True,2.3.2,apps/dashboard/package-lock.json,locked
+papaparse,node-package,True,5.5.4,apps/dashboard/package-lock.json,locked
+typescript,node-package,True,6.0.3,apps/dashboard/package-lock.json,locked
+react,node-package,True,19.2.7,apps/dashboard/package-lock.json,locked
+react-dom,node-package,True,19.2.7,apps/dashboard/package-lock.json,locked
+uv.lock,lockfile,True,,uv.lock,present
+dashboard package-lock,lockfile,True,,apps/dashboard/package-lock.json,present
 uv,cli,True,,PATH,found on PATH
 pixi,cli,False,,,not found on PATH
 mojo,cli,False,,,not found on PATH

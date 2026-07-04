@@ -48,16 +48,17 @@ pip-audit --strict
 
 ## Dashboard validation
 
-The Astro/Cosmograph dashboard remains scaffolded for Node validation:
+The Astro/Cosmograph dashboard is now locally validated with a committed lockfile:
 
 ```bash
 cd apps/dashboard
-npm install
+npm ci
+npm audit --omit=dev --audit-level=moderate
 npm run build
 ```
 
-The Python runtime used for v6 did not complete Node dependency installation, so the dashboard build should remain a required follow-up check in GitHub Actions once a package lock is generated.
+The build performs `astro check` and renders the graph, source, analysis, crosswalk, ontology and readiness routes from dashboard-safe CSV artefacts.
 
 ## Validation run record
 
-The current local run is summarised in `data/derived/v6_validation_run.json`. It records passed checks as well as blocked checks such as network-dependent vulnerability audit or Node package-lock generation.
+The current local runs are summarised in `data/derived/v6_validation_run.json` and `data/derived/v7_validation_run.json`. They record passed checks as well as blocked checks such as network-dependent `pip-audit`.

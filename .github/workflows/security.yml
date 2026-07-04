@@ -40,3 +40,20 @@ jobs:
         run: pixi run bandit -r src -c pyproject.toml
       - name: pip-audit
         run: pixi run pip-audit
+
+
+  dashboard-security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: apps/dashboard/package-lock.json
+      - name: Install dashboard dependencies
+        working-directory: apps/dashboard
+        run: npm ci
+      - name: npm audit
+        working-directory: apps/dashboard
+        run: npm audit --omit=dev --audit-level=moderate

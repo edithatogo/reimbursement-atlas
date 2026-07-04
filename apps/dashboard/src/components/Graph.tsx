@@ -1,5 +1,5 @@
 import { Cosmograph } from "@cosmograph/react";
-import Papa from "papaparse";
+import Papa, { type ParseError } from "papaparse";
 import { useEffect, useMemo, useState } from "react";
 
 type GraphNode = {
@@ -31,7 +31,7 @@ async function loadCsv<T>(url: string): Promise<T[]> {
   const text = await response.text();
   const parsed = Papa.parse<T>(text, { header: true, skipEmptyLines: true });
   if (parsed.errors.length > 0) {
-    throw new Error(parsed.errors.map((error) => error.message).join("; "));
+    throw new Error(parsed.errors.map((error: ParseError) => error.message).join("; "));
   }
   return parsed.data;
 }

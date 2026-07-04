@@ -15,9 +15,11 @@
     "@cosmograph/react": "latest",
     "astro": "^7.0.0",
     "papaparse": "latest",
-    "typescript": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "typescript": "latest"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/papaparse": "^5.5.2"
+  }
 }

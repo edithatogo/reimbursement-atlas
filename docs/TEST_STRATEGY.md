@@ -33,3 +33,10 @@ The `test-goblin` extra is now a practical compatibility profile rather than a d
 ## v6 local validation target
 
 The Python core should pass Ruff, Ruff format check, basedpyright, Bandit, compileall, `uv build` and a pytest coverage gate of at least 90% over the core package. Optional CLI/API/MCP/warehouse shells remain smoke-tested and are excluded from the coverage denominator until they become production surfaces.
+
+
+## v7 mutation and dashboard smoke updates
+
+Dashboard reproducibility is now smoke-tested by requiring `apps/dashboard/package-lock.json`, dashboard entrypoints and key dashboard-safe CSV assets to exist. The full Node gate remains `npm ci && npm run build`.
+
+Pytest now sets `pythonpath = ["src"]`, which allows mutmut to import mutated source paths correctly. Full mutmut is configured and was proven to generate mutants, collect stats, run clean tests and start mutant evaluation, but it remains a scheduled/manual gate because the current configuration generated 3,673 mutants across 45 files.

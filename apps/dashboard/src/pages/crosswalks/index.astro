@@ -1,0 +1,22 @@
+---
+import DataTable from "../../components/DataTable.astro";
+import Layout from "../../components/Layout.astro";
+---
+
+<Layout title="Reimbursement Atlas crosswalks">
+  <h1>Crosswalks</h1>
+  <p>
+    Crosswalks are candidate mappings only. They require domain review before they are used in policy
+    estimates, price comparisons or uptake analysis.
+  </p>
+  <DataTable
+    title="Crosswalk review queue"
+    fileName="crosswalk_review_queue.csv"
+    columns={["left_source_id", "left_code", "right_source_id", "right_code", "confidence", "priority", "recommended_action"]}
+  />
+  <DataTable
+    title="Candidate crosswalks"
+    fileName="crosswalk_candidates.csv"
+    columns={["left_source_id", "left_code", "right_source_id", "right_code", "relationship", "confidence", "evidence_methods"]}
+  />
+</Layout>

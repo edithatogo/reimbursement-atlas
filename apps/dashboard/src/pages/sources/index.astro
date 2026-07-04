@@ -1,0 +1,27 @@
+---
+import DataTable from "../../components/DataTable.astro";
+import Layout from "../../components/Layout.astro";
+---
+
+<Layout title="Reimbursement Atlas sources">
+  <h1>Sources</h1>
+  <p>
+    Source pages emphasise acquisition status, reproducibility and licence gates before any raw
+    public schedule is mirrored or transformed into derived outputs.
+  </p>
+  <DataTable
+    title="Current source observations"
+    fileName="source_status.csv"
+    columns={["source_id", "status_label", "retrieval_priority", "recommended_action", "evidence_url"]}
+  />
+  <DataTable
+    title="Source acquisition plan"
+    fileName="source_acquisition_plan.csv"
+    columns={["source_id", "version_id", "acquisition_mode", "expected_format", "licence_gate", "cache_policy"]}
+  />
+  <DataTable
+    title="Source snapshots"
+    fileName="source_snapshots.csv"
+    columns={["source_version_id", "snapshot_id", "content_type", "byte_count", "sha256", "licence_gate"]}
+  />
+</Layout>

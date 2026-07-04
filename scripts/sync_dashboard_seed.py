@@ -18,6 +18,7 @@ FILES = [
     Path("data/seed/source_snapshots.csv"),
     Path("data/seed/source_status.csv"),
     Path("data/seed/analysis_recipes.csv"),
+    Path("data/seed/ontology_registry.csv"),
     Path("data/seed/ontology_concepts.csv"),
     Path("data/seed/ontology_mapping_templates.csv"),
     Path("data/derived/vertical_slice/schedule_items.csv"),

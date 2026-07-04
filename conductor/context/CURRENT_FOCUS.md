@@ -1,6 +1,6 @@
 # Current focus
 
-The repo is now in the first executable vertical-slice plus reviewed-source-bundle phase, with v6 adding installed Python quality gates.
+The repo is now in the first executable vertical-slice plus reviewed-source-bundle phase, with v7 adding installed Python and Node quality gates plus a build-tested dashboard.
 
 ## Immediate focus
 
@@ -10,7 +10,7 @@ The repo is now in the first executable vertical-slice plus reviewed-source-bund
 4. Use readiness tables to prioritise analyses and sources rather than broadening ingestion prematurely.
 5. Keep CLI/API/MCP surfaces read-only until acquisition and licence controls are mature.
 6. Keep the Python quality gate green: Ruff, basedpyright, Bandit, compileall, uv build and >90% core library coverage.
-7. Generate a dashboard package lock and run the Astro/Cosmograph build in a Node-ready environment.
+7. Keep the dashboard lockfile/build gate green with `npm ci`, `npm audit` and `npm run build`.
 
 ## Current generated artefacts
 
@@ -24,6 +24,14 @@ The repo is now in the first executable vertical-slice plus reviewed-source-bund
 - `data/seed/ontology_concepts.*`
 - `apps/dashboard/public/data/*`
 
+## v7 dashboard and mutation artefacts
+
+- `docs/DASHBOARD_VALIDATION.md`
+- `docs/MUTATION_TESTING.md`
+- `docs/ADRs/0015-locked-dashboard-build.md`
+- `docs/ADRs/0016-mutmut-nightly-not-pr-blocker.md`
+- `conductor/sessions/2026-07-04-v7-dashboard-node-and-mutation.md`
+
 ## v6 quality-gate artefacts
 
 - `docs/LOCAL_TOOLCHAIN_VALIDATION.md`
@@ -34,4 +42,4 @@ The repo is now in the first executable vertical-slice plus reviewed-source-bund
 
 ## Next agent handoff
 
-Start with `docs/LOCAL_TOOLCHAIN_VALIDATION.md`, `docs/COVERAGE_POLICY.md`, `docs/FIRST_EXECUTABLE_SLICE.md` and `docs/LIVE_SOURCE_VALIDATION_PLAYBOOK.md`, then inspect `scripts/make_vertical_slice.py`, `src/reimburse_atlas/parsers/`, `src/reimburse_atlas/local_sources.py`, `src/reimburse_atlas/analysis/` and `conductor/sessions/2026-07-03-v6-installed-toolchain-quality-gates.md`.
+Start with `docs/LOCAL_TOOLCHAIN_VALIDATION.md`, `docs/DASHBOARD_VALIDATION.md`, `docs/MUTATION_TESTING.md`, `docs/COVERAGE_POLICY.md`, `docs/FIRST_EXECUTABLE_SLICE.md` and `docs/LIVE_SOURCE_VALIDATION_PLAYBOOK.md`, then inspect `scripts/make_vertical_slice.py`, `src/reimburse_atlas/parsers/`, `src/reimburse_atlas/local_sources.py`, `src/reimburse_atlas/analysis/` and `conductor/sessions/2026-07-04-v7-dashboard-node-and-mutation.md`.

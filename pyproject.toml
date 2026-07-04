@@ -226,6 +226,7 @@ reportPrivateUsage = "warning"
 
 [tool.pytest.ini_options]
 minversion = "9.0"
+pythonpath = ["src"]
 addopts = [
   "--strict-markers",
   "--strict-config",

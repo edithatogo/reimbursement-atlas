@@ -1,0 +1,43 @@
+---
+import { readDashboardCsv } from "../lib/csv";
+
+interface Props {
+  fileName: string;
+  title: string;
+  description?: string;
+  columns?: readonly string[];
+  limit?: number;
+}
+
+const { fileName, title, description, columns, limit = 8 } = Astro.props;
+const csv = await readDashboardCsv(fileName);
+const visibleColumns = columns ?? csv.columns.slice(0, 8);
+const visibleRows = csv.rows.slice(0, limit);
+---
+
+<section>
+  <h2>{title}</h2>
+  {description && <p class="muted">{description}</p>}
+  <p class="muted">
+    Showing {visibleRows.length} of {csv.rows.length} rows from <code>{csv.fileName}</code>.
+    <a href={`/data/${csv.fileName}`}>Download CSV</a>
+  </p>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          {visibleColumns.map((column) => <th scope="col">{column}</th>)}
+        </tr>
+      </thead>
+      <tbody>
+        {
+          visibleRows.map((row) => (
+            <tr>
+              {visibleColumns.map((column) => <td>{row[column] || "—"}</td>)}
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

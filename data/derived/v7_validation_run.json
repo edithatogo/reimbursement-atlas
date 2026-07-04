@@ -1,0 +1,75 @@
+{
+  "checks": [
+    {
+      "details": "Created .venv and installed Python quality/data/API/MCP dependencies.",
+      "name": "uv sync --all-extras",
+      "status": "passed"
+    },
+    {
+      "name": "ruff check .",
+      "status": "passed"
+    },
+    {
+      "name": "ruff format --check .",
+      "status": "passed"
+    },
+    {
+      "details": "0 errors, 0 warnings, 0 notes.",
+      "name": "basedpyright",
+      "status": "passed"
+    },
+    {
+      "details": "72 passed; 93.37% coverage; threshold 90%.",
+      "name": "pytest coverage",
+      "status": "passed"
+    },
+    {
+      "details": "Only expected annotated SQL-literal warning in warehouse helper.",
+      "name": "bandit",
+      "status": "passed"
+    },
+    {
+      "details": "Built source distribution and wheel.",
+      "name": "uv build",
+      "status": "passed"
+    },
+    {
+      "name": "seed JSONL/CSV sync",
+      "status": "passed"
+    },
+    {
+      "details": "No raw/local cache paths tracked.",
+      "name": "public-data policy",
+      "status": "passed"
+    },
+    {
+      "details": "Installed locked dashboard dependencies from package-lock.json.",
+      "name": "npm ci",
+      "status": "passed"
+    },
+    {
+      "details": "0 vulnerabilities.",
+      "name": "npm audit --omit=dev --audit-level=moderate",
+      "status": "passed"
+    },
+    {
+      "details": "Astro check/build passed; 6 static pages generated.",
+      "name": "npm run build",
+      "status": "passed"
+    },
+    {
+      "details": "Tool installed, but runtime DNS failed resolving pypi.org.",
+      "name": "pip-audit --strict",
+      "status": "blocked"
+    },
+    {
+      "details": "Generated 3,673 mutants across 45 files and began evaluation; full run is configured as a nightly/manual gate due runtime length.",
+      "name": "mutmut run --max-children 2",
+      "status": "partial"
+    }
+  ],
+  "generated_at": "2026-07-04T03:39:07+00:00",
+  "pass": "v7",
+  "schema_version": "1.0",
+  "summary": "Installed Python and Node toolchains, locked dashboard dependencies, validated Astro static build, and wired mutation testing as a nightly gate."
+}

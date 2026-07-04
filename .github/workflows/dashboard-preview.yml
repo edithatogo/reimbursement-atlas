@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 24
           cache: npm
-          cache-dependency-path: apps/dashboard/package.json
+          cache-dependency-path: apps/dashboard/package-lock.json
       - uses: prefix-dev/setup-pixi@v0.10.0
       - name: Generate dashboard seed data
         run: |
@@ -33,7 +33,7 @@ jobs:
           pixi run dashboard-seed
       - name: Install dashboard dependencies
         working-directory: apps/dashboard
-        run: npm install
+        run: npm ci
       - name: Build dashboard
         working-directory: apps/dashboard
         run: npm run build

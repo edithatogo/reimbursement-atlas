@@ -5,7 +5,7 @@
       "available": true,
       "kind": "runtime",
       "name": "python",
-      "notes": "Linux x86_64 via python",
+      "notes": "Linux x86_64 via python3",
       "path": "active Python interpreter",
       "version": "3.13.5"
     },
@@ -144,6 +144,86 @@
       "notes": "installed",
       "path": "python environment",
       "version": "1.28.1"
+    },
+    {
+      "available": true,
+      "kind": "node-package",
+      "name": "astro",
+      "notes": "locked",
+      "path": "apps/dashboard/package-lock.json",
+      "version": "7.0.6"
+    },
+    {
+      "available": true,
+      "kind": "node-package",
+      "name": "@astrojs/check",
+      "notes": "locked",
+      "path": "apps/dashboard/package-lock.json",
+      "version": "0.9.9"
+    },
+    {
+      "available": true,
+      "kind": "node-package",
+      "name": "@astrojs/react",
+      "notes": "locked",
+      "path": "apps/dashboard/package-lock.json",
+      "version": "6.0.1"
+    },
+    {
+      "available": true,
+      "kind": "node-package",
+      "name": "@cosmograph/react",
+      "notes": "locked",
+      "path": "apps/dashboard/package-lock.json",
+      "version": "2.3.2"
+    },
+    {
+      "available": true,
+      "kind": "node-package",
+      "name": "papaparse",
+      "notes": "locked",
+      "path": "apps/dashboard/package-lock.json",
+      "version": "5.5.4"
+    },
+    {
+      "available": true,
+      "kind": "node-package",
+      "name": "typescript",
+      "notes": "locked",
+      "path": "apps/dashboard/package-lock.json",
+      "version": "6.0.3"
+    },
+    {
+      "available": true,
+      "kind": "node-package",
+      "name": "react",
+      "notes": "locked",
+      "path": "apps/dashboard/package-lock.json",
+      "version": "19.2.7"
+    },
+    {
+      "available": true,
+      "kind": "node-package",
+      "name": "react-dom",
+      "notes": "locked",
+      "path": "apps/dashboard/package-lock.json",
+      "version": "19.2.7"
+    },
+    {
+      "available": true,
+      "kind": "lockfile",
+      "name": "uv.lock",
+      "notes": "present",
+      "path": "uv.lock",
+      "version": ""
+    },
+    {
+      "available": true,
+      "kind": "lockfile",
+      "name": "dashboard package-lock",
+      "notes": "present",
+      "path": "apps/dashboard/package-lock.json",
+      "version": ""
     },
     {
       "available": true,
