@@ -541,6 +541,42 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/source_contracts/source_contract_validation.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_contract_validation"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/source_contracts/source_contract_validation.csv",
+      "dct:format": "csv",
+      "dct:title": "source_contract_validation"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/github_project/github_project_items.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "github_project_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/github_project/github_project_items.csv",
+      "dct:format": "csv",
+      "dct:title": "github_project_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/final_handoff/final_handoff_tasks.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "final_handoff_tasks"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/final_handoff/final_handoff_tasks.csv",
+      "dct:format": "csv",
+      "dct:title": "final_handoff_tasks"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/osf/component_plan.jsonl",
       "dct:format": "jsonl",
       "dct:title": "component_plan"
@@ -694,6 +730,18 @@
       "dcat:downloadURL": "data/derived/v16_validation_run.json",
       "dct:format": "json",
       "dct:title": "v16_validation_run"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/v17_validation_run.json",
+      "dct:format": "json",
+      "dct:title": "v17_validation_run"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/v18_validation_run.json",
+      "dct:format": "json",
+      "dct:title": "v18_validation_run"
     }
   ],
   "dct:description": "Licence-safe metadata and derived tables for comparative reimbursement research.",

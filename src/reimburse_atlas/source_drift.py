@@ -6,11 +6,13 @@ import csv
 import hashlib
 import json
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal, cast
 
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.models import SourceDriftRecord
 from reimburse_atlas.registry import project_root
+
+SourceDriftStatus = Literal["pass", "warn", "fail", "missing"]
 
 DEFAULT_DRIFT_PAIRS: tuple[tuple[str, str, Path, Path], ...] = (
     (
@@ -107,7 +109,7 @@ def compare_tabular_files(  # noqa: PLR0914
     right_count = int(right_info["row_count"])
     delta = right_count - left_count
     delta_pct = round((delta / left_count) if left_count else 0.0, 6)
-    status = _status_for_drift(
+    status: SourceDriftStatus = _status_for_drift(
         left_count=left_count,
         right_count=right_count,
         added_columns=added_columns,
@@ -169,7 +171,12 @@ def write_source_drift_report(
 def _tabular_info(path: Path) -> dict[str, Any]:
     if path.suffix == ".jsonl":
         rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line]
-        columns = sorted({column for row in rows if isinstance(row, dict) for column in row})
+        columns = sorted({
+            str(column)
+            for row in rows
+            if isinstance(row, dict)
+            for column in cast("dict[str, Any]", row)
+        })
         return {"row_count": len(rows), "columns": columns}
     if path.suffix == ".csv":
         with path.open(newline="", encoding="utf-8") as handle:
@@ -187,7 +194,7 @@ def _status_for_drift(
     right_count: int,
     added_columns: tuple[str, ...],
     removed_columns: tuple[str, ...],
-) -> str:
+) -> SourceDriftStatus:
     if removed_columns:
         return "fail"
     if left_count != right_count:

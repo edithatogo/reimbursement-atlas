@@ -6,7 +6,7 @@ import hashlib
 import json
 import zipfile
 from pathlib import Path
-from typing import Final
+from typing import Final, Literal
 
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.models import SourceContentValidationRecord, SourceFileRecord
@@ -15,6 +15,7 @@ from reimburse_atlas.source_downloads import safe_local_target
 
 MIN_TEXT_BYTES: Final[int] = 16
 HTML_MARKERS: Final[tuple[bytes, ...]] = (b"<!doctype html", b"<html", b"<head")
+SourceValidationStatus = Literal["pass", "warn", "fail", "missing", "skipped"]
 
 
 def build_source_content_validations(
@@ -147,7 +148,7 @@ def _should_skip(record: SourceFileRecord) -> bool:
 def _record(
     record: SourceFileRecord,
     *,
-    status: str,
+    status: SourceValidationStatus,
     target_ref: str,
     issues: tuple[str, ...],
     recommended_action: str,

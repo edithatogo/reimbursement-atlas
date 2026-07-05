@@ -10,6 +10,7 @@ from reimburse_atlas.source_contracts import (
 
 
 def main() -> None:
+    """Generate source-contract validation artefacts."""
     rows = build_source_contract_validations(load_source_files())
     paths = write_source_contract_validations(
         rows,

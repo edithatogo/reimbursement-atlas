@@ -5,7 +5,7 @@ from __future__ import annotations
 import csv
 import json
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.models import DataDictionaryRecord
@@ -70,7 +70,8 @@ def _columns_for(path: Path) -> list[str]:
                 continue
             loaded = json.loads(line)
             if isinstance(loaded, dict):
-                columns.update(str(key) for key in loaded)
+                loaded_dict = cast("dict[str, Any]", loaded)
+                columns.update(str(key) for key in loaded_dict)
         return sorted(columns)
     if path.suffix == ".csv":
         with path.open(newline="", encoding="utf-8") as handle:
@@ -78,7 +79,8 @@ def _columns_for(path: Path) -> list[str]:
             return list(reader.fieldnames or [])
     loaded = _read_json(path)
     if isinstance(loaded, dict):
-        return sorted(str(key) for key in loaded)
+        loaded_dict = cast("dict[str, Any]", loaded)
+        return sorted(str(key) for key in loaded_dict)
     return []
 
 

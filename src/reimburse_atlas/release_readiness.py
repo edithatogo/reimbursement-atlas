@@ -388,8 +388,7 @@ def _source_contract_gate(repo: Path) -> ReleaseGateRecord:
         status=status,
         required=True,
         evidence=(
-            f"contracts={summary.get('contract_count', 0)} "
-            f"missing={missing} failures={failures}"
+            f"contracts={summary.get('contract_count', 0)} missing={missing} failures={failures}"
         ),
         recommended_action="Download sources and rerun contract validation before real parsing.",
     )
@@ -413,7 +412,9 @@ def _github_project_gate(repo: Path) -> ReleaseGateRecord:
         status="pass" if issue_count >= 100 else "warn",
         required=True,
         evidence=f"project_items={summary.get('project_item_count', 0)} issue_count={issue_count}",
-        recommended_action="Import generated rows into GitHub Projects once repository credentials exist.",
+        recommended_action=(
+            "Import generated rows into GitHub Projects once repository credentials exist."
+        ),
     )
 
 
@@ -434,11 +435,13 @@ def _final_handoff_gate(repo: Path) -> ReleaseGateRecord:
         status="pass" if summary.get("download_ready") else "warn",
         required=True,
         evidence=(
-            f"tasks={summary.get('task_count', 0)} "
-            f"blocked_network={summary.get('blocked_network', 0)} "
-            f"blocked_secret={summary.get('blocked_secret', 0)}"
+            f"tasks={summary.get('task_count', 0)} blocked_network="
+            f"{summary.get('blocked_network', 0)} blocked_secret="
+            f"{summary.get('blocked_secret', 0)}"
         ),
-        recommended_action="Use final_handoff_tasks.csv as the network/credential handoff checklist.",
+        recommended_action=(
+            "Use final_handoff_tasks.csv as the network/credential handoff checklist."
+        ),
     )
 
 

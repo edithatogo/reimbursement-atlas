@@ -5,11 +5,11 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
+from typing import Literal
 
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.models import ConductorTrackRecord, GitHubProjectItemRecord
 from reimburse_atlas.registry import project_root
-
 
 _PRIORITY_ORDER = ("must", "should", "could", "wont")
 
@@ -36,10 +36,16 @@ def build_github_project_items(
                 track_id=track.id,
                 status="ready",
                 priority=track.priority,
-                labels=("type:track", f"workstream:{track.workstream}", f"priority:{track.priority}"),
+                labels=(
+                    "type:track",
+                    f"workstream:{track.workstream}",
+                    f"priority:{track.priority}",
+                ),
                 milestone=_milestone(track.phase),
                 project_view=_project_view(track.workstream),
-                recommended_action="Create or update a GitHub Project group for this Conductor track.",
+                recommended_action=(
+                    "Create or update a GitHub Project group for this Conductor track."
+                ),
             )
         )
     if issue_dir.exists():
@@ -115,7 +121,9 @@ def _split_labels(label_text: str) -> list[str]:
     return [item.strip() for item in label_text.split(",") if item.strip()]
 
 
-def _priority_from_labels(labels: tuple[str, ...]) -> str:
+def _priority_from_labels(
+    labels: tuple[str, ...],
+) -> Literal["must", "should", "could", "wont", "unknown"]:
     for priority in _PRIORITY_ORDER:
         if f"priority:{priority}" in labels:
             return priority
@@ -126,7 +134,7 @@ def _priority_from_labels(labels: tuple[str, ...]) -> str:
     return "unknown"
 
 
-def _status_from_labels(labels: tuple[str, ...]) -> str:
+def _status_from_labels(labels: tuple[str, ...]) -> Literal["todo", "ready", "blocked", "done"]:
     if "blocked" in labels or any(label.startswith("risk:") for label in labels):
         return "blocked"
     if any(label.startswith("phase:release") for label in labels):

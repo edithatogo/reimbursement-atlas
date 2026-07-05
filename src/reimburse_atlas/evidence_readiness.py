@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from collections import Counter, defaultdict
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal, cast
 
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.models import EvidenceReadinessRecord
@@ -47,8 +47,20 @@ def build_evidence_readiness(  # noqa: PLR0914
     for question in questions:
         question_id = str(question["id"])
         linkages = linkages_by_question.get(question_id, [])
-        counts = Counter(str(row.get("readiness_status", "missing")) for row in linkages)
-        entity_counts = Counter(str(row.get("linked_entity_type", "unknown")) for row in linkages)
+        counts = Counter(
+            cast(
+                "Literal['available', 'planned', 'blocked', 'missing', 'local_only']",
+                str(row.get("readiness_status", "missing")),
+            )
+            for row in linkages
+        )
+        entity_counts = Counter(
+            cast(
+                "Literal['source', 'dataset_candidate', 'mapping_resource', 'output']",
+                str(row.get("linked_entity_type", "unknown")),
+            )
+            for row in linkages
+        )
         protocol_score = float(
             protocol_by_question.get(question_id, {}).get("completeness_score", 0.0)
         )
@@ -174,7 +186,7 @@ def _stage_from_score(
     data_quality_blockers: int,
     source_validation_blockers: int,
     missing_linkages: int,
-) -> str:
+) -> Literal["blocked", "design", "prototype_ready", "evidence_ready"]:
     if data_quality_blockers or source_validation_blockers:
         return "blocked"
     if score >= 0.86 and protocol_score >= 0.9 and missing_linkages == 0:
@@ -185,7 +197,7 @@ def _stage_from_score(
 
 
 def _recommended_action(  # noqa: PLR0911
-    stage: str,
+    stage: Literal["blocked", "design", "prototype_ready", "evidence_ready"],
     *,
     protocol_score: float,
     missing_linkages: int,

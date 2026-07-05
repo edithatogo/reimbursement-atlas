@@ -191,7 +191,7 @@ def _label(row: Mapping[str, object]) -> str | None:
 
 def _read_headered_or_simple_table(path: Path) -> list[dict[str, object]]:
     """Read a small TXT/CSV table with delimiter detection and simple fallback."""
-    text = path.read_text(encoding="utf-8-sig")
+    text = _read_text_with_fallback(path)
     if not text.strip():
         return []
     sample = text[:4096]
@@ -235,3 +235,14 @@ def _read_simple_lines(text: str) -> list[dict[str, object]]:
             continue
         rows.append({"item_number": parts[0], "description": parts[1] if len(parts) > 1 else ""})
     return rows
+
+
+def _read_text_with_fallback(path: Path) -> str:
+    """Read text using UTF-8 first, then permissive legacy encodings."""
+    raw = path.read_bytes()
+    for encoding in ("utf-8-sig", "utf-8", "cp1252", "latin-1"):
+        try:
+            return raw.decode(encoding)
+        except UnicodeDecodeError:
+            continue
+    return raw.decode("utf-8", errors="replace")

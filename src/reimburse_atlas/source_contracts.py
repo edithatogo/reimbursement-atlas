@@ -20,6 +20,8 @@ from reimburse_atlas.models import SourceContractValidationRecord, SourceFileRec
 from reimburse_atlas.registry import project_root
 from reimburse_atlas.source_downloads import safe_local_target
 
+SourceContractStatus = Literal["pass", "warn", "fail", "missing", "skipped"]
+
 
 @dataclass(frozen=True)
 class SourceContract:
@@ -58,13 +60,17 @@ CONTRACTS: dict[str, SourceContract] = {
         name="CMS ASP payment-limit extract contract",
         expected_columns=("hcpcs_code", "payment_limit", "effective_date"),
         required_markers=("asp", "payment"),
-        skip_reason="Landing-page/manual-extract record; validate the extracted local file instead.",
+        skip_reason=(
+            "Landing-page/manual-extract record; validate the extracted local file instead."
+        ),
     ),
     "us_cms_pfs_rvu26c_page": SourceContract(
         name="CMS PFS RVU extract contract",
         expected_columns=("hcpcs_code", "nonfacility_price", "facility_price"),
         required_markers=("rvu", "hcpcs"),
-        skip_reason="Landing-page/manual-extract record; validate the extracted local file instead.",
+        skip_reason=(
+            "Landing-page/manual-extract record; validate the extracted local file instead."
+        ),
     ),
 }
 
@@ -120,7 +126,9 @@ def _validate_contract(record: SourceFileRecord, raw_dir: Path) -> SourceContrac
             contract,
             status="skipped",
             issues=(contract.skip_reason,),
-            recommended_action="Perform manual/licence review first, then validate the extracted local file.",
+            recommended_action=(
+                "Perform manual/licence review first, then validate the extracted local file."
+            ),
         )
     path = safe_local_target(record, raw_dir)
     if not path.exists():
@@ -129,7 +137,9 @@ def _validate_contract(record: SourceFileRecord, raw_dir: Path) -> SourceContrac
             contract,
             status="missing",
             issues=("local raw file is absent",),
-            recommended_action="Run source-download-plan in a network-enabled environment, then rerun contracts.",
+            recommended_action=(
+                "Run source-download-plan in a network-enabled environment, then rerun contracts."
+            ),
         )
     return _validate_file(record, contract, path)
 
@@ -163,7 +173,9 @@ def _validate_file(
     observed_columns = _observed_columns(path, contract.delimiter_candidates)
     observed_markers = _observed_markers(path, contract.required_markers)
     missing_columns = tuple(col for col in contract.expected_columns if col not in observed_columns)
-    missing_markers = tuple(marker for marker in contract.required_markers if marker not in observed_markers)
+    missing_markers = tuple(
+        marker for marker in contract.required_markers if marker not in observed_markers
+    )
     issues: list[str] = []
     if missing_columns:
         issues.append(f"missing expected columns: {', '.join(missing_columns)}")
@@ -239,7 +251,7 @@ def _make_record(
     record: SourceFileRecord,
     contract: SourceContract,
     *,
-    status: Literal["pass", "warn", "fail", "missing", "skipped"],
+    status: SourceContractStatus,
     recommended_action: str,
     required_markers: tuple[str, ...] | None = None,
     observed_markers: tuple[str, ...] = (),
@@ -256,9 +268,13 @@ def _make_record(
         parser_hint=record.parser_hint,
         contract_name=contract.name,
         contract_status=status,
-        required_markers=required_markers if required_markers is not None else contract.required_markers,
+        required_markers=(
+            required_markers if required_markers is not None else contract.required_markers
+        ),
         observed_markers=observed_markers,
-        expected_columns=expected_columns if expected_columns is not None else contract.expected_columns,
+        expected_columns=(
+            expected_columns if expected_columns is not None else contract.expected_columns
+        ),
         observed_columns=observed_columns,
         byte_size=byte_size,
         issues=issues,

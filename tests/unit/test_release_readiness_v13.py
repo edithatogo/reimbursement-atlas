@@ -154,7 +154,12 @@ def test_release_readiness_report_reads_generated_evidence(tmp_path: Path) -> No
         encoding="utf-8",
     )
     (tmp_path / "data/derived/final_handoff/summary.json").write_text(
-        json.dumps({"task_count": 8, "download_ready": True, "blocked_network": 0, "blocked_secret": 0}),
+        json.dumps({
+            "task_count": 8,
+            "download_ready": True,
+            "blocked_network": 0,
+            "blocked_secret": 0,
+        }),
         encoding="utf-8",
     )
 

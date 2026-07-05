@@ -1,0 +1,24 @@
+{
+  "cache_scope": "local_raw_only",
+  "descriptor_checksum_sha256": "1fe830ae80bfcd55f5815029331b0a4e02f5c70232408ce1e8861e3606f3498b",
+  "descriptor_snapshot_id": "snapshot_au_mbs_20260701_txt_pair_descriptor_1fe830ae80bf",
+  "item_map_checksum_sha256": "f3c1caae2bce9610a05dff435e27ec40c91e0a7d6b3adb2b8ca89929b62a5b36",
+  "item_map_snapshot_id": "snapshot_au_mbs_20260701_txt_pair_item_map_f3c1caae2bce",
+  "licence_gate": "public_reuse_review",
+  "parse_success": true,
+  "quality_warnings": [
+    "Descriptor-only rows exist and have no payment amount from the item map."
+  ],
+  "raw_files_copied_to_bundle": false,
+  "record_count": 14856,
+  "record_type": "schedule_items",
+  "review_required_before_publication": true,
+  "source_id": "au_mbs",
+  "source_version_id": "au_mbs_20260701_txt_pair",
+  "stats": {
+    "descriptor_only_rows": 2,
+    "descriptor_rows": 25630,
+    "item_map_rows": 14854,
+    "joined_rows": 14854
+  }
+}

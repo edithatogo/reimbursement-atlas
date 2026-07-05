@@ -7,6 +7,7 @@ from reimburse_atlas.registry import load_conductor_tracks, project_root
 
 
 def main() -> None:
+    """Generate GitHub Project import artefacts."""
     rows = build_github_project_items(load_conductor_tracks())
     paths = write_github_project_items(
         rows,

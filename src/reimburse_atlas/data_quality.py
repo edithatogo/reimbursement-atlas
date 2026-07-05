@@ -5,11 +5,14 @@ from __future__ import annotations
 import json
 from collections import Counter
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal, cast
 
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.models import DataQualityCheckRecord
 from reimburse_atlas.registry import project_root
+
+DataQualitySeverity = Literal["blocking", "advisory"]
+DataQualityStatus = Literal["pass", "warn", "fail", "missing"]
 
 
 def build_data_quality_checks(root: Path | None = None) -> list[DataQualityCheckRecord]:
@@ -274,10 +277,11 @@ def _publication_safety_checks(repo: Path) -> list[DataQualityCheckRecord]:
     if not manifest_path.exists():
         return []
     payload = json.loads(manifest_path.read_text(encoding="utf-8"))
-    warnings = payload.get("warnings", [])
+    warnings = cast("list[Any]", payload.get("warnings", []))
     raw_flags = 0
-    for artifact in payload.get("artifacts", []):
-        if isinstance(artifact, dict) and artifact.get("raw_source_payload"):
+    for artifact in cast("list[Any]", payload.get("artifacts", [])):
+        artifact_dict = cast("dict[str, Any]", artifact) if isinstance(artifact, dict) else None
+        if artifact_dict and artifact_dict.get("raw_source_payload"):
             raw_flags += 1
     return [
         _check(
@@ -359,7 +363,7 @@ def _tuple_foreign_key_check(
     seen: set[str] = set()
     for row in records:
         raw = row.get(field, [])
-        values = raw if isinstance(raw, list) else [raw]
+        values: list[Any] = cast("list[Any]", raw) if isinstance(raw, list) else [raw]
         seen.update(str(value) for value in values if str(value))
     missing = sorted(value for value in seen if value not in allowed)
     return _check(
@@ -382,7 +386,7 @@ def _read_jsonl(path: Path) -> list[dict[str, Any]] | None:
         if line.strip():
             loaded = json.loads(line)
             if isinstance(loaded, dict):
-                records.append(loaded)
+                records.append(cast("dict[str, Any]", loaded))
     return records
 
 
@@ -399,8 +403,8 @@ def _id_set(path: Path) -> set[str]:
 def _check(
     table_name: str,
     check_name: str,
-    severity: str,
-    status: str,
+    severity: DataQualitySeverity,
+    status: DataQualityStatus,
     observed_value: str,
     expected_value: str,
     path: Path,

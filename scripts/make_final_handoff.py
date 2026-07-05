@@ -7,6 +7,7 @@ from reimburse_atlas.registry import project_root
 
 
 def main() -> None:
+    """Generate the final handoff artefacts."""
     rows = build_final_handoff_tasks()
     paths = write_final_handoff_tasks(
         rows,

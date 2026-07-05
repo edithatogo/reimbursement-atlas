@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 from pathlib import Path
+from typing import Literal
 
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.models import (
@@ -173,11 +174,11 @@ def _topic_for_question(question: ResearchQuestionRecord) -> str:
 
 def _row(
     question: ResearchQuestionRecord,
-    linked_entity_type: str,
+    linked_entity_type: Literal["source", "dataset_candidate", "mapping_resource", "output"],
     linked_entity_id: str,
     linked_entity_label: str,
     linkage_role: str,
-    readiness_status: str,
+    readiness_status: Literal["available", "planned", "blocked", "missing", "local_only"],
     recommended_action: str,
 ) -> ResearchLinkageRecord:
     return ResearchLinkageRecord(

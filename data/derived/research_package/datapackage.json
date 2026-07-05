@@ -920,20 +920,20 @@
       }
     },
     {
-      "bytes": 6153,
+      "bytes": 7041,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "292bbcd6b6eabc85f5104eccd6479616769bc1e1afe932132fe5f0f059dd5ea0",
+      "hash": "f9aa617b19fdd977f10abe7374089e5b8139f7e0d6fc34a6fb288ce0ce3e666b",
       "mediatype": "application/json",
       "name": "local-quality-gate-specs",
       "path": "data/derived/local_quality_gates/local_quality_gate_specs.jsonl",
       "schema": {}
     },
     {
-      "bytes": 3385,
+      "bytes": 3946,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "487f0c0ea5251808aff98b8b2e48f7650662fd80e492cc78d8b5ce2fe7b8204d",
+      "hash": "556459ceebfdd136977b65fd40093dc39748cb1d1f657ae370cded6b83207b7e",
       "mediatype": "text/csv",
       "name": "local-quality-gate-specs",
       "path": "data/derived/local_quality_gates/local_quality_gate_specs.csv",
@@ -945,20 +945,20 @@
       }
     },
     {
-      "bytes": 44113,
+      "bytes": 47743,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "583956177431b1e77c82449b738faa19ecec37ec1978d04f428d3b3a87e22ee0",
+      "hash": "8391314dcf80be9bfccb4d805faecb4c3f43581ba86b72b5038968ae218ac4c4",
       "mediatype": "application/json",
       "name": "import-edges",
       "path": "data/derived/architecture/import_edges.jsonl",
       "schema": {}
     },
     {
-      "bytes": 23239,
+      "bytes": 25166,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "4c1790ee9dbda8152901bcad1c74583ec942a9b45391cb874c40868be1ab392c",
+      "hash": "41304065002715ce26a4a3eb42da7970bf4f3b28f7cf7cc9688b6f70b8739799",
       "mediatype": "text/csv",
       "name": "import-edges",
       "path": "data/derived/architecture/import_edges.csv",
@@ -973,7 +973,7 @@
       "bytes": 5058,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "6c6078bf3dd1b03a178a37dd625ae594f74c0aa9ef73e2a7e209bbff581566d1",
+      "hash": "fe432f70008cf4d90ebd3ad25add5e3bd29dbfd6b60437e706daccc774a3c6f7",
       "mediatype": "application/json",
       "name": "layer-policy",
       "path": "data/derived/architecture/layer_policy.jsonl",
@@ -983,7 +983,7 @@
       "bytes": 2581,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "d8abdbf4d351e5b08dcaae7d8e3fce93bba135d38c87e38d38fab9163eaa11dd",
+      "hash": "dc0ac6bc161793a5046549cc71f5afa3a857e7aa8c43d679b926de7ddc14088b",
       "mediatype": "text/csv",
       "name": "layer-policy",
       "path": "data/derived/architecture/layer_policy.csv",
@@ -1020,20 +1020,20 @@
       }
     },
     {
-      "bytes": 5578,
+      "bytes": 7605,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "558f1b4d332ec57d7f0dc3e61dc40451fa1951d1abedbfa991eacac0faaf8fcc",
+      "hash": "c221708734cbfcbebbcddc29d38f853329367d722f908273a7f800c9378714b8",
       "mediatype": "application/json",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.jsonl",
       "schema": {}
     },
     {
-      "bytes": 3274,
+      "bytes": 4482,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "5dadcd0f44b05f0444b2703da6d002c8dbf8d7b6fdb1d4f1ea12069fa7bc1d73",
+      "hash": "04f35d2629fccab022dca4eac190add6b8f98a5a1c683e82c29cddedc7be3fd8",
       "mediatype": "text/csv",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.csv",
@@ -1122,6 +1122,81 @@
       "mediatype": "text/csv",
       "name": "source-content-validation",
       "path": "data/derived/source_validation/source_content_validation.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 4665,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "jsonl",
+      "hash": "cdd0420e0999ee612e8d3e2d78d92695ca9782114b691aab8b1ae2b97be30ce2",
+      "mediatype": "application/json",
+      "name": "source-contract-validation",
+      "path": "data/derived/source_contracts/source_contract_validation.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 3126,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "csv",
+      "hash": "4dd28ba0c25bb87caed85bddd62bef13e476011d6d71dc6daa905973af0e1637",
+      "mediatype": "text/csv",
+      "name": "source-contract-validation",
+      "path": "data/derived/source_contracts/source_contract_validation.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 96993,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "jsonl",
+      "hash": "978e8df68c91cf6109341e08371f7d50e45f212c18e5dba7ff3e3685e8167eb4",
+      "mediatype": "application/json",
+      "name": "github-project-items",
+      "path": "data/derived/github_project/github_project_items.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 70887,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "csv",
+      "hash": "0d8154223663756bceae9e8235014d270c86620614df95eadde17701c0296ca3",
+      "mediatype": "text/csv",
+      "name": "github-project-items",
+      "path": "data/derived/github_project/github_project_items.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 4803,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "jsonl",
+      "hash": "2e04217ad74331f2470827828f3072d2c5a8b5a95d88e4c1e57a7533c09dd3f5",
+      "mediatype": "application/json",
+      "name": "final-handoff-tasks",
+      "path": "data/derived/final_handoff/final_handoff_tasks.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 3624,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "csv",
+      "hash": "3d2962e9390f92c20feb09c1e881e736220f4a82c13eabf3271d775bff4283db",
+      "mediatype": "text/csv",
+      "name": "final-handoff-tasks",
+      "path": "data/derived/final_handoff/final_handoff_tasks.csv",
       "schema": {
         "fields": [],
         "missingValues": [
@@ -1225,20 +1300,20 @@
       }
     },
     {
-      "bytes": 15895,
+      "bytes": 17993,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "9608ef8c29139ee396498eb25ef6c48db1e92cae63769b9a7842bdc114443d27",
+      "hash": "3b6d1916c9ccdbc24a91e54da15689a7cecfc8a2ace804a13179c50e18ef5f44",
       "mediatype": "application/json",
       "name": "data-quality-checks",
       "path": "data/derived/data_quality/data_quality_checks.jsonl",
       "schema": {}
     },
     {
-      "bytes": 9957,
+      "bytes": 11578,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "9bb393a4134ba66d711dbc02ef9b2bd561ec171ff4436578097fce65da9fac6d",
+      "hash": "77ac47640c717a0553a4dec98379162b7a1de0526055b4dccdcbe14f2f2722d0",
       "mediatype": "text/csv",
       "name": "data-quality-checks",
       "path": "data/derived/data_quality/data_quality_checks.csv",
@@ -1253,7 +1328,7 @@
       "bytes": 106,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "json",
-      "hash": "352c9954e379ac043705c952d7e265f3b0cbed80c38baf7f627b201a675a961f",
+      "hash": "895719b62c45a6fb64f8f3e786a469f0e16122cb7c7e520854a7ba548af12a83",
       "mediatype": "application/json",
       "name": "summary",
       "path": "data/derived/data_quality/summary.json",
@@ -1295,20 +1370,20 @@
       "schema": {}
     },
     {
-      "bytes": 4018,
+      "bytes": 6096,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "9981c108c59edcc724ed926e2020a6c04acdfce06449ab458db9ab4b7be011d6",
+      "hash": "9e7fef2673131f0749f32672dddf4181214021c118dcba8b1a5d37a9af5aea4a",
       "mediatype": "application/json",
       "name": "source-drift-report",
       "path": "data/derived/source_drift/source_drift_report.jsonl",
       "schema": {}
     },
     {
-      "bytes": 2479,
+      "bytes": 3681,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "48ff595376573677fa13c3ecda2d58379daecbae4cb929a1a05e9d974b424cd3",
+      "hash": "b787920c3bdcd8755e2da42e0b228a95496f97308791340734ad0dfe27c656cc",
       "mediatype": "text/csv",
       "name": "source-drift-report",
       "path": "data/derived/source_drift/source_drift_report.csv",
@@ -1323,27 +1398,27 @@
       "bytes": 115,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "json",
-      "hash": "7d9cc29d185623510e422f7514b83541602bedbcb3e6fbef58e669f8b9a9feb4",
+      "hash": "8e847f12a2973ac26af7e8a152782604b9f876b3c1400b38eb34ae3582b9b81d",
       "mediatype": "application/json",
       "name": "summary",
       "path": "data/derived/source_drift/summary.json",
       "schema": {}
     },
     {
-      "bytes": 64277,
+      "bytes": 68948,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "9778cab239b384e1c8c817150aed0042b28b97486a5a707079a90fd267a5cc23",
+      "hash": "d69a373e361904f8ef510b9a168357e3e7389d5010f585f40df03b9806768bd3",
       "mediatype": "application/json",
       "name": "data-dictionary",
       "path": "data/derived/data_dictionary/data_dictionary.jsonl",
       "schema": {}
     },
     {
-      "bytes": 48010,
+      "bytes": 51557,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "b1ac6b15fe99c9ac463e3872be719d4dc6eb7aecb94907bbec704776e5cdce06",
+      "hash": "e1d46059f6eeb0596325abb0faad797ce04718938c18553fb089daffabedc09c",
       "mediatype": "text/csv",
       "name": "data-dictionary",
       "path": "data/derived/data_dictionary/data_dictionary.csv",
@@ -1358,27 +1433,27 @@
       "bytes": 121,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "json",
-      "hash": "25f34eac6653bb1e7024b3a745b0e00eba62e89404ea198d4e387d820719a9c9",
+      "hash": "75d48a85ec84cbf81fd9417b0c83e3fbd61432ef24bc98ed58beb04b87ebc367",
       "mediatype": "application/json",
       "name": "summary",
       "path": "data/derived/data_dictionary/summary.json",
       "schema": {}
     },
     {
-      "bytes": 42348,
+      "bytes": 50122,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "json",
-      "hash": "d62cc6fc18f488ce17a5d0eb662952e2c99d3501c74d5a242e2e5bb6e9f666e4",
+      "hash": "fd4475b3dda99f4e146761c499427eafe56092d9c929cde95cdadc49801e2467",
       "mediatype": "application/json",
       "name": "datapackage",
       "path": "data/derived/research_package/datapackage.json",
       "schema": {}
     },
     {
-      "bytes": 45544,
+      "bytes": 54135,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "json",
-      "hash": "6aad09c350423e0319c44567707c023d0caa488edaaaa756dad30a744ff6982a",
+      "hash": "58374d59bf7ef08999819e027c9d8f87ab03c6d3a8f0f79b75d85d2dcb1f5068",
       "mediatype": "application/json",
       "name": "ro-crate-metadata",
       "path": "data/derived/research_package/ro-crate-metadata.json",
@@ -1412,6 +1487,26 @@
       "mediatype": "application/json",
       "name": "v16-validation-run",
       "path": "data/derived/v16_validation_run.json",
+      "schema": {}
+    },
+    {
+      "bytes": 2569,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "json",
+      "hash": "4810e161e912676803777b1bc30aa061f430aa724a8f6c4a5bcca41413883285",
+      "mediatype": "application/json",
+      "name": "v17-validation-run",
+      "path": "data/derived/v17_validation_run.json",
+      "schema": {}
+    },
+    {
+      "bytes": 2054,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "json",
+      "hash": "b9572f64b8bd517fb24755944a29e88dde7b20aae600c2574aa525feeb1aefcc",
+      "mediatype": "application/json",
+      "name": "v18-validation-run",
+      "path": "data/derived/v18_validation_run.json",
       "schema": {}
     }
   ],

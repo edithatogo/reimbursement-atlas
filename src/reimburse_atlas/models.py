@@ -615,7 +615,13 @@ class FinalHandoffTaskRecord(FrozenModel):
         "automation",
     ]
     title: NonEmptyStr
-    status: Literal["ready_local", "blocked_network", "blocked_secret", "blocked_review", "complete"]
+    status: Literal[
+        "ready_local",
+        "blocked_network",
+        "blocked_secret",
+        "blocked_review",
+        "complete",
+    ]
     required_environment: NonEmptyStr
     command: NonEmptyStr
     evidence_path: NonEmptyStr

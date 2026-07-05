@@ -1,0 +1,26 @@
+{
+  "bundle_id": "bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae",
+  "derived_files": [
+    "au_mbs_20260701_txt_pair_schedule_items.jsonl",
+    "au_mbs_20260701_txt_pair_schedule_items.csv",
+    "source_snapshots.jsonl",
+    "validation_report.json"
+  ],
+  "licence_gate": "public_reuse_review",
+  "manifest_version": "reviewed-source-mbs-txt-pair-bundle-v1",
+  "project": "reimbursement-atlas-conductor",
+  "raw_cache_scope": "local_raw_only",
+  "raw_files_copied": false,
+  "record_count": 14856,
+  "snapshot_ids": [
+    "snapshot_au_mbs_20260701_txt_pair_item_map_f3c1caae2bce",
+    "snapshot_au_mbs_20260701_txt_pair_descriptor_1fe830ae80bf"
+  ],
+  "source_id": "au_mbs",
+  "source_version_id": "au_mbs_20260701_txt_pair",
+  "warnings": [
+    "Confirm MBS reuse terms before publishing derived row sets.",
+    "Do not publish raw local_path values if they expose private filesystem locations.",
+    "These derived rows are general-information evidence, not legal Medicare benefits rules."
+  ]
+}
