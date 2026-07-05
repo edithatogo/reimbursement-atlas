@@ -1,9 +1,9 @@
 category,evidence,id,recommended_action,required,status
-code_quality,profile=ci blocking_failures=0,local_quality_profile,Inspect data/derived/local_quality_gates for failing blocking gates.,True,pass
+code_quality,profile=ci blocking_failures=2,local_quality_profile,Inspect data/derived/local_quality_gates for failing blocking gates.,True,fail
 code_quality,local_quality status=passed return_code=0,ruff_check,No action required.,True,pass
-code_quality,local_quality status=passed return_code=0,ruff_format_check,No action required.,True,pass
+code_quality,local_quality status=failed return_code=1,ruff_format_check,Fix ruff_format_check before public release.,True,fail
 code_quality,local_quality status=passed return_code=0,basedpyright,No action required.,True,pass
-code_quality,local_quality status=passed return_code=0,pytest_coverage,No action required.,True,pass
+code_quality,local_quality status=failed return_code=1,pytest_coverage,Fix pytest_coverage before public release.,True,fail
 security,local_quality status=passed return_code=0,bandit,No action required.,True,pass
 data_governance,local_quality status=passed return_code=0,public_data_policy,No action required.,True,pass
 data_governance,local_quality status=passed return_code=0,seed_sync,No action required.,True,pass
@@ -15,9 +15,9 @@ data_governance,local_quality status=passed return_code=0,data_dictionary,No act
 data_governance,local_quality status=passed return_code=0,evidence_readiness,No action required.,True,pass
 data_governance,local_quality status=passed return_code=0,source_drift,No action required.,True,pass
 data_governance,checks=41 blocking_failures=0,data_quality_summary,Resolve blocking data-quality checks before release.,True,pass
-data_governance,table_count=123 total_rows=3205,data_dictionary_summary,Regenerate the data dictionary after publication-manifest changes.,True,pass
+data_governance,table_count=135 total_rows=3257,data_dictionary_summary,Regenerate the data dictionary after publication-manifest changes.,True,pass
 data_governance,blocked=0 prototype_ready=5,evidence_readiness_summary,Resolve blocked research questions before evidence release.,True,pass
-data_governance,blocking_failure_count=0 warnings=0,source_drift_summary,Review source drift failures before release.,True,pass
+data_governance,blocking_failure_count=1 warnings=1,source_drift_summary,Review source drift failures before release.,True,fail
 data_governance,validations=7 missing=0 failures=0,source_content_validation_summary,"Download missing public files in a network-enabled environment, then rerun validation.",True,pass
 data_governance,contracts=7 missing=1 failures=0,source_contract_validation_summary,Download sources and rerun contract validation before real parsing.,True,warn
 release,project_items=136 issue_count=127,github_project_export_summary,Import generated rows into GitHub Projects once repository credentials exist.,True,pass
@@ -32,5 +32,5 @@ toolchain,external_quality outcome=passed return_code=0,mojo_available_uv_tool,N
 supply_chain,fail=0 warn=0 pass=52,workflow_policy_matrix,Resolve fail records; gradually burn down warn records before hardened release.,True,pass
 supply_chain,"All workflow actions are already SHA-pinned, local, or docker references.",action_sha_pinning,Keep action pin resolver in scheduled CI.,False,pass
 supply_chain,sbom_count=2 component_count=661,sbom_generation,Attach SBOM files to release artefacts and attestations.,True,pass
-architecture,violations=0 cycles=0 unknown_layers=0,architecture_boundaries,"Fix layer violations, remove cycles, or update the layer map deliberately.",True,pass
-data_governance,artifact_count=123 warning_count=0,publication_manifest,Review licence gates and warnings before publishing derived datasets.,True,pass
+architecture,violations=3 cycles=0 unknown_layers=2,architecture_boundaries,"Fix layer violations, remove cycles, or update the layer map deliberately.",True,fail
+data_governance,artifact_count=139 warning_count=0,publication_manifest,Review licence gates and warnings before publishing derived datasets.,True,pass

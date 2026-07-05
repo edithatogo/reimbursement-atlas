@@ -11,7 +11,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
+- [ ] A data-quality gate command and summary outputs exist for seed and derived tables.
 - [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [ ] Tests cover minimum-row, uniqueness, referential-integrity and publication-safety checks.
+- [ ] Documentation or Conductor context records the release-blocker semantics.

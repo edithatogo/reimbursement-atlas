@@ -11,7 +11,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
+- [ ] A source/schema drift report exists for JSONL and CSV mirror pairs.
 - [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [ ] Tests or validation evidence cover row-count and schema-drift detection.
+- [ ] Documentation or Conductor context records the release-review action for drift changes.

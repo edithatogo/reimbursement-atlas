@@ -151,7 +151,7 @@ Tracked functions/issues:
 - `func_medicine_opacity_index` — Implement medicine price-opacity scorecard (planned, data_pipeline)
 
 
-## Data quality, source validation and evidence readiness
+## [x] track_data_quality_evidence: Data quality, source validation and evidence readiness
 
 This track makes source-content validation, data-quality checks and research-question linkage matrices first-class release gates. It ensures live downloaded files are validated locally, seed and derived tables pass table-level expectations, and every research question can be traced to sources, mappings and output artefacts before OSF/Hugging Face publication.
 ## v17 added gates

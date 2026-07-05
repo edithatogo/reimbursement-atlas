@@ -11,7 +11,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
+- [ ] An evidence-readiness matrix exists for each research question.
 - [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [ ] Tests or validation evidence cover protocol, linkage, validation and blocker inputs.
+- [ ] Documentation or Conductor context records the prototype-ready versus evidence-ready logic.
