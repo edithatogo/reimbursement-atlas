@@ -26,3 +26,10 @@ In the current sandbox the local Python, Node, dashboard, SBOM, architecture and
 - `zizmor` correctly flags tag-pinned GitHub Actions until the SHA pin plan is resolved.
 
 These are tracked as evidence rather than hidden in prose.
+
+## Source contract posture
+
+`source_contract_validation_summary` is intentionally advisory until real reviewed-source
+downloads are staged in `data/raw_live/` and validated locally. A warning there means the
+repo has recorded the parser/contract boundary correctly, not that release readiness is
+failing.

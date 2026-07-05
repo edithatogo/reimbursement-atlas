@@ -30,3 +30,8 @@ apps/dashboard/public/data/source_contract_validation.csv
 ## Release posture
 
 A missing local raw file is a warning in the current sandbox because source hosts are network-blocked. A failed contract is blocking: it means the downloaded file looks different from the parser assumption and must be reviewed before parsing.
+
+When release-readiness reports `source_contract_validation_summary` as a warning, treat
+that as an expected live-source dependency. The warning should remain until a reviewed
+download is available under `data/raw_live/` and the contract check can be rerun on the
+real file.

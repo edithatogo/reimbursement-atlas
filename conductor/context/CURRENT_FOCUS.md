@@ -119,3 +119,10 @@ Immediate implementation focus:
 3. Import `.github/generated-issues` and `data/derived/github_project/github_project_items.csv` into GitHub Issues/Projects once credentials exist.
 4. Use `data/derived/final_handoff/final_handoff_tasks.csv` to execute the remaining network/credential/review-dependent work.
 5. Regenerate release-readiness after the source, security, OSF and Hugging Face gates complete.
+
+## v19 follow-up
+
+Local quality and release readiness are now green. The only remaining contract warning is
+advisory and expected until a reviewed live-source download is staged in `data/raw_live/`
+and validated locally. Next useful work is live-source acquisition, contract validation
+on the real files, and then a refresh of the source-contract and evidence-ready outputs.

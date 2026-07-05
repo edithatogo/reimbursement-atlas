@@ -29,3 +29,7 @@ apps/dashboard/public/data/final_handoff_tasks.csv
 8. Regenerate release-readiness after the above gates complete.
 
 The downloadable archive is ready for local continuation. Public-release readiness still requires the network, credential and review gates to be completed.
+
+Current release posture: the repo is public-release ready for local gates, while the
+remaining `source_contract_validation_summary` warning stays advisory until a real
+reviewed-source download exists.
