@@ -48,28 +48,23 @@ jobs:
             fi
             echo "Dashboard dependencies have available updates; recorded in npm_outdated_raw.json."
           fi
-          node <<'NODE'
-          const fs = require('node:fs');
-          const path = require('node:path');
-          const rawPath = path.resolve('../../data/derived/stack_canary/npm_outdated_raw.json');
-          const summaryPath = path.resolve('../../data/derived/stack_canary/summary.json');
-          const raw = fs.existsSync(rawPath) ? JSON.parse(fs.readFileSync(rawPath, 'utf8') || '{}') : {};
-          const entries = Object.entries(raw).map(([name, value]) => ({
-            name,
-            current: value.current ?? null,
-            wanted: value.wanted ?? null,
-            latest: value.latest ?? null,
-            location: value.location ?? null,
-          }));
-          const summary = {
-            generated_at: new Date().toISOString(),
-            dashboard_dependency_drift_count: entries.length,
-            dashboard_dependency_drift: entries,
-            dashboard_dependencies_current: entries.length === 0,
-          };
-          fs.writeFileSync(summaryPath, JSON.stringify(summary, null, 2) + '\n');
-          fs.writeFileSync(process.env.GITHUB_OUTPUT, `drift_count=${entries.length}\nsummary_path=${summaryPath}\n`);
-          NODE
+          cd ../..
+          PYTHONPATH=src uv run --all-extras python scripts/make_stack_canary_report.py \
+            --raw-json data/derived/stack_canary/npm_outdated_raw.json \
+            --summary-json data/derived/stack_canary/summary.json \
+            --issue-body data/derived/stack_canary/issue_body.md
+          drift_count="$(python - <<'PY'
+          import json
+          from pathlib import Path
+          summary = json.loads(Path('data/derived/stack_canary/summary.json').read_text(encoding='utf-8'))
+          print(summary['dashboard_dependency_drift_count'])
+          PY
+          )"
+          {
+            echo "drift_count=${drift_count}"
+            echo "summary_path=data/derived/stack_canary/summary.json"
+            echo "issue_body_path=data/derived/stack_canary/issue_body.md"
+          } >> "$GITHUB_OUTPUT"
       - name: Upload stack canary summary
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
@@ -86,34 +81,14 @@ jobs:
           import json
           import os
           import urllib.error
-          import urllib.parse
           import urllib.request
           from pathlib import Path
 
           repo = os.environ["GITHUB_REPOSITORY"]
           token = os.environ["GITHUB_TOKEN"]
-          summary_path = Path("data/derived/stack_canary/summary.json")
-          summary = json.loads(summary_path.read_text(encoding="utf-8"))
+          summary = json.loads(Path("data/derived/stack_canary/summary.json").read_text(encoding="utf-8"))
+          body = Path("data/derived/stack_canary/issue_body.md").read_text(encoding="utf-8")
           title = "Stack canary: dependency/runtime drift detected"
-          body = "\n".join(
-              [
-                  "# Stack canary drift",
-                  "",
-                  "The scheduled canary detected one or more dependency/runtime updates.",
-                  "",
-                  "## Summary",
-                  "",
-                  f"- Generated at: {summary['generated_at']}",
-                  f"- Drift count: {summary['dashboard_dependency_drift_count']}",
-                  "",
-                  "## Drift",
-                  "",
-              ]
-              + [
-                  f"- {item['name']}: current={item['current']} wanted={item['wanted']} latest={item['latest']}"
-                  for item in summary["dashboard_dependency_drift"]
-              ]
-          )
 
           def request(method: str, url: str, payload: dict[str, object] | None = None):
               data = None if payload is None else json.dumps(payload).encode("utf-8")
