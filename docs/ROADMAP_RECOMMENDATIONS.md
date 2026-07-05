@@ -22,6 +22,7 @@ Implementation priorities:
 8. First policy demonstrators.
 9. GitHub Action SHA pinning and blocking zizmór.
 10. Network-enabled pip-audit and official Pixi validation.
+11. A canary update lane for Python 3.14 patch releases, current Node/Astro dependency bumps, and Mojo toolchain refreshes before they hit the main release branch.
 
 ## v15 implementation recommendation update
 

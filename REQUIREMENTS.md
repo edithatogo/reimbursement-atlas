@@ -24,7 +24,7 @@ Build a bleeding-edge, reproducible comparative reimbursement atlas that maps pu
 - Use `pyproject.toml`, `uv_build` and Pixi.
 - Use Ruff with strict all-rule selection, preview enabled, and explicit ignores.
 - Use basedpyright in strict mode.
-- Target Python 3.13+.
+- Target Python 3.14 as the primary runtime; keep Python 3.13 only as a transient sandbox fallback until 3.14 is available in all required environments.
 - Include tests across unit, property, integration, end-to-end and smoke layers.
 - Enforce target coverage above 90%.
 - Include mutation testing with mutmut and property testing with Hypothesis.
@@ -52,6 +52,7 @@ Build a bleeding-edge, reproducible comparative reimbursement atlas that maps pu
 - A GitHub Projects automation script mapping Conductor roadmap epics into issues.
 - A Hugging Face dataset card and upload workflow for permissive seed data.
 - A Hugging Face Space dashboard deployment workflow.
+- Keep the dashboard and runtime dependency stacks on the current release train, with lockfile-backed reproducibility in CI.
 
 ## Could have
 
