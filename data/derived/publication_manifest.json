@@ -1,5 +1,5 @@
 {
-  "artifact_count": 135,
+  "artifact_count": 139,
   "artifacts": [
     {
       "byte_size": 38228,
@@ -722,6 +722,54 @@
       "table_name": "acquisition_steps"
     },
     {
+      "byte_size": 1814,
+      "checksum_sha256": "165d23c6ac27764d5fb4d5c19893cd3fea3d2636147b44144c6e386568b088a1",
+      "contains_raw_source_payload": false,
+      "file_format": "jsonl",
+      "licence_gate": "public_reuse_review",
+      "notes": "Derived artefact; review source-specific licence notes before external publication.",
+      "publication_scope": "public_derived_candidate",
+      "relative_path": "data/derived/policy_demonstrators/policy_briefs.jsonl",
+      "row_count": 3,
+      "table_name": "policy_briefs"
+    },
+    {
+      "byte_size": 1653,
+      "checksum_sha256": "b64d169941c5a4ad8b713d65f04e0f90018e862772250171f32bbf1b9ed40fa1",
+      "contains_raw_source_payload": false,
+      "file_format": "csv",
+      "licence_gate": "public_reuse_review",
+      "notes": "Derived artefact; review source-specific licence notes before external publication.",
+      "publication_scope": "public_derived_candidate",
+      "relative_path": "data/derived/policy_demonstrators/policy_briefs.csv",
+      "row_count": 3,
+      "table_name": "policy_briefs"
+    },
+    {
+      "byte_size": 1929,
+      "checksum_sha256": "71de5a32af42b47b44b8d1d8bd8476ec6e8aa2d9a6e936e2ed53f5ac3996ed0b",
+      "contains_raw_source_payload": false,
+      "file_format": "md",
+      "licence_gate": "public_reuse_review",
+      "notes": "Derived artefact; review source-specific licence notes before external publication.",
+      "publication_scope": "public_derived_candidate",
+      "relative_path": "data/derived/policy_demonstrators/policy_briefs.md",
+      "row_count": 0,
+      "table_name": "policy_briefs"
+    },
+    {
+      "byte_size": 155,
+      "checksum_sha256": "45132c582cc9cf089b61f44bb99b9b9bcec1a028eaa8e3a33fed1bb6b41e7062",
+      "contains_raw_source_payload": false,
+      "file_format": "json",
+      "licence_gate": "public_reuse_review",
+      "notes": "Derived artefact; review source-specific licence notes before external publication.",
+      "publication_scope": "public_derived_candidate",
+      "relative_path": "data/derived/policy_demonstrators/summary.json",
+      "row_count": 0,
+      "table_name": "summary"
+    },
+    {
       "byte_size": 3993,
       "checksum_sha256": "103453e0b5cd436f63a1c512487c0b4c17cca8a728274c48054e5bd438552bea",
       "contains_raw_source_payload": false,
@@ -1059,7 +1107,7 @@
     },
     {
       "byte_size": 7483,
-      "checksum_sha256": "75d0f924c3580753401f34c212368d7851664db3388d60faec33f11f41a2abd3",
+      "checksum_sha256": "54b54d169e8c26e8d8df4d3e73034ca31975c9bf537419a613f3860425566518",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "public_reuse_review",
@@ -1071,7 +1119,7 @@
     },
     {
       "byte_size": 4360,
-      "checksum_sha256": "c4e3784accef7f143a55e080d01294df2c631f06ecf755ff1e8216233d6c48c4",
+      "checksum_sha256": "05438eec4c3cbe38d904032204b89deef51bdb7eb2470ef1507fb17f24f714f5",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",

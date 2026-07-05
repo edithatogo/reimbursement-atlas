@@ -113,7 +113,7 @@ Tracked functions/issues:
 - `func_mapping_review_ui` — Build dashboard mapping adjudication views (prototype, dashboard)
 - `func_gold_standard_mappings` — Add mapping gold-standard and negative-control datasets (planned, data_pipeline)
 
-## track_ci_cd_supply_chain: CI/CD and supply-chain hardening
+## [~] track_ci_cd_supply_chain: CI/CD and supply-chain hardening
 
 Priority: **must**  
 Phase: `hardening`  
@@ -131,7 +131,7 @@ Tracked functions/issues:
 - `func_action_sha_pin_bot` — Automate GitHub Action SHA pinning (prototype, github_action)
 - `func_release_attestation_verify` — Add consumer-side artifact attestation verification (prototype, github_action)
 
-## track_policy_demonstrators: First policy demonstrators
+## [x] track_policy_demonstrators: First policy demonstrators
 
 Priority: **must**  
 Phase: `analysis`  

@@ -199,6 +199,12 @@ def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:  
         if table_path.exists():
             source_tables[f"vertical_{table_name}"] = _read_jsonl(table_path)
 
+    demonstrator_dir = root / "data" / "derived" / "policy_demonstrators"
+    for table_name in ("policy_briefs",):
+        table_path = demonstrator_dir / f"{table_name}.jsonl"
+        if table_path.exists():
+            source_tables[f"policy_demonstrators_{table_name}"] = _read_jsonl(table_path)
+
     derived_jsonl_tables = {
         "repo_workflow_uses": root / "data" / "derived" / "repo_automation" / "workflow_uses.jsonl",
         "repo_workflow_policy": root

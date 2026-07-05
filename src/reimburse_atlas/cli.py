@@ -535,6 +535,67 @@ def analyses() -> None:
     console.print(table)
 
 
+@app.command("policy-demonstrators")
+def policy_demonstrators(
+    output_dir: Annotated[
+        Path,
+        typer.Option(help="Directory for policy-demonstrator artefacts."),
+    ] = (project_root() / "data" / "derived" / "policy_demonstrators"),
+) -> None:
+    """Generate the first policy demonstrator briefs from local fixtures."""
+    from reimburse_atlas.demonstrators import build_policy_demonstrator_briefs
+    from reimburse_atlas.parsers import (
+        parse_cms_asp_csv,
+        parse_cms_clfs_csv,
+        parse_cms_pfs_csv,
+        parse_mbs_xml,
+        parse_nhs_genomic_directory_csv,
+        parse_pbs_csv,
+    )
+
+    fixtures = project_root() / "tests" / "fixtures"
+    parsed_sources = {
+        "au_mbs": parse_mbs_xml(fixtures / "mbs_fragment.xml"),
+        "us_cms_clfs": parse_cms_clfs_csv(fixtures / "cms_clfs_fixture.csv"),
+        "us_cms_pfs": parse_cms_pfs_csv(fixtures / "cms_pfs_fixture.csv"),
+        "au_pbs": parse_pbs_csv(fixtures / "pbs_fixture.csv"),
+        "us_cms_asp": parse_cms_asp_csv(fixtures / "cms_asp_fixture.csv"),
+        "uk_genomic_test_directory": parse_nhs_genomic_directory_csv(
+            fixtures / "nhs_genomic_directory_fixture.csv"
+        ),
+    }
+    briefs = build_policy_demonstrator_briefs(parsed_sources)
+    from reimburse_atlas.io import pydantic_rows, write_csv, write_jsonl
+
+    rows = pydantic_rows(briefs)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    write_jsonl(rows, output_dir / "policy_briefs.jsonl")
+    write_csv(rows, output_dir / "policy_briefs.csv")
+    (output_dir / "summary.json").write_text(
+        json.dumps(
+            {
+                "brief_count": len(briefs),
+                "source_count": len(parsed_sources),
+                "brief_ids": [brief.demonstrator_id for brief in briefs],
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    console.print_json(
+        json.dumps(
+            {
+                "brief_count": len(briefs),
+                "source_count": len(parsed_sources),
+                "output_dir": str(output_dir),
+            },
+            indent=2,
+        )
+    )
+
+
 @app.command("score-sources")
 def score_sources_command(
     limit: Annotated[int, typer.Option(help="Number of rows to show.")] = 20,

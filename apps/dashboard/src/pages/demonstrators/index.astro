@@ -1,0 +1,24 @@
+---
+import DataTable from "../../components/DataTable.astro";
+import Layout from "../../components/Layout.astro";
+---
+
+<Layout title="Reimbursement Atlas policy demonstrators">
+  <h1>Policy demonstrators</h1>
+  <p>
+    These generated briefs are prototype analyses only. They are built from local fixture sources
+    and keep missing-source caveats visible in the output rather than hiding them in prose.
+  </p>
+  <DataTable
+    title="Policy briefs"
+    fileName="policy_briefs.csv"
+    columns={[
+      "demonstrator_id",
+      "title",
+      "sources_compared",
+      "item_count",
+      "metric_summary",
+      "caveats",
+    ]}
+  />
+</Layout>

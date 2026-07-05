@@ -1,7 +1,7 @@
 {
   "duckdb_path": "seed_lake.duckdb",
   "parquet_enabled": true,
-  "table_count": 55,
+  "table_count": 56,
   "tables": [
     {
       "csv_path": "source_registry/source_registry.csv",
@@ -244,6 +244,14 @@
       "sha256": "a59f83e52423f3e85a9a36b66a06fbc0626ce277d25390126294b17a27987534"
     },
     {
+      "csv_path": "policy_demonstrators_policy_briefs/policy_demonstrators_policy_briefs.csv",
+      "jsonl_path": "policy_demonstrators_policy_briefs/policy_demonstrators_policy_briefs.jsonl",
+      "name": "policy_demonstrators_policy_briefs",
+      "parquet_path": "policy_demonstrators_policy_briefs/policy_demonstrators_policy_briefs.parquet",
+      "rows": 3,
+      "sha256": "165d23c6ac27764d5fb4d5c19893cd3fea3d2636147b44144c6e386568b088a1"
+    },
+    {
       "csv_path": "repo_workflow_uses/repo_workflow_uses.csv",
       "jsonl_path": "repo_workflow_uses/repo_workflow_uses.jsonl",
       "name": "repo_workflow_uses",
@@ -337,7 +345,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 35,
-      "sha256": "75d0f924c3580753401f34c212368d7851664db3388d60faec33f11f41a2abd3"
+      "sha256": "54b54d169e8c26e8d8df4d3e73034ca31975c9bf537419a613f3860425566518"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
