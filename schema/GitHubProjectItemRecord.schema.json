@@ -1,0 +1,114 @@
+{
+  "additionalProperties": false,
+  "description": "Generated GitHub Project item import row for issue/project creation.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "item_type": {
+      "enum": [
+        "issue",
+        "epic",
+        "milestone",
+        "track",
+        "release_gate"
+      ],
+      "title": "Item Type",
+      "type": "string"
+    },
+    "title": {
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "body_path": {
+      "minLength": 1,
+      "title": "Body Path",
+      "type": "string"
+    },
+    "epic_id": {
+      "minLength": 1,
+      "title": "Epic Id",
+      "type": "string"
+    },
+    "epic_title": {
+      "minLength": 1,
+      "title": "Epic Title",
+      "type": "string"
+    },
+    "track_id": {
+      "anyOf": [
+        {
+          "pattern": "^[a-z0-9_]+$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Track Id"
+    },
+    "status": {
+      "enum": [
+        "todo",
+        "ready",
+        "blocked",
+        "done"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "priority": {
+      "enum": [
+        "must",
+        "should",
+        "could",
+        "wont",
+        "unknown"
+      ],
+      "title": "Priority",
+      "type": "string"
+    },
+    "labels": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Labels",
+      "type": "array"
+    },
+    "milestone": {
+      "minLength": 1,
+      "title": "Milestone",
+      "type": "string"
+    },
+    "project_view": {
+      "minLength": 1,
+      "title": "Project View",
+      "type": "string"
+    },
+    "recommended_action": {
+      "minLength": 1,
+      "title": "Recommended Action",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "item_type",
+    "title",
+    "body_path",
+    "epic_id",
+    "epic_title",
+    "status",
+    "priority",
+    "milestone",
+    "project_view",
+    "recommended_action"
+  ],
+  "title": "GitHubProjectItemRecord",
+  "type": "object"
+}

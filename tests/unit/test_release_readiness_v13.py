@@ -54,6 +54,9 @@ def test_release_readiness_report_reads_generated_evidence(tmp_path: Path) -> No
     (tmp_path / "data/derived/architecture").mkdir(parents=True)
     (tmp_path / "data/derived/data_quality").mkdir(parents=True)
     (tmp_path / "data/derived/source_validation").mkdir(parents=True)
+    (tmp_path / "data/derived/source_contracts").mkdir(parents=True)
+    (tmp_path / "data/derived/github_project").mkdir(parents=True)
+    (tmp_path / "data/derived/final_handoff").mkdir(parents=True)
     (tmp_path / "data/derived/data_dictionary").mkdir(parents=True)
     (tmp_path / "data/derived/evidence_readiness").mkdir(parents=True)
     (tmp_path / "data/derived/source_drift").mkdir(parents=True)
@@ -140,6 +143,18 @@ def test_release_readiness_report_reads_generated_evidence(tmp_path: Path) -> No
     )
     (tmp_path / "data/derived/source_validation/summary.json").write_text(
         json.dumps({"validation_count": 2, "missing": 0, "blocking_failures": 0}),
+        encoding="utf-8",
+    )
+    (tmp_path / "data/derived/source_contracts/summary.json").write_text(
+        json.dumps({"contract_count": 2, "missing": 0, "blocking_failures": 0}),
+        encoding="utf-8",
+    )
+    (tmp_path / "data/derived/github_project/summary.json").write_text(
+        json.dumps({"project_item_count": 120, "issue_count": 110}),
+        encoding="utf-8",
+    )
+    (tmp_path / "data/derived/final_handoff/summary.json").write_text(
+        json.dumps({"task_count": 8, "download_ready": True, "blocked_network": 0, "blocked_secret": 0}),
         encoding="utf-8",
     )
 

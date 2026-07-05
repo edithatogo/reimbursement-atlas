@@ -107,3 +107,15 @@ Immediate implementation focus:
 
 The current focus is now evidence-grade transition: run the hardened source-download plan in a network-enabled environment, then use the evidence-readiness matrix to decide which research question can move from `prototype_ready` to `evidence_ready`. Source/schema drift and data dictionary outputs must be regenerated before any Hugging Face, OSF, Zenodo or GitHub release artefact is published.
 
+
+## v18 focus update
+
+The repo is ready for local download and continuation. v18 adds source-specific contract checks, GitHub Project import rows and a final handoff checklist. The final handoff table is the authoritative list of remaining tasks that require a network-enabled checkout, repository secrets or human licence/research review.
+
+Immediate implementation focus:
+
+1. Run `source-download-plan` and generated curl commands on a network-enabled local machine.
+2. Rerun `source-validation` and `source-contracts` before any reviewed-source bundle is parsed.
+3. Import `.github/generated-issues` and `data/derived/github_project/github_project_items.csv` into GitHub Issues/Projects once credentials exist.
+4. Use `data/derived/final_handoff/final_handoff_tasks.csv` to execute the remaining network/credential/review-dependent work.
+5. Regenerate release-readiness after the source, security, OSF and Hugging Face gates complete.

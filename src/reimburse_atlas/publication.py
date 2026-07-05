@@ -133,6 +133,12 @@ DEFAULT_PUBLICATION_PATHS = (
     Path("data/derived/source_downloads/download_attempts.csv"),
     Path("data/derived/source_validation/source_content_validation.jsonl"),
     Path("data/derived/source_validation/source_content_validation.csv"),
+    Path("data/derived/source_contracts/source_contract_validation.jsonl"),
+    Path("data/derived/source_contracts/source_contract_validation.csv"),
+    Path("data/derived/github_project/github_project_items.jsonl"),
+    Path("data/derived/github_project/github_project_items.csv"),
+    Path("data/derived/final_handoff/final_handoff_tasks.jsonl"),
+    Path("data/derived/final_handoff/final_handoff_tasks.csv"),
     Path("data/derived/osf/component_plan.jsonl"),
     Path("data/derived/osf/component_plan.csv"),
     Path("data/derived/osf/osf_publication_manifest.json"),
@@ -160,6 +166,7 @@ DEFAULT_PUBLICATION_PATHS = (
     Path("data/derived/v15_validation_run.json"),
     Path("data/derived/v16_validation_run.json"),
     Path("data/derived/v17_validation_run.json"),
+    Path("data/derived/v18_validation_run.json"),
 )
 
 

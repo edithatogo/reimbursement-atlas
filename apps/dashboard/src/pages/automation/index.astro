@@ -64,8 +64,18 @@ import Layout from "../../components/Layout.astro";
     columns={["source_module", "target_module", "source_layer", "target_layer", "allowed", "reason"]}
   />
   <DataTable
+    title="GitHub Project import items"
+    fileName="github_project_items.csv"
+    columns={["item_type", "title", "epic_id", "status", "priority", "milestone", "project_view"]}
+  />
+  <DataTable
     title="Release-readiness gates"
     fileName="release_gates.csv"
     columns={["id", "category", "status", "required", "evidence", "recommended_action"]}
+  />
+  <DataTable
+    title="Final handoff tasks"
+    fileName="final_handoff_tasks.csv"
+    columns={["task_group", "title", "status", "required_environment", "command", "recommended_action"]}
   />
 </Layout>

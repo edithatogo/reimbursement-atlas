@@ -26,6 +26,11 @@ jobs:
         run: uv run --all-extras python scripts/run_local_quality_gates.py --profile ci
       - name: External gate classification
         run: uv run --all-extras python scripts/run_external_quality_gates.py || true
+      - name: Source contracts, GitHub Project export, and final handoff
+        run: |
+          uv run --all-extras python scripts/make_source_contracts.py
+          uv run --all-extras python scripts/make_github_project_export.py
+          uv run --all-extras python scripts/make_final_handoff.py
       - name: Architecture report
         run: uv run --all-extras python scripts/make_architecture_report.py
       - name: Release readiness matrix
@@ -40,4 +45,7 @@ jobs:
             data/derived/external_quality_gates.*
             data/derived/architecture/
             data/derived/release_readiness/
+            data/derived/source_contracts/
+            data/derived/github_project/
+            data/derived/final_handoff/
           retention-days: 14

@@ -82,3 +82,13 @@ source-drift:
 .PHONY: data-dictionary
 data-dictionary:
 	pixi run data-dictionary
+
+.PHONY: source-contracts github-project-export final-handoff
+source-contracts:
+	pixi run source-contracts
+
+github-project-export:
+	pixi run github-project-export
+
+final-handoff:
+	pixi run final-handoff

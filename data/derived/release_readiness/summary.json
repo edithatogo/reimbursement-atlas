@@ -1,11 +1,11 @@
 {
   "blocked_count": 1,
   "fail_count": 1,
-  "gate_count": 32,
+  "gate_count": 35,
   "missing_count": 1,
-  "pass_count": 26,
+  "pass_count": 28,
   "public_release_ready": false,
   "required_blocker_count": 1,
   "schema_version": "release-readiness-v1",
-  "warn_count": 3
+  "warn_count": 4
 }

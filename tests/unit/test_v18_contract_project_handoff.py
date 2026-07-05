@@ -1,0 +1,125 @@
+from __future__ import annotations
+
+import shutil
+from pathlib import Path
+
+from reimburse_atlas.final_handoff import build_final_handoff_tasks, write_final_handoff_tasks
+from reimburse_atlas.github_project import build_github_project_items, write_github_project_items
+from reimburse_atlas.registry import load_conductor_tracks, load_source_files
+from reimburse_atlas.source_contracts import (
+    build_source_contract_validations,
+    validate_path_against_contract,
+    write_source_contract_validations,
+)
+
+ROOT = Path(__file__).resolve().parents[2]
+
+
+def _source_file(source_file_id: str):
+    return next(record for record in load_source_files() if record.id == source_file_id)
+
+
+def test_mbs_source_contract_passes_fixture() -> None:
+    record = _source_file("au_mbs_20260701_imap_txt")
+    fixture = ROOT / "tests" / "fixtures" / "mbs_txt" / "20260701_MBSONLINE_IMAP_fixture.TXT"
+    result = validate_path_against_contract(record, fixture)
+    assert result.contract_status == "pass"
+    assert "item_number" in result.observed_columns
+    assert "schedule_fee" in result.observed_columns
+
+
+def test_source_contracts_report_missing_for_absent_raw_files(tmp_path: Path) -> None:
+    rows = build_source_contract_validations(load_source_files(), raw_dir=tmp_path)
+    assert any(row.contract_status == "missing" for row in rows)
+    assert any(row.contract_status == "skipped" for row in rows)
+    paths = write_source_contract_validations(rows, output_dir=tmp_path / "contracts")
+    assert all(path.exists() for path in paths)
+
+
+def test_source_contracts_use_local_raw_file_when_present(tmp_path: Path) -> None:
+    raw_dir = tmp_path / "raw_live"
+    target_dir = raw_dir / "au_mbs"
+    target_dir.mkdir(parents=True)
+    shutil.copy2(
+        ROOT / "tests" / "fixtures" / "mbs_txt" / "20260701_MBSONLINE_IMAP_fixture.TXT",
+        target_dir / "20260701_MBSONLINE_IMAP.TXT",
+    )
+    rows = build_source_contract_validations(load_source_files(), raw_dir=raw_dir)
+    row = next(item for item in rows if item.source_file_id == "au_mbs_20260701_imap_txt")
+    assert row.contract_status == "pass"
+
+
+def test_github_project_export_covers_generated_issues(tmp_path: Path) -> None:
+    rows = build_github_project_items(load_conductor_tracks())
+    assert len(rows) >= 100
+    assert any(row.item_type == "track" for row in rows)
+    assert any(row.item_type == "issue" for row in rows)
+    assert any(row.project_view == "Sources & ingestion" for row in rows)
+    paths = write_github_project_items(rows, output_dir=tmp_path / "project")
+    assert all(path.exists() for path in paths)
+
+
+def test_final_handoff_records_environment_bound_tasks(tmp_path: Path) -> None:
+    rows = build_final_handoff_tasks()
+    assert any(row.status == "blocked_network" for row in rows)
+    assert any(row.status == "blocked_secret" for row in rows)
+    assert any("reviewed-mbs-txt-pair-bundle" in row.command for row in rows)
+    paths = write_final_handoff_tasks(rows, output_dir=tmp_path / "handoff")
+    assert all(path.exists() for path in paths)
+
+
+def test_mbs_descriptor_contract_passes_fixture() -> None:
+    record = _source_file("au_mbs_20260701_desc_txt")
+    fixture = ROOT / "tests" / "fixtures" / "mbs_txt" / "20260701_MBSONLINE_DESC_fixture.TXT"
+    result = validate_path_against_contract(record, fixture)
+    assert result.contract_status == "pass"
+    assert result.observed_columns == ("item_number", "descriptor")
+
+
+def test_pbs_contract_passes_fixture() -> None:
+    record = _source_file("au_pbs_api_v3_documentation")
+    fixture = ROOT / "tests" / "fixtures" / "pbs_fixture.csv"
+    result = validate_path_against_contract(record, fixture)
+    assert result.contract_status == "pass"
+    assert "pbs_item_code" in result.observed_columns
+
+
+def test_contract_detects_html_download(tmp_path: Path) -> None:
+    record = _source_file("au_mbs_20260701_imap_txt")
+    path = tmp_path / "20260701_MBSONLINE_IMAP.TXT"
+    path.write_text("<html><head><title>not data</title></head></html>", encoding="utf-8")
+    result = validate_path_against_contract(record, path)
+    assert result.contract_status == "fail"
+    assert any("HTML" in issue or "html" in issue for issue in result.issues)
+
+
+def test_contract_detects_empty_file(tmp_path: Path) -> None:
+    record = _source_file("au_mbs_20260701_desc_txt")
+    path = tmp_path / "empty.TXT"
+    path.write_text("", encoding="utf-8")
+    result = validate_path_against_contract(record, path)
+    assert result.contract_status == "fail"
+    assert "empty" in result.issues[0]
+
+
+def test_zip_contract_handles_valid_and_invalid_archives(tmp_path: Path) -> None:
+    import zipfile
+
+    record = _source_file("us_cms_clfs_26clabq3_ama_zip")
+    valid_zip = tmp_path / "26clabq3.zip"
+    with zipfile.ZipFile(valid_zip, "w") as archive:
+        archive.writestr("clfs.csv", "hcpcs,payment_rate\nG0001,1.23\n")
+    valid = validate_path_against_contract(record, valid_zip)
+    assert valid.contract_status == "pass"
+    assert "clfs.csv" in valid.observed_markers
+
+    invalid_zip = tmp_path / "invalid.zip"
+    invalid_zip.write_text("not a zip", encoding="utf-8")
+    invalid = validate_path_against_contract(record, invalid_zip)
+    assert invalid.contract_status == "fail"
+
+
+def test_github_project_export_handles_empty_issue_dir(tmp_path: Path) -> None:
+    rows = build_github_project_items(load_conductor_tracks(), generated_issue_dir=tmp_path)
+    assert rows
+    assert all(row.item_type == "track" for row in rows)

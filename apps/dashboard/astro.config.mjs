@@ -10,6 +10,9 @@ export default defineConfig({
   integrations: [react()],
   output: "static",
   vite: {
+    build: {
+      chunkSizeWarningLimit: 3000,
+    },
     resolve: {
       alias: {
         "gl-bench": glBenchModule,

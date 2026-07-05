@@ -49,6 +49,24 @@ DEFAULT_DRIFT_PAIRS: tuple[tuple[str, str, Path, Path], ...] = (
         Path("data/derived/data_quality/data_quality_checks.jsonl"),
         Path("data/derived/data_quality/data_quality_checks.csv"),
     ),
+    (
+        "source_contracts_jsonl",
+        "source_contracts_csv",
+        Path("data/derived/source_contracts/source_contract_validation.jsonl"),
+        Path("data/derived/source_contracts/source_contract_validation.csv"),
+    ),
+    (
+        "github_project_jsonl",
+        "github_project_csv",
+        Path("data/derived/github_project/github_project_items.jsonl"),
+        Path("data/derived/github_project/github_project_items.csv"),
+    ),
+    (
+        "final_handoff_jsonl",
+        "final_handoff_csv",
+        Path("data/derived/final_handoff/final_handoff_tasks.jsonl"),
+        Path("data/derived/final_handoff/final_handoff_tasks.csv"),
+    ),
 )
 
 

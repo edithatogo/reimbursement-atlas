@@ -263,6 +263,21 @@ def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:  
         / "derived"
         / "source_validation"
         / "source_content_validation.jsonl",
+        "source_contract_validation": root
+        / "data"
+        / "derived"
+        / "source_contracts"
+        / "source_contract_validation.jsonl",
+        "github_project_items": root
+        / "data"
+        / "derived"
+        / "github_project"
+        / "github_project_items.jsonl",
+        "final_handoff_tasks": root
+        / "data"
+        / "derived"
+        / "final_handoff"
+        / "final_handoff_tasks.jsonl",
         "osf_component_plan": root / "data" / "derived" / "osf" / "component_plan.jsonl",
         "protocol_status": root / "data" / "derived" / "protocols" / "protocol_status.jsonl",
         "research_dataset_linkages": root

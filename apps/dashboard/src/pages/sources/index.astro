@@ -44,4 +44,9 @@ import Layout from "../../components/Layout.astro";
     fileName="source_content_validation.csv"
     columns={["source_file_id", "validation_status", "expected_format", "observed_record_count", "byte_size", "issues", "recommended_action"]}
   />
+  <DataTable
+    title="Source contract validation"
+    fileName="source_contract_validation.csv"
+    columns={["source_file_id", "contract_name", "contract_status", "expected_columns", "observed_columns", "issues", "recommended_action"]}
+  />
 </Layout>

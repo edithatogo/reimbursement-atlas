@@ -1,0 +1,110 @@
+{
+  "additionalProperties": false,
+  "description": "Generated source-specific contract validation for reviewed local files.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "source_file_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source File Id",
+      "type": "string"
+    },
+    "source_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source Id",
+      "type": "string"
+    },
+    "source_version_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source Version Id",
+      "type": "string"
+    },
+    "parser_hint": {
+      "minLength": 1,
+      "title": "Parser Hint",
+      "type": "string"
+    },
+    "contract_name": {
+      "minLength": 1,
+      "title": "Contract Name",
+      "type": "string"
+    },
+    "contract_status": {
+      "enum": [
+        "pass",
+        "warn",
+        "fail",
+        "missing",
+        "skipped"
+      ],
+      "title": "Contract Status",
+      "type": "string"
+    },
+    "required_markers": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Required Markers",
+      "type": "array"
+    },
+    "observed_markers": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Observed Markers",
+      "type": "array"
+    },
+    "expected_columns": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Expected Columns",
+      "type": "array"
+    },
+    "observed_columns": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Observed Columns",
+      "type": "array"
+    },
+    "byte_size": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Byte Size",
+      "type": "integer"
+    },
+    "issues": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Issues",
+      "type": "array"
+    },
+    "recommended_action": {
+      "minLength": 1,
+      "title": "Recommended Action",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "source_file_id",
+    "source_id",
+    "source_version_id",
+    "parser_hint",
+    "contract_name",
+    "contract_status",
+    "recommended_action"
+  ],
+  "title": "SourceContractValidationRecord",
+  "type": "object"
+}

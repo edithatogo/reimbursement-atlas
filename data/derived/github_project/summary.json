@@ -1,0 +1,24 @@
+{
+  "blocked_count": 12,
+  "issue_count": 124,
+  "milestones": [
+    "M0 project setup",
+    "M1 evidence-grade source slice",
+    "M2 release hardening",
+    "M3 policy demonstrators",
+    "M4 expansion roadmap"
+  ],
+  "must_count": 45,
+  "project_item_count": 133,
+  "track_count": 9,
+  "views": [
+    "CI/CD & security",
+    "Dashboard & publication",
+    "Mappings & ontologies",
+    "Policy analyses",
+    "Project backlog",
+    "Quality & release gates",
+    "Research & OSF",
+    "Sources & ingestion"
+  ]
+}

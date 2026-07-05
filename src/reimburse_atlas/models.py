@@ -532,3 +532,92 @@ class SourceDriftRecord(FrozenModel):
         if isinstance(value, (list, tuple, set, frozenset)):
             return tuple(str(item).strip() for item in cast("Iterable[object]", value))
         return (str(value).strip(),)
+
+
+class SourceContractValidationRecord(FrozenModel):
+    """Generated source-specific contract validation for reviewed local files."""
+
+    id: SourceId
+    source_file_id: SourceId
+    source_id: SourceId
+    source_version_id: SourceId
+    parser_hint: NonEmptyStr
+    contract_name: NonEmptyStr
+    contract_status: Literal["pass", "warn", "fail", "missing", "skipped"]
+    required_markers: tuple[NonEmptyStr, ...] = Field(default_factory=tuple)
+    observed_markers: tuple[NonEmptyStr, ...] = Field(default_factory=tuple)
+    expected_columns: tuple[NonEmptyStr, ...] = Field(default_factory=tuple)
+    observed_columns: tuple[NonEmptyStr, ...] = Field(default_factory=tuple)
+    byte_size: int = Field(default=0, ge=0)
+    issues: tuple[NonEmptyStr, ...] = Field(default_factory=tuple)
+    recommended_action: NonEmptyStr
+
+    @field_validator(
+        "required_markers",
+        "observed_markers",
+        "expected_columns",
+        "observed_columns",
+        "issues",
+        mode="before",
+    )
+    @classmethod
+    def tuplefy_contract_fields(cls, value: object) -> tuple[str, ...]:
+        """Convert list-like contract fields into tuples."""
+        if value is None:
+            return ()
+        if isinstance(value, str):
+            return (value,) if value else ()
+        if isinstance(value, (list, tuple, set, frozenset)):
+            return tuple(str(item).strip() for item in cast("Iterable[object]", value))
+        return (str(value).strip(),)
+
+
+class GitHubProjectItemRecord(FrozenModel):
+    """Generated GitHub Project item import row for issue/project creation."""
+
+    id: SourceId
+    item_type: Literal["issue", "epic", "milestone", "track", "release_gate"]
+    title: NonEmptyStr
+    body_path: NonEmptyStr
+    epic_id: NonEmptyStr
+    epic_title: NonEmptyStr
+    track_id: SourceId | None = None
+    status: Literal["todo", "ready", "blocked", "done"]
+    priority: Literal["must", "should", "could", "wont", "unknown"]
+    labels: tuple[NonEmptyStr, ...] = Field(default_factory=tuple)
+    milestone: NonEmptyStr
+    project_view: NonEmptyStr
+    recommended_action: NonEmptyStr
+
+    @field_validator("labels", mode="before")
+    @classmethod
+    def tuplefy_labels(cls, value: object) -> tuple[str, ...]:
+        """Convert list-like labels into tuples."""
+        if value is None:
+            return ()
+        if isinstance(value, str):
+            return tuple(part.strip() for part in value.split(",") if part.strip())
+        if isinstance(value, (list, tuple, set, frozenset)):
+            return tuple(str(item).strip() for item in cast("Iterable[object]", value))
+        return (str(value).strip(),)
+
+
+class FinalHandoffTaskRecord(FrozenModel):
+    """Generated task that remains for a network-enabled or credentialed environment."""
+
+    id: SourceId
+    task_group: Literal[
+        "source_ingestion",
+        "security",
+        "publication",
+        "release",
+        "research",
+        "automation",
+    ]
+    title: NonEmptyStr
+    status: Literal["ready_local", "blocked_network", "blocked_secret", "blocked_review", "complete"]
+    required_environment: NonEmptyStr
+    command: NonEmptyStr
+    evidence_path: NonEmptyStr
+    unblock_condition: NonEmptyStr
+    recommended_action: NonEmptyStr

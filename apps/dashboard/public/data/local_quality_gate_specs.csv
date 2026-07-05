@@ -10,6 +10,9 @@ True,data,uv run --all-extras python scripts/check_public_data_policy.py,.,publi
 True,data,uv run --all-extras python -m reimburse_atlas.cli validate,.,cli_validate,,quick;ci;release,120
 True,data,uv run --all-extras python scripts/make_protocol_status.py,.,protocol_status,OSF/research protocol completeness evidence must regenerate cleanly.,quick;ci;release,120
 True,data,uv run --all-extras python scripts/make_source_validation.py,.,source_content_validation,Downloaded source files must be validated or explicitly skipped by licence gates.,quick;ci;release,120
+True,data,uv run --all-extras python scripts/make_source_contracts.py,.,source_contracts,Source-specific contracts must regenerate before reviewed-source bundles.,quick;ci;release,120
+True,supply_chain,uv run --all-extras python scripts/make_github_project_export.py,.,github_project_export,Generated GitHub Project import rows must stay in sync with issue drafts.,quick;ci;release,120
+True,data,uv run --all-extras python scripts/make_final_handoff.py,.,final_handoff,Final environment-dependent handoff checklist must regenerate cleanly.,quick;ci;release,120
 True,data,uv run --all-extras python scripts/make_roadmap_linkages.py,.,roadmap_linkages,"Research questions must link to datasets, mappings and output plans.",quick;ci;release,120
 True,data,uv run --all-extras python scripts/make_data_quality_report.py,.,data_quality,Seed and derived table quality checks must regenerate cleanly.,quick;ci;release,120
 True,data,uv run --all-extras python scripts/make_data_dictionary.py,.,data_dictionary,Public candidate artefacts must have generated data-dictionary entries.,quick;ci;release,120

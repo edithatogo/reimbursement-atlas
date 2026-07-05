@@ -1,0 +1,23 @@
+{
+  "version": "v18",
+  "generated_at": "2026-07-05T10:25:00Z",
+  "commit_label": "v18 source contract project handoff gates",
+  "checks": [
+    {"id": "pytest", "status": "passed", "evidence": "162 passed, 6 skipped"},
+    {"id": "coverage", "status": "passed", "evidence": "90.26% total coverage; threshold 90%"},
+    {"id": "compileall", "status": "passed", "evidence": "python -m compileall -q src scripts tests"},
+    {"id": "seed_sync", "status": "passed", "evidence": "validate_seed_sync.py all seed mirrors ok"},
+    {"id": "public_data_policy", "status": "passed", "evidence": "no raw/local cache paths tracked and no generated absolute local path leaks"},
+    {"id": "cli_validate", "status": "passed", "evidence": "registry and roadmap counts validated"},
+    {"id": "source_contracts", "status": "passed", "evidence": "7 contract rows generated: 4 missing local raw files, 3 skipped gated/manual records, 0 failures"},
+    {"id": "github_project_export", "status": "passed", "evidence": "133 project rows generated from 124 issue drafts and 9 tracks"},
+    {"id": "final_handoff", "status": "passed", "evidence": "8 environment-dependent handoff tasks generated"},
+    {"id": "npm_ci", "status": "passed", "evidence": "441 packages installed from lockfile"},
+    {"id": "npm_audit", "status": "passed", "evidence": "0 vulnerabilities"},
+    {"id": "astro_build", "status": "passed", "evidence": "8 static pages built; WebGL graph chunk is lazy-loaded and warning threshold documented"},
+    {"id": "ruff", "status": "blocked_network", "evidence": "uv attempted Python 3.14 managed-runtime download from GitHub; DNS blocked in sandbox"},
+    {"id": "basedpyright", "status": "blocked_network", "evidence": "project targets Python 3.14; managed runtime download blocked in sandbox"},
+    {"id": "pip_audit_strict", "status": "blocked_network", "evidence": "requires network access to advisory APIs"},
+    {"id": "live_source_downloads", "status": "blocked_network", "evidence": "direct curl to MBS host failed DNS resolution in sandbox"}
+  ]
+}

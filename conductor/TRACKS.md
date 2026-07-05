@@ -160,3 +160,9 @@ This track makes source-content validation, data-quality checks and research-que
 - Source/schema drift: generated parity checks for CSV/JSONL mirrors now, and the same interface for future source-version comparisons after live ingestion.
 - Public artefact data dictionary: generated column and row-count metadata for publication-manifest candidates, intended for Hugging Face dataset cards, OSF appendices and release review.
 
+
+## v18 additions
+
+- **Source contracts:** source-specific validation between generic download checks and parser execution.
+- **GitHub Project export:** generated project rows for tracks, issue drafts, priorities, milestones and views.
+- **Final handoff:** environment-dependent tasks with exact commands and unblock conditions.

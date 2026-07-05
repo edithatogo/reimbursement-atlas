@@ -25,6 +25,8 @@ from reimburse_atlas.automation import (
 )
 from reimburse_atlas.data_dictionary import build_data_dictionary, write_data_dictionary
 from reimburse_atlas.evidence_readiness import build_evidence_readiness, write_evidence_readiness
+from reimburse_atlas.final_handoff import build_final_handoff_tasks, write_final_handoff_tasks
+from reimburse_atlas.github_project import build_github_project_items, write_github_project_items
 from reimburse_atlas.graph import build_seed_graph, write_graph_csvs
 from reimburse_atlas.ingest import (
     build_first_wave_ingestion_plan,
@@ -88,6 +90,10 @@ from reimburse_atlas.registry import (
 from reimburse_atlas.review_queue import build_crosswalk_review_queue, review_rows
 from reimburse_atlas.sbom import build_dashboard_sbom, build_python_sbom, sbom_summary, write_sbom
 from reimburse_atlas.scoring import score_sources
+from reimburse_atlas.source_contracts import (
+    build_source_contract_validations,
+    write_source_contract_validations,
+)
 from reimburse_atlas.source_drift import (
     build_default_source_drift_report,
     compare_tabular_files,
@@ -247,6 +253,79 @@ def source_validation(
                 "pass": sum(row.validation_status == "pass" for row in rows),
                 "missing": sum(row.validation_status == "missing" for row in rows),
                 "skipped": sum(row.validation_status == "skipped" for row in rows),
+                "paths": [str(path) for path in paths],
+            },
+            indent=2,
+        )
+    )
+
+
+@app.command("source-contracts")
+def source_contracts(
+    output_dir: Annotated[
+        Path,
+        typer.Option(help="Directory for source-specific contract-validation artefacts."),
+    ] = (project_root() / "data" / "derived" / "source_contracts"),
+) -> None:
+    """Validate source-specific local-file contracts before bundle parsing."""
+    rows = build_source_contract_validations(load_source_files())
+    paths = write_source_contract_validations(rows, output_dir=output_dir)
+    console.print_json(
+        json.dumps(
+            {
+                "contract_count": len(rows),
+                "pass": sum(row.contract_status == "pass" for row in rows),
+                "missing": sum(row.contract_status == "missing" for row in rows),
+                "skipped": sum(row.contract_status == "skipped" for row in rows),
+                "fail": sum(row.contract_status == "fail" for row in rows),
+                "paths": [str(path) for path in paths],
+            },
+            indent=2,
+        )
+    )
+
+
+@app.command("github-project-export")
+def github_project_export(
+    output_dir: Annotated[
+        Path,
+        typer.Option(help="Directory for generated GitHub Project import artefacts."),
+    ] = (project_root() / "data" / "derived" / "github_project"),
+) -> None:
+    """Generate GitHub Project issue/track import rows from Conductor context."""
+    rows = build_github_project_items(load_conductor_tracks())
+    paths = write_github_project_items(rows, output_dir=output_dir)
+    console.print_json(
+        json.dumps(
+            {
+                "project_items": len(rows),
+                "issues": sum(row.item_type == "issue" for row in rows),
+                "tracks": sum(row.item_type == "track" for row in rows),
+                "paths": [str(path) for path in paths],
+            },
+            indent=2,
+        )
+    )
+
+
+@app.command("final-handoff")
+def final_handoff(
+    output_dir: Annotated[
+        Path,
+        typer.Option(help="Directory for final handoff checklist artefacts."),
+    ] = (project_root() / "data" / "derived" / "final_handoff"),
+) -> None:
+    """Generate the final environment-dependent handoff checklist."""
+    rows = build_final_handoff_tasks()
+    paths = write_final_handoff_tasks(rows, output_dir=output_dir)
+    console.print_json(
+        json.dumps(
+            {
+                "tasks": len(rows),
+                "ready_local": sum(row.status == "ready_local" for row in rows),
+                "blocked_network": sum(row.status == "blocked_network" for row in rows),
+                "blocked_secret": sum(row.status == "blocked_secret" for row in rows),
+                "blocked_review": sum(row.status == "blocked_review" for row in rows),
                 "paths": [str(path) for path in paths],
             },
             indent=2,
@@ -1270,6 +1349,8 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         DataAcquisitionAttemptRecord,
         DataDictionaryRecord,
         DataQualityCheckRecord,
+        FinalHandoffTaskRecord,
+        GitHubProjectItemRecord,
         DatasetCandidateRecord,
         EvidenceReadinessRecord,
         MappingResourceRecord,
@@ -1281,6 +1362,7 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         RoadmapFunctionRecord,
         RuntimeTargetRecord,
         SourceContentValidationRecord,
+        SourceContractValidationRecord,
         SourceDriftRecord,
         SourceFileRecord,
         SourceRecord,
@@ -1308,7 +1390,10 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         ProtocolStatusRecord,
         DataAcquisitionAttemptRecord,
         SourceContentValidationRecord,
+        SourceContractValidationRecord,
         DataQualityCheckRecord,
+        FinalHandoffTaskRecord,
+        GitHubProjectItemRecord,
         DataDictionaryRecord,
         ResearchLinkageRecord,
         EvidenceReadinessRecord,

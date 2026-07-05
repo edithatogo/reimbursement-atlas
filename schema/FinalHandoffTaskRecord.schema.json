@@ -1,0 +1,77 @@
+{
+  "additionalProperties": false,
+  "description": "Generated task that remains for a network-enabled or credentialed environment.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "task_group": {
+      "enum": [
+        "source_ingestion",
+        "security",
+        "publication",
+        "release",
+        "research",
+        "automation"
+      ],
+      "title": "Task Group",
+      "type": "string"
+    },
+    "title": {
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "ready_local",
+        "blocked_network",
+        "blocked_secret",
+        "blocked_review",
+        "complete"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "required_environment": {
+      "minLength": 1,
+      "title": "Required Environment",
+      "type": "string"
+    },
+    "command": {
+      "minLength": 1,
+      "title": "Command",
+      "type": "string"
+    },
+    "evidence_path": {
+      "minLength": 1,
+      "title": "Evidence Path",
+      "type": "string"
+    },
+    "unblock_condition": {
+      "minLength": 1,
+      "title": "Unblock Condition",
+      "type": "string"
+    },
+    "recommended_action": {
+      "minLength": 1,
+      "title": "Recommended Action",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "task_group",
+    "title",
+    "status",
+    "required_environment",
+    "command",
+    "evidence_path",
+    "unblock_condition",
+    "recommended_action"
+  ],
+  "title": "FinalHandoffTaskRecord",
+  "type": "object"
+}

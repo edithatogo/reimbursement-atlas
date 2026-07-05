@@ -207,3 +207,17 @@ epics:
       - title: Expand OSF protocols and report scaffolds with required sections
         labels: ["type:research", "type:osf"]
 
+  - id: HANDOFF-018
+    title: Final local continuation and GitHub Project handoff gates
+    phase: handoff
+    workstream: release
+    priority: must
+    issues:
+      - title: Add source-specific contract validation before reviewed-source bundle parsing
+        labels: ["type:data-quality", "type:parser", "phase:handoff"]
+      - title: Generate GitHub Project import rows from Conductor tracks and issue drafts
+        labels: ["type:repo-automation", "type:project", "phase:handoff"]
+      - title: Generate final network credential and review handoff checklist
+        labels: ["type:release", "type:handoff", "phase:handoff"]
+      - title: Expose source contracts GitHub Project rows and final handoff tasks in dashboard
+        labels: ["type:dashboard", "phase:handoff"]

@@ -91,6 +91,9 @@ def build_release_readiness_report(root: Path | None = None) -> ReleaseReadiness
         _evidence_readiness_gate(repo),
         _source_drift_gate(repo),
         _source_validation_gate(repo),
+        _source_contract_gate(repo),
+        _github_project_gate(repo),
+        _final_handoff_gate(repo),
         _local_gate_status(repo, "uv_build", "release", required=True),
         _local_gate_status(repo, "dashboard_build", "dashboard", required=True),
         _external_gate_status(repo, "pip_audit_strict", "security", required=True),
@@ -360,6 +363,82 @@ def _source_validation_gate(repo: Path) -> ReleaseGateRecord:
         recommended_action=(
             "Download missing public files in a network-enabled environment, then rerun validation."
         ),
+    )
+
+
+def _source_contract_gate(repo: Path) -> ReleaseGateRecord:
+    summary = _read_json(repo / "data" / "derived" / "source_contracts" / "summary.json")
+    if not summary:
+        return ReleaseGateRecord(
+            id="source_contract_validation_summary",
+            category="data_governance",
+            status="missing",
+            required=True,
+            evidence="Source-contract validation summary missing.",
+            recommended_action="Run scripts/make_source_contracts.py before reviewed parsing.",
+        )
+    failures = int(summary.get("blocking_failures", 0))
+    missing = int(summary.get("missing", 0))
+    status: ReleaseGateStatus = "pass" if failures == 0 else "fail"
+    if status == "pass" and missing:
+        status = "warn"
+    return ReleaseGateRecord(
+        id="source_contract_validation_summary",
+        category="data_governance",
+        status=status,
+        required=True,
+        evidence=(
+            f"contracts={summary.get('contract_count', 0)} "
+            f"missing={missing} failures={failures}"
+        ),
+        recommended_action="Download sources and rerun contract validation before real parsing.",
+    )
+
+
+def _github_project_gate(repo: Path) -> ReleaseGateRecord:
+    summary = _read_json(repo / "data" / "derived" / "github_project" / "summary.json")
+    if not summary:
+        return ReleaseGateRecord(
+            id="github_project_export_summary",
+            category="release",
+            status="missing",
+            required=True,
+            evidence="GitHub Project export summary missing.",
+            recommended_action="Run scripts/make_github_project_export.py.",
+        )
+    issue_count = int(summary.get("issue_count", 0))
+    return ReleaseGateRecord(
+        id="github_project_export_summary",
+        category="release",
+        status="pass" if issue_count >= 100 else "warn",
+        required=True,
+        evidence=f"project_items={summary.get('project_item_count', 0)} issue_count={issue_count}",
+        recommended_action="Import generated rows into GitHub Projects once repository credentials exist.",
+    )
+
+
+def _final_handoff_gate(repo: Path) -> ReleaseGateRecord:
+    summary = _read_json(repo / "data" / "derived" / "final_handoff" / "summary.json")
+    if not summary:
+        return ReleaseGateRecord(
+            id="final_handoff_summary",
+            category="release",
+            status="missing",
+            required=True,
+            evidence="Final handoff summary missing.",
+            recommended_action="Run scripts/make_final_handoff.py.",
+        )
+    return ReleaseGateRecord(
+        id="final_handoff_summary",
+        category="release",
+        status="pass" if summary.get("download_ready") else "warn",
+        required=True,
+        evidence=(
+            f"tasks={summary.get('task_count', 0)} "
+            f"blocked_network={summary.get('blocked_network', 0)} "
+            f"blocked_secret={summary.get('blocked_secret', 0)}"
+        ),
+        recommended_action="Use final_handoff_tasks.csv as the network/credential handoff checklist.",
     )
 
 

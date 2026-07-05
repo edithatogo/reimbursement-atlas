@@ -1,6 +1,10 @@
-import { Cosmograph } from "@cosmograph/react";
 import Papa, { type ParseError } from "papaparse";
-import { useEffect, useMemo, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useState } from "react";
+
+const Cosmograph = lazy(async () => {
+  const module = await import("@cosmograph/react");
+  return { default: module.Cosmograph };
+});
 
 type GraphNode = {
   id: string;
@@ -78,16 +82,18 @@ export default function Graph() {
         Loaded {points.length} nodes and {links.length} edges from generated seed CSV files.
       </p>
       <div style={{ height: "720px" }}>
-        <Cosmograph
-          points={points}
-          links={links}
-          pointIdBy="id"
-          pointLabelBy="label"
-          pointColorBy="group"
-          linkSourceBy="source"
-          linkTargetBy="target"
-          simulationRepulsion={0.4}
-        />
+        <Suspense fallback={<p>Loading graph renderer…</p>}>
+          <Cosmograph
+            points={points}
+            links={links}
+            pointIdBy="id"
+            pointLabelBy="label"
+            pointColorBy="group"
+            linkSourceBy="source"
+            linkTargetBy="target"
+            simulationRepulsion={0.4}
+          />
+        </Suspense>
       </div>
     </section>
   );

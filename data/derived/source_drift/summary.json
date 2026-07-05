@@ -1,8 +1,8 @@
 {
   "blocking_failure_count": 0,
-  "drift_check_count": 6,
+  "drift_check_count": 9,
   "fail": 0,
   "missing": 0,
-  "pass": 6,
+  "pass": 9,
   "warn": 0
 }

@@ -207,6 +207,21 @@ def _generated_artifact_checks(repo: Path) -> list[DataQualityCheckRecord]:
         / "derived"
         / "source_validation"
         / "source_content_validation.jsonl",
+        "source_contract_validation": repo
+        / "data"
+        / "derived"
+        / "source_contracts"
+        / "source_contract_validation.jsonl",
+        "github_project_items": repo
+        / "data"
+        / "derived"
+        / "github_project"
+        / "github_project_items.jsonl",
+        "final_handoff_tasks": repo
+        / "data"
+        / "derived"
+        / "final_handoff"
+        / "final_handoff_tasks.jsonl",
         "protocol_status": repo / "data" / "derived" / "protocols" / "protocol_status.jsonl",
         "research_linkages": repo
         / "data"

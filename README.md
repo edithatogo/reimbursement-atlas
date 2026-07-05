@@ -418,3 +418,15 @@ PYTHONPATH=src reimbursement-atlas data-dictionary
 
 These produce research-question readiness rows, source/schema drift checks and a public artefact data dictionary for GitHub/Hugging Face/OSF/Zenodo review. All five initial research questions are currently prototype-ready, but still require real reviewed-source bundles and human mapping/preregistration review before policy claims are evidence-ready.
 
+
+## v18 handoff gates
+
+The latest design pass adds three final local-continuation artefacts:
+
+```bash
+PYTHONPATH=src reimbursement-atlas source-contracts
+PYTHONPATH=src reimbursement-atlas github-project-export
+PYTHONPATH=src reimbursement-atlas final-handoff
+```
+
+These produce source-specific parser contract checks, GitHub Project import rows and a final environment-dependent handoff checklist. Use `data/derived/final_handoff/final_handoff_tasks.csv` as the short operational checklist once the archive is restored on a network-enabled machine.
