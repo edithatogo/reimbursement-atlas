@@ -83,7 +83,13 @@ def build_release_readiness_report(root: Path | None = None) -> ReleaseReadiness
         _local_gate_status(repo, "source_content_validation", "data_governance", required=True),
         _local_gate_status(repo, "roadmap_linkages", "data_governance", required=True),
         _local_gate_status(repo, "data_quality", "data_governance", required=True),
+        _local_gate_status(repo, "data_dictionary", "data_governance", required=True),
+        _local_gate_status(repo, "evidence_readiness", "data_governance", required=True),
+        _local_gate_status(repo, "source_drift", "data_governance", required=True),
         _data_quality_gate(repo),
+        _data_dictionary_gate(repo),
+        _evidence_readiness_gate(repo),
+        _source_drift_gate(repo),
         _source_validation_gate(repo),
         _local_gate_status(repo, "uv_build", "release", required=True),
         _local_gate_status(repo, "dashboard_build", "dashboard", required=True),
@@ -231,6 +237,76 @@ def _external_gate_status(
     )
 
 
+def _data_dictionary_gate(repo: Path) -> ReleaseGateRecord:
+    summary_path = repo / "data" / "derived" / "data_dictionary" / "summary.json"
+    data = _read_json(summary_path)
+    if not data:
+        return ReleaseGateRecord(
+            id="data_dictionary_summary",
+            category="data_governance",
+            status="missing",
+            required=True,
+            evidence="No data dictionary summary found.",
+            recommended_action="Run scripts/make_data_dictionary.py.",
+        )
+    table_count = int(data.get("table_count", 0))
+    return ReleaseGateRecord(
+        id="data_dictionary_summary",
+        category="data_governance",
+        status="pass" if table_count >= 25 else "warn",
+        required=True,
+        evidence=f"table_count={table_count} total_rows={data.get('total_rows_documented')}",
+        recommended_action="Regenerate the data dictionary after publication-manifest changes.",
+    )
+
+
+def _evidence_readiness_gate(repo: Path) -> ReleaseGateRecord:
+    summary_path = repo / "data" / "derived" / "evidence_readiness" / "summary.json"
+    data = _read_json(summary_path)
+    if not data:
+        return ReleaseGateRecord(
+            id="evidence_readiness_summary",
+            category="data_governance",
+            status="missing",
+            required=True,
+            evidence="No evidence-readiness summary found.",
+            recommended_action="Run scripts/make_evidence_readiness.py.",
+        )
+    blocked = int(data.get("blocked", 0))
+    return ReleaseGateRecord(
+        id="evidence_readiness_summary",
+        category="data_governance",
+        status="pass" if blocked == 0 else "fail",
+        required=True,
+        evidence=f"blocked={blocked} prototype_ready={data.get('prototype_ready')}",
+        recommended_action="Resolve blocked research questions before evidence release.",
+    )
+
+
+def _source_drift_gate(repo: Path) -> ReleaseGateRecord:
+    summary_path = repo / "data" / "derived" / "source_drift" / "summary.json"
+    data = _read_json(summary_path)
+    if not data:
+        return ReleaseGateRecord(
+            id="source_drift_summary",
+            category="data_governance",
+            status="missing",
+            required=True,
+            evidence="No source/schema drift summary found.",
+            recommended_action="Run scripts/make_source_drift_report.py.",
+        )
+    blockers = int(data.get("blocking_failure_count", 0))
+    warnings = int(data.get("warn", 0))
+    return ReleaseGateRecord(
+        id="source_drift_summary",
+        category="data_governance",
+        status="pass" if blockers == 0 else "fail",
+        required=True,
+        evidence=f"blocking_failure_count={blockers} warnings={warnings}",
+        recommended_action="Review source drift failures before release.",
+    )
+
+
 def _data_quality_gate(repo: Path) -> ReleaseGateRecord:
     summary = _read_json(repo / "data" / "derived" / "data_quality" / "summary.json")
     if not summary:
@@ -263,7 +339,9 @@ def _source_validation_gate(repo: Path) -> ReleaseGateRecord:
             status="missing",
             required=True,
             evidence="Source-content validation summary missing.",
-            recommended_action="Run scripts/make_source_validation.py after download-plan generation.",
+            recommended_action=(
+                "Run scripts/make_source_validation.py after download-plan generation."
+            ),
         )
     failures = int(summary.get("blocking_failures", 0))
     missing = int(summary.get("missing", 0))
@@ -275,8 +353,13 @@ def _source_validation_gate(repo: Path) -> ReleaseGateRecord:
         category="data_governance",
         status=status,
         required=True,
-        evidence=f"validations={summary.get('validation_count', 0)} missing={missing} failures={failures}",
-        recommended_action="Download missing public files in a network-enabled environment, then rerun validation.",
+        evidence=(
+            f"validations={summary.get('validation_count', 0)} "
+            f"missing={missing} failures={failures}"
+        ),
+        recommended_action=(
+            "Download missing public files in a network-enabled environment, then rerun validation."
+        ),
     )
 
 

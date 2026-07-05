@@ -395,6 +395,7 @@ class DataAcquisitionAttemptRecord(FrozenModel):
     command: NonEmptyStr
     error_summary: NonEmptyStr
 
+
 class SourceContentValidationRecord(FrozenModel):
     """Generated validation status for a downloaded or licence-gated source file."""
 
@@ -451,3 +452,83 @@ class ResearchLinkageRecord(FrozenModel):
     linkage_role: NonEmptyStr
     readiness_status: Literal["available", "planned", "blocked", "missing", "local_only"]
     recommended_action: NonEmptyStr
+
+
+class DataDictionaryRecord(FrozenModel):
+    """Generated data dictionary entry for one public/derived table artefact."""
+
+    id: SourceId
+    table_name: NonEmptyStr
+    relative_path: NonEmptyStr
+    file_format: NonEmptyStr
+    row_count: int = Field(ge=0)
+    column_count: int = Field(ge=0)
+    columns: tuple[NonEmptyStr, ...] = Field(default_factory=tuple)
+    publication_scope: NonEmptyStr
+    licence_gate: NonEmptyStr
+    notes: NonEmptyStr
+
+    @field_validator("columns", mode="before")
+    @classmethod
+    def tuplefy_columns(cls, value: object) -> tuple[str, ...]:
+        """Convert list-like column fields into tuples."""
+        if value is None:
+            return ()
+        if isinstance(value, str):
+            return (value,) if value else ()
+        if isinstance(value, (list, tuple, set, frozenset)):
+            return tuple(str(item).strip() for item in cast("Iterable[object]", value))
+        return (str(value).strip(),)
+
+
+class EvidenceReadinessRecord(FrozenModel):
+    """Generated readiness status for one protocolled research question."""
+
+    id: SourceId
+    research_question_id: SourceId
+    track_id: SourceId
+    protocol_score: float = Field(ge=0.0, le=1.0)
+    dataset_linkage_count: int = Field(ge=0)
+    available_linkage_count: int = Field(ge=0)
+    planned_linkage_count: int = Field(ge=0)
+    blocked_linkage_count: int = Field(ge=0)
+    missing_linkage_count: int = Field(ge=0)
+    mapping_resource_count: int = Field(ge=0)
+    output_plan_count: int = Field(ge=0)
+    data_quality_blockers: int = Field(ge=0)
+    source_validation_blockers: int = Field(ge=0)
+    readiness_score: float = Field(ge=0.0, le=1.0)
+    readiness_stage: Literal["blocked", "design", "prototype_ready", "evidence_ready"]
+    recommended_action: NonEmptyStr
+
+
+class SourceDriftRecord(FrozenModel):
+    """Generated schema and row-count drift status for two tabular artefacts."""
+
+    id: SourceId
+    left_label: NonEmptyStr
+    right_label: NonEmptyStr
+    left_path: NonEmptyStr
+    right_path: NonEmptyStr
+    status: Literal["pass", "warn", "fail", "missing"]
+    left_row_count: int | None = Field(default=None, ge=0)
+    right_row_count: int | None = Field(default=None, ge=0)
+    row_count_delta: int | None = None
+    row_count_delta_pct: float | None = None
+    added_columns: tuple[NonEmptyStr, ...] = Field(default_factory=tuple)
+    removed_columns: tuple[NonEmptyStr, ...] = Field(default_factory=tuple)
+    left_checksum_sha256: NonEmptyStr | None = None
+    right_checksum_sha256: NonEmptyStr | None = None
+    recommended_action: NonEmptyStr
+
+    @field_validator("added_columns", "removed_columns", mode="before")
+    @classmethod
+    def tuplefy_drift_columns(cls, value: object) -> tuple[str, ...]:
+        """Convert list-like drift column fields into tuples."""
+        if value is None:
+            return ()
+        if isinstance(value, str):
+            return (value,) if value else ()
+        if isinstance(value, (list, tuple, set, frozenset)):
+            return tuple(str(item).strip() for item in cast("Iterable[object]", value))
+        return (str(value).strip(),)

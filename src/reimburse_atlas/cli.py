@@ -23,6 +23,8 @@ from reimburse_atlas.automation import (
     workflow_policy_records,
     workflow_policy_summary,
 )
+from reimburse_atlas.data_dictionary import build_data_dictionary, write_data_dictionary
+from reimburse_atlas.evidence_readiness import build_evidence_readiness, write_evidence_readiness
 from reimburse_atlas.graph import build_seed_graph, write_graph_csvs
 from reimburse_atlas.ingest import (
     build_first_wave_ingestion_plan,
@@ -55,8 +57,8 @@ from reimburse_atlas.parsers import (
     parse_pbs_csv,
 )
 from reimburse_atlas.policy_metrics import summarise_transparency
-from reimburse_atlas.publication import build_publication_manifest, write_publication_manifest
 from reimburse_atlas.protocols import build_protocol_status, write_protocol_status
+from reimburse_atlas.publication import build_publication_manifest, write_publication_manifest
 from reimburse_atlas.quality import (
     access_tier_counts,
     duplicate_source_ids,
@@ -86,6 +88,11 @@ from reimburse_atlas.registry import (
 from reimburse_atlas.review_queue import build_crosswalk_review_queue, review_rows
 from reimburse_atlas.sbom import build_dashboard_sbom, build_python_sbom, sbom_summary, write_sbom
 from reimburse_atlas.scoring import score_sources
+from reimburse_atlas.source_drift import (
+    build_default_source_drift_report,
+    compare_tabular_files,
+    write_source_drift_report,
+)
 from reimburse_atlas.validation import all_seed_pairs_ok, seed_pair_statuses
 from reimburse_atlas.vector_index import (
     VectorIndexDependencyError,
@@ -297,6 +304,85 @@ def roadmap_linkages(
                 "missing": sum(row.readiness_status == "missing" for row in rows),
                 "jsonl_path": str(jsonl_path),
                 "csv_path": str(csv_path),
+            },
+            indent=2,
+        )
+    )
+
+
+@app.command("data-dictionary")
+def data_dictionary(
+    output_dir: Annotated[
+        Path,
+        typer.Option(help="Directory for generated data-dictionary artefacts."),
+    ] = (project_root() / "data" / "derived" / "data_dictionary"),
+) -> None:
+    """Generate a dashboard-safe data dictionary for public candidate artefacts."""
+    rows = build_data_dictionary()
+    paths = write_data_dictionary(rows, output_dir=output_dir)
+    console.print_json(
+        json.dumps(
+            {
+                "table_count": len(rows),
+                "total_rows_documented": sum(row.row_count for row in rows),
+                "paths": [str(path) for path in paths],
+            },
+            indent=2,
+        )
+    )
+
+
+@app.command("evidence-readiness")
+def evidence_readiness(
+    output_dir: Annotated[
+        Path,
+        typer.Option(
+            help="Directory for generated research-question evidence-readiness artefacts."
+        ),
+    ] = (project_root() / "data" / "derived" / "evidence_readiness"),
+) -> None:
+    """Generate evidence-readiness status for protocolled research questions."""
+    rows = build_evidence_readiness()
+    paths = write_evidence_readiness(rows, output_dir=output_dir)
+    console.print_json(
+        json.dumps(
+            {
+                "research_questions": len(rows),
+                "evidence_ready": sum(row.readiness_stage == "evidence_ready" for row in rows),
+                "prototype_ready": sum(row.readiness_stage == "prototype_ready" for row in rows),
+                "paths": [str(path) for path in paths],
+            },
+            indent=2,
+        )
+    )
+
+
+@app.command("source-drift")
+def source_drift(
+    left_path: Annotated[Path | None, typer.Option(help="Optional left CSV/JSONL file.")] = None,
+    right_path: Annotated[Path | None, typer.Option(help="Optional right CSV/JSONL file.")] = None,
+    output_dir: Annotated[
+        Path,
+        typer.Option(help="Directory for generated source-drift artefacts."),
+    ] = (project_root() / "data" / "derived" / "source_drift"),
+) -> None:
+    """Generate default or ad hoc schema/row-count drift checks."""
+    if (left_path is None) != (right_path is None):
+        msg = "left-path and right-path must be provided together"
+        raise typer.BadParameter(msg)
+    rows = (
+        [compare_tabular_files(left_path, right_path)]
+        if left_path is not None and right_path is not None
+        else build_default_source_drift_report()
+    )
+    paths = write_source_drift_report(rows, output_dir=output_dir)
+    console.print_json(
+        json.dumps(
+            {
+                "drift_checks": len(rows),
+                "failures": sum(row.status in {"fail", "missing"} for row in rows),
+                "warnings": sum(row.status == "warn" for row in rows),
+                "paths": [str(path) for path in paths],
             },
             indent=2,
         )
@@ -1182,8 +1268,10 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         AnalysisRecord,
         ConductorTrackRecord,
         DataAcquisitionAttemptRecord,
+        DataDictionaryRecord,
         DataQualityCheckRecord,
         DatasetCandidateRecord,
+        EvidenceReadinessRecord,
         MappingResourceRecord,
         OntologyRecord,
         OutputArtifactPlanRecord,
@@ -1193,6 +1281,7 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         RoadmapFunctionRecord,
         RuntimeTargetRecord,
         SourceContentValidationRecord,
+        SourceDriftRecord,
         SourceFileRecord,
         SourceRecord,
         SourceStatusRecord,
@@ -1220,7 +1309,10 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         DataAcquisitionAttemptRecord,
         SourceContentValidationRecord,
         DataQualityCheckRecord,
+        DataDictionaryRecord,
         ResearchLinkageRecord,
+        EvidenceReadinessRecord,
+        SourceDriftRecord,
         ProvenanceRecord,
         ScheduleItemRecord,
         SourceSnapshotRecord,

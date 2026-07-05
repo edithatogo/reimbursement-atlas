@@ -103,3 +103,7 @@ Immediate implementation focus:
 3. Use `data/derived/roadmap_linkages/research_dataset_linkages.csv` to ensure every research question has sources, mapping resources and outputs before OSF preregistration or report work.
 4. Add source-specific schema/record-count validators after the first real MBS, CMS CLFS and PBS downloads succeed.
 5. Keep GitHub issue drafts regenerated from Conductor so these gates appear in GitHub Projects.
+## v17 focus update
+
+The current focus is now evidence-grade transition: run the hardened source-download plan in a network-enabled environment, then use the evidence-readiness matrix to decide which research question can move from `prototype_ready` to `evidence_ready`. Source/schema drift and data dictionary outputs must be regenerated before any Hugging Face, OSF, Zenodo or GitHub release artefact is published.
+

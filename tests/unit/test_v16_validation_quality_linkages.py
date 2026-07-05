@@ -45,7 +45,9 @@ def test_source_content_validation_accepts_local_txt_fixture(tmp_path: Path) -> 
 def test_data_quality_checks_have_no_blocking_failures_after_generation() -> None:
     """Core generated artefacts satisfy v16 quality expectations."""
     rows = build_data_quality_checks()
-    blocking = [row for row in rows if row.severity == "blocking" and row.status in {"fail", "missing"}]
+    blocking = [
+        row for row in rows if row.severity == "blocking" and row.status in {"fail", "missing"}
+    ]
     assert blocking == []
     assert any(row.id == "publication_manifest_raw_source_payload_absent" for row in rows)
 

@@ -42,4 +42,7 @@ jobs:
           pixi run protocol-status
           pixi run roadmap-linkages
           pixi run data-quality
+          pixi run data-dictionary
+          pixi run evidence-readiness
+          pixi run source-drift
           pixi run seed-lake

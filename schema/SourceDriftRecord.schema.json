@@ -1,0 +1,149 @@
+{
+  "additionalProperties": false,
+  "description": "Generated schema and row-count drift status for two tabular artefacts.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "left_label": {
+      "minLength": 1,
+      "title": "Left Label",
+      "type": "string"
+    },
+    "right_label": {
+      "minLength": 1,
+      "title": "Right Label",
+      "type": "string"
+    },
+    "left_path": {
+      "minLength": 1,
+      "title": "Left Path",
+      "type": "string"
+    },
+    "right_path": {
+      "minLength": 1,
+      "title": "Right Path",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "pass",
+        "warn",
+        "fail",
+        "missing"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "left_row_count": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Left Row Count"
+    },
+    "right_row_count": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Right Row Count"
+    },
+    "row_count_delta": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Row Count Delta"
+    },
+    "row_count_delta_pct": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Row Count Delta Pct"
+    },
+    "added_columns": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Added Columns",
+      "type": "array"
+    },
+    "removed_columns": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Removed Columns",
+      "type": "array"
+    },
+    "left_checksum_sha256": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Left Checksum Sha256"
+    },
+    "right_checksum_sha256": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Right Checksum Sha256"
+    },
+    "recommended_action": {
+      "minLength": 1,
+      "title": "Recommended Action",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "left_label",
+    "right_label",
+    "left_path",
+    "right_path",
+    "status",
+    "recommended_action"
+  ],
+  "title": "SourceDriftRecord",
+  "type": "object"
+}

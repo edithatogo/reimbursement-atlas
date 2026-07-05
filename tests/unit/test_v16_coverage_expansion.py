@@ -3,8 +3,14 @@
 from __future__ import annotations
 
 import json
+import zipfile
 from pathlib import Path
+from types import SimpleNamespace
 
+import pytest
+
+from reimburse_atlas import source_downloads
+from reimburse_atlas.contracts import ScheduleItemRecord
 from reimburse_atlas.data_quality import build_data_quality_checks, write_data_quality_checks
 from reimburse_atlas.models import SourceFileRecord
 from reimburse_atlas.roadmap_linkages import build_research_linkages
@@ -12,6 +18,13 @@ from reimburse_atlas.source_downloads import safe_local_target
 from reimburse_atlas.source_validation import (
     build_source_content_validations,
     write_source_content_validations,
+)
+from reimburse_atlas.vector_index import (
+    VectorIndexDependencyError,
+    _create_or_replace_table,  # noqa: PLC2701
+    build_lancedb_index,
+    schedule_item_vector_rows,
+    write_arrow_vector_seed,
 )
 
 
@@ -96,7 +109,12 @@ def test_research_linkages_missing_and_dataset_candidate_paths() -> None:
         "osf_component": "Test",
         "preregistration_status": "drafted",
     }
-    from reimburse_atlas.models import DatasetCandidateRecord, MappingResourceRecord, OutputArtifactPlanRecord, ResearchQuestionRecord
+    from reimburse_atlas.models import (
+        DatasetCandidateRecord,
+        MappingResourceRecord,
+        OutputArtifactPlanRecord,
+        ResearchQuestionRecord,
+    )
 
     rows = build_research_linkages(
         research_questions=[ResearchQuestionRecord.model_validate(question)],
@@ -147,23 +165,10 @@ def test_research_linkages_missing_and_dataset_candidate_paths() -> None:
     assert any(row.readiness_status == "planned" for row in rows)
     assert any(row.readiness_status == "local_only" for row in rows)
 
-from types import SimpleNamespace
-import zipfile
 
-import pytest
-
-import reimburse_atlas.source_downloads as source_downloads
-from reimburse_atlas.vector_index import (
-    VectorIndexDependencyError,
-    _create_or_replace_table,
-    build_lancedb_index,
-    schedule_item_vector_rows,
-    write_arrow_vector_seed,
-)
-from reimburse_atlas.contracts import ScheduleItemRecord
-
-
-def test_attempt_download_success_writes_metadata(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+def test_attempt_download_success_writes_metadata(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
     record = _source_file("download_ok")
 
     def fake_run(args: list[str], **_: object) -> SimpleNamespace:
@@ -204,8 +209,12 @@ def test_attempt_download_uses_wget_and_skips_licence_gate(tmp_path: Path) -> No
     record = _source_file("download_skip").model_copy(
         update={"licence_gate": "restricted_or_licence_review"}
     )
-    plan = source_downloads.build_download_plan(record, output_dir=tmp_path, preferred_method="wget")
-    attempt = source_downloads.attempt_download(record, output_dir=tmp_path, preferred_method="wget")
+    plan = source_downloads.build_download_plan(
+        record, output_dir=tmp_path, preferred_method="wget"
+    )
+    attempt = source_downloads.attempt_download(
+        record, output_dir=tmp_path, preferred_method="wget"
+    )
     assert plan.method == "wget"
     assert plan.should_execute is False
     assert attempt.method == "wget"

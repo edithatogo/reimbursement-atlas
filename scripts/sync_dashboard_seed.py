@@ -58,6 +58,9 @@ FILES = [
     Path("data/derived/protocols/protocol_status.csv"),
     Path("data/derived/roadmap_linkages/research_dataset_linkages.csv"),
     Path("data/derived/data_quality/data_quality_checks.csv"),
+    Path("data/derived/evidence_readiness/evidence_readiness.csv"),
+    Path("data/derived/source_drift/source_drift_report.csv"),
+    Path("data/derived/data_dictionary/data_dictionary.csv"),
 ]
 
 

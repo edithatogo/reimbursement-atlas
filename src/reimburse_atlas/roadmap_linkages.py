@@ -54,7 +54,10 @@ def build_research_linkages(
                         f"{source.jurisdiction} — {source.schedule}",
                         "required_dataset",
                         "available",
-                        "Use the registered source metadata and exact source-file records where available.",
+                        (
+                            "Use the registered source metadata and exact source-file "
+                            "records where available."
+                        ),
                     )
                 )
             elif dataset_id in dataset_by_id:
@@ -67,7 +70,10 @@ def build_research_linkages(
                         dataset.name,
                         "required_dataset_candidate",
                         "planned" if dataset.priority in {"must", "should"} else "blocked",
-                        "Onboard this candidate through a source record, source-file record and parser plan.",
+                        (
+                            "Onboard this candidate through a source record, source-file "
+                            "record and parser plan."
+                        ),
                     )
                 )
             else:
@@ -79,7 +85,10 @@ def build_research_linkages(
                         dataset_id,
                         "unresolved_required_dataset",
                         "missing",
-                        "Add a source-registry or dataset-candidate row before this protocol can be complete.",
+                        (
+                            "Add a source-registry or dataset-candidate row before this "
+                            "protocol can be complete."
+                        ),
                     )
                 )
         for mapping in mapping_by_topic.get(_topic_for_question(question), []):
@@ -103,7 +112,10 @@ def build_research_linkages(
                     f"{output.output_type} on {output.target_platform}",
                     "planned_output",
                     "available" if output.status in {"implemented", "published"} else "planned",
-                    "Keep output plan aligned with release gates and OSF/Hugging Face publication rules.",
+                    (
+                        "Keep output plan aligned with release gates and OSF/Hugging Face "
+                        "publication rules."
+                    ),
                 )
             )
     return rows
@@ -122,7 +134,9 @@ def write_research_linkages(
     return jsonl_path, csv_path
 
 
-def _group_by_track(records: Iterable[OutputArtifactPlanRecord]) -> dict[str, list[OutputArtifactPlanRecord]]:
+def _group_by_track(
+    records: Iterable[OutputArtifactPlanRecord],
+) -> dict[str, list[OutputArtifactPlanRecord]]:
     grouped: dict[str, list[OutputArtifactPlanRecord]] = {}
     for record in records:
         grouped.setdefault(record.track_id, []).append(record)

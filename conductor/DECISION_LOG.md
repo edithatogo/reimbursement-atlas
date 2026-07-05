@@ -68,3 +68,7 @@ Consequences: v13 adds `architecture-report` and `release-readiness` commands, C
 - Added a Conductor data-quality/evidence-readiness track and corresponding generated GitHub issue coverage.
 
 Decision: no downloaded source file should proceed to parsing/reviewed-source bundles until it has a validation record, and no public release should proceed while data-quality blocking failures are non-zero.
+## 2026-07-05 — v17 evidence-readiness, source drift and data dictionary gates
+
+Added generated evidence-readiness rows for each protocolled research question, source/schema drift reporting for paired tabular artefacts, and a public artefact data dictionary. These are now Conductor-visible implementation units and are reflected in generated GitHub issue drafts, dashboard tables, release readiness and publication packaging. Detailed OSF-style protocols and report scaffolds were expanded for all five initial research questions.
+

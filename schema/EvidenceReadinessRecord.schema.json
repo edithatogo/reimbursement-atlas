@@ -1,0 +1,113 @@
+{
+  "additionalProperties": false,
+  "description": "Generated readiness status for one protocolled research question.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "research_question_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Research Question Id",
+      "type": "string"
+    },
+    "track_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Track Id",
+      "type": "string"
+    },
+    "protocol_score": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Protocol Score",
+      "type": "number"
+    },
+    "dataset_linkage_count": {
+      "minimum": 0,
+      "title": "Dataset Linkage Count",
+      "type": "integer"
+    },
+    "available_linkage_count": {
+      "minimum": 0,
+      "title": "Available Linkage Count",
+      "type": "integer"
+    },
+    "planned_linkage_count": {
+      "minimum": 0,
+      "title": "Planned Linkage Count",
+      "type": "integer"
+    },
+    "blocked_linkage_count": {
+      "minimum": 0,
+      "title": "Blocked Linkage Count",
+      "type": "integer"
+    },
+    "missing_linkage_count": {
+      "minimum": 0,
+      "title": "Missing Linkage Count",
+      "type": "integer"
+    },
+    "mapping_resource_count": {
+      "minimum": 0,
+      "title": "Mapping Resource Count",
+      "type": "integer"
+    },
+    "output_plan_count": {
+      "minimum": 0,
+      "title": "Output Plan Count",
+      "type": "integer"
+    },
+    "data_quality_blockers": {
+      "minimum": 0,
+      "title": "Data Quality Blockers",
+      "type": "integer"
+    },
+    "source_validation_blockers": {
+      "minimum": 0,
+      "title": "Source Validation Blockers",
+      "type": "integer"
+    },
+    "readiness_score": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Readiness Score",
+      "type": "number"
+    },
+    "readiness_stage": {
+      "enum": [
+        "blocked",
+        "design",
+        "prototype_ready",
+        "evidence_ready"
+      ],
+      "title": "Readiness Stage",
+      "type": "string"
+    },
+    "recommended_action": {
+      "minLength": 1,
+      "title": "Recommended Action",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "research_question_id",
+    "track_id",
+    "protocol_score",
+    "dataset_linkage_count",
+    "available_linkage_count",
+    "planned_linkage_count",
+    "blocked_linkage_count",
+    "missing_linkage_count",
+    "mapping_resource_count",
+    "output_plan_count",
+    "data_quality_blockers",
+    "source_validation_blockers",
+    "readiness_score",
+    "readiness_stage",
+    "recommended_action"
+  ],
+  "title": "EvidenceReadinessRecord",
+  "type": "object"
+}

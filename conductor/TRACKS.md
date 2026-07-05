@@ -154,3 +154,9 @@ Tracked functions/issues:
 ## Data quality, source validation and evidence readiness
 
 This track makes source-content validation, data-quality checks and research-question linkage matrices first-class release gates. It ensures live downloaded files are validated locally, seed and derived tables pass table-level expectations, and every research question can be traced to sources, mappings and output artefacts before OSF/Hugging Face publication.
+## v17 added gates
+
+- Evidence-readiness matrix: one generated row per protocolled research question, combining protocol completeness, data-quality blockers, source-validation blockers, dataset/mapping/output linkages and recommended next action.
+- Source/schema drift: generated parity checks for CSV/JSONL mirrors now, and the same interface for future source-version comparisons after live ingestion.
+- Public artefact data dictionary: generated column and row-count metadata for publication-manifest candidates, intended for Hugging Face dataset cards, OSF appendices and release review.
+

@@ -1,0 +1,98 @@
+{
+  "checks": [
+    {
+      "id": "pytest",
+      "status": "passed",
+      "summary": "151 passed, 6 skipped"
+    },
+    {
+      "id": "pytest_coverage",
+      "status": "passed",
+      "summary": "90.18% core-library coverage; threshold 90%"
+    },
+    {
+      "id": "ruff_check",
+      "status": "passed",
+      "summary": "uv tool run ruff check ."
+    },
+    {
+      "id": "ruff_format_check",
+      "status": "passed",
+      "summary": "419 files already formatted"
+    },
+    {
+      "id": "compileall",
+      "status": "passed",
+      "summary": "src, scripts and tests compile"
+    },
+    {
+      "id": "seed_sync",
+      "status": "passed",
+      "summary": "Seed JSONL/CSV mirrors match"
+    },
+    {
+      "id": "public_data_policy",
+      "status": "passed",
+      "summary": "No tracked raw/local cache paths or leaked absolute local paths"
+    },
+    {
+      "id": "cli_validate",
+      "status": "passed",
+      "summary": "Registry and referential checks passed"
+    },
+    {
+      "id": "bandit",
+      "status": "passed",
+      "summary": "Passed with annotated nosec warnings only"
+    },
+    {
+      "id": "npm_ci",
+      "status": "passed",
+      "summary": "Dashboard dependencies installed"
+    },
+    {
+      "id": "npm_audit",
+      "status": "passed",
+      "summary": "0 vulnerabilities at moderate threshold"
+    },
+    {
+      "id": "astro_build",
+      "status": "passed",
+      "summary": "8 static pages built; non-blocking chunk-size warning"
+    },
+    {
+      "id": "basedpyright_target_env",
+      "status": "not_counted",
+      "summary": "Not run in a valid project environment because uv-managed Python 3.14 download was DNS-blocked"
+    },
+    {
+      "id": "pip_audit_strict",
+      "status": "blocked_network",
+      "summary": "Advisory lookup remains network-dependent in this sandbox"
+    },
+    {
+      "id": "live_source_downloads",
+      "status": "blocked_network",
+      "summary": "Curl/API acquisition must run in a network-enabled environment"
+    }
+  ],
+  "commit": null,
+  "generated_at": "2026-07-05T06:01:50.443382+00:00",
+  "generated_counts": {
+    "dashboard_pages": 8,
+    "data_dictionary_rows": 115,
+    "evidence_readiness_rows": 5,
+    "generated_issue_drafts": 120,
+    "publication_manifest_artifacts": 115,
+    "seed_lake_tables": 48,
+    "source_drift_checks": 6,
+    "tests_passed": 151,
+    "tests_skipped": 6
+  },
+  "runtime": {
+    "fallback_python": "3.13.5",
+    "target_python": "3.14.x",
+    "target_python_status": "blocked_network_for_uv_managed_python_download"
+  },
+  "version": "v17"
+}

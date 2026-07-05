@@ -144,12 +144,22 @@ DEFAULT_PUBLICATION_PATHS = (
     Path("data/derived/data_quality/data_quality_checks.jsonl"),
     Path("data/derived/data_quality/data_quality_checks.csv"),
     Path("data/derived/data_quality/summary.json"),
+    Path("data/derived/evidence_readiness/evidence_readiness.jsonl"),
+    Path("data/derived/evidence_readiness/evidence_readiness.csv"),
+    Path("data/derived/evidence_readiness/summary.json"),
+    Path("data/derived/source_drift/source_drift_report.jsonl"),
+    Path("data/derived/source_drift/source_drift_report.csv"),
+    Path("data/derived/source_drift/summary.json"),
+    Path("data/derived/data_dictionary/data_dictionary.jsonl"),
+    Path("data/derived/data_dictionary/data_dictionary.csv"),
+    Path("data/derived/data_dictionary/summary.json"),
     Path("data/derived/research_package/datapackage.json"),
     Path("data/derived/research_package/ro-crate-metadata.json"),
     Path("data/derived/research_package/dcat.jsonld"),
     Path("data/derived/v14_validation_run.json"),
     Path("data/derived/v15_validation_run.json"),
     Path("data/derived/v16_validation_run.json"),
+    Path("data/derived/v17_validation_run.json"),
 )
 
 

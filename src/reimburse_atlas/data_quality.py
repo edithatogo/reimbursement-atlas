@@ -2,10 +2,8 @@
 
 from __future__ import annotations
 
-import csv
 import json
 from collections import Counter
-from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
 
@@ -150,10 +148,13 @@ def _referential_integrity_checks(repo: Path) -> list[DataQualityCheckRecord]:
     source_ids = _id_set(repo / "data" / "seed" / "source_registry.jsonl")
     version_ids = _id_set(repo / "data" / "seed" / "source_versions.jsonl")
     track_ids = _id_set(repo / "data" / "seed" / "conductor_tracks.jsonl")
-    dataset_ids = source_ids | _id_set(repo / "data" / "seed" / "dataset_candidates.jsonl") | {"source_registry"}
-    checks = [
+    dataset_ids = (
+        source_ids
+        | _id_set(repo / "data" / "seed" / "dataset_candidates.jsonl")
+        | {"source_registry"}
+    )
+    return [
         _foreign_key_check(
-            repo,
             "source_files_source_id",
             repo / "data" / "seed" / "source_files.jsonl",
             "source_id",
@@ -161,7 +162,6 @@ def _referential_integrity_checks(repo: Path) -> list[DataQualityCheckRecord]:
             "source_files.source_id references source_registry.id",
         ),
         _foreign_key_check(
-            repo,
             "source_files_source_version_id",
             repo / "data" / "seed" / "source_files.jsonl",
             "source_version_id",
@@ -169,7 +169,6 @@ def _referential_integrity_checks(repo: Path) -> list[DataQualityCheckRecord]:
             "source_files.source_version_id references source_versions.id",
         ),
         _foreign_key_check(
-            repo,
             "roadmap_functions_track_id",
             repo / "data" / "seed" / "roadmap_functions.jsonl",
             "track_id",
@@ -177,7 +176,6 @@ def _referential_integrity_checks(repo: Path) -> list[DataQualityCheckRecord]:
             "roadmap_functions.track_id references conductor_tracks.id",
         ),
         _foreign_key_check(
-            repo,
             "research_questions_track_id",
             repo / "data" / "seed" / "research_questions.jsonl",
             "track_id",
@@ -185,7 +183,6 @@ def _referential_integrity_checks(repo: Path) -> list[DataQualityCheckRecord]:
             "research_questions.track_id references conductor_tracks.id",
         ),
         _foreign_key_check(
-            repo,
             "output_artifact_plans_track_id",
             repo / "data" / "seed" / "output_artifact_plans.jsonl",
             "track_id",
@@ -193,7 +190,6 @@ def _referential_integrity_checks(repo: Path) -> list[DataQualityCheckRecord]:
             "output_artifact_plans.track_id references conductor_tracks.id",
         ),
         _tuple_foreign_key_check(
-            repo,
             "research_questions_required_datasets",
             repo / "data" / "seed" / "research_questions.jsonl",
             "required_datasets",
@@ -201,7 +197,6 @@ def _referential_integrity_checks(repo: Path) -> list[DataQualityCheckRecord]:
             "research question datasets resolve to sources or dataset candidates",
         ),
     ]
-    return checks
 
 
 def _generated_artifact_checks(repo: Path) -> list[DataQualityCheckRecord]:
@@ -218,9 +213,28 @@ def _generated_artifact_checks(repo: Path) -> list[DataQualityCheckRecord]:
         / "derived"
         / "roadmap_linkages"
         / "research_dataset_linkages.jsonl",
+        "evidence_readiness": repo
+        / "data"
+        / "derived"
+        / "evidence_readiness"
+        / "evidence_readiness.jsonl",
+        "source_drift_report": repo
+        / "data"
+        / "derived"
+        / "source_drift"
+        / "source_drift_report.jsonl",
+        "data_dictionary": repo / "data" / "derived" / "data_dictionary" / "data_dictionary.jsonl",
         "publication_manifest": repo / "data" / "derived" / "publication_manifest.json",
-        "research_package_datapackage": repo / "data" / "derived" / "research_package" / "datapackage.json",
-        "research_package_rocrate": repo / "data" / "derived" / "research_package" / "ro-crate-metadata.json",
+        "research_package_datapackage": repo
+        / "data"
+        / "derived"
+        / "research_package"
+        / "datapackage.json",
+        "research_package_rocrate": repo
+        / "data"
+        / "derived"
+        / "research_package"
+        / "ro-crate-metadata.json",
     }
     rows: list[DataQualityCheckRecord] = []
     for table_name, path in expectations.items():
@@ -275,7 +289,6 @@ def _publication_safety_checks(repo: Path) -> list[DataQualityCheckRecord]:
 
 
 def _foreign_key_check(
-    repo: Path,
     check_id: str,
     path: Path,
     field: str,
@@ -294,7 +307,9 @@ def _foreign_key_check(
             path,
             "Regenerate required seed table.",
         )
-    missing = sorted({str(row.get(field, "")) for row in records if str(row.get(field, "")) not in allowed})
+    missing = sorted({
+        str(row.get(field, "")) for row in records if str(row.get(field, "")) not in allowed
+    })
     return _check(
         check_id,
         "foreign_key",
@@ -308,7 +323,6 @@ def _foreign_key_check(
 
 
 def _tuple_foreign_key_check(
-    repo: Path,
     check_id: str,
     path: Path,
     field: str,

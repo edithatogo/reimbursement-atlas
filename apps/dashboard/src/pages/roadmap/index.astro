@@ -45,6 +45,11 @@ import Layout from "../../components/Layout.astro";
     columns={["research_question_id", "linked_entity_type", "linked_entity_id", "linkage_role", "readiness_status", "recommended_action"]}
   />
   <DataTable
+    title="Evidence readiness by research question"
+    fileName="evidence_readiness.csv"
+    columns={["research_question_id", "readiness_stage", "readiness_score", "protocol_score", "available_linkage_count", "planned_linkage_count", "missing_linkage_count", "recommended_action"]}
+  />
+  <DataTable
     title="Publication and deployment outputs"
     fileName="output_artifact_plans.csv"
     columns={["id", "track_id", "output_type", "target_platform", "path", "status", "release_gate"]}

@@ -54,6 +54,9 @@ def test_release_readiness_report_reads_generated_evidence(tmp_path: Path) -> No
     (tmp_path / "data/derived/architecture").mkdir(parents=True)
     (tmp_path / "data/derived/data_quality").mkdir(parents=True)
     (tmp_path / "data/derived/source_validation").mkdir(parents=True)
+    (tmp_path / "data/derived/data_dictionary").mkdir(parents=True)
+    (tmp_path / "data/derived/evidence_readiness").mkdir(parents=True)
+    (tmp_path / "data/derived/source_drift").mkdir(parents=True)
 
     (tmp_path / "data/derived/local_quality_gates/summary.json").write_text(
         json.dumps({"profile": "ci", "release_ready": True, "blocking_failures": 0}),
@@ -74,6 +77,9 @@ def test_release_readiness_report_reads_generated_evidence(tmp_path: Path) -> No
                 "source_content_validation",
                 "roadmap_linkages",
                 "data_quality",
+                "data_dictionary",
+                "evidence_readiness",
+                "source_drift",
                 "uv_build",
                 "dashboard_build",
             )
@@ -118,6 +124,18 @@ def test_release_readiness_report_reads_generated_evidence(tmp_path: Path) -> No
     )
     (tmp_path / "data/derived/data_quality/summary.json").write_text(
         json.dumps({"check_count": 3, "blocking_failures": 0}),
+        encoding="utf-8",
+    )
+    (tmp_path / "data/derived/data_dictionary/summary.json").write_text(
+        json.dumps({"table_count": 30, "total_rows_documented": 100}),
+        encoding="utf-8",
+    )
+    (tmp_path / "data/derived/evidence_readiness/summary.json").write_text(
+        json.dumps({"blocked": 0, "prototype_ready": 2}),
+        encoding="utf-8",
+    )
+    (tmp_path / "data/derived/source_drift/summary.json").write_text(
+        json.dumps({"blocking_failure_count": 0, "warn": 0}),
         encoding="utf-8",
     )
     (tmp_path / "data/derived/source_validation/summary.json").write_text(

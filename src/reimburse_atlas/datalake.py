@@ -275,6 +275,17 @@ def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:  
         / "derived"
         / "data_quality"
         / "data_quality_checks.jsonl",
+        "evidence_readiness": root
+        / "data"
+        / "derived"
+        / "evidence_readiness"
+        / "evidence_readiness.jsonl",
+        "source_drift_report": root
+        / "data"
+        / "derived"
+        / "source_drift"
+        / "source_drift_report.jsonl",
+        "data_dictionary": root / "data" / "derived" / "data_dictionary" / "data_dictionary.jsonl",
     }
     for table_name, table_path in derived_jsonl_tables.items():
         if table_path.exists():

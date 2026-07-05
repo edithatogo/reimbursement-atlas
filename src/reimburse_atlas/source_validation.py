@@ -61,7 +61,8 @@ def _validate_one(record: SourceFileRecord, raw_dir: Path) -> SourceContentValid
             target_ref=target_ref,
             issues=("licence-gated, metadata-only, landing-page or manual-extract record",),
             recommended_action=(
-                "Treat this record as a manual/licence review target; do not auto-validate raw payloads."
+                "Treat this record as a manual/licence review target; do not "
+                "auto-validate raw payloads."
             ),
         )
     if not target.exists():
@@ -70,7 +71,9 @@ def _validate_one(record: SourceFileRecord, raw_dir: Path) -> SourceContentValid
             status="missing",
             target_ref=target_ref,
             issues=("expected local raw file is absent",),
-            recommended_action="Run the generated download command in a network-enabled environment.",
+            recommended_action=(
+                "Run the generated download command in a network-enabled environment."
+            ),
         )
     if not target.is_file():
         return _record(
@@ -101,13 +104,20 @@ def _validate_one(record: SourceFileRecord, raw_dir: Path) -> SourceContentValid
         issues.extend(text_issues)
     if expected.startswith("zip") or suffix == ".zip":
         issues.extend(_zip_issues(target))
-    if record.expected_record_count is not None and observed_record_count is not None:
-        if abs(observed_record_count - record.expected_record_count) > max(5, record.expected_record_count // 20):
-            issues.append(
-                f"observed record count {observed_record_count} differs from expected {record.expected_record_count}"
-            )
+    if (
+        record.expected_record_count is not None
+        and observed_record_count is not None
+        and abs(observed_record_count - record.expected_record_count)
+        > max(5, record.expected_record_count // 20)
+    ):
+        issues.append(
+            f"observed record count {observed_record_count} differs from "
+            f"expected {record.expected_record_count}"
+        )
     status = "pass" if not issues else "warn"
-    if any(issue in {"file is empty"} for issue in issues) or any("looks like HTML" in i for i in issues):
+    if any(issue == "file is empty" for issue in issues) or any(
+        "looks like HTML" in i for i in issues
+    ):
         status = "fail"
     return _record(
         record,
@@ -129,7 +139,8 @@ def _should_skip(record: SourceFileRecord) -> bool:
     return (
         record.licence_gate in {"restricted_or_licence_review", "metadata_only"}
         or record.file_role in {"landing_page", "licence_gate"}
-        or record.acquisition_mode in {"manual_extract", "landing_page_review", "licence_clickthrough_manual"}
+        or record.acquisition_mode
+        in {"manual_extract", "landing_page_review", "licence_clickthrough_manual"}
     )
 
 

@@ -529,6 +529,18 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/source_validation/source_content_validation.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_content_validation"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/source_validation/source_content_validation.csv",
+      "dct:format": "csv",
+      "dct:title": "source_content_validation"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/osf/component_plan.jsonl",
       "dct:format": "jsonl",
       "dct:title": "component_plan"
@@ -565,6 +577,90 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/roadmap_linkages/research_dataset_linkages.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "research_dataset_linkages"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/roadmap_linkages/research_dataset_linkages.csv",
+      "dct:format": "csv",
+      "dct:title": "research_dataset_linkages"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/data_quality/data_quality_checks.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "data_quality_checks"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/data_quality/data_quality_checks.csv",
+      "dct:format": "csv",
+      "dct:title": "data_quality_checks"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/data_quality/summary.json",
+      "dct:format": "json",
+      "dct:title": "summary"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/evidence_readiness/evidence_readiness.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "evidence_readiness"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/evidence_readiness/evidence_readiness.csv",
+      "dct:format": "csv",
+      "dct:title": "evidence_readiness"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/evidence_readiness/summary.json",
+      "dct:format": "json",
+      "dct:title": "summary"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/source_drift/source_drift_report.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_drift_report"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/source_drift/source_drift_report.csv",
+      "dct:format": "csv",
+      "dct:title": "source_drift_report"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/source_drift/summary.json",
+      "dct:format": "json",
+      "dct:title": "summary"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/data_dictionary/data_dictionary.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "data_dictionary"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/data_dictionary/data_dictionary.csv",
+      "dct:format": "csv",
+      "dct:title": "data_dictionary"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/data_dictionary/summary.json",
+      "dct:format": "json",
+      "dct:title": "summary"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/research_package/datapackage.json",
       "dct:format": "json",
       "dct:title": "datapackage"
@@ -586,6 +682,18 @@
       "dcat:downloadURL": "data/derived/v14_validation_run.json",
       "dct:format": "json",
       "dct:title": "v14_validation_run"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/v15_validation_run.json",
+      "dct:format": "json",
+      "dct:title": "v15_validation_run"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/v16_validation_run.json",
+      "dct:format": "json",
+      "dct:title": "v16_validation_run"
     }
   ],
   "dct:description": "Licence-safe metadata and derived tables for comparative reimbursement research.",

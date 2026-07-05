@@ -406,3 +406,15 @@ The v16 pass adds three release-facing evidence gates:
 - `roadmap-linkages`: links every research question to registered sources, dataset candidates, mapping resources and output artefacts for OSF/GitHub Project planning.
 
 These gates are visible in the dashboard, seed lake, publication manifest, release-readiness matrix and generated GitHub issue drafts.
+### v17 evidence-readiness additions
+
+The repository now generates three additional release-review artefacts:
+
+```bash
+PYTHONPATH=src reimbursement-atlas evidence-readiness
+PYTHONPATH=src reimbursement-atlas source-drift
+PYTHONPATH=src reimbursement-atlas data-dictionary
+```
+
+These produce research-question readiness rows, source/schema drift checks and a public artefact data dictionary for GitHub/Hugging Face/OSF/Zenodo review. All five initial research questions are currently prototype-ready, but still require real reviewed-source bundles and human mapping/preregistration review before policy claims are evidence-ready.
+

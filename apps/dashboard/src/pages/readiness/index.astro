@@ -40,4 +40,14 @@ import Layout from "../../components/Layout.astro";
     fileName="data_quality_checks.csv"
     columns={["id", "table_name", "check_name", "severity", "status", "observed_value", "expected_value", "recommended_action"]}
   />
+  <DataTable
+    title="Source/schema drift checks"
+    fileName="source_drift_report.csv"
+    columns={["id", "left_label", "right_label", "status", "left_row_count", "right_row_count", "row_count_delta", "added_columns", "removed_columns", "recommended_action"]}
+  />
+  <DataTable
+    title="Data dictionary"
+    fileName="data_dictionary.csv"
+    columns={["table_name", "relative_path", "file_format", "row_count", "column_count", "publication_scope", "licence_gate"]}
+  />
 </Layout>

@@ -1,0 +1,72 @@
+{
+  "additionalProperties": false,
+  "description": "Generated data dictionary entry for one public/derived table artefact.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "table_name": {
+      "minLength": 1,
+      "title": "Table Name",
+      "type": "string"
+    },
+    "relative_path": {
+      "minLength": 1,
+      "title": "Relative Path",
+      "type": "string"
+    },
+    "file_format": {
+      "minLength": 1,
+      "title": "File Format",
+      "type": "string"
+    },
+    "row_count": {
+      "minimum": 0,
+      "title": "Row Count",
+      "type": "integer"
+    },
+    "column_count": {
+      "minimum": 0,
+      "title": "Column Count",
+      "type": "integer"
+    },
+    "columns": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Columns",
+      "type": "array"
+    },
+    "publication_scope": {
+      "minLength": 1,
+      "title": "Publication Scope",
+      "type": "string"
+    },
+    "licence_gate": {
+      "minLength": 1,
+      "title": "Licence Gate",
+      "type": "string"
+    },
+    "notes": {
+      "minLength": 1,
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "table_name",
+    "relative_path",
+    "file_format",
+    "row_count",
+    "column_count",
+    "publication_scope",
+    "licence_gate",
+    "notes"
+  ],
+  "title": "DataDictionaryRecord",
+  "type": "object"
+}

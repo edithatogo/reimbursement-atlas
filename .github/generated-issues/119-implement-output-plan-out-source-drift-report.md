@@ -1,8 +1,8 @@
-# Add source drift and schema diff reports
+# Implement output plan: out_source_drift_report
 
-Epic: `TRACK_LIVE_SOURCE_INGESTION` — Evidence-grade live source ingestion
+Epic: `OUTPUTS` — Publication and deployment outputs
 
-Labels: type:roadmap-function, priority:should, interface:data_pipeline
+Labels: type:publication, target:github
 
 ## Background
 

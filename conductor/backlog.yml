@@ -195,3 +195,15 @@ epics:
         labels: ["type:dashboard", "type:data-quality", "phase:hardening"]
       - title: Add source-specific record-count and schema validators after first real downloads
         labels: ["type:parser", "type:data-quality", "phase:implementation"]
+  - id: EVID-017
+    title: Evidence readiness, source drift and data dictionary gates
+    issues:
+      - title: Generate evidence-readiness matrix for each protocolled research question
+        labels: ["type:data-quality", "phase:release-gate"]
+      - title: Add source/schema drift reporting to release readiness
+        labels: ["type:data-quality", "phase:release-gate"]
+      - title: Generate public artefact data dictionary for Hugging Face and OSF outputs
+        labels: ["type:publication", "phase:release-gate"]
+      - title: Expand OSF protocols and report scaffolds with required sections
+        labels: ["type:research", "type:osf"]
+

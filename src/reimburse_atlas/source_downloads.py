@@ -138,11 +138,7 @@ def build_download_plan(
         executable = False
     if record.file_role in {"landing_page", "licence_gate"}:
         executable = False
-    args = (
-        _wget_args(record, target)
-        if preferred_method == "wget"
-        else _curl_args(record, target)
-    )
+    args = _wget_args(record, target) if preferred_method == "wget" else _curl_args(record, target)
     command = f"mkdir -p {shlex.quote(str(target.parent))} && {_shell_join(args)}"
     return SourceDownloadPlan(
         source_file_id=record.id,
@@ -157,7 +153,8 @@ def build_download_plan(
         supports_resume=True,
         captures_headers=preferred_method == "curl",
         notes=(
-            "Executable local raw download candidate with retries, resume support and header/ETag sidecars."
+            "Executable local raw download candidate with retries, resume support "
+            "and header/ETag sidecars."
             if executable
             else "Metadata-only, landing-page or licence-gated record; do not auto-download."
         ),

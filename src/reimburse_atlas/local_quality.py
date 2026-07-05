@@ -213,7 +213,9 @@ def default_quality_gate_specs(root: Path | None = None) -> list[QualityGateSpec
             command=(*python_prefix, "python", "scripts/make_source_validation.py"),
             timeout_seconds=120,
             profiles=("quick", "ci", "release"),
-            notes="Downloaded source files must be validated or explicitly skipped by licence gates.",
+            notes=(
+                "Downloaded source files must be validated or explicitly skipped by licence gates."
+            ),
         ),
         QualityGateSpec(
             id="roadmap_linkages",
@@ -230,6 +232,30 @@ def default_quality_gate_specs(root: Path | None = None) -> list[QualityGateSpec
             timeout_seconds=120,
             profiles=("quick", "ci", "release"),
             notes="Seed and derived table quality checks must regenerate cleanly.",
+        ),
+        QualityGateSpec(
+            id="data_dictionary",
+            category="data",
+            command=(*python_prefix, "python", "scripts/make_data_dictionary.py"),
+            timeout_seconds=120,
+            profiles=("quick", "ci", "release"),
+            notes="Public candidate artefacts must have generated data-dictionary entries.",
+        ),
+        QualityGateSpec(
+            id="evidence_readiness",
+            category="data",
+            command=(*python_prefix, "python", "scripts/make_evidence_readiness.py"),
+            timeout_seconds=120,
+            profiles=("quick", "ci", "release"),
+            notes="Protocolled research questions must have generated evidence-readiness rows.",
+        ),
+        QualityGateSpec(
+            id="source_drift",
+            category="data",
+            command=(*python_prefix, "python", "scripts/make_source_drift_report.py"),
+            timeout_seconds=120,
+            profiles=("quick", "ci", "release"),
+            notes="CSV/JSONL mirror and schema drift checks must regenerate cleanly.",
         ),
         QualityGateSpec(
             id="repo_automation_matrix",
