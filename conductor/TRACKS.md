@@ -95,7 +95,7 @@ Tracked functions/issues:
 - `func_ro_crate` — Add RO-Crate metadata generator (implemented, data_pipeline)
 - `func_dcat` — Add DCAT JSON-LD export (implemented, data_pipeline)
 
-## track_mapping_workbench: Human-in-the-loop mapping workbench
+## [x] track_mapping_workbench: Human-in-the-loop mapping workbench
 
 Priority: **must**  
 Phase: `implementation`  

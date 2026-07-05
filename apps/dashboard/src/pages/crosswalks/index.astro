@@ -6,22 +6,104 @@ import Layout from "../../components/Layout.astro";
 <Layout title="Reimbursement Atlas crosswalks">
   <h1>Crosswalks</h1>
   <p>
-    Crosswalks are candidate mappings only. They require domain review before they are used in policy
-    estimates, price comparisons or uptake analysis.
+    Crosswalks are candidate mappings only. They require domain review before they are used in
+    policy estimates, price comparisons or uptake analysis.
   </p>
   <DataTable
     title="Crosswalk review queue"
     fileName="crosswalk_review_queue.csv"
-    columns={["left_source_id", "left_code", "right_source_id", "right_code", "confidence", "priority", "recommended_action"]}
+    columns={[
+      "left_source_id",
+      "left_code",
+      "right_source_id",
+      "right_code",
+      "confidence",
+      "priority",
+      "recommended_action",
+    ]}
   />
   <DataTable
     title="Candidate crosswalks"
     fileName="crosswalk_candidates.csv"
-    columns={["left_source_id", "left_code", "right_source_id", "right_code", "relationship", "confidence", "evidence_methods"]}
+    columns={[
+      "left_source_id",
+      "left_code",
+      "right_source_id",
+      "right_code",
+      "relationship",
+      "confidence",
+      "evidence_methods",
+    ]}
   />
   <DataTable
     title="Mapping evidence matrix"
     fileName="mapping_evidence_matrix.csv"
-    columns={["left_source_id", "left_code", "right_source_id", "right_code", "token_jaccard", "hash_cosine", "price_ratio", "confidence", "review_priority"]}
+    columns={[
+      "left_source_id",
+      "left_code",
+      "right_source_id",
+      "right_code",
+      "token_jaccard",
+      "hash_cosine",
+      "price_ratio",
+      "confidence",
+      "review_priority",
+    ]}
+  />
+  <DataTable
+    title="Gold-standard mappings"
+    fileName="gold_standard_mappings.csv"
+    columns={[
+      "left_source_id",
+      "left_code",
+      "right_source_id",
+      "right_code",
+      "relationship",
+      "reviewer",
+      "reviewed_at",
+      "notes",
+    ]}
+  />
+  <DataTable
+    title="Negative controls"
+    fileName="negative_controls.csv"
+    columns={[
+      "left_source_id",
+      "left_code",
+      "right_source_id",
+      "right_code",
+      "reason_not_equivalent",
+      "reviewer",
+      "reviewed_at",
+    ]}
+  />
+  <DataTable
+    title="Calibration cases"
+    fileName="mapping_calibration_cases.csv"
+    columns={[
+      "case_type",
+      "left_source_id",
+      "left_code",
+      "right_source_id",
+      "right_code",
+      "expected_outcome",
+      "observed_outcome",
+      "candidate_confidence",
+    ]}
+  />
+  <DataTable
+    title="Calibration summary"
+    fileName="mapping_calibration_summary.csv"
+    columns={[
+      "gold_standard_count",
+      "matched_gold_standard_count",
+      "missed_gold_standard_count",
+      "negative_control_count",
+      "triggered_negative_control_count",
+      "estimated_recall",
+      "estimated_precision",
+      "estimated_specificity",
+      "recommended_review_threshold",
+    ]}
   />
 </Layout>

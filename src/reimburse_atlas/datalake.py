@@ -190,6 +190,10 @@ def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:  
         "priced_share",
         "policy_signal_matrix",
         "mapping_evidence_matrix",
+        "gold_standard_mappings",
+        "negative_controls",
+        "mapping_calibration_cases",
+        "mapping_calibration_summary",
     ):
         table_path = vertical_dir / f"{table_name}.jsonl"
         if table_path.exists():

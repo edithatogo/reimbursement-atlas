@@ -835,6 +835,12 @@ def vertical_slice(
         policy_signal_matrix,
         priced_share,
     )
+    from reimburse_atlas.gold_standard import (
+        build_gold_standard_set,
+        build_mapping_calibration_cases,
+        build_mapping_calibration_summary,
+        build_negative_controls,
+    )
 
     fixtures = project_root() / "tests" / "fixtures"
     mbs_records = parse_mbs_xml(fixtures / "mbs_fragment.xml")
@@ -859,6 +865,10 @@ def vertical_slice(
         [*clfs_records, *pfs_records],
         threshold=0.05,
     )
+    gold_standard_rows = build_gold_standard_set()
+    negative_control_rows = build_negative_controls()
+    calibration_cases = build_mapping_calibration_cases(crosswalks)
+    calibration_summary = build_mapping_calibration_summary(calibration_cases)
     write_jsonl(pydantic_rows(schedule_records), output_dir / "schedule_items.jsonl")
     write_csv(pydantic_rows(schedule_records), output_dir / "schedule_items.csv")
     write_jsonl(pydantic_rows(coverage_records), output_dir / "coverage_decisions.jsonl")
@@ -875,6 +885,20 @@ def vertical_slice(
     write_csv(signal_rows, output_dir / "policy_signal_matrix.csv")
     write_jsonl(pydantic_rows(mapping_rows), output_dir / "mapping_evidence_matrix.jsonl")
     write_csv(pydantic_rows(mapping_rows), output_dir / "mapping_evidence_matrix.csv")
+    write_jsonl(pydantic_rows(gold_standard_rows), output_dir / "gold_standard_mappings.jsonl")
+    write_csv(pydantic_rows(gold_standard_rows), output_dir / "gold_standard_mappings.csv")
+    write_jsonl(pydantic_rows(negative_control_rows), output_dir / "negative_controls.jsonl")
+    write_csv(pydantic_rows(negative_control_rows), output_dir / "negative_controls.csv")
+    write_jsonl(pydantic_rows(calibration_cases), output_dir / "mapping_calibration_cases.jsonl")
+    write_csv(pydantic_rows(calibration_cases), output_dir / "mapping_calibration_cases.csv")
+    write_jsonl(
+        [calibration_summary.model_dump(mode="json")],
+        output_dir / "mapping_calibration_summary.jsonl",
+    )
+    write_csv(
+        [calibration_summary.model_dump(mode="json")],
+        output_dir / "mapping_calibration_summary.csv",
+    )
     console.print_json(
         json.dumps(
             {
@@ -884,6 +908,7 @@ def vertical_slice(
                 "crosswalk_review_rows": len(review_queue),
                 "policy_signal_rows": len(signal_rows),
                 "mapping_evidence_rows": len(mapping_rows),
+                "calibration_cases": len(calibration_cases),
                 "output_dir": str(output_dir),
             },
             indent=2,

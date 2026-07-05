@@ -9,6 +9,12 @@ from reimburse_atlas.analysis import (
     policy_signal_matrix,
     priced_share,
 )
+from reimburse_atlas.gold_standard import (
+    build_gold_standard_set,
+    build_mapping_calibration_cases,
+    build_mapping_calibration_summary,
+    build_negative_controls,
+)
 from reimburse_atlas.io import pydantic_rows, write_csv, write_jsonl
 from reimburse_atlas.parsers import (
     parse_cms_asp_csv,
@@ -50,6 +56,10 @@ def main() -> None:  # noqa: PLR0914
         [*clfs_records, *pfs_records],
         threshold=0.05,
     )
+    gold_standard_rows = build_gold_standard_set()
+    negative_control_rows = build_negative_controls()
+    calibration_cases = build_mapping_calibration_cases(crosswalks)
+    calibration_summary = build_mapping_calibration_summary(calibration_cases)
 
     write_jsonl(pydantic_rows(schedule_records), out / "schedule_items.jsonl")
     write_csv(pydantic_rows(schedule_records), out / "schedule_items.csv")
@@ -67,6 +77,15 @@ def main() -> None:  # noqa: PLR0914
     write_jsonl(signal_rows, out / "policy_signal_matrix.jsonl")
     write_csv(pydantic_rows(mapping_rows), out / "mapping_evidence_matrix.csv")
     write_jsonl(pydantic_rows(mapping_rows), out / "mapping_evidence_matrix.jsonl")
+    write_csv(pydantic_rows(gold_standard_rows), out / "gold_standard_mappings.csv")
+    write_jsonl(pydantic_rows(gold_standard_rows), out / "gold_standard_mappings.jsonl")
+    write_csv(pydantic_rows(negative_control_rows), out / "negative_controls.csv")
+    write_jsonl(pydantic_rows(negative_control_rows), out / "negative_controls.jsonl")
+    write_csv(pydantic_rows(calibration_cases), out / "mapping_calibration_cases.csv")
+    write_jsonl(pydantic_rows(calibration_cases), out / "mapping_calibration_cases.jsonl")
+    calibration_summary_rows = [calibration_summary.model_dump(mode="json")]
+    write_csv(calibration_summary_rows, out / "mapping_calibration_summary.csv")
+    write_jsonl(calibration_summary_rows, out / "mapping_calibration_summary.jsonl")
     print(
         "Wrote vertical slice: "
         f"{len(schedule_records)} schedule items, "
@@ -74,7 +93,8 @@ def main() -> None:  # noqa: PLR0914
         f"{len(crosswalks)} crosswalk candidates, "
         f"{len(review_queue)} review rows, "
         f"{len(signal_rows)} policy signal rows, "
-        f"{len(mapping_rows)} mapping evidence rows"
+        f"{len(mapping_rows)} mapping evidence rows, "
+        f"{len(calibration_cases)} calibration cases"
     )
 
 
