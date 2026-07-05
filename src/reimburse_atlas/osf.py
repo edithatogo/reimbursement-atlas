@@ -98,6 +98,82 @@ def build_osf_component_plan(
     return components
 
 
+def build_osf_preprint_checklist(components: list[OsfComponentPlan]) -> str:
+    """Build a markdown checklist for preregistration and preprint staging."""
+    required_protocols = [
+        component
+        for component in components
+        if component.component_type == "protocol" and component.required_before_release
+    ]
+    research_question_ids = sorted(
+        {
+            component.research_question_id
+            for component in components
+            if component.research_question_id is not None
+        }
+    )
+    lines = [
+        "# OSF preprint checklist",
+        "",
+        "This checklist is generated from the OSF component plan and current protocol gates.",
+        "",
+        "## Required checks",
+        "",
+        "- [ ] Protocols exist for every registered research question.",
+        "- [ ] Report scaffolds exist for every registered research question.",
+        "- [ ] Protocol completeness has been assessed with the OSF status gate.",
+        "- [ ] Source-content validation and source-contract gates are regenerated.",
+        "- [ ] Publication manifest excludes raw restricted source payloads.",
+        "- [ ] OSF component plan includes protocols, reports and preprint staging paths.",
+        "- [ ] Human review confirms licensing, inclusion and mapping rules.",
+        "",
+        "## Protocol components",
+    ]
+    for component in required_protocols:
+        lines.append(f"- [ ] {component.component_title} -> `{component.local_path}`")
+    lines.extend(
+        [
+            "",
+            "## Research questions",
+        ]
+    )
+    for research_question_id in research_question_ids:
+        question_components = [
+            component
+            for component in components
+            if component.research_question_id == research_question_id
+        ]
+        protocol_path = next(
+            (
+                component.local_path
+                for component in question_components
+                if component.component_type == "protocol"
+            ),
+            "protocols/",
+        )
+        report_path = next(
+            (
+                component.local_path
+                for component in question_components
+                if component.component_type == "report"
+            ),
+            "reports/",
+        )
+        lines.append(f"- [ ] {research_question_id}: `{protocol_path}` and `{report_path}`")
+    lines.extend(
+        [
+            "",
+            "## Preprint staging",
+            "",
+            "- [ ] Methods manuscript outline is present in `papers/` when ready.",
+            "- [ ] Reviewer response materials remain local until a submission decision exists.",
+            "- [ ] Final archive or OSF upload is gated on human review and release readiness.",
+            "",
+        ]
+    )
+    return "\n".join(lines)
+
+
 def write_osf_outputs(
     components: list[OsfComponentPlan],
     *,
@@ -124,4 +200,6 @@ def write_osf_outputs(
     manifest_path.write_text(
         json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
+    checklist_path = output_dir / "preprint_checklist.md"
+    checklist_path.write_text(build_osf_preprint_checklist(components), encoding="utf-8")
     return jsonl_path, csv_path, manifest_path
