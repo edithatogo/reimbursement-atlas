@@ -49,10 +49,7 @@ CONTRACTS: dict[str, SourceContract] = {
         name="PBS API/CSV extract contract",
         expected_columns=("pbs_item_code", "drug_name", "effective_date"),
         required_markers=("pbs",),
-        skip_reason=(
-            "Documentation/API endpoint record; validate a reviewed CSV or JSON "
-            "extract instead."
-        ),
+        skip_reason="Documentation/API endpoint record; validate a reviewed CSV or JSON extract instead.",  # noqa: E501
     ),
     "us_cms_clfs_26clabq3_ama_zip": SourceContract(
         name="CMS CLFS AMA-gated ZIP contract",

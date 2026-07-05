@@ -16,17 +16,17 @@ def main() -> None:
                 "bash",
                 "-lc",
                 (
-                    'tmpdir=$(mktemp -d) && '
-                    'reqfile=$(mktemp) && '
-                    'uv run --all-extras python -m pip freeze '
+                    "tmpdir=$(mktemp -d) && "
+                    "reqfile=$(mktemp) && "
+                    "uv run --all-extras python -m pip freeze "
                     '| grep -vE "^(reimbursement-atlas|reimbursement_atlas)(==| @ )|git\\+file:" '
                     '| grep -v "file:///Volumes/" '
                     '> "$reqfile" && '
                     'uv run --all-extras python -m venv "$tmpdir" && '
                     'uv run --all-extras "$tmpdir/bin/python" -m pip install --upgrade pip '
-                    '> /dev/null && '
+                    "> /dev/null && "
                     'uv run --all-extras "$tmpdir/bin/python" -m pip install -r "$reqfile" '
-                    '> /dev/null && '
+                    "> /dev/null && "
                     'uv run --all-extras pip-audit --strict --path "$tmpdir"; '
                     'status=$?; rm -rf "$tmpdir" "$reqfile"; exit $status'
                 ),
