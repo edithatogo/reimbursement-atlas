@@ -246,3 +246,29 @@ def _read_text_with_fallback(path: Path) -> str:
         except UnicodeDecodeError:
             continue
     return raw.decode("utf-8", errors="replace")
+
+
+def fixed_width_tokenize(line: str, widths: tuple[int, ...]) -> tuple[str, ...]:
+    """Split a line by fixed column widths.
+
+    This is the Python reference implementation for `mojo/fixed_width_tokenizer.mojo`.
+    Returns one string per width, with trailing whitespace stripped.
+    """
+    tokens: list[str] = []
+    pos = 0
+    for width in widths:
+        token = line[pos : pos + width].rstrip()
+        tokens.append(token)
+        pos += width
+    return tuple(tokens)
+
+
+def tokenize_mbs_txt_line(
+    line: str,
+    *,
+    delimiter: str | None = None,
+) -> tuple[str, ...]:
+    """Tokenize one MBS TXT line using delimiter detection or fixed-width fallback."""
+    if delimiter is not None and delimiter in line:
+        return tuple(part.strip() for part in line.split(delimiter))
+    return fixed_width_tokenize(line, widths=(5, 2, 70, 10, 12, 8, 6))

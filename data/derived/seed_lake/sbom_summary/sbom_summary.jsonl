@@ -1,2 +1,2 @@
-{"bom_format": "CycloneDX", "component_count": 134, "ecosystem": "python", "name": "reimbursement-atlas-python", "sha256": "133880bee8d09ecd437cdbbd6d8da9eea9273297de9fb38eecfa39cc16ea88e8", "spec_version": "1.6"}
-{"bom_format": "CycloneDX", "component_count": 528, "ecosystem": "npm", "name": "reimbursement-atlas-dashboard", "sha256": "1a770936c9e6c254329a6145711cb65fd9363d7658c8100d85eb2042b2333f10", "spec_version": "1.6"}
+{"bom_format": "CycloneDX", "component_count": 133, "ecosystem": "python", "name": "reimbursement-atlas-python", "sha256": "5d4c98a560427d5e68d8ae65d3af9a311caaea099ba20c291f6c4f83ce423c58", "spec_version": "1.6"}
+{"bom_format": "CycloneDX", "component_count": 528, "ecosystem": "npm", "name": "reimbursement-atlas-dashboard", "sha256": "65c282151a1438864547516be607252e337309640c844b34ca7a5ad155e717b2", "spec_version": "1.6"}

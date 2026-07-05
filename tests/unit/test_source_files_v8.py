@@ -1,6 +1,11 @@
 from pathlib import Path
 
-from reimburse_atlas.parsers.mbs_txt import parse_mbs_txt_pair, parse_stats
+from reimburse_atlas.parsers.mbs_txt import (
+    fixed_width_tokenize,
+    parse_mbs_txt_pair,
+    parse_stats,
+    tokenize_mbs_txt_line,
+)
 from reimburse_atlas.registry import load_source_files, load_source_versions, project_root
 from reimburse_atlas.toolchain import classify_gate_result
 
@@ -37,6 +42,15 @@ def test_mbs_txt_pair_parse_stats() -> None:
     assert stats.descriptor_rows == 3
     assert stats.joined_rows == 2
     assert stats.descriptor_only_rows == 1
+
+
+def test_mbs_txt_tokenizers_cover_delimited_and_fixed_width_inputs() -> None:
+    assert fixed_width_tokenize("ABCDE12345", widths=(5, 5)) == ("ABCDE", "12345")
+    assert tokenize_mbs_txt_line("a|b|c", delimiter="|") == ("a", "b", "c")
+    fallback = tokenize_mbs_txt_line("ABCDE12345", delimiter=None)
+    assert fallback[0] == "ABCDE"
+    assert fallback[1] == "12"
+    assert len(fallback) == 7
 
 
 def test_external_gate_classifier_identifies_network_block() -> None:

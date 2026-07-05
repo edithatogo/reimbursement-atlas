@@ -1,58 +1,61 @@
 action,is_official_github_action,line,pin_class,policy_note,policy_status,ref,uses,workflow
-actions/checkout,True,15,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/ci.yml
-prefix-dev/setup-pixi,False,18,minor,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v0.10.0,prefix-dev/setup-pixi@v0.10.0,.github/workflows/ci.yml
-actions/checkout,True,47,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/ci.yml
-actions/setup-node,True,50,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/setup-node@v6,.github/workflows/ci.yml
-actions/checkout,True,18,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/dashboard-preview.yml
-actions/setup-node,True,21,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/setup-node@v6,.github/workflows/dashboard-preview.yml
-prefix-dev/setup-pixi,False,26,minor,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v0.10.0,prefix-dev/setup-pixi@v0.10.0,.github/workflows/dashboard-preview.yml
-actions/checkout,True,18,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/data-smoke.yml
-prefix-dev/setup-pixi,False,21,minor,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v0.10.0,prefix-dev/setup-pixi@v0.10.0,.github/workflows/data-smoke.yml
-actions/checkout,True,26,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/huggingface.yml
-astral-sh/setup-uv,False,29,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v7,astral-sh/setup-uv@v7,.github/workflows/huggingface.yml
-actions/setup-node,True,32,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/setup-node@v6,.github/workflows/huggingface.yml
-actions/upload-artifact,True,52,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v4,actions/upload-artifact@v4,.github/workflows/huggingface.yml
-actions/checkout,True,67,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/huggingface.yml
-astral-sh/setup-uv,False,70,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v7,astral-sh/setup-uv@v7,.github/workflows/huggingface.yml
-actions/checkout,True,101,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/huggingface.yml
-actions/setup-node,True,104,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/setup-node@v6,.github/workflows/huggingface.yml
-actions/checkout,True,15,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/mutation-nightly.yml
-prefix-dev/setup-pixi,False,18,minor,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v0.10.0,prefix-dev/setup-pixi@v0.10.0,.github/workflows/mutation-nightly.yml
-actions/checkout,True,20,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/osf.yml
-astral-sh/setup-uv,False,23,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v7,astral-sh/setup-uv@v7,.github/workflows/osf.yml
-actions/upload-artifact,True,28,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v4,actions/upload-artifact@v4,.github/workflows/osf.yml
-actions/checkout,True,42,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/osf.yml
-actions/checkout,True,16,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/release-readiness.yml
+actions/checkout,True,15,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/ci.yml
+prefix-dev/setup-pixi,False,18,sha,Action is pinned to a full commit SHA.,pass,a09b6247153796b190642a2b53fac4241043cf6f,prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f,.github/workflows/ci.yml
+actions/checkout,True,47,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/ci.yml
+actions/setup-node,True,50,sha,Action is pinned to a full commit SHA.,pass,48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,.github/workflows/ci.yml
+actions/checkout,True,72,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/ci.yml
+actions/setup-python,True,75,sha,Action is pinned to a full commit SHA.,pass,42375524e23c412d93fb67b49958b491fce71c38,actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38,.github/workflows/ci.yml
+astral-sh/setup-uv,False,78,sha,Action is pinned to a full commit SHA.,pass,fac544c07dec837d0ccb6301d7b5580bf5edae39,astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39,.github/workflows/ci.yml
+actions/checkout,True,18,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/dashboard-preview.yml
+actions/setup-node,True,21,sha,Action is pinned to a full commit SHA.,pass,48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,.github/workflows/dashboard-preview.yml
+prefix-dev/setup-pixi,False,26,sha,Action is pinned to a full commit SHA.,pass,a09b6247153796b190642a2b53fac4241043cf6f,prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f,.github/workflows/dashboard-preview.yml
+actions/checkout,True,18,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/data-smoke.yml
+prefix-dev/setup-pixi,False,21,sha,Action is pinned to a full commit SHA.,pass,a09b6247153796b190642a2b53fac4241043cf6f,prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f,.github/workflows/data-smoke.yml
+actions/checkout,True,26,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/huggingface.yml
+astral-sh/setup-uv,False,29,sha,Action is pinned to a full commit SHA.,pass,37802adc94f370d6bfd71619e3f0bf239e1f3b78,astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78,.github/workflows/huggingface.yml
+actions/setup-node,True,32,sha,Action is pinned to a full commit SHA.,pass,48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,.github/workflows/huggingface.yml
+actions/upload-artifact,True,52,sha,Action is pinned to a full commit SHA.,pass,ea165f8d65b6e75b540449e92b4886f43607fa02,actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02,.github/workflows/huggingface.yml
+actions/checkout,True,67,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/huggingface.yml
+astral-sh/setup-uv,False,70,sha,Action is pinned to a full commit SHA.,pass,37802adc94f370d6bfd71619e3f0bf239e1f3b78,astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78,.github/workflows/huggingface.yml
+actions/checkout,True,101,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/huggingface.yml
+actions/setup-node,True,104,sha,Action is pinned to a full commit SHA.,pass,48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,.github/workflows/huggingface.yml
+actions/checkout,True,15,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/mutation-nightly.yml
+prefix-dev/setup-pixi,False,18,sha,Action is pinned to a full commit SHA.,pass,a09b6247153796b190642a2b53fac4241043cf6f,prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f,.github/workflows/mutation-nightly.yml
+actions/checkout,True,20,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/osf.yml
+astral-sh/setup-uv,False,23,sha,Action is pinned to a full commit SHA.,pass,37802adc94f370d6bfd71619e3f0bf239e1f3b78,astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78,.github/workflows/osf.yml
+actions/upload-artifact,True,29,sha,Action is pinned to a full commit SHA.,pass,ea165f8d65b6e75b540449e92b4886f43607fa02,actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02,.github/workflows/osf.yml
+actions/checkout,True,44,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/osf.yml
+actions/checkout,True,16,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/release-readiness.yml
 astral-sh/setup-uv,False,19,sha,Action is pinned to a full commit SHA.,pass,fac544c07dec837d0ccb6301d7b5580bf5edae39,astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39,.github/workflows/release-readiness.yml
-actions/setup-node,True,20,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/setup-node@v6,.github/workflows/release-readiness.yml
-actions/upload-artifact,True,35,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/upload-artifact@v6,.github/workflows/release-readiness.yml
-actions/checkout,True,17,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/release.yml
-prefix-dev/setup-pixi,False,20,minor,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v0.10.0,prefix-dev/setup-pixi@v0.10.0,.github/workflows/release.yml
-actions/attest,True,30,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v4,actions/attest@v4,.github/workflows/release.yml
-actions/attest,True,34,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v4,actions/attest@v4,.github/workflows/release.yml
-actions/attest,True,38,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v4,actions/attest@v4,.github/workflows/release.yml
-softprops/action-gh-release,False,41,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v3,softprops/action-gh-release@v3,.github/workflows/release.yml
-actions/checkout,True,20,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/repo-automation.yml
-prefix-dev/setup-pixi,False,23,minor,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v0.10.0,prefix-dev/setup-pixi@v0.10.0,.github/workflows/repo-automation.yml
-actions/checkout,True,20,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/scorecard.yml
-ossf/scorecard-action,False,24,minor,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v2.4.2,ossf/scorecard-action@v2.4.2,.github/workflows/scorecard.yml
-github/codeql-action/upload-sarif,True,30,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v4,github/codeql-action/upload-sarif@v4,.github/workflows/scorecard.yml
-actions/checkout,True,20,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/security.yml
-github/codeql-action/init,True,23,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v4,github/codeql-action/init@v4,.github/workflows/security.yml
-github/codeql-action/analyze,True,27,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v4,github/codeql-action/analyze@v4,.github/workflows/security.yml
-actions/checkout,True,36,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/security.yml
-actions/dependency-review-action,True,39,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v5,actions/dependency-review-action@v5,.github/workflows/security.yml
-actions/checkout,True,44,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/security.yml
-prefix-dev/setup-pixi,False,47,minor,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v0.10.0,prefix-dev/setup-pixi@v0.10.0,.github/workflows/security.yml
-actions/checkout,True,59,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/security.yml
-actions/setup-node,True,62,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/setup-node@v6,.github/workflows/security.yml
-actions/checkout,True,16,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/uv-quality.yml
+actions/setup-node,True,20,sha,Action is pinned to a full commit SHA.,pass,48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,.github/workflows/release-readiness.yml
+actions/upload-artifact,True,40,sha,Action is pinned to a full commit SHA.,pass,b7c566a772e6b6bfb58ed0dc250532a479d7789f,actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f,.github/workflows/release-readiness.yml
+actions/checkout,True,17,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/release.yml
+prefix-dev/setup-pixi,False,20,sha,Action is pinned to a full commit SHA.,pass,a09b6247153796b190642a2b53fac4241043cf6f,prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f,.github/workflows/release.yml
+actions/attest,True,30,sha,Action is pinned to a full commit SHA.,pass,a1948c3f048ba23858d222213b7c278aabede763,actions/attest@a1948c3f048ba23858d222213b7c278aabede763,.github/workflows/release.yml
+actions/attest,True,34,sha,Action is pinned to a full commit SHA.,pass,a1948c3f048ba23858d222213b7c278aabede763,actions/attest@a1948c3f048ba23858d222213b7c278aabede763,.github/workflows/release.yml
+actions/attest,True,38,sha,Action is pinned to a full commit SHA.,pass,a1948c3f048ba23858d222213b7c278aabede763,actions/attest@a1948c3f048ba23858d222213b7c278aabede763,.github/workflows/release.yml
+softprops/action-gh-release,False,41,sha,Action is pinned to a full commit SHA.,pass,718ea10b132b3b2eba29c1007bb80653f286566b,softprops/action-gh-release@718ea10b132b3b2eba29c1007bb80653f286566b,.github/workflows/release.yml
+actions/checkout,True,20,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/repo-automation.yml
+prefix-dev/setup-pixi,False,23,sha,Action is pinned to a full commit SHA.,pass,a09b6247153796b190642a2b53fac4241043cf6f,prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f,.github/workflows/repo-automation.yml
+actions/checkout,True,20,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/scorecard.yml
+ossf/scorecard-action,False,24,sha,Action is pinned to a full commit SHA.,pass,05b42c624433fc40578a4040d5cf5e36ddca8cde,ossf/scorecard-action@05b42c624433fc40578a4040d5cf5e36ddca8cde,.github/workflows/scorecard.yml
+github/codeql-action/upload-sarif,True,30,sha,Action is pinned to a full commit SHA.,pass,54f647b7e1bb85c95cddabcd46b0c578ec92bc1a,github/codeql-action/upload-sarif@54f647b7e1bb85c95cddabcd46b0c578ec92bc1a,.github/workflows/scorecard.yml
+actions/checkout,True,20,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/security.yml
+github/codeql-action/init,True,23,sha,Action is pinned to a full commit SHA.,pass,54f647b7e1bb85c95cddabcd46b0c578ec92bc1a,github/codeql-action/init@54f647b7e1bb85c95cddabcd46b0c578ec92bc1a,.github/workflows/security.yml
+github/codeql-action/analyze,True,27,sha,Action is pinned to a full commit SHA.,pass,54f647b7e1bb85c95cddabcd46b0c578ec92bc1a,github/codeql-action/analyze@54f647b7e1bb85c95cddabcd46b0c578ec92bc1a,.github/workflows/security.yml
+actions/checkout,True,36,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/security.yml
+actions/dependency-review-action,True,39,sha,Action is pinned to a full commit SHA.,pass,a1d282b36b6f3519aa1f3fc636f609c47dddb294,actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294,.github/workflows/security.yml
+actions/checkout,True,44,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/security.yml
+prefix-dev/setup-pixi,False,47,sha,Action is pinned to a full commit SHA.,pass,a09b6247153796b190642a2b53fac4241043cf6f,prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f,.github/workflows/security.yml
+actions/checkout,True,59,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/security.yml
+actions/setup-node,True,62,sha,Action is pinned to a full commit SHA.,pass,48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,.github/workflows/security.yml
+actions/checkout,True,16,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/uv-quality.yml
 astral-sh/setup-uv,False,19,sha,Action is pinned to a full commit SHA.,pass,fac544c07dec837d0ccb6301d7b5580bf5edae39,astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39,.github/workflows/uv-quality.yml
-actions/setup-node,True,20,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/setup-node@v6,.github/workflows/uv-quality.yml
-actions/upload-artifact,True,29,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/upload-artifact@v6,.github/workflows/uv-quality.yml
-actions/checkout,True,24,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/workflow-security.yml
-prefix-dev/setup-pixi,False,27,minor,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v0.10.0,prefix-dev/setup-pixi@v0.10.0,.github/workflows/workflow-security.yml
-actions/upload-artifact,True,33,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/upload-artifact@v6,.github/workflows/workflow-security.yml
-actions/checkout,True,45,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v6,actions/checkout@v6,.github/workflows/workflow-security.yml
+actions/setup-node,True,20,sha,Action is pinned to a full commit SHA.,pass,48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,.github/workflows/uv-quality.yml
+actions/upload-artifact,True,29,sha,Action is pinned to a full commit SHA.,pass,b7c566a772e6b6bfb58ed0dc250532a479d7789f,actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f,.github/workflows/uv-quality.yml
+actions/checkout,True,24,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/workflow-security.yml
+prefix-dev/setup-pixi,False,27,sha,Action is pinned to a full commit SHA.,pass,a09b6247153796b190642a2b53fac4241043cf6f,prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f,.github/workflows/workflow-security.yml
+actions/upload-artifact,True,33,sha,Action is pinned to a full commit SHA.,pass,b7c566a772e6b6bfb58ed0dc250532a479d7789f,actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f,.github/workflows/workflow-security.yml
+actions/checkout,True,45,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/workflow-security.yml
 astral-sh/setup-uv,False,48,sha,Action is pinned to a full commit SHA.,pass,fac544c07dec837d0ccb6301d7b5580bf5edae39,astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39,.github/workflows/workflow-security.yml
-github/codeql-action/upload-sarif,True,53,major,"Tag-pinned action; acceptable for prototype CI, but SHA pinning is preferred.",warn,v4,github/codeql-action/upload-sarif@v4,.github/workflows/workflow-security.yml
+github/codeql-action/upload-sarif,True,53,sha,Action is pinned to a full commit SHA.,pass,54f647b7e1bb85c95cddabcd46b0c578ec92bc1a,github/codeql-action/upload-sarif@54f647b7e1bb85c95cddabcd46b0c578ec92bc1a,.github/workflows/workflow-security.yml

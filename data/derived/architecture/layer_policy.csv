@@ -4,15 +4,15 @@ edge_count,evidence,id,recommended_action,source_layer,status,target_layer
 21,21 observed import edge(s).,parsing_to_foundation,No action required.,parsing,pass,foundation
 11,11 observed import edge(s).,parsing_to_parsing,No action required.,parsing,pass,parsing
 0,0 observed import edge(s).,parsing_to_unknown,Assign unknown modules to a named architecture layer.,parsing,pass,unknown
-15,15 observed import edge(s).,analysis_to_foundation,No action required.,analysis,pass,foundation
-8,8 observed import edge(s).,analysis_to_analysis,No action required.,analysis,pass,analysis
+18,18 observed import edge(s).,analysis_to_foundation,No action required.,analysis,pass,foundation
+9,9 observed import edge(s).,analysis_to_analysis,No action required.,analysis,pass,analysis
 0,0 observed import edge(s).,analysis_to_unknown,Assign unknown modules to a named architecture layer.,analysis,pass,unknown
 52,52 observed import edge(s).,orchestration_to_foundation,No action required.,orchestration,pass,foundation
 12,12 observed import edge(s).,orchestration_to_orchestration,No action required.,orchestration,pass,orchestration
 0,0 observed import edge(s).,orchestration_to_unknown,Assign unknown modules to a named architecture layer.,orchestration,pass,unknown
-11,11 observed import edge(s).,interface_to_foundation,No action required.,interface,pass,foundation
-7,7 observed import edge(s).,interface_to_parsing,No action required.,interface,pass,parsing
-10,10 observed import edge(s).,interface_to_analysis,No action required.,interface,pass,analysis
+12,12 observed import edge(s).,interface_to_foundation,No action required.,interface,pass,foundation
+8,8 observed import edge(s).,interface_to_parsing,No action required.,interface,pass,parsing
+12,12 observed import edge(s).,interface_to_analysis,No action required.,interface,pass,analysis
 27,27 observed import edge(s).,interface_to_orchestration,No action required.,interface,pass,orchestration
 0,0 observed import edge(s).,interface_to_unknown,Assign unknown modules to a named architecture layer.,interface,pass,unknown
 0,0 observed import edge(s).,unknown_to_foundation,Assign unknown modules to a named architecture layer.,unknown,pass,foundation
