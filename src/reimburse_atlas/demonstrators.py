@@ -8,7 +8,7 @@ Methodological caveats are embedded in the output — never silently removed.
 
 from __future__ import annotations
 
-from collections.abc import Iterable
+from collections.abc import Iterable, Mapping, Sequence
 
 from reimburse_atlas.models import FrozenModel, NonEmptyStr
 
@@ -54,7 +54,7 @@ def _record_payment_amount(record: object) -> float | None:
 
 
 def build_policy_demonstrator_briefs(
-    parsed_sources: dict[str, list[object]],
+    parsed_sources: Mapping[str, Sequence[object]],
 ) -> list[PolicyBrief]:
     """Build all first-policy demonstrator briefs from parsed source fixtures."""
     return [
@@ -65,7 +65,7 @@ def build_policy_demonstrator_briefs(
 
 
 def _filter_genomics(
-    records: list[object],
+    records: Sequence[object],
 ) -> list[object]:
     return [
         r
@@ -77,30 +77,24 @@ def _filter_genomics(
     ]
 
 
-def _filter_cognitive(records: list[object]) -> list[object]:
+def _filter_cognitive(records: Sequence[object]) -> list[object]:
     cognitive_keywords = {"consultation", "assessment", "cognitive", "visit", "evaluation"}
     return [
-        r
-        for r in records
-        if any(kw in _record_text(r, "item_label") for kw in cognitive_keywords)
+        r for r in records if any(kw in _record_text(r, "item_label") for kw in cognitive_keywords)
     ]
 
 
-def _filter_procedural(records: list[object]) -> list[object]:
+def _filter_procedural(records: Sequence[object]) -> list[object]:
     procedural_keywords = {"procedure", "surgery", "repair", "excision", "injection", "implant"}
     return [
-        r
-        for r in records
-        if any(kw in _record_text(r, "item_label") for kw in procedural_keywords)
+        r for r in records if any(kw in _record_text(r, "item_label") for kw in procedural_keywords)
     ]
 
 
-def _median_amount(records: list[object]) -> float | None:
+def _median_amount(records: Sequence[object]) -> float | None:
     """Return median payment amount across records."""
     amounts = [
-        amount
-        for amount in (_record_payment_amount(r) for r in records)
-        if amount is not None
+        amount for amount in (_record_payment_amount(r) for r in records) if amount is not None
     ]
     if not amounts:
         return None
@@ -111,7 +105,7 @@ def _median_amount(records: list[object]) -> float | None:
     return float((amounts[n // 2 - 1] + amounts[n // 2]) / 2.0)
 
 
-def _percentage_priced(records: list[object]) -> float:
+def _percentage_priced(records: Sequence[object]) -> float:
     """Return share of records with a public payment amount."""
     if not records:
         return 0.0
@@ -120,7 +114,7 @@ def _percentage_priced(records: list[object]) -> float:
 
 
 def _missing_sources(
-    parsed_sources: dict[str, list[object]],
+    parsed_sources: Mapping[str, Sequence[object]],
     expected_sources: Iterable[str],
 ) -> tuple[str, ...]:
     present = set(parsed_sources)
@@ -128,7 +122,7 @@ def _missing_sources(
 
 
 def genomics_demo(
-    parsed_sources: dict[str, list[object]],
+    parsed_sources: Mapping[str, Sequence[object]],
 ) -> PolicyBrief:
     """Compare genomics/pathology coverage and pricing across sources."""
     total_items = 0
@@ -157,9 +151,7 @@ def genomics_demo(
         "No currency normalisation or PPP adjustment applied.",
     ]
     if missing_sources:
-        caveats.append(
-            "Missing fixture coverage for: " + ", ".join(missing_sources) + "."
-        )
+        caveats.append("Missing fixture coverage for: " + ", ".join(missing_sources) + ".")
 
     return PolicyBrief(
         demonstrator_id="genomics_pathology",
@@ -172,7 +164,7 @@ def genomics_demo(
 
 
 def cognitive_procedural_demo(
-    parsed_sources: dict[str, list[object]],
+    parsed_sources: Mapping[str, Sequence[object]],
 ) -> PolicyBrief:
     """Estimate cognitive versus procedural fee relativities."""
     all_cognitive: list[object] = []
@@ -204,9 +196,7 @@ def cognitive_procedural_demo(
         "Currency and purchasing-power differences are not normalised.",
     ]
     if missing_sources:
-        caveats.append(
-            "Missing fixture coverage for: " + ", ".join(missing_sources) + "."
-        )
+        caveats.append("Missing fixture coverage for: " + ", ".join(missing_sources) + ".")
 
     return PolicyBrief(
         demonstrator_id="cognitive_procedural_index",
@@ -219,7 +209,7 @@ def cognitive_procedural_demo(
 
 
 def medicine_opacity_demo(
-    parsed_sources: dict[str, list[object]],
+    parsed_sources: Mapping[str, Sequence[object]],
 ) -> PolicyBrief:
     """Characterise medicine price opacity across jurisdictions."""
     total_items = 0
@@ -249,9 +239,7 @@ def medicine_opacity_demo(
         "No confidential discount or bundled-payment adjustment applied.",
     ]
     if missing_sources:
-        caveats.append(
-            "Missing fixture coverage for: " + ", ".join(missing_sources) + "."
-        )
+        caveats.append("Missing fixture coverage for: " + ", ".join(missing_sources) + ".")
 
     return PolicyBrief(
         demonstrator_id="medicine_opacity_index",

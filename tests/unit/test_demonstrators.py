@@ -1,4 +1,5 @@
 """Tests for policy demonstrators."""
+
 from __future__ import annotations
 
 from reimburse_atlas.demonstrators import (

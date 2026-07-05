@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+from collections.abc import Mapping, Sequence
+from typing import cast
 
 from reimburse_atlas.demonstrators import build_policy_demonstrator_briefs
 from reimburse_atlas.io import pydantic_rows, write_csv, write_jsonl
@@ -17,33 +19,33 @@ from reimburse_atlas.parsers import (
 from reimburse_atlas.registry import project_root
 
 
-def _render_markdown(briefs: list[dict[str, object]], summary: dict[str, object]) -> str:
+def _render_markdown(
+    briefs: Sequence[Mapping[str, object]],
+    summary: Mapping[str, int | Sequence[str]],
+) -> str:
     lines = ["# Policy demonstrators", ""]
-    lines.extend(
-        [
-            (
-                "Generated from local fixture sources only. Missing fixture coverage is listed "
-                "in the brief caveats."
-            ),
-            "",
-            f"- Brief count: {summary['brief_count']}",
-            f"- Source count: {summary['source_count']}",
-            "",
-        ]
-    )
+    lines.extend([
+        (
+            "Generated from local fixture sources only. Missing fixture coverage is listed "
+            "in the brief caveats."
+        ),
+        "",
+        f"- Brief count: {summary['brief_count']}",
+        f"- Source count: {summary['source_count']}",
+        "",
+    ])
     for brief in briefs:
-        lines.extend(
-            [
-                f"## {brief['title']}",
-                "",
-                f"- Demonstrator: `{brief['demonstrator_id']}`",
-                f"- Sources compared: {brief['sources_compared']}",
-                f"- Item count: {brief['item_count']}",
-                f"- Metric summary: {brief['metric_summary']}",
-                "- Caveats:",
-            ]
-        )
-        for caveat in brief["caveats"]:
+        lines.extend([
+            f"## {brief['title']}",
+            "",
+            f"- Demonstrator: `{brief['demonstrator_id']}`",
+            f"- Sources compared: {brief['sources_compared']}",
+            f"- Item count: {brief['item_count']}",
+            f"- Metric summary: {brief['metric_summary']}",
+            "- Caveats:",
+        ])
+        caveats = cast("Sequence[str]", brief["caveats"])
+        for caveat in caveats:
             lines.append(f"  - {caveat}")
         lines.append("")
     return "\n".join(lines).rstrip() + "\n"

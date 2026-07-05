@@ -1,4 +1,5 @@
 """Tests for gold-standard and negative-control mapping fixtures."""
+
 from __future__ import annotations
 
 from reimburse_atlas.gold_standard import (

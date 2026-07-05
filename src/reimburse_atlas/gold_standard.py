@@ -210,13 +210,9 @@ def build_mapping_calibration_summary(
     ]
     clean_negative = [case for case in negative_cases if case.observed_outcome == "clean"]
     matched_confidences = [
-        case.candidate_confidence
-        for case in matched_gold
-        if case.candidate_confidence is not None
+        case.candidate_confidence for case in matched_gold if case.candidate_confidence is not None
     ]
-    estimated_recall = (
-        round(len(matched_gold) / len(gold_cases), 4) if gold_cases else 1.0
-    )
+    estimated_recall = round(len(matched_gold) / len(gold_cases), 4) if gold_cases else 1.0
     estimated_precision = (
         round(len(matched_gold) / (len(matched_gold) + len(triggered_negative)), 4)
         if (len(matched_gold) + len(triggered_negative)) > 0
@@ -259,10 +255,7 @@ def assess_gold_standard_coverage(
     gold_hit = 0
     for gs in gold:
         for cand in candidates:
-            if (
-                cand.get("left_code") == gs.left_code
-                and cand.get("right_code") == gs.right_code
-            ):
+            if cand.get("left_code") == gs.left_code and cand.get("right_code") == gs.right_code:
                 gold_hit += 1
                 break
     return {

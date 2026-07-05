@@ -105,13 +105,11 @@ def build_osf_preprint_checklist(components: list[OsfComponentPlan]) -> str:
         for component in components
         if component.component_type == "protocol" and component.required_before_release
     ]
-    research_question_ids = sorted(
-        {
-            component.research_question_id
-            for component in components
-            if component.research_question_id is not None
-        }
-    )
+    research_question_ids = sorted({
+        component.research_question_id
+        for component in components
+        if component.research_question_id is not None
+    })
     lines = [
         "# OSF preprint checklist",
         "",
@@ -131,12 +129,10 @@ def build_osf_preprint_checklist(components: list[OsfComponentPlan]) -> str:
     ]
     for component in required_protocols:
         lines.append(f"- [ ] {component.component_title} -> `{component.local_path}`")
-    lines.extend(
-        [
-            "",
-            "## Research questions",
-        ]
-    )
+    lines.extend([
+        "",
+        "## Research questions",
+    ])
     for research_question_id in research_question_ids:
         question_components = [
             component
@@ -160,17 +156,15 @@ def build_osf_preprint_checklist(components: list[OsfComponentPlan]) -> str:
             "reports/",
         )
         lines.append(f"- [ ] {research_question_id}: `{protocol_path}` and `{report_path}`")
-    lines.extend(
-        [
-            "",
-            "## Preprint staging",
-            "",
-            "- [ ] Methods manuscript outline is present in `papers/` when ready.",
-            "- [ ] Reviewer response materials remain local until a submission decision exists.",
-            "- [ ] Final archive or OSF upload is gated on human review and release readiness.",
-            "",
-        ]
-    )
+    lines.extend([
+        "",
+        "## Preprint staging",
+        "",
+        "- [ ] Methods manuscript outline is present in `papers/` when ready.",
+        "- [ ] Reviewer response materials remain local until a submission decision exists.",
+        "- [ ] Final archive or OSF upload is gated on human review and release readiness.",
+        "",
+    ])
     return "\n".join(lines)
 
 
