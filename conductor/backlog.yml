@@ -221,3 +221,16 @@ epics:
         labels: ["type:release", "type:handoff", "phase:handoff"]
       - title: Expose source contracts GitHub Project rows and final handoff tasks in dashboard
         labels: ["type:dashboard", "phase:handoff"]
+
+  - id: HANDOFF-019
+    title: Codex bundle import and full track execution handoff
+    phase: handoff
+    workstream: release
+    priority: must
+    issues:
+      - title: Add Codex import prompt for git bundle restoration and track execution
+        labels: ["type:handoff", "type:repo-automation", "phase:handoff"]
+      - title: Verify Codex continuation process regenerates Conductor issue and project outputs
+        labels: ["type:project", "type:repo-automation", "phase:handoff"]
+      - title: Ensure continuation agents record blockers rather than marking unavailable gates green
+        labels: ["type:quality-gate", "type:release", "phase:handoff"]
