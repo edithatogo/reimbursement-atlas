@@ -1586,7 +1586,7 @@ test-goblin = [
 
 [package.metadata]
 requires-dist = [
-    { name = "bandit", extras = ["toml"], marker = "extra == 'dev'", specifier = ">=1.8.0" },
+    { name = "bandit", extras = ["toml"], marker = "extra == 'dev'", specifier = ">=1.9.4" },
     { name = "basedpyright", marker = "extra == 'dev'", specifier = ">=1.35.0" },
     { name = "defusedxml", specifier = ">=0.7.1" },
     { name = "duckdb", specifier = ">=1.4.0" },
