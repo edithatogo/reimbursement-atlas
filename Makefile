@@ -1,4 +1,4 @@
-.PHONY: qa test validate public-data-policy schema graph snapshot dashboard readiness ingestion acquisition vertical-slice source-snapshots seed-lake dashboard-seed repo-automation sbom local-quality architecture-report release-readiness
+.PHONY: qa test validate public-data-policy schema graph snapshot dashboard readiness ingestion acquisition vertical-slice source-snapshots seed-lake dashboard-seed repo-automation sbom local-quality architecture-report release-readiness protocol-status
 
 qa:
 	pixi run qa
@@ -59,3 +59,6 @@ architecture-report:
 
 release-readiness:
 	pixi run release-readiness
+
+protocol-status:
+	pixi run protocol-status

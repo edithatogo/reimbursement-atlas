@@ -22,3 +22,12 @@ Implementation priorities:
 8. First policy demonstrators.
 9. GitHub Action SHA pinning and blocking zizmór.
 10. Network-enabled pip-audit and official Pixi validation.
+
+## v15 implementation recommendation update
+
+The immediate next step remains real-source ingestion, but v15 adds two practical prerequisites:
+
+1. Run the hardened `download_commands.sh` in a network-enabled environment and retain raw files only in ignored local storage.
+2. Use `protocol_status.csv` to prioritise OSF protocol completion before any analysis is described as preregistered or report-ready.
+
+After first successful live downloads, implement source-specific validators for file size, row count, expected columns, expected code patterns, restricted-descriptor leakage and source-version drift.

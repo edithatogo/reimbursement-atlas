@@ -348,6 +348,37 @@ class RuntimeTargetRecord(FrozenModel):
     notes: NonEmptyStr
 
 
+class ProtocolStatusRecord(FrozenModel):
+    """Generated protocol/report completeness status for an OSF-aligned question."""
+
+    id: SourceId
+    research_question_id: SourceId
+    protocol_path: NonEmptyStr
+    report_path: NonEmptyStr
+    protocol_exists: bool
+    report_exists: bool
+    required_section_count: int = Field(ge=0)
+    present_section_count: int = Field(ge=0)
+    missing_sections: tuple[NonEmptyStr, ...] = Field(default_factory=tuple)
+    protocol_word_count: int = Field(ge=0)
+    report_word_count: int = Field(ge=0)
+    completeness_score: float = Field(ge=0.0, le=1.0)
+    osf_ready: bool
+    recommended_next_step: NonEmptyStr
+
+    @field_validator("missing_sections", mode="before")
+    @classmethod
+    def tuplefy_missing_sections(cls, value: object) -> tuple[str, ...]:
+        """Convert list-like missing sections to tuples."""
+        if value is None:
+            return ()
+        if isinstance(value, str):
+            return (value,) if value else ()
+        if isinstance(value, (list, tuple, set, frozenset)):
+            return tuple(str(item).strip() for item in cast("Iterable[object]", value))
+        return (str(value).strip(),)
+
+
 class DataAcquisitionAttemptRecord(FrozenModel):
     """One attempted curl/wget/API acquisition of a registered source file."""
 

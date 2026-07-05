@@ -131,3 +131,16 @@ Build a bleeding-edge, reproducible comparative reimbursement atlas that maps pu
 
 - Add pair/multi-file reviewed-source bundle support for MBS item-map plus descriptor files.
 - Add an OSV or GitHub Advisory fallback when `pip-audit` cannot reach PyPI.
+
+## v15 requirements refinement
+
+### Must
+
+- Source acquisition commands must be shell-quoted, retryable, resumable and licence-gated.
+- Protocol/report completeness must be generated before OSF publication is treated as ready.
+- GitHub issue drafts must include source-validation, checksum-pinning and protocol-review tasks.
+
+### Should
+
+- Source-specific validators should be added after the first real MBS, CMS and PBS files are downloaded.
+- Protocol templates should gain method-specific sensitivity-analysis and bias-assessment sections before the first publishable paper.

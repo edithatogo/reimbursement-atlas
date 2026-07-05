@@ -380,3 +380,12 @@ PYTHONPATH=src reimbursement-atlas source-download-plan --attempt --method curl
 PYTHONPATH=src python scripts/make_osf_plan.py
 PYTHONPATH=src python scripts/make_research_package.py
 ```
+
+## v15 additions
+
+The v15 pass adds two further implementation gates before live-source ingestion expands:
+
+- **Hardened source downloads**: generated `curl`/`wget` commands now use shell quoting, retries, resume support, HTTP header sidecars and ETag sidecars, while refusing to execute metadata-only, landing-page or licence-gated records.
+- **Protocol status gate**: `reimbursement-atlas protocol-status` checks every registered research question against its protocol/report files and writes OSF-readiness evidence to `data/derived/protocols/`.
+
+The dashboard now exposes protocol status and executable download-plan metadata. Generated GitHub issue drafts include the new download-hardening, protocol-completeness, checksum-pinning and source-validator work items.

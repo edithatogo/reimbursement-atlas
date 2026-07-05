@@ -79,6 +79,7 @@ def build_release_readiness_report(root: Path | None = None) -> ReleaseReadiness
         _local_gate_status(repo, "bandit", "security", required=True),
         _local_gate_status(repo, "public_data_policy", "data_governance", required=True),
         _local_gate_status(repo, "seed_sync", "data_governance", required=True),
+        _local_gate_status(repo, "protocol_status", "data_governance", required=True),
         _local_gate_status(repo, "uv_build", "release", required=True),
         _local_gate_status(repo, "dashboard_build", "dashboard", required=True),
         _external_gate_status(repo, "pip_audit_strict", "security", required=True),

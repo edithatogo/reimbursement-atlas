@@ -99,6 +99,10 @@ epics:
         labels: ["type:parser", "risk:licence", "phase:1-slice"]
       - title: Add public data policy check to CI for raw cache safeguards
         labels: ["type:security", "risk:licence", "phase:1-slice"]
+      - title: Add source-specific content validators for downloaded public files
+        labels: ["type:data-source", "type:parser", "phase:1-slice"]
+      - title: Add checksum pinning after first reviewed source downloads
+        labels: ["type:data-source", "type:provenance", "phase:1-slice"]
   - id: IFACE-001
     title: Read-only interfaces
     phase: design
@@ -162,3 +166,16 @@ epics:
         labels: ["type:security", "phase:hardening"]
       - title: Maintain structured issue forms for source, analysis and quality work
         labels: ["type:repo-automation", "phase:hardening"]
+
+  - id: OSF-002
+    title: Protocol completeness and OSF release gates
+    phase: hardening
+    workstream: research
+    priority: must
+    issues:
+      - title: Gate OSF publication on protocol-status readiness table
+        labels: ["type:research", "type:osf", "phase:hardening"]
+      - title: Expand protocol templates with source-specific sensitivity analyses
+        labels: ["type:research", "type:methods", "phase:analysis"]
+      - title: Add reviewer checklist for each protocol before preregistration
+        labels: ["type:review", "type:osf", "phase:analysis"]

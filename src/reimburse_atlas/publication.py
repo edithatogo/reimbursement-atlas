@@ -134,10 +134,14 @@ DEFAULT_PUBLICATION_PATHS = (
     Path("data/derived/osf/component_plan.jsonl"),
     Path("data/derived/osf/component_plan.csv"),
     Path("data/derived/osf/osf_publication_manifest.json"),
+    Path("data/derived/protocols/protocol_status.jsonl"),
+    Path("data/derived/protocols/protocol_status.csv"),
+    Path("data/derived/protocols/summary.json"),
     Path("data/derived/research_package/datapackage.json"),
     Path("data/derived/research_package/ro-crate-metadata.json"),
     Path("data/derived/research_package/dcat.jsonld"),
     Path("data/derived/v14_validation_run.json"),
+    Path("data/derived/v15_validation_run.json"),
 )
 
 

@@ -35,6 +35,11 @@ import Layout from "../../components/Layout.astro";
     columns={["id", "track_id", "question", "protocol_path", "report_path", "preregistration_status"]}
   />
   <DataTable
+    title="Protocol status"
+    fileName="protocol_status.csv"
+    columns={["research_question_id", "protocol_exists", "report_exists", "completeness_score", "osf_ready", "recommended_next_step"]}
+  />
+  <DataTable
     title="Publication and deployment outputs"
     fileName="output_artifact_plans.csv"
     columns={["id", "track_id", "output_type", "target_platform", "path", "status", "release_gate"]}

@@ -25,11 +25,13 @@ jobs:
         run: |
           uv sync --all-extras
           uv run python scripts/make_osf_plan.py
+          uv run python scripts/make_protocol_status.py
       - uses: actions/upload-artifact@v4
         with:
           name: osf-component-plan
           path: |
             data/derived/osf/
+            data/derived/protocols/
             protocols/
             reports/
 

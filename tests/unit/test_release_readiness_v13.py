@@ -68,6 +68,7 @@ def test_release_readiness_report_reads_generated_evidence(tmp_path: Path) -> No
                 "bandit",
                 "public_data_policy",
                 "seed_sync",
+                "protocol_status",
                 "uv_build",
                 "dashboard_build",
             )

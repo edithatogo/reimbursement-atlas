@@ -30,6 +30,11 @@ import Layout from "../../components/Layout.astro";
     columns={["step_id", "source_file_id", "source_id", "acquisition_mode", "raw_handling", "suggested_local_path"]}
   />
   <DataTable
+    title="Executable download plans"
+    fileName="download_plans.csv"
+    columns={["source_file_id", "method", "should_execute", "supports_resume", "captures_headers", "licence_gate", "notes"]}
+  />
+  <DataTable
     title="Source snapshots"
     fileName="source_snapshots.csv"
     columns={["source_version_id", "snapshot_id", "content_type", "byte_count", "sha256", "licence_gate"]}

@@ -1,0 +1,94 @@
+{
+  "additionalProperties": false,
+  "description": "Generated protocol/report completeness status for an OSF-aligned question.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "research_question_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Research Question Id",
+      "type": "string"
+    },
+    "protocol_path": {
+      "minLength": 1,
+      "title": "Protocol Path",
+      "type": "string"
+    },
+    "report_path": {
+      "minLength": 1,
+      "title": "Report Path",
+      "type": "string"
+    },
+    "protocol_exists": {
+      "title": "Protocol Exists",
+      "type": "boolean"
+    },
+    "report_exists": {
+      "title": "Report Exists",
+      "type": "boolean"
+    },
+    "required_section_count": {
+      "minimum": 0,
+      "title": "Required Section Count",
+      "type": "integer"
+    },
+    "present_section_count": {
+      "minimum": 0,
+      "title": "Present Section Count",
+      "type": "integer"
+    },
+    "missing_sections": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Missing Sections",
+      "type": "array"
+    },
+    "protocol_word_count": {
+      "minimum": 0,
+      "title": "Protocol Word Count",
+      "type": "integer"
+    },
+    "report_word_count": {
+      "minimum": 0,
+      "title": "Report Word Count",
+      "type": "integer"
+    },
+    "completeness_score": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Completeness Score",
+      "type": "number"
+    },
+    "osf_ready": {
+      "title": "Osf Ready",
+      "type": "boolean"
+    },
+    "recommended_next_step": {
+      "minLength": 1,
+      "title": "Recommended Next Step",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "research_question_id",
+    "protocol_path",
+    "report_path",
+    "protocol_exists",
+    "report_exists",
+    "required_section_count",
+    "present_section_count",
+    "protocol_word_count",
+    "report_word_count",
+    "completeness_score",
+    "osf_ready",
+    "recommended_next_step"
+  ],
+  "title": "ProtocolStatusRecord",
+  "type": "object"
+}

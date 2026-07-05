@@ -8,6 +8,7 @@ True,build,uv run --all-extras python -m compileall -q src scripts tests,.,compi
 True,data,uv run --all-extras python scripts/validate_seed_sync.py,.,seed_sync,,quick;ci;release,120
 True,data,uv run --all-extras python scripts/check_public_data_policy.py,.,public_data_policy,,quick;ci;release,120
 True,data,uv run --all-extras python -m reimburse_atlas.cli validate,.,cli_validate,,quick;ci;release,120
+True,data,uv run --all-extras python scripts/make_protocol_status.py,.,protocol_status,OSF/research protocol completeness evidence must regenerate cleanly.,quick;ci;release,120
 True,supply_chain,uv run --all-extras python scripts/make_repo_automation_matrix.py,.,repo_automation_matrix,,ci;release,120
 True,architecture,uv run --all-extras python scripts/make_architecture_report.py,.,architecture_report,,ci;release,120
 True,supply_chain,uv run --all-extras python scripts/make_sbom.py,.,sbom_generation,,ci;release,180

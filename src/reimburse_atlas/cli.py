@@ -56,6 +56,7 @@ from reimburse_atlas.parsers import (
 )
 from reimburse_atlas.policy_metrics import summarise_transparency
 from reimburse_atlas.publication import build_publication_manifest, write_publication_manifest
+from reimburse_atlas.protocols import build_protocol_status, write_protocol_status
 from reimburse_atlas.quality import (
     access_tier_counts,
     duplicate_source_ids,
@@ -188,6 +189,33 @@ def research_map() -> None:
         "runtime_targets": len(load_runtime_targets()),
     }
     console.print_json(json.dumps(payload, indent=2))
+
+
+@app.command("protocol-status")
+def protocol_status(
+    output_dir: Annotated[
+        Path,
+        typer.Option(help="Directory for generated protocol status artefacts."),
+    ] = (project_root() / "data" / "derived" / "protocols"),
+) -> None:
+    """Generate OSF-aligned protocol/report completeness status records."""
+    rows = build_protocol_status(load_research_questions())
+    paths = write_protocol_status(rows, output_dir=output_dir)
+    console.print_json(
+        json.dumps(
+            {
+                "protocols": len(rows),
+                "osf_ready": sum(1 for row in rows if row.osf_ready),
+                "average_completeness": round(
+                    sum(row.completeness_score for row in rows) / len(rows), 4
+                )
+                if rows
+                else 0.0,
+                "paths": [str(path) for path in paths],
+            },
+            indent=2,
+        )
+    )
 
 
 @app.command()
@@ -1073,6 +1101,7 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         MappingResourceRecord,
         OntologyRecord,
         OutputArtifactPlanRecord,
+        ProtocolStatusRecord,
         ResearchQuestionRecord,
         RoadmapFunctionRecord,
         RuntimeTargetRecord,
@@ -1099,6 +1128,7 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         ResearchQuestionRecord,
         OutputArtifactPlanRecord,
         RuntimeTargetRecord,
+        ProtocolStatusRecord,
         DataAcquisitionAttemptRecord,
         ProvenanceRecord,
         ScheduleItemRecord,

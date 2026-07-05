@@ -38,4 +38,5 @@ jobs:
           pixi run publication-manifest
           pixi run architecture-report
           pixi run release-readiness || true
+          pixi run protocol-status
           pixi run seed-lake

@@ -20,7 +20,7 @@ def write_jsonl(rows: list[dict[str, Any]], path: Path) -> Path:
 def write_csv(rows: list[dict[str, Any]], path: Path) -> Path:
     """Write rows to CSV, creating a header from all observed keys."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    fields = sorted({field for row in rows for field in row})
+    fields = sorted({field for row in rows for field in row}) if rows else ["empty"]
     with path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
         writer.writeheader()

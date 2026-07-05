@@ -22,7 +22,7 @@ export async function readDashboardCsv(fileName: string): Promise<DashboardCsv> 
   const safeName = normaliseFileName(fileName);
   const filePath = join(process.cwd(), "public", "data", safeName);
   const text = await readFile(filePath, "utf8");
-  const parsed = Papa.parse<CsvRow>(text, { header: true, skipEmptyLines: true });
+  const parsed = Papa.parse<CsvRow>(text, { delimiter: ",", header: true, skipEmptyLines: true });
   if (parsed.errors.length > 0) {
     const message = parsed.errors.map((error: ParseError) => error.message).join("; ");
     throw new Error(`Could not parse ${safeName}: ${message}`);

@@ -200,6 +200,14 @@ def default_quality_gate_specs(root: Path | None = None) -> list[QualityGateSpec
             profiles=("quick", "ci", "release"),
         ),
         QualityGateSpec(
+            id="protocol_status",
+            category="data",
+            command=(*python_prefix, "python", "scripts/make_protocol_status.py"),
+            timeout_seconds=120,
+            profiles=("quick", "ci", "release"),
+            notes="OSF/research protocol completeness evidence must regenerate cleanly.",
+        ),
+        QualityGateSpec(
             id="repo_automation_matrix",
             category="supply_chain",
             command=(*python_prefix, "python", "scripts/make_repo_automation_matrix.py"),

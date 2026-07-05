@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import re
+import shlex
 
 # Used only with shell=False and fixed curl/wget command construction.
 import subprocess  # nosec B404
@@ -37,8 +38,13 @@ class SourceDownloadPlan:
     method: str
     command: str
     target_path: str
+    metadata_path: str
+    header_path: str
+    etag_path: str
     licence_gate: str
     should_execute: bool
+    supports_resume: bool
+    captures_headers: bool
     notes: str
 
     def as_row(self) -> dict[str, object]:
@@ -54,6 +60,71 @@ def safe_local_target(record: SourceFileRecord, output_dir: Path) -> Path:
     return source_dir / (safe_name or f"{record.id}.raw")
 
 
+def _metadata_path(target: Path) -> Path:
+    """Return the sidecar metadata path for a local raw target."""
+    return target.with_suffix(f"{target.suffix}.metadata.json")
+
+
+def _header_path(target: Path) -> Path:
+    """Return the sidecar HTTP header path for a local raw target."""
+    return target.with_suffix(f"{target.suffix}.headers")
+
+
+def _etag_path(target: Path) -> Path:
+    """Return the sidecar ETag cache path for a local raw target."""
+    return target.with_suffix(f"{target.suffix}.etag")
+
+
+def _shell_join(args: list[str]) -> str:
+    """Render a shell-safe command preview from argv."""
+    return " ".join(shlex.quote(arg) for arg in args)
+
+
+def _curl_args(record: SourceFileRecord, target: Path, *, timeout_seconds: int = 180) -> list[str]:
+    """Build a hardened curl argv for resumable, metadata-capturing downloads."""
+    args = [
+        "curl",
+        "-L",
+        "--fail",
+        "--retry",
+        "5",
+        "--retry-all-errors",
+        "--connect-timeout",
+        "20",
+        "--max-time",
+        str(timeout_seconds),
+        "--create-dirs",
+        "--continue-at",
+        "-",
+        "--dump-header",
+        str(_header_path(target)),
+        "--etag-save",
+        str(_etag_path(target)),
+        "--etag-compare",
+        str(_etag_path(target)),
+    ]
+    if record.acquisition_mode == "api_rate_limited":
+        args.extend(["--header", "Accept: application/json, text/csv;q=0.9, */*;q=0.1"])
+    args.extend(["-o", str(target), str(record.source_url)])
+    return args
+
+
+def _wget_args(record: SourceFileRecord, target: Path, *, timeout_seconds: int = 180) -> list[str]:
+    """Build a hardened wget argv for resumable downloads."""
+    args = [
+        "wget",
+        "--tries=5",
+        "--timeout=20",
+        f"--read-timeout={timeout_seconds}",
+        "--continue",
+        "--server-response",
+    ]
+    if record.acquisition_mode == "api_rate_limited":
+        args.extend(["--header=Accept: application/json, text/csv;q=0.9, */*;q=0.1"])
+    args.extend(["-O", str(target), str(record.source_url)])
+    return args
+
+
 def build_download_plan(
     record: SourceFileRecord,
     *,
@@ -67,21 +138,26 @@ def build_download_plan(
         executable = False
     if record.file_role in {"landing_page", "licence_gate"}:
         executable = False
-    if preferred_method == "wget":
-        command = f"mkdir -p {target.parent} && wget -O {target} {record.source_url}"
-    else:
-        command = (
-            f"mkdir -p {target.parent} && curl -L --fail --retry 3 -o {target} {record.source_url}"
-        )
+    args = (
+        _wget_args(record, target)
+        if preferred_method == "wget"
+        else _curl_args(record, target)
+    )
+    command = f"mkdir -p {shlex.quote(str(target.parent))} && {_shell_join(args)}"
     return SourceDownloadPlan(
         source_file_id=record.id,
         method=preferred_method,
         command=command,
         target_path=str(target),
+        metadata_path=str(_metadata_path(target)),
+        header_path=str(_header_path(target)),
+        etag_path=str(_etag_path(target)),
         licence_gate=record.licence_gate,
         should_execute=executable,
+        supports_resume=True,
+        captures_headers=preferred_method == "curl",
         notes=(
-            "Executable local raw download candidate."
+            "Executable local raw download candidate with retries, resume support and header/ETag sidecars."
             if executable
             else "Metadata-only, landing-page or licence-gated record; do not auto-download."
         ),
@@ -92,11 +168,55 @@ def _sha_slug(value: str, *, length: int = 10) -> str:
     return hashlib.sha256(value.encode("utf-8")).hexdigest()[:length]
 
 
+def _file_sha256(path: Path) -> str | None:
+    if not path.exists() or not path.is_file():
+        return None
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
 def _classify_failure(stderr: str) -> DownloadStatus:
     lowered = stderr.lower()
     if any(marker in lowered for marker in NETWORK_ERROR_MARKERS):
         return "blocked_network"
     return "failed"
+
+
+def _write_attempt_metadata(
+    *,
+    record: SourceFileRecord,
+    plan: SourceDownloadPlan,
+    status: DownloadStatus,
+    exit_code: int | None,
+    bytes_downloaded: int,
+    error_summary: str,
+    attempted_at: str,
+) -> None:
+    """Write a local-only sidecar metadata record next to a raw download target."""
+    metadata_path = Path(plan.metadata_path)
+    metadata_path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "source_file_id": record.id,
+        "source_id": record.source_id,
+        "source_version_id": record.source_version_id,
+        "attempted_at": attempted_at,
+        "source_url": str(record.source_url),
+        "target_path": plan.target_path,
+        "header_path": plan.header_path,
+        "etag_path": plan.etag_path,
+        "status": status,
+        "exit_code": exit_code,
+        "bytes_downloaded": bytes_downloaded,
+        "sha256": _file_sha256(Path(plan.target_path)),
+        "licence_gate": record.licence_gate,
+        "error_summary": error_summary[:500],
+    }
+    import json
+
+    metadata_path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
 def attempt_download(
@@ -112,7 +232,7 @@ def attempt_download(
     target_path = Path(plan.target_path)
     attempt_id = f"attempt_{record.id}_{_sha_slug(attempted_at)}"
     if not plan.should_execute:
-        return DataAcquisitionAttemptRecord(
+        attempt = DataAcquisitionAttemptRecord(
             id=attempt_id,
             source_file_id=record.id,
             attempted_at=attempted_at,
@@ -124,30 +244,22 @@ def attempt_download(
             command=plan.command,
             error_summary=plan.notes,
         )
+        _write_attempt_metadata(
+            record=record,
+            plan=plan,
+            status="skipped_licence_gate",
+            exit_code=None,
+            bytes_downloaded=0,
+            error_summary=plan.notes,
+            attempted_at=attempted_at,
+        )
+        return attempt
 
     target_path.parent.mkdir(parents=True, exist_ok=True)
     args = (
-        [
-            "wget",
-            "-O",
-            str(target_path),
-            str(record.source_url),
-        ]
+        _wget_args(record, target_path, timeout_seconds=timeout_seconds)
         if preferred_method == "wget"
-        else [
-            "curl",
-            "-L",
-            "--fail",
-            "--retry",
-            "2",
-            "--connect-timeout",
-            "10",
-            "--max-time",
-            str(timeout_seconds),
-            "-o",
-            str(target_path),
-            str(record.source_url),
-        ]
+        else _curl_args(record, target_path, timeout_seconds=timeout_seconds)
     )
     # Fixed curl/wget argv; no shell expansion is used.
     completed = subprocess.run(  # nosec B603
@@ -166,6 +278,15 @@ def attempt_download(
         error_summary = (completed.stderr or completed.stdout or "Download command failed.").strip()
         if target_path.exists() and bytes_downloaded == 0:
             target_path.unlink()
+    _write_attempt_metadata(
+        record=record,
+        plan=plan,
+        status=status,
+        exit_code=completed.returncode,
+        bytes_downloaded=bytes_downloaded,
+        error_summary=error_summary,
+        attempted_at=attempted_at,
+    )
     return DataAcquisitionAttemptRecord(
         id=attempt_id,
         source_file_id=record.id,
@@ -175,7 +296,7 @@ def attempt_download(
         status=status,
         exit_code=completed.returncode,
         bytes_downloaded=bytes_downloaded,
-        command=" ".join(args),
+        command=_shell_join(args),
         error_summary=error_summary[:500],
     )
 

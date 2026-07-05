@@ -54,6 +54,7 @@ FILES = [
     Path("data/seed/runtime_targets.csv"),
     Path("data/derived/source_downloads/download_plans.csv"),
     Path("data/derived/source_downloads/download_attempts.csv"),
+    Path("data/derived/protocols/protocol_status.csv"),
 ]
 
 

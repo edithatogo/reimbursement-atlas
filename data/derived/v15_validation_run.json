@@ -1,0 +1,22 @@
+{
+  "version": "v15",
+  "commit_label": "v15 source-download hardening and protocol gates",
+  "generated_at": "2026-07-05T04:23:00Z",
+  "checks": [
+    {"name": "pytest", "status": "passed", "evidence": "128 passed, 6 skipped"},
+    {"name": "compileall", "status": "passed", "evidence": "src scripts tests compiled"},
+    {"name": "seed_sync", "status": "passed", "evidence": "17 seed CSV mirrors checked"},
+    {"name": "public_data_policy", "status": "passed", "evidence": "no raw/local cache paths tracked; no absolute local path leakage"},
+    {"name": "cli_validate", "status": "passed", "evidence": "60 sources, 25 analyses, 14 ontologies, 7 source files"},
+    {"name": "dashboard_build", "status": "passed", "evidence": "npm ci, npm audit and Astro build passed; 8 static pages built"},
+    {"name": "protocol_status", "status": "passed", "evidence": "5 research questions assessed; protocol_status.* generated"},
+    {"name": "source_download_plan", "status": "passed", "evidence": "7 hardened download plans generated; live attempts not run in this pass"}
+  ],
+  "blocked_or_not_run": [
+    {"name": "ruff", "status": "not_run", "reason": "Ruff was not installed in this restored sandbox clone."},
+    {"name": "basedpyright", "status": "not_run", "reason": "basedpyright was not installed in this restored sandbox clone."},
+    {"name": "bandit", "status": "not_run", "reason": "Bandit was not installed in this restored sandbox clone."},
+    {"name": "pip_audit_strict", "status": "blocked_network", "reason": "Requires PyPI advisory lookup in a network-enabled environment."},
+    {"name": "live_source_downloads", "status": "blocked_network", "reason": "Container DNS resolution remains unavailable; generated curl/wget plans are ready for a normal networked environment."}
+  ]
+}

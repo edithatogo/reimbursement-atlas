@@ -547,6 +547,24 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/protocols/protocol_status.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "protocol_status"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/protocols/protocol_status.csv",
+      "dct:format": "csv",
+      "dct:title": "protocol_status"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/protocols/summary.json",
+      "dct:format": "json",
+      "dct:title": "summary"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/research_package/datapackage.json",
       "dct:format": "json",
       "dct:title": "datapackage"
@@ -562,6 +580,12 @@
       "dcat:downloadURL": "data/derived/research_package/dcat.jsonld",
       "dct:format": "jsonld",
       "dct:title": "dcat"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/v14_validation_run.json",
+      "dct:format": "json",
+      "dct:title": "v14_validation_run"
     }
   ],
   "dct:description": "Licence-safe metadata and derived tables for comparative reimbursement research.",

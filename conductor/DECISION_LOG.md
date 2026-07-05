@@ -52,3 +52,10 @@ Consequences: v13 adds `architecture-report` and `release-readiness` commands, C
 - Added OSF component planning, protocol/report scaffolds and an OSF publication workflow placeholder.
 - Added Hugging Face dataset and Space deployment documentation/workflow gates.
 - Added Frictionless-style, RO-Crate and DCAT research-package metadata generation.
+
+## 2026-07-05 — v15 hardened source acquisition and protocol-status gates
+
+- Hardened generated `curl`/`wget` commands with retries, resume support, shell quoting, header sidecars and ETag sidecars.
+- Kept licence-gated, landing-page and metadata-only records non-executable by default.
+- Added protocol-status generation for OSF-aligned research questions, including missing-section checks, word counts, completeness scoring and OSF readiness flags.
+- Added documentation, ADRs and dashboard/publication/seed-lake hooks for the new gates.

@@ -79,3 +79,15 @@ Immediate implementation focus:
 4. Use OSF components for protocols, research-question reports, preregistration materials and future preprint/paper artefacts.
 5. Use Hugging Face for permissive derived datasets and the Astro dashboard Space.
 6. Keep Mojo kernels for performance-critical parsing/prefiltering and Python 3.14 for orchestration/interfaces until Mojo library coverage is sufficient.
+
+## v15 focus — hardened acquisition and protocol gates
+
+The current focus is now first real-source ingestion with stronger guardrails. v15 hardened generated source-download commands and added an OSF-aligned protocol-status gate.
+
+Immediate implementation focus:
+
+1. Run `data/derived/source_downloads/download_commands.sh` in a network-enabled environment.
+2. Keep raw downloads in ignored `data/raw_live/` storage and use reviewed-source bundle commands for derived outputs.
+3. Add source-specific validators for real MBS, CMS CLFS and PBS files after first downloads succeed.
+4. Use `data/derived/protocols/protocol_status.csv` to complete protocol sections before OSF upload/preregistration.
+5. Keep generated issue drafts in sync so every track, dataset, protocol, validator and output has a GitHub Project work item.

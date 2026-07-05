@@ -259,6 +259,7 @@ def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:  
         / "source_downloads"
         / "download_attempts.jsonl",
         "osf_component_plan": root / "data" / "derived" / "osf" / "component_plan.jsonl",
+        "protocol_status": root / "data" / "derived" / "protocols" / "protocol_status.jsonl",
     }
     for table_name, table_path in derived_jsonl_tables.items():
         if table_path.exists():

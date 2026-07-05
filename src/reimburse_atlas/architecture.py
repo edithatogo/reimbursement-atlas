@@ -69,6 +69,7 @@ _LAYER_BY_ROOT_MODULE: dict[str, ArchitectureLayer] = {
     "ingestion": "orchestration",
     "local_quality": "orchestration",
     "publication": "orchestration",
+    "protocols": "orchestration",
     "release_readiness": "orchestration",
     "sbom": "orchestration",
     "osf": "orchestration",
