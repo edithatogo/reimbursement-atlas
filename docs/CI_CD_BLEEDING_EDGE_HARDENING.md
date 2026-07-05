@@ -62,7 +62,8 @@ exercise the current-channel stack. It:
 - captures optional toolchain and external-quality summaries;
 - records dashboard dependency drift in `data/derived/stack_canary/`;
 - uploads the canary summary as a GitHub artifact; and
-- opens or updates a single GitHub issue when drift is detected.
+- opens or updates a single GitHub issue when drift is detected;
+- optionally sends a webhook alert when `STACK_CANARY_WEBHOOK_URL` is configured.
 
 ### Current deliberate non-green signal
 
