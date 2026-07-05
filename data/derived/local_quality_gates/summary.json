@@ -1,15 +1,15 @@
 {
   "blocked_network": 0,
-  "blocking_failures": 2,
+  "blocking_failures": 0,
   "failed": 0,
   "gate_count": 26,
-  "generated_at": "2026-07-05T11:56:41.755981+00:00",
-  "missing_tool": 1,
-  "passed": 24,
+  "generated_at": "2026-07-05T12:54:24.701952+00:00",
+  "missing_tool": 0,
+  "passed": 26,
   "profile": "ci",
-  "release_ready": false,
+  "release_ready": true,
   "schema_version": "local-quality-gates-v1",
   "skipped": 0,
-  "timed_out": 1,
+  "timed_out": 0,
   "wrong_tool": 0
 }
