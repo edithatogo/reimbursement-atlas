@@ -80,8 +80,14 @@ def _shell_join(args: list[str]) -> str:
     return " ".join(shlex.quote(arg) for arg in args)
 
 
-def _curl_args(record: SourceFileRecord, target: Path, *, timeout_seconds: int = 180) -> list[str]:
-    """Build a hardened curl argv for resumable, metadata-capturing downloads."""
+def _curl_args(
+    record: SourceFileRecord,
+    target: Path,
+    *,
+    timeout_seconds: int = 180,
+    resume_downloads: bool = False,
+) -> list[str]:
+    """Build a hardened curl argv for metadata-capturing downloads."""
     args = [
         "curl",
         "-L",
@@ -94,8 +100,6 @@ def _curl_args(record: SourceFileRecord, target: Path, *, timeout_seconds: int =
         "--max-time",
         str(timeout_seconds),
         "--create-dirs",
-        "--continue-at",
-        "-",
         "--dump-header",
         str(_header_path(target)),
         "--etag-save",
@@ -103,22 +107,31 @@ def _curl_args(record: SourceFileRecord, target: Path, *, timeout_seconds: int =
         "--etag-compare",
         str(_etag_path(target)),
     ]
+    if resume_downloads:
+        args.extend(["--continue-at", "-"])
     if record.acquisition_mode == "api_rate_limited":
         args.extend(["--header", "Accept: application/json, text/csv;q=0.9, */*;q=0.1"])
     args.extend(["-o", str(target), str(record.source_url)])
     return args
 
 
-def _wget_args(record: SourceFileRecord, target: Path, *, timeout_seconds: int = 180) -> list[str]:
-    """Build a hardened wget argv for resumable downloads."""
+def _wget_args(
+    record: SourceFileRecord,
+    target: Path,
+    *,
+    timeout_seconds: int = 180,
+    resume_downloads: bool = False,
+) -> list[str]:
+    """Build a hardened wget argv for metadata-capturing downloads."""
     args = [
         "wget",
         "--tries=5",
         "--timeout=20",
         f"--read-timeout={timeout_seconds}",
-        "--continue",
         "--server-response",
     ]
+    if resume_downloads:
+        args.append("--continue")
     if record.acquisition_mode == "api_rate_limited":
         args.extend(["--header=Accept: application/json, text/csv;q=0.9, */*;q=0.1"])
     args.extend(["-O", str(target), str(record.source_url)])
@@ -130,6 +143,7 @@ def build_download_plan(
     *,
     output_dir: Path = Path("data/raw_live"),
     preferred_method: str = "curl",
+    resume_downloads: bool = False,
 ) -> SourceDownloadPlan:
     """Build a shell acquisition plan without executing it."""
     target = safe_local_target(record, output_dir)
@@ -138,7 +152,11 @@ def build_download_plan(
         executable = False
     if record.file_role in {"landing_page", "licence_gate"}:
         executable = False
-    args = _wget_args(record, target) if preferred_method == "wget" else _curl_args(record, target)
+    args = (
+        _wget_args(record, target, resume_downloads=resume_downloads)
+        if preferred_method == "wget"
+        else _curl_args(record, target, resume_downloads=resume_downloads)
+    )
     command = f"mkdir -p {shlex.quote(str(target.parent))} && {_shell_join(args)}"
     return SourceDownloadPlan(
         source_file_id=record.id,
@@ -150,13 +168,17 @@ def build_download_plan(
         etag_path=str(_etag_path(target)),
         licence_gate=record.licence_gate,
         should_execute=executable,
-        supports_resume=True,
+        supports_resume=resume_downloads,
         captures_headers=preferred_method == "curl",
         notes=(
-            "Executable local raw download candidate with retries, resume support "
-            "and header/ETag sidecars."
-            if executable
-            else "Metadata-only, landing-page or licence-gated record; do not auto-download."
+            "Executable local raw download candidate with retries and header/ETag sidecars."
+            if executable and not resume_downloads
+            else (
+                "Executable local raw download candidate with retries, resume support "
+                "and header/ETag sidecars."
+                if executable
+                else "Metadata-only, landing-page or licence-gated record; do not auto-download."
+            )
         ),
     )
 
@@ -180,6 +202,43 @@ def _classify_failure(stderr: str) -> DownloadStatus:
     if any(marker in lowered for marker in NETWORK_ERROR_MARKERS):
         return "blocked_network"
     return "failed"
+
+
+def _resume_failure(stderr: str) -> bool:
+    lowered = stderr.lower()
+    return any(
+        marker in lowered
+        for marker in (
+            "range",
+            "resume",
+            "content-range",
+            "byte range",
+            "does not support byte ranges",
+        )
+    )
+
+
+def _download_args(
+    record: SourceFileRecord,
+    target: Path,
+    *,
+    preferred_method: str,
+    timeout_seconds: int,
+    resume_downloads: bool,
+) -> list[str]:
+    if preferred_method == "wget":
+        return _wget_args(
+            record,
+            target,
+            timeout_seconds=timeout_seconds,
+            resume_downloads=resume_downloads,
+        )
+    return _curl_args(
+        record,
+        target,
+        timeout_seconds=timeout_seconds,
+        resume_downloads=resume_downloads,
+    )
 
 
 def _write_attempt_metadata(
@@ -222,9 +281,15 @@ def attempt_download(
     output_dir: Path = Path("data/raw_live"),
     preferred_method: str = "curl",
     timeout_seconds: int = 60,
+    resume_downloads: bool = False,
 ) -> DataAcquisitionAttemptRecord:
     """Attempt a local raw download with curl/wget, respecting licence gates."""
-    plan = build_download_plan(record, output_dir=output_dir, preferred_method=preferred_method)
+    plan = build_download_plan(
+        record,
+        output_dir=output_dir,
+        preferred_method=preferred_method,
+        resume_downloads=resume_downloads,
+    )
     attempted_at = datetime.now(UTC).isoformat()
     target_path = Path(plan.target_path)
     attempt_id = f"attempt_{record.id}_{_sha_slug(attempted_at)}"
@@ -253,10 +318,12 @@ def attempt_download(
         return attempt
 
     target_path.parent.mkdir(parents=True, exist_ok=True)
-    args = (
-        _wget_args(record, target_path, timeout_seconds=timeout_seconds)
-        if preferred_method == "wget"
-        else _curl_args(record, target_path, timeout_seconds=timeout_seconds)
+    args = _download_args(
+        record,
+        target_path,
+        preferred_method=preferred_method,
+        timeout_seconds=timeout_seconds,
+        resume_downloads=resume_downloads,
     )
     # Fixed curl/wget argv; no shell expansion is used.
     completed = subprocess.run(  # nosec B603
@@ -266,6 +333,25 @@ def attempt_download(
         text=True,
         timeout=timeout_seconds + 15,
     )
+    if (
+        completed.returncode != 0
+        and resume_downloads
+        and _resume_failure(completed.stderr + completed.stdout)
+    ):
+        args = _download_args(
+            record,
+            target_path,
+            preferred_method=preferred_method,
+            timeout_seconds=timeout_seconds,
+            resume_downloads=False,
+        )
+        completed = subprocess.run(  # nosec B603
+            args,
+            check=False,
+            capture_output=True,
+            text=True,
+            timeout=timeout_seconds + 15,
+        )
     bytes_downloaded = target_path.stat().st_size if target_path.exists() else 0
     if completed.returncode == 0 and bytes_downloaded > 0:
         status: DownloadStatus = "downloaded"

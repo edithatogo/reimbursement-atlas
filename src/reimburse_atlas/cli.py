@@ -148,6 +148,10 @@ def source_download_plan(
         bool,
         typer.Option(help="Attempt executable curl/wget downloads into ignored local raw storage."),
     ] = False,
+    resume_downloads: Annotated[
+        bool,
+        typer.Option(help="Allow curl/wget resume flags for sources that support byte ranges."),
+    ] = False,
     method: Annotated[str, typer.Option(help="Download method: curl or wget.")] = "curl",
     output_dir: Annotated[
         Path,
@@ -165,9 +169,21 @@ def source_download_plan(
     )
 
     records = load_source_files()
-    plans = [build_download_plan(record, preferred_method=method) for record in records]
+    plans = [
+        build_download_plan(record, preferred_method=method, resume_downloads=resume_downloads)
+        for record in records
+    ]
     attempts = (
-        [attempt_download(record, preferred_method=method) for record in records] if attempt else []
+        [
+            attempt_download(
+                record,
+                preferred_method=method,
+                resume_downloads=resume_downloads,
+            )
+            for record in records
+        ]
+        if attempt
+        else []
     )
     paths = write_download_outputs(plans, attempts, output_dir=output_dir)
     console.print_json(

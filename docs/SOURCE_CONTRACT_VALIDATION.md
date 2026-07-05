@@ -22,16 +22,17 @@ apps/dashboard/public/data/source_contract_validation.csv
 
 ## Current contracts
 
-- MBS July 2026 item-map TXT: expects `item_number`, `category`, `schedule_fee`, `start_date`.
-- MBS July 2026 descriptor TXT: expects `item_number`, `descriptor`.
+- MBS July 2026 item-map TXT: expects the live headers `ITEM`, `MAPPED_ITEM`, `Item_Start_Date`, `Item_End_Date`, `Item_reuse_flag`, `Mapped_Item_Desc`, `Mapped_Item_Category`, `Mapped_Item_Group`, `Mapped_Item_Subgroup`, `Mapped_Item_Subheading`, `CATEGORY_DESC`, `GROUP_DESC`, `SUBGROUP_DESC`, `SUBHEADING_DESC`, `BTOS`, `BTOS_DESC`, `MODIFY_BBI_FLAG`.
+- MBS July 2026 descriptor TXT: expects the live headers `ITEM`, `DESCRIPTION_START`, `DESCRIPTION_END`, `LATEST`, `Description`.
+- CMS CLFS landing-page record: skipped until the extracted local ZIP is reviewed.
 - PBS API/CSV reviewed extract: expects a PBS item code, medicine label and effective date field once a reviewed CSV extract is staged.
 - CMS CLFS / ASP / PFS rows remain gated when they require manual licence review, landing-page extraction or CPT descriptor safeguards.
 
 ## Release posture
 
-A missing local raw file is a warning in the current sandbox because source hosts are network-blocked. A failed contract is blocking: it means the downloaded file looks different from the parser assumption and must be reviewed before parsing.
+A missing local raw file is a warning in the current sandbox because source hosts are network-blocked or intentionally not downloaded. A failed contract is blocking: it means the downloaded file looks different from the parser assumption and must be reviewed before parsing.
 
 When release-readiness reports `source_contract_validation_summary` as a warning, treat
-that as an expected live-source dependency. The warning should remain until a reviewed
-download is available under `data/raw_live/` and the contract check can be rerun on the
-real file.
+that as a real regression. In the current implementation the MBS reviewed bundle and
+landing-page skips are aligned so the summary should pass once the source contracts are
+rerun after live acquisition.

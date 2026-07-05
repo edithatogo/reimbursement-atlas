@@ -122,7 +122,8 @@ Immediate implementation focus:
 
 ## v19 follow-up
 
-Local quality and release readiness are now green. The only remaining contract warning is
-advisory and expected until a reviewed live-source download is staged in `data/raw_live/`
-and validated locally. Next useful work is live-source acquisition, contract validation
-on the real files, and then a refresh of the source-contract and evidence-ready outputs.
+Local quality, source-contract validation and release readiness are now green. The live
+MBS reviewed bundle is staged, and the source-contract rules now skip landing-page and
+manual-review records explicitly instead of treating them as missing. Next useful work is
+the remaining live-source acquisitions plus any parser or validator refinements that real
+downloads expose.
