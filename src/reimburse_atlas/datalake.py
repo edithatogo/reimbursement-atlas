@@ -158,6 +158,27 @@ def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:  
         "ontology_mapping_templates": _read_jsonl(seed_dir / "ontology_mapping_templates.jsonl")
         if (seed_dir / "ontology_mapping_templates.jsonl").exists()
         else [],
+        "conductor_tracks": _read_jsonl(seed_dir / "conductor_tracks.jsonl")
+        if (seed_dir / "conductor_tracks.jsonl").exists()
+        else [],
+        "roadmap_functions": _read_jsonl(seed_dir / "roadmap_functions.jsonl")
+        if (seed_dir / "roadmap_functions.jsonl").exists()
+        else [],
+        "dataset_candidates": _read_jsonl(seed_dir / "dataset_candidates.jsonl")
+        if (seed_dir / "dataset_candidates.jsonl").exists()
+        else [],
+        "mapping_resources": _read_jsonl(seed_dir / "mapping_resources.jsonl")
+        if (seed_dir / "mapping_resources.jsonl").exists()
+        else [],
+        "research_questions": _read_jsonl(seed_dir / "research_questions.jsonl")
+        if (seed_dir / "research_questions.jsonl").exists()
+        else [],
+        "output_artifact_plans": _read_jsonl(seed_dir / "output_artifact_plans.jsonl")
+        if (seed_dir / "output_artifact_plans.jsonl").exists()
+        else [],
+        "runtime_targets": _read_jsonl(seed_dir / "runtime_targets.jsonl")
+        if (seed_dir / "runtime_targets.jsonl").exists()
+        else [],
     }
     vertical_dir = root / "data" / "derived" / "vertical_slice"
     for table_name in (
@@ -227,6 +248,17 @@ def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:  
         / "derived"
         / "release_readiness"
         / "release_gates.jsonl",
+        "source_download_plans": root
+        / "data"
+        / "derived"
+        / "source_downloads"
+        / "download_plans.jsonl",
+        "source_download_attempts": root
+        / "data"
+        / "derived"
+        / "source_downloads"
+        / "download_attempts.jsonl",
+        "osf_component_plan": root / "data" / "derived" / "osf" / "component_plan.jsonl",
     }
     for table_name, table_path in derived_jsonl_tables.items():
         if table_path.exists():

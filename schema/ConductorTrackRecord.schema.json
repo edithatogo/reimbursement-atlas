@@ -1,0 +1,79 @@
+{
+  "additionalProperties": false,
+  "description": "Machine-readable Conductor implementation track for GitHub Projects and agents.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "title": {
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "phase": {
+      "minLength": 1,
+      "title": "Phase",
+      "type": "string"
+    },
+    "workstream": {
+      "minLength": 1,
+      "title": "Workstream",
+      "type": "string"
+    },
+    "priority": {
+      "enum": [
+        "must",
+        "should",
+        "could",
+        "wont"
+      ],
+      "title": "Priority",
+      "type": "string"
+    },
+    "goal": {
+      "minLength": 1,
+      "title": "Goal",
+      "type": "string"
+    },
+    "deliverables": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Deliverables",
+      "type": "array"
+    },
+    "depends_on": {
+      "items": {
+        "pattern": "^[a-z0-9_]+$",
+        "type": "string"
+      },
+      "title": "Depends On",
+      "type": "array"
+    },
+    "github_project_status": {
+      "minLength": 1,
+      "title": "Github Project Status",
+      "type": "string"
+    },
+    "notes": {
+      "minLength": 1,
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "phase",
+    "workstream",
+    "priority",
+    "goal",
+    "github_project_status",
+    "notes"
+  ],
+  "title": "ConductorTrackRecord",
+  "type": "object"
+}

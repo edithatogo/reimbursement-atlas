@@ -1,0 +1,52 @@
+---
+import DataTable from "../../components/DataTable.astro";
+import Layout from "../../components/Layout.astro";
+---
+
+<Layout title="Reimbursement Atlas roadmap">
+  <h1>Conductor tracks, research roadmap and publication outputs</h1>
+  <p>
+    These tables convert design recommendations into trackable implementation units. They are
+    mirrored into generated GitHub issue drafts so future work can be moved into GitHub Projects.
+  </p>
+  <DataTable
+    title="Conductor tracks"
+    fileName="conductor_tracks.csv"
+    columns={["id", "title", "priority", "phase", "workstream", "github_project_status"]}
+  />
+  <DataTable
+    title="Roadmap functions"
+    fileName="roadmap_functions.csv"
+    columns={["id", "track_id", "name", "interface", "status", "priority", "github_issue_title"]}
+  />
+  <DataTable
+    title="Additional dataset candidates"
+    fileName="dataset_candidates.csv"
+    columns={["id", "jurisdiction", "name", "domain", "access_mode", "priority", "licence_gate"]}
+  />
+  <DataTable
+    title="Mapping resources"
+    fileName="mapping_resources.csv"
+    columns={["id", "name", "domain", "access_mode", "licence_gate", "local_only", "priority"]}
+  />
+  <DataTable
+    title="Research questions"
+    fileName="research_questions.csv"
+    columns={["id", "track_id", "question", "protocol_path", "report_path", "preregistration_status"]}
+  />
+  <DataTable
+    title="Publication and deployment outputs"
+    fileName="output_artifact_plans.csv"
+    columns={["id", "track_id", "output_type", "target_platform", "path", "status", "release_gate"]}
+  />
+  <DataTable
+    title="Runtime targets"
+    fileName="runtime_targets.csv"
+    columns={["id", "name", "version_target", "role", "installation_status", "local_status"]}
+  />
+  <DataTable
+    title="Source download attempts"
+    fileName="download_attempts.csv"
+    columns={["source_file_id", "method", "status", "bytes_downloaded", "exit_code", "error_summary"]}
+  />
+</Layout>

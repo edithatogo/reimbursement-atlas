@@ -1,0 +1,81 @@
+{
+  "additionalProperties": false,
+  "description": "Planned publication, dashboard, dataset, report or archive output.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "track_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Track Id",
+      "type": "string"
+    },
+    "output_type": {
+      "enum": [
+        "dataset",
+        "dashboard",
+        "protocol",
+        "report",
+        "preprint",
+        "api",
+        "mcp",
+        "archive",
+        "package"
+      ],
+      "title": "Output Type",
+      "type": "string"
+    },
+    "target_platform": {
+      "enum": [
+        "github",
+        "huggingface_dataset",
+        "huggingface_space",
+        "osf",
+        "zenodo",
+        "local"
+      ],
+      "title": "Target Platform",
+      "type": "string"
+    },
+    "path": {
+      "minLength": 1,
+      "title": "Path",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "planned",
+        "drafted",
+        "blocked",
+        "implemented",
+        "published"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "release_gate": {
+      "minLength": 1,
+      "title": "Release Gate",
+      "type": "string"
+    },
+    "notes": {
+      "minLength": 1,
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "track_id",
+    "output_type",
+    "target_platform",
+    "path",
+    "status",
+    "release_gate",
+    "notes"
+  ],
+  "title": "OutputArtifactPlanRecord",
+  "type": "object"
+}

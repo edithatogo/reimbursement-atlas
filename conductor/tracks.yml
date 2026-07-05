@@ -1,0 +1,51 @@
+version: 1
+updated: "2026-07-05"
+tracks:
+  - id: track_runtime_mojo_python314
+    title: "Mojo-first runtime and Python 3.14 compatibility"
+    priority: must
+    phase: hardening
+    workstream: runtime
+    goal: "Make Mojo the explicit performance-kernel layer while targeting Python 3.14 for orchestration and packaging once CI can install it."
+  - id: track_live_source_ingestion
+    title: "Evidence-grade live source ingestion"
+    priority: must
+    phase: implementation
+    workstream: data
+    goal: "Download or API-fetch public sources using curl/wget/API clients, snapshot them locally, and publish derived-only validated records."
+  - id: track_research_protocols_osf
+    title: "OSF research protocol and report workflow"
+    priority: must
+    phase: design
+    workstream: research
+    goal: "Treat each policy question as a protocolled research output with OSF components, reports, appendices and preprint pathways."
+  - id: track_publication_hf_spaces
+    title: "Hugging Face dataset and Spaces publication"
+    priority: must
+    phase: implementation
+    workstream: publication
+    goal: "Package licence-safe derived data for Hugging Face Datasets and deploy the static dashboard to Hugging Face Spaces."
+  - id: track_data_packaging_standards
+    title: "Research-data packaging standards"
+    priority: should
+    phase: implementation
+    workstream: publication
+    goal: "Emit Frictionless Data Package, RO-Crate, DCAT and citation metadata for release candidates."
+  - id: track_mapping_workbench
+    title: "Human-in-the-loop mapping workbench"
+    priority: must
+    phase: implementation
+    workstream: mappings
+    goal: "Move from deterministic candidate crosswalks to adjudicated mapping evidence with gold standards, negative controls and reviewer state."
+  - id: track_ci_cd_supply_chain
+    title: "CI/CD and supply-chain hardening"
+    priority: must
+    phase: hardening
+    workstream: automation
+    goal: "Make release gates enforceable through GitHub Actions, action SHA pinning, SBOMs, attestations, Scorecard, CodeQL, dependency review and zizm\u00f3r."
+  - id: track_policy_demonstrators
+    title: "First policy demonstrators"
+    priority: must
+    phase: analysis
+    workstream: analytics
+    goal: "Produce publishable demonstrations for genomics/pathology, cognitive-procedural relativities, medicine price opacity and coverage discretion."

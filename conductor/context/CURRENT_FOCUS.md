@@ -66,3 +66,16 @@ New artefacts:
 - `docs/ADRs/0024-architecture-boundaries-as-generated-quality-gate.md`
 - `docs/ADRs/0025-release-readiness-matrix.md`
 - `conductor/sessions/2026-07-04-v13-architecture-release-readiness.md`
+
+## v14 focus — roadmap-to-issues, OSF/HF publication, Mojo/Python 3.14 and executable acquisition
+
+The current focus is to convert recommendations into machine-readable Conductor tracks, GitHub issue drafts and publication artefact plans. The v14 pass adds tracks for evidence-grade ingestion, Mojo-first runtime development, Python 3.14 CI, OSF protocols/reports, Hugging Face dataset/Space publication, research packaging, mapping review and CI/CD hardening.
+
+Immediate implementation focus:
+
+1. Run real-source acquisition in a network-enabled environment using `source-download-plan --attempt` and the reviewed-source bundle commands.
+2. Keep raw files under ignored `data/raw_live/` paths; commit only derived, licence-reviewed outputs.
+3. Promote the generated issue drafts to GitHub Issues/Projects once the remote repository exists.
+4. Use OSF components for protocols, research-question reports, preregistration materials and future preprint/paper artefacts.
+5. Use Hugging Face for permissive derived datasets and the Astro dashboard Space.
+6. Keep Mojo kernels for performance-critical parsing/prefiltering and Python 3.14 for orchestration/interfaces until Mojo library coverage is sufficient.

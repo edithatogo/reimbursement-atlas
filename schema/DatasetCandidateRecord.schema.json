@@ -1,0 +1,100 @@
+{
+  "additionalProperties": false,
+  "description": "Dataset, schedule, registry or contextual corpus proposed for the atlas.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "jurisdiction": {
+      "minLength": 1,
+      "title": "Jurisdiction",
+      "type": "string"
+    },
+    "name": {
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "domain": {
+      "minLength": 1,
+      "title": "Domain",
+      "type": "string"
+    },
+    "source_url": {
+      "format": "uri",
+      "maxLength": 2083,
+      "minLength": 1,
+      "title": "Source Url",
+      "type": "string"
+    },
+    "access_mode": {
+      "enum": [
+        "api",
+        "curl_download",
+        "wget_download",
+        "manual_clickthrough",
+        "landing_page",
+        "local_licence_only"
+      ],
+      "title": "Access Mode",
+      "type": "string"
+    },
+    "priority": {
+      "enum": [
+        "must",
+        "should",
+        "could",
+        "watch"
+      ],
+      "title": "Priority",
+      "type": "string"
+    },
+    "licence_gate": {
+      "enum": [
+        "permissive_candidate",
+        "public_reuse_review",
+        "restricted_or_licence_review",
+        "metadata_only"
+      ],
+      "title": "Licence Gate",
+      "type": "string"
+    },
+    "parser_status": {
+      "enum": [
+        "planned",
+        "prototype",
+        "blocked",
+        "validated"
+      ],
+      "title": "Parser Status",
+      "type": "string"
+    },
+    "recommended_next_step": {
+      "minLength": 1,
+      "title": "Recommended Next Step",
+      "type": "string"
+    },
+    "notes": {
+      "minLength": 1,
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "jurisdiction",
+    "name",
+    "domain",
+    "source_url",
+    "access_mode",
+    "priority",
+    "licence_gate",
+    "parser_status",
+    "recommended_next_step",
+    "notes"
+  ],
+  "title": "DatasetCandidateRecord",
+  "type": "object"
+}

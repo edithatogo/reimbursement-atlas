@@ -65,9 +65,16 @@ from reimburse_atlas.quality import (
 from reimburse_atlas.registry import (
     load_analysis_catalogue,
     load_analysis_recipes,
+    load_conductor_tracks,
+    load_dataset_candidates,
+    load_mapping_resources,
     load_ontology_concepts,
     load_ontology_mapping_templates,
     load_ontology_registry,
+    load_output_artifact_plans,
+    load_research_questions,
+    load_roadmap_functions,
+    load_runtime_targets,
     load_source_files,
     load_source_registry,
     load_source_status,
@@ -88,6 +95,99 @@ from reimburse_atlas.vector_index import (
 
 app = typer.Typer(no_args_is_help=True, add_completion=False)
 console = Console()
+
+
+@app.command("runtime-targets")
+def runtime_targets() -> None:
+    """Show language and toolchain runtime targets including Mojo and Python 3.14."""
+    table = Table(title="Runtime targets")
+    for column in ("id", "name", "target", "installation_status", "local_status"):
+        table.add_column(column)
+    for record in load_runtime_targets():
+        table.add_row(
+            record.id,
+            record.name,
+            record.version_target,
+            record.installation_status,
+            record.local_status,
+        )
+    console.print(table)
+
+
+@app.command("roadmap")
+def roadmap() -> None:
+    """Show Conductor tracks and planned functions."""
+    tracks = {track.id: track for track in load_conductor_tracks()}
+    table = Table(title="Conductor roadmap tracks")
+    for column in ("track", "priority", "phase", "functions"):
+        table.add_column(column)
+    functions = load_roadmap_functions()
+    for track in tracks.values():
+        function_count = sum(1 for function in functions if function.track_id == track.id)
+        table.add_row(track.title, track.priority, track.phase, str(function_count))
+    console.print(table)
+
+
+@app.command("source-download-plan")
+def source_download_plan(
+    attempt: Annotated[
+        bool,
+        typer.Option(help="Attempt executable curl/wget downloads into ignored local raw storage."),
+    ] = False,
+    method: Annotated[str, typer.Option(help="Download method: curl or wget.")] = "curl",
+    output_dir: Annotated[
+        Path,
+        typer.Option(help="Directory for download plans and attempt records."),
+    ] = (project_root() / "data" / "derived" / "source_downloads"),
+) -> None:
+    """Generate curl/wget/API source acquisition plans and optional attempts."""
+    if method not in {"curl", "wget"}:
+        msg = "method must be curl or wget"
+        raise typer.BadParameter(msg)
+    from reimburse_atlas.source_downloads import (
+        attempt_download,
+        build_download_plan,
+        write_download_outputs,
+    )
+
+    records = load_source_files()
+    plans = [build_download_plan(record, preferred_method=method) for record in records]
+    attempts = (
+        [attempt_download(record, preferred_method=method) for record in records] if attempt else []
+    )
+    paths = write_download_outputs(plans, attempts, output_dir=output_dir)
+    console.print_json(
+        json.dumps(
+            {
+                "plans": len(plans),
+                "attempts": len(attempts),
+                "downloaded": sum(1 for record in attempts if record.status == "downloaded"),
+                "blocked_network": sum(
+                    1 for record in attempts if record.status == "blocked_network"
+                ),
+                "skipped_licence_gate": sum(
+                    1 for record in attempts if record.status == "skipped_licence_gate"
+                ),
+                "paths": [str(path) for path in paths],
+            },
+            indent=2,
+        )
+    )
+
+
+@app.command("research-map")
+def research_map() -> None:
+    """Show research questions, dataset candidates, mapping resources and output plans."""
+    payload = {
+        "conductor_tracks": len(load_conductor_tracks()),
+        "roadmap_functions": len(load_roadmap_functions()),
+        "dataset_candidates": len(load_dataset_candidates()),
+        "mapping_resources": len(load_mapping_resources()),
+        "research_questions": len(load_research_questions()),
+        "output_artifact_plans": len(load_output_artifact_plans()),
+        "runtime_targets": len(load_runtime_targets()),
+    }
+    console.print_json(json.dumps(payload, indent=2))
 
 
 @app.command()
@@ -580,6 +680,12 @@ def export_graph(
         load_analysis_recipes(),
         load_ontology_concepts(),
         load_ontology_mapping_templates(),
+        load_conductor_tracks(),
+        load_roadmap_functions(),
+        load_dataset_candidates(),
+        load_mapping_resources(),
+        load_research_questions(),
+        load_output_artifact_plans(),
     )
     nodes_path, edges_path = write_graph_csvs(graph, output_dir)
     console.print_json(
@@ -619,6 +725,13 @@ def validate() -> None:
         "source_version_count": len(versions_),
         "source_file_count": len(files_),
         "source_status_count": len(status_),
+        "conductor_track_count": len(load_conductor_tracks()),
+        "roadmap_function_count": len(load_roadmap_functions()),
+        "dataset_candidate_count": len(load_dataset_candidates()),
+        "mapping_resource_count": len(load_mapping_resources()),
+        "research_question_count": len(load_research_questions()),
+        "output_artifact_plan_count": len(load_output_artifact_plans()),
+        "runtime_target_count": len(load_runtime_targets()),
         "access_tier_counts": access_tier_counts(sources_),
         "duplicate_source_ids": duplicates,
         "missing_analysis_sources": missing,
@@ -923,6 +1036,13 @@ def snapshot() -> None:
         "source_version_count": len(versions_),
         "source_file_count": len(files_),
         "source_status_count": len(status_),
+        "conductor_track_count": len(load_conductor_tracks()),
+        "roadmap_function_count": len(load_roadmap_functions()),
+        "dataset_candidate_count": len(load_dataset_candidates()),
+        "mapping_resource_count": len(load_mapping_resources()),
+        "research_question_count": len(load_research_questions()),
+        "output_artifact_plan_count": len(load_output_artifact_plans()),
+        "runtime_target_count": len(load_runtime_targets()),
         "ingestion_task_count": len(tasks),
         "prototype_ready_analysis_count": len(ready_analyses),
         "top_source_scores": [asdict(score) for score in score_sources(sources_)[:5]],
@@ -947,7 +1067,15 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
     from reimburse_atlas.models import (
         AnalysisRecipeRecord,
         AnalysisRecord,
+        ConductorTrackRecord,
+        DataAcquisitionAttemptRecord,
+        DatasetCandidateRecord,
+        MappingResourceRecord,
         OntologyRecord,
+        OutputArtifactPlanRecord,
+        ResearchQuestionRecord,
+        RoadmapFunctionRecord,
+        RuntimeTargetRecord,
         SourceFileRecord,
         SourceRecord,
         SourceStatusRecord,
@@ -964,6 +1092,14 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         AnalysisRecipeRecord,
         OntologyRecord,
         SourceVersionRecord,
+        ConductorTrackRecord,
+        RoadmapFunctionRecord,
+        DatasetCandidateRecord,
+        MappingResourceRecord,
+        ResearchQuestionRecord,
+        OutputArtifactPlanRecord,
+        RuntimeTargetRecord,
+        DataAcquisitionAttemptRecord,
         ProvenanceRecord,
         ScheduleItemRecord,
         SourceSnapshotRecord,

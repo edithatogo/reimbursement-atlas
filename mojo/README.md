@@ -1,9 +1,26 @@
 # Mojo extension layer
 
-Mojo is reserved for later performance-critical kernels. Candidate modules:
+Mojo is now an explicit performance-kernel track, not a vague future placeholder.
 
-- `parser_tokenizer.mojo`: high-throughput fixed-width/PDF-derived table tokenisation.
-- `fuzzy_join.mojo`: string and embedding prefiltering for mapping candidates.
-- `graph_edges.mojo`: fast construction of large source-item-concept graphs.
+Current kernel:
 
-The first implementation should remain in typed Python until bottlenecks are measured with Scalene.
+- `fixed_width_tokenizer.mojo`: tiny smoke-tested string tokenisation kernel used to validate that Mojo can run in the local/CI environment.
+
+Candidate kernels:
+
+- fixed-width and TXT parsing tokenisers for MBS/CMS-style files;
+- fuzzy string prefilters for mapping candidates;
+- vector pre-processing and graph edge construction.
+
+Reference implementations remain in typed Python first. A Mojo kernel requires:
+
+1. a Python parity test or fixture;
+2. a benchmark/scalene profile showing a bottleneck;
+3. a CI smoke test;
+4. documentation of any portability caveats.
+
+Run:
+
+```bash
+scripts/run_mojo_smoke.sh
+```

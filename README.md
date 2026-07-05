@@ -347,3 +347,36 @@ PYTHONPATH=src reimbursement-atlas release-readiness --allow-blockers
 Architecture checks scan internal `reimburse_atlas` imports, enforce the `foundation -> parsing -> analysis -> orchestration -> interface` boundary model and report import cycles. Release readiness consolidates local quality gates, external quality-gate classification, workflow policy, SBOMs, dashboard build, public-data policy and publication manifests.
 
 Current sandbox status: local quality gates and architecture checks pass; public release remains blocked until `pip-audit --strict` can complete in a network-enabled environment and GitHub Action SHA pinning is resolved.
+
+## v14 roadmap, OSF, Hugging Face, Mojo and acquisition layer
+
+The v14 pass records the expanded roadmap as executable repo artefacts rather than prose. New seed registries now cover Conductor tracks, roadmap functions, dataset candidates, mapping resources, research questions, output artefact plans and runtime targets. The generated GitHub issue backlog expands those records into 94 issue drafts so that unfinished functions, datasets, outputs and quality tracks can be moved into GitHub Issues/Projects when the remote repository is available.
+
+The runtime target is now Mojo-first for high-throughput kernels and Python 3.14 for orchestration, validation, packaging and interfaces. The current sandbox validates the Python path under Python 3.13.5 because Python 3.14 download resolution is blocked here; CI is configured to treat Python 3.14 as the target runtime. A small Mojo smoke kernel is included in `mojo/fixed_width_tokenizer.mojo` and can be run with:
+
+```bash
+bash scripts/run_mojo_smoke.sh
+```
+
+Source acquisition is now executable. The `source-download-plan` command emits curl/wget/API-style commands for exact source-file records, writes download plans and records attempted downloads without committing raw files:
+
+```bash
+PYTHONPATH=src reimbursement-atlas source-download-plan --attempt --method curl
+```
+
+In this sandbox, public MBS/PBS download attempts were classified as `blocked_network` because DNS resolution failed. This is recorded in `data/derived/source_downloads/download_attempts.*`; it is not treated as evidence that the sources are unavailable.
+
+OSF is now part of the research workflow. The repo generates an OSF component plan, protocol/report scaffolds, and a token-gated workflow for future OSF publication. Hugging Face publication is also explicit: the workflow now has separate gated jobs for publishing the derived dataset and deploying the Astro dashboard to a Hugging Face Space.
+
+Research packaging now emits Frictionless-style `datapackage.json`, RO-Crate metadata and DCAT JSON-LD under `data/derived/research_package/`.
+
+New commands:
+
+```bash
+PYTHONPATH=src reimbursement-atlas roadmap
+PYTHONPATH=src reimbursement-atlas runtime-targets
+PYTHONPATH=src reimbursement-atlas research-map
+PYTHONPATH=src reimbursement-atlas source-download-plan --attempt --method curl
+PYTHONPATH=src python scripts/make_osf_plan.py
+PYTHONPATH=src python scripts/make_research_package.py
+```

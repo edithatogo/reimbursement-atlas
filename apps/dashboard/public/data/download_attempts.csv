@@ -1,0 +1,29 @@
+attempted_at,bytes_downloaded,command,error_summary,exit_code,id,method,source_file_id,status,target_path
+2026-07-05T02:57:57.341765+00:00,0,curl -L --fail --retry 2 --connect-timeout 10 --max-time 60 -o data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/650f3eec0dfb990fca25692100069854/1bc94358d4f276d3ca257ccf0000aa73/%24FILE/20260701_MBSONLINE_IMAP.TXT,"% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (6) Could not resolve host: www.mbsonline.gov.au
+Warning: Problem : timeout. Will retry in 1 seconds. 2 retries left.
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (6) Could not resolve host: www.mbsonline.gov.au
+Warning",6,attempt_au_mbs_20260701_imap_txt_7b2db3b929,curl,au_mbs_20260701_imap_txt,blocked_network,data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT
+2026-07-05T02:58:05.383881+00:00,0,curl -L --fail --retry 2 --connect-timeout 10 --max-time 60 -o data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/650f3eec0dfb990fca25692100069854/1bc94358d4f276d3ca257ccf0000aa73/%24FILE/20260701_MBSONLINE_DESC.TXT,"% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (6) Could not resolve host: www.mbsonline.gov.au
+Warning: Problem : timeout. Will retry in 1 seconds. 2 retries left.
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:",6,attempt_au_mbs_20260701_desc_txt_d8902e143a,curl,au_mbs_20260701_desc_txt,blocked_network,data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT
+2026-07-05T02:58:13.417074+00:00,0,mkdir -p data/raw_live/us_cms_clfs && curl -L --fail --retry 3 -o data/raw_live/us_cms_clfs/26CLABQ3_landing_page https://www.cms.gov/medicare/payment/fee-schedules/clinical-laboratory-fee-schedule-clfs/files/26clabq3,"Metadata-only, landing-page or licence-gated record; do not auto-download.",,attempt_us_cms_clfs_26clabq3_page_2de52d08ac,curl,us_cms_clfs_26clabq3_page,skipped_licence_gate,data/raw_live/us_cms_clfs/26CLABQ3_landing_page
+2026-07-05T02:58:13.417141+00:00,0,mkdir -p data/raw_live/us_cms_clfs && curl -L --fail --retry 3 -o data/raw_live/us_cms_clfs/26clabq3.zip https://www.cms.gov/license/ama?file=/files/zip/26clabq3.zip,"Metadata-only, landing-page or licence-gated record; do not auto-download.",,attempt_us_cms_clfs_26clabq3_ama_zip_3cb32faf76,curl,us_cms_clfs_26clabq3_ama_zip,skipped_licence_gate,data/raw_live/us_cms_clfs/26clabq3.zip
+2026-07-05T02:58:13.417167+00:00,0,curl -L --fail --retry 2 --connect-timeout 10 --max-time 60 -o data/raw_live/au_pbs/PBS_API_CSV_endpoints https://data.pbs.gov.au/document/91327.html,"% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0
+  0     0    0     0    0",6,attempt_au_pbs_api_v3_documentation_79e46c8fba,curl,au_pbs_api_v3_documentation,blocked_network,data/raw_live/au_pbs/PBS_API_CSV_endpoints
+2026-07-05T02:58:21.449890+00:00,0,mkdir -p data/raw_live/us_cms_asp && curl -L --fail --retry 3 -o data/raw_live/us_cms_asp/July_2026_ASP_payment-limit_files https://www.cms.gov/medicare/payment/part-b-drugs/asp-pricing-files,"Metadata-only, landing-page or licence-gated record; do not auto-download.",,attempt_us_cms_asp_july_2026_payment_limit_page_7e8a0d19e7,curl,us_cms_asp_july_2026_payment_limit_page,skipped_licence_gate,data/raw_live/us_cms_asp/July_2026_ASP_payment-limit_files
+2026-07-05T02:58:21.449958+00:00,0,mkdir -p data/raw_live/us_cms_pfs && curl -L --fail --retry 3 -o data/raw_live/us_cms_pfs/RVU26C_relative_value_files https://www.cms.gov/medicare/payment/fee-schedules/physician/pfs-relative-value-files,"Metadata-only, landing-page or licence-gated record; do not auto-download.",,attempt_us_cms_pfs_rvu26c_page_caafcf4ee4,curl,us_cms_pfs_rvu26c_page,skipped_licence_gate,data/raw_live/us_cms_pfs/RVU26C_relative_value_files

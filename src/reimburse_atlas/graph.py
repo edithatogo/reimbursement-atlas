@@ -11,7 +11,13 @@ from pathlib import Path
 from reimburse_atlas.models import (
     AnalysisRecipeRecord,
     AnalysisRecord,
+    ConductorTrackRecord,
+    DatasetCandidateRecord,
+    MappingResourceRecord,
     OntologyRecord,
+    OutputArtifactPlanRecord,
+    ResearchQuestionRecord,
+    RoadmapFunctionRecord,
     SourceFileRecord,
     SourceRecord,
     SourceVersionRecord,
@@ -45,7 +51,7 @@ def _edge(source: str, target: str, relationship: str) -> dict[str, str]:
     return {"source": source, "target": target, "relationship": relationship}
 
 
-def build_seed_graph(
+def build_seed_graph(  # noqa: PLR0912, PLR0914, PLR0915
     sources: list[SourceRecord],
     analyses: list[AnalysisRecord],
     ontologies: list[OntologyRecord],
@@ -54,6 +60,12 @@ def build_seed_graph(
     recipes: list[AnalysisRecipeRecord] | None = None,
     ontology_concepts: list[OntologyConceptRecord] | None = None,
     ontology_mapping_templates: list[OntologyMappingTemplate] | None = None,
+    conductor_tracks: list[ConductorTrackRecord] | None = None,
+    roadmap_functions: list[RoadmapFunctionRecord] | None = None,
+    dataset_candidates: list[DatasetCandidateRecord] | None = None,
+    mapping_resources: list[MappingResourceRecord] | None = None,
+    research_questions: list[ResearchQuestionRecord] | None = None,
+    output_plans: list[OutputArtifactPlanRecord] | None = None,
 ) -> GraphTables:
     """Build a lightweight graph from the seed registries."""
     nodes_by_id: dict[str, dict[str, str]] = {}
@@ -186,6 +198,103 @@ def build_seed_graph(
         left = f"concept:{template.left_terminology_id}:{template.left_code}"
         right = f"concept:{template.right_terminology_id}:{template.right_code}"
         edges.append(_edge(left, right, f"mapping_{template.relationship}"))
+
+    for track in conductor_tracks or []:
+        track_node = f"track:{track.id}"
+        add_node(
+            _node(
+                track_node,
+                track.title,
+                "conductor_track",
+                phase=track.phase,
+                workstream=track.workstream,
+                priority=track.priority,
+            ),
+        )
+        for dependency in track.depends_on:
+            edges.append(_edge(track_node, f"track:{dependency}", "depends_on_track"))
+
+    for function in roadmap_functions or []:
+        function_node = f"function:{function.id}"
+        add_node(
+            _node(
+                function_node,
+                function.name,
+                "roadmap_function",
+                interface=function.interface,
+                status=function.status,
+                priority=function.priority,
+            ),
+        )
+        edges.append(_edge(function_node, f"track:{function.track_id}", "implements_track"))
+
+    for dataset in dataset_candidates or []:
+        dataset_node = f"dataset:{dataset.id}"
+        jurisdiction_node = f"jurisdiction:{slug(dataset.jurisdiction)}"
+        domain_node = f"domain:{slug(dataset.domain)}"
+        add_node(
+            _node(
+                dataset_node,
+                dataset.name,
+                "dataset_candidate",
+                priority=dataset.priority,
+                access_mode=dataset.access_mode,
+                licence_gate=dataset.licence_gate,
+            ),
+        )
+        add_node(_node(jurisdiction_node, dataset.jurisdiction, "jurisdiction"))
+        add_node(_node(domain_node, dataset.domain, "domain"))
+        edges.extend((
+            _edge(dataset_node, jurisdiction_node, "in_jurisdiction"),
+            _edge(dataset_node, domain_node, "covers_domain"),
+        ))
+
+    for mapping in mapping_resources or []:
+        mapping_node = f"mapping_resource:{mapping.id}"
+        domain_node = f"domain:{slug(mapping.domain)}"
+        add_node(
+            _node(
+                mapping_node,
+                mapping.name,
+                "mapping_resource",
+                priority=mapping.priority,
+                licence_gate=mapping.licence_gate,
+                access_mode=mapping.access_mode,
+            ),
+        )
+        add_node(_node(domain_node, mapping.domain, "domain"))
+        edges.append(_edge(mapping_node, domain_node, "maps_domain"))
+
+    for question in research_questions or []:
+        question_node = f"research_question:{question.id}"
+        add_node(
+            _node(
+                question_node,
+                question.question,
+                "research_question",
+                preregistration_status=question.preregistration_status,
+                osf_component=question.osf_component,
+            ),
+        )
+        edges.append(_edge(question_node, f"track:{question.track_id}", "belongs_to_track"))
+        for dataset_id in question.required_datasets:
+            edges.append(
+                _edge(question_node, f"dataset:{dataset_id}", "requires_dataset_candidate")
+            )
+
+    for output in output_plans or []:
+        output_node = f"output:{output.id}"
+        add_node(
+            _node(
+                output_node,
+                output.path,
+                "output_plan",
+                output_type=output.output_type,
+                target_platform=output.target_platform,
+                status=output.status,
+            ),
+        )
+        edges.append(_edge(output_node, f"track:{output.track_id}", "publishes_track"))
 
     return GraphTables(nodes=sorted(nodes_by_id.values(), key=itemgetter("id")), edges=edges)
 

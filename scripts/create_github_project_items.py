@@ -7,9 +7,11 @@ That keeps repository generation deterministic and avoids assuming credentials.
 from __future__ import annotations
 
 import ast
+import json
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import cast
 
 ROOT = Path(__file__).resolve().parents[1]
 BACKLOG = ROOT / "conductor" / "backlog.yml"
@@ -58,6 +60,75 @@ def parse_backlog(path: Path = BACKLOG) -> list[IssueDraft]:
     return issues
 
 
+def _read_jsonl(path: Path) -> list[dict[str, object]]:
+    if not path.exists():
+        return []
+    rows: list[dict[str, object]] = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.strip():
+            loaded = json.loads(line)
+            if isinstance(loaded, dict):
+                rows.append(cast("dict[str, object]", loaded))
+    return rows
+
+
+def generated_track_issues(root: Path = ROOT) -> list[IssueDraft]:
+    """Generate issue drafts from machine-readable roadmap seed records."""
+    seed_dir = root / "data" / "seed"
+    tracks = {str(row["id"]): row for row in _read_jsonl(seed_dir / "conductor_tracks.jsonl")}
+    issues: list[IssueDraft] = []
+    for row in _read_jsonl(seed_dir / "roadmap_functions.jsonl"):
+        track_id = str(row.get("track_id", "track_unknown"))
+        track = tracks.get(track_id, {})
+        issues.append(
+            IssueDraft(
+                epic_id=track_id.upper(),
+                epic_title=str(track.get("title", "Conductor roadmap track")),
+                title=str(row.get("github_issue_title", row.get("name", "Roadmap function"))),
+                labels=[
+                    "type:roadmap-function",
+                    f"priority:{row.get('priority', 'unknown')}",
+                    f"interface:{row.get('interface', 'unknown')}",
+                ],
+            )
+        )
+    for row in _read_jsonl(seed_dir / "dataset_candidates.jsonl"):
+        issues.append(
+            IssueDraft(
+                epic_id="DATASET-CANDIDATES",
+                epic_title="Additional dataset and country onboarding",
+                title=f"Onboard dataset candidate: {row.get('name', row.get('id'))}",
+                labels=[
+                    "type:data-source",
+                    f"priority:{row.get('priority', 'unknown')}",
+                    "phase:future",
+                ],
+            )
+        )
+    for row in _read_jsonl(seed_dir / "research_questions.jsonl"):
+        issues.append(
+            IssueDraft(
+                epic_id="RESEARCH-QUESTIONS",
+                epic_title="Protocolled policy research questions",
+                title=f"Complete protocol and report: {row.get('id')}",
+                labels=["type:research", "type:osf", "phase:analysis"],
+            )
+        )
+    for row in _read_jsonl(seed_dir / "output_artifact_plans.jsonl"):
+        issues.append(
+            IssueDraft(
+                epic_id="OUTPUTS",
+                epic_title="Publication and deployment outputs",
+                title=f"Implement output plan: {row.get('id')}",
+                labels=[
+                    "type:publication",
+                    f"target:{row.get('target_platform', 'unknown')}",
+                ],
+            )
+        )
+    return issues
+
+
 def render_issue(issue: IssueDraft) -> str:
     """Render one GitHub issue draft."""
     labels = ", ".join(issue.labels) if issue.labels else "none"
@@ -92,7 +163,7 @@ def main() -> None:
     for existing in OUTPUT.glob("*.md"):
         existing.unlink()
     count = 0
-    for count, issue in enumerate(parse_backlog(), start=1):
+    for count, issue in enumerate([*parse_backlog(), *generated_track_issues()], start=1):
         path = OUTPUT / f"{count:03d}-{slug(issue.title)}.md"
         path.write_text(render_issue(issue), encoding="utf-8")
     print(f"Wrote {count} issue drafts to {OUTPUT}")

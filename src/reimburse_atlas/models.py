@@ -176,3 +176,190 @@ class AnalysisRecipeRecord(FrozenModel):
         if isinstance(value, (list, tuple, set, frozenset)):
             return tuple(str(item).strip() for item in cast("Iterable[object]", value))
         return (str(value).strip(),)
+
+
+class ConductorTrackRecord(FrozenModel):
+    """Machine-readable Conductor implementation track for GitHub Projects and agents."""
+
+    id: SourceId
+    title: NonEmptyStr
+    phase: NonEmptyStr
+    workstream: NonEmptyStr
+    priority: Literal["must", "should", "could", "wont"]
+    goal: NonEmptyStr
+    deliverables: tuple[NonEmptyStr, ...] = Field(default_factory=tuple)
+    depends_on: tuple[SourceId, ...] = Field(default_factory=tuple)
+    github_project_status: NonEmptyStr
+    notes: NonEmptyStr
+
+    @field_validator("deliverables", "depends_on", mode="before")
+    @classmethod
+    def tuplefy_track_fields(cls, value: object) -> tuple[str, ...]:
+        """Convert list-like track fields to tuples."""
+        if value is None:
+            return ()
+        if isinstance(value, str):
+            return (value,)
+        if isinstance(value, (list, tuple, set, frozenset)):
+            return tuple(str(item).strip() for item in cast("Iterable[object]", value))
+        return (str(value).strip(),)
+
+
+class RoadmapFunctionRecord(FrozenModel):
+    """Planned function, command, service or workflow tracked to implementation."""
+
+    id: SourceId
+    track_id: SourceId
+    name: NonEmptyStr
+    interface: Literal[
+        "cli", "api", "mcp", "dashboard", "data_pipeline", "github_action", "mojo_kernel"
+    ]
+    status: Literal["planned", "prototype", "blocked", "implemented", "deferred"]
+    priority: Literal["must", "should", "could", "wont"]
+    description: NonEmptyStr
+    inputs: tuple[NonEmptyStr, ...] = Field(default_factory=tuple)
+    outputs: tuple[NonEmptyStr, ...] = Field(default_factory=tuple)
+    quality_gates: tuple[NonEmptyStr, ...] = Field(default_factory=tuple)
+    github_issue_title: NonEmptyStr
+
+    @field_validator("inputs", "outputs", "quality_gates", mode="before")
+    @classmethod
+    def tuplefy_function_fields(cls, value: object) -> tuple[str, ...]:
+        """Convert list-like function fields to tuples."""
+        if value is None:
+            return ()
+        if isinstance(value, str):
+            return (value,)
+        if isinstance(value, (list, tuple, set, frozenset)):
+            return tuple(str(item).strip() for item in cast("Iterable[object]", value))
+        return (str(value).strip(),)
+
+
+class DatasetCandidateRecord(FrozenModel):
+    """Dataset, schedule, registry or contextual corpus proposed for the atlas."""
+
+    id: SourceId
+    jurisdiction: NonEmptyStr
+    name: NonEmptyStr
+    domain: NonEmptyStr
+    source_url: HttpUrl
+    access_mode: Literal[
+        "api",
+        "curl_download",
+        "wget_download",
+        "manual_clickthrough",
+        "landing_page",
+        "local_licence_only",
+    ]
+    priority: Literal["must", "should", "could", "watch"]
+    licence_gate: Literal[
+        "permissive_candidate",
+        "public_reuse_review",
+        "restricted_or_licence_review",
+        "metadata_only",
+    ]
+    parser_status: Literal["planned", "prototype", "blocked", "validated"]
+    recommended_next_step: NonEmptyStr
+    notes: NonEmptyStr
+
+
+class MappingResourceRecord(FrozenModel):
+    """Ontology, terminology, crosswalk or code-system mapping resource."""
+
+    id: SourceId
+    name: NonEmptyStr
+    domain: NonEmptyStr
+    source_url: HttpUrl
+    access_mode: Literal["api", "download", "local_licence_only", "manual_review"]
+    licence_gate: Literal[
+        "permissive_candidate",
+        "public_reuse_review",
+        "restricted_or_licence_review",
+        "metadata_only",
+    ]
+    local_only: bool
+    priority: Literal["must", "should", "could", "watch"]
+    mapping_strategy: NonEmptyStr
+    notes: NonEmptyStr
+
+
+class ResearchQuestionRecord(FrozenModel):
+    """Pre-specified policy research question with protocol and output anchors."""
+
+    id: SourceId
+    track_id: SourceId
+    question: NonEmptyStr
+    protocol_path: NonEmptyStr
+    report_path: NonEmptyStr
+    required_datasets: tuple[SourceId, ...] = Field(default_factory=tuple)
+    methods: tuple[NonEmptyStr, ...] = Field(default_factory=tuple)
+    outputs: tuple[NonEmptyStr, ...] = Field(default_factory=tuple)
+    osf_component: NonEmptyStr
+    preregistration_status: Literal["planned", "drafted", "registered", "not_applicable"]
+
+    @field_validator("required_datasets", "methods", "outputs", mode="before")
+    @classmethod
+    def tuplefy_research_fields(cls, value: object) -> tuple[str, ...]:
+        """Convert list-like research fields to tuples."""
+        if value is None:
+            return ()
+        if isinstance(value, str):
+            return (value,)
+        if isinstance(value, (list, tuple, set, frozenset)):
+            return tuple(str(item).strip() for item in cast("Iterable[object]", value))
+        return (str(value).strip(),)
+
+
+class OutputArtifactPlanRecord(FrozenModel):
+    """Planned publication, dashboard, dataset, report or archive output."""
+
+    id: SourceId
+    track_id: SourceId
+    output_type: Literal[
+        "dataset",
+        "dashboard",
+        "protocol",
+        "report",
+        "preprint",
+        "api",
+        "mcp",
+        "archive",
+        "package",
+    ]
+    target_platform: Literal[
+        "github", "huggingface_dataset", "huggingface_space", "osf", "zenodo", "local"
+    ]
+    path: NonEmptyStr
+    status: Literal["planned", "drafted", "blocked", "implemented", "published"]
+    release_gate: NonEmptyStr
+    notes: NonEmptyStr
+
+
+class RuntimeTargetRecord(FrozenModel):
+    """Runtime, language or toolchain target used by local/CI gates."""
+
+    id: SourceId
+    name: NonEmptyStr
+    version_target: NonEmptyStr
+    role: NonEmptyStr
+    installation_status: Literal["installed", "blocked_network", "missing", "wrong_tool", "planned"]
+    local_status: NonEmptyStr
+    ci_status: NonEmptyStr
+    notes: NonEmptyStr
+
+
+class DataAcquisitionAttemptRecord(FrozenModel):
+    """One attempted curl/wget/API acquisition of a registered source file."""
+
+    id: SourceId
+    source_file_id: SourceId
+    attempted_at: NonEmptyStr
+    method: Literal["curl", "wget", "httpx", "api", "manual"]
+    target_path: NonEmptyStr
+    status: Literal[
+        "downloaded", "blocked_network", "failed", "skipped_licence_gate", "not_attempted"
+    ]
+    exit_code: int | None = None
+    bytes_downloaded: int = Field(default=0, ge=0)
+    command: NonEmptyStr
+    error_summary: NonEmptyStr

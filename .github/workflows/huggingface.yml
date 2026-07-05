@@ -1,21 +1,129 @@
-name: Hugging Face publish scaffold
+name: Hugging Face publication
 
 on:
   workflow_dispatch:
+    inputs:
+      publish_dataset:
+        description: "Publish licence-safe derived dataset to Hugging Face"
+        required: true
+        default: "false"
+        type: choice
+        options: ["false", "true"]
+      publish_space:
+        description: "Publish static Astro dashboard to Hugging Face Space"
+        required: true
+        default: "false"
+        type: choice
+        options: ["false", "true"]
 
 permissions:
   contents: read
 
 jobs:
-  dataset-dry-run:
+  validate-publication:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
-      - uses: prefix-dev/setup-pixi@v0.10.0
-      - name: List upload candidates
-        run: pixi run python scripts/hf_upload_dataset.py
-      - name: Stop before upload
+      - uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: apps/dashboard/package-lock.json
+      - name: Install Python dependencies
+        run: uv sync --all-extras
+      - name: Regenerate publication manifests
         run: |
-          echo "This scaffold intentionally does not upload until licence gates are implemented."
+          uv run python scripts/sync_seed_csvs.py
+          uv run python scripts/check_public_data_policy.py
+          uv run python scripts/make_publication_manifest.py
+          uv run python scripts/make_osf_plan.py
+          uv run python scripts/make_research_package.py
+      - name: Build dashboard
+        working-directory: apps/dashboard
+        run: |
+          npm ci
+          npm run build
+      - name: Upload publication candidate artefacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: huggingface-publication-candidate
+          path: |
+            data/derived/publication_manifest.json
+            data/derived/research_package/
+            infra/huggingface/
+            apps/dashboard/dist/
+
+  publish-dataset:
+    needs: validate-publication
+    if: ${{ github.event.inputs.publish_dataset == 'true' }}
+    runs-on: ubuntu-latest
+    environment: publication-candidate
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v7
+      - name: Validate gates before dataset publication
+        run: |
+          uv sync --all-extras
+          uv run python scripts/check_public_data_policy.py
+          uv run python scripts/make_publication_manifest.py
+      - name: Push dataset artefacts to Hugging Face Hub
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_DATASET_REPO: ${{ vars.HF_DATASET_REPO }}
+        run: |
+          test -n "$HF_TOKEN"
+          test -n "$HF_DATASET_REPO"
+          git clone "https://user:${HF_TOKEN}@huggingface.co/datasets/${HF_DATASET_REPO}" hf-dataset
+          rsync -av --delete infra/huggingface/ hf-dataset/
+          rsync -av data/seed/*.csv hf-dataset/data/seed/
+          rsync -av data/seed/*.jsonl hf-dataset/data/seed/
+          rsync -av data/derived/publication_manifest.json hf-dataset/data/derived/
+          cd hf-dataset
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Publish reimbursement atlas derived dataset" || exit 0
+          git push
+
+  publish-space:
+    needs: validate-publication
+    if: ${{ github.event.inputs.publish_space == 'true' }}
+    runs-on: ubuntu-latest
+    environment: publication-candidate
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: apps/dashboard/package-lock.json
+      - name: Build Space bundle
+        working-directory: apps/dashboard
+        run: |
+          npm ci
+          npm run build
+      - name: Push dashboard to Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_SPACE_REPO: ${{ vars.HF_SPACE_REPO }}
+        run: |
+          test -n "$HF_TOKEN"
+          test -n "$HF_SPACE_REPO"
+          git clone "https://user:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE_REPO}" hf-space
+          rsync -av --delete apps/dashboard/dist/ hf-space/
+          cp infra/huggingface/SPACE_README.md hf-space/README.md
+          cd hf-space
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Deploy reimbursement atlas dashboard" || exit 0
+          git push

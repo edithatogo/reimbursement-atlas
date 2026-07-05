@@ -1,7 +1,7 @@
 {
   "duckdb_path": "seed_lake.duckdb",
   "parquet_enabled": true,
-  "table_count": 31,
+  "table_count": 41,
   "tables": [
     {
       "csv_path": "source_registry/source_registry.csv",
@@ -92,6 +92,62 @@
       "sha256": "3c7d0d1dfda5027fb4c324a0a9dcdab53d322d0a5bca26dd877a991bad1d7a2a"
     },
     {
+      "csv_path": "conductor_tracks/conductor_tracks.csv",
+      "jsonl_path": "conductor_tracks/conductor_tracks.jsonl",
+      "name": "conductor_tracks",
+      "parquet_path": "conductor_tracks/conductor_tracks.parquet",
+      "rows": 8,
+      "sha256": "289c1a0a36e1206989c92cd0348b3e69551ba0d20edc52d59142006e8c863979"
+    },
+    {
+      "csv_path": "roadmap_functions/roadmap_functions.csv",
+      "jsonl_path": "roadmap_functions/roadmap_functions.jsonl",
+      "name": "roadmap_functions",
+      "parquet_path": "roadmap_functions/roadmap_functions.parquet",
+      "rows": 20,
+      "sha256": "fd41b9cd7b5d3c40e2f2731d6c87ef3ae17b22124f65205d4a389646e589ebae"
+    },
+    {
+      "csv_path": "dataset_candidates/dataset_candidates.csv",
+      "jsonl_path": "dataset_candidates/dataset_candidates.jsonl",
+      "name": "dataset_candidates",
+      "parquet_path": "dataset_candidates/dataset_candidates.parquet",
+      "rows": 15,
+      "sha256": "7e4ec2e7964ae6e399951a00ad75ed28a625f0e092f946360a5ddbffc04db8db"
+    },
+    {
+      "csv_path": "mapping_resources/mapping_resources.csv",
+      "jsonl_path": "mapping_resources/mapping_resources.jsonl",
+      "name": "mapping_resources",
+      "parquet_path": "mapping_resources/mapping_resources.parquet",
+      "rows": 12,
+      "sha256": "2649a6e66e431c111c472749f7daa4e60b1f88a0f4da001c97e4ba25ff078ea1"
+    },
+    {
+      "csv_path": "research_questions/research_questions.csv",
+      "jsonl_path": "research_questions/research_questions.jsonl",
+      "name": "research_questions",
+      "parquet_path": "research_questions/research_questions.parquet",
+      "rows": 5,
+      "sha256": "ea05cbc025201f51bb4ce4c120e0e7cc5ca604a84f955e6a8826d562eb760692"
+    },
+    {
+      "csv_path": "output_artifact_plans/output_artifact_plans.csv",
+      "jsonl_path": "output_artifact_plans/output_artifact_plans.jsonl",
+      "name": "output_artifact_plans",
+      "parquet_path": "output_artifact_plans/output_artifact_plans.parquet",
+      "rows": 10,
+      "sha256": "95e73d4ccecc9edf9c167cd80431c58bf377b885db609f378c1daae957bf89fb"
+    },
+    {
+      "csv_path": "runtime_targets/runtime_targets.csv",
+      "jsonl_path": "runtime_targets/runtime_targets.jsonl",
+      "name": "runtime_targets",
+      "parquet_path": "runtime_targets/runtime_targets.parquet",
+      "rows": 6,
+      "sha256": "2551011161a2e744de648f9a413870364d313767f55ef20687d5d605ed11e658"
+    },
+    {
       "csv_path": "vertical_schedule_items/vertical_schedule_items.csv",
       "jsonl_path": "vertical_schedule_items/vertical_schedule_items.jsonl",
       "name": "vertical_schedule_items",
@@ -160,16 +216,16 @@
       "jsonl_path": "repo_workflow_uses/repo_workflow_uses.jsonl",
       "name": "repo_workflow_uses",
       "parquet_path": "repo_workflow_uses/repo_workflow_uses.parquet",
-      "rows": 47,
-      "sha256": "a8768e52609f8af2a35e96884e5410464412eb50f57ee3e1eae52b2470ed4fee"
+      "rows": 57,
+      "sha256": "95d86e8baf26cec720c09afd64f1e354c27d250ba5d45a8c6510b4152a37a8f3"
     },
     {
       "csv_path": "repo_workflow_policy/repo_workflow_policy.csv",
       "jsonl_path": "repo_workflow_policy/repo_workflow_policy.jsonl",
       "name": "repo_workflow_policy",
       "parquet_path": "repo_workflow_policy/repo_workflow_policy.parquet",
-      "rows": 48,
-      "sha256": "da10512d1d2dc48d3fb8187ceb655bbf2ea8aee50ec6153e185de83f826f7715"
+      "rows": 52,
+      "sha256": "ee25a611b344197aae29c936f6d3981edb3cb0e06745cf8304aeaa72ae27e82c"
     },
     {
       "csv_path": "repo_automation_controls/repo_automation_controls.csv",
@@ -184,8 +240,8 @@
       "jsonl_path": "repo_action_sha_pin_plan/repo_action_sha_pin_plan.jsonl",
       "name": "repo_action_sha_pin_plan",
       "parquet_path": "repo_action_sha_pin_plan/repo_action_sha_pin_plan.parquet",
-      "rows": 44,
-      "sha256": "17ef7ebbcb2dcecdb5040bb88619392100b67d5c95cd5c0ceef3899562d0f3b2"
+      "rows": 54,
+      "sha256": "87b2ccc699253b22269d7e5b81178c2fdab90fb73bcff154312ace6007cc9d36"
     },
     {
       "csv_path": "repo_action_pin_resolution/repo_action_pin_resolution.csv",
@@ -201,7 +257,7 @@
       "name": "sbom_summary",
       "parquet_path": "sbom_summary/sbom_summary.parquet",
       "rows": 2,
-      "sha256": "acd03edc0f02956b5d03f4463de47b56c0027b04999864e3e70d308b7fd964fc"
+      "sha256": "5ecb6dfc11756c32a891db8c66e8e5f9c2475808c388a0aeb3c180b7ccfa6b67"
     },
     {
       "csv_path": "local_quality_gates/local_quality_gates.csv",
@@ -224,8 +280,8 @@
       "jsonl_path": "architecture_import_edges/architecture_import_edges.jsonl",
       "name": "architecture_import_edges",
       "parquet_path": "architecture_import_edges/architecture_import_edges.parquet",
-      "rows": 138,
-      "sha256": "b3d7a8c7f4c6665d473e11b063802331c3417fbe2d5a09a31d277a2c4a3c9c10"
+      "rows": 144,
+      "sha256": "fa3097e630646abf2c96f86071bd072c444f6ed2bb9b4e672bbc30eeeff17bce"
     },
     {
       "csv_path": "architecture_layer_policy/architecture_layer_policy.csv",
@@ -233,7 +289,7 @@
       "name": "architecture_layer_policy",
       "parquet_path": "architecture_layer_policy/architecture_layer_policy.parquet",
       "rows": 22,
-      "sha256": "4f06da2ef460d89da6fa2075a0b33fbcbc557cdf11da7875c745e315c3115eda"
+      "sha256": "710fccf3fea8551abf7e67da0ae79220c55589619c8bbcbcb323b7af5228ea70"
     },
     {
       "csv_path": "architecture_import_cycles/architecture_import_cycles.csv",
@@ -249,7 +305,31 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 20,
-      "sha256": "ad3164c3b00397b44359a8b30764b07aebe2052be686ab7d52b2b99e9515308a"
+      "sha256": "a94e1348a27bc89eead5a24db1be7bf81a8742f7fb7be2a9cdebba01bea9fb55"
+    },
+    {
+      "csv_path": "source_download_plans/source_download_plans.csv",
+      "jsonl_path": "source_download_plans/source_download_plans.jsonl",
+      "name": "source_download_plans",
+      "parquet_path": "source_download_plans/source_download_plans.parquet",
+      "rows": 7,
+      "sha256": "6fe5f5627ab62208672075c8841c14234d0999f788409d459123cd7d41d24f58"
+    },
+    {
+      "csv_path": "source_download_attempts/source_download_attempts.csv",
+      "jsonl_path": "source_download_attempts/source_download_attempts.jsonl",
+      "name": "source_download_attempts",
+      "parquet_path": "source_download_attempts/source_download_attempts.parquet",
+      "rows": 7,
+      "sha256": "93bd2e8aa40b59b3de0f332ed3f10c492cad95e239f9707e8357a284f78d5560"
+    },
+    {
+      "csv_path": "osf_component_plan/osf_component_plan.csv",
+      "jsonl_path": "osf_component_plan/osf_component_plan.jsonl",
+      "name": "osf_component_plan",
+      "parquet_path": "osf_component_plan/osf_component_plan.parquet",
+      "rows": 15,
+      "sha256": "3e1180fae09c6a1ea1139a0dd5162a97855c9557a635b6831b21dd50a29dd04f"
     }
   ]
 }

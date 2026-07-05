@@ -1,0 +1,7 @@
+{
+  "component_count": 15,
+  "osf_use": "protocols, reports, appendices, preregistration material and preprint staging",
+  "project": "reimbursement-atlas-conductor",
+  "raw_data_policy": "Do not upload raw restricted source files to OSF unless licence review explicitly permits it.",
+  "required_before_release": 8
+}

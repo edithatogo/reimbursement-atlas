@@ -37,7 +37,9 @@ def parse_amount(value: object | None) -> float | None:
     text = text.replace("$", "").replace(",", "")
     try:
         return float(Decimal(text))
-    except (InvalidOperation, ValueError):
+    except InvalidOperation:
+        return None
+    except ValueError:
         return None
 
 

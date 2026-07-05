@@ -1,0 +1,569 @@
+{
+  "@context": {
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/"
+  },
+  "@type": "dcat:Dataset",
+  "dcat:distribution": [
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/source_registry.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_registry"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/source_registry.csv",
+      "dct:format": "csv",
+      "dct:title": "source_registry"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/source_versions.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_versions"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/source_versions.csv",
+      "dct:format": "csv",
+      "dct:title": "source_versions"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/source_files.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_files"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/source_files.csv",
+      "dct:format": "csv",
+      "dct:title": "source_files"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/source_status.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_status"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/source_status.csv",
+      "dct:format": "csv",
+      "dct:title": "source_status"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/source_snapshots.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/source_snapshots.csv",
+      "dct:format": "csv",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/analysis_catalogue.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "analysis_catalogue"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/analysis_catalogue.csv",
+      "dct:format": "csv",
+      "dct:title": "analysis_catalogue"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/analysis_recipes.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "analysis_recipes"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/analysis_recipes.csv",
+      "dct:format": "csv",
+      "dct:title": "analysis_recipes"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/ontology_registry.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "ontology_registry"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/ontology_registry.csv",
+      "dct:format": "csv",
+      "dct:title": "ontology_registry"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/ontology_concepts.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "ontology_concepts"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/ontology_concepts.csv",
+      "dct:format": "csv",
+      "dct:title": "ontology_concepts"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/graph_nodes.csv",
+      "dct:format": "csv",
+      "dct:title": "graph_nodes"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/graph_edges.csv",
+      "dct:format": "csv",
+      "dct:title": "graph_edges"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/conductor_tracks.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "conductor_tracks"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/conductor_tracks.csv",
+      "dct:format": "csv",
+      "dct:title": "conductor_tracks"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/roadmap_functions.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "roadmap_functions"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/roadmap_functions.csv",
+      "dct:format": "csv",
+      "dct:title": "roadmap_functions"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/dataset_candidates.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "dataset_candidates"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/dataset_candidates.csv",
+      "dct:format": "csv",
+      "dct:title": "dataset_candidates"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/mapping_resources.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "mapping_resources"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/mapping_resources.csv",
+      "dct:format": "csv",
+      "dct:title": "mapping_resources"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/research_questions.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "research_questions"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/research_questions.csv",
+      "dct:format": "csv",
+      "dct:title": "research_questions"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/output_artifact_plans.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "output_artifact_plans"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/output_artifact_plans.csv",
+      "dct:format": "csv",
+      "dct:title": "output_artifact_plans"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/runtime_targets.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "runtime_targets"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/runtime_targets.csv",
+      "dct:format": "csv",
+      "dct:title": "runtime_targets"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/source_readiness.csv",
+      "dct:format": "csv",
+      "dct:title": "source_readiness"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/analysis_readiness.csv",
+      "dct:format": "csv",
+      "dct:title": "analysis_readiness"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/source_acquisition_plan.csv",
+      "dct:format": "csv",
+      "dct:title": "source_acquisition_plan"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/ingestion_readiness.csv",
+      "dct:format": "csv",
+      "dct:title": "ingestion_readiness"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/schedule_items.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/schedule_items.csv",
+      "dct:format": "csv",
+      "dct:title": "schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/coverage_decisions.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "coverage_decisions"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/coverage_decisions.csv",
+      "dct:format": "csv",
+      "dct:title": "coverage_decisions"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/crosswalk_candidates.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "crosswalk_candidates"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/crosswalk_candidates.csv",
+      "dct:format": "csv",
+      "dct:title": "crosswalk_candidates"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/crosswalk_review_queue.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "crosswalk_review_queue"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/crosswalk_review_queue.csv",
+      "dct:format": "csv",
+      "dct:title": "crosswalk_review_queue"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/policy_signal_matrix.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "policy_signal_matrix"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/policy_signal_matrix.csv",
+      "dct:format": "csv",
+      "dct:title": "policy_signal_matrix"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/mapping_evidence_matrix.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "mapping_evidence_matrix"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/mapping_evidence_matrix.csv",
+      "dct:format": "csv",
+      "dct:title": "mapping_evidence_matrix"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/manual_acquisition_pack/acquisition_steps.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "acquisition_steps"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/manual_acquisition_pack/acquisition_steps.csv",
+      "dct:format": "csv",
+      "dct:title": "acquisition_steps"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/external_quality_gates.json",
+      "dct:format": "json",
+      "dct:title": "external_quality_gates"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/external_quality_gates.csv",
+      "dct:format": "csv",
+      "dct:title": "external_quality_gates"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/optional_toolchain_installs.json",
+      "dct:format": "json",
+      "dct:title": "optional_toolchain_installs"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/optional_toolchain_installs.csv",
+      "dct:format": "csv",
+      "dct:title": "optional_toolchain_installs"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/repo_automation/workflow_uses.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "workflow_uses"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/repo_automation/workflow_uses.csv",
+      "dct:format": "csv",
+      "dct:title": "workflow_uses"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/repo_automation/workflow_policy.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "workflow_policy"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/repo_automation/workflow_policy.csv",
+      "dct:format": "csv",
+      "dct:title": "workflow_policy"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/repo_automation/automation_controls.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "automation_controls"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/repo_automation/automation_controls.csv",
+      "dct:format": "csv",
+      "dct:title": "automation_controls"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/repo_automation/action_sha_pin_plan.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "action_sha_pin_plan"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/repo_automation/action_sha_pin_plan.csv",
+      "dct:format": "csv",
+      "dct:title": "action_sha_pin_plan"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/repo_automation/action_pin_resolution.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "action_pin_resolution"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/repo_automation/action_pin_resolution.csv",
+      "dct:format": "csv",
+      "dct:title": "action_pin_resolution"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/sbom/sbom_summary.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "sbom_summary"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/sbom/sbom_summary.csv",
+      "dct:format": "csv",
+      "dct:title": "sbom_summary"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/sbom/cyclonedx-python.json",
+      "dct:format": "json",
+      "dct:title": "cyclonedx-python"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/sbom/cyclonedx-dashboard.json",
+      "dct:format": "json",
+      "dct:title": "cyclonedx-dashboard"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/local_quality_gates/local_quality_gates.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "local_quality_gates"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/local_quality_gates/local_quality_gates.csv",
+      "dct:format": "csv",
+      "dct:title": "local_quality_gates"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/local_quality_gates/local_quality_gate_specs.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "local_quality_gate_specs"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/local_quality_gates/local_quality_gate_specs.csv",
+      "dct:format": "csv",
+      "dct:title": "local_quality_gate_specs"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/architecture/import_edges.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "import_edges"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/architecture/import_edges.csv",
+      "dct:format": "csv",
+      "dct:title": "import_edges"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/architecture/layer_policy.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "layer_policy"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/architecture/layer_policy.csv",
+      "dct:format": "csv",
+      "dct:title": "layer_policy"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/architecture/import_cycles.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "import_cycles"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/architecture/import_cycles.csv",
+      "dct:format": "csv",
+      "dct:title": "import_cycles"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/release_readiness/release_gates.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "release_gates"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/release_readiness/release_gates.csv",
+      "dct:format": "csv",
+      "dct:title": "release_gates"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/v13_validation_run.json",
+      "dct:format": "json",
+      "dct:title": "v13_validation_run"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/source_downloads/download_plans.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "download_plans"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/source_downloads/download_plans.csv",
+      "dct:format": "csv",
+      "dct:title": "download_plans"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/source_downloads/download_attempts.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "download_attempts"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/source_downloads/download_attempts.csv",
+      "dct:format": "csv",
+      "dct:title": "download_attempts"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/osf/component_plan.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "component_plan"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/osf/component_plan.csv",
+      "dct:format": "csv",
+      "dct:title": "component_plan"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/osf/osf_publication_manifest.json",
+      "dct:format": "json",
+      "dct:title": "osf_publication_manifest"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/research_package/datapackage.json",
+      "dct:format": "json",
+      "dct:title": "datapackage"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/research_package/ro-crate-metadata.json",
+      "dct:format": "json",
+      "dct:title": "ro-crate-metadata"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/research_package/dcat.jsonld",
+      "dct:format": "jsonld",
+      "dct:title": "dcat"
+    }
+  ],
+  "dct:description": "Licence-safe metadata and derived tables for comparative reimbursement research.",
+  "dct:title": "Reimbursement Atlas Conductor derived artefacts"
+}

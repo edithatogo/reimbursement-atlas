@@ -1,0 +1,101 @@
+{
+  "additionalProperties": false,
+  "description": "Planned function, command, service or workflow tracked to implementation.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "track_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Track Id",
+      "type": "string"
+    },
+    "name": {
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "interface": {
+      "enum": [
+        "cli",
+        "api",
+        "mcp",
+        "dashboard",
+        "data_pipeline",
+        "github_action",
+        "mojo_kernel"
+      ],
+      "title": "Interface",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "planned",
+        "prototype",
+        "blocked",
+        "implemented",
+        "deferred"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "priority": {
+      "enum": [
+        "must",
+        "should",
+        "could",
+        "wont"
+      ],
+      "title": "Priority",
+      "type": "string"
+    },
+    "description": {
+      "minLength": 1,
+      "title": "Description",
+      "type": "string"
+    },
+    "inputs": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Inputs",
+      "type": "array"
+    },
+    "outputs": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Outputs",
+      "type": "array"
+    },
+    "quality_gates": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Quality Gates",
+      "type": "array"
+    },
+    "github_issue_title": {
+      "minLength": 1,
+      "title": "Github Issue Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "track_id",
+    "name",
+    "interface",
+    "status",
+    "priority",
+    "description",
+    "github_issue_title"
+  ],
+  "title": "RoadmapFunctionRecord",
+  "type": "object"
+}

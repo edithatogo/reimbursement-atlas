@@ -1,0 +1,19 @@
+{
+  "bandit": "passed with expected nosec warnings only",
+  "basedpyright": "0 errors, 0 warnings, 0 notes",
+  "compileall": "passed",
+  "dashboard_build": "passed; 8 static pages built",
+  "mojo_smoke": "passed_with_stderr_warning under mojo-compiler 1.0.0b2",
+  "mojo_target": "1.0.0b2 pre-release",
+  "npm_audit": "0 vulnerabilities",
+  "pytest": "129 passed; coverage threshold 90% passed",
+  "python_runtime_used": "3.13.5",
+  "release_readiness": "generated; public release not yet ready because network-dependent gates remain blocked",
+  "ruff_check": "passed",
+  "ruff_format_check": "passed",
+  "source_download_attempts": "7 attempts recorded; network-dependent downloads blocked by sandbox DNS or licence gates",
+  "target_python_runtime": "3.14",
+  "uv_build": "blocked_network_python_3_14_download",
+  "validated_at": "2026-07-05T02:57:00Z",
+  "version": "v14"
+}

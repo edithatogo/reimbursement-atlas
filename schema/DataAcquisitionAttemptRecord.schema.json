@@ -1,0 +1,88 @@
+{
+  "additionalProperties": false,
+  "description": "One attempted curl/wget/API acquisition of a registered source file.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "source_file_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source File Id",
+      "type": "string"
+    },
+    "attempted_at": {
+      "minLength": 1,
+      "title": "Attempted At",
+      "type": "string"
+    },
+    "method": {
+      "enum": [
+        "curl",
+        "wget",
+        "httpx",
+        "api",
+        "manual"
+      ],
+      "title": "Method",
+      "type": "string"
+    },
+    "target_path": {
+      "minLength": 1,
+      "title": "Target Path",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "downloaded",
+        "blocked_network",
+        "failed",
+        "skipped_licence_gate",
+        "not_attempted"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "exit_code": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Exit Code"
+    },
+    "bytes_downloaded": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Bytes Downloaded",
+      "type": "integer"
+    },
+    "command": {
+      "minLength": 1,
+      "title": "Command",
+      "type": "string"
+    },
+    "error_summary": {
+      "minLength": 1,
+      "title": "Error Summary",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "source_file_id",
+    "attempted_at",
+    "method",
+    "target_path",
+    "status",
+    "command",
+    "error_summary"
+  ],
+  "title": "DataAcquisitionAttemptRecord",
+  "type": "object"
+}

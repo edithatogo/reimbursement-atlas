@@ -1,0 +1,86 @@
+{
+  "additionalProperties": false,
+  "description": "Ontology, terminology, crosswalk or code-system mapping resource.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "name": {
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "domain": {
+      "minLength": 1,
+      "title": "Domain",
+      "type": "string"
+    },
+    "source_url": {
+      "format": "uri",
+      "maxLength": 2083,
+      "minLength": 1,
+      "title": "Source Url",
+      "type": "string"
+    },
+    "access_mode": {
+      "enum": [
+        "api",
+        "download",
+        "local_licence_only",
+        "manual_review"
+      ],
+      "title": "Access Mode",
+      "type": "string"
+    },
+    "licence_gate": {
+      "enum": [
+        "permissive_candidate",
+        "public_reuse_review",
+        "restricted_or_licence_review",
+        "metadata_only"
+      ],
+      "title": "Licence Gate",
+      "type": "string"
+    },
+    "local_only": {
+      "title": "Local Only",
+      "type": "boolean"
+    },
+    "priority": {
+      "enum": [
+        "must",
+        "should",
+        "could",
+        "watch"
+      ],
+      "title": "Priority",
+      "type": "string"
+    },
+    "mapping_strategy": {
+      "minLength": 1,
+      "title": "Mapping Strategy",
+      "type": "string"
+    },
+    "notes": {
+      "minLength": 1,
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "domain",
+    "source_url",
+    "access_mode",
+    "licence_gate",
+    "local_only",
+    "priority",
+    "mapping_strategy",
+    "notes"
+  ],
+  "title": "MappingResourceRecord",
+  "type": "object"
+}

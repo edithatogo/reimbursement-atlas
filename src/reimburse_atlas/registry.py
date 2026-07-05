@@ -14,7 +14,15 @@ from reimburse_atlas.contracts import SourceSnapshotRecord
 from reimburse_atlas.models import (
     AnalysisRecipeRecord,
     AnalysisRecord,
+    ConductorTrackRecord,
+    DataAcquisitionAttemptRecord,
+    DatasetCandidateRecord,
+    MappingResourceRecord,
     OntologyRecord,
+    OutputArtifactPlanRecord,
+    ResearchQuestionRecord,
+    RoadmapFunctionRecord,
+    RuntimeTargetRecord,
     SourceFileRecord,
     SourceRecord,
     SourceStatusRecord,
@@ -123,3 +131,56 @@ def load_ontology_mapping_templates(path: Path | None = None) -> list[OntologyMa
     if not templates_path.exists():
         return []
     return parse_records(OntologyMappingTemplate, read_jsonl(templates_path))
+
+
+def _load_optional_seed(model: type[T], table_name: str, path: Path | None = None) -> list[T]:
+    """Load an optional seed table with a pydantic model."""
+    table_path = path or project_root() / "data" / "seed" / f"{table_name}.jsonl"
+    if not table_path.exists():
+        return []
+    return parse_records(model, read_jsonl(table_path))
+
+
+def load_conductor_tracks(path: Path | None = None) -> list[ConductorTrackRecord]:
+    """Load machine-readable Conductor implementation tracks."""
+    return _load_optional_seed(ConductorTrackRecord, "conductor_tracks", path)
+
+
+def load_roadmap_functions(path: Path | None = None) -> list[RoadmapFunctionRecord]:
+    """Load planned roadmap functions and interfaces."""
+    return _load_optional_seed(RoadmapFunctionRecord, "roadmap_functions", path)
+
+
+def load_dataset_candidates(path: Path | None = None) -> list[DatasetCandidateRecord]:
+    """Load proposed additional datasets and country/source candidates."""
+    return _load_optional_seed(DatasetCandidateRecord, "dataset_candidates", path)
+
+
+def load_mapping_resources(path: Path | None = None) -> list[MappingResourceRecord]:
+    """Load proposed ontology and mapping resources."""
+    return _load_optional_seed(MappingResourceRecord, "mapping_resources", path)
+
+
+def load_research_questions(path: Path | None = None) -> list[ResearchQuestionRecord]:
+    """Load pre-specified research questions."""
+    return _load_optional_seed(ResearchQuestionRecord, "research_questions", path)
+
+
+def load_output_artifact_plans(path: Path | None = None) -> list[OutputArtifactPlanRecord]:
+    """Load planned publication and deployment outputs."""
+    return _load_optional_seed(OutputArtifactPlanRecord, "output_artifact_plans", path)
+
+
+def load_runtime_targets(path: Path | None = None) -> list[RuntimeTargetRecord]:
+    """Load language/toolchain runtime targets."""
+    return _load_optional_seed(RuntimeTargetRecord, "runtime_targets", path)
+
+
+def load_data_acquisition_attempts(path: Path | None = None) -> list[DataAcquisitionAttemptRecord]:
+    """Load local acquisition-attempt records when generated."""
+    table_path = (
+        path or project_root() / "data" / "derived" / "source_downloads" / "download_attempts.jsonl"
+    )
+    if not table_path.exists():
+        return []
+    return parse_records(DataAcquisitionAttemptRecord, read_jsonl(table_path))

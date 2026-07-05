@@ -16,6 +16,13 @@ TABLES = (
     "analysis_recipes",
     "ontology_concepts",
     "ontology_mapping_templates",
+    "conductor_tracks",
+    "roadmap_functions",
+    "dataset_candidates",
+    "mapping_resources",
+    "research_questions",
+    "output_artifact_plans",
+    "runtime_targets",
 )
 
 

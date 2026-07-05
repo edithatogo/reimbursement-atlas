@@ -1,0 +1,81 @@
+{
+  "additionalProperties": false,
+  "description": "Pre-specified policy research question with protocol and output anchors.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "track_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Track Id",
+      "type": "string"
+    },
+    "question": {
+      "minLength": 1,
+      "title": "Question",
+      "type": "string"
+    },
+    "protocol_path": {
+      "minLength": 1,
+      "title": "Protocol Path",
+      "type": "string"
+    },
+    "report_path": {
+      "minLength": 1,
+      "title": "Report Path",
+      "type": "string"
+    },
+    "required_datasets": {
+      "items": {
+        "pattern": "^[a-z0-9_]+$",
+        "type": "string"
+      },
+      "title": "Required Datasets",
+      "type": "array"
+    },
+    "methods": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Methods",
+      "type": "array"
+    },
+    "outputs": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Outputs",
+      "type": "array"
+    },
+    "osf_component": {
+      "minLength": 1,
+      "title": "Osf Component",
+      "type": "string"
+    },
+    "preregistration_status": {
+      "enum": [
+        "planned",
+        "drafted",
+        "registered",
+        "not_applicable"
+      ],
+      "title": "Preregistration Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "track_id",
+    "question",
+    "protocol_path",
+    "report_path",
+    "osf_component",
+    "preregistration_status"
+  ],
+  "title": "ResearchQuestionRecord",
+  "type": "object"
+}

@@ -1,0 +1,64 @@
+{
+  "additionalProperties": false,
+  "description": "Runtime, language or toolchain target used by local/CI gates.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "name": {
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "version_target": {
+      "minLength": 1,
+      "title": "Version Target",
+      "type": "string"
+    },
+    "role": {
+      "minLength": 1,
+      "title": "Role",
+      "type": "string"
+    },
+    "installation_status": {
+      "enum": [
+        "installed",
+        "blocked_network",
+        "missing",
+        "wrong_tool",
+        "planned"
+      ],
+      "title": "Installation Status",
+      "type": "string"
+    },
+    "local_status": {
+      "minLength": 1,
+      "title": "Local Status",
+      "type": "string"
+    },
+    "ci_status": {
+      "minLength": 1,
+      "title": "Ci Status",
+      "type": "string"
+    },
+    "notes": {
+      "minLength": 1,
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "version_target",
+    "role",
+    "installation_status",
+    "local_status",
+    "ci_status",
+    "notes"
+  ],
+  "title": "RuntimeTargetRecord",
+  "type": "object"
+}

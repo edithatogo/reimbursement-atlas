@@ -45,6 +45,15 @@ FILES = [
     Path("data/derived/architecture/layer_policy.csv"),
     Path("data/derived/architecture/import_cycles.csv"),
     Path("data/derived/release_readiness/release_gates.csv"),
+    Path("data/seed/conductor_tracks.csv"),
+    Path("data/seed/roadmap_functions.csv"),
+    Path("data/seed/dataset_candidates.csv"),
+    Path("data/seed/mapping_resources.csv"),
+    Path("data/seed/research_questions.csv"),
+    Path("data/seed/output_artifact_plans.csv"),
+    Path("data/seed/runtime_targets.csv"),
+    Path("data/derived/source_downloads/download_plans.csv"),
+    Path("data/derived/source_downloads/download_attempts.csv"),
 ]
 
 

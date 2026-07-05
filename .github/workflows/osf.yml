@@ -1,0 +1,52 @@
+name: OSF protocol and report publication
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: "Upload protocol/report artefacts to OSF"
+        required: true
+        default: "false"
+        type: choice
+        options: ["false", "true"]
+
+permissions:
+  contents: read
+
+jobs:
+  osf-plan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v7
+      - name: Generate OSF component plan
+        run: |
+          uv sync --all-extras
+          uv run python scripts/make_osf_plan.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: osf-component-plan
+          path: |
+            data/derived/osf/
+            protocols/
+            reports/
+
+  publish-osf:
+    needs: osf-plan
+    if: ${{ github.event.inputs.publish == 'true' }}
+    runs-on: ubuntu-latest
+    environment: publication-candidate
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Guard token and project configuration
+        env:
+          OSF_TOKEN: ${{ secrets.OSF_TOKEN }}
+          OSF_PROJECT_ID: ${{ vars.OSF_PROJECT_ID }}
+        run: |
+          test -n "$OSF_TOKEN"
+          test -n "$OSF_PROJECT_ID"
+          echo "OSF upload implementation is intentionally token-gated and should call the OSF API only after human review."
