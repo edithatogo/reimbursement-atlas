@@ -277,10 +277,19 @@ def build_seed_graph(  # noqa: PLR0912, PLR0914, PLR0915
             ),
         )
         edges.append(_edge(question_node, f"track:{question.track_id}", "belongs_to_track"))
+        source_ids = {source.id for source in sources}
+        dataset_ids = {dataset.id for dataset in dataset_candidates or []}
         for dataset_id in question.required_datasets:
-            edges.append(
-                _edge(question_node, f"dataset:{dataset_id}", "requires_dataset_candidate")
-            )
+            if dataset_id in source_ids:
+                edges.append(_edge(question_node, f"source:{dataset_id}", "requires_source"))
+            elif dataset_id in dataset_ids:
+                edges.append(
+                    _edge(question_node, f"dataset:{dataset_id}", "requires_dataset_candidate")
+                )
+            else:
+                unresolved_node = f"dataset:{dataset_id}"
+                add_node(_node(unresolved_node, dataset_id, "unresolved_dataset"))
+                edges.append(_edge(question_node, unresolved_node, "requires_unresolved_dataset"))
 
     for output in output_plans or []:
         output_node = f"output:{output.id}"

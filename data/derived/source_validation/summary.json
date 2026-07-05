@@ -1,0 +1,9 @@
+{
+  "blocking_failures": 0,
+  "fail": 0,
+  "missing": 3,
+  "pass": 0,
+  "skipped": 4,
+  "validation_count": 7,
+  "warn": 0
+}

@@ -35,13 +35,13 @@ The atlas is designed to answer questions like:
 
 ## Initial stack
 
-- Python 3.13 package with Pydantic v2, Polars, Arrow, DuckDB and LanceDB.
+- Python 3.14-targeted orchestration package with Pydantic v2, Polars, Arrow, DuckDB and LanceDB; current sandbox fallback may run under Python 3.13 when 3.14 downloads are blocked.
 - Pixi for reproducible multi-environment development.
 - uv/uv_build for Python package builds.
 - Ruff in strict, preview-heavy mode; basedpyright in strict mode.
 - Pytest, Hypothesis, mutmut, Scalene, Bandit and pip-audit, now install-tested through `uv` for the Python core.
 - Astro 7 dashboard using Cosmograph for graph exploration, with a committed npm lockfile and local static build validation.
-- Mojo reserved for high-throughput parsers, similarity kernels and mapping accelerators once design stabilises.
+- Mojo-first performance-kernel track for high-throughput parsers, fixed-width tokenisation, similarity kernels and mapping accelerators; Python remains the orchestration/interface layer.
 
 ## Current seed and generated assets
 
@@ -78,10 +78,13 @@ pixi run ingestion-plan
 pixi run acquisition-plan
 pixi run vertical-slice
 pixi run source-snapshots
+pixi run source-validation
 pixi run ontology-seed
 pixi run seed-sync
 pixi run seed-sync-check
 pixi run publication-manifest
+pixi run roadmap-linkages
+pixi run data-quality
 pixi run toolchain-report
 pixi run seed-lake
 pixi run dashboard-seed
@@ -125,6 +128,9 @@ PYTHONPATH=src reimbursement-atlas ingestion-plan data/seed
 PYTHONPATH=src reimbursement-atlas acquisition-plan data/seed
 PYTHONPATH=src reimbursement-atlas vertical-slice data/derived/vertical_slice
 PYTHONPATH=src reimbursement-atlas source-snapshots data/seed
+PYTHONPATH=src reimbursement-atlas source-validation
+PYTHONPATH=src reimbursement-atlas roadmap-linkages
+PYTHONPATH=src reimbursement-atlas data-quality
 PYTHONPATH=src reimbursement-atlas snapshot-local-file --source-version-id au_pbs_seed_fixture tests/fixtures/pbs_fixture.csv --content-type text/csv
 PYTHONPATH=src reimbursement-atlas parse-local-source --source-version-id au_pbs_seed_fixture tests/fixtures/pbs_fixture.csv
 PYTHONPATH=src reimbursement-atlas reviewed-source-bundle --source-version-id au_pbs_seed_fixture --content-type text/csv tests/fixtures/pbs_fixture.csv
@@ -389,3 +395,14 @@ The v15 pass adds two further implementation gates before live-source ingestion 
 - **Protocol status gate**: `reimbursement-atlas protocol-status` checks every registered research question against its protocol/report files and writes OSF-readiness evidence to `data/derived/protocols/`.
 
 The dashboard now exposes protocol status and executable download-plan metadata. Generated GitHub issue drafts include the new download-hardening, protocol-completeness, checksum-pinning and source-validator work items.
+
+
+## v16 evidence-readiness layer
+
+The v16 pass adds three release-facing evidence gates:
+
+- `source-validation`: validates downloaded source files under ignored `data/raw_live/` paths without exposing raw payloads or absolute local paths.
+- `data-quality`: checks row counts, unique ids, referential integrity, generated artefact presence and publication-manifest raw-payload safety.
+- `roadmap-linkages`: links every research question to registered sources, dataset candidates, mapping resources and output artefacts for OSF/GitHub Project planning.
+
+These gates are visible in the dashboard, seed lake, publication manifest, release-readiness matrix and generated GitHub issue drafts.

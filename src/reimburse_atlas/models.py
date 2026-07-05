@@ -394,3 +394,60 @@ class DataAcquisitionAttemptRecord(FrozenModel):
     bytes_downloaded: int = Field(default=0, ge=0)
     command: NonEmptyStr
     error_summary: NonEmptyStr
+
+class SourceContentValidationRecord(FrozenModel):
+    """Generated validation status for a downloaded or licence-gated source file."""
+
+    id: SourceId
+    source_file_id: SourceId
+    source_id: SourceId
+    source_version_id: SourceId
+    validation_status: Literal["pass", "warn", "fail", "missing", "skipped"]
+    expected_format: NonEmptyStr
+    expected_record_count: int | None = Field(default=None, ge=0)
+    observed_record_count: int | None = Field(default=None, ge=0)
+    byte_size: int = Field(default=0, ge=0)
+    checksum_sha256: NonEmptyStr | None = None
+    local_target_ref: NonEmptyStr
+    issues: tuple[NonEmptyStr, ...] = Field(default_factory=tuple)
+    recommended_action: NonEmptyStr
+
+    @field_validator("issues", mode="before")
+    @classmethod
+    def tuplefy_issues(cls, value: object) -> tuple[str, ...]:
+        """Convert list-like issue fields into immutable tuples."""
+        if value is None:
+            return ()
+        if isinstance(value, str):
+            return (value,) if value else ()
+        if isinstance(value, (list, tuple, set, frozenset)):
+            return tuple(str(item).strip() for item in cast("Iterable[object]", value))
+        return (str(value).strip(),)
+
+
+class DataQualityCheckRecord(FrozenModel):
+    """Generated table-level data quality check for seed and derived artefacts."""
+
+    id: SourceId
+    table_name: NonEmptyStr
+    check_name: NonEmptyStr
+    severity: Literal["blocking", "advisory"]
+    status: Literal["pass", "warn", "fail", "missing"]
+    observed_value: NonEmptyStr
+    expected_value: NonEmptyStr
+    evidence_path: NonEmptyStr
+    recommended_action: NonEmptyStr
+
+
+class ResearchLinkageRecord(FrozenModel):
+    """Generated linkage between a research question, sources/datasets, mappings and outputs."""
+
+    id: SourceId
+    research_question_id: SourceId
+    track_id: SourceId
+    linked_entity_type: Literal["source", "dataset_candidate", "mapping_resource", "output"]
+    linked_entity_id: SourceId
+    linked_entity_label: NonEmptyStr
+    linkage_role: NonEmptyStr
+    readiness_status: Literal["available", "planned", "blocked", "missing", "local_only"]
+    recommended_action: NonEmptyStr

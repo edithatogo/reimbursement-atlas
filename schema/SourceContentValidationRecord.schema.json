@@ -1,0 +1,117 @@
+{
+  "additionalProperties": false,
+  "description": "Generated validation status for a downloaded or licence-gated source file.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "source_file_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source File Id",
+      "type": "string"
+    },
+    "source_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source Id",
+      "type": "string"
+    },
+    "source_version_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source Version Id",
+      "type": "string"
+    },
+    "validation_status": {
+      "enum": [
+        "pass",
+        "warn",
+        "fail",
+        "missing",
+        "skipped"
+      ],
+      "title": "Validation Status",
+      "type": "string"
+    },
+    "expected_format": {
+      "minLength": 1,
+      "title": "Expected Format",
+      "type": "string"
+    },
+    "expected_record_count": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Expected Record Count"
+    },
+    "observed_record_count": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Observed Record Count"
+    },
+    "byte_size": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Byte Size",
+      "type": "integer"
+    },
+    "checksum_sha256": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Checksum Sha256"
+    },
+    "local_target_ref": {
+      "minLength": 1,
+      "title": "Local Target Ref",
+      "type": "string"
+    },
+    "issues": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Issues",
+      "type": "array"
+    },
+    "recommended_action": {
+      "minLength": 1,
+      "title": "Recommended Action",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "source_file_id",
+    "source_id",
+    "source_version_id",
+    "validation_status",
+    "expected_format",
+    "local_target_ref",
+    "recommended_action"
+  ],
+  "title": "SourceContentValidationRecord",
+  "type": "object"
+}

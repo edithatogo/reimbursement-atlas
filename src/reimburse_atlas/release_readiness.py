@@ -80,6 +80,11 @@ def build_release_readiness_report(root: Path | None = None) -> ReleaseReadiness
         _local_gate_status(repo, "public_data_policy", "data_governance", required=True),
         _local_gate_status(repo, "seed_sync", "data_governance", required=True),
         _local_gate_status(repo, "protocol_status", "data_governance", required=True),
+        _local_gate_status(repo, "source_content_validation", "data_governance", required=True),
+        _local_gate_status(repo, "roadmap_linkages", "data_governance", required=True),
+        _local_gate_status(repo, "data_quality", "data_governance", required=True),
+        _data_quality_gate(repo),
+        _source_validation_gate(repo),
         _local_gate_status(repo, "uv_build", "release", required=True),
         _local_gate_status(repo, "dashboard_build", "dashboard", required=True),
         _external_gate_status(repo, "pip_audit_strict", "security", required=True),
@@ -223,6 +228,55 @@ def _external_gate_status(
         required=required,
         evidence=f"external_quality outcome={outcome} return_code={record.get('return_code')}",
         recommended_action=_recommendation_for_status(status, gate_id),
+    )
+
+
+def _data_quality_gate(repo: Path) -> ReleaseGateRecord:
+    summary = _read_json(repo / "data" / "derived" / "data_quality" / "summary.json")
+    if not summary:
+        return ReleaseGateRecord(
+            id="data_quality_summary",
+            category="data_governance",
+            status="missing",
+            required=True,
+            evidence="Data-quality summary missing.",
+            recommended_action="Run scripts/make_data_quality_report.py.",
+        )
+    blockers = int(summary.get("blocking_failures", 0))
+    status: ReleaseGateStatus = "pass" if blockers == 0 else "fail"
+    return ReleaseGateRecord(
+        id="data_quality_summary",
+        category="data_governance",
+        status=status,
+        required=True,
+        evidence=f"checks={summary.get('check_count', 0)} blocking_failures={blockers}",
+        recommended_action="Resolve blocking data-quality checks before release.",
+    )
+
+
+def _source_validation_gate(repo: Path) -> ReleaseGateRecord:
+    summary = _read_json(repo / "data" / "derived" / "source_validation" / "summary.json")
+    if not summary:
+        return ReleaseGateRecord(
+            id="source_content_validation_summary",
+            category="data_governance",
+            status="missing",
+            required=True,
+            evidence="Source-content validation summary missing.",
+            recommended_action="Run scripts/make_source_validation.py after download-plan generation.",
+        )
+    failures = int(summary.get("blocking_failures", 0))
+    missing = int(summary.get("missing", 0))
+    status: ReleaseGateStatus = "pass" if failures == 0 else "fail"
+    if status == "pass" and missing:
+        status = "warn"
+    return ReleaseGateRecord(
+        id="source_content_validation_summary",
+        category="data_governance",
+        status=status,
+        required=True,
+        evidence=f"validations={summary.get('validation_count', 0)} missing={missing} failures={failures}",
+        recommended_action="Download missing public files in a network-enabled environment, then rerun validation.",
     )
 
 

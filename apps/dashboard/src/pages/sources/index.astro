@@ -39,4 +39,9 @@ import Layout from "../../components/Layout.astro";
     fileName="source_snapshots.csv"
     columns={["source_version_id", "snapshot_id", "content_type", "byte_count", "sha256", "licence_gate"]}
   />
+  <DataTable
+    title="Source-content validation"
+    fileName="source_content_validation.csv"
+    columns={["source_file_id", "validation_status", "expected_format", "observed_record_count", "byte_size", "issues", "recommended_action"]}
+  />
 </Layout>

@@ -59,3 +59,12 @@ Consequences: v13 adds `architecture-report` and `release-readiness` commands, C
 - Kept licence-gated, landing-page and metadata-only records non-executable by default.
 - Added protocol-status generation for OSF-aligned research questions, including missing-section checks, word counts, completeness scoring and OSF readiness flags.
 - Added documentation, ADRs and dashboard/publication/seed-lake hooks for the new gates.
+
+## 2026-07-05 — v16 source validation, data-quality and research-linkage gates
+
+- Added post-download source-content validation records with redacted local references, checksums, byte sizes, record counts, HTML-error detection and licence-gate skipping.
+- Added data-quality checks for row counts, unique ids, referential integrity, required generated artefacts and publication-manifest raw-payload safety.
+- Added a research linkage matrix connecting each research question to sources, dataset candidates, mapping resources and output plans.
+- Added a Conductor data-quality/evidence-readiness track and corresponding generated GitHub issue coverage.
+
+Decision: no downloaded source file should proceed to parsing/reviewed-source bundles until it has a validation record, and no public release should proceed while data-quality blocking failures are non-zero.

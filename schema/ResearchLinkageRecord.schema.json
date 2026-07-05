@@ -1,0 +1,75 @@
+{
+  "additionalProperties": false,
+  "description": "Generated linkage between a research question, sources/datasets, mappings and outputs.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "research_question_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Research Question Id",
+      "type": "string"
+    },
+    "track_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Track Id",
+      "type": "string"
+    },
+    "linked_entity_type": {
+      "enum": [
+        "source",
+        "dataset_candidate",
+        "mapping_resource",
+        "output"
+      ],
+      "title": "Linked Entity Type",
+      "type": "string"
+    },
+    "linked_entity_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Linked Entity Id",
+      "type": "string"
+    },
+    "linked_entity_label": {
+      "minLength": 1,
+      "title": "Linked Entity Label",
+      "type": "string"
+    },
+    "linkage_role": {
+      "minLength": 1,
+      "title": "Linkage Role",
+      "type": "string"
+    },
+    "readiness_status": {
+      "enum": [
+        "available",
+        "planned",
+        "blocked",
+        "missing",
+        "local_only"
+      ],
+      "title": "Readiness Status",
+      "type": "string"
+    },
+    "recommended_action": {
+      "minLength": 1,
+      "title": "Recommended Action",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "research_question_id",
+    "track_id",
+    "linked_entity_type",
+    "linked_entity_id",
+    "linked_entity_label",
+    "linkage_role",
+    "readiness_status",
+    "recommended_action"
+  ],
+  "title": "ResearchLinkageRecord",
+  "type": "object"
+}

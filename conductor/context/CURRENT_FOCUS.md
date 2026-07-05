@@ -91,3 +91,15 @@ Immediate implementation focus:
 3. Add source-specific validators for real MBS, CMS CLFS and PBS files after first downloads succeed.
 4. Use `data/derived/protocols/protocol_status.csv` to complete protocol sections before OSF upload/preregistration.
 5. Keep generated issue drafts in sync so every track, dataset, protocol, validator and output has a GitHub Project work item.
+
+## v16 focus — source validation, data-quality gates and research linkages
+
+The current focus is evidence readiness after acquisition hardening. v16 adds post-download source-content validation, table-level data-quality checks and a research-question linkage matrix.
+
+Immediate implementation focus:
+
+1. Run source downloads in a network-enabled environment, then rerun `source-validation` before parsing.
+2. Treat `data/derived/data_quality/summary.json` as a release gate; blocking failures must be zero before publication.
+3. Use `data/derived/roadmap_linkages/research_dataset_linkages.csv` to ensure every research question has sources, mapping resources and outputs before OSF preregistration or report work.
+4. Add source-specific schema/record-count validators after the first real MBS, CMS CLFS and PBS downloads succeed.
+5. Keep GitHub issue drafts regenerated from Conductor so these gates appear in GitHub Projects.

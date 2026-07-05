@@ -1,0 +1,92 @@
+{
+  "blocked_or_not_run": [
+    {
+      "details": "python -m ruff reported no module named ruff in the active runtime",
+      "gate": "ruff",
+      "status": "missing_tool_in_restored_sandbox"
+    },
+    {
+      "details": "not available on PATH in this restored sandbox",
+      "gate": "basedpyright",
+      "status": "missing_tool_in_restored_sandbox"
+    },
+    {
+      "details": "not available on PATH in this restored sandbox",
+      "gate": "bandit",
+      "status": "missing_tool_in_restored_sandbox"
+    },
+    {
+      "details": "advisory lookup remains network dependent",
+      "gate": "pip_audit_strict",
+      "status": "blocked_network"
+    },
+    {
+      "details": "DNS prevented live MBS/PBS/CMS source acquisition in this sandbox",
+      "gate": "live_source_downloads",
+      "status": "blocked_network"
+    },
+    {
+      "details": "target recorded but active runtime remains Python 3.13.5",
+      "gate": "python_3_14_runtime_install",
+      "status": "blocked_network"
+    }
+  ],
+  "commit_intent": "v16 source validation, data quality and research linkage gates",
+  "generated_at": "2026-07-05T05:00:41.853352+00:00",
+  "passed": [
+    {
+      "gate": "pytest",
+      "result": "142 passed, 6 skipped"
+    },
+    {
+      "gate": "coverage",
+      "result": "90.11%, threshold 90%"
+    },
+    {
+      "gate": "compileall",
+      "result": "passed"
+    },
+    {
+      "gate": "seed_sync",
+      "result": "passed"
+    },
+    {
+      "gate": "public_data_policy",
+      "result": "passed"
+    },
+    {
+      "gate": "cli_validate",
+      "result": "passed"
+    },
+    {
+      "gate": "npm_ci",
+      "result": "passed"
+    },
+    {
+      "gate": "npm_audit_dashboard",
+      "result": "0 vulnerabilities"
+    },
+    {
+      "gate": "astro_check_build",
+      "result": "8 static pages built"
+    },
+    {
+      "gate": "source_content_validation",
+      "result": "generated; no blocking failures"
+    },
+    {
+      "gate": "data_quality",
+      "result": "35 checks; no blocking failures"
+    },
+    {
+      "gate": "roadmap_linkages",
+      "result": "48 research linkage rows"
+    }
+  ],
+  "runtime": {
+    "mojo_target": "1.0.0b2",
+    "python_active": "3.13.5",
+    "target_python": "3.14.x"
+  },
+  "version": "v16"
+}

@@ -1,0 +1,72 @@
+{
+  "additionalProperties": false,
+  "description": "Generated table-level data quality check for seed and derived artefacts.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "table_name": {
+      "minLength": 1,
+      "title": "Table Name",
+      "type": "string"
+    },
+    "check_name": {
+      "minLength": 1,
+      "title": "Check Name",
+      "type": "string"
+    },
+    "severity": {
+      "enum": [
+        "blocking",
+        "advisory"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "pass",
+        "warn",
+        "fail",
+        "missing"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "observed_value": {
+      "minLength": 1,
+      "title": "Observed Value",
+      "type": "string"
+    },
+    "expected_value": {
+      "minLength": 1,
+      "title": "Expected Value",
+      "type": "string"
+    },
+    "evidence_path": {
+      "minLength": 1,
+      "title": "Evidence Path",
+      "type": "string"
+    },
+    "recommended_action": {
+      "minLength": 1,
+      "title": "Recommended Action",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "table_name",
+    "check_name",
+    "severity",
+    "status",
+    "observed_value",
+    "expected_value",
+    "evidence_path",
+    "recommended_action"
+  ],
+  "title": "DataQualityCheckRecord",
+  "type": "object"
+}

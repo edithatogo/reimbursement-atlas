@@ -52,6 +52,8 @@ def test_release_readiness_report_reads_generated_evidence(tmp_path: Path) -> No
     (tmp_path / "data/derived/repo_automation").mkdir(parents=True)
     (tmp_path / "data/derived/sbom").mkdir(parents=True)
     (tmp_path / "data/derived/architecture").mkdir(parents=True)
+    (tmp_path / "data/derived/data_quality").mkdir(parents=True)
+    (tmp_path / "data/derived/source_validation").mkdir(parents=True)
 
     (tmp_path / "data/derived/local_quality_gates/summary.json").write_text(
         json.dumps({"profile": "ci", "release_ready": True, "blocking_failures": 0}),
@@ -69,6 +71,9 @@ def test_release_readiness_report_reads_generated_evidence(tmp_path: Path) -> No
                 "public_data_policy",
                 "seed_sync",
                 "protocol_status",
+                "source_content_validation",
+                "roadmap_linkages",
+                "data_quality",
                 "uv_build",
                 "dashboard_build",
             )
@@ -109,6 +114,14 @@ def test_release_readiness_report_reads_generated_evidence(tmp_path: Path) -> No
     )
     (tmp_path / "data/derived/publication_manifest.json").write_text(
         json.dumps({"artifact_count": 4, "warnings": []}),
+        encoding="utf-8",
+    )
+    (tmp_path / "data/derived/data_quality/summary.json").write_text(
+        json.dumps({"check_count": 3, "blocking_failures": 0}),
+        encoding="utf-8",
+    )
+    (tmp_path / "data/derived/source_validation/summary.json").write_text(
+        json.dumps({"validation_count": 2, "missing": 0, "blocking_failures": 0}),
         encoding="utf-8",
     )
 

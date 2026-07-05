@@ -49,3 +49,10 @@ tracks:
     phase: analysis
     workstream: analytics
     goal: "Produce publishable demonstrations for genomics/pathology, cognitive-procedural relativities, medicine price opacity and coverage discretion."
+
+  - id: track_data_quality_evidence
+    title: "Data quality, source validation and evidence readiness"
+    priority: must
+    phase: hardening
+    workstream: data_quality
+    goal: "Make downloaded source validation, table-level data-quality checks and research-question linkages explicit release gates before policy outputs are trusted."

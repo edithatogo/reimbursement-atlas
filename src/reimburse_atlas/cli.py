@@ -218,6 +218,91 @@ def protocol_status(
     )
 
 
+@app.command("source-validation")
+def source_validation(
+    output_dir: Annotated[
+        Path,
+        typer.Option(help="Directory for source-content validation artefacts."),
+    ] = (project_root() / "data" / "derived" / "source_validation"),
+) -> None:
+    """Validate locally downloaded source files without exposing raw payloads."""
+    from reimburse_atlas.source_validation import (
+        build_source_content_validations,
+        write_source_content_validations,
+    )
+
+    rows = build_source_content_validations(load_source_files())
+    paths = write_source_content_validations(rows, output_dir=output_dir)
+    console.print_json(
+        json.dumps(
+            {
+                "validation_count": len(rows),
+                "pass": sum(row.validation_status == "pass" for row in rows),
+                "missing": sum(row.validation_status == "missing" for row in rows),
+                "skipped": sum(row.validation_status == "skipped" for row in rows),
+                "paths": [str(path) for path in paths],
+            },
+            indent=2,
+        )
+    )
+
+
+@app.command("data-quality")
+def data_quality(
+    output_dir: Annotated[
+        Path,
+        typer.Option(help="Directory for generated data-quality artefacts."),
+    ] = (project_root() / "data" / "derived" / "data_quality"),
+) -> None:
+    """Generate table-level data quality checks for release review."""
+    from reimburse_atlas.data_quality import build_data_quality_checks, write_data_quality_checks
+
+    rows = build_data_quality_checks()
+    paths = write_data_quality_checks(rows, output_dir=output_dir)
+    blocking = sum(row.severity == "blocking" and row.status in {"fail", "missing"} for row in rows)
+    console.print_json(
+        json.dumps(
+            {
+                "check_count": len(rows),
+                "blocking_failures": blocking,
+                "paths": [str(path) for path in paths],
+            },
+            indent=2,
+        )
+    )
+
+
+@app.command("roadmap-linkages")
+def roadmap_linkages(
+    output_dir: Annotated[
+        Path,
+        typer.Option(help="Directory for generated roadmap linkage artefacts."),
+    ] = (project_root() / "data" / "derived" / "roadmap_linkages"),
+) -> None:
+    """Generate research-question linkages to datasets, mappings and outputs."""
+    from reimburse_atlas.roadmap_linkages import build_research_linkages, write_research_linkages
+
+    rows = build_research_linkages(
+        research_questions=load_research_questions(),
+        sources=load_source_registry(),
+        dataset_candidates=load_dataset_candidates(),
+        mapping_resources=load_mapping_resources(),
+        output_plans=load_output_artifact_plans(),
+    )
+    jsonl_path, csv_path = write_research_linkages(rows, output_dir=output_dir)
+    console.print_json(
+        json.dumps(
+            {
+                "linkage_count": len(rows),
+                "missing": sum(row.readiness_status == "missing" for row in rows),
+                "jsonl_path": str(jsonl_path),
+                "csv_path": str(csv_path),
+            },
+            indent=2,
+        )
+    )
+
+
 @app.command()
 def sources(domain: Annotated[str | None, typer.Option(help="Filter by domain.")] = None) -> None:
     """Show registered reimbursement schedule sources."""
@@ -1097,14 +1182,17 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         AnalysisRecord,
         ConductorTrackRecord,
         DataAcquisitionAttemptRecord,
+        DataQualityCheckRecord,
         DatasetCandidateRecord,
         MappingResourceRecord,
         OntologyRecord,
         OutputArtifactPlanRecord,
         ProtocolStatusRecord,
+        ResearchLinkageRecord,
         ResearchQuestionRecord,
         RoadmapFunctionRecord,
         RuntimeTargetRecord,
+        SourceContentValidationRecord,
         SourceFileRecord,
         SourceRecord,
         SourceStatusRecord,
@@ -1130,6 +1218,9 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         RuntimeTargetRecord,
         ProtocolStatusRecord,
         DataAcquisitionAttemptRecord,
+        SourceContentValidationRecord,
+        DataQualityCheckRecord,
+        ResearchLinkageRecord,
         ProvenanceRecord,
         ScheduleItemRecord,
         SourceSnapshotRecord,

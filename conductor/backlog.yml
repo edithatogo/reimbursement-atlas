@@ -179,3 +179,19 @@ epics:
         labels: ["type:research", "type:methods", "phase:analysis"]
       - title: Add reviewer checklist for each protocol before preregistration
         labels: ["type:review", "type:osf", "phase:analysis"]
+  - id: DQ-001
+    title: Data quality and evidence readiness gates
+    phase: hardening
+    workstream: data-quality
+    priority: must
+    issues:
+      - title: Add source-content validation gate for downloaded public files
+        labels: ["type:data-quality", "type:data-source", "phase:hardening"]
+      - title: Add data-quality checks as a release-readiness gate
+        labels: ["type:data-quality", "type:release", "phase:hardening"]
+      - title: Add research-question linkage matrix to roadmap and OSF planning
+        labels: ["type:research", "type:roadmap", "phase:hardening"]
+      - title: Add dashboard views for source validation and data-quality checks
+        labels: ["type:dashboard", "type:data-quality", "phase:hardening"]
+      - title: Add source-specific record-count and schema validators after first real downloads
+        labels: ["type:parser", "type:data-quality", "phase:implementation"]

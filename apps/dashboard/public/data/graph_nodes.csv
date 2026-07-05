@@ -45,6 +45,7 @@ api,,,,,,,,,dataset:ds_us_open_payments,,,dataset_candidate,CMS Open Payments,pu
 api,,,,,,,,,dataset:ds_us_transparency_in_coverage,,,dataset_candidate,Transparency in Coverage MRFs,public_reuse_review,,,,,,,,could,,,,,
 api,,,,,,,,,dataset:ds_who_ghed,,,dataset_candidate,WHO Global Health Expenditure Database,public_reuse_review,,,,,,,,must,,,,,
 api,,,,,,,,,dataset:ds_world_bank_wdi_health,,,dataset_candidate,World Bank WDI health expenditure indicators,public_reuse_review,,,,,,,,should,,,,,
+,,,,,,,,,dataset:source_registry,,,unresolved_dataset,source_registry,,,,,,,,,,,,,,
 ,,,,,,,,,domain:biomedical_indexing,,,domain,biomedical_indexing,,,,,,,,,,,,,,
 ,,,,,,,,,domain:burden_of_disease,,,domain,burden_of_disease,,,,,,,,,,,,,,
 ,,,,,,,,,domain:clinical_terms,,,domain,clinical_terms,,,,,,,,,,,,,,
@@ -94,6 +95,7 @@ api,,,,,,,,,dataset:ds_world_bank_wdi_health,,,dataset_candidate,World Bank WDI 
 ,,,,,,,,,domain:utilisation,,,domain,utilisation,,,,,,,,,,,,,,
 ,,,,,,,,,function:func_action_sha_pin_bot,github_action,,roadmap_function,action SHA pin resolver,,,,,,,,,must,,planned,,,
 ,,,,,,,,,function:func_cognitive_procedural_index,data_pipeline,,roadmap_function,cognitive/procedural relativity index,,,,,,,,,must,,planned,,,
+,,,,,,,,,function:func_data_quality_checks,data_pipeline,,roadmap_function,data quality checks,,,,,,,,,must,,implemented,,,
 ,,,,,,,,,function:func_dcat,data_pipeline,,roadmap_function,DCAT catalogue metadata,,,,,,,,,could,,planned,,,
 ,,,,,,,,,function:func_frictionless_package,data_pipeline,,roadmap_function,Frictionless data package,,,,,,,,,should,,planned,,,
 ,,,,,,,,,function:func_genomics_demo,data_pipeline,,roadmap_function,genomics/pathology demonstrator,,,,,,,,,must,,planned,,,
@@ -109,7 +111,9 @@ api,,,,,,,,,dataset:ds_world_bank_wdi_health,,,dataset_candidate,World Bank WDI 
 ,,,,,,,,,function:func_protocol_status,data_pipeline,,roadmap_function,protocol status,,,,,,,,,must,,implemented,,,
 ,,,,,,,,,function:func_python314_ci,github_action,,roadmap_function,Python 3.14 CI gate,,,,,,,,,must,,planned,,,
 ,,,,,,,,,function:func_release_attestation_verify,github_action,,roadmap_function,attestation verification,,,,,,,,,should,,planned,,,
+,,,,,,,,,function:func_research_linkage_matrix,data_pipeline,,roadmap_function,research linkage matrix,,,,,,,,,should,,implemented,,,
 ,,,,,,,,,function:func_ro_crate,data_pipeline,,roadmap_function,RO-Crate metadata,,,,,,,,,should,,planned,,,
+,,,,,,,,,function:func_source_content_validation,data_pipeline,,roadmap_function,source content validation,,,,,,,,,must,,implemented,,,
 ,,,,,,,,,function:func_source_diff,data_pipeline,,roadmap_function,source diff,,,,,,,,,should,,planned,,,
 ,,,,,,,,,function:func_source_download,cli,,roadmap_function,source download,,,,,,,,,must,,prototype,,,
 ,,,,,,,,,function:func_source_download_hardened,cli,,roadmap_function,hardened source download plan,,,,,,,,,must,,implemented,,,
@@ -280,6 +284,7 @@ manual_review,,,,,,,,,mapping_resource:map_who_atc_ddd,,,mapping_resource,WHO AT
 ,,,,,,,,,table:source_transparency_index,,,table,source_transparency_index,,,,,,,,,,,,,,
 ,,,,,,,,,track:track_ci_cd_supply_chain,,,conductor_track,CI/CD and supply-chain hardening,,,,,,,hardening,,must,,,,,automation
 ,,,,,,,,,track:track_data_packaging_standards,,,conductor_track,Research-data packaging standards,,,,,,,implementation,,should,,,,,publication
+,,,,,,,,,track:track_data_quality_evidence,,,conductor_track,"Data quality, source validation and evidence readiness",,,,,,,hardening,,must,,,,,data_quality
 ,,,,,,,,,track:track_live_source_ingestion,,,conductor_track,Evidence-grade live source ingestion,,,,,,,implementation,,must,,,,,data
 ,,,,,,,,,track:track_mapping_workbench,,,conductor_track,Human-in-the-loop mapping workbench,,,,,,,implementation,,must,,,,,mappings
 ,,,,,,,,,track:track_policy_demonstrators,,,conductor_track,First policy demonstrators,,,,,,,analysis,,must,,,,,analytics

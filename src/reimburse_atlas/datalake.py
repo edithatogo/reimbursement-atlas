@@ -258,8 +258,23 @@ def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:  
         / "derived"
         / "source_downloads"
         / "download_attempts.jsonl",
+        "source_content_validation": root
+        / "data"
+        / "derived"
+        / "source_validation"
+        / "source_content_validation.jsonl",
         "osf_component_plan": root / "data" / "derived" / "osf" / "component_plan.jsonl",
         "protocol_status": root / "data" / "derived" / "protocols" / "protocol_status.jsonl",
+        "research_dataset_linkages": root
+        / "data"
+        / "derived"
+        / "roadmap_linkages"
+        / "research_dataset_linkages.jsonl",
+        "data_quality_checks": root
+        / "data"
+        / "derived"
+        / "data_quality"
+        / "data_quality_checks.jsonl",
     }
     for table_name, table_path in derived_jsonl_tables.items():
         if table_path.exists():

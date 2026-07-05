@@ -34,4 +34,10 @@ import Layout from "../../components/Layout.astro";
     fileName="optional_toolchain_installs.csv"
     columns={["id", "outcome", "command", "notes"]}
   />
+
+  <DataTable
+    title="Data quality checks"
+    fileName="data_quality_checks.csv"
+    columns={["id", "table_name", "check_name", "severity", "status", "observed_value", "expected_value", "recommended_action"]}
+  />
 </Layout>

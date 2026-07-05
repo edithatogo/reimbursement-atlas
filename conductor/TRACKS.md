@@ -149,3 +149,8 @@ Tracked functions/issues:
 - `func_genomics_demo` — Implement genomics/pathology policy demonstrator (planned, data_pipeline)
 - `func_cognitive_procedural_index` — Implement cognitive versus procedural relativity analysis (planned, data_pipeline)
 - `func_medicine_opacity_index` — Implement medicine price-opacity scorecard (planned, data_pipeline)
+
+
+## Data quality, source validation and evidence readiness
+
+This track makes source-content validation, data-quality checks and research-question linkage matrices first-class release gates. It ensures live downloaded files are validated locally, seed and derived tables pass table-level expectations, and every research question can be traced to sources, mappings and output artefacts before OSF/Hugging Face publication.
