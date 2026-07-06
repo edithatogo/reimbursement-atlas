@@ -55,6 +55,7 @@ dev = [
   "scalene>=1.5.0",
   "bandit[toml]>=1.9.4",
   "pip-audit>=2.9.0",
+  "filelock>=3.18.0",
   "pre-commit>=4.3.0",
   "interrogate>=1.7.0",
   "mkdocs-material>=9.6.0",
@@ -86,6 +87,7 @@ pytest-cov = ">=7.0.0"
 hypothesis = ">=6.148.0"
 bandit = ">=1.8.0"
 pip-audit = ">=2.9.0"
+filelock = ">=3.18.0"
 polars = ">=1.35.0"
 pyarrow = ">=22.0.0"
 duckdb = ">=1.4.0"
