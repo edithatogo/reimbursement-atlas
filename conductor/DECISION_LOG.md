@@ -84,3 +84,12 @@ Decision: Add a Codex import prompt and internal handoff document so the git bun
 Rationale: The repo has many generated governance layers. A continuation prompt must explicitly preserve raw-source safety, Mojo/Python 3.14 runtime targets, GitHub issue/project traceability, OSF/Hugging Face gates, and honest blocker reporting.
 
 Consequence: Future bundle exports should include `conductor/handoff/CODEX_IMPORT_PROMPT.md`, and generated GitHub issue/project outputs should include the handoff itself as a tracked workstream.
+
+## 2026-07-06 — Hugging Face targets provisioned, OSF remains gated
+
+Live Hugging Face publication targets were provisioned from the repository during Chrome-backed verification:
+
+- dataset `edithatogo/reimbursement-atlas`
+- space `edithatogo/reimbursement-atlas`
+
+The Space now has a minimal runnable `app.py` scaffold committed through the official Hugging Face CLI. The automated GitHub Actions publication path remains token-gated, and OSF publication remains blocked until credentials and human review are available.

@@ -11,4 +11,13 @@ The release candidate bundle also includes `infra/huggingface/DATASET_CARD.md`,
 `infra/huggingface/README.md` and `infra/huggingface/SPACE_README.md` so the dataset
 card and Space metadata stay versioned with the publication manifest.
 
+Live HF targets currently provisioned from this repository:
+
+- Dataset: `edithatogo/reimbursement-atlas`
+- Space: `edithatogo/reimbursement-atlas`
+
+The dataset/Space creation flow is still separate from the GitHub Actions dry-run.
+That dry-run remains token-gated and should stay blocked until the workflow secrets
+and publication review gates are available.
+
 No raw restricted schedules, CPT descriptors, local ontology dumps or confidential prices should be published to Hugging Face.
