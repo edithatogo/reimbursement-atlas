@@ -6,6 +6,7 @@ import argparse
 import json
 from datetime import UTC, datetime
 from pathlib import Path
+from typing import Any, cast
 
 
 def main() -> None:
@@ -16,23 +17,21 @@ def main() -> None:
     parser.add_argument("--issue-body", type=Path, required=True)
     args = parser.parse_args()
 
-    raw = (
-        json.loads(args.raw_json.read_text(encoding="utf-8"))
+    raw: dict[str, dict[str, Any]] = (
+        cast("dict[str, dict[str, Any]]", json.loads(args.raw_json.read_text(encoding="utf-8")))
         if args.raw_json.exists()
         else {}
     )
-    entries = [
-        {
+    entries: list[dict[str, Any]] = []
+    for name, value in raw.items():
+        entries.append({
             "name": name,
             "current": value.get("current"),
             "wanted": value.get("wanted"),
             "latest": value.get("latest"),
             "location": value.get("location"),
-        }
-        for name, value in raw.items()
-        if isinstance(value, dict)
-    ]
-    summary = {
+        })
+    summary: dict[str, Any] = {
         "generated_at": datetime.now(UTC).isoformat(),
         "dashboard_dependency_drift_count": len(entries),
         "dashboard_dependency_drift": entries,
