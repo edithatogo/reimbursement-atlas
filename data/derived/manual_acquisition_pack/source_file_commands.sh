@@ -21,31 +21,37 @@ mkdir -p data/raw_live/au_mbs
 # Snapshot: # Metadata-only record; review the landing page or endpoint before downloading.
 # Parse: # No parser runs for metadata-only landing/API records.
 
-# step_004: CMS 26CLABQ3 file page
+# step_004: MBS 1989 to 2010 previous downloads page
+# URL: https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/Content/Prev-Downloads
+mkdir -p data/raw_live/au_mbs
+# Snapshot: # Metadata-only record; review the landing page or endpoint before downloading.
+# Parse: # No parser runs for metadata-only landing/API records.
+
+# step_005: CMS 26CLABQ3 file page
 # URL: https://www.cms.gov/medicare/payment/fee-schedules/clinical-laboratory-fee-schedule-clfs/files/26clabq3
 mkdir -p data/raw_live/us_cms_clfs
 # Snapshot: # Metadata-only record; review the landing page or endpoint before downloading.
 # Parse: # No parser runs for metadata-only landing/API records.
 
-# step_005: CMS 26CLABQ3 AMA-gated ZIP
+# step_006: CMS 26CLABQ3 AMA-gated ZIP
 # URL: https://www.cms.gov/license/ama?file=/files/zip/26clabq3.zip
 mkdir -p data/raw_live/us_cms_clfs
 # Snapshot: # Metadata-only record; review the landing page or endpoint before downloading.
 # Parse: # No parser runs for metadata-only landing/API records.
 
-# step_006: PBS API v3 documentation and CSV distribution
+# step_007: PBS API v3 documentation and CSV distribution
 # URL: https://data.pbs.gov.au/document/91327.html
 mkdir -p 'data/raw_live/au_pbs/PBS API'
 # Snapshot: # Metadata-only record; review the landing page or endpoint before downloading.
 # Parse: # No parser runs for metadata-only landing/API records.
 
-# step_007: CMS ASP July 2026 payment-limit files page
+# step_008: CMS ASP July 2026 payment-limit files page
 # URL: https://www.cms.gov/medicare/payment/part-b-drugs/asp-pricing-files
 mkdir -p data/raw_live/us_cms_asp
 # Snapshot: # Metadata-only record; review the landing page or endpoint before downloading.
 # Parse: # No parser runs for metadata-only landing/API records.
 
-# step_008: CMS PFS RVU26C relative value files page
+# step_009: CMS PFS RVU26C relative value files page
 # URL: https://www.cms.gov/medicare/payment/fee-schedules/physician/pfs-relative-value-files
 mkdir -p data/raw_live/us_cms_pfs
 # Snapshot: # Metadata-only record; review the landing page or endpoint before downloading.
