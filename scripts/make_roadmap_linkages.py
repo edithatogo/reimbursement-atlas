@@ -9,6 +9,7 @@ from reimburse_atlas.registry import (
     load_research_questions,
     load_source_registry,
     project_root,
+    repo_relative,
 )
 from reimburse_atlas.roadmap_linkages import build_research_linkages, write_research_linkages
 
@@ -26,7 +27,10 @@ def main() -> None:
         rows,
         output_dir=project_root() / "data" / "derived" / "roadmap_linkages",
     )
-    print(f"Wrote {len(rows)} research linkage rows: {', '.join(str(path) for path in paths)}")
+    print(
+        f"Wrote {len(rows)} research linkage rows: "
+        f"{', '.join(repo_relative(path) for path in paths)}"
+    )
 
 
 if __name__ == "__main__":

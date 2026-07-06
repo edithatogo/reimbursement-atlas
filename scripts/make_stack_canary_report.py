@@ -4,9 +4,10 @@ from __future__ import annotations
 
 import argparse
 import json
-from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, cast
+
+from reimburse_atlas.registry import stable_generated_at
 
 
 def main() -> None:
@@ -32,7 +33,7 @@ def main() -> None:
             "location": value.get("location"),
         })
     summary: dict[str, Any] = {
-        "generated_at": datetime.now(UTC).isoformat(),
+        "generated_at": stable_generated_at(),
         "dashboard_dependency_drift_count": len(entries),
         "dashboard_dependency_drift": entries,
         "dashboard_dependencies_current": not entries,

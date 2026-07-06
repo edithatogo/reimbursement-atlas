@@ -9,7 +9,7 @@ from reimburse_atlas.acquisition_pack import (
     build_manual_acquisition_steps,
     write_manual_acquisition_pack,
 )
-from reimburse_atlas.registry import load_source_files, project_root
+from reimburse_atlas.registry import load_source_files, project_root, repo_relative
 
 
 def main() -> None:
@@ -20,7 +20,7 @@ def main() -> None:
         steps,
         output_dir=root / "data" / "derived" / "manual_acquisition_pack",
     )
-    payload = {"paths": [str(path) for path in paths], **acquisition_pack_summary(steps)}
+    payload = {"paths": [repo_relative(path) for path in paths], **acquisition_pack_summary(steps)}
     print(json.dumps(payload, indent=2))
 
 

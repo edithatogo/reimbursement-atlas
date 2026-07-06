@@ -6,7 +6,7 @@ import json
 from typing import Any, cast
 
 from reimburse_atlas.io import write_csv, write_jsonl
-from reimburse_atlas.registry import project_root
+from reimburse_atlas.registry import project_root, repo_relative
 from reimburse_atlas.sbom import build_dashboard_sbom, build_python_sbom, sbom_summary, write_sbom
 
 
@@ -22,7 +22,21 @@ def main() -> None:
     write_jsonl(rows, out_dir / "sbom_summary.jsonl")
     write_csv(rows, out_dir / "sbom_summary.csv")
     component_count = sum(int(cast("dict[str, Any]", row)["component_count"]) for row in rows)
-    print(json.dumps({"sboms": len(rows), "components": component_count}, indent=2))
+    print(
+        json.dumps(
+            {
+                "sboms": len(rows),
+                "components": component_count,
+                "paths": [
+                    repo_relative(out_dir / "cyclonedx-python.json"),
+                    repo_relative(out_dir / "cyclonedx-dashboard.json"),
+                    repo_relative(out_dir / "sbom_summary.jsonl"),
+                    repo_relative(out_dir / "sbom_summary.csv"),
+                ],
+            },
+            indent=2,
+        )
+    )
 
 
 if __name__ == "__main__":

@@ -16,7 +16,7 @@ from reimburse_atlas.local_quality import (
     summarise_quality_gate_run,
     write_quality_gate_run,
 )
-from reimburse_atlas.registry import project_root
+from reimburse_atlas.registry import project_root, repo_relative
 
 
 def main() -> None:
@@ -57,7 +57,7 @@ def main() -> None:
         print(f"[local-quality] {record.id}: {record.status}", flush=True)
     summary = summarise_quality_gate_run(records, profile=profile)
     paths = write_quality_gate_run(records, summary, output_dir=args.output_dir)
-    payload = {"summary": summary.as_row(), "paths": [str(path) for path in paths]}
+    payload = {"summary": summary.as_row(), "paths": [repo_relative(path) for path in paths]}
     print(json.dumps(payload, indent=2))
     if summary.blocking_failures and not args.allow_blocking_failures:
         sys.exit(1)

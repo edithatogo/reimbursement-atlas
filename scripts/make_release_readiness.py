@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 
-from reimburse_atlas.registry import project_root
+from reimburse_atlas.registry import project_root, repo_relative
 from reimburse_atlas.release_readiness import (
     build_release_readiness_report,
     write_release_readiness_report,
@@ -18,7 +18,7 @@ def main() -> None:
         report,
         output_dir=project_root() / "data" / "derived" / "release_readiness",
     )
-    payload = {"summary": report.summary.as_row(), "paths": [str(path) for path in paths]}
+    payload = {"summary": report.summary.as_row(), "paths": [repo_relative(path) for path in paths]}
     print(json.dumps(payload, indent=2))
 
 

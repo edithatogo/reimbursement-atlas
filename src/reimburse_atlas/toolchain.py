@@ -6,9 +6,10 @@ import csv
 import json
 import subprocess  # nosec B404
 from dataclasses import asdict, dataclass
-from datetime import UTC, datetime
 from pathlib import Path
 from typing import Literal
+
+from reimburse_atlas.registry import project_root, repo_relative, stable_generated_at
 
 GateOutcome = Literal[
     "passed",
@@ -78,7 +79,7 @@ def run_external_quality_gate(
     timeout_seconds: int = 180,
 ) -> ExternalQualityGateRecord:
     """Run and classify one external quality gate."""
-    generated_at = datetime.now(tz=UTC).isoformat()
+    generated_at = stable_generated_at()
     command_text = " ".join(command)
     try:
         completed = subprocess.run(  # nosec B603
@@ -93,7 +94,7 @@ def run_external_quality_gate(
         return ExternalQualityGateRecord(
             id=gate_id,
             command=command_text,
-            cwd=str(cwd),
+            cwd=repo_relative(cwd),
             outcome="missing_tool",
             return_code=None,
             generated_at=generated_at,
@@ -105,7 +106,7 @@ def run_external_quality_gate(
         return ExternalQualityGateRecord(
             id=gate_id,
             command=command_text,
-            cwd=str(cwd),
+            cwd=repo_relative(cwd),
             outcome="timed_out",
             return_code=None,
             generated_at=generated_at,
@@ -118,7 +119,7 @@ def run_external_quality_gate(
     return ExternalQualityGateRecord(
         id=gate_id,
         command=command_text,
-        cwd=str(cwd),
+        cwd=repo_relative(cwd),
         outcome=outcome,
         return_code=completed.returncode,
         generated_at=generated_at,
@@ -165,6 +166,8 @@ def write_external_quality_gate_records(
 
 def _excerpt(value: str, limit: int = 800) -> str:
     cleaned = " ".join(value.split())
+    cleaned = cleaned.replace(str(project_root()), "<repo>")
+    cleaned = cleaned.replace(str(Path.home()), "<home>")
     if len(cleaned) <= limit:
         return cleaned
     return f"{cleaned[: limit - 1]}…"
