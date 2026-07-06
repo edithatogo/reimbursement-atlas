@@ -16,7 +16,11 @@ def main() -> None:
     parser.add_argument("--issue-body", type=Path, required=True)
     args = parser.parse_args()
 
-    raw = json.loads(args.raw_json.read_text(encoding="utf-8")) if args.raw_json.exists() else {}
+    raw = (
+        json.loads(args.raw_json.read_text(encoding="utf-8"))
+        if args.raw_json.exists()
+        else {}
+    )
     entries = [
         {
             "name": name,
@@ -35,7 +39,10 @@ def main() -> None:
         "dashboard_dependencies_current": not entries,
     }
     args.summary_json.parent.mkdir(parents=True, exist_ok=True)
-    args.summary_json.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    args.summary_json.write_text(
+        json.dumps(summary, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     body_lines = [
         "# Stack canary drift",
@@ -51,7 +58,10 @@ def main() -> None:
         "",
     ]
     body_lines.extend(
-        f"- {item['name']}: current={item['current']} wanted={item['wanted']} latest={item['latest']}"
+        (
+            f"- {item['name']}: current={item['current']} "
+            f"wanted={item['wanted']} latest={item['latest']}"
+        )
         for item in entries
     )
     args.issue_body.write_text("\n".join(body_lines).rstrip() + "\n", encoding="utf-8")
