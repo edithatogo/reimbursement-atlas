@@ -46,7 +46,7 @@ jobs:
           persist-credentials: false
       - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
       - name: Bandit
-        run: pixi run bandit -r src -c pyproject.toml
+        run: pixi run bandit
       - name: pip-audit
         run: pixi run pip-audit
       - name: External quality-gate classification artifact
