@@ -11,7 +11,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] A source-content validation command and summary outputs exist for downloaded public files.
+- [ ] Scope is confirmed.
 - [ ] Licence and data-governance implications are checked.
-- [ ] Tests cover missing, skipped, pass and fail validation states.
-- [ ] Documentation or Conductor context records the raw-cache boundary and derived-only outputs.
+- [ ] Tests or validation evidence are defined.
+- [ ] Documentation or Conductor context is updated.
