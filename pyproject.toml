@@ -114,7 +114,7 @@ mcp = { features = ["mcp"], solve-group = "default" }
 format = "ruff format . && ruff check . --fix"
 format-check = "ruff format --check ."
 lint = "ruff check ."
-typecheck = "basedpyright"
+typecheck = "PYTHONPATH=src uv run --all-extras basedpyright"
 unit = "pytest tests/unit -q"
 smoke = "pytest tests/smoke -q"
 property = "pytest tests/property -q"
