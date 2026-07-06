@@ -67,23 +67,27 @@ True,from,161,Layer dependency respects inward/downward architecture.,interface,
 True,from,242,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,orchestration,reimburse_atlas.source_validation
 True,from,344,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,orchestration,reimburse_atlas.data_quality
 True,from,369,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,orchestration,reimburse_atlas.roadmap_linkages
-True,from,648,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,orchestration,reimburse_atlas.datalake
-True,from,662,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,parsing,reimburse_atlas.snapshots
-True,from,692,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,parsing,reimburse_atlas.local_sources
-True,from,693,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,parsing,reimburse_atlas.snapshots
-True,from,727,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,parsing,reimburse_atlas.local_sources
-True,from,785,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,parsing,reimburse_atlas.local_sources
-True,from,831,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,analysis,reimburse_atlas.analysis
-True,from,1189,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,orchestration,reimburse_atlas.architecture
-True,from,1215,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,orchestration,reimburse_atlas.release_readiness
-True,from,1246,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,parsing,reimburse_atlas.local_sources
-True,from,1265,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,foundation,reimburse_atlas.terminologies
-True,from,1335,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,orchestration,reimburse_atlas.adapters
-True,from,1336,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,analysis,reimburse_atlas.analysis.mapping_evidence
-True,from,1337,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,foundation,reimburse_atlas.contracts
-True,from,1344,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,orchestration,reimburse_atlas.ingest
-True,from,1345,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,foundation,reimburse_atlas.models
-True,from,1372,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,foundation,reimburse_atlas.terminologies
+True,from,546,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,analysis,reimburse_atlas.demonstrators
+True,from,547,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,parsing,reimburse_atlas.parsers
+True,from,568,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,foundation,reimburse_atlas.io
+True,from,709,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,orchestration,reimburse_atlas.datalake
+True,from,723,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,parsing,reimburse_atlas.snapshots
+True,from,753,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,parsing,reimburse_atlas.local_sources
+True,from,754,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,parsing,reimburse_atlas.snapshots
+True,from,788,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,parsing,reimburse_atlas.local_sources
+True,from,846,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,parsing,reimburse_atlas.local_sources
+True,from,892,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,analysis,reimburse_atlas.analysis
+True,from,899,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,analysis,reimburse_atlas.gold_standard
+True,from,1275,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,orchestration,reimburse_atlas.architecture
+True,from,1301,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,orchestration,reimburse_atlas.release_readiness
+True,from,1332,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,parsing,reimburse_atlas.local_sources
+True,from,1351,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,foundation,reimburse_atlas.terminologies
+True,from,1421,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,orchestration,reimburse_atlas.adapters
+True,from,1422,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,analysis,reimburse_atlas.analysis.mapping_evidence
+True,from,1423,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,foundation,reimburse_atlas.contracts
+True,from,1430,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,orchestration,reimburse_atlas.ingest
+True,from,1431,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,foundation,reimburse_atlas.models
+True,from,1458,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.cli,foundation,reimburse_atlas.terminologies
 True,from,16,Layer dependency respects inward/downward architecture.,foundation,reimburse_atlas.contracts,foundation,reimburse_atlas.models
 True,from,8,Layer dependency respects inward/downward architecture.,analysis,reimburse_atlas.crosswalk,foundation,reimburse_atlas.contracts
 True,from,10,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.data_dictionary,foundation,reimburse_atlas.io
@@ -94,8 +98,7 @@ True,from,10,Layer dependency respects inward/downward architecture.,orchestrati
 True,from,11,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.data_quality,foundation,reimburse_atlas.models
 True,from,12,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.data_quality,foundation,reimburse_atlas.registry
 True,from,15,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.datalake,foundation,reimburse_atlas.registry
-False,from,11,At least one module is not assigned to a named architecture layer.,unknown,reimburse_atlas.demonstrators,foundation,reimburse_atlas.contracts
-False,from,12,At least one module is not assigned to a named architecture layer.,unknown,reimburse_atlas.demonstrators,foundation,reimburse_atlas.models
+True,from,13,Layer dependency respects inward/downward architecture.,analysis,reimburse_atlas.demonstrators,foundation,reimburse_atlas.models
 True,from,10,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.evidence_readiness,foundation,reimburse_atlas.io
 True,from,11,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.evidence_readiness,foundation,reimburse_atlas.models
 True,from,12,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.evidence_readiness,foundation,reimburse_atlas.registry
@@ -105,7 +108,8 @@ True,from,10,Layer dependency respects inward/downward architecture.,orchestrati
 True,from,10,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.github_project,foundation,reimburse_atlas.io
 True,from,11,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.github_project,foundation,reimburse_atlas.models
 True,from,12,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.github_project,foundation,reimburse_atlas.registry
-False,from,9,At least one module is not assigned to a named architecture layer.,unknown,reimburse_atlas.gold_standard,foundation,reimburse_atlas.models
+True,from,11,Layer dependency respects inward/downward architecture.,analysis,reimburse_atlas.gold_standard,foundation,reimburse_atlas.contracts
+True,from,12,Layer dependency respects inward/downward architecture.,analysis,reimburse_atlas.gold_standard,foundation,reimburse_atlas.models
 True,from,11,Layer dependency respects inward/downward architecture.,analysis,reimburse_atlas.graph,foundation,reimburse_atlas.models
 True,from,25,Layer dependency respects inward/downward architecture.,analysis,reimburse_atlas.graph,foundation,reimburse_atlas.terminologies
 True,from,3,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.ingest,orchestration,reimburse_atlas.ingest.plan
