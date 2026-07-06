@@ -297,7 +297,7 @@
       "name": "sbom_summary",
       "parquet_path": "sbom_summary/sbom_summary.parquet",
       "rows": 2,
-      "sha256": "9f06eaaac9c7c0d7b7d0c2a96a5973034ddf3378005bb8ddb6ffdb98ae8c5404"
+      "sha256": "2bb4ba679ce133ee613601c9fc65b04a6ff09e9aaa94487cdc412ce06e96cc1c"
     },
     {
       "csv_path": "local_quality_gates/local_quality_gates.csv",
@@ -305,7 +305,7 @@
       "name": "local_quality_gates",
       "parquet_path": "local_quality_gates/local_quality_gates.parquet",
       "rows": 26,
-      "sha256": "8c4850af046116c4846daaa1b6deacc64f51f20984cc112ce340d906f6342e64"
+      "sha256": "f8b8684871129fb314c2cd04fb34f1244192c0a4da1a46335552e13b51cdddc9"
     },
     {
       "csv_path": "local_quality_gate_specs/local_quality_gate_specs.csv",

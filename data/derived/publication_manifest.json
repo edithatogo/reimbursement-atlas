@@ -939,7 +939,7 @@
     },
     {
       "byte_size": 428,
-      "checksum_sha256": "9f06eaaac9c7c0d7b7d0c2a96a5973034ddf3378005bb8ddb6ffdb98ae8c5404",
+      "checksum_sha256": "2bb4ba679ce133ee613601c9fc65b04a6ff09e9aaa94487cdc412ce06e96cc1c",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "public_reuse_review",
@@ -951,7 +951,7 @@
     },
     {
       "byte_size": 296,
-      "checksum_sha256": "252567e244773832e61ba1ed89b1b86cf46a2111fec4f5ab5d2d8d204ad185a9",
+      "checksum_sha256": "3e989853829697ad7980b66195cd284bf4d7fd9d80144bc2696f62b33e9aff9d",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
@@ -962,8 +962,8 @@
       "table_name": "sbom_summary"
     },
     {
-      "byte_size": 118200,
-      "checksum_sha256": "1f1946fed4c670c688a382b22958319a4f12f9986dc158b96c391f6b779584b7",
+      "byte_size": 118206,
+      "checksum_sha256": "ac40ffe0f6bd6d3a59beb747f129fed18ff23da4d5b28387f6845b147a09915d",
       "contains_raw_source_payload": false,
       "file_format": "json",
       "licence_gate": "public_reuse_review",
@@ -974,8 +974,8 @@
       "table_name": "cyclonedx-python"
     },
     {
-      "byte_size": 269323,
-      "checksum_sha256": "74246f8f0e02470acdd63a130ca7dd3c308de098df5881b827d37a83c15439c9",
+      "byte_size": 269329,
+      "checksum_sha256": "8d3c4acd495c230811b99f91554271bf53926d65191084448cd11f7d5d7d40e0",
       "contains_raw_source_payload": false,
       "file_format": "json",
       "licence_gate": "public_reuse_review",
@@ -986,8 +986,8 @@
       "table_name": "cyclonedx-dashboard"
     },
     {
-      "byte_size": 16360,
-      "checksum_sha256": "8c4850af046116c4846daaa1b6deacc64f51f20984cc112ce340d906f6342e64",
+      "byte_size": 16365,
+      "checksum_sha256": "f8b8684871129fb314c2cd04fb34f1244192c0a4da1a46335552e13b51cdddc9",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "public_reuse_review",
@@ -998,8 +998,8 @@
       "table_name": "local_quality_gates"
     },
     {
-      "byte_size": 11645,
-      "checksum_sha256": "9fbb82bed48451d047c9e8184036b3511054a35081a76368ef9089339e81cde7",
+      "byte_size": 11650,
+      "checksum_sha256": "9dc99dea64abea211df2d5fbe613dac51d12e955ff93e64a76c55a328013e750",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
