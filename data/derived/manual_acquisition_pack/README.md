@@ -30,14 +30,14 @@ Raw files should remain under `data/raw_live/`, which is ignored by git.
 ### step_001: MBS 20260701 item map TXT
 
 - Source file id: `au_mbs_20260701_imap_txt`
-- URL: https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/650f3eec0dfb990d3ca257ccf0000aa73/%24FILE/20260701_MBSONLINE_IMAP.TXT
+- URL: https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/650f3eec0dfb990fca25692100069854/1bc94358d4f276d3ca257ccf0000aa73/%24FILE/20260701_MBSONLINE_IMAP.TXT
 - Raw handling: `local_raw_only`
 - Suggested local path: `data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT`
 
 ### step_002: MBS 20260701 item descriptors TXT
 
 - Source file id: `au_mbs_20260701_desc_txt`
-- URL: https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/650f3eec0dfb990d3ca257ccf0000aa73/%24FILE/20260701_MBSONLINE_DESC.TXT
+- URL: https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/650f3eec0dfb990fca25692100069854/1bc94358d4f276d3ca257ccf0000aa73/%24FILE/20260701_MBSONLINE_DESC.TXT
 - Raw handling: `local_raw_only`
 - Suggested local path: `data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT`
 
