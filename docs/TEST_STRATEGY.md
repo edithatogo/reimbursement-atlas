@@ -19,7 +19,8 @@
 
 ## CI matrix
 
-- Python 3.13.
+- Python 3.14 primary runtime target in CI.
+- Python 3.13 remains a local sandbox fallback only when 3.14 cannot be installed.
 - Linux primary.
 - macOS optional for Mojo/Pixi if GitHub Actions minutes permit.
 - Dashboard Node build.

@@ -1,7 +1,7 @@
 # Conductor implementation tracks
 These tracks are generated/maintained alongside `data/seed/conductor_tracks.*` and `data/seed/roadmap_functions.*`. They are also reflected in `.github/generated-issues/`.
 
-## track_runtime_mojo_python314: Mojo-first runtime and Python 3.14 compatibility
+## [~] track_runtime_mojo_python314: Mojo-first runtime and Python 3.14 compatibility
 
 Priority: **must**  
 Phase: `hardening`  
@@ -17,7 +17,7 @@ Deliverables:
 
 Tracked functions/issues:
 - `func_mojo_tokenizer` — Implement Mojo fixed-width tokenizer kernel and Python parity test (prototype, mojo_kernel)
-- `func_mojo_fuzzy_prefilter` — Prototype Mojo fuzzy prefilter for large crosswalk candidate sets (planned, mojo_kernel)
+- `func_mojo_fuzzy_prefilter` — Prototype Mojo fuzzy prefilter for large crosswalk candidate sets (prototype, mojo_kernel)
 - `func_python314_ci` — Add Python 3.14 CI matrix and keep sandbox fallback documented (planned, github_action)
 
 ## track_live_source_ingestion: Evidence-grade live source ingestion
@@ -36,11 +36,11 @@ Deliverables:
 - PBS API extract
 
 Tracked functions/issues:
-- `func_source_download` — Implement robust source download command with curl/wget/API fallbacks (prototype, cli)
+- `func_source_download` — Implement robust source download command with curl/wget/API fallbacks (implemented, cli)
 - `func_source_snapshot` — Maintain source snapshot provenance for all reviewed downloads (implemented, cli)
-- `func_source_diff` — Add source drift and schema diff reports (planned, data_pipeline)
+- `func_source_diff` — Add source drift and schema diff reports (implemented, data_pipeline)
 
-## track_research_protocols_osf: OSF research protocol and report workflow
+## [~] track_research_protocols_osf: OSF research protocol and report workflow
 
 Priority: **must**  
 Phase: `design`  
@@ -55,10 +55,10 @@ Deliverables:
 - preprint checklist
 
 Tracked functions/issues:
-- `func_osf_protocol_export` — Generate OSF protocol pack from research question registry (prototype, data_pipeline)
-- `func_osf_api_publish` — Add token-gated OSF API publication workflow (planned, github_action)
+- `func_osf_protocol_export` — Generate OSF protocol pack from research question registry (implemented, data_pipeline)
+- `func_osf_api_publish` — Add token-gated OSF API publication workflow (implemented, github_action)
 
-## track_publication_hf_spaces: Hugging Face dataset and Spaces publication
+## [x] track_publication_hf_spaces: Hugging Face dataset and Spaces publication
 
 Priority: **must**  
 Phase: `implementation`  
@@ -73,8 +73,8 @@ Deliverables:
 - static dashboard bundle
 
 Tracked functions/issues:
-- `func_hf_dataset_publish` — Implement conditional Hugging Face dataset publication workflow (prototype, github_action)
-- `func_hf_space_deploy` — Implement conditional Hugging Face Space deployment workflow (prototype, github_action)
+- `func_hf_dataset_publish` — Implement conditional Hugging Face dataset publication workflow (implemented, github_action)
+- `func_hf_space_deploy` — Implement conditional Hugging Face Space deployment workflow (implemented, github_action)
 
 ## track_data_packaging_standards: Research-data packaging standards
 
@@ -91,11 +91,11 @@ Deliverables:
 - Zenodo metadata
 
 Tracked functions/issues:
-- `func_frictionless_package` — Add Frictionless Data Package generator (planned, data_pipeline)
-- `func_ro_crate` — Add RO-Crate metadata generator (planned, data_pipeline)
-- `func_dcat` — Add DCAT JSON-LD export (planned, data_pipeline)
+- `func_frictionless_package` — Add Frictionless Data Package generator (implemented, data_pipeline)
+- `func_ro_crate` — Add RO-Crate metadata generator (implemented, data_pipeline)
+- `func_dcat` — Add DCAT JSON-LD export (implemented, data_pipeline)
 
-## track_mapping_workbench: Human-in-the-loop mapping workbench
+## [x] track_mapping_workbench: Human-in-the-loop mapping workbench
 
 Priority: **must**  
 Phase: `implementation`  
@@ -110,10 +110,10 @@ Deliverables:
 - mapping confidence calibration
 
 Tracked functions/issues:
-- `func_mapping_review_ui` — Build dashboard mapping adjudication views (planned, dashboard)
+- `func_mapping_review_ui` — Build dashboard mapping adjudication views (prototype, dashboard)
 - `func_gold_standard_mappings` — Add mapping gold-standard and negative-control datasets (planned, data_pipeline)
 
-## track_ci_cd_supply_chain: CI/CD and supply-chain hardening
+## [~] track_ci_cd_supply_chain: CI/CD and supply-chain hardening
 
 Priority: **must**  
 Phase: `hardening`  
@@ -128,10 +128,10 @@ Deliverables:
 - branch protection as code
 
 Tracked functions/issues:
-- `func_action_sha_pin_bot` — Automate GitHub Action SHA pinning (planned, github_action)
-- `func_release_attestation_verify` — Add consumer-side artifact attestation verification (planned, github_action)
+- `func_action_sha_pin_bot` — Automate GitHub Action SHA pinning (prototype, github_action)
+- `func_release_attestation_verify` — Add consumer-side artifact attestation verification (prototype, github_action)
 
-## track_policy_demonstrators: First policy demonstrators
+## [x] track_policy_demonstrators: First policy demonstrators
 
 Priority: **must**  
 Phase: `analysis`  
@@ -151,7 +151,7 @@ Tracked functions/issues:
 - `func_medicine_opacity_index` — Implement medicine price-opacity scorecard (planned, data_pipeline)
 
 
-## Data quality, source validation and evidence readiness
+## [x] track_data_quality_evidence: Data quality, source validation and evidence readiness
 
 This track makes source-content validation, data-quality checks and research-question linkage matrices first-class release gates. It ensures live downloaded files are validated locally, seed and derived tables pass table-level expectations, and every research question can be traced to sources, mappings and output artefacts before OSF/Hugging Face publication.
 ## v17 added gates

@@ -15,6 +15,14 @@ def test_publication_manifest_contains_only_safe_candidate_paths(repo_root: Path
     assert any(
         artifact.relative_path.endswith("source_registry.jsonl") for artifact in manifest.artifacts
     )
+    assert any(
+        artifact.relative_path == "infra/huggingface/DATASET_CARD.md"
+        for artifact in manifest.artifacts
+    )
+    assert any(
+        artifact.relative_path == "infra/huggingface/SPACE_README.md"
+        for artifact in manifest.artifacts
+    )
 
 
 def test_publication_manifest_write(tmp_path: Path, repo_root: Path) -> None:

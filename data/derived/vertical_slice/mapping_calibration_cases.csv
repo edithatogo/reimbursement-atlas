@@ -1,0 +1,5 @@
+candidate_confidence,case_type,expected_outcome,left_code,left_source_id,notes,observed_outcome,reviewed_at,reviewer,right_code,right_source_id
+0.267,gold_standard,related,110,au_mbs,Synthetic benchmark pair for a lower-confidence consultation-to-lab mapping.,matched,2026-07-01,reviewer_system,81479,us_cms_clfs
+0.545,gold_standard,related,73358,au_mbs,Synthetic benchmark pair for the genomic-test mapping workbench.,matched,2026-07-01,reviewer_system,81479,us_cms_clfs
+0.118,negative_control,non_match,110,au_mbs,This lower-confidence pair should stay in the review queue until a reviewer confirms scope.,false_positive,2026-07-01,reviewer_system,G0452,us_cms_clfs
+0.133,negative_control,non_match,73358,au_mbs,This pair exercises the false-positive boundary and should stay separate.,false_positive,2026-07-01,reviewer_system,G0452,us_cms_clfs

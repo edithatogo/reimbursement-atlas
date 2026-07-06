@@ -119,3 +119,13 @@ Immediate implementation focus:
 3. Import `.github/generated-issues` and `data/derived/github_project/github_project_items.csv` into GitHub Issues/Projects once credentials exist.
 4. Use `data/derived/final_handoff/final_handoff_tasks.csv` to execute the remaining network/credential/review-dependent work.
 5. Regenerate release-readiness after the source, security, OSF and Hugging Face gates complete.
+
+## v19 follow-up
+
+Local quality, source-contract validation and release readiness are now green. The live
+MBS reviewed bundle is staged, and the source-contract rules now skip landing-page and
+manual-review records explicitly instead of treating them as missing. Next useful work is
+the remaining live-source acquisitions plus any parser or validator refinements that real
+downloads expose. A current-channel stack canary is now the place to watch Python 3.14
+patches, dashboard dependency drift and Mojo toolchain refreshes before they reach the
+main release path.

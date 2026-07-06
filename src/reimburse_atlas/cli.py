@@ -85,6 +85,7 @@ from reimburse_atlas.registry import (
     load_source_status,
     load_source_versions,
     project_root,
+    repo_relative,
     source_ids,
 )
 from reimburse_atlas.review_queue import build_crosswalk_review_queue, review_rows
@@ -148,6 +149,10 @@ def source_download_plan(
         bool,
         typer.Option(help="Attempt executable curl/wget downloads into ignored local raw storage."),
     ] = False,
+    resume_downloads: Annotated[
+        bool,
+        typer.Option(help="Allow curl/wget resume flags for sources that support byte ranges."),
+    ] = False,
     method: Annotated[str, typer.Option(help="Download method: curl or wget.")] = "curl",
     output_dir: Annotated[
         Path,
@@ -165,9 +170,21 @@ def source_download_plan(
     )
 
     records = load_source_files()
-    plans = [build_download_plan(record, preferred_method=method) for record in records]
+    plans = [
+        build_download_plan(record, preferred_method=method, resume_downloads=resume_downloads)
+        for record in records
+    ]
     attempts = (
-        [attempt_download(record, preferred_method=method) for record in records] if attempt else []
+        [
+            attempt_download(
+                record,
+                preferred_method=method,
+                resume_downloads=resume_downloads,
+            )
+            for record in records
+        ]
+        if attempt
+        else []
     )
     paths = write_download_outputs(plans, attempts, output_dir=output_dir)
     console.print_json(
@@ -182,7 +199,7 @@ def source_download_plan(
                 "skipped_licence_gate": sum(
                     1 for record in attempts if record.status == "skipped_licence_gate"
                 ),
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -224,7 +241,7 @@ def protocol_status(
                 )
                 if rows
                 else 0.0,
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -253,7 +270,7 @@ def source_validation(
                 "pass": sum(row.validation_status == "pass" for row in rows),
                 "missing": sum(row.validation_status == "missing" for row in rows),
                 "skipped": sum(row.validation_status == "skipped" for row in rows),
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -278,7 +295,7 @@ def source_contracts(
                 "missing": sum(row.contract_status == "missing" for row in rows),
                 "skipped": sum(row.contract_status == "skipped" for row in rows),
                 "fail": sum(row.contract_status == "fail" for row in rows),
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -301,7 +318,7 @@ def github_project_export(
                 "project_items": len(rows),
                 "issues": sum(row.item_type == "issue" for row in rows),
                 "tracks": sum(row.item_type == "track" for row in rows),
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -326,7 +343,7 @@ def final_handoff(
                 "blocked_network": sum(row.status == "blocked_network" for row in rows),
                 "blocked_secret": sum(row.status == "blocked_secret" for row in rows),
                 "blocked_review": sum(row.status == "blocked_review" for row in rows),
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -351,7 +368,7 @@ def data_quality(
             {
                 "check_count": len(rows),
                 "blocking_failures": blocking,
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -404,7 +421,7 @@ def data_dictionary(
             {
                 "table_count": len(rows),
                 "total_rows_documented": sum(row.row_count for row in rows),
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -429,7 +446,7 @@ def evidence_readiness(
                 "research_questions": len(rows),
                 "evidence_ready": sum(row.readiness_stage == "evidence_ready" for row in rows),
                 "prototype_ready": sum(row.readiness_stage == "prototype_ready" for row in rows),
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -461,7 +478,7 @@ def source_drift(
                 "drift_checks": len(rows),
                 "failures": sum(row.status in {"fail", "missing"} for row in rows),
                 "warnings": sum(row.status == "warn" for row in rows),
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -533,6 +550,67 @@ def analyses() -> None:
     for record in load_analysis_catalogue():
         table.add_row(record.id, record.difficulty, record.stage, record.title)
     console.print(table)
+
+
+@app.command("policy-demonstrators")
+def policy_demonstrators(
+    output_dir: Annotated[
+        Path,
+        typer.Option(help="Directory for policy-demonstrator artefacts."),
+    ] = (project_root() / "data" / "derived" / "policy_demonstrators"),
+) -> None:
+    """Generate the first policy demonstrator briefs from local fixtures."""
+    from reimburse_atlas.demonstrators import build_policy_demonstrator_briefs
+    from reimburse_atlas.parsers import (
+        parse_cms_asp_csv,
+        parse_cms_clfs_csv,
+        parse_cms_pfs_csv,
+        parse_mbs_xml,
+        parse_nhs_genomic_directory_csv,
+        parse_pbs_csv,
+    )
+
+    fixtures = project_root() / "tests" / "fixtures"
+    parsed_sources = {
+        "au_mbs": parse_mbs_xml(fixtures / "mbs_fragment.xml"),
+        "us_cms_clfs": parse_cms_clfs_csv(fixtures / "cms_clfs_fixture.csv"),
+        "us_cms_pfs": parse_cms_pfs_csv(fixtures / "cms_pfs_fixture.csv"),
+        "au_pbs": parse_pbs_csv(fixtures / "pbs_fixture.csv"),
+        "us_cms_asp": parse_cms_asp_csv(fixtures / "cms_asp_fixture.csv"),
+        "uk_genomic_test_directory": parse_nhs_genomic_directory_csv(
+            fixtures / "nhs_genomic_directory_fixture.csv"
+        ),
+    }
+    briefs = build_policy_demonstrator_briefs(parsed_sources)
+    from reimburse_atlas.io import pydantic_rows, write_csv, write_jsonl
+
+    rows = pydantic_rows(briefs)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    write_jsonl(rows, output_dir / "policy_briefs.jsonl")
+    write_csv(rows, output_dir / "policy_briefs.csv")
+    (output_dir / "summary.json").write_text(
+        json.dumps(
+            {
+                "brief_count": len(briefs),
+                "source_count": len(parsed_sources),
+                "brief_ids": [brief.demonstrator_id for brief in briefs],
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    console.print_json(
+        json.dumps(
+            {
+                "brief_count": len(briefs),
+                "source_count": len(parsed_sources),
+                "output_dir": str(output_dir),
+            },
+            indent=2,
+        )
+    )
 
 
 @app.command("score-sources")
@@ -835,6 +913,12 @@ def vertical_slice(
         policy_signal_matrix,
         priced_share,
     )
+    from reimburse_atlas.gold_standard import (
+        build_gold_standard_set,
+        build_mapping_calibration_cases,
+        build_mapping_calibration_summary,
+        build_negative_controls,
+    )
 
     fixtures = project_root() / "tests" / "fixtures"
     mbs_records = parse_mbs_xml(fixtures / "mbs_fragment.xml")
@@ -859,6 +943,10 @@ def vertical_slice(
         [*clfs_records, *pfs_records],
         threshold=0.05,
     )
+    gold_standard_rows = build_gold_standard_set()
+    negative_control_rows = build_negative_controls()
+    calibration_cases = build_mapping_calibration_cases(crosswalks)
+    calibration_summary = build_mapping_calibration_summary(calibration_cases)
     write_jsonl(pydantic_rows(schedule_records), output_dir / "schedule_items.jsonl")
     write_csv(pydantic_rows(schedule_records), output_dir / "schedule_items.csv")
     write_jsonl(pydantic_rows(coverage_records), output_dir / "coverage_decisions.jsonl")
@@ -875,6 +963,20 @@ def vertical_slice(
     write_csv(signal_rows, output_dir / "policy_signal_matrix.csv")
     write_jsonl(pydantic_rows(mapping_rows), output_dir / "mapping_evidence_matrix.jsonl")
     write_csv(pydantic_rows(mapping_rows), output_dir / "mapping_evidence_matrix.csv")
+    write_jsonl(pydantic_rows(gold_standard_rows), output_dir / "gold_standard_mappings.jsonl")
+    write_csv(pydantic_rows(gold_standard_rows), output_dir / "gold_standard_mappings.csv")
+    write_jsonl(pydantic_rows(negative_control_rows), output_dir / "negative_controls.jsonl")
+    write_csv(pydantic_rows(negative_control_rows), output_dir / "negative_controls.csv")
+    write_jsonl(pydantic_rows(calibration_cases), output_dir / "mapping_calibration_cases.jsonl")
+    write_csv(pydantic_rows(calibration_cases), output_dir / "mapping_calibration_cases.csv")
+    write_jsonl(
+        [calibration_summary.model_dump(mode="json")],
+        output_dir / "mapping_calibration_summary.jsonl",
+    )
+    write_csv(
+        [calibration_summary.model_dump(mode="json")],
+        output_dir / "mapping_calibration_summary.csv",
+    )
     console.print_json(
         json.dumps(
             {
@@ -884,6 +986,7 @@ def vertical_slice(
                 "crosswalk_review_rows": len(review_queue),
                 "policy_signal_rows": len(signal_rows),
                 "mapping_evidence_rows": len(mapping_rows),
+                "calibration_cases": len(calibration_cases),
                 "output_dir": str(output_dir),
             },
             indent=2,
@@ -1067,7 +1170,7 @@ def publication_manifest(
             {
                 "artifact_count": manifest.artifact_count,
                 "warning_count": len(manifest.warnings),
-                "output_path": str(path),
+                "output_path": repo_relative(path),
             },
             indent=2,
         )
@@ -1150,7 +1253,7 @@ def local_quality_gates_command(
         json.dumps(
             {
                 "summary": summary.as_row(),
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -1192,7 +1295,7 @@ def architecture_report_command(
     paths = write_architecture_report(report, output_dir=output_dir)
     console.print_json(
         json.dumps(
-            {"summary": report.summary.as_row(), "paths": [str(path) for path in paths]},
+            {"summary": report.summary.as_row(), "paths": [repo_relative(path) for path in paths]},
             indent=2,
         )
     )
@@ -1221,7 +1324,7 @@ def release_readiness_command(
     paths = write_release_readiness_report(report, output_dir=output_dir)
     console.print_json(
         json.dumps(
-            {"summary": report.summary.as_row(), "paths": [str(path) for path in paths]},
+            {"summary": report.summary.as_row(), "paths": [repo_relative(path) for path in paths]},
             indent=2,
         )
     )

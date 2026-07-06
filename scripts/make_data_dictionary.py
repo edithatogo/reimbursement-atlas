@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from reimburse_atlas.data_dictionary import build_data_dictionary, write_data_dictionary
-from reimburse_atlas.registry import project_root
+from reimburse_atlas.registry import project_root, repo_relative
 
 
 def main() -> None:
@@ -13,7 +13,10 @@ def main() -> None:
         rows,
         output_dir=project_root() / "data" / "derived" / "data_dictionary",
     )
-    print(f"Wrote {len(rows)} data dictionary rows: {', '.join(str(path) for path in paths)}")
+    print(
+        f"Wrote {len(rows)} data dictionary rows: "
+        f"{', '.join(repo_relative(path) for path in paths)}"
+    )
 
 
 if __name__ == "__main__":

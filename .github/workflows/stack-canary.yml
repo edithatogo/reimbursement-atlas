@@ -1,0 +1,185 @@
+name: Stack Canary
+
+on:
+  schedule:
+    - cron: "23 4 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  canary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5.4.0
+        with:
+          python-version: "3.14"
+      - uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
+      - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: apps/dashboard/package-lock.json
+      - name: Sync Python dependencies
+        run: uv sync --all-extras --prerelease=allow
+      - name: Capture optional toolchain state
+        run: uv run --all-extras python scripts/install_optional_toolchains.py
+      - name: Capture external quality-gate state
+        run: uv run --all-extras python scripts/run_external_quality_gates.py
+      - name: Detect dashboard dependency drift
+        id: drift
+        working-directory: apps/dashboard
+        run: |
+          set -euo pipefail
+          npm ci
+          mkdir -p ../../data/derived/stack_canary
+          if npm outdated --json > ../../data/derived/stack_canary/npm_outdated_raw.json; then
+            echo "Dashboard dependencies are current."
+          else
+            status=$?
+            if [ "$status" -gt 1 ]; then
+              exit "$status"
+            fi
+            echo "Dashboard dependencies have available updates; recorded in npm_outdated_raw.json."
+          fi
+          cd ../..
+          PYTHONPATH=src uv run --all-extras python scripts/make_stack_canary_report.py \
+            --raw-json data/derived/stack_canary/npm_outdated_raw.json \
+            --summary-json data/derived/stack_canary/summary.json \
+            --issue-body data/derived/stack_canary/issue_body.md
+          drift_count="$(python - <<'PY'
+          import json
+          from pathlib import Path
+          summary = json.loads(Path('data/derived/stack_canary/summary.json').read_text(encoding='utf-8'))
+          print(summary['dashboard_dependency_drift_count'])
+          PY
+          )"
+          {
+            echo "drift_count=${drift_count}"
+            echo "summary_path=data/derived/stack_canary/summary.json"
+            echo "issue_body_path=data/derived/stack_canary/issue_body.md"
+          } >> "$GITHUB_OUTPUT"
+      - name: Upload stack canary summary
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: stack-canary-summary
+          path: data/derived/stack_canary/
+      - name: Open or update drift issue
+        if: steps.drift.outputs.drift_count != '0'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          import urllib.error
+          import urllib.request
+          from pathlib import Path
+
+          repo = os.environ["GITHUB_REPOSITORY"]
+          token = os.environ["GITHUB_TOKEN"]
+          summary = json.loads(Path("data/derived/stack_canary/summary.json").read_text(encoding="utf-8"))
+          body = Path("data/derived/stack_canary/issue_body.md").read_text(encoding="utf-8")
+          title = "Stack canary: dependency/runtime drift detected"
+
+          def request(method: str, url: str, payload: dict[str, object] | None = None):
+              data = None if payload is None else json.dumps(payload).encode("utf-8")
+              req = urllib.request.Request(url, data=data, method=method)
+              req.add_header("Authorization", f"Bearer {token}")
+              req.add_header("Accept", "application/vnd.github+json")
+              req.add_header("X-GitHub-Api-Version", "2022-11-28")
+              req.add_header("Content-Type", "application/json")
+              try:
+                  with urllib.request.urlopen(req) as resp:
+                      return resp.status, json.loads(resp.read().decode("utf-8") or "{}")
+              except urllib.error.HTTPError as exc:
+                  return exc.code, json.loads(exc.read().decode("utf-8") or "{}")
+
+          issues_url = f"https://api.github.com/repos/{repo}/issues?state=open&per_page=100"
+          status, payload = request("GET", issues_url)
+          existing = next(
+              (
+                  item
+                  for item in payload
+                  if isinstance(item, dict) and item.get("title") == title
+              ),
+              None,
+          ) if isinstance(payload, list) else None
+          if existing:
+              issue_url = existing["url"]
+              request("PATCH", issue_url, {"body": body})
+              print(f"Updated existing issue: {issue_url}")
+          else:
+              status, payload = request(
+                  "POST",
+                  f"https://api.github.com/repos/{repo}/issues",
+                  {"title": title, "body": body},
+              )
+              if status >= 400:
+                  raise SystemExit(f"Failed to create issue: {payload}")
+              print(f"Created issue: {payload.get('html_url', '')}")
+          PY
+      - name: Send optional webhook alert
+        if: steps.drift.outputs.drift_count != '0'
+        env:
+          STACK_CANARY_WEBHOOK_URL: ${{ secrets.STACK_CANARY_WEBHOOK_URL }}
+        run: |
+          set -euo pipefail
+          if [ -z "${STACK_CANARY_WEBHOOK_URL:-}" ]; then
+            echo "No webhook configured; skipping external alert."
+            exit 0
+          fi
+          python - <<'PY'
+          import json
+          import os
+          import subprocess
+          from pathlib import Path
+
+          webhook_url = os.environ["STACK_CANARY_WEBHOOK_URL"]
+          summary = json.loads(Path("data/derived/stack_canary/summary.json").read_text(encoding="utf-8"))
+          text = "\n".join(
+              [
+                  "Stack canary detected dependency/runtime drift.",
+                  f"Generated at: {summary['generated_at']}",
+                  f"Drift count: {summary['dashboard_dependency_drift_count']}",
+              ]
+          )
+          payload = {
+              "text": text,
+              "summary": summary,
+          }
+          completed = subprocess.run(
+              [
+                  "curl",
+                  "-fsSL",
+                  "-X",
+                  "POST",
+                  "-H",
+                  "Content-Type: application/json",
+                  "--data",
+                  json.dumps(payload),
+                  webhook_url,
+              ],
+              check=False,
+              capture_output=True,
+              text=True,
+          )
+          if completed.returncode != 0:
+              print(completed.stderr.strip() or completed.stdout.strip())
+              print("Webhook alert failed, but the workflow will continue.")
+          else:
+              print("Webhook alert sent.")
+          PY
+      - name: Build dashboard
+        working-directory: apps/dashboard
+        run: npm run build
+      - name: Run Mojo smoke
+        run: uv run --all-extras bash scripts/run_mojo_smoke.sh

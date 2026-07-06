@@ -6,6 +6,7 @@ Generated artefacts:
 
 - `data/derived/osf/component_plan.*`
 - `data/derived/osf/osf_publication_manifest.json`
+- `data/derived/osf/preprint_checklist.md`
 - `protocols/*.md`
 - `reports/*.md`
 

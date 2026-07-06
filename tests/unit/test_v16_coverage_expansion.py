@@ -221,6 +221,38 @@ def test_attempt_download_uses_wget_and_skips_licence_gate(tmp_path: Path) -> No
     assert attempt.status == "skipped_licence_gate"
 
 
+def test_attempt_download_can_fallback_without_resume(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    record = _source_file("download_resume_fallback")
+    calls: list[list[str]] = []
+
+    def fake_run(args: list[str], **_: object) -> SimpleNamespace:
+        calls.append(args)
+        target = Path(args[args.index("-o") + 1])
+        target.parent.mkdir(parents=True, exist_ok=True)
+        if "--continue-at" in args or "--continue" in args:
+            return SimpleNamespace(
+                returncode=33, stdout="", stderr="server does not support byte ranges"
+            )
+        target.write_bytes(b"item|group|fee\n1|A|12.30\n")
+        return SimpleNamespace(returncode=0, stdout="", stderr="")
+
+    monkeypatch.setattr(source_downloads.subprocess, "run", fake_run)
+    attempt = source_downloads.attempt_download(
+        record,
+        output_dir=tmp_path,
+        timeout_seconds=1,
+        resume_downloads=True,
+    )
+    assert attempt.status == "downloaded"
+    assert len(calls) == 2
+    assert "--continue-at" in calls[0] or "--continue" in calls[0]
+    assert "--continue-at" not in calls[1]
+    assert "--continue" not in calls[1]
+
+
 def test_source_validation_handles_non_file_valid_json_empty_zip_and_record_drift(
     tmp_path: Path,
 ) -> None:

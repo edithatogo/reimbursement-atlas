@@ -7,6 +7,14 @@ Current generated artefacts:
 
 - `data/derived/vertical_slice/mapping_evidence_matrix.jsonl`
 - `data/derived/vertical_slice/mapping_evidence_matrix.csv`
+- `data/derived/vertical_slice/gold_standard_mappings.jsonl`
+- `data/derived/vertical_slice/gold_standard_mappings.csv`
+- `data/derived/vertical_slice/negative_controls.jsonl`
+- `data/derived/vertical_slice/negative_controls.csv`
+- `data/derived/vertical_slice/mapping_calibration_cases.jsonl`
+- `data/derived/vertical_slice/mapping_calibration_cases.csv`
+- `data/derived/vertical_slice/mapping_calibration_summary.jsonl`
+- `data/derived/vertical_slice/mapping_calibration_summary.csv`
 - `data/derived/vector_seed/schedule_item_vectors.jsonl`
 - `data/derived/vector_seed/schedule_item_vectors.csv`
 - `data/derived/vector_seed/schedule_item_vectors.arrow`
@@ -22,6 +30,12 @@ The evidence matrix combines:
 The hash-vector approach is deliberately simple and deterministic. It gives us a reproducible baseline
 before introducing external embedding models, LanceDB approximate-nearest-neighbour search, ontology
 crosswalks, or clinician-reviewed gold standards.
+
+The calibration exports split the workbench into three reviewer surfaces:
+
+- gold-standard fixtures that should be matched;
+- negative controls that should stay unmatched;
+- a summary row with recall, precision, specificity and a recommended review threshold.
 
 Run the workbench artefacts:
 

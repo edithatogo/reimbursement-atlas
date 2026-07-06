@@ -3,7 +3,7 @@
   "blocking_failures": 0,
   "failed": 0,
   "gate_count": 26,
-  "generated_at": "2026-07-05T13:18:46.984268+00:00",
+  "generated_at": "1970-01-01T00:00:00+00:00",
   "missing_tool": 0,
   "passed": 26,
   "profile": "ci",

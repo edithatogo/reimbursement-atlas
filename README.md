@@ -35,12 +35,12 @@ The atlas is designed to answer questions like:
 
 ## Initial stack
 
-- Python 3.14-targeted orchestration package with Pydantic v2, Polars, Arrow, DuckDB and LanceDB; current sandbox fallback may run under Python 3.13 when 3.14 downloads are blocked.
+- Python 3.14-primary orchestration package with Pydantic v2, Polars, Arrow, DuckDB and LanceDB; Python 3.13 is only a transient local fallback when 3.14 downloads are unavailable.
 - Pixi for reproducible multi-environment development.
 - uv/uv_build for Python package builds.
 - Ruff in strict, preview-heavy mode; basedpyright in strict mode.
 - Pytest, Hypothesis, mutmut, Scalene, Bandit and pip-audit, now install-tested through `uv` for the Python core.
-- Astro 7 dashboard using Cosmograph for graph exploration, with a committed npm lockfile and local static build validation.
+- Astro 7 dashboard using Cosmograph for graph exploration, with a committed npm lockfile, current-channel dependency updates and local static build validation.
 - Mojo-first performance-kernel track for high-throughput parsers, fixed-width tokenisation, similarity kernels and mapping accelerators; Python remains the orchestration/interface layer.
 
 ## Current seed and generated assets

@@ -190,10 +190,20 @@ def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:  
         "priced_share",
         "policy_signal_matrix",
         "mapping_evidence_matrix",
+        "gold_standard_mappings",
+        "negative_controls",
+        "mapping_calibration_cases",
+        "mapping_calibration_summary",
     ):
         table_path = vertical_dir / f"{table_name}.jsonl"
         if table_path.exists():
             source_tables[f"vertical_{table_name}"] = _read_jsonl(table_path)
+
+    demonstrator_dir = root / "data" / "derived" / "policy_demonstrators"
+    for table_name in ("policy_briefs",):
+        table_path = demonstrator_dir / f"{table_name}.jsonl"
+        if table_path.exists():
+            source_tables[f"policy_demonstrators_{table_name}"] = _read_jsonl(table_path)
 
     derived_jsonl_tables = {
         "repo_workflow_uses": root / "data" / "derived" / "repo_automation" / "workflow_uses.jsonl",

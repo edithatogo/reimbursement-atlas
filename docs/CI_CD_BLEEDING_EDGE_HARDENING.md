@@ -54,6 +54,18 @@ The workflow layer now includes:
 - Dependabot cooldown/grouping configuration;
 - CI checks for repo automation and SBOM generation.
 
+### Stack canary
+
+`.github/workflows/stack-canary.yml` runs on a weekly schedule and on manual dispatch to
+exercise the current-channel stack. It:
+
+- captures optional toolchain and external-quality summaries;
+- records dashboard dependency drift in `data/derived/stack_canary/`;
+- uses `scripts/make_stack_canary_report.py` to write the reusable summary and issue body;
+- uploads the canary summary as a GitHub artifact; and
+- opens or updates a single GitHub issue when drift is detected;
+- optionally sends a webhook alert when `STACK_CANARY_WEBHOOK_URL` is configured.
+
 ### Current deliberate non-green signal
 
 `zizmor` is installed and runs. It still reports `unpinned-uses` because workflow actions are pinned to version tags rather than full 40-character commit SHAs. This is recorded as a deliberate hardening backlog rather than hidden. The generated `action_sha_pin_plan.*` table is the migration queue.

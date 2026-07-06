@@ -307,6 +307,54 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/gold_standard_mappings.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "gold_standard_mappings"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/gold_standard_mappings.csv",
+      "dct:format": "csv",
+      "dct:title": "gold_standard_mappings"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/negative_controls.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "negative_controls"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/negative_controls.csv",
+      "dct:format": "csv",
+      "dct:title": "negative_controls"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/mapping_calibration_cases.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "mapping_calibration_cases"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/mapping_calibration_cases.csv",
+      "dct:format": "csv",
+      "dct:title": "mapping_calibration_cases"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/mapping_calibration_summary.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "mapping_calibration_summary"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/mapping_calibration_summary.csv",
+      "dct:format": "csv",
+      "dct:title": "mapping_calibration_summary"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/manual_acquisition_pack/acquisition_steps.jsonl",
       "dct:format": "jsonl",
       "dct:title": "acquisition_steps"
@@ -316,6 +364,30 @@
       "dcat:downloadURL": "data/derived/manual_acquisition_pack/acquisition_steps.csv",
       "dct:format": "csv",
       "dct:title": "acquisition_steps"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/policy_demonstrators/policy_briefs.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "policy_briefs"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/policy_demonstrators/policy_briefs.csv",
+      "dct:format": "csv",
+      "dct:title": "policy_briefs"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/policy_demonstrators/policy_briefs.md",
+      "dct:format": "md",
+      "dct:title": "policy_briefs"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/policy_demonstrators/summary.json",
+      "dct:format": "json",
+      "dct:title": "summary"
     },
     {
       "@type": "dcat:Distribution",
@@ -595,6 +667,12 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/osf/preprint_checklist.md",
+      "dct:format": "md",
+      "dct:title": "preprint_checklist"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/protocols/protocol_status.jsonl",
       "dct:format": "jsonl",
       "dct:title": "protocol_status"
@@ -694,6 +772,24 @@
       "dcat:downloadURL": "data/derived/data_dictionary/summary.json",
       "dct:format": "json",
       "dct:title": "summary"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "infra/huggingface/DATASET_CARD.md",
+      "dct:format": "md",
+      "dct:title": "DATASET_CARD"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "infra/huggingface/README.md",
+      "dct:format": "md",
+      "dct:title": "README"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "infra/huggingface/SPACE_README.md",
+      "dct:format": "md",
+      "dct:title": "SPACE_README"
     },
     {
       "@type": "dcat:Distribution",

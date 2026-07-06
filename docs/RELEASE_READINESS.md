@@ -26,3 +26,9 @@ In the current sandbox the local Python, Node, dashboard, SBOM, architecture and
 - `zizmor` correctly flags tag-pinned GitHub Actions until the SHA pin plan is resolved.
 
 These are tracked as evidence rather than hidden in prose.
+
+## Source contract posture
+
+`source_contract_validation_summary` is now expected to pass when the reviewed MBS bundle
+is present and landing-page/manual-extract records are intentionally skipped. A warning
+there now means a real contract regression, not a placeholder for missing live evidence.

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from reimburse_atlas.protocols import build_protocol_status, write_protocol_status
-from reimburse_atlas.registry import load_research_questions, project_root
+from reimburse_atlas.registry import load_research_questions, project_root, repo_relative
 
 
 def main() -> None:
@@ -12,7 +12,7 @@ def main() -> None:
     paths = write_protocol_status(
         rows, output_dir=project_root() / "data" / "derived" / "protocols"
     )
-    print({"protocols": len(rows), "paths": [str(path) for path in paths]})
+    print({"protocols": len(rows), "paths": [repo_relative(path) for path in paths]})
 
 
 if __name__ == "__main__":

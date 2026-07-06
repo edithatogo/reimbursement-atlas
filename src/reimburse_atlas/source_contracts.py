@@ -31,19 +31,50 @@ class SourceContract:
     expected_columns: tuple[str, ...]
     required_markers: tuple[str, ...]
     delimiter_candidates: tuple[str, ...] = ("|", ",", "\t")
+    acceptable_column_sets: tuple[tuple[str, ...], ...] = ()
+    acceptable_marker_sets: tuple[tuple[str, ...], ...] = ()
     skip_reason: str | None = None
 
 
 CONTRACTS: dict[str, SourceContract] = {
     "au_mbs_20260701_imap_txt": SourceContract(
         name="MBS item-map TXT contract",
-        expected_columns=("item_number", "category", "schedule_fee", "start_date"),
-        required_markers=("item_number", "schedule_fee"),
+        expected_columns=(
+            "item",
+            "mapped_item",
+            "item_start_date",
+            "item_end_date",
+            "item_reuse_flag",
+            "mapped_item_desc",
+            "mapped_item_category",
+            "mapped_item_group",
+            "mapped_item_subgroup",
+            "mapped_item_subheading",
+            "category_desc",
+            "group_desc",
+            "subgroup_desc",
+            "subheading_desc",
+            "btos",
+            "btos_desc",
+            "modify_bbi_flag",
+        ),
+        acceptable_column_sets=(
+            ("item_number", "category", "schedule_fee", "start_date", "restriction"),
+        ),
+        required_markers=("item", "category"),
     ),
     "au_mbs_20260701_desc_txt": SourceContract(
         name="MBS descriptor TXT contract",
-        expected_columns=("item_number", "descriptor"),
-        required_markers=("item_number", "descriptor"),
+        expected_columns=(
+            "item",
+            "description_start",
+            "description_end",
+            "latest",
+            "description",
+        ),
+        acceptable_column_sets=(("item_number", "descriptor"),),
+        acceptable_marker_sets=(("item", "description"), ("item", "descriptor")),
+        required_markers=(),
     ),
     "au_pbs_api_v3_documentation": SourceContract(
         name="PBS API/CSV extract contract",
@@ -56,6 +87,12 @@ CONTRACTS: dict[str, SourceContract] = {
         expected_columns=("hcpcs", "payment_rate"),
         required_markers=("26CLABQ3",),
         skip_reason="AMA-gated ZIP requires manual licence review before local validation.",
+    ),
+    "us_cms_clfs_26clabq3_page": SourceContract(
+        name="CMS CLFS landing-page contract",
+        expected_columns=("hcpcs", "payment_rate"),
+        required_markers=("26CLABQ3",),
+        skip_reason="Landing-page record; validate the extracted local ZIP instead of the page.",
     ),
     "us_cms_asp_july_2026_payment_limit_page": SourceContract(
         name="CMS ASP payment-limit extract contract",
@@ -172,11 +209,9 @@ def _validate_file(
     if path.suffix.lower() == ".zip":
         return _validate_zip(record, contract, path, byte_size)
     observed_columns = _observed_columns(path, contract.delimiter_candidates)
-    observed_markers = _observed_markers(path, contract.required_markers)
-    missing_columns = tuple(col for col in contract.expected_columns if col not in observed_columns)
-    missing_markers = tuple(
-        marker for marker in contract.required_markers if marker not in observed_markers
-    )
+    observed_markers = _observed_markers(path, _marker_candidates(contract))
+    missing_columns = _missing_columns(contract, observed_columns)
+    missing_markers = _missing_markers(contract, observed_markers)
     issues: list[str] = []
     if missing_columns:
         issues.append(f"missing expected columns: {', '.join(missing_columns)}")
@@ -302,6 +337,40 @@ def _observed_columns(path: Path, delimiters: tuple[str, ...]) -> tuple[str, ...
 def _observed_markers(path: Path, markers: tuple[str, ...]) -> tuple[str, ...]:
     text = path.read_text(encoding="utf-8", errors="replace")[:8192].lower()
     return tuple(marker for marker in markers if marker.lower() in text)
+
+
+def _missing_columns(
+    contract: SourceContract, observed_columns: tuple[str, ...]
+) -> tuple[str, ...]:
+    if all(column in observed_columns for column in contract.expected_columns):
+        return ()
+    for column_set in contract.acceptable_column_sets:
+        if all(column in observed_columns for column in column_set):
+            return ()
+    return tuple(col for col in contract.expected_columns if col not in observed_columns)
+
+
+def _missing_markers(
+    contract: SourceContract, observed_markers: tuple[str, ...]
+) -> tuple[str, ...]:
+    if contract.acceptable_marker_sets:
+        if any(
+            all(marker in observed_markers for marker in marker_set)
+            for marker_set in contract.acceptable_marker_sets
+        ):
+            return ()
+        first_set = contract.acceptable_marker_sets[0]
+        return tuple(marker for marker in first_set if marker not in observed_markers)
+    return tuple(marker for marker in contract.required_markers if marker not in observed_markers)
+
+
+def _marker_candidates(contract: SourceContract) -> tuple[str, ...]:
+    markers: list[str] = list(contract.required_markers)
+    for marker_set in contract.acceptable_marker_sets:
+        for marker in marker_set:
+            if marker not in markers:
+                markers.append(marker)
+    return tuple(markers)
 
 
 def _normalise_column(column: str) -> str:

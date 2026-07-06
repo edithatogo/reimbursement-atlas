@@ -1562,6 +1562,7 @@ api = [
 dev = [
     { name = "bandit" },
     { name = "basedpyright" },
+    { name = "filelock" },
     { name = "hypothesis" },
     { name = "interrogate" },
     { name = "mkdocs-material" },
@@ -1591,6 +1592,7 @@ requires-dist = [
     { name = "defusedxml", specifier = ">=0.7.1" },
     { name = "duckdb", specifier = ">=1.4.0" },
     { name = "fastapi", marker = "extra == 'api'", specifier = ">=0.139.0" },
+    { name = "filelock", marker = "extra == 'dev'", specifier = ">=3.18.0" },
     { name = "httpx", specifier = ">=0.28.0" },
     { name = "hypothesis", marker = "extra == 'dev'", specifier = ">=6.148.0" },
     { name = "hypothesis", marker = "extra == 'test-goblin'", specifier = ">=6.148.0" },

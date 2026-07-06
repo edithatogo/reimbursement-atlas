@@ -1,7 +1,7 @@
 {
   "duckdb_path": "seed_lake.duckdb",
   "parquet_enabled": true,
-  "table_count": 51,
+  "table_count": 56,
   "tables": [
     {
       "csv_path": "source_registry/source_registry.csv",
@@ -32,16 +32,16 @@
       "jsonl_path": "source_versions/source_versions.jsonl",
       "name": "source_versions",
       "parquet_path": "source_versions/source_versions.parquet",
-      "rows": 11,
-      "sha256": "276c9d7d967774f54bb5211c28585c51842b597a8038b92a40f09197ac57d250"
+      "rows": 13,
+      "sha256": "bb07ee0189d0c4ed5a6d8c1e73fbceb03f6a5c80fda41526f9d75129fc645e00"
     },
     {
       "csv_path": "source_files/source_files.csv",
       "jsonl_path": "source_files/source_files.jsonl",
       "name": "source_files",
       "parquet_path": "source_files/source_files.parquet",
-      "rows": 7,
-      "sha256": "9e9c742e34fa93ffb637659daea685cc64bd641f7ed3d636b0d15d4698494893"
+      "rows": 9,
+      "sha256": "639dc89325f51095a484862b907a2b9da52541445ae2cdc351d63825ba2ab60c"
     },
     {
       "csv_path": "source_snapshots/source_snapshots.csv",
@@ -105,7 +105,7 @@
       "name": "roadmap_functions",
       "parquet_path": "roadmap_functions/roadmap_functions.parquet",
       "rows": 28,
-      "sha256": "dc292e9e4f814b9cda84ba3eea5998a7605faa3b846e049102a46d107a0065ed"
+      "sha256": "5e848e3903e69abfcff3434c5bdb4b7c449fcdfb963a29c28a51b667ceb1b7ad"
     },
     {
       "csv_path": "dataset_candidates/dataset_candidates.csv",
@@ -212,20 +212,60 @@
       "sha256": "86f90cba77a5f0bf448aff67bdeb16395b489ee7a5ee19cbf89b3f9b8099ef80"
     },
     {
+      "csv_path": "vertical_gold_standard_mappings/vertical_gold_standard_mappings.csv",
+      "jsonl_path": "vertical_gold_standard_mappings/vertical_gold_standard_mappings.jsonl",
+      "name": "vertical_gold_standard_mappings",
+      "parquet_path": "vertical_gold_standard_mappings/vertical_gold_standard_mappings.parquet",
+      "rows": 2,
+      "sha256": "2d9a95678b2720a2bd009de7d59d268a7b317cd7a78e51a9ff724cb2ed3bfb0d"
+    },
+    {
+      "csv_path": "vertical_negative_controls/vertical_negative_controls.csv",
+      "jsonl_path": "vertical_negative_controls/vertical_negative_controls.jsonl",
+      "name": "vertical_negative_controls",
+      "parquet_path": "vertical_negative_controls/vertical_negative_controls.parquet",
+      "rows": 2,
+      "sha256": "53423a9519ad05637c0f35ff3a451e5e2986c3ab23e9bdef32d6a26f3133a664"
+    },
+    {
+      "csv_path": "vertical_mapping_calibration_cases/vertical_mapping_calibration_cases.csv",
+      "jsonl_path": "vertical_mapping_calibration_cases/vertical_mapping_calibration_cases.jsonl",
+      "name": "vertical_mapping_calibration_cases",
+      "parquet_path": "vertical_mapping_calibration_cases/vertical_mapping_calibration_cases.parquet",
+      "rows": 4,
+      "sha256": "3c63816bec6b6d5c2b95a7e8924bf7f360d6c76654f7af9aa466bf69890a065f"
+    },
+    {
+      "csv_path": "vertical_mapping_calibration_summary/vertical_mapping_calibration_summary.csv",
+      "jsonl_path": "vertical_mapping_calibration_summary/vertical_mapping_calibration_summary.jsonl",
+      "name": "vertical_mapping_calibration_summary",
+      "parquet_path": "vertical_mapping_calibration_summary/vertical_mapping_calibration_summary.parquet",
+      "rows": 1,
+      "sha256": "a59f83e52423f3e85a9a36b66a06fbc0626ce277d25390126294b17a27987534"
+    },
+    {
+      "csv_path": "policy_demonstrators_policy_briefs/policy_demonstrators_policy_briefs.csv",
+      "jsonl_path": "policy_demonstrators_policy_briefs/policy_demonstrators_policy_briefs.jsonl",
+      "name": "policy_demonstrators_policy_briefs",
+      "parquet_path": "policy_demonstrators_policy_briefs/policy_demonstrators_policy_briefs.parquet",
+      "rows": 3,
+      "sha256": "165d23c6ac27764d5fb4d5c19893cd3fea3d2636147b44144c6e386568b088a1"
+    },
+    {
       "csv_path": "repo_workflow_uses/repo_workflow_uses.csv",
       "jsonl_path": "repo_workflow_uses/repo_workflow_uses.jsonl",
       "name": "repo_workflow_uses",
       "parquet_path": "repo_workflow_uses/repo_workflow_uses.parquet",
-      "rows": 57,
-      "sha256": "95d86e8baf26cec720c09afd64f1e354c27d250ba5d45a8c6510b4152a37a8f3"
+      "rows": 66,
+      "sha256": "0b0e95e843f8736be50c200c4daf794f7c653cd7e631fe13ee9e2479ce97e2eb"
     },
     {
       "csv_path": "repo_workflow_policy/repo_workflow_policy.csv",
       "jsonl_path": "repo_workflow_policy/repo_workflow_policy.jsonl",
       "name": "repo_workflow_policy",
       "parquet_path": "repo_workflow_policy/repo_workflow_policy.parquet",
-      "rows": 52,
-      "sha256": "ee25a611b344197aae29c936f6d3981edb3cb0e06745cf8304aeaa72ae27e82c"
+      "rows": 56,
+      "sha256": "6b47846c603301b2fe3a8754107af78e30231005006afa960db75dc354861b37"
     },
     {
       "csv_path": "repo_automation_controls/repo_automation_controls.csv",
@@ -240,16 +280,16 @@
       "jsonl_path": "repo_action_sha_pin_plan/repo_action_sha_pin_plan.jsonl",
       "name": "repo_action_sha_pin_plan",
       "parquet_path": "repo_action_sha_pin_plan/repo_action_sha_pin_plan.parquet",
-      "rows": 54,
-      "sha256": "87b2ccc699253b22269d7e5b81178c2fdab90fb73bcff154312ace6007cc9d36"
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "csv_path": "repo_action_pin_resolution/repo_action_pin_resolution.csv",
       "jsonl_path": "repo_action_pin_resolution/repo_action_pin_resolution.jsonl",
       "name": "repo_action_pin_resolution",
       "parquet_path": "repo_action_pin_resolution/repo_action_pin_resolution.parquet",
-      "rows": 47,
-      "sha256": "1b5aedbbcb9ea19fd1629a3b6232bc15b0561a9987ddafe49db62bd336c595db"
+      "rows": 66,
+      "sha256": "3203208c170b8f44f2a64a815f627b0baf8a33d2f682bb2f0bd1af5e1986ef26"
     },
     {
       "csv_path": "sbom_summary/sbom_summary.csv",
@@ -257,15 +297,15 @@
       "name": "sbom_summary",
       "parquet_path": "sbom_summary/sbom_summary.parquet",
       "rows": 2,
-      "sha256": "5ecb6dfc11756c32a891db8c66e8e5f9c2475808c388a0aeb3c180b7ccfa6b67"
+      "sha256": "9f06eaaac9c7c0d7b7d0c2a96a5973034ddf3378005bb8ddb6ffdb98ae8c5404"
     },
     {
       "csv_path": "local_quality_gates/local_quality_gates.csv",
       "jsonl_path": "local_quality_gates/local_quality_gates.jsonl",
       "name": "local_quality_gates",
       "parquet_path": "local_quality_gates/local_quality_gates.parquet",
-      "rows": 23,
-      "sha256": "78b1b727a67798a976f16443e7557cdf0ce4c8ba6f7a0dff964baf44564d5abd"
+      "rows": 26,
+      "sha256": "f8b8684871129fb314c2cd04fb34f1244192c0a4da1a46335552e13b51cdddc9"
     },
     {
       "csv_path": "local_quality_gate_specs/local_quality_gate_specs.csv",
@@ -280,8 +320,8 @@
       "jsonl_path": "architecture_import_edges/architecture_import_edges.jsonl",
       "name": "architecture_import_edges",
       "parquet_path": "architecture_import_edges/architecture_import_edges.parquet",
-      "rows": 173,
-      "sha256": "8391314dcf80be9bfccb4d805faecb4c3f43581ba86b72b5038968ae218ac4c4"
+      "rows": 196,
+      "sha256": "353dc3739271c15333c69d659ab1ae5b2805e321863d6e17c36103a8d6bab55f"
     },
     {
       "csv_path": "architecture_layer_policy/architecture_layer_policy.csv",
@@ -289,7 +329,7 @@
       "name": "architecture_layer_policy",
       "parquet_path": "architecture_layer_policy/architecture_layer_policy.parquet",
       "rows": 22,
-      "sha256": "fe432f70008cf4d90ebd3ad25add5e3bd29dbfd6b60437e706daccc774a3c6f7"
+      "sha256": "7e62764e37644a3d4625da79429aa62e96ce3967c98dd19d4e128059ae2b05a9"
     },
     {
       "csv_path": "architecture_import_cycles/architecture_import_cycles.csv",
@@ -305,15 +345,15 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 35,
-      "sha256": "c221708734cbfcbebbcddc29d38f853329367d722f908273a7f800c9378714b8"
+      "sha256": "59acd75e5c353d46ff44774433e571ee0c67577b2022e8fd8fa453049ddcb0e8"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
       "jsonl_path": "source_download_plans/source_download_plans.jsonl",
       "name": "source_download_plans",
       "parquet_path": "source_download_plans/source_download_plans.parquet",
-      "rows": 7,
-      "sha256": "3a1ff2890a6e1ef91da5124457e168aa2bdedf58c42edb2338f7545e02ff6806"
+      "rows": 9,
+      "sha256": "8463958f420b7e0294b0e405e9ed4840d078e3ed0e0a115050f3e5d21bae80f1"
     },
     {
       "csv_path": "source_download_attempts/source_download_attempts.csv",
@@ -328,16 +368,16 @@
       "jsonl_path": "source_content_validation/source_content_validation.jsonl",
       "name": "source_content_validation",
       "parquet_path": "source_content_validation/source_content_validation.parquet",
-      "rows": 7,
-      "sha256": "c907e4b7b3d8b5ba52932568fc50a09cada356b352c8effe39f8f96f405a355a"
+      "rows": 9,
+      "sha256": "85ae0c6f906ac2d8f2cb4bc456122cea4d79b721a4cdcb2032834eacf94e726d"
     },
     {
       "csv_path": "source_contract_validation/source_contract_validation.csv",
       "jsonl_path": "source_contract_validation/source_contract_validation.jsonl",
       "name": "source_contract_validation",
       "parquet_path": "source_contract_validation/source_contract_validation.parquet",
-      "rows": 7,
-      "sha256": "cdd0420e0999ee612e8d3e2d78d92695ca9782114b691aab8b1ae2b97be30ce2"
+      "rows": 9,
+      "sha256": "51963b1e032efb25052c8f40c460a7791d0861f4782a406fb8041efeb6d20630"
     },
     {
       "csv_path": "github_project_items/github_project_items.csv",
@@ -385,7 +425,7 @@
       "name": "data_quality_checks",
       "parquet_path": "data_quality_checks/data_quality_checks.parquet",
       "rows": 41,
-      "sha256": "3b6d1916c9ccdbc24a91e54da15689a7cecfc8a2ace804a13179c50e18ef5f44"
+      "sha256": "c70f9485e73a9d258db8f279b82b616c1934d6c718975a134e699cc8e57d1228"
     },
     {
       "csv_path": "evidence_readiness/evidence_readiness.csv",
@@ -401,15 +441,15 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "9e7fef2673131f0749f32672dddf4181214021c118dcba8b1a5d37a9af5aea4a"
+      "sha256": "f1800e4f45156b675be8b4a0f29afdefc603ab055fdfa6e21cbc4caa2ceda03c"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
       "jsonl_path": "data_dictionary/data_dictionary.jsonl",
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
-      "rows": 123,
-      "sha256": "d69a373e361904f8ef510b9a168357e3e7389d5010f585f40df03b9806768bd3"
+      "rows": 139,
+      "sha256": "0cd0b94c8d46f09239756dceb19ee29e979cfb2d1873ba5c28ca7abdc64553e0"
     }
   ]
 }

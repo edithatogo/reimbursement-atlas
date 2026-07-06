@@ -33,12 +33,12 @@ def test_download_plan_uses_hardened_quoted_curl_command(tmp_path: Path) -> None
     plan = build_download_plan(_source_file(), output_dir=tmp_path, preferred_method="curl")
     assert plan.should_execute
     assert "--retry-all-errors" in plan.command
-    assert "--continue-at -" in plan.command
+    assert "--continue-at -" not in plan.command
     assert "--dump-header" in plan.command
     assert "--etag-save" in plan.command
     assert "Accept: application/json" in plan.command
     assert "'$FILE" not in plan.command
-    assert plan.supports_resume
+    assert not plan.supports_resume
     assert plan.captures_headers
     assert plan.metadata_path.endswith(".metadata.json")
 
@@ -47,10 +47,18 @@ def test_download_plan_uses_hardened_wget_command(tmp_path: Path) -> None:
     plan = build_download_plan(_source_file(), output_dir=tmp_path, preferred_method="wget")
     assert plan.should_execute
     assert "wget" in plan.command
-    assert "--continue" in plan.command
+    assert "--continue" not in plan.command
     assert "--server-response" in plan.command
-    assert plan.supports_resume
+    assert not plan.supports_resume
     assert not plan.captures_headers
+
+
+def test_download_plan_can_opt_in_to_resume_support(tmp_path: Path) -> None:
+    plan = build_download_plan(
+        _source_file(), output_dir=tmp_path, preferred_method="curl", resume_downloads=True
+    )
+    assert "--continue-at -" in plan.command
+    assert plan.supports_resume
 
 
 def test_protocol_status_generation_and_outputs(tmp_path: Path) -> None:

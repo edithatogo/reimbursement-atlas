@@ -105,6 +105,11 @@ def test_osf_component_plan_and_outputs(tmp_path: Path) -> None:
     manifest = json.loads((tmp_path / "osf_publication_manifest.json").read_text())
     assert manifest["component_count"] == len(components)
     assert "raw restricted" in manifest["raw_data_policy"]
+    checklist = (tmp_path / "preprint_checklist.md").read_text()
+    assert checklist.startswith("# OSF preprint checklist")
+    assert "Protocol components" in checklist
+    assert "Source-content validation" in checklist
+    assert "genomics_pathology_protocol.md" in checklist
 
 
 def test_research_package_metadata(tmp_path: Path) -> None:
