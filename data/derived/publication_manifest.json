@@ -962,8 +962,8 @@
       "table_name": "sbom_summary"
     },
     {
-      "byte_size": 118210,
-      "checksum_sha256": "5f4592390d9b9997c9a4fbb47eb5ec5d58ae21f4af0c56b226307064b1997248",
+      "byte_size": 118200,
+      "checksum_sha256": "1f1946fed4c670c688a382b22958319a4f12f9986dc158b96c391f6b779584b7",
       "contains_raw_source_payload": false,
       "file_format": "json",
       "licence_gate": "public_reuse_review",
@@ -974,8 +974,8 @@
       "table_name": "cyclonedx-python"
     },
     {
-      "byte_size": 269333,
-      "checksum_sha256": "4534b12295674b995ab2d1e8b818ba4382f9b9c860bc0a33263cea0440e123f4",
+      "byte_size": 269323,
+      "checksum_sha256": "74246f8f0e02470acdd63a130ca7dd3c308de098df5881b827d37a83c15439c9",
       "contains_raw_source_payload": false,
       "file_format": "json",
       "licence_gate": "public_reuse_review",
@@ -1107,7 +1107,7 @@
     },
     {
       "byte_size": 7435,
-      "checksum_sha256": "bf940b0245c9eaf9083ad572f4602477cb76434dab0f1d7aaab7dd4be89de7a0",
+      "checksum_sha256": "59acd75e5c353d46ff44774433e571ee0c67577b2022e8fd8fa453049ddcb0e8",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "public_reuse_review",
@@ -1119,7 +1119,7 @@
     },
     {
       "byte_size": 4312,
-      "checksum_sha256": "813b18404e0a8918225afaffb179aa42fca549c4c69bfb1bcdc9cb306bbfe20b",
+      "checksum_sha256": "532d8b4c3e4f8dd708fab2ab43ca0d0f5dde01a1b518bf345154bf66405dfd69",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
