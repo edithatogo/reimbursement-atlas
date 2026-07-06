@@ -30,6 +30,7 @@ flowchart LR
 |---|---|
 | `au_mbs_20260701_imap_txt` | Current MBS item-map TXT file. |
 | `au_mbs_20260701_desc_txt` | Current MBS descriptor TXT file. |
+| `au_mbs_2010_2019_downloads_page` | MBS archive index for historical releases from 2011 to 2019. |
 | `us_cms_clfs_26clabq3_page` | CMS metadata page for the 2026 Q3 CLFS release. |
 | `us_cms_clfs_26clabq3_ama_zip` | AMA-gated CLFS ZIP download path. |
 | `au_pbs_api_v3_documentation` | PBS API/CSV distribution documentation and endpoint family. |
