@@ -218,6 +218,11 @@ def _resume_failure(stderr: str) -> bool:
     )
 
 
+def _compact_summary(text: str) -> str:
+    """Collapse noisy multi-line command output into a single CSV-safe line."""
+    return " ".join(text.split())
+
+
 def _download_args(
     record: SourceFileRecord,
     target: Path,
@@ -358,9 +363,12 @@ def attempt_download(
         error_summary = "Downloaded to ignored local raw storage."
     else:
         status = _classify_failure(completed.stderr + completed.stdout)
-        error_summary = (completed.stderr or completed.stdout or "Download command failed.").strip()
+        error_summary = _compact_summary(
+            completed.stderr or completed.stdout or "Download command failed."
+        )
         if target_path.exists() and bytes_downloaded == 0:
             target_path.unlink()
+    error_summary = _compact_summary(error_summary)
     _write_attempt_metadata(
         record=record,
         plan=plan,
