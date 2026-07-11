@@ -30,3 +30,19 @@ gates:
       - SBOM generated
       - checksums generated
       - dataset card updated
+  - id: continuous-security-assurance
+    applies_to: [".github/**", "pyproject.toml", "uv.lock", "apps/dashboard/package-lock.json"]
+    required_checks:
+      - actionlint passes
+      - zizmor medium-and-higher findings are blocking
+      - full Git history secret scan passes
+      - dependency review and CodeQL pass
+      - release artefacts reproduce byte-for-byte
+  - id: harness-assurance
+    applies_to: ["src/**", "tests/**", "scripts/**"]
+    required_checks:
+      - property harness passes
+      - integration harness passes
+      - end-to-end harness passes
+      - deterministic regeneration leaves a clean worktree
+      - mutation harness is bounded by timeout and concurrency cancellation

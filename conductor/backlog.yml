@@ -234,3 +234,31 @@ epics:
         labels: ["type:project", "type:repo-automation", "phase:handoff"]
       - title: Ensure continuation agents record blockers rather than marking unavailable gates green
         labels: ["type:quality-gate", "type:release", "phase:handoff"]
+
+  - id: SEC-020
+    title: Continuous security assurance and branch enforcement
+    phase: hardening
+    workstream: security
+    priority: must
+    issues:
+      - title: Make actionlint and zizmor blocking protected-branch checks
+        labels: ["type:security", "type:supply-chain", "phase:hardening"]
+      - title: Scan complete Git history for committed secrets
+        labels: ["type:security", "phase:hardening"]
+      - title: Verify reproducible Python release artefacts in CI
+        labels: ["type:supply-chain", "type:release", "phase:hardening"]
+      - title: Require security and harness contexts in branch protection
+        labels: ["type:security", "type:repo-automation", "phase:hardening"]
+
+  - id: HARNESS-021
+    title: Layered harness engineering and deterministic regeneration
+    phase: hardening
+    workstream: quality
+    priority: must
+    issues:
+      - title: Run property integration and end-to-end harnesses as separate CI lanes
+        labels: ["type:test", "type:automation", "phase:hardening"]
+      - title: Enforce deterministic generated-output regeneration
+        labels: ["type:test", "type:reproducibility", "phase:hardening"]
+      - title: Bound mutation testing with timeouts and cancellation
+        labels: ["type:test", "type:mutation", "phase:hardening"]

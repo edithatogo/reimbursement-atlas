@@ -1,0 +1,72 @@
+name: Continuous security assurance
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "47 2 * * 4"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-assurance-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - uses: rhysd/actionlint@03d0035246f3e81f36aed592ffb4bebf33a03106 # v1.7.7
+
+  secret-history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2.3.9
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+  reproducible-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SOURCE_DATE_EPOCH: "0"
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
+      - name: Build twice from the same locked source
+        run: |
+          set -euo pipefail
+          uv build --out-dir dist-a
+          uv build --out-dir dist-b
+          find dist-a -type f -maxdepth 1 -exec basename {} \; | sort > dist-a-files.txt
+          find dist-b -type f -maxdepth 1 -exec basename {} \; | sort > dist-b-files.txt
+          diff -u dist-a-files.txt dist-b-files.txt
+          while IFS= read -r artifact; do
+            cmp "dist-a/${artifact}" "dist-b/${artifact}"
+          done < dist-a-files.txt
+          sha256sum dist-a/* > reproducible-build-sha256.txt
+      - name: Upload reproducibility evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: reproducible-build-evidence
+          path: |
+            dist-a-files.txt
+            dist-b-files.txt
+            reproducible-build-sha256.txt
+          retention-days: 30
+

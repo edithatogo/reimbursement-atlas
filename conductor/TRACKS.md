@@ -3,8 +3,8 @@ These tracks are generated/maintained alongside `data/seed/conductor_tracks.*` a
 
 ## [~] track_runtime_mojo_python314: Mojo-first runtime and Python 3.14 compatibility
 
-Priority: **must**  
-Phase: `hardening`  
+Priority: **must**
+Phase: `hardening`
 Workstream: `runtime`
 
 Goal: Make Mojo the explicit performance-kernel layer while targeting Python 3.14 for orchestration and packaging once CI can install it.
@@ -115,8 +115,8 @@ Tracked functions/issues:
 
 ## [~] track_ci_cd_supply_chain: CI/CD and supply-chain hardening
 
-Priority: **must**  
-Phase: `hardening`  
+Priority: **must**
+Phase: `hardening`
 Workstream: `automation`
 
 Goal: Make release gates enforceable through GitHub Actions, action SHA pinning, SBOMs, attestations, Scorecard, CodeQL, dependency review and zizmór.
@@ -166,3 +166,27 @@ This track makes source-content validation, data-quality checks and research-que
 - **Source contracts:** source-specific validation between generic download checks and parser execution.
 - **GitHub Project export:** generated project rows for tracks, issue drafts, priorities, milestones and views.
 - **Final handoff:** environment-dependent tasks with exact commands and unblock conditions.
+
+## [~] track_continuous_security_assurance: Continuous security assurance and branch enforcement
+
+Priority: **must**
+Phase: `hardening`
+Workstream: `security`
+
+Deliverables:
+- blocking actionlint and zizmor checks
+- full-history secret scanning
+- reproducible package-build verification
+- required protected-branch security contexts
+
+## [~] track_harness_engineering: Layered harness engineering and deterministic regeneration
+
+Priority: **must**
+Phase: `hardening`
+Workstream: `quality`
+
+Deliverables:
+- bounded property, integration and end-to-end test matrix
+- deterministic generated-output verification
+- bounded mutation testing
+- retained harness evidence and failure diagnostics

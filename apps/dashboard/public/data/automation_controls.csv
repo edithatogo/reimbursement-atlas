@@ -4,7 +4,11 @@ quality,.github/workflows/ci.yml,dashboard_build,hardened,Add deployment preview
 security,.github/workflows/security.yml,codeql,hardened,Tune CodeQL config as parser/API surfaces mature.,implemented
 security,.github/workflows/security.yml,dependency_review,hardened,Block high-severity dependency changes once real-source ingestion begins.,implemented
 supply_chain,.github/workflows/scorecard.yml,openssf_scorecard,advanced,Upload SARIF/code-scanning results for public repositories.,implemented
-supply_chain,.github/workflows/workflow-security.yml,zizmor_workflow_lint,advanced,Move from advisory to blocking once action SHA pinning is complete.,implemented
+supply_chain,.github/workflows/workflow-security.yml,zizmor_workflow_lint,advanced,Keep medium-and-higher findings blocking and retain SARIF evidence.,implemented
+supply_chain,.github/workflows/security-assurance.yml,actionlint_workflow_validation,advanced,Keep actionlint SHA-pinned and required by branch protection.,implemented
+security,.github/workflows/security-assurance.yml,secret_history_scan,advanced,Retain full-history scanning and rotate any credential before suppressing findings.,implemented
+supply_chain,.github/workflows/security-assurance.yml,reproducible_build_verification,advanced,Require byte-identical wheels and source distributions from the same locked source.,implemented
+quality,.github/workflows/harness-assurance.yml,layered_harness_assurance,advanced,"Keep property, integration, E2E and deterministic-regeneration lanes bounded.",implemented
 supply_chain,.github/workflows/release.yml,artifact_attestations,advanced,Attest all release bundles and dashboard artefacts.,implemented
 supply_chain,data/derived/sbom/*.json,sbom_generation,advanced,Attach SBOMs to releases and archive publication manifests with attestations.,planned
 repo_automation,renovate.json,renovate,hardened,Add automerge rules only after mutation/security gates are stable.,implemented

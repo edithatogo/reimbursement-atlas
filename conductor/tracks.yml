@@ -56,3 +56,15 @@ tracks:
     phase: hardening
     workstream: data_quality
     goal: "Make downloaded source validation, table-level data-quality checks and research-question linkages explicit release gates before policy outputs are trusted."
+  - id: track_continuous_security_assurance
+    title: "Continuous security assurance and branch enforcement"
+    priority: must
+    phase: hardening
+    workstream: security
+    goal: "Continuously block workflow vulnerabilities, committed-secret history, unsafe dependency changes and non-reproducible release artefacts."
+  - id: track_harness_engineering
+    title: "Layered harness engineering and deterministic regeneration"
+    priority: must
+    phase: hardening
+    workstream: quality
+    goal: "Run bounded unit, property, integration, end-to-end, mutation and deterministic-regeneration harnesses with auditable failure evidence."
