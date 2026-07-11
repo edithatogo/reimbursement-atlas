@@ -140,6 +140,6 @@ Immediate focus:
 
 1. Validate ignored live-source files and produce licence-reviewed derived-only bundles.
 2. Complete CMS CLFS/CPT derived-field licence review and mapping adjudication.
-3. Implement consumer-side attestation verification.
+3. Maintain consumer-side attestation verification for every tagged release.
 4. Complete OSF credential-provider, idempotent sync and registration-drift issues without weakening human approval gates.
 5. Promote analyses from pipeline prototypes only after reviewed sources and signed protocols exist.

@@ -113,7 +113,7 @@ Tracked functions/issues:
 - `func_mapping_review_ui` — Build dashboard mapping adjudication views (prototype, dashboard)
 - `func_gold_standard_mappings` — Add mapping gold-standard and negative-control datasets (planned, data_pipeline)
 
-## [~] track_ci_cd_supply_chain: CI/CD and supply-chain hardening
+## [x] track_ci_cd_supply_chain: CI/CD and supply-chain hardening
 
 Priority: **must**
 Phase: `hardening`
