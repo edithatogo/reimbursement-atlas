@@ -256,8 +256,8 @@
       "jsonl_path": "repo_workflow_uses/repo_workflow_uses.jsonl",
       "name": "repo_workflow_uses",
       "parquet_path": "repo_workflow_uses/repo_workflow_uses.parquet",
-      "rows": 77,
-      "sha256": "b8d512c535862d753e26929c5cd6ff19d8581960e810d161acb3a6d91044971f"
+      "rows": 79,
+      "sha256": "2fb5dedce08850793bc473460c9dc2df38e38de7e5dc707fc97351a373357465"
     },
     {
       "csv_path": "repo_workflow_policy/repo_workflow_policy.csv",
@@ -321,7 +321,7 @@
       "name": "architecture_import_edges",
       "parquet_path": "architecture_import_edges/architecture_import_edges.parquet",
       "rows": 196,
-      "sha256": "353dc3739271c15333c69d659ab1ae5b2805e321863d6e17c36103a8d6bab55f"
+      "sha256": "03fa29359db82428193cab87bcffc9b66377e6dcce8bcbb8b0c59d31e1f9e453"
     },
     {
       "csv_path": "architecture_layer_policy/architecture_layer_policy.csv",
@@ -345,7 +345,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 35,
-      "sha256": "0ef2d9090b6ffc5e7e0ff1102cadf401d450508c4a7d930d0da63db071e8d844"
+      "sha256": "9b702e3f509c4f5d1fe2bfdd31584312eec492f57eeee1dc4a31970a45451ba5"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -417,7 +417,7 @@
       "name": "research_dataset_linkages",
       "parquet_path": "research_dataset_linkages/research_dataset_linkages.parquet",
       "rows": 48,
-      "sha256": "5a963a3ac2f11845017102456c3211cab5c22a472854e29228c92735a4341a61"
+      "sha256": "c3a00a04369115ef701d2a488334c729d162764c9409dbbbe914adcb8190d224"
     },
     {
       "csv_path": "data_quality_checks/data_quality_checks.csv",
@@ -433,7 +433,7 @@
       "name": "evidence_readiness",
       "parquet_path": "evidence_readiness/evidence_readiness.parquet",
       "rows": 5,
-      "sha256": "5332ab6bb6dcad90daf635d98879855a6848de58d6e2c085ef56f516004fdfa0"
+      "sha256": "5c9b15df22c37dcff5d433660d657ad730db542a0f2027e87397ecd5aa481498"
     },
     {
       "csv_path": "source_drift_report/source_drift_report.csv",
@@ -449,7 +449,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 140,
-      "sha256": "43718f2b871a1eae46eb9869c5bd5fdd561ddc503e53ea280645ba1e7e10f619"
+      "sha256": "29367e4c963da73610e97944cef201f9006caa55c4a9f5cdf36e67b76f1d1374"
     }
   ]
 }
