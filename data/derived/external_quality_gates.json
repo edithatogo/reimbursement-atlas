@@ -1,20 +1,20 @@
 {
   "records": [
     {
-      "command": "bash -lc tmpdir=$(mktemp -d) && reqfile=$(mktemp) && uv run --all-extras python -m pip freeze | grep -vE \"^(-e )?git\\+https://github.com/edithatogo/reimbursement-atlas\\.git|^(reimbursement-atlas|reimbursement_atlas)(==| @ )|git\\+file:\" | grep -v \"file:///Volumes/\" > \"$reqfile\" && uv run --all-extras python -m venv \"$tmpdir\" && \"$tmpdir/bin/python\" -m pip install --upgrade pip > /dev/null && \"$tmpdir/bin/python\" -m pip install pip-audit -q && \"$tmpdir/bin/python\" -m pip install -r \"$reqfile\" > /dev/null && \"$tmpdir/bin/pip-audit\" --strict -r \"$reqfile\"; status=$?; rm -rf \"$tmpdir\" \"$reqfile\"; exit $status",
-      "cwd": "/Volumes/PortableSSD/GitHub/med-billing/reimbursement-atlas-conductor",
-      "generated_at": "2026-07-06T11:00:55.421977+00:00",
+      "command": "bash -lc tmpdir=$(mktemp -d) && reqfile=$(mktemp) && uv run --all-extras python -m pip freeze | grep -vE \"^(-e )?git\\+https://github.com/edithatogo/reimbursement-atlas\\.git|^(reimbursement-atlas|reimbursement_atlas)(==| @ )|git\\+file:\" | grep -v \" @ file://\" > \"$reqfile\" && uv run --all-extras python -m venv \"$tmpdir\" && \"$tmpdir/bin/python\" -m pip install --upgrade pip > /dev/null && \"$tmpdir/bin/python\" -m pip install pip-audit -q && \"$tmpdir/bin/python\" -m pip install -r \"$reqfile\" > /dev/null && \"$tmpdir/bin/pip-audit\" --strict -r \"$reqfile\"; status=$?; rm -rf \"$tmpdir\" \"$reqfile\"; exit $status",
+      "cwd": ".",
+      "generated_at": "1970-01-01T00:00:00+00:00",
       "id": "pip_audit_strict",
       "notes": "Gate passed in the active runtime.",
       "outcome": "passed",
       "return_code": 0,
-      "stderr_excerpt": "WARNING: Cache entry deserialization failed, entry ignored WARNING: Cache entry deserialization failed, entry ignored WARNING: Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry dese\u2026",
+      "stderr_excerpt": "WARNING: Cache entry deserialization failed, entry ignored WARNING: Cache entry deserialization failed, entry ignored WARNING: Cache entry deserialization failed, entry ignored No known vulnerabilities found",
       "stdout_excerpt": ""
     },
     {
       "command": "npm audit --omit=dev --audit-level=moderate",
-      "cwd": "/Volumes/PortableSSD/GitHub/med-billing/reimbursement-atlas-conductor/apps/dashboard",
-      "generated_at": "2026-07-06T11:02:09.096434+00:00",
+      "cwd": "apps/dashboard",
+      "generated_at": "1970-01-01T00:00:00+00:00",
       "id": "npm_audit_dashboard",
       "notes": "Gate passed in the active runtime.",
       "outcome": "passed",
@@ -24,8 +24,8 @@
     },
     {
       "command": "bash -lc pixi --version",
-      "cwd": "/Volumes/PortableSSD/GitHub/med-billing/reimbursement-atlas-conductor",
-      "generated_at": "2026-07-06T11:02:10.890817+00:00",
+      "cwd": ".",
+      "generated_at": "1970-01-01T00:00:00+00:00",
       "id": "pixi_available",
       "notes": "Gate passed in the active runtime.",
       "outcome": "passed",
@@ -35,8 +35,8 @@
     },
     {
       "command": "bash -lc curl -I -fsSL https://pixi.sh/install.sh >/dev/null",
-      "cwd": "/Volumes/PortableSSD/GitHub/med-billing/reimbursement-atlas-conductor",
-      "generated_at": "2026-07-06T11:02:11.023262+00:00",
+      "cwd": ".",
+      "generated_at": "1970-01-01T00:00:00+00:00",
       "id": "pixi_installer_reachable",
       "notes": "Gate passed in the active runtime.",
       "outcome": "passed",
@@ -46,19 +46,19 @@
     },
     {
       "command": "uv tool run zizmor --min-severity medium .github",
-      "cwd": "/Volumes/PortableSSD/GitHub/med-billing/reimbursement-atlas-conductor",
-      "generated_at": "2026-07-06T11:02:11.191256+00:00",
+      "cwd": ".",
+      "generated_at": "1970-01-01T00:00:00+00:00",
       "id": "zizmor_workflow_security",
       "notes": "Gate passed in the active runtime.",
       "outcome": "passed",
       "return_code": 0,
       "stderr_excerpt": "",
-      "stdout_excerpt": "No findings to report. Good job! (1 ignored, 50 suppressed)"
+      "stdout_excerpt": "No findings to report. Good job! (1 ignored, 48 suppressed)"
     },
     {
       "command": "uv run python scripts/make_repo_automation_matrix.py",
-      "cwd": "/Volumes/PortableSSD/GitHub/med-billing/reimbursement-atlas-conductor",
-      "generated_at": "2026-07-06T11:02:11.424978+00:00",
+      "cwd": ".",
+      "generated_at": "1970-01-01T00:00:00+00:00",
       "id": "repo_automation_matrix",
       "notes": "Gate passed in the active runtime.",
       "outcome": "passed",
@@ -68,13 +68,13 @@
     },
     {
       "command": "uv tool run --from mojo-compiler mojo --version",
-      "cwd": "/Volumes/PortableSSD/GitHub/med-billing/reimbursement-atlas-conductor",
-      "generated_at": "2026-07-06T11:02:17.234760+00:00",
+      "cwd": ".",
+      "generated_at": "1970-01-01T00:00:00+00:00",
       "id": "mojo_available_uv_tool",
       "notes": "Gate passed in the active runtime.",
       "outcome": "passed",
       "return_code": 0,
-      "stderr_excerpt": "WARN Broken interpreter cache entry at <home>/.cache/uv/interpreter-v4/ac57ab614d7f56de/0b5d53d341ef936d.msgpack, removing: wrong msgpack marker FixArray(3)",
+      "stderr_excerpt": "",
       "stdout_excerpt": "Mojo 0.26.2.0 (d627decc)"
     }
   ],

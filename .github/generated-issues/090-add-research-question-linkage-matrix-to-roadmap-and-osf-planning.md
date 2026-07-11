@@ -11,7 +11,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] A research-linkage matrix exists for each protocolled research question.
+- [ ] Scope is confirmed.
 - [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence cover sources, datasets, mappings and outputs.
-- [ ] Documentation or Conductor context shows how the matrix feeds OSF planning.
+- [ ] Tests or validation evidence are defined.
+- [ ] Documentation or Conductor context is updated.

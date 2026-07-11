@@ -47,6 +47,20 @@ def test_public_metadata_path_scanner_flags_absolute_local_path(tmp_path: Path) 
     assert violations == ["data/derived/bundle/source_snapshots.jsonl"]
 
 
+def test_public_metadata_path_scanner_flags_machine_paths_in_any_field(tmp_path: Path) -> None:
+    """Generated gate output must not expose its build machine checkout."""
+    metadata = tmp_path / "data" / "derived" / "quality"
+    metadata.mkdir(parents=True)
+    leaked = metadata / "gates.json"
+    leaked.write_text('{"cwd": "/Users/example/project"}\n', encoding="utf-8")
+
+    violations = disallowed_public_metadata_values(
+        tmp_path,
+        ["data/derived/quality/gates.json"],
+    )
+    assert violations == ["data/derived/quality/gates.json"]
+
+
 def test_candidate_public_metadata_path_is_narrow() -> None:
     """Docs can mention local cache examples without tripping generated-data scans."""
     assert candidate_public_metadata_path("data/derived/x.jsonl")
