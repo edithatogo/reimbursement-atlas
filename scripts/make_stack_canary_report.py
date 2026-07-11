@@ -6,6 +6,22 @@ import argparse
 import json
 from datetime import UTC, datetime
 from pathlib import Path
+from typing import Any, cast
+
+
+def _load_raw(raw_json: Path) -> dict[str, dict[str, Any]]:
+    if not raw_json.exists():
+        return {}
+    payload_obj: object = json.loads(raw_json.read_text(encoding="utf-8"))
+    if not isinstance(payload_obj, dict):
+        return {}
+    payload = cast("dict[object, object]", payload_obj)
+    raw: dict[str, dict[str, Any]] = {}
+    for name_obj, value_obj in payload.items():
+        if not isinstance(name_obj, str) or not isinstance(value_obj, dict):
+            continue
+        raw[name_obj] = cast("dict[str, Any]", value_obj)
+    return raw
 
 
 def main() -> None:
@@ -16,7 +32,7 @@ def main() -> None:
     parser.add_argument("--issue-body", type=Path, required=True)
     args = parser.parse_args()
 
-    raw = json.loads(args.raw_json.read_text(encoding="utf-8")) if args.raw_json.exists() else {}
+    raw = _load_raw(args.raw_json)
     entries = [
         {
             "name": name,
@@ -26,7 +42,6 @@ def main() -> None:
             "location": value.get("location"),
         }
         for name, value in raw.items()
-        if isinstance(value, dict)
     ]
     summary = {
         "generated_at": datetime.now(UTC).isoformat(),
@@ -35,7 +50,10 @@ def main() -> None:
         "dashboard_dependencies_current": not entries,
     }
     args.summary_json.parent.mkdir(parents=True, exist_ok=True)
-    args.summary_json.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    args.summary_json.write_text(
+        json.dumps(summary, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     body_lines = [
         "# Stack canary drift",
@@ -51,7 +69,10 @@ def main() -> None:
         "",
     ]
     body_lines.extend(
-        f"- {item['name']}: current={item['current']} wanted={item['wanted']} latest={item['latest']}"
+        (
+            f"- {item['name']}: current={item['current']} "
+            f"wanted={item['wanted']} latest={item['latest']}"
+        )
         for item in entries
     )
     args.issue_body.write_text("\n".join(body_lines).rstrip() + "\n", encoding="utf-8")
