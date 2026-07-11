@@ -37,8 +37,8 @@ jobs:
       - name: Install and verify pinned OSF CLI module
         run: |
           set -euo pipefail
-          go install github.com/edithatogo/osf-cli-go/cmd/osf@v0.3.2
-          go version -m "$(go env GOPATH)/bin/osf" | grep -F $'mod\tgithub.com/edithatogo/osf-cli-go\tv0.3.2'
+          go install github.com/edithatogo/osf-cli-go/cmd/osf@v0.3.1
+          go version -m "$(go env GOPATH)/bin/osf" | grep -F $'mod\tgithub.com/edithatogo/osf-cli-go\tv0.3.1'
           "$(go env GOPATH)/bin/osf" --help >/dev/null
       - name: Verify OSF synchronization remains fail closed
         run: |
@@ -81,7 +81,7 @@ jobs:
           set -euo pipefail
           test -n "$OSF_TOKEN"
           test -n "$OSF_PROJECT_ID"
-          go install github.com/edithatogo/osf-cli-go/cmd/osf@v0.3.2
+          go install github.com/edithatogo/osf-cli-go/cmd/osf@v0.3.1
           "$(go env GOPATH)/bin/osf" whoami --output json >/dev/null
           test "$(jq -s '[.[] | select(.publish_allowed == true)] | length' data/derived/osf/sync_manifest.jsonl)" -gt 0
           echo "Remote mutation remains blocked until reviewed sync-manifest rows are explicitly approved."

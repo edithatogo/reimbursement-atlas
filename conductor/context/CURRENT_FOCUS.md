@@ -134,12 +134,12 @@ main release path.
 
 Action references are SHA-pinned, `zizmor` medium findings are blocking, strict branch protection requires 20 quality/security/harness checks, and full-history secret scanning plus reproducible-build verification pass. The continuous-security and harness-engineering tracks are complete. CI/CD remains open only for consumer-side attestation verification and continuing canary maintenance.
 
-`osf-cli-go` is pinned at `v0.3.2` for automation and verified through Go module provenance. OSF sync manifests are checksum-bearing and fail closed. Remote OSF mutation, registration and public release remain blocked by human methods, domain, licence and governance review and by the absence of manifest-native remote path reconciliation.
+`osf-cli-go` is pinned at `v0.3.1` for automation and verified through Go module provenance because its current `--version` output incorrectly reports `0.0.0-dev` (upstream issue 28). OSF sync manifests are checksum-bearing and fail closed. Remote OSF mutation, registration and public release remain blocked by human methods, domain, licence and governance review and by the absence of manifest-native remote path reconciliation.
 
 Immediate focus:
 
 1. Validate ignored live-source files and produce licence-reviewed derived-only bundles.
 2. Complete CMS CLFS/CPT derived-field licence review and mapping adjudication.
-3. Maintain consumer-side attestation verification for every tagged release.
+3. Implement consumer-side attestation verification.
 4. Complete OSF credential-provider, idempotent sync and registration-drift issues without weakening human approval gates.
 5. Promote analyses from pipeline prototypes only after reviewed sources and signed protocols exist.
