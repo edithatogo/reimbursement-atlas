@@ -369,7 +369,7 @@
       "name": "source_content_validation",
       "parquet_path": "source_content_validation/source_content_validation.parquet",
       "rows": 9,
-      "sha256": "939c1c162d491023875629dcb68451cdffeff81ca95600f2d5428a74e70656d3"
+      "sha256": "85ae0c6f906ac2d8f2cb4bc456122cea4d79b721a4cdcb2032834eacf94e726d"
     },
     {
       "csv_path": "source_contract_validation/source_contract_validation.csv",
@@ -377,7 +377,7 @@
       "name": "source_contract_validation",
       "parquet_path": "source_contract_validation/source_contract_validation.parquet",
       "rows": 9,
-      "sha256": "5a3eab5d5447a1670021a4c53b8fa6dd7e35394d2aab9a8cfe636c4c29d55626"
+      "sha256": "51963b1e032efb25052c8f40c460a7791d0861f4782a406fb8041efeb6d20630"
     },
     {
       "csv_path": "github_project_items/github_project_items.csv",
@@ -393,7 +393,7 @@
       "name": "final_handoff_tasks",
       "parquet_path": "final_handoff_tasks/final_handoff_tasks.parquet",
       "rows": 8,
-      "sha256": "e4764bd8c6e290a1035e0cb6f366e5df2795fd2b8ea956588cb55a35799cc82b"
+      "sha256": "f43bf91cab12aa4d18b205fd5050d4fc56e81880cbce84bcfe997e0a0bf88879"
     },
     {
       "csv_path": "osf_component_plan/osf_component_plan.csv",
@@ -441,7 +441,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "32620acc3f72d1546a95580a6ff2238ca13b3e369c704ae62881a653092fe1f7"
+      "sha256": "bd6397a2d31eac4262fa5ea9e1271778c5db3eec361bf4bbbf3f0aa0bf61271a"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
