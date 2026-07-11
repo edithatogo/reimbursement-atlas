@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import asdict, dataclass
+from hashlib import sha256
 from pathlib import Path
 
 from reimburse_atlas.io import write_csv, write_jsonl
@@ -172,7 +173,7 @@ def write_osf_outputs(
     components: list[OsfComponentPlan],
     *,
     output_dir: Path,
-) -> tuple[Path, Path, Path]:
+) -> tuple[Path, Path, Path, Path]:
     """Write OSF component plan files and a manifest."""
     output_dir.mkdir(parents=True, exist_ok=True)
     rows = [component.as_row() for component in components]
@@ -196,4 +197,25 @@ def write_osf_outputs(
     )
     checklist_path = output_dir / "preprint_checklist.md"
     checklist_path.write_text(build_osf_preprint_checklist(components), encoding="utf-8")
-    return jsonl_path, csv_path, manifest_path
+    sync_rows = [_sync_row(component, output_dir.parents[2]) for component in components]
+    sync_manifest_path = write_jsonl(sync_rows, output_dir / "sync_manifest.jsonl")
+    return jsonl_path, csv_path, manifest_path, sync_manifest_path
+
+
+def _sync_row(component: OsfComponentPlan, root: Path) -> dict[str, object]:
+    local_path = root / component.local_path
+    is_file = local_path.is_file()
+    content = local_path.read_bytes() if is_file else b""
+    return {
+        "id": component.id,
+        "local_path": component.local_path,
+        "osf_path": component.osf_path,
+        "exists": is_file,
+        "byte_size": len(content),
+        "sha256": sha256(content).hexdigest() if is_file else None,
+        "required_before_release": component.required_before_release,
+        "publish_allowed": False,
+        "blocked_reason": (
+            "Signed human methods, domain, licence and governance review is required."
+        ),
+    }

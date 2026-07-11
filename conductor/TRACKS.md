@@ -167,7 +167,7 @@ This track makes source-content validation, data-quality checks and research-que
 - **GitHub Project export:** generated project rows for tracks, issue drafts, priorities, milestones and views.
 - **Final handoff:** environment-dependent tasks with exact commands and unblock conditions.
 
-## [~] track_continuous_security_assurance: Continuous security assurance and branch enforcement
+## [x] track_continuous_security_assurance: Continuous security assurance and branch enforcement
 
 Priority: **must**
 Phase: `hardening`
@@ -179,7 +179,7 @@ Deliverables:
 - reproducible package-build verification
 - required protected-branch security contexts
 
-## [~] track_harness_engineering: Layered harness engineering and deterministic regeneration
+## [x] track_harness_engineering: Layered harness engineering and deterministic regeneration
 
 Priority: **must**
 Phase: `hardening`

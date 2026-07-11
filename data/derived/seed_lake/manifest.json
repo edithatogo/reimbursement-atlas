@@ -448,8 +448,8 @@
       "jsonl_path": "data_dictionary/data_dictionary.jsonl",
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
-      "rows": 139,
-      "sha256": "c25360380ca46a9fdd7ce11d60e6588e3191032a05e0c0e81e7b5983c2f99355"
+      "rows": 140,
+      "sha256": "6f4e3928f24c386bf375d3b2dd15837133b12c39dc15684b2d29910bf7464152"
     }
   ]
 }

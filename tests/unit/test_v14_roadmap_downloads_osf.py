@@ -112,6 +112,15 @@ def test_osf_component_plan_and_outputs(tmp_path: Path) -> None:
     assert "genomics_pathology_protocol.md" in checklist
 
 
+def test_osf_sync_manifest_is_checksum_bearing_and_fail_closed(tmp_path: Path) -> None:
+    components = build_osf_component_plan(load_research_questions(), load_output_artifact_plans())
+    paths = write_osf_outputs(components, output_dir=tmp_path / "data/derived/osf")
+    sync_rows = [json.loads(line) for line in paths[3].read_text(encoding="utf-8").splitlines()]
+    assert sync_rows
+    assert all(row["publish_allowed"] is False for row in sync_rows)
+    assert all("blocked_reason" in row for row in sync_rows)
+
+
 def test_research_package_metadata(tmp_path: Path) -> None:
     paths = write_research_package(tmp_path)
     assert all(path.exists() for path in paths)
