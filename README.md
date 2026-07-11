@@ -10,7 +10,7 @@ Public reimbursement schedules encode policy choices: what gets paid, who can ac
 
 The atlas is designed to answer questions like:
 
-- Do schedules reward procedural activity more than cognitive care?
+- How do selected, matched schedule-amount relativities differ between procedural and cognitive care?
 - Does public genomic test coverage translate into diffusion?
 - Which systems are transparent versus merely public?
 - Where do coverage restrictions create inequity or access delays?

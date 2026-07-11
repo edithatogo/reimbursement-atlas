@@ -16,3 +16,16 @@ Publication rules:
 2. Do not upload raw restricted source files unless a licence review explicitly permits it.
 3. Use OSF components to separate protocols, reports, appendices, preprints and reproducibility packages.
 4. Keep OSF publication token-gated and dry-run by default in CI.
+
+## Registration lifecycle
+
+Private OSF components may support collaborative drafting, but neither upload nor simulated review constitutes registration approval. Registration and public publication fail closed until signed methods, domain, licence and governance reviews are recorded and reviewed-source and source-contract gates pass.
+
+1. Freeze protocol version, source cutoff, analysis manifest, code commit and expected outputs.
+2. Record contributor roles, accountable approvers and signed decisions outside generated agent output.
+3. Create an immutable registration only after approval; preserve its identifier and timestamp.
+4. Record amendments, deviations and withdrawals without overwriting prior versions.
+5. Apply embargo and access controls explicitly.
+6. Verify remote hashes and component placement after upload; keep tokens outside files and logs.
+
+See `docs/reviews/SIMULATED_MULTI_AGENT_PROTOCOL_REVIEW_2026-07-11.md` for the advisory review and unresolved human gates.

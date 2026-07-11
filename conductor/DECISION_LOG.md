@@ -85,6 +85,14 @@ Rationale: The repo has many generated governance layers. A continuation prompt 
 
 Consequence: Future bundle exports should include `conductor/handoff/CODEX_IMPORT_PROMPT.md`, and generated GitHub issue/project outputs should include the handoff itself as a tracked workstream.
 
+## 2026-07-11 — Continuous security assurance and layered harnesses
+
+Decision: Promote workflow analysis from advisory to blocking and add separate continuous-security and harness-assurance workflows.
+
+Rationale: SHA-pinned Actions and passing tests are necessary but insufficient. Protected branches need blocking workflow lint/security checks, full-history secret scanning, reproducible-build evidence, bounded layered test harnesses and deterministic regeneration.
+
+Consequences: `zizmor` medium-and-higher findings fail CI, actionlint and Gitleaks run independently, package builds are compared byte-for-byte, and property/integration/E2E/mutation harnesses have explicit timeouts and concurrency cancellation. Publication workflows remain separately environment- and human-gated.
+
 ## 2026-07-06 — Hugging Face targets provisioned, OSF remains gated
 
 Live Hugging Face publication targets were provisioned from the repository during Chrome-backed verification:

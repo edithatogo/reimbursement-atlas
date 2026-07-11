@@ -6,7 +6,7 @@ Public reimbursement schedules are often treated as if they were directly compar
 The protocol is deliberately conservative. It separates source acquisition from derived publication, distinguishes price from coverage, and requires human review before cross-system mappings are used as policy evidence. Raw source files, restricted descriptors, proprietary terminology releases, confidential net prices and local cache paths are excluded from public outputs unless a later licence review explicitly permits publication.
 
 ## Research question
-Do public reimbursement schedules structurally reward procedural care over cognitive work?
+How do selected, matched schedule-amount relativities differ between procedural and cognitive care?
 
 Secondary questions are: which sources are sufficiently machine-readable for reproducible analysis; which variables are observed directly rather than inferred; which mappings require clinical or health-economic adjudication; and which results should be presented as ranges, typologies or caveated qualitative findings rather than point estimates.
 
@@ -33,3 +33,24 @@ Planned outputs are relativity indices, sensitivity ranges for bundled component
 
 ## OSF
 The OSF component will contain this protocol, a generated data dictionary, source and licence caveats, analysis report, mapping appendix, sensitivity-analysis appendix and final paper/preprint materials when available. Registration status remains draft/planned until a human reviewer confirms that inclusion rules, source licences and mapping adjudication requirements are adequate for the research question.
+
+## Estimands and outcomes
+The primary estimand is a within-jurisdiction matched-basket log schedule-amount difference; a procedural-to-cognitive ratio is secondary. This measures selected published fee relativities, not reward, incentive, value, income or actual payment.
+
+## Source versions and analysis window
+Freeze source version, effective/retrieval dates, currency year, payment component and code commit. Report jurisdictions separately before synthesis.
+
+## Missing data and denominator rules
+Zero, missing, conditional, range-valued and locality-adjusted fees are distinct. Facility/professional components and bundles are not mixed. Invalid baskets yield null with a reason.
+
+## Mapping and comparability adjudication
+Match service purpose, duration, setting, clinician, component, complexity and bundle boundary. Two reviewers blinded to amounts classify candidates and a third adjudicates.
+
+## Uncertainty multiplicity and sensitivity analyses
+Freeze minimum samples, multiplicity handling, leave-one-jurisdiction/basket-out, alternate classification and weighting analyses before inspecting results.
+
+## Negative controls and calibration
+Calibrate classification against a manually adjudicated gold-standard basket and prespecify stable service-family controls.
+
+## Deviations amendments and human review
+Log all basket changes and exclusions. Signed methods, domain, licence and governance review is required; simulated review is advisory only.

@@ -4,7 +4,7 @@
 This report is not yet a results paper. It is a structured analysis scaffold linked to the OSF protocol, Conductor tracks, source-download plan, data-quality checks, evidence-readiness rows and GitHub issue backlog. No policy conclusion should be drawn until real reviewed-source bundles are generated and the mapping review workflow is complete.
 
 ## Research question
-Do public reimbursement schedules structurally reward procedural care over cognitive work?
+How do selected, matched schedule-amount relativities differ between procedural and cognitive care?
 
 ## Evidence available now
 The current repository can document planned sources, exact source-file gates, parser status, protocol completeness, research-question linkages, source-content validation status, publication safety and dashboard outputs. Synthetic fixtures demonstrate the vertical slice but are not real policy evidence.

@@ -33,3 +33,24 @@ Planned outputs are transparency scorecard, reproducibility tiers, source onboar
 
 ## OSF
 The OSF component will contain this protocol, a generated data dictionary, source and licence caveats, analysis report, mapping appendix, sensitivity-analysis appendix and final paper/preprint materials when available. Registration status remains draft/planned until a human reviewer confirms that inclusion rules, source licences and mapping adjudication requirements are adequate for the research question.
+
+## Estimands and outcomes
+Primary outcomes are domain-level proportions of eligible registered sources meeting frozen evidence-backed criteria. System transparency is separate from repository parser/onboarding maturity. Unstable ranks are prohibited; tiers may be used.
+
+## Source versions and analysis window
+Freeze the source universe, assessment date/window, URL, redirect chain, retrieval evidence hash and code commit before scoring.
+
+## Missing data and denominator rules
+Unavailable, inaccessible, authentication-gated, licence-restricted, non-machine-readable, not assessed and not applicable are distinct. Report numerator, denominator and unassessable count.
+
+## Mapping and comparability adjudication
+Every rubric domain has response options, evidence requirements and aggregation rules. Two independent reviewers rate subjective fields and a third resolves disagreement.
+
+## Uncertainty multiplicity and sensitivity analyses
+Freeze weight, unassessable-source and multiplicity sensitivities. Report confidence or stability ranges with comparisons.
+
+## Negative controls and calibration
+Calibrate automated accessibility/readability checks against manual assessment and known transient-failure cases; retain immutable evidence hashes.
+
+## Deviations amendments and human review
+Version rubric changes, reratings and overrides. Signed methods, source-domain, licence and governance review is required; simulated review is advisory only.

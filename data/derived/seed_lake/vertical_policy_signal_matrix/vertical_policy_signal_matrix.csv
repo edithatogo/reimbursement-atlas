@@ -1,7 +1,7 @@
 coverage_decision_count,coverage_restriction_share,facility_component_share,item_restriction_share,patient_amount_observability,policy_use,price_observability,professional_component_share,schedule_item_count,source_id
-0,0.0,0.0,0.5,0.0,price_schedule_comparison,1.0,1.0,2,au_mbs
-0,0.0,0.0,0.5,1.0,price_schedule_comparison,1.0,0.0,2,au_pbs
-2,1.0,0.0,0.0,0.0,coverage_architecture_comparison,0.0,0.0,0,uk_genomic_test_directory
-0,0.0,0.0,0.5,0.0,price_schedule_comparison,1.0,0.0,2,us_cms_asp
-0,0.0,0.0,0.0,0.0,price_schedule_comparison,1.0,0.0,2,us_cms_clfs
-0,0.0,0.0,1.0,0.0,price_schedule_comparison,1.0,1.0,2,us_cms_pfs
+0,,0.0,0.5,0.0,price_schedule_comparison,1.0,1.0,2,au_mbs
+0,,0.0,0.5,1.0,price_schedule_comparison,1.0,0.0,2,au_pbs
+2,1.0,,,,coverage_architecture_comparison,,,0,uk_genomic_test_directory
+0,,0.0,0.5,0.0,price_schedule_comparison,1.0,0.0,2,us_cms_asp
+0,,0.0,0.0,0.0,price_schedule_comparison,1.0,0.0,2,us_cms_clfs
+0,,0.0,1.0,0.0,price_schedule_comparison,1.0,1.0,2,us_cms_pfs

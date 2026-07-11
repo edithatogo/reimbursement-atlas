@@ -33,3 +33,24 @@ Planned outputs are coverage-price-restriction matrices, source-specific caveat 
 
 ## OSF
 The OSF component will contain this protocol, a generated data dictionary, source and licence caveats, analysis report, mapping appendix, sensitivity-analysis appendix and final paper/preprint materials when available. Registration status remains draft/planned until a human reviewer confirms that inclusion rules, source licences and mapping adjudication requirements are adequate for the research question.
+
+## Estimands and outcomes
+The primary descriptive estimand is the jurisdiction-specific proportion of adjudicated test-indication pairs with an explicit in-force coverage decision. Secondary outcomes are the proportion with a public schedule amount and the distribution of restriction classes. No cross-currency pooled price is permitted.
+
+## Source versions and analysis window
+Before outcome inspection, freeze retrieval time, effective-date window, source version, checksum and code commit. Superseded and overlapping decisions receive explicit status codes.
+
+## Missing data and denominator rules
+`not covered`, `not found`, `not yet effective`, `locally determined`, `not machine-readable` and `licence restricted` remain distinct. Undefined proportions are null, never zero.
+
+## Mapping and comparability adjudication
+Two independent qualified reviewers, blinded to price outcomes, classify analyte/gene, variant, indication, specimen, method, panel, setting and effective-date matches; a third resolves disagreements. Agreement is reported by relationship type.
+
+## Uncertainty multiplicity and sensitivity analyses
+The signed appendix must freeze interval methods, confirmatory families, correction method, minimum coverage and sensitivities before analysis.
+
+## Negative controls and calibration
+Parser and mapping performance are calibrated against hand-reviewed records. Longitudinal work requires prespecified unaffected tests or outcomes.
+
+## Deviations amendments and human review
+Every override and deviation receives a reason code. OSF registration requires signed methods, domain, licence and governance review; simulated review does not satisfy that gate.
