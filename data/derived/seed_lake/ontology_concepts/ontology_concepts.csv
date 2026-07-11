@@ -1,7 +1,0 @@
-code,concept_class,domain,label,licence_scope,mapping_targets,notes,synonyms,terminology_id
-81247-9,laboratory_observation,genomics,Master HL7 genetic variant reporting panel,synthetic,"[""hpo:HP:0000118""]",Synthetic concept inspired by common terminology use; not an official redistributed LOINC row.,"[""genetic variant report"", ""molecular variant report""]",loinc
-HP:0000118,phenotype_root,phenotype,Phenotypic abnormality,synthetic,[],Synthetic concept for ontology-adapter testing only.,"[""abnormal phenotype"", ""clinical feature""]",hpo
-L04AB01,drug_classification,medicines,Etanercept,synthetic,"[""rxnorm:214555""]",Synthetic concept for ATC/RxNorm mapping workflow testing only.,"[""TNF inhibitor"", ""biologic therapy""]",atc
-214555,clinical_drug,medicines,Etanercept injectable product,synthetic,[],Synthetic concept for RxNav/RxNorm local-adapter testing only.,"[""etanercept injection"", ""etanercept product""]",rxnorm
-MG30,diagnosis_category,diagnosis,Chronic pain,synthetic,[],Synthetic ICD-style concept for mapping workflow testing only.,"[""persistent pain"", ""chronic pain disorder""]",icd11
-HGNC:11998,gene_symbol,genomics,TP53,synthetic,"[""loinc:81247-9""]",Synthetic HGNC-style concept for gene-test mapping workflow testing only.,"[""tumor protein p53"", ""p53""]",hgnc

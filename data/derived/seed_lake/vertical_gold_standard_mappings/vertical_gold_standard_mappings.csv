@@ -1,3 +1,0 @@
-left_code,left_source_id,notes,relationship,reviewed_at,reviewer,right_code,right_source_id
-73358,au_mbs,Synthetic benchmark pair for the genomic-test mapping workbench.,related,2026-07-01,reviewer_system,81479,us_cms_clfs
-110,au_mbs,Synthetic benchmark pair for a lower-confidence consultation-to-lab mapping.,related,2026-07-01,reviewer_system,81479,us_cms_clfs

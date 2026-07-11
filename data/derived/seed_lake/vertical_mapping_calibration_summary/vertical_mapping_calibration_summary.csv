@@ -1,2 +1,0 @@
-clean_negative_control_count,estimated_precision,estimated_recall,estimated_specificity,gold_standard_count,matched_gold_standard_count,missed_gold_standard_count,negative_control_count,notes,recommended_review_threshold,reviewed_at,reviewer,triggered_negative_control_count
-0,0.5,1.0,0.0,2,2,0,2,"Synthetic calibration summary from local fixture pairs. Use it to tune reviewer thresholds, not as evidence-grade performance.",0.45,2026-07-01,reviewer_system,2
