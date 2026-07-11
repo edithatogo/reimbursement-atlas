@@ -1,0 +1,30 @@
+blocking,category,command,cwd,id,notes,profiles,timeout_seconds
+True,lint,uv run --all-extras ruff check .,.,ruff_check,,quick;ci;release,180
+True,format,uv run --all-extras ruff format --check .,.,ruff_format_check,,quick;ci;release,180
+True,typecheck,uv run --all-extras basedpyright,.,basedpyright,,ci;release,240
+True,test,uv run --all-extras pytest --cov=src/reimburse_atlas --cov-report=term-missing --cov-report=xml --cov-fail-under=90 -q,.,pytest_coverage,,ci;release,600
+True,security,uv run --all-extras bandit -q -c pyproject.toml -r src scripts,.,bandit,,ci;release,240
+True,build,uv run --all-extras python -m compileall -q src scripts tests,.,compileall,,quick;ci;release,240
+True,data,uv run --all-extras python scripts/validate_seed_sync.py,.,seed_sync,,quick;ci;release,120
+True,data,uv run --all-extras python scripts/check_public_data_policy.py,.,public_data_policy,,quick;ci;release,120
+True,data,uv run --all-extras python -m reimburse_atlas.cli validate,.,cli_validate,,quick;ci;release,120
+True,data,uv run --all-extras python scripts/make_protocol_status.py,.,protocol_status,OSF/research protocol completeness evidence must regenerate cleanly.,quick;ci;release,120
+True,data,uv run --all-extras python scripts/make_source_validation.py,.,source_content_validation,Downloaded source files must be validated or explicitly skipped by licence gates.,quick;ci;release,120
+True,data,uv run --all-extras python scripts/make_source_contracts.py,.,source_contracts,Source-specific contracts must regenerate before reviewed-source bundles.,quick;ci;release,120
+True,supply_chain,uv run --all-extras python scripts/make_github_project_export.py,.,github_project_export,Generated GitHub Project import rows must stay in sync with issue drafts.,quick;ci;release,120
+True,data,uv run --all-extras python scripts/make_final_handoff.py,.,final_handoff,Final environment-dependent handoff checklist must regenerate cleanly.,quick;ci;release,120
+True,data,uv run --all-extras python scripts/make_roadmap_linkages.py,.,roadmap_linkages,"Research questions must link to datasets, mappings and output plans.",quick;ci;release,120
+True,data,uv run --all-extras python scripts/make_data_quality_report.py,.,data_quality,Seed and derived table quality checks must regenerate cleanly.,quick;ci;release,120
+True,data,uv run --all-extras python scripts/make_data_dictionary.py,.,data_dictionary,Public candidate artefacts must have generated data-dictionary entries.,quick;ci;release,120
+True,data,uv run --all-extras python scripts/make_evidence_readiness.py,.,evidence_readiness,Protocolled research questions must have generated evidence-readiness rows.,quick;ci;release,120
+True,data,uv run --all-extras python scripts/make_source_drift_report.py,.,source_drift,CSV/JSONL mirror and schema drift checks must regenerate cleanly.,quick;ci;release,120
+True,supply_chain,uv run --all-extras python scripts/make_repo_automation_matrix.py,.,repo_automation_matrix,,ci;release,120
+True,architecture,uv run --all-extras python scripts/make_architecture_report.py,.,architecture_report,,ci;release,120
+True,supply_chain,uv run --all-extras python scripts/make_sbom.py,.,sbom_generation,,ci;release,180
+True,build,uv build,.,uv_build,,ci;release,240
+True,dashboard,npm ci,apps/dashboard,npm_ci_dashboard,,ci;release,300
+True,security,npm audit --omit=dev --audit-level=moderate,apps/dashboard,npm_audit_dashboard,,ci;release,180
+True,dashboard,npm run build,apps/dashboard,dashboard_build,,ci;release,360
+False,security,uv run --all-extras pip-audit --strict,.,pip_audit_strict,Network-backed advisory lookup may be blocked in sandboxes.,release,240
+False,supply_chain,uv tool run zizmor --min-severity medium .github,.,zizmor_workflow_security,Advisory until action SHA pinning is complete.,release,240
+False,mutation,uv run --all-extras mutmut run --max-children 2,.,mutmut_unit_nightly,Long-running mutation trend gate; not a PR blocker.,nightly,3600

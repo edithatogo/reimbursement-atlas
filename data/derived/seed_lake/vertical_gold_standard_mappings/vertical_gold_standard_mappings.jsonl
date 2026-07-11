@@ -1,0 +1,2 @@
+{"left_code": "73358", "left_source_id": "au_mbs", "notes": "Synthetic benchmark pair for the genomic-test mapping workbench.", "relationship": "related", "reviewed_at": "2026-07-01", "reviewer": "reviewer_system", "right_code": "81479", "right_source_id": "us_cms_clfs"}
+{"left_code": "110", "left_source_id": "au_mbs", "notes": "Synthetic benchmark pair for a lower-confidence consultation-to-lab mapping.", "relationship": "related", "reviewed_at": "2026-07-01", "reviewer": "reviewer_system", "right_code": "81479", "right_source_id": "us_cms_clfs"}

@@ -1,0 +1,6 @@
+amount_placeholder,code,concept_label,currency,domain,mapping_status,price_type,source_id
+,110,Specialist initial attendance,AUD,medical_services,seed_placeholder,benefit_or_schedule_fee,au_mbs
+,99205,Office/outpatient new patient high complexity,USD,medical_services,requires_cpt_licence_review,allowed_amount_placeholder,us_cms_pfs
+,81479,Unlisted molecular pathology procedure,USD,laboratory,example_only,clfs_payment_placeholder,us_cms_clfs
+,PBS_ITEM_PLACEHOLDER,High-cost biologic example,AUD,medicines,requires_live_pull,published_price_placeholder,au_pbs
+,R_code_placeholder,Genomic test directory indication example,GBP,genomics,requires_live_pull,coverage_not_price,uk_genomic_test_directory
