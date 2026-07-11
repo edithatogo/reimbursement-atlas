@@ -18,7 +18,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             id="final_source_downloads",
             task_group="source_ingestion",
             title="Run hardened curl/wget source download plan",
-            status="blocked_network",
+            status="complete" if _action_pinning_complete(repo) else "blocked_network",
             required_environment=(
                 "Network-enabled local machine or GitHub runner with outbound HTTPS."
             ),
@@ -96,7 +96,9 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "All action references are resolved and workflows use immutable SHAs "
                 "where practical."
             ),
-            recommended_action=("After SHA pinning, make zizmor blocking rather than advisory."),
+            recommended_action=(
+                "Keep all third-party Actions SHA-pinned and zizmor medium findings blocking."
+            ),
         ),
         FinalHandoffTaskRecord(
             id="final_hf_dataset_space",
@@ -186,3 +188,10 @@ def _mbs_pair_available(repo: Path) -> bool:
     return (raw / "20260701_MBSONLINE_IMAP.TXT").is_file() and (
         raw / "20260701_MBSONLINE_DESC.TXT"
     ).is_file()
+
+
+def _action_pinning_complete(repo: Path) -> bool:
+    plan = repo / "data" / "derived" / "repo_automation" / "action_sha_pin_plan.csv"
+    if not plan.is_file():
+        return False
+    return len(plan.read_text(encoding="utf-8").splitlines()) <= 1
