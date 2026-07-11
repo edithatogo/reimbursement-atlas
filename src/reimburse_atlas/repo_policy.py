@@ -39,10 +39,15 @@ PUBLIC_METADATA_PREFIXES = (
     "apps/dashboard/public/data/",
 )
 PUBLIC_METADATA_SUFFIXES = (".json", ".jsonl", ".csv")
-LOCAL_PATH_ABSOLUTE_MARKERS = (
+ABSOLUTE_LOCAL_PATH_MARKERS = (
     '"local_path": "/',
     '"local_path","/',
     "local_path,/",
+    "/Users/",
+    "/Volumes/",
+    "/home/",
+    "file:///",
+    ":\\Users\\",
 )
 
 
@@ -66,6 +71,6 @@ def disallowed_public_metadata_values(root: Path, paths: list[str]) -> list[str]
         if not file_path.exists():
             continue
         text = file_path.read_text(encoding="utf-8", errors="ignore")
-        if any(marker in text for marker in LOCAL_PATH_ABSOLUTE_MARKERS):
+        if any(marker in text for marker in ABSOLUTE_LOCAL_PATH_MARKERS):
             violations.append(normalised)
     return sorted(violations)

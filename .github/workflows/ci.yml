@@ -66,8 +66,6 @@ jobs:
 
   python314-runtime:
     runs-on: ubuntu-latest
-    env:
-      PYTHONPATH: src
     strategy:
       fail-fast: false
       matrix:

@@ -4,10 +4,24 @@ from __future__ import annotations
 
 import argparse
 import json
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, cast
 
-from reimburse_atlas.registry import stable_generated_at
+
+def _load_raw(raw_json: Path) -> dict[str, dict[str, Any]]:
+    if not raw_json.exists():
+        return {}
+    payload_obj: object = json.loads(raw_json.read_text(encoding="utf-8"))
+    if not isinstance(payload_obj, dict):
+        return {}
+    payload = cast("dict[object, object]", payload_obj)
+    raw: dict[str, dict[str, Any]] = {}
+    for name_obj, value_obj in payload.items():
+        if not isinstance(name_obj, str) or not isinstance(value_obj, dict):
+            continue
+        raw[name_obj] = cast("dict[str, Any]", value_obj)
+    return raw
 
 
 def main() -> None:
@@ -18,22 +32,19 @@ def main() -> None:
     parser.add_argument("--issue-body", type=Path, required=True)
     args = parser.parse_args()
 
-    raw: dict[str, dict[str, Any]] = (
-        cast("dict[str, dict[str, Any]]", json.loads(args.raw_json.read_text(encoding="utf-8")))
-        if args.raw_json.exists()
-        else {}
-    )
-    entries: list[dict[str, Any]] = []
-    for name, value in raw.items():
-        entries.append({
+    raw = _load_raw(args.raw_json)
+    entries = [
+        {
             "name": name,
             "current": value.get("current"),
             "wanted": value.get("wanted"),
             "latest": value.get("latest"),
             "location": value.get("location"),
-        })
-    summary: dict[str, Any] = {
-        "generated_at": stable_generated_at(),
+        }
+        for name, value in raw.items()
+    ]
+    summary = {
+        "generated_at": datetime.now(UTC).isoformat(),
         "dashboard_dependency_drift_count": len(entries),
         "dashboard_dependency_drift": entries,
         "dashboard_dependencies_current": not entries,

@@ -21,7 +21,13 @@ def test_build_python_sbom_from_repo_lock() -> None:
     summary = sbom_summary(sbom)
     assert sbom["bomFormat"] == "CycloneDX"
     assert sbom["specVersion"] == "1.6"
-    assert int(summary["component_count"]) > 10
+    properties = sbom["metadata"]["properties"]
+    assert {item["name"]: item["value"] for item in properties}[
+        "reimbursement-atlas:source-root"
+    ] == "reimbursement-atlas"
+    component_count = summary["component_count"]
+    assert isinstance(component_count, int)
+    assert component_count > 10
     assert summary["ecosystem"] == "python"
 
 
@@ -30,5 +36,7 @@ def test_build_dashboard_sbom_from_package_lock() -> None:
     sbom = build_dashboard_sbom(root)
     summary = sbom_summary(sbom)
     assert sbom["bomFormat"] == "CycloneDX"
-    assert int(summary["component_count"]) > 5
+    component_count = summary["component_count"]
+    assert isinstance(component_count, int)
+    assert component_count > 5
     assert summary["ecosystem"] == "npm"

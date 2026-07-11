@@ -33,6 +33,7 @@ def test_quality_gate_dry_run_is_skipped(tmp_path: Path) -> None:
     record = run_quality_gate(spec, root=tmp_path, dry_run=True)
     assert record.status == "skipped"
     assert record.return_code is None
+    assert record.cwd == "."
 
 
 def test_quality_gate_classifies_success_and_failure(tmp_path: Path) -> None:
@@ -54,6 +55,7 @@ def test_quality_gate_classifies_success_and_failure(tmp_path: Path) -> None:
     failed = run_quality_gate(failure, root=tmp_path)
     assert failed.status == "failed"
     assert failed.return_code == 3
+    assert failed.cwd == "."
 
 
 def test_quality_gate_summary_tracks_blocking_failures() -> None:

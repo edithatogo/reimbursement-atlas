@@ -42,7 +42,6 @@ def build_python_sbom(root: Path) -> dict[str, Any]:
             for spec in pyproject.get("project", {}).get("dependencies", [])
         ]
     return _bom(
-        root=root,
         name="reimbursement-atlas-python",
         version=pyproject.get("project", {}).get("version", "0.0.0"),
         components=sorted(components, key=lambda item: (item["name"], item.get("version", ""))),
@@ -75,7 +74,6 @@ def build_dashboard_sbom(root: Path) -> dict[str, Any]:
         components.append(component)
     package = packages.get("", {})
     return _bom(
-        root=root,
         name="reimbursement-atlas-dashboard",
         version=str(package.get("version", "0.0.0")),
         components=sorted(components, key=lambda item: (item["name"], item.get("version", ""))),
@@ -120,7 +118,6 @@ def dependency_name(spec: str) -> str:
 
 def _bom(
     *,
-    root: Path,
     name: str,
     version: str,
     components: list[dict[str, Any]],
@@ -147,7 +144,7 @@ def _bom(
             "component": {"type": "application", "name": name, "version": version},
             "properties": [
                 {"name": "reimbursement-atlas:ecosystem", "value": ecosystem},
-                {"name": "reimbursement-atlas:source-root", "value": root.name},
+                {"name": "reimbursement-atlas:source-root", "value": "reimbursement-atlas"},
             ],
         },
         "components": components,

@@ -21,7 +21,7 @@ def main() -> None:
                     "uv run --all-extras python -m pip freeze "
                     '| grep -vE "^(-e )?git\\+https://github.com/edithatogo/reimbursement-atlas\\.git|'
                     '^(reimbursement-atlas|reimbursement_atlas)(==| @ )|git\\+file:" '
-                    '| grep -v "file:///Volumes/" '
+                    '| grep -v " @ file://" '
                     '> "$reqfile" && '
                     'uv run --all-extras python -m venv "$tmpdir" && '
                     '"$tmpdir/bin/python" -m pip install --upgrade pip '

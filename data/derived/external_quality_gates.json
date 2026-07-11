@@ -1,14 +1,14 @@
 {
   "records": [
     {
-      "command": "bash -lc tmpdir=$(mktemp -d) && reqfile=$(mktemp) && uv run --all-extras python -m pip freeze | grep -vE \"^(-e )?git\\+https://github.com/edithatogo/reimbursement-atlas\\.git|^(reimbursement-atlas|reimbursement_atlas)(==| @ )|git\\+file:\" | grep -v \"file:///Volumes/\" > \"$reqfile\" && uv run --all-extras python -m venv \"$tmpdir\" && \"$tmpdir/bin/python\" -m pip install --upgrade pip > /dev/null && \"$tmpdir/bin/python\" -m pip install pip-audit -q && \"$tmpdir/bin/python\" -m pip install -r \"$reqfile\" > /dev/null && \"$tmpdir/bin/pip-audit\" --strict -r \"$reqfile\"; status=$?; rm -rf \"$tmpdir\" \"$reqfile\"; exit $status",
+      "command": "bash -lc tmpdir=$(mktemp -d) && reqfile=$(mktemp) && uv run --all-extras python -m pip freeze | grep -vE \"^(-e )?git\\+https://github.com/edithatogo/reimbursement-atlas\\.git|^(reimbursement-atlas|reimbursement_atlas)(==| @ )|git\\+file:\" | grep -v \" @ file://\" > \"$reqfile\" && uv run --all-extras python -m venv \"$tmpdir\" && \"$tmpdir/bin/python\" -m pip install --upgrade pip > /dev/null && \"$tmpdir/bin/python\" -m pip install pip-audit -q && \"$tmpdir/bin/python\" -m pip install -r \"$reqfile\" > /dev/null && \"$tmpdir/bin/pip-audit\" --strict -r \"$reqfile\"; status=$?; rm -rf \"$tmpdir\" \"$reqfile\"; exit $status",
       "cwd": ".",
       "generated_at": "1970-01-01T00:00:00+00:00",
       "id": "pip_audit_strict",
       "notes": "Gate passed in the active runtime.",
       "outcome": "passed",
       "return_code": 0,
-      "stderr_excerpt": "WARNING: Cache entry deserialization failed, entry ignored WARNING: Cache entry deserialization failed, entry ignored WARNING: Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry dese\u2026",
+      "stderr_excerpt": "WARNING: Cache entry deserialization failed, entry ignored WARNING: Cache entry deserialization failed, entry ignored WARNING: Cache entry deserialization failed, entry ignored No known vulnerabilities found",
       "stdout_excerpt": ""
     },
     {
@@ -52,8 +52,8 @@
       "notes": "Gate passed in the active runtime.",
       "outcome": "passed",
       "return_code": 0,
-      "stderr_excerpt": "WARN Broken interpreter cache entry at <home>/.cache/uv/interpreter-v4/ac57ab614d7f56de/e181bef0c3964750.msgpack, removing: wrong msgpack marker FixArray(3)",
-      "stdout_excerpt": "No findings to report. Good job! (1 ignored, 50 suppressed)"
+      "stderr_excerpt": "",
+      "stdout_excerpt": "No findings to report. Good job! (1 ignored, 48 suppressed)"
     },
     {
       "command": "uv run python scripts/make_repo_automation_matrix.py",
@@ -74,7 +74,7 @@
       "notes": "Gate passed in the active runtime.",
       "outcome": "passed",
       "return_code": 0,
-      "stderr_excerpt": "WARN Broken interpreter cache entry at <home>/.cache/uv/interpreter-v4/ac57ab614d7f56de/0b5d53d341ef936d.msgpack, removing: wrong msgpack marker FixArray(3)",
+      "stderr_excerpt": "",
       "stdout_excerpt": "Mojo 0.26.2.0 (d627decc)"
     }
   ],
