@@ -9,7 +9,7 @@ from typing import Any, Literal, cast
 
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.models import DataQualityCheckRecord
-from reimburse_atlas.registry import project_root
+from reimburse_atlas.registry import project_root, repo_relative
 
 DataQualitySeverity = Literal["blocking", "advisory"]
 DataQualityStatus = Literal["pass", "warn", "fail", "missing"]
@@ -418,7 +418,7 @@ def _check(
         status=status,
         observed_value=observed_value,
         expected_value=expected_value,
-        evidence_path=str(path),
+        evidence_path=repo_relative(path, project_root()),
         recommended_action=recommended_action,
     )
 

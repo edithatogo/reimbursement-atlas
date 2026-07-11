@@ -2,6 +2,8 @@ source_id,parser_name,blocker_count,blockers,recommended_next_action
 au_mbs,MbsXmlFixtureAdapter -> future live MBS XML adapter,2,licence_gate;live_source_shape_unverified,promote fixture parser to live-source prototype
 us_cms_clfs,CmsClfsFixtureAdapter -> future live CMS CLFS CSV adapter,1,live_source_shape_unverified,promote fixture parser to live-source prototype
 uk_genomic_test_directory,NhsGenomicDirectoryFixtureAdapter -> future live NHS workbook adapter,2,licence_gate;live_source_shape_unverified,promote fixture parser to live-source prototype
+au_mbs,MbsXmlFixtureAdapter -> future live MBS XML adapter,1,licence_gate,promote fixture parser to live-source prototype
+au_mbs,MbsXmlFixtureAdapter -> future live MBS XML adapter,1,licence_gate,promote fixture parser to live-source prototype
 au_pbs,PbsFixtureAdapter -> future live PBS API/CSV adapter,2,licence_gate;live_source_shape_unverified,promote fixture parser to live-source prototype
 us_cms_pfs,planned CMS PFS RVU/fee-schedule adapter,3,licence_gate;live_source_shape_unverified;parser_not_implemented,implement parser contract and tiny fixture
 us_cms_asp,planned CMS ASP drug-pricing adapter,3,licence_gate;live_source_shape_unverified;parser_not_implemented,implement parser contract and tiny fixture

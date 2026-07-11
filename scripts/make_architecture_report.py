@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 
 from reimburse_atlas.architecture import build_architecture_report, write_architecture_report
-from reimburse_atlas.registry import project_root
+from reimburse_atlas.registry import project_root, repo_relative
 
 
 def main() -> None:
@@ -15,7 +15,7 @@ def main() -> None:
         report,
         output_dir=project_root() / "data" / "derived" / "architecture",
     )
-    payload = {"summary": report.summary.as_row(), "paths": [str(path) for path in paths]}
+    payload = {"summary": report.summary.as_row(), "paths": [repo_relative(path) for path in paths]}
     print(json.dumps(payload, indent=2))
 
 

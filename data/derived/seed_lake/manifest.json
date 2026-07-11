@@ -32,16 +32,16 @@
       "jsonl_path": "source_versions/source_versions.jsonl",
       "name": "source_versions",
       "parquet_path": "source_versions/source_versions.parquet",
-      "rows": 11,
-      "sha256": "276c9d7d967774f54bb5211c28585c51842b597a8038b92a40f09197ac57d250"
+      "rows": 13,
+      "sha256": "bb07ee0189d0c4ed5a6d8c1e73fbceb03f6a5c80fda41526f9d75129fc645e00"
     },
     {
       "csv_path": "source_files/source_files.csv",
       "jsonl_path": "source_files/source_files.jsonl",
       "name": "source_files",
       "parquet_path": "source_files/source_files.parquet",
-      "rows": 7,
-      "sha256": "9e9c742e34fa93ffb637659daea685cc64bd641f7ed3d636b0d15d4698494893"
+      "rows": 9,
+      "sha256": "639dc89325f51095a484862b907a2b9da52541445ae2cdc351d63825ba2ab60c"
     },
     {
       "csv_path": "source_snapshots/source_snapshots.csv",
@@ -288,8 +288,8 @@
       "jsonl_path": "repo_action_pin_resolution/repo_action_pin_resolution.jsonl",
       "name": "repo_action_pin_resolution",
       "parquet_path": "repo_action_pin_resolution/repo_action_pin_resolution.parquet",
-      "rows": 47,
-      "sha256": "1b5aedbbcb9ea19fd1629a3b6232bc15b0561a9987ddafe49db62bd336c595db"
+      "rows": 66,
+      "sha256": "3203208c170b8f44f2a64a815f627b0baf8a33d2f682bb2f0bd1af5e1986ef26"
     },
     {
       "csv_path": "sbom_summary/sbom_summary.csv",
@@ -352,8 +352,8 @@
       "jsonl_path": "source_download_plans/source_download_plans.jsonl",
       "name": "source_download_plans",
       "parquet_path": "source_download_plans/source_download_plans.parquet",
-      "rows": 7,
-      "sha256": "3a1ff2890a6e1ef91da5124457e168aa2bdedf58c42edb2338f7545e02ff6806"
+      "rows": 9,
+      "sha256": "8463958f420b7e0294b0e405e9ed4840d078e3ed0e0a115050f3e5d21bae80f1"
     },
     {
       "csv_path": "source_download_attempts/source_download_attempts.csv",
@@ -425,7 +425,7 @@
       "name": "data_quality_checks",
       "parquet_path": "data_quality_checks/data_quality_checks.parquet",
       "rows": 41,
-      "sha256": "3b6d1916c9ccdbc24a91e54da15689a7cecfc8a2ace804a13179c50e18ef5f44"
+      "sha256": "c70f9485e73a9d258db8f279b82b616c1934d6c718975a134e699cc8e57d1228"
     },
     {
       "csv_path": "evidence_readiness/evidence_readiness.csv",

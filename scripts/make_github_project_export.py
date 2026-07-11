@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from reimburse_atlas.github_project import build_github_project_items, write_github_project_items
-from reimburse_atlas.registry import load_conductor_tracks, project_root
+from reimburse_atlas.registry import load_conductor_tracks, project_root, repo_relative
 
 
 def main() -> None:
@@ -13,7 +13,9 @@ def main() -> None:
         rows,
         output_dir=project_root() / "data" / "derived" / "github_project",
     )
-    print(f"Wrote {len(rows)} GitHub Project rows: {', '.join(str(path) for path in paths)}")
+    print(
+        f"Wrote {len(rows)} GitHub Project rows: {', '.join(repo_relative(path) for path in paths)}"
+    )
 
 
 if __name__ == "__main__":

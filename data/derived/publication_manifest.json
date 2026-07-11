@@ -218,27 +218,27 @@
       "table_name": "ontology_concepts"
     },
     {
-      "byte_size": 33861,
-      "checksum_sha256": "e70c3a1e295a375d774889c50179c50ae56f7ccf1f41a9c24acbbb48866bc9cc",
+      "byte_size": 34543,
+      "checksum_sha256": "ac7f34de3869cca3973abd0a71f1294a563696b1c7e0853215a444aeacf5f39b",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
       "notes": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "publication_scope": "public_metadata_candidate",
       "relative_path": "data/seed/graph_nodes.csv",
-      "row_count": 309,
+      "row_count": 313,
       "table_name": "graph_nodes"
     },
     {
-      "byte_size": 35034,
-      "checksum_sha256": "88dde0991e002e4c180c7d708ec44457300628cc416952ef401eed746a5244fc",
+      "byte_size": 35550,
+      "checksum_sha256": "bca8743e0f7204b49d5b9621a213364326e75a6146bb6c87401b09c9579c7e2e",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
       "notes": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "publication_scope": "public_metadata_candidate",
       "relative_path": "data/seed/graph_edges.csv",
-      "row_count": 495,
+      "row_count": 501,
       "table_name": "graph_edges"
     },
     {
@@ -434,27 +434,27 @@
       "table_name": "analysis_readiness"
     },
     {
-      "byte_size": 5005,
-      "checksum_sha256": "f8b9fb72078dbdfe49d0a79c14f9dfe8bb1eefd490aa993f43a5100c68c0f403",
+      "byte_size": 5940,
+      "checksum_sha256": "de6201d7d452ab3cf6be1c09eb0c64d5900ef53f347e193d5e9e54cc325a4aa2",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
       "notes": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "publication_scope": "public_metadata_candidate",
       "relative_path": "data/seed/source_acquisition_plan.csv",
-      "row_count": 11,
+      "row_count": 13,
       "table_name": "source_acquisition_plan"
     },
     {
-      "byte_size": 1661,
-      "checksum_sha256": "83bf5dda8d3cff7e9203c9927489294c601ef03db961978203697ea4e37c7d6c",
+      "byte_size": 1905,
+      "checksum_sha256": "28bca4ffbfea7e44bc76bedcc913e841039ecb3287f426da61e87ecba67996bf",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
       "notes": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "publication_scope": "public_metadata_candidate",
       "relative_path": "data/seed/ingestion_readiness.csv",
-      "row_count": 11,
+      "row_count": 13,
       "table_name": "ingestion_readiness"
     },
     {

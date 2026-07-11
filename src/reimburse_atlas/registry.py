@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import os
 from collections.abc import Iterable
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import TypeVar, cast
 
@@ -39,6 +40,27 @@ def project_root() -> Path:
     if override:
         return Path(override).expanduser().resolve()
     return Path(__file__).resolve().parents[2]
+
+
+def repo_relative(path: Path, root: Path | None = None) -> str:
+    """Return a repo-relative path string when possible."""
+    repo = root or project_root()
+    try:
+        return path.relative_to(repo).as_posix()
+    except ValueError:
+        return path.as_posix()
+
+
+def stable_generated_at() -> str:
+    """Return a reproducible timestamp for generated artefacts.
+
+    The timestamp defaults to the SOURCE_DATE_EPOCH convention so regenerated
+    outputs stay stable across local and CI environments. When the environment
+    does not provide a source date, the epoch is used as a deterministic
+    fallback rather than the current wall clock.
+    """
+    epoch = int(os.environ.get("SOURCE_DATE_EPOCH", "0"))
+    return datetime.fromtimestamp(epoch, tz=UTC).isoformat()
 
 
 def read_jsonl(path: Path) -> list[dict[str, object]]:

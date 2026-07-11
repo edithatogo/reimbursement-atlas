@@ -8,7 +8,7 @@
       "notes": "Gate passed in the active runtime.",
       "outcome": "passed",
       "return_code": 0,
-      "stderr_excerpt": "WARNING: Cache entry deserialization failed, entry ignored WARNING: Cache entry deserialization failed, entry ignored No known vulnerabilities found",
+      "stderr_excerpt": "WARNING: Cache entry deserialization failed, entry ignored WARNING: Cache entry deserialization failed, entry ignored WARNING: Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored WARNING:cachecontrol.controller:Cache entry dese\u2026",
       "stdout_excerpt": ""
     },
     {
@@ -74,7 +74,7 @@
       "notes": "Gate passed in the active runtime.",
       "outcome": "passed",
       "return_code": 0,
-      "stderr_excerpt": "",
+      "stderr_excerpt": "WARN Broken interpreter cache entry at <home>/.cache/uv/interpreter-v4/ac57ab614d7f56de/0b5d53d341ef936d.msgpack, removing: wrong msgpack marker FixArray(3)",
       "stdout_excerpt": "Mojo 0.26.2.0 (d627decc)"
     }
   ],

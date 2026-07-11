@@ -85,6 +85,7 @@ from reimburse_atlas.registry import (
     load_source_status,
     load_source_versions,
     project_root,
+    repo_relative,
     source_ids,
 )
 from reimburse_atlas.review_queue import build_crosswalk_review_queue, review_rows
@@ -198,7 +199,7 @@ def source_download_plan(
                 "skipped_licence_gate": sum(
                     1 for record in attempts if record.status == "skipped_licence_gate"
                 ),
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -240,7 +241,7 @@ def protocol_status(
                 )
                 if rows
                 else 0.0,
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -269,7 +270,7 @@ def source_validation(
                 "pass": sum(row.validation_status == "pass" for row in rows),
                 "missing": sum(row.validation_status == "missing" for row in rows),
                 "skipped": sum(row.validation_status == "skipped" for row in rows),
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -294,7 +295,7 @@ def source_contracts(
                 "missing": sum(row.contract_status == "missing" for row in rows),
                 "skipped": sum(row.contract_status == "skipped" for row in rows),
                 "fail": sum(row.contract_status == "fail" for row in rows),
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -317,7 +318,7 @@ def github_project_export(
                 "project_items": len(rows),
                 "issues": sum(row.item_type == "issue" for row in rows),
                 "tracks": sum(row.item_type == "track" for row in rows),
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -342,7 +343,7 @@ def final_handoff(
                 "blocked_network": sum(row.status == "blocked_network" for row in rows),
                 "blocked_secret": sum(row.status == "blocked_secret" for row in rows),
                 "blocked_review": sum(row.status == "blocked_review" for row in rows),
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -367,7 +368,7 @@ def data_quality(
             {
                 "check_count": len(rows),
                 "blocking_failures": blocking,
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -420,7 +421,7 @@ def data_dictionary(
             {
                 "table_count": len(rows),
                 "total_rows_documented": sum(row.row_count for row in rows),
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -445,7 +446,7 @@ def evidence_readiness(
                 "research_questions": len(rows),
                 "evidence_ready": sum(row.readiness_stage == "evidence_ready" for row in rows),
                 "prototype_ready": sum(row.readiness_stage == "prototype_ready" for row in rows),
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -477,7 +478,7 @@ def source_drift(
                 "drift_checks": len(rows),
                 "failures": sum(row.status in {"fail", "missing"} for row in rows),
                 "warnings": sum(row.status == "warn" for row in rows),
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -1169,7 +1170,7 @@ def publication_manifest(
             {
                 "artifact_count": manifest.artifact_count,
                 "warning_count": len(manifest.warnings),
-                "output_path": str(path),
+                "output_path": repo_relative(path),
             },
             indent=2,
         )
@@ -1252,7 +1253,7 @@ def local_quality_gates_command(
         json.dumps(
             {
                 "summary": summary.as_row(),
-                "paths": [str(path) for path in paths],
+                "paths": [repo_relative(path) for path in paths],
             },
             indent=2,
         )
@@ -1294,7 +1295,7 @@ def architecture_report_command(
     paths = write_architecture_report(report, output_dir=output_dir)
     console.print_json(
         json.dumps(
-            {"summary": report.summary.as_row(), "paths": [str(path) for path in paths]},
+            {"summary": report.summary.as_row(), "paths": [repo_relative(path) for path in paths]},
             indent=2,
         )
     )
@@ -1323,7 +1324,7 @@ def release_readiness_command(
     paths = write_release_readiness_report(report, output_dir=output_dir)
     console.print_json(
         json.dumps(
-            {"summary": report.summary.as_row(), "paths": [str(path) for path in paths]},
+            {"summary": report.summary.as_row(), "paths": [repo_relative(path) for path in paths]},
             indent=2,
         )
     )

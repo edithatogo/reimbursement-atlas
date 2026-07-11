@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from reimburse_atlas.registry import load_source_files, project_root
+from reimburse_atlas.registry import load_source_files, project_root, repo_relative
 from reimburse_atlas.source_downloads import (
     attempt_download,
     build_download_plan,
@@ -54,7 +54,7 @@ def main() -> None:
     print({
         "plans": len(plans),
         "attempts": len(attempts),
-        "paths": [str(path) for path in paths],
+        "paths": [repo_relative(path) for path in paths],
     })
 
 

@@ -6,10 +6,11 @@ import hashlib
 import json
 import re
 import tomllib
-from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, cast
 from uuid import NAMESPACE_URL, uuid5
+
+from reimburse_atlas.registry import stable_generated_at
 
 _PEP508_NAME_RE = re.compile(r"^\s*([A-Za-z0-9_.-]+)")
 
@@ -125,7 +126,7 @@ def _bom(
     components: list[dict[str, Any]],
     ecosystem: str,
 ) -> dict[str, Any]:
-    now = datetime.now(tz=UTC).replace(microsecond=0).isoformat()
+    now = stable_generated_at()
     serial = uuid5(NAMESPACE_URL, f"https://example.invalid/{name}/{version}/{ecosystem}")
     return {
         "bomFormat": "CycloneDX",

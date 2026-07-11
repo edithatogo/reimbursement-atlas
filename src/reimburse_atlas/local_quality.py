@@ -12,13 +12,12 @@ import json
 import os
 import subprocess  # nosec B404
 from dataclasses import asdict, dataclass
-from datetime import UTC, datetime
 from pathlib import Path
 from time import monotonic
 from typing import Literal
 
 from reimburse_atlas.io import write_csv, write_jsonl
-from reimburse_atlas.registry import project_root
+from reimburse_atlas.registry import project_root, repo_relative, stable_generated_at
 from reimburse_atlas.toolchain import classify_gate_result
 
 QualityGateStatus = Literal[
@@ -381,14 +380,14 @@ def run_quality_gate(
     """Run one quality gate and return a structured result."""
     repo = root or project_root()
     cwd = (repo / spec.cwd).resolve()
-    generated_at = datetime.now(tz=UTC).isoformat()
+    generated_at = stable_generated_at()
     command_text = " ".join(spec.command)
     if dry_run:
         return QualityGateRunRecord(
             id=spec.id,
             category=spec.category,
             command=command_text,
-            cwd=str(cwd),
+            cwd=repo_relative(cwd, repo),
             status="skipped",
             return_code=None,
             duration_seconds=0.0,
@@ -492,7 +491,7 @@ def summarise_quality_gate_run(
     return QualityGateRunSummary(
         schema_version="local-quality-gates-v1",
         profile=profile,
-        generated_at=datetime.now(tz=UTC).isoformat(),
+        generated_at=stable_generated_at(),
         gate_count=len(records),
         passed=counts["passed"],
         failed=counts["failed"],
@@ -545,20 +544,22 @@ def _run_record(
         id=spec.id,
         category=spec.category,
         command=command_text,
-        cwd=str(cwd),
+        cwd=repo_relative(cwd, project_root()),
         status=status,
         return_code=return_code,
         duration_seconds=round(duration_seconds, 3),
         blocking=spec.blocking,
         generated_at=generated_at,
-        stdout_excerpt=_excerpt(stdout),
-        stderr_excerpt=_excerpt(stderr),
+        stdout_excerpt=_excerpt(stdout, repo=project_root()),
+        stderr_excerpt=_excerpt(stderr, repo=project_root()),
         notes=notes,
     )
 
 
-def _excerpt(value: str, limit: int = 1_000) -> str:
+def _excerpt(value: str, *, repo: Path, limit: int = 1_000) -> str:
     cleaned = " ".join(value.split())
+    cleaned = cleaned.replace(str(repo), "<repo>")
+    cleaned = cleaned.replace(str(Path.home()), "<home>")
     if len(cleaned) <= limit:
         return cleaned
     return f"{cleaned[: limit - 1]}…"
