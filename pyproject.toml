@@ -73,7 +73,7 @@ reimbursement-atlas = "reimburse_atlas.cli:app"
 module-name = "reimburse_atlas"
 module-root = "src"
 
-[tool.pixi.project]
+[tool.pixi.workspace]
 channels = ["conda-forge", "https://conda.modular.com/max-nightly/"]
 platforms = ["osx-arm64", "linux-64", "linux-aarch64"]
 
