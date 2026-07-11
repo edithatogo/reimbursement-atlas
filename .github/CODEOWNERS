@@ -1,5 +1,12 @@
-* @reimbursement-atlas/maintainers
-docs/** @reimbursement-atlas/policy
-data/seed/** @reimbursement-atlas/data-governance
-src/** @reimbursement-atlas/engineering
-apps/dashboard/** @reimbursement-atlas/dashboard
+# Default ownership and high-risk surfaces.
+* @edithatogo
+/.github/ @edithatogo
+/conductor/ @edithatogo
+/src/reimburse_atlas/contracts.py @edithatogo
+/src/reimburse_atlas/release_readiness.py @edithatogo
+/src/reimburse_atlas/repo_policy.py @edithatogo
+/src/reimburse_atlas/automation.py @edithatogo
+/scripts/check_public_data_policy.py @edithatogo
+/data/seed/ @edithatogo
+/pyproject.toml @edithatogo
+/uv.lock @edithatogo
