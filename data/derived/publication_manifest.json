@@ -218,8 +218,8 @@
       "table_name": "ontology_concepts"
     },
     {
-      "byte_size": 34543,
-      "checksum_sha256": "ac7f34de3869cca3973abd0a71f1294a563696b1c7e0853215a444aeacf5f39b",
+      "byte_size": 34559,
+      "checksum_sha256": "15369d6c74f1e0aebb2fe6d632dce70373e8d44c894a4888eb49fed452a5b810",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
@@ -362,8 +362,8 @@
       "table_name": "research_questions"
     },
     {
-      "byte_size": 4438,
-      "checksum_sha256": "c87f259235e1efd564c486fa58b72d2b4898cfc19a0a307526e9624c20c18291",
+      "byte_size": 4532,
+      "checksum_sha256": "24c61e27d15036e07bf3d9bbfaaa84950ca52de579958cd79b365a85537f748e",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "public_reuse_review",
@@ -374,8 +374,8 @@
       "table_name": "output_artifact_plans"
     },
     {
-      "byte_size": 2831,
-      "checksum_sha256": "967f85ec0146eac5ef66507e8d7964ecb68317c2846d85a6e75be693b4ba19d7",
+      "byte_size": 2925,
+      "checksum_sha256": "70216bfe44038d781fe551428620919055d5897420e72674170c40a90c4440e7",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
@@ -1514,32 +1514,32 @@
       "table_name": "summary"
     },
     {
-      "byte_size": 77191,
-      "checksum_sha256": "c25360380ca46a9fdd7ce11d60e6588e3191032a05e0c0e81e7b5983c2f99355",
+      "byte_size": 77719,
+      "checksum_sha256": "6f4e3928f24c386bf375d3b2dd15837133b12c39dc15684b2d29910bf7464152",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "public_reuse_review",
       "notes": "Derived artefact; review source-specific licence notes before external publication.",
       "publication_scope": "public_derived_candidate",
       "relative_path": "data/derived/data_dictionary/data_dictionary.jsonl",
-      "row_count": 139,
+      "row_count": 140,
       "table_name": "data_dictionary"
     },
     {
-      "byte_size": 57356,
-      "checksum_sha256": "818d3138c654b13df97a8e6aec8368980c9c2b4073cd4fc3e5c933845f819f17",
+      "byte_size": 57741,
+      "checksum_sha256": "9501522d7b6c223e63b211522ecd9992d3309b0cc17f83f234744b92b71736bb",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
       "notes": "Derived artefact; review source-specific licence notes before external publication.",
       "publication_scope": "public_derived_candidate",
       "relative_path": "data/derived/data_dictionary/data_dictionary.csv",
-      "row_count": 139,
+      "row_count": 140,
       "table_name": "data_dictionary"
     },
     {
       "byte_size": 121,
-      "checksum_sha256": "8047199942faa3ac391eab10bcbbd3d5281d3c88f899dd5c85646ea08d128a65",
+      "checksum_sha256": "51e5252447c29e31759d37f630a81758e42da1ce69289bb1ecd9fd30f9176813",
       "contains_raw_source_payload": false,
       "file_format": "json",
       "licence_gate": "public_reuse_review",

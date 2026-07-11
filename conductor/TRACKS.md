@@ -76,7 +76,7 @@ Tracked functions/issues:
 - `func_hf_dataset_publish` — Implement conditional Hugging Face dataset publication workflow (implemented, github_action)
 - `func_hf_space_deploy` — Implement conditional Hugging Face Space deployment workflow (implemented, github_action)
 
-## track_data_packaging_standards: Research-data packaging standards
+## [x] track_data_packaging_standards: Research-data packaging standards
 
 Priority: **should**  
 Phase: `implementation`  

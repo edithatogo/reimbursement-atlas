@@ -4,11 +4,11 @@ out_hf_space,Static Astro dashboard for public exploration.,dashboard,apps/dashb
 out_osf_protocol_pack,Detailed OSF protocol pack for research questions.,protocol,protocols/,human_protocol_review,drafted,osf,track_research_protocols_osf
 out_osf_reports,Question-specific detailed reports.,report,reports/,analysis_protocol_complete,drafted,osf,track_research_protocols_osf
 out_preprint_methods,Methods/design paper pathway.,preprint,papers/reimbursement_atlas_methods.md,derived_data_available,planned,osf,track_research_protocols_osf
-out_ro_crate,Research object metadata for release candidate.,archive,data/derived/research_package/ro-crate-metadata.json,metadata_validates,planned,github,track_data_packaging_standards
-out_frictionless,Frictionless tabular package metadata.,archive,data/derived/research_package/datapackage.json,schema_resources_valid,planned,github,track_data_packaging_standards
+out_ro_crate,Research object metadata for release candidate.,archive,data/derived/research_package/ro-crate-metadata.json,metadata_validates,implemented,github,track_data_packaging_standards
+out_frictionless,Frictionless tabular package metadata.,archive,data/derived/research_package/datapackage.json,schema_resources_valid,implemented,github,track_data_packaging_standards
 out_zenodo,DOI-archive metadata after public release gates pass.,archive,.zenodo.json,release_readiness_passes,planned,zenodo,track_data_packaging_standards
-out_api,Future read-only API surface.,api,src/reimburse_atlas/api.py,read_only_contract_tests,planned,github,track_policy_demonstrators
-out_mcp,Future read-only MCP interface.,mcp,src/reimburse_atlas/mcp_server.py,read_only_mcp_tests,planned,github,track_policy_demonstrators
+out_api,Optional read-only API surface with lazy imports and contract tests.,api,src/reimburse_atlas/api.py,read_only_contract_tests,implemented,github,track_policy_demonstrators
+out_mcp,Optional read-only MCP interface with lazy imports and contract tests.,mcp,src/reimburse_atlas/mcp_server.py,read_only_mcp_tests,implemented,github,track_policy_demonstrators
 out_protocol_status,Generated protocol/report completeness table for OSF gatekeeping and GitHub Project tracking.,report,data/derived/protocols/protocol_status.csv,protocol_status_generated_and_reviewed,implemented,github,track_research_protocols_osf
 out_evidence_readiness_matrix,"Research-question evidence-readiness metadata for dashboard, OSF and GitHub Projects.",dataset,data/derived/evidence_readiness/evidence_readiness.csv,release-readiness requires evidence-readiness summary with zero blocked rows,implemented,github,track_data_quality_evidence
 out_source_drift_report,Schema and row-count drift observations for generated artefacts and future source-version pairs.,dataset,data/derived/source_drift/source_drift_report.csv,source-drift summary must have zero blocking failures,implemented,github,track_data_quality_evidence
