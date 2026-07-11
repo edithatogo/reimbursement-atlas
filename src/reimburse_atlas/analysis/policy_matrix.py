@@ -55,9 +55,9 @@ def policy_signal_matrix(
     return rows
 
 
-def _share(numerator: int, denominator: int) -> float:
+def _share(numerator: int, denominator: int) -> float | None:
     if denominator == 0:
-        return 0.0
+        return None
     return round(numerator / denominator, 4)
 
 

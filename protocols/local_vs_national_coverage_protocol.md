@@ -6,7 +6,7 @@ Public reimbursement schedules are often treated as if they were directly compar
 The protocol is deliberately conservative. It separates source acquisition from derived publication, distinguishes price from coverage, and requires human review before cross-system mappings are used as policy evidence. Raw source files, restricted descriptors, proprietary terminology releases, confidential net prices and local cache paths are excluded from public outputs unless a later licence review explicitly permits publication.
 
 ## Research question
-Do local coverage systems create greater access variation than nationally uniform schedules?
+How does documented coverage-rule variation differ between selected local and national systems?
 
 Secondary questions are: which sources are sufficiently machine-readable for reproducible analysis; which variables are observed directly rather than inferred; which mappings require clinical or health-economic adjudication; and which results should be presented as ranges, typologies or caveated qualitative findings rather than point estimates.
 
@@ -33,3 +33,24 @@ Planned outputs are coverage-discretion map, local/national typology, caveated a
 
 ## OSF
 The OSF component will contain this protocol, a generated data dictionary, source and licence caveats, analysis report, mapping appendix, sensitivity-analysis appendix and final paper/preprint materials when available. Registration status remains draft/planned until a human reviewer confirms that inclusion rules, source licences and mapping adjudication requirements are adequate for the research question.
+
+## Estimands and outcomes
+The primary estimand is descriptive policy-text heterogeneity among simultaneously effective rules, using a prespecified pairwise disagreement statistic. It does not measure realised access, equity or a causal governance effect.
+
+## Source versions and analysis window
+Freeze authority class, geography, effective window, supersession rules, retrieval date, source hash and code commit. Systems with local implementation are classified as mixed.
+
+## Missing data and denominator rules
+Unavailable, silent, discretionary, superseded, exception-based and licence-restricted policies are distinct. Empty policy universes yield null, not zero variation.
+
+## Mapping and comparability adjudication
+Two reviewers classify authority, service/indication, eligibility, geography and temporal overlap; a third adjudicates. NCDs, LCDs, articles, state rules and exceptions retain hierarchy.
+
+## Uncertainty multiplicity and sensitivity analyses
+Freeze sparse-area handling, ambiguous authority sensitivity, jurisdiction inclusion and multiplicity. Access/causal work requires linked utilisation and a separate identification strategy.
+
+## Negative controls and calibration
+Use services expected to have minimal local policy variation and calibrate automated extraction to duplicate manual ratings.
+
+## Deviations amendments and human review
+Log classification changes and exclusions. Signed methods, policy-domain, licence and governance review is required; simulated review is advisory only.

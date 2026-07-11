@@ -33,3 +33,24 @@ Planned outputs are price-concept taxonomy, opacity scorecard, caveated cross-co
 
 ## OSF
 The OSF component will contain this protocol, a generated data dictionary, source and licence caveats, analysis report, mapping appendix, sensitivity-analysis appendix and final paper/preprint materials when available. Registration status remains draft/planned until a human reviewer confirms that inclusion rules, source licences and mapping adjudication requirements are adequate for the research question.
+
+## Estimands and outcomes
+The current primary metric is `public_schedule_amount_missingness`: one minus the eligible presentation share with an observable public schedule amount. It is not an opacity/transparency index. Any future index requires prespecified domains, weights and validation.
+
+## Source versions and analysis window
+Freeze the active-product universe, effective/retrieval dates, source hashes, currency vintage and code commit before scoring.
+
+## Missing data and denominator rules
+Structural absence, known confidential rebate, unavailable source, parsing failure, non-reimbursement and licence restriction are distinct. Confidential or unavailable net prices are never zero.
+
+## Mapping and comparability adjudication
+Compare only after ingredient, strength, form, route, pack, dose, component, patient liability and effective-date review by two independent reviewers, with third-reviewer adjudication.
+
+## Uncertainty multiplicity and sensitivity analyses
+Freeze denominator, missingness taxonomy, scenario bounds, multiplicity and currency/PPP sources and vintages before analysis.
+
+## Negative controls and calibration
+Calibrate observability coding against independently rated cases. Any opacity construct must establish inter-rater reliability and weight stability.
+
+## Deviations amendments and human review
+Audit overrides and exclusions. Signed methods, medicines-domain, licence and governance review is required; simulated review is advisory only.

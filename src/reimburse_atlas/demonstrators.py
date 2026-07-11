@@ -91,20 +91,6 @@ def _filter_procedural(records: Sequence[object]) -> list[object]:
     ]
 
 
-def _median_amount(records: Sequence[object]) -> float | None:
-    """Return median payment amount across records."""
-    amounts = [
-        amount for amount in (_record_payment_amount(r) for r in records) if amount is not None
-    ]
-    if not amounts:
-        return None
-    amounts.sort()
-    n = len(amounts)
-    if n % 2 == 1:
-        return float(amounts[n // 2])
-    return float((amounts[n // 2 - 1] + amounts[n // 2]) / 2.0)
-
-
 def _percentage_priced(records: Sequence[object]) -> float:
     """Return share of records with a public payment amount."""
     if not records:
@@ -135,20 +121,23 @@ def genomics_demo(
         all_genomics.extend(genomics_items)
         total_items += len(genomics_items)
 
-    median = _median_amount(all_genomics)
     priced_share = _percentage_priced(all_genomics)
     missing_sources = _missing_sources(parsed_sources, GENOMICS_EXPECTED_SOURCES)
 
     metric = (
         f"Compared genomics items across {len(source_names)} sources; "
         f"{total_items} items found, "
-        f"{priced_share * 100:.1f}% priced, "
-        f"median payment {median or 'N/A'}."
+        f"{priced_share * 100:.1f}% with a public schedule amount. "
+        "No pooled payment statistic is calculated across unharmonised sources."
     )
     caveats = [
         "Genomics domain labels may differ across jurisdictions.",
         "Only items explicitly tagged 'genomics' or containing 'genomic' are compared.",
-        "No currency normalisation or PPP adjustment applied.",
+        "This is a parser/rendering fixture, not a cross-jurisdiction price comparison.",
+        (
+            "Pooled prices require harmonised currency year, price concept, component, "
+            "bundle and unit."
+        ),
     ]
     if missing_sources:
         caveats.append("Missing fixture coverage for: " + ", ".join(missing_sources) + ".")
@@ -176,24 +165,21 @@ def cognitive_procedural_demo(
         all_cognitive.extend(_filter_cognitive(records))
         all_procedural.extend(_filter_procedural(records))
 
-    cog_median = _median_amount(all_cognitive)
-    proc_median = _median_amount(all_procedural)
-    ratio: float | None = (
-        round(proc_median / cog_median, 4)
-        if cog_median and proc_median and cog_median > 0
-        else None
-    )
     missing_sources = _missing_sources(parsed_sources, COGNITIVE_EXPECTED_SOURCES)
 
     metric = (
-        f"Cognitive items: {len(all_cognitive)} (median {cog_median or 'N/A'}), "
-        f"Procedural items: {len(all_procedural)} (median {proc_median or 'N/A'}), "
-        f"Ratio (proc/cog): {ratio or 'N/A'}."
+        f"Cognitive items identified: {len(all_cognitive)}; "
+        f"procedural items identified: {len(all_procedural)}. "
+        "No relativity is calculated without matched, within-jurisdiction baskets."
     )
     caveats = [
         "Keyword-based cognitive/procedural classification is a prototype heuristic.",
         "No case-mix or complexity adjustment applied.",
-        "Currency and purchasing-power differences are not normalised.",
+        "This fixture does not measure incentives, value, provider income or actual payment.",
+        (
+            "A result requires both classes and prespecified matching, component and "
+            "minimum-sample rules."
+        ),
     ]
     if missing_sources:
         caveats.append("Missing fixture coverage for: " + ", ".join(missing_sources) + ".")
@@ -211,7 +197,7 @@ def cognitive_procedural_demo(
 def medicine_opacity_demo(
     parsed_sources: Mapping[str, Sequence[object]],
 ) -> PolicyBrief:
-    """Characterise medicine price opacity across jurisdictions."""
+    """Measure public schedule-amount missingness without inferring price opacity."""
     total_items = 0
     priced_count = 0
     source_names: list[str] = []
@@ -225,16 +211,16 @@ def medicine_opacity_demo(
                 if _record_payment_amount(r) is not None:
                     priced_count += 1
 
-    opacity = round(1.0 - (priced_count / total_items if total_items > 0 else 0.0), 4)
+    missingness = round(1.0 - priced_count / total_items, 4) if total_items else None
     missing_sources = _missing_sources(parsed_sources, MEDICINE_EXPECTED_SOURCES)
 
     metric = (
         f"Medicine items across {len(source_names)} sources; "
         f"{total_items} items, {priced_count} with public price, "
-        f"opacity index {opacity} (lower = more transparent)."
+        f"public schedule amount missingness {missingness if missingness is not None else 'N/A'}."
     )
     caveats = [
-        "Medicine price opacity reflects only public schedule amounts, not rebates.",
+        "This metric measures field missingness, not price opacity or transparency.",
         "List prices may overstate net reimbursement.",
         "No confidential discount or bundled-payment adjustment applied.",
     ]
@@ -242,8 +228,8 @@ def medicine_opacity_demo(
         caveats.append("Missing fixture coverage for: " + ", ".join(missing_sources) + ".")
 
     return PolicyBrief(
-        demonstrator_id="medicine_opacity_index",
-        title="Medicine price-opacity scorecard",
+        demonstrator_id="medicine_public_amount_missingness",
+        title="Medicine public schedule-amount missingness",
         sources_compared=tuple(sorted(set(source_names))),
         item_count=total_items,
         metric_summary=metric,

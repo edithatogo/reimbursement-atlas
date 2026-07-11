@@ -4,7 +4,7 @@
 This report is not yet a results paper. It is a structured analysis scaffold linked to the OSF protocol, Conductor tracks, source-download plan, data-quality checks, evidence-readiness rows and GitHub issue backlog. No policy conclusion should be drawn until real reviewed-source bundles are generated and the mapping review workflow is complete.
 
 ## Research question
-Do local coverage systems create greater access variation than nationally uniform schedules?
+How does documented coverage-rule variation differ between selected local and national systems?
 
 ## Evidence available now
 The current repository can document planned sources, exact source-file gates, parser status, protocol completeness, research-question linkages, source-content validation status, publication safety and dashboard outputs. Synthetic fixtures demonstrate the vertical slice but are not real policy evidence.

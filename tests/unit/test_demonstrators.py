@@ -22,6 +22,7 @@ def test_genomics_demo_uses_fixtures() -> None:
     assert isinstance(result, PolicyBrief)
     assert result.item_count > 0
     assert result.metric_summary
+    assert "No pooled payment statistic" in result.metric_summary
     assert len(result.caveats) >= 1
     assert any("missing fixture coverage" in caveat.lower() for caveat in result.caveats)
 
@@ -40,6 +41,7 @@ def test_medicine_opacity_demo() -> None:
     result = medicine_opacity_demo({})
     assert isinstance(result, PolicyBrief)
     assert result.item_count == 0
+    assert "missingness N/A" in result.metric_summary
 
 
 def test_build_policy_demonstrator_briefs_returns_three_briefs() -> None:
@@ -57,5 +59,5 @@ def test_build_policy_demonstrator_briefs_returns_three_briefs() -> None:
     assert {brief.demonstrator_id for brief in briefs} == {
         "genomics_pathology",
         "cognitive_procedural_index",
-        "medicine_opacity_index",
+        "medicine_public_amount_missingness",
     }

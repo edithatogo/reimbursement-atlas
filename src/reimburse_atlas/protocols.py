@@ -21,6 +21,16 @@ REQUIRED_PROTOCOL_SECTIONS = (
     "osf",
 )
 
+REQUIRED_SCIENTIFIC_SECTIONS = (
+    "estimands and outcomes",
+    "source versions and analysis window",
+    "missing data and denominator rules",
+    "mapping and comparability adjudication",
+    "uncertainty multiplicity and sensitivity analyses",
+    "negative controls and calibration",
+    "deviations amendments and human review",
+)
+
 
 def _normalised_headings(text: str) -> set[str]:
     """Return normalised Markdown headings for a protocol/report document."""
@@ -47,6 +57,12 @@ def _section_present(required: str, headings: set[str], text: str) -> bool:
     return required in text.lower()
 
 
+def _missing_sections(text: str) -> tuple[str, ...]:
+    headings = _normalised_headings(text)
+    required = REQUIRED_PROTOCOL_SECTIONS + REQUIRED_SCIENTIFIC_SECTIONS
+    return tuple(section for section in required if not _section_present(section, headings, text))
+
+
 def build_protocol_status(
     questions: list[ResearchQuestionRecord],
     *,
@@ -60,13 +76,8 @@ def build_protocol_status(
         report_path = repo_root / question.report_path
         protocol_text = protocol_path.read_text(encoding="utf-8") if protocol_path.exists() else ""
         report_text = report_path.read_text(encoding="utf-8") if report_path.exists() else ""
-        headings = _normalised_headings(protocol_text)
-        missing = tuple(
-            section
-            for section in REQUIRED_PROTOCOL_SECTIONS
-            if not _section_present(section, headings, protocol_text)
-        )
-        section_count = len(REQUIRED_PROTOCOL_SECTIONS)
+        missing = _missing_sections(protocol_text)
+        section_count = len(REQUIRED_PROTOCOL_SECTIONS) + len(REQUIRED_SCIENTIFIC_SECTIONS)
         present_count = section_count - len(missing)
         protocol_word_count = _word_count(protocol_text)
         report_word_count = _word_count(report_text)
@@ -81,7 +92,7 @@ def build_protocol_status(
             and report_path.exists()
             and not missing
             and protocol_word_count >= 1200
-            and question.preregistration_status in {"drafted", "registered"}
+            and question.preregistration_status == "registered"
         )
         if not protocol_path.exists():
             next_step = "Create protocol scaffold."
@@ -89,8 +100,11 @@ def build_protocol_status(
             next_step = f"Complete missing protocol sections: {', '.join(missing)}."
         elif protocol_word_count < 1200:
             next_step = "Expand protocol detail before OSF preregistration."
-        elif question.preregistration_status == "planned":
-            next_step = "Mark protocol as drafted after human review."
+        elif question.preregistration_status != "registered":
+            next_step = (
+                "Obtain signed independent methods, domain, licence and governance review; "
+                "then register the frozen protocol and analysis manifest."
+            )
         else:
             next_step = "Ready for OSF component upload and preregistration review."
         rows.append(

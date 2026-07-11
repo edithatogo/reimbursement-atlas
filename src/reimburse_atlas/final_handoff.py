@@ -142,7 +142,10 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "PYTHONPATH=src reimbursement-atlas data-quality"
             ),
             evidence_path="data/derived/release_readiness/summary.json",
-            unblock_condition=("Required blocker count is zero and public_release_ready is true."),
+            unblock_condition=(
+                "Required software blockers are zero and repository_release_ready is true. "
+                "Research, evidence and policy-claim readiness remain separate fail-closed gates."
+            ),
             recommended_action=(
                 "Only then cut a signed, attested public release and archive to Zenodo/OSF."
             ),

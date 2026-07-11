@@ -52,7 +52,11 @@ class ReleaseReadinessSummary:
     blocked_count: int
     missing_count: int
     required_blocker_count: int
-    public_release_ready: bool
+    repository_release_ready: bool
+    research_publication_ready: bool
+    osf_registration_ready: bool
+    evidence_release_ready: bool
+    policy_claims_ready: bool
 
     def as_row(self) -> dict[str, object]:
         """Return a CSV/JSON-safe row."""
@@ -119,7 +123,7 @@ def summarise_release_gates(gates: list[ReleaseGateRecord]) -> ReleaseReadinessS
         1 for gate in gates if gate.required and gate.status in {"fail", "blocked", "missing"}
     )
     return ReleaseReadinessSummary(
-        schema_version="release-readiness-v1",
+        schema_version="release-readiness-v2",
         gate_count=len(gates),
         pass_count=counts["pass"],
         warn_count=counts["warn"],
@@ -127,7 +131,11 @@ def summarise_release_gates(gates: list[ReleaseGateRecord]) -> ReleaseReadinessS
         blocked_count=counts["blocked"],
         missing_count=counts["missing"],
         required_blocker_count=required_blocker_count,
-        public_release_ready=required_blocker_count == 0,
+        repository_release_ready=required_blocker_count == 0,
+        research_publication_ready=False,
+        osf_registration_ready=False,
+        evidence_release_ready=False,
+        policy_claims_ready=False,
     )
 
 

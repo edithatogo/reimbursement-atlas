@@ -20,3 +20,4 @@ def test_policy_signal_matrix_separates_price_and_coverage_sources(repo_root: Pa
     assert by_source["uk_genomic_test_directory"]["policy_use"] == (
         "coverage_architecture_comparison"
     )
+    assert by_source["uk_genomic_test_directory"]["price_observability"] is None
