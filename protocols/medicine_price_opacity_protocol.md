@@ -54,3 +54,8 @@ Calibrate observability coding against independently rated cases. Any opacity co
 
 ## Deviations amendments and human review
 Audit overrides and exclusions. Signed methods, medicines-domain, licence and governance review is required; simulated review is advisory only.
+
+## Pre-registration review checklist
+Complete `docs/RESEARCH_PROTOCOL_REVIEW_CHECKLIST.md` for `rq_medicine_opacity`.
+The protocol remains draft/planned until an accountable human reviewer records a
+decision and all medicine-source, rebate, restriction, and licence gates are resolved.

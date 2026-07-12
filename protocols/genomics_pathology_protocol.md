@@ -54,3 +54,8 @@ Parser and mapping performance are calibrated against hand-reviewed records. Lon
 
 ## Deviations amendments and human review
 Every override and deviation receives a reason code. OSF registration requires signed methods, domain, licence and governance review; simulated review does not satisfy that gate.
+
+## Pre-registration review checklist
+Complete `docs/RESEARCH_PROTOCOL_REVIEW_CHECKLIST.md` for `rq_genomics_coverage_price`.
+The protocol remains draft/planned until an accountable human reviewer records a
+decision and all external source, mapping, and licence gates are resolved.

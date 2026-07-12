@@ -54,3 +54,8 @@ Use services expected to have minimal local policy variation and calibrate autom
 
 ## Deviations amendments and human review
 Log classification changes and exclusions. Signed methods, policy-domain, licence and governance review is required; simulated review is advisory only.
+
+## Pre-registration review checklist
+Complete `docs/RESEARCH_PROTOCOL_REVIEW_CHECKLIST.md` for `rq_local_national_coverage`.
+The protocol remains draft/planned until an accountable human reviewer records a
+decision and the geography, coverage, equity, and source gates are resolved.
