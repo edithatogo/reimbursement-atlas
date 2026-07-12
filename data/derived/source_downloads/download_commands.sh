@@ -2,14 +2,14 @@
 set -uo pipefail
 
 failures=0
-if (mkdir -p data/raw_live/au_mbs && curl -L --fail --retry 5 --retry-all-errors --connect-timeout 20 --max-time 180 --create-dirs --dump-header data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT.headers --etag-save data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT.etag --etag-compare data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT.etag -o data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/650f3eec0dfb990d3ca25692100069854/1bc94358d4f276d3ca257ccf0000aa73/%24FILE/20260701_MBSONLINE_IMAP.TXT); then
+if (mkdir -p data/raw_live/au_mbs && curl -L --fail --retry 5 --retry-all-errors --connect-timeout 20 --max-time 180 --create-dirs --dump-header data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT.headers --etag-save data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT.etag --etag-compare data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT.etag -o data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/650f3eec0dfb990d3ca257ccf0000aa73/%24FILE/20260701_MBSONLINE_IMAP.TXT); then
   :
 else
   code=$?
   printf '%s\n' 'download command 1 failed with exit code ' "$code" >&2
   failures=$((failures + 1))
 fi
-if (mkdir -p data/raw_live/au_mbs && curl -L --fail --retry 5 --retry-all-errors --connect-timeout 20 --max-time 180 --create-dirs --dump-header data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT.headers --etag-save data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT.etag --etag-compare data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT.etag -o data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/650f3eec0dfb990d3ca25692100069854/1bc94358d4f276d3ca257ccf0000aa73/%24FILE/20260701_MBSONLINE_DESC.TXT); then
+if (mkdir -p data/raw_live/au_mbs && curl -L --fail --retry 5 --retry-all-errors --connect-timeout 20 --max-time 180 --create-dirs --dump-header data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT.headers --etag-save data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT.etag --etag-compare data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT.etag -o data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/650f3eec0dfb990d3ca257ccf0000aa73/%24FILE/20260701_MBSONLINE_DESC.TXT); then
   :
 else
   code=$?
