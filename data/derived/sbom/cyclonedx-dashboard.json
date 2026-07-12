@@ -362,7 +362,7 @@
       "version": "6.0.1"
     },
     {
-      "bom-ref": "pkg:npm/@astrojs/telemetry@3.3.2",
+      "bom-ref": "pkg:npm/@astrojs/telemetry@3.3.3",
       "licenses": [
         {
           "license": {
@@ -374,12 +374,12 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-j8DNruA8ors99Al39RYZPJK4DC1bKkoNm93mAMuBhY9TCNC4R8n1q7ovFnJ5qhGh5Lsh7pa1gpQVpYpsJPeTHQ=="
+          "value": "sha512-C1TLn5sPJr0x4vk56piHWKbnqlEB8BKyte5Y45V02U+D7BGO5eMqZDH5aPjnkXQWJggvmsTXxH03QMZ9NgWLzQ=="
         }
       ],
-      "purl": "pkg:npm/@astrojs/telemetry@3.3.2",
+      "purl": "pkg:npm/@astrojs/telemetry@3.3.3",
       "type": "library",
-      "version": "3.3.2"
+      "version": "3.3.3"
     },
     {
       "bom-ref": "pkg:npm/@astrojs/yaml2ts@0.2.4",
@@ -4417,17 +4417,24 @@
       "version": "3.1.0"
     },
     {
-      "bom-ref": "pkg:npm/astro@7.0.6",
+      "bom-ref": "pkg:npm/astro@7.0.7",
+      "licenses": [
+        {
+          "license": {
+            "name": "MIT"
+          }
+        }
+      ],
       "name": "astro",
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-Myw0sFia+zs/Y0yqfZEsUYXfDPh3ELcLf1f0Q/qQzVXBh/af1qO62WNT+P89DCcfGVV51nMoQhEfkBYqJmoUOQ=="
+          "value": "sha512-swqrKDSI/B83GFroYPZYMFcxqbSe9+tkynu1WDBk3GLgBfV9++qVM4Z+2uFT6uu9A53Q0TROnxLketfMEENuqQ=="
         }
       ],
-      "purl": "pkg:npm/astro@7.0.6",
+      "purl": "pkg:npm/astro@7.0.7",
       "type": "library",
-      "version": "7.0.6"
+      "version": "7.0.7"
     },
     {
       "bom-ref": "pkg:npm/astro/node_modules/semver@7.8.5",
@@ -6856,6 +6863,13 @@
     },
     {
       "bom-ref": "pkg:npm/is-docker@4.0.0",
+      "licenses": [
+        {
+          "license": {
+            "name": "MIT"
+          }
+        }
+      ],
       "name": "is-docker",
       "properties": [
         {
@@ -6888,39 +6902,6 @@
       "version": "3.0.0"
     },
     {
-      "bom-ref": "pkg:npm/is-inside-container@1.0.0",
-      "licenses": [
-        {
-          "license": {
-            "name": "MIT"
-          }
-        }
-      ],
-      "name": "is-inside-container",
-      "properties": [
-        {
-          "name": "npm:integrity",
-          "value": "sha512-KIYLCCJghfHZxqjYBE7rEy0OBuTd5xCHS7tHVgvCLkx7StIoaxwNW3hCALgEUjFfeRk+MG/Qxmp/vtETEF3tRA=="
-        }
-      ],
-      "purl": "pkg:npm/is-inside-container@1.0.0",
-      "type": "library",
-      "version": "1.0.0"
-    },
-    {
-      "bom-ref": "pkg:npm/is-inside-container/node_modules/is-docker@3.0.0",
-      "name": "is-inside-container/node_modules/is-docker",
-      "properties": [
-        {
-          "name": "npm:integrity",
-          "value": "sha512-eljcgEDlEns/7AXFosB5K/2nCM4P7FQPkGc/DWLy5rmFEWvZayGrik1d9/QIY5nJ4f9YsVvBkA6kJpHn9rISdQ=="
-        }
-      ],
-      "purl": "pkg:npm/is-inside-container/node_modules/is-docker@3.0.0",
-      "type": "library",
-      "version": "3.0.0"
-    },
-    {
       "bom-ref": "pkg:npm/is-plain-obj@4.1.0",
       "licenses": [
         {
@@ -6939,26 +6920,6 @@
       "purl": "pkg:npm/is-plain-obj@4.1.0",
       "type": "library",
       "version": "4.1.0"
-    },
-    {
-      "bom-ref": "pkg:npm/is-wsl@3.1.1",
-      "licenses": [
-        {
-          "license": {
-            "name": "MIT"
-          }
-        }
-      ],
-      "name": "is-wsl",
-      "properties": [
-        {
-          "name": "npm:integrity",
-          "value": "sha512-e6rvdUCiQCAuumZslxRJWR/Doq4VpPR82kqclvcS0efgt430SlGIk05vdCN58+VrzgtIcfNODjozVielycD4Sw=="
-        }
-      ],
-      "purl": "pkg:npm/is-wsl@3.1.1",
-      "type": "library",
-      "version": "3.1.1"
     },
     {
       "bom-ref": "pkg:npm/isoformat@0.2.1",
@@ -9981,26 +9942,6 @@
       "purl": "pkg:npm/wgsl_reflect@1.4.0",
       "type": "library",
       "version": "1.4.0"
-    },
-    {
-      "bom-ref": "pkg:npm/which-pm-runs@1.1.0",
-      "licenses": [
-        {
-          "license": {
-            "name": "MIT"
-          }
-        }
-      ],
-      "name": "which-pm-runs",
-      "properties": [
-        {
-          "name": "npm:integrity",
-          "value": "sha512-n1brCuqClxfFfq/Rb0ICg9giSZqCS+pLtccdag6C2HyufBrh3fBOiy9nb6ggRMvWOVH5GrdJskj5iGTZNxd7SA=="
-        }
-      ],
-      "purl": "pkg:npm/which-pm-runs@1.1.0",
-      "type": "library",
-      "version": "1.1.0"
     },
     {
       "bom-ref": "pkg:npm/wordwrapjs@5.1.1",
