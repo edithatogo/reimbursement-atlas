@@ -5,7 +5,7 @@ from pathlib import Path
 from reimburse_atlas.models import SourceFileRecord
 from reimburse_atlas.protocols import build_protocol_status, protocol_summary, write_protocol_status
 from reimburse_atlas.registry import load_research_questions
-from reimburse_atlas.source_downloads import build_download_plan
+from reimburse_atlas.source_downloads import build_download_plan, write_download_outputs
 
 
 def _source_file(**overrides: object) -> SourceFileRecord:
@@ -59,6 +59,19 @@ def test_download_plan_can_opt_in_to_resume_support(tmp_path: Path) -> None:
     )
     assert "--continue-at -" in plan.command
     assert plan.supports_resume
+
+
+def test_download_script_attempts_all_commands_and_fails_at_end(tmp_path: Path) -> None:
+    plans = [
+        build_download_plan(_source_file(id="first"), output_dir=tmp_path / "raw"),
+        build_download_plan(_source_file(id="second"), output_dir=tmp_path / "raw"),
+    ]
+    _, _, _, _ = write_download_outputs(plans, [], output_dir=tmp_path / "plans")
+    script = (tmp_path / "plans" / "download_commands.sh").read_text(encoding="utf-8")
+    assert "failures=0" in script
+    assert "download command 1 failed" in script
+    assert "download command 2 failed" in script
+    assert "inspect source validation and attempt metadata" in script
 
 
 def test_protocol_status_generation_and_outputs(tmp_path: Path) -> None:
