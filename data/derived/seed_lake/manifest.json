@@ -41,7 +41,7 @@
       "name": "source_files",
       "parquet_path": "source_files/source_files.parquet",
       "rows": 9,
-      "sha256": "639dc89325f51095a484862b907a2b9da52541445ae2cdc351d63825ba2ab60c"
+      "sha256": "00d30ddb41cc29a4ca2b117d10367c05940688f51bec80adc5455026d25549a7"
     },
     {
       "csv_path": "source_snapshots/source_snapshots.csv",
@@ -353,7 +353,7 @@
       "name": "source_download_plans",
       "parquet_path": "source_download_plans/source_download_plans.parquet",
       "rows": 9,
-      "sha256": "8463958f420b7e0294b0e405e9ed4840d078e3ed0e0a115050f3e5d21bae80f1"
+      "sha256": "f8622206dd95795a48339646f3e0f5f691f5989da469113c8ffd1c647969aaaf"
     },
     {
       "csv_path": "source_download_attempts/source_download_attempts.csv",
