@@ -134,7 +134,7 @@ main release path.
 
 Action references are SHA-pinned, `zizmor` medium findings are blocking, strict branch protection requires 20 quality/security/harness checks, and full-history secret scanning plus reproducible-build verification pass. The continuous-security and harness-engineering tracks are complete. CI/CD remains open only for consumer-side attestation verification and continuing canary maintenance.
 
-`osf-cli-go` is pinned at `v0.3.1` for automation and verified through Go module provenance because its current `--version` output incorrectly reports `0.0.0-dev` (upstream issue 28). OSF sync manifests are checksum-bearing and fail closed. Remote OSF mutation, registration and public release remain blocked by human methods, domain, licence and governance review and by the absence of manifest-native remote path reconciliation.
+`osf-cli-go` is pinned at `v0.3.2` for automation and verified through Go module provenance. OSF sync manifests are checksum-bearing and fail closed. Remote OSF mutation, registration and public release remain blocked by human methods, domain, licence and governance review and by the absence of manifest-native remote path reconciliation.
 
 Immediate focus:
 
