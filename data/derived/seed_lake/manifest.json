@@ -320,8 +320,8 @@
       "jsonl_path": "architecture_import_edges/architecture_import_edges.jsonl",
       "name": "architecture_import_edges",
       "parquet_path": "architecture_import_edges/architecture_import_edges.parquet",
-      "rows": 196,
-      "sha256": "03fa29359db82428193cab87bcffc9b66377e6dcce8bcbb8b0c59d31e1f9e453"
+      "rows": 197,
+      "sha256": "3ff3a023c7dff8c62e1e057f140537237c0e4243f866ec908ec85645818cb5a9"
     },
     {
       "csv_path": "architecture_layer_policy/architecture_layer_policy.csv",
@@ -329,7 +329,7 @@
       "name": "architecture_layer_policy",
       "parquet_path": "architecture_layer_policy/architecture_layer_policy.parquet",
       "rows": 22,
-      "sha256": "7e62764e37644a3d4625da79429aa62e96ce3967c98dd19d4e128059ae2b05a9"
+      "sha256": "9b39eb1950bfcae22abc433a77293192c0ba97f273795eeb795633ca472d2581"
     },
     {
       "csv_path": "architecture_import_cycles/architecture_import_cycles.csv",
@@ -345,7 +345,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 35,
-      "sha256": "09360734a6015b4d035b8bfc9b96e1e632baf358bcd050741977aeec39737b0b"
+      "sha256": "06c9ff21a6f7ec5445c5d85e13210ec024b3fdf978e8dcdb93a3fa3e2b317c99"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -393,7 +393,7 @@
       "name": "final_handoff_tasks",
       "parquet_path": "final_handoff_tasks/final_handoff_tasks.parquet",
       "rows": 8,
-      "sha256": "061a422ea6e206265aff307d9745ed16afdee50b5335ea6862d1dd74c3c1f40a"
+      "sha256": "ff3ea95a01154abe1c79bb77cb9f2c6f0e3d3d1362c281fec0fda220014565bc"
     },
     {
       "csv_path": "osf_component_plan/osf_component_plan.csv",
@@ -449,7 +449,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 140,
-      "sha256": "29367e4c963da73610e97944cef201f9006caa55c4a9f5cdf36e67b76f1d1374"
+      "sha256": "0de7c3ea1f3beffa6759e77babe30e8e98ba41c025d11ded270517710e8daa6e"
     }
   ]
 }

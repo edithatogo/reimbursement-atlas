@@ -131,6 +131,7 @@ True,from,13,Layer dependency respects inward/downward architecture.,interface,r
 True,from,14,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.mcp_server,foundation,reimburse_atlas.registry
 True,from,10,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.osf,foundation,reimburse_atlas.io
 True,from,11,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.osf,foundation,reimburse_atlas.models
+True,from,12,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.osf,foundation,reimburse_atlas.registry
 True,from,3,Layer dependency respects inward/downward architecture.,parsing,reimburse_atlas.parsers,parsing,reimburse_atlas.parsers.cms_asp_csv
 True,from,4,Layer dependency respects inward/downward architecture.,parsing,reimburse_atlas.parsers,parsing,reimburse_atlas.parsers.cms_clfs_csv
 True,from,5,Layer dependency respects inward/downward architecture.,parsing,reimburse_atlas.parsers,parsing,reimburse_atlas.parsers.cms_pfs_csv
