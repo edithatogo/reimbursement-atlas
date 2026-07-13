@@ -79,6 +79,15 @@ The repository should support a local RxNav-in-a-Box deployment through configur
 2. user-supplied local RxNav-in-a-Box endpoint for higher-volume or offline workflows;
 3. cached derived identifiers where redistribution is allowed.
 
+The executable contract in `reimburse_atlas.terminologies` is deliberately
+read-only: `RxNavAdapterConfig` holds a local HTTP endpoint and timeout, while
+`RxNavConceptQuery`, `build_rxnav_approximate_match_url` and
+`parse_rxnav_matches` cover request construction and the minimal derived
+`rxcui`/label response. The adapter does not fetch data, persist credentials,
+bundle RxNorm content, or promote a match to an equivalence assertion. Any
+returned candidate remains `machine_generated` until terminology and domain
+review records the mapping decision.
+
 ## Mapping confidence scale
 
 | Score | Meaning |
