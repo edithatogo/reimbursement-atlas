@@ -126,7 +126,7 @@ def test_osf_sync_manifest_is_checksum_bearing_and_fail_closed(tmp_path: Path) -
 
 
 def test_osf_sync_manifest_hashes_large_files_incrementally(tmp_path: Path) -> None:
-    from reimburse_atlas.osf import OsfComponentPlan, _sha256_file
+    from reimburse_atlas.osf import OsfComponentPlan, sha256_file
 
     payload = (b"reimbursement-atlas\n" * 100_000) + b"end\n"
     source = tmp_path / "large.txt"
@@ -144,7 +144,7 @@ def test_osf_sync_manifest_hashes_large_files_incrementally(tmp_path: Path) -> N
     paths = write_osf_outputs([component], output_dir=tmp_path / "out", root=tmp_path)
     row = json.loads(paths[3].read_text(encoding="utf-8").strip())
     assert row["byte_size"] == len(payload)
-    assert row["sha256"] == _sha256_file(source)
+    assert row["sha256"] == sha256_file(source)
 
 
 def test_research_package_metadata(tmp_path: Path) -> None:

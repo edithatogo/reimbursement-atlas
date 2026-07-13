@@ -213,7 +213,7 @@ def _sync_row(component: OsfComponentPlan, root: Path) -> dict[str, object]:
         "osf_path": component.osf_path,
         "exists": is_file,
         "byte_size": local_path.stat().st_size if is_file else 0,
-        "sha256": _sha256_file(local_path) if is_file else None,
+        "sha256": sha256_file(local_path) if is_file else None,
         "required_before_release": component.required_before_release,
         "publish_allowed": False,
         "blocked_reason": (
@@ -222,7 +222,7 @@ def _sync_row(component: OsfComponentPlan, root: Path) -> dict[str, object]:
     }
 
 
-def _sha256_file(path: Path, *, chunk_size: int = 1024 * 1024) -> str:
+def sha256_file(path: Path, *, chunk_size: int = 1024 * 1024) -> str:
     """Hash a file incrementally so large publication artefacts stay bounded in memory."""
     digest = sha256()
     with path.open("rb") as handle:
