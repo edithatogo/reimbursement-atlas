@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-PERMISSIVE_ALLOWLIST = {"MIT", "CC0", "CC-BY", "OGL"}
+PERMISSIVE_ALLOWLIST = {"Apache-2.0", "CC0", "CC-BY", "OGL"}
 
 
 def discover_seed_files(root: Path = Path("data/seed")) -> list[Path]:

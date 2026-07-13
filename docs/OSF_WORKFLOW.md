@@ -29,6 +29,6 @@ Private OSF components may support collaborative drafting, but neither upload no
 5. Apply embargo and access controls explicitly.
 6. Verify remote hashes and component placement after upload; keep tokens outside files and logs.
 
-The automation pins `osf-cli-go` at `v0.3.1` and verifies the embedded Go module version because that release currently reports `0.0.0-dev` through `--version` (tracked upstream as issue 28). The sync manifest records local paths, target paths, sizes and SHA-256 values, but every row remains `publish_allowed: false` until accountable human review changes the publication decision. The current CLI does not yet provide manifest-native path reconciliation, so CI must not emulate idempotency with destructive ad hoc shell logic.
+The automation pins `osf-cli-go` at `v0.3.2` and verifies the embedded Go module version. The sync manifest records local paths, target paths, sizes and SHA-256 values, but every row remains `publish_allowed: false` until accountable human review changes the publication decision. The current CLI does not yet provide manifest-native path reconciliation, so CI must not emulate idempotency with destructive ad hoc shell logic.
 
 See `docs/reviews/SIMULATED_MULTI_AGENT_PROTOCOL_REVIEW_2026-07-11.md` for the advisory review and unresolved human gates.
