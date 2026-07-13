@@ -1,6 +1,6 @@
 {
   "name": "reimbursement-atlas-conductor",
-  "image": "mcr.microsoft.com/devcontainers/python:3.13-bookworm",
+  "image": "mcr.microsoft.com/devcontainers/python:3.14-bookworm",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "version": "24"
