@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 
 from scripts.make_public_status_manifest import build_public_status_manifest
+from scripts.sync_dashboard_seed import sanitise_public_text
 from scripts.validate_citation import validate_citation
 
 
@@ -38,3 +39,11 @@ def test_public_status_separates_software_evidence_and_publication(tmp_path: Pat
     assert manifest["evidence"]["status"] == "not_ready"
     assert manifest["publication"]["status"] == "gated"
     assert manifest["evidence"]["source_validation"] == "blocked"
+
+
+def test_public_dashboard_assets_redact_local_raw_cache_paths() -> None:
+    """Public derived assets must not expose ignored local raw-cache locations."""
+    result = sanitise_public_text("source=data/raw_live/mbs/file.txt")
+
+    assert "data/raw_live" not in result
+    assert "[ignored-local-raw-cache]/mbs/file.txt" in result

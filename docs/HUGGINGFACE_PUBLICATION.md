@@ -20,4 +20,9 @@ The dataset/Space creation flow is still separate from the GitHub Actions dry-ru
 That dry-run remains token-gated and should stay blocked until the workflow secrets
 and publication review gates are available.
 
+Before either publication job can mutate a remote repository, the workflow runs
+`scripts/check_huggingface_bundle.py`. It verifies the Space metadata, dashboard status contract,
+publication manifest and forbidden raw/secret/local-path markers. A passing bundle check does not
+grant permission to publish or imply evidence readiness.
+
 No raw restricted schedules, CPT descriptors, local ontology dumps or confidential prices should be published to Hugging Face.

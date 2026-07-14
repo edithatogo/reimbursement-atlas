@@ -19,7 +19,7 @@
 ## 3. Publication automation
 
 - [x] Add SHA-pinned GitHub Pages deployment workflow.
-- [ ] Keep Hugging Face Space publication manual and token-gated, then validate the deployed Space.
+- [x] Keep Hugging Face Space publication manual and token-gated, with local bundle validation.
 - [ ] Create signed release metadata and Zenodo DOI only after publication approval.
 
 ## 4. Validation and handoff
@@ -28,4 +28,5 @@
 - [x] Regenerate the machine-readable public status artefact.
 - [x] Run the targeted local quality and dashboard gates.
 - [x] Regenerate Conductor issue/project/dashboard artefacts after the full dashboard slice.
-- [ ] Record external blockers in final handoff and release-readiness outputs.
+- [x] Record external blockers in final handoff and release-readiness outputs; external HF/OSF
+  publication and human licence/research review remain fail-closed.

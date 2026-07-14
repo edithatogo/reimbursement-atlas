@@ -18,11 +18,11 @@ prefix-dev/setup-pixi,prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043
 actions/checkout,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,26,Already pinned to a full SHA.,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,,skipped_sha,,.github/workflows/huggingface.yml
 astral-sh/setup-uv,astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39,29,Already pinned to a full SHA.,fac544c07dec837d0ccb6301d7b5580bf5edae39,,skipped_sha,,.github/workflows/huggingface.yml
 actions/setup-node,actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,32,Already pinned to a full SHA.,48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,,skipped_sha,,.github/workflows/huggingface.yml
-actions/upload-artifact,actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a,52,Already pinned to a full SHA.,043fb46d1a93c77aae656e7c1c64a875d1fc6a0a,,skipped_sha,,.github/workflows/huggingface.yml
-actions/checkout,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,67,Already pinned to a full SHA.,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,,skipped_sha,,.github/workflows/huggingface.yml
-astral-sh/setup-uv,astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39,70,Already pinned to a full SHA.,fac544c07dec837d0ccb6301d7b5580bf5edae39,,skipped_sha,,.github/workflows/huggingface.yml
-actions/checkout,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,101,Already pinned to a full SHA.,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,,skipped_sha,,.github/workflows/huggingface.yml
-actions/setup-node,actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,104,Already pinned to a full SHA.,48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,,skipped_sha,,.github/workflows/huggingface.yml
+actions/upload-artifact,actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a,54,Already pinned to a full SHA.,043fb46d1a93c77aae656e7c1c64a875d1fc6a0a,,skipped_sha,,.github/workflows/huggingface.yml
+actions/checkout,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,69,Already pinned to a full SHA.,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,,skipped_sha,,.github/workflows/huggingface.yml
+astral-sh/setup-uv,astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39,72,Already pinned to a full SHA.,fac544c07dec837d0ccb6301d7b5580bf5edae39,,skipped_sha,,.github/workflows/huggingface.yml
+actions/checkout,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,103,Already pinned to a full SHA.,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,,skipped_sha,,.github/workflows/huggingface.yml
+actions/setup-node,actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,106,Already pinned to a full SHA.,48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,,skipped_sha,,.github/workflows/huggingface.yml
 actions/checkout,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,20,Already pinned to a full SHA.,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,,skipped_sha,,.github/workflows/mutation-nightly.yml
 prefix-dev/setup-pixi,prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f,23,Already pinned to a full SHA.,a09b6247153796b190642a2b53fac4241043cf6f,,skipped_sha,,.github/workflows/mutation-nightly.yml
 actions/checkout,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,25,Already pinned to a full SHA.,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,,skipped_sha,,.github/workflows/osf.yml
