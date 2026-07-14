@@ -18,6 +18,8 @@ lancedb/
 *.parquet
 apps/dashboard/node_modules/
 apps/dashboard/dist/
+apps/playwright-report/
+apps/test-results/
 .env
 .DS_Store
 data/cache/

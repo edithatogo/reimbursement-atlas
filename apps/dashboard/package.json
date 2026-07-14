@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "test:browser": "playwright test"
   },
   "dependencies": {
     "@astrojs/check": "0.9.9",
@@ -20,6 +21,7 @@
     "typescript": "6.0.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "@types/papaparse": "^5.5.2"
   }
 }

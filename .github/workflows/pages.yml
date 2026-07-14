@@ -39,10 +39,14 @@ jobs:
         run: |
           npm ci
           npm run build
+          npx playwright install --with-deps chromium
       - name: Validate dashboard public quality
         run: uv run --all-extras python scripts/check_dashboard_quality.py
       - name: Validate dashboard routes
         run: uv run --all-extras python scripts/check_dashboard_routes.py
+      - name: Browser smoke gate
+        working-directory: apps/dashboard
+        run: npm run test:browser
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         with:
           path: apps/dashboard/dist

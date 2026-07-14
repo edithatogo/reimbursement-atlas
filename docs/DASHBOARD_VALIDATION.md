@@ -46,6 +46,20 @@ cd ../.. && pixi run dashboard-quality
 The dashboard tables provide client-side text filtering, CSV downloads and stable section anchors.
 Source and mapping pages link back to generated provenance and review artefacts.
 
+## Browser smoke gate
+
+Playwright exercises every public route in Chromium, checks status codes, page metadata, console
+errors and page-error events, and captures bounded screenshot artefacts for CI diagnostics:
+
+```bash
+cd apps/dashboard
+npx playwright install chromium
+npm run test:browser
+```
+
+Pixel-diff baselines are intentionally not committed yet because the project currently validates
+on macOS and Linux; cross-platform visual baselines require a dedicated browser-version policy.
+
 ## Cosmograph compatibility note
 
 The current Cosmograph dependency chain imports `gl-bench`. Under the Astro 7 / Vite 8 / Rolldown build path, the browser field can resolve to a minified file without a default ESM export. The dashboard config aliases `gl-bench` to its ESM module file so the static build succeeds without patching vendored package files.

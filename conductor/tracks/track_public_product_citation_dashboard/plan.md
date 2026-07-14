@@ -14,7 +14,7 @@
 - [x] Add executive status cards and explicit software/evidence/publication separation.
 - [x] Add table search controls, CSV downloads and stable section anchors.
 - [x] Add provenance navigation for source and mapping evidence surfaces.
-- [x] Add automated accessibility, page-size and route/deep-link gates; visual regression remains a follow-up.
+- [x] Add automated accessibility, page-size, route/deep-link and browser smoke gates; pixel baselines remain a follow-up.
 
 ## 3. Publication automation
 
