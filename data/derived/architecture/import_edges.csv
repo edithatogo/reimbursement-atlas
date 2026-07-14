@@ -189,8 +189,8 @@ True,from,11,Layer dependency respects inward/downward architecture.,orchestrati
 True,from,12,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.source_validation,foundation,reimburse_atlas.models
 True,from,13,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.source_validation,foundation,reimburse_atlas.registry
 True,from,14,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.source_validation,orchestration,reimburse_atlas.source_downloads
-True,from,16,Layer dependency respects inward/downward architecture.,foundation,reimburse_atlas.terminologies,foundation,reimburse_atlas.models
-True,from,17,Layer dependency respects inward/downward architecture.,foundation,reimburse_atlas.terminologies,foundation,reimburse_atlas.parsers.normalise
+True,from,17,Layer dependency respects inward/downward architecture.,foundation,reimburse_atlas.terminologies,foundation,reimburse_atlas.models
+True,from,18,Layer dependency respects inward/downward architecture.,foundation,reimburse_atlas.terminologies,foundation,reimburse_atlas.parsers.normalise
 True,from,12,Layer dependency respects inward/downward architecture.,foundation,reimburse_atlas.toolchain,foundation,reimburse_atlas.registry
 True,from,11,Layer dependency respects inward/downward architecture.,foundation,reimburse_atlas.validation,foundation,reimburse_atlas.registry
 True,from,10,Layer dependency respects inward/downward architecture.,analysis,reimburse_atlas.vector_index,analysis,reimburse_atlas.analysis.mapping_evidence
