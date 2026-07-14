@@ -44,3 +44,5 @@ jobs:
       - name: Build dashboard
         working-directory: apps/dashboard
         run: npm run build
+      - name: Validate dashboard public quality
+        run: pixi run dashboard-quality

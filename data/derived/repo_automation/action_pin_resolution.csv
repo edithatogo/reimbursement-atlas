@@ -1,11 +1,11 @@
 action,current_uses,line,notes,ref,resolved_sha,status,suggested_uses,workflow
 actions/checkout,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,17,Already pinned to a full SHA.,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,,skipped_sha,,.github/workflows/ci.yml
 prefix-dev/setup-pixi,prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f,20,Already pinned to a full SHA.,a09b6247153796b190642a2b53fac4241043cf6f,,skipped_sha,,.github/workflows/ci.yml
-actions/checkout,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,49,Already pinned to a full SHA.,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,,skipped_sha,,.github/workflows/ci.yml
-actions/setup-node,actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,52,Already pinned to a full SHA.,48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,,skipped_sha,,.github/workflows/ci.yml
-actions/checkout,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,74,Already pinned to a full SHA.,df4cb1c069e1874edd31b4311f1884172cec0e10,,skipped_sha,,.github/workflows/ci.yml
-actions/setup-python,actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38,77,Already pinned to a full SHA.,42375524e23c412d93fb67b49958b491fce71c38,,skipped_sha,,.github/workflows/ci.yml
-astral-sh/setup-uv,astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39,80,Already pinned to a full SHA.,fac544c07dec837d0ccb6301d7b5580bf5edae39,,skipped_sha,,.github/workflows/ci.yml
+actions/checkout,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,51,Already pinned to a full SHA.,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,,skipped_sha,,.github/workflows/ci.yml
+actions/setup-node,actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,54,Already pinned to a full SHA.,48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,,skipped_sha,,.github/workflows/ci.yml
+actions/checkout,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,76,Already pinned to a full SHA.,df4cb1c069e1874edd31b4311f1884172cec0e10,,skipped_sha,,.github/workflows/ci.yml
+actions/setup-python,actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38,79,Already pinned to a full SHA.,42375524e23c412d93fb67b49958b491fce71c38,,skipped_sha,,.github/workflows/ci.yml
+astral-sh/setup-uv,astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39,82,Already pinned to a full SHA.,fac544c07dec837d0ccb6301d7b5580bf5edae39,,skipped_sha,,.github/workflows/ci.yml
 actions/checkout,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,20,Already pinned to a full SHA.,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,,skipped_sha,,.github/workflows/dashboard-preview.yml
 actions/setup-node,actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,23,Already pinned to a full SHA.,48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,,skipped_sha,,.github/workflows/dashboard-preview.yml
 prefix-dev/setup-pixi,prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f,28,Already pinned to a full SHA.,a09b6247153796b190642a2b53fac4241043cf6f,,skipped_sha,,.github/workflows/dashboard-preview.yml
@@ -31,6 +31,12 @@ actions/setup-go,actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16,29,Al
 actions/upload-artifact,actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a,53,Already pinned to a full SHA.,043fb46d1a93c77aae656e7c1c64a875d1fc6a0a,,skipped_sha,,.github/workflows/osf.yml
 actions/checkout,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,70,Already pinned to a full SHA.,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,,skipped_sha,,.github/workflows/osf.yml
 actions/setup-go,actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16,73,Already pinned to a full SHA.,924ae3a1cded613372ab5595356fb5720e22ba16,,skipped_sha,,.github/workflows/osf.yml
+actions/checkout,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,22,Already pinned to a full SHA.,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,,skipped_sha,,.github/workflows/pages.yml
+astral-sh/setup-uv,astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39,25,Already pinned to a full SHA.,fac544c07dec837d0ccb6301d7b5580bf5edae39,,skipped_sha,,.github/workflows/pages.yml
+actions/setup-node,actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,26,Already pinned to a full SHA.,48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,,skipped_sha,,.github/workflows/pages.yml
+actions/configure-pages,actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b,31,Already pinned to a full SHA.,983d7736d9b0ae728b81ab479565c72886d7745b,,skipped_sha,,.github/workflows/pages.yml
+actions/upload-pages-artifact,actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa,44,Already pinned to a full SHA.,56afc609e74202658d3ffba0e8f6dda462b719fa,,skipped_sha,,.github/workflows/pages.yml
+actions/deploy-pages,actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e,56,Already pinned to a full SHA.,d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e,,skipped_sha,,.github/workflows/pages.yml
 actions/checkout,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,18,Already pinned to a full SHA.,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,,skipped_sha,,.github/workflows/release-readiness.yml
 astral-sh/setup-uv,astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39,21,Already pinned to a full SHA.,fac544c07dec837d0ccb6301d7b5580bf5edae39,,skipped_sha,,.github/workflows/release-readiness.yml
 actions/setup-node,actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,22,Already pinned to a full SHA.,48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,,skipped_sha,,.github/workflows/release-readiness.yml

@@ -7,17 +7,25 @@ interface Props {
   description?: string;
   columns?: readonly string[];
   limit?: number;
+  id?: string;
+  searchable?: boolean;
 }
 
-const { fileName, title, description, columns, limit = 8 } = Astro.props;
+const { fileName, title, description, columns, limit = 8, id, searchable = true } = Astro.props;
 const csv = await readDashboardCsv(fileName);
 const visibleColumns = columns ?? csv.columns.slice(0, 8);
 const visibleRows = csv.rows.slice(0, limit);
 ---
 
-<section>
+<section id={id} data-table-section={searchable ? "true" : undefined}>
   <h2>{title}</h2>
   {description && <p class="muted">{description}</p>}
+  {searchable && (
+    <label class="table-filter">
+      Filter rows
+      <input type="search" data-table-filter placeholder="Search this table" />
+    </label>
+  )}
   <p class="muted">
     Showing {visibleRows.length} of {csv.rows.length} rows from <code>{csv.fileName}</code>.
     <a href={`/data/${csv.fileName}`}>Download CSV</a>
@@ -32,7 +40,7 @@ const visibleRows = csv.rows.slice(0, limit);
       <tbody>
         {
           visibleRows.map((row) => (
-            <tr>
+            <tr data-table-row>
               {visibleColumns.map((column) => <td>{row[column] || "—"}</td>)}
             </tr>
           ))
@@ -41,3 +49,19 @@ const visibleRows = csv.rows.slice(0, limit);
     </table>
   </div>
 </section>
+
+{searchable && (
+  <script>
+    document.querySelectorAll<HTMLElement>("[data-table-section]").forEach((section) => {
+      const input = section.querySelector<HTMLInputElement>("[data-table-filter]");
+      if (!input) return;
+      const rows = [...section.querySelectorAll<HTMLElement>("[data-table-row]")];
+      input.addEventListener("input", () => {
+        const query = input.value.trim().toLowerCase();
+        rows.forEach((row) => {
+          row.hidden = query.length > 0 && !row.textContent?.toLowerCase().includes(query);
+        });
+      });
+    });
+  </script>
+)}

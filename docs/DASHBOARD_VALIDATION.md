@@ -20,7 +20,7 @@ cd apps/dashboard
 npm run build
 ```
 
-The build performs `astro check` before `astro build`. It currently renders six static routes:
+The build performs `astro check` before `astro build`. It currently renders nine static routes:
 
 - `/`
 - `/sources/`
@@ -28,6 +28,23 @@ The build performs `astro check` before `astro build`. It currently renders six 
 - `/crosswalks/`
 - `/ontologies/`
 - `/readiness/`
+- `/automation/`
+- `/roadmap/`
+- `/demonstrators/`
+
+The public status contract is generated separately and is available at
+`apps/dashboard/public/status.json`. It distinguishes software release readiness from evidence
+and external publication readiness. The deterministic quality gate checks that every generated
+HTML page has a language, title, viewport, heading and bounded page size:
+
+```bash
+pixi run dashboard-status
+cd apps/dashboard && npm run build
+cd ../.. && pixi run dashboard-quality
+```
+
+The dashboard tables provide client-side text filtering, CSV downloads and stable section anchors.
+Source and mapping pages link back to generated provenance and review artefacts.
 
 ## Cosmograph compatibility note
 

@@ -1,6 +1,7 @@
 ---
 import DataTable from "../../components/DataTable.astro";
 import Layout from "../../components/Layout.astro";
+import ProvenancePanel from "../../components/ProvenancePanel.astro";
 ---
 
 <Layout title="Reimbursement Atlas sources">
@@ -9,6 +10,15 @@ import Layout from "../../components/Layout.astro";
     Source pages emphasise acquisition status, reproducibility and licence gates before any raw
     public schedule is mirrored or transformed into derived outputs.
   </p>
+  <ProvenancePanel
+    title="Trace every source claim"
+    description="Source observations, snapshots and validation records are generated separately so acquisition, provenance and licence review remain visible."
+    links={[
+      { label: "Source registry", href: "/data/source_registry.csv" },
+      { label: "Source snapshots", href: "/data/source_snapshots.csv" },
+      { label: "Source contracts", href: "/readiness/#source-contracts" },
+    ]}
+  />
   <DataTable
     title="Current source observations"
     fileName="source_status.csv"
@@ -46,6 +56,7 @@ import Layout from "../../components/Layout.astro";
   />
   <DataTable
     title="Source contract validation"
+    id="source-contracts"
     fileName="source_contract_validation.csv"
     columns={["source_file_id", "contract_name", "contract_status", "expected_columns", "observed_columns", "issues", "recommended_action"]}
   />

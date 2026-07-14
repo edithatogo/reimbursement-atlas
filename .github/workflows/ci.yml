@@ -30,6 +30,8 @@ jobs:
         run: pixi run typecheck
       - name: Public data policy
         run: pixi run public-data-policy
+      - name: Citation metadata
+        run: pixi run citation-validate
       - name: Repository automation matrix
         run: pixi run repo-automation
       - name: Generate SBOMs

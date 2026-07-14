@@ -29,7 +29,7 @@ security,external_quality outcome=passed return_code=0,npm_audit_dashboard,No ac
 supply_chain,external_quality outcome=passed return_code=0,zizmor_workflow_security,No action required.,False,pass
 toolchain,external_quality outcome=passed return_code=0,pixi_available,No action required.,False,pass
 toolchain,external_quality outcome=passed return_code=0,mojo_available_uv_tool,No action required.,False,pass
-supply_chain,fail=0 warn=0 pass=64,workflow_policy_matrix,Resolve fail records; gradually burn down warn records before hardened release.,True,pass
+supply_chain,fail=0 warn=0 pass=68,workflow_policy_matrix,Resolve fail records; gradually burn down warn records before hardened release.,True,pass
 supply_chain,"All workflow actions are already SHA-pinned, local, or docker references.",action_sha_pinning,Keep action pin resolver in scheduled CI.,False,pass
 supply_chain,sbom_count=2 component_count=657,sbom_generation,Attach SBOM files to release artefacts and attestations.,True,pass
 architecture,violations=0 cycles=0 unknown_layers=0,architecture_boundaries,"Fix layer violations, remove cycles, or update the layer map deliberately.",True,pass
