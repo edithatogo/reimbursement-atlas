@@ -74,3 +74,5 @@ tracks:
     phase: implementation
     workstream: dashboard
     goal: "Present the atlas as a current, citable and accessible public product with a deployed dashboard, trustworthy status reporting and release-grade scholarly metadata."
+    spec: "conductor/tracks/track_public_product_citation_dashboard/spec.md"
+    plan: "conductor/tracks/track_public_product_citation_dashboard/plan.md"

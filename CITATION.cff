@@ -1,9 +1,19 @@
 cff-version: 1.2.0
 title: Reimbursement Atlas Conductor
-message: "If you use this design scaffold, please cite it."
+message: "If you use this software or its derived research artefacts, please cite it."
 type: software
 authors:
-  - family-names: "Dylan"
+  - given-names: "Dylan"
+    family-names: "and collaborators"
 version: 0.1.0
 date-released: 2026-07-03
 license: Apache-2.0
+repository-code: "https://github.com/edithatogo/reimbursement-atlas"
+abstract: >-
+  Reproducible, licence-aware tooling for comparing public reimbursement schedules,
+  coverage decisions and policy-analysis metadata across jurisdictions.
+keywords:
+  - health economics
+  - reimbursement
+  - public data
+  - reproducible research

@@ -1,8 +1,27 @@
 # Reimbursement Atlas Conductor
 
+[![CI](https://github.com/edithatogo/reimbursement-atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/edithatogo/reimbursement-atlas/actions/workflows/ci.yml)
+[![Dashboard build](https://github.com/edithatogo/reimbursement-atlas/actions/workflows/dashboard-preview.yml/badge.svg)](https://github.com/edithatogo/reimbursement-atlas/actions/workflows/dashboard-preview.yml)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+
 A design-first repository for comparing public reimbursement schedules across US CMS, Australian MBS/PBS, and other public billing, tariff, drug, diagnostic, hospital and coverage-decision systems.
 
 This repository has moved from a design scaffold into a first executable, no-network vertical slice. It defines the context-management layer, policy requirements, source registry, analysis catalogue, ontology strategy, test strategy, dashboard architecture and automation plan, and now includes parser prototypes, readiness tables, reviewed-source bundle tooling, redacted MBS TXT-pair bundle support, publication manifests and generated vertical-slice artefacts.
+
+## Current public status
+
+The public product is a reproducible software and metadata surface, not a claim that every
+research question is evidence-ready. The static dashboard presents source, mapping, analysis,
+automation and release-readiness metadata generated from tracked seeds and derived artefacts.
+Live-source acquisition, licence review, human mapping adjudication, protocol registration and
+external publication remain explicit gates. See [`apps/dashboard/public/status.json`](apps/dashboard/public/status.json)
+for the machine-readable status contract and [`CITATION.cff`](CITATION.cff) for citation metadata.
+
+Software is licensed under Apache-2.0. Underlying source data retain their own provider licences
+and are not relicensed by this repository; raw live-source payloads remain local and ignored.
+
+Public dashboard: run `pixi run dashboard-build` locally. GitHub Pages and Hugging Face
+publication workflows are manual and token/approval-gated.
 
 ## Why this exists
 

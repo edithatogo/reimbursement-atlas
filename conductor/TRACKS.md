@@ -196,7 +196,7 @@ Deliverables:
 - bounded mutation testing
 - retained harness evidence and failure diagnostics
 
-## [ ] track_public_product_citation_dashboard: Public product, citation and dashboard maturity
+## [~] track_public_product_citation_dashboard: Public product, citation and dashboard maturity
 
 Priority: **must**
 Phase: `implementation`
@@ -205,6 +205,8 @@ Workstream: `dashboard`
 Goal: Present the atlas as a current, citable and accessible public product with a deployed dashboard, trustworthy status reporting and release-grade scholarly metadata.
 
 Dependencies: `track_live_source_ingestion`, `track_publication_hf_spaces`, `track_data_packaging_standards`, `track_data_quality_evidence`, `track_ci_cd_supply_chain`
+
+Context: [specification](tracks/track_public_product_citation_dashboard/spec.md) | [implementation plan](tracks/track_public_product_citation_dashboard/plan.md)
 
 Parent GitHub issue: `Public product, citation and dashboard maturity`
 
