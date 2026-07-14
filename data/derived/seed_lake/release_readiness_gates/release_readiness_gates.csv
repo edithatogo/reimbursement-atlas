@@ -19,7 +19,7 @@ data_governance,table_count=140 total_rows=3512,data_dictionary_summary,Regenera
 data_governance,blocked=0 prototype_ready=5,evidence_readiness_summary,Resolve blocked research questions before evidence release.,True,pass
 data_governance,blocking_failure_count=0 warnings=0,source_drift_summary,Review source drift failures before release.,True,pass
 data_governance,validations=9 missing=1 failures=0,source_content_validation_summary,"Download missing public files in a network-enabled environment, then rerun validation.",True,warn
-data_governance,contracts=9 missing=2 failures=0,source_contract_validation_summary,Download sources and rerun contract validation before real parsing.,True,warn
+data_governance,contracts=9 missing=4 failures=0,source_contract_validation_summary,Download sources and rerun contract validation before real parsing.,True,warn
 release,project_items=143 issue_count=134,github_project_export_summary,Import generated rows into GitHub Projects once repository credentials exist.,True,pass
 release,tasks=8 blocked_network=0 blocked_secret=2,final_handoff_summary,Use final_handoff_tasks.csv as the network/credential handoff checklist.,True,pass
 release,local_quality status=passed return_code=0,uv_build,No action required.,True,pass
