@@ -19,3 +19,20 @@ def test_top_sources_have_nonzero_scores() -> None:
     scores = score_sources(load_source_registry())
     assert scores[0].score >= scores[-1].score
     assert score_source(load_source_registry()[0]).score > 0
+
+
+def test_first_wave_sources_match_scoring_rubric() -> None:
+    """First-wave source grades should expose the rubric components explicitly."""
+    scores = {score.source_id: score for score in score_sources(load_source_registry())}
+    assert scores["au_mbs"].score == 14
+    assert scores["au_mbs"].grade == "A"
+    assert scores["au_mbs"].components == {
+        "access_tier": 4,
+        "machine_readable": 3,
+        "historical_versions": 2,
+        "utilisation_data": 2,
+        "reliability": 3,
+    }
+    assert scores["au_pbs"].score == scores["us_cms_clfs"].score == 14
+    assert scores["uk_genomic_test_directory"].score == 12
+    assert scores["uk_genomic_test_directory"].components["utilisation_data"] == 0
