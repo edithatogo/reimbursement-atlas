@@ -185,9 +185,15 @@ def write_final_handoff_tasks(
 
 def _mbs_pair_available(repo: Path) -> bool:
     raw = repo / "data" / "raw_live" / "au_mbs"
-    return (raw / "20260701_MBSONLINE_IMAP.TXT").is_file() and (
+    if (raw / "20260701_MBSONLINE_IMAP.TXT").is_file() and (
         raw / "20260701_MBSONLINE_DESC.TXT"
-    ).is_file()
+    ).is_file():
+        return True
+    bundles = repo / "data" / "derived" / "reviewed_source_bundles"
+    return any(
+        (bundle / "validation_report.json").is_file()
+        for bundle in bundles.glob("bundle_au_mbs_20260701_txt_pair_*/")
+    )
 
 
 def _action_pinning_complete(repo: Path) -> bool:

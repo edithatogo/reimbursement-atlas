@@ -39,7 +39,6 @@ jobs:
           pixi run seed-sync-check
           pixi run publication-manifest
           pixi run architecture-report
-          pixi run release-readiness || true
           pixi run source-validation
           pixi run source-contracts
           pixi run github-project-export
@@ -50,4 +49,5 @@ jobs:
           pixi run data-dictionary
           pixi run evidence-readiness
           pixi run source-drift
+          pixi run release-readiness || true
           pixi run seed-lake
