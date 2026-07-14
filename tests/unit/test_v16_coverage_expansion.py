@@ -80,6 +80,39 @@ def test_source_validation_handles_json_and_zip_errors(tmp_path: Path) -> None:
     assert "ZIP validation failed" in issues
 
 
+def test_source_validation_uses_reviewed_bundle_when_raw_is_absent(tmp_path: Path) -> None:
+    record = _source_file("au_mbs_20260701_imap_txt")
+    bundle = tmp_path / "bundle_reviewed"
+    bundle.mkdir()
+    (bundle / "validation_report.json").write_text(
+        json.dumps({
+            "source_id": "au_mbs",
+            "source_version_id": "au_mbs_20260701_txt_pair",
+            "parse_success": True,
+            "stats": {"item_map_rows": 2},
+        }),
+        encoding="utf-8",
+    )
+    (bundle / "source_snapshots.jsonl").write_text(
+        json.dumps({
+            "id": "snapshot_item_map",
+            "byte_size": 32,
+            "checksum_sha256": "a" * 64,
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+
+    rows = build_source_content_validations(
+        [record], raw_dir=tmp_path / "raw", reviewed_bundle_dir=tmp_path
+    )
+
+    assert rows[0].validation_status == "pass"
+    assert rows[0].byte_size == 32
+    assert rows[0].observed_record_count == 2
+    assert rows[0].local_target_ref == "reviewed_bundle:bundle_reviewed"
+
+
 def test_data_quality_missing_and_duplicate_paths(tmp_path: Path) -> None:
     seed = tmp_path / "data" / "seed"
     seed.mkdir(parents=True)

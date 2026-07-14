@@ -22,10 +22,12 @@ def build_source_content_validations(
     records: list[SourceFileRecord],
     *,
     raw_dir: Path | None = None,
+    reviewed_bundle_dir: Path | None = None,
 ) -> list[SourceContentValidationRecord]:
     """Validate locally downloaded source files without committing raw payloads."""
     base = raw_dir or project_root() / "data" / "raw_live"
-    return [_validate_one(record, base) for record in records]
+    bundles = reviewed_bundle_dir or project_root() / "data" / "derived" / "reviewed_source_bundles"
+    return [_validate_one(record, base, bundles) for record in records]
 
 
 def write_source_content_validations(
@@ -52,7 +54,11 @@ def write_source_content_validations(
     return jsonl_path, csv_path, summary_path
 
 
-def _validate_one(record: SourceFileRecord, raw_dir: Path) -> SourceContentValidationRecord:
+def _validate_one(
+    record: SourceFileRecord,
+    raw_dir: Path,
+    reviewed_bundle_dir: Path,
+) -> SourceContentValidationRecord:
     target = safe_local_target(record, raw_dir)
     target_ref = f"local_raw_only:{record.source_id}/{target.name}"
     if _should_skip(record):
@@ -67,6 +73,22 @@ def _validate_one(record: SourceFileRecord, raw_dir: Path) -> SourceContentValid
             ),
         )
     if not target.exists():
+        reviewed = _reviewed_bundle_evidence(record, reviewed_bundle_dir)
+        if reviewed is not None:
+            target_ref, observed_count, bundle_size, bundle_checksum = reviewed
+            return _record(
+                record,
+                status="pass",
+                target_ref=target_ref,
+                observed_record_count=observed_count,
+                byte_size=bundle_size,
+                checksum_sha256=bundle_checksum,
+                issues=("raw payload absent; validated through reviewed derived bundle",),
+                recommended_action=(
+                    "Retain raw payloads only in ignored local storage and complete human "
+                    "licence review before publication."
+                ),
+            )
         return _record(
             record,
             status="missing",
@@ -134,6 +156,57 @@ def _validate_one(record: SourceFileRecord, raw_dir: Path) -> SourceContentValid
             else "Inspect content, headers and licence gate before parsing."
         ),
     )
+
+
+def _reviewed_bundle_evidence(
+    record: SourceFileRecord,
+    bundle_dir: Path,
+) -> tuple[str, int, int, str] | None:
+    """Use tracked derived evidence when the ignored raw payload is unavailable."""
+    if not bundle_dir.is_dir():
+        return None
+    for report_path in sorted(bundle_dir.glob("bundle_*/validation_report.json")):
+        try:
+            report = json.loads(report_path.read_text(encoding="utf-8"))
+        except OSError, json.JSONDecodeError:
+            continue
+        if (
+            report.get("source_id") != record.source_id
+            or report.get("source_version_id") != record.source_version_id
+            or not report.get("parse_success")
+        ):
+            continue
+        snapshot_kind = "descriptor" if "desc" in record.id else "item_map"
+        snapshot = next(
+            (
+                row
+                for row in _read_jsonl(report_path.parent / "source_snapshots.jsonl")
+                if snapshot_kind in str(row.get("id", ""))
+            ),
+            None,
+        )
+        if snapshot is None:
+            continue
+        stats = report.get("stats", {})
+        count_key = "descriptor_rows" if snapshot_kind == "descriptor" else "item_map_rows"
+        try:
+            bundle_ref = report_path.parent.relative_to(project_root())
+        except ValueError:
+            bundle_ref = report_path.parent.name
+        return (
+            f"reviewed_bundle:{bundle_ref}",
+            int(str(stats.get(count_key, 0))),
+            int(str(snapshot.get("byte_size", 0))),
+            str(snapshot.get("checksum_sha256")),
+        )
+    return None
+
+
+def _read_jsonl(path: Path) -> list[dict[str, object]]:
+    try:
+        return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line]
+    except OSError, json.JSONDecodeError:
+        return []
 
 
 def _should_skip(record: SourceFileRecord) -> bool:
