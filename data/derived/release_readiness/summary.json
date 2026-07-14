@@ -5,11 +5,11 @@
   "gate_count": 35,
   "missing_count": 0,
   "osf_registration_ready": false,
-  "pass_count": 33,
+  "pass_count": 34,
   "policy_claims_ready": false,
   "repository_release_ready": true,
   "required_blocker_count": 0,
   "research_publication_ready": false,
   "schema_version": "release-readiness-v2",
-  "warn_count": 2
+  "warn_count": 1
 }
