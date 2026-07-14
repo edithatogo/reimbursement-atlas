@@ -46,3 +46,5 @@ jobs:
         run: npm run build
       - name: Validate dashboard public quality
         run: pixi run dashboard-quality
+      - name: Validate dashboard routes
+        run: pixi run dashboard-routes
