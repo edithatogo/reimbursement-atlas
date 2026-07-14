@@ -75,6 +75,7 @@ _LAYER_BY_ROOT_MODULE: dict[str, ArchitectureLayer] = {
     "release_readiness": "orchestration",
     "sbom": "orchestration",
     "osf": "orchestration",
+    "osf_sync": "orchestration",
     "research_package": "orchestration",
     "source_downloads": "orchestration",
     "source_validation": "orchestration",
