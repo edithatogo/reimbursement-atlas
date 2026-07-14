@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from scripts.check_public_docs import build_public_docs_report
 from scripts.make_public_status_manifest import build_public_status_manifest
 from scripts.sync_dashboard_seed import sanitise_public_text
 from scripts.validate_citation import validate_citation
@@ -47,3 +48,12 @@ def test_public_dashboard_assets_redact_local_raw_cache_paths() -> None:
 
     assert "data/raw_live" not in result
     assert "[ignored-local-raw-cache]/mbs/file.txt" in result
+
+
+def test_public_docs_report_is_machine_readable() -> None:
+    """Documentation freshness emits a passing report for the repository contract."""
+    report = build_public_docs_report(Path())
+
+    assert report["schema_version"] == "public-docs-v1"
+    assert report["status"] == "pass"
+    assert report["error_count"] == 0

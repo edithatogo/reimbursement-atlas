@@ -21,7 +21,8 @@ for the machine-readable status contract and [`CITATION.cff`](CITATION.cff) for 
 Software is licensed under Apache-2.0. Underlying source data retain their own provider licences
 and are not relicensed by this repository; raw live-source payloads remain local and ignored.
 
-Public dashboard: run `pixi run dashboard-build` locally. GitHub Pages and Hugging Face
+Public dashboard: [GitHub Pages](https://edithatogo.github.io/reimbursement-atlas/) or run
+`pixi run dashboard-build` locally. GitHub Pages and Hugging Face
 publication workflows are manual and token/approval-gated.
 
 ## Why this exists

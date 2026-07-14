@@ -34,6 +34,8 @@ jobs:
         run: pixi run citation-validate
       - name: Public documentation claims
         run: pixi run public-docs
+      - name: Documentation freshness report
+        run: pixi run docs-freshness
       - name: Repository automation matrix
         run: pixi run repo-automation
       - name: Generate SBOMs
