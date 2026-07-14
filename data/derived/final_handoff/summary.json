@@ -1,8 +1,8 @@
 {
-  "blocked_network": 2,
+  "blocked_network": 0,
   "blocked_review": 2,
   "blocked_secret": 2,
-  "complete": 1,
+  "complete": 3,
   "download_ready": true,
   "download_ready_note": "Repo archive is ready; remaining tasks require network, credentials, or human licence/research review.",
   "ready_local": 1,

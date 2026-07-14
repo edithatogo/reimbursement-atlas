@@ -18,7 +18,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             id="final_source_downloads",
             task_group="source_ingestion",
             title="Run hardened curl/wget source download plan",
-            status="complete" if _action_pinning_complete(repo) else "blocked_network",
+            status="complete" if _source_downloads_complete(repo) else "blocked_network",
             required_environment=(
                 "Network-enabled local machine or GitHub runner with outbound HTTPS."
             ),
@@ -73,7 +73,9 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             id="final_pip_audit_strict",
             task_group="security",
             title="Run pip-audit strict in a network-enabled environment",
-            status="blocked_network",
+            status=(
+                "complete" if _external_gate_passed(repo, "pip_audit_strict") else "blocked_network"
+            ),
             required_environment=(
                 "Network-enabled Python environment with access to PyPI advisory APIs."
             ),
@@ -88,7 +90,12 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             id="final_action_sha_pinning",
             task_group="automation",
             title="Resolve GitHub Action tags to immutable SHAs",
-            status="blocked_network",
+            status=(
+                "complete"
+                if _external_gate_passed(repo, "repo_automation_matrix")
+                and _action_pinning_complete(repo)
+                else "blocked_network"
+            ),
             required_environment="Network-enabled environment with GitHub API access.",
             command="PYTHONPATH=src python scripts/resolve_action_pins.py",
             evidence_path="data/derived/repo_automation/action_pin_resolution.jsonl",
@@ -201,3 +208,28 @@ def _action_pinning_complete(repo: Path) -> bool:
     if not plan.is_file():
         return False
     return len(plan.read_text(encoding="utf-8").splitlines()) <= 1
+
+
+def _source_downloads_complete(repo: Path) -> bool:
+    """Return true when acquisition evidence or a reviewed source bundle exists."""
+    attempts = repo / "data" / "derived" / "source_downloads" / "download_attempts.jsonl"
+    if attempts.is_file():
+        for line in attempts.read_text(encoding="utf-8").splitlines():
+            if '"status": "downloaded"' in line:
+                return True
+    return _mbs_pair_available(repo)
+
+
+def _external_gate_passed(repo: Path, gate_id: str) -> bool:
+    """Read a passed external gate without treating stale handoff text as evidence."""
+    path = repo / "data" / "derived" / "external_quality_gates.json"
+    if not path.is_file():
+        return False
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return False
+    return any(
+        record.get("id") == gate_id and record.get("outcome") == "passed"
+        for record in payload.get("records", [])
+    )
