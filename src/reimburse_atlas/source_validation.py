@@ -75,13 +75,14 @@ def _validate_one(
     if not target.exists():
         reviewed = _reviewed_bundle_evidence(record, reviewed_bundle_dir)
         if reviewed is not None:
+            target_ref, observed_count, bundle_size, bundle_checksum = reviewed
             return _record(
                 record,
                 status="pass",
-                target_ref=reviewed["target_ref"],
-                observed_record_count=reviewed["observed_record_count"],
-                byte_size=reviewed["byte_size"],
-                checksum_sha256=reviewed["checksum_sha256"],
+                target_ref=target_ref,
+                observed_record_count=observed_count,
+                byte_size=bundle_size,
+                checksum_sha256=bundle_checksum,
                 issues=("raw payload absent; validated through reviewed derived bundle",),
                 recommended_action=(
                     "Retain raw payloads only in ignored local storage and complete human "
@@ -160,7 +161,7 @@ def _validate_one(
 def _reviewed_bundle_evidence(
     record: SourceFileRecord,
     bundle_dir: Path,
-) -> dict[str, int | str] | None:
+) -> tuple[str, int, int, str] | None:
     """Use tracked derived evidence when the ignored raw payload is unavailable."""
     if not bundle_dir.is_dir():
         return None
@@ -192,12 +193,12 @@ def _reviewed_bundle_evidence(
             bundle_ref = report_path.parent.relative_to(project_root())
         except ValueError:
             bundle_ref = report_path.parent.name
-        return {
-            "target_ref": f"reviewed_bundle:{bundle_ref}",
-            "observed_record_count": int(stats.get(count_key, 0)),
-            "byte_size": int(snapshot.get("byte_size", 0)),
-            "checksum_sha256": str(snapshot.get("checksum_sha256")),
-        }
+        return (
+            f"reviewed_bundle:{bundle_ref}",
+            int(str(stats.get(count_key, 0))),
+            int(str(snapshot.get("byte_size", 0))),
+            str(snapshot.get("checksum_sha256")),
+        )
     return None
 
 
