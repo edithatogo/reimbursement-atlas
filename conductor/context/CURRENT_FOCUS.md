@@ -143,3 +143,16 @@ Immediate focus:
 3. Maintain consumer-side attestation verification for every tagged release.
 4. Complete OSF credential-provider, idempotent sync and registration-drift issues without weakening human approval gates.
 5. Promote analyses from pipeline prototypes only after reviewed sources and signed protocols exist.
+
+## 2026-07-15 public product and citation maturity
+
+The next implementation phase is public-product readiness. The new
+`track_public_product_citation_dashboard` is the parent planning surface for citation
+metadata, current-state documentation, dashboard deployment, accessible exploration,
+provenance drill-down, machine-readable status and archival DOI release.
+
+Its generated child issue drafts include an explicit parent-issue reference so Conductor,
+the GitHub Project export and future native GitHub sub-issues remain cross-referenced.
+Historical MBS/PBS coverage remains owned by `track_live_source_ingestion`; release DOI
+work remains owned by `track_data_packaging_standards`; documentation freshness remains
+owned by `track_ci_cd_supply_chain`.

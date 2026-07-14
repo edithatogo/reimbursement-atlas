@@ -26,6 +26,7 @@ class IssueDraft:
     epic_title: str
     title: str
     labels: list[str] = field(default_factory=list)
+    parent_issue: str | None = None
 
 
 def _strip_quotes(value: str) -> str:
@@ -72,7 +73,11 @@ def _read_jsonl(path: Path) -> list[dict[str, object]]:
     return rows
 
 
-def generated_track_issues(root: Path = ROOT) -> list[IssueDraft]:
+def generated_track_issues(
+    root: Path = ROOT,
+    *,
+    parent_issue_titles: set[str] | None = None,
+) -> list[IssueDraft]:
     """Generate issue drafts from machine-readable roadmap seed records."""
     seed_dir = root / "data" / "seed"
     tracks = {str(row["id"]): row for row in _read_jsonl(seed_dir / "conductor_tracks.jsonl")}
@@ -90,6 +95,11 @@ def generated_track_issues(root: Path = ROOT) -> list[IssueDraft]:
                     f"priority:{row.get('priority', 'unknown')}",
                     f"interface:{row.get('interface', 'unknown')}",
                 ],
+                parent_issue=(
+                    str(track.get("title"))
+                    if str(track.get("title")) in (parent_issue_titles or set())
+                    else None
+                ),
             )
         )
     for row in _read_jsonl(seed_dir / "dataset_candidates.jsonl"):
@@ -132,11 +142,12 @@ def generated_track_issues(root: Path = ROOT) -> list[IssueDraft]:
 def render_issue(issue: IssueDraft) -> str:
     """Render one GitHub issue draft."""
     labels = ", ".join(issue.labels) if issue.labels else "none"
+    parent = f"Parent issue: {issue.parent_issue}\n\n" if issue.parent_issue else ""
     return f"""# {issue.title}
 
 Epic: `{issue.epic_id}` — {issue.epic_title}
 
-Labels: {labels}
+{parent}Labels: {labels}
 
 ## Background
 
@@ -163,7 +174,10 @@ def main() -> None:
     for existing in OUTPUT.glob("*.md"):
         existing.unlink()
     count = 0
-    for count, issue in enumerate([*parse_backlog(), *generated_track_issues()], start=1):
+    backlog_issues = parse_backlog()
+    parent_issue_titles = {issue.title for issue in backlog_issues}
+    generated_issues = generated_track_issues(parent_issue_titles=parent_issue_titles)
+    for count, issue in enumerate([*backlog_issues, *generated_issues], start=1):
         path = OUTPUT / f"{count:03d}-{slug(issue.title)}.md"
         path.write_text(render_issue(issue), encoding="utf-8")
     print(f"Wrote {count} issue drafts to {OUTPUT}")

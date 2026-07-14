@@ -101,3 +101,17 @@ Live Hugging Face publication targets were provisioned from the repository durin
 - space `edithatogo/reimbursement-atlas`
 
 The Space now has a minimal runnable `app.py` scaffold committed through the official Hugging Face CLI. The automated GitHub Actions publication path remains token-gated, and OSF publication remains blocked until credentials and human review are available.
+
+## 2026-07-15 — Public product track and issue hierarchy
+
+Decision: Add a dedicated public-product Conductor track for citation, README, dashboard
+deployment, accessible exploration, provenance, status reporting and archival release.
+
+Rationale: The implementation is materially ahead of its public presentation. These tasks
+cross publication, data, security and research concerns, but need one user-facing parent
+track with generated child issue references so work remains discoverable without weakening
+the existing fail-closed research and licence gates.
+
+Consequences: Generated roadmap-function drafts name the matching parent issue when the
+backlog contains it. Native GitHub sub-issue creation remains a remote synchronization step;
+the repository retains deterministic drafts and Project rows as the source of truth.

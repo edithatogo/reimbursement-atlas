@@ -11,6 +11,7 @@ from reimburse_atlas.source_contracts import (
     validate_path_against_contract,
     write_source_contract_validations,
 )
+from scripts.create_github_project_items import IssueDraft, render_issue
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -57,6 +58,18 @@ def test_github_project_export_covers_generated_issues(tmp_path: Path) -> None:
     assert any(row.project_view == "Sources & ingestion" for row in rows)
     paths = write_github_project_items(rows, output_dir=tmp_path / "project")
     assert all(path.exists() for path in paths)
+
+
+def test_generated_issue_renders_parent_subissue_link() -> None:
+    rendered = render_issue(
+        IssueDraft(
+            epic_id="TRACK_PUBLIC_PRODUCT_CITATION_DASHBOARD",
+            epic_title="Public product, citation and dashboard maturity",
+            title="Validate citation metadata",
+            parent_issue="Public product, citation and dashboard maturity",
+        )
+    )
+    assert "Parent issue: Public product, citation and dashboard maturity" in rendered
 
 
 def test_final_handoff_records_environment_bound_tasks(tmp_path: Path) -> None:
