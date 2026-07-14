@@ -11,10 +11,11 @@ This repository has moved from a design scaffold into a first executable, no-net
 ## Current public status
 
 The public product is a reproducible software and metadata surface, not a claim that every
-research question is evidence-ready. The static dashboard presents source, mapping, analysis,
-automation and release-readiness metadata generated from tracked seeds and derived artefacts.
-Live-source acquisition, licence review, human mapping adjudication, protocol registration and
-external publication remain explicit gates. See [`apps/dashboard/public/status.json`](apps/dashboard/public/status.json)
+research question is evidence-ready. The current product is **not evidence-ready** for policy
+claims. The static dashboard presents source, mapping, analysis, automation and release-readiness
+metadata generated from tracked seeds and derived artefacts. Live-source acquisition, licence
+review, human mapping adjudication, human research review, protocol registration and external
+publication remain explicit gates. See [`apps/dashboard/public/status.json`](apps/dashboard/public/status.json)
 for the machine-readable status contract and [`CITATION.cff`](CITATION.cff) for citation metadata.
 
 Software is licensed under Apache-2.0. Underlying source data retain their own provider licences

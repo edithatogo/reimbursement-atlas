@@ -32,6 +32,8 @@ jobs:
         run: pixi run public-data-policy
       - name: Citation metadata
         run: pixi run citation-validate
+      - name: Public documentation claims
+        run: pixi run public-docs
       - name: Repository automation matrix
         run: pixi run repo-automation
       - name: Generate SBOMs
