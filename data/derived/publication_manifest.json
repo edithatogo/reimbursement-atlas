@@ -266,8 +266,8 @@
       "table_name": "conductor_tracks"
     },
     {
-      "byte_size": 22562,
-      "checksum_sha256": "cd33c9008d7470354b9ba730adb2574020c9278157b5d8b7b9a0eec94fac4e7e",
+      "byte_size": 22568,
+      "checksum_sha256": "53a0db626e02f3b3cd07d8da7d70ecbf3aef41499606d009e682129b8713ed6b",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "public_reuse_review",
@@ -278,8 +278,8 @@
       "table_name": "roadmap_functions"
     },
     {
-      "byte_size": 17047,
-      "checksum_sha256": "2341004ad595a8facd9fca3677980288ca9d79b42434767023a0d7e8fb05131e",
+      "byte_size": 17053,
+      "checksum_sha256": "91dbb90f5e73641cb8b154944499bbb0954d2f8b12ebabfcabf34af5e1559e2c",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
@@ -1587,7 +1587,7 @@
     },
     {
       "byte_size": 58954,
-      "checksum_sha256": "5dc2fb3e3fe00ea350011c6826dfc6b9b76cd4619e3bc42e5dbc07a72f8a9819",
+      "checksum_sha256": "edca4521c3b0cd13047d184982cf39243be4de2002af280c0d7734b71afa7a37",
       "contains_raw_source_payload": false,
       "file_format": "json",
       "licence_gate": "public_reuse_review",
@@ -1599,7 +1599,7 @@
     },
     {
       "byte_size": 66072,
-      "checksum_sha256": "66cd455fb5862bced17cca6ead82c4e8c91a3d3513619fba0ac3cfe58f688a72",
+      "checksum_sha256": "b24c25a824981c3a77a1292cb4cf09768a04b93d6bacb9d1ab31bd30e679f753",
       "contains_raw_source_payload": false,
       "file_format": "json",
       "licence_gate": "public_reuse_review",

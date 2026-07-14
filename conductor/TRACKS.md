@@ -136,7 +136,7 @@ Tracked functions/issues:
 - `func_release_attestation_verify` — Add consumer-side artifact attestation verification (prototype, github_action)
 - `func_docs_freshness_gate` — Add documentation freshness and claim-validation gate (implemented, github_action)
 
-## [ ] track_policy_demonstrators: First policy demonstrators
+## [~] track_policy_demonstrators: First policy demonstrators
 
 Priority: **must**  
 Phase: `analysis`  
@@ -151,9 +151,9 @@ Deliverables:
 - dashboard views
 
 Tracked functions/issues:
-- `func_genomics_demo` — Implement genomics/pathology policy demonstrator (planned, data_pipeline)
-- `func_cognitive_procedural_index` — Implement cognitive versus procedural relativity analysis (planned, data_pipeline)
-- `func_medicine_opacity_index` — Implement medicine price-opacity scorecard (planned, data_pipeline)
+- `func_genomics_demo` — Implement genomics/pathology policy demonstrator (prototype, data_pipeline)
+- `func_cognitive_procedural_index` — Implement cognitive versus procedural relativity analysis (prototype, data_pipeline)
+- `func_medicine_opacity_index` — Implement medicine price-opacity scorecard (prototype, data_pipeline)
 
 
 ## [x] track_data_quality_evidence: Data quality, source validation and evidence readiness
