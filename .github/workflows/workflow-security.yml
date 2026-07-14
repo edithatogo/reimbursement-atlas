@@ -4,12 +4,16 @@ on:
   pull_request:
     paths:
       - ".github/**"
+      - "pyproject.toml"
+      - "pixi.lock"
       - "scripts/make_repo_automation_matrix.py"
       - "src/reimburse_atlas/automation.py"
   push:
     branches: [main]
     paths:
       - ".github/**"
+      - "pyproject.toml"
+      - "pixi.lock"
   schedule:
     - cron: "23 2 * * 2"
   workflow_dispatch:
