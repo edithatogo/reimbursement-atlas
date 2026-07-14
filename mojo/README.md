@@ -5,6 +5,7 @@ Mojo is now an explicit performance-kernel track, not a vague future placeholder
 Current kernels:
 
 - `fixed_width_tokenizer.mojo`: smoke-tested fixed-width byte tokenizer and pipe-count kernel. Its assertions exercise the same two-column behavior as the Python reference parser.
+- `fuzzy_join.mojo`: token-Jaccard candidate prefilter prototype; its scores are triage signals, not mapping decisions.
 
 Candidate kernels:
 
