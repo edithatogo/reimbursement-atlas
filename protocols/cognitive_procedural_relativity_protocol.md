@@ -54,3 +54,8 @@ Calibrate classification against a manually adjudicated gold-standard basket and
 
 ## Deviations amendments and human review
 Log all basket changes and exclusions. Signed methods, domain, licence and governance review is required; simulated review is advisory only.
+
+## Pre-registration review checklist
+Complete `docs/RESEARCH_PROTOCOL_REVIEW_CHECKLIST.md` for `rq_cognitive_procedural`.
+The protocol remains draft/planned until an accountable human reviewer records a
+decision and the basket, PPP, mapping, and source gates are resolved.

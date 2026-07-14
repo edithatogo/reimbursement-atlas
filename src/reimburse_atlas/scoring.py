@@ -6,6 +6,7 @@ health system; it is a research-readiness score for a public data source.
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass
 from typing import Literal
 
@@ -22,6 +23,16 @@ class SourceScore:
     score: int
     grade: Grade
     components: dict[str, int]
+
+
+@dataclass(frozen=True)
+class GradeSensitivity:
+    """Grade-count result for one alternative threshold configuration."""
+
+    a_min: int
+    b_min: int
+    c_min: int
+    counts: dict[Grade, int]
 
 
 TIER_POINTS = {"tier_1": 4, "tier_2": 2, "tier_3": 0}
@@ -58,3 +69,34 @@ def score_sources(records: list[SourceRecord]) -> list[SourceScore]:
         (score_source(record) for record in records),
         key=lambda item: (-item.score, item.source_id),
     )
+
+
+def grade_sensitivity(
+    scores: Iterable[int],
+    threshold_sets: Iterable[tuple[int, int, int]],
+) -> list[GradeSensitivity]:
+    """Evaluate grade counts under alternative ``(A, B, C)`` cutoffs.
+
+    The canonical :func:`grade_for_score` thresholds are not changed. This is
+    an interpretation aid for robustness checks and reporting.
+    """
+    score_values = tuple(scores)
+    results: list[GradeSensitivity] = []
+    for a_min, b_min, c_min in threshold_sets:
+        if not (a_min > b_min > c_min >= 0):
+            msg = "thresholds must satisfy A > B > C >= 0"
+            raise ValueError(msg)
+        counts: dict[Grade, int] = {"A": 0, "B": 0, "C": 0, "D": 0}
+        for score in score_values:
+            grade: Grade
+            if score >= a_min:
+                grade = "A"
+            elif score >= b_min:
+                grade = "B"
+            elif score >= c_min:
+                grade = "C"
+            else:
+                grade = "D"
+            counts[grade] += 1
+        results.append(GradeSensitivity(a_min, b_min, c_min, counts))
+    return results

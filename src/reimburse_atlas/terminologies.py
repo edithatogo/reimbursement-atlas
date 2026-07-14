@@ -8,8 +8,9 @@ adapter contracts for LOINC, ATC, HPO, RxNorm/RxNav and related mappings.
 from __future__ import annotations
 
 import csv
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Literal
+from typing import Literal, cast
 
 from pydantic import Field
 
@@ -42,6 +43,59 @@ class OntologyMappingTemplate(FrozenModel):
     review_status: Literal["template", "machine_generated", "reviewed", "rejected"] = "template"
     evidence_method: NonEmptyStr
     notes: NonEmptyStr
+
+
+class RxNavAdapterConfig(FrozenModel):
+    """Local endpoint contract for an RxNav or RxNav-in-a-Box service."""
+
+    base_url: str = Field(default="http://localhost:8000/", pattern=r"^https?://[^\s]+$")
+    timeout_seconds: float = Field(default=10.0, gt=0, le=120)
+    licence_scope: Literal["local_only", "permissive", "review_required"] = "local_only"
+
+
+class RxNavConceptQuery(FrozenModel):
+    """Read-only RxNav lookup request without embedding a terminology payload."""
+
+    term: NonEmptyStr
+    max_results: int = Field(default=20, ge=1, le=100)
+
+
+class RxNavConceptMatch(FrozenModel):
+    """Minimal derived match returned by a local RxNav-compatible adapter."""
+
+    rxcui: NonEmptyStr
+    label: NonEmptyStr
+
+
+def build_rxnav_approximate_match_url(config: RxNavAdapterConfig, query: RxNavConceptQuery) -> str:
+    """Build a deterministic RxNav approximate-match URL without making a request."""
+    from urllib.parse import urlencode
+
+    base = str(config.base_url).rstrip("/")
+    params = urlencode({"term": query.term, "maxEntries": query.max_results})
+    return f"{base}/REST/approximateTerm.json?{params}"
+
+
+def parse_rxnav_matches(payload: Mapping[str, object]) -> list[RxNavConceptMatch]:
+    """Parse only stable RxNav identifiers and labels from a JSON-like payload."""
+    candidates_raw = payload.get("approximateGroup")
+    if not isinstance(candidates_raw, Mapping):
+        return []
+    candidates = cast("Mapping[str, object]", candidates_raw)
+    raw_matches = candidates.get("candidate")
+    if not isinstance(raw_matches, list):
+        return []
+    raw_matches = cast("list[object]", raw_matches)
+    matches: list[RxNavConceptMatch] = []
+    for raw_match in raw_matches:
+        if not isinstance(raw_match, Mapping):
+            continue
+        raw_match = cast("Mapping[str, object]", raw_match)
+        rxcui = raw_match.get("rxcui")
+        label = raw_match.get("name")
+        if isinstance(rxcui, str) and isinstance(label, str) and rxcui.strip() and label.strip():
+            matches.append(RxNavConceptMatch(rxcui=rxcui.strip(), label=label.strip()))
+    return matches
 
 
 def _split_pipe(value: object | None) -> tuple[str, ...]:

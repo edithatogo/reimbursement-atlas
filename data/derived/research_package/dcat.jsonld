@@ -673,6 +673,12 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/osf/sync_manifest.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "sync_manifest"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/protocols/protocol_status.jsonl",
       "dct:format": "jsonl",
       "dct:title": "protocol_status"

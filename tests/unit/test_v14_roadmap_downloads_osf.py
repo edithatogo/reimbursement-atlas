@@ -112,6 +112,41 @@ def test_osf_component_plan_and_outputs(tmp_path: Path) -> None:
     assert "genomics_pathology_protocol.md" in checklist
 
 
+def test_osf_sync_manifest_is_checksum_bearing_and_fail_closed(tmp_path: Path) -> None:
+    components = build_osf_component_plan(load_research_questions(), load_output_artifact_plans())
+    paths = write_osf_outputs(
+        components,
+        output_dir=tmp_path / "data/derived/osf",
+        root=Path(__file__).parents[2],
+    )
+    sync_rows = [json.loads(line) for line in paths[3].read_text(encoding="utf-8").splitlines()]
+    assert sync_rows
+    assert all(row["publish_allowed"] is False for row in sync_rows)
+    assert all("blocked_reason" in row for row in sync_rows)
+
+
+def test_osf_sync_manifest_hashes_large_files_incrementally(tmp_path: Path) -> None:
+    from reimburse_atlas.osf import OsfComponentPlan, sha256_file
+
+    payload = (b"reimbursement-atlas\n" * 100_000) + b"end\n"
+    source = tmp_path / "large.txt"
+    source.write_bytes(payload)
+    component = OsfComponentPlan(
+        id="large",
+        component_title="Large",
+        component_type="file",
+        local_path="large.txt",
+        osf_path="/large.txt",
+        required_before_release=False,
+        research_question_id=None,
+        notes="fixture",
+    )
+    paths = write_osf_outputs([component], output_dir=tmp_path / "out", root=tmp_path)
+    row = json.loads(paths[3].read_text(encoding="utf-8").strip())
+    assert row["byte_size"] == len(payload)
+    assert row["sha256"] == sha256_file(source)
+
+
 def test_research_package_metadata(tmp_path: Path) -> None:
     paths = write_research_package(tmp_path)
     assert all(path.exists() for path in paths)

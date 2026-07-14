@@ -18,7 +18,7 @@ Deliverables:
 Tracked functions/issues:
 - `func_mojo_tokenizer` — Implement Mojo fixed-width tokenizer kernel and Python parity test (prototype, mojo_kernel)
 - `func_mojo_fuzzy_prefilter` — Prototype Mojo fuzzy prefilter for large crosswalk candidate sets (prototype, mojo_kernel)
-- `func_python314_ci` — Add Python 3.14 CI matrix and keep sandbox fallback documented (planned, github_action)
+- `func_python314_ci` — Add Python 3.14 CI matrix and keep sandbox fallback documented (implemented, github_action)
 
 ## track_live_source_ingestion: Evidence-grade live source ingestion
 
@@ -76,7 +76,7 @@ Tracked functions/issues:
 - `func_hf_dataset_publish` — Implement conditional Hugging Face dataset publication workflow (implemented, github_action)
 - `func_hf_space_deploy` — Implement conditional Hugging Face Space deployment workflow (implemented, github_action)
 
-## track_data_packaging_standards: Research-data packaging standards
+## [x] track_data_packaging_standards: Research-data packaging standards
 
 Priority: **should**  
 Phase: `implementation`  
@@ -113,7 +113,7 @@ Tracked functions/issues:
 - `func_mapping_review_ui` — Build dashboard mapping adjudication views (prototype, dashboard)
 - `func_gold_standard_mappings` — Add mapping gold-standard and negative-control datasets (planned, data_pipeline)
 
-## [~] track_ci_cd_supply_chain: CI/CD and supply-chain hardening
+## [x] track_ci_cd_supply_chain: CI/CD and supply-chain hardening
 
 Priority: **must**
 Phase: `hardening`
@@ -167,7 +167,7 @@ This track makes source-content validation, data-quality checks and research-que
 - **GitHub Project export:** generated project rows for tracks, issue drafts, priorities, milestones and views.
 - **Final handoff:** environment-dependent tasks with exact commands and unblock conditions.
 
-## [~] track_continuous_security_assurance: Continuous security assurance and branch enforcement
+## [x] track_continuous_security_assurance: Continuous security assurance and branch enforcement
 
 Priority: **must**
 Phase: `hardening`
@@ -179,7 +179,7 @@ Deliverables:
 - reproducible package-build verification
 - required protected-branch security contexts
 
-## [~] track_harness_engineering: Layered harness engineering and deterministic regeneration
+## [x] track_harness_engineering: Layered harness engineering and deterministic regeneration
 
 Priority: **must**
 Phase: `hardening`

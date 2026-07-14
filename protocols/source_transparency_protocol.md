@@ -54,3 +54,8 @@ Calibrate automated accessibility/readability checks against manual assessment a
 
 ## Deviations amendments and human review
 Version rubric changes, reratings and overrides. Signed methods, source-domain, licence and governance review is required; simulated review is advisory only.
+
+## Pre-registration review checklist
+Complete `docs/RESEARCH_PROTOCOL_REVIEW_CHECKLIST.md` for `rq_source_transparency`.
+The protocol remains draft/planned until an accountable human reviewer records a
+decision and all external source and licence gates are resolved.

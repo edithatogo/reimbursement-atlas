@@ -13,19 +13,43 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: osf-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   osf-plan:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
       - uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version: "1.26.5"
       - name: Generate OSF component plan
         run: |
           uv sync --all-extras
           uv run python scripts/make_osf_plan.py
           uv run python scripts/make_protocol_status.py
+      - name: Install and verify pinned OSF CLI module
+        run: |
+          set -euo pipefail
+          go install github.com/edithatogo/osf-cli-go/cmd/osf@v0.3.2
+          go version -m "$(go env GOPATH)/bin/osf" | grep -F $'mod\tgithub.com/edithatogo/osf-cli-go\tv0.3.2'
+          "$(go env GOPATH)/bin/osf" --help >/dev/null
+      - name: Verify OSF synchronization remains fail closed
+        run: |
+          uv run python - <<'PY'
+          import json
+          from pathlib import Path
+
+          rows = [json.loads(line) for line in Path("data/derived/osf/sync_manifest.jsonl").read_text().splitlines()]
+          if not rows or any(row["publish_allowed"] for row in rows):
+              raise SystemExit("OSF sync manifest must contain only fail-closed rows before human review")
+          PY
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: osf-component-plan
@@ -34,21 +58,31 @@ jobs:
             data/derived/protocols/
             protocols/
             reports/
+          retention-days: 30
 
   publish-osf:
     needs: osf-plan
     if: ${{ github.event.inputs.publish == 'true' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     environment: publication-candidate
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version: "1.26.5"
       - name: Guard token and project configuration
         env:
           OSF_TOKEN: ${{ secrets.OSF_TOKEN }}
           OSF_PROJECT_ID: ${{ vars.OSF_PROJECT_ID }}
         run: |
+          set -euo pipefail
           test -n "$OSF_TOKEN"
           test -n "$OSF_PROJECT_ID"
-          echo "OSF upload implementation is intentionally token-gated and should call the OSF API only after human review."
+          go install github.com/edithatogo/osf-cli-go/cmd/osf@v0.3.2
+          "$(go env GOPATH)/bin/osf" whoami --output json >/dev/null
+          test "$(jq -s '[.[] | select(.publish_allowed == true)] | length' data/derived/osf/sync_manifest.jsonl)" -gt 0
+          echo "Remote mutation remains blocked until reviewed sync-manifest rows are explicitly approved."
+          exit 1

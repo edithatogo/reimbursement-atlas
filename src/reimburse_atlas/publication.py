@@ -155,6 +155,7 @@ DEFAULT_PUBLICATION_PATHS = (
     Path("data/derived/osf/component_plan.csv"),
     Path("data/derived/osf/osf_publication_manifest.json"),
     Path("data/derived/osf/preprint_checklist.md"),
+    Path("data/derived/osf/sync_manifest.jsonl"),
     Path("data/derived/protocols/protocol_status.jsonl"),
     Path("data/derived/protocols/protocol_status.csv"),
     Path("data/derived/protocols/summary.json"),

@@ -38,7 +38,7 @@ def build_frictionless_package(manifest: PublicationManifest) -> dict[str, Any]:
             "Licence-safe derived and metadata artefacts for public reimbursement "
             "schedule comparison."
         ),
-        "licenses": [{"name": "MIT", "path": "LICENSE"}],
+        "licenses": [{"name": "Apache-2.0", "path": "LICENSE"}],
         "resources": resources,
     }
 
@@ -57,7 +57,7 @@ def build_ro_crate(manifest: PublicationManifest) -> dict[str, Any]:
             "@type": "Dataset",
             "name": "Reimbursement Atlas Conductor",
             "description": "Research object for a comparative public reimbursement atlas.",
-            "license": "https://opensource.org/license/mit/",
+            "license": "https://www.apache.org/licenses/LICENSE-2.0",
             "hasPart": [{"@id": artifact.relative_path} for artifact in manifest.artifacts],
         },
     ]

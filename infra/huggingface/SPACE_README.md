@@ -5,7 +5,7 @@ colorFrom: blue
 colorTo: green
 sdk: static
 pinned: false
-license: mit
+license: apache-2.0
 ---
 
 # Reimbursement Atlas Dashboard

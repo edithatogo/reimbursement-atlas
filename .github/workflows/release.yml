@@ -38,6 +38,19 @@ jobs:
         uses: actions/attest@a1948c3f048ba23858d222213b7c278aabede763 # v4
         with:
           subject-path: data/derived/sbom/*.json
+      - name: Verify release attestations before upload
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          signer="${GITHUB_REPOSITORY}/.github/workflows/release.yml"
+          for artifact in dist/* reimbursement-atlas-*.tar.gz data/derived/sbom/*.json; do
+            gh attestation verify "$artifact" \
+              --repo "$GITHUB_REPOSITORY" \
+              --signer-workflow "$signer" \
+              --source-ref "$GITHUB_REF" \
+              --deny-self-hosted-runners
+          done
       - uses: softprops/action-gh-release@718ea10b132b3b2eba29c1007bb80653f286566b # v3
         with:
           files: |
