@@ -8,3 +8,9 @@ The project uses a stable-core/frontier-edge design.
 - GitHub Actions now exercises the Python 3.14 runtime path directly, while the sandbox fallback remains a local-only escape hatch.
 
 The repo records this explicitly in `data/seed/runtime_targets.*`. Release CI should run Python 3.14 and should not treat the sandbox fallback as a public-release target.
+
+The first executable kernel is `mojo/fixed_width_tokenizer.mojo`. It uses
+byte-range slices for fixed-width source records and asserts parity with the
+two-column Python reference fixture before emitting its smoke result. The
+kernel remains intentionally small until profiling demonstrates a production
+bottleneck; it does not replace the auditable Python parser by default.

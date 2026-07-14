@@ -2,9 +2,9 @@
 
 Mojo is now an explicit performance-kernel track, not a vague future placeholder.
 
-Current kernel:
+Current kernels:
 
-- `fixed_width_tokenizer.mojo`: tiny smoke-tested string tokenisation kernel used to validate that Mojo can run in the local/CI environment.
+- `fixed_width_tokenizer.mojo`: smoke-tested fixed-width byte tokenizer and pipe-count kernel. Its assertions exercise the same two-column behavior as the Python reference parser.
 
 Candidate kernels:
 
