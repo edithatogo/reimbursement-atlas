@@ -19,12 +19,14 @@ from reimburse_atlas.source_downloads import safe_local_target
 from reimburse_atlas.source_validation import build_source_content_validations
 
 
-def test_source_content_validation_reports_missing_downloads(tmp_path: Path) -> None:
-    """Executable source records are marked missing before networked acquisition."""
+def test_source_content_validation_uses_reviewed_bundle_before_raw_downloads(
+    tmp_path: Path,
+) -> None:
+    """Tracked reviewed evidence remains valid when raw acquisition is unavailable."""
     records = load_source_files()
     rows = build_source_content_validations(records, raw_dir=tmp_path)
     by_id = {row.source_file_id: row for row in rows}
-    assert by_id["au_mbs_20260701_imap_txt"].validation_status == "missing"
+    assert by_id["au_mbs_20260701_imap_txt"].validation_status == "pass"
     assert by_id["us_cms_clfs_26clabq3_page"].validation_status == "skipped"
     assert all(not row.local_target_ref.startswith("/") for row in rows)
 
