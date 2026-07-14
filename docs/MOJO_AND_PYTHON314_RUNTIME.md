@@ -14,7 +14,3 @@ byte-range slices for fixed-width source records and asserts parity with the
 two-column Python reference fixture before emitting its smoke result. The
 kernel remains intentionally small until profiling demonstrates a production
 bottleneck; it does not replace the auditable Python parser by default.
-
-`mojo/fuzzy_join.mojo` adds a bounded whitespace-token Jaccard prefilter
-prototype. Its output is a candidate score only and remains subject to the
-Python evidence pipeline, negative controls, and human adjudication.
