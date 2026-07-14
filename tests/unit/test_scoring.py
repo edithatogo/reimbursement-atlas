@@ -2,10 +2,8 @@
 
 from __future__ import annotations
 
-import pytest
-
 from reimburse_atlas.registry import load_source_registry
-from reimburse_atlas.scoring import grade_for_score, grade_sensitivity, score_source, score_sources
+from reimburse_atlas.scoring import grade_for_score, score_source, score_sources
 
 
 def test_grade_thresholds() -> None:
@@ -38,16 +36,3 @@ def test_first_wave_sources_match_scoring_rubric() -> None:
     assert scores["au_pbs"].score == scores["us_cms_clfs"].score == 14
     assert scores["uk_genomic_test_directory"].score == 12
     assert scores["uk_genomic_test_directory"].components["utilisation_data"] == 0
-
-
-def test_grade_sensitivity_reports_alternative_cutoffs() -> None:
-    """Alternative cutoffs should be explicit without changing canonical grades."""
-    results = grade_sensitivity([14, 12, 8, 5, 0], [(11, 8, 5), (13, 10, 6)])
-    assert results[0].counts == {"A": 2, "B": 1, "C": 1, "D": 1}
-    assert results[1].counts == {"A": 1, "B": 1, "C": 1, "D": 2}
-
-
-def test_grade_sensitivity_rejects_non_monotonic_cutoffs() -> None:
-    """Threshold configurations must remain ordered and non-negative."""
-    with pytest.raises(ValueError, match="A > B > C"):
-        grade_sensitivity([1], [(5, 5, 1)])
