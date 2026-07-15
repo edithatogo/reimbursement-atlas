@@ -199,6 +199,9 @@ def source_download_plan(
                 "blocked_network": sum(
                     1 for record in attempts if record.status == "blocked_network"
                 ),
+                "blocked_secret": sum(
+                    1 for record in attempts if record.status == "blocked_secret"
+                ),
                 "skipped_licence_gate": sum(
                     1 for record in attempts if record.status == "skipped_licence_gate"
                 ),

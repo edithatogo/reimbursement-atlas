@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import os
 import re
 import shlex
 
@@ -17,7 +18,12 @@ from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.models import DataAcquisitionAttemptRecord, SourceFileRecord
 
 DownloadStatus = Literal[
-    "downloaded", "blocked_network", "failed", "skipped_licence_gate", "not_attempted"
+    "downloaded",
+    "blocked_network",
+    "blocked_secret",
+    "failed",
+    "skipped_licence_gate",
+    "not_attempted",
 ]
 
 NETWORK_ERROR_MARKERS = (
@@ -45,6 +51,7 @@ class SourceDownloadPlan:
     should_execute: bool
     supports_resume: bool
     captures_headers: bool
+    auth_env_var: str | None
     notes: str
 
     def as_row(self) -> dict[str, object]:
@@ -158,6 +165,18 @@ def build_download_plan(
         else _curl_args(record, target, resume_downloads=resume_downloads)
     )
     command = f"mkdir -p {shlex.quote(str(target.parent))} && {_shell_join(args)}"
+    notes = (
+        "Executable local raw download candidate with retries and header/ETag sidecars."
+        if executable and not resume_downloads
+        else (
+            "Executable local raw download candidate with retries, resume support "
+            "and header/ETag sidecars."
+            if executable
+            else "Metadata-only, landing-page or licence-gated record; do not auto-download."
+        )
+    )
+    if record.auth_env_var:
+        notes += f" Runtime credential required from {record.auth_env_var}; never log its value."
     return SourceDownloadPlan(
         source_file_id=record.id,
         method=preferred_method,
@@ -170,16 +189,8 @@ def build_download_plan(
         should_execute=executable,
         supports_resume=resume_downloads,
         captures_headers=preferred_method == "curl",
-        notes=(
-            "Executable local raw download candidate with retries and header/ETag sidecars."
-            if executable and not resume_downloads
-            else (
-                "Executable local raw download candidate with retries, resume support "
-                "and header/ETag sidecars."
-                if executable
-                else "Metadata-only, landing-page or licence-gated record; do not auto-download."
-            )
-        ),
+        auth_env_var=record.auth_env_var,
+        notes=notes,
     )
 
 
@@ -230,20 +241,34 @@ def _download_args(
     preferred_method: str,
     timeout_seconds: int,
     resume_downloads: bool,
+    auth_value: str | None = None,
 ) -> list[str]:
     if preferred_method == "wget":
-        return _wget_args(
+        args = _wget_args(
             record,
             target,
             timeout_seconds=timeout_seconds,
             resume_downloads=resume_downloads,
         )
-    return _curl_args(
-        record,
-        target,
-        timeout_seconds=timeout_seconds,
-        resume_downloads=resume_downloads,
-    )
+    else:
+        args = _curl_args(
+            record,
+            target,
+            timeout_seconds=timeout_seconds,
+            resume_downloads=resume_downloads,
+        )
+    if auth_value:
+        args.extend(["--header", f"Subscription-Key: {auth_value}"])
+    return args
+
+
+def _redact_auth_args(args: list[str]) -> list[str]:
+    """Redact a runtime subscription key before storing command provenance."""
+    redacted = list(args)
+    for index, value in enumerate(redacted[:-1]):
+        if value == "--header" and redacted[index + 1].startswith("Subscription-Key: "):
+            redacted[index + 1] = "Subscription-Key: [REDACTED]"
+    return redacted
 
 
 def _write_attempt_metadata(
@@ -322,6 +347,34 @@ def attempt_download(
         )
         return attempt
 
+    auth_value = None
+    if record.auth_env_var:
+        auth_value = os.environ.get(record.auth_env_var)
+        if not auth_value:
+            error_summary = f"Required credential is absent: {record.auth_env_var}."
+            attempt = DataAcquisitionAttemptRecord(
+                id=attempt_id,
+                source_file_id=record.id,
+                attempted_at=attempted_at,
+                method="curl" if preferred_method != "wget" else "wget",
+                target_path=plan.target_path,
+                status="blocked_secret",
+                exit_code=None,
+                bytes_downloaded=0,
+                command=plan.command,
+                error_summary=error_summary,
+            )
+            _write_attempt_metadata(
+                record=record,
+                plan=plan,
+                status="blocked_secret",
+                exit_code=None,
+                bytes_downloaded=0,
+                error_summary=error_summary,
+                attempted_at=attempted_at,
+            )
+            return attempt
+
     target_path.parent.mkdir(parents=True, exist_ok=True)
     args = _download_args(
         record,
@@ -329,6 +382,7 @@ def attempt_download(
         preferred_method=preferred_method,
         timeout_seconds=timeout_seconds,
         resume_downloads=resume_downloads,
+        auth_value=auth_value,
     )
     # Fixed curl/wget argv; no shell expansion is used.
     completed = subprocess.run(  # nosec B603
@@ -349,6 +403,7 @@ def attempt_download(
             preferred_method=preferred_method,
             timeout_seconds=timeout_seconds,
             resume_downloads=False,
+            auth_value=auth_value,
         )
         completed = subprocess.run(  # nosec B603
             args,
@@ -387,7 +442,7 @@ def attempt_download(
         status=status,
         exit_code=completed.returncode,
         bytes_downloaded=bytes_downloaded,
-        command=_shell_join(args),
+        command=_shell_join(_redact_auth_args(args)),
         error_summary=error_summary[:500],
     )
 
