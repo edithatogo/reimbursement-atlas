@@ -252,3 +252,10 @@ for schedule `4706` with two item pages and one fees response; raw payloads rema
 Tracked evidence records only endpoint metadata, schema/row counts, sizes, checksums and the
 `acquired_unreviewed` state. Human field, licence and research review remain required before
 derived PBS rows can be published or used for policy claims.
+
+## 2026-07-16 — OSF CLI v1.0 contract hardening
+
+The OSF workflow now pins stable `osf-cli-go v1.0.0` and runs an unauthenticated contract check
+for version, export, validation, storage and registration command surfaces. This verifies tool
+compatibility without reading tokens or performing network mutation. The OSF manifest, protocol,
+licence and human-review gates remain unchanged and fail closed.
