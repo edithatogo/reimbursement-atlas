@@ -30,7 +30,7 @@ Private OSF components may support collaborative drafting, but neither upload no
 5. Apply embargo and access controls explicitly.
 6. Verify remote hashes and component placement after upload; keep tokens outside files and logs.
 
-The automation pins stable `osf-cli-go` at `v1.0.0` and verifies both the embedded Go module version and the unauthenticated command contract with `pixi run osf-cli-contract`. The release includes machine-readable output, node export, metadata validation, storage upload and registration commands. The repository's checksum-based reconciliation layer remains the manifest adapter: it compares desired and remote state before any CLI mutation, and every row remains `publish_allowed: false` until accountable human review changes the publication decision. CI must not emulate idempotency with destructive ad hoc shell logic.
+The automation pins stable `osf-cli-go` at `v1.0.0` and verifies both the embedded Go module version and the unauthenticated command contract with `pixi run osf-cli-contract`. The OSF plan job installs the official SHA-pinned Pixi action before invoking that contract, so CI does not depend on a preinstalled runner executable. The release includes machine-readable output, node export, metadata validation, storage upload and registration commands. The repository's checksum-based reconciliation layer remains the manifest adapter: it compares desired and remote state before any CLI mutation, and every row remains `publish_allowed: false` until accountable human review changes the publication decision. CI must not emulate idempotency with destructive ad hoc shell logic.
 
 ### Local CLI contract check
 
