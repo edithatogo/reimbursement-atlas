@@ -45,8 +45,8 @@ jobs:
       - name: Install pinned OSF CLI
         run: |
           set -euo pipefail
-          go install github.com/edithatogo/osf-cli-go/cmd/osf@v1.0.0-rc.1
-          go version -m "$(go env GOPATH)/bin/osf" | grep -F $'mod\tgithub.com/edithatogo/osf-cli-go\tv1.0.0-rc.1'
+          go install github.com/edithatogo/osf-cli-go/cmd/osf@v1.0.0
+          go version -m "$(go env GOPATH)/bin/osf" | grep -F $'mod\tgithub.com/edithatogo/osf-cli-go\tv1.0.0'
       - name: List accessible projects without exposing credentials
         env:
           OSF_TOKEN: ${{ secrets.OSF_TOKEN }}
@@ -79,8 +79,8 @@ jobs:
       - name: Install pinned OSF CLI
         run: |
           set -euo pipefail
-          go install github.com/edithatogo/osf-cli-go/cmd/osf@v1.0.0-rc.1
-          go version -m "$(go env GOPATH)/bin/osf" | grep -F $'mod\tgithub.com/edithatogo/osf-cli-go\tv1.0.0-rc.1'
+          go install github.com/edithatogo/osf-cli-go/cmd/osf@v1.0.0
+          go version -m "$(go env GOPATH)/bin/osf" | grep -F $'mod\tgithub.com/edithatogo/osf-cli-go\tv1.0.0'
       - name: Provision exact private project idempotently
         env:
           OSF_TOKEN: ${{ secrets.OSF_TOKEN }}
@@ -141,8 +141,8 @@ jobs:
       - name: Install and verify pinned OSF CLI module
         run: |
           set -euo pipefail
-          go install github.com/edithatogo/osf-cli-go/cmd/osf@v1.0.0-rc.1
-          go version -m "$(go env GOPATH)/bin/osf" | grep -F $'mod\tgithub.com/edithatogo/osf-cli-go\tv1.0.0-rc.1'
+          go install github.com/edithatogo/osf-cli-go/cmd/osf@v1.0.0
+          go version -m "$(go env GOPATH)/bin/osf" | grep -F $'mod\tgithub.com/edithatogo/osf-cli-go\tv1.0.0'
           "$(go env GOPATH)/bin/osf" --help >/dev/null
       - name: Verify OSF synchronization remains fail closed
         run: |
@@ -186,7 +186,7 @@ jobs:
           set -euo pipefail
           test -n "$OSF_TOKEN"
           test -n "$OSF_PROJECT_ID"
-          go install github.com/edithatogo/osf-cli-go/cmd/osf@v1.0.0-rc.1
+          go install github.com/edithatogo/osf-cli-go/cmd/osf@v1.0.0
           "$(go env GOPATH)/bin/osf" whoami --output json >/dev/null
           test "$(jq -s '[.[] | select(.publish_allowed == true)] | length' data/derived/osf/sync_manifest.jsonl)" -gt 0
           echo "Remote mutation remains blocked until reviewed sync-manifest rows are explicitly approved."
