@@ -422,3 +422,10 @@ MBS item-map and descriptor downloads, six intentional licence-gated skips, and 
 `blocked_secret` PBS schedules attempt because `PBS_API_SUBSCRIPTION_KEY` is absent. Source
 validation and source contracts pass, but the final handoff remains `partial`; the new attempt
 history does not change evidence or publication readiness.
+
+## 2026-07-16 — Automation documentation drift audit
+
+The GitHub automation documentation was corrected to describe SBOM generation and artifact
+attestation as implemented controls, with the consumer verification guide as the operational
+entry point. The live account limitation for non-provider secret-pattern scanning remains a
+separate, accurately documented external hardening item.
