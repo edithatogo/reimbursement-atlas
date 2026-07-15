@@ -185,6 +185,8 @@ epics:
         labels: ["type:research", "type:methods", "phase:analysis"]
       - title: Add reviewer checklist for each protocol before preregistration
         labels: ["type:review", "type:osf", "phase:analysis"]
+      - title: Pin and contract-test the stable OSF CLI command surface
+        labels: ["type:osf", "type:automation", "phase:hardening"]
   - id: DQ-001
     title: Data quality and evidence readiness gates
     phase: hardening

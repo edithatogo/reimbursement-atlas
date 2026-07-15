@@ -213,3 +213,17 @@ Consequence: `data/derived/source_downloads/pbs_api_acquisition.*` is a citable 
 observation for schedule `4706`, not an evidence-ready PBS dataset. The generated dashboard,
 publication manifest, data dictionary, research package and GitHub Project artefacts expose its
 review status and provenance.
+
+## 2026-07-16 — OSF CLI v1.0 command contract
+
+Decision: Pin the OSF workflow to the stable `osf-cli-go v1.0.0` release and verify its
+unauthenticated command/help contract before any credentialed OSF job can run.
+
+Rationale: The stable release adds machine-readable output, node export, metadata validation,
+storage and registration commands. Version metadata alone does not prove that the required
+commands and safety flags are present, while invoking authenticated commands during a contract
+check would unnecessarily expose credentials to a tooling probe.
+
+Consequence: `scripts/check_osf_cli_contract.py` checks the immutable version and required help
+markers without network IO or credentials. OSF reconciliation and publication remain separately
+fail-closed behind manifest approval, protocol review and explicit publication authorization.

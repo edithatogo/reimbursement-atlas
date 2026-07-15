@@ -143,6 +143,7 @@ jobs:
           set -euo pipefail
           go install github.com/edithatogo/osf-cli-go/cmd/osf@v1.0.0
           go version -m "$(go env GOPATH)/bin/osf" | grep -F $'mod\tgithub.com/edithatogo/osf-cli-go\tv1.0.0'
+          OSF_BIN="$(go env GOPATH)/bin/osf" pixi run osf-cli-contract
           "$(go env GOPATH)/bin/osf" --help >/dev/null
       - name: Verify OSF synchronization remains fail closed
         run: |
