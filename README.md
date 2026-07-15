@@ -17,6 +17,7 @@ metadata generated from tracked seeds and derived artefacts. Live-source acquisi
 review, human mapping adjudication, human research review, protocol registration and external
 publication remain explicit gates. See [`apps/dashboard/public/status.json`](apps/dashboard/public/status.json)
 for the machine-readable status contract and [`CITATION.cff`](CITATION.cff) for citation metadata.
+Human and external release decisions are tracked in [`docs/REVIEW_DECISIONS.md`](docs/REVIEW_DECISIONS.md).
 
 Software and project-owned documentation are licensed under Apache-2.0. Underlying source data
 retain their own provider licences and are not relicensed by this repository; CMS/AMA terms apply
