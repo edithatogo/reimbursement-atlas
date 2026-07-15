@@ -84,13 +84,16 @@ def write_licence_review_queue(
     summary_path.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     readme_path = output_dir / "README.md"
     readme_path.write_text(
-        """# Licence review queue\n\n"
-        "This generated queue is a review aid, not an approval record. Every row remains "
-        "`pending` when regenerated. A human reviewer must record the decision, source terms, "
-        "attribution, redistribution permission, restrictions and evidence in "
-        "`docs/REVIEW_DECISIONS.md` before any publication gate can change.\n\n"
-        "The checksums bind review to the exact candidate artefacts. Do not edit this generated "
-        "queue to simulate approval, and do not publish it as evidence that review occurred.\n""",
+        """# Licence review queue
+
+This generated queue is a review aid, not an approval record. Every row remains
+`pending` when regenerated. A human reviewer must record the decision, source terms,
+attribution, redistribution permission, restrictions and evidence in
+`docs/REVIEW_DECISIONS.md` before any publication gate can change.
+
+The checksums bind review to the exact candidate artefacts. Do not edit this generated
+queue to simulate approval, and do not publish it as evidence that review occurred.
+""",
         encoding="utf-8",
     )
     return jsonl_path, csv_path, summary_path, readme_path
