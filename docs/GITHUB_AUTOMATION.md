@@ -56,9 +56,11 @@ remain enabled. If a trusted collaborator is added, enable the documented review
 
 - No credentials in `.env.example`.
 - Secret scanning and push protection in GitHub repository settings.
-- Non-provider secret-pattern scanning and secret-validity checks are currently account-level blockers;
-  the live API still reports both as disabled after an enablement attempt. Do not claim these controls
-  are active until the GitHub security settings show `enabled`.
+- Non-provider secret-pattern scanning is currently an account/security-configuration blocker; the
+  live API still reports it as disabled after an enablement attempt. Partner-pattern validity checks
+  are a separate control and do not validate generic non-provider patterns; the live API also reports
+  them disabled. Do not claim either control is active until the applicable GitHub security settings
+  show `enabled`.
 - CodeQL for Python and JavaScript/TypeScript.
 - Dependabot and Renovate both configured, with Renovate preferred for grouped ecosystem updates.
 - SBOM and provenance generation to add before package publication.

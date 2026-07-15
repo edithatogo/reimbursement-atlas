@@ -10,6 +10,8 @@ Current configuration:
 - GitHub's live API currently reports non-provider secret-pattern scanning and secret-validity checks as
   disabled for this account. An API enablement attempt was fail-closed and did not change the state;
   this remains tracked as a repository-automation/security issue rather than being reported as complete.
+  Validity checks are for supported partner patterns, not generic non-provider patterns, so they must
+  not be represented as evidence that non-provider scanning is active.
 - GitHub Projects v2 is configured as `Reimbursement Atlas Conductor`.
 - GitHub Pages workflow deployment is enabled at `https://edithatogo.github.io/reimbursement-atlas/`.
 - GitHub Discussions remain disabled because the current project uses Issues and Projects as its review surface.

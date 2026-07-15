@@ -306,3 +306,10 @@ The research package is now the final generated step after release-readiness and
 repository automation, data-smoke and deterministic-regeneration workflows. This prevents stale
 release-gate hashes in Frictionless and RO-Crate descriptors after SBOM or dashboard dependency
 changes.
+
+## 2026-07-16 — Secret-scanning scope
+
+Issue [#191](https://github.com/edithatogo/reimbursement-atlas/issues/191) now distinguishes
+non-provider pattern coverage from partner-pattern validity checks. The user-owned repository has
+neither control enabled through the live API; validity checks must not be treated as generic
+non-provider coverage.
