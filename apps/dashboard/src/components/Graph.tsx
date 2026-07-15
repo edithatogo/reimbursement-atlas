@@ -43,17 +43,18 @@ async function loadCsv<T>(url: string): Promise<T[]> {
   return parsed.data;
 }
 
-export default function Graph() {
+export default function Graph({ baseUrl = "/" }: { baseUrl?: string }) {
+  const publicBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
   const [nodes, setNodes] = useState<CsvState<GraphNode>>({ rows: [], error: null });
   const [edges, setEdges] = useState<CsvState<GraphEdge>>({ rows: [], error: null });
 
   useEffect(() => {
-    void loadCsv<GraphNode>("/data/graph_nodes.csv")
+    void loadCsv<GraphNode>(`${publicBase}data/graph_nodes.csv`)
       .then((rows) => setNodes({ rows, error: null }))
       .catch((error: unknown) => {
         setNodes({ rows: [], error: error instanceof Error ? error.message : String(error) });
       });
-    void loadCsv<GraphEdge>("/data/graph_edges.csv")
+    void loadCsv<GraphEdge>(`${publicBase}data/graph_edges.csv`)
       .then((rows) => setEdges({ rows, error: null }))
       .catch((error: unknown) => {
         setEdges({ rows: [], error: error instanceof Error ? error.message : String(error) });

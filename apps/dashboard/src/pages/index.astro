@@ -19,5 +19,5 @@ import StatusOverview from "../components/StatusOverview.astro";
     <h2>Evidence graph</h2>
     <p class="muted">Explore relationships between sources, questions, mappings and outputs.</p>
   </section>
-  <Graph client:only="react" />
+  <Graph client:only="react" baseUrl={import.meta.env.BASE_URL} />
 </Layout>

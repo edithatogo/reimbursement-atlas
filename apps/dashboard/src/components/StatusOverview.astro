@@ -15,6 +15,10 @@ const cards = [
   ["Evidence", status.evidence.status, "Reviewed-source and research gates"],
   ["Publication", status.publication.status, "OSF, Hugging Face and DOI gates"],
 ];
+const baseUrl = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const statusUrl = `${baseUrl}status.json`;
 ---
 
 <section class="status-overview" aria-labelledby="status-heading">
@@ -23,7 +27,7 @@ const cards = [
       <p class="eyebrow">Public status</p>
       <h2 id="status-heading">Readiness without overclaiming</h2>
     </div>
-    <a class="button-link" href="/status.json">Download status JSON</a>
+    <a class="button-link" href={statusUrl}>Download status JSON</a>
   </div>
   <div class="status-grid">
     {cards.map(([label, value, description]) => (

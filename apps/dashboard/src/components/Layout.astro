@@ -5,6 +5,10 @@ interface Props {
 }
 
 const { title, description = "Reimbursement Atlas" } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const publicPath = (path: string) => `${baseUrl}${path.replace(/^\//, "")}`;
 ---
 
 <html lang="en">
@@ -13,6 +17,7 @@ const { title, description = "Reimbursement Atlas" } = Astro.props;
     <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <link rel="icon" href={publicPath("/favicon.svg")} />
     <style>
       :root {
         color-scheme: light;
@@ -106,14 +111,14 @@ const { title, description = "Reimbursement Atlas" } = Astro.props;
   <body>
     <main>
       <nav aria-label="Dashboard sections">
-        <a href="/">Graph</a>
-        <a href="/sources/">Sources</a>
-        <a href="/analyses/">Analyses</a>
-        <a href="/crosswalks/">Crosswalks</a>
-        <a href="/ontologies/">Ontologies</a>
-        <a href="/readiness/">Readiness</a>
-        <a href="/automation/">Automation</a>
-        <a href="/roadmap/">Roadmap</a>
+        <a href={publicPath("/")}>Graph</a>
+        <a href={publicPath("/sources/")}>Sources</a>
+        <a href={publicPath("/analyses/")}>Analyses</a>
+        <a href={publicPath("/crosswalks/")}>Crosswalks</a>
+        <a href={publicPath("/ontologies/")}>Ontologies</a>
+        <a href={publicPath("/readiness/")}>Readiness</a>
+        <a href={publicPath("/automation/")}>Automation</a>
+        <a href={publicPath("/roadmap/")}>Roadmap</a>
       </nav>
       <slot />
     </main>

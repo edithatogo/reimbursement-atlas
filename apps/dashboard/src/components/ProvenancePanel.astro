@@ -6,6 +6,10 @@ interface Props {
 }
 
 const { title, description, links } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const publicPath = (path: string) => `${baseUrl}${path.replace(/^\//, "")}`;
 ---
 
 <aside class="provenance-panel" aria-labelledby="provenance-heading">
@@ -13,6 +17,6 @@ const { title, description, links } = Astro.props;
   <h2 id="provenance-heading">{title}</h2>
   <p class="muted">{description}</p>
   <ul>
-    {links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+    {links.map((link) => <li><a href={publicPath(link.href)}>{link.label}</a></li>)}
   </ul>
 </aside>
