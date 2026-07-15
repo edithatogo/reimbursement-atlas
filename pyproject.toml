@@ -166,6 +166,7 @@ pbs-acquisition-evidence = "PYTHONPATH=src python scripts/make_pbs_api_acquisiti
 source-download-attempt = "PYTHONPATH=src python scripts/make_source_download_plan.py --attempt"
 source-validation = "PYTHONPATH=src python scripts/make_source_validation.py"
 source-contracts = "PYTHONPATH=src python scripts/make_source_contracts.py"
+source-health-report = "PYTHONPATH=src python scripts/make_source_health_report.py"
 historical-sources = "PYTHONPATH=src python scripts/make_historical_source_index.py"
 github-project-export = "PYTHONPATH=src python scripts/make_github_project_export.py"
 final-handoff = "PYTHONPATH=src python scripts/make_final_handoff.py"
