@@ -153,7 +153,7 @@
       "name": "vertical_schedule_items",
       "parquet_path": "vertical_schedule_items/vertical_schedule_items.parquet",
       "rows": 10,
-      "sha256": "30c966a02ee122f526c423033fd8d9905df94d120058d25513162b80dd78dee9"
+      "sha256": "15fb150e32cc31c4656abe6046fefbfd7a1066ce290169ac80fe9b3f78d69ac5"
     },
     {
       "csv_path": "vertical_coverage_decisions/vertical_coverage_decisions.csv",

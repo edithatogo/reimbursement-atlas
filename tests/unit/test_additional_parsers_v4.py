@@ -63,23 +63,21 @@ def test_live_pbs_items_shape_matches_contract(tmp_path: Path) -> None:
         "pbs_code,drug_name,schedule_code\n10001J,Rifaximin,4706\n",
         encoding="utf-8",
     )
-    record = SourceFileRecord.model_validate(
-        {
-            "id": "au_pbs_api_v3_documentation",
-            "source_id": "au_pbs",
-            "source_version_id": "au_pbs_api_v3_current_month",
-            "file_label": "PBS API items",
-            "file_name": "items.csv",
-            "source_url": "https://data-api.health.gov.au/pbs/api/v3/items",
-            "file_role": "api_endpoint",
-            "expected_format": "CSV",
-            "acquisition_mode": "api_rate_limited",
-            "licence_gate": "public_reuse_review",
-            "parser_hint": "parse PBS API items",
-            "current_observation": "live API shape",
-            "notes": "fixture",
-        }
-    )
+    record = SourceFileRecord.model_validate({
+        "id": "au_pbs_api_v3_documentation",
+        "source_id": "au_pbs",
+        "source_version_id": "au_pbs_api_v3_current_month",
+        "file_label": "PBS API items",
+        "file_name": "items.csv",
+        "source_url": "https://data-api.health.gov.au/pbs/api/v3/items",
+        "file_role": "api_endpoint",
+        "expected_format": "CSV",
+        "acquisition_mode": "api_rate_limited",
+        "licence_gate": "public_reuse_review",
+        "parser_hint": "parse PBS API items",
+        "current_observation": "live API shape",
+        "notes": "fixture",
+    })
 
     result = validate_path_against_contract(record, items)
 
