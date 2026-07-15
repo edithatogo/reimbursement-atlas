@@ -8,6 +8,7 @@ on:
       - "scripts/**"
       - "pyproject.toml"
       - "uv.lock"
+      - ".github/workflows/**"
   push:
     branches: [main]
   schedule:
