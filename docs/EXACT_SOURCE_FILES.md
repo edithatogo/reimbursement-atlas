@@ -34,7 +34,7 @@ flowchart LR
 | `au_mbs_1989_2010_previous_downloads_page` | MBS archive index for historical releases from 1989 to 2010. |
 | `us_cms_clfs_26clabq3_page` | CMS metadata page for the 2026 Q3 CLFS release. |
 | `us_cms_clfs_26clabq3_ama_zip` | AMA-gated CLFS ZIP download path. |
-| `au_pbs_api_v3_documentation` | PBS API/CSV distribution documentation and endpoint family. |
+| `au_pbs_api_v3_documentation` | PBS v3 `/schedules` endpoint; the API catalogue and documentation remain the evidence links for the endpoint family. |
 | `us_cms_asp_july_2026_payment_limit_page` | CMS ASP July 2026 payment-limit page. |
 | `us_cms_pfs_rvu26c_page` | CMS PFS RVU26C relative value file page. |
 

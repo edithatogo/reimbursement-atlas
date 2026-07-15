@@ -80,6 +80,11 @@ CONTRACTS: dict[str, SourceContract] = {
         name="PBS API/CSV extract contract",
         expected_columns=("pbs_item_code", "drug_name", "effective_date"),
         required_markers=("pbs",),
+        acceptable_column_sets=(
+            ("pbs_code", "drug_name", "schedule_code"),
+            ("pbs_item_code", "drug_name", "effective_date"),
+        ),
+        acceptable_marker_sets=(("pbs", "drug", "schedule"), ("pbs", "drug", "effective")),
         skip_reason="Documentation/API endpoint record; validate a reviewed CSV or JSON extract instead.",  # noqa: E501
     ),
     "au_mbs_2010_2019_downloads_page": SourceContract(
