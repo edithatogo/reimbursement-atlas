@@ -229,6 +229,15 @@ browser smoke, evidence upload, deployment and live smoke. Its retained artifact
 the homepage screenshot was inspected and confirms the corrected spacing. Human cross-platform
 visual and accessibility sign-off remains an external gate under issue #188.
 
+## 2026-07-16 OSF plan verification
+
+Workflow run `29447241542` on commit `fe4ebc1` passed the pinned OSF plan: protocol-plan
+generation, `osf-cli-go` module provenance and unauthenticated CLI contract, fail-closed
+synchronization validation, and artifact upload. The downloaded `osf-component-plan` artifact
+contained 20 protocol/plan files, no forbidden token or local-path markers, and 15 sync rows
+with zero `publish_allowed` rows. OSF registration and publication remain gated on accountable
+human methods, domain, licence and governance approval.
+
 ## 2026-07-16 continuation — merged public-product release state
 
 The reviewed MBS TXT-pair provenance work is merged on `main` at `38a3990`. The July 2026
@@ -354,3 +363,14 @@ the pinned `osf-cli-go` contract and the fail-closed synchronization check. Prov
 publication were skipped. Main Hugging Face workflow run `29444461756` passed publication-bundle
 validation, dashboard build and candidate-artifact upload with both publication flags disabled;
 dataset and Space publication remain gated by licence, evidence and human review.
+
+## 2026-07-16 — Current publication dry-run verification
+
+OSF workflow run `29447241542` on `fe4ebc1` passed the pinned OSF plan, CLI/module provenance,
+fail-closed synchronization validation and artifact upload. Its 15 synchronization rows all
+remain unapproved. No OSF discovery, provisioning, upload or registration occurred.
+
+Hugging Face workflow run `29447359455` on `fe4ebc1` passed manifest regeneration, dashboard
+build, publication-bundle validation and candidate artifact upload. Dataset and Space mutation
+jobs were not run. Publication remains closed because research publication, evidence release,
+policy claims, protocol readiness and source licence review are incomplete.
