@@ -102,7 +102,7 @@ def test_final_handoff_records_environment_bound_tasks(tmp_path: Path) -> None:
         and row.status == "blocked_network"
         for row in rows
     )
-    assert any(row.status == "blocked_secret" for row in rows)
+    assert not any(row.status == "blocked_secret" for row in rows)
     assert any(row.status == "blocked_review" for row in rows)
     assert any("reviewed-mbs-txt-pair-bundle" in row.command for row in rows)
     paths = write_final_handoff_tasks(rows, output_dir=tmp_path / "handoff")

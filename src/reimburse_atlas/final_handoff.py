@@ -111,31 +111,40 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             id="final_hf_dataset_space",
             task_group="publication",
             title="Publish gated Hugging Face dataset and Space dry run",
-            status="blocked_secret",
+            status="blocked_review",
             required_environment=(
-                "GitHub Actions with HF_TOKEN, HF_DATASET_REPO and HF_SPACE_REPO secrets."
+                "GitHub Actions with configured HF_TOKEN, HF_DATASET_REPO and HF_SPACE_REPO "
+                "targets, plus licence and evidence review."
             ),
             command="gh workflow run huggingface.yml",
             evidence_path=".github/workflows/huggingface.yml",
             unblock_condition=(
-                "Secrets are configured and publication manifest has no raw-source warnings."
+                "Licence, evidence, policy and research gates pass and publication is explicitly "
+                "approved."
             ),
             recommended_action=(
-                "Run as a dry release first; inspect dataset card and Space build logs."
+                "The dry run has passed; inspect the candidate bundle and publish only after "
+                "the remaining review gates are approved."
             ),
         ),
         FinalHandoffTaskRecord(
             id="final_osf_protocol_pack",
             task_group="research",
             title="Create OSF protocol/report components and upload preregistration pack",
-            status="blocked_secret",
-            required_environment="OSF personal access token and approved protocol text.",
+            status="blocked_review",
+            required_environment=(
+                "Configured OSF personal access token and private project, plus approved "
+                "protocol text."
+            ),
             command="gh workflow run osf.yml",
             evidence_path="data/derived/osf/osf_publication_manifest.json",
-            unblock_condition=("Protocols are human-reviewed and OSF credentials are configured."),
+            unblock_condition=(
+                "Protocols, licence, methods and governance decisions are human-reviewed and "
+                "the sync manifest rows are explicitly approved."
+            ),
             recommended_action=(
-                "Treat OSF upload as preregistration candidate, not final publication, "
-                "until approved."
+                "The private project and token-gated plan are configured; keep upload fail-closed "
+                "until the reviewed preregistration decision is recorded."
             ),
         ),
         FinalHandoffTaskRecord(

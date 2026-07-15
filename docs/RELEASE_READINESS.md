@@ -30,9 +30,9 @@ Remaining blockers are external or require accountable human judgement:
 - MBS and historical-source reuse terms require licence review before public
   derived-data publication.
 - CMS CLFS/PFS/ASP fields require source-specific licence decisions.
-- OSF registration requires an approved protocol freeze and `OSF_PROJECT_ID`;
+- OSF registration requires an approved protocol freeze; the private `OSF_PROJECT_ID` is now configured;
   `OSF_TOKEN` is configured as a repository secret.
-- Hugging Face publication requires `HF_TOKEN`; target repository variables are
+- Hugging Face publication requires the configured `HF_TOKEN` and target repository variables;
   configured, but publication remains disabled until review gates pass.
 - Mapping calibration, cross-platform dashboard visual review and policy claims
   require human adjudication.

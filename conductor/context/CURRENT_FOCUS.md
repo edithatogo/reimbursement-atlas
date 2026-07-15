@@ -187,11 +187,11 @@ mutating either remote. PR #157 added a fail-closed publication gate, and PR #15
 refreshed generated evidence from a clean checkout so ignored `data/raw_live/` files
 cannot change committed validation outputs. The latest merged commit is `6550e64`.
 
-The remaining blockers are external and intentionally explicit: `OSF_PROJECT_ID` is not
-configured, local OSF authentication is unavailable, source and derived artefacts still
-need human licence review, mapping calibration and methods review remain outstanding,
-and two current MBS source contracts require the ignored raw payloads for clean-checkout
-reconciliation. The public
+At that point in the continuation history, the remaining blockers were external and
+intentionally explicit: `OSF_PROJECT_ID` was not configured, local OSF authentication
+was unavailable, source and derived artefacts still needed human licence review, mapping
+calibration and methods review remained outstanding, and two current MBS source contracts
+required the ignored raw payloads for clean-checkout reconciliation. The public
 dashboard remains software-release ready but not evidence- or policy-release ready.
 
 The historical landing-page contract correction is now merged as `3c2d46f`: live MBS
@@ -207,3 +207,6 @@ to the OSF workflow. Run `29419950570` created the private OSF project `q8cnx` t
 `OSF_PROJECT_ID` was configured. This does not constitute registration or publication:
 the OSF sync manifest remains fail-closed until protocol, licence, domain and human
 research review gates are explicitly approved.
+
+The final-handoff generator now classifies HF and OSF work as review-blocked rather than
+secret-blocked because both credentialed dry-run paths are configured and verified.

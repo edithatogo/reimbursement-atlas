@@ -181,3 +181,17 @@ Consequences: HF and OSF dry-run workflows passed, all seven local external qual
 passed, and PR #158 merged the cache-independent generated artefacts. `OSF_PROJECT_ID`,
 human licence review, mapping adjudication and research approval remain required before
 any external publication or policy claim.
+
+## 2026-07-15 — Reclassify configured publication credentials as review gates
+
+Decision: Treat Hugging Face and OSF handoff tasks as `blocked_review`, not
+`blocked_secret`, after the HF dry run passed and the token-gated OSF provisioning run
+created private project `q8cnx` with repository variable `OSF_PROJECT_ID` configured.
+
+Rationale: Credentials and target infrastructure are now present, but neither credential
+availability nor private-project creation authorizes publication, preregistration or a
+policy claim. The remaining blockers are licence, protocol, methods, mapping and human
+approval decisions.
+
+Consequence: Generated final-handoff summaries now report zero missing-secret blockers;
+publication workflows remain fail-closed and no raw or restricted source data is uploaded.
