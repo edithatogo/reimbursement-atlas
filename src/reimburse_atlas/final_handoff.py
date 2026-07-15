@@ -158,7 +158,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             ),
             command=(
                 "PYTHONPATH=src reimbursement-atlas osf-registration-check "
-                "--remote-state-path /path/to/registration_snapshot.json"
+                "--remote-state-path \"$OSF_REGISTRATION_SNAPSHOT\""
             ),
             evidence_path="data/derived/osf/registration_freeze.json",
             unblock_condition=(
