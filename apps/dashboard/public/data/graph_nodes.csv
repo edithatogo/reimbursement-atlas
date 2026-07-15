@@ -288,7 +288,7 @@ manual_review,,,,,,,,,mapping_resource:map_who_atc_ddd,,,mapping_resource,WHO AT
 ,,landing_page_review,,,,HTML metadata,landing_page,,source_file:au_mbs_2010_2019_downloads_page,,,source_file,MBS 2010 to 2019 archive downloads page,metadata_only,,,,,,,,,,,,,
 ,,manual_download,,,,TXT,supplementary,,source_file:au_mbs_20260701_desc_txt,,,source_file,MBS 20260701 item descriptors TXT,public_reuse_review,,,,,,,,,,,,,
 ,,manual_download,,,,TXT,primary,,source_file:au_mbs_20260701_imap_txt,,,source_file,MBS 20260701 item map TXT,public_reuse_review,,,,,,,,,,,,,
-,,api_rate_limited,,,,JSON or CSV,api_endpoint,,source_file:au_pbs_api_v3_documentation,,,source_file,PBS API v3 documentation and CSV distribution,public_reuse_review,,,,,,,,,,,,,
+,,api_rate_limited,,,,JSON or CSV,api_endpoint,,source_file:au_pbs_api_v3_documentation,,,source_file,PBS public API v3 schedule and item endpoints,public_reuse_review,,,,,,,,,,,,,
 ,,manual_extract,,,,ZIP/XLSX/CSV manual extract,landing_page,,source_file:us_cms_asp_july_2026_payment_limit_page,,,source_file,CMS ASP July 2026 payment-limit files page,public_reuse_review,,,,,,,,,,,,,
 ,,licence_clickthrough_manual,,,,ZIP containing CLFS file,licence_gate,,source_file:us_cms_clfs_26clabq3_ama_zip,,,source_file,CMS 26CLABQ3 AMA-gated ZIP,restricted_or_licence_review,,,,,,,,,,,,,
 ,,landing_page_review,,,,HTML metadata,landing_page,,source_file:us_cms_clfs_26clabq3_page,,,source_file,CMS 26CLABQ3 file page,metadata_only,,,,,,,,,,,,,
