@@ -75,6 +75,7 @@ jobs:
           uv sync --all-extras
           uv run python scripts/check_public_data_policy.py
           uv run python scripts/make_publication_manifest.py
+          uv run python scripts/check_huggingface_publication_gates.py
       - name: Push dataset artefacts to Hugging Face Hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
@@ -82,7 +83,8 @@ jobs:
         run: |
           test -n "$HF_TOKEN"
           test -n "$HF_DATASET_REPO"
-          git clone "https://user:${HF_TOKEN}@huggingface.co/datasets/${HF_DATASET_REPO}" hf-dataset
+          git -c http.extraheader="Authorization: Bearer $HF_TOKEN" \
+            clone "https://huggingface.co/datasets/${HF_DATASET_REPO}" hf-dataset
           rsync -av --delete infra/huggingface/ hf-dataset/
           rsync -av data/seed/*.csv hf-dataset/data/seed/
           rsync -av data/seed/*.jsonl hf-dataset/data/seed/
@@ -115,7 +117,9 @@ jobs:
           npm run build
       - name: Validate Space bundle
         working-directory: .
-        run: uv run --all-extras python scripts/check_huggingface_bundle.py
+        run: |
+          uv run --all-extras python scripts/check_huggingface_bundle.py
+          uv run --all-extras python scripts/check_huggingface_publication_gates.py
       - name: Push dashboard to Hugging Face Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
@@ -123,7 +127,8 @@ jobs:
         run: |
           test -n "$HF_TOKEN"
           test -n "$HF_SPACE_REPO"
-          git clone "https://user:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE_REPO}" hf-space
+          git -c http.extraheader="Authorization: Bearer $HF_TOKEN" \
+            clone "https://huggingface.co/spaces/${HF_SPACE_REPO}" hf-space
           rsync -av --delete apps/dashboard/dist/ hf-space/
           cp infra/huggingface/SPACE_README.md hf-space/README.md
           cd hf-space
