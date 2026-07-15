@@ -1,0 +1,11 @@
+{
+  "analysis_manifest_digest": "2a9d19365eab90c7483b630d6465de50a5054b87fa0b842fc473a6976059049d",
+  "mutation_performed": false,
+  "network_io": false,
+  "protocol_digest": "4b2162160e4639ab8f97500285c28791e33ebc4d8f1bf37cbbd8ce2609f28699",
+  "registration_id": null,
+  "review_approved": false,
+  "schema_version": "osf-registration-freeze-v1",
+  "source_cutoff": "not-frozen",
+  "status": "draft"
+}

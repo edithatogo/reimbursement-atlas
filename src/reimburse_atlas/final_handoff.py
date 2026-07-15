@@ -139,6 +139,29 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             ),
         ),
         FinalHandoffTaskRecord(
+            id="final_osf_registration_drift_check",
+            task_group="research",
+            title="Verify OSF registration fingerprint and amendment state",
+            status="blocked_review",
+            required_environment=(
+                "Approved protocol freeze, human methods/licence/governance review and an "
+                "exported OSF registration metadata snapshot."
+            ),
+            command=(
+                "PYTHONPATH=src reimbursement-atlas osf-registration-check "
+                "--remote-state-path /path/to/registration_snapshot.json"
+            ),
+            evidence_path="data/derived/osf/registration_freeze.json",
+            unblock_condition=(
+                "The reviewed freeze is approved, an active OSF registration snapshot is "
+                "exported, and protocol/manifest fingerprints match without mutation."
+            ),
+            recommended_action=(
+                "Run the check before any upload or amendment; treat drift as a new review "
+                "decision rather than overwriting the registered state."
+            ),
+        ),
+        FinalHandoffTaskRecord(
             id="final_mapping_calibration_review",
             task_group="mappings",
             title="Adjudicate mapping gold standards and negative controls",
