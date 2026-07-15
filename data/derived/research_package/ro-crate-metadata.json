@@ -1487,20 +1487,20 @@
     {
       "@id": "data/derived/final_handoff/final_handoff_tasks.jsonl",
       "@type": "File",
-      "contentSize": 8221,
+      "contentSize": 8216,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "final_handoff_tasks",
-      "sha256": "479081ab83e964a0e104238d7912b2523a433ffd0e25526ff52d8abb1342d839"
+      "sha256": "5698664b886c2ec825fc9532689b091e244c7640c7d5f8307c43e7bc3030d0b7"
     },
     {
       "@id": "data/derived/final_handoff/final_handoff_tasks.csv",
       "@type": "File",
-      "contentSize": 6408,
+      "contentSize": 6405,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "final_handoff_tasks",
-      "sha256": "82892215b1a0dfb296f6ce217561e3312884f725ffbf11de7d3889ff4c27b4c7"
+      "sha256": "fc36bc24360fedefd1ac740505f8f39bc2ac830eeb92686e9a16d3b31bfb2436"
     },
     {
       "@id": "data/derived/osf/component_plan.jsonl",
@@ -1653,7 +1653,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "source_drift_report",
-      "sha256": "a93657edfaefc18f8bc3aebe51ca30596302c99a6815f1001deb7ccb41a50e2a"
+      "sha256": "59739c7a0e9ee147d8ade6d982506253f91ad3a8635d07af4acc1917e3e9b820"
     },
     {
       "@id": "data/derived/source_drift/source_drift_report.csv",
@@ -1662,7 +1662,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "source_drift_report",
-      "sha256": "8bf921895c62fd8c871379593856412b7844b8dab92515d7875dfad803b47344"
+      "sha256": "94dd23b7022d39db8cc5c64a8ec823eee768e0874344743990fd864764e0cf4e"
     },
     {
       "@id": "data/derived/source_drift/summary.json",
