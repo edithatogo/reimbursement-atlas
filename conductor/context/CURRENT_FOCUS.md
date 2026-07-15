@@ -406,3 +406,11 @@ download evidence on both source-file ID and target path. The current run is `pa
 gated targets are not represented as complete. This prevents the handoff and release dashboard
 from overstating live-source coverage. The change is tracked in generated issue #162 and live
 issue [#223](https://github.com/edithatogo/reimbursement-atlas/issues/223), which is on Project 18.
+
+## 2026-07-16 — Public partial-source blocker
+
+The public status manifest and dashboard now consume the final-handoff JSONL directly and expose
+`source_acquisition` whenever source ingestion is partial. This keeps the public status surface
+consistent with the handoff summary and prevents a partial download run from appearing to have no
+source-ingestion action. The change is tracked in the generated issue and Project 18 after
+regeneration.

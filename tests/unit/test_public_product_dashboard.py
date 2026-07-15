@@ -34,6 +34,19 @@ def test_public_status_separates_software_evidence_and_publication(tmp_path: Pat
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(payload), encoding="utf-8")
 
+    handoff_path = tmp_path / "data/derived/final_handoff/final_handoff_tasks.jsonl"
+    handoff_path.parent.mkdir(parents=True, exist_ok=True)
+    handoff_path.write_text(
+        json.dumps({
+            "id": "final_source_downloads",
+            "status": "partial",
+            "task_group": "source_ingestion",
+            "title": "Run hardened source download plan",
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+
     manifest = build_public_status_manifest(tmp_path)
 
     assert manifest["software"]["status"] == "ready"
@@ -44,6 +57,7 @@ def test_public_status_separates_software_evidence_and_publication(tmp_path: Pat
         "evidence_release",
         "research_publication",
         "osf_registration",
+        "source_acquisition",
     }
 
 
