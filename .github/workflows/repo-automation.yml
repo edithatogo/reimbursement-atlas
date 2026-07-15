@@ -37,6 +37,7 @@ jobs:
           pixi run architecture-report
           pixi run source-validation
           pixi run source-contracts
+          pixi run historical-sources
           pixi run github-project-export
           pixi run final-handoff
           pixi run protocol-status

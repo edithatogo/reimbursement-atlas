@@ -1,7 +1,7 @@
 {
-  "csv_tables": 61,
-  "json_tables": 20,
-  "jsonl_tables": 54,
-  "table_count": 140,
-  "total_rows_documented": 3652
+  "csv_tables": 62,
+  "json_tables": 21,
+  "jsonl_tables": 56,
+  "table_count": 144,
+  "total_rows_documented": 4689
 }

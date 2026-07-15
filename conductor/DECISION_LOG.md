@@ -149,3 +149,20 @@ but an external DOI would imply archival/publication readiness that the current 
 status does not support.
 
 Consequence: Release metadata remains locally reproducible; no Zenodo record or DOI is created.
+
+## 2026-07-15 — Historical MBS archive inventory and OSF CLI refresh
+
+Decision: Add a metadata-only inventory for historical MBS targets and pin the OSF
+workflow to `osf-cli-go v1.0.0-rc.1` after an isolated install and help-contract check.
+
+Rationale: The official MBS archive pages expose 343 historical file targets across 32
+archive pages, spanning 1974 through 2026. Downloading or republishing those payloads
+without source-specific terms review would violate the project's fail-closed data policy.
+The newer OSF CLI provides the current supported command surface while remaining safe for
+the existing dry-run workflow.
+
+Consequences: The repository now tracks URLs, archive periods, file names and explicit
+manual-review status in `data/seed/historical_mbs_archive_targets.jsonl` and derived
+outputs. No historical raw payloads were downloaded or committed. The OSF workflow's safe
+validation run passed, and remote OSF mutation remains disabled until project configuration,
+protocol approval and manifest-native publication authorization exist.

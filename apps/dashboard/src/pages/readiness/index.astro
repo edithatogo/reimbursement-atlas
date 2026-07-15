@@ -25,6 +25,11 @@ import Layout from "../../components/Layout.astro";
     columns={["source_id", "version_id", "parser_name", "readiness_grade", "blocking_issues"]}
   />
   <DataTable
+    title="Historical MBS archive inventory"
+    fileName="historical_mbs_archive_targets.csv"
+    columns={["archive_period", "file_name", "file_kind", "archive_page_id", "download_policy", "status"]}
+  />
+  <DataTable
     title="External quality gates"
     fileName="external_quality_gates.csv"
     columns={["id", "outcome", "command", "notes"]}

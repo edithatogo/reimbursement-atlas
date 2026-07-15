@@ -29,6 +29,7 @@ jobs:
       - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
         with:
           go-version: "1.26.5"
+          cache: false
       - name: Generate OSF component plan
         run: |
           uv sync --all-extras
@@ -37,8 +38,8 @@ jobs:
       - name: Install and verify pinned OSF CLI module
         run: |
           set -euo pipefail
-          go install github.com/edithatogo/osf-cli-go/cmd/osf@v0.3.2
-          go version -m "$(go env GOPATH)/bin/osf" | grep -F $'mod\tgithub.com/edithatogo/osf-cli-go\tv0.3.2'
+          go install github.com/edithatogo/osf-cli-go/cmd/osf@v1.0.0-rc.1
+          go version -m "$(go env GOPATH)/bin/osf" | grep -F $'mod\tgithub.com/edithatogo/osf-cli-go\tv1.0.0-rc.1'
           "$(go env GOPATH)/bin/osf" --help >/dev/null
       - name: Verify OSF synchronization remains fail closed
         run: |
@@ -73,6 +74,7 @@ jobs:
       - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
         with:
           go-version: "1.26.5"
+          cache: false
       - name: Guard token and project configuration
         env:
           OSF_TOKEN: ${{ secrets.OSF_TOKEN }}
@@ -81,7 +83,7 @@ jobs:
           set -euo pipefail
           test -n "$OSF_TOKEN"
           test -n "$OSF_PROJECT_ID"
-          go install github.com/edithatogo/osf-cli-go/cmd/osf@v0.3.2
+          go install github.com/edithatogo/osf-cli-go/cmd/osf@v1.0.0-rc.1
           "$(go env GOPATH)/bin/osf" whoami --output json >/dev/null
           test "$(jq -s '[.[] | select(.publish_allowed == true)] | length' data/derived/osf/sync_manifest.jsonl)" -gt 0
           echo "Remote mutation remains blocked until reviewed sync-manifest rows are explicitly approved."
