@@ -153,6 +153,24 @@ provenance drill-down, machine-readable status and archival DOI release.
 
 Its generated child issue drafts include an explicit parent-issue reference so Conductor,
 the GitHub Project export and future native GitHub sub-issues remain cross-referenced.
+
+## 2026-07-15 operational hardening and public dashboard deployment
+
+The generated source-download launcher now delegates to the managed `uv` acquisition
+path, ensuring shell-launched downloads write the same attempt records and metadata
+sidecars as the CLI. The path was reviewed and corrected for the launcher’s three-level
+location under `data/derived/source_downloads/`; the end-to-end launcher run recorded
+three downloaded and six licence-gated attempts without tracking raw payloads.
+
+PR #154 merged this fix as `7fb9377`. GitHub Pages is enabled and the dashboard is live
+at `https://edithatogo.github.io/reimbursement-atlas/`; its deployment workflow and
+browser smoke gate passed. Dependabot security updates and private vulnerability
+reporting are enabled. The nonsecret Hugging Face target variables are configured,
+while `HF_TOKEN` and OSF project configuration remain intentionally token/review gated.
+
+The current public product is software-release ready, but evidence publication and
+policy claims remain fail-closed until licence review, human mapping/research review,
+OSF registration and Hugging Face publication gates are satisfied.
 Historical MBS/PBS coverage remains owned by `track_live_source_ingestion`; release DOI
 work remains owned by `track_data_packaging_standards`; documentation freshness remains
 owned by `track_ci_cd_supply_chain`.

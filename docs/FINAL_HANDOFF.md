@@ -19,17 +19,18 @@ apps/dashboard/public/data/final_handoff_tasks.csv
 
 ## Main remaining environment-dependent tasks
 
-1. Run hardened source downloads with `curl`/`wget` in a network-enabled checkout.
-2. Create the reviewed MBS TXT-pair bundle from ignored local raw files.
-3. Complete CMS CLFS licence review before parsing or publishing derived fields.
-4. Run `pip-audit --strict` with network access to advisory APIs.
-5. Resolve GitHub Action references to immutable SHAs.
-6. Run token-gated Hugging Face dataset/Space dry runs.
-7. Run token-gated OSF protocol/report publication workflow.
-8. Regenerate release-readiness after the above gates complete.
+1. Complete MBS, historical-source and CMS licence review before derived-data publication.
+2. Approve mapping calibration gold standards and negative controls.
+3. Freeze and approve the OSF protocol, configure `OSF_PROJECT_ID`, then run the token-gated workflow.
+4. Configure `HF_TOKEN`, then run the gated Hugging Face dataset/Space publication workflow.
+5. Complete cross-platform dashboard visual and accessibility review.
+6. Regenerate release-readiness after the research, licence and publication gates complete.
 
-The downloadable archive is ready for local continuation. Public-release readiness still requires the network, credential and review gates to be completed.
+Source acquisition, the derived MBS bundle, strict software/security gates, GitHub
+Pages deployment, OSF CLI v1 verification and the downloadable archive are complete.
+Public evidence-release readiness still requires the remaining credential and human
+review gates.
 
-Current release posture: the repo is public-release ready for local gates, while the
-`source_contract_validation_summary` gate now passes after the reviewed MBS bundle and
-landing-page skips were aligned with the live source contracts.
+Current release posture: the repository is ready for local software release and the
+public dashboard is live, while `research_publication_ready`, `evidence_release_ready`
+and `policy_claims_ready` remain fail-closed.

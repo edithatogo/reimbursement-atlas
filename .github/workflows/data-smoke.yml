@@ -1,15 +1,9 @@
 name: Data smoke
 
 on:
+  # This job is a required branch-protection context and must be emitted for
+  # documentation-only pull requests as well as data/code changes.
   pull_request:
-    paths:
-      - "data/**"
-      - "src/reimburse_atlas/**"
-      - "scripts/**"
-      - "Makefile"
-      - "pyproject.toml"
-      - "uv.lock"
-      - "pixi.lock"
   workflow_dispatch:
 
 permissions:
