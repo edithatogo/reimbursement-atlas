@@ -9,7 +9,7 @@
       "name": "source_registry",
       "parquet_path": "source_registry/source_registry.parquet",
       "rows": 60,
-      "sha256": "ec22a6c76e24b7832a964b132306027f90f8874aae4d96aeee0e875af3a986df"
+      "sha256": "72f073edaa8cf564a8021bdf006320e1a22445b6398405e3bc28d4fd74e0b064"
     },
     {
       "csv_path": "analysis_catalogue/analysis_catalogue.csv",
@@ -96,16 +96,16 @@
       "jsonl_path": "conductor_tracks/conductor_tracks.jsonl",
       "name": "conductor_tracks",
       "parquet_path": "conductor_tracks/conductor_tracks.parquet",
-      "rows": 9,
-      "sha256": "d9c30aad0dd764fd82b4749dc684bac961bb433ebf9e93c4a19737946e28bdb7"
+      "rows": 10,
+      "sha256": "c925020251d48680f3e6f32841914f77d9652ae33f92dda72bb09bf306bc954a"
     },
     {
       "csv_path": "roadmap_functions/roadmap_functions.csv",
       "jsonl_path": "roadmap_functions/roadmap_functions.jsonl",
       "name": "roadmap_functions",
       "parquet_path": "roadmap_functions/roadmap_functions.parquet",
-      "rows": 28,
-      "sha256": "094270f4f7466126bd8022c06e04941624bcf92db9fd101f5b999d8e97ff9be1"
+      "rows": 39,
+      "sha256": "b6951a0e32173b0f3e490134c7e61c651974de0a78d467b2ca25792f8d8bf58d"
     },
     {
       "csv_path": "dataset_candidates/dataset_candidates.csv",
@@ -136,8 +136,8 @@
       "jsonl_path": "output_artifact_plans/output_artifact_plans.jsonl",
       "name": "output_artifact_plans",
       "parquet_path": "output_artifact_plans/output_artifact_plans.parquet",
-      "rows": 14,
-      "sha256": "24c61e27d15036e07bf3d9bbfaaa84950ca52de579958cd79b365a85537f748e"
+      "rows": 18,
+      "sha256": "7103741cf9994ae2ea22e268e07463f66d92d4b8a16eec61651ff95c153e5ea4"
     },
     {
       "csv_path": "runtime_targets/runtime_targets.csv",
@@ -256,16 +256,16 @@
       "jsonl_path": "repo_workflow_uses/repo_workflow_uses.jsonl",
       "name": "repo_workflow_uses",
       "parquet_path": "repo_workflow_uses/repo_workflow_uses.parquet",
-      "rows": 79,
-      "sha256": "5e8653a56de80215d6ef885fb42789251ac0d0c8fba3e25cf8ed4e401a11ff82"
+      "rows": 85,
+      "sha256": "7d062af735c1698e5f82447e3a5c9deca37e35f02083cf23bdf85596e5ee4b0b"
     },
     {
       "csv_path": "repo_workflow_policy/repo_workflow_policy.csv",
       "jsonl_path": "repo_workflow_policy/repo_workflow_policy.jsonl",
       "name": "repo_workflow_policy",
       "parquet_path": "repo_workflow_policy/repo_workflow_policy.parquet",
-      "rows": 64,
-      "sha256": "123253c261e0e0e54d058029463bc75da98e406ded0c8a7252c5f96c7888f05f"
+      "rows": 68,
+      "sha256": "3ec8fe6a5720f73379db0fb5c342f5640dcd952eb6d7e5a18c2dbf8207497849"
     },
     {
       "csv_path": "repo_automation_controls/repo_automation_controls.csv",
@@ -288,8 +288,8 @@
       "jsonl_path": "repo_action_pin_resolution/repo_action_pin_resolution.jsonl",
       "name": "repo_action_pin_resolution",
       "parquet_path": "repo_action_pin_resolution/repo_action_pin_resolution.parquet",
-      "rows": 66,
-      "sha256": "e67d116c8c8a96b0bc43222d641e63e720761225f89c086cea23784974f1d4fc"
+      "rows": 85,
+      "sha256": "18aede45e483f42d1e74502167d105003f0832bdfbde8b2e7e912cd47ad9a50f"
     },
     {
       "csv_path": "sbom_summary/sbom_summary.csv",
@@ -297,7 +297,7 @@
       "name": "sbom_summary",
       "parquet_path": "sbom_summary/sbom_summary.parquet",
       "rows": 2,
-      "sha256": "ec544f7661861d64764b185cb9eee35ce29d7c3f92dc4b6c4c05104ac2837c0c"
+      "sha256": "dbec25bb3cbba5837f15d0f0dd39c876e92bc84dc5b778eefaf5675a72934aaa"
     },
     {
       "csv_path": "local_quality_gates/local_quality_gates.csv",
@@ -345,7 +345,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 35,
-      "sha256": "8b5556c4c7c7c94111c1761ddba5e011d6f75458330ffd82d0ca3a7559e5907f"
+      "sha256": "395262e49db29206d46b9549ee699b581eb3e0fa71ee06a1a4902d4a00f2370c"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -384,16 +384,16 @@
       "jsonl_path": "github_project_items/github_project_items.jsonl",
       "name": "github_project_items",
       "parquet_path": "github_project_items/github_project_items.parquet",
-      "rows": 143,
-      "sha256": "b28458a17621130224823d90e99d506345f80453a10562415f12256a67e6b7f4"
+      "rows": 160,
+      "sha256": "7b15a1de533809b5fd4f835ba32afc4902efb23e773dffbb4a6e2ff8b31c38ba"
     },
     {
       "csv_path": "final_handoff_tasks/final_handoff_tasks.csv",
       "jsonl_path": "final_handoff_tasks/final_handoff_tasks.jsonl",
       "name": "final_handoff_tasks",
       "parquet_path": "final_handoff_tasks/final_handoff_tasks.parquet",
-      "rows": 8,
-      "sha256": "061a422ea6e206265aff307d9745ed16afdee50b5335ea6862d1dd74c3c1f40a"
+      "rows": 11,
+      "sha256": "5607a924e8058a528f6dbe7d802ade704c1d5d1f3bcf6b34c62ff9126597b36e"
     },
     {
       "csv_path": "osf_component_plan/osf_component_plan.csv",
@@ -425,7 +425,7 @@
       "name": "data_quality_checks",
       "parquet_path": "data_quality_checks/data_quality_checks.parquet",
       "rows": 41,
-      "sha256": "c70f9485e73a9d258db8f279b82b616c1934d6c718975a134e699cc8e57d1228"
+      "sha256": "b1774db90812ebce182324f290a227898a68ab30c4eed9a006b5f1fb976db8d6"
     },
     {
       "csv_path": "evidence_readiness/evidence_readiness.csv",
@@ -441,7 +441,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "738d69259206a98c8c9b4f019b89886d4ef690a62be4806f98b416a5a3b34419"
+      "sha256": "e468f36eadb40efd445a965c259986273bc95adcff9d31d0a78cb05c77746610"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
@@ -449,7 +449,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 140,
-      "sha256": "0de7c3ea1f3beffa6759e77babe30e8e98ba41c025d11ded270517710e8daa6e"
+      "sha256": "dd6110adf061c1cd80d121df211ccda74e72ac7ff116f377fecf5e447424c382"
     }
   ]
 }

@@ -613,6 +613,7 @@ class FinalHandoffTaskRecord(FrozenModel):
         "release",
         "research",
         "automation",
+        "mappings",
     ]
     title: NonEmptyStr
     status: Literal[

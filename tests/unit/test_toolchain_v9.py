@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from reimburse_atlas.toolchain import classify_gate_result, run_external_quality_gate
+from scripts.make_mojo_parity_report import build_mojo_parity_report
 
 
 def test_wrong_pypi_pixi_is_not_marked_as_missing() -> None:
@@ -41,3 +42,12 @@ def test_run_external_quality_gate_missing_tool(repo_root: Path) -> None:
 
     assert record.outcome == "missing_tool"
     assert record.return_code is None
+
+
+def test_mojo_parity_reference_contract_is_deterministic(repo_root: Path) -> None:
+    """The Python reference remains testable when Mojo is unavailable."""
+    report = build_mojo_parity_report(repo_root, run_smoke=False)
+
+    assert report["python_reference_status"] == "pass"
+    assert report["benchmark_contract"]["status"] == "pass"
+    assert report["mojo_smoke"]["status"] == "not_run"

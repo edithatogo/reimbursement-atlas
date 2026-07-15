@@ -2705,6 +2705,26 @@
       "version": "0.138.0"
     },
     {
+      "bom-ref": "pkg:npm/@playwright/test@1.61.1",
+      "licenses": [
+        {
+          "license": {
+            "name": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "@playwright/test",
+      "properties": [
+        {
+          "name": "npm:integrity",
+          "value": "sha512-8nKv6+0RJSL9FE4jYOEGXnPeM/Hg12qZpmqzZjRh3qM0Y7c3z1mrOTfFLids72RDQYVh9WpLEfR5WdpNX4fkig=="
+        }
+      ],
+      "purl": "pkg:npm/@playwright/test@1.61.1",
+      "type": "library",
+      "version": "1.61.1"
+    },
+    {
       "bom-ref": "pkg:npm/@probe.gl/env@4.1.1",
       "licenses": [
         {
@@ -8025,6 +8045,66 @@
       "purl": "pkg:npm/picomatch@4.0.5",
       "type": "library",
       "version": "4.0.5"
+    },
+    {
+      "bom-ref": "pkg:npm/playwright@1.61.1",
+      "licenses": [
+        {
+          "license": {
+            "name": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "playwright",
+      "properties": [
+        {
+          "name": "npm:integrity",
+          "value": "sha512-DWnY5o3YbLWK4GovuAVwpqL+1VwGNdUGrRr++8j8PtQQzvAVZUIMjKQ90fY689sEJZJBbZVw1rXaOKSTitkzPQ=="
+        }
+      ],
+      "purl": "pkg:npm/playwright@1.61.1",
+      "type": "library",
+      "version": "1.61.1"
+    },
+    {
+      "bom-ref": "pkg:npm/playwright-core@1.61.1",
+      "licenses": [
+        {
+          "license": {
+            "name": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "playwright-core",
+      "properties": [
+        {
+          "name": "npm:integrity",
+          "value": "sha512-h7Qlt6m4REp25qvIdvbDtVmD4LqVXfpRxhORv9L0jzETM05p4fuPJ3dKyuSXQxDSbXnmS79HAgi9589lGSpLkg=="
+        }
+      ],
+      "purl": "pkg:npm/playwright-core@1.61.1",
+      "type": "library",
+      "version": "1.61.1"
+    },
+    {
+      "bom-ref": "pkg:npm/playwright/node_modules/fsevents@2.3.2",
+      "licenses": [
+        {
+          "license": {
+            "name": "MIT"
+          }
+        }
+      ],
+      "name": "playwright/node_modules/fsevents",
+      "properties": [
+        {
+          "name": "npm:integrity",
+          "value": "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA=="
+        }
+      ],
+      "purl": "pkg:npm/playwright/node_modules/fsevents@2.3.2",
+      "type": "library",
+      "version": "2.3.2"
     },
     {
       "bom-ref": "pkg:npm/postcss@8.5.16",

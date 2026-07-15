@@ -48,6 +48,8 @@ jobs:
         run: |
           npm ci
           npm run build
+      - name: Validate publication bundle
+        run: uv run --all-extras python scripts/check_huggingface_bundle.py
       - name: Upload publication candidate artefacts
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
@@ -111,6 +113,9 @@ jobs:
         run: |
           npm ci
           npm run build
+      - name: Validate Space bundle
+        working-directory: .
+        run: uv run --all-extras python scripts/check_huggingface_bundle.py
       - name: Push dashboard to Hugging Face Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}

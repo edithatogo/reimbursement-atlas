@@ -20,7 +20,7 @@ Tracked functions/issues:
 - `func_mojo_fuzzy_prefilter` — Prototype Mojo fuzzy prefilter for large crosswalk candidate sets (prototype, mojo_kernel)
 - `func_python314_ci` — Add Python 3.14 CI matrix and keep sandbox fallback documented (implemented, github_action)
 
-## track_live_source_ingestion: Evidence-grade live source ingestion
+## [~] track_live_source_ingestion: Evidence-grade live source ingestion
 
 Priority: **must**  
 Phase: `implementation`  
@@ -39,6 +39,8 @@ Tracked functions/issues:
 - `func_source_download` — Implement robust source download command with curl/wget/API fallbacks (implemented, cli)
 - `func_source_snapshot` — Maintain source snapshot provenance for all reviewed downloads (implemented, cli)
 - `func_source_diff` — Add source drift and schema diff reports (implemented, data_pipeline)
+- `func_source_download_hardened` — Harden source download commands with quoting, retry, resume and sidecar metadata (implemented, cli)
+- `func_historical_mbs_pbs_bundles` — Expand reviewed coverage with historical MBS and PBS bundles (planned, data_pipeline)
 
 ## [~] track_research_protocols_osf: OSF research protocol and report workflow
 
@@ -76,7 +78,7 @@ Tracked functions/issues:
 - `func_hf_dataset_publish` — Implement conditional Hugging Face dataset publication workflow (implemented, github_action)
 - `func_hf_space_deploy` — Implement conditional Hugging Face Space deployment workflow (implemented, github_action)
 
-## [x] track_data_packaging_standards: Research-data packaging standards
+## [~] track_data_packaging_standards: Research-data packaging standards
 
 Priority: **should**  
 Phase: `implementation`  
@@ -94,8 +96,10 @@ Tracked functions/issues:
 - `func_frictionless_package` — Add Frictionless Data Package generator (implemented, data_pipeline)
 - `func_ro_crate` — Add RO-Crate metadata generator (implemented, data_pipeline)
 - `func_dcat` — Add DCAT JSON-LD export (implemented, data_pipeline)
+- `func_data_dictionary` — Generate public artefact data dictionary (implemented, data_pipeline)
+- `func_zenodo_doi_release` — Create signed release and Zenodo DOI after publication approval (planned, github_action)
 
-## [x] track_mapping_workbench: Human-in-the-loop mapping workbench
+## [~] track_mapping_workbench: Human-in-the-loop mapping workbench
 
 Priority: **must**  
 Phase: `implementation`  
@@ -111,9 +115,9 @@ Deliverables:
 
 Tracked functions/issues:
 - `func_mapping_review_ui` — Build dashboard mapping adjudication views (prototype, dashboard)
-- `func_gold_standard_mappings` — Add mapping gold-standard and negative-control datasets (planned, data_pipeline)
+- `func_gold_standard_mappings` — Add mapping gold-standard and negative-control datasets (prototype, data_pipeline)
 
-## [x] track_ci_cd_supply_chain: CI/CD and supply-chain hardening
+## [~] track_ci_cd_supply_chain: CI/CD and supply-chain hardening
 
 Priority: **must**
 Phase: `hardening`
@@ -130,8 +134,9 @@ Deliverables:
 Tracked functions/issues:
 - `func_action_sha_pin_bot` — Automate GitHub Action SHA pinning (prototype, github_action)
 - `func_release_attestation_verify` — Add consumer-side artifact attestation verification (prototype, github_action)
+- `func_docs_freshness_gate` — Add documentation freshness and claim-validation gate (implemented, github_action)
 
-## [x] track_policy_demonstrators: First policy demonstrators
+## [~] track_policy_demonstrators: First policy demonstrators
 
 Priority: **must**  
 Phase: `analysis`  
@@ -146,9 +151,9 @@ Deliverables:
 - dashboard views
 
 Tracked functions/issues:
-- `func_genomics_demo` — Implement genomics/pathology policy demonstrator (planned, data_pipeline)
-- `func_cognitive_procedural_index` — Implement cognitive versus procedural relativity analysis (planned, data_pipeline)
-- `func_medicine_opacity_index` — Implement medicine price-opacity scorecard (planned, data_pipeline)
+- `func_genomics_demo` — Implement genomics/pathology policy demonstrator (prototype, data_pipeline)
+- `func_cognitive_procedural_index` — Implement cognitive versus procedural relativity analysis (prototype, data_pipeline)
+- `func_medicine_opacity_index` — Implement medicine price-opacity scorecard (prototype, data_pipeline)
 
 
 ## [x] track_data_quality_evidence: Data quality, source validation and evidence readiness
@@ -190,3 +195,30 @@ Deliverables:
 - deterministic generated-output verification
 - bounded mutation testing
 - retained harness evidence and failure diagnostics
+
+## [~] track_public_product_citation_dashboard: Public product, citation and dashboard maturity
+
+Priority: **must**
+Phase: `implementation`
+Workstream: `dashboard`
+
+Goal: Present the atlas as a current, citable and accessible public product with a deployed dashboard, trustworthy status reporting and release-grade scholarly metadata.
+
+Dependencies: `track_live_source_ingestion`, `track_publication_hf_spaces`, `track_data_packaging_standards`, `track_data_quality_evidence`, `track_ci_cd_supply_chain`
+
+Context: [specification](tracks/track_public_product_citation_dashboard/spec.md) | [implementation plan](tracks/track_public_product_citation_dashboard/plan.md)
+
+Parent GitHub issue: `Public product, citation and dashboard maturity`
+
+Tracked sub-issues:
+- Correct and schema-validate `CITATION.cff`
+- Rewrite README for current product state and citation guidance
+- Deploy the static dashboard to GitHub Pages and mirror to Hugging Face Spaces
+- Build an executive dashboard overview with readiness and blocker KPIs
+- Add dashboard search filters downloads and stable deep links
+- Add dashboard provenance and mapping-evidence drill-down
+- Add dashboard accessibility performance and visual regression gates
+- Publish machine-readable project status and readiness badges
+- Add documentation freshness and claim-validation gate
+- Create signed release and Zenodo DOI after publication approval
+- Expand reviewed coverage with historical MBS and PBS bundles

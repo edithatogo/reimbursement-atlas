@@ -1,0 +1,11 @@
+{
+  "calibration_case_count": 4,
+  "errors": [],
+  "evidence_ready": false,
+  "gold_standard_count": 2,
+  "negative_control_count": 2,
+  "reviewer_signoff_required": true,
+  "schema_version": "mapping-calibration-v1",
+  "status": "review_required",
+  "triggered_negative_control_count": 2
+}

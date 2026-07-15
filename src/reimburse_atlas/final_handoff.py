@@ -18,7 +18,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             id="final_source_downloads",
             task_group="source_ingestion",
             title="Run hardened curl/wget source download plan",
-            status="complete" if _action_pinning_complete(repo) else "blocked_network",
+            status="complete" if _source_downloads_complete(repo) else "blocked_network",
             required_environment=(
                 "Network-enabled local machine or GitHub runner with outbound HTTPS."
             ),
@@ -73,7 +73,9 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             id="final_pip_audit_strict",
             task_group="security",
             title="Run pip-audit strict in a network-enabled environment",
-            status="blocked_network",
+            status=(
+                "complete" if _external_gate_passed(repo, "pip_audit_strict") else "blocked_network"
+            ),
             required_environment=(
                 "Network-enabled Python environment with access to PyPI advisory APIs."
             ),
@@ -88,7 +90,12 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             id="final_action_sha_pinning",
             task_group="automation",
             title="Resolve GitHub Action tags to immutable SHAs",
-            status="blocked_network",
+            status=(
+                "complete"
+                if _external_gate_passed(repo, "repo_automation_matrix")
+                and _action_pinning_complete(repo)
+                else "blocked_network"
+            ),
             required_environment="Network-enabled environment with GitHub API access.",
             command="PYTHONPATH=src python scripts/resolve_action_pins.py",
             evidence_path="data/derived/repo_automation/action_pin_resolution.jsonl",
@@ -129,6 +136,63 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             recommended_action=(
                 "Treat OSF upload as preregistration candidate, not final publication, "
                 "until approved."
+            ),
+        ),
+        FinalHandoffTaskRecord(
+            id="final_mapping_calibration_review",
+            task_group="mappings",
+            title="Adjudicate mapping gold standards and negative controls",
+            status="blocked_review",
+            required_environment="Human domain review of the synthetic mapping calibration cases.",
+            command="pixi run mapping-calibration",
+            evidence_path="data/derived/vertical_slice/mapping_calibration_gate.json",
+            unblock_condition=(
+                "Reviewer confirms the positive/negative control outcomes and approves the "
+                "mapping threshold for the intended research question."
+            ),
+            recommended_action=(
+                "Do not use the current calibration precision/specificity as evidence-grade "
+                "performance; resolve the two triggered negative controls first."
+            ),
+        ),
+        FinalHandoffTaskRecord(
+            id="final_historical_source_expansion",
+            task_group="source_ingestion",
+            title="Review historical MBS/PBS source expansion and licence scope",
+            status="blocked_review",
+            required_environment=(
+                "Human source/licence review plus network access to historical MBS and "
+                "PBS releases."
+            ),
+            command="pixi run source-download-plan && pixi run source-contracts",
+            evidence_path="data/derived/source_contracts/source_contract_validation.jsonl",
+            unblock_condition=(
+                "Historical release URLs, reuse terms and a reviewed PBS extract are approved "
+                "for derived-only processing."
+            ),
+            recommended_action=(
+                "Keep historical pages and unreviewed PBS extracts metadata-only; do not infer "
+                "temporal evidence from missing releases."
+            ),
+        ),
+        FinalHandoffTaskRecord(
+            id="final_dashboard_visual_review",
+            task_group="release",
+            title="Review cross-platform dashboard visual baselines",
+            status="blocked_review",
+            required_environment=(
+                "Human visual review across the supported browser/OS matrix with approved "
+                "baselines."
+            ),
+            command="cd apps/dashboard && npm run test:browser",
+            evidence_path="docs/DASHBOARD_VALIDATION.md",
+            unblock_condition=(
+                "Reviewed screenshots or platform-specific baselines are approved without "
+                "accessibility, layout or provenance regressions."
+            ),
+            recommended_action=(
+                "Use the existing 9-route browser smoke suite as the pre-review gate; do not "
+                "treat a single macOS rendering as cross-platform proof."
             ),
         ),
         FinalHandoffTaskRecord(
@@ -201,3 +265,28 @@ def _action_pinning_complete(repo: Path) -> bool:
     if not plan.is_file():
         return False
     return len(plan.read_text(encoding="utf-8").splitlines()) <= 1
+
+
+def _source_downloads_complete(repo: Path) -> bool:
+    """Return true when acquisition evidence or a reviewed source bundle exists."""
+    attempts = repo / "data" / "derived" / "source_downloads" / "download_attempts.jsonl"
+    if attempts.is_file():
+        for line in attempts.read_text(encoding="utf-8").splitlines():
+            if '"status": "downloaded"' in line:
+                return True
+    return _mbs_pair_available(repo)
+
+
+def _external_gate_passed(repo: Path, gate_id: str) -> bool:
+    """Read a passed external gate without treating stale handoff text as evidence."""
+    path = repo / "data" / "derived" / "external_quality_gates.json"
+    if not path.is_file():
+        return False
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return False
+    return any(
+        record.get("id") == gate_id and record.get("outcome") == "passed"
+        for record in payload.get("records", [])
+    )

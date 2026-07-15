@@ -101,3 +101,51 @@ Live Hugging Face publication targets were provisioned from the repository durin
 - space `edithatogo/reimbursement-atlas`
 
 The Space now has a minimal runnable `app.py` scaffold committed through the official Hugging Face CLI. The automated GitHub Actions publication path remains token-gated, and OSF publication remains blocked until credentials and human review are available.
+
+## 2026-07-15 — Public product track and issue hierarchy
+
+Decision: Add a dedicated public-product Conductor track for citation, README, dashboard
+deployment, accessible exploration, provenance, status reporting and archival release.
+
+Rationale: The implementation is materially ahead of its public presentation. These tasks
+cross publication, data, security and research concerns, but need one user-facing parent
+track with generated child issue references so work remains discoverable without weakening
+the existing fail-closed research and licence gates.
+
+Consequences: Generated roadmap-function drafts name the matching parent issue when the
+backlog contains it. Native GitHub sub-issue creation remains a remote synchronization step;
+the repository retains deterministic drafts and Project rows as the source of truth.
+
+## 2026-07-15 — OSF package prepared without remote mutation
+
+Decision: Prepare and validate the OSF protocol/report component package, but keep every
+sync-manifest row `publish_allowed: false` until the target OSF project and accountable
+publication approval are confirmed.
+
+Rationale: The package is reproducible and locally inspectable, but OSF upload is an external
+mutation and registration/publication approval cannot be inferred from generated agent output.
+
+Consequence: The OSF workflow remains dry-run safe; the final handoff records the remaining
+credential/approval blocker and no OSF remote files are changed.
+
+## 2026-07-15 — Hugging Face candidate validated without remote publication
+
+Decision: Keep the Hugging Face dataset and Space candidate bundle unpublished until the
+required repository targets, token and publication approval are explicitly configured.
+
+Rationale: The local bundle passes its raw-path, secret, metadata and dashboard checks, but
+bundle validity is not authorization to mutate an external dataset or Space repository.
+
+Consequence: HF publication remains a documented secret-gated handoff task; no remote HF
+repository is changed by local continuation work.
+
+## 2026-07-15 — Zenodo deposition deferred behind evidence gates
+
+Decision: Keep Zenodo deposition and DOI creation deferred until evidence, source licensing,
+OSF protocol and human-review gates pass.
+
+Rationale: The repository can produce a signed release candidate and citation metadata locally,
+but an external DOI would imply archival/publication readiness that the current fail-closed
+status does not support.
+
+Consequence: Release metadata remains locally reproducible; no Zenodo record or DOI is created.

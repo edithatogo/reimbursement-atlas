@@ -1,0 +1,16 @@
+{
+  "canonical_urls": [
+    "https://github.com/edithatogo/reimbursement-atlas",
+    "https://edithatogo.github.io/reimbursement-atlas/"
+  ],
+  "checked_files": [
+    "README.md",
+    "CITATION.cff",
+    "pyproject.toml",
+    "apps/dashboard/public/status.json"
+  ],
+  "error_count": 0,
+  "errors": [],
+  "schema_version": "public-docs-v1",
+  "status": "pass"
+}

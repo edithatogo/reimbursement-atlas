@@ -8,6 +8,7 @@ const Cosmograph = lazy(async () => {
 
 type GraphNode = {
   id: string;
+  index?: number;
   label: string;
   kind: string;
   jurisdiction?: string;
@@ -19,6 +20,8 @@ type GraphNode = {
 type GraphEdge = {
   source: string;
   target: string;
+  sourceIndex?: number;
+  targetIndex?: number;
   relationship: string;
 };
 
@@ -58,10 +61,17 @@ export default function Graph() {
   }, []);
 
   const points = useMemo(
-    () => nodes.rows.map((row) => ({ ...row, group: row.kind || "unknown" })),
+    () => nodes.rows.map((row, index) => ({ ...row, index, group: row.kind || "unknown" })),
     [nodes.rows]
   );
-  const links = useMemo(() => edges.rows, [edges.rows]);
+  const links = useMemo(() => {
+    const indexById = new Map(points.map((point) => [point.id, point.index ?? 0]));
+    return edges.rows.map((edge) => ({
+      ...edge,
+      sourceIndex: indexById.get(edge.source) ?? -1,
+      targetIndex: indexById.get(edge.target) ?? -1,
+    }));
+  }, [edges.rows, points]);
 
   if (nodes.error || edges.error) {
     return (
@@ -87,10 +97,13 @@ export default function Graph() {
             points={points}
             links={links}
             pointIdBy="id"
+            pointIndexBy="index"
             pointLabelBy="label"
             pointColorBy="group"
             linkSourceBy="source"
             linkTargetBy="target"
+            linkSourceIndexBy="sourceIndex"
+            linkTargetIndexBy="targetIndex"
             simulationRepulsion={0.4}
           />
         </Suspense>

@@ -11,6 +11,7 @@ from reimburse_atlas.source_contracts import (
     validate_path_against_contract,
     write_source_contract_validations,
 )
+from scripts.create_github_project_items import IssueDraft, render_issue
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -59,10 +60,27 @@ def test_github_project_export_covers_generated_issues(tmp_path: Path) -> None:
     assert all(path.exists() for path in paths)
 
 
+def test_generated_issue_renders_parent_subissue_link() -> None:
+    rendered = render_issue(
+        IssueDraft(
+            epic_id="TRACK_PUBLIC_PRODUCT_CITATION_DASHBOARD",
+            epic_title="Public product, citation and dashboard maturity",
+            title="Validate citation metadata",
+            parent_issue="Public product, citation and dashboard maturity",
+        )
+    )
+    assert "Parent issue: Public product, citation and dashboard maturity" in rendered
+
+
 def test_final_handoff_records_environment_bound_tasks(tmp_path: Path) -> None:
     rows = build_final_handoff_tasks()
-    assert any(row.status == "blocked_network" for row in rows)
+    assert not any(
+        row.id in {"final_pip_audit_strict", "final_action_sha_pinning"}
+        and row.status == "blocked_network"
+        for row in rows
+    )
     assert any(row.status == "blocked_secret" for row in rows)
+    assert any(row.status == "blocked_review" for row in rows)
     assert any("reviewed-mbs-txt-pair-bundle" in row.command for row in rows)
     paths = write_final_handoff_tasks(rows, output_dir=tmp_path / "handoff")
     assert all(path.exists() for path in paths)

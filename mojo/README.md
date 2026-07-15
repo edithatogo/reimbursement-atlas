@@ -25,3 +25,8 @@ Run:
 ```bash
 scripts/run_mojo_smoke.sh
 ```
+
+The parity report is generated with `pixi run mojo-parity` and stored at
+`data/derived/mojo/mojo_parity_report.json`. It records the Python reference contract,
+the bounded benchmark workload and whether the official Mojo smoke runtime was available;
+missing Mojo is reported as an environment blocker rather than treated as a Python failure.

@@ -41,6 +41,16 @@ jobs:
       - name: Install dashboard dependencies
         working-directory: apps/dashboard
         run: npm ci
+      - name: Install Chromium
+        working-directory: apps/dashboard
+        run: npx playwright install --with-deps chromium
       - name: Build dashboard
         working-directory: apps/dashboard
         run: npm run build
+      - name: Validate dashboard public quality
+        run: pixi run dashboard-quality
+      - name: Validate dashboard routes
+        run: pixi run dashboard-routes
+      - name: Browser smoke gate
+        working-directory: apps/dashboard
+        run: npm run test:browser

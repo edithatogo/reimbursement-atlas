@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  links: { label: string; href: string }[];
+}
+
+const { title, description, links } = Astro.props;
+---
+
+<aside class="provenance-panel" aria-labelledby="provenance-heading">
+  <p class="eyebrow">Provenance</p>
+  <h2 id="provenance-heading">{title}</h2>
+  <p class="muted">{description}</p>
+  <ul>
+    {links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+  </ul>
+</aside>

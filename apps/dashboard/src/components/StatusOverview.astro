@@ -1,0 +1,42 @@
+---
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+
+const status = JSON.parse(
+  await readFile(join(process.cwd(), "public", "status.json"), "utf8"),
+) as {
+  software: { status: string };
+  evidence: { status: string };
+  publication: { status: string };
+};
+
+const cards = [
+  ["Software", status.software.status, "Repository quality and build gates"],
+  ["Evidence", status.evidence.status, "Reviewed-source and research gates"],
+  ["Publication", status.publication.status, "OSF, Hugging Face and DOI gates"],
+];
+---
+
+<section class="status-overview" aria-labelledby="status-heading">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Public status</p>
+      <h2 id="status-heading">Readiness without overclaiming</h2>
+    </div>
+    <a class="button-link" href="/status.json">Download status JSON</a>
+  </div>
+  <div class="status-grid">
+    {cards.map(([label, value, description]) => (
+      <article class="status-card">
+        <p class="muted">{label}</p>
+        <strong>{value}</strong>
+        <small>{description}</small>
+      </article>
+    ))}
+  </div>
+  <p class="callout">
+    Evidence readiness is intentionally separate from software release readiness. Raw live-source
+    payloads, licence decisions, human mapping adjudication and research review are not implied by
+    a passing software build.
+  </p>
+</section>

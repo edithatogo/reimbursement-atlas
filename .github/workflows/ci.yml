@@ -30,6 +30,16 @@ jobs:
         run: pixi run typecheck
       - name: Public data policy
         run: pixi run public-data-policy
+      - name: Citation metadata
+        run: pixi run citation-validate
+      - name: Public documentation claims
+        run: pixi run public-docs
+      - name: Documentation freshness report
+        run: pixi run docs-freshness
+      - name: Policy demonstrator fixtures
+        run: pixi run policy-demonstrators
+      - name: Mapping calibration contract
+        run: pixi run mapping-calibration
       - name: Repository automation matrix
         run: pixi run repo-automation
       - name: Generate SBOMs
@@ -92,3 +102,5 @@ jobs:
         run: uv run --all-extras python -m reimburse_atlas.cli validate
       - name: Mojo smoke
         run: uv run --all-extras bash scripts/run_mojo_smoke.sh
+      - name: Mojo/Python parity report
+        run: uv run --all-extras python scripts/make_mojo_parity_report.py

@@ -68,3 +68,11 @@ tracks:
     phase: hardening
     workstream: quality
     goal: "Run bounded unit, property, integration, end-to-end, mutation and deterministic-regeneration harnesses with auditable failure evidence."
+  - id: track_public_product_citation_dashboard
+    title: "Public product, citation and dashboard maturity"
+    priority: must
+    phase: implementation
+    workstream: dashboard
+    goal: "Present the atlas as a current, citable and accessible public product with a deployed dashboard, trustworthy status reporting and release-grade scholarly metadata."
+    spec: "conductor/tracks/track_public_product_citation_dashboard/spec.md"
+    plan: "conductor/tracks/track_public_product_citation_dashboard/plan.md"

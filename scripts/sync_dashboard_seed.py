@@ -71,6 +71,17 @@ FILES = [
     Path("data/derived/data_dictionary/data_dictionary.csv"),
 ]
 
+PUBLIC_PATH_REPLACEMENTS = {
+    "data/raw_live": "[ignored-local-raw-cache]",
+}
+
+
+def sanitise_public_text(text: str) -> str:
+    """Remove local-only cache paths before copying derived assets publicly."""
+    for source, replacement in PUBLIC_PATH_REPLACEMENTS.items():
+        text = text.replace(source, replacement)
+    return text
+
 
 def main() -> None:
     """Synchronise dashboard-safe generated CSV files."""
@@ -83,7 +94,13 @@ def main() -> None:
         if not source.exists():
             continue
         target = output_dir / source.name
-        shutil.copy2(source, target)
+        if source.suffix.lower() == ".csv":
+            target.write_text(
+                sanitise_public_text(source.read_text(encoding="utf-8")),
+                encoding="utf-8",
+            )
+        else:
+            shutil.copy2(source, target)
         copied += 1
     print(f"Copied {copied} dashboard seed files to {output_dir}")
 

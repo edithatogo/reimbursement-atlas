@@ -1,0 +1,32 @@
+{
+  "claims_policy": "Do not claim evidence or public-release readiness until reviewed sources, licences, human research review and release gates pass.",
+  "evidence": {
+    "data_quality": "pass",
+    "evidence_ready_rows": 0,
+    "evidence_release_ready": false,
+    "prototype_ready_rows": 5,
+    "readiness_rows": 5,
+    "research_publication_ready": false,
+    "source_validation": "pass",
+    "status": "not_ready"
+  },
+  "evidence_paths": {
+    "data_quality": "data/derived/data_quality/summary.json",
+    "evidence_readiness": "data/derived/evidence_readiness/summary.json",
+    "release_readiness": "data/derived/release_readiness/summary.json",
+    "source_validation": "data/derived/source_validation/summary.json"
+  },
+  "project": "reimbursement-atlas",
+  "publication": {
+    "huggingface_publication": "manual approval and token required",
+    "osf_registration_ready": false,
+    "status": "gated",
+    "zenodo_doi": "manual release approval required"
+  },
+  "schema_version": "public-status-v1",
+  "software": {
+    "dashboard_build": "tracked_gate",
+    "repository_release_ready": true,
+    "status": "ready"
+  }
+}
