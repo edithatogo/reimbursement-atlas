@@ -54,10 +54,12 @@ jobs:
           pixi run historical-sources
           pixi run protocol-status
           pixi run data-quality
-          pixi run licence-review-queue
           pixi run evidence-readiness
           pixi run release-readiness
           pixi run seed-lake
           pixi run research-package
+          pixi run licence-review-queue
+          pixi run seed-lake
+          pixi run dashboard-seed
       - name: Require a clean deterministic regeneration
         run: git diff --exit-code
