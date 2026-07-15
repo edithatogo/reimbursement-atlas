@@ -17,8 +17,8 @@ Live HF targets currently provisioned from this repository:
 - Space: `edithatogo/reimbursement-atlas`
 
 The dataset/Space creation flow is still separate from the GitHub Actions dry-run.
-That dry-run remains token-gated and should stay blocked until the workflow secrets
-and publication review gates are available.
+The repository secret is now configured and the dry-run has passed; publication remains
+blocked until the workflow's licence, research, evidence and policy gates pass.
 
 Before either publication job can mutate a remote repository, the workflow runs
 `scripts/check_huggingface_bundle.py`. It verifies the Space metadata, dashboard status contract,

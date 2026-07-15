@@ -178,3 +178,17 @@ The historical MBS metadata inventory is now implemented: 343 official targets a
 archive pages are tracked under `data/seed/historical_mbs_archive_targets.jsonl` and
 `data/derived/historical_sources/`. The targets remain manual/licence-review only; this
 inventory does not authorize raw acquisition or redistribution.
+
+## 2026-07-15 continuation: publication controls and reproducible evidence
+
+HF publication infrastructure is now configured with repository secret `HF_TOKEN` and
+the dataset/Space variables. The dry-run workflow passed on GitHub Actions without
+mutating either remote. PR #157 added a fail-closed publication gate, and PR #158
+refreshed generated evidence from a clean checkout so ignored `data/raw_live/` files
+cannot change committed validation outputs. The latest merged commit is `6550e64`.
+
+The remaining blockers are external and intentionally explicit: `OSF_PROJECT_ID` is not
+configured, local OSF authentication is unavailable, source and derived artefacts still
+need human licence review, mapping calibration and methods review remain outstanding,
+and four source contracts require reviewed or manually acquired payloads. The public
+dashboard remains software-release ready but not evidence- or policy-release ready.
