@@ -38,8 +38,10 @@ cannot mutate a candidate to approved status.
 7. Regenerate release-readiness after the research, licence and publication gates complete,
    then create the signed release and Zenodo DOI (`#121`).
 
-Source acquisition, the derived MBS bundle, strict software/security gates, GitHub
-Pages deployment, OSF CLI v1 verification and the downloadable archive are complete.
+The current source acquisition run is explicitly classified as partial: the July 2026 MBS
+pair and PBS documentation were downloaded, while the remaining executable or credential-gated
+targets are not complete. The derived MBS bundle, strict software/security gates, GitHub Pages
+deployment, OSF CLI v1 verification and the downloadable archive are complete.
 Public evidence-release readiness still requires the remaining credential and human
 review gates.
 

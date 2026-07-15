@@ -28,6 +28,7 @@
     "status": {
       "enum": [
         "ready_local",
+        "partial",
         "blocked_network",
         "blocked_secret",
         "blocked_review",

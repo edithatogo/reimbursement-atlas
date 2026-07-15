@@ -4,10 +4,15 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from typing import Literal
 
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.models import FinalHandoffTaskRecord
 from reimburse_atlas.registry import project_root
+
+HandoffStatus = Literal[
+    "ready_local", "partial", "blocked_network", "blocked_secret", "blocked_review", "complete"
+]
 
 
 def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTaskRecord]:
@@ -18,7 +23,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             id="final_source_downloads",
             task_group="source_ingestion",
             title="Run hardened curl/wget source download plan",
-            status="complete" if _source_downloads_complete(repo) else "blocked_network",
+            status=_source_download_status(repo),
             required_environment=(
                 "Network-enabled local machine or GitHub runner with outbound HTTPS."
             ),
@@ -158,7 +163,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             ),
             command=(
                 "PYTHONPATH=src reimbursement-atlas osf-registration-check "
-                "--remote-state-path \"$OSF_REGISTRATION_SNAPSHOT\""
+                '--remote-state-path "$OSF_REGISTRATION_SNAPSHOT"'
             ),
             evidence_path="data/derived/osf/registration_freeze.json",
             unblock_condition=(
@@ -269,6 +274,7 @@ def write_final_handoff_tasks(
     summary = {
         "task_count": len(rows),
         "ready_local": sum(row.status == "ready_local" for row in rows),
+        "partial": sum(row.status == "partial" for row in rows),
         "blocked_network": sum(row.status == "blocked_network" for row in rows),
         "blocked_secret": sum(row.status == "blocked_secret" for row in rows),
         "blocked_review": sum(row.status == "blocked_review" for row in rows),
@@ -304,14 +310,32 @@ def _action_pinning_complete(repo: Path) -> bool:
     return len(plan.read_text(encoding="utf-8").splitlines()) <= 1
 
 
-def _source_downloads_complete(repo: Path) -> bool:
-    """Return true when acquisition evidence or a reviewed source bundle exists."""
+def _source_download_status(repo: Path) -> HandoffStatus:
+    """Classify acquisition progress without treating a partial run as complete."""
+    plans = repo / "data" / "derived" / "source_downloads" / "download_plans.jsonl"
     attempts = repo / "data" / "derived" / "source_downloads" / "download_attempts.jsonl"
-    if attempts.is_file():
-        for line in attempts.read_text(encoding="utf-8").splitlines():
-            if '"status": "downloaded"' in line:
-                return True
-    return _mbs_pair_available(repo)
+    if not plans.is_file() or not attempts.is_file():
+        return "complete" if _mbs_pair_available(repo) else "blocked_network"
+    planned = [
+        json.loads(line) for line in plans.read_text(encoding="utf-8").splitlines() if line.strip()
+    ]
+    acquired = {
+        (record.get("source_file_id"), record.get("target_path"))
+        for record in (
+            json.loads(line)
+            for line in attempts.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        )
+        if record.get("status") == "downloaded"
+    }
+    executable = {
+        (record.get("source_file_id"), record.get("target_path"))
+        for record in planned
+        if record.get("should_execute") is True
+    }
+    if executable and executable <= acquired:
+        return "complete"
+    return "partial" if acquired else "blocked_network"
 
 
 def _external_gate_passed(repo: Path, gate_id: str) -> bool:

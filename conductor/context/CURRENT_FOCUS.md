@@ -397,3 +397,12 @@ The public status manifest now exposes stable blocker IDs, categories, evidence 
 actions for current non-software gates. The dashboard renders these records on the homepage so
 software release readiness cannot be mistaken for evidence or publication approval. The work is
 tracked in generated issue #161 and live issue [#221](https://github.com/edithatogo/reimbursement-atlas/issues/221), which is on public Project #18.
+
+## 2026-07-16 — Partial source-acquisition status
+
+The final handoff now distinguishes partial acquisition from complete acquisition by matching
+download evidence on both source-file ID and target path. The current run is `partial`: the July
+2026 MBS pair and PBS documentation were downloaded, but the remaining executable or credential-
+gated targets are not represented as complete. This prevents the handoff and release dashboard
+from overstating live-source coverage. The change is tracked in generated issue #162 and live
+issue [#223](https://github.com/edithatogo/reimbursement-atlas/issues/223), which is on Project 18.
