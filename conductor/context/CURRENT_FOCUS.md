@@ -266,3 +266,9 @@ Research-package descriptors now exclude themselves from the publication manifes
 generation is byte-stable. The focused regression test and the three-descriptor checksum
 replay gate pass. The generated issue/project rows and roadmap function for this hardening are
 tracked under `track_data_packaging_standards`; no publication or licence gate was weakened.
+
+## 2026-07-16 — responsive dashboard smoke
+
+The browser smoke gate now covers all nine public routes in desktop and mobile Chromium profiles,
+with CSS-pixel screenshot bounds. The automated matrix passes; cross-platform visual baselines,
+accessibility review and all source/publication decisions remain human handoff gates.

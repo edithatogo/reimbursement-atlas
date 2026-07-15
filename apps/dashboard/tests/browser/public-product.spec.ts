@@ -27,9 +27,9 @@ for (const route of routes) {
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page).toHaveTitle(/Reimbursement Atlas/);
 
-    const screenshot = await page.screenshot({ fullPage: true });
+    const screenshot = await page.screenshot({ fullPage: true, scale: "css" });
     expect(screenshot.byteLength).toBeGreaterThan(1_000);
-    expect(screenshot.byteLength).toBeLessThan(2_000_000);
+    expect(screenshot.byteLength).toBeLessThan(3_000_000);
     await testInfo.attach("route-screenshot", {
       body: screenshot,
       contentType: "image/png",

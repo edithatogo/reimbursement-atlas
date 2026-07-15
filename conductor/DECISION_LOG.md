@@ -241,3 +241,16 @@ artefacts they describe; only self-referential metadata is removed.
 Consequence: `write_research_package` now filters the three descriptor paths through a frozen
 dataclass-safe manifest replacement. The focused test suite proves all three outputs are stable
 across consecutive generations, while release and publication gates remain unchanged.
+
+## 2026-07-16 — Responsive dashboard smoke matrix
+
+Decision: Run the dashboard browser smoke suite against desktop and mobile Chromium profiles,
+using CSS-pixel screenshots for comparable diagnostic bounds.
+
+Rationale: A desktop-only browser check could not detect responsive regressions, while device
+pixel scaling made the existing screenshot cap fail for otherwise valid mobile pages. The new
+matrix gives automated coverage across the two supported layout profiles without pretending that
+human visual, accessibility or cross-platform baseline approval has occurred.
+
+Consequence: All 18 route/profile checks pass locally. Reviewed visual baselines and WCAG sign-off
+remain explicit handoff gates.
