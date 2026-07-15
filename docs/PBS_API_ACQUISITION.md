@@ -41,5 +41,13 @@ The source registry names `PBS_API_SUBSCRIPTION_KEY` as the runtime environment 
 acquisition helper returns a redacted `blocked_secret` attempt when it is absent; when present,
 the value is passed only to the child HTTP process and is removed from command provenance.
 
+## Local acquisition observation
+
+The July 2026 published schedule was selected as `schedule_code=4706` from `effective_date`.
+The ignored local cache contains the complete 14,840-row `/items` extract across two CSV pages
+and the 17-row `/fees` extract for that schedule. These files are acquisition evidence only:
+they remain outside Git, and no parser, reviewed bundle, evidence claim, or publication output is
+treated as complete until human field and licence review is recorded.
+
 The current implementation remains fail-closed at the monthly-extract step. GitHub issue [#25](https://github.com/edithatogo/reimbursement-atlas/issues/25)
 tracks the required reviewed extract and licence decision.
