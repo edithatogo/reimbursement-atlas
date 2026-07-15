@@ -32,6 +32,23 @@ Private OSF components may support collaborative drafting, but neither upload no
 
 The automation pins stable `osf-cli-go` at `v1.0.0` and verifies both the embedded Go module version and the unauthenticated command contract with `pixi run osf-cli-contract`. The release includes machine-readable output, node export, metadata validation, storage upload and registration commands. The repository's checksum-based reconciliation layer remains the manifest adapter: it compares desired and remote state before any CLI mutation, and every row remains `publish_allowed: false` until accountable human review changes the publication decision. CI must not emulate idempotency with destructive ad hoc shell logic.
 
+### Local CLI contract check
+
+Do not rely on an unrelated or older `osf` executable already on `PATH`. Install the
+repository-pinned binary into an ignored temporary or user bin directory, then pass it
+explicitly:
+
+```bash
+GOBIN="${TMPDIR:-/tmp}/reimbursement-atlas-bin"
+mkdir -p "$GOBIN"
+GOBIN="$GOBIN" go install github.com/edithatogo/osf-cli-go/cmd/osf@v1.0.0
+OSF_BIN="$GOBIN/osf" pixi run osf-cli-contract
+```
+
+The contract probe is unauthenticated and read-only. It must pass before any credentialed
+OSF workflow is considered runnable. The local `osf` executable may belong to an older CLI
+release and is intentionally not accepted as evidence for the pinned workflow.
+
 ## Project discovery
 
 The workflow supports a read-only `discover=true` dispatch. It uses the repository
