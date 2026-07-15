@@ -31,4 +31,13 @@ Private OSF components may support collaborative drafting, but neither upload no
 
 The automation pins `osf-cli-go` at `v1.0.0-rc.1` and verifies the embedded Go module version. The sync manifest records local paths, target paths, sizes and SHA-256 values, but every row remains `publish_allowed: false` until accountable human review changes the publication decision. The current CLI does not yet provide manifest-native path reconciliation, so CI must not emulate idempotency with destructive ad hoc shell logic.
 
+## Project discovery
+
+The workflow supports a read-only `discover=true` dispatch. It uses the repository
+`OSF_TOKEN` secret to list accessible projects with the pinned CLI and uploads only a
+sanitized seven-day artifact containing project IDs, titles, descriptions and public
+flags. It does not create, update or publish any OSF node. Use the discovered project ID
+to configure the repository `OSF_PROJECT_ID` variable only after confirming the project
+identity and protocol ownership.
+
 See `docs/reviews/SIMULATED_MULTI_AGENT_PROTOCOL_REVIEW_2026-07-11.md` for the advisory review and unresolved human gates.
