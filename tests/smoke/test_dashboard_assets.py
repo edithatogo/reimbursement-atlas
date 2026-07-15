@@ -29,6 +29,7 @@ REQUIRED_DASHBOARD_DATA = (
     "ontology_concepts.csv",
     "ontology_mapping_templates.csv",
     "external_quality_gates.csv",
+    "licence_review_queue.csv",
 )
 
 
