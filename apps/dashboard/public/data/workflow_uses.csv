@@ -33,10 +33,11 @@ actions/setup-go,True,75,sha,Action is pinned to a full commit SHA.,pass,924ae3a
 actions/upload-artifact,True,118,sha,Action is pinned to a full commit SHA.,pass,043fb46d1a93c77aae656e7c1c64a875d1fc6a0a,actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a,.github/workflows/osf.yml
 actions/checkout,True,128,sha,Action is pinned to a full commit SHA.,pass,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,.github/workflows/osf.yml
 astral-sh/setup-uv,False,131,sha,Action is pinned to a full commit SHA.,pass,11f9893b081a58869d3b5fccaea48c9e9e46f990,astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990,.github/workflows/osf.yml
-actions/setup-go,True,132,sha,Action is pinned to a full commit SHA.,pass,924ae3a1cded613372ab5595356fb5720e22ba16,actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16,.github/workflows/osf.yml
-actions/upload-artifact,True,158,sha,Action is pinned to a full commit SHA.,pass,043fb46d1a93c77aae656e7c1c64a875d1fc6a0a,actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a,.github/workflows/osf.yml
-actions/checkout,True,175,sha,Action is pinned to a full commit SHA.,pass,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,.github/workflows/osf.yml
-actions/setup-go,True,178,sha,Action is pinned to a full commit SHA.,pass,924ae3a1cded613372ab5595356fb5720e22ba16,actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16,.github/workflows/osf.yml
+prefix-dev/setup-pixi,False,132,sha,Action is pinned to a full commit SHA.,pass,a09b6247153796b190642a2b53fac4241043cf6f,prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f,.github/workflows/osf.yml
+actions/setup-go,True,133,sha,Action is pinned to a full commit SHA.,pass,924ae3a1cded613372ab5595356fb5720e22ba16,actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16,.github/workflows/osf.yml
+actions/upload-artifact,True,159,sha,Action is pinned to a full commit SHA.,pass,043fb46d1a93c77aae656e7c1c64a875d1fc6a0a,actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a,.github/workflows/osf.yml
+actions/checkout,True,176,sha,Action is pinned to a full commit SHA.,pass,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,.github/workflows/osf.yml
+actions/setup-go,True,179,sha,Action is pinned to a full commit SHA.,pass,924ae3a1cded613372ab5595356fb5720e22ba16,actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16,.github/workflows/osf.yml
 actions/checkout,True,23,sha,Action is pinned to a full commit SHA.,pass,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,.github/workflows/pages.yml
 astral-sh/setup-uv,False,26,sha,Action is pinned to a full commit SHA.,pass,11f9893b081a58869d3b5fccaea48c9e9e46f990,astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990,.github/workflows/pages.yml
 actions/setup-node,True,29,sha,Action is pinned to a full commit SHA.,pass,48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,.github/workflows/pages.yml
