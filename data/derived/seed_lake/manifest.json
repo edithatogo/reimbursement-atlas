@@ -345,7 +345,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 36,
-      "sha256": "a015c803a68176f6ce77f1ba4f83bde39837f7cf39c96610b1bcc80b98658dce"
+      "sha256": "26be57b4378c18ed57b066e7dcd905733ca2ff9d26886a41c5ad35a7ca2fe93c"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
