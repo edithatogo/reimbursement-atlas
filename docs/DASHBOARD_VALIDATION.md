@@ -59,6 +59,12 @@ npx playwright install chromium
 npm run test:browser
 ```
 
+The GitHub Pages workflow retains the Playwright HTML report, route screenshots, performance
+metrics and axe-core attachments as `dashboard-review-evidence-<run-id>` for 30 days. Reviewers
+should inspect that artifact on both desktop and mobile profiles and record the human visual and
+accessibility decision in issue [#188](https://github.com/edithatogo/reimbursement-atlas/issues/188).
+Artifact availability is evidence for review, not approval by itself.
+
 Pixel-diff baselines are intentionally not committed yet because the project currently validates
 on macOS and Linux; cross-platform visual baselines require a dedicated browser-version policy
 and human review. The responsive smoke matrix and axe-core checks are automated, but they do not

@@ -18,6 +18,8 @@
   desktop/mobile Chromium smoke gates; reviewed cross-platform pixel baselines and human
   accessibility sign-off remain follow-ups.
 - [x] Add a post-deployment HTTPS smoke gate for the canonical GitHub Pages project site.
+- [x] Retain Playwright screenshots, performance metrics and axe-core attachments as a review
+  artifact; human cross-platform visual and accessibility approval remains required.
 
 ## 3. Publication automation
 
