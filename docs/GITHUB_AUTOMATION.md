@@ -65,6 +65,9 @@ evidence, partial acquisition, network blocks and credential blocks keep the iss
 the issue is closed automatically only when the generated status is `clear`.
 The public status manifest and dashboard automation page expose the same report through a
 CSV projection, so maintainers can inspect acquisition follow-up without opening CI logs.
+When acquisition evidence identifies a missing credential, the report also exposes the
+credential's environment-variable name (never its value) in the issue body and dashboard-safe
+CSV. This makes a PBS blocker actionable as `PBS_API_SUBSCRIPTION_KEY` without leaking secrets.
 
 ## Security posture
 

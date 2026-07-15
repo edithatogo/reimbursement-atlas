@@ -49,6 +49,40 @@ def test_source_health_report_selects_only_incomplete_acquisition_tasks(tmp_path
     assert report["mutation_performed"] is False
 
 
+def test_source_health_report_surfaces_missing_secret_name_without_secret_value(
+    tmp_path: Path,
+) -> None:
+    _write_tasks(
+        tmp_path,
+        [
+            {
+                "id": "source_partial",
+                "task_group": "source_ingestion",
+                "status": "partial",
+                "title": "Partial source",
+                "evidence_path": "data/derived/source_downloads/download_attempts.jsonl",
+            }
+        ],
+    )
+    attempts = tmp_path / "data" / "derived" / "source_downloads"
+    attempts.mkdir(parents=True)
+    (attempts / "download_attempts.jsonl").write_text(
+        json.dumps({
+            "status": "blocked_secret",
+            "error_summary": "Required credential is absent: PBS_API_SUBSCRIPTION_KEY.",
+            "secret_value": "must-never-be-rendered",
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+
+    report = build_source_health_report(tmp_path)
+    item = report["items"][0]
+    assert item["credential_names"] == ["PBS_API_SUBSCRIPTION_KEY"]
+    assert "PBS_API_SUBSCRIPTION_KEY" in item["recommended_action"]
+    assert "must-never-be-rendered" not in json.dumps(report)
+
+
 def test_source_health_report_is_clear_when_acquisition_is_complete(tmp_path: Path) -> None:
     _write_tasks(
         tmp_path,

@@ -493,3 +493,10 @@ The public status manifest and dashboard automation view now expose the determin
 source-acquisition health report. Acquisition follow-up is visible separately from
 licence, evidence, research-publication and OSF gates; the dashboard still does not
 claim evidence or publication readiness from software readiness.
+
+## 2026-07-16: Secret-name guidance in source-health escalation
+
+Source-health reports now parse only the redacted missing-credential message from acquisition
+evidence and expose the required environment-variable name, never a secret value. The current
+PBS follow-up therefore identifies `PBS_API_SUBSCRIPTION_KEY` directly while remaining safe for
+GitHub issue bodies, public status and dashboard CSV projections.
