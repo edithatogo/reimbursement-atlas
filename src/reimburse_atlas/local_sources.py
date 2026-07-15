@@ -113,7 +113,7 @@ def snapshot_reviewed_local_file(
     if not resolved.exists():
         msg = f"Local source file not found: {resolved}"
         raise FileNotFoundError(msg)
-    timestamp = retrieved_at or datetime.now(tz=UTC).isoformat()
+    timestamp = retrieved_at or _metadata_retrieved_at(resolved) or datetime.now(tz=UTC).isoformat()
     checksum = file_sha256(resolved)
     return SourceSnapshotRecord(
         id=f"snapshot_{source_version_id}_{checksum[:12]}",
@@ -454,7 +454,7 @@ def _snapshot_reviewed_pair_file(
         raise FileNotFoundError(msg)
     checksum = file_sha256(resolved)
     versions = {version.id: version for version in load_source_versions()}
-    timestamp = retrieved_at or datetime.now(tz=UTC).isoformat()
+    timestamp = retrieved_at or _metadata_retrieved_at(resolved) or datetime.now(tz=UTC).isoformat()
     return SourceSnapshotRecord(
         id=f"snapshot_{source_version_id}_{role}_{checksum[:12]}",
         source_id=source_id,
@@ -483,6 +483,20 @@ def _pair_bundle_id(
         f"{(item_map_snapshot.checksum_sha256 or '')[:8]}"
         f"{(descriptor_snapshot.checksum_sha256 or '')[:8]}"
     )
+
+
+def _metadata_retrieved_at(path: Path) -> str | None:
+    """Use a download sidecar timestamp when available for reproducible snapshots."""
+    metadata_path = path.with_name(path.name + ".metadata.json")
+    if not metadata_path.is_file():
+        return None
+    try:
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return None
+    typed_metadata = cast("dict[str, object]", metadata) if isinstance(metadata, dict) else {}
+    attempted_at = typed_metadata.get("attempted_at")
+    return attempted_at if isinstance(attempted_at, str) and attempted_at else None
 
 
 def _write_mbs_pair_validation_report(

@@ -41,3 +41,30 @@ def test_build_mbs_txt_pair_bundle(tmp_path: Path) -> None:
     assert manifest["raw_files_copied"] is False
     assert manifest["record_count"] == 3
     assert len(manifest["snapshot_ids"]) == 2
+
+
+def test_mbs_pair_bundle_uses_download_sidecar_timestamp(tmp_path: Path) -> None:
+    """Sidecar provenance keeps repeated derived bundle generation deterministic."""
+    fixtures = project_root() / "tests" / "fixtures" / "mbs_txt"
+    item_map = tmp_path / "item_map.TXT"
+    descriptor = tmp_path / "descriptor.TXT"
+    item_map.write_text(
+        (fixtures / "20260701_MBSONLINE_IMAP_fixture.TXT").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+    descriptor.write_text(
+        (fixtures / "20260701_MBSONLINE_DESC_fixture.TXT").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+    sidecar = {"attempted_at": "2026-07-14T14:10:48.615832+00:00"}
+    (tmp_path / "item_map.TXT.metadata.json").write_text(json.dumps(sidecar), encoding="utf-8")
+    (tmp_path / "descriptor.TXT.metadata.json").write_text(json.dumps(sidecar), encoding="utf-8")
+
+    result = build_mbs_txt_pair_bundle(
+        item_map_path=item_map,
+        descriptor_path=descriptor,
+        output_dir=tmp_path / "bundle",
+    )
+
+    rows = [json.loads(line) for line in result.snapshot_jsonl_path.read_text().splitlines()]
+    assert {row["retrieved_at"] for row in rows} == {sidecar["attempted_at"]}
