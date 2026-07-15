@@ -19,11 +19,14 @@ jobs:
     timeout-minutes: 20
     env:
       PYTHONPATH: src
+      PBS_API_SUBSCRIPTION_KEY: ${{ secrets.PBS_API_SUBSCRIPTION_KEY }}
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
       - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
+      - name: Attempt hardened source acquisition
+        run: pixi run source-download-attempt
       - name: Generate source health evidence
         run: |
           set -euo pipefail

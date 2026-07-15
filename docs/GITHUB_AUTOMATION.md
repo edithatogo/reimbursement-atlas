@@ -55,10 +55,12 @@ remain enabled. If a trusted collaborator is added, enable the documented review
 7. Deploy the dashboard Space when graph seed files change on `main`.
 8. Fail pull requests that attempt to track ignored raw/local source-cache paths.
 
-The scheduled source-health workflow writes the machine-readable
+The scheduled source-health workflow first runs the hardened source-download attempt with
+`PBS_API_SUBSCRIPTION_KEY` injected only from GitHub Actions secrets, then writes the machine-readable
 `data/derived/source_health/acquisition_status.json` and the review-friendly Markdown
-report beside the validation, contract, drift and release-readiness evidence. It does not
-perform network I/O or mutate local source caches. The issue is fail-open: missing handoff
+report beside the validation, contract, drift and release-readiness evidence. Raw downloads
+remain on the ephemeral runner and are never uploaded; only derived acquisition, validation,
+contract, drift and readiness evidence is retained. The issue is fail-open: missing handoff
 evidence, partial acquisition, network blocks and credential blocks keep the issue open;
 the issue is closed automatically only when the generated status is `clear`.
 The public status manifest and dashboard automation page expose the same report through a
