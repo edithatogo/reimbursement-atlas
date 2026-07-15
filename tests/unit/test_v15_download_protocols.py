@@ -1,12 +1,20 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
+import pytest
+
+from reimburse_atlas import source_downloads
 from reimburse_atlas.models import SourceFileRecord
 from reimburse_atlas.protocols import build_protocol_status, protocol_summary, write_protocol_status
 from reimburse_atlas.registry import load_research_questions
-from reimburse_atlas.source_downloads import build_download_plan, write_download_outputs
+from reimburse_atlas.source_downloads import (
+    attempt_download,
+    build_download_plan,
+    write_download_outputs,
+)
 
 
 def _source_file(**overrides: object) -> SourceFileRecord:
@@ -42,6 +50,43 @@ def test_download_plan_uses_hardened_quoted_curl_command(tmp_path: Path) -> None
     assert not plan.supports_resume
     assert plan.captures_headers
     assert plan.metadata_path.endswith(".metadata.json")
+
+
+def test_missing_runtime_credential_is_blocked_and_redacted(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.delenv("TEST_PBS_KEY", raising=False)
+    record = _source_file(auth_env_var="TEST_PBS_KEY")
+
+    attempt = attempt_download(record, output_dir=tmp_path / "raw")
+
+    assert attempt.status == "blocked_secret"
+    assert "TEST_PBS_KEY" in attempt.error_summary
+    assert "[REDACTED]" not in attempt.command
+    assert not (tmp_path / "raw" / "au_mbs" / "name with spaces and $danger.csv").exists()
+
+
+def test_runtime_credential_is_injected_only_into_child_command(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    captured: dict[str, list[str]] = {}
+    runtime_value = "fixture-value"
+    monkeypatch.setenv("TEST_PBS_KEY", runtime_value)
+    record = _source_file(auth_env_var="TEST_PBS_KEY")
+
+    def fake_run(args: list[str], **_: object) -> subprocess.CompletedProcess[str]:
+        captured["args"] = args
+        target = Path(args[args.index("-o") + 1])
+        target.write_text("fixture", encoding="utf-8")
+        return subprocess.CompletedProcess(args, 0, "", "")
+
+    monkeypatch.setattr(source_downloads.subprocess, "run", fake_run)
+    attempt = source_downloads.attempt_download(record, output_dir=tmp_path / "raw")
+
+    assert attempt.status == "downloaded"
+    assert runtime_value not in attempt.command
+    assert "Subscription-Key: [REDACTED]" in attempt.command
+    assert any(runtime_value in value for value in captured["args"])
 
 
 def test_download_plan_uses_hardened_wget_command(tmp_path: Path) -> None:

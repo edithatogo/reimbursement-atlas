@@ -37,6 +37,7 @@
       "enum": [
         "downloaded",
         "blocked_network",
+        "blocked_secret",
         "failed",
         "skipped_licence_gate",
         "not_attempted"

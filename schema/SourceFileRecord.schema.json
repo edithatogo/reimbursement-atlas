@@ -98,6 +98,19 @@
       "minLength": 1,
       "title": "Notes",
       "type": "string"
+    },
+    "auth_env_var": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Auth Env Var"
     }
   },
   "required": [

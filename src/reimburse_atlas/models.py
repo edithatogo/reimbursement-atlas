@@ -151,6 +151,7 @@ class SourceFileRecord(FrozenModel):
     expected_record_count: int | None = Field(default=None, ge=0)
     current_observation: NonEmptyStr
     notes: NonEmptyStr
+    auth_env_var: NonEmptyStr | None = None
 
 
 class AnalysisRecipeRecord(FrozenModel):
@@ -388,7 +389,12 @@ class DataAcquisitionAttemptRecord(FrozenModel):
     method: Literal["curl", "wget", "httpx", "api", "manual"]
     target_path: NonEmptyStr
     status: Literal[
-        "downloaded", "blocked_network", "failed", "skipped_licence_gate", "not_attempted"
+        "downloaded",
+        "blocked_network",
+        "blocked_secret",
+        "failed",
+        "skipped_licence_gate",
+        "not_attempted",
     ]
     exit_code: int | None = None
     bytes_downloaded: int = Field(default=0, ge=0)

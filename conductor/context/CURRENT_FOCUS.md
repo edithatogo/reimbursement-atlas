@@ -234,8 +234,10 @@ The active queue is now explicitly external or human-reviewed:
 5. Approve HF dataset/Space publication (`#114`, `#115`) and later Zenodo DOI deposition (`#121`).
 6. Complete cross-platform dashboard visual review; Chromium smoke and build gates already pass.
 
-The PBS acquisition path is now explicitly documented: the official documentation page is not
-the monthly extract, and the candidate public API route requires an external subscription key.
+The PBS acquisition path is now explicitly documented: the official API catalogue identifies the
+active v3 server, OpenAPI export, `/schedules`, `/items` and `/fees` operations, and JSON/CSV
+responses; the data route requires an external subscription key. The documentation page is not
+the monthly extract.
 Plan-only source regeneration preserves prior attempt evidence; it no longer erases the live MBS
 download history.
 
