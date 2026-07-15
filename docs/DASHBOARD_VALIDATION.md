@@ -50,7 +50,8 @@ Source and mapping pages link back to generated provenance and review artefacts.
 
 Playwright exercises every public route in desktop and mobile Chromium profiles, checks status
 codes, page metadata, console errors and page-error events, runs axe-core accessibility checks,
-and captures bounded screenshot artefacts for CI diagnostics:
+enforces a 5-second DOMContentLoaded and 8 MB transferred-resource budget, and captures bounded
+screenshot and performance artefacts for CI diagnostics:
 
 ```bash
 cd apps/dashboard
