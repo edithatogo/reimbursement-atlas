@@ -198,3 +198,12 @@ The historical landing-page contract correction is now merged as `3c2d46f`: live
 validation reports two current payloads as `pass` and all seven metadata/manual-review
 records as `skipped`; clean CI continues to report only the two current raw MBS files as
 missing because raw caches are intentionally absent there.
+
+## 2026-07-15 OSF private infrastructure provisioned
+
+PR #163 merged as `a7d2926` and added an idempotent, token-gated `provision=true` mode
+to the OSF workflow. Run `29419950570` created the private OSF project `q8cnx` titled
+`Reimbursement Atlas`; the sanitized artifact was verified and the repository variable
+`OSF_PROJECT_ID` was configured. This does not constitute registration or publication:
+the OSF sync manifest remains fail-closed until protocol, licence, domain and human
+research review gates are explicitly approved.
