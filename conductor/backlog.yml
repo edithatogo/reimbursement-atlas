@@ -139,6 +139,8 @@ epics:
         labels: ["type:automation", "phase:1-slice"]
       - title: Add candidate publication manifest for Hugging Face dataset release
         labels: ["type:publication", "risk:licence", "phase:1-slice"]
+      - title: Make research package descriptors deterministic and non-self-referential
+        labels: ["type:publication", "type:quality", "phase:hardening"]
       - title: Add dashboard table for policy signal matrix and analysis recipes
         labels: ["type:dashboard", "type:analysis"]
   - id: ONT-001

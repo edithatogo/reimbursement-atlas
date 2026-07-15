@@ -166,3 +166,11 @@ def test_research_package_builders_accept_manifest() -> None:
     assert build_frictionless_package(manifest)["resources"]
     assert build_ro_crate(manifest)["@graph"]
     assert build_dcat(manifest)["dcat:distribution"]
+
+
+def test_research_package_generation_is_deterministic(tmp_path: Path) -> None:
+    """Descriptor hashes must not refer to the previous descriptor generation."""
+    paths = write_research_package(tmp_path)
+    first = [path.read_bytes() for path in paths]
+    write_research_package(tmp_path)
+    assert [path.read_bytes() for path in paths] == first
