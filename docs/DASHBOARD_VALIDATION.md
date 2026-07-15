@@ -86,3 +86,21 @@ npm audit --omit=dev --audit-level=moderate
 ```
 
 The current local run found zero vulnerabilities for production dependencies.
+
+## GitHub Pages project-site contract
+
+The public deployment is a project site at
+`https://edithatogo.github.io/reimbursement-atlas/`, not a root site. Local builds keep
+the root base for development; the Pages workflow sets `PUBLIC_DEPLOY_TARGET=github-pages`
+so Astro emits the `/reimbursement-atlas/` prefix. Navigation, CSV downloads, status JSON and
+the client-side graph loader all derive URLs from Astro's `BASE_URL`.
+
+The Pages workflow also runs this fail-closed artifact check before upload:
+
+```bash
+PUBLIC_DEPLOY_TARGET=github-pages npm run build
+cd ../..
+uv run --all-extras python scripts/check_dashboard_pages_assets.py
+```
+
+This prevents root-relative `/_astro/` or `/data/` references from reaching the public site.

@@ -13,6 +13,10 @@ interface Props {
 
 const { fileName, title, description, columns, limit = 8, id, searchable = true } = Astro.props;
 const csv = await readDashboardCsv(fileName);
+const baseUrl = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const csvUrl = `${baseUrl}data/${csv.fileName}`;
 const visibleColumns = columns ?? csv.columns.slice(0, 8);
 const visibleRows = csv.rows.slice(0, limit);
 ---
@@ -28,7 +32,7 @@ const visibleRows = csv.rows.slice(0, limit);
   )}
   <p class="muted">
     Showing {visibleRows.length} of {csv.rows.length} rows from <code>{csv.fileName}</code>.
-    <a href={`/data/${csv.fileName}`}>Download CSV</a>
+    <a href={csvUrl}>Download CSV</a>
   </p>
   <div class="table-scroll">
     <table>

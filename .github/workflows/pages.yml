@@ -49,6 +49,13 @@ jobs:
       - name: Browser smoke gate
         working-directory: apps/dashboard
         run: npm run test:browser
+      - name: Build GitHub Pages artifact
+        working-directory: apps/dashboard
+        env:
+          PUBLIC_DEPLOY_TARGET: github-pages
+        run: npm run build
+      - name: Validate GitHub Pages asset prefixes
+        run: uv run --all-extras python scripts/check_dashboard_pages_assets.py
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: apps/dashboard/dist

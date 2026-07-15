@@ -154,6 +154,14 @@ provenance drill-down, machine-readable status and archival DOI release.
 Its generated child issue drafts include an explicit parent-issue reference so Conductor,
 the GitHub Project export and future native GitHub sub-issues remain cross-referenced.
 
+## 2026-07-16 live Pages defect follow-up
+
+The public browser check found a deployment-only base-path defect: HTML loaded at the project
+site, but root-relative Astro modules returned 404 and prevented hydration. v41 fixes Astro's
+Pages base configuration and all dashboard-generated URLs, with a pre-upload artifact gate in
+`scripts/check_dashboard_pages_assets.py`. After the protected fix merges, verify the live site
+again; visual baseline approval remains a human gate.
+
 ## 2026-07-15 operational hardening and public dashboard deployment
 
 The generated source-download launcher now delegates to the managed `uv` acquisition
