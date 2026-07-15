@@ -136,7 +136,7 @@ def _write_rows(rows: list[dict[str, str]], *, seed_path: Path, output_dir: Path
     jsonl_path.write_text(seed_path.read_text(encoding="utf-8"), encoding="utf-8")
     csv_path = output_dir / "historical_mbs_archive_targets.csv"
     with csv_path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
     summary = {
