@@ -429,3 +429,10 @@ The GitHub automation documentation was corrected to describe SBOM generation an
 attestation as implemented controls, with the consumer verification guide as the operational
 entry point. The live account limitation for non-provider secret-pattern scanning remains a
 separate, accurately documented external hardening item.
+
+## 2026-07-16 — OSF non-mutating workflow verification
+
+OSF workflow run `29453951281` passed on the current `main` tip with `publish=false`,
+`discover=false` and `provision=false`. The pinned `osf-cli-go v1.0.0` module provenance and
+unauthenticated CLI contract passed, and the checksum-bound sync manifest remained fail-closed.
+No OSF project, registration or file mutation was attempted.
