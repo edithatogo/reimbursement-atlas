@@ -66,4 +66,7 @@ remain enabled. If a trusted collaborator is added, enable the documented review
   show `enabled`.
 - CodeQL for Python and JavaScript/TypeScript.
 - Dependabot and Renovate both configured, with Renovate preferred for grouped ecosystem updates.
-- SBOM and provenance generation to add before package publication.
+- SBOM generation and GitHub artifact attestations are implemented in
+  `.github/workflows/release.yml`; consumers should follow
+  [`docs/RELEASE_VERIFICATION.md`](RELEASE_VERIFICATION.md) to verify checksums and signer
+  workflow provenance before installing release artefacts.
