@@ -8,6 +8,7 @@ on:
       - "src/reimburse_atlas/**"
       - "scripts/**"
       - "apps/dashboard/**"
+      - ".github/workflows/**"
   workflow_dispatch:
 
 permissions:
