@@ -26,9 +26,12 @@ without granting it mutation authority:
 ```bash
 PYTHONPATH=src reimbursement-atlas osf-reconcile \
   --manifest-path data/derived/osf/sync_manifest.jsonl \
-  --remote-state-path /path/to/exported_osf_state.json \
+  --remote-state-path "$OSF_REMOTE_STATE" \
   --output-path data/derived/osf/reconciliation_report.json
 ```
+
+Set `OSF_REMOTE_STATE` to the path of the exported remote-state snapshot before
+running the command. Keep that snapshot outside tracked source directories.
 
 The remote-state file is an exported JSON array containing `osf_path`,
 `sha256`, `byte_size`, and optional `managed_by_manifest` fields. The command
@@ -48,9 +51,13 @@ metadata and check it without network IO or mutation:
 
 ```bash
 PYTHONPATH=src reimbursement-atlas osf-registration-check \
-  --remote-state-path /path/to/registration_snapshot.json \
+  --remote-state-path "$OSF_REGISTRATION_SNAPSHOT" \
   --output-path data/derived/osf/registration_check.json
 ```
+
+Set `OSF_REGISTRATION_SNAPSHOT` to the path of the exported registration
+snapshot before running the command. Keep the credentialed export outside
+tracked source directories.
 
 The command reports `blocked` when review or an active remote registration is
 missing, `drift` when protocol or manifest fingerprints differ, and `ready`

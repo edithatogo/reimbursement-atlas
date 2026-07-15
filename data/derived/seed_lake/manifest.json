@@ -393,7 +393,7 @@
       "name": "final_handoff_tasks",
       "parquet_path": "final_handoff_tasks/final_handoff_tasks.parquet",
       "rows": 12,
-      "sha256": "479081ab83e964a0e104238d7912b2523a433ffd0e25526ff52d8abb1342d839"
+      "sha256": "5698664b886c2ec825fc9532689b091e244c7640c7d5f8307c43e7bc3030d0b7"
     },
     {
       "csv_path": "osf_component_plan/osf_component_plan.csv",
