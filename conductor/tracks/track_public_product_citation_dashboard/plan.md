@@ -14,9 +14,9 @@
 - [x] Add executive status cards and explicit software/evidence/publication separation.
 - [x] Add table search controls, CSV downloads and stable section anchors.
 - [x] Add provenance navigation for source and mapping evidence surfaces.
-- [x] Add automated axe-core accessibility, page-size, route/deep-link and desktop/mobile Chromium
-  smoke gates; reviewed cross-platform pixel baselines and human accessibility sign-off remain
-  follow-ups.
+- [x] Add automated axe-core accessibility, page-size, route/deep-link, performance-budget and
+  desktop/mobile Chromium smoke gates; reviewed cross-platform pixel baselines and human
+  accessibility sign-off remain follow-ups.
 
 ## 3. Publication automation
 

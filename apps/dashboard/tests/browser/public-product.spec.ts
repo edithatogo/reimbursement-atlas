@@ -13,6 +13,11 @@ const routes = [
   "/sources/",
 ];
 
+const PERFORMANCE_BUDGET = {
+  domContentLoadedMs: 5_000,
+  transferredBytes: 8_000_000,
+};
+
 for (const route of routes) {
   test(`renders public route ${route}`, async ({ page }, testInfo) => {
     const consoleErrors: string[] = [];
@@ -30,6 +35,27 @@ for (const route of routes) {
 
     const accessibilityScan = await new AxeBuilder({ page }).analyze();
     expect(accessibilityScan.violations).toEqual([]);
+
+    const performanceMetrics = await page.evaluate(() => {
+      const navigation = performance.getEntriesByType("navigation")[0] as
+        | PerformanceNavigationTiming
+        | undefined;
+      const resources = performance.getEntriesByType("resource") as PerformanceResourceTiming[];
+      return {
+        domContentLoadedMs: navigation?.domContentLoadedEventEnd ?? 0,
+        transferredBytes: resources.reduce((total, resource) => total + resource.transferSize, 0),
+      };
+    });
+    expect(performanceMetrics.domContentLoadedMs).toBeLessThanOrEqual(
+      PERFORMANCE_BUDGET.domContentLoadedMs,
+    );
+    expect(performanceMetrics.transferredBytes).toBeLessThanOrEqual(
+      PERFORMANCE_BUDGET.transferredBytes,
+    );
+    await testInfo.attach("performance-metrics", {
+      body: JSON.stringify({ route, budget: PERFORMANCE_BUDGET, ...performanceMetrics }, null, 2),
+      contentType: "application/json",
+    });
 
     const screenshot = await page.screenshot({ fullPage: true, scale: "css" });
     expect(screenshot.byteLength).toBeGreaterThan(1_000);
