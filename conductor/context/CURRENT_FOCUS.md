@@ -162,6 +162,10 @@ local raw storage and revalidated against the reviewed derived bundle. PBS remai
 by the absent `PBS_API_SUBSCRIPTION_KEY`; historical MBS and CMS records remain explicit
 licence-gated or landing-page/manual-review targets. No raw payloads are tracked.
 
+The scheduled source-health workflow now also runs the hardened acquisition attempt with the
+PBS key injected only from GitHub Actions secrets. Raw files remain ephemeral runner state;
+only redacted acquisition, validation, contract, drift and readiness evidence is uploaded.
+
 The source-health, final-handoff, data-quality, dashboard seed, local-quality and external
 quality-gate outputs were regenerated. Repository release readiness remains green, while
 research publication, OSF registration, evidence release and policy claims remain fail-closed.
