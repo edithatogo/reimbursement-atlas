@@ -37,6 +37,7 @@ jobs:
           pixi run project-issues
           pixi run github-project-export
           pixi run final-handoff
+          pixi run dashboard-status
           pixi run protocol-status
           pixi run roadmap-linkages
           pixi run data-quality

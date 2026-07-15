@@ -22,6 +22,26 @@ def _read_summary(root: Path, relative_path: str) -> dict[str, Any]:
     return cast("dict[str, Any]", payload)
 
 
+def _read_jsonl(root: Path, relative_path: str) -> list[dict[str, Any]]:
+    """Read a derived JSONL file, treating missing or malformed rows as empty."""
+    path = root / relative_path
+    try:
+        lines = path.read_text(encoding="utf-8").splitlines()
+    except OSError:
+        return []
+    rows: list[dict[str, Any]] = []
+    for line in lines:
+        if not line.strip():
+            continue
+        try:
+            payload = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if isinstance(payload, dict):
+            rows.append(cast("dict[str, Any]", payload))
+    return rows
+
+
 def build_public_status_manifest(root: Path | None = None) -> dict[str, Any]:
     """Build separate software, evidence and publication readiness dimensions."""
     repo = root or project_root()
@@ -36,7 +56,28 @@ def build_public_status_manifest(root: Path | None = None) -> dict[str, Any]:
     pending_licence_reviews = int(
         _read_summary(repo, "data/derived/licence_review/summary.json").get("pending_count", 0)
     )
+    final_handoff_tasks = _read_jsonl(repo, "data/derived/final_handoff/final_handoff_tasks.jsonl")
+    partial_source_tasks = [
+        task
+        for task in final_handoff_tasks
+        if task.get("status") == "partial" and task.get("task_group") == "source_ingestion"
+    ]
     blockers: list[dict[str, Any]] = []
+    if partial_source_tasks:
+        titles = ", ".join(
+            str(task.get("title", task.get("id", "unknown"))) for task in partial_source_tasks
+        )
+        blockers.append({
+            "id": "source_acquisition",
+            "category": "source_ingestion",
+            "status": "partial",
+            "summary": f"Source acquisition is partial: {titles}.",
+            "next_action": (
+                "Complete remaining executable or credential-gated targets, then rerun "
+                "source validation and source contracts."
+            ),
+            "evidence_path": "data/derived/final_handoff/final_handoff_tasks.jsonl",
+        })
     if pending_licence_reviews:
         blockers.append({
             "id": "licence_review",
@@ -114,6 +155,7 @@ def build_public_status_manifest(root: Path | None = None) -> dict[str, Any]:
             "evidence_readiness": "data/derived/evidence_readiness/summary.json",
             "data_quality": "data/derived/data_quality/summary.json",
             "source_validation": "data/derived/source_validation/summary.json",
+            "final_handoff_tasks": "data/derived/final_handoff/final_handoff_tasks.jsonl",
         },
     }
 

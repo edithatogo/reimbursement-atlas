@@ -235,6 +235,8 @@ epics:
         labels: ["type:dashboard", "phase:handoff"]
       - title: Distinguish partial source acquisition from complete handoff status
         labels: ["type:data-quality", "type:handoff", "phase:hardening"]
+      - title: Expose partial source acquisition in public status and dashboard blockers
+        labels: ["type:dashboard", "type:data-quality", "type:handoff", "phase:hardening"]
 
   - id: HANDOFF-019
     title: Codex bundle import and full track execution handoff
