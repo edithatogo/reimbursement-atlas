@@ -19,13 +19,25 @@ The summary contains `required_blocker_count` and `public_release_ready`. Public
 
 ## Current blocker pattern
 
-In the current sandbox the local Python, Node, dashboard, SBOM, architecture and public-data gates pass. Remaining blockers are external or advisory:
+As of 2026-07-15, the managed Python 3.14, official Pixi, Node/dashboard,
+SBOM, architecture, public-data, action-pinning, CodeQL, dependency-review,
+zizmor and branch-protection gates pass. The public GitHub Pages dashboard is
+deployed and its machine-readable status contract remains explicitly gated for
+research evidence and policy claims.
 
-- `pip-audit --strict` requires network access to the Python advisory database.
-- official Pixi is not available in this sandbox.
-- `zizmor` correctly flags tag-pinned GitHub Actions until the SHA pin plan is resolved.
+Remaining blockers are external or require accountable human judgement:
 
-These are tracked as evidence rather than hidden in prose.
+- MBS and historical-source reuse terms require licence review before public
+  derived-data publication.
+- CMS CLFS/PFS/ASP fields require source-specific licence decisions.
+- OSF registration requires an approved protocol freeze and `OSF_PROJECT_ID`;
+  `OSF_TOKEN` is configured as a repository secret.
+- Hugging Face publication requires `HF_TOKEN`; target repository variables are
+  configured, but publication remains disabled until review gates pass.
+- Mapping calibration, cross-platform dashboard visual review and policy claims
+  require human adjudication.
+
+These states are tracked as evidence rather than hidden in prose.
 
 ## Source contract posture
 
