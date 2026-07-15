@@ -624,6 +624,7 @@ class FinalHandoffTaskRecord(FrozenModel):
     title: NonEmptyStr
     status: Literal[
         "ready_local",
+        "partial",
         "blocked_network",
         "blocked_secret",
         "blocked_review",
