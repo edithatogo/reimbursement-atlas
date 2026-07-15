@@ -40,6 +40,7 @@ jobs:
           pixi run protocol-status
           pixi run roadmap-linkages
           pixi run data-quality
+          pixi run licence-review-queue
           pixi run data-dictionary
           pixi run evidence-readiness
           pixi run source-drift

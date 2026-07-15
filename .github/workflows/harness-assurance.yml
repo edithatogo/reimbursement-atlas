@@ -54,6 +54,7 @@ jobs:
           pixi run historical-sources
           pixi run protocol-status
           pixi run data-quality
+          pixi run licence-review-queue
           pixi run evidence-readiness
           pixi run release-readiness
           pixi run seed-lake
