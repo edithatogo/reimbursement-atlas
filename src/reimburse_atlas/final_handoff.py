@@ -156,6 +156,46 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             ),
         ),
         FinalHandoffTaskRecord(
+            id="final_historical_source_expansion",
+            task_group="source_ingestion",
+            title="Review historical MBS/PBS source expansion and licence scope",
+            status="blocked_review",
+            required_environment=(
+                "Human source/licence review plus network access to historical MBS and "
+                "PBS releases."
+            ),
+            command="pixi run source-download-plan && pixi run source-contracts",
+            evidence_path="data/derived/source_contracts/source_contract_validation.jsonl",
+            unblock_condition=(
+                "Historical release URLs, reuse terms and a reviewed PBS extract are approved "
+                "for derived-only processing."
+            ),
+            recommended_action=(
+                "Keep historical pages and unreviewed PBS extracts metadata-only; do not infer "
+                "temporal evidence from missing releases."
+            ),
+        ),
+        FinalHandoffTaskRecord(
+            id="final_dashboard_visual_review",
+            task_group="release",
+            title="Review cross-platform dashboard visual baselines",
+            status="blocked_review",
+            required_environment=(
+                "Human visual review across the supported browser/OS matrix with approved "
+                "baselines."
+            ),
+            command="cd apps/dashboard && npm run test:browser",
+            evidence_path="docs/DASHBOARD_VALIDATION.md",
+            unblock_condition=(
+                "Reviewed screenshots or platform-specific baselines are approved without "
+                "accessibility, layout or provenance regressions."
+            ),
+            recommended_action=(
+                "Use the existing 9-route browser smoke suite as the pre-review gate; do not "
+                "treat a single macOS rendering as cross-platform proof."
+            ),
+        ),
+        FinalHandoffTaskRecord(
             id="final_release_candidate",
             task_group="release",
             title="Generate final release-readiness report and public archive",
