@@ -55,6 +55,15 @@ Parser and mapping performance are calibrated against hand-reviewed records. Lon
 ## Deviations amendments and human review
 Every override and deviation receives a reason code. OSF registration requires signed methods, domain, licence and governance review; simulated review does not satisfy that gate.
 
+## Operational prespecification details
+The unit of analysis is an adjudicated test-indication pair within a jurisdiction, source version and effective-date window. A pair may link a test code, panel, analyte, gene, variant class, specimen or method to an indication, but missing dimensions are recorded as unknown rather than inferred. Coverage status, restriction class and public schedule amount are separate fields. A record can therefore be covered without a public amount, priced without a coverage decision, or restricted without a binary denial.
+
+The extraction pass first preserves the source wording and hierarchy, then assigns controlled values for coverage status, restriction type, evidence requirement, setting, ordering authority and effective interval. Automated candidates are never treated as clinical equivalence. Two reviewers assess test purpose, population, specimen, method, panel scope and temporal overlap without seeing price-derived rankings. Disagreement, conflict of interest, reviewer qualification and adjudication rationale are recorded. A third reviewer resolves only the disputed field and does not silently rewrite the source text.
+
+The missingness taxonomy distinguishes `not covered`, `no decision located`, `not yet effective`, `superseded`, `local discretion`, `not machine_readable`, `licence_restricted` and `not_applicable`. The denominator for coverage proportions is the set with an assessable decision in the frozen window; the denominator for price observability is the set with an in-scope payment concept. Undefined estimates are null. No absence of a public record is interpreted as a negative coverage decision.
+
+The prespecified sensitivity matrix includes strict versus broad test-purpose matching, exclusion of panel-to-single-test links, current-only versus overlapping effective windows, treatment of local implementation notes, and restriction classes collapsed versus separately reported. Results are stratified before any synthesis by jurisdiction, test family and evidence source. The genomics/pathology demonstrator remains descriptive and cannot support clinical eligibility, equity or causal access claims until domain review and an appropriate utilisation design are completed.
+
 ## Pre-registration review checklist
 Complete `docs/RESEARCH_PROTOCOL_REVIEW_CHECKLIST.md` for `rq_genomics_coverage_price`.
 The protocol remains draft/planned until an accountable human reviewer records a
