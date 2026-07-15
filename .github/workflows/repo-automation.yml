@@ -1,18 +1,9 @@
 name: Repository automation checks
 
 on:
+  # Generated-artifact parity is required for every pull request, including
+  # documentation-only changes, so branch protection always receives a result.
   pull_request:
-    paths:
-      - "conductor/**"
-      - "data/seed/**"
-      - "src/reimburse_atlas/**"
-      - "scripts/**"
-      - "apps/dashboard/**"
-      - ".github/workflows/**"
-      - "Makefile"
-      - "pyproject.toml"
-      - "uv.lock"
-      - "pixi.lock"
   workflow_dispatch:
 
 permissions:

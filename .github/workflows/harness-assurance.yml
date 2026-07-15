@@ -1,14 +1,9 @@
 name: Harness assurance
 
 on:
+  # Required property, integration, E2E and deterministic-regeneration
+  # contexts must not be left pending on documentation-only pull requests.
   pull_request:
-    paths:
-      - "src/**"
-      - "tests/**"
-      - "scripts/**"
-      - "pyproject.toml"
-      - "uv.lock"
-      - ".github/workflows/**"
   push:
     branches: [main]
   schedule:
