@@ -55,6 +55,7 @@ jobs:
           pixi run schema-export
           pixi run graph-seed
           pixi run vertical-slice
+          pixi run historical-sources
           pixi run protocol-status
           pixi run data-quality
           pixi run evidence-readiness

@@ -164,15 +164,20 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "Human source/licence review plus network access to historical MBS and "
                 "PBS releases."
             ),
-            command="pixi run source-download-plan && pixi run source-contracts",
-            evidence_path="data/derived/source_contracts/source_contract_validation.jsonl",
+            command=(
+                "pixi run historical-sources && pixi run source-download-plan && "
+                "pixi run source-contracts"
+            ),
+            evidence_path="data/derived/historical_sources/summary.json",
             unblock_condition=(
                 "Historical release URLs, reuse terms and a reviewed PBS extract are approved "
-                "for derived-only processing."
+                "for derived-only processing; the metadata-only archive inventory is already "
+                "generated."
             ),
             recommended_action=(
                 "Keep historical pages and unreviewed PBS extracts metadata-only; do not infer "
-                "temporal evidence from missing releases."
+                "temporal evidence from missing releases. The current archive inventory covers "
+                "343 targets across 32 pages, but no raw historical payloads are approved."
             ),
         ),
         FinalHandoffTaskRecord(

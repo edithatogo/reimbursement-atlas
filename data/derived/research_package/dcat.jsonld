@@ -235,6 +235,30 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/historical_mbs_archive_targets.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "historical_mbs_archive_targets"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/historical_sources/historical_mbs_archive_targets.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "historical_mbs_archive_targets"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/historical_sources/historical_mbs_archive_targets.csv",
+      "dct:format": "csv",
+      "dct:title": "historical_mbs_archive_targets"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/historical_sources/summary.json",
+      "dct:format": "json",
+      "dct:title": "summary"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/vertical_slice/schedule_items.jsonl",
       "dct:format": "jsonl",
       "dct:title": "schedule_items"
@@ -559,18 +583,6 @@
     },
     {
       "@type": "dcat:Distribution",
-      "dcat:downloadURL": "data/derived/release_readiness/release_gates.jsonl",
-      "dct:format": "jsonl",
-      "dct:title": "release_gates"
-    },
-    {
-      "@type": "dcat:Distribution",
-      "dcat:downloadURL": "data/derived/release_readiness/release_gates.csv",
-      "dct:format": "csv",
-      "dct:title": "release_gates"
-    },
-    {
-      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/v13_validation_run.json",
       "dct:format": "json",
       "dct:title": "v13_validation_run"
@@ -772,12 +784,6 @@
       "dcat:downloadURL": "data/derived/data_dictionary/data_dictionary.csv",
       "dct:format": "csv",
       "dct:title": "data_dictionary"
-    },
-    {
-      "@type": "dcat:Distribution",
-      "dcat:downloadURL": "data/derived/data_dictionary/summary.json",
-      "dct:format": "json",
-      "dct:title": "summary"
     },
     {
       "@type": "dcat:Distribution",
