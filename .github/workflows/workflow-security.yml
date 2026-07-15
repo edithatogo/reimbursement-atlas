@@ -1,13 +1,9 @@
 name: Workflow security analysis
 
 on:
+  # Required branch-protection contexts must be emitted for every pull request;
+  # path filtering here can leave workflow-policy and zizmor permanently pending.
   pull_request:
-    paths:
-      - ".github/**"
-      - "pyproject.toml"
-      - "pixi.lock"
-      - "scripts/make_repo_automation_matrix.py"
-      - "src/reimburse_atlas/automation.py"
   push:
     branches: [main]
     paths:
