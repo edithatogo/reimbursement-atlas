@@ -66,3 +66,10 @@ repository variables or upload research files; configure `OSF_PROJECT_ID` separa
 only after checking the artifact and ownership.
 
 See `docs/reviews/SIMULATED_MULTI_AGENT_PROTOCOL_REVIEW_2026-07-11.md` for the advisory review and unresolved human gates.
+
+## Latest read-only discovery
+
+OSF workflow run `29459949265` on `main` successfully ran the pinned CLI discovery path. It
+found the expected private `Reimbursement Atlas` project (`q8cnx`); provisioning, registration,
+upload and publication were not performed. The sanitized project listing remains available only
+as a seven-day private workflow artifact, not as a tracked repository file.
