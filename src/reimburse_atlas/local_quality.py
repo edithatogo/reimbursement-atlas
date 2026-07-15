@@ -265,6 +265,14 @@ def default_quality_gate_specs(root: Path | None = None) -> list[QualityGateSpec
             notes="Public candidate artefacts must have generated data-dictionary entries.",
         ),
         QualityGateSpec(
+            id="licence_review_queue",
+            category="data",
+            command=(*python_prefix, "python", "scripts/make_licence_review_queue.py"),
+            timeout_seconds=120,
+            profiles=("quick", "ci", "release"),
+            notes="Candidate artefacts must have checksum-bound human licence review rows.",
+        ),
+        QualityGateSpec(
             id="evidence_readiness",
             category="data",
             command=(*python_prefix, "python", "scripts/make_evidence_readiness.py"),

@@ -110,6 +110,7 @@ def build_release_readiness_report(root: Path | None = None) -> ReleaseReadiness
         _sbom_gate(repo),
         _architecture_gate(repo),
         _publication_manifest_gate(repo),
+        _licence_review_queue_gate(repo),
     ]
     summary = summarise_release_gates(gates)
     return ReleaseReadinessReport(gates=tuple(gates), summary=summary)
@@ -589,6 +590,36 @@ def _publication_manifest_gate(repo: Path) -> ReleaseGateRecord:
         required=True,
         evidence=f"artifact_count={artifact_count} warning_count={len(warnings)}",
         recommended_action="Review licence gates and warnings before publishing derived datasets.",
+    )
+
+
+def _licence_review_queue_gate(repo: Path) -> ReleaseGateRecord:
+    summary = _read_json(repo / "data" / "derived" / "licence_review" / "summary.json")
+    if not summary:
+        return ReleaseGateRecord(
+            id="licence_review_queue",
+            category="data_governance",
+            status="missing",
+            required=True,
+            evidence="Licence review queue summary missing.",
+            recommended_action="Run scripts/make_licence_review_queue.py.",
+        )
+    artifact_count = int(summary.get("artifact_count", 0))
+    pending_count = int(summary.get("pending_count", 0))
+    mutation_allowed = bool(summary.get("approval_mutation_allowed", True))
+    status: ReleaseGateStatus = (
+        "pass" if artifact_count > 0 and mutation_allowed is False else "fail"
+    )
+    return ReleaseGateRecord(
+        id="licence_review_queue",
+        category="data_governance",
+        status=status,
+        required=True,
+        evidence=f"artifact_count={artifact_count} pending_count={pending_count}",
+        recommended_action=(
+            "Use the checksum-bound queue and record human decisions before publication; "
+            "generation never grants approval."
+        ),
     )
 
 

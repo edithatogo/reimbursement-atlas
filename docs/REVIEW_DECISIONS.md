@@ -15,6 +15,7 @@ Local implementation must not convert any `pending` decision to `approved` autom
 | PBS public API acquisition | v3 server, OpenAPI export and reviewed operations identified; subscription key and monthly extract pending | `docs/PBS_API_ACQUISITION.md`, GitHub issue [#25](https://github.com/edithatogo/reimbursement-atlas/issues/25) | Provide the key through an external secret, fetch `/schedules` before `/items` and `/fees`, then review the selected monthly fields before parsing or publication. |
 | July 2026 MBS TXT pair | bundle validated; pending human licence/domain review | `data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/validation_report.json` | Review Commonwealth reuse terms, descriptor-only rows and intended derived fields before any evidence or public-release claim. |
 | Dashboard visual baselines | Chromium smoke passed; cross-platform review pending | `docs/DASHBOARD_VALIDATION.md` | Review supported browser/OS screenshots; do not treat macOS smoke evidence as cross-platform approval. |
+| Artifact-level licence review | queue generated; all rows pending | `data/derived/licence_review/` | Review each checksum-bound candidate, record source terms, attribution, redistribution permission, restrictions and named approval before changing any publication gate. |
 
 Current local proof remains separate from these decisions: repository release readiness is
 green, while evidence, policy-claim, research-publication and archival readiness remain

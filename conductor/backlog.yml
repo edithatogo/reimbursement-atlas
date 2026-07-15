@@ -214,6 +214,8 @@ epics:
         labels: ["type:data-quality", "phase:release-gate"]
       - title: Generate public artefact data dictionary for Hugging Face and OSF outputs
         labels: ["type:publication", "phase:release-gate"]
+      - title: Generate artifact-level licence review queue bound to publication checksums
+        labels: ["type:publication", "type:review", "risk:licence", "phase:release-gate"]
       - title: Expand OSF protocols and report scaffolds with required sections
         labels: ["type:research", "type:osf"]
 
