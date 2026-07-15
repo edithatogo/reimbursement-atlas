@@ -38,6 +38,8 @@ jobs:
         run: pixi run docs-freshness
       - name: Policy demonstrator fixtures
         run: pixi run policy-demonstrators
+      - name: Mapping calibration contract
+        run: pixi run mapping-calibration
       - name: Repository automation matrix
         run: pixi run repo-automation
       - name: Generate SBOMs

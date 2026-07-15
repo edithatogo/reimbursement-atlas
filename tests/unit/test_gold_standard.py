@@ -9,6 +9,8 @@ from reimburse_atlas.gold_standard import (
     build_mapping_calibration_summary,
     build_negative_controls,
 )
+from reimburse_atlas.registry import project_root
+from scripts.check_mapping_calibration import build_mapping_calibration_report
 
 
 def test_gold_standard_set_is_not_empty() -> None:
@@ -91,3 +93,12 @@ def test_mapping_calibration_summary_reports_threshold_and_hits() -> None:
     assert summary.matched_gold_standard_count == 2
     assert summary.triggered_negative_control_count >= 1
     assert 0.0 <= summary.recommended_review_threshold <= 1.0
+
+
+def test_mapping_calibration_report_keeps_reviewer_gate_explicit() -> None:
+    """Fixture controls validate structurally without claiming evidence readiness."""
+    report = build_mapping_calibration_report(project_root())
+
+    assert report["status"] == "review_required"
+    assert report["reviewer_signoff_required"] is True
+    assert report["evidence_ready"] is False
