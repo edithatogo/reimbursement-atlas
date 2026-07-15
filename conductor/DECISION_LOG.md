@@ -127,3 +127,14 @@ mutation and registration/publication approval cannot be inferred from generated
 
 Consequence: The OSF workflow remains dry-run safe; the final handoff records the remaining
 credential/approval blocker and no OSF remote files are changed.
+
+## 2026-07-15 — Hugging Face candidate validated without remote publication
+
+Decision: Keep the Hugging Face dataset and Space candidate bundle unpublished until the
+required repository targets, token and publication approval are explicitly configured.
+
+Rationale: The local bundle passes its raw-path, secret, metadata and dashboard checks, but
+bundle validity is not authorization to mutate an external dataset or Space repository.
+
+Consequence: HF publication remains a documented secret-gated handoff task; no remote HF
+repository is changed by local continuation work.
