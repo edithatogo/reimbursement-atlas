@@ -1,9 +1,9 @@
 {
   "blocking_failures": 0,
+  "contract_count": 2,
   "fail": 0,
   "missing": 0,
   "pass": 2,
-  "skipped": 7,
-  "validation_count": 9,
+  "skipped": 0,
   "warn": 0
 }

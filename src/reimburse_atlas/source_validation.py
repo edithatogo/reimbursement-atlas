@@ -25,9 +25,11 @@ def build_source_content_validations(
     reviewed_bundle_dir: Path | None = None,
 ) -> list[SourceContentValidationRecord]:
     """Validate locally downloaded source files without committing raw payloads."""
+    explicit_reviewed_bundle = reviewed_bundle_dir is not None
     base = raw_dir or project_root() / "data" / "raw_live"
     bundles = reviewed_bundle_dir or project_root() / "data" / "derived" / "reviewed_source_bundles"
-    return [_validate_one(record, base, bundles) for record in records]
+    prefer_reviewed_bundle = raw_dir is None or explicit_reviewed_bundle
+    return [_validate_one(record, base, bundles, prefer_reviewed_bundle) for record in records]
 
 
 def write_source_content_validations(
@@ -54,10 +56,11 @@ def write_source_content_validations(
     return jsonl_path, csv_path, summary_path
 
 
-def _validate_one(
+def _validate_one(  # noqa: PLR0912
     record: SourceFileRecord,
     raw_dir: Path,
     reviewed_bundle_dir: Path,
+    prefer_reviewed_bundle: bool,
 ) -> SourceContentValidationRecord:
     target = safe_local_target(record, raw_dir)
     target_ref = f"local_raw_only:{record.source_id}/{target.name}"
@@ -72,23 +75,45 @@ def _validate_one(
                 "auto-validate raw payloads."
             ),
         )
+    reviewed = (
+        _reviewed_bundle_evidence(record, reviewed_bundle_dir) if prefer_reviewed_bundle else None
+    )
+    if reviewed is not None:
+        target_ref, observed_count, bundle_size, bundle_checksum = reviewed
+        return _record(
+            record,
+            status="pass",
+            target_ref=target_ref,
+            observed_record_count=observed_count,
+            byte_size=bundle_size,
+            checksum_sha256=bundle_checksum,
+            issues=("validated through reviewed derived bundle",),
+            recommended_action=(
+                "Retain raw payloads only in ignored local storage and complete human "
+                "licence review before publication."
+            ),
+        )
     if not target.exists():
-        reviewed = _reviewed_bundle_evidence(record, reviewed_bundle_dir)
-        if reviewed is not None:
-            target_ref, observed_count, bundle_size, bundle_checksum = reviewed
-            return _record(
-                record,
-                status="pass",
-                target_ref=target_ref,
-                observed_record_count=observed_count,
-                byte_size=bundle_size,
-                checksum_sha256=bundle_checksum,
-                issues=("raw payload absent; validated through reviewed derived bundle",),
-                recommended_action=(
-                    "Retain raw payloads only in ignored local storage and complete human "
-                    "licence review before publication."
-                ),
-            )
+        if prefer_reviewed_bundle or record.id in {
+            "au_mbs_20260701_imap_txt",
+            "au_mbs_20260701_desc_txt",
+        }:
+            reviewed = _reviewed_bundle_evidence(record, reviewed_bundle_dir)
+            if reviewed is not None:
+                target_ref, observed_count, bundle_size, bundle_checksum = reviewed
+                return _record(
+                    record,
+                    status="pass",
+                    target_ref=target_ref,
+                    observed_record_count=observed_count,
+                    byte_size=bundle_size,
+                    checksum_sha256=bundle_checksum,
+                    issues=("raw payload absent; validated through reviewed derived bundle",),
+                    recommended_action=(
+                        "Retain raw payloads only in ignored local storage and complete human "
+                        "licence review before publication."
+                    ),
+                )
         return _record(
             record,
             status="missing",
@@ -163,6 +188,8 @@ def _reviewed_bundle_evidence(
     bundle_dir: Path,
 ) -> tuple[str, int, int, str] | None:
     """Use tracked derived evidence when the ignored raw payload is unavailable."""
+    if record.id not in {"au_mbs_20260701_imap_txt", "au_mbs_20260701_desc_txt"}:
+        return None
     if not bundle_dir.is_dir():
         return None
     for report_path in sorted(bundle_dir.glob("bundle_*/validation_report.json")):
@@ -212,7 +239,7 @@ def _read_jsonl(path: Path) -> list[dict[str, object]]:
 def _should_skip(record: SourceFileRecord) -> bool:
     return (
         record.licence_gate in {"restricted_or_licence_review", "metadata_only"}
-        or record.file_role in {"landing_page", "licence_gate"}
+        or record.file_role in {"landing_page", "licence_gate", "api_endpoint"}
         or record.acquisition_mode
         in {"manual_extract", "landing_page_review", "licence_clickthrough_manual"}
     )

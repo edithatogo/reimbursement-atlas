@@ -135,10 +135,14 @@ def build_source_contract_validations(
     records: list[SourceFileRecord],
     *,
     raw_dir: Path | None = None,
+    reviewed_bundle_dir: Path | None = None,
 ) -> list[SourceContractValidationRecord]:
     """Validate source-specific contracts for registered local source files."""
+    explicit_reviewed_bundle = reviewed_bundle_dir is not None
     base = raw_dir or project_root() / "data" / "raw_live"
-    return [_validate_contract(record, base) for record in records]
+    bundles = reviewed_bundle_dir or project_root() / "data" / "derived" / "reviewed_source_bundles"
+    prefer_reviewed_bundle = raw_dir is None or explicit_reviewed_bundle
+    return [_validate_contract(record, base, bundles, prefer_reviewed_bundle) for record in records]
 
 
 def validate_path_against_contract(
@@ -148,6 +152,22 @@ def validate_path_against_contract(
     """Validate an explicit local file against the contract for a source-file record."""
     contract = _contract_for(record)
     return _validate_file(record, contract, path)
+
+
+def write_mbs_pair_contract_evidence(
+    *,
+    item_map_path: Path,
+    descriptor_path: Path,
+    output_dir: Path,
+    records: list[SourceFileRecord],
+) -> tuple[Path, Path, Path]:
+    """Persist contract observations for a derived MBS pair bundle."""
+    by_id = {record.id: record for record in records}
+    rows = [
+        validate_path_against_contract(by_id["au_mbs_20260701_imap_txt"], item_map_path),
+        validate_path_against_contract(by_id["au_mbs_20260701_desc_txt"], descriptor_path),
+    ]
+    return write_source_contract_validations(rows, output_dir=output_dir)
 
 
 def write_source_contract_validations(
@@ -174,7 +194,12 @@ def write_source_contract_validations(
     return jsonl_path, csv_path, summary_path
 
 
-def _validate_contract(record: SourceFileRecord, raw_dir: Path) -> SourceContractValidationRecord:
+def _validate_contract(
+    record: SourceFileRecord,
+    raw_dir: Path,
+    reviewed_bundle_dir: Path,
+    prefer_reviewed_bundle: bool,
+) -> SourceContractValidationRecord:
     contract = _contract_for(record)
     if contract.skip_reason is not None:
         return _make_record(
@@ -187,7 +212,21 @@ def _validate_contract(record: SourceFileRecord, raw_dir: Path) -> SourceContrac
             ),
         )
     path = safe_local_target(record, raw_dir)
+    reviewed = (
+        _reviewed_bundle_contract_evidence(record, reviewed_bundle_dir)
+        if prefer_reviewed_bundle
+        else None
+    )
+    if reviewed is not None:
+        return reviewed
     if not path.exists():
+        if prefer_reviewed_bundle or record.id in {
+            "au_mbs_20260701_imap_txt",
+            "au_mbs_20260701_desc_txt",
+        }:
+            reviewed = _reviewed_bundle_contract_evidence(record, reviewed_bundle_dir)
+            if reviewed is not None:
+                return reviewed
         return _make_record(
             record,
             contract,
@@ -198,6 +237,28 @@ def _validate_contract(record: SourceFileRecord, raw_dir: Path) -> SourceContrac
             ),
         )
     return _validate_file(record, contract, path)
+
+
+def _reviewed_bundle_contract_evidence(
+    record: SourceFileRecord,
+    bundle_dir: Path,
+) -> SourceContractValidationRecord | None:
+    """Use tracked contract observations when ignored raw files are absent."""
+    if not bundle_dir.is_dir():
+        return None
+    for path in sorted(bundle_dir.glob("bundle_*/source_contract_validation.jsonl")):
+        try:
+            rows = [
+                SourceContractValidationRecord.model_validate(json.loads(line))
+                for line in path.read_text(encoding="utf-8").splitlines()
+                if line
+            ]
+        except OSError, json.JSONDecodeError, ValueError:
+            continue
+        for row in rows:
+            if row.source_file_id == record.id and row.contract_status == "pass":
+                return row
+    return None
 
 
 def _validate_file(

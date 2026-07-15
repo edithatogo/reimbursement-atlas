@@ -95,6 +95,7 @@ from reimburse_atlas.sbom import build_dashboard_sbom, build_python_sbom, sbom_s
 from reimburse_atlas.scoring import score_sources
 from reimburse_atlas.source_contracts import (
     build_source_contract_validations,
+    write_mbs_pair_contract_evidence,
     write_source_contract_validations,
 )
 from reimburse_atlas.source_drift import (
@@ -869,6 +870,12 @@ def reviewed_mbs_txt_pair_bundle_command(
         descriptor_path=descriptor_path,
         output_dir=output_dir,
         retrieved_at=retrieved_at,
+    )
+    write_mbs_pair_contract_evidence(
+        item_map_path=item_map_path,
+        descriptor_path=descriptor_path,
+        output_dir=result.bundle_dir,
+        records=load_source_files(),
     )
     console.print_json(json.dumps(asdict(result), default=str, indent=2))
 
