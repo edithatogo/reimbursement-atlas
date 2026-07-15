@@ -210,3 +210,29 @@ research review gates are explicitly approved.
 
 The final-handoff generator now classifies HF and OSF work as review-blocked rather than
 secret-blocked because both credentialed dry-run paths are configured and verified.
+
+## 2026-07-16 continuation — merged public-product release state
+
+The reviewed MBS TXT-pair provenance work is merged on `main` at `38a3990`. The July 2026
+item-map and descriptor pair produced 14,856 derived schedule rows, remains raw-cache-only
+for source payloads, and is still pending human Commonwealth/licence and domain review.
+Publication manifests, the data dictionary and research package now enumerate nested reviewed
+bundle files without exposing local paths or raw payloads.
+
+Repository-controlled recommendations are implemented and monitored: GitHub Pages is live,
+source-health/source-drift and stack-canary workflows are scheduled, citation and machine-
+readable status contracts are validated, HF/OSF workflows are token-gated and fail closed,
+Zenodo metadata is prepared without deposition, and release attestations have consumer
+verification guidance.
+
+The active queue is now explicitly external or human-reviewed:
+
+1. Review the MBS bundle and CMS CLFS/PFS/ASP reuse boundaries (`#23`, `#24`, `#26`, `#27`).
+2. Acquire and review a PBS monthly extract (`#25`) and approve historical MBS/PBS scope.
+3. Adjudicate mapping controls and approve a research-specific threshold (`#10`, `#11`).
+4. Approve and register the OSF protocol package (`#134`, `#135`, `#109`–`#113`).
+5. Approve HF dataset/Space publication (`#114`, `#115`) and later Zenodo DOI deposition (`#121`).
+6. Complete cross-platform dashboard visual review; Chromium smoke and build gates already pass.
+
+Do not convert any of these states to evidence-ready, policy-ready or publicly published
+without the corresponding human decision recorded in `docs/REVIEW_DECISIONS.md`.
