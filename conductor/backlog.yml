@@ -253,6 +253,8 @@ epics:
     issues:
       - title: Make actionlint and zizmor blocking protected-branch checks
         labels: ["type:security", "type:supply-chain", "phase:hardening"]
+      - title: Enable GitHub non-provider secret-pattern scanning and validity checks
+        labels: ["type:security", "type:repo-automation", "phase:hardening"]
       - title: Scan complete Git history for committed secrets
         labels: ["type:security", "phase:hardening"]
       - title: Verify reproducible Python release artefacts in CI
@@ -267,6 +269,8 @@ epics:
     priority: must
     issues:
       - title: Run property integration and end-to-end harnesses as separate CI lanes
+        labels: ["type:test", "type:automation", "phase:hardening"]
+      - title: Use interpreter-bound module invocation for Pixi Python test tasks
         labels: ["type:test", "type:automation", "phase:hardening"]
       - title: Enforce deterministic generated-output regeneration
         labels: ["type:test", "type:reproducibility", "phase:hardening"]

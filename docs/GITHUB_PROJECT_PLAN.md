@@ -7,6 +7,9 @@ Current configuration:
 - `main` branch protection is enabled with 20 required quality, security and harness contexts.
 - All required third-party Actions are SHA-pinned; CodeQL, dependency review, Scorecard, actionlint, zizmor and secret-history checks pass.
 - Dependabot security updates, secret scanning, push protection and private vulnerability reporting are enabled.
+- GitHub's live API currently reports non-provider secret-pattern scanning and secret-validity checks as
+  disabled for this account. An API enablement attempt was fail-closed and did not change the state;
+  this remains tracked as a repository-automation/security issue rather than being reported as complete.
 - GitHub Projects v2 is configured as `Reimbursement Atlas Conductor`.
 - GitHub Pages workflow deployment is enabled at `https://edithatogo.github.io/reimbursement-atlas/`.
 - GitHub Discussions remain disabled because the current project uses Issues and Projects as its review surface.

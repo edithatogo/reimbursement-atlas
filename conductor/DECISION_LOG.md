@@ -254,3 +254,28 @@ human visual, accessibility or cross-platform baseline approval has occurred.
 
 Consequence: All 18 route/profile checks pass locally. Reviewed visual baselines and WCAG sign-off
 remain explicit handoff gates.
+
+## 2026-07-16 — GitHub advanced secret scanning state
+
+Decision: Treat non-provider secret-pattern scanning and secret-validity checks as account-level
+hardening work until the live GitHub settings API reports them enabled.
+
+Rationale: Provider secret scanning, push protection and Dependabot updates are enabled, but an
+idempotent repository API enablement attempt did not change the two advanced settings. Reporting
+them as active would be inaccurate.
+
+Consequence: Issue #191 tracks the limitation, the security documentation records the observed
+state, and no release gate claims coverage that is not verified.
+
+## 2026-07-16 — Pixi test task invocation
+
+Decision: Invoke Python test suites through `python -m pytest` in Pixi tasks rather than relying on
+the generated `pytest` console-script launcher.
+
+Rationale: The local official Pixi environment had a stale console-script shebang pointing at a
+deleted temporary checkout, while the environment's Python interpreter and pytest module were
+healthy. Module invocation binds the task to the active environment and is robust to relocatable
+environment paths.
+
+Consequence: Unit, smoke, property, integration and end-to-end Pixi lanes all pass; issue #192
+tracks the harness hardening and its generated Conductor/project rows.
