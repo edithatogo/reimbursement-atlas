@@ -55,8 +55,8 @@ jobs:
         with:
           name: dashboard-review-evidence-${{ github.run_id }}
           path: |
-            apps/dashboard/playwright-report/
-            apps/dashboard/test-results/
+            apps/playwright-report/
+            apps/test-results/
           if-no-files-found: warn
           retention-days: 30
       - name: Build GitHub Pages artifact
