@@ -14,7 +14,8 @@
         "publication",
         "release",
         "research",
-        "automation"
+        "automation",
+        "mappings"
       ],
       "title": "Task Group",
       "type": "string"
