@@ -219,6 +219,16 @@ research review gates are explicitly approved.
 The final-handoff generator now classifies HF and OSF work as review-blocked rather than
 secret-blocked because both credentialed dry-run paths are configured and verified.
 
+## 2026-07-16 dashboard status-card verification
+
+PR #213 merged as `4a64be4`. It separates dashboard readiness values from their descriptions
+with explicit block-level elements and adds a homepage browser regression for the layout.
+Local browser validation passed all 18 route checks. Pages run `29446529249` passed build,
+browser smoke, evidence upload, deployment and live smoke. Its retained artifact
+`dashboard-review-evidence-29446529249` contains 18 screenshots and the Playwright report;
+the homepage screenshot was inspected and confirms the corrected spacing. Human cross-platform
+visual and accessibility sign-off remains an external gate under issue #188.
+
 ## 2026-07-16 continuation — merged public-product release state
 
 The reviewed MBS TXT-pair provenance work is merged on `main` at `38a3990`. The July 2026
