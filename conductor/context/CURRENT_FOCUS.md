@@ -451,3 +451,11 @@ traversal, absolute local paths, negative sizes and malformed SHA-256 values bef
 action. Focused unit and CLI end-to-end coverage passed (`18 passed`); this closes the local
 input-safety portion of issue [#134](https://github.com/edithatogo/reimbursement-atlas/issues/134).
 Credentialed remote mutation and human publication approval remain intentionally blocked.
+
+## 2026-07-16 — OSF registration snapshot contract
+
+The non-mutating registration drift checker now requires an `osf-registration-snapshot-v1`
+schema, an `https://osf.io/` registration URL, a submission timestamp, `immutable: true` and a
+lowercase SHA-256 snapshot digest before a remote registration can be considered structurally
+valid. Focused OSF/CLI tests passed (`19 passed`); issue [#135](https://github.com/edithatogo/reimbursement-atlas/issues/135)
+still requires credentialed export and accountable human approval for any real registration.

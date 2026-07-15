@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from pathlib import Path
 from typing import Literal, cast
 
 RegistrationStatus = Literal["blocked", "drift", "ready"]
+_SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
 
 def build_registration_freeze(
@@ -42,6 +44,8 @@ def check_registration_drift(
         reasons = ["invalid_freeze:" + ",".join(missing)]
     elif remote is None:
         reasons = ["remote_registration_snapshot_missing"]
+    elif snapshot_errors := _validate_remote_snapshot(remote):
+        reasons = ["invalid_remote_registration:" + ",".join(snapshot_errors)]
     elif remote.get("status") not in {"registered", "embargoed"}:
         reasons = ["remote_registration_not_active"]
     elif (
@@ -78,9 +82,32 @@ def _result(
         "remote_analysis_manifest_digest": remote.get("analysis_manifest_digest")
         if remote
         else None,
+        "remote_snapshot_sha256": remote.get("snapshot_sha256") if remote else None,
         "network_io": False,
         "mutation_performed": False,
     }
+
+
+def _validate_remote_snapshot(remote: dict[str, object]) -> list[str]:
+    """Validate the immutable metadata contract before comparing fingerprints."""
+    errors: list[str] = []
+    if remote.get("schema_version") != "osf-registration-snapshot-v1":
+        errors.append("schema_version")
+    registration_id = remote.get("registration_id")
+    if not isinstance(registration_id, str) or not registration_id:
+        errors.append("registration_id")
+    registration_url = remote.get("registration_url")
+    if not isinstance(registration_url, str) or not registration_url.startswith("https://osf.io/"):
+        errors.append("registration_url")
+    submitted_at = remote.get("submitted_at")
+    if not isinstance(submitted_at, str) or not submitted_at:
+        errors.append("submitted_at")
+    if remote.get("immutable") is not True:
+        errors.append("immutable")
+    snapshot_sha256 = remote.get("snapshot_sha256")
+    if not isinstance(snapshot_sha256, str) or _SHA256_RE.fullmatch(snapshot_sha256) is None:
+        errors.append("snapshot_sha256")
+    return errors
 
 
 def _digest_paths(root: Path, paths: list[Path]) -> str:

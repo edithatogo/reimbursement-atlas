@@ -69,6 +69,11 @@ tracked source directories.
 The command reports `blocked` when review or an active remote registration is
 missing, `drift` when protocol or manifest fingerprints differ, and `ready`
 only when the snapshot matches and `review_approved` is explicitly true. The
+remote snapshot must also declare schema `osf-registration-snapshot-v1`, an
+`https://osf.io/` registration URL, a submission timestamp, `immutable: true`,
+and a lowercase SHA-256 `snapshot_sha256`; this prevents an underspecified or
+mutable export from being treated as registration evidence. The command remains
+non-mutating and does not submit or approve registrations.
 generated freeze is intentionally unapproved and therefore remains fail-closed
 until human methods, domain, licence and governance review is recorded.
 
