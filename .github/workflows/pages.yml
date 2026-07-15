@@ -3,6 +3,7 @@ name: Publish dashboard to GitHub Pages
 on:
   workflow_dispatch:
   push:
+    branches: [main]
     tags:
       - "dashboard-v*"
 
