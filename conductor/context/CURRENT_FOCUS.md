@@ -190,5 +190,11 @@ cannot change committed validation outputs. The latest merged commit is `6550e64
 The remaining blockers are external and intentionally explicit: `OSF_PROJECT_ID` is not
 configured, local OSF authentication is unavailable, source and derived artefacts still
 need human licence review, mapping calibration and methods review remain outstanding,
-and four source contracts require reviewed or manually acquired payloads. The public
+and two current MBS source contracts require the ignored raw payloads for clean-checkout
+reconciliation. The public
 dashboard remains software-release ready but not evidence- or policy-release ready.
+
+The historical landing-page contract correction is now merged as `3c2d46f`: live MBS
+validation reports two current payloads as `pass` and all seven metadata/manual-review
+records as `skipped`; clean CI continues to report only the two current raw MBS files as
+missing because raw caches are intentionally absent there.
