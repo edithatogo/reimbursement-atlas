@@ -383,3 +383,10 @@ with zero approvals and `approval_mutation_allowed: false`. The queue is exposed
 the data dictionary, local quality gates, release readiness, Conductor backlog and generated
 GitHub Project artefacts; it improves review readiness without bypassing human licence or
 domain decisions.
+
+## 2026-07-16 — Dashboard licence-review surface
+
+The public readiness dashboard now exposes the checksum-bound licence-review queue as a
+downloadable, dashboard-safe table. It shows candidate checksums, publication scope, licence
+gate and pending status, while explicitly stating that generated rows do not grant approval.
+The addition is tracked in the generated Project artefacts and issue draft #160.

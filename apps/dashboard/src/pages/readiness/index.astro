@@ -10,6 +10,13 @@ import Layout from "../../components/Layout.astro";
     descriptors, restricted ontology dumps, or confidential net prices.
   </p>
   <DataTable
+    title="Licence review queue"
+    description="Checksum-bound publication candidates remain pending until an accountable human reviewer records decision evidence. Queue generation never grants approval."
+    fileName="licence_review_queue.csv"
+    columns={["review_id", "relative_path", "checksum_sha256", "publication_scope", "licence_gate", "review_status"]}
+    limit={12}
+  />
+  <DataTable
     title="Source readiness"
     fileName="source_readiness.csv"
     columns={["source_id", "jurisdiction", "schedule", "domain", "grade", "score"]}

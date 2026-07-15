@@ -286,3 +286,5 @@ epics:
     issues:
       - title: Public product, citation and dashboard maturity
         labels: ["type:track", "type:dashboard", "type:publication", "priority:must"]
+      - title: Expose the checksum-bound licence review queue in the dashboard
+        labels: ["type:dashboard", "type:review", "risk:licence", "phase:release-gate"]
