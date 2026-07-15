@@ -9,6 +9,8 @@
 | 2026-07-03 | Keep Mojo as performance-extension layer, not first implementation language. | Accepted | Avoid premature optimisation. |
 | 2026-07-03 | Target GitHub plus Hugging Face dataset/Space deployment. | Proposed | Requires licence-gated publishing workflow. |
 
+| 2026-07-16 | Process the live July 2026 MBS TXT pair through the redacted reviewed-source bundle workflow. | Accepted | Both source contracts pass; 14,856 derived rows are available for human licence and domain review. Raw files remain ignored and no publication approval is implied. |
+
 | 2026-07-03 | Use reviewed-source bundles before broader live ingestion. | Accepted | See ADR 0011. |
 | 2026-07-03 | Require JSONL/CSV seed sync checks and publication manifests. | Accepted | See ADR 0012. |
 | 2026-07-03 | Install and enforce the Python quality toolchain locally before further live ingestion. | Accepted | See ADR 0013. |

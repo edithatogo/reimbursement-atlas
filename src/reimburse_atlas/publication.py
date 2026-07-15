@@ -210,6 +210,20 @@ def count_rows(path: Path) -> int:
     return 0
 
 
+def reviewed_source_bundle_paths(root: Path) -> tuple[Path, ...]:
+    """Return nested reviewed-bundle files without including raw payloads."""
+    bundle_root = root / "data" / "derived" / "reviewed_source_bundles"
+    if not bundle_root.exists():
+        return ()
+    return tuple(
+        sorted(
+            path.relative_to(root)
+            for path in bundle_root.glob("*/*")
+            if path.is_file() and path.name != "publication_manifest.json"
+        )
+    )
+
+
 def _scope_for(path: Path) -> tuple[str, str, bool, str]:
     parts = set(path.parts)
     if "raw" in parts or "raw_live" in parts or "local" in parts or "cache" in parts:
@@ -242,7 +256,8 @@ def build_publication_manifest(
     repo_root = root or project_root()
     artifacts: list[PublicationArtifact] = []
     warnings: list[str] = []
-    for relative_path in paths:
+    candidate_paths = tuple(dict.fromkeys((*paths, *reviewed_source_bundle_paths(repo_root))))
+    for relative_path in candidate_paths:
         path = repo_root / relative_path
         if not path.exists():
             continue

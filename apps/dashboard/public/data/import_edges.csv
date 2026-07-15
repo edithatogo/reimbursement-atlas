@@ -95,7 +95,7 @@ True,from,8,Layer dependency respects inward/downward architecture.,analysis,rei
 True,from,10,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.data_dictionary,foundation,reimburse_atlas.io
 True,from,11,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.data_dictionary,foundation,reimburse_atlas.models
 True,from,12,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.data_dictionary,orchestration,reimburse_atlas.publication
-True,from,13,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.data_dictionary,foundation,reimburse_atlas.registry
+True,from,17,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.data_dictionary,foundation,reimburse_atlas.registry
 True,from,10,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.data_quality,foundation,reimburse_atlas.io
 True,from,11,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.data_quality,foundation,reimburse_atlas.models
 True,from,12,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.data_quality,foundation,reimburse_atlas.registry
