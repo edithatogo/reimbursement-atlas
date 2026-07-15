@@ -103,3 +103,16 @@ def test_cli_osf_reconcile_rejects_invalid_remote_json(tmp_path) -> None:  # typ
 
     assert result.exit_code != 0
     assert "remote state contains invalid JSON" in result.output
+
+
+def test_cli_osf_reconcile_rejects_non_object_manifest_rows(tmp_path) -> None:  # type: ignore[no-untyped-def]
+    """Manifest JSONL rows must be objects, not arbitrary JSON values."""
+    manifest = tmp_path / "sync_manifest.jsonl"
+    manifest.write_text("[]\n", encoding="utf-8")
+
+    result = CliRunner().invoke(
+        app,
+        ["osf-reconcile", "--manifest-path", str(manifest)],
+    )
+
+    assert result.exit_code != 0
