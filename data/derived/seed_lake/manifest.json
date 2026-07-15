@@ -41,7 +41,7 @@
       "name": "source_files",
       "parquet_path": "source_files/source_files.parquet",
       "rows": 9,
-      "sha256": "9309cbe69b62f105f0fd82991711ee7928cc6b0a2d5e24bc078f0a23d378721d"
+      "sha256": "2f21c6adacf36350743e1c039e4bf72cb908990d8cb69b53ab6c532353b06f3b"
     },
     {
       "csv_path": "source_snapshots/source_snapshots.csv",
@@ -321,7 +321,7 @@
       "name": "architecture_import_edges",
       "parquet_path": "architecture_import_edges/architecture_import_edges.parquet",
       "rows": 199,
-      "sha256": "b6be9dd0833b2e001d597d4212e83747762e614602253d96e4694a57fe7d0ae2"
+      "sha256": "9b3dd0ee136fb900b52372729fb8650a98d69c732dfac24870bd8b7ede5f24b4"
     },
     {
       "csv_path": "architecture_layer_policy/architecture_layer_policy.csv",
@@ -353,7 +353,7 @@
       "name": "source_download_plans",
       "parquet_path": "source_download_plans/source_download_plans.parquet",
       "rows": 9,
-      "sha256": "645c1decae78ede7b8ddcc00a8a1786d33f0a23b1bb65d55c2bba0d821dc8cad"
+      "sha256": "d900c4d5ed8e189cd3dbd5efba5388e93815ef7bae11cabceecf2bc889579bb4"
     },
     {
       "csv_path": "source_download_attempts/source_download_attempts.csv",
@@ -377,7 +377,7 @@
       "name": "source_contract_validation",
       "parquet_path": "source_contract_validation/source_contract_validation.parquet",
       "rows": 9,
-      "sha256": "d47f75871b75242d80a61c9f4e90c032c7b619f307195271741a99d03307e926"
+      "sha256": "43745d1444c73bbe22769a1ddbf77d9d4b83886803f47c1ec8df2743760a5c6a"
     },
     {
       "csv_path": "github_project_items/github_project_items.csv",
@@ -441,7 +441,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "3f3bdf2940b29a31dbf52557b4be35878fba20264707f7311932e2913b1340fa"
+      "sha256": "30e011773b7567070702ccf10004a8b137a170639ec08b66e201598ed2fbdd94"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
@@ -449,7 +449,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 152,
-      "sha256": "14d1e582ad2cc9cb2e76aa06250b14e2a566cf56f977a4e729eee84ca63b189e"
+      "sha256": "8a67124a726759ba5e691e72f800d1ce971256a73d0cd9b357600b849b352f0e"
     }
   ]
 }
