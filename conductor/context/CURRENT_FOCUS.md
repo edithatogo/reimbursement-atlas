@@ -436,3 +436,10 @@ OSF workflow run `29453951281` passed on the current `main` tip with `publish=fa
 `discover=false` and `provision=false`. The pinned `osf-cli-go v1.0.0` module provenance and
 unauthenticated CLI contract passed, and the checksum-bound sync manifest remained fail-closed.
 No OSF project, registration or file mutation was attempted.
+
+## 2026-07-16 — Hugging Face non-mutating workflow verification
+
+Hugging Face workflow run `29454414526` passed on the current `main` tip with
+`publish_dataset=false` and `publish_space=false`. Publication manifests regenerated, the
+dashboard build passed and the candidate bundle validator passed; both remote publication jobs
+were skipped. No dataset or Space mutation was attempted.
