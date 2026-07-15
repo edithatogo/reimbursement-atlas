@@ -168,19 +168,46 @@ def slug(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-") or "issue"
 
 
+def existing_issue_paths(output: Path = OUTPUT) -> dict[str, list[Path]]:
+    """Index existing drafts so adding a new issue does not renumber old ones."""
+    paths: dict[str, list[Path]] = {}
+    for path in output.glob("*.md"):
+        match = re.match(r"^\d+-(.+)\.md$", path.name)
+        if match:
+            paths.setdefault(match.group(1), []).append(path)
+    for path_list in paths.values():
+        path_list.sort()
+    return paths
+
+
 def main() -> None:
     """Write issue drafts to `.github/generated-issues`."""
     OUTPUT.mkdir(parents=True, exist_ok=True)
+    stable_paths = existing_issue_paths()
+    used_numbers = {
+        int(match.group(1))
+        for path in OUTPUT.glob("*.md")
+        if (match := re.match(r"^(\d+)-", path.name))
+    }
+    next_number = max(used_numbers, default=0) + 1
     for existing in OUTPUT.glob("*.md"):
         existing.unlink()
-    count = 0
     backlog_issues = parse_backlog()
     parent_issue_titles = {issue.title for issue in backlog_issues}
     generated_issues = generated_track_issues(parent_issue_titles=parent_issue_titles)
-    for count, issue in enumerate([*backlog_issues, *generated_issues], start=1):
-        path = OUTPUT / f"{count:03d}-{slug(issue.title)}.md"
+    all_issues = [*backlog_issues, *generated_issues]
+    for issue in all_issues:
+        issue_slug = slug(issue.title)
+        existing_paths = stable_paths.get(issue_slug, [])
+        path = existing_paths.pop(0) if existing_paths else None
+        if path is None:
+            while next_number in used_numbers:
+                next_number += 1
+            path = OUTPUT / f"{next_number:03d}-{issue_slug}.md"
+            used_numbers.add(next_number)
+            next_number += 1
         path.write_text(render_issue(issue), encoding="utf-8")
-    print(f"Wrote {count} issue drafts to {OUTPUT}")
+    print(f"Wrote {len(all_issues)} issue drafts to {OUTPUT}")
 
 
 if __name__ == "__main__":

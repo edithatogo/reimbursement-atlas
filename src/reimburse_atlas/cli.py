@@ -49,6 +49,7 @@ from reimburse_atlas.local_quality import (
     run_quality_gate_profile,
     write_quality_gate_run,
 )
+from reimburse_atlas.osf_sync import OsfRemoteRecord, reconcile_osf_manifest
 from reimburse_atlas.parsers import (
     parse_cms_asp_csv,
     parse_cms_clfs_csv,
@@ -1175,6 +1176,86 @@ def publication_manifest(
             indent=2,
         )
     )
+
+
+@app.command("osf-reconcile")
+def osf_reconcile(
+    manifest_path: Annotated[
+        Path,
+        typer.Option(help="Generated OSF sync manifest in JSONL format."),
+    ] = (project_root() / "data" / "derived" / "osf" / "sync_manifest.jsonl"),
+    remote_state_path: Annotated[
+        Path | None,
+        typer.Option(help="JSON array containing the last exported remote OSF file state."),
+    ] = None,
+    output_path: Annotated[
+        Path | None,
+        typer.Option(help="Optional JSON reconciliation report output path."),
+    ] = None,
+    prune: Annotated[
+        bool,
+        typer.Option(
+            help="Plan deletion only for remote rows explicitly managed by this manifest."
+        ),
+    ] = False,
+) -> None:
+    """Plan OSF mutations from local and exported remote state without network IO."""
+    if not manifest_path.exists():
+        message = f"manifest does not exist: {manifest_path}"
+        raise typer.BadParameter(message, param_hint="manifest_path")
+
+    local_rows = [
+        json.loads(line)
+        for line in manifest_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    remote_payload: object = []
+    if remote_state_path is not None:
+        if not remote_state_path.exists():
+            message = f"remote state does not exist: {remote_state_path}"
+            raise typer.BadParameter(message, param_hint="remote_state_path")
+        remote_payload = json.loads(remote_state_path.read_text(encoding="utf-8"))
+    if not isinstance(remote_payload, list):
+        message = "remote state must be a JSON array"
+        raise typer.BadParameter(message, param_hint="remote_state_path")
+
+    remote_rows: list[OsfRemoteRecord] = []
+    for raw_row in cast("list[object]", remote_payload):
+        if not isinstance(raw_row, dict):
+            continue
+        row = cast("dict[str, object]", raw_row)
+        osf_path = row.get("osf_path")
+        byte_size = row.get("byte_size")
+        if not isinstance(osf_path, str) or not isinstance(byte_size, int):
+            continue
+        sha256 = row.get("sha256")
+        remote_rows.append(
+            OsfRemoteRecord(
+                osf_path=osf_path,
+                sha256=sha256 if isinstance(sha256, str) else None,
+                byte_size=byte_size,
+                managed_by_manifest=bool(row.get("managed_by_manifest")),
+            )
+        )
+    actions = reconcile_osf_manifest(local_rows, remote_rows, prune=prune)
+    report = {
+        "manifest_path": repo_relative(manifest_path),
+        "remote_state_path": repo_relative(remote_state_path) if remote_state_path else None,
+        "prune": prune,
+        "network_io": False,
+        "mutation_performed": False,
+        "actions": [asdict(action) for action in actions],
+        "summary": {
+            action: sum(1 for item in actions if item.action == action)
+            for action in ("blocked", "create", "update", "skip", "delete")
+        },
+    }
+    if output_path is not None:
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(
+            json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        )
+    console.print_json(json.dumps(report, indent=2, sort_keys=True))
 
 
 @app.command("repo-automation")

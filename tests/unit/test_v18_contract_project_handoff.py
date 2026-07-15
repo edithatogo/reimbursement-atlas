@@ -11,7 +11,11 @@ from reimburse_atlas.source_contracts import (
     validate_path_against_contract,
     write_source_contract_validations,
 )
-from scripts.create_github_project_items import IssueDraft, render_issue
+from scripts.create_github_project_items import (
+    IssueDraft,
+    existing_issue_paths,
+    render_issue,
+)
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -70,6 +74,15 @@ def test_generated_issue_renders_parent_subissue_link() -> None:
         )
     )
     assert "Parent issue: Public product, citation and dashboard maturity" in rendered
+
+
+def test_generated_issue_paths_preserve_existing_numeric_prefixes(tmp_path: Path) -> None:
+    existing = tmp_path / "042-keep-this-title.md"
+    existing.write_text("old draft\n", encoding="utf-8")
+
+    paths = existing_issue_paths(tmp_path)
+
+    assert paths["keep-this-title"] == [existing]
 
 
 def test_final_handoff_records_environment_bound_tasks(tmp_path: Path) -> None:
