@@ -36,6 +36,13 @@ It then attests:
 
 The publication manifest includes SBOM summaries and SBOM JSON files as derived release-candidate artefacts. It does not include raw source files, local cache paths, restricted terminology dumps or confidential net-price material.
 
-## Remaining work
+## Consumer verification
 
-The next release hardening pass should add a verification guide using GitHub's attestation verification tooling and should decide whether Hugging Face dataset artefacts require separate in-toto/SLSA attestations or whether GitHub release attestations are sufficient for the first public milestone.
+Consumers should verify a tagged release before using its software or derived artefacts. The
+release workflow attaches GitHub artifact attestations to Python distributions, the source archive
+and SBOM files. The repository keeps raw live-source payloads out of those release subjects.
+
+The exact commands and signer checks are documented in
+[`docs/RELEASE_VERIFICATION.md`](RELEASE_VERIFICATION.md). Verification is a consumer-side gate;
+the presence of an attestation proves build provenance, not licence clearance or evidence
+readiness of the underlying research outputs.

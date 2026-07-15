@@ -1,0 +1,88 @@
+name: Source health and drift monitor
+
+on:
+  schedule:
+    - cron: "17 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: source-health-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  source-health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTHONPATH: src
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
+      - name: Generate source health evidence
+        run: |
+          set -euo pipefail
+          pixi run source-validation
+          pixi run source-contracts
+          pixi run source-drift
+          pixi run release-readiness
+      - name: Enforce source health summary
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          checks = {
+              "source_content_validation": Path("data/derived/source_validation/summary.json"),
+              "source_contract_validation": Path("data/derived/source_contracts/summary.json"),
+              "source_drift": Path("data/derived/source_drift/summary.json"),
+              "release_readiness": Path("data/derived/release_readiness/summary.json"),
+          }
+          failures = []
+          for name, path in checks.items():
+              payload = json.loads(path.read_text(encoding="utf-8"))
+              if any(
+                  int(payload.get(key, 0)) > 0
+                  for key in ("fail", "blocking_failures", "required_blocker_count")
+              ):
+                  failures.append(f"{name}: {payload}")
+          if failures:
+              Path("data/derived/source_health_failure.txt").write_text(
+                  "\n".join(failures) + "\n", encoding="utf-8"
+              )
+              raise SystemExit("Source health monitor found blocking failures")
+          print("Source health monitor passed: no blocking validation, contract, drift or release failures.")
+          PY
+      - name: Upload source health evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: source-health-${{ github.run_id }}
+          path: |
+            data/derived/source_validation/
+            data/derived/source_contracts/
+            data/derived/source_drift/
+            data/derived/release_readiness/
+            data/derived/source_health_failure.txt
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Open or update source-health issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          title="Source health monitor: blocking validation or drift detected"
+          body="$(printf '%s\n\nRun: %s' "$(cat data/derived/source_health_failure.txt 2>/dev/null || echo 'Inspect the source-health artifact for details.')" "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}")"
+          number="$(gh issue list --state open --search "${title} in:title" --json number,title --jq ".[] | select(.title == \"${title}\") | .number" | head -n 1)"
+          if [ -n "$number" ]; then
+            gh issue edit "$number" --body "$body"
+          else
+            gh issue create --title "$title" --body "$body" --label "type:data-quality"
+          fi
