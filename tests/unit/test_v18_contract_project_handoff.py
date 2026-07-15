@@ -33,9 +33,10 @@ def test_mbs_source_contract_passes_fixture() -> None:
     assert "schedule_fee" in result.observed_columns
 
 
-def test_source_contracts_report_missing_for_absent_raw_files(tmp_path: Path) -> None:
+def test_source_contracts_use_reviewed_mbs_evidence_when_raw_is_absent(tmp_path: Path) -> None:
     rows = build_source_contract_validations(load_source_files(), raw_dir=tmp_path)
-    assert any(row.contract_status == "missing" for row in rows)
+    assert {row.contract_status for row in rows} <= {"pass", "skipped"}
+    assert sum(row.contract_status == "pass" for row in rows) == 2
     assert any(row.contract_status == "skipped" for row in rows)
     paths = write_source_contract_validations(rows, output_dir=tmp_path / "contracts")
     assert all(path.exists() for path in paths)

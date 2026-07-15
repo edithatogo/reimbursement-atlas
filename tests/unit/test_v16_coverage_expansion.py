@@ -14,6 +14,7 @@ from reimburse_atlas.contracts import ScheduleItemRecord
 from reimburse_atlas.data_quality import build_data_quality_checks, write_data_quality_checks
 from reimburse_atlas.models import SourceFileRecord
 from reimburse_atlas.roadmap_linkages import build_research_linkages
+from reimburse_atlas.source_contracts import build_source_contract_validations
 from reimburse_atlas.source_downloads import safe_local_target
 from reimburse_atlas.source_validation import (
     build_source_content_validations,
@@ -133,6 +134,55 @@ def test_source_validation_skips_api_documentation_even_when_downloaded(
 
     assert rows[0].validation_status == "skipped"
     assert "licence-gated" in rows[0].issues[0]
+
+
+def test_source_contract_validation_uses_reviewed_bundle_when_raw_is_absent(
+    tmp_path: Path,
+) -> None:
+    record = SourceFileRecord(
+        id="au_mbs_20260701_imap_txt",
+        source_id="au_mbs",
+        source_version_id="au_mbs_20260701_txt_pair",
+        file_label="MBS item map",
+        file_name="item_map.TXT",
+        source_url="https://example.test/mbs.txt",
+        file_role="primary",
+        expected_format="TXT",
+        acquisition_mode="manual_download",
+        licence_gate="public_reuse_review",
+        parser_hint="parse_mbs_txt_pair item_map_path",
+        expected_record_count=None,
+        current_observation="reviewed bundle",
+        notes="test",
+    )
+    bundle = tmp_path / "bundle_reviewed"
+    bundle.mkdir()
+    row = {
+        "id": "contract_au_mbs_20260701_imap_txt",
+        "source_file_id": record.id,
+        "source_id": record.source_id,
+        "source_version_id": record.source_version_id,
+        "parser_hint": record.parser_hint,
+        "contract_name": "MBS item-map TXT contract",
+        "contract_status": "pass",
+        "required_markers": ["item", "category"],
+        "observed_markers": ["item", "category"],
+        "expected_columns": ["item"],
+        "observed_columns": ["item"],
+        "byte_size": 32,
+        "issues": [],
+        "recommended_action": "Proceed.",
+    }
+    (bundle / "source_contract_validation.jsonl").write_text(
+        json.dumps(row) + "\n", encoding="utf-8"
+    )
+
+    rows = build_source_contract_validations(
+        [record], raw_dir=tmp_path / "raw", reviewed_bundle_dir=tmp_path
+    )
+
+    assert rows[0].contract_status == "pass"
+    assert rows[0].byte_size == 32
 
 
 def test_data_quality_missing_and_duplicate_paths(tmp_path: Path) -> None:

@@ -6,7 +6,8 @@ import json
 from pathlib import Path
 
 from reimburse_atlas.local_sources import build_mbs_txt_pair_bundle
-from reimburse_atlas.registry import project_root
+from reimburse_atlas.registry import load_source_files, project_root
+from reimburse_atlas.source_contracts import write_mbs_pair_contract_evidence
 
 
 def test_build_mbs_txt_pair_bundle(tmp_path: Path) -> None:
@@ -27,6 +28,15 @@ def test_build_mbs_txt_pair_bundle(tmp_path: Path) -> None:
     assert result.parsed_jsonl_path.exists()
     assert result.parsed_csv_path.exists()
     assert result.snapshot_jsonl_path.exists()
+    write_mbs_pair_contract_evidence(
+        item_map_path=fixtures / "20260701_MBSONLINE_IMAP_fixture.TXT",
+        descriptor_path=fixtures / "20260701_MBSONLINE_DESC_fixture.TXT",
+        output_dir=result.bundle_dir,
+        records=load_source_files(),
+    )
+    contract_rows = result.bundle_dir / "source_contract_validation.jsonl"
+    assert contract_rows.exists()
+    assert '"contract_status": "pass"' in contract_rows.read_text(encoding="utf-8")
     snapshot_text = result.snapshot_jsonl_path.read_text(encoding="utf-8")
     assert "20260701_MBSONLINE_IMAP_fixture" not in snapshot_text
     assert '"local_path": null' in snapshot_text
