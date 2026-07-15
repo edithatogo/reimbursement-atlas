@@ -1253,20 +1253,20 @@
     {
       "@id": "data/derived/local_quality_gates/local_quality_gates.jsonl",
       "@type": "File",
-      "contentSize": 17967,
+      "contentSize": 17968,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "local_quality_gates",
-      "sha256": "ea28d9a0a4c459ec9fb7e0a1314b5d80610637bd34dfe7e82745056571488e51"
+      "sha256": "a01c0f38ad3f4938f44497e7637b8f09c30b1ca3522f5cc9e7a1a4b39024ed34"
     },
     {
       "@id": "data/derived/local_quality_gates/local_quality_gates.csv",
       "@type": "File",
-      "contentSize": 13068,
+      "contentSize": 13069,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "local_quality_gates",
-      "sha256": "fe4c280636331e7faa766e3f89762dba8a029bcbb624ffdbd46fc14b460c374a"
+      "sha256": "38968c5151fcbc1d2ef6cd67279b96ecf051d206a6173659998c4738b517c420"
     },
     {
       "@id": "data/derived/local_quality_gates/local_quality_gate_specs.jsonl",
