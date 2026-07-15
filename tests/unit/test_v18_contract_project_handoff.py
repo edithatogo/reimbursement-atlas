@@ -54,6 +54,16 @@ def test_source_contracts_use_local_raw_file_when_present(tmp_path: Path) -> Non
     assert row.contract_status == "pass"
 
 
+def test_historical_mbs_landing_pages_are_manual_review_skips(tmp_path: Path) -> None:
+    rows = build_source_contract_validations(load_source_files(), raw_dir=tmp_path)
+    historical = {
+        "au_mbs_2010_2019_downloads_page",
+        "au_mbs_1989_2010_previous_downloads_page",
+    }
+    observed = {row.source_file_id: row.contract_status for row in rows}
+    assert all(observed[source_file_id] == "skipped" for source_file_id in historical)
+
+
 def test_github_project_export_covers_generated_issues(tmp_path: Path) -> None:
     rows = build_github_project_items(load_conductor_tracks())
     assert len(rows) >= 100
