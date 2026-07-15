@@ -321,3 +321,10 @@ Issue [#191](https://github.com/edithatogo/reimbursement-atlas/issues/191) now d
 non-provider pattern coverage from partner-pattern validity checks. The user-owned repository has
 neither control enabled through the live API; validity checks must not be treated as generic
 non-provider coverage.
+
+## 2026-07-16 — Post-deployment Pages smoke
+
+The public dashboard now has an automated post-deployment HTTPS smoke job. Main run `29442862134`
+passed build, deployment and live smoke against the canonical project URL, including project-site
+prefix, favicon, status manifest, graph CSV and same-origin reference checks. This proves the
+deployment contract without changing the separate human visual/accessibility review gate.
