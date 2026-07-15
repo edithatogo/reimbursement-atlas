@@ -316,3 +316,15 @@ hashes even though each individual generator is deterministic.
 
 Consequence: CI now verifies the complete generation order and the committed descriptors are
 refreshed against the final release-gate hashes.
+
+## 2026-07-16 — Secret-scanning control scope
+
+Decision: Track non-provider scanning and partner-pattern validity checks as separate GitHub security
+controls rather than treating validity checks as coverage for generic non-provider patterns.
+
+Rationale: The authenticated repository is user-owned and the live API reports both settings disabled.
+GitHub's control model treats validity checks as applicable to supported partner patterns, while
+non-provider pattern coverage is a separate security-configuration capability.
+
+Consequence: Issue #191 remains open for account/security-configuration work, with no false-positive
+claim that partner validity checks cover generic non-provider secrets.
