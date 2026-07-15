@@ -49,6 +49,7 @@ from reimburse_atlas.local_quality import (
     run_quality_gate_profile,
     write_quality_gate_run,
 )
+from reimburse_atlas.osf_sync import OsfRemoteRecord, reconcile_osf_manifest
 from reimburse_atlas.parsers import (
     parse_cms_asp_csv,
     parse_cms_clfs_csv,
@@ -1175,6 +1176,111 @@ def publication_manifest(
             indent=2,
         )
     )
+
+
+def _load_osf_manifest_rows(path: Path) -> list[dict[str, object]]:
+    """Load and validate the JSONL manifest used by the OSF planner."""
+    if not path.exists():
+        message = f"manifest does not exist: {path}"
+        raise typer.BadParameter(message, param_hint="manifest_path")
+    rows: list[dict[str, object]] = []
+    for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+        if not line.strip():
+            continue
+        try:
+            row = json.loads(line)
+        except json.JSONDecodeError as exc:
+            message = f"manifest contains invalid JSON: line {exc.lineno}, column {exc.colno}"
+            raise typer.BadParameter(message, param_hint="manifest_path") from exc
+        if not isinstance(row, dict):
+            message = f"manifest row on line {line_number} must be a JSON object"
+            raise typer.BadParameter(message, param_hint="manifest_path")
+        rows.append(cast("dict[str, object]", row))
+    return rows
+
+
+def _load_osf_remote_rows(path: Path | None) -> list[OsfRemoteRecord]:
+    """Load and validate an exported JSON remote-state snapshot."""
+    if path is None:
+        return []
+    if not path.exists():
+        message = f"remote state does not exist: {path}"
+        raise typer.BadParameter(message, param_hint="remote_state_path")
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        message = f"remote state contains invalid JSON: line {exc.lineno}, column {exc.colno}"
+        raise typer.BadParameter(message, param_hint="remote_state_path") from exc
+    if not isinstance(payload, list):
+        message = "remote state must be a JSON array"
+        raise typer.BadParameter(message, param_hint="remote_state_path")
+
+    remote_rows: list[OsfRemoteRecord] = []
+    for row_number, raw_row in enumerate(cast("list[object]", payload), start=1):
+        if not isinstance(raw_row, dict):
+            message = f"remote state row {row_number} must be a JSON object"
+            raise typer.BadParameter(message, param_hint="remote_state_path")
+        row = cast("dict[str, object]", raw_row)
+        osf_path = row.get("osf_path")
+        byte_size = row.get("byte_size")
+        if not isinstance(osf_path, str) or not isinstance(byte_size, int):
+            message = f"remote state row {row_number} requires osf_path and integer byte_size"
+            raise typer.BadParameter(message, param_hint="remote_state_path")
+        sha256 = row.get("sha256")
+        remote_rows.append(
+            OsfRemoteRecord(
+                osf_path=osf_path,
+                sha256=sha256 if isinstance(sha256, str) else None,
+                byte_size=byte_size,
+                managed_by_manifest=bool(row.get("managed_by_manifest")),
+            )
+        )
+    return remote_rows
+
+
+@app.command("osf-reconcile")
+def osf_reconcile(
+    manifest_path: Annotated[
+        Path,
+        typer.Option(help="Generated OSF sync manifest in JSONL format."),
+    ] = (project_root() / "data" / "derived" / "osf" / "sync_manifest.jsonl"),
+    remote_state_path: Annotated[
+        Path | None,
+        typer.Option(help="JSON array containing the last exported remote OSF file state."),
+    ] = None,
+    output_path: Annotated[
+        Path | None,
+        typer.Option(help="Optional JSON reconciliation report output path."),
+    ] = None,
+    prune: Annotated[
+        bool,
+        typer.Option(
+            help="Plan deletion only for remote rows explicitly managed by this manifest."
+        ),
+    ] = False,
+) -> None:
+    """Plan OSF mutations from local and exported remote state without network IO."""
+    local_rows = _load_osf_manifest_rows(manifest_path)
+    remote_rows = _load_osf_remote_rows(remote_state_path)
+    actions = reconcile_osf_manifest(local_rows, remote_rows, prune=prune)
+    report = {
+        "manifest_path": repo_relative(manifest_path),
+        "remote_state_path": repo_relative(remote_state_path) if remote_state_path else None,
+        "prune": prune,
+        "network_io": False,
+        "mutation_performed": False,
+        "actions": [asdict(action) for action in actions],
+        "summary": {
+            action: sum(1 for item in actions if item.action == action)
+            for action in ("blocked", "create", "update", "skip", "delete")
+        },
+    }
+    if output_path is not None:
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(
+            json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        )
+    console.print_json(json.dumps(report, indent=2, sort_keys=True))
 
 
 @app.command("repo-automation")
