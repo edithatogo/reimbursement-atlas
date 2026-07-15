@@ -15,4 +15,8 @@ The downloader respects licence gates:
 - executable public file/API candidates are downloaded only into ignored local raw storage;
 - every attempt is recorded in `data/derived/source_downloads/download_attempts.*`.
 
+The generated `data/derived/source_downloads/download_commands.sh` launcher
+delegates to the same `--attempt` path, so running the shell launcher also
+writes attempt rows and local metadata sidecars instead of bypassing provenance.
+
 In this sandbox, direct DNS resolution for `www.mbsonline.gov.au` and GitHub standalone Python downloads was blocked. The failure is recorded as a blocked network gate rather than silently ignored.

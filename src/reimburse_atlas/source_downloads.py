@@ -407,29 +407,21 @@ def write_download_outputs(
     attempt_jsonl = write_jsonl(attempt_rows, output_dir / "download_attempts.jsonl")
     attempt_csv = write_csv(attempt_rows, output_dir / "download_attempts.csv")
     shell_path = output_dir / "download_commands.sh"
-    commands = [plan.command for plan in plans if plan.should_execute]
-    command_lines: list[str] = []
-    for index, command in enumerate(commands, start=1):
-        command_lines.append(
-            f"if ({command}); then\n"
-            "  :\n"
-            "else\n"
-            f"  code=$?\n"
-            f"  printf '%s\\n' 'download command {index} failed with exit code ' \"$code\" >&2\n"
-            "  failures=$((failures + 1))\n"
-            "fi"
-        )
+    # Route the generated launcher through the same Python acquisition path as
+    # the CLI so shell downloads also emit attempt records and sidecars.
+    method = plans[0].method if plans else "curl"
+    resume_flag = " --resume-downloads" if any(plan.supports_resume for plan in plans) else ""
+    command_lines = [
+        'script_dir=$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)',
+        'repo_root=$(CDPATH= cd -- "$script_dir/../.." && pwd)',
+        'cd "$repo_root"',
+        (
+            "PYTHONPATH=src uv run --all-extras python scripts/make_source_download_plan.py"
+            f" --attempt --method {shlex.quote(method)}{resume_flag}"
+        ),
+    ]
     shell_path.write_text(
-        "#!/usr/bin/env bash\nset -uo pipefail\n\n"
-        "failures=0\n"
-        + "\n".join(command_lines)
-        + "\n\nif (( failures > 0 )); then\n"
-        + (
-            "  printf '%s\\n' \"$failures download command(s) failed; inspect source "
-            'validation and attempt metadata." >&2\n'
-        )
-        + "  exit 1\n"
-        "fi\n",
+        "#!/usr/bin/env bash\nset -euo pipefail\n\n" + "\n".join(command_lines) + "\n",
         encoding="utf-8",
     )
     shell_path.chmod(0o755)
