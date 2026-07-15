@@ -32,5 +32,5 @@ toolchain,external_quality outcome=passed return_code=0,mojo_available_uv_tool,N
 supply_chain,fail=0 warn=0 pass=72,workflow_policy_matrix,Resolve fail records; gradually burn down warn records before hardened release.,True,pass
 supply_chain,"All workflow actions are already SHA-pinned, local, or docker references.",action_sha_pinning,Keep action pin resolver in scheduled CI.,False,pass
 supply_chain,sbom_count=2 component_count=661,sbom_generation,Attach SBOM files to release artefacts and attestations.,True,pass
-architecture,violations=2 cycles=0 unknown_layers=1,architecture_boundaries,"Fix layer violations, remove cycles, or update the layer map deliberately.",True,fail
+architecture,violations=0 cycles=0 unknown_layers=0,architecture_boundaries,"Fix layer violations, remove cycles, or update the layer map deliberately.",True,pass
 data_governance,artifact_count=155 warning_count=0,publication_manifest,Review licence gates and warnings before publishing derived datasets.,True,pass
