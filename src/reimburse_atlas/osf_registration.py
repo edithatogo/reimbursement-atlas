@@ -44,7 +44,9 @@ def check_registration_drift(
         reasons = ["remote_registration_snapshot_missing"]
     elif remote.get("status") not in {"registered", "embargoed"}:
         reasons = ["remote_registration_not_active"]
-    elif not isinstance(remote.get("registration_id"), str) or not remote["registration_id"]:
+    elif (
+        not isinstance(registration_id := remote.get("registration_id"), str) or not registration_id
+    ):
         reasons = ["remote_registration_id_missing"]
     else:
         drift_fields = [field for field in required if remote.get(field) != freeze.get(field)]
