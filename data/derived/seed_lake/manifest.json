@@ -409,7 +409,7 @@
       "name": "protocol_status",
       "parquet_path": "protocol_status/protocol_status.parquet",
       "rows": 5,
-      "sha256": "d81347017ebea3a23f2eeeef790e0402ead488e58dbfd75df8158ce139a6941c"
+      "sha256": "026f257dc74c06b7234aba0b691e79b7731db6a136229e5cbf6a9fd4df95304a"
     },
     {
       "csv_path": "research_dataset_linkages/research_dataset_linkages.csv",
@@ -433,7 +433,7 @@
       "name": "evidence_readiness",
       "parquet_path": "evidence_readiness/evidence_readiness.parquet",
       "rows": 5,
-      "sha256": "b4cb359fff58c4bff42a64e90de1790dad115667d2316a43ff0c83311eaba4b0"
+      "sha256": "2e946e4342ea39c68a04a1136dd20ca6b618ca1c2297a27f6ac35bfa07adca2d"
     },
     {
       "csv_path": "source_drift_report/source_drift_report.csv",
