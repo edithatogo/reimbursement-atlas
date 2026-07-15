@@ -1204,17 +1204,25 @@ def osf_reconcile(
         message = f"manifest does not exist: {manifest_path}"
         raise typer.BadParameter(message, param_hint="manifest_path")
 
-    local_rows = [
-        json.loads(line)
-        for line in manifest_path.read_text(encoding="utf-8").splitlines()
-        if line.strip()
-    ]
+    try:
+        local_rows = [
+            json.loads(line)
+            for line in manifest_path.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+    except json.JSONDecodeError as exc:
+        message = f"manifest contains invalid JSON: line {exc.lineno}, column {exc.colno}"
+        raise typer.BadParameter(message, param_hint="manifest_path") from exc
     remote_payload: object = []
     if remote_state_path is not None:
         if not remote_state_path.exists():
             message = f"remote state does not exist: {remote_state_path}"
             raise typer.BadParameter(message, param_hint="remote_state_path")
-        remote_payload = json.loads(remote_state_path.read_text(encoding="utf-8"))
+        try:
+            remote_payload = json.loads(remote_state_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            message = f"remote state contains invalid JSON: line {exc.lineno}, column {exc.colno}"
+            raise typer.BadParameter(message, param_hint="remote_state_path") from exc
     if not isinstance(remote_payload, list):
         message = "remote state must be a JSON array"
         raise typer.BadParameter(message, param_hint="remote_state_path")

@@ -81,3 +81,25 @@ def test_cli_osf_reconcile_is_dry_run_and_idempotent(tmp_path) -> None:  # type:
     assert report["mutation_performed"] is False
     assert report["summary"]["skip"] == 1
     assert report["summary"]["create"] == 0
+
+
+def test_cli_osf_reconcile_rejects_invalid_remote_json(tmp_path) -> None:  # type: ignore[no-untyped-def]
+    """Malformed remote snapshots should fail with a parameter error."""
+    manifest = tmp_path / "sync_manifest.jsonl"
+    manifest.write_text('{"id": "protocol"}\n', encoding="utf-8")
+    remote = tmp_path / "remote.json"
+    remote.write_text("not-json", encoding="utf-8")
+
+    result = CliRunner().invoke(
+        app,
+        [
+            "osf-reconcile",
+            "--manifest-path",
+            str(manifest),
+            "--remote-state-path",
+            str(remote),
+        ],
+    )
+
+    assert result.exit_code != 0
+    assert "remote state contains invalid JSON" in result.output
