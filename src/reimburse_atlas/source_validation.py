@@ -212,7 +212,7 @@ def _read_jsonl(path: Path) -> list[dict[str, object]]:
 def _should_skip(record: SourceFileRecord) -> bool:
     return (
         record.licence_gate in {"restricted_or_licence_review", "metadata_only"}
-        or record.file_role in {"landing_page", "licence_gate"}
+        or record.file_role in {"landing_page", "licence_gate", "api_endpoint"}
         or record.acquisition_mode
         in {"manual_extract", "landing_page_review", "licence_clickthrough_manual"}
     )

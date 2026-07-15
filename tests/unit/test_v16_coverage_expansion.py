@@ -113,6 +113,28 @@ def test_source_validation_uses_reviewed_bundle_when_raw_is_absent(tmp_path: Pat
     assert rows[0].local_target_ref == "reviewed_bundle:bundle_reviewed"
 
 
+def test_source_validation_skips_api_documentation_even_when_downloaded(
+    tmp_path: Path,
+) -> None:
+    record = _source_file("pbs_api_documentation").model_copy(
+        update={
+            "source_id": "au_pbs",
+            "source_version_id": "au_pbs_api_v3_current_month",
+            "file_role": "api_endpoint",
+            "file_name": "PBS_API_CSV_endpoints.html",
+            "expected_format": "JSON or CSV",
+        }
+    )
+    target = safe_local_target(record, tmp_path)
+    target.parent.mkdir(parents=True)
+    target.write_text("<html>documentation</html>", encoding="utf-8")
+
+    rows = build_source_content_validations([record], raw_dir=tmp_path)
+
+    assert rows[0].validation_status == "skipped"
+    assert "licence-gated" in rows[0].issues[0]
+
+
 def test_data_quality_missing_and_duplicate_paths(tmp_path: Path) -> None:
     seed = tmp_path / "data" / "seed"
     seed.mkdir(parents=True)
