@@ -56,6 +56,9 @@ remain enabled. If a trusted collaborator is added, enable the documented review
 
 - No credentials in `.env.example`.
 - Secret scanning and push protection in GitHub repository settings.
+- A repository-owned, SHA-pinned Gitleaks history scan runs on pull requests, pushes to `main` and
+  a weekly schedule (`.github/workflows/security-assurance.yml`). This is the compensating
+  non-provider-pattern control and does not grant GitHub Advanced Security pattern coverage.
 - Non-provider secret-pattern scanning is currently an account/security-configuration blocker; the
   live API still reports it as disabled after an enablement attempt. Partner-pattern validity checks
   are a separate control and do not validate generic non-provider patterns; the live API also reports

@@ -7,6 +7,9 @@ Current configuration:
 - `main` branch protection is enabled with 20 required quality, security and harness contexts.
 - All required third-party Actions are SHA-pinned; CodeQL, dependency review, Scorecard, actionlint, zizmor and secret-history checks pass.
 - Dependabot security updates, secret scanning, push protection and private vulnerability reporting are enabled.
+- The repository-owned SHA-pinned Gitleaks history scan runs on pull requests, `main` pushes and a
+  weekly schedule as compensating non-provider secret-pattern coverage; it is not equivalent to
+  GitHub Advanced Security non-provider pattern scanning.
 - GitHub's live API currently reports non-provider secret-pattern scanning and secret-validity checks as
   disabled for this account. An API enablement attempt was fail-closed and did not change the state;
   this remains tracked as a repository-automation/security issue rather than being reported as complete.
