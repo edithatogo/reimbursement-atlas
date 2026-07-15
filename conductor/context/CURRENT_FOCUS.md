@@ -414,3 +414,11 @@ The public status manifest and dashboard now consume the final-handoff JSONL dir
 consistent with the handoff summary and prevents a partial download run from appearing to have no
 source-ingestion action. The change is tracked in the generated issue and Project 18 after
 regeneration.
+
+## 2026-07-16 — Source acquisition retry evidence
+
+The hardened acquisition launcher was rerun in the network-enabled environment. It recorded fresh
+MBS item-map and descriptor downloads, six intentional licence-gated skips, and an explicit
+`blocked_secret` PBS schedules attempt because `PBS_API_SUBSCRIPTION_KEY` is absent. Source
+validation and source contracts pass, but the final handoff remains `partial`; the new attempt
+history does not change evidence or publication readiness.

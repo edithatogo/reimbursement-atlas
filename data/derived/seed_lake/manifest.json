@@ -361,7 +361,7 @@
       "name": "source_download_attempts",
       "parquet_path": "source_download_attempts/source_download_attempts.parquet",
       "rows": 9,
-      "sha256": "b35ba3950c6e882aab54a155056bf266bd7e2571720fca3099d113d3ceb5ce64"
+      "sha256": "a790251f5be2fc8c33144a724b5acea1f78d0bfcc93e6d4648f1a428782e0b44"
     },
     {
       "csv_path": "source_content_validation/source_content_validation.csv",
