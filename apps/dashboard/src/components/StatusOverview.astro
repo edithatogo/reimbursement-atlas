@@ -31,10 +31,10 @@ const statusUrl = `${baseUrl}status.json`;
   </div>
   <div class="status-grid">
     {cards.map(([label, value, description]) => (
-      <article class="status-card">
+      <article class="status-card" aria-label={`${label}: ${value}`}>
         <p class="muted">{label}</p>
-        <strong>{value}</strong>
-        <small>{description}</small>
+        <p class="status-value">{value}</p>
+        <p class="status-description">{description}</p>
       </article>
     ))}
   </div>

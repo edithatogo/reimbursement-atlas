@@ -32,6 +32,24 @@ for (const route of routes) {
     await expect(page.locator("html[lang]")).toHaveCount(1);
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page).toHaveTitle(/Reimbursement Atlas/);
+    if (route === "/") {
+      const statusCards = page.locator(".status-card");
+      await expect(statusCards).toHaveCount(3);
+      for (let index = 0; index < await statusCards.count(); index += 1) {
+        const card = statusCards.nth(index);
+        const value = card.locator(".status-value");
+        const description = card.locator(".status-description");
+        await expect(value).toBeVisible();
+        await expect(description).toBeVisible();
+        const [valueBox, descriptionBox] = await Promise.all([
+          value.boundingBox(),
+          description.boundingBox(),
+        ]);
+        expect(valueBox).not.toBeNull();
+        expect(descriptionBox).not.toBeNull();
+        expect(valueBox!.y + valueBox!.height).toBeLessThanOrEqual(descriptionBox!.y);
+      }
+    }
 
     const accessibilityScan = await new AxeBuilder({ page }).analyze();
     expect(accessibilityScan.violations).toEqual([]);
