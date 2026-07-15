@@ -63,6 +63,49 @@ class SourceSnapshotRecord(FrozenModel):
     notes: OptionalNonEmptyStr = None
 
 
+class PbsApiAcquisitionRecord(FrozenModel):
+    """Redacted validation evidence for one PBS API endpoint response."""
+
+    id: SourceId
+    source_id: SourceId
+    source_version_id: SourceId
+    endpoint: Literal["schedules", "items", "fees"]
+    endpoint_url: HttpUrl
+    schedule_code: NonEmptyStr
+    effective_date: date
+    page_number: int = Field(ge=1)
+    file_name: NonEmptyStr
+    local_target_ref: OptionalNonEmptyStr = None
+    retrieved_at: NonEmptyStr
+    content_type: NonEmptyStr
+    record_count: int = Field(ge=0)
+    byte_size: int = Field(ge=0)
+    checksum_sha256: NonEmptyStr
+    required_columns: tuple[NonEmptyStr, ...] = Field(default_factory=tuple)
+    observed_columns: tuple[NonEmptyStr, ...] = Field(default_factory=tuple)
+    schema_status: Literal["pass", "fail"]
+    invalid_row_count: int = Field(default=0, ge=0)
+    cache_scope: Literal["local_raw_only"] = "local_raw_only"
+    review_status: Literal["acquired_unreviewed", "reviewed"] = "acquired_unreviewed"
+    notes: NonEmptyStr
+
+    @field_validator(
+        "required_columns",
+        "observed_columns",
+        mode="before",
+    )
+    @classmethod
+    def tuplefy_columns(cls, value: object) -> tuple[str, ...]:
+        """Convert list-like column fields to immutable tuples."""
+        if value is None:
+            return ()
+        if isinstance(value, str):
+            return (value,) if value else ()
+        if isinstance(value, (list, tuple, set, frozenset)):
+            return tuple(str(item).strip() for item in cast("Iterable[object]", value))
+        return (str(value).strip(),)
+
+
 class ScheduleItemRecord(FrozenModel):
     """Normalised schedule item after source-specific parsing."""
 

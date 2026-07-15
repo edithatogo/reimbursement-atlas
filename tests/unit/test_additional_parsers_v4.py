@@ -11,6 +11,7 @@ from reimburse_atlas.parsers import (
     parse_pbs_api_csv,
     parse_pbs_csv,
 )
+from reimburse_atlas.pbs_api_evidence import build_pbs_api_evidence, write_pbs_api_evidence
 from reimburse_atlas.source_contracts import validate_path_against_contract
 
 
@@ -82,6 +83,37 @@ def test_live_pbs_items_shape_matches_contract(tmp_path: Path) -> None:
     result = validate_path_against_contract(record, items)
 
     assert result.contract_status == "pass"
+
+
+def test_build_pbs_api_evidence_redacts_local_paths_and_checks_schema(tmp_path: Path) -> None:
+    schedules = tmp_path / "schedules.json"
+    schedules.write_text(
+        '{"data": [{"schedule_code": 4706, "effective_date": "2026-07-01"}]}\n',
+        encoding="utf-8",
+    )
+    items = tmp_path / "items-page-1.csv"
+    items.write_text(
+        "pbs_code,drug_name,schedule_code\n10001J,Rifaximin,4706\n",
+        encoding="utf-8",
+    )
+    fees = tmp_path / "fees.csv"
+    fees.write_text("schedule_code,fee_type\n4706,dispensing\n", encoding="utf-8")
+
+    rows = build_pbs_api_evidence(
+        schedules,
+        (items,),
+        fees,
+        schedule_code="4706",
+        retrieved_at="2026-07-16",
+    )
+    assert [row.endpoint for row in rows] == ["schedules", "items", "fees"]
+    assert all(row.schema_status == "pass" for row in rows)
+    assert all(str(tmp_path) not in (row.local_target_ref or "") for row in rows)
+    assert rows[1].record_count == 1
+
+    paths = write_pbs_api_evidence(rows, output_dir=tmp_path / "output")
+    assert all(path.exists() for path in paths)
+    assert '"raw_payloads_tracked": false' in paths[2].read_text(encoding="utf-8")
 
 
 def test_parse_cms_pfs_fixture(repo_root: Path) -> None:

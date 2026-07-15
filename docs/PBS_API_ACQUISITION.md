@@ -51,3 +51,18 @@ treated as complete until human field and licence review is recorded.
 
 The current implementation remains fail-closed at the monthly-extract step. GitHub issue [#25](https://github.com/edithatogo/reimbursement-atlas/issues/25)
 tracks the required reviewed extract and licence decision.
+
+## Redacted acquisition evidence
+
+When the ignored local cache is available, run:
+
+```bash
+pixi run pbs-acquisition-evidence
+```
+
+The command validates the cached schedules, item pages and fees responses and writes only
+`data/derived/source_downloads/pbs_api_acquisition.*`. The tracked rows contain endpoint,
+schedule, effective date, page, record count, required/observed columns, byte size, SHA-256,
+and an explicit `acquired_unreviewed` status. They never contain raw response fields or an
+absolute local path. CI preserves the existing metadata-only evidence when the ignored cache is
+absent, so deterministic regeneration does not require credentials or raw payloads.

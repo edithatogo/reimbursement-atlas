@@ -625,6 +625,24 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/source_downloads/pbs_api_acquisition.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "pbs_api_acquisition"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/source_downloads/pbs_api_acquisition.csv",
+      "dct:format": "csv",
+      "dct:title": "pbs_api_acquisition"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/source_downloads/pbs_api_acquisition_summary.json",
+      "dct:format": "json",
+      "dct:title": "pbs_api_acquisition_summary"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/source_validation/source_content_validation.jsonl",
       "dct:format": "jsonl",
       "dct:title": "source_content_validation"

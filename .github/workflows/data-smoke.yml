@@ -30,6 +30,7 @@ jobs:
           pixi run readiness
           pixi run ingestion-plan
           pixi run acquisition-plan
+          pixi run pbs-acquisition-evidence
           pixi run vertical-slice
           pixi run source-snapshots
           pixi run ontology-seed
