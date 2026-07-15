@@ -66,5 +66,8 @@ def test_mbs_pair_bundle_uses_download_sidecar_timestamp(tmp_path: Path) -> None
         output_dir=tmp_path / "bundle",
     )
 
-    rows = [json.loads(line) for line in result.snapshot_jsonl_path.read_text().splitlines()]
+    rows = [
+        json.loads(line)
+        for line in result.snapshot_jsonl_path.read_text(encoding="utf-8").splitlines()
+    ]
     assert {row["retrieved_at"] for row in rows} == {sidecar["attempted_at"]}
