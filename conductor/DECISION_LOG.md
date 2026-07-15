@@ -279,3 +279,15 @@ environment paths.
 
 Consequence: Unit, smoke, property, integration and end-to-end Pixi lanes all pass; issue #192
 tracks the harness hardening and its generated Conductor/project rows.
+
+## 2026-07-16 — Research-package hash refresh after CI-order generation
+
+Decision: Refresh the committed Frictionless and RO-Crate descriptors after the CI-order generated
+artifact chain updates the release-gate hashes.
+
+Rationale: The release-gate files were current, but the descriptors still contained their prior
+hashes. A replay proved the descriptors become stable after one refresh; committing that refresh
+restores consistency without changing the self-reference exclusion or any publication gate.
+
+Consequence: The descriptor replay is now byte-identical across consecutive runs, and the change
+remains within `track_data_packaging_standards`.
