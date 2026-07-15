@@ -1,9 +1,9 @@
 {
   "architecture_ready": true,
-  "edge_count": 198,
+  "edge_count": 199,
   "internal_cycle_count": 0,
   "layer_violation_count": 0,
-  "module_count": 73,
+  "module_count": 74,
   "schema_version": "architecture-boundaries-v1",
   "unknown_layer_count": 0
 }

@@ -49,6 +49,7 @@ from reimburse_atlas.local_quality import (
     run_quality_gate_profile,
     write_quality_gate_run,
 )
+from reimburse_atlas.osf_registration import check_registration_drift
 from reimburse_atlas.osf_sync import OsfRemoteRecord, reconcile_osf_manifest
 from reimburse_atlas.parsers import (
     parse_cms_asp_csv,
@@ -1275,6 +1276,59 @@ def osf_reconcile(
             for action in ("blocked", "create", "update", "skip", "delete")
         },
     }
+    if output_path is not None:
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(
+            json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        )
+    console.print_json(json.dumps(report, indent=2, sort_keys=True))
+
+
+@app.command("osf-registration-check")
+def osf_registration_check(
+    freeze_path: Annotated[
+        Path,
+        typer.Option(help="Deterministic local OSF registration freeze JSON."),
+    ] = (project_root() / "data" / "derived" / "osf" / "registration_freeze.json"),
+    remote_state_path: Annotated[
+        Path | None,
+        typer.Option(help="Exported JSON OSF registration metadata snapshot."),
+    ] = None,
+    output_path: Annotated[
+        Path | None,
+        typer.Option(help="Optional JSON report destination."),
+    ] = None,
+) -> None:
+    """Check an exported OSF registration snapshot for fingerprint drift."""
+    if not freeze_path.exists():
+        message = f"registration freeze does not exist: {freeze_path}"
+        raise typer.BadParameter(message, param_hint="freeze_path")
+    try:
+        freeze = json.loads(freeze_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as error:
+        message = f"registration freeze contains invalid JSON: {error}"
+        raise typer.BadParameter(message, param_hint="freeze_path") from error
+    if not isinstance(freeze, dict):
+        message = "registration freeze must be a JSON object"
+        raise typer.BadParameter(message, param_hint="freeze_path")
+    freeze = cast("dict[str, object]", freeze)
+    remote: dict[str, object] | None = None
+    if remote_state_path is not None:
+        if not remote_state_path.exists():
+            message = f"remote registration snapshot does not exist: {remote_state_path}"
+            raise typer.BadParameter(message, param_hint="remote_state_path")
+        try:
+            raw_remote = json.loads(remote_state_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as error:
+            message = f"remote registration snapshot contains invalid JSON: {error}"
+            raise typer.BadParameter(message, param_hint="remote_state_path") from error
+        if not isinstance(raw_remote, dict):
+            message = "remote registration snapshot must be a JSON object"
+            raise typer.BadParameter(message, param_hint="remote_state_path")
+        remote = cast("dict[str, object]", raw_remote)
+    report = check_registration_drift(freeze, remote)
+    report["freeze_path"] = repo_relative(freeze_path)
+    report["remote_state_path"] = repo_relative(remote_state_path) if remote_state_path else None
     if output_path is not None:
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(

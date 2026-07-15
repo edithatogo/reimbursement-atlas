@@ -116,3 +116,21 @@ def test_cli_osf_reconcile_rejects_non_object_manifest_rows(tmp_path) -> None:  
     )
 
     assert result.exit_code != 0
+
+
+def test_cli_osf_registration_check_is_fail_closed_without_remote(tmp_path) -> None:  # type: ignore[no-untyped-def]
+    """Registration checks must not imply readiness without remote evidence."""
+    freeze = tmp_path / "freeze.json"
+    freeze.write_text(
+        json.dumps({
+            "protocol_digest": "protocol",
+            "analysis_manifest_digest": "manifest",
+            "source_cutoff": "2026-07-01",
+            "review_approved": True,
+        }),
+        encoding="utf-8",
+    )
+    result = CliRunner().invoke(app, ["osf-registration-check", "--freeze-path", str(freeze)])
+    assert result.exit_code == 0
+    assert '"status": "blocked"' in result.output
+    assert "remote_registration_snapshot_missing" in result.output

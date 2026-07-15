@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from reimburse_atlas.osf_registration import check_registration_drift
 from reimburse_atlas.osf_sync import OsfRemoteRecord, reconcile_osf_manifest
 
 
@@ -57,3 +58,46 @@ def test_reconciliation_prunes_only_managed_remote_rows() -> None:
         ("delete", "/old-managed"),
         ("create", "/protocols/example.md"),
     ]
+
+
+def _freeze(**overrides: object) -> dict[str, object]:
+    freeze: dict[str, object] = {
+        "protocol_digest": "protocol",
+        "analysis_manifest_digest": "manifest",
+        "source_cutoff": "2026-07-01",
+        "review_approved": True,
+    }
+    freeze.update(overrides)
+    return freeze
+
+
+def _remote(**overrides: object) -> dict[str, object]:
+    remote: dict[str, object] = {
+        "registration_id": "osf-reg-1",
+        "status": "registered",
+        "protocol_digest": "protocol",
+        "analysis_manifest_digest": "manifest",
+        "source_cutoff": "2026-07-01",
+    }
+    remote.update(overrides)
+    return remote
+
+
+def test_registration_check_requires_remote_and_review() -> None:
+    assert check_registration_drift(_freeze(), None)["status"] == "blocked"
+    result = check_registration_drift(_freeze(review_approved=False), _remote())
+    assert result["status"] == "blocked"
+    assert result["reasons"] == ["human_review_not_approved"]
+
+
+def test_registration_check_detects_fingerprint_drift() -> None:
+    result = check_registration_drift(_freeze(), _remote(protocol_digest="changed"))
+    assert result["status"] == "drift"
+    assert result["reasons"] == ["registration_fingerprint_drift:protocol_digest"]
+
+
+def test_registration_check_accepts_matching_reviewed_registration() -> None:
+    result = check_registration_drift(_freeze(), _remote())
+    assert result["status"] == "ready"
+    assert result["network_io"] is False
+    assert result["mutation_performed"] is False

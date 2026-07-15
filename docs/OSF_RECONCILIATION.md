@@ -37,3 +37,23 @@ only plans deletion of remote rows explicitly marked as managed; it never
 deletes by default. The report is deterministic for identical local and
 remote snapshots and is suitable as the input contract for a future
 `osf-cli-go` adapter.
+
+## Registration lifecycle and drift check
+
+GitHub issue [#135](https://github.com/edithatogo/reimbursement-atlas/issues/135)
+tracks registration lifecycle verification. The OSF plan now generates
+`data/derived/osf/registration_freeze.json`, containing deterministic protocol
+and manifest fingerprints. A credentialed adapter can export registration
+metadata and check it without network IO or mutation:
+
+```bash
+PYTHONPATH=src reimbursement-atlas osf-registration-check \
+  --remote-state-path /path/to/registration_snapshot.json \
+  --output-path data/derived/osf/registration_check.json
+```
+
+The command reports `blocked` when review or an active remote registration is
+missing, `drift` when protocol or manifest fingerprints differ, and `ready`
+only when the snapshot matches and `review_approved` is explicitly true. The
+generated freeze is intentionally unapproved and therefore remains fail-closed
+until human methods, domain, licence and governance review is recorded.
