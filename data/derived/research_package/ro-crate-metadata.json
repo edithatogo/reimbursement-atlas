@@ -767,20 +767,20 @@
     {
       "@id": "data/seed/runtime_targets.jsonl",
       "@type": "File",
-      "contentSize": 2402,
+      "contentSize": 2370,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "runtime_targets",
-      "sha256": "2551011161a2e744de648f9a413870364d313767f55ef20687d5d605ed11e658"
+      "sha256": "8fe3fd5ac3ba4621469c3e7db7200a11ab56f22c9f93ce239bf3db171ea65a94"
     },
     {
       "@id": "data/seed/runtime_targets.csv",
       "@type": "File",
-      "contentSize": 1733,
+      "contentSize": 1701,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "runtime_targets",
-      "sha256": "32a88cf80ed12cd76ac088dbdc063073734a5d291008324e857d6eb363c6f9fe"
+      "sha256": "3082e703d3b0227d4a6034d8138f29becae054eddf1821ea467069fe6be6a6b1"
     },
     {
       "@id": "data/seed/source_readiness.csv",
@@ -1091,20 +1091,20 @@
     {
       "@id": "data/derived/external_quality_gates.json",
       "@type": "File",
-      "contentSize": 4019,
+      "contentSize": 3765,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "json",
       "name": "external_quality_gates",
-      "sha256": "324ac3eff69c5da2c5fab8ac716b10140fb5a560a3f90c6f870e21759b3b66ba"
+      "sha256": "85c3d7e856f8931957c36ed3573c417da7ea8ce257298958fe224e4c562a4cb8"
     },
     {
       "@id": "data/derived/external_quality_gates.csv",
       "@type": "File",
-      "contentSize": 2627,
+      "contentSize": 2369,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "external_quality_gates",
-      "sha256": "61d0febb372c799d18d009943b40979b7ce4b1e4df777d3e0e5fdf626637d323"
+      "sha256": "8bf86f6ba15e8877c826404efde854265c6990f34ba6841ba29fb7915ab2d14d"
     },
     {
       "@id": "data/derived/optional_toolchain_installs.json",

@@ -415,20 +415,20 @@
       }
     },
     {
-      "bytes": 2402,
+      "bytes": 2370,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "format": "jsonl",
-      "hash": "2551011161a2e744de648f9a413870364d313767f55ef20687d5d605ed11e658",
+      "hash": "8fe3fd5ac3ba4621469c3e7db7200a11ab56f22c9f93ce239bf3db171ea65a94",
       "mediatype": "application/json",
       "name": "runtime-targets",
       "path": "data/seed/runtime_targets.jsonl",
       "schema": {}
     },
     {
-      "bytes": 1733,
+      "bytes": 1701,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "format": "csv",
-      "hash": "32a88cf80ed12cd76ac088dbdc063073734a5d291008324e857d6eb363c6f9fe",
+      "hash": "3082e703d3b0227d4a6034d8138f29becae054eddf1821ea467069fe6be6a6b1",
       "mediatype": "text/csv",
       "name": "runtime-targets",
       "path": "data/seed/runtime_targets.csv",
@@ -855,20 +855,20 @@
       "schema": {}
     },
     {
-      "bytes": 4019,
+      "bytes": 3765,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "json",
-      "hash": "324ac3eff69c5da2c5fab8ac716b10140fb5a560a3f90c6f870e21759b3b66ba",
+      "hash": "85c3d7e856f8931957c36ed3573c417da7ea8ce257298958fe224e4c562a4cb8",
       "mediatype": "application/json",
       "name": "external-quality-gates",
       "path": "data/derived/external_quality_gates.json",
       "schema": {}
     },
     {
-      "bytes": 2627,
+      "bytes": 2369,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "61d0febb372c799d18d009943b40979b7ce4b1e4df777d3e0e5fdf626637d323",
+      "hash": "8bf86f6ba15e8877c826404efde854265c6990f34ba6841ba29fb7915ab2d14d",
       "mediatype": "text/csv",
       "name": "external-quality-gates",
       "path": "data/derived/external_quality_gates.csv",
