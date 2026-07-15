@@ -3,7 +3,8 @@
 ## Change
 
 The Pages workflow now uploads the Playwright HTML report, route screenshots, performance metrics
-and axe-core attachments for 30 days after the browser smoke job, including when that job fails.
+and axe-core attachments from the configured `apps/playwright-report` and `apps/test-results`
+output paths for 30 days after the browser smoke job, including when that job fails.
 
 ## Boundary
 
