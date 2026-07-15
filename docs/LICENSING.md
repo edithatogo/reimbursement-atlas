@@ -17,8 +17,10 @@ carry source-specific licence gates and attribution notes. Examples include:
 
 - Australian MBS and PBS materials: retain Commonwealth or publisher terms and
   confirm downstream redistribution before publishing derived fields.
-- CMS CLFS/PFS materials: retain AMA/CMS restrictions and do not redistribute
-  CPT descriptors or licence-gated payloads.
+- CMS CLFS/PFS materials: use the applicable CMS/AMA source licence and terms,
+  including attribution and any field-level restrictions. Apache-2.0 does not
+  override those terms. CPT descriptors and other licence-gated payloads are
+  excluded unless the applicable CMS/AMA permission expressly allows them.
 - External ontologies and terminology services: use only the permitted local,
   API, or derived representation for that resource.
 
@@ -33,3 +35,7 @@ release-readiness gates are authoritative for each output.
 
 Hugging Face, OSF, Zenodo, and preprint publication workflows must preserve
 these per-artifact terms and must fail closed when a source gate is unresolved.
+
+The project decision is therefore: Apache-2.0 for project-owned code and
+documentation; the originating provider's licence for external data and
+provider-owned derived content.

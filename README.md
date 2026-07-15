@@ -18,8 +18,9 @@ review, human mapping adjudication, human research review, protocol registration
 publication remain explicit gates. See [`apps/dashboard/public/status.json`](apps/dashboard/public/status.json)
 for the machine-readable status contract and [`CITATION.cff`](CITATION.cff) for citation metadata.
 
-Software is licensed under Apache-2.0. Underlying source data retain their own provider licences
-and are not relicensed by this repository; raw live-source payloads remain local and ignored.
+Software and project-owned documentation are licensed under Apache-2.0. Underlying source data
+retain their own provider licences and are not relicensed by this repository; CMS/AMA terms apply
+to CMS CLFS/PFS material. Raw live-source payloads remain local and ignored.
 
 Public dashboard: [GitHub Pages](https://edithatogo.github.io/reimbursement-atlas/) or run
 `pixi run dashboard-build` locally. GitHub Pages and Hugging Face
