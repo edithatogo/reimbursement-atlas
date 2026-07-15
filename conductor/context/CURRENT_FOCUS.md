@@ -500,3 +500,10 @@ Source-health reports now parse only the redacted missing-credential message fro
 evidence and expose the required environment-variable name, never a secret value. The current
 PBS follow-up therefore identifies `PBS_API_SUBSCRIPTION_KEY` directly while remaining safe for
 GitHub issue bodies, public status and dashboard CSV projections.
+
+## 2026-07-16: OSF read-only discovery evidence
+
+OSF workflow run `29459949265` passed with the pinned `osf-cli-go v1.0.0` and read-only
+discovery enabled. It confirmed the expected private `Reimbursement Atlas` project `q8cnx`;
+provisioning, registration, upload and publication were skipped. The sanitized project listing
+is retained only as a seven-day private artifact and is not committed.
