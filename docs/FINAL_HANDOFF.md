@@ -19,13 +19,17 @@ apps/dashboard/public/data/final_handoff_tasks.csv
 
 ## Main remaining environment-dependent tasks
 
-1. Complete MBS, historical-source and CMS licence review before derived-data publication.
-2. Approve mapping calibration gold standards and negative controls.
-3. Freeze and approve the OSF protocol, then complete the token-gated registration workflow; `OSF_PROJECT_ID` is configured for the private project.
-4. Run the gated Hugging Face dataset/Space publication workflow after the remaining licence,
+1. Complete MBS, historical-source and CMS licence review before derived-data publication
+   (`#23`, `#24`, `#26`, `#27`).
+2. Acquire and review a PBS monthly extract, then approve historical MBS/PBS scope (`#25`).
+3. Approve mapping calibration gold standards and negative controls (`#10`, `#11`).
+4. Freeze and approve the OSF protocol, then complete the token-gated registration workflow;
+   `OSF_PROJECT_ID` is configured for the private project (`#109`–`#113`, `#134`, `#135`).
+5. Run the gated Hugging Face dataset/Space publication workflow after the remaining licence,
    evidence and policy gates pass; `HF_TOKEN` is now configured in GitHub.
-5. Complete cross-platform dashboard visual and accessibility review.
-6. Regenerate release-readiness after the research, licence and publication gates complete.
+6. Complete cross-platform dashboard visual and accessibility review.
+7. Regenerate release-readiness after the research, licence and publication gates complete,
+   then create the signed release and Zenodo DOI (`#121`).
 
 Source acquisition, the derived MBS bundle, strict software/security gates, GitHub
 Pages deployment, OSF CLI v1 verification and the downloadable archive are complete.
@@ -35,3 +39,8 @@ review gates.
 Current release posture: the repository is ready for local software release and the
 public dashboard is live, while `research_publication_ready`, `evidence_release_ready`
 and `policy_claims_ready` remain fail-closed.
+
+The merged release is `38a399073ef4bc5ae6106c05a3b719d32790b361`. The repository-controlled
+quality, security, source-contract, package, dashboard, citation and reproducibility gates
+are green; the remaining rows above require accountable external or human decisions rather
+than additional local implementation.
