@@ -389,4 +389,4 @@ domain decisions.
 The public readiness dashboard now exposes the checksum-bound licence-review queue as a
 downloadable, dashboard-safe table. It shows candidate checksums, publication scope, licence
 gate and pending status, while explicitly stating that generated rows do not grant approval.
-The addition is tracked in the generated Project artefacts and issue draft #160.
+The addition is tracked in generated issue draft #160 and live closed issue [#218](https://github.com/edithatogo/reimbursement-atlas/issues/218), which is on public Project #18.

@@ -9,7 +9,7 @@ Date: 2026-07-16
   status columns, plus a downloadable CSV link.
 - Kept the copy fail-closed: pending rows are review work, not licence approval.
 - Added a dashboard smoke-test requirement for the asset.
-- Added Conductor backlog item `PUBLIC-022` and generated issue draft #160.
+- Added Conductor backlog item `PUBLIC-022`, generated issue draft #160 and live closed issue #218 on public Project #18.
 
 ## Verification
 
