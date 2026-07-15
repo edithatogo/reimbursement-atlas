@@ -46,7 +46,7 @@ def _fetch(url: str, attempts: int) -> tuple[int, bytes]:
     last_error: Exception | None = None
     for attempt in range(attempts):
         try:
-            with urlopen(request, timeout=20) as response:  # noqa: S310 - fixed HTTPS target
+            with urlopen(request, timeout=20) as response:  # noqa: S310  # nosec B310
                 return response.status, response.read()
         except (HTTPError, URLError, TimeoutError) as error:
             last_error = error
