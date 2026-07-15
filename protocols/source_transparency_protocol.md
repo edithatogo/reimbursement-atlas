@@ -55,6 +55,16 @@ Calibrate automated accessibility/readability checks against manual assessment a
 ## Deviations amendments and human review
 Version rubric changes, reratings and overrides. Signed methods, source-domain, licence and governance review is required; simulated review is advisory only.
 
+## Operational prespecification details
+The unit of analysis is one registered source family and one exact file, endpoint or release artefact assessed at a frozen date. A source family is not scored from reputation or a landing page alone. Evidence must identify the actual acquisition route, response or file format, version or effective date, refresh cadence, licensing statement, historical availability, documentation, checksum and validation outcome. Redirects and authentication gates are recorded because a nominally public page may not provide a reproducible payload.
+
+The rubric records domain responses as `pass`, `partial`, `fail`, `not_assessed`, `not_applicable` or `blocked`, with an evidence pointer and assessment timestamp. Automated checks may establish format, checksum and accessibility observations; they cannot determine whether a licence permits reuse or whether a field is policy-complete. Two reviewers independently rate subjective domains including documentation sufficiency, historical reproducibility, licensing clarity and semantic completeness. A third reviewer resolves disagreements by domain, retaining both original ratings and the final reason.
+
+The denominator for each domain excludes only `not_applicable` sources and reports all other states, including blocked and not assessed. A transient network failure is not converted into a source failure without a retry record. A source can be machine-readable but still fail reproducibility because versioning, licence or provenance evidence is absent. Tiers summarize observed evidence and are not a league table of source quality or institutional performance.
+
+The sensitivity matrix includes domain-weighted versus unweighted summaries, blocked sources included versus excluded, current-only versus historical availability, strict versus permissive licence evidence, and treatment of transient retrieval failures. Source drift is evaluated against the prior digest and rubric version. Any rubric or source-universe change is an amendment requiring a new digest, regenerated artefacts and explicit reviewer acknowledgement before comparisons are interpreted.
+Assessment results are versioned by source digest, rubric digest and reviewer decision, allowing a changed web page to be distinguished from a changed scoring rule.
+
 ## Pre-registration review checklist
 Complete `docs/RESEARCH_PROTOCOL_REVIEW_CHECKLIST.md` for `rq_source_transparency`.
 The protocol remains draft/planned until an accountable human reviewer records a

@@ -55,6 +55,15 @@ Calibrate observability coding against independently rated cases. Any opacity co
 ## Deviations amendments and human review
 Audit overrides and exclusions. Signed methods, medicines-domain, licence and governance review is required; simulated review is advisory only.
 
+## Operational prespecification details
+The unit of analysis is an active medicine presentation within one reimbursement programme, source version and effective interval. The normalized key contains ingredient, strength, form, route, pack or dose basis, programme, price concept, currency and patient-exposure concept. A product match does not imply a price match: list price, reimbursement amount, allowed amount, patient contribution, benchmark, confidential net price and unavailable amount are separate controlled fields. The primary metric is calculated only for eligible records where the relevant denominator and observability rule are explicit.
+
+The ingestion pass preserves the source label and assigns a price-concept code using a versioned dictionary. Ingredient and presentation mappings require two independent reviewers to confirm therapeutic identity, strength, route, form, pack basis and effective date. A mapping is excluded when the source does not support the required dimension. Confidential rebates are coded as unknown or confidential, never as zero and never imputed from a public list amount. Currency conversion and purchasing-power adjustment are reported as alternate views, not as evidence that different price concepts are equivalent.
+
+Missingness is decomposed into structural absence, confidential rebate, unavailable public amount, non-reimbursement, parse failure, future or superseded item, licence restriction and not-applicable price concept. The report includes numerator, denominator and each missingness count. The opacity metric is descriptive observability and must not be renamed as transparency, affordability or market efficiency. Any composite score requires a new registered weighting and validation decision.
+
+The sensitivity matrix includes presentation-level versus ingredient-level matching, exclusion of confidential records, strict versus broad effective-date overlap, list-only versus reimbursement-only amounts, alternate currency vintages, and separate reporting of patient liability. Rankings are withheld when the ordering changes across reasonable specifications. The public output reports the data-generating limitations beside every metric and does not infer hidden net prices from observed reimbursement schedules.
+
 ## Pre-registration review checklist
 Complete `docs/RESEARCH_PROTOCOL_REVIEW_CHECKLIST.md` for `rq_medicine_opacity`.
 The protocol remains draft/planned until an accountable human reviewer records a

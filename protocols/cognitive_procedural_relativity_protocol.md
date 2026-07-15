@@ -55,6 +55,15 @@ Calibrate classification against a manually adjudicated gold-standard basket and
 ## Deviations amendments and human review
 Log all basket changes and exclusions. Signed methods, domain, licence and governance review is required; simulated review is advisory only.
 
+## Operational prespecification details
+The analysis record is one candidate service relationship within one jurisdiction and effective source version. Each record must carry the source identifier, original code, normalized service family, component type, duration or complexity marker, setting, currency, amount, effective interval, mapping confidence and adjudication status. A basket is eligible only when both comparator services have interpretable units and the same payment concept. Amounts are retained in source currency and year; conversion is a presentation layer and cannot repair a mismatched payment concept.
+
+Candidate relationships are generated without using the fee amount as a matching feature. The deterministic pass uses registered code systems, normalized terminology, duration, setting, component and bundle indicators. Reviewers then classify each candidate as `include`, `exclude`, `conditional` or `insufficient_evidence`, recording the primary reason and any source citation. Conditional records are excluded from the primary ratio and included only in a labelled sensitivity scenario. No relationship is promoted solely because it has a high lexical score.
+
+Missingness is tabulated by reason: absent source row, absent amount, non-comparable component, range-valued amount, future or superseded effective date, licence restriction and unresolved mapping. Denominators are calculated after the relevant exclusion rule is applied and are reported alongside every result. A zero amount is valid only when the source explicitly states zero; blank, not applicable and not covered values remain distinct.
+
+Before outcome inspection, the analysis manifest must identify the primary basket, minimum basket size, weighting rule, currency or purchasing-power source, and treatment of bundled services. The sensitivity matrix must include: strict versus permissive mapping confidence, exclusion of conditional mappings, equal versus source-weighted baskets, alternate effective-date windows, and leave-one-jurisdiction-out results. If a primary and sensitivity result differ materially, the dashboard reports both and suppresses a single policy ranking. Reviewer decisions, amendments and unresolved conflicts are append-only records linked to the source and protocol digests.
+
 ## Pre-registration review checklist
 Complete `docs/RESEARCH_PROTOCOL_REVIEW_CHECKLIST.md` for `rq_cognitive_procedural`.
 The protocol remains draft/planned until an accountable human reviewer records a

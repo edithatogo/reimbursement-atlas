@@ -55,6 +55,16 @@ Use services expected to have minimal local policy variation and calibrate autom
 ## Deviations amendments and human review
 Log classification changes and exclusions. Signed methods, policy-domain, licence and governance review is required; simulated review is advisory only.
 
+## Operational prespecification details
+The unit of analysis is one policy record for one service or indication, authority level, geography and effective interval. Authority hierarchy is retained rather than flattened: national rules, local rules, articles, exceptions and implementation notes remain distinguishable. A local rule is not evidence of local discretion unless its issuing authority, geographic scope and operative language are explicit. The analysis window is frozen before extraction, and overlapping rules are resolved using source-stated supersession dates or retained as concurrent evidence when precedence is unclear.
+
+The coding form records decision status, eligibility condition, documentation requirement, exception pathway, authority, geography, effective dates, source citation and confidence. Text extraction can propose spans and controlled labels, but a reviewer must confirm the span and the label. Silent text normalization is prohibited for negation, exceptions, conditional language and population qualifiers. A policy disagreement is counted only when two records describe the same service or indication, are simultaneously effective, and differ in an operationally meaningful rule field.
+
+Missingness is classified as unavailable source, no explicit rule, discretionary wording, superseded rule, exception-only rule, inaccessible document, licence restriction and unresolved hierarchy. No explicit rule is not coded as covered or uncovered. The denominator for heterogeneity is the set of comparable jurisdiction pairs with assessable records; jurisdictions with no comparable record are reported separately. Empty or incomparable policy universes produce null statistics and a reason code.
+
+The sensitivity matrix includes strict versus broad service matching, national-only versus national-plus-local authority, exclusion of exception records, alternate overlap treatment, and separate treatment of discretionary wording. The primary output is a descriptive disagreement table and typology. Any statement about realised access, equity or causal governance effect requires a separate design with linked utilisation, population denominators and additional ethics and domain review; those claims are out of scope for this protocol.
+Jurisdiction counts, pairwise comparisons and any clustered uncertainty are reported separately so that larger jurisdictions do not silently dominate the descriptive summary.
+
 ## Pre-registration review checklist
 Complete `docs/RESEARCH_PROTOCOL_REVIEW_CHECKLIST.md` for `rq_local_national_coverage`.
 The protocol remains draft/planned until an accountable human reviewer records a
