@@ -143,6 +143,22 @@ def render_issue(issue: IssueDraft) -> str:
     """Render one GitHub issue draft."""
     labels = ", ".join(issue.labels) if issue.labels else "none"
     parent = f"Parent issue: {issue.parent_issue}\n\n" if issue.parent_issue else ""
+    if issue.title == "Create signed release and Zenodo DOI after publication approval":
+        acceptance = (
+            "- [x] Scope is confirmed: prepare and validate metadata locally; do not deposit or "
+            "mint a DOI.\n"
+            "- [ ] Licence and data-governance implications are checked by an accountable human "
+            "reviewer.\n"
+            "- [x] Tests or validation evidence are defined: `pixi run zenodo-metadata` and "
+            "focused unit tests.\n"
+            "- [x] Documentation or Conductor context is updated; external deposition remains "
+            "gated."
+        )
+    else:
+        acceptance = """- [ ] Scope is confirmed.
+- [ ] Licence and data-governance implications are checked.
+- [ ] Tests or validation evidence are defined.
+- [ ] Documentation or Conductor context is updated."""
     return f"""# {issue.title}
 
 Epic: `{issue.epic_id}` — {issue.epic_title}
@@ -156,10 +172,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+{acceptance}
 """
 
 

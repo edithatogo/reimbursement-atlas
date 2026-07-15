@@ -305,7 +305,7 @@
       "name": "local_quality_gates",
       "parquet_path": "local_quality_gates/local_quality_gates.parquet",
       "rows": 26,
-      "sha256": "ef83cd0d23205eca5e4d7b395e0f0fe8431f27033376912d5246fc126a2b9722"
+      "sha256": "b6ed41e02ab79f40aac1122b43a239b434fd039189ca651107ef1a9fe100f687"
     },
     {
       "csv_path": "local_quality_gate_specs/local_quality_gate_specs.csv",

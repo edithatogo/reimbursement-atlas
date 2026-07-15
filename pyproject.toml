@@ -133,6 +133,7 @@ mutation = "mutmut run --paths-to-mutate src/reimburse_atlas"
 profile = "scalene src/reimburse_atlas/cli.py -- --help"
 qa = { depends-on = ["format-check", "lint", "typecheck", "seed-sync-check", "public-data-policy", "repo-automation", "sbom", "architecture-report", "release-readiness", "source-download-plan", "source-validation", "source-contracts", "historical-sources", "github-project-export", "final-handoff", "protocol-status", "roadmap-linkages", "data-quality", "data-dictionary", "evidence-readiness", "source-drift", "osf-plan", "research-package", "coverage", "smoke"] }
 schema-export = "PYTHONPATH=src python scripts/export_json_schema.py"
+zenodo-metadata = "PYTHONPATH=src python scripts/validate_zenodo_metadata.py"
 seed-validate = "PYTHONPATH=src python scripts/validate_seed_data.py"
 seed-sync = "PYTHONPATH=src python scripts/sync_seed_csvs.py"
 seed-sync-check = "PYTHONPATH=src python scripts/validate_seed_sync.py"

@@ -11,7 +11,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Scope is confirmed: prepare and validate metadata locally; do not deposit or mint a DOI.
+- [ ] Licence and data-governance implications are checked by an accountable human reviewer.
+- [x] Tests or validation evidence are defined: `pixi run zenodo-metadata` and focused unit tests.
+- [x] Documentation or Conductor context is updated; external deposition remains gated.

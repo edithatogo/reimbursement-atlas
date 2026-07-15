@@ -66,19 +66,22 @@ exercise the current-channel stack. It:
 - opens or updates a single GitHub issue when drift is detected;
 - optionally sends a webhook alert when `STACK_CANARY_WEBHOOK_URL` is configured.
 
-### Current deliberate non-green signal
+### Current status
 
-`zizmor` is installed and runs. It still reports `unpinned-uses` because workflow actions are pinned to version tags rather than full 40-character commit SHAs. This is recorded as a deliberate hardening backlog rather than hidden. The generated `action_sha_pin_plan.*` table is the migration queue.
+All workflow action references are pinned to full 40-character commit SHAs and the generated
+`action_sha_pin_plan.*` table currently contains no unresolved migrations. `zizmor`, workflow
+policy, CodeQL, dependency review, secret-history, reproducible-build and branch-protection
+checks are blocking where appropriate. The pin-plan output remains in the repository so future
+dependency updates cannot silently reintroduce tag-pinned actions.
 
 ## Next hardening steps
 
-1. Resolve every tag-pinned action in `action_sha_pin_plan.csv` to a 40-character commit SHA.
-2. Preserve the human-readable version tag as a trailing YAML comment for maintainability.
-3. Re-run zizmor and promote it from advisory SARIF to a blocking PR check.
-4. Add branch protection rules requiring CI, security, data-smoke, dashboard build and workflow-policy jobs.
-5. Add release verification docs showing how consumers can verify GitHub artifact attestations.
-6. Add Hugging Face dataset-card checks before any public derived dataset release.
+1. Maintain the pin-plan and fail the generated-artifact gate if a dependency update introduces a tag-pinned action.
+2. Preserve human-readable version tags as trailing YAML comments when updating pinned actions.
+3. Maintain branch protection requirements as workflows and required-check names evolve.
+4. Keep consumer-side attestation verification in the release handoff.
+5. Add Hugging Face dataset-card checks before any public derived dataset release.
 
-## Why not make SHA pinning automatic here?
-
-This execution environment cannot resolve GitHub DNS from the container, so it cannot safely map every tag to a commit SHA. The repo now produces a deterministic migration queue so that a network-enabled maintainer or CI bot can do the final SHA resolution with Renovate, `pin-github-action`, or GitHub API-backed tooling.
+SHA pinning is intentionally reviewed as a dependency-update operation rather than silently
+resolved during ordinary builds. Renovate, `pin-github-action` or a GitHub API-backed bot may
+propose updates, but the generated policy gate remains authoritative before merge.
