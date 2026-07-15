@@ -104,3 +104,11 @@ uv run --all-extras python scripts/check_dashboard_pages_assets.py
 ```
 
 This prevents root-relative `/_astro/` or `/data/` references from reaching the public site.
+
+After deployment, the Pages workflow runs a bounded live smoke check against the canonical
+HTTPS URL. It retries for CDN propagation, then verifies the HTML references, favicon, status
+manifest, graph CSVs and same-origin project routes all return HTTP 200:
+
+```bash
+uv run --all-extras python scripts/check_live_pages.py
+```
