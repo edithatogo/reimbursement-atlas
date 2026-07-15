@@ -49,8 +49,8 @@ Source and mapping pages link back to generated provenance and review artefacts.
 ## Browser smoke gate
 
 Playwright exercises every public route in desktop and mobile Chromium profiles, checks status
-codes, page metadata, console errors and page-error events, and captures bounded screenshot
-artefacts for CI diagnostics:
+codes, page metadata, console errors and page-error events, runs axe-core accessibility checks,
+and captures bounded screenshot artefacts for CI diagnostics:
 
 ```bash
 cd apps/dashboard
@@ -60,8 +60,8 @@ npm run test:browser
 
 Pixel-diff baselines are intentionally not committed yet because the project currently validates
 on macOS and Linux; cross-platform visual baselines require a dedicated browser-version policy
-and human review. The responsive smoke matrix is automated, but it does not substitute for
-approval of platform-specific visual or accessibility baselines.
+and human review. The responsive smoke matrix and axe-core checks are automated, but they do not
+substitute for approval of platform-specific visual or accessibility baselines.
 
 ## Cosmograph compatibility note
 

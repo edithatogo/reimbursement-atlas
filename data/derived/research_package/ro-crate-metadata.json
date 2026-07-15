@@ -1221,7 +1221,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "sbom_summary",
-      "sha256": "935fae34c3e502e98299b9a43a39241318bf29c53ed65353bd3cc010bd8d897c"
+      "sha256": "7e1520b45548d4f4fc0e4c2c8dcc146ecd16d2c4bf17e9d567bd3f0f81226eed"
     },
     {
       "@id": "data/derived/sbom/sbom_summary.csv",
@@ -1230,7 +1230,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "sbom_summary",
-      "sha256": "3e8611b5cd7ddf9619280bb309f273c95fdf1ec4b9130eeef4ea53e09c6c4ee3"
+      "sha256": "99bc7c34cff49f5dbcc10f4cfa2f7690654c488c7a60f76fe37c7a3ead2e9871"
     },
     {
       "@id": "data/derived/sbom/cyclonedx-python.json",
@@ -1244,11 +1244,11 @@
     {
       "@id": "data/derived/sbom/cyclonedx-dashboard.json",
       "@type": "File",
-      "contentSize": 269662,
+      "contentSize": 270682,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "json",
       "name": "cyclonedx-dashboard",
-      "sha256": "5614be36fe612d3e6d05a9fe6a380c1f759f09d6a03a0764b82b0bff9f9e35bd"
+      "sha256": "1ad973a31ed127b708417bba1ded693fe723b0c424373d720a72baab5b3d23b6"
     },
     {
       "@id": "data/derived/local_quality_gates/local_quality_gates.jsonl",
