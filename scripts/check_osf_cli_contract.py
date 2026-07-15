@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 import os
 import shutil
-import subprocess
+import subprocess  # nosec B404 - the contract probe must execute the selected CLI binary
 from pathlib import Path
 
 EXPECTED_VERSION = "1.0.0"
@@ -18,7 +18,7 @@ REQUIRED_HELP_MARKERS = {
 
 
 def _run(binary: str, *args: str) -> str:
-    result = subprocess.run(
+    result = subprocess.run(  # nosec B603 - argv is a fixed list and shell execution is disabled
         [binary, *args],
         check=False,
         capture_output=True,

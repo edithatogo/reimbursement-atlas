@@ -34,6 +34,7 @@ jobs:
           pixi run source-validation
           pixi run source-contracts
           pixi run historical-sources
+          pixi run project-issues
           pixi run github-project-export
           pixi run final-handoff
           pixi run protocol-status
@@ -45,7 +46,6 @@ jobs:
           pixi run release-readiness || true
           pixi run seed-lake
           pixi run dashboard-seed
-          pixi run project-issues
       - name: Ensure generated files are committed
         run: |
           git diff --stat

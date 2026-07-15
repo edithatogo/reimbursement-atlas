@@ -23,6 +23,7 @@ def test_osf_cli_contract_accepts_pinned_binary(monkeypatch: pytest.MonkeyPatch)
 
 def test_osf_cli_contract_rejects_wrong_version(monkeypatch: pytest.MonkeyPatch) -> None:
     """Version drift must fail before any credentialed command is attempted."""
+
     def _fake_old_run(_binary: str, *args: str) -> str:
         return "0.3.2\n" if args == ("--version",) else ""
 
