@@ -115,3 +115,15 @@ the existing fail-closed research and licence gates.
 Consequences: Generated roadmap-function drafts name the matching parent issue when the
 backlog contains it. Native GitHub sub-issue creation remains a remote synchronization step;
 the repository retains deterministic drafts and Project rows as the source of truth.
+
+## 2026-07-15 — OSF package prepared without remote mutation
+
+Decision: Prepare and validate the OSF protocol/report component package, but keep every
+sync-manifest row `publish_allowed: false` until the target OSF project and accountable
+publication approval are confirmed.
+
+Rationale: The package is reproducible and locally inspectable, but OSF upload is an external
+mutation and registration/publication approval cannot be inferred from generated agent output.
+
+Consequence: The OSF workflow remains dry-run safe; the final handoff records the remaining
+credential/approval blocker and no OSF remote files are changed.
