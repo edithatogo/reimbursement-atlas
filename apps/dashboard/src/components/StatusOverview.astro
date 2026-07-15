@@ -8,6 +8,14 @@ const status = JSON.parse(
   software: { status: string };
   evidence: { status: string };
   publication: { status: string };
+  blockers: Array<{
+    id: string;
+    category: string;
+    status: string;
+    summary: string;
+    next_action: string;
+    evidence_path: string;
+  }>;
 };
 
 const cards = [
@@ -43,4 +51,20 @@ const statusUrl = `${baseUrl}status.json`;
     payloads, licence decisions, human mapping adjudication and research review are not implied by
     a passing software build.
   </p>
+  <div class="status-blockers" aria-labelledby="blockers-heading">
+    <h3 id="blockers-heading">Current gates requiring action</h3>
+    {status.blockers.length > 0 ? (
+      <ul>
+        {status.blockers.map((blocker) => (
+          <li>
+            <strong>{blocker.summary}</strong>
+            <span>{blocker.next_action}</span>
+            <small>Evidence: <code>{blocker.evidence_path}</code></small>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="muted">No outstanding machine-recorded blockers.</p>
+    )}
+  </div>
 </section>

@@ -40,6 +40,11 @@ def test_public_status_separates_software_evidence_and_publication(tmp_path: Pat
     assert manifest["evidence"]["status"] == "not_ready"
     assert manifest["publication"]["status"] == "gated"
     assert manifest["evidence"]["source_validation"] == "blocked"
+    assert {item["id"] for item in manifest["blockers"]} >= {
+        "evidence_release",
+        "research_publication",
+        "osf_registration",
+    }
 
 
 def test_public_dashboard_assets_redact_local_raw_cache_paths() -> None:
