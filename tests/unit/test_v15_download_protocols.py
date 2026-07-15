@@ -69,6 +69,7 @@ def test_download_script_attempts_all_commands_and_fails_at_end(tmp_path: Path) 
     _, _, _, _ = write_download_outputs(plans, [], output_dir=tmp_path / "plans")
     script = (tmp_path / "plans" / "download_commands.sh").read_text(encoding="utf-8")
     assert "set -euo pipefail" in script
+    assert 'repo_root=$(CDPATH= cd -- "$script_dir/../../.." && pwd)' in script
     assert "uv run --all-extras python scripts/make_source_download_plan.py" in script
     assert "--attempt --method curl" in script
 
