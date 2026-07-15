@@ -17,6 +17,7 @@
 - [x] Add automated axe-core accessibility, page-size, route/deep-link, performance-budget and
   desktop/mobile Chromium smoke gates; reviewed cross-platform pixel baselines and human
   accessibility sign-off remain follow-ups.
+- [x] Add a post-deployment HTTPS smoke gate for the canonical GitHub Pages project site.
 
 ## 3. Publication automation
 
