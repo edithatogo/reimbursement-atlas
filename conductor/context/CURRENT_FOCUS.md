@@ -374,3 +374,12 @@ Hugging Face workflow run `29447359455` on `fe4ebc1` passed manifest regeneratio
 build, publication-bundle validation and candidate artifact upload. Dataset and Space mutation
 jobs were not run. Publication remains closed because research publication, evidence release,
 policy claims, protocol readiness and source licence review are incomplete.
+
+## 2026-07-16 — Checksum-bound licence review queue
+
+The publication manifest now has a generated artifact-level review queue under
+`data/derived/licence_review/`. It contains 155 checksum-bound candidates, all pending,
+with zero approvals and `approval_mutation_allowed: false`. The queue is exposed through
+the data dictionary, local quality gates, release readiness, Conductor backlog and generated
+GitHub Project artefacts; it improves review readiness without bypassing human licence or
+domain decisions.

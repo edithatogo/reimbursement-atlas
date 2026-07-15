@@ -16,13 +16,24 @@ from reimburse_atlas.publication import (
 )
 from reimburse_atlas.registry import project_root
 
+GOVERNANCE_PATHS = (
+    Path("data/derived/licence_review/licence_review_queue.jsonl"),
+    Path("data/derived/licence_review/licence_review_queue.csv"),
+    Path("data/derived/licence_review/summary.json"),
+    Path("data/derived/licence_review/README.md"),
+)
+
 
 def build_data_dictionary(root: Path | None = None) -> list[DataDictionaryRecord]:
-    """Build data dictionary rows for all existing publication-manifest candidate paths."""
+    """Build rows for publication candidates and internal governance artefacts."""
     repo = root or project_root()
     rows: list[DataDictionaryRecord] = []
     candidate_paths = tuple(
-        dict.fromkeys((*DEFAULT_PUBLICATION_PATHS, *reviewed_source_bundle_paths(repo)))
+        dict.fromkeys((
+            *DEFAULT_PUBLICATION_PATHS,
+            *reviewed_source_bundle_paths(repo),
+            *GOVERNANCE_PATHS,
+        ))
     )
     for relative_path in candidate_paths:
         path = repo / relative_path
@@ -101,6 +112,12 @@ def _read_json(path: Path) -> Any:
 
 
 def _scope_gate_notes(path: Path) -> tuple[str, str, str]:
+    if "licence_review" in path.parts:
+        return (
+            "internal_governance",
+            "not_for_publication",
+            "Internal review-control artefact; do not treat generated rows as licence approval.",
+        )
     if "derived" in path.parts:
         return (
             "public_derived_candidate",

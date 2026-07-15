@@ -59,6 +59,7 @@ def test_release_readiness_report_reads_generated_evidence(tmp_path: Path) -> No
     (tmp_path / "data/derived/github_project").mkdir(parents=True)
     (tmp_path / "data/derived/final_handoff").mkdir(parents=True)
     (tmp_path / "data/derived/data_dictionary").mkdir(parents=True)
+    (tmp_path / "data/derived/licence_review").mkdir(parents=True)
     (tmp_path / "data/derived/evidence_readiness").mkdir(parents=True)
     (tmp_path / "data/derived/source_drift").mkdir(parents=True)
 
@@ -132,6 +133,14 @@ def test_release_readiness_report_reads_generated_evidence(tmp_path: Path) -> No
     )
     (tmp_path / "data/derived/data_dictionary/summary.json").write_text(
         json.dumps({"table_count": 30, "total_rows_documented": 100}),
+        encoding="utf-8",
+    )
+    (tmp_path / "data/derived/licence_review/summary.json").write_text(
+        json.dumps({
+            "artifact_count": 30,
+            "pending_count": 30,
+            "approval_mutation_allowed": False,
+        }),
         encoding="utf-8",
     )
     (tmp_path / "data/derived/evidence_readiness/summary.json").write_text(

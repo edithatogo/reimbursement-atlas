@@ -17,6 +17,11 @@ Outputs:
 
 The summary contains `required_blocker_count` and `public_release_ready`. Public release should only proceed when `required_blocker_count == 0`.
 
+The release matrix also verifies that `data/derived/licence_review/summary.json` exists,
+contains checksum-bound candidate rows, and explicitly has
+`approval_mutation_allowed: false`. This verifies the review-control mechanism only; the
+155 candidate rows remain pending until human licence/domain review is recorded.
+
 ## Current blocker pattern
 
 As of 2026-07-15, the managed Python 3.14, official Pixi, Node/dashboard,

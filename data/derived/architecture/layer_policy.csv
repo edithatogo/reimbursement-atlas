@@ -7,8 +7,8 @@ edge_count,evidence,id,recommended_action,source_layer,status,target_layer
 18,18 observed import edge(s).,analysis_to_foundation,No action required.,analysis,pass,foundation
 9,9 observed import edge(s).,analysis_to_analysis,No action required.,analysis,pass,analysis
 0,0 observed import edge(s).,analysis_to_unknown,Assign unknown modules to a named architecture layer.,analysis,pass,unknown
-56,56 observed import edge(s).,orchestration_to_foundation,No action required.,orchestration,pass,foundation
-12,12 observed import edge(s).,orchestration_to_orchestration,No action required.,orchestration,pass,orchestration
+58,58 observed import edge(s).,orchestration_to_foundation,No action required.,orchestration,pass,foundation
+13,13 observed import edge(s).,orchestration_to_orchestration,No action required.,orchestration,pass,orchestration
 0,0 observed import edge(s).,orchestration_to_unknown,Assign unknown modules to a named architecture layer.,orchestration,pass,unknown
 12,12 observed import edge(s).,interface_to_foundation,No action required.,interface,pass,foundation
 8,8 observed import edge(s).,interface_to_parsing,No action required.,interface,pass,parsing

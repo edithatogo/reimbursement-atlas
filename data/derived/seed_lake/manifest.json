@@ -304,24 +304,24 @@
       "jsonl_path": "local_quality_gates/local_quality_gates.jsonl",
       "name": "local_quality_gates",
       "parquet_path": "local_quality_gates/local_quality_gates.parquet",
-      "rows": 26,
-      "sha256": "81ae0e37f911f1dedacc94ee9961e8f8be4cf1006860286ec54550d5aeba23ac"
+      "rows": 27,
+      "sha256": "a630b096fc6a581dc012b21388fe7bb732ab5c8b9bc1aca051947b43b5c5c50a"
     },
     {
       "csv_path": "local_quality_gate_specs/local_quality_gate_specs.csv",
       "jsonl_path": "local_quality_gate_specs/local_quality_gate_specs.jsonl",
       "name": "local_quality_gate_specs",
       "parquet_path": "local_quality_gate_specs/local_quality_gate_specs.parquet",
-      "rows": 29,
-      "sha256": "f9aa617b19fdd977f10abe7374089e5b8139f7e0d6fc34a6fb288ce0ce3e666b"
+      "rows": 30,
+      "sha256": "f1e985d1cacbacce24d30d26e88d7b287f89e2bf453b3ff345532abdaafff72e"
     },
     {
       "csv_path": "architecture_import_edges/architecture_import_edges.csv",
       "jsonl_path": "architecture_import_edges/architecture_import_edges.jsonl",
       "name": "architecture_import_edges",
       "parquet_path": "architecture_import_edges/architecture_import_edges.parquet",
-      "rows": 201,
-      "sha256": "060a6892b66d7fa67ef87986364205b0230ce1708147a0c39dfa0d5baccffd1f"
+      "rows": 204,
+      "sha256": "50c2f29cf4ab8b496b4d0ed8452a01a3cb54e7017cb48d0e0f531ebc3265d8e9"
     },
     {
       "csv_path": "architecture_layer_policy/architecture_layer_policy.csv",
@@ -329,7 +329,7 @@
       "name": "architecture_layer_policy",
       "parquet_path": "architecture_layer_policy/architecture_layer_policy.parquet",
       "rows": 22,
-      "sha256": "8e073effa7f9543e38d6e5e5ff13c383f676a1a3fad7c9b8b2e5aae45cb28f79"
+      "sha256": "96d500ddc8ad9e9d676972e6f13b0012bea7586af32a555543323e491aaef706"
     },
     {
       "csv_path": "architecture_import_cycles/architecture_import_cycles.csv",
@@ -344,8 +344,8 @@
       "jsonl_path": "release_readiness_gates/release_readiness_gates.jsonl",
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
-      "rows": 35,
-      "sha256": "e9021dadf27fc03ec237961f124c6918e883f902ae84386e229856bc7d250833"
+      "rows": 36,
+      "sha256": "38c001976a225ccc17f249f80b1d10dbd0082dcff989389d350777869aeab914"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -384,8 +384,8 @@
       "jsonl_path": "github_project_items/github_project_items.jsonl",
       "name": "github_project_items",
       "parquet_path": "github_project_items/github_project_items.parquet",
-      "rows": 164,
-      "sha256": "27d5cfd1f6102a9c594887788cad75cb00e84309f3e9986aec2642bfe3c052ec"
+      "rows": 165,
+      "sha256": "9bf1660285477a7946d18a1ed69b417ccd06b656bb2669bf492fd7b699b0c2d6"
     },
     {
       "csv_path": "final_handoff_tasks/final_handoff_tasks.csv",
@@ -441,15 +441,15 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "59739c7a0e9ee147d8ade6d982506253f91ad3a8635d07af4acc1917e3e9b820"
+      "sha256": "991e3985486f1d0be72589ed99637897025b6c4eb71c8ae6d76891ece8d1f5e6"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
       "jsonl_path": "data_dictionary/data_dictionary.jsonl",
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
-      "rows": 155,
-      "sha256": "1580724bc0a3a99008cbe1bd88b6226de0427b559a6b7565da9a944fe9334e0a"
+      "rows": 159,
+      "sha256": "f2fce1a6aeb01bd1fd5881bd93e1076aae43f68ad56b54dc644b2f1786e555fb"
     }
   ]
 }

@@ -29,6 +29,11 @@ Before publishing to Hugging Face, a maintainer should compare this manifest wit
 - `docs/LIVE_SOURCE_VALIDATION_PLAYBOOK.md`;
 - `data/seed/source_snapshots.*`;
 - `data/seed/source_registry.*` licence notes.
+
+The manifest is paired with the generated queue in `data/derived/licence_review/`.
+Each queue row records the candidate checksum, publication scope and current review
+state. All rows are fail-closed as `pending`; no generated queue output constitutes
+licence approval or changes publication eligibility.
 ## Research-package descriptor determinism
 
 The generated Frictionless, RO-Crate and DCAT descriptors intentionally exclude
