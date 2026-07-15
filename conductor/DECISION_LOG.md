@@ -149,7 +149,6 @@ but an external DOI would imply archival/publication readiness that the current 
 status does not support.
 
 Consequence: Release metadata remains locally reproducible; no Zenodo record or DOI is created.
-
 ## 2026-07-15 — Historical MBS archive inventory and OSF CLI refresh
 
 Decision: Add a metadata-only inventory for historical MBS targets and pin the OSF

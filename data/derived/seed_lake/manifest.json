@@ -345,7 +345,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 35,
-      "sha256": "3ac571b0bdf87f9a356cb7e609c5c0c7a9de68281ceb42db801c3ab862c358c1"
+      "sha256": "bfa8cd9d3fc41a59665139d355f56be6a34161e0450ba51d17087def0ce08734"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -448,8 +448,8 @@
       "jsonl_path": "data_dictionary/data_dictionary.jsonl",
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
-      "rows": 144,
-      "sha256": "84871b61a5f0e532d50118d1355cc4529ba20e9b2447ef15781928d94ae30d25"
+      "rows": 141,
+      "sha256": "e57249fe5f72aced05119a037f94db416f8efc11d168b9f2d3585ff9d29c4084"
     }
   ]
 }

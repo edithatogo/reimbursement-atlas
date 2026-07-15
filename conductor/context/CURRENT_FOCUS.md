@@ -156,7 +156,6 @@ the GitHub Project export and future native GitHub sub-issues remain cross-refer
 Historical MBS/PBS coverage remains owned by `track_live_source_ingestion`; release DOI
 work remains owned by `track_data_packaging_standards`; documentation freshness remains
 owned by `track_ci_cd_supply_chain`.
-
 The historical MBS metadata inventory is now implemented: 343 official targets across 32
 archive pages are tracked under `data/seed/historical_mbs_archive_targets.jsonl` and
 `data/derived/historical_sources/`. The targets remain manual/licence-review only; this
