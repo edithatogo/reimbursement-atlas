@@ -26,7 +26,7 @@ These observations are encoded in `data/seed/source_status.*` so they can be sur
 | Source | Current observation | Next action |
 |---|---|---|
 | MBS | 20260701 item-map and descriptor TXT files visible on the MBS downloads page. | Download locally and run the redacted `reviewed-mbs-txt-pair-bundle` workflow before any publication decision. |
-| PBS | PBS API is the current distribution mechanism; JSON and CSV downloads are supported and public API access is rate-limited. | Use API CSV or selected endpoints with explicit rate limiting and schedule-code metadata. |
+| PBS | PBS API is the current distribution mechanism; JSON and CSV downloads are supported, the public API is updated monthly, and access is shared-rate-limited. The current API route requires a subscription key even though the data API documentation is publicly readable. | Resolve the current public Swagger request URL, supply the key only through an environment secret, fetch `schedules` before selecting a monthly `schedule_code`, then retain only a reviewed JSON/CSV extract and redacted provenance. |
 | CMS CLFS | CY 2026 Q3 `26CLABQ3` file visible. | Download locally, snapshot, and parse payment fields while avoiding restricted CPT descriptor redistribution. |
 | CMS PFS | 2026 RVU files visible, including RVU26A/RVU26B/RVU26C. | Download locally, derive facility/non-facility payment fields, and keep CPT governance separate. |
 | CMS ASP | July 2026 Medicare Part B payment-limit and NDC-HCPCS crosswalk files visible. | Snapshot payment-limit and crosswalk files, then parse payment-limit fields as price-but-not-coverage evidence. |
@@ -76,7 +76,7 @@ A parser can be promoted from `prototype` to `validated` only when:
 
 ## What remains out of scope
 
-The repo should not yet perform broad scheduled fetches, scrape PDFs at scale, publish raw restricted terminology packages, or infer net drug prices from published list/payment-limit fields. Live ingestion should remain manually reviewed until at least the first MBS, PBS, CLFS, PFS and ASP validations are complete.
+The repo should not yet perform broad scheduled fetches, scrape PDFs at scale, publish raw restricted terminology packages, or infer net drug prices from published list/payment-limit fields. Live ingestion should remain manually reviewed until at least the first MBS, PBS, CLFS, PFS and ASP validations are complete. The PBS documentation page is not itself a monthly extract: the current API route returned HTTP 401 without a subscription key during the 2026-07-16 probe, so the key and exact Swagger request URL remain acquisition prerequisites.
 
 ## v5 reviewed-source bundle workflow
 
@@ -111,4 +111,3 @@ PYTHONPATH=src reimbursement-atlas reviewed-mbs-txt-pair-bundle \
 ```
 
 The bundle snapshots both files, redacts local raw paths in `source_snapshots.*`, joins descriptors to item-map rows by item code, and writes pair-specific validation statistics. See `docs/MBS_REVIEWED_PAIR_BUNDLE.md`.
-

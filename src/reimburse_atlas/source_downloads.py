@@ -398,13 +398,30 @@ def write_download_outputs(
     *,
     output_dir: Path,
 ) -> tuple[Path, Path, Path, Path]:
-    """Write acquisition plans and attempt records."""
+    """Write acquisition plans and attempt records.
+
+    Plan-only regeneration must not erase the last observed acquisition evidence. An explicit
+    attempt run supplies a fresh snapshot; a plan-only run preserves the existing snapshot so
+    generated artefacts remain useful across handoff and CI regeneration.
+    """
     output_dir.mkdir(parents=True, exist_ok=True)
     plan_rows = [plan.as_row() for plan in plans]
-    attempt_rows = [attempt.model_dump(mode="json") for attempt in attempts]
+    attempt_jsonl_path = output_dir / "download_attempts.jsonl"
+    if attempts:
+        attempt_rows = [attempt.model_dump(mode="json") for attempt in attempts]
+    elif attempt_jsonl_path.exists():
+        import json
+
+        attempt_rows = [
+            json.loads(line)
+            for line in attempt_jsonl_path.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+    else:
+        attempt_rows = []
     plan_jsonl = write_jsonl(plan_rows, output_dir / "download_plans.jsonl")
     plan_csv = write_csv(plan_rows, output_dir / "download_plans.csv")
-    attempt_jsonl = write_jsonl(attempt_rows, output_dir / "download_attempts.jsonl")
+    attempt_jsonl = write_jsonl(attempt_rows, attempt_jsonl_path)
     attempt_csv = write_csv(attempt_rows, output_dir / "download_attempts.csv")
     shell_path = output_dir / "download_commands.sh"
     # Route the generated launcher through the same Python acquisition path as
