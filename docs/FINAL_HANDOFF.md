@@ -22,7 +22,8 @@ apps/dashboard/public/data/final_handoff_tasks.csv
 1. Complete MBS, historical-source and CMS licence review before derived-data publication.
 2. Approve mapping calibration gold standards and negative controls.
 3. Freeze and approve the OSF protocol, configure `OSF_PROJECT_ID`, then run the token-gated workflow.
-4. Configure `HF_TOKEN`, then run the gated Hugging Face dataset/Space publication workflow.
+4. Run the gated Hugging Face dataset/Space publication workflow after the remaining licence,
+   evidence and policy gates pass; `HF_TOKEN` is now configured in GitHub.
 5. Complete cross-platform dashboard visual and accessibility review.
 6. Regenerate release-readiness after the research, licence and publication gates complete.
 

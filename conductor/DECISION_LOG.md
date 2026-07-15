@@ -165,3 +165,19 @@ manual-review status in `data/seed/historical_mbs_archive_targets.jsonl` and der
 outputs. No historical raw payloads were downloaded or committed. The OSF workflow's safe
 validation run passed, and remote OSF mutation remains disabled until project configuration,
 protocol approval and manifest-native publication authorization exist.
+
+## 2026-07-15 — HF secret provisioning and clean-checkout evidence refresh
+
+Decision: Configure the GitHub `HF_TOKEN` secret for the existing dataset and Space targets,
+validate both publication workflows in dry-run mode, and regenerate committed evidence with
+the ignored raw cache absent.
+
+Rationale: The HF workflow can now authenticate when publication is eventually authorized,
+but token availability must not override licence, protocol, source-contract, evidence or
+policy gates. Local raw caches must not influence committed validation outputs or generated
+release metadata.
+
+Consequences: HF and OSF dry-run workflows passed, all seven local external quality gates
+passed, and PR #158 merged the cache-independent generated artefacts. `OSF_PROJECT_ID`,
+human licence review, mapping adjudication and research approval remain required before
+any external publication or policy claim.
