@@ -154,6 +154,18 @@ provenance drill-down, machine-readable status and archival DOI release.
 Its generated child issue drafts include an explicit parent-issue reference so Conductor,
 the GitHub Project export and future native GitHub sub-issues remain cross-referenced.
 
+## 2026-07-16 source acquisition refresh
+
+The hardened acquisition workflow was rerun against all nine configured source records.
+The July 2026 MBS item-map and descriptor TXT pair downloaded successfully into ignored
+local raw storage and revalidated against the reviewed derived bundle. PBS remains blocked
+by the absent `PBS_API_SUBSCRIPTION_KEY`; historical MBS and CMS records remain explicit
+licence-gated or landing-page/manual-review targets. No raw payloads are tracked.
+
+The source-health, final-handoff, data-quality, dashboard seed, local-quality and external
+quality-gate outputs were regenerated. Repository release readiness remains green, while
+research publication, OSF registration, evidence release and policy claims remain fail-closed.
+
 ## 2026-07-16 live Pages defect follow-up
 
 The public browser check found a deployment-only base-path defect: HTML loaded at the project
