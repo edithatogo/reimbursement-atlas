@@ -138,3 +138,14 @@ bundle validity is not authorization to mutate an external dataset or Space repo
 
 Consequence: HF publication remains a documented secret-gated handoff task; no remote HF
 repository is changed by local continuation work.
+
+## 2026-07-15 — Zenodo deposition deferred behind evidence gates
+
+Decision: Keep Zenodo deposition and DOI creation deferred until evidence, source licensing,
+OSF protocol and human-review gates pass.
+
+Rationale: The repository can produce a signed release candidate and citation metadata locally,
+but an external DOI would imply archival/publication readiness that the current fail-closed
+status does not support.
+
+Consequence: Release metadata remains locally reproducible; no Zenodo record or DOI is created.
