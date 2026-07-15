@@ -85,10 +85,10 @@ ruff = ">=0.14.0"
 basedpyright = ">=1.35.0"
 pytest = ">=9.0.0"
 pytest-cov = ">=7.0.0"
-hypothesis = ">=6.148.0"
+hypothesis = ">=6.156.2"
 bandit = ">=1.8.0"
 pip-audit = ">=2.9.0"
-filelock = ">=3.18.0"
+filelock = ">=3.29.7"
 polars = ">=1.35.0"
 pyarrow = ">=22.0.0"
 duckdb = ">=1.4.0"
@@ -101,7 +101,9 @@ nodejs = ">=24.0.0"
 
 [tool.pixi.feature.api.dependencies]
 fastapi = ">=0.139.0"
-uvicorn = ">=0.49.0"
+
+[tool.pixi.feature.api.pypi-dependencies]
+uvicorn = { version = ">=0.50.2", extras = ["standard"] }
 
 [tool.pixi.feature.mcp.pypi-dependencies]
 mcp = ">=1.28,<2"
