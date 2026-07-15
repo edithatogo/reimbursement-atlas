@@ -1,0 +1,20 @@
+{
+  "evidence_path": "data/derived/final_handoff/final_handoff_tasks.jsonl",
+  "incomplete_count": 1,
+  "items": [
+    {
+      "evidence_path": "data/derived/source_downloads/download_attempts.jsonl",
+      "recommended_action": "Run the hardened source-download plan and review the acquisition attempts before promotion.",
+      "status": "partial",
+      "task_id": "final_source_downloads",
+      "title": "Run hardened curl/wget source download plan"
+    }
+  ],
+  "mutation_performed": false,
+  "network_io": false,
+  "schema_version": "source-health-acquisition-v1",
+  "status": "incomplete",
+  "task_ids": [
+    "final_source_downloads"
+  ]
+}

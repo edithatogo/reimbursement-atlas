@@ -459,3 +459,10 @@ schema, an `https://osf.io/` registration URL, a submission timestamp, `immutabl
 lowercase SHA-256 snapshot digest before a remote registration can be considered structurally
 valid. Focused OSF/CLI tests passed (`19 passed`); issue [#135](https://github.com/edithatogo/reimbursement-atlas/issues/135)
 still requires credentialed export and accountable human approval for any real registration.
+## 2026-07-16: Source acquisition health escalation
+
+The scheduled source-health workflow now reports partial, network-blocked and
+credential-blocked acquisition as a separate fail-open issue lifecycle. It excludes
+licence and human-review blockers, writes `source-health-acquisition-v1` evidence, and
+never performs network I/O or raw-cache mutation. See
+`conductor/sessions/2026-07-16-v60-source-health-escalation.md`.

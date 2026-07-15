@@ -1,0 +1,145 @@
+"""Generate an actionable report for incomplete source acquisition."""
+
+from __future__ import annotations
+
+import json
+from operator import itemgetter
+from pathlib import Path
+from typing import TypedDict, cast
+
+from reimburse_atlas.registry import project_root, read_jsonl, repo_relative
+
+
+class AcquisitionItem(TypedDict):
+    """A redacted source-acquisition handoff item."""
+
+    task_id: str
+    status: str
+    title: str
+    recommended_action: str
+    evidence_path: str
+
+
+def _recommended_action(status: str) -> str:
+    if status == "blocked_secret":
+        return (
+            "Provide the required credential through the approved secret store, "
+            "then rerun acquisition."
+        )
+    if status == "blocked_network":
+        return (
+            "Restore network access or run the documented acquisition command "
+            "from an approved network."
+        )
+    return (
+        "Run the hardened source-download plan and review the acquisition "
+        "attempts before promotion."
+    )
+
+
+def build_source_health_report(root: Path | None = None) -> dict[str, object]:
+    """Build a fail-open status report from the generated handoff task list."""
+    repo = root or project_root()
+    task_path = repo / "data" / "derived" / "final_handoff" / "final_handoff_tasks.jsonl"
+    if not task_path.exists():
+        return {
+            "schema_version": "source-health-acquisition-v1",
+            "status": "unknown",
+            "incomplete_count": 1,
+            "task_ids": ["final_handoff_missing"],
+            "items": [
+                {
+                    "task_id": "final_handoff_missing",
+                    "status": "unknown",
+                    "title": "Generated final handoff task list is missing",
+                    "recommended_action": (
+                        "Regenerate final handoff evidence before evaluating "
+                        "source acquisition health."
+                    ),
+                    "evidence_path": "data/derived/final_handoff/final_handoff_tasks.jsonl",
+                }
+            ],
+            "evidence_path": "data/derived/final_handoff/final_handoff_tasks.jsonl",
+            "network_io": False,
+            "mutation_performed": False,
+        }
+
+    incomplete_statuses = {"partial", "blocked_network", "blocked_secret"}
+    items: list[AcquisitionItem] = []
+    for task in read_jsonl(task_path):
+        if task.get("task_group") != "source_ingestion":
+            continue
+        status = str(task.get("status", ""))
+        if status not in incomplete_statuses:
+            continue
+        task_id = str(task.get("id", "unknown_source_task"))
+        items.append({
+            "task_id": task_id,
+            "status": status,
+            "title": str(task.get("title", task_id)),
+            "recommended_action": _recommended_action(status),
+            "evidence_path": str(
+                task.get("evidence_path", "data/derived/source_downloads/download_attempts.jsonl")
+            ),
+        })
+    items.sort(key=itemgetter("task_id"))
+    return {
+        "schema_version": "source-health-acquisition-v1",
+        "status": "incomplete" if items else "clear",
+        "incomplete_count": len(items),
+        "task_ids": [item["task_id"] for item in items],
+        "items": items,
+        "evidence_path": "data/derived/final_handoff/final_handoff_tasks.jsonl",
+        "network_io": False,
+        "mutation_performed": False,
+    }
+
+
+def _markdown(report: dict[str, object]) -> str:
+    """Render the status report for an issue body and human review."""
+    status = str(report["status"])
+    lines = [
+        "# Source acquisition status",
+        "",
+        f"- Status: `{status}`",
+        f"- Incomplete targets: `{report['incomplete_count']}`",
+        "- This report performs no network I/O and no source-cache mutation.",
+        "",
+    ]
+    items = cast("list[dict[str, object]]", report.get("items", []))
+    if items:
+        lines.extend(["## Actions", ""])
+        for item in items:
+            lines.extend([
+                f"- `{item['task_id']}` ({item['status']}): {item['title']}",
+                f"  Action: {item['recommended_action']}",
+                f"  Evidence: `{item['evidence_path']}`",
+            ])
+    else:
+        lines.append("No source-ingestion tasks currently require acquisition follow-up.")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def write_source_health_report(
+    report: dict[str, object], output_dir: Path | None = None
+) -> tuple[Path, Path]:
+    """Write JSON and Markdown source-health evidence."""
+    output = output_dir or project_root() / "data" / "derived" / "source_health"
+    output.mkdir(parents=True, exist_ok=True)
+    json_path = output / "acquisition_status.json"
+    markdown_path = output / "acquisition_status.md"
+    json_path.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    markdown_path.write_text(_markdown(report), encoding="utf-8")
+    return json_path, markdown_path
+
+
+def main() -> None:
+    """Generate source acquisition health evidence."""
+    report = build_source_health_report()
+    paths = write_source_health_report(report)
+    print(f"Wrote source health report: {', '.join(repo_relative(path) for path in paths)}")
+
+
+if __name__ == "__main__":
+    main()

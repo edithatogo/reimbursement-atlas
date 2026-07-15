@@ -48,9 +48,19 @@ remain enabled. If a trusted collaborator is added, enable the documented review
 2. Apply labels from `.github/labels.yml`.
 3. Auto-open parser issues when a source is promoted to first-wave.
 4. Generate a data-smoke issue if source URL checks fail.
-5. Publish permissive seed-data releases to Hugging Face datasets.
-6. Deploy the dashboard Space when graph seed files change on `main`.
-7. Fail pull requests that attempt to track ignored raw/local source-cache paths.
+5. Generate and maintain a source-acquisition issue when scheduled evidence reports
+   partial, network-blocked or credential-blocked acquisition targets. This is deliberately
+   separate from licence and human-review blockers, which require different decisions.
+6. Publish permissive seed-data releases to Hugging Face datasets.
+7. Deploy the dashboard Space when graph seed files change on `main`.
+8. Fail pull requests that attempt to track ignored raw/local source-cache paths.
+
+The scheduled source-health workflow writes the machine-readable
+`data/derived/source_health/acquisition_status.json` and the review-friendly Markdown
+report beside the validation, contract, drift and release-readiness evidence. It does not
+perform network I/O or mutate local source caches. The issue is fail-open: missing handoff
+evidence, partial acquisition, network blocks and credential blocks keep the issue open;
+the issue is closed automatically only when the generated status is `clear`.
 
 ## Security posture
 

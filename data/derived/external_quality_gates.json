@@ -8,7 +8,7 @@
       "notes": "Gate passed in the active runtime.",
       "outcome": "passed",
       "return_code": 0,
-      "stderr_excerpt": "WARNING: Cache entry deserialization failed, entry ignored WARNING: Cache entry deserialization failed, entry ignored WARNING: Cache entry deserialization failed, entry ignored No known vulnerabilities found",
+      "stderr_excerpt": "WARN Broken interpreter cache entry at <home>/.cache/uv/interpreter-v4/ac57ab614d7f56de/25c4c7b82fe7bcd1.msgpack, removing: wrong msgpack marker FixArray(3) WARNING: Cache entry deserialization failed, entry ignored WARNING: Cache entry deserialization failed, entry ignored WARNING: Cache entry deserialization failed, entry ignored No known vulnerabilities found",
       "stdout_excerpt": ""
     },
     {
@@ -52,8 +52,8 @@
       "notes": "Gate passed in the active runtime.",
       "outcome": "passed",
       "return_code": 0,
-      "stderr_excerpt": "WARN zizmor: zizmor is running in offline mode by default; some audits and auto-fixes will not be available. see https://docs.zizmor.sh/usage/#operating-modes for details",
-      "stdout_excerpt": "No findings to report. Good job! (2 ignored, 60 suppressed)"
+      "stderr_excerpt": "WARN Broken interpreter cache entry at <home>/.cache/uv/interpreter-v4/ac57ab614d7f56de/05bf88d33ca457f2.msgpack, removing: invalid type: boolean `true`, expected a sequence WARN Broken interpreter cache entry at <home>/.cache/uv/interpreter-v4/ac57ab614d7f56de/d49ccf3afe8e9392.msgpack, removing: invalid type: boolean `true`, expected a sequence WARN zizmor: zizmor is running in offline mode by default; some audits and auto-fixes will not be available. see https://docs.zizmor.sh/usage/#operating-modes for details",
+      "stdout_excerpt": "No findings to report. Good job! (2 ignored, 61 suppressed)"
     },
     {
       "command": "uv run python scripts/make_repo_automation_matrix.py",
@@ -63,8 +63,8 @@
       "notes": "Gate passed in the active runtime.",
       "outcome": "passed",
       "return_code": 0,
-      "stderr_excerpt": "",
-      "stdout_excerpt": "{ \"action_sha_pin_plan\": 0, \"automation_controls\": 20, \"summary\": { \"fail\": 0, \"not_applicable\": 0, \"pass\": 72, \"warn\": 0 }, \"workflow_policy_records\": 72, \"workflow_uses\": 94 }"
+      "stderr_excerpt": "WARN Broken interpreter cache entry at <home>/.cache/uv/interpreter-v4/ac57ab614d7f56de/25c4c7b82fe7bcd1.msgpack, removing: invalid type: boolean `true`, expected a sequence",
+      "stdout_excerpt": "{ \"action_sha_pin_plan\": 0, \"automation_controls\": 20, \"summary\": { \"fail\": 0, \"not_applicable\": 0, \"pass\": 72, \"warn\": 0 }, \"workflow_policy_records\": 72, \"workflow_uses\": 98 }"
     },
     {
       "command": "uv tool run --from mojo-compiler mojo --version",
@@ -74,7 +74,7 @@
       "notes": "Gate passed in the active runtime.",
       "outcome": "passed",
       "return_code": 0,
-      "stderr_excerpt": "",
+      "stderr_excerpt": "WARN Broken interpreter cache entry at <home>/.cache/uv/interpreter-v4/ac57ab614d7f56de/0b5d53d341ef936d.msgpack, removing: invalid type: boolean `true`, expected a sequence",
       "stdout_excerpt": "Mojo 0.26.2.0 (d627decc)"
     }
   ],
