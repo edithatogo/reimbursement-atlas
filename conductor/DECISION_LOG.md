@@ -197,3 +197,19 @@ approval decisions.
 
 Consequence: Generated final-handoff summaries now report zero missing-secret blockers;
 publication workflows remain fail-closed and no raw or restricted source data is uploaded.
+
+## 2026-07-16 — Redacted PBS multi-endpoint acquisition evidence
+
+Decision: Record local PBS API acquisition evidence as a separate metadata-only artefact rather
+than extending the source registry with a stale, schedule-specific raw endpoint.
+
+Rationale: The v3 API requires selecting a published monthly schedule before fetching item and
+fee pages. A static registry row can safely describe `/schedules`, but it cannot honestly encode
+the selected schedule, pagination, response schema and checksums of a later reviewed extract.
+The new validator records those facts without copying raw rows, leaking local paths or changing
+the fail-closed licence/research review boundary.
+
+Consequence: `data/derived/source_downloads/pbs_api_acquisition.*` is a citable acquisition
+observation for schedule `4706`, not an evidence-ready PBS dataset. The generated dashboard,
+publication manifest, data dictionary, research package and GitHub Project artefacts expose its
+review status and provenance.

@@ -1610,6 +1610,7 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
     from reimburse_atlas.contracts import (
         CoverageDecisionRecord,
         CrosswalkCandidate,
+        PbsApiAcquisitionRecord,
         ProvenanceRecord,
         ScheduleItemRecord,
         SourceSnapshotRecord,
@@ -1674,6 +1675,7 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         ProvenanceRecord,
         ScheduleItemRecord,
         SourceSnapshotRecord,
+        PbsApiAcquisitionRecord,
         CoverageDecisionRecord,
         CrosswalkCandidate,
         MappingEvidenceRecord,

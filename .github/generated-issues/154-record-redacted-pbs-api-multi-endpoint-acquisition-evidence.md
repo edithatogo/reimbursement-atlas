@@ -1,8 +1,8 @@
-# Add source/schema drift reporting to release readiness
+# Record redacted PBS API multi-endpoint acquisition evidence
 
-Epic: `TRACK_DATA_QUALITY_EVIDENCE` — Data quality, source validation and evidence readiness
+Epic: `LIVE-001` — Reviewed live-source validation
 
-Labels: type:roadmap-function, priority:must, interface:data_pipeline
+Labels: type:data-quality, type:provenance, type:parser, phase:hardening
 
 ## Background
 

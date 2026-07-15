@@ -243,3 +243,12 @@ download history.
 
 Do not convert any of these states to evidence-ready, policy-ready or publicly published
 without the corresponding human decision recorded in `docs/REVIEW_DECISIONS.md`.
+
+## 2026-07-16 — PBS multi-endpoint acquisition evidence
+
+The live PBS parser is now paired with a redacted acquisition-evidence validator for the
+official v3 `schedules`, `items` and `fees` responses. The July 2026 cache is locally observed
+for schedule `4706` with two item pages and one fees response; raw payloads remain ignored.
+Tracked evidence records only endpoint metadata, schema/row counts, sizes, checksums and the
+`acquired_unreviewed` state. Human field, licence and research review remain required before
+derived PBS rows can be published or used for policy claims.

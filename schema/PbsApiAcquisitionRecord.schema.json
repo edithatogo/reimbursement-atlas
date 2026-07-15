@@ -1,0 +1,165 @@
+{
+  "additionalProperties": false,
+  "description": "Redacted validation evidence for one PBS API endpoint response.",
+  "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "source_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source Id",
+      "type": "string"
+    },
+    "source_version_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source Version Id",
+      "type": "string"
+    },
+    "endpoint": {
+      "enum": [
+        "schedules",
+        "items",
+        "fees"
+      ],
+      "title": "Endpoint",
+      "type": "string"
+    },
+    "endpoint_url": {
+      "format": "uri",
+      "maxLength": 2083,
+      "minLength": 1,
+      "title": "Endpoint Url",
+      "type": "string"
+    },
+    "schedule_code": {
+      "minLength": 1,
+      "title": "Schedule Code",
+      "type": "string"
+    },
+    "effective_date": {
+      "format": "date",
+      "title": "Effective Date",
+      "type": "string"
+    },
+    "page_number": {
+      "minimum": 1,
+      "title": "Page Number",
+      "type": "integer"
+    },
+    "file_name": {
+      "minLength": 1,
+      "title": "File Name",
+      "type": "string"
+    },
+    "local_target_ref": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Local Target Ref"
+    },
+    "retrieved_at": {
+      "minLength": 1,
+      "title": "Retrieved At",
+      "type": "string"
+    },
+    "content_type": {
+      "minLength": 1,
+      "title": "Content Type",
+      "type": "string"
+    },
+    "record_count": {
+      "minimum": 0,
+      "title": "Record Count",
+      "type": "integer"
+    },
+    "byte_size": {
+      "minimum": 0,
+      "title": "Byte Size",
+      "type": "integer"
+    },
+    "checksum_sha256": {
+      "minLength": 1,
+      "title": "Checksum Sha256",
+      "type": "string"
+    },
+    "required_columns": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Required Columns",
+      "type": "array"
+    },
+    "observed_columns": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Observed Columns",
+      "type": "array"
+    },
+    "schema_status": {
+      "enum": [
+        "pass",
+        "fail"
+      ],
+      "title": "Schema Status",
+      "type": "string"
+    },
+    "invalid_row_count": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Invalid Row Count",
+      "type": "integer"
+    },
+    "cache_scope": {
+      "const": "local_raw_only",
+      "default": "local_raw_only",
+      "title": "Cache Scope",
+      "type": "string"
+    },
+    "review_status": {
+      "default": "acquired_unreviewed",
+      "enum": [
+        "acquired_unreviewed",
+        "reviewed"
+      ],
+      "title": "Review Status",
+      "type": "string"
+    },
+    "notes": {
+      "minLength": 1,
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "source_id",
+    "source_version_id",
+    "endpoint",
+    "endpoint_url",
+    "schedule_code",
+    "effective_date",
+    "page_number",
+    "file_name",
+    "retrieved_at",
+    "content_type",
+    "record_count",
+    "byte_size",
+    "checksum_sha256",
+    "schema_status",
+    "notes"
+  ],
+  "title": "PbsApiAcquisitionRecord",
+  "type": "object"
+}

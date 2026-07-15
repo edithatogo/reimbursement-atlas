@@ -13,6 +13,7 @@ from reimburse_atlas.source_contracts import (
 )
 from scripts.create_github_project_items import (
     IssueDraft,
+    deduplicate_issues,
     existing_issue_paths,
     render_issue,
 )
@@ -85,6 +86,14 @@ def test_generated_issue_renders_parent_subissue_link() -> None:
         )
     )
     assert "Parent issue: Public product, citation and dashboard maturity" in rendered
+
+
+def test_generated_issue_drafts_deduplicate_backlog_and_roadmap_rows() -> None:
+    issues = [
+        IssueDraft(epic_id="LIVE-001", epic_title="Live", title="Same title"),
+        IssueDraft(epic_id="TRACK", epic_title="Track", title="same title"),
+    ]
+    assert len(deduplicate_issues(issues)) == 1
 
 
 def test_generated_zenodo_issue_records_non_depositing_boundary() -> None:

@@ -176,6 +176,19 @@ before opening it in GitHub.
 """
 
 
+def deduplicate_issues(issues: list[IssueDraft]) -> list[IssueDraft]:
+    """Keep one generated draft when backlog and roadmap rows share a title."""
+    unique: list[IssueDraft] = []
+    seen_titles: set[str] = set()
+    for issue in issues:
+        key = issue.title.casefold()
+        if key in seen_titles:
+            continue
+        seen_titles.add(key)
+        unique.append(issue)
+    return unique
+
+
 def slug(value: str) -> str:
     """Create a filesystem-safe slug."""
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-") or "issue"
@@ -208,7 +221,7 @@ def main() -> None:
     backlog_issues = parse_backlog()
     parent_issue_titles = {issue.title for issue in backlog_issues}
     generated_issues = generated_track_issues(parent_issue_titles=parent_issue_titles)
-    all_issues = [*backlog_issues, *generated_issues]
+    all_issues = deduplicate_issues([*backlog_issues, *generated_issues])
     for issue in all_issues:
         issue_slug = slug(issue.title)
         existing_paths = stable_paths.get(issue_slug, [])

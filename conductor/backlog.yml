@@ -93,6 +93,8 @@ epics:
         labels: ["type:parser", "risk:licence", "phase:1-slice"]
       - title: Validate PBS API CSV parser against a reviewed monthly public extract
         labels: ["type:parser", "phase:1-slice", "type:medicines"]
+      - title: Record redacted PBS API multi-endpoint acquisition evidence
+        labels: ["type:data-quality", "type:provenance", "type:parser", "phase:hardening"]
       - title: Validate CMS ASP parser against July 2026 payment-limit files
         labels: ["type:parser", "phase:1-slice", "type:medicines"]
       - title: Validate CMS PFS parser against RVU26C with CPT descriptor safeguards

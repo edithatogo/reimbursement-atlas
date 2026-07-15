@@ -60,6 +60,7 @@ FILES = [
     Path("data/seed/runtime_targets.csv"),
     Path("data/derived/source_downloads/download_plans.csv"),
     Path("data/derived/source_downloads/download_attempts.csv"),
+    Path("data/derived/source_downloads/pbs_api_acquisition.csv"),
     Path("data/derived/source_validation/source_content_validation.csv"),
     Path("data/derived/source_contracts/source_contract_validation.csv"),
     Path("data/derived/github_project/github_project_items.csv"),
