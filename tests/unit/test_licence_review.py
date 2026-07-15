@@ -57,6 +57,7 @@ def test_queue_writes_checksum_bound_outputs(tmp_path: Path) -> None:
     assert payload["approval_mutation_allowed"] is False
     assert '"checksum_sha256": "' + "a" * 64 in paths[0].read_text(encoding="utf-8")
     assert "not an approval record" in paths[3].read_text(encoding="utf-8")
+    assert '"\n' not in paths[3].read_text(encoding="utf-8")
 
 
 def test_data_dictionary_marks_queue_internal(repo_root: Path) -> None:
