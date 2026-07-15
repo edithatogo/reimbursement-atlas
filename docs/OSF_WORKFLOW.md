@@ -40,4 +40,11 @@ flags. It does not create, update or publish any OSF node. Use the discovered pr
 to configure the repository `OSF_PROJECT_ID` variable only after confirming the project
 identity and protocol ownership.
 
+The workflow also supports a token-gated `provision=true` dispatch. It searches the
+authenticated account for the exact title `Reimbursement Atlas` and creates one private
+project only when no exact match exists. The seven-day artifact contains only the
+project ID, title, schema version and whether creation occurred. It does not configure
+repository variables or upload research files; configure `OSF_PROJECT_ID` separately
+only after checking the artifact and ownership.
+
 See `docs/reviews/SIMULATED_MULTI_AGENT_PROTOCOL_REVIEW_2026-07-11.md` for the advisory review and unresolved human gates.
