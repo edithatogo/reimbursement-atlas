@@ -305,7 +305,7 @@
       "name": "local_quality_gates",
       "parquet_path": "local_quality_gates/local_quality_gates.parquet",
       "rows": 27,
-      "sha256": "6dcf517ca076ca9a305536a05e261c9ee879da33d8d563d57dd18af46215c15f"
+      "sha256": "9deab8d96041276567a288a712d5e5c1471bd04f0a4ce7161ca9e027660952a3"
     },
     {
       "csv_path": "local_quality_gate_specs/local_quality_gate_specs.csv",
@@ -321,7 +321,7 @@
       "name": "architecture_import_edges",
       "parquet_path": "architecture_import_edges/architecture_import_edges.parquet",
       "rows": 204,
-      "sha256": "1d18c182dc00a102f7c69a0f1e5dce992bb1c0e0cd410e1e758cf3a64b5f6f97"
+      "sha256": "69e2a4ab76319525837cf9ec5b52576ae02629b4d03243db6a531bc59df8555b"
     },
     {
       "csv_path": "architecture_layer_policy/architecture_layer_policy.csv",

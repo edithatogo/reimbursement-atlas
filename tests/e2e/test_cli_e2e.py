@@ -49,7 +49,7 @@ def test_cli_osf_reconcile_is_dry_run_and_idempotent(tmp_path) -> None:  # type:
             "osf_path": "/protocols/example.md",
             "exists": True,
             "byte_size": 10,
-            "sha256": "abc",
+            "sha256": "a" * 64,
             "publish_allowed": True,
         })
         + "\n",
@@ -57,7 +57,13 @@ def test_cli_osf_reconcile_is_dry_run_and_idempotent(tmp_path) -> None:  # type:
     )
     remote = tmp_path / "remote.json"
     remote.write_text(
-        json.dumps([{"osf_path": "/protocols/example.md", "byte_size": 10, "sha256": "abc"}]),
+        json.dumps([
+            {
+                "osf_path": "/protocols/example.md",
+                "byte_size": 10,
+                "sha256": "a" * 64,
+            }
+        ]),
         encoding="utf-8",
     )
     output = tmp_path / "report.json"
@@ -86,7 +92,19 @@ def test_cli_osf_reconcile_is_dry_run_and_idempotent(tmp_path) -> None:  # type:
 def test_cli_osf_reconcile_rejects_invalid_remote_json(tmp_path) -> None:  # type: ignore[no-untyped-def]
     """Malformed remote snapshots should fail with a parameter error."""
     manifest = tmp_path / "sync_manifest.jsonl"
-    manifest.write_text('{"id": "protocol"}\n', encoding="utf-8")
+    manifest.write_text(
+        json.dumps({
+            "id": "protocol",
+            "local_path": "protocols/example.md",
+            "osf_path": "/protocols/example.md",
+            "exists": False,
+            "byte_size": 0,
+            "sha256": None,
+            "publish_allowed": False,
+        })
+        + "\n",
+        encoding="utf-8",
+    )
     remote = tmp_path / "remote.json"
     remote.write_text("not-json", encoding="utf-8")
 

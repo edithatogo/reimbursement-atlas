@@ -18,6 +18,13 @@ respect protocol/licence/data-quality gates, and require explicit approval for
 mutation and pruning. The current CI workflow remains fail-closed because no
 manifest row is publication-approved.
 
+Before planning, the CLI validates the local and exported remote snapshots. IDs
+and OSF paths must be unique, OSF paths must be normalized project-relative POSIX
+paths, local paths must be repository-relative without traversal, sizes must be
+non-negative integers and supplied checksums must be lowercase SHA-256 digests.
+Malformed snapshots fail before reconciliation, rather than allowing a duplicate
+path or ambiguous checksum to silently select a remote record.
+
 ## Local dry-run command
 
 The planner is exposed through the CLI so a credentialed adapter can be tested
