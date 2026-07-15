@@ -855,20 +855,20 @@
       "schema": {}
     },
     {
-      "bytes": 4616,
+      "bytes": 4095,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "json",
-      "hash": "e604e8752c33db56bb8d8607effa9a109d3873d08b5b20ac5cf2de2153819852",
+      "hash": "f071af6b8dcd130dec6624e1b38bd1b586cad9e64395fea6cdfc619334fb5d85",
       "mediatype": "application/json",
       "name": "external-quality-gates",
       "path": "data/derived/external_quality_gates.json",
       "schema": {}
     },
     {
-      "bytes": 3226,
+      "bytes": 2701,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "7bc2f32d0a8610bbca4173ddcf339d9dcbbe68a33c26923797f1ee2398c0034c",
+      "hash": "c640da7d401a251cdb4e7a39eaa5e002ca9dd97f7a84f0cb26906c47894e0abb",
       "mediatype": "text/csv",
       "name": "external-quality-gates",
       "path": "data/derived/external_quality_gates.csv",
@@ -1075,20 +1075,20 @@
       "schema": {}
     },
     {
-      "bytes": 17969,
+      "bytes": 17965,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "cbd419c609d4cb8705e4f5be18e0f084ee1f46811886194e49a4142493841895",
+      "hash": "f8c86f50ec629368acc38af579d6552d448e38a311403b604def06ef771b2887",
       "mediatype": "application/json",
       "name": "local-quality-gates",
       "path": "data/derived/local_quality_gates/local_quality_gates.jsonl",
       "schema": {}
     },
     {
-      "bytes": 13070,
+      "bytes": 13066,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "056ec0346e626e7b18ed86c57054a992599e08c21831f18a3df21a31b255b3e4",
+      "hash": "c0d7652dc835ce3f57d1be275b075a36fdf0e013673a3d601b8a9d768d130d01",
       "mediatype": "text/csv",
       "name": "local-quality-gates",
       "path": "data/derived/local_quality_gates/local_quality_gates.csv",

@@ -466,3 +466,9 @@ credential-blocked acquisition as a separate fail-open issue lifecycle. It exclu
 licence and human-review blockers, writes `source-health-acquisition-v1` evidence, and
 never performs network I/O or raw-cache mutation. See
 `conductor/sessions/2026-07-16-v60-source-health-escalation.md`.
+## 2026-07-16: Public source-health observability
+
+The public status manifest and dashboard automation view now expose the deterministic
+source-acquisition health report. Acquisition follow-up is visible separately from
+licence, evidence, research-publication and OSF gates; the dashboard still does not
+claim evidence or publication readiness from software readiness.

@@ -1,0 +1,2 @@
+evidence_path,recommended_action,status,task_id,title
+data/derived/source_downloads/download_attempts.jsonl,Run the hardened source-download plan and review the acquisition attempts before promotion.,partial,final_source_downloads,Run hardened curl/wget source download plan

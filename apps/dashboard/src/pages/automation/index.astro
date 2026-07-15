@@ -78,4 +78,9 @@ import Layout from "../../components/Layout.astro";
     fileName="final_handoff_tasks.csv"
     columns={["task_group", "title", "status", "required_environment", "command", "recommended_action"]}
   />
+  <DataTable
+    title="Source acquisition health"
+    fileName="acquisition_status.csv"
+    columns={["task_id", "status", "title", "recommended_action", "evidence_path"]}
+  />
 </Layout>
