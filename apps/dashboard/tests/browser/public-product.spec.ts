@@ -1,3 +1,4 @@
+import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 const routes = [
@@ -26,6 +27,9 @@ for (const route of routes) {
     await expect(page.locator("html[lang]")).toHaveCount(1);
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page).toHaveTitle(/Reimbursement Atlas/);
+
+    const accessibilityScan = await new AxeBuilder({ page }).analyze();
+    expect(accessibilityScan.violations).toEqual([]);
 
     const screenshot = await page.screenshot({ fullPage: true, scale: "css" });
     expect(screenshot.byteLength).toBeGreaterThan(1_000);

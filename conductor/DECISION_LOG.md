@@ -291,3 +291,15 @@ restores consistency without changing the self-reference exclusion or any public
 
 Consequence: The descriptor replay is now byte-identical across consecutive runs, and the change
 remains within `track_data_packaging_standards`.
+
+## 2026-07-16 — Automated dashboard accessibility scan
+
+Decision: Add axe-core accessibility analysis to the existing desktop/mobile Playwright route
+matrix, while retaining human accessibility and cross-platform visual review as release gates.
+
+Rationale: Route metadata and responsive smoke checks did not exercise WCAG rule coverage. An
+automated axe-core scan provides repeatable violation detection across all public routes and both
+supported layout profiles without claiming that automated checks replace human review.
+
+Consequence: All 18 route/profile tests pass with zero axe-core violations. Issue #188 remains open
+for human accessibility sign-off and reviewed visual baselines.

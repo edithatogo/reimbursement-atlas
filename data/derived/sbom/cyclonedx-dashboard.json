@@ -402,6 +402,26 @@
       "version": "0.2.4"
     },
     {
+      "bom-ref": "pkg:npm/@axe-core/playwright@4.12.1",
+      "licenses": [
+        {
+          "license": {
+            "name": "MPL-2.0"
+          }
+        }
+      ],
+      "name": "@axe-core/playwright",
+      "properties": [
+        {
+          "name": "npm:integrity",
+          "value": "sha512-rMd7xriptqKpP+w5265i4Hdkv2X5kbu6uiBi/B2I7uf3hieRBM3qDCfaKPtxfiYb2mKXfF+yLODJwIx+Jv1GDw=="
+        }
+      ],
+      "purl": "pkg:npm/@axe-core/playwright@4.12.1",
+      "type": "library",
+      "version": "4.12.1"
+    },
+    {
       "bom-ref": "pkg:npm/@babel/code-frame@7.29.7",
       "licenses": [
         {
@@ -4475,6 +4495,26 @@
       "purl": "pkg:npm/astro/node_modules/semver@7.8.5",
       "type": "library",
       "version": "7.8.5"
+    },
+    {
+      "bom-ref": "pkg:npm/axe-core@4.12.1",
+      "licenses": [
+        {
+          "license": {
+            "name": "MPL-2.0"
+          }
+        }
+      ],
+      "name": "axe-core",
+      "properties": [
+        {
+          "name": "npm:integrity",
+          "value": "sha512-s7iGf5GaVMxEG0ENN9x+xTr7GFZCb1ZP/1uATUpCEK2X78nDB3RwbtFCo9pGAf9ru+VwoQ464DkaLEeRM08wJA=="
+        }
+      ],
+      "purl": "pkg:npm/axe-core@4.12.1",
+      "type": "library",
+      "version": "4.12.1"
     },
     {
       "bom-ref": "pkg:npm/axobject-query@4.1.0",
