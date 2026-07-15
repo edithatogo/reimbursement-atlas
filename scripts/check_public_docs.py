@@ -16,6 +16,7 @@ REQUIRED_README_MARKERS = (
     "apps/dashboard/public/status.json",
     "evidence-ready",
     "human research review",
+    "docs/RELEASE_VERIFICATION.md",
 )
 PUBLIC_URL_MARKERS = (
     "https://github.com/edithatogo/reimbursement-atlas",

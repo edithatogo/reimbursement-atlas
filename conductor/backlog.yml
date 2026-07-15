@@ -166,6 +166,10 @@ epics:
         labels: ["type:security", "phase:hardening"]
       - title: Maintain structured issue forms for source, analysis and quality work
         labels: ["type:repo-automation", "phase:hardening"]
+      - title: Add consumer release-attestation verification guide
+        labels: ["type:security", "type:release", "phase:hardening"]
+      - title: Schedule source-health and source-drift monitoring with issue escalation
+        labels: ["type:data-quality", "type:automation", "phase:hardening"]
 
   - id: OSF-002
     title: Protocol completeness and OSF release gates
