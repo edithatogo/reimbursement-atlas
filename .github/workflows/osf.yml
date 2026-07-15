@@ -9,6 +9,12 @@ on:
         default: "false"
         type: choice
         options: ["false", "true"]
+      discover:
+        description: "List accessible OSF projects into a private workflow artifact"
+        required: true
+        default: "false"
+        type: choice
+        options: ["false", "true"]
 
 permissions:
   contents: read
@@ -18,6 +24,40 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  osf-discovery:
+    if: ${{ github.event.inputs.discover == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version: "1.26.5"
+          cache: false
+      - name: Install pinned OSF CLI
+        run: |
+          set -euo pipefail
+          go install github.com/edithatogo/osf-cli-go/cmd/osf@v1.0.0-rc.1
+          go version -m "$(go env GOPATH)/bin/osf" | grep -F $'mod\tgithub.com/edithatogo/osf-cli-go\tv1.0.0-rc.1'
+      - name: List accessible projects without exposing credentials
+        env:
+          OSF_TOKEN: ${{ secrets.OSF_TOKEN }}
+        run: |
+          set -euo pipefail
+          test -n "$OSF_TOKEN"
+          mkdir -p osf-discovery
+          "$(go env GOPATH)/bin/osf" projects list --output json > osf-discovery/projects.json
+          jq '{schema_version:"osf-project-discovery-v1", projects:[.[] | {id,title,description,public}]}' \
+            osf-discovery/projects.json > osf-discovery/projects-sanitized.json
+          rm osf-discovery/projects.json
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: osf-project-discovery
+          path: osf-discovery/projects-sanitized.json
+          retention-days: 7
+
   osf-plan:
     runs-on: ubuntu-latest
     timeout-minutes: 20
