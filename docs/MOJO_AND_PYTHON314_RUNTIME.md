@@ -18,3 +18,8 @@ bottleneck; it does not replace the auditable Python parser by default.
 `mojo/fuzzy_join.mojo` adds a bounded whitespace-token Jaccard prefilter
 prototype. Its output is a candidate score only and remains subject to the
 Python evidence pipeline, negative controls, and human adjudication.
+
+`data/derived/mojo/mojo_parity_report.json` records the Python reference contract,
+the bounded parity workload and the official Mojo smoke result. A missing Mojo
+runtime is recorded as an environment blocker; it cannot promote or invalidate
+the evidence-readiness status of the data product.

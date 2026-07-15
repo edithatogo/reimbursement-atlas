@@ -1,11 +1,11 @@
 action,is_official_github_action,line,pin_class,policy_note,policy_status,ref,uses,workflow
 actions/checkout,True,17,sha,Action is pinned to a full commit SHA.,pass,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,.github/workflows/ci.yml
 prefix-dev/setup-pixi,False,20,sha,Action is pinned to a full commit SHA.,pass,a09b6247153796b190642a2b53fac4241043cf6f,prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f,.github/workflows/ci.yml
-actions/checkout,True,55,sha,Action is pinned to a full commit SHA.,pass,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,.github/workflows/ci.yml
-actions/setup-node,True,58,sha,Action is pinned to a full commit SHA.,pass,48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,.github/workflows/ci.yml
-actions/checkout,True,80,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/ci.yml
-actions/setup-python,True,83,sha,Action is pinned to a full commit SHA.,pass,42375524e23c412d93fb67b49958b491fce71c38,actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38,.github/workflows/ci.yml
-astral-sh/setup-uv,False,86,sha,Action is pinned to a full commit SHA.,pass,fac544c07dec837d0ccb6301d7b5580bf5edae39,astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39,.github/workflows/ci.yml
+actions/checkout,True,59,sha,Action is pinned to a full commit SHA.,pass,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,.github/workflows/ci.yml
+actions/setup-node,True,62,sha,Action is pinned to a full commit SHA.,pass,48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,.github/workflows/ci.yml
+actions/checkout,True,84,sha,Action is pinned to a full commit SHA.,pass,df4cb1c069e1874edd31b4311f1884172cec0e10,actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10,.github/workflows/ci.yml
+actions/setup-python,True,87,sha,Action is pinned to a full commit SHA.,pass,42375524e23c412d93fb67b49958b491fce71c38,actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38,.github/workflows/ci.yml
+astral-sh/setup-uv,False,90,sha,Action is pinned to a full commit SHA.,pass,fac544c07dec837d0ccb6301d7b5580bf5edae39,astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39,.github/workflows/ci.yml
 actions/checkout,True,20,sha,Action is pinned to a full commit SHA.,pass,9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0,.github/workflows/dashboard-preview.yml
 actions/setup-node,True,23,sha,Action is pinned to a full commit SHA.,pass,48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e,.github/workflows/dashboard-preview.yml
 prefix-dev/setup-pixi,False,28,sha,Action is pinned to a full commit SHA.,pass,a09b6247153796b190642a2b53fac4241043cf6f,prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f,.github/workflows/dashboard-preview.yml

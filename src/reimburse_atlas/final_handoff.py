@@ -139,6 +139,23 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             ),
         ),
         FinalHandoffTaskRecord(
+            id="final_mapping_calibration_review",
+            task_group="mappings",
+            title="Adjudicate mapping gold standards and negative controls",
+            status="blocked_review",
+            required_environment="Human domain review of the synthetic mapping calibration cases.",
+            command="pixi run mapping-calibration",
+            evidence_path="data/derived/vertical_slice/mapping_calibration_gate.json",
+            unblock_condition=(
+                "Reviewer confirms the positive/negative control outcomes and approves the "
+                "mapping threshold for the intended research question."
+            ),
+            recommended_action=(
+                "Do not use the current calibration precision/specificity as evidence-grade "
+                "performance; resolve the two triggered negative controls first."
+            ),
+        ),
+        FinalHandoffTaskRecord(
             id="final_release_candidate",
             task_group="release",
             title="Generate final release-readiness report and public archive",

@@ -1,0 +1,21 @@
+{
+  "benchmark_contract": {
+    "fixed_width_cases": 2,
+    "fuzzy_prefilter_cases": 2,
+    "status": "pass"
+  },
+  "mojo_smoke": {
+    "status": "pass",
+    "stdout": [
+      "3",
+      "0.6666666666666666"
+    ]
+  },
+  "notes": [
+    "Python remains the auditable reference implementation.",
+    "Mojo smoke availability is environment-dependent and does not alter evidence readiness."
+  ],
+  "publication_safe": true,
+  "python_reference_status": "pass",
+  "schema_version": "mojo-parity-v1"
+}
