@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from operator import itemgetter
 from pathlib import Path
 from typing import TypedDict, cast
@@ -19,6 +20,10 @@ class AcquisitionItem(TypedDict):
     title: str
     recommended_action: str
     evidence_path: str
+    credential_names: list[str]
+
+
+_MISSING_CREDENTIAL_RE = re.compile(r"Required credential is absent:\s*([A-Z][A-Z0-9_]*)")
 
 
 def _recommended_action(status: str) -> str:
@@ -36,6 +41,25 @@ def _recommended_action(status: str) -> str:
         "Run the hardened source-download plan and review the acquisition "
         "attempts before promotion."
     )
+
+
+def _missing_credentials(repo: Path, evidence_path: str) -> list[str]:
+    """Extract missing secret names from redacted acquisition evidence."""
+    attempts_path = repo / evidence_path
+    if not attempts_path.is_file():
+        return []
+    names: set[str] = set()
+    for line in attempts_path.read_text(encoding="utf-8").splitlines():
+        try:
+            record = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if record.get("status") != "blocked_secret":
+            continue
+        match = _MISSING_CREDENTIAL_RE.search(str(record.get("error_summary", "")))
+        if match:
+            names.add(match.group(1))
+    return sorted(names)
 
 
 def build_source_health_report(root: Path | None = None) -> dict[str, object]:
@@ -74,14 +98,23 @@ def build_source_health_report(root: Path | None = None) -> dict[str, object]:
         if status not in incomplete_statuses:
             continue
         task_id = str(task.get("id", "unknown_source_task"))
+        evidence_path = str(
+            task.get("evidence_path", "data/derived/source_downloads/download_attempts.jsonl")
+        )
+        credential_names = _missing_credentials(repo, evidence_path)
+        recommended_action = _recommended_action(status)
+        if credential_names:
+            recommended_action = (
+                f"Provide {', '.join(f'`{name}`' for name in credential_names)} through the "
+                "approved secret store, then rerun acquisition."
+            )
         items.append({
             "task_id": task_id,
             "status": status,
             "title": str(task.get("title", task_id)),
-            "recommended_action": _recommended_action(status),
-            "evidence_path": str(
-                task.get("evidence_path", "data/derived/source_downloads/download_attempts.jsonl")
-            ),
+            "recommended_action": recommended_action,
+            "evidence_path": evidence_path,
+            "credential_names": credential_names,
         })
     items.sort(key=itemgetter("task_id"))
     return {
@@ -142,6 +175,9 @@ def write_source_health_report(
                 "title": str(item.get("title", "")),
                 "recommended_action": str(item.get("recommended_action", "")),
                 "evidence_path": str(item.get("evidence_path", "")),
+                "credential_names": ",".join(
+                    str(name) for name in cast("list[object]", item.get("credential_names", []))
+                ),
             }
             for item in items
         ],

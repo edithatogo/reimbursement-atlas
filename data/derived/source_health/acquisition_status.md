@@ -7,5 +7,5 @@
 ## Actions
 
 - `final_source_downloads` (partial): Run hardened curl/wget source download plan
-  Action: Run the hardened source-download plan and review the acquisition attempts before promotion.
+  Action: Provide `PBS_API_SUBSCRIPTION_KEY` through the approved secret store, then rerun acquisition.
   Evidence: `data/derived/source_downloads/download_attempts.jsonl`
