@@ -87,6 +87,19 @@ def test_generated_issue_renders_parent_subissue_link() -> None:
     assert "Parent issue: Public product, citation and dashboard maturity" in rendered
 
 
+def test_generated_zenodo_issue_records_non_depositing_boundary() -> None:
+    """The generated Zenodo issue separates preparation from human approval."""
+    rendered = render_issue(
+        IssueDraft(
+            epic_id="TRACK_DATA_PACKAGING_STANDARDS",
+            epic_title="Research-data packaging standards",
+            title="Create signed release and Zenodo DOI after publication approval",
+        )
+    )
+    assert "do not deposit or mint a DOI" in rendered
+    assert "accountable human reviewer" in rendered
+
+
 def test_generated_issue_paths_preserve_existing_numeric_prefixes(tmp_path: Path) -> None:
     existing = tmp_path / "042-keep-this-title.md"
     existing.write_text("old draft\n", encoding="utf-8")

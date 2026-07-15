@@ -1,0 +1,24 @@
+{
+  "title": "Reimbursement Atlas Conductor",
+  "upload_type": "software",
+  "description": "Reproducible, licence-aware tooling for comparing public reimbursement schedules, coverage decisions and policy-analysis metadata across jurisdictions. This record is release metadata preparation only; no Zenodo deposition or DOI is implied.",
+  "creators": [
+    {
+      "name": "Dylan and collaborators"
+    }
+  ],
+  "keywords": [
+    "health economics",
+    "reimbursement",
+    "public data",
+    "reproducible research"
+  ],
+  "license": "Apache-2.0",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/edithatogo/reimbursement-atlas",
+      "relation": "isIdenticalTo",
+      "resource_type": "software"
+    }
+  ]
+}

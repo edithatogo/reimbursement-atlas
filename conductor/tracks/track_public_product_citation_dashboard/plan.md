@@ -30,3 +30,5 @@
 - [x] Regenerate Conductor issue/project/dashboard artefacts after the full dashboard slice.
 - [x] Record external blockers in final handoff and release-readiness outputs; external HF/OSF
   publication and human licence/research review remain fail-closed.
+- [x] Prepare and validate non-depositing `.zenodo.json` metadata; DOI creation remains gated on
+  publication approval.

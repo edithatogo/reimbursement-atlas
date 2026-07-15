@@ -360,7 +360,7 @@ PYTHONPATH=src uv run reimbursement-atlas sbom
 PYTHONPATH=src uv run python scripts/run_external_quality_gates.py
 ```
 
-The release workflow now includes GitHub artifact attestation hooks for Python distributions, source archives and generated SBOMs. The remaining deliberate workflow-security warning is that most GitHub Actions references are tag-pinned rather than commit-SHA pinned; `data/derived/repo_automation/action_sha_pin_plan.csv` is the generated migration queue.
+The release workflow includes GitHub artifact attestation hooks for Python distributions, source archives and generated SBOMs. All workflow action references are currently pinned to full commit SHAs; `data/derived/repo_automation/action_sha_pin_plan.csv` is retained as a deterministic drift check and currently contains no unresolved migrations. Publication and evidence gates remain separate from software-release provenance.
 
 
 ## v13 architecture and release-readiness layer
@@ -376,7 +376,10 @@ PYTHONPATH=src reimbursement-atlas release-readiness --allow-blockers
 
 Architecture checks scan internal `reimburse_atlas` imports, enforce the `foundation -> parsing -> analysis -> orchestration -> interface` boundary model and report import cycles. Release readiness consolidates local quality gates, external quality-gate classification, workflow policy, SBOMs, dashboard build, public-data policy and publication manifests.
 
-Current sandbox status: local quality gates and architecture checks pass; public release remains blocked until `pip-audit --strict` can complete in a network-enabled environment and GitHub Action SHA pinning is resolved.
+Current status: local quality, architecture, public-data, workflow-policy, SBOM and action-pinning checks pass. The software repository is release-ready. Evidence publication, OSF registration, Hugging Face publication, Zenodo DOI creation and policy claims remain fail-closed pending source/licence review, protocol approval and accountable human sign-off.
+
+Zenodo metadata preparation is validated locally with `pixi run zenodo-metadata`; this does not
+create a Zenodo record or DOI. See [`docs/ZENODO_RELEASE_PREPARATION.md`](docs/ZENODO_RELEASE_PREPARATION.md).
 
 ## v14 roadmap, OSF, Hugging Face, Mojo and acquisition layer
 

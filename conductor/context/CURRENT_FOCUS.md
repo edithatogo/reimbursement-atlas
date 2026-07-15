@@ -50,7 +50,7 @@ Immediate next step: manually download the July 2026 MBS item-map and descriptor
 
 ## 2026-07-04 v11 current focus
 
-The current focus is CI/CD and supply-chain hardening before first live-source ingestion. The repo now emits workflow policy, automation-control, action SHA-pinning and SBOM artefacts. The next network-enabled step is to resolve all tag-pinned GitHub Actions references in `data/derived/repo_automation/action_sha_pin_plan.csv` to full commit SHAs, then make zizmor blocking instead of advisory.
+The current focus is evidence-grade transition and release handoff. Workflow policy, automation-control, action SHA-pinning, SBOM, CodeQL, secret-history and zizmor gates are green. The next work is to validate reviewed live-source bundles, complete accountable licence/domain/methods review, and preserve consumer-side attestation verification without weakening publication gates.
 
 
 ## 2026-07-04 v13 current focus
@@ -134,7 +134,7 @@ main release path.
 
 Action references are SHA-pinned, `zizmor` medium findings are blocking, strict branch protection requires 20 quality/security/harness checks, and full-history secret scanning plus reproducible-build verification pass. The continuous-security and harness-engineering tracks are complete. CI/CD remains open only for consumer-side attestation verification and continuing canary maintenance.
 
-`osf-cli-go` is pinned at `v1.0.0-rc.1` for automation and verified through Go module provenance. OSF sync manifests are checksum-bearing and fail closed. Remote OSF mutation, registration and public release remain blocked by human methods, domain, licence and governance review and by the absence of manifest-native remote path reconciliation.
+`osf-cli-go` is pinned at stable `v1.0.0` for automation and verified through Go module provenance. OSF sync manifests are checksum-bearing and fail closed. Remote OSF mutation, registration and public release remain blocked by human methods, domain, licence and governance review and by the absence of manifest-native remote path reconciliation.
 
 Immediate focus:
 
