@@ -77,6 +77,7 @@ jobs:
             data/derived/source_validation/
             data/derived/source_contracts/
             data/derived/source_drift/
+            data/derived/source_downloads/
             data/derived/release_readiness/
             data/derived/final_handoff/
             data/derived/source_health/

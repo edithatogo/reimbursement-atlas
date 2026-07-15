@@ -14,7 +14,8 @@ credential boundaries.
 - Injected `PBS_API_SUBSCRIPTION_KEY` only from the GitHub Actions secret store.
 - Kept raw downloads on the ephemeral runner and excluded `data/raw_live/` from uploaded paths.
 - Retained derived acquisition attempts, source validation, contracts, drift and readiness
-  evidence as the reviewable output.
+  evidence as the reviewable output. The first live run exposed a missing artifact path for
+  acquisition attempts; that path is now included explicitly.
 - Kept the issue lifecycle fail-open: partial, network-blocked and credential-blocked
   acquisition remains visible rather than failing as a false source-health success.
 
