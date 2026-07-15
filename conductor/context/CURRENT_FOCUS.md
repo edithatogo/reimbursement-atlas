@@ -329,6 +329,14 @@ passed build, deployment and live smoke against the canonical project URL, inclu
 prefix, favicon, status manifest, graph CSV and same-origin reference checks. This proves the
 deployment contract without changing the separate human visual/accessibility review gate.
 
+## 2026-07-16 — Dashboard review artifact verified
+
+Pages run `29445732834` passed build, browser smoke, deployment and live smoke. Its retained
+artifact `dashboard-review-evidence-29445732834` is non-expired and contains the Playwright HTML
+report plus 18 desktop/mobile route screenshots and attached performance/axe evidence. Issue [#188](https://github.com/edithatogo/reimbursement-atlas/issues/188)
+was updated with the artifact reference; human cross-platform visual and accessibility approval
+remains open.
+
 ## 2026-07-16 — Token-gated publication dry validation
 
 Main OSF workflow run `29444356493` passed read-only project discovery with the configured token,
