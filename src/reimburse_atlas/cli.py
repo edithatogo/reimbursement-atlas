@@ -50,7 +50,12 @@ from reimburse_atlas.local_quality import (
     write_quality_gate_run,
 )
 from reimburse_atlas.osf_registration import check_registration_drift
-from reimburse_atlas.osf_sync import OsfRemoteRecord, reconcile_osf_manifest
+from reimburse_atlas.osf_sync import (
+    OsfRemoteRecord,
+    reconcile_osf_manifest,
+    validate_osf_manifest_rows,
+    validate_osf_remote_rows,
+)
 from reimburse_atlas.parsers import (
     parse_cms_asp_csv,
     parse_cms_clfs_csv,
@@ -1207,6 +1212,9 @@ def _load_osf_manifest_rows(path: Path) -> list[dict[str, object]]:
             message = f"manifest row on line {line_number} must be a JSON object"
             raise typer.BadParameter(message, param_hint="manifest_path")
         rows.append(cast("dict[str, object]", row))
+    errors = validate_osf_manifest_rows(rows)
+    if errors:
+        raise typer.BadParameter("; ".join(errors), param_hint="manifest_path")
     return rows
 
 
@@ -1234,7 +1242,11 @@ def _load_osf_remote_rows(path: Path | None) -> list[OsfRemoteRecord]:
         row = cast("dict[str, object]", raw_row)
         osf_path = row.get("osf_path")
         byte_size = row.get("byte_size")
-        if not isinstance(osf_path, str) or not isinstance(byte_size, int):
+        if (
+            not isinstance(osf_path, str)
+            or not isinstance(byte_size, int)
+            or isinstance(byte_size, bool)
+        ):
             message = f"remote state row {row_number} requires osf_path and integer byte_size"
             raise typer.BadParameter(message, param_hint="remote_state_path")
         sha256 = row.get("sha256")
@@ -1246,6 +1258,9 @@ def _load_osf_remote_rows(path: Path | None) -> list[OsfRemoteRecord]:
                 managed_by_manifest=bool(row.get("managed_by_manifest")),
             )
         )
+    errors = validate_osf_remote_rows(remote_rows)
+    if errors:
+        raise typer.BadParameter("; ".join(errors), param_hint="remote_state_path")
     return remote_rows
 
 

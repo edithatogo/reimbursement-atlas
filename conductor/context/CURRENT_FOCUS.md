@@ -443,3 +443,11 @@ Hugging Face workflow run `29454414526` passed on the current `main` tip with
 `publish_dataset=false` and `publish_space=false`. Publication manifests regenerated, the
 dashboard build passed and the candidate bundle validator passed; both remote publication jobs
 were skipped. No dataset or Space mutation was attempted.
+
+## 2026-07-16 — OSF reconciliation input hardening
+
+The repository-owned OSF reconciliation boundary now rejects duplicate IDs and paths, path
+traversal, absolute local paths, negative sizes and malformed SHA-256 values before planning any
+action. Focused unit and CLI end-to-end coverage passed (`18 passed`); this closes the local
+input-safety portion of issue [#134](https://github.com/edithatogo/reimbursement-atlas/issues/134).
+Credentialed remote mutation and human publication approval remain intentionally blocked.

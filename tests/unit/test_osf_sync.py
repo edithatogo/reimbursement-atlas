@@ -6,7 +6,12 @@ from reimburse_atlas.osf_registration import (
     build_registration_review_packet,
     check_registration_drift,
 )
-from reimburse_atlas.osf_sync import OsfRemoteRecord, reconcile_osf_manifest
+from reimburse_atlas.osf_sync import (
+    OsfRemoteRecord,
+    reconcile_osf_manifest,
+    validate_osf_manifest_rows,
+    validate_osf_remote_rows,
+)
 
 
 def _row(**overrides: object) -> dict[str, object]:
@@ -63,6 +68,26 @@ def test_reconciliation_prunes_only_managed_remote_rows() -> None:
         ("delete", "/old-managed"),
         ("create", "/protocols/example.md"),
     ]
+
+
+def test_manifest_validation_rejects_duplicates_traversal_and_bad_digest() -> None:
+    errors = validate_osf_manifest_rows([
+        _row(local_path="../secret", sha256="not-a-digest"),
+        _row(id="duplicate", osf_path="/protocols/example.md"),
+    ])
+    assert "row 1: unsafe or invalid local_path" in errors
+    assert "row 1: sha256 must be a lowercase SHA-256 digest" in errors
+    assert "row 2: duplicate osf_path '/protocols/example.md'" in errors
+
+
+def test_remote_validation_rejects_duplicate_and_unsafe_paths() -> None:
+    errors = validate_osf_remote_rows([
+        OsfRemoteRecord("/safe.md", "a" * 64, 1),
+        OsfRemoteRecord("/safe.md", "a" * 64, 1),
+        OsfRemoteRecord("/../escape", "a" * 64, 1),
+    ])
+    assert "row 2: duplicate osf_path '/safe.md'" in errors
+    assert "row 3: unsafe or invalid osf_path" in errors
 
 
 def _freeze(**overrides: object) -> dict[str, object]:
