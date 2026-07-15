@@ -841,24 +841,6 @@
     },
     {
       "@type": "dcat:Distribution",
-      "dcat:downloadURL": "data/derived/research_package/datapackage.json",
-      "dct:format": "json",
-      "dct:title": "datapackage"
-    },
-    {
-      "@type": "dcat:Distribution",
-      "dcat:downloadURL": "data/derived/research_package/ro-crate-metadata.json",
-      "dct:format": "json",
-      "dct:title": "ro-crate-metadata"
-    },
-    {
-      "@type": "dcat:Distribution",
-      "dcat:downloadURL": "data/derived/research_package/dcat.jsonld",
-      "dct:format": "jsonld",
-      "dct:title": "dcat"
-    },
-    {
-      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/v14_validation_run.json",
       "dct:format": "json",
       "dct:title": "v14_validation_run"

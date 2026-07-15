@@ -128,6 +128,7 @@ api,,,,,,,,,dataset:ds_world_bank_wdi_health,,,dataset_candidate,World Bank WDI 
 ,,,,,,,,,function:func_readme_current_state,github_action,,roadmap_function,current-state README,,,,,,,,,must,,implemented,,,
 ,,,,,,,,,function:func_release_attestation_verify,github_action,,roadmap_function,attestation verification,,,,,,,,,should,,prototype,,,
 ,,,,,,,,,function:func_research_linkage_matrix,data_pipeline,,roadmap_function,research linkage matrix,,,,,,,,,should,,implemented,,,
+,,,,,,,,,function:func_research_package_determinism,data_pipeline,,roadmap_function,deterministic research package,,,,,,,,,must,,implemented,,,
 ,,,,,,,,,function:func_ro_crate,data_pipeline,,roadmap_function,RO-Crate metadata,,,,,,,,,should,,implemented,,,
 ,,,,,,,,,function:func_source_content_validation,data_pipeline,,roadmap_function,source content validation,,,,,,,,,must,,implemented,,,
 ,,,,,,,,,function:func_source_diff,data_pipeline,,roadmap_function,source diff,,,,,,,,,should,,implemented,,,

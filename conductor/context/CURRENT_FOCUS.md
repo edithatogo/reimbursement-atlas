@@ -259,3 +259,10 @@ The OSF workflow now pins stable `osf-cli-go v1.0.0` and runs an unauthenticated
 for version, export, validation, storage and registration command surfaces. This verifies tool
 compatibility without reading tokens or performing network mutation. The OSF manifest, protocol,
 licence and human-review gates remain unchanged and fail closed.
+
+## 2026-07-16 — deterministic research packaging
+
+Research-package descriptors now exclude themselves from the publication manifest so repeated
+generation is byte-stable. The focused regression test and the three-descriptor checksum
+replay gate pass. The generated issue/project rows and roadmap function for this hardening are
+tracked under `track_data_packaging_standards`; no publication or licence gate was weakened.

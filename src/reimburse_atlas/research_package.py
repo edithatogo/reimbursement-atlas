@@ -3,10 +3,27 @@
 from __future__ import annotations
 
 import json
+from dataclasses import replace
 from pathlib import Path
 from typing import Any
 
 from reimburse_atlas.publication import PublicationManifest, build_publication_manifest
+
+DESCRIPTOR_PATHS = frozenset({
+    "data/derived/research_package/datapackage.json",
+    "data/derived/research_package/ro-crate-metadata.json",
+    "data/derived/research_package/dcat.jsonld",
+})
+
+
+def _descriptor_safe_manifest(manifest: PublicationManifest) -> PublicationManifest:
+    """Exclude package descriptors so their hashes cannot become self-referential."""
+    artifacts = tuple(
+        artifact
+        for artifact in manifest.artifacts
+        if artifact.relative_path not in DESCRIPTOR_PATHS
+    )
+    return replace(manifest, artifact_count=len(artifacts), artifacts=artifacts)
 
 
 def _resource_schema(path: str) -> dict[str, Any]:
@@ -104,7 +121,7 @@ def write_research_package(
     output_dir: Path, manifest: PublicationManifest | None = None
 ) -> tuple[Path, Path, Path]:
     """Write Frictionless, RO-Crate and DCAT descriptors."""
-    manifest = manifest or build_publication_manifest()
+    manifest = _descriptor_safe_manifest(manifest or build_publication_manifest())
     output_dir.mkdir(parents=True, exist_ok=True)
     package_path = output_dir / "datapackage.json"
     crate_path = output_dir / "ro-crate-metadata.json"

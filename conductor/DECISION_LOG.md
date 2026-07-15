@@ -227,3 +227,17 @@ check would unnecessarily expose credentials to a tooling probe.
 Consequence: `scripts/check_osf_cli_contract.py` checks the immutable version and required help
 markers without network IO or credentials. OSF reconciliation and publication remain separately
 fail-closed behind manifest approval, protocol review and explicit publication authorization.
+
+## 2026-07-16 — Deterministic research-package descriptors
+
+Decision: Exclude Frictionless, RO-Crate and DCAT descriptor files from the publication
+manifest used to generate those descriptors, and enforce two-run byte identity in tests.
+
+Rationale: Including a descriptor in its own manifest causes its checksum and byte size to
+depend on the previous generation. That makes committed metadata drift on every regeneration
+and weakens reproducibility. The descriptors remain complete for the licence-reviewed derived
+artefacts they describe; only self-referential metadata is removed.
+
+Consequence: `write_research_package` now filters the three descriptor paths through a frozen
+dataclass-safe manifest replacement. The focused test suite proves all three outputs are stable
+across consecutive generations, while release and publication gates remain unchanged.
