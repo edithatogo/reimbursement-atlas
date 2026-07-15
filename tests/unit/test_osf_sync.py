@@ -151,8 +151,10 @@ def test_registration_check_rejects_invalid_remote_metadata() -> None:
     result = check_registration_drift(_freeze(), remote)
     assert result["status"] == "blocked"
     assert result["reasons"] == [
-        "invalid_remote_registration:schema_version,registration_id,registration_url,"
-        "submitted_at,immutable,snapshot_sha256"
+        (
+            "invalid_remote_registration:schema_version,registration_id,registration_url,"
+            "submitted_at,immutable,snapshot_sha256"
+        )
     ]
 
 
