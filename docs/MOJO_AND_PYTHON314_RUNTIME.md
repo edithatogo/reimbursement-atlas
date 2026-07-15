@@ -3,9 +3,9 @@
 The project uses a stable-core/frontier-edge design.
 
 - **Mojo** is the performance-kernel layer for fixed-width tokenisation, fuzzy prefiltering, vector pre-processing and future high-throughput graph construction.
-- **Python 3.14** is the target orchestration/runtime branch for CLI, API, MCP, data contracts and packaging once the execution environment can install it.
-- **Python 3.13** remains a temporary sandbox fallback because the current runtime could not download Python 3.14 from the uv standalone Python source.
-- GitHub Actions now exercises the Python 3.14 runtime path directly, while the sandbox fallback remains a local-only escape hatch.
+- **Python 3.14** is the active orchestration/runtime branch for CLI, API, MCP, data contracts and packaging. The current environment validates Python 3.14.6 through official Pixi and Python 3.14.5 through uv.
+- **Python 3.13** remains a compatibility fallback only for environments that cannot install or run Python 3.14.
+- GitHub Actions and the current local Pixi environment exercise the Python 3.14 runtime path directly.
 
 The repo records this explicitly in `data/seed/runtime_targets.*`. Release CI should run Python 3.14 and should not treat the sandbox fallback as a public-release target.
 

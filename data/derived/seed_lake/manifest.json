@@ -145,7 +145,7 @@
       "name": "runtime_targets",
       "parquet_path": "runtime_targets/runtime_targets.parquet",
       "rows": 6,
-      "sha256": "2551011161a2e744de648f9a413870364d313767f55ef20687d5d605ed11e658"
+      "sha256": "8fe3fd5ac3ba4621469c3e7db7200a11ab56f22c9f93ce239bf3db171ea65a94"
     },
     {
       "csv_path": "vertical_schedule_items/vertical_schedule_items.csv",

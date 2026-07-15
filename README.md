@@ -59,7 +59,7 @@ The atlas is designed to answer questions like:
 
 ## Initial stack
 
-- Python 3.14-primary orchestration package with Pydantic v2, Polars, Arrow, DuckDB and LanceDB; Python 3.13 is only a transient local fallback when 3.14 downloads are unavailable.
+- Python 3.14-primary orchestration package with Pydantic v2, Polars, Arrow, DuckDB and LanceDB; Python 3.13 is only a compatibility fallback for environments where 3.14 is unavailable.
 - Pixi for reproducible multi-environment development.
 - uv/uv_build for Python package builds.
 - Ruff in strict, preview-heavy mode; basedpyright in strict mode.
@@ -385,7 +385,7 @@ create a Zenodo record or DOI. See [`docs/ZENODO_RELEASE_PREPARATION.md`](docs/Z
 
 The v14 pass records the expanded roadmap as executable repo artefacts rather than prose. New seed registries now cover Conductor tracks, roadmap functions, dataset candidates, mapping resources, research questions, output artefact plans and runtime targets. The generated GitHub issue backlog expands those records into 94 issue drafts so that unfinished functions, datasets, outputs and quality tracks can be moved into GitHub Issues/Projects when the remote repository is available.
 
-The runtime target is now Mojo-first for high-throughput kernels and Python 3.14 for orchestration, validation, packaging and interfaces. The current sandbox validates the Python path under Python 3.13.5 because Python 3.14 download resolution is blocked here; CI is configured to treat Python 3.14 as the target runtime. A small Mojo smoke kernel is included in `mojo/fixed_width_tokenizer.mojo` and can be run with:
+The runtime target is Mojo-first for high-throughput kernels and Python 3.14 for orchestration, validation, packaging and interfaces. The current environment validates the Python path under official Pixi Python 3.14.6 and uv Python 3.14.5; Python 3.13 remains a compatibility fallback. A small Mojo smoke kernel is included in `mojo/fixed_width_tokenizer.mojo` and can be run with:
 
 ```bash
 bash scripts/run_mojo_smoke.sh
