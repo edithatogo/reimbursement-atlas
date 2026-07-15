@@ -2,6 +2,8 @@
 
 Epic: `PUBLIC-022` — Public product, citation and dashboard maturity
 
+Live issue: [#218](https://github.com/edithatogo/reimbursement-atlas/issues/218)
+
 Labels: type:dashboard, type:review, risk:licence, phase:release-gate
 
 ## Background
