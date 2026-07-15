@@ -1127,20 +1127,20 @@
     {
       "@id": "data/derived/repo_automation/workflow_uses.jsonl",
       "@type": "File",
-      "contentSize": 33342,
+      "contentSize": 34036,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "workflow_uses",
-      "sha256": "bd0b1288f555fab5ccd3cd3475051e770f2a2d447b945198320c5cfdb4faaa79"
+      "sha256": "0069abaf8faefd377847427bf6b7e88e2592efcdc1795d41ddc3811c4297835b"
     },
     {
       "@id": "data/derived/repo_automation/workflow_uses.csv",
       "@type": "File",
-      "contentSize": 19992,
+      "contentSize": 20400,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "workflow_uses",
-      "sha256": "1568608eb666b8a85ef26d530855d69607151c89777ba043f33aa7345bc998dd"
+      "sha256": "811ed69904d64ce9b69b1a871302c944d9922fc56cce242b2ec4342a0080841b"
     },
     {
       "@id": "data/derived/repo_automation/workflow_policy.jsonl",
@@ -1149,7 +1149,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "workflow_policy",
-      "sha256": "597afc43fdae9139ee40197c79384a24a327841fde5c332ef13aabc1af2395e4"
+      "sha256": "0d8cf5450312733b9ad082f63c06a963b93c0c8d8ee57329ff2fdc4ab13f9d58"
     },
     {
       "@id": "data/derived/repo_automation/workflow_policy.csv",
@@ -1158,7 +1158,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "workflow_policy",
-      "sha256": "50f9157bc687e719bba14355257add50355e712e46633d59e058fb9f92634b47"
+      "sha256": "880f3a811208cc24958f38d9ab5c3c7ccc1adfc6275ac319ff8354262bb334ae"
     },
     {
       "@id": "data/derived/repo_automation/automation_controls.jsonl",
