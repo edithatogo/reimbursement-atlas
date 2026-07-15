@@ -1,6 +1,11 @@
 from __future__ import annotations
 
-from reimburse_atlas.osf_registration import check_registration_drift
+import json
+
+from reimburse_atlas.osf_registration import (
+    build_registration_review_packet,
+    check_registration_drift,
+)
 from reimburse_atlas.osf_sync import OsfRemoteRecord, reconcile_osf_manifest
 
 
@@ -101,3 +106,33 @@ def test_registration_check_accepts_matching_reviewed_registration() -> None:
     assert result["status"] == "ready"
     assert result["network_io"] is False
     assert result["mutation_performed"] is False
+
+
+def test_registration_review_packet_is_explicitly_unapproved(tmp_path) -> None:  # type: ignore[no-untyped-def]
+    freeze = tmp_path / "freeze.json"
+    freeze.write_text(
+        json.dumps({
+            "schema_version": "osf-registration-freeze-v1",
+            "protocol_digest": "protocol",
+            "analysis_manifest_digest": "manifest",
+            "source_cutoff": "2026-07-01",
+            "review_approved": False,
+        }),
+        encoding="utf-8",
+    )
+    protocols = tmp_path / "protocols.jsonl"
+    protocols.write_text(
+        json.dumps({"osf_ready": True}) + "\n",
+        encoding="utf-8",
+    )
+    manifest = tmp_path / "manifest.jsonl"
+    manifest.write_text(json.dumps({"publish_allowed": False}) + "\n", encoding="utf-8")
+    packet = build_registration_review_packet(
+        freeze_path=freeze,
+        protocol_status_path=protocols,
+        sync_manifest_path=manifest,
+    )
+    assert "Decision: `blocked`" in packet
+    assert "Protocols/reports OSF-ready: `1/1`" in packet
+    assert "Manifest rows explicitly publishable: `0/1`" in packet
+    assert "publish_allowed: true" in packet

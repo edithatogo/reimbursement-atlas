@@ -5,7 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
-from typing import Literal
+from typing import Literal, cast
 
 RegistrationStatus = Literal["blocked", "drift", "ready"]
 
@@ -102,3 +102,86 @@ def write_registration_freeze(freeze: dict[str, object], path: Path) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(freeze, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return path
+
+
+def build_registration_review_packet(
+    *,
+    freeze_path: Path,
+    protocol_status_path: Path,
+    sync_manifest_path: Path,
+) -> str:
+    """Build a deterministic human-review packet without granting approval."""
+    freeze = _read_object(freeze_path)
+    protocol_rows = _read_jsonl(protocol_status_path)
+    manifest_rows = _read_jsonl(sync_manifest_path)
+    protocol_count = len(protocol_rows)
+    complete_protocols = sum(row.get("osf_ready") is True for row in protocol_rows)
+    allowed_rows = sum(row.get("publish_allowed") is True for row in manifest_rows)
+    blocked_rows = len(manifest_rows) - allowed_rows
+    lines = [
+        "# OSF preregistration review packet",
+        "",
+        "This packet is a review aid, not an approval or registration submission.",
+        "No network IO or remote mutation is performed by its generation.",
+        "",
+        "## Freeze",
+        "",
+        f"- Freeze schema: `{freeze.get('schema_version', 'unknown')}`",
+        f"- Protocol digest: `{freeze.get('protocol_digest', 'missing')}`",
+        f"- Analysis manifest digest: `{freeze.get('analysis_manifest_digest', 'missing')}`",
+        f"- Source cutoff: `{freeze.get('source_cutoff', 'missing')}`",
+        f"- Existing approval flag: `{freeze.get('review_approved', False)}`",
+        "",
+        "## Completeness",
+        "",
+        f"- Protocols/reports OSF-ready: `{complete_protocols}/{protocol_count}`",
+        f"- Manifest rows explicitly publishable: `{allowed_rows}/{len(manifest_rows)}`",
+        f"- Manifest rows still blocked: `{blocked_rows}`",
+        "",
+        "## Required human decisions",
+        "",
+        "- [ ] Methods review completed",
+        "- [ ] Domain/clinical review completed",
+        "- [ ] Source licence and derived-field review completed",
+        "- [ ] Governance and publication review completed",
+        "- [ ] Source cutoff and analysis manifest approved",
+        "",
+        "## Approval record",
+        "",
+        "- Reviewer(s):",
+        "- Decision: `blocked`",
+        "- Reviewed at:",
+        "- Approval reference:",
+        "",
+        "The decision must be recorded by an accountable human reviewer before any",
+        "sync-manifest row changes to `publish_allowed: true` or any registration",
+        "submission is attempted.",
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def write_registration_review_packet(content: str, path: Path) -> Path:
+    """Write a deterministic registration review packet."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+    return path
+
+
+def _read_object(path: Path) -> dict[str, object]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        raise TypeError
+    return cast("dict[str, object]", payload)
+
+
+def _read_jsonl(path: Path) -> list[dict[str, object]]:
+    rows: list[dict[str, object]] = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        payload = json.loads(line)
+        if not isinstance(payload, dict):
+            raise TypeError
+        rows.append(cast("dict[str, object]", payload))
+    return rows
