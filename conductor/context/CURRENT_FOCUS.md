@@ -170,6 +170,11 @@ The source-health, final-handoff, data-quality, dashboard seed, local-quality an
 quality-gate outputs were regenerated. Repository release readiness remains green, while
 research publication, OSF registration, evidence release and policy claims remain fail-closed.
 
+The local dashboard browser smoke suite was rerun after the source-health automation merge:
+18 desktop/mobile Chromium route tests passed and `npm audit` reported zero vulnerabilities.
+This is automated smoke evidence only; cross-browser/OS visual baseline and accessibility
+approval remains a human review item.
+
 ## 2026-07-16 live Pages defect follow-up
 
 The public browser check found a deployment-only base-path defect: HTML loaded at the project
