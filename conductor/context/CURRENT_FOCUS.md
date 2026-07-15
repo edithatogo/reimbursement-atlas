@@ -234,5 +234,10 @@ The active queue is now explicitly external or human-reviewed:
 5. Approve HF dataset/Space publication (`#114`, `#115`) and later Zenodo DOI deposition (`#121`).
 6. Complete cross-platform dashboard visual review; Chromium smoke and build gates already pass.
 
+The PBS acquisition path is now explicitly documented: the official documentation page is not
+the monthly extract, and the candidate public API route requires an external subscription key.
+Plan-only source regeneration preserves prior attempt evidence; it no longer erases the live MBS
+download history.
+
 Do not convert any of these states to evidence-ready, policy-ready or publicly published
 without the corresponding human decision recorded in `docs/REVIEW_DECISIONS.md`.

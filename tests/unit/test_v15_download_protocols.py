@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 from reimburse_atlas.models import SourceFileRecord
@@ -72,6 +73,25 @@ def test_download_script_attempts_all_commands_and_fails_at_end(tmp_path: Path) 
     assert 'repo_root=$(CDPATH= cd -- "$script_dir/../../.." && pwd)' in script
     assert "uv run --all-extras python scripts/make_source_download_plan.py" in script
     assert "--attempt --method curl" in script
+
+
+def test_plan_only_regeneration_preserves_attempt_evidence(tmp_path: Path) -> None:
+    plans_dir = tmp_path / "plans"
+    plans_dir.mkdir()
+    attempts_path = plans_dir / "download_attempts.jsonl"
+    attempts_path.write_text(
+        json.dumps({"id": "historical-attempt", "status": "downloaded"}) + "\n",
+        encoding="utf-8",
+    )
+
+    write_download_outputs(
+        [build_download_plan(_source_file(), output_dir=tmp_path / "raw")],
+        [],
+        output_dir=plans_dir,
+    )
+
+    rows = [json.loads(line) for line in attempts_path.read_text(encoding="utf-8").splitlines()]
+    assert rows == [{"id": "historical-attempt", "status": "downloaded"}]
 
 
 def test_protocol_status_generation_and_outputs(tmp_path: Path) -> None:
