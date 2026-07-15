@@ -57,3 +57,9 @@ missing, `drift` when protocol or manifest fingerprints differ, and `ready`
 only when the snapshot matches and `review_approved` is explicitly true. The
 generated freeze is intentionally unapproved and therefore remains fail-closed
 until human methods, domain, licence and governance review is recorded.
+
+The same plan generates `data/derived/osf/registration_review_packet.md`. This is a
+deterministic, non-mutating review aid containing the freeze digests, protocol/report
+completeness, blocked manifest-row count and blank approval fields. It must be completed
+by an accountable human reviewer; generation never changes `review_approved` or
+`publish_allowed`.

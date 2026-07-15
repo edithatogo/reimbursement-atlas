@@ -8,6 +8,7 @@ Generated artefacts:
 - `data/derived/osf/osf_publication_manifest.json`
 - `data/derived/osf/preprint_checklist.md`
 - `data/derived/osf/sync_manifest.jsonl`
+- `data/derived/osf/registration_review_packet.md`
 - `protocols/*.md`
 - `reports/*.md`
 

@@ -3,7 +3,12 @@
 from __future__ import annotations
 
 from reimburse_atlas.osf import build_osf_component_plan, write_osf_outputs
-from reimburse_atlas.osf_registration import build_registration_freeze, write_registration_freeze
+from reimburse_atlas.osf_registration import (
+    build_registration_freeze,
+    build_registration_review_packet,
+    write_registration_freeze,
+    write_registration_review_packet,
+)
 from reimburse_atlas.registry import (
     load_output_artifact_plans,
     load_research_questions,
@@ -23,7 +28,20 @@ def main() -> None:
     freeze_path = write_registration_freeze(
         freeze, project_root() / "data" / "derived" / "osf" / "registration_freeze.json"
     )
-    paths = (*paths, freeze_path)
+    review_packet = build_registration_review_packet(
+        freeze_path=freeze_path,
+        protocol_status_path=project_root()
+        / "data"
+        / "derived"
+        / "protocols"
+        / "protocol_status.jsonl",
+        sync_manifest_path=project_root() / "data" / "derived" / "osf" / "sync_manifest.jsonl",
+    )
+    review_packet_path = write_registration_review_packet(
+        review_packet,
+        project_root() / "data" / "derived" / "osf" / "registration_review_packet.md",
+    )
+    paths = (*paths, freeze_path, review_packet_path)
     print({"component_count": len(components), "paths": [repo_relative(path) for path in paths]})
 
 
