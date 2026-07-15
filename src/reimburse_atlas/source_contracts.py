@@ -82,6 +82,24 @@ CONTRACTS: dict[str, SourceContract] = {
         required_markers=("pbs",),
         skip_reason="Documentation/API endpoint record; validate a reviewed CSV or JSON extract instead.",  # noqa: E501
     ),
+    "au_mbs_2010_2019_downloads_page": SourceContract(
+        name="MBS 2010-2019 archive landing-page contract",
+        expected_columns=(),
+        required_markers=("au_mbs",),
+        skip_reason=(
+            "Historical archive landing-page record; retain metadata and complete manual/licence "
+            "review before acquiring a release payload."
+        ),
+    ),
+    "au_mbs_1989_2010_previous_downloads_page": SourceContract(
+        name="MBS 1989-2010 archive landing-page contract",
+        expected_columns=(),
+        required_markers=("au_mbs",),
+        skip_reason=(
+            "Historical archive landing-page record; retain metadata and complete manual/licence "
+            "review before acquiring a release payload."
+        ),
+    ),
     "us_cms_clfs_26clabq3_ama_zip": SourceContract(
         name="CMS CLFS AMA-gated ZIP contract",
         expected_columns=("hcpcs", "payment_rate"),
