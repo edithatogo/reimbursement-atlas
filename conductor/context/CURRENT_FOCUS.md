@@ -328,3 +328,11 @@ The public dashboard now has an automated post-deployment HTTPS smoke job. Main 
 passed build, deployment and live smoke against the canonical project URL, including project-site
 prefix, favicon, status manifest, graph CSV and same-origin reference checks. This proves the
 deployment contract without changing the separate human visual/accessibility review gate.
+
+## 2026-07-16 — Token-gated publication dry validation
+
+Main OSF workflow run `29444356493` passed read-only project discovery with the configured token,
+the pinned `osf-cli-go` contract and the fail-closed synchronization check. Provisioning and
+publication were skipped. Main Hugging Face workflow run `29444461756` passed publication-bundle
+validation, dashboard build and candidate-artifact upload with both publication flags disabled;
+dataset and Space publication remain gated by licence, evidence and human review.
