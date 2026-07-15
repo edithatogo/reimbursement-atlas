@@ -1253,20 +1253,20 @@
     {
       "@id": "data/derived/local_quality_gates/local_quality_gates.jsonl",
       "@type": "File",
-      "contentSize": 17930,
+      "contentSize": 17965,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "local_quality_gates",
-      "sha256": "6dcf517ca076ca9a305536a05e261c9ee879da33d8d563d57dd18af46215c15f"
+      "sha256": "9deab8d96041276567a288a712d5e5c1471bd04f0a4ce7161ca9e027660952a3"
     },
     {
       "@id": "data/derived/local_quality_gates/local_quality_gates.csv",
       "@type": "File",
-      "contentSize": 13031,
+      "contentSize": 13066,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "local_quality_gates",
-      "sha256": "c16af5abc687a6ee445c7071322667c7fd102873bc04593dd60a6748df0ab5ae"
+      "sha256": "a856bdaf1a4ff972fb257b4cdbbb1af261f2c02cdcf75235eabebcb065f62f76"
     },
     {
       "@id": "data/derived/local_quality_gates/local_quality_gate_specs.jsonl",
@@ -1289,20 +1289,20 @@
     {
       "@id": "data/derived/architecture/import_edges.jsonl",
       "@type": "File",
-      "contentSize": 56310,
+      "contentSize": 56312,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "import_edges",
-      "sha256": "1d18c182dc00a102f7c69a0f1e5dce992bb1c0e0cd410e1e758cf3a64b5f6f97"
+      "sha256": "69e2a4ab76319525837cf9ec5b52576ae02629b4d03243db6a531bc59df8555b"
     },
     {
       "@id": "data/derived/architecture/import_edges.csv",
       "@type": "File",
-      "contentSize": 29672,
+      "contentSize": 29674,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "import_edges",
-      "sha256": "a9eaa35b0328739b0a91abeb2babf93a8c48765521bcc2dccd34a111af5112f1"
+      "sha256": "c9cab86149c54fe4d9466d4cc2643f5d39fefec852b1e83391f9b3c032ae34cb"
     },
     {
       "@id": "data/derived/architecture/layer_policy.jsonl",
