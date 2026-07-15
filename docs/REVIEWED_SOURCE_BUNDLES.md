@@ -44,3 +44,7 @@ Bundle outputs are not automatically publishable. A reviewer must confirm:
 2. bundle snapshot files keep `local_path` redacted;
 3. restricted descriptors, CPT text, UMLS/RxNorm dumps, DSM-5 text or confidential net prices are not included;
 4. coverage is not inferred from price-file presence.
+
+Nested reviewed-bundle files are automatically enumerated by the publication manifest and data
+dictionary. They remain `public_reuse_review` candidates until the source-specific licence gate
+is approved.

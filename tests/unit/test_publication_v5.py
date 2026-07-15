@@ -23,6 +23,9 @@ def test_publication_manifest_contains_only_safe_candidate_paths(repo_root: Path
         artifact.relative_path == "infra/huggingface/SPACE_README.md"
         for artifact in manifest.artifacts
     )
+    assert any(
+        "reviewed_source_bundles" in artifact.relative_path for artifact in manifest.artifacts
+    )
 
 
 def test_publication_manifest_write(tmp_path: Path, repo_root: Path) -> None:

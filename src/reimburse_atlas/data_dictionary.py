@@ -9,7 +9,11 @@ from typing import Any, cast
 
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.models import DataDictionaryRecord
-from reimburse_atlas.publication import DEFAULT_PUBLICATION_PATHS, count_rows
+from reimburse_atlas.publication import (
+    DEFAULT_PUBLICATION_PATHS,
+    count_rows,
+    reviewed_source_bundle_paths,
+)
 from reimburse_atlas.registry import project_root
 
 
@@ -17,7 +21,10 @@ def build_data_dictionary(root: Path | None = None) -> list[DataDictionaryRecord
     """Build data dictionary rows for all existing publication-manifest candidate paths."""
     repo = root or project_root()
     rows: list[DataDictionaryRecord] = []
-    for relative_path in DEFAULT_PUBLICATION_PATHS:
+    candidate_paths = tuple(
+        dict.fromkeys((*DEFAULT_PUBLICATION_PATHS, *reviewed_source_bundle_paths(repo)))
+    )
+    for relative_path in candidate_paths:
         path = repo / relative_path
         if not path.exists() or _is_raw_or_local_path(relative_path):
             continue

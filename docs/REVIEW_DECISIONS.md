@@ -12,6 +12,7 @@ Local implementation must not convert any `pending` decision to `approved` autom
 | Hugging Face dataset/Space | validated, unpublished; credentialed dry run passed | `scripts/check_huggingface_bundle.py`, workflow run `29420958930` | Approve licence/evidence gates before remote publication. |
 | Zenodo DOI | deferred | `data/derived/release_readiness/summary.json` | Approve only after evidence, licence, OSF and research gates pass. |
 | Historical MBS/PBS expansion | pending source review | `data/derived/final_handoff/final_handoff_tasks.jsonl` | Approve historical URLs, source terms and a reviewed PBS extract before processing. |
+| July 2026 MBS TXT pair | bundle validated; pending human licence/domain review | `data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/validation_report.json` | Review Commonwealth reuse terms, descriptor-only rows and intended derived fields before any evidence or public-release claim. |
 | Dashboard visual baselines | Chromium smoke passed; cross-platform review pending | `docs/DASHBOARD_VALIDATION.md` | Review supported browser/OS screenshots; do not treat macOS smoke evidence as cross-platform approval. |
 
 Current local proof remains separate from these decisions: repository release readiness is
