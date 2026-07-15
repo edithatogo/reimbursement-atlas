@@ -272,3 +272,17 @@ tracked under `track_data_packaging_standards`; no publication or licence gate w
 The browser smoke gate now covers all nine public routes in desktop and mobile Chromium profiles,
 with CSS-pixel screenshot bounds. The automated matrix passes; cross-platform visual baselines,
 accessibility review and all source/publication decisions remain human handoff gates.
+
+## 2026-07-16 — GitHub advanced secret scanning
+
+The live repository has provider secret scanning, push protection and Dependabot security updates
+enabled. GitHub's API still reports non-provider secret-pattern scanning and secret-validity checks
+as disabled after an idempotent enablement attempt. Issue [#191](https://github.com/edithatogo/reimbursement-atlas/issues/191)
+tracks this account-level limitation; no release document claims those controls are active.
+
+## 2026-07-16 — Pixi harness invocation
+
+The Pixi Python test tasks now use `python -m pytest`, avoiding stale console-script shebangs when
+an environment has been relocated. Official Pixi unit, smoke, property, integration and end-to-end
+lanes pass. Issue [#192](https://github.com/edithatogo/reimbursement-atlas/issues/192) records the
+harness hardening change.

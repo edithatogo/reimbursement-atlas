@@ -17,6 +17,12 @@ Required checks for `main`:
 - dashboard build once Node dependencies are locked;
 - coverage threshold when optional dependencies are available.
 
+The live repository uses a single-maintainer policy: pull-request approvals are not required because
+there is no independent collaborator, but all required CI/security/harness checks, administrator
+enforcement, linear history, conversation resolution, force-push protection and deletion protection
+remain enabled. If a trusted collaborator is added, enable the documented reviewer requirements in
+`.github/branch-protection.example.yml` rather than weakening the required checks.
+
 ## Issue taxonomy
 
 | Prefix | Meaning |
@@ -50,6 +56,9 @@ Required checks for `main`:
 
 - No credentials in `.env.example`.
 - Secret scanning and push protection in GitHub repository settings.
+- Non-provider secret-pattern scanning and secret-validity checks are currently account-level blockers;
+  the live API still reports both as disabled after an enablement attempt. Do not claim these controls
+  are active until the GitHub security settings show `enabled`.
 - CodeQL for Python and JavaScript/TypeScript.
 - Dependabot and Renovate both configured, with Renovate preferred for grouped ecosystem updates.
 - SBOM and provenance generation to add before package publication.
