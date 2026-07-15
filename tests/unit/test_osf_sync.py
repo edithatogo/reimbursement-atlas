@@ -103,8 +103,13 @@ def _freeze(**overrides: object) -> dict[str, object]:
 
 def _remote(**overrides: object) -> dict[str, object]:
     remote: dict[str, object] = {
+        "schema_version": "osf-registration-snapshot-v1",
         "registration_id": "osf-reg-1",
+        "registration_url": "https://osf.io/abc12/",
         "status": "registered",
+        "submitted_at": "2026-07-16T00:00:00Z",
+        "immutable": True,
+        "snapshot_sha256": "a" * 64,
         "protocol_digest": "protocol",
         "analysis_manifest_digest": "manifest",
         "source_cutoff": "2026-07-01",
@@ -124,6 +129,31 @@ def test_registration_check_detects_fingerprint_drift() -> None:
     result = check_registration_drift(_freeze(), _remote(protocol_digest="changed"))
     assert result["status"] == "drift"
     assert result["reasons"] == ["registration_fingerprint_drift:protocol_digest"]
+
+
+def test_registration_check_rejects_incomplete_remote_snapshot() -> None:
+    remote = _remote()
+    remote.pop("snapshot_sha256")
+    result = check_registration_drift(_freeze(), remote)
+    assert result["status"] == "blocked"
+    assert result["reasons"] == ["invalid_remote_registration:snapshot_sha256"]
+
+
+def test_registration_check_rejects_invalid_remote_metadata() -> None:
+    remote = _remote(
+        schema_version="wrong-schema",
+        registration_id="",
+        registration_url="https://example.invalid/registration",
+        submitted_at="",
+        immutable=False,
+        snapshot_sha256="not-a-digest",
+    )
+    result = check_registration_drift(_freeze(), remote)
+    assert result["status"] == "blocked"
+    assert result["reasons"] == [
+        "invalid_remote_registration:schema_version,registration_id,registration_url,"
+        "submitted_at,immutable,snapshot_sha256"
+    ]
 
 
 def test_registration_check_accepts_matching_reviewed_registration() -> None:

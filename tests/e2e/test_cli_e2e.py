@@ -141,6 +141,13 @@ def test_cli_osf_registration_check_is_fail_closed_without_remote(tmp_path) -> N
     freeze = tmp_path / "freeze.json"
     freeze.write_text(
         json.dumps({
+            "schema_version": "osf-registration-snapshot-v1",
+            "registration_id": "osf-reg-1",
+            "registration_url": "https://osf.io/abc12/",
+            "status": "registered",
+            "submitted_at": "2026-07-16T00:00:00Z",
+            "immutable": True,
+            "snapshot_sha256": "a" * 64,
             "protocol_digest": "protocol",
             "analysis_manifest_digest": "manifest",
             "source_cutoff": "2026-07-01",
