@@ -50,3 +50,4 @@ jobs:
           pixi run source-drift
           pixi run release-readiness || true
           pixi run seed-lake
+          pixi run research-package

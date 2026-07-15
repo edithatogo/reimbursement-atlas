@@ -299,3 +299,10 @@ unchanged.
 The desktop/mobile Playwright matrix now runs axe-core against all nine public routes. All 18
 route/profile checks pass with zero automated violations. Human accessibility sign-off and
 cross-platform visual baselines remain explicit release handoff gates under issue [#188](https://github.com/edithatogo/reimbursement-atlas/issues/188).
+
+## 2026-07-16 — Generated-artifact ordering
+
+The research package is now the final generated step after release-readiness and seed-lake in the
+repository automation, data-smoke and deterministic-regeneration workflows. This prevents stale
+release-gate hashes in Frictionless and RO-Crate descriptors after SBOM or dashboard dependency
+changes.

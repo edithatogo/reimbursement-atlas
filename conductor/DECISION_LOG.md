@@ -303,3 +303,16 @@ supported layout profiles without claiming that automated checks replace human r
 
 Consequence: All 18 route/profile tests pass with zero axe-core violations. Issue #188 remains open
 for human accessibility sign-off and reviewed visual baselines.
+
+## 2026-07-16 — Research-package generation order in CI
+
+Decision: Make `research-package` the final generated-artifact step after release-readiness and
+seed-lake generation in the repository automation, data-smoke and deterministic-regeneration
+workflows.
+
+Rationale: Release-gate hashes can change when the SBOM or dashboard dependency graph changes. If
+the package descriptors are generated before those final gates, they contain stale release-gate
+hashes even though each individual generator is deterministic.
+
+Consequence: CI now verifies the complete generation order and the committed descriptors are
+refreshed against the final release-gate hashes.
