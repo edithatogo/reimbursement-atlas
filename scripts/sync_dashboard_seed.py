@@ -72,6 +72,7 @@ FILES = [
     Path("data/derived/evidence_readiness/evidence_readiness.csv"),
     Path("data/derived/source_drift/source_drift_report.csv"),
     Path("data/derived/data_dictionary/data_dictionary.csv"),
+    Path("data/derived/source_health/acquisition_status.csv"),
 ]
 
 PUBLIC_PATH_REPLACEMENTS = {

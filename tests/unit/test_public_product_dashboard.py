@@ -46,6 +46,12 @@ def test_public_status_separates_software_evidence_and_publication(tmp_path: Pat
         + "\n",
         encoding="utf-8",
     )
+    source_health_path = tmp_path / "data/derived/source_health/acquisition_status.json"
+    source_health_path.parent.mkdir(parents=True, exist_ok=True)
+    source_health_path.write_text(
+        json.dumps({"status": "incomplete", "incomplete_count": 1}),
+        encoding="utf-8",
+    )
 
     manifest = build_public_status_manifest(tmp_path)
 
@@ -53,6 +59,9 @@ def test_public_status_separates_software_evidence_and_publication(tmp_path: Pat
     assert manifest["evidence"]["status"] == "not_ready"
     assert manifest["publication"]["status"] == "gated"
     assert manifest["evidence"]["source_validation"] == "blocked"
+    assert manifest["evidence_paths"]["source_health"] == (
+        "data/derived/source_health/acquisition_status.json"
+    )
     assert {item["id"] for item in manifest["blockers"]} >= {
         "evidence_release",
         "research_publication",

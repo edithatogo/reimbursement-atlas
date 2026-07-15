@@ -7,6 +7,7 @@ from operator import itemgetter
 from pathlib import Path
 from typing import TypedDict, cast
 
+from reimburse_atlas.io import write_csv
 from reimburse_atlas.registry import project_root, read_jsonl, repo_relative
 
 
@@ -123,15 +124,30 @@ def _markdown(report: dict[str, object]) -> str:
 
 def write_source_health_report(
     report: dict[str, object], output_dir: Path | None = None
-) -> tuple[Path, Path]:
+) -> tuple[Path, Path, Path]:
     """Write JSON and Markdown source-health evidence."""
     output = output_dir or project_root() / "data" / "derived" / "source_health"
     output.mkdir(parents=True, exist_ok=True)
     json_path = output / "acquisition_status.json"
     markdown_path = output / "acquisition_status.md"
+    csv_path = output / "acquisition_status.csv"
     json_path.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     markdown_path.write_text(_markdown(report), encoding="utf-8")
-    return json_path, markdown_path
+    items = cast("list[dict[str, object]]", report.get("items", []))
+    write_csv(
+        [
+            {
+                "task_id": str(item.get("task_id", "")),
+                "status": str(item.get("status", "")),
+                "title": str(item.get("title", "")),
+                "recommended_action": str(item.get("recommended_action", "")),
+                "evidence_path": str(item.get("evidence_path", "")),
+            }
+            for item in items
+        ],
+        csv_path,
+    )
+    return json_path, markdown_path, csv_path
 
 
 def main() -> None:

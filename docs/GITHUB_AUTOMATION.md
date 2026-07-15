@@ -61,6 +61,8 @@ report beside the validation, contract, drift and release-readiness evidence. It
 perform network I/O or mutate local source caches. The issue is fail-open: missing handoff
 evidence, partial acquisition, network blocks and credential blocks keep the issue open;
 the issue is closed automatically only when the generated status is `clear`.
+The public status manifest and dashboard automation page expose the same report through a
+CSV projection, so maintainers can inspect acquisition follow-up without opening CI logs.
 
 ## Security posture
 

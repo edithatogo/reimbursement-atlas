@@ -57,26 +57,29 @@ def build_public_status_manifest(root: Path | None = None) -> dict[str, Any]:
         _read_summary(repo, "data/derived/licence_review/summary.json").get("pending_count", 0)
     )
     final_handoff_tasks = _read_jsonl(repo, "data/derived/final_handoff/final_handoff_tasks.jsonl")
+    source_health = _read_summary(repo, "data/derived/source_health/acquisition_status.json")
     partial_source_tasks = [
         task
         for task in final_handoff_tasks
         if task.get("status") == "partial" and task.get("task_group") == "source_ingestion"
     ]
     blockers: list[dict[str, Any]] = []
-    if partial_source_tasks:
+    if partial_source_tasks or source_health.get("status") not in {"clear", "missing"}:
         titles = ", ".join(
             str(task.get("title", task.get("id", "unknown"))) for task in partial_source_tasks
         )
+        if not titles:
+            titles = "Source acquisition health report requires follow-up"
         blockers.append({
             "id": "source_acquisition",
             "category": "source_ingestion",
-            "status": "partial",
-            "summary": f"Source acquisition is partial: {titles}.",
+            "status": str(source_health.get("status", "partial")),
+            "summary": f"Source acquisition requires follow-up: {titles}.",
             "next_action": (
                 "Complete remaining executable or credential-gated targets, then rerun "
                 "source validation and source contracts."
             ),
-            "evidence_path": "data/derived/final_handoff/final_handoff_tasks.jsonl",
+            "evidence_path": "data/derived/source_health/acquisition_status.json",
         })
     if pending_licence_reviews:
         blockers.append({
@@ -156,6 +159,7 @@ def build_public_status_manifest(root: Path | None = None) -> dict[str, Any]:
             "data_quality": "data/derived/data_quality/summary.json",
             "source_validation": "data/derived/source_validation/summary.json",
             "final_handoff_tasks": "data/derived/final_handoff/final_handoff_tasks.jsonl",
+            "source_health": "data/derived/source_health/acquisition_status.json",
         },
     }
 

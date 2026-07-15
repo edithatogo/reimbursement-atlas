@@ -1091,20 +1091,20 @@
     {
       "@id": "data/derived/external_quality_gates.json",
       "@type": "File",
-      "contentSize": 4616,
+      "contentSize": 4095,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "json",
       "name": "external_quality_gates",
-      "sha256": "e604e8752c33db56bb8d8607effa9a109d3873d08b5b20ac5cf2de2153819852"
+      "sha256": "f071af6b8dcd130dec6624e1b38bd1b586cad9e64395fea6cdfc619334fb5d85"
     },
     {
       "@id": "data/derived/external_quality_gates.csv",
       "@type": "File",
-      "contentSize": 3226,
+      "contentSize": 2701,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "external_quality_gates",
-      "sha256": "7bc2f32d0a8610bbca4173ddcf339d9dcbbe68a33c26923797f1ee2398c0034c"
+      "sha256": "c640da7d401a251cdb4e7a39eaa5e002ca9dd97f7a84f0cb26906c47894e0abb"
     },
     {
       "@id": "data/derived/optional_toolchain_installs.json",
@@ -1253,20 +1253,20 @@
     {
       "@id": "data/derived/local_quality_gates/local_quality_gates.jsonl",
       "@type": "File",
-      "contentSize": 17969,
+      "contentSize": 17965,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "local_quality_gates",
-      "sha256": "cbd419c609d4cb8705e4f5be18e0f084ee1f46811886194e49a4142493841895"
+      "sha256": "f8c86f50ec629368acc38af579d6552d448e38a311403b604def06ef771b2887"
     },
     {
       "@id": "data/derived/local_quality_gates/local_quality_gates.csv",
       "@type": "File",
-      "contentSize": 13070,
+      "contentSize": 13066,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "local_quality_gates",
-      "sha256": "056ec0346e626e7b18ed86c57054a992599e08c21831f18a3df21a31b255b3e4"
+      "sha256": "c0d7652dc835ce3f57d1be275b075a36fdf0e013673a3d601b8a9d768d130d01"
     },
     {
       "@id": "data/derived/local_quality_gates/local_quality_gate_specs.jsonl",

@@ -2,11 +2,11 @@
   "blockers": [
     {
       "category": "source_ingestion",
-      "evidence_path": "data/derived/final_handoff/final_handoff_tasks.jsonl",
+      "evidence_path": "data/derived/source_health/acquisition_status.json",
       "id": "source_acquisition",
       "next_action": "Complete remaining executable or credential-gated targets, then rerun source validation and source contracts.",
-      "status": "partial",
-      "summary": "Source acquisition is partial: Run hardened curl/wget source download plan."
+      "status": "incomplete",
+      "summary": "Source acquisition requires follow-up: Run hardened curl/wget source download plan."
     },
     {
       "category": "human_review",
@@ -57,6 +57,7 @@
     "evidence_readiness": "data/derived/evidence_readiness/summary.json",
     "final_handoff_tasks": "data/derived/final_handoff/final_handoff_tasks.jsonl",
     "release_readiness": "data/derived/release_readiness/summary.json",
+    "source_health": "data/derived/source_health/acquisition_status.json",
     "source_validation": "data/derived/source_validation/summary.json"
   },
   "project": "reimbursement-atlas",
