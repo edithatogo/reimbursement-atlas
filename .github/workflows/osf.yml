@@ -91,10 +91,16 @@ jobs:
           osf_bin="$(go env GOPATH)/bin/osf"
           title="Reimbursement Atlas"
           "$osf_bin" projects list --output json > osf-provision/projects.json
-          existing="$(jq -r --arg title "$title" '.[] | select(.title == $title) | .id' osf-provision/projects.json | head -n 1)"
+          existing="$(jq -r --arg title "$title" '.[] | select(.title == $title) | [.id, (.public // false)] | @tsv' osf-provision/projects.json | head -n 1)"
           if [ -n "$existing" ]; then
-            jq -n --arg id "$existing" --arg title "$title" \
-              '{schema_version:"osf-project-provision-v1",created:false,id:$id,title:$title}' \
+            existing_id="${existing%%$'\t'*}"
+            existing_public="${existing##*$'\t'}"
+            test "$existing_public" != "true" || {
+              echo "An existing public OSF project has the exact requested title; refusing to reuse it." >&2
+              exit 1
+            }
+            jq -n --arg id "$existing_id" --arg title "$title" \
+              '{schema_version:"osf-project-provision-v1",created:false,id:$id,title:$title,public:false}' \
               > osf-provision/project.json
           else
             "$osf_bin" projects create \
@@ -102,11 +108,12 @@ jobs:
               --description "Private protocol and reproducibility workspace for the reimbursement-atlas research programme." \
               --yes --output json > osf-provision/project-raw.json
             jq --arg title "$title" \
-              'if .data then .data else . end | {schema_version:"osf-project-provision-v1",created:true,id,title:$title}' \
+              'if .data then .data else . end | {schema_version:"osf-project-provision-v1",created:true,id,title:$title,public:(.public // false)}' \
               osf-provision/project-raw.json > osf-provision/project.json
           fi
           test "$(jq -r '.id' osf-provision/project.json)" != "null"
           test "$(jq -r '.title' osf-provision/project.json)" = "$title"
+          test "$(jq -r '.public' osf-provision/project.json)" = "false"
           rm -f osf-provision/projects.json osf-provision/project-raw.json
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
