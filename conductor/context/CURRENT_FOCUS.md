@@ -390,3 +390,10 @@ The public readiness dashboard now exposes the checksum-bound licence-review que
 downloadable, dashboard-safe table. It shows candidate checksums, publication scope, licence
 gate and pending status, while explicitly stating that generated rows do not grant approval.
 The addition is tracked in generated issue draft #160 and live closed issue [#218](https://github.com/edithatogo/reimbursement-atlas/issues/218), which is on public Project #18.
+
+## 2026-07-16 — Public status blocker transparency
+
+The public status manifest now exposes stable blocker IDs, categories, evidence paths and next
+actions for current non-software gates. The dashboard renders these records on the homepage so
+software release readiness cannot be mistaken for evidence or publication approval. The work is
+tracked in generated issue #161 and live issue [#221](https://github.com/edithatogo/reimbursement-atlas/issues/221), which is on public Project #18.

@@ -1,4 +1,38 @@
 {
+  "blockers": [
+    {
+      "category": "human_review",
+      "evidence_path": "data/derived/licence_review/summary.json",
+      "id": "licence_review",
+      "next_action": "Record accountable reviewer decisions in the checksum-bound queue.",
+      "status": "blocked_review",
+      "summary": "155 publication candidates still require licence review."
+    },
+    {
+      "category": "research_review",
+      "evidence_path": "data/derived/evidence_readiness/summary.json",
+      "id": "evidence_release",
+      "next_action": "Complete source, mapping, methods and research review before making evidence claims.",
+      "status": "blocked_review",
+      "summary": "Evidence release is not approved."
+    },
+    {
+      "category": "publication",
+      "evidence_path": "data/derived/release_readiness/summary.json",
+      "id": "research_publication",
+      "next_action": "Approve the frozen protocols, publication manifest and release decision.",
+      "status": "gated",
+      "summary": "Research publication remains gated."
+    },
+    {
+      "category": "osf",
+      "evidence_path": "data/derived/protocols/protocol_status.jsonl",
+      "id": "osf_registration",
+      "next_action": "Complete accountable methods, domain, licence and governance review.",
+      "status": "gated",
+      "summary": "OSF registration is not approved."
+    }
+  ],
   "claims_policy": "Do not claim evidence or public-release readiness until reviewed sources, licences, human research review and release gates pass.",
   "evidence": {
     "data_quality": "pass",

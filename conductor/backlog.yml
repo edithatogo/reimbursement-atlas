@@ -288,3 +288,5 @@ epics:
         labels: ["type:track", "type:dashboard", "type:publication", "priority:must"]
       - title: Expose the checksum-bound licence review queue in the dashboard
         labels: ["type:dashboard", "type:review", "risk:licence", "phase:release-gate"]
+      - title: Expose machine-readable release blockers and next actions in public status
+        labels: ["type:dashboard", "type:release", "phase:release-gate"]

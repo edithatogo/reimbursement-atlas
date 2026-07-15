@@ -38,6 +38,8 @@ public product without implying that software readiness equals evidence or publi
 7. Source and mapping pages expose provenance/review paths without exposing restricted payloads.
 8. Dashboard build, Python tests, lint, type checks and public-data policy gates pass locally.
 9. Unavailable deployment, DOI and human-review gates remain visible as gated, not successful.
+10. Public status exposes stable blocker IDs, evidence paths and next actions for every current
+    non-software gate without implying that generation is approval.
 
 ## Cross-references
 

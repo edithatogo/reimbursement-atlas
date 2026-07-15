@@ -37,3 +37,5 @@
   publication and human licence/research review remain fail-closed.
 - [x] Prepare and validate non-depositing `.zenodo.json` metadata; DOI creation remains gated on
   publication approval.
+- [x] Expose machine-readable blocker IDs, evidence paths and next actions in the public status
+  manifest and dashboard.
