@@ -28,7 +28,8 @@ cannot mutate a candidate to approved status.
 1. Review the 155 checksum-bound publication candidates in the licence-review queue, then
    complete MBS, historical-source and CMS licence review before derived-data publication
    (`#23`, `#24`, `#26`, `#27`).
-2. Acquire and review a PBS monthly extract, then approve historical MBS/PBS scope (`#25`).
+2. Acquire and review a PBS monthly extract, then approve historical MBS/PBS scope (`#25`,
+   [#255](https://github.com/edithatogo/reimbursement-atlas/issues/255)).
 3. Approve mapping calibration gold standards and negative controls (`#10`, `#11`).
 4. Freeze and approve the OSF protocol, then complete the token-gated registration workflow;
    `OSF_PROJECT_ID` is configured for the private project (`#109`–`#113`, `#134`, `#135`).
@@ -36,7 +37,8 @@ cannot mutate a candidate to approved status.
    evidence and policy gates pass; `HF_TOKEN` is now configured in GitHub.
 6. Complete cross-platform dashboard visual and accessibility review.
 7. Regenerate release-readiness after the research, licence and publication gates complete,
-   then create the signed release and Zenodo DOI (`#121`).
+   then create the signed release and Zenodo DOI (`#121`,
+   [#256](https://github.com/edithatogo/reimbursement-atlas/issues/256)).
 
 The current source acquisition run is explicitly classified as partial: the July 2026 MBS
 pair and PBS documentation were downloaded, while the remaining executable or credential-gated
