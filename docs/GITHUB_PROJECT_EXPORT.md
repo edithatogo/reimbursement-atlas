@@ -30,3 +30,12 @@ Each project item records:
 - recommended GitHub Project view.
 
 The generated rows are not a substitute for opening GitHub issues. They are a deterministic import/handoff layer for a credentialed environment.
+
+## Live board verification
+
+The repository's live board is [Reimbursement Atlas Conductor project #18](https://github.com/users/edithatogo/projects/18).
+On 2026-07-16, the authenticated project audit found six repository issues missing from
+the board and added them without changing issue content: #131, #140, #237, #255, #256 and
+#275. Closed issues #131, #140 and #275 are `Done`; active source/release issues #237, #255
+and #256 are `Todo`. The local generated export remains the deterministic source for future
+reconciliation, while the live board is the user-facing execution view.

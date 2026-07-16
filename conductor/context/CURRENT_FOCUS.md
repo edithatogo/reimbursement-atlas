@@ -120,6 +120,15 @@ Immediate implementation focus:
 4. Use `data/derived/final_handoff/final_handoff_tasks.csv` to execute the remaining network/credential/review-dependent work.
 5. Regenerate release-readiness after the source, security, OSF and Hugging Face gates complete.
 
+## v91 live GitHub Project reconciliation
+
+The live [Reimbursement Atlas Conductor project #18](https://github.com/users/edithatogo/projects/18)
+was audited and reconciled on 2026-07-16. Six repository issues missing from the board were
+added: #131, #140, #237, #255, #256 and #275. Closed issues are `Done`; active source and
+release blockers remain `Todo`. This confirms the generated local export and the live board
+are aligned for the known repository issue set; future additions should use the generated
+export and preserve the same status semantics.
+
 ## v19 follow-up
 
 Local quality, source-contract validation and release readiness are now green. The live
