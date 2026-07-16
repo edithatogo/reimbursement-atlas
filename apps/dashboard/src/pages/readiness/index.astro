@@ -27,6 +27,12 @@ import Layout from "../../components/Layout.astro";
     columns={["analysis_id", "policy_domain", "readiness_grade", "score", "priority"]}
   />
   <DataTable
+    title="Readiness grade sensitivity"
+    description="Alternative grade thresholds are diagnostic only; canonical grades remain unchanged."
+    fileName="readiness_grade_sensitivity.csv"
+    columns={["configuration", "a_min", "b_min", "c_min", "source_count", "grade_a_count", "grade_b_count", "grade_c_count", "grade_d_count", "prototype_ready_count"]}
+  />
+  <DataTable
     title="Ingestion readiness"
     fileName="ingestion_readiness.csv"
     columns={["source_id", "version_id", "parser_name", "readiness_grade", "blocking_issues"]}

@@ -1,0 +1,6 @@
+{
+  "canonical_configuration": "canonical",
+  "interpretation": "Alternative thresholds are diagnostic and do not alter canonical grades.",
+  "source_count": 60,
+  "threshold_configurations": 3
+}

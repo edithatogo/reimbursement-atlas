@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import asdict
 
 from reimburse_atlas.models import AnalysisRecord, SourceRecord
-from reimburse_atlas.scoring import SourceScore, score_sources
+from reimburse_atlas.scoring import GradeSensitivity, SourceScore, grade_sensitivity, score_sources
 
 
 def source_readiness_rows(sources: list[SourceRecord]) -> list[dict[str, object]]:
@@ -78,3 +78,38 @@ def analysis_readiness_rows(
 def source_score_payload(score: SourceScore) -> dict[str, object]:
     """Serialise a source score without leaking dataclass internals to callers."""
     return asdict(score)
+
+
+def readiness_grade_sensitivity_rows(
+    sources: list[SourceRecord],
+    threshold_sets: list[tuple[str, int, int, int]],
+) -> list[dict[str, object]]:
+    """Return deterministic grade-count sensitivity rows for source readiness.
+
+    Threshold alternatives are reporting diagnostics only; the canonical
+    :func:`reimburse_atlas.scoring.grade_for_score` thresholds remain unchanged.
+    """
+    scores = [score.score for score in score_sources(sources)]
+    configurations = [(a_min, b_min, c_min) for _, a_min, b_min, c_min in threshold_sets]
+    results = grade_sensitivity(scores, configurations)
+    rows: list[dict[str, object]] = []
+    for (label, _, _, _), result in zip(threshold_sets, results, strict=True):
+        rows.append(_grade_sensitivity_row(label, result, len(scores)))
+    return rows
+
+
+def _grade_sensitivity_row(label: str, result: GradeSensitivity, total: int) -> dict[str, object]:
+    """Flatten one sensitivity result for JSONL, CSV and dashboard consumers."""
+    counts = result.counts
+    return {
+        "configuration": label,
+        "a_min": result.a_min,
+        "b_min": result.b_min,
+        "c_min": result.c_min,
+        "source_count": total,
+        "grade_a_count": counts.get("A", 0),
+        "grade_b_count": counts.get("B", 0),
+        "grade_c_count": counts.get("C", 0),
+        "grade_d_count": counts.get("D", 0),
+        "prototype_ready_count": counts.get("A", 0) + counts.get("B", 0),
+    }

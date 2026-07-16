@@ -12,6 +12,7 @@ FILES = [
     Path("data/seed/graph_edges.csv"),
     Path("data/seed/source_readiness.csv"),
     Path("data/seed/analysis_readiness.csv"),
+    Path("data/derived/readiness_sensitivity/readiness_grade_sensitivity.csv"),
     Path("data/seed/first_wave_ingestion_plan.csv"),
     Path("data/seed/source_acquisition_plan.csv"),
     Path("data/seed/source_files.csv"),

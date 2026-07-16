@@ -1,0 +1,4 @@
+a_min,b_min,c_min,configuration,grade_a_count,grade_b_count,grade_c_count,grade_d_count,prototype_ready_count,source_count
+11,8,5,canonical,32,11,16,1,43,60
+12,9,6,strict,32,9,12,7,41,60
+10,7,4,lenient,35,18,6,1,53,60

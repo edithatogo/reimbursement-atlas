@@ -2,7 +2,9 @@
 
 Epic: `ANA-001` — Source openness and access-readiness index
 
-Labels: type:analysis, good-first-issue
+Labels: type:analysis, good-first-issue, status:implemented
+
+Status: `implemented`
 
 ## Background
 
