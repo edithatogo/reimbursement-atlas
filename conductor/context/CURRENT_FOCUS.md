@@ -864,6 +864,13 @@ validity checks was accepted, but the authoritative settings response still repo
 `disabled`. Provider scanning, push protection, Dependabot, Gitleaks history scanning, CodeQL,
 zizmor, dependency review and protected CI remain active. Issue #191 stays open as an
 account/plan capability boundary; no secret values or credentials were accessed.
+
+## 2026-07-17 v136 OSF CLI contract refresh
+
+The repository-pinned `github.com/edithatogo/osf-cli-go/cmd/osf@v1.0.0` was installed into a
+temporary ignored directory and passed `pixi run osf-cli-contract`. The unrelated workstation
+`osf` `0.3.2` binary was not used as evidence. No OSF credentials or remote state were accessed;
+registration and publication remain fail-closed.
 ## 2026-07-17 - Merged generated issue status contract
 
 PR [#371](https://github.com/edithatogo/reimbursement-atlas/pull/371) is merged at

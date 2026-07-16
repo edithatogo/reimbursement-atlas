@@ -867,3 +867,15 @@ Gitleaks history scanning, CodeQL, zizmor, dependency review and protected CI re
 Consequence: The repository's compensating controls remain the enforceable local boundary. No
 secret values or credentials were accessed, and no repository code change can resolve this
 account-level limitation.
+
+## 2026-07-17 - Refresh the pinned OSF CLI contract
+
+Decision: Accept only the repository-pinned `osf-cli-go` `v1.0.0` binary as OSF workflow evidence;
+do not treat the unrelated workstation `osf` `0.3.2` binary as equivalent.
+
+Evidence: The pinned binary was installed into a temporary ignored directory and
+`pixi run osf-cli-contract` passed. No OSF credentials were read and no remote project, node,
+registration, file or metadata was changed.
+
+Consequence: The CLI toolchain gate is green locally, while registration and publication remain
+fail-closed pending protocol, licence, governance and human review approval.
