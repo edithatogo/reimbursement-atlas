@@ -81,6 +81,11 @@ CSV. This makes a PBS blocker actionable as `PBS_API_SUBSCRIPTION_KEY` without l
   are a separate control and do not validate generic non-provider patterns; the live API also reports
   them disabled. Do not claim either control is active until the applicable GitHub security settings
   show `enabled`.
+- Live verification on 2026-07-16 used the authenticated repository settings API to request
+  `enabled` for both `secret_scanning_non_provider_patterns` and
+  `secret_scanning_validity_checks`; GitHub accepted the requests but returned `disabled` for both.
+  This is retained as an account-level blocker in issue [#191](https://github.com/edithatogo/reimbursement-atlas/issues/191),
+  not treated as a repository implementation failure.
 - CodeQL for Python and JavaScript/TypeScript.
 - Dependabot and Renovate both configured, with Renovate preferred for grouped ecosystem updates.
 - SBOM generation and GitHub artifact attestations are implemented in

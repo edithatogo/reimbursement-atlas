@@ -509,3 +509,15 @@ Consequence: The current absent decision file remains valid and all candidate ro
 pending. Any future approval or block record must include source terms, attribution,
 redistribution permission, restrictions, evidence, reviewer and date, and must match the exact
 queue checksum.
+
+## 2026-07-16 - Verify GitHub advanced secret-setting boundary
+
+Decision: Keep issue #191 open after authenticated API enablement requests returned `disabled`
+for both non-provider secret-pattern scanning and partner-pattern validity checks.
+
+Rationale: The repository already has full-history Gitleaks coverage, provider scanning and push
+protection. The live settings API is authoritative for the two additional account-level controls;
+claiming them enabled would be false security evidence.
+
+Consequence: The repository-owned compensating control remains active, while the GitHub account or
+plan capability remains an explicit external blocker.
