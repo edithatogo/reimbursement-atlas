@@ -1,0 +1,32 @@
+---
+import Layout from "../../components/Layout.astro";
+import { readDashboardCsv } from "../../lib/csv";
+
+export async function getStaticPaths() {
+  const csv = await readDashboardCsv("analysis_catalogue.csv");
+  return csv.rows
+    .filter((row) => row.id)
+    .map((row) => ({ params: { id: row.id }, props: { row } }));
+}
+
+const { row } = Astro.props;
+const fields = Object.entries(row).filter(
+  ([, value]) => typeof value === "string" && value.trim().length > 0,
+);
+const baseUrl = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+---
+
+<Layout title={`Analysis: ${row.id}`}>
+  <p class="eyebrow">Analysis detail</p>
+  <h1>{row.id}</h1>
+  <p class="muted">Registered research question, source requirements and quality constraints.</p>
+  <p><a class="button-link" href={`${baseUrl}analyses/`}>Back to analyses</a></p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th scope="col">Field</th><th scope="col">Value</th></tr></thead>
+      <tbody>{fields.map(([field, value]) => <tr><th scope="row">{field}</th><td>{value}</td></tr>)}</tbody>
+    </table>
+  </div>
+</Layout>

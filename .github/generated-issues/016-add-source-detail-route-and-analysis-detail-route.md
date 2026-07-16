@@ -2,7 +2,9 @@
 
 Epic: `DASH-001` — Seed graph dashboard
 
-Labels: type:dashboard, phase:1-slice
+Labels: type:dashboard, phase:1-slice, status:implemented
+
+Status: `implemented`
 
 ## Background
 

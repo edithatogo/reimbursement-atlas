@@ -1,5 +1,6 @@
 ---
 import DataTable from "../../components/DataTable.astro";
+import DetailLinks from "../../components/DetailLinks.astro";
 import Layout from "../../components/Layout.astro";
 import ProvenancePanel from "../../components/ProvenancePanel.astro";
 ---
@@ -10,6 +11,7 @@ import ProvenancePanel from "../../components/ProvenancePanel.astro";
     Source pages emphasise acquisition status, reproducibility and licence gates before any raw
     public schedule is mirrored or transformed into derived outputs.
   </p>
+  <DetailLinks fileName="source_registry.csv" pathPrefix="sources" title="Source detail pages" labelColumn="id" />
   <ProvenancePanel
     title="Trace every source claim"
     description="Source observations, snapshots and validation records are generated separately so acquisition, provenance and licence review remain visible."

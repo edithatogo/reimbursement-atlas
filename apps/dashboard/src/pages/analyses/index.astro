@@ -1,5 +1,6 @@
 ---
 import DataTable from "../../components/DataTable.astro";
+import DetailLinks from "../../components/DetailLinks.astro";
 import Layout from "../../components/Layout.astro";
 ---
 
@@ -9,6 +10,7 @@ import Layout from "../../components/Layout.astro";
     Analysis recipes make the policy questions explicit, including required tables, quality gates and
     caveats before any result is treated as evidence.
   </p>
+  <DetailLinks fileName="analysis_catalogue.csv" pathPrefix="analyses" title="Analysis detail pages" labelColumn="id" />
   <DataTable
     title="Analysis recipes"
     fileName="analysis_recipes.csv"
