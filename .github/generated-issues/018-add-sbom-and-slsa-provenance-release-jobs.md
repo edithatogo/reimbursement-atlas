@@ -2,7 +2,9 @@
 
 Epic: `DX-001` — Developer experience and release hardening
 
-Labels: type:security, phase:2-expansion
+Labels: type:security, phase:2-expansion, status:implemented
+
+Status: `implemented`
 
 ## Background
 

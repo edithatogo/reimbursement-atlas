@@ -17,20 +17,31 @@ The SBOM generator is deliberately simple and deterministic. It reads `uv.lock` 
 
 ## Provenance
 
-The release workflow now requests:
+The release workflow requests read-only permissions by default and narrows release mutation
+permissions to the build job:
 
 ```yaml
 permissions:
-  contents: write
-  id-token: write
-  attestations: write
+  contents: read
+
+jobs:
+  build:
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
 ```
 
-It then attests:
+The build job then attests:
 
 - Python distributions in `dist/*`;
 - the source archive;
 - generated SBOM JSON files.
+
+These are GitHub Artifact Attestations, providing the workflow-bound provenance subject used
+by the consumer verification commands. No separate token-bearing provenance publisher is
+needed; the release workflow verifies each attestation before uploading the corresponding
+asset.
 
 ## Publication relationship
 
