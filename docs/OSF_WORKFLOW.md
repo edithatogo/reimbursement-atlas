@@ -92,7 +92,7 @@ temporary directory on 2026-07-17 and the local contract passed with
 workstation is not used as workflow evidence. This validates the toolchain only; it does
 not authorize OSF registration or publication.
 
-The current merged repository state is `eee2017` (`main`). The latest
+The current merged repository state is `c186e54` (`main`). The latest
 remote discovery evidence above is retained as a read-only preflight record; no OSF mutation
 occurred. The contract task now refuses ambiguous `PATH` lookup and requires `OSF_BIN` or
 `--binary`, preventing an unrelated older `osf` executable from being mistaken for the pinned
