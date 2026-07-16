@@ -857,3 +857,9 @@ ordered regeneration harness with no diff and remains clean.
 
 Repository release readiness is green (`36/36` gates), but research publication, OSF registration,
 evidence release, policy claims and external licence gates remain fail-closed.
+
+## 2026-07-17 - GitHub issue lifecycle reconciled
+
+Thirteen implementation-complete issues were synchronized from generated drafts, closed under the
+status-aware Conductor rule, and read back as `Done` in Project 18. The generated acceptance
+contract preserves the distinction between local implementation and external approval.

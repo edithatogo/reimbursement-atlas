@@ -806,3 +806,14 @@ security, Python 3.14, dashboard and browser checks passed. Main was regenerated
 
 Consequence: Repository release readiness remains true, while external research, evidence,
 licence, policy and publication readiness remain independently fail-closed.
+
+## 2026-07-17 - Reconcile remaining implementation-complete GitHub issues
+
+Decision: Synchronize and close only issues whose generated Conductor status is `implemented` or
+`done` and whose generated implementation criteria are fully checked.
+
+Evidence: Issues #326, #330, #339, #340, #341, #342, #343, #344, #345, #346, #351, #353 and #354
+were synchronized from tracked drafts and Project 18 reports each as `Done`.
+
+Consequence: Closure records repository implementation completion only. Licence review, source
+review, research, evidence, policy and publication gates remain fail-closed in generated status.
