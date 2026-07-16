@@ -1,0 +1,58 @@
+name: Historical source inventory
+
+on:
+  schedule:
+    - cron: "41 5 * * 3"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: historical-source-inventory
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      INVENTORY_BRANCH: automation/historical-source-inventory
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
+      - name: Refresh metadata-only inventory
+        run: pixi run python scripts/make_historical_source_index.py --refresh
+      - name: Detect inventory changes
+        id: changes
+        run: |
+          if git diff --quiet -- data/seed/historical_mbs_archive_targets.jsonl data/derived/historical_sources; then
+            echo "No historical inventory drift detected."
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Avoid duplicate inventory PRs
+        id: existing
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          existing="$(gh pr list --base main --head "$INVENTORY_BRANCH" --state open --json number --jq '.[0].number // empty')"
+          echo "exists=$([ -n "$existing" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+      - name: Open inventory update PR
+        if: steps.changes.outputs.has_changes == 'true' && steps.existing.outputs.exists == 'false'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$INVENTORY_BRANCH"
+          git add data/seed/historical_mbs_archive_targets.jsonl data/derived/historical_sources
+          git commit -m "chore(data): refresh historical MBS inventory"
+          git push --force-with-lease origin "HEAD:$INVENTORY_BRANCH"
+          gh pr create --base main --head "$INVENTORY_BRANCH" \
+            --title "chore(data): refresh historical MBS inventory" \
+            --body "Automated metadata-only inventory refresh. No raw historical payloads are downloaded or committed; source-specific licence review remains required before acquisition or publication."

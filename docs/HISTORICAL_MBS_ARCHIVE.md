@@ -29,3 +29,7 @@ inventory is not evidence that a file may be downloaded, parsed or republished.
 Before acquiring a target, record source-specific terms, download it only into
 ignored `data/raw_live/`, snapshot its checksum and promote only permitted
 derived fields through the source-contract and reviewed-bundle gates.
+
+The scheduled `.github/workflows/historical-source-inventory.yml` workflow refreshes this
+metadata-only inventory and opens a normal PR when official archive pages change. It never
+downloads historical payloads, bypasses licence review or writes directly to `main`.

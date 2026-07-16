@@ -146,7 +146,21 @@ def render_issue(issue: IssueDraft) -> str:
     """Render one GitHub issue draft."""
     labels = ", ".join(issue.labels) if issue.labels else "none"
     parent = f"Parent issue: {issue.parent_issue}\n\n" if issue.parent_issue else ""
-    if issue.title == "Prototype Mojo fuzzy prefilter for large crosswalk candidate sets":
+    if issue.title == "Expand reviewed coverage with historical MBS and PBS bundles":
+        acceptance = (
+            "- [x] Scope is confirmed: metadata-only inventory automation is implemented; raw "
+            "bundle acquisition remains gated.\n"
+            "- [x] Licence and data-governance implications are checked: historical targets remain "
+            "manual-review only.\n"
+            "- [x] Tests or validation evidence are defined: `pixi run historical-sources`, source "
+            "validation and source contracts.\n"
+            "- [x] Documentation or Conductor context is updated.\n"
+            "- [ ] Source-specific licence approval and reviewed PBS extract are complete.\n"
+            "- [ ] Historical raw payloads have been acquired into ignored local storage and "
+            "promoted "
+            "to reviewed derived bundles."
+        )
+    elif issue.title == "Prototype Mojo fuzzy prefilter for large crosswalk candidate sets":
         acceptance = (
             "- [x] Scope is confirmed: candidate generation only, never an equivalence decision.\n"
             "- [x] Licence and data-governance implications are checked for the synthetic local "

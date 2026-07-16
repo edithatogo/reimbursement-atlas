@@ -13,7 +13,9 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Scope is confirmed: metadata-only inventory automation is implemented; raw bundle acquisition remains gated.
+- [x] Licence and data-governance implications are checked: historical targets remain manual-review only.
+- [x] Tests or validation evidence are defined: `pixi run historical-sources`, source validation and source contracts.
+- [x] Documentation or Conductor context is updated.
+- [ ] Source-specific licence approval and reviewed PBS extract are complete.
+- [ ] Historical raw payloads have been acquired into ignored local storage and promoted to reviewed derived bundles.

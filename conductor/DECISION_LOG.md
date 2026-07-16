@@ -458,3 +458,15 @@ prototype result into an evidence claim.
 
 Consequence: Real reviewed mapping expansion and accountable human adjudication remain required
 before promotion or evidence-readiness claims.
+
+## 2026-07-16 - Add review-only historical and Zenodo automation
+
+Decision: Add a scheduled metadata-only historical inventory refresh and a manual read-only
+Zenodo preflight, while keeping historical payload acquisition and DOI creation externally gated.
+
+Rationale: Archive drift and release metadata can be monitored safely in-repository, but source
+licensing, reviewed PBS acquisition, research approval and DOI deposition remain accountable
+human/publication decisions.
+
+Consequence: The workflows open ordinary PRs or emit private preflight evidence only; they do
+not download raw historical files, accept publication tokens or mutate Zenodo.
