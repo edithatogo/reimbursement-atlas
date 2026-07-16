@@ -681,6 +681,13 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
             "- [x] No destructive issue, merge, branch or credential operation is exposed.\n"
             "- [x] Documentation and focused tests define the duplicate-avoidance boundary."
         )
+    elif issue.title == "Align generated GitHub label taxonomy with repository metadata":
+        acceptance = (
+            "- [x] Generated issue labels have corresponding repository labels with descriptions.\n"
+            "- [x] The reconciled issue set carries generated labels without changing issue "
+            "content.\n"
+            "- [x] Label taxonomy alignment is recorded as an auditable Conductor session."
+        )
     else:
         acceptance = """- [ ] Scope is confirmed.
 - [ ] Licence and data-governance implications are checked.
