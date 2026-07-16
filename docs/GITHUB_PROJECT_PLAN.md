@@ -59,3 +59,23 @@ Current configuration:
 5. Render seed graph in Astro/Cosmograph.
 6. Add licence-gated Hugging Face dataset publishing.
 7. Define first policy paper analysis protocol.
+
+## Idempotent synchronisation
+
+Generated issue drafts remain the deterministic source of truth. Compare them with the live
+repository and Project #18 without writing:
+
+```bash
+pixi run github-project-sync
+```
+
+The command is read-only by default and reports exact-title issue creation and Project-item
+actions. Use repeated `--title` filters and explicit `--apply` only after reviewing the plan:
+
+```bash
+pixi run github-project-sync --title "Add grouped licence review packet for accountable handoff" --apply
+```
+
+The synchroniser never edits, closes, deletes, merges or force-pushes issues and does not print
+GitHub credentials. Similar existing issues are reported for human reconciliation rather than
+duplicated automatically.
