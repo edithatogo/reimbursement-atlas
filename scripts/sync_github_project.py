@@ -77,12 +77,26 @@ def project_numbers(rows: Any) -> set[str]:
     return numbers
 
 
+def label_names(rows: Any) -> set[str]:
+    """Return labels available for safe issue creation."""
+    if not isinstance(rows, list):
+        return set()
+    names: set[str] = set()
+    for value in cast("list[Any]", rows):
+        if not isinstance(value, dict):
+            continue
+        name = cast("dict[str, Any]", value).get("name")
+        if isinstance(name, str) and name:
+            names.add(name)
+    return names
+
+
 def _issue_url(issue: dict[str, Any]) -> str | None:
     value = issue.get("url")
     return value if isinstance(value, str) and value else None
 
 
-def sync_project(
+def sync_project(  # noqa: PLR0914 - keeps the read/plan/apply state explicit.
     *,
     root: Path,
     repository: str,
@@ -129,6 +143,23 @@ def sync_project(
             root=root,
         )
     )
+    available_labels: set[str] = set()
+    if apply:
+        available_labels = label_names(
+            _run_gh(
+                [
+                    "label",
+                    "list",
+                    "--repo",
+                    repository,
+                    "--limit",
+                    "1000",
+                    "--json",
+                    "name",
+                ],
+                root=root,
+            )
+        )
 
     actions: list[dict[str, str]] = []
     for draft in drafts:
@@ -140,6 +171,13 @@ def sync_project(
                 continue
             body_path = root / str(draft["body_path"])
             labels: Any = draft.get("labels", [])
+            requested_labels = (
+                [str(label) for label in cast("list[Any]", labels)]
+                if isinstance(labels, list)
+                else []
+            )
+            selected_labels = [label for label in requested_labels if label in available_labels]
+            skipped_labels = [label for label in requested_labels if label not in available_labels]
             command = [
                 "issue",
                 "create",
@@ -150,12 +188,17 @@ def sync_project(
                 "--body-file",
                 str(body_path),
             ]
-            for label in cast("list[Any]", labels) if isinstance(labels, list) else []:
-                command.extend(("--label", str(label)))
+            for label in selected_labels:
+                command.extend(("--label", label))
             url = str(_run_gh(command, root=root))
             issue = {"title": title, "url": url, "number": url.rstrip("/").split("/")[-1]}
             remote_issues[title] = issue
             actions.append({"title": title, "action": "created_issue"})
+            if skipped_labels:
+                actions.append({
+                    "title": title,
+                    "action": f"skipped_labels:{','.join(skipped_labels)}",
+                })
 
         number = issue.get("number")
         if number is None:

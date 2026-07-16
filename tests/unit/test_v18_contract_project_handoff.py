@@ -18,7 +18,7 @@ from scripts.create_github_project_items import (
     existing_issue_paths,
     render_issue,
 )
-from scripts.sync_github_project import load_issue_drafts, project_numbers
+from scripts.sync_github_project import label_names, load_issue_drafts, project_numbers
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -142,6 +142,7 @@ def test_project_sync_reads_issue_rows_and_project_numbers(tmp_path: Path) -> No
         "326",
         "18",
     }
+    assert label_names([{"name": "type:automation"}, {"name": ""}]) == {"type:automation"}
 
 
 def test_generated_issue_drafts_deduplicate_backlog_and_roadmap_rows() -> None:
