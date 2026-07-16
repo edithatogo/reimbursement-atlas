@@ -2,7 +2,9 @@
 
 Epic: `PUBLIC-022` — Public product, citation and dashboard maturity
 
-Labels: type:dashboard, type:review, risk:licence, phase:release-gate
+Labels: type:dashboard, type:review, risk:licence, phase:release-gate, status:blocked
+
+Status: `blocked`
 
 ## Background
 

@@ -2,7 +2,9 @@
 
 Epic: `LIVE-001` — Reviewed live-source validation
 
-Labels: type:security, risk:licence, phase:1-slice
+Labels: type:security, risk:licence, phase:1-slice, status:blocked
+
+Status: `blocked`
 
 ## Background
 

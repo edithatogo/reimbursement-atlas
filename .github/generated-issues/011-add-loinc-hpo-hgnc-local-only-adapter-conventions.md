@@ -2,7 +2,9 @@
 
 Epic: `MAP-001` — Candidate crosswalk pipeline
 
-Labels: type:ontology, risk:licence
+Labels: type:ontology, risk:licence, status:blocked
+
+Status: `blocked`
 
 ## Background
 

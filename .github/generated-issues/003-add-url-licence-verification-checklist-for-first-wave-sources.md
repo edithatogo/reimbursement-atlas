@@ -2,7 +2,9 @@
 
 Epic: `SRC-001` — First-wave source versioning and fixtures
 
-Labels: risk:licence, type:data-source
+Labels: risk:licence, type:data-source, status:blocked
+
+Status: `blocked`
 
 ## Background
 

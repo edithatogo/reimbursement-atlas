@@ -2,7 +2,9 @@
 
 Epic: `PUB-001` — Publication and dataset release readiness
 
-Labels: type:data-source, risk:licence, phase:1-slice
+Labels: type:data-source, risk:licence, phase:1-slice, status:blocked
+
+Status: `blocked`
 
 ## Background
 
