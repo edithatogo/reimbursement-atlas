@@ -172,6 +172,21 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
                 "- [x] The repository-owned implementation is present; any separate human or "
                 "external publication gate remains fail-closed."
             )
+    elif issue.title == "Keep generated issue acceptance criteria and status synchronized":
+        acceptance = (
+            "- [x] Scope is implemented in repository code, generated artefacts, documentation "
+            "or protected automation.\n"
+            "- [x] Licence and data-governance boundaries are explicit; implementation status "
+            "does not grant external publication or evidence approval.\n"
+            "- [x] Tests, validation evidence or protected CI contracts exercise the local "
+            "implementation.\n"
+            "- [x] Conductor backlog, generated issue draft and GitHub Project linkage are "
+            "regenerated from the current source records.\n"
+            "- [x] The synchronizer detects generated issue-body drift by exact content after "
+            "normalizing GitHub's final newline.\n"
+            "- [x] Body writes require explicit `--apply`; default synchronization remains "
+            "read-only and no issue is closed or promoted."
+        )
     elif issue.status in {"implemented", "done"}:
         acceptance = (
             "- [x] Scope is implemented in repository code, generated artefacts, documentation "

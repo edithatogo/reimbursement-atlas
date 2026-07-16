@@ -877,6 +877,13 @@ registration and publication remain fail-closed.
 Remote output-plan issues #114-#118, #121 and #347-#350 were synchronized from their versioned
 `.github/generated-issues/` drafts. Repository-owned criteria are checked, while planned/drafted
 promotion and human/external review criteria remain unchecked. No issue was closed or promoted.
+
+## 2026-07-17 v139 GitHub issue-body sync automation
+
+The GitHub Project synchronizer now compares generated issue bodies, ignores GitHub's final
+newline normalization, and reports body drift in read-only mode. Explicit `--apply` is required
+for body writes; closure, promotion and destructive operations remain unavailable. Issue #370's
+body was reconciled and the filtered dry run now reports only `present`.
 ## 2026-07-17 - Merged generated issue status contract
 
 PR [#371](https://github.com/edithatogo/reimbursement-atlas/pull/371) is merged at

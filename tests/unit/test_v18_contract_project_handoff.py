@@ -18,7 +18,13 @@ from scripts.create_github_project_items import (
     existing_issue_paths,
     render_issue,
 )
-from scripts.sync_github_project import label_names, load_issue_drafts, project_numbers
+from scripts.sync_github_project import (
+    label_names,
+    load_issue_drafts,
+    normalise_body,
+    project_numbers,
+    sync_project,
+)
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -172,6 +178,57 @@ def test_project_sync_reads_issue_rows_and_project_numbers(tmp_path: Path) -> No
         "18",
     }
     assert label_names([{"name": "type:automation"}, {"name": ""}]) == {"type:automation"}
+
+
+def test_project_sync_body_comparison_ignores_github_final_newline() -> None:
+    """Generated body reconciliation must not churn on GitHub newline normalisation."""
+    assert normalise_body("body\n") == normalise_body("body")
+    assert normalise_body("body\n") != normalise_body("different\n")
+
+
+def test_project_sync_dry_run_reports_body_drift(monkeypatch, tmp_path: Path) -> None:
+    """Dry-run sync reports body drift without invoking a write command."""
+    export_dir = tmp_path / "data" / "derived" / "github_project"
+    export_dir.mkdir(parents=True)
+    (export_dir / "github_project_items.jsonl").write_text(
+        json.dumps({
+            "item_type": "issue",
+            "title": "One",
+            "body_path": "generated/one.md",
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+    body_path = tmp_path / "generated" / "one.md"
+    body_path.parent.mkdir()
+    body_path.write_text("new body\n", encoding="utf-8")
+
+    calls: list[list[str]] = []
+
+    def fake_gh(args: list[str], *, root: Path):
+        del root
+        calls.append(args)
+        if args[:2] == ["issue", "list"]:
+            return [{"title": "One", "number": 7, "url": "https://example/7", "body": "old"}]
+        if args[:2] == ["project", "item-list"]:
+            return {"items": []}
+        raise AssertionError from None
+
+    monkeypatch.setattr("scripts.sync_github_project._run_gh", fake_gh)
+    actions = sync_project(
+        root=tmp_path,
+        repository="owner/repo",
+        owner="owner",
+        project_number=18,
+        title_filters=("One",),
+        apply=False,
+    )
+
+    assert {action["action"] for action in actions} == {
+        "update_issue_body",
+        "add_project_item",
+    }
+    assert not any(args[:2] == ["issue", "edit"] for args in calls)
 
 
 def test_generated_issue_drafts_deduplicate_backlog_and_roadmap_rows() -> None:
