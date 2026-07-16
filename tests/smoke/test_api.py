@@ -37,5 +37,5 @@ def test_api_exposes_no_mutating_routes() -> None:
     assert not any(
         route.methods.intersection(mutating_methods)
         for route in app.routes
-        if hasattr(route, "methods")
+        if getattr(route, "methods", None) is not None
     )
