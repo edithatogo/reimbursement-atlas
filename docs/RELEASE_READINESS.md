@@ -37,8 +37,14 @@ Remaining blockers are external or require accountable human judgement:
 - CMS CLFS/PFS/ASP fields require source-specific licence decisions.
 - OSF registration requires an approved protocol freeze; the private `OSF_PROJECT_ID` is now configured;
   `OSF_TOKEN` is configured as a repository secret.
-- Hugging Face publication requires the configured `HF_TOKEN` and target repository variables;
-  configured, but publication remains disabled until review gates pass.
+- Hugging Face publication requires the configured `HF_TOKEN` and target repository variables,
+  but publication remains disabled until review gates pass.
+
+The latest read-only external preflight on merged main commit `e8b8a2e` completed successfully:
+OSF discovery/plan run `29475141289`, Hugging Face candidate validation run `29475142574`,
+Zenodo non-depositing preflight run `29475143715`, and source-health run `29475144835`.
+These runs validate automation and preserve fail-closed publication boundaries; they do not
+constitute human licence, research, evidence, policy or publication approval.
 - Mapping calibration, cross-platform dashboard visual review and policy claims
   require human adjudication.
 

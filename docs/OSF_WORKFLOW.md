@@ -73,6 +73,12 @@ See `docs/reviews/SIMULATED_MULTI_AGENT_PROTOCOL_REVIEW_2026-07-11.md` for the a
 
 ## Latest read-only discovery
 
+Workflow run `29475141289` on merged main commit `e8b8a2e` repeated the pinned CLI
+discovery and OSF plan. Discovery succeeded for the configured private
+`Reimbursement Atlas` project (`q8cnx`); provisioning and publication jobs were skipped.
+The plan verified `osf-cli-go` `v1.0.0` and the fail-closed sync manifest. No OSF node,
+registration, file or project metadata was mutated.
+
 OSF workflow run `29473382425` on `main` successfully ran the pinned CLI discovery path and
 the OSF plan. It found the expected private `Reimbursement Atlas` project (`q8cnx`);
 provisioning, registration, upload and publication were not performed. The sanitized project
