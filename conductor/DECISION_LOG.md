@@ -625,3 +625,5 @@ and never prints bearer tokens.
 Consequence: Future admin or scheduled audits can detect branch-protection drift before it
 causes a queued or misbound required check. The validator is deliberately not itself a required
 status context, avoiding a new circular branch-protection dependency.
+The implementation is tracked in [#279](https://github.com/edithatogo/reimbursement-atlas/issues/279),
+which was closed after PR #278 merged and the completed item was added to Project #18.

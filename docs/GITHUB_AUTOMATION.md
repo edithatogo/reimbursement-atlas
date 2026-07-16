@@ -116,4 +116,6 @@ GITHUB_REPOSITORY=edithatogo/reimbursement-atlas GH_TOKEN="$GH_TOKEN" \
 It verifies strict status checks, the full 20-context set and the repository-owned `zizmor`
 binding (`app_id 15368`) without writing settings or logging the token. For offline review,
 pass a captured `/branches/main/protection/required_status_checks` response with
-`python scripts/check_branch_protection.py --json path/to/response.json`.
+  `python scripts/check_branch_protection.py --json path/to/response.json`. The implementation
+  is tracked in [#279](https://github.com/edithatogo/reimbursement-atlas/issues/279), which is
+  closed after PR #278 merged and the completed item was added to Project #18.

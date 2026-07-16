@@ -136,6 +136,8 @@ The repository now includes a read-only branch-protection drift validator at
 strict 20-context contract and the `zizmor` GitHub Actions app binding from a live or captured
 GitHub API response. A fresh authenticated response passed with zero errors; this control is
 not itself a required status check, so it cannot create a circular protection dependency.
+The completed implementation is tracked by issue [#279](https://github.com/edithatogo/reimbursement-atlas/issues/279)
+and is marked `Done` in live Project #18.
 
 ## v19 follow-up
 
