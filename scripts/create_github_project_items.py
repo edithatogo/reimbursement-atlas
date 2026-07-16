@@ -156,8 +156,8 @@ def render_issue(issue: IssueDraft) -> str:
             "  precision and specificity at a deterministic threshold.\n"
             "- [x] Documentation or Conductor context is updated.\n"
             "- [ ] Human adjudication of real reviewed mappings is complete.\n\n"
-            "Current synthetic fixture evidence: recall `1.0`, precision `1.0`, specificity `1.0 "
-            "at\n"
+            "Current synthetic fixture evidence: recall `1.0`, precision `1.0`, "
+            "specificity `1.0` at\n"
             "threshold `0.2`. This does not establish evidence-grade performance."
         )
     elif issue.title == "Create signed release and Zenodo DOI after publication approval":
