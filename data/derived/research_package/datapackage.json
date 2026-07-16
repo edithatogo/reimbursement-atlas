@@ -880,20 +880,20 @@
       "schema": {}
     },
     {
-      "bytes": 4095,
+      "bytes": 3707,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "json",
-      "hash": "f071af6b8dcd130dec6624e1b38bd1b586cad9e64395fea6cdfc619334fb5d85",
+      "hash": "3dd5abc3a7ca0fe7dd88382d584c01aba1b4f9789002285a7ce7f851848f0f5f",
       "mediatype": "application/json",
       "name": "external-quality-gates",
       "path": "data/derived/external_quality_gates.json",
       "schema": {}
     },
     {
-      "bytes": 2895,
+      "bytes": 2311,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "f84b92ad53119d6acbd6e2c096ffd083ab3ccb86d1e59ebe932faa8b7e6b2a56",
+      "hash": "783a57eb004438c4fdfc76ca788a1827d0d6ffcb761adb8a41f9c51b82dd0dbc",
       "mediatype": "text/csv",
       "name": "external-quality-gates",
       "path": "data/derived/external_quality_gates.csv",

@@ -1121,20 +1121,20 @@
     {
       "@id": "data/derived/external_quality_gates.json",
       "@type": "File",
-      "contentSize": 4095,
+      "contentSize": 3707,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "json",
       "name": "external_quality_gates",
-      "sha256": "f071af6b8dcd130dec6624e1b38bd1b586cad9e64395fea6cdfc619334fb5d85"
+      "sha256": "3dd5abc3a7ca0fe7dd88382d584c01aba1b4f9789002285a7ce7f851848f0f5f"
     },
     {
       "@id": "data/derived/external_quality_gates.csv",
       "@type": "File",
-      "contentSize": 2895,
+      "contentSize": 2311,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "external_quality_gates",
-      "sha256": "f84b92ad53119d6acbd6e2c096ffd083ab3ccb86d1e59ebe932faa8b7e6b2a56"
+      "sha256": "783a57eb004438c4fdfc76ca788a1827d0d6ffcb761adb8a41f9c51b82dd0dbc"
     },
     {
       "@id": "data/derived/optional_toolchain_installs.json",
