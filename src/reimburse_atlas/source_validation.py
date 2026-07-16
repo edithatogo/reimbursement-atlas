@@ -301,9 +301,7 @@ def _line_record_count(path: Path) -> int:
     return max(line_count - 1, 0)
 
 
-def _csv_schema_issues(
-    path: Path, source_id: str
-) -> list[str]:
+def _csv_schema_issues(path: Path, source_id: str) -> list[str]:
     """Check the stable minimum header contract for a known CSV parser."""
     required = CSV_REQUIRED_COLUMNS.get(source_id)
     if required is None:
