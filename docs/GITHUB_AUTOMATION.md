@@ -68,6 +68,8 @@ CSV projection, so maintainers can inspect acquisition follow-up without opening
 When acquisition evidence identifies a missing credential, the report also exposes the
 credential's environment-variable name (never its value) in the issue body and dashboard-safe
 CSV. This makes a PBS blocker actionable as `PBS_API_SUBSCRIPTION_KEY` without leaking secrets.
+The workflow grants `issues: write` only to the source-health job; the workflow default remains
+read-only for repository contents and does not grant issue mutation to unrelated jobs.
 
 ## Security posture
 

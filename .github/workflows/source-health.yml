@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: read
-  issues: write
 
 concurrency:
   group: source-health-${{ github.workflow }}-${{ github.ref }}
@@ -17,6 +16,9 @@ jobs:
   source-health:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    permissions:
+      contents: read
+      issues: write
     env:
       PYTHONPATH: src
       PBS_API_SUBSCRIPTION_KEY: ${{ secrets.PBS_API_SUBSCRIPTION_KEY }}
