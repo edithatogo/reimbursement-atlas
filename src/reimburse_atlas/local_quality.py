@@ -13,7 +13,6 @@ import os
 import subprocess  # nosec B404
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from time import monotonic
 from typing import Literal
 
 from reimburse_atlas.io import write_csv, write_jsonl
@@ -405,7 +404,6 @@ def run_quality_gate(
             stderr_excerpt="",
             notes="Dry-run mode; command was not executed.",
         )
-    start = monotonic()
     env = {**os.environ, "PYTHONPATH": str(repo / "src")}
     try:
         completed = subprocess.run(  # nosec B603
@@ -418,7 +416,6 @@ def run_quality_gate(
             timeout=spec.timeout_seconds,
         )
     except FileNotFoundError as exc:
-        duration = monotonic() - start
         return _run_record(
             spec,
             command_text,
@@ -426,14 +423,12 @@ def run_quality_gate(
             repo,
             status="missing_tool",
             return_code=None,
-            duration_seconds=duration,
             generated_at=generated_at,
             stdout="",
             stderr=str(exc),
             notes="Executable is unavailable in the active runtime.",
         )
     except subprocess.TimeoutExpired as exc:
-        duration = monotonic() - start
         return _run_record(
             spec,
             command_text,
@@ -441,13 +436,11 @@ def run_quality_gate(
             repo,
             status="timed_out",
             return_code=None,
-            duration_seconds=duration,
             generated_at=generated_at,
             stdout=exc.stdout if isinstance(exc.stdout, str) else "",
             stderr=exc.stderr if isinstance(exc.stderr, str) else "",
             notes="Command exceeded the configured timeout.",
         )
-    duration = monotonic() - start
     status = classify_gate_result(completed.returncode, completed.stdout, completed.stderr)
     return _run_record(
         spec,
@@ -456,7 +449,6 @@ def run_quality_gate(
         repo,
         status=status,
         return_code=completed.returncode,
-        duration_seconds=duration,
         generated_at=generated_at,
         stdout=completed.stdout,
         stderr=completed.stderr,
@@ -546,7 +538,6 @@ def _run_record(
     *,
     status: QualityGateStatus,
     return_code: int | None,
-    duration_seconds: float,
     generated_at: str,
     stdout: str,
     stderr: str,
@@ -559,7 +550,9 @@ def _run_record(
         cwd=repo_relative(cwd, repo),
         status=status,
         return_code=return_code,
-        duration_seconds=round(duration_seconds, 3),
+        # Wall-clock duration is machine-dependent and would make generated
+        # evidence fail the repository's deterministic-regeneration gate.
+        duration_seconds=0.0,
         blocking=spec.blocking,
         generated_at=generated_at,
         stdout_excerpt=_excerpt(stdout, repo=repo),
