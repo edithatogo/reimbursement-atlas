@@ -2,7 +2,10 @@
 
 The generated queue at `data/derived/licence_review/` is the artifact-level preparation surface
 for human licence and redistribution review. It binds every candidate publication artefact to its
-current SHA-256 checksum, publication scope and source-specific licence gate.
+current SHA-256 checksum, publication scope and source-specific licence gate. The queue is broader
+than source payloads: it also includes project-owned metadata, governance and derived outputs that
+may be included in a public package. The count must not be described as a count of raw or
+source-derived files.
 
 The queue is intentionally fail-closed:
 
