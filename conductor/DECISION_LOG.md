@@ -665,3 +665,15 @@ review workload, while removing the queue would weaken publication controls.
 
 Consequence: Documentation and Conductor context now distinguish the total artifact queue from
 the source-derived subset. All rows remain pending and publication remains fail-closed.
+
+## 2026-07-17 - Merge toolchain evidence redaction after reproducibility validation
+
+Decision: Merge the machine-path redaction and refresh the generated projections only after the
+repository's deterministic regeneration and generated-artifact checks passed on GitHub.
+
+Evidence: PR #311 merged as `bbb83e8770b8b73b3df8f3b817565eb7b1944328`. The post-merge local policy,
+seed-sync, CLI, focused unit, Ruff and basedpyright checks also passed. The committed toolchain
+report uses stable `PATH:<executable>` values and does not expose workstation-specific paths.
+
+Consequence: Software release readiness remains true, while research publication, evidence release,
+policy claims, source licensing and human review remain separate fail-closed gates.
