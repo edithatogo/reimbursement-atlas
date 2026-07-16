@@ -305,7 +305,7 @@
       "name": "sbom_summary",
       "parquet_path": "sbom_summary/sbom_summary.parquet",
       "rows": 2,
-      "sha256": "7e1520b45548d4f4fc0e4c2c8dcc146ecd16d2c4bf17e9d567bd3f0f81226eed"
+      "sha256": "12889153f160328c3aff55e209a1978296432ad198d731d8d5f92292b50bafa6"
     },
     {
       "csv_path": "local_quality_gates/local_quality_gates.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 36,
-      "sha256": "6fad8dd9870b85fdee3de81c1a6397b0dacc63e2cbda2bcb01071cb5ee1d1ebe"
+      "sha256": "b526445382769d83b39851a6bc88169ddb8b0daacd0557b5c2647188dfb09772"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -392,8 +392,8 @@
       "jsonl_path": "github_project_items/github_project_items.jsonl",
       "name": "github_project_items",
       "parquet_path": "github_project_items/github_project_items.parquet",
-      "rows": 180,
-      "sha256": "d6da339cb44fce6d99298c1dc7eb444f18bfe6bf0f3dc2b0d5889d883e84e524"
+      "rows": 181,
+      "sha256": "5fa242abefa6985f1ba371ca82954e56936f12514f32ae3e4b9c3e9ceda0ba75"
     },
     {
       "csv_path": "final_handoff_tasks/final_handoff_tasks.csv",
@@ -449,7 +449,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "36ef29c7f1fe9895c2fb69b157489c5a92c56992b8c6795833ae97147141ff65"
+      "sha256": "17bec85eeda2bdbbefaf1b20a79d28dc0535dfe471faff477dcc575b5685e56e"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
@@ -457,7 +457,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 166,
-      "sha256": "2d27f75b4511fa07e2a945d0d8f5ffd8e1f9ff4c44d4d8bb2b83ae36b0808f70"
+      "sha256": "00fd46330f34168ae3af58312232eb92c316e6a19ccc02ebd41fcf075f5ddbdf"
     }
   ]
 }

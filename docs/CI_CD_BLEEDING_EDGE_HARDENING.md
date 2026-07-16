@@ -82,6 +82,12 @@ refs, refuses partial updates, preserves version comments, and opens a normal re
 when a complete pin set is available. It never mutates `main` directly; resolver evidence is
 uploaded with each run.
 
+The 2026-07-17 stack canary upgraded the compatible dashboard dependencies to Astro `7.1.0`
+and `@cosmograph/react` `2.3.3`. TypeScript `7.0.2` was not adopted because the pinned
+`@astrojs/check` `0.9.9` peer contract accepts TypeScript 5 or 6; forcing the upgrade with a
+legacy peer override would weaken reproducible CI. The follow-up is tracked in the Conductor
+backlog and should be re-tested after the checker publishes TypeScript 7 support.
+
 ## Next hardening steps
 
 1. Maintain the pin-plan and fail the generated-artifact gate if a dependency update introduces a tag-pinned action.
