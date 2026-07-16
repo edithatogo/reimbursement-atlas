@@ -64,6 +64,12 @@ Advanced Security binding was resolved through repository-admin GraphQL settings
 - Mapping calibration, cross-platform dashboard visual review and policy claims
   require human adjudication.
 
+The newest read-only preflight set on `main` (`c7a55b3e4483265ffe60637714e930512ec22cdb`)
+also passed: OSF run `29517248071`, Hugging Face run `29517250473`, and Zenodo run
+`29517252716`. All publication/provisioning mutation jobs were skipped. These runs confirm
+automation and candidate validity only; they do not change the false research, evidence,
+policy-claim or publication-readiness flags.
+
 These states are tracked as evidence rather than hidden in prose.
 
 ## Source contract posture
