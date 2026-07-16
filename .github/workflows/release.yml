@@ -26,6 +26,15 @@ jobs:
         run: |
           archive_name="reimbursement-atlas-${GITHUB_REF_NAME}.tar.gz"
           git archive --format=tar.gz --output="$archive_name" HEAD
+      - name: Generate deterministic release manifest
+        run: |
+          python scripts/make_release_manifest.py \
+            --output release-manifest.json \
+            --tag "$GITHUB_REF_NAME" \
+            --commit "$GITHUB_SHA" \
+            --artifact dist/* \
+            --artifact reimbursement-atlas-*.tar.gz \
+            --artifact data/derived/sbom/*.json
       - name: Attest Python distributions
         uses: actions/attest@a1948c3f048ba23858d222213b7c278aabede763 # v4
         with:
@@ -38,13 +47,17 @@ jobs:
         uses: actions/attest@a1948c3f048ba23858d222213b7c278aabede763 # v4
         with:
           subject-path: data/derived/sbom/*.json
+      - name: Attest release manifest
+        uses: actions/attest@a1948c3f048ba23858d222213b7c278aabede763 # v4
+        with:
+          subject-path: release-manifest.json
       - name: Verify release attestations before upload
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           signer="${GITHUB_REPOSITORY}/.github/workflows/release.yml"
-          for artifact in dist/* reimbursement-atlas-*.tar.gz data/derived/sbom/*.json; do
+          for artifact in dist/* reimbursement-atlas-*.tar.gz data/derived/sbom/*.json release-manifest.json; do
             gh attestation verify "$artifact" \
               --repo "$GITHUB_REPOSITORY" \
               --signer-workflow "$signer" \
@@ -57,3 +70,4 @@ jobs:
             dist/*
             reimbursement-atlas-*.tar.gz
             data/derived/sbom/*.json
+            release-manifest.json

@@ -87,3 +87,7 @@ CSV. This makes a PBS blocker actionable as `PBS_API_SUBSCRIPTION_KEY` without l
   `.github/workflows/release.yml`; consumers should follow
   [`docs/RELEASE_VERIFICATION.md`](RELEASE_VERIFICATION.md) to verify checksums and signer
   workflow provenance before installing release artefacts.
+- Tagged releases also publish an attested `release-manifest.json` containing the tag, commit,
+  relative subject paths, sizes and SHA-256 values for each distribution, source archive and SBOM.
+  This is software provenance only and does not authorize Zenodo, OSF, Hugging Face or evidence
+  publication.

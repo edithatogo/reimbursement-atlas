@@ -175,6 +175,14 @@ The local dashboard browser smoke suite was rerun after the source-health automa
 This is automated smoke evidence only; cross-browser/OS visual baseline and accessibility
 approval remains a human review item.
 
+## 2026-07-16 deterministic release manifest
+
+The tagged release workflow now generates a relative-path, checksum-bearing
+`release-manifest.json` binding distributions, the source archive and SBOMs to the release tag
+and commit. GitHub attests and verifies the manifest before publishing it. This strengthens
+consumer software provenance without changing the fail-closed status of Zenodo, OSF, Hugging Face,
+source licensing, evidence or policy-claim gates.
+
 ## 2026-07-16 live Pages defect follow-up
 
 The public browser check found a deployment-only base-path defect: HTML loaded at the project

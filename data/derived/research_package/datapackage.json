@@ -905,20 +905,20 @@
       }
     },
     {
-      "bytes": 35829,
+      "bytes": 36170,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "a811a34fe95debab6b320f96b34af7c73749f4a3fb4fb1cdf11713f4e8e18916",
+      "hash": "e7110e05019d2c88b290e48f2c30baa11073de19d02a418bb14c919a8c33b300",
       "mediatype": "application/json",
       "name": "workflow-uses",
       "path": "data/derived/repo_automation/workflow_uses.jsonl",
       "schema": {}
     },
     {
-      "bytes": 21478,
+      "bytes": 21676,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "10f750c9cd861ca6ca8b3c57bbb964e06d0e3e031a1343a4b896a6cb7bec6452",
+      "hash": "fc8bad422ef6bb77c760f4a64f3ef6a56e8bd1137e7c24d0e71b02c5287ba237",
       "mediatype": "text/csv",
       "name": "workflow-uses",
       "path": "data/derived/repo_automation/workflow_uses.csv",

@@ -1,7 +1,9 @@
 # Release verification
 
 Release artefacts are built by the tagged GitHub Actions release workflow and receive GitHub
-artifact attestations. Verify both the checksum and the attestation before installing a release.
+artifact attestations. The workflow also publishes `release-manifest.json`, a deterministic
+inventory binding the release tag and commit to every distribution, source archive and SBOM.
+Verify both the checksum and the attestation before installing a release.
 
 ## Requirements
 
@@ -27,12 +29,22 @@ gh attestation verify "$ASSET" \
 ```
 
 Repeat the attestation command for the source archive and each SBOM selected for use. The release
-workflow itself performs the same verification before publishing its GitHub release.
+workflow itself performs the same verification before publishing its GitHub release. Verify the
+manifest too:
+
+```bash
+gh attestation verify release-manifest.json \
+  --repo edithatogo/reimbursement-atlas \
+  --signer-workflow edithatogo/reimbursement-atlas/.github/workflows/release.yml \
+  --source-ref "refs/tags/$TAG" \
+  --deny-self-hosted-runners
+```
 
 ## Interpret the result
 
 An attestation verifies that the subject was produced by the expected GitHub workflow from the
-expected tag. It does not establish that MBS, PBS, CMS, CPT, OSF or Hugging Face publication gates
+expected tag. The release manifest additionally lets consumers compare the published subject
+checksums. It does not establish that MBS, PBS, CMS, CPT, OSF or Hugging Face publication gates
 have passed. Check the release status manifest, source licence records and human-review decisions
 before making evidence or policy claims.
 
