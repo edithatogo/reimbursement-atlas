@@ -2,7 +2,9 @@
 
 Epic: `OSF-002` — Protocol completeness and OSF release gates
 
-Labels: type:research, type:osf, phase:hardening
+Labels: type:research, type:osf, phase:hardening, status:implemented
+
+Status: `implemented`
 
 ## Background
 
@@ -11,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Scope is confirmed: OSF mutation commands fail closed when protocol status is not ready.
+- [x] Licence and data-governance implications are checked: blocked rows are not published or silently relabelled.
+- [x] Tests or validation evidence are defined: protocol-status and OSF sync tests cover blocked registration and publication actions.
+- [x] Documentation or Conductor context is updated in `docs/OSF_RECONCILIATION.md`; registration still requires accountable review.

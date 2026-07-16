@@ -145,7 +145,7 @@ def generated_track_issues(
     return issues
 
 
-def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912 - criteria are explicit per track
+def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria are explicit per track
     """Render one GitHub issue draft."""
     labels = ", ".join(issue.labels) if issue.labels else "none"
     parent = f"Parent issue: {issue.parent_issue}\n\n" if issue.parent_issue else ""
@@ -296,6 +296,122 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912 - criteria are expl
             "mapping approval or evidence readiness.\n"
             "- [x] Generated crosswalk assets are included in dashboard seed synchronisation and "
             "route checks."
+        )
+    elif issue.title == "Define local adapter contracts for RxNav-in-a-Box style services":
+        acceptance = (
+            "- [x] Scope is confirmed: a read-only, local-only RxNav-compatible HTTP contract is "
+            "defined without bundling RxNorm payloads or credentials.\n"
+            "- [x] Licence and data-governance implications are checked: configuration defaults to "
+            "local use and returned matches remain machine-generated candidates.\n"
+            "- [x] Tests or validation evidence are defined: deterministic URL construction and "
+            "minimal response parsing are covered by `tests/unit/test_terminologies_v5.py`.\n"
+            "- [x] Documentation or Conductor context is updated in `docs/ONTOLOGY_STRATEGY.md`; "
+            "domain review is still required before mapping promotion."
+        )
+    elif issue.title == "Run pip-audit strict in network-enabled CI before public release":
+        acceptance = (
+            "- [x] Scope is confirmed: CI runs `pip-audit --strict` using the pinned Pixi task.\n"
+            "- [x] Licence and data-governance implications are checked: advisory results do not "
+            "alter source-data publication terms.\n"
+            "- [x] Tests or validation evidence are defined: the protected `python-security` job "
+            "and external-quality-gates artefact provide network-enabled evidence.\n"
+            "- [x] Documentation or Conductor context is updated; local advisory lookup remains "
+            "environment-dependent outside CI."
+        )
+    elif issue.title == "Gate OSF publication on protocol-status readiness table":
+        acceptance = (
+            "- [x] Scope is confirmed: OSF mutation commands fail closed when protocol status is "
+            "not ready.\n"
+            "- [x] Licence and data-governance implications are checked: blocked rows are not "
+            "published or silently relabelled.\n"
+            "- [x] Tests or validation evidence are defined: protocol-status and OSF sync tests "
+            "cover blocked registration and publication actions.\n"
+            "- [x] Documentation or Conductor context is updated in `docs/OSF_RECONCILIATION.md`; "
+            "registration still requires accountable review."
+        )
+    elif issue.title == "Expand protocol templates with source-specific sensitivity analyses":
+        acceptance = (
+            "- [x] Scope is confirmed: all five protocol scaffolds include estimands, missingness, "
+            "mapping, uncertainty, sensitivity and amendment sections.\n"
+            "- [x] Licence and data-governance implications are checked in each protocol's source "
+            "and publication gates.\n"
+            "- [x] Tests or validation evidence are defined by protocol-status generation and "
+            "release-readiness checks.\n"
+            "- [x] Documentation or Conductor context is updated in `protocols/` and the review "
+            "checklist; no protocol is treated as approved."
+        )
+    elif issue.title == "Add reviewer checklist for each protocol before preregistration":
+        acceptance = (
+            "- [x] Scope is confirmed: the shared checklist is applied to every registered "
+            "research "
+            "question.\n"
+            "- [x] Licence and data-governance implications are explicit checklist decisions.\n"
+            "- [x] Tests or validation evidence are defined through protocol-status and OSF "
+            "gate outputs.\n"
+            "- [x] Documentation or Conductor context is updated in "
+            "`docs/RESEARCH_PROTOCOL_REVIEW_CHECKLIST.md`; "
+            "all current decisions remain pending human review."
+        )
+    elif issue.title == "Pin and contract-test the stable OSF CLI command surface":
+        acceptance = (
+            "- [x] Scope is confirmed: the unauthenticated contract checks the pinned version and "
+            "required help markers without mutating OSF.\n"
+            "- [x] Licence and data-governance implications are checked; credentials are never "
+            "read "
+            "by the contract probe.\n"
+            "- [x] Tests or validation evidence are defined in "
+            "`tests/unit/test_osf_cli_contract.py` "
+            "and the `osf-cli-contract` Pixi task.\n"
+            "- [x] Documentation or Conductor context is updated; live OSF publication remains "
+            "gated."
+        )
+    elif issue.title == "Expand OSF protocols and report scaffolds with required sections":
+        acceptance = (
+            "- [x] Scope is confirmed: protocol, report, data-dictionary, source and sensitivity "
+            "scaffolds are generated for each research question.\n"
+            "- [x] Licence and data-governance implications remain explicit in publication "
+            "manifests "
+            "and protocol files.\n"
+            "- [x] Tests or validation evidence are defined by protocol-status, research-package "
+            "and deterministic-regeneration gates.\n"
+            "- [x] Documentation or Conductor context is updated; OSF registration is still gated "
+            "by accountable review."
+        )
+    elif issue.title == "Scan complete Git history for committed secrets":
+        acceptance = (
+            "- [x] Scope is confirmed: the protected security workflow checks full Git history "
+            "with "
+            "`fetch-depth: 0`.\n"
+            "- [x] Licence and data-governance implications are checked; reports do not publish "
+            "secret "
+            "values.\n"
+            "- [x] Tests or validation evidence are defined by the required `secret-history` "
+            "Gitleaks "
+            "check.\n"
+            "- [x] Documentation or Conductor context is updated in the security assurance "
+            "workflow."
+        )
+    elif issue.title == "Verify reproducible Python release artefacts in CI":
+        acceptance = (
+            "- [x] Scope is confirmed: CI builds twice with a fixed `SOURCE_DATE_EPOCH` and "
+            "compares "
+            "artifact names and bytes.\n"
+            "- [x] Licence and data-governance implications are checked through the release "
+            "manifest "
+            "and publication policy.\n"
+            "- [x] Tests or validation evidence are defined by the required `reproducible-build` "
+            "check and uploaded checksum evidence.\n"
+            "- [x] Documentation or Conductor context is updated in `docs/RELEASE_VERIFICATION.md`."
+        )
+    elif issue.title == "Require security and harness contexts in branch protection":
+        acceptance = (
+            "- [x] Scope is confirmed: strict protection requires the repository's security and "
+            "harness contexts.\n"
+            "- [x] Licence and data-governance implications are not altered by branch settings.\n"
+            "- [x] Tests or validation evidence are defined by the branch-protection drift "
+            "validator "
+            "and live API read-back.\n"
+            "- [x] Documentation or Conductor context is updated; no administrator bypass is used."
         )
     elif issue.title == "Add dashboard table for policy signal matrix and analysis recipes":
         acceptance = (

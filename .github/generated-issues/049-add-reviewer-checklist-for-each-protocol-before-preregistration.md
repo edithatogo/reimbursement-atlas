@@ -2,7 +2,9 @@
 
 Epic: `OSF-002` — Protocol completeness and OSF release gates
 
-Labels: type:review, type:osf, phase:analysis
+Labels: type:review, type:osf, phase:analysis, status:implemented
+
+Status: `implemented`
 
 ## Background
 
@@ -11,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Scope is confirmed: the shared checklist is applied to every registered research question.
+- [x] Licence and data-governance implications are explicit checklist decisions.
+- [x] Tests or validation evidence are defined through protocol-status and OSF gate outputs.
+- [x] Documentation or Conductor context is updated in `docs/RESEARCH_PROTOCOL_REVIEW_CHECKLIST.md`; all current decisions remain pending human review.

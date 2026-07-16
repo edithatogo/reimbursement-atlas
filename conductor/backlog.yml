@@ -192,7 +192,8 @@ epics:
         labels: ["type:ontology", "risk:licence", "phase:1-slice", "status:blocked"]
         status: blocked
       - title: Define local adapter contracts for RxNav-in-a-Box style services
-        labels: ["type:ontology", "type:mcp", "phase:2-expansion"]
+        labels: ["type:ontology", "type:mcp", "phase:2-expansion", "status:implemented"]
+        status: implemented
 
   - id: REL-001
     title: Release readiness and architecture gates
@@ -210,7 +211,8 @@ epics:
         labels: ["type:security", "type:supply-chain", "phase:hardening", "status:implemented"]
         status: implemented
       - title: Run pip-audit strict in network-enabled CI before public release
-        labels: ["type:security", "phase:hardening"]
+        labels: ["type:security", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Maintain structured issue forms for source, analysis and quality work
         labels: ["type:repo-automation", "phase:hardening", "status:implemented"]
         status: implemented
@@ -237,13 +239,17 @@ epics:
     priority: must
     issues:
       - title: Gate OSF publication on protocol-status readiness table
-        labels: ["type:research", "type:osf", "phase:hardening"]
+        labels: ["type:research", "type:osf", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Expand protocol templates with source-specific sensitivity analyses
-        labels: ["type:research", "type:methods", "phase:analysis"]
+        labels: ["type:research", "type:methods", "phase:analysis", "status:implemented"]
+        status: implemented
       - title: Add reviewer checklist for each protocol before preregistration
-        labels: ["type:review", "type:osf", "phase:analysis"]
+        labels: ["type:review", "type:osf", "phase:analysis", "status:implemented"]
+        status: implemented
       - title: Pin and contract-test the stable OSF CLI command surface
-        labels: ["type:osf", "type:automation", "phase:hardening"]
+        labels: ["type:osf", "type:automation", "phase:hardening", "status:implemented"]
+        status: implemented
   - id: DQ-001
     title: Data quality and evidence readiness gates
     phase: hardening
@@ -284,7 +290,8 @@ epics:
         labels: ["type:publication", "type:review", "risk:licence", "phase:release-gate", "status:blocked"]
         status: blocked
       - title: Expand OSF protocols and report scaffolds with required sections
-        labels: ["type:research", "type:osf"]
+        labels: ["type:research", "type:osf", "status:implemented"]
+        status: implemented
 
   - id: HANDOFF-018
     title: Final local continuation and GitHub Project handoff gates
@@ -337,13 +344,17 @@ epics:
         labels: ["type:security", "type:supply-chain", "phase:hardening", "status:implemented"]
         status: implemented
       - title: Enable GitHub non-provider secret-pattern scanning and validity checks
-        labels: ["type:security", "type:repo-automation", "phase:hardening"]
+        labels: ["type:security", "type:repo-automation", "phase:hardening", "status:blocked"]
+        status: blocked
       - title: Scan complete Git history for committed secrets
-        labels: ["type:security", "phase:hardening"]
+        labels: ["type:security", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Verify reproducible Python release artefacts in CI
-        labels: ["type:supply-chain", "type:release", "phase:hardening"]
+        labels: ["type:supply-chain", "type:release", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Require security and harness contexts in branch protection
-        labels: ["type:security", "type:repo-automation", "phase:hardening"]
+        labels: ["type:security", "type:repo-automation", "phase:hardening", "status:implemented"]
+        status: implemented
 
   - id: HARNESS-021
     title: Layered harness engineering and deterministic regeneration
