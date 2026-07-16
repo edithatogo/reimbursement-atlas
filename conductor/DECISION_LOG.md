@@ -482,3 +482,15 @@ a card alone is too weak to catch accidental licensing ambiguity.
 
 Consequence: The validator checks metadata and disclosure markers on every pull request, but
 human source-licence review, release readiness and HF credentials remain required for mutation.
+
+## 2026-07-16 - Record authoritative MBS redistribution constraint
+
+Decision: Treat MBS Online as public-to-access but not open-to-redistribute by default.
+
+Rationale: The official copyright notice permits limited personal, non-commercial, unaltered
+use and states that redistribution or commercial use requires prior written Commonwealth
+approval. This is stricter and more useful than a generic `public` source label.
+
+Consequence: The source registry, licence evidence document and MBS derived bundle retain the
+`public_reuse_review` gate. Apache-2.0 remains limited to project-owned code and documentation;
+PBS remains blocked pending authenticated acquisition and terms review.

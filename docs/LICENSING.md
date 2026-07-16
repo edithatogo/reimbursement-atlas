@@ -16,7 +16,10 @@ Every external source is governed by its own terms. Source records therefore
 carry source-specific licence gates and attribution notes. Examples include:
 
 - Australian MBS and PBS materials: retain Commonwealth or publisher terms and
-  confirm downstream redistribution before publishing derived fields.
+  confirm downstream redistribution before publishing derived fields. The current
+  MBS Online copyright notice permits limited personal, non-commercial, unaltered
+  use and requires written approval for redistribution; see
+  [`SOURCE_LICENCE_EVIDENCE.md`](SOURCE_LICENCE_EVIDENCE.md).
 - CMS CLFS/PFS materials: use the applicable CMS/AMA source licence and terms,
   including attribution and any field-level restrictions. Apache-2.0 does not
   override those terms. CPT descriptors and other licence-gated payloads are

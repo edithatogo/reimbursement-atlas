@@ -9,7 +9,7 @@
       "name": "source_registry",
       "parquet_path": "source_registry/source_registry.parquet",
       "rows": 60,
-      "sha256": "72f073edaa8cf564a8021bdf006320e1a22445b6398405e3bc28d4fd74e0b064"
+      "sha256": "089b0d690a3b4deb8d88e6e4b801ff4ebdd73c2e8d018a3c6aaca157e92ea8d9"
     },
     {
       "csv_path": "analysis_catalogue/analysis_catalogue.csv",
@@ -449,7 +449,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "c91db204c4472a2f34684ce925a272ffa446767d0a2b82fe3403df1540f54c26"
+      "sha256": "1647a1bc581db388c27b842adf74002379e8015c2405c494bb363a02196a2c43"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",

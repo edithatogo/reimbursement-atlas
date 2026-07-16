@@ -615,3 +615,11 @@ mixed-data licence metadata, source-specific licensing disclosure and an explici
 redistribution-permission warning. The data-smoke workflow runs this check on pull requests.
 This validates publication metadata hygiene only; it does not approve source licences or enable
 remote publication.
+
+## 2026-07-16: MBS source-term evidence
+
+The authoritative MBS Online copyright notice was recorded in
+`docs/SOURCE_LICENCE_EVIDENCE.md` and the `au_mbs` source registry record. It permits limited
+personal, non-commercial, unaltered use and requires prior written approval for redistribution.
+The July 2026 derived pair bundle therefore remains `public_reuse_review`; public access is not
+being treated as an open-data licence. PBS API access remains credential- and terms-gated.
