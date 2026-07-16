@@ -225,3 +225,4 @@ Tracked sub-issues:
 - Create and attest deterministic release metadata; create signed release and Zenodo DOI only
   after publication approval
 - Expand reviewed coverage with historical MBS and PBS bundles
+- Add grouped licence review packet and batch summary for accountable handoff

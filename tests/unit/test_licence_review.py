@@ -53,13 +53,17 @@ def test_queue_writes_checksum_bound_outputs(tmp_path: Path) -> None:
         build_licence_review_queue(_manifest()),
         output_dir=tmp_path / "licence_review",
     )
-    payload = json.loads(paths[2].read_text(encoding="utf-8"))
+    payload = json.loads(paths[3].read_text(encoding="utf-8"))
     assert payload["pending_count"] == 1
     assert payload["approved_count"] == 0
     assert payload["approval_mutation_allowed"] is False
     assert '"checksum_sha256": "' + "a" * 64 in paths[0].read_text(encoding="utf-8")
-    assert "not an approval record" in paths[3].read_text(encoding="utf-8")
-    assert '"\n' not in paths[3].read_text(encoding="utf-8")
+    batches = paths[2].read_text(encoding="utf-8")
+    assert "public_reuse_review" in batches
+    assert "0,1,0,public_reuse_review,1,public_derived_candidate,0," in batches
+    assert "not an approval record" in paths[4].read_text(encoding="utf-8")
+    assert "Required decision fields" in paths[5].read_text(encoding="utf-8")
+    assert '"\n' not in paths[4].read_text(encoding="utf-8")
 
 
 def test_data_dictionary_marks_queue_internal(repo_root: Path) -> None:

@@ -663,6 +663,15 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
             "- [x] Documentation or Conductor context is updated; drift remains linked to issue "
             "#320."
         )
+    elif issue.title == "Add grouped licence review packet for accountable handoff":
+        acceptance = (
+            "- [x] Scope is implemented: generated review batches and a reviewer packet "
+            "are added without granting approval.\n"
+            "- [x] Tests or validation evidence are defined: `pixi run "
+            "licence-review-validate` and focused queue tests.\n"
+            "- [x] Dashboard and Conductor artefacts expose the grouped handoff.\n"
+            "- [ ] Accountable human licence decisions are recorded for the candidate artefacts."
+        )
     else:
         acceptance = """- [ ] Scope is confirmed.
 - [ ] Licence and data-governance implications are checked.

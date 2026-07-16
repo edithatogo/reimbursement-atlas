@@ -206,7 +206,7 @@ def _reviewed_bundle_evidence(
     for report_path in sorted(bundle_dir.glob("bundle_*/validation_report.json")):
         try:
             report = json.loads(report_path.read_text(encoding="utf-8"))
-        except OSError, json.JSONDecodeError:
+        except (OSError, json.JSONDecodeError):
             continue
         if (
             report.get("source_id") != record.source_id
@@ -243,7 +243,7 @@ def _reviewed_bundle_evidence(
 def _read_jsonl(path: Path) -> list[dict[str, object]]:
     try:
         return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line]
-    except OSError, json.JSONDecodeError:
+    except (OSError, json.JSONDecodeError):
         return []
 
 
@@ -309,7 +309,7 @@ def _csv_schema_issues(path: Path, source_id: str) -> list[str]:
     try:
         with path.open(newline="", encoding="utf-8-sig") as handle:
             headers = tuple((header or "").strip().lower() for header in next(csv.reader(handle)))
-    except OSError, UnicodeDecodeError, StopIteration, csv.Error:
+    except (OSError, UnicodeDecodeError, StopIteration, csv.Error):
         return ["CSV header could not be read"]
     missing = tuple(column for column in required if column not in headers)
     if missing:

@@ -13,7 +13,7 @@ def _read_json(root: Path, relative: str) -> dict[str, Any]:
     path = root / relative
     try:
         value = json.loads(path.read_text(encoding="utf-8"))
-    except OSError, ValueError:
+    except (OSError, ValueError):
         return {}
     return cast("dict[str, Any]", value) if isinstance(value, dict) else {}
 
@@ -49,7 +49,7 @@ def publication_gate_failures(root: Path | None = None) -> list[str]:
     try:
         value = json.loads(manifest_path.read_text(encoding="utf-8"))
         manifest = cast("dict[str, Any]", value) if isinstance(value, dict) else {}
-    except OSError, ValueError:
+    except (OSError, ValueError):
         manifest = {}
     raw_artifacts = manifest.get("artifacts", [])
     if isinstance(raw_artifacts, list):

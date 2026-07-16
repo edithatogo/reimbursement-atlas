@@ -492,7 +492,7 @@ def _metadata_retrieved_at(path: Path) -> str | None:
         return None
     try:
         metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
-    except OSError, ValueError:
+    except (OSError, ValueError):
         return None
     typed_metadata = cast("dict[str, object]", metadata) if isinstance(metadata, dict) else {}
     attempted_at = typed_metadata.get("attempted_at")

@@ -19,6 +19,11 @@ Run `pixi run licence-review-queue` after changing the publication manifest. Rev
 CSV/JSONL against the exact checksums, then record decisions in the human review table. A green
 software gate or a generated queue is not licence approval.
 
+The generated `licence_review_batches.csv` groups the queue by licence gate and publication
+scope so a reviewer can plan work without opening every row first. The generated
+`reviewer_packet.md` records the required decision fields and review sequence. Both are handoff
+ aids only; neither changes the pending state or permits publication.
+
 For machine-checkable decisions, add rows to the optional
 `data/licence_review/decisions.jsonl` companion file and run
 `pixi run licence-review-validate`. The validator checks queue checksums, repository-relative
