@@ -11,6 +11,7 @@ from reimburse_atlas.action_pins import (
     resolve_action_pins,
 )
 from reimburse_atlas.automation import WorkflowPinClass, WorkflowUseRecord
+from scripts.check_action_sha_pins import find_unpinned_actions
 
 
 @dataclass(frozen=True)
@@ -147,3 +148,28 @@ jobs:
     results = resolve_action_pins(tmp_path)
     assert [result.status for result in results] == ["blocked_network", "blocked_network"]
     assert calls == 1
+
+
+def test_find_unpinned_actions_reports_tag_refs(tmp_path: Path) -> None:
+    workflow_dir = tmp_path / ".github" / "workflows"
+    workflow_dir.mkdir(parents=True)
+    (workflow_dir / "ci.yml").write_text(
+        """
+name: CI
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+      - uses: ./.github/actions/local
+      - uses: docker://alpine:3.20
+""".strip()
+        + "\n",
+        encoding="utf-8",
+    )
+    violations = find_unpinned_actions(tmp_path)
+    assert [(record.action, record.pin_class) for record in violations] == [
+        ("actions/checkout", "major")
+    ]

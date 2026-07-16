@@ -402,6 +402,14 @@ runner-specific timing claims. The fuzzy prefilter still lacks adjudicated gold-
 Consequence: The runtime track distinguishes a parity-backed tokenizer from the uncalibrated
 candidate-generation prototype.
 
+## 2026-07-16 - Enforce immutable action references at CI boundary
+
+Decision: Add `func_action_sha_pin_policy_gate` as an implemented, non-mutating workflow gate.
+The gate fails on external action tags, floating refs or unknown refs and permits only full
+40-character commit SHAs, local actions and Docker references. Tag resolution and dependency
+updates remain separate reviewable operations; the gate does not fabricate SHAs or mutate pull
+requests.
+
 ## 2026-07-16 - Add cross-browser graph renderer fallback
 
 Decision: Keep the Cosmograph renderer on Chromium/WebKit and provide an explicit generated-data
