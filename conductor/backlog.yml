@@ -94,6 +94,14 @@ epics:
       - title: Convert backlog YAML to GitHub issues
         labels: ["type:automation", "phase:1-slice", "status:implemented"]
         status: implemented
+      - title: Add idempotent dry-run-by-default GitHub Project synchronizer
+        labels: ["type:automation", "type:repo-automation", "phase:hardening", "status:implemented"]
+        status: implemented
+        acceptance:
+          - "Generated issue drafts are compared with all remote issues by exact title before any write."
+          - "The default command is read-only and reports missing issue and Project-item actions."
+          - "Writes require explicit --apply and optional exact-title filters; no destructive GitHub operation is exposed."
+          - "Documentation and focused tests define the credential and duplicate-avoidance boundary."
   - id: LIVE-001
     title: Reviewed live-source validation
     phase: slice

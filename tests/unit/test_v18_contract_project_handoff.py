@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import shutil
 from pathlib import Path
 
@@ -17,6 +18,7 @@ from scripts.create_github_project_items import (
     existing_issue_paths,
     render_issue,
 )
+from scripts.sync_github_project import load_issue_drafts, project_numbers
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -121,6 +123,25 @@ def test_project_status_preserves_implemented_licence_gated_controls() -> None:
         if row.title == "Validate PBS API CSV parser against a reviewed monthly public extract"
     )
     assert blocked.status == "blocked"
+
+
+def test_project_sync_reads_issue_rows_and_project_numbers(tmp_path: Path) -> None:
+    """The synchronizer has a typed, duplicate-aware read model."""
+    export = tmp_path / "items.jsonl"
+    export.write_text(
+        json.dumps({"item_type": "issue", "title": "One", "body_path": "one.md"})
+        + "\n"
+        + json.dumps({"item_type": "track", "title": "Track"})
+        + "\n",
+        encoding="utf-8",
+    )
+    assert [row["title"] for row in load_issue_drafts(export)] == ["One"]
+    assert project_numbers({
+        "items": [{"content": {"number": 326}}, {"content": {"number": 18}}]
+    }) == {
+        "326",
+        "18",
+    }
 
 
 def test_generated_issue_drafts_deduplicate_backlog_and_roadmap_rows() -> None:

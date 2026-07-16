@@ -175,6 +175,7 @@ source-url-licence-checklist = "PYTHONPATH=src python scripts/make_source_url_li
 source-health-report = "PYTHONPATH=src python scripts/make_source_health_report.py"
 historical-sources = "PYTHONPATH=src python scripts/make_historical_source_index.py"
 github-project-export = "PYTHONPATH=src python scripts/make_github_project_export.py"
+github-project-sync = "PYTHONPATH=src python scripts/sync_github_project.py"
 final-handoff = "PYTHONPATH=src python scripts/make_final_handoff.py"
 roadmap-linkages = "PYTHONPATH=src python scripts/make_roadmap_linkages.py"
 data-quality = "PYTHONPATH=src python scripts/make_data_quality_report.py"

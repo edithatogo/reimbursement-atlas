@@ -672,6 +672,15 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
             "- [x] Dashboard and Conductor artefacts expose the grouped handoff.\n"
             "- [ ] Accountable human licence decisions are recorded for the candidate artefacts."
         )
+    elif issue.title == "Add idempotent dry-run-by-default GitHub Project synchronizer":
+        acceptance = (
+            "- [x] Scope is implemented: generated drafts are compared with remote issues and "
+            "Project items by exact title/number.\n"
+            "- [x] The default command is read-only; writes require explicit `--apply` and "
+            "optional exact-title filters.\n"
+            "- [x] No destructive issue, merge, branch or credential operation is exposed.\n"
+            "- [x] Documentation and focused tests define the duplicate-avoidance boundary."
+        )
     else:
         acceptance = """- [ ] Scope is confirmed.
 - [ ] Licence and data-governance implications are checked.
