@@ -103,6 +103,13 @@ epics:
           - "Writes require explicit --apply and optional exact-title filters; no destructive GitHub operation is exposed."
           - "Unavailable GitHub labels are skipped and reported without aborting issue or Project-item reconciliation."
           - "Documentation and focused tests define the credential and duplicate-avoidance boundary."
+      - title: Align generated GitHub label taxonomy with repository metadata
+        labels: ["type:automation", "type:repo-automation", "phase:hardening", "status:implemented"]
+        status: implemented
+        acceptance:
+          - "Generated issue labels have corresponding repository labels with descriptions."
+          - "The reconciled issue set carries the generated labels without changing issue content."
+          - "Label taxonomy alignment is recorded as an auditable Conductor session."
   - id: LIVE-001
     title: Reviewed live-source validation
     phase: slice
