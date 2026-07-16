@@ -87,6 +87,7 @@ _LAYER_BY_ROOT_MODULE: dict[str, ArchitectureLayer] = {
     "data_quality": "orchestration",
     "data_dictionary": "orchestration",
     "licence_review": "orchestration",
+    "licence_review_validation": "orchestration",
     "evidence_readiness": "orchestration",
     "roadmap_linkages": "orchestration",
     "source_drift": "orchestration",

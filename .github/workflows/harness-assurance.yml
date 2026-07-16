@@ -59,6 +59,7 @@ jobs:
           pixi run seed-lake
           pixi run research-package
           pixi run licence-review-queue
+          pixi run licence-review-validate
           pixi run seed-lake
           pixi run dashboard-seed
           pixi run fuzzy-benchmark

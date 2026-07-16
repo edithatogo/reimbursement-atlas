@@ -198,6 +198,18 @@ def render_issue(issue: IssueDraft) -> str:
             "- [ ] Accountable human source-licence approval and HF publication authorization "
             "are complete."
         )
+    elif issue.title == "Validate human licence decisions against checksum-bound queue rows":
+        acceptance = (
+            "- [x] Scope is confirmed: validate queue integrity and optional human decision rows; "
+            "do not infer approval.\n"
+            "- [x] Licence and data-governance implications are checked: decisions require source "
+            "terms, attribution, permission, restrictions and evidence.\n"
+            "- [x] Tests or validation evidence are defined: `pixi run licence-review-validate` "
+            "plus stale-checksum and incomplete-decision tests.\n"
+            "- [x] Documentation or Conductor context is updated; CI runs the validator.\n"
+            "- [ ] An accountable human has reviewed each candidate artefact before any approval "
+            "record is added."
+        )
     else:
         acceptance = """- [ ] Scope is confirmed.
 - [ ] Licence and data-governance implications are checked.

@@ -47,6 +47,7 @@ jobs:
           pixi run release-readiness || true
           pixi run research-package
           pixi run licence-review-queue
+          pixi run licence-review-validate
           pixi run fuzzy-benchmark
           pixi run seed-lake
           pixi run dashboard-seed

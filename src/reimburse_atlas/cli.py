@@ -43,6 +43,7 @@ from reimburse_atlas.ingestion import (
     write_ingestion_plan as write_acquisition_plan,
 )
 from reimburse_atlas.io import pydantic_rows, write_csv, write_jsonl
+from reimburse_atlas.licence_review_validation import validate_licence_review_queue
 from reimburse_atlas.licensing import evaluate_licence_gates
 from reimburse_atlas.local_quality import (
     QualityGateProfile,
@@ -1191,6 +1192,34 @@ def publication_manifest(
             },
             indent=2,
         )
+    )
+
+
+@app.command("licence-review-validate")
+def licence_review_validate(
+    queue_path: Annotated[
+        Path,
+        typer.Option(help="Generated checksum-bound licence review queue JSONL."),
+    ] = (project_root() / "data" / "derived" / "licence_review" / "licence_review_queue.jsonl"),
+    decisions_path: Annotated[
+        Path,
+        typer.Option(help="Optional machine-readable human decision JSONL."),
+    ] = (project_root() / "data" / "licence_review" / "decisions.jsonl"),
+) -> None:
+    """Validate queue checksums and optional human licence decisions."""
+    errors = validate_licence_review_queue(
+        queue_path,
+        root=project_root(),
+        decisions_path=decisions_path,
+    )
+    if errors:
+        console.print("Licence review validation failed:")
+        for error in errors:
+            console.print(f"- {error}")
+        raise typer.Exit(code=1)
+    console.print(
+        f"Licence review validation passed: queue={repo_relative(queue_path)} "
+        f"decisions={repo_relative(decisions_path)}"
     )
 
 
