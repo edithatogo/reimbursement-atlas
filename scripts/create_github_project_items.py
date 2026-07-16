@@ -252,6 +252,14 @@ def render_issue(issue: IssueDraft) -> str:
             "- [x] Documentation or Conductor context is updated in the publication-manifest "
             "descriptor-determinism section."
         )
+    elif issue.title == "Harden CLI command surface and output contracts":
+        acceptance = (
+            "- [x] Read-only registry commands preserve Rich tables and expose explicit `--json` "
+            "output.\n"
+            "- [x] JSON contracts are covered by CLI end-to-end tests and contain derived metadata "
+            "only.\n"
+            "- [x] CLI/API/MCP documentation records the output contract and licence boundary."
+        )
     elif issue.title == "Rebind the required zizmor check to the repository-owned workflow app":
         acceptance = (
             "- [x] Scope is confirmed: only the required `zizmor` app binding was changed.\n"
