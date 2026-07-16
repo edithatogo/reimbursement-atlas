@@ -26,7 +26,15 @@ def _run_gh(args: list[str], *, root: Path) -> Any:
         detail = result.stderr.strip() or result.stdout.strip() or "unknown gh failure"
         message = f"gh {' '.join(args[:2])} failed: {detail}"
         raise RuntimeError(message)
-    return json.loads(result.stdout) if result.stdout.strip() else None
+    output = result.stdout.strip()
+    if not output:
+        return None
+    try:
+        return json.loads(output)
+    except json.JSONDecodeError:
+        # ``gh issue create`` returns the issue URL as plain text, while list
+        # and project commands return JSON.
+        return output
 
 
 def load_issue_drafts(path: Path) -> list[dict[str, Any]]:
