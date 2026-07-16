@@ -1,0 +1,27 @@
+---
+import { readDashboardCsv } from "../lib/csv";
+
+interface Props {
+  fileName: string;
+  pathPrefix: string;
+  title: string;
+  labelColumn: string;
+}
+
+const { fileName, pathPrefix, title, labelColumn } = Astro.props;
+const csv = await readDashboardCsv(fileName);
+const baseUrl = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const links = csv.rows
+  .map((row) => ({ id: row.id ?? "", label: row[labelColumn] ?? row.id ?? "" }))
+  .filter((row) => row.id.length > 0)
+  .sort((left, right) => left.id.localeCompare(right.id));
+---
+
+<section class="detail-links">
+  <h2>{title}</h2>
+  <ul>
+    {links.map((link) => <li><a href={`${baseUrl}${pathPrefix}/${encodeURIComponent(link.id)}/`}>{link.label}</a></li>)}
+  </ul>
+</section>

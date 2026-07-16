@@ -1,0 +1,27 @@
+---
+import Layout from "../../components/Layout.astro";
+import { readDashboardCsv } from "../../lib/csv";
+
+export async function getStaticPaths() {
+  const csv = await readDashboardCsv("source_registry.csv");
+  return csv.rows
+    .filter((row) => row.id)
+    .map((row) => ({ params: { id: row.id }, props: { row } }));
+}
+
+const { row } = Astro.props;
+const fields = Object.entries(row).filter(([, value]) => value.trim().length > 0);
+---
+
+<Layout title={`Source: ${row.id}`}>
+  <p class="eyebrow">Source detail</p>
+  <h1>{row.id}</h1>
+  <p class="muted">Machine-readable registry metadata and declared access/licence context.</p>
+  <p><a class="button-link" href="/sources/">Back to sources</a></p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th scope="col">Field</th><th scope="col">Value</th></tr></thead>
+      <tbody>{fields.map(([field, value]) => <tr><th scope="row">{field}</th><td>{value}</td></tr>)}</tbody>
+    </table>
+  </div>
+</Layout>

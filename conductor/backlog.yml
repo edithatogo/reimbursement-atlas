@@ -67,7 +67,8 @@ epics:
       - title: Read generated graph CSV files in Astro dashboard
         labels: ["type:dashboard", "phase:1-slice"]
       - title: Add source detail route and analysis detail route
-        labels: ["type:dashboard", "phase:1-slice"]
+        labels: ["type:dashboard", "phase:1-slice", "status:implemented"]
+        status: implemented
   - id: DX-001
     title: Developer experience and release hardening
     phase: design

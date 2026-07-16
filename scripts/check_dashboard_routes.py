@@ -20,6 +20,11 @@ EXPECTED_ROUTES = (
     "/sources/",
 )
 
+EXPECTED_DETAIL_ROUTES = (
+    "/sources/au_mbs/",
+    "/analyses/cognitive_vs_procedural_ratio/",
+)
+
 
 class _Links(HTMLParser):
     """Collect local absolute links from a rendered page."""
@@ -60,6 +65,9 @@ def validate_dashboard_routes(dist: Path) -> list[str]:
                 continue
             if not target.exists():
                 errors.append(f"{route} links to missing target: {link}")
+    for route in EXPECTED_DETAIL_ROUTES:
+        if not _route_file(dist, route).exists():
+            errors.append(f"missing generated detail route: {route}")
     return errors
 
 
@@ -69,7 +77,10 @@ def main() -> None:
     errors = validate_dashboard_routes(dist)
     if errors:
         raise SystemExit("Dashboard route check failed:\n- " + "\n- ".join(errors))
-    print(f"Dashboard route check passed: {len(EXPECTED_ROUTES)} public routes are linked.")
+    print(
+        "Dashboard route check passed: "
+        f"{len(EXPECTED_ROUTES)} public routes and {len(EXPECTED_DETAIL_ROUTES)} detail routes."
+    )
 
 
 if __name__ == "__main__":
