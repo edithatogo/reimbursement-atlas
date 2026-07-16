@@ -258,7 +258,7 @@ def _reviewed_bundle_contract_evidence(
                 for line in path.read_text(encoding="utf-8").splitlines()
                 if line
             ]
-        except (OSError, json.JSONDecodeError, ValueError):
+        except (OSError, json.JSONDecodeError, ValueError) as _exc:
             continue
         for row in rows:
             if row.source_file_id == record.id and row.contract_status == "pass":
