@@ -749,3 +749,18 @@ Consequence: Issue [#360](https://github.com/edithatogo/reimbursement-atlas/issu
 as resolved. Issue [#362](https://github.com/edithatogo/reimbursement-atlas/issues/362) remains an
 explicit compatibility blocker until the upstream checker peer contract supports TypeScript 7;
 no unsupported peer override or `--legacy-peer-deps` path is used.
+
+## 2026-07-17 - Refresh read-only Hugging Face destination drift evidence
+
+Decision: Keep the existing Hugging Face Space unchanged after a read-only destination preflight
+detected governed metadata drift.
+
+Evidence: Workflow run `29529143659` reached both public targets. The dataset
+`edithatogo/reimbursement-atlas` matches the candidate `license=other` contract. The Space with the
+same identity is reachable but reports `license=mit` and `sdk=gradio`, while the governed candidate
+requires `apache-2.0` and `static`; the checker reports `mutation_performed=false`.
+
+Consequence: Issues [#320](https://github.com/edithatogo/reimbursement-atlas/issues/320) and
+[#322](https://github.com/edithatogo/reimbursement-atlas/issues/322) contain the current evidence.
+No remote correction is permitted until licence, evidence, research and policy gates pass and
+publication is explicitly approved.

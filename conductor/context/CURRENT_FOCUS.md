@@ -820,3 +820,11 @@ The npm registry was rechecked after the compatible dashboard updates. Astro `7.
 unadopted because the checker peer contract is `^5.0.0 || ^6.0.0`; TypeScript `6.0.3` continues to
 pass `npm ci`, `astro check`, build and browser validation. Issue #360 was closed as resolved and
 #362 remains blocked pending upstream checker support.
+
+## 2026-07-17 v128 Hugging Face destination drift preflight
+
+Read-only workflow run `29529143659` confirmed the dataset destination matches its governed
+`license=other` metadata. The existing Space is reachable but still reports `license=mit` and
+`sdk=gradio`, versus the candidate contract's `apache-2.0` and `static`. No remote mutation was
+performed. Issues #320 and #322 now contain the evidence; correction remains fail-closed pending
+licence, evidence, research, policy and explicit publication approval.
