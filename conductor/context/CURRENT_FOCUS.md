@@ -795,3 +795,12 @@ Source health remains `incomplete`/`partial` for the correct reason: six histori
 are intentionally `skipped_licence_gate`. The MBS pair was reprocessed into the existing derived-only
 bundle with 14,856 schedule items. Human licence review, source-term review and evidence promotion
 remain required before publication.
+
+## 2026-07-17 v125 branch enforcement and secret-control audit
+
+The protected `main` branch now has administrator enforcement enabled. REST read-back confirms the
+existing strict required checks, linear history, conversation resolution, force-push protection and
+deletion protection remain active; required pull-request reviews remain unset because this is a
+solo-maintainer repository. GitHub non-provider secret-pattern scanning and secret-validity checks
+remain disabled because the repository API ignored the enablement request; no secret values were
+accessed or changed. The limitation is recorded in issue [#191](https://github.com/edithatogo/reimbursement-atlas/issues/191).
