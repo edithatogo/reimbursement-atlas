@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 36,
-      "sha256": "1c3c9d9099e23a6be100d6c321ec4515b7b02f4baa1a3cb52f494df5eec5e643"
+      "sha256": "7fb926a707f2acedd70a1e5d93bf856e05ce9d3a52b9f6d2b006573812775e11"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -392,8 +392,8 @@
       "jsonl_path": "github_project_items/github_project_items.jsonl",
       "name": "github_project_items",
       "parquet_path": "github_project_items/github_project_items.parquet",
-      "rows": 175,
-      "sha256": "80afd45864e39d5473573984e54f62a81440f368dec8e07bf75138acd6758576"
+      "rows": 176,
+      "sha256": "c8babac59459450e2895322efa22433835d3cef238a9754e5cd10da99653c03a"
     },
     {
       "csv_path": "final_handoff_tasks/final_handoff_tasks.csv",
