@@ -85,3 +85,11 @@ def test_public_docs_report_is_machine_readable() -> None:
     assert report["schema_version"] == "public-docs-v1"
     assert report["status"] == "pass"
     assert report["error_count"] == 0
+
+
+def test_public_docs_verify_code_and_data_licence_boundary() -> None:
+    """Public documentation must preserve Apache code and source-data boundaries."""
+    report = build_public_docs_report(Path())
+
+    assert "LICENSE" in report["checked_files"]
+    assert "NOTICE" in report["checked_files"]
