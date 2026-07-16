@@ -81,3 +81,8 @@ GitHub credentials. Similar existing issues are reported for human reconciliatio
 duplicated automatically. When an issue draft requests a label that does not exist in the
 repository, the label is skipped and reported; the issue and Project item can still be created
 without mutating the label taxonomy.
+
+The read-only plan also compares each existing issue body with its generated draft and reports
+`update_issue_body` for drift. GitHub's normalized final newline is ignored. Review the plan and
+use `--apply` only when the body update is intended; body synchronization never closes an issue,
+changes its status, or grants publication approval.

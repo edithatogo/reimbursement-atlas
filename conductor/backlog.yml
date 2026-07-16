@@ -118,6 +118,8 @@ epics:
           - "Output-plan issue drafts preserve their source status and explicit external promotion gate."
           - "Focused tests cover roadmap and output-plan rendering contracts."
           - "Generated issue and GitHub Project artefacts are regenerated from the same source records."
+          - "The GitHub synchronizer detects generated issue-body drift and only writes bodies with explicit --apply."
+          - "Body synchronization never closes issues or changes external publication approval state."
   - id: LIVE-001
     title: Reviewed live-source validation
     phase: slice

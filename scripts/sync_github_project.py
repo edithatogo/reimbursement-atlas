@@ -104,7 +104,12 @@ def _issue_url(issue: dict[str, Any]) -> str | None:
     return value if isinstance(value, str) and value else None
 
 
-def sync_project(  # noqa: PLR0914 - keeps the read/plan/apply state explicit.
+def normalise_body(value: Any) -> str:
+    """Compare issue bodies without treating GitHub's final newline as drift."""
+    return value.rstrip() if isinstance(value, str) else ""
+
+
+def sync_project(  # noqa: PLR0912,PLR0914,PLR0915 - explicit sync state machine.
     *,
     root: Path,
     repository: str,
@@ -130,7 +135,7 @@ def sync_project(  # noqa: PLR0914 - keeps the read/plan/apply state explicit.
                 "--limit",
                 "1000",
                 "--json",
-                "title,url,number",
+                "title,url,number,body",
             ],
             root=root,
         )
@@ -215,6 +220,27 @@ def sync_project(  # noqa: PLR0914 - keeps the read/plan/apply state explicit.
         if number is None:
             actions.append({"title": title, "action": "missing_issue_number"})
             continue
+
+        body_path = root / str(draft["body_path"])
+        desired_body = body_path.read_text(encoding="utf-8")
+        if normalise_body(issue.get("body")) != normalise_body(desired_body):
+            if not apply:
+                actions.append({"title": title, "action": "update_issue_body"})
+            else:
+                _run_gh(
+                    [
+                        "issue",
+                        "edit",
+                        str(number),
+                        "--repo",
+                        repository,
+                        "--body-file",
+                        str(body_path),
+                    ],
+                    root=root,
+                )
+                issue["body"] = desired_body
+                actions.append({"title": title, "action": "updated_issue_body"})
         if str(number) in project_items:
             actions.append({"title": title, "action": "present"})
             continue

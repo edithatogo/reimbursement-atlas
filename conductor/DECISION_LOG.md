@@ -891,3 +891,15 @@ generated checked repository criteria and the appropriate unchecked promotion/re
 Consequence: Conductor drafts and remote issue content agree. OSF, Hugging Face, Zenodo and
 research publication gates remain open where their human, licence or credential requirements are
 not satisfied.
+
+## 2026-07-17 - Add generated GitHub issue-body drift detection
+
+Decision: Extend the existing dry-run-by-default GitHub synchronizer to compare and optionally
+update generated issue bodies, while preserving issue state and publication gates.
+
+Evidence: The filtered dry run detected issue #370 body drift; an explicit body update was applied,
+and the subsequent dry run reported only `present`. Focused project-handoff/unit tests passed.
+
+Consequence: Future Conductor regeneration can expose stale remote issue content without silently
+mutating it. Body writes require `--apply`; no issue closure, promotion or destructive operation is
+introduced.

@@ -17,3 +17,5 @@ before opening it in GitHub.
 - [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
 - [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
 - [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.
+- [x] The synchronizer detects generated issue-body drift by exact content after normalizing GitHub's final newline.
+- [x] Body writes require explicit `--apply`; default synchronization remains read-only and no issue is closed or promoted.
