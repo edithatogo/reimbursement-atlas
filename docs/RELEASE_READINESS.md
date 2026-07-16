@@ -26,7 +26,7 @@ provider-licence and domain review before external publication.
 
 ## Current blocker pattern
 
-As of 2026-07-15, the managed Python 3.14, official Pixi, Node/dashboard,
+As of 2026-07-16, the managed Python 3.14, official Pixi, Node/dashboard,
 SBOM, architecture, public-data, action-pinning, CodeQL, dependency-review,
 zizmor and branch-protection gates pass. The public GitHub Pages dashboard is
 deployed and its machine-readable status contract remains explicitly gated for
@@ -37,14 +37,17 @@ Remaining blockers are external or require accountable human judgement:
 - MBS and historical-source reuse terms require licence review before public
   derived-data publication.
 - CMS CLFS/PFS/ASP fields require source-specific licence decisions.
-- OSF registration requires an approved protocol freeze; the private `OSF_PROJECT_ID` is now configured;
-  `OSF_TOKEN` is configured as a repository secret.
+- OSF registration requires an approved protocol freeze and write-authorized
+  credentials; repository configuration alone does not authorize publication.
 - Hugging Face publication requires the configured `HF_TOKEN` and target repository variables,
   but publication remains disabled until review gates pass.
 
-The latest read-only external preflight on merged main commit `7e0e0016d488` completed successfully:
-OSF discovery/plan run `29475141289`, Hugging Face candidate validation run `29475142574`,
-Zenodo non-depositing preflight run `29475143715`, and source-health run `29475144835`.
+The current branch preflights completed successfully without mutating external services:
+OSF discovery/plan run `29492178596`, Hugging Face candidate validation run
+`29492180053`, and Zenodo non-depositing preflight run `29492181534`. The current
+branch source-health report is clear (`incomplete_count: 0`), and the PBS public
+API runtime probe returned HTTP 200 without recording the subscription key. The
+latest merged-main preflight IDs above remain historical evidence only.
 These runs validate automation and preserve fail-closed publication boundaries; they do not
 constitute human licence, research, evidence, policy or publication approval. The required
 `zizmor` branch-protection check is now bound to GitHub Actions app `15368`; the prior queued
