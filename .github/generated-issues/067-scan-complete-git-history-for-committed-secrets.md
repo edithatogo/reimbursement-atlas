@@ -2,7 +2,9 @@
 
 Epic: `SEC-020` — Continuous security assurance and branch enforcement
 
-Labels: type:security, phase:hardening
+Labels: type:security, phase:hardening, status:implemented
+
+Status: `implemented`
 
 ## Background
 
@@ -11,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Scope is confirmed: the protected security workflow checks full Git history with `fetch-depth: 0`.
+- [x] Licence and data-governance implications are checked; reports do not publish secret values.
+- [x] Tests or validation evidence are defined by the required `secret-history` Gitleaks check.
+- [x] Documentation or Conductor context is updated in the security assurance workflow.

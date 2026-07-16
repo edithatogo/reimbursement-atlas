@@ -2,7 +2,9 @@
 
 Epic: `EVID-017` — Evidence readiness, source drift and data dictionary gates
 
-Labels: type:research, type:osf
+Labels: type:research, type:osf, status:implemented
+
+Status: `implemented`
 
 ## Background
 
@@ -11,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Scope is confirmed: protocol, report, data-dictionary, source and sensitivity scaffolds are generated for each research question.
+- [x] Licence and data-governance implications remain explicit in publication manifests and protocol files.
+- [x] Tests or validation evidence are defined by protocol-status, research-package and deterministic-regeneration gates.
+- [x] Documentation or Conductor context is updated; OSF registration is still gated by accountable review.

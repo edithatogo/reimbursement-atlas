@@ -2,7 +2,9 @@
 
 Epic: `OSF-002` — Protocol completeness and OSF release gates
 
-Labels: type:osf, type:automation, phase:hardening
+Labels: type:osf, type:automation, phase:hardening, status:implemented
+
+Status: `implemented`
 
 ## Background
 
@@ -11,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Scope is confirmed: the unauthenticated contract checks the pinned version and required help markers without mutating OSF.
+- [x] Licence and data-governance implications are checked; credentials are never read by the contract probe.
+- [x] Tests or validation evidence are defined in `tests/unit/test_osf_cli_contract.py` and the `osf-cli-contract` Pixi task.
+- [x] Documentation or Conductor context is updated; live OSF publication remains gated.

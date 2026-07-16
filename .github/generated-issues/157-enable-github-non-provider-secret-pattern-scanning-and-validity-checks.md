@@ -2,7 +2,9 @@
 
 Epic: `SEC-020` — Continuous security assurance and branch enforcement
 
-Labels: type:security, type:repo-automation, phase:hardening
+Labels: type:security, type:repo-automation, phase:hardening, status:blocked
+
+Status: `blocked`
 
 ## Background
 

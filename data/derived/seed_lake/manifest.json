@@ -393,7 +393,7 @@
       "name": "github_project_items",
       "parquet_path": "github_project_items/github_project_items.parquet",
       "rows": 175,
-      "sha256": "f832286be5aff05f4674eb340736f2cdf7442a43daef20d0c8f648d4af3911df"
+      "sha256": "7f8a3435fcd3961bc96f3db815fba1bfc8801850741bee84761844659b186d43"
     },
     {
       "csv_path": "final_handoff_tasks/final_handoff_tasks.csv",
@@ -449,7 +449,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "485d76c42ebda228549b0288b154931cfbabbcd49d3c17584cb4c8f39c2fc3bf"
+      "sha256": "4ccb1ee11b3e7630b3ea279b3a33616ae749caaef054f6412b8389d118b13e3b"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",

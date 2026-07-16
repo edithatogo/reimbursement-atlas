@@ -2,7 +2,9 @@
 
 Epic: `OSF-002` — Protocol completeness and OSF release gates
 
-Labels: type:research, type:methods, phase:analysis
+Labels: type:research, type:methods, phase:analysis, status:implemented
+
+Status: `implemented`
 
 ## Background
 
@@ -11,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Scope is confirmed: all five protocol scaffolds include estimands, missingness, mapping, uncertainty, sensitivity and amendment sections.
+- [x] Licence and data-governance implications are checked in each protocol's source and publication gates.
+- [x] Tests or validation evidence are defined by protocol-status generation and release-readiness checks.
+- [x] Documentation or Conductor context is updated in `protocols/` and the review checklist; no protocol is treated as approved.
