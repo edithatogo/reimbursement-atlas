@@ -329,7 +329,7 @@
       "name": "architecture_import_edges",
       "parquet_path": "architecture_import_edges/architecture_import_edges.parquet",
       "rows": 205,
-      "sha256": "fbee8199342bd8a5396a6629e7b783c9d4ecf15ef766f96dbb06c489d6823b72"
+      "sha256": "a884fbac74d817d2e0d062896e1a7106a375ee85283bac1bffcce70b0c49fdd0"
     },
     {
       "csv_path": "architecture_layer_policy/architecture_layer_policy.csv",
