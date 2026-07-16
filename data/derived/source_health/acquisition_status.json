@@ -1,23 +1,10 @@
 {
   "evidence_path": "data/derived/final_handoff/final_handoff_tasks.jsonl",
-  "incomplete_count": 1,
-  "items": [
-    {
-      "credential_names": [
-        "PBS_API_SUBSCRIPTION_KEY"
-      ],
-      "evidence_path": "data/derived/source_downloads/download_attempts.jsonl",
-      "recommended_action": "Provide `PBS_API_SUBSCRIPTION_KEY` through the approved secret store, then rerun acquisition.",
-      "status": "partial",
-      "task_id": "final_source_downloads",
-      "title": "Run hardened curl/wget source download plan"
-    }
-  ],
+  "incomplete_count": 0,
+  "items": [],
   "mutation_performed": false,
   "network_io": false,
   "schema_version": "source-health-acquisition-v1",
-  "status": "incomplete",
-  "task_ids": [
-    "final_source_downloads"
-  ]
+  "status": "clear",
+  "task_ids": []
 }

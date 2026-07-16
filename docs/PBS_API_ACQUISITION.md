@@ -6,10 +6,13 @@ limit. The documentation page is not a data extract.
 
 ## Current probe
 
-On 2026-07-16 the candidate public route returned `401` with a missing-subscription-key error:
+The official Department of Health API catalogue publishes a `Subscription-Key` for unregistered
+public users. On 2026-07-16, using the current catalogue value at runtime and the JSON media type,
+the public route returned HTTP 200 with 10 schedule records:
 
 ```text
-https://data-api.health.gov.au/pbs/api/v3/schedules?format=json
+https://data-api.health.gov.au/pbs/api/v3/schedules
+Accept: application/json
 ```
 
 The official Department of Health API catalogue now provides the exact v3 details:
@@ -20,21 +23,28 @@ The official Department of Health API catalogue now provides the exact v3 detail
 - Relevant operations: `/schedules`, `/items`, and `/fees`
 - Response formats: `application/json` and `text/csv`
 
-The OpenAPI export is documentation metadata only. The subscription key is an external
-credential and must never be committed, printed, embedded in generated download plans, or
-written to provenance.
+The OpenAPI export is documentation metadata only. The current public-user key is displayed by
+the catalogue and may rotate; copy it at runtime rather than storing it in the repository. It
+must never be committed, printed, embedded in generated download plans, or written to provenance.
 
 ## Safe acquisition sequence
 
-1. Obtain or provision the PBS API subscription key through the official API portal.
-2. Use the catalogue's current v3 server and OpenAPI export above; do not infer endpoint paths
+1. Open the [official PBS API catalogue](https://data-api-portal.health.gov.au/apis), select
+   `PBS API PUBLIC - v3`, and copy the displayed subscription key for unregistered public users.
+2. Export it only for the acquisition process:
+
+   ```bash
+   export PBS_API_SUBSCRIPTION_KEY='(paste the current catalogue value here)'
+   ```
+
+3. Use the catalogue's current v3 server and OpenAPI export above; do not infer endpoint paths
    from an older v2 integration.
-3. Fetch the `schedules` endpoint first and select a published monthly `schedule_code`; do not
+4. Fetch the `schedules` endpoint first and select a published monthly `schedule_code`; do not
    assume the largest code is the latest schedule.
-4. Fetch only the reviewed endpoint set, respecting the API's published rate limit and inspecting
+5. Fetch only the reviewed endpoint set, respecting the API's published rate limit and inspecting
    `X-Rate-Limit-Remaining` and `X-Rate-Limit-Limit` response headers.
-5. Store raw responses only under ignored `data/raw_live/au_pbs/`.
-6. Run source validation, source contracts and `parse_pbs_csv` against a reviewed CSV/JSON
+6. Store raw responses only under ignored `data/raw_live/au_pbs/`.
+7. Run source validation, source contracts and `parse_pbs_csv` against a reviewed CSV/JSON
    extract, then commit derived rows and redacted checksums only.
 
 The source registry names `PBS_API_SUBSCRIPTION_KEY` as the runtime environment variable. The
@@ -49,8 +59,9 @@ and the 17-row `/fees` extract for that schedule. These files are acquisition ev
 they remain outside Git, and no parser, reviewed bundle, evidence claim, or publication output is
 treated as complete until human field and licence review is recorded.
 
-The current implementation remains fail-closed at the monthly-extract step. GitHub issue [#25](https://github.com/edithatogo/reimbursement-atlas/issues/25)
-tracks the required reviewed extract and licence decision.
+The public API credential path is now executable, but the implementation remains fail-closed at
+the monthly-extract field/licence-review step. GitHub issue [#25](https://github.com/edithatogo/reimbursement-atlas/issues/25)
+tracks the reviewed extract and licence decision.
 
 ## Redacted acquisition evidence
 

@@ -640,6 +640,20 @@ mutation occurred.
 Consequence: The pinned OSF toolchain is current and reproducible. OSF registration, upload
 and publication remain gated on protocol, licence, evidence and human approval.
 
+## 2026-07-16 - Use the official PBS public-user key path
+
+Decision: Treat the public `Subscription-Key` displayed by the official Department of Health API
+catalogue as a runtime acquisition input for the PBS public API, without committing or logging
+the value.
+
+Evidence: A 2026-07-16 request to `/pbs/api/v3/schedules` with the current catalogue value and
+`Accept: application/json` returned HTTP 200 and 10 schedules. The hardened repository downloader
+then recorded the schedule response as downloaded with a redacted command.
+
+Consequence: PBS live acquisition is executable without a private vendor credential. The API
+schedule and existing items/fees extracts remain `acquired_unreviewed`; field/licence review and
+promotion to a reviewed source bundle remain required.
+
 ## 2026-07-16 - Clarify licence queue population
 
 Decision: Describe the 159-row licence queue as artifact candidates rather than source-derived
