@@ -1,28 +1,38 @@
 {
-  "name": "reimbursement-atlas-conductor",
-  "image": "mcr.microsoft.com/devcontainers/python:3.14-bookworm",
-  "features": {
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "24"
+  "name": "Reimbursement Atlas",
+  "image": "ghcr.io/prefix-dev/pixi:0.72.2",
+  "remoteUser": "root",
+  "postCreateCommand": "pixi install",
+  "forwardPorts": [4321, 8000],
+  "portsAttributes": {
+    "4321": {
+      "label": "Astro dashboard",
+      "onAutoForward": "notify"
+    },
+    "8000": {
+      "label": "Read-only API",
+      "onAutoForward": "notify"
     }
   },
   "customizations": {
     "vscode": {
       "extensions": [
+        "ms-python.python",
         "charliermarsh.ruff",
         "detachhead.basedpyright",
-        "ms-python.python",
         "redhat.vscode-yaml",
         "astro-build.astro-vscode"
       ],
       "settings": {
+        "python.defaultInterpreterPath": "${containerWorkspaceFolder}/.pixi/envs/default/bin/python",
         "python.analysis.typeCheckingMode": "strict",
+        "python.testing.pytestEnabled": true,
+        "python.testing.pytestArgs": ["tests"],
         "editor.formatOnSave": true,
         "ruff.nativeServer": true
       }
     }
   },
-  "postCreateCommand": "curl -fsSL https://pixi.sh/install.sh | bash && ~/.pixi/bin/pixi install",
   "remoteEnv": {
     "PYTHONPATH": "${containerWorkspaceFolder}/src"
   }

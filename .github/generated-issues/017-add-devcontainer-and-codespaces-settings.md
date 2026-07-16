@@ -2,7 +2,9 @@
 
 Epic: `DX-001` — Developer experience and release hardening
 
-Labels: type:automation, good-first-issue
+Labels: type:automation, good-first-issue, status:implemented
+
+Status: `implemented`
 
 ## Background
 
