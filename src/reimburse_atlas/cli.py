@@ -122,12 +122,20 @@ console = Console()
 
 
 @app.command("runtime-targets")
-def runtime_targets() -> None:
+def runtime_targets(
+    json_output: Annotated[bool, typer.Option("--json", help="Emit a JSON array.")] = False,
+) -> None:
     """Show language and toolchain runtime targets including Mojo and Python 3.14."""
+    records = load_runtime_targets()
+    if json_output:
+        console.print_json(
+            json.dumps([record.model_dump(mode="json") for record in records], indent=2)
+        )
+        return
     table = Table(title="Runtime targets")
     for column in ("id", "name", "target", "installation_status", "local_status"):
         table.add_column(column)
-    for record in load_runtime_targets():
+    for record in records:
         table.add_row(
             record.id,
             record.name,
@@ -139,13 +147,23 @@ def runtime_targets() -> None:
 
 
 @app.command("roadmap")
-def roadmap() -> None:
+def roadmap(
+    json_output: Annotated[bool, typer.Option("--json", help="Emit a JSON object.")] = False,
+) -> None:
     """Show Conductor tracks and planned functions."""
     tracks = {track.id: track for track in load_conductor_tracks()}
     table = Table(title="Conductor roadmap tracks")
     for column in ("track", "priority", "phase", "functions"):
         table.add_column(column)
     functions = load_roadmap_functions()
+    if json_output:
+        rows = [
+            track.model_dump(mode="json")
+            | {"function_count": sum(1 for function in functions if function.track_id == track.id)}
+            for track in tracks.values()
+        ]
+        console.print_json(json.dumps({"tracks": rows, "function_count": len(functions)}, indent=2))
+        return
     for track in tracks.values():
         function_count = sum(1 for function in functions if function.track_id == track.id)
         table.add_row(track.title, track.priority, track.phase, str(function_count))
@@ -498,11 +516,19 @@ def source_drift(
 
 
 @app.command()
-def sources(domain: Annotated[str | None, typer.Option(help="Filter by domain.")] = None) -> None:
+def sources(
+    domain: Annotated[str | None, typer.Option(help="Filter by domain.")] = None,
+    json_output: Annotated[bool, typer.Option("--json", help="Emit a JSON array.")] = False,
+) -> None:
     """Show registered reimbursement schedule sources."""
     records = load_source_registry()
     if domain is not None:
         records = [record for record in records if record.domain == domain]
+    if json_output:
+        console.print_json(
+            json.dumps([record.model_dump(mode="json") for record in records], indent=2)
+        )
+        return
     table = Table(title="Source registry")
     for column in ("id", "jurisdiction", "schedule", "domain", "access"):
         table.add_column(column)
@@ -518,15 +544,22 @@ def sources(domain: Annotated[str | None, typer.Option(help="Filter by domain.")
 
 
 @app.command("source-status")
-def source_status() -> None:
+def source_status(
+    json_output: Annotated[bool, typer.Option("--json", help="Emit a JSON array.")] = False,
+) -> None:
     """Show current source-status observations and next acquisition actions."""
+    records = sorted(
+        load_source_status(), key=lambda item: (item.retrieval_priority, item.source_id)
+    )
+    if json_output:
+        console.print_json(
+            json.dumps([record.model_dump(mode="json") for record in records], indent=2)
+        )
+        return
     table = Table(title="Source status")
     for column in ("source_id", "status", "priority", "recommended_action"):
         table.add_column(column)
-    for record in sorted(
-        load_source_status(),
-        key=lambda item: (item.retrieval_priority, item.source_id),
-    ):
+    for record in records:
         table.add_row(
             record.source_id,
             record.status_label,
@@ -537,12 +570,20 @@ def source_status() -> None:
 
 
 @app.command("source-files")
-def source_files() -> None:
+def source_files(
+    json_output: Annotated[bool, typer.Option("--json", help="Emit a JSON array.")] = False,
+) -> None:
     """Show exact first-wave source files, endpoints and licence gates."""
+    records = load_source_files()
+    if json_output:
+        console.print_json(
+            json.dumps([record.model_dump(mode="json") for record in records], indent=2)
+        )
+        return
     table = Table(title="Exact source-file acquisition records")
     for column in ("id", "source_id", "mode", "licence_gate", "file_name"):
         table.add_column(column)
-    for record in load_source_files():
+    for record in records:
         table.add_row(
             record.id,
             record.source_id,
@@ -554,12 +595,20 @@ def source_files() -> None:
 
 
 @app.command()
-def analyses() -> None:
+def analyses(
+    json_output: Annotated[bool, typer.Option("--json", help="Emit a JSON array.")] = False,
+) -> None:
     """Show planned analyses."""
+    records = load_analysis_catalogue()
+    if json_output:
+        console.print_json(
+            json.dumps([record.model_dump(mode="json") for record in records], indent=2)
+        )
+        return
     table = Table(title="Analysis catalogue")
     for column in ("id", "difficulty", "stage", "title"):
         table.add_column(column)
-    for record in load_analysis_catalogue():
+    for record in records:
         table.add_row(record.id, record.difficulty, record.stage, record.title)
     console.print(table)
 
@@ -628,12 +677,17 @@ def policy_demonstrators(
 @app.command("score-sources")
 def score_sources_command(
     limit: Annotated[int, typer.Option(help="Number of rows to show.")] = 20,
+    json_output: Annotated[bool, typer.Option("--json", help="Emit a JSON array.")] = False,
 ) -> None:
     """Score public-source readiness for reproducible analysis."""
+    records = score_sources(load_source_registry())[:limit]
+    if json_output:
+        console.print_json(json.dumps([asdict(score) for score in records], indent=2))
+        return
     table = Table(title="Source readiness scores")
     for column in ("id", "score", "grade"):
         table.add_column(column)
-    for score in score_sources(load_source_registry())[:limit]:
+    for score in records:
         table.add_row(score.source_id, str(score.score), score.grade)
     console.print(table)
 
@@ -710,12 +764,18 @@ def acquisition_plan(
 
 
 @app.command("license-gates")
-def license_gates() -> None:
+def license_gates(
+    json_output: Annotated[bool, typer.Option("--json", help="Emit a JSON array.")] = False,
+) -> None:
     """Show cautious raw-data publication gates for all registered sources."""
+    records = evaluate_licence_gates(load_source_registry())
+    if json_output:
+        console.print_json(json.dumps([asdict(gate) for gate in records], indent=2))
+        return
     table = Table(title="Licence and redistribution gates")
     for column in ("source_id", "status", "public_dataset_policy"):
         table.add_column(column)
-    for gate in evaluate_licence_gates(load_source_registry()):
+    for gate in records:
         table.add_row(gate.source_id, gate.status, gate.public_dataset_policy)
     console.print(table)
 

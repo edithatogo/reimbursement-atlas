@@ -9,6 +9,26 @@ from typer.testing import CliRunner
 from reimburse_atlas.cli import app
 
 
+def test_cli_read_only_json_contracts() -> None:
+    """Read-only listing commands expose parseable, machine-readable records."""
+    runner = CliRunner()
+    for command in ("runtime-targets", "sources", "source-status", "source-files", "analyses"):
+        result = runner.invoke(app, [command, "--json"])
+        assert result.exit_code == 0, result.output
+        assert isinstance(json.loads(result.stdout), list)
+
+    roadmap = runner.invoke(app, ["roadmap", "--json"])
+    assert roadmap.exit_code == 0, roadmap.output
+    roadmap_payload = json.loads(roadmap.stdout)
+    assert isinstance(roadmap_payload["tracks"], list)
+    assert isinstance(roadmap_payload["function_count"], int)
+
+    for command in ("score-sources", "license-gates"):
+        result = runner.invoke(app, [command, "--json"])
+        assert result.exit_code == 0, result.output
+        assert isinstance(json.loads(result.stdout), list)
+
+
 def test_cli_validate_e2e() -> None:
     """The validate command should succeed with seed data."""
     result = CliRunner().invoke(app, ["validate"])

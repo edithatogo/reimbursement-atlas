@@ -22,6 +22,19 @@ Current CLI commands:
 | `snapshot` | Emit a concise Conductor handoff snapshot. |
 | `export-schema` | Export Pydantic JSON schemas. |
 
+The read-only registry commands `runtime-targets`, `roadmap`, `sources`,
+`source-status`, `source-files`, `analyses`, `score-sources`, and
+`license-gates` accept `--json`. Their default Rich tables remain intended for
+interactive use; JSON mode emits stable arrays, except `roadmap`, which emits
+an object containing `tracks` and the total `function_count`. These outputs
+contain registry or derived metadata only and never bypass source licence
+gates. For example:
+
+```bash
+reimbursement-atlas sources --domain australian --json
+reimbursement-atlas roadmap --json
+```
+
 ## API
 
 `src/reimburse_atlas/api.py` contains an optional read-only FastAPI factory. It is deliberately lightweight and imports FastAPI lazily.
