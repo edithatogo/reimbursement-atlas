@@ -6,6 +6,8 @@
   "checked_files": [
     "README.md",
     "CITATION.cff",
+    "LICENSE",
+    "NOTICE",
     "pyproject.toml",
     "apps/dashboard/public/status.json"
   ],

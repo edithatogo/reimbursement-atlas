@@ -28,6 +28,8 @@ def validate_public_docs(root: Path) -> list[str]:
     """Return documentation drift or overclaiming errors."""
     readme = (root / "README.md").read_text(encoding="utf-8")
     citation = (root / "CITATION.cff").read_text(encoding="utf-8")
+    license_text = (root / "LICENSE").read_text(encoding="utf-8")
+    notice_text = (root / "NOTICE").read_text(encoding="utf-8")
     status = json.loads((root / "apps/dashboard/public/status.json").read_text(encoding="utf-8"))
     errors = [
         f"README is missing required marker: {marker}"
@@ -45,6 +47,10 @@ def validate_public_docs(root: Path) -> list[str]:
         errors.append("README must describe gated publication as manual")
     if ">=3.14" not in (root / "pyproject.toml").read_text(encoding="utf-8"):
         errors.append("README runtime claim cannot be verified against pyproject.toml")
+    if "Apache License" not in license_text or "Version 2.0" not in license_text:
+        errors.append("LICENSE must contain the canonical Apache License, Version 2.0 text")
+    if "Underlying source data" not in notice_text:
+        errors.append("NOTICE must distinguish project code from underlying source data terms")
     for url in PUBLIC_URL_MARKERS:
         if url not in readme or urlparse(url).scheme != "https":
             errors.append(f"README is missing canonical HTTPS URL: {url}")
@@ -62,6 +68,8 @@ def build_public_docs_report(root: Path) -> dict[str, object]:
         "checked_files": [
             "README.md",
             "CITATION.cff",
+            "LICENSE",
+            "NOTICE",
             "pyproject.toml",
             "apps/dashboard/public/status.json",
         ],

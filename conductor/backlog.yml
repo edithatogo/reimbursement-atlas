@@ -176,6 +176,8 @@ epics:
         labels: ["type:security", "type:release", "phase:hardening"]
       - title: Schedule source-health and source-drift monitoring with issue escalation
         labels: ["type:data-quality", "type:automation", "phase:hardening"]
+      - title: Normalize Apache-2.0 code licence metadata and source-data NOTICE boundary
+        labels: ["type:release", "type:licence", "type:automation", "phase:hardening"]
 
   - id: OSF-002
     title: Protocol completeness and OSF release gates

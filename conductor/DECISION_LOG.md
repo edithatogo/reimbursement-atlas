@@ -547,3 +547,15 @@ Online as redistribution permission.
 
 Consequence: Only redacted derived provenance timestamps changed in the tracked bundle and licence
 queue. The MBS rows remain `public_reuse_review`; PBS current acquisition remains credential-gated.
+
+## 2026-07-16 - Normalize Apache-2.0 code licence metadata
+
+Decision: Use the canonical Apache-2.0 licence text in `LICENSE`, place project attribution and
+the source-data boundary in `NOTICE`, and make the public-docs gate verify both files.
+
+Rationale: Project metadata and README already declared Apache-2.0, but GitHub's live repository
+metadata reported `Other/NOASSERTION`. Normalizing the standard text improves platform detection
+and makes the code/data distinction executable without treating provider data as Apache-licensed.
+
+Consequence: Code and project documentation remain Apache-2.0; underlying source terms remain
+source-specific and governed by the licence-review queue.

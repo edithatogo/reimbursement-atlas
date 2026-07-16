@@ -674,3 +674,10 @@ Two authenticated REST PATCH requests using the documented nested JSON payload f
 but the authoritative repository response still reports both controls as `disabled`. Issue #191
 remains an account/plan blocker. Provider secret scanning, push protection, Dependabot security
 updates and full-history Gitleaks remain enabled as compensating controls.
+
+## 2026-07-16 v89 Apache-2.0 licence metadata normalization
+
+The tracked code licence was normalized to the canonical Apache-2.0 text, project attribution was
+moved to `NOTICE`, and the public-docs gate now verifies both the code licence and the explicit
+underlying-source-data boundary. This addresses GitHub's stale `Other/NOASSERTION` metadata risk
+without relicensing MBS, PBS, CMS or third-party terminology data.
