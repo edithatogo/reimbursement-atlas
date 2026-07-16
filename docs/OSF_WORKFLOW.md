@@ -92,7 +92,7 @@ contract passed with `OSF CLI contract passed: osf 1.0.0`. An older unrelated `o
 on the workstation is not used as workflow evidence. This validates the toolchain only; it
 does not authorize OSF registration or publication.
 
-The current merged repository state is `c7a55b3e4483265ffe60637714e930512ec22cdb`. The latest
+The current merged repository state is `109c45d` (`main`). The latest
 remote discovery evidence above is retained as a read-only preflight record; no OSF mutation
 occurred. The contract task now refuses ambiguous `PATH` lookup and requires `OSF_BIN` or
 `--binary`, preventing an unrelated older `osf` executable from being mistaken for the pinned
