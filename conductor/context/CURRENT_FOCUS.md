@@ -520,3 +520,12 @@ is retained only as a seven-day private artifact and is not committed.
 OSF workflow run `29460182675` passed with `provision=true` and returned `created: false`,
 `id: q8cnx`, `title: Reimbursement Atlas` and `public: false`. The existing private project is
 therefore reusable without duplicate creation; no project, component or file was mutated.
+
+## 2026-07-16: Final handoff MBS bundle status correction
+
+The final handoff classifier now reports the July 2026 MBS derived-only review packet as
+`complete` when its validation report, summary and redacted schedule records are present,
+parse successfully, contain no raw files, and retain the explicit publication-review gate.
+This distinguishes completed local bundle generation from the still-pending human licence and
+clinical review. The handoff remains `partial` for source acquisition because PBS and other
+network/licence-gated targets are not complete.

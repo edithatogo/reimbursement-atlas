@@ -130,6 +130,8 @@ def test_final_handoff_records_environment_bound_tasks(tmp_path: Path) -> None:
     assert any("reviewed-mbs-txt-pair-bundle" in row.command for row in rows)
     source_task = next(row for row in rows if row.id == "final_source_downloads")
     assert source_task.status == "partial"
+    mbs_task = next(row for row in rows if row.id == "final_mbs_pair_bundle")
+    assert mbs_task.status == "complete"
     paths = write_final_handoff_tasks(rows, output_dir=tmp_path / "handoff")
     assert all(path.exists() for path in paths)
 
