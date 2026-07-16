@@ -15,3 +15,9 @@ The queue is intentionally fail-closed:
 Run `pixi run licence-review-queue` after changing the publication manifest. Review the generated
 CSV/JSONL against the exact checksums, then record decisions in the human review table. A green
 software gate or a generated queue is not licence approval.
+
+For machine-checkable decisions, add rows to the optional
+`data/licence_review/decisions.jsonl` companion file and run
+`pixi run licence-review-validate`. The validator checks queue checksums, repository-relative
+paths, decision identifiers and the required human evidence fields. An empty decisions file is
+valid and preserves the current pending state.

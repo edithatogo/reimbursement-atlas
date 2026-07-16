@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -10,6 +11,7 @@ from reimburse_atlas.licence_review import (
     build_licence_review_queue,
     write_licence_review_queue,
 )
+from reimburse_atlas.licence_review_validation import validate_licence_review_queue
 from reimburse_atlas.publication import PublicationArtifact, PublicationManifest
 
 
@@ -67,3 +69,135 @@ def test_data_dictionary_marks_queue_internal(repo_root: Path) -> None:
     assert queue_rows
     assert all(row.publication_scope == "internal_governance" for row in queue_rows)
     assert all(row.licence_gate == "not_for_publication" for row in queue_rows)
+
+
+def test_validator_rejects_stale_candidate_checksum(tmp_path: Path) -> None:
+    """A queue row cannot silently outlive the candidate it describes."""
+    candidate = tmp_path / "data/derived/example.csv"
+    candidate.parent.mkdir(parents=True)
+    candidate.write_text("new\n", encoding="utf-8")
+    queue = tmp_path / "queue.jsonl"
+    queue.write_text(
+        json.dumps({
+            "review_id": "review_1",
+            "relative_path": "data/derived/example.csv",
+            "checksum_sha256": "0" * 64,
+            "review_status": "pending",
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+    errors = validate_licence_review_queue(queue, root=tmp_path)
+    assert any("checksum mismatch" in error for error in errors)
+
+
+def test_validator_requires_complete_human_decision(tmp_path: Path) -> None:
+    """Recorded decisions must contain the evidence needed for accountable review."""
+    candidate = tmp_path / "data/derived/example.csv"
+    candidate.parent.mkdir(parents=True)
+    candidate.write_text("ok\n", encoding="utf-8")
+    checksum = hashlib.sha256(candidate.read_bytes()).hexdigest()
+    queue = tmp_path / "queue.jsonl"
+    queue.write_text(
+        json.dumps({
+            "review_id": "review_1",
+            "relative_path": "data/derived/example.csv",
+            "checksum_sha256": checksum,
+            "review_status": "pending",
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+    decisions = tmp_path / "decisions.jsonl"
+    decisions.write_text(
+        json.dumps({
+            "review_id": "review_1",
+            "relative_path": "data/derived/example.csv",
+            "checksum_sha256": checksum,
+            "decision": "approved",
+            "reviewer": "A reviewer",
+            "reviewed_at": "2026-07-16",
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+    errors = validate_licence_review_queue(queue, root=tmp_path, decisions_path=decisions)
+    assert any("missing fields" in error for error in errors)
+
+
+def test_validator_rejects_malformed_queue_rows_and_decisions(tmp_path: Path) -> None:
+    """Defensive queue validation covers malformed paths, statuses and decisions."""
+    candidate = tmp_path / "data/derived/example.csv"
+    candidate.parent.mkdir(parents=True)
+    candidate.write_text("ok\n", encoding="utf-8")
+    checksum = hashlib.sha256(candidate.read_bytes()).hexdigest()
+    queue = tmp_path / "queue.jsonl"
+    queue.write_text(
+        "not-json\n"
+        + json.dumps({"relative_path": "data/derived/example.csv"})
+        + "\n"
+        + json.dumps({
+            "review_id": "review_1",
+            "relative_path": "missing.csv",
+            "checksum_sha256": checksum,
+            "review_status": "unknown",
+        })
+        + "\n"
+        + json.dumps({
+            "review_id": "review_2",
+            "relative_path": "../outside.csv",
+            "checksum_sha256": checksum,
+            "review_status": "pending",
+            "reviewer": "unexpected",
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+    decisions = tmp_path / "decisions.jsonl"
+    decisions.write_text(
+        json.dumps({"review_id": "unknown", "relative_path": "x"}) + "\n",
+        encoding="utf-8",
+    )
+    errors = validate_licence_review_queue(queue, root=tmp_path, decisions_path=decisions)
+    assert any("invalid JSON" in error for error in errors)
+    assert any("review_id is required" in error for error in errors)
+    assert any("candidate file missing" in error for error in errors)
+    assert any("invalid review_status" in error for error in errors)
+    assert any("path escapes" in error for error in errors)
+    assert any("pending rows" in error for error in errors)
+    assert any("missing fields" in error for error in errors)
+
+
+def test_validator_accepts_complete_block_decision(tmp_path: Path) -> None:
+    """A complete blocked decision is accepted when it matches the queue checksum."""
+    candidate = tmp_path / "data/derived/example.csv"
+    candidate.parent.mkdir(parents=True)
+    candidate.write_text("ok\n", encoding="utf-8")
+    checksum = hashlib.sha256(candidate.read_bytes()).hexdigest()
+    queue = tmp_path / "queue.jsonl"
+    queue.write_text(
+        json.dumps({
+            "review_id": "review_1",
+            "relative_path": "data/derived/example.csv",
+            "checksum_sha256": checksum,
+            "review_status": "pending",
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+    fields = {
+        "review_id": "review_1",
+        "relative_path": "data/derived/example.csv",
+        "checksum_sha256": checksum,
+        "decision": "blocked",
+        "reviewer": "A reviewer",
+        "reviewed_at": "2026-07-16",
+        "source_terms": "Official terms",
+        "attribution": "Provider",
+        "redistribution_permission": "Not granted",
+        "restrictions": "No redistribution",
+        "evidence": "docs/SOURCE_LICENCE_EVIDENCE.md",
+    }
+    decisions = tmp_path / "decisions.jsonl"
+    decisions.write_text(json.dumps(fields) + "\n", encoding="utf-8")
+    assert validate_licence_review_queue(queue, root=tmp_path, decisions_path=decisions) == []

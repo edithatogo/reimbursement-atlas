@@ -494,3 +494,18 @@ approval. This is stricter and more useful than a generic `public` source label.
 Consequence: The source registry, licence evidence document and MBS derived bundle retain the
 `public_reuse_review` gate. Apache-2.0 remains limited to project-owned code and documentation;
 PBS remains blocked pending authenticated acquisition and terms review.
+
+## 2026-07-16 - Validate checksum-bound human licence decisions
+
+Decision: Add a fail-closed validator for optional machine-readable licence decisions without
+changing any current publication or review status.
+
+Rationale: The generated queue already binds candidate artefacts to SHA-256 checksums, but a
+future human decision record needs an automated check for stale artefacts, unknown identifiers,
+missing reviewer evidence and invalid decisions. The validator makes that control executable
+without inferring approval from source accessibility or queue generation.
+
+Consequence: The current absent decision file remains valid and all candidate rows remain
+pending. Any future approval or block record must include source terms, attribution,
+redistribution permission, restrictions, evidence, reviewer and date, and must match the exact
+queue checksum.

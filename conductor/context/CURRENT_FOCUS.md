@@ -555,6 +555,15 @@ desktop in the pinned CI workflow. This improves engine-level regression evidenc
 30-day test-report artifacts, but does not replace human cross-OS visual, accessibility or
 assistive-technology review.
 
+## 2026-07-16 v83 licence decision validation
+
+The checksum-bound licence review queue now has an executable validator. `pixi run
+licence-review-validate` verifies generated candidate checksums and any optional human decision
+records under `data/licence_review/decisions.jsonl`. The file is currently absent by design: all
+candidate artefacts remain pending until an accountable human records source terms, attribution,
+redistribution permission, restrictions, evidence, reviewer and date. This validator does not
+grant approval or publish data.
+
 ## 2026-07-16: Policy demonstrator linkage surface
 
 The first policy demonstrator now reports genomic schedule-item pricing and genomic coverage
