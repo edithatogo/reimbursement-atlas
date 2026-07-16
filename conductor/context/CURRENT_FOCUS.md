@@ -856,6 +856,14 @@ reports `license: other`, while Space `edithatogo/reimbursement-atlas` reports `
 instead of the governed `license: apache-2.0` and `sdk: static` candidate metadata. No remote
 mutation was performed. Issue #320 remains open; publication and metadata reconciliation stay
 fail-closed pending licence, evidence, research, policy and explicit publication approval.
+
+## 2026-07-17 v135 GitHub secret-control recheck
+
+An authenticated repository PATCH requesting non-provider secret-pattern scanning and secret
+validity checks was accepted, but the authoritative settings response still reports both as
+`disabled`. Provider scanning, push protection, Dependabot, Gitleaks history scanning, CodeQL,
+zizmor, dependency review and protected CI remain active. Issue #191 stays open as an
+account/plan capability boundary; no secret values or credentials were accessed.
 ## 2026-07-17 - Merged generated issue status contract
 
 PR [#371](https://github.com/edithatogo/reimbursement-atlas/pull/371) is merged at

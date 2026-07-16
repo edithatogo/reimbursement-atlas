@@ -854,3 +854,16 @@ Apache-2.0 code metadata and a static Space. No remote files, cards, metadata or
 
 Consequence: Issue #320 remains open. Licence, evidence, research, policy and explicit publication
 approval gates remain independent blockers even though the local repository release gate is green.
+
+## 2026-07-17 - Recheck GitHub account-level secret controls
+
+Decision: Preserve issue #191 as blocked by GitHub account/plan capability after a fresh
+authenticated settings attempt; do not represent the accepted PATCH request as enablement.
+
+Evidence: The authoritative repository response continues to report non-provider secret-pattern
+scanning and secret-validity checks as `disabled`. Provider scanning, push protection, Dependabot,
+Gitleaks history scanning, CodeQL, zizmor, dependency review and protected CI remain enabled.
+
+Consequence: The repository's compensating controls remain the enforceable local boundary. No
+secret values or credentials were accessed, and no repository code change can resolve this
+account-level limitation.
