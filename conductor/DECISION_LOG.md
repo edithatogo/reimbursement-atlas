@@ -764,3 +764,17 @@ Consequence: Issues [#320](https://github.com/edithatogo/reimbursement-atlas/iss
 [#322](https://github.com/edithatogo/reimbursement-atlas/issues/322) contain the current evidence.
 No remote correction is permitted until licence, evidence, research and policy gates pass and
 publication is explicitly approved.
+
+## 2026-07-17 - Verify the deployed public dashboard
+
+Decision: Treat GitHub Pages as deployed and publicly verified for the current main commit, without
+changing any evidence or publication readiness claims.
+
+Evidence: Pages workflow `29529530333` passed build, dashboard quality, route, browser smoke,
+artifact-prefix, deployment and post-deployment live-smoke gates for commit
+`0ac2be4853aa2bbb896b22c0bf5e157e8c49ebb8`. The canonical site returned HTTP 200 and its deployed
+`status.json` matched the tracked `apps/dashboard/public/status.json` byte-for-byte.
+
+Consequence: The public product deployment is complete locally and externally observable. Evidence,
+licence, research, OSF, policy and Hugging Face destination gates remain fail-closed until their
+respective human review, credentials and explicit publication decisions are available.
