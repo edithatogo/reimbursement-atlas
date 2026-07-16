@@ -129,6 +129,14 @@ release blockers remain `Todo`. This confirms the generated local export and the
 are aligned for the known repository issue set; future additions should use the generated
 export and preserve the same status semantics.
 
+## v92 branch-protection drift control
+
+The repository now includes a read-only branch-protection drift validator at
+`scripts/check_branch_protection.py` and Pixi task `branch-protection-live`. It validates the
+strict 20-context contract and the `zizmor` GitHub Actions app binding from a live or captured
+GitHub API response. A fresh authenticated response passed with zero errors; this control is
+not itself a required status check, so it cannot create a circular protection dependency.
+
 ## v19 follow-up
 
 Local quality, source-contract validation and release readiness are now green. The live

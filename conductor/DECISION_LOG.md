@@ -610,3 +610,18 @@ issues #237, #255 and #256 as `Todo`. No issue bodies, labels or status gates we
 
 Consequence: The live board now covers the previously missing repository issue set. Local
 generated project rows remain the deterministic reconciliation source for later updates.
+
+## 2026-07-16 - Add branch-protection drift validator
+
+Action: Add `scripts/check_branch_protection.py` and the `branch-protection-live` Pixi task.
+The validator checks strict status checks, all 20 declarative contexts and the required
+`zizmor` GitHub Actions app binding (`15368`) from either a captured API response or a live
+authenticated request.
+
+Evidence: The validator passed a fresh authenticated `main` branch-protection response, and
+unit coverage now includes valid, missing-context and wrong-app fixtures. It performs no writes
+and never prints bearer tokens.
+
+Consequence: Future admin or scheduled audits can detect branch-protection drift before it
+causes a queued or misbound required check. The validator is deliberately not itself a required
+status context, avoiding a new circular branch-protection dependency.
