@@ -1418,20 +1418,20 @@
     {
       "@id": "data/derived/source_downloads/download_attempts.jsonl",
       "@type": "File",
-      "contentSize": 7963,
+      "contentSize": 7949,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "download_attempts",
-      "sha256": "b72d9b5a03b761440389d069cf38d3017900d0ae0086a7a48a35a0ff0dae75b8"
+      "sha256": "d59ceba3f2f5a4dad071088ff032e4f28870231c2113c6ac8219325b0357684c"
     },
     {
       "@id": "data/derived/source_downloads/download_attempts.csv",
       "@type": "File",
-      "contentSize": 6586,
+      "contentSize": 6576,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "download_attempts",
-      "sha256": "8687f2353691cc5bcbad5ff1379c3bec59a8b9d5654dee0843b3c96cd3d90ac3"
+      "sha256": "fac79ea9eab4f1e3eef2cff3849056926ffe9c65bbcd9993d44d40113f1acb09"
     },
     {
       "@id": "data/derived/source_downloads/pbs_api_acquisition.jsonl",

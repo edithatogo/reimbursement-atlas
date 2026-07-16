@@ -931,3 +931,18 @@ for the missing `PBS_API_SUBSCRIPTION_KEY`.
 Consequence: The repository has current network-enabled evidence without treating an incomplete PBS
 acquisition as a source-health failure or committing credentials/raw payloads. MBS remains acquired
 but unreviewed, and CMS/historical targets remain governed by their licence/review gates.
+
+## 2026-07-17 - Verify PBS credentialed acquisition
+
+Decision: Store the current official public-user PBS subscription key only as the GitHub Actions
+secret `PBS_API_SUBSCRIPTION_KEY`; do not place it in source, generated provenance, logs or bundles.
+Keep source-health incomplete while historical MBS and CMS targets are intentionally skipped by their
+licence gates.
+
+Evidence: Authenticated `gh secret list` confirms the secret exists without revealing its value. Source-health
+run [29539008697](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29539008697) passed and
+recorded a successful PBS schedules download with `Subscription-Key: [REDACTED]`. The remaining
+incomplete status is caused by six `skipped_licence_gate` records, not missing PBS credentials.
+
+Consequence: The PBS transport credential boundary is resolved for the protected runner, while source
+promotion remains fail-closed pending field/licence review and the separate MBS/CMS review decisions.
