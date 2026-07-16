@@ -393,7 +393,7 @@
       "name": "github_project_items",
       "parquet_path": "github_project_items/github_project_items.parquet",
       "rows": 175,
-      "sha256": "d22e7d275049f382c5d1b7206515b8d77fe2274a5e16d85338abc8408168f79c"
+      "sha256": "9a10bdf48aac15bdc508d0b1e700cb7dbc19d923c152463876d2f4b8c1ab391c"
     },
     {
       "csv_path": "final_handoff_tasks/final_handoff_tasks.csv",

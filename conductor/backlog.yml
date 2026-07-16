@@ -200,7 +200,8 @@ epics:
         labels: ["type:data-quality", "type:automation", "phase:hardening", "status:implemented"]
         status: implemented
       - title: Normalize Apache-2.0 code licence metadata and source-data NOTICE boundary
-        labels: ["type:release", "type:licence", "type:automation", "phase:hardening"]
+        labels: ["type:release", "type:licence", "type:automation", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Rebind the required zizmor check to the repository-owned workflow app
         labels: ["type:security", "type:supply-chain", "type:repo-automation", "phase:hardening"]
         status: done

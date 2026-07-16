@@ -260,6 +260,16 @@ def render_issue(issue: IssueDraft) -> str:
             "only.\n"
             "- [x] CLI/API/MCP documentation records the output contract and licence boundary."
         )
+    elif issue.title == (
+        "Normalize Apache-2.0 code licence metadata and source-data NOTICE boundary"
+    ):
+        acceptance = (
+            "- [x] Project-owned code and documentation declare Apache-2.0 in `pyproject.toml`, "
+            "`CITATION.cff`, `LICENSE`, and `NOTICE`.\n"
+            "- [x] `NOTICE` and public-doc freshness checks explicitly preserve provider-specific "
+            "terms for source data and third-party materials.\n"
+            "- [x] Unit and public documentation validation cover the code/data licence boundary."
+        )
     elif issue.title == "Rebind the required zizmor check to the repository-owned workflow app":
         acceptance = (
             "- [x] Scope is confirmed: only the required `zizmor` app binding was changed.\n"
