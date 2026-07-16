@@ -1499,20 +1499,20 @@
     {
       "@id": "data/derived/github_project/github_project_items.jsonl",
       "@type": "File",
-      "contentSize": 128937,
+      "contentSize": 128952,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "github_project_items",
-      "sha256": "0a74115c22385489a211dd649707f1fe1d32a5c7e2c95e17859cbe94b8934f1a"
+      "sha256": "80afd45864e39d5473573984e54f62a81440f368dec8e07bf75138acd6758576"
     },
     {
       "@id": "data/derived/github_project/github_project_items.csv",
       "@type": "File",
-      "contentSize": 95612,
+      "contentSize": 95627,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "github_project_items",
-      "sha256": "c1cdb378c0becd54ba7a0e89aa130b4001795d9ed31a644e5d3f803324c61043"
+      "sha256": "73169092a7955db0496c7e1b60c34f63f678f6e27c14ffe6c17f1b67b2a17367"
     },
     {
       "@id": "data/derived/final_handoff/final_handoff_tasks.jsonl",
