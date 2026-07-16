@@ -42,7 +42,13 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             id="final_mbs_pair_bundle",
             task_group="source_ingestion",
             title="Create reviewed derived-only MBS TXT pair bundle",
-            status="ready_local" if _mbs_pair_available(repo) else "blocked_network",
+            status=(
+                "complete"
+                if _mbs_pair_bundle_complete(repo)
+                else "ready_local"
+                if _mbs_pair_available(repo)
+                else "blocked_network"
+            ),
             required_environment=(
                 "Local checkout with downloaded MBS item-map and descriptor TXT files."
             ),
@@ -301,6 +307,31 @@ def _mbs_pair_available(repo: Path) -> bool:
         (bundle / "validation_report.json").is_file()
         for bundle in bundles.glob("bundle_au_mbs_20260701_txt_pair_*/")
     )
+
+
+def _mbs_pair_bundle_complete(repo: Path) -> bool:
+    """Confirm that the derived MBS pair review packet was actually generated."""
+    bundles = repo / "data" / "derived" / "reviewed_source_bundles"
+    for bundle in bundles.glob("bundle_au_mbs_20260701_txt_pair_*/"):
+        report_path = bundle / "validation_report.json"
+        summary_path = bundle / "summary.json"
+        records_path = bundle / "au_mbs_20260701_txt_pair_schedule_items.jsonl"
+        if not (report_path.is_file() and summary_path.is_file() and records_path.is_file()):
+            continue
+        try:
+            report = json.loads(report_path.read_text(encoding="utf-8"))
+            summary = json.loads(summary_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            continue
+        if (
+            report.get("parse_success") is True
+            and report.get("raw_files_copied_to_bundle") is False
+            and report.get("review_required_before_publication") is True
+            and summary.get("fail") == 0
+            and summary.get("missing") == 0
+        ):
+            return True
+    return False
 
 
 def _action_pinning_complete(repo: Path) -> bool:
