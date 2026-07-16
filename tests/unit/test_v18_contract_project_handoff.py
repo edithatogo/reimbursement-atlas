@@ -115,6 +115,12 @@ def test_project_status_preserves_implemented_licence_gated_controls() -> None:
         if row.title == "Add URL/licence verification checklist for first-wave sources"
     )
     assert checklist.status == "done"
+    blocked = next(
+        row
+        for row in rows
+        if row.title == "Validate PBS API CSV parser against a reviewed monthly public extract"
+    )
+    assert blocked.status == "blocked"
 
 
 def test_generated_issue_drafts_deduplicate_backlog_and_roadmap_rows() -> None:
