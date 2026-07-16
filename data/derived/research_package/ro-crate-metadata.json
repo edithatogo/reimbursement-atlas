@@ -837,7 +837,7 @@
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "historical_mbs_archive_targets",
-      "sha256": "112e0ce44ad846ed7e70e8e6ba59b8ad3eee77c7f929e86b3a6a0fae8b13ca08"
+      "sha256": "9cb97661f46ef416791a7dd5024610195246e4e20b9b0b0138dae76b03775bbf"
     },
     {
       "@id": "data/derived/historical_sources/historical_mbs_archive_targets.jsonl",
@@ -846,7 +846,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "historical_mbs_archive_targets",
-      "sha256": "112e0ce44ad846ed7e70e8e6ba59b8ad3eee77c7f929e86b3a6a0fae8b13ca08"
+      "sha256": "9cb97661f46ef416791a7dd5024610195246e4e20b9b0b0138dae76b03775bbf"
     },
     {
       "@id": "data/derived/historical_sources/historical_mbs_archive_targets.csv",
@@ -855,16 +855,16 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "historical_mbs_archive_targets",
-      "sha256": "bff10223f6cbc023ae729d57a00d3655962a6cfeafc781fe26ff800b56aaa79e"
+      "sha256": "1e9079aea17a80a24df2f2c67632dfcccd2d4d9f26db3e7683d0493da00c5d5a"
     },
     {
       "@id": "data/derived/historical_sources/summary.json",
       "@type": "File",
-      "contentSize": 758,
+      "contentSize": 794,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "json",
       "name": "summary",
-      "sha256": "33138a20d7b9ecf924365c5318357ae8f181ce8c159ff592c34e15098a1eba14"
+      "sha256": "b5435feb74f8c4606ba7372dfc94ae8e4388b6ce2d6beb078de3548fbaca7103"
     },
     {
       "@id": "data/derived/vertical_slice/schedule_items.jsonl",

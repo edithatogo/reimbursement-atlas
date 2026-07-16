@@ -5,6 +5,8 @@ from scripts import make_historical_source_index as historical_index
 
 def test_historical_period_extracts_calendar_year() -> None:
     assert historical_index.extract_period("2007-11-MBS.pdf") == "2007"
+    assert historical_index.extract_period("MBS%20Book%201%20July%202025.PDF") == "2025"
+    assert historical_index.extract_period("RVG%20file%2020250701.TXT") == "2025"
     assert historical_index.extract_period("MBSOnline_REUSE_IMAP.TXT") == "unknown"
 
 

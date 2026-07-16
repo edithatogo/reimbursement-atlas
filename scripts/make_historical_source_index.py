@@ -9,7 +9,7 @@ import operator
 import re
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import urljoin, urlparse
+from urllib.parse import unquote, urljoin, urlparse
 from urllib.request import urlopen
 
 from reimburse_atlas.registry import project_root
@@ -117,7 +117,10 @@ def discover_targets() -> list[dict[str, str]]:
 
 def extract_period(file_name: str) -> str:
     """Extract the first four-digit calendar year from a file name."""
-    match = re.search(r"(?:19|20)\d{2}", Path(file_name).stem)
+    # Decode archive filenames first so the ``20`` in URL-encoded spaces does
+    # not become a false year when followed by the next filename digit.
+    decoded_stem = unquote(Path(file_name).stem)
+    match = re.search(r"(?:19|20)\d{2}", decoded_stem)
     if match:
         return match.group(0)
     return "unknown"
