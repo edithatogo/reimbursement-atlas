@@ -364,7 +364,15 @@ def _source_download_status(repo: Path) -> HandoffStatus:
         for record in planned
         if record.get("should_execute") is True
     }
-    if executable and executable <= acquired:
+    statuses = {
+        record.get("status")
+        for record in (
+            json.loads(line)
+            for line in attempts.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        )
+    }
+    if executable and executable <= acquired and statuses <= {"downloaded"}:
         return "complete"
     return "partial" if acquired else "blocked_network"
 
