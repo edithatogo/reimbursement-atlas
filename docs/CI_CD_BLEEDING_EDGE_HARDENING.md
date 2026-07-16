@@ -74,6 +74,11 @@ policy, CodeQL, dependency review, secret-history, reproducible-build and branch
 checks are blocking where appropriate. The pin-plan output remains in the repository so future
 dependency updates cannot silently reintroduce tag-pinned actions.
 
+The workflow-security check also runs `pixi run action-pin-policy`. This is a fail-closed,
+non-mutating policy gate: external actions must use a full 40-character commit SHA, while local
+actions and Docker references remain permitted. It does not resolve tags or open pull requests;
+dependency updates remain reviewable changes handled by the resolver evidence and normal review.
+
 ## Next hardening steps
 
 1. Maintain the pin-plan and fail the generated-artifact gate if a dependency update introduces a tag-pinned action.

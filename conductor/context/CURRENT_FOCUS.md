@@ -565,6 +565,10 @@ and performs a post-deploy live HTTP smoke check. The roadmap function is implem
 software deployment surface. Hugging Face mirroring, human visual/accessibility review and all
 research/publication readiness claims remain separately gated.
 
+The workflow-security path now also runs a fail-closed immutable-action policy gate. All current
+external action references are full commit SHAs; local and Docker references remain explicitly
+allowed. The resolver remains non-mutating so dependency updates retain human-review provenance.
+
 The dashboard graph now degrades explicitly on Firefox when the Cosmograph device renderer is
 unavailable, exposing generated node/edge counts instead of emitting a browser console error.
 Chromium and WebKit retain the interactive renderer; the full 40-test local browser matrix passes.

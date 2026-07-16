@@ -34,6 +34,8 @@ jobs:
         run: pixi run repo-automation
       - name: Generate action SHA resolution evidence
         run: pixi run action-pin-resolution || true
+      - name: Enforce immutable external action references
+        run: pixi run action-pin-policy
       - name: Upload workflow policy artefacts
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
