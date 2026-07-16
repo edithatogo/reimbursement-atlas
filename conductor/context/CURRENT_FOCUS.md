@@ -828,3 +828,12 @@ Read-only workflow run `29529143659` confirmed the dataset destination matches i
 `sdk=gradio`, versus the candidate contract's `apache-2.0` and `static`. No remote mutation was
 performed. Issues #320 and #322 now contain the evidence; correction remains fail-closed pending
 licence, evidence, research, policy and explicit publication approval.
+
+## 2026-07-17 v129 GitHub Pages live verification
+
+Pages workflow `29529530333` passed for commit `0ac2be4853aa2bbb896b22c0bf5e157e8c49ebb8`, including
+the build, browser smoke, artifact-prefix, deployment and post-deployment live-smoke gates. The
+canonical site at `https://edithatogo.github.io/reimbursement-atlas/` returns HTTP 200, and its
+deployed `status.json` matches the tracked public manifest byte-for-byte. The public product is
+therefore deployed and verified; evidence, research-publication, OSF, policy and external licence
+gates remain explicitly blocked or gated and were not upgraded by this check.
