@@ -1677,7 +1677,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "source_drift_report",
-      "sha256": "de7dade40e78be930127142939bb895be15bcbc032fa8e70d7c0411491932bec"
+      "sha256": "d7daa8c60ba44adbedb1564da6361e83f1a0d82b2bbff1c9bff347f74efec88a"
     },
     {
       "@id": "data/derived/source_drift/source_drift_report.csv",
@@ -1686,7 +1686,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "source_drift_report",
-      "sha256": "2c1809d3ca10c905224a6dfb1c54db902f6e28a5c2d4b0326b478c4d1da00c37"
+      "sha256": "266df2c7a59d4aa8c49f51869fbcdcec9213e7d536d336d6b67a49823e3b0345"
     },
     {
       "@id": "data/derived/source_drift/summary.json",
