@@ -2,7 +2,9 @@
 
 Epic: `TRACK_DATA_PACKAGING_STANDARDS` — Research-data packaging standards
 
-Labels: type:roadmap-function, priority:should, interface:github_action
+Labels: type:roadmap-function, priority:should, interface:github_action, status:planned
+
+Status: `planned`
 
 ## Background
 

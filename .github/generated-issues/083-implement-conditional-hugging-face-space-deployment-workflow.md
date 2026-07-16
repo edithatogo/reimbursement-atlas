@@ -2,7 +2,9 @@
 
 Epic: `TRACK_PUBLICATION_HF_SPACES` — Hugging Face dataset and Spaces publication
 
-Labels: type:roadmap-function, priority:must, interface:github_action
+Labels: type:roadmap-function, priority:must, interface:github_action, status:implemented
+
+Status: `implemented`
 
 ## Background
 
