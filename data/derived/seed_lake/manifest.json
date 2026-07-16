@@ -313,7 +313,7 @@
       "name": "local_quality_gates",
       "parquet_path": "local_quality_gates/local_quality_gates.parquet",
       "rows": 27,
-      "sha256": "a6c93cb436860c0c12c84ee51eede4ccf43c4f0b493546c4fbc21e39ba6c28e8"
+      "sha256": "0536f2cf13bb641ec99cf08f3bb752b73dcb1cb20a133ca43b2c83ce0af29b84"
     },
     {
       "csv_path": "local_quality_gate_specs/local_quality_gate_specs.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 36,
-      "sha256": "1c3c9d9099e23a6be100d6c321ec4515b7b02f4baa1a3cb52f494df5eec5e643"
+      "sha256": "37b5436ca6f0336f691a360db4905bc31aae859de15272a84789c6149cd8fec6"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -457,7 +457,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 166,
-      "sha256": "211c2deccb50ccafb8e783f44a882c33d0d769226460415f27ed8e0da1ca59b7"
+      "sha256": "fc236ac9e54af25bd4cad12a0ae29aa9d0da3c21ef36848867b8862bb233cd07"
     }
   ]
 }
