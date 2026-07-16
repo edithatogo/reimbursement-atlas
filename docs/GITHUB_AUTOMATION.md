@@ -121,3 +121,12 @@ pass a captured `/branches/main/protection/required_status_checks` response with
   `python scripts/check_branch_protection.py --json path/to/response.json`. The implementation
   is tracked in [#279](https://github.com/edithatogo/reimbursement-atlas/issues/279), which is
   closed after PR #278 merged and the completed item was added to Project #18.
+
+## Current source-health evidence
+
+The live run on 2026-07-17 ([29538465869](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29538465869))
+passed validation, contract, drift and release-readiness enforcement. It classified one acquisition
+target as incomplete, PBS, and opened [issue #383](https://github.com/edithatogo/reimbursement-atlas/issues/383).
+This is an expected fail-closed acquisition status caused by the absent `PBS_API_SUBSCRIPTION_KEY`,
+not a validation failure. Supply the key only through the approved secret store and rerun the workflow;
+never place it in tracked configuration or generated evidence.
