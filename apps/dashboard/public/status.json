@@ -6,7 +6,7 @@
       "id": "source_acquisition",
       "next_action": "Complete remaining executable or credential-gated targets, then rerun source validation and source contracts.",
       "status": "incomplete",
-      "summary": "Source acquisition requires follow-up: Run hardened curl/wget source download plan."
+      "summary": "Source acquisition requires follow-up: Source acquisition health report requires follow-up."
     },
     {
       "category": "human_review",
