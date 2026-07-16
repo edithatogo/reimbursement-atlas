@@ -69,6 +69,9 @@ Pixel-diff baselines are intentionally not committed yet because the project cur
 on macOS and Linux; cross-platform visual baselines require a dedicated browser-version policy
 and human review. The responsive smoke matrix and axe-core checks are automated, but they do not
 substitute for approval of platform-specific visual or accessibility baselines.
+The suite also checks that the first public table's search control is keyboard-focusable and
+filters rows when used from the keyboard. This is interaction evidence, not WCAG conformance or
+human assistive-technology approval.
 
 ## Cosmograph compatibility note
 
