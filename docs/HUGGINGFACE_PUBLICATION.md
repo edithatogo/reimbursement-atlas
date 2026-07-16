@@ -22,6 +22,20 @@ blocked until the workflow's licence, research, evidence and policy gates pass.
 
 ## Latest destination verification
 
+The latest read-only Hub inspection on 2026-07-17 reconfirmed the same drift without
+using a write token. The dataset `edithatogo/reimbursement-atlas` is reachable and
+reports `license: other`; its README links an MIT metadata file. The Space with the
+same repository name is reachable and reports `sdk: gradio` and does not expose the
+governed `license: apache-2.0` and `sdk: static` candidate metadata. This is a
+destination-state observation only: no files, cards, metadata, or settings were
+changed.
+
+The read-back is consistent with the credential-free workflow evidence below and does
+not upgrade any release gate. The dataset's source-specific licence boundary and the
+Space's Apache-2.0 code metadata must be reconciled only by the gated publication path
+after the required licence, evidence, research, policy and explicit publication
+approvals are present.
+
 On 2026-07-16, the public API confirmed that both configured targets exist. The dataset
 currently contains only its README, license and Git attributes, and reports `mit` in its
 remote card metadata. The Space is running a Gradio scaffold with `app.py` and also reports

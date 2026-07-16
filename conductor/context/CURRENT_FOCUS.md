@@ -848,6 +848,14 @@ security issues remain open; no external approval was inferred.
 
 The generator contract itself is now tracked as issue [#370](https://github.com/edithatogo/reimbursement-atlas/issues/370),
 which is closed and marked `Done` in Project 18 after focused contract tests passed.
+
+## 2026-07-17 v134 Hugging Face destination read-back
+
+The current read-only Hub inspection reconfirmed that dataset `edithatogo/reimbursement-atlas`
+reports `license: other`, while Space `edithatogo/reimbursement-atlas` reports `sdk: gradio`
+instead of the governed `license: apache-2.0` and `sdk: static` candidate metadata. No remote
+mutation was performed. Issue #320 remains open; publication and metadata reconciliation stay
+fail-closed pending licence, evidence, research, policy and explicit publication approval.
 ## 2026-07-17 - Merged generated issue status contract
 
 PR [#371](https://github.com/edithatogo/reimbursement-atlas/pull/371) is merged at

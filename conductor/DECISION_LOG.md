@@ -842,3 +842,15 @@ Evidence: The official MBS downloads and historical index pages were rechecked. 
 
 Consequence: Historical expansion remains a review gate and cannot be treated as evidence or
 publication readiness.
+
+## 2026-07-17 - Reconfirm Hugging Face destination drift
+
+Decision: Treat the current Hugging Face Hub read-back as external destination evidence only;
+do not mutate either target or infer publication approval.
+
+Evidence: The configured dataset reports `license: other` and its README exposes an MIT-linked
+metadata file. The configured Space reports `sdk: gradio`, while the governed candidate requires
+Apache-2.0 code metadata and a static Space. No remote files, cards, metadata or settings changed.
+
+Consequence: Issue #320 remains open. Licence, evidence, research, policy and explicit publication
+approval gates remain independent blockers even though the local repository release gate is green.
