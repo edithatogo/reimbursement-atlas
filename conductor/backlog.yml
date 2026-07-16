@@ -76,7 +76,8 @@ epics:
     priority: should
     issues:
       - title: Add devcontainer and codespaces settings
-        labels: ["type:automation", "good-first-issue"]
+        labels: ["type:automation", "good-first-issue", "status:implemented"]
+        status: implemented
       - title: Add SBOM and SLSA provenance release jobs
         labels: ["type:security", "phase:2-expansion"]
       - title: Convert backlog YAML to GitHub issues
