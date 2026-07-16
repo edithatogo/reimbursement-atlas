@@ -22,6 +22,7 @@ def test_genomics_demo_uses_fixtures() -> None:
     assert isinstance(result, PolicyBrief)
     assert result.item_count > 0
     assert result.metric_summary
+    assert "Coverage denominator" in result.linkage_summary
     assert "No pooled payment statistic" in result.metric_summary
     assert len(result.caveats) >= 1
     assert any("missing fixture coverage" in caveat.lower() for caveat in result.caveats)
@@ -42,6 +43,7 @@ def test_medicine_opacity_demo() -> None:
     assert isinstance(result, PolicyBrief)
     assert result.item_count == 0
     assert "missingness N/A" in result.metric_summary
+    assert "No coverage linkage" in result.linkage_summary
 
 
 def test_build_policy_demonstrator_briefs_returns_three_briefs() -> None:

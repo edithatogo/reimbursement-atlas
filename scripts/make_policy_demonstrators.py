@@ -66,7 +66,10 @@ def main() -> None:
             fixtures / "nhs_genomic_directory_fixture.csv"
         ),
     }
-    briefs = build_policy_demonstrator_briefs(parsed_sources)
+    coverage_sources = {
+        "uk_genomic_test_directory": parsed_sources.pop("uk_genomic_test_directory"),
+    }
+    briefs = build_policy_demonstrator_briefs(parsed_sources, coverage_sources)
     brief_rows = pydantic_rows(briefs)
     summary = {
         "brief_count": len(briefs),

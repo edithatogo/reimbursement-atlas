@@ -30,6 +30,7 @@ class PolicyBrief(FrozenModel):
     sources_compared: tuple[NonEmptyStr, ...]
     item_count: int
     metric_summary: NonEmptyStr
+    linkage_summary: NonEmptyStr
     caveats: tuple[NonEmptyStr, ...]
 
 
@@ -55,10 +56,11 @@ def _record_payment_amount(record: object) -> float | None:
 
 def build_policy_demonstrator_briefs(
     parsed_sources: Mapping[str, Sequence[object]],
+    coverage_sources: Mapping[str, Sequence[object]] | None = None,
 ) -> list[PolicyBrief]:
     """Build all first-policy demonstrator briefs from parsed source fixtures."""
     return [
-        genomics_demo(parsed_sources),
+        genomics_demo(parsed_sources, coverage_sources),
         cognitive_procedural_demo(parsed_sources),
         medicine_opacity_demo(parsed_sources),
     ]
@@ -109,6 +111,7 @@ def _missing_sources(
 
 def genomics_demo(
     parsed_sources: Mapping[str, Sequence[object]],
+    coverage_sources: Mapping[str, Sequence[object]] | None = None,
 ) -> PolicyBrief:
     """Compare genomics/pathology coverage and pricing across sources."""
     total_items = 0
@@ -123,12 +126,29 @@ def genomics_demo(
 
     priced_share = _percentage_priced(all_genomics)
     missing_sources = _missing_sources(parsed_sources, GENOMICS_EXPECTED_SOURCES)
+    coverage_records = [
+        record
+        for records in (coverage_sources or {}).values()
+        for record in records
+        if "genomic" in _record_domain(record)
+        or "genomic" in _record_text(record, "technology_name")
+    ]
+    restricted_coverage = sum(
+        getattr(record, "decision_status", None) == "covered_with_restrictions"
+        for record in coverage_records
+    )
 
     metric = (
         f"Compared genomics items across {len(source_names)} sources; "
         f"{total_items} items found, "
         f"{priced_share * 100:.1f}% with a public schedule amount. "
         "No pooled payment statistic is calculated across unharmonised sources."
+    )
+    linkage = (
+        f"Coverage denominator: {len(coverage_records)} genomic decisions; "
+        f"{restricted_coverage} marked covered with restrictions. "
+        "Coverage decisions and schedule items remain separate denominators; no item-level "
+        "equivalence or causal linkage is inferred."
     )
     caveats = [
         "Genomics domain labels may differ across jurisdictions.",
@@ -148,6 +168,7 @@ def genomics_demo(
         sources_compared=tuple(sorted(set(source_names))),
         item_count=total_items,
         metric_summary=metric,
+        linkage_summary=linkage,
         caveats=tuple(caveats),
     )
 
@@ -190,6 +211,10 @@ def cognitive_procedural_demo(
         sources_compared=tuple(sorted(set(source_names))),
         item_count=len(all_cognitive) + len(all_procedural),
         metric_summary=metric,
+        linkage_summary=(
+            "No coverage linkage is calculated for this fixture-backed prototype; matched "
+            "within-jurisdiction baskets are required."
+        ),
         caveats=tuple(caveats),
     )
 
@@ -233,5 +258,9 @@ def medicine_opacity_demo(
         sources_compared=tuple(sorted(set(source_names))),
         item_count=total_items,
         metric_summary=metric,
+        linkage_summary=(
+            "No coverage linkage is calculated; public schedule-amount missingness is not a "
+            "price-opacity claim."
+        ),
         caveats=tuple(caveats),
     )

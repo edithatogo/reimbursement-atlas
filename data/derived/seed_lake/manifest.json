@@ -105,7 +105,7 @@
       "name": "roadmap_functions",
       "parquet_path": "roadmap_functions/roadmap_functions.parquet",
       "rows": 44,
-      "sha256": "9babc70243f21821dd13736c9bcdd62361501e0a05de74ba4bcd86e1f2bd9b6c"
+      "sha256": "096fc6f60e568b949493a462fcffc76bec5434e3b70995c8be921c0cfe43e93a"
     },
     {
       "csv_path": "dataset_candidates/dataset_candidates.csv",
@@ -257,7 +257,7 @@
       "name": "policy_demonstrators_policy_briefs",
       "parquet_path": "policy_demonstrators_policy_briefs/policy_demonstrators_policy_briefs.parquet",
       "rows": 3,
-      "sha256": "3afcc88ef513b2f4a73ce95ab90ebfef7d2a1f8ac2bcfb0ebabe9f88bbd483d5"
+      "sha256": "1cbe9e854648efa6014cfee97e9d63494457a56634476fae92753c8dd634ddd5"
     },
     {
       "csv_path": "repo_workflow_uses/repo_workflow_uses.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 36,
-      "sha256": "63b7abbe9b72b8035fdb621d481142065c1189da4fdd9d38cdcd8732322193af"
+      "sha256": "29aa6c1e1da2d31fad25e35de5cb660d15290cdcbe26486eb39d90f9c874323a"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -449,7 +449,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "715c98c321bb6937a6d6fd4c6e3592bf20c5384640fafca6e726f8693b7e96b4"
+      "sha256": "6d6b13acbd66f8b4e16a54ce0f1e310413d656ee6548039349496866cd2e76cc"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
@@ -457,7 +457,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 161,
-      "sha256": "2545645ba1fb72c64e0800b221d53ede07de2865845241e6989304f7ce0d2476"
+      "sha256": "40cecfeb2572dee1fe6bf6c6cb6473fb3778d2bcbfa58ce1616e87e8807d53f3"
     }
   ]
 }

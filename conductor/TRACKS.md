@@ -115,7 +115,7 @@ Deliverables:
 
 Tracked functions/issues:
 - `func_mapping_review_ui` — Build dashboard mapping adjudication views and fail-closed status surface (implemented, dashboard)
-- `func_gold_standard_mappings` — Add mapping gold-standard and negative-control datasets (prototype, data_pipeline)
+- `func_gold_standard_mappings` — Add mapping gold-standard and negative-control datasets (implemented, review-gated, data_pipeline)
 
 ## [~] track_ci_cd_supply_chain: CI/CD and supply-chain hardening
 
@@ -151,9 +151,9 @@ Deliverables:
 - dashboard views
 
 Tracked functions/issues:
-- `func_genomics_demo` — Implement genomics/pathology policy demonstrator (prototype, data_pipeline)
-- `func_cognitive_procedural_index` — Implement cognitive versus procedural relativity analysis (prototype, data_pipeline)
-- `func_medicine_opacity_index` — Implement medicine price-opacity scorecard (prototype, data_pipeline)
+- `func_genomics_demo` — Implement genomics/pathology coverage-price-restriction linkage demonstrator (implemented, review-gated, data_pipeline)
+- `func_cognitive_procedural_index` — Implement cognitive versus procedural relativity analysis (implemented, review-gated, data_pipeline)
+- `func_medicine_opacity_index` — Implement medicine public-amount missingness scorecard (implemented, review-gated, data_pipeline)
 
 
 ## [x] track_data_quality_evidence: Data quality, source validation and evidence readiness

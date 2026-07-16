@@ -353,6 +353,18 @@ confusing it with GitHub workflow provenance or research/publication approval.
 
 Consequence: `scripts/verify_release_manifest.py` fails closed on malformed metadata, unsafe paths,
 missing subjects, tag/commit mismatches and checksum changes.
+
+## 2026-07-16 - Genomics coverage-price-restriction demonstrator linkage
+
+Decision: Extend the typed policy brief with a coverage linkage summary for the genomics/pathology
+demonstrator, while keeping coverage decisions and schedule items as separate denominators.
+
+Rationale: The first demonstrator requirement is a coverage-price-restriction linkage, but the
+available fixtures do not establish item-level equivalence. Reporting both sides with explicit
+denominator and non-inference language improves policy usefulness without manufacturing evidence.
+
+Consequence: The dashboard exposes the linkage summary, while the demonstrator remains
+fixture-backed and human-review gated.
 ## 2026-07-16 - Fail-closed mapping review status
 
 Decision: Add one generated mapping review status row that joins candidate, evidence,
