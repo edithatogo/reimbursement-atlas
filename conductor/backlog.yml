@@ -187,6 +187,14 @@ epics:
       - title: Add dashboard table for policy signal matrix and analysis recipes
         labels: ["type:dashboard", "type:analysis", "status:implemented"]
         status: implemented
+      - title: Reconcile Hugging Face destination metadata with governed publication candidate
+        labels: ["type:publication", "type:repo-automation", "risk:licence", "phase:release-gate", "status:blocked"]
+        status: blocked
+        acceptance:
+          - "Read-only verification records the configured dataset and Space identities and current card metadata."
+          - "Candidate dataset and static Space bundles pass local publication and public-data policy gates."
+          - "Remote mutation is permitted only after licence, research, evidence and policy-claim gates pass."
+          - "The published dataset card declares source-specific licences and the Space declares Apache-2.0 code plus underlying-data restrictions."
   - id: ONT-001
     title: Local-only terminology seed workflow
     phase: slice

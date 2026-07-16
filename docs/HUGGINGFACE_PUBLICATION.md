@@ -30,6 +30,8 @@ dataset card preserves source-specific licences, while the Space candidate is a 
 Astro dashboard with Apache-2.0 code metadata. This is destination drift, not publication
 evidence. Reconciliation must occur through the gated workflow after licence and research
 review; no remote mutation was performed during this verification.
+The reconciliation is tracked in GitHub issue [#320](https://github.com/edithatogo/reimbursement-atlas/issues/320)
+and remains blocked until the governed licence, research, evidence and policy gates pass.
 
 ## Latest non-mutating candidate validation
 
