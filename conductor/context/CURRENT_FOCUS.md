@@ -529,3 +529,10 @@ parse successfully, contain no raw files, and retain the explicit publication-re
 This distinguishes completed local bundle generation from the still-pending human licence and
 clinical review. The handoff remains `partial` for source acquisition because PBS and other
 network/licence-gated targets are not complete.
+
+## 2026-07-16: Dashboard browser-engine coverage
+
+The dashboard browser evidence now covers Chromium desktop/mobile, Firefox desktop and WebKit
+desktop in the pinned CI workflow. This improves engine-level regression evidence and retains
+30-day test-report artifacts, but does not replace human cross-OS visual, accessibility or
+assistive-technology review.
