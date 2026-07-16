@@ -1,7 +1,7 @@
 {
   "duckdb_path": "seed_lake.duckdb",
   "parquet_enabled": true,
-  "table_count": 56,
+  "table_count": 57,
   "tables": [
     {
       "csv_path": "source_registry/source_registry.csv",
@@ -244,6 +244,14 @@
       "sha256": "a59f83e52423f3e85a9a36b66a06fbc0626ce277d25390126294b17a27987534"
     },
     {
+      "csv_path": "vertical_mapping_review_status/vertical_mapping_review_status.csv",
+      "jsonl_path": "vertical_mapping_review_status/vertical_mapping_review_status.jsonl",
+      "name": "vertical_mapping_review_status",
+      "parquet_path": "vertical_mapping_review_status/vertical_mapping_review_status.parquet",
+      "rows": 1,
+      "sha256": "4101977b7e94d075a3d2c9cc4d54c027846785422f4b150cb87b4fc187e9f32d"
+    },
+    {
       "csv_path": "policy_demonstrators_policy_briefs/policy_demonstrators_policy_briefs.csv",
       "jsonl_path": "policy_demonstrators_policy_briefs/policy_demonstrators_policy_briefs.jsonl",
       "name": "policy_demonstrators_policy_briefs",
@@ -345,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 36,
-      "sha256": "5457bcf513461a82bd1ba01e5f1fbec5ae4932ea0f57bc87a77696402d797681"
+      "sha256": "5e86b80fb34829e4e965cded5a38aede59983b0101bd74788de8c2ddb9a75640"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -448,8 +456,8 @@
       "jsonl_path": "data_dictionary/data_dictionary.jsonl",
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
-      "rows": 159,
-      "sha256": "fa6feb06c8925fa01261c932e17e871157a82c991fb32cc077cb184460155a79"
+      "rows": 161,
+      "sha256": "3779a1b9d00f9d0b44c833c4db8d065841a1dfdc1e1b8f53c78829d1b8fbd001"
     }
   ]
 }

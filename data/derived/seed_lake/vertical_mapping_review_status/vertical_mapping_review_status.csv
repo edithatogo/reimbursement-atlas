@@ -1,0 +1,2 @@
+candidate_count,evidence_ready,gold_standard_count,mapping_evidence_count,negative_control_count,next_action,recommended_review_threshold,reviewer_signoff_required,status,triggered_negative_control_count
+4,False,2,8,2,"Adjudicate candidate mappings, gold standards and negative controls with an accountable domain reviewer.",0.45,True,review_required,2

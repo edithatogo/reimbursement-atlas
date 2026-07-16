@@ -106,6 +106,8 @@ DEFAULT_PUBLICATION_PATHS = (
     Path("data/derived/vertical_slice/mapping_calibration_cases.csv"),
     Path("data/derived/vertical_slice/mapping_calibration_summary.jsonl"),
     Path("data/derived/vertical_slice/mapping_calibration_summary.csv"),
+    Path("data/derived/vertical_slice/mapping_review_status.jsonl"),
+    Path("data/derived/vertical_slice/mapping_review_status.csv"),
     Path("data/derived/manual_acquisition_pack/acquisition_steps.jsonl"),
     Path("data/derived/manual_acquisition_pack/acquisition_steps.csv"),
     Path("data/derived/policy_demonstrators/policy_briefs.jsonl"),

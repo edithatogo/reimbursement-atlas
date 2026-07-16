@@ -86,6 +86,27 @@ def main() -> None:  # noqa: PLR0914
     calibration_summary_rows = [calibration_summary.model_dump(mode="json")]
     write_csv(calibration_summary_rows, out / "mapping_calibration_summary.csv")
     write_jsonl(calibration_summary_rows, out / "mapping_calibration_summary.jsonl")
+    mapping_review_status_rows = [
+        {
+            "status": "review_required",
+            "candidate_count": len(crosswalks),
+            "mapping_evidence_count": len(mapping_rows),
+            "gold_standard_count": calibration_summary.gold_standard_count,
+            "negative_control_count": calibration_summary.negative_control_count,
+            "triggered_negative_control_count": (
+                calibration_summary.triggered_negative_control_count
+            ),
+            "reviewer_signoff_required": True,
+            "evidence_ready": False,
+            "recommended_review_threshold": calibration_summary.recommended_review_threshold,
+            "next_action": (
+                "Adjudicate candidate mappings, gold standards and negative controls with an "
+                "accountable domain reviewer."
+            ),
+        }
+    ]
+    write_csv(mapping_review_status_rows, out / "mapping_review_status.csv")
+    write_jsonl(mapping_review_status_rows, out / "mapping_review_status.jsonl")
     print(
         "Wrote vertical slice: "
         f"{len(schedule_records)} schedule items, "

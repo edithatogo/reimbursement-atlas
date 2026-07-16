@@ -3,7 +3,12 @@
 from __future__ import annotations
 
 from reimburse_atlas.contracts import ProvenanceRecord, ScheduleItemRecord
-from reimburse_atlas.crosswalk import generate_crosswalk_candidates, jaccard_similarity, tokenise
+from reimburse_atlas.crosswalk import (
+    candidate_relationship,
+    generate_crosswalk_candidates,
+    jaccard_similarity,
+    tokenise,
+)
 
 
 def _item(source_id: str, code: str, label: str, domain: str = "laboratory") -> ScheduleItemRecord:
@@ -33,6 +38,8 @@ def test_jaccard_similarity_bounds() -> None:
     """Jaccard similarity should be bounded and intuitive."""
     assert jaccard_similarity(("a",), ("a",)) == 1.0
     assert jaccard_similarity(("a",), ("b",)) == 0.0
+    assert jaccard_similarity((), ()) == 1.0
+    assert jaccard_similarity((), ("a",)) == 0.0
 
 
 def test_generate_crosswalk_candidates_filters_by_domain() -> None:
@@ -46,3 +53,10 @@ def test_generate_crosswalk_candidates_filters_by_domain() -> None:
     assert len(candidates) == 1
     assert candidates[0].right_code == "B"
     assert candidates[0].confidence > 0.5
+
+
+def test_candidate_relationship_keeps_review_categories_explicit() -> None:
+    """Confidence bands remain labels for review, not approval decisions."""
+    assert candidate_relationship(0.95) == "exact"
+    assert candidate_relationship(0.60) == "related"
+    assert candidate_relationship(0.10) == "unmapped"

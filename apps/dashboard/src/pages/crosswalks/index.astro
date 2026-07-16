@@ -20,6 +20,24 @@ import ProvenancePanel from "../../components/ProvenancePanel.astro";
     ]}
   />
   <DataTable
+    title="Mapping review status"
+    description="This status row is a fail-closed review aid. It never converts candidate mappings into approved or evidence-ready mappings."
+    fileName="mapping_review_status.csv"
+    columns={[
+      "status",
+      "candidate_count",
+      "mapping_evidence_count",
+      "gold_standard_count",
+      "negative_control_count",
+      "triggered_negative_control_count",
+      "reviewer_signoff_required",
+      "evidence_ready",
+      "recommended_review_threshold",
+      "next_action",
+    ]}
+    limit={1}
+  />
+  <DataTable
     title="Crosswalk review queue"
     fileName="crosswalk_review_queue.csv"
     columns={[

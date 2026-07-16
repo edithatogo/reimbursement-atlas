@@ -379,6 +379,18 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/mapping_review_status.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "mapping_review_status"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/vertical_slice/mapping_review_status.csv",
+      "dct:format": "csv",
+      "dct:title": "mapping_review_status"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/manual_acquisition_pack/acquisition_steps.jsonl",
       "dct:format": "jsonl",
       "dct:title": "acquisition_steps"
