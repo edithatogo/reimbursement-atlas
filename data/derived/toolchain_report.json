@@ -5,9 +5,9 @@
       "available": true,
       "kind": "runtime",
       "name": "python",
-      "notes": "Linux x86_64 via python3",
+      "notes": "Darwin arm64 via python3",
       "path": "active Python interpreter",
-      "version": "3.13.5"
+      "version": "3.14.5"
     },
     {
       "available": true,
@@ -47,7 +47,7 @@
       "name": "hypothesis",
       "notes": "installed",
       "path": "python environment",
-      "version": "6.156.1"
+      "version": "6.156.2"
     },
     {
       "available": true,
@@ -151,7 +151,7 @@
       "name": "astro",
       "notes": "locked",
       "path": "apps/dashboard/package-lock.json",
-      "version": "7.0.6"
+      "version": "7.0.7"
     },
     {
       "available": true,
@@ -230,16 +230,16 @@
       "kind": "cli",
       "name": "uv",
       "notes": "probe passed",
-      "path": "/opt/pyvenv/bin/uv",
-      "version": "uv 0.10.0"
+      "path": "PATH:uv",
+      "version": "uv 0.11.8 (0e961dd9a 2026-04-27 aarch64-apple-darwin)"
     },
     {
-      "available": false,
+      "available": true,
       "kind": "cli",
       "name": "official-pixi-on-path",
-      "notes": "not found on PATH",
-      "path": "",
-      "version": ""
+      "notes": "probe passed",
+      "path": "PATH:pixi",
+      "version": "pixi 0.72.2"
     },
     {
       "available": false,
@@ -254,7 +254,7 @@
       "kind": "cli",
       "name": "mojo-via-uv-tool",
       "notes": "probe passed",
-      "path": "/opt/pyvenv/bin/uv",
+      "path": "PATH:uv",
       "version": "Mojo 0.26.2.0 (d627decc)"
     },
     {
@@ -262,16 +262,16 @@
       "kind": "cli",
       "name": "node",
       "notes": "probe passed",
-      "path": "/opt/nvm/versions/node/v22.16.0/bin/node",
-      "version": "v22.16.0"
+      "path": "PATH:node",
+      "version": "v26.5.0"
     },
     {
       "available": true,
       "kind": "cli",
       "name": "npm",
       "notes": "probe passed",
-      "path": "/opt/nvm/versions/node/v22.16.0/bin/npm",
-      "version": "10.9.2"
+      "path": "PATH:npm",
+      "version": "11.17.0"
     }
   ],
   "schema_version": "1.0"

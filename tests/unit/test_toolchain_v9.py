@@ -7,6 +7,7 @@ from pathlib import Path
 from reimburse_atlas.toolchain import classify_gate_result, run_external_quality_gate
 from scripts.make_fuzzy_prefilter_benchmark import build_benchmark
 from scripts.make_mojo_parity_report import build_mojo_parity_report
+from scripts.make_toolchain_report import cli_probe_row
 
 
 def test_wrong_pypi_pixi_is_not_marked_as_missing() -> None:
@@ -43,6 +44,14 @@ def test_run_external_quality_gate_missing_tool(repo_root: Path) -> None:
 
     assert record.outcome == "missing_tool"
     assert record.return_code is None
+
+
+def test_toolchain_cli_probe_redacts_machine_path() -> None:
+    row = cli_probe_row("python", ("python", "--version"))
+
+    assert row.available is True
+    assert row.path == "PATH:python"
+    assert "/" not in row.path
 
 
 def test_mojo_parity_reference_contract_is_deterministic(repo_root: Path) -> None:
