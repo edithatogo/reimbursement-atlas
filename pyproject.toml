@@ -144,6 +144,7 @@ branch-protection-live = "PYTHONPATH=src python scripts/check_branch_protection.
 ingestion-plan = "PYTHONPATH=src python scripts/make_ingestion_plan.py"
 acquisition-plan = "PYTHONPATH=src python -m reimburse_atlas.cli acquisition-plan data/seed"
 readiness = "PYTHONPATH=src python scripts/make_readiness_tables.py"
+readiness-sensitivity = "PYTHONPATH=src python scripts/make_readiness_sensitivity.py"
 vertical-slice = "PYTHONPATH=src python scripts/make_vertical_slice.py"
 dashboard-seed = "PYTHONPATH=src python scripts/sync_dashboard_seed.py"
 source-snapshots = "PYTHONPATH=src python scripts/make_source_snapshots.py"

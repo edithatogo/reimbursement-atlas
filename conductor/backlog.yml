@@ -56,7 +56,8 @@ epics:
       - title: Validate source scoring rubric against first-wave sources
         labels: ["type:analysis", "phase:1-slice"]
       - title: Add sensitivity analysis for readiness grade thresholds
-        labels: ["type:analysis", "good-first-issue"]
+        labels: ["type:analysis", "good-first-issue", "status:implemented"]
+        status: implemented
   - id: DASH-001
     title: Seed graph dashboard
     phase: slice
