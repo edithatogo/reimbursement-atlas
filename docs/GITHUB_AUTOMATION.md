@@ -102,3 +102,18 @@ CSV. This makes a PBS blocker actionable as `PBS_API_SUBSCRIPTION_KEY` without l
   relative subject paths, sizes and SHA-256 values for each distribution, source archive and SBOM.
   This is software provenance only and does not authorize Zenodo, OSF, Hugging Face or evidence
   publication.
+
+## Branch-protection drift validation
+
+The repository includes a fail-closed validator for the declarative required-check contract. In
+an authenticated administrator environment, run:
+
+```bash
+GITHUB_REPOSITORY=edithatogo/reimbursement-atlas GH_TOKEN="$GH_TOKEN" \
+  pixi run branch-protection-live
+```
+
+It verifies strict status checks, the full 20-context set and the repository-owned `zizmor`
+binding (`app_id 15368`) without writing settings or logging the token. For offline review,
+pass a captured `/branches/main/protection/required_status_checks` response with
+`python scripts/check_branch_protection.py --json path/to/response.json`.

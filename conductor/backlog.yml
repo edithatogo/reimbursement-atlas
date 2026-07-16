@@ -181,6 +181,9 @@ epics:
       - title: Rebind the required zizmor check to the repository-owned workflow app
         labels: ["type:security", "type:supply-chain", "type:repo-automation", "phase:hardening"]
         status: done
+      - title: Add branch-protection drift validator for strict required checks
+        labels: ["type:security", "type:repo-automation", "phase:hardening"]
+        status: done
 
   - id: OSF-002
     title: Protocol completeness and OSF release gates
