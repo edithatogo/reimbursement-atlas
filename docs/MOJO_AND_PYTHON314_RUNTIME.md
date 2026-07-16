@@ -20,6 +20,11 @@ prototype. Its output is a candidate score only and remains subject to the
 Python evidence pipeline, negative controls, and human adjudication.
 
 `data/derived/mojo/mojo_parity_report.json` records the Python reference contract,
-the bounded parity workload and the official Mojo smoke result. A missing Mojo
+the bounded parity workload, deterministic workload fingerprints and the official Mojo smoke result. A missing Mojo
 runtime is recorded as an environment blocker; it cannot promote or invalidate
 the evidence-readiness status of the data product.
+
+The fixed-width tokenizer is implemented but review-gated. Its benchmark contract records
+input/output operation counts and canonical SHA-256 fingerprints, not machine-specific timing;
+this makes regeneration comparable across runners without presenting a synthetic performance
+claim. The fuzzy prefilter remains a prototype until gold-standard recall has been adjudicated.

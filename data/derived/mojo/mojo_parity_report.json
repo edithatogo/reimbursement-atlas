@@ -1,8 +1,14 @@
 {
   "benchmark_contract": {
+    "deterministic": true,
     "fixed_width_cases": 2,
+    "fixed_width_input_bytes": 21,
+    "fixed_width_output_sha256": "2626d1d2064699ff6abe44748763eefd4cf99de122b88e6dcee51dd94865721b",
+    "fixed_width_output_tokens": 4,
     "fuzzy_prefilter_cases": 2,
-    "status": "pass"
+    "fuzzy_prefilter_output_sha256": "0fedbc79483e44bba25f490c2f141821fe9d827aaf3ad33c0983091f93525081",
+    "status": "pass",
+    "workload_sha256": "8f96c308018b01642c2f8dd0cc92a98d1eb96aee4a09bc6b7b97e1ab6fdcca9e"
   },
   "mojo_smoke": {
     "status": "pass",

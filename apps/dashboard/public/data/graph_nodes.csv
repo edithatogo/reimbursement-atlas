@@ -115,7 +115,7 @@ api,,,,,,,,,dataset:ds_world_bank_wdi_health,,,dataset_candidate,World Bank WDI 
 ,,,,,,,,,function:func_mapping_review_ui,dashboard,,roadmap_function,mapping review UI,,,,,,,,,must,,implemented,,,
 ,,,,,,,,,function:func_medicine_opacity_index,data_pipeline,,roadmap_function,medicine price-opacity index,,,,,,,,,should,,implemented,,,
 ,,,,,,,,,function:func_mojo_fuzzy_prefilter,mojo_kernel,,roadmap_function,fuzzy prefilter kernel,,,,,,,,,should,,prototype,,,
-,,,,,,,,,function:func_mojo_tokenizer,mojo_kernel,,roadmap_function,fixed-width tokenizer kernel,,,,,,,,,must,,prototype,,,
+,,,,,,,,,function:func_mojo_tokenizer,mojo_kernel,,roadmap_function,fixed-width tokenizer kernel,,,,,,,,,must,,implemented,,,
 ,,,,,,,,,function:func_osf_api_publish,github_action,,roadmap_function,OSF API publish,,,,,,,,,should,,implemented,,,
 ,,,,,,,,,function:func_osf_cli_contract,github_action,,roadmap_function,OSF CLI contract,,,,,,,,,should,,implemented,,,
 ,,,,,,,,,function:func_osf_manifest_reconciliation,cli,,roadmap_function,OSF manifest reconciliation,,,,,,,,,must,,implemented,,,
