@@ -51,3 +51,10 @@ def test_mojo_parity_reference_contract_is_deterministic(repo_root: Path) -> Non
     assert report["python_reference_status"] == "pass"
     assert report["benchmark_contract"]["status"] == "pass"
     assert report["mojo_smoke"]["status"] == "not_run"
+    assert report["benchmark_contract"]["deterministic"] is True
+    assert len(report["benchmark_contract"]["workload_sha256"]) == 64
+    assert report["benchmark_contract"]["fixed_width_output_tokens"] == 4
+    assert (
+        report["benchmark_contract"]
+        == build_mojo_parity_report(repo_root, run_smoke=False)["benchmark_contract"]
+    )

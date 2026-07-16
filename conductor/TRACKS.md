@@ -16,7 +16,7 @@ Deliverables:
 - fallback policy for current sandbox
 
 Tracked functions/issues:
-- `func_mojo_tokenizer` — Implement Mojo fixed-width tokenizer kernel and Python parity test (prototype, mojo_kernel)
+- `func_mojo_tokenizer` — Implement Mojo fixed-width tokenizer kernel and Python parity test (implemented, review-gated, mojo_kernel)
 - `func_mojo_fuzzy_prefilter` — Prototype Mojo fuzzy prefilter for large crosswalk candidate sets (prototype, mojo_kernel)
 - `func_python314_ci` — Add Python 3.14 CI matrix and keep sandbox fallback documented (implemented, github_action)
 

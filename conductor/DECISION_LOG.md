@@ -389,3 +389,15 @@ review, nor can it prove that a public deployment is live.
 
 Consequence: Conductor and generated project artefacts distinguish implemented local capability
 from the remaining human review and deployment-verification gates.
+
+## 2026-07-16 - Deterministic Mojo tokenizer benchmark contract
+
+Decision: Mark the fixed-width Mojo tokenizer implemented and review-gated after adding a
+deterministic benchmark fingerprint; leave the fuzzy prefilter prototype.
+
+Rationale: The tokenizer has a passing Mojo smoke gate and Python parity contract. Canonical
+operation counts and SHA-256 fingerprints provide reproducible workload evidence without making
+runner-specific timing claims. The fuzzy prefilter still lacks adjudicated gold-standard recall.
+
+Consequence: The runtime track distinguishes a parity-backed tokenizer from the uncalibrated
+candidate-generation prototype.

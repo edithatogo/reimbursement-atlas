@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import subprocess  # nosec B404 - executes the fixed repository smoke script only
 from pathlib import Path
@@ -16,6 +17,12 @@ FUZZY_CASES = (
     ("whole exome", "whole exome sequencing", 2 / 3),
     ("a a", "a b", 0.5),
 )
+
+
+def _sha256_json(value: object) -> str:
+    """Hash canonical JSON so benchmark evidence remains reproducible."""
+    payload = json.dumps(value, separators=(",", ":"), sort_keys=True).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
 
 
 def fixed_width_tokenize(line: str, widths: tuple[int, ...]) -> tuple[str, ...]:
@@ -68,16 +75,28 @@ def build_mojo_parity_report(root: Path, *, run_smoke: bool = True) -> dict[str,
     fuzzy_pass = all(
         abs(token_jaccard(left, right) - expected) < 1e-9 for left, right, expected in FUZZY_CASES
     )
+    fixed_width_outputs = [list(result) for result in fixed_width_results]
+    fuzzy_outputs = [token_jaccard(left, right) for left, right, _expected in FUZZY_CASES]
+    benchmark_contract = {
+        "status": "pass" if fixed_width_pass and fuzzy_pass else "fail",
+        "deterministic": True,
+        "workload_sha256": _sha256_json({
+            "fixed_width": fixed_width_outputs,
+            "fuzzy_prefilter": fuzzy_outputs,
+        }),
+        "fixed_width_cases": len(PARITY_CASES),
+        "fixed_width_input_bytes": sum(len(line.encode("utf-8")) for line, _w, _e in PARITY_CASES),
+        "fixed_width_output_tokens": sum(len(result) for result in fixed_width_results),
+        "fixed_width_output_sha256": _sha256_json(fixed_width_outputs),
+        "fuzzy_prefilter_cases": len(FUZZY_CASES),
+        "fuzzy_prefilter_output_sha256": _sha256_json(fuzzy_outputs),
+    }
     smoke = _run_mojo_smoke(root) if run_smoke else {"status": "not_run"}
     return {
         "schema_version": "mojo-parity-v1",
         "python_reference_status": "pass" if fixed_width_pass and fuzzy_pass else "fail",
         "mojo_smoke": smoke,
-        "benchmark_contract": {
-            "status": "pass" if fixed_width_pass and fuzzy_pass else "fail",
-            "fixed_width_cases": len(PARITY_CASES),
-            "fuzzy_prefilter_cases": len(FUZZY_CASES),
-        },
+        "benchmark_contract": benchmark_contract,
         "publication_safe": True,
         "notes": [
             "Python remains the auditable reference implementation.",
