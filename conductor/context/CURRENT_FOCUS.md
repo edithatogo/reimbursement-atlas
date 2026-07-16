@@ -837,3 +837,11 @@ canonical site at `https://edithatogo.github.io/reimbursement-atlas/` returns HT
 deployed `status.json` matches the tracked public manifest byte-for-byte. The public product is
 therefore deployed and verified; evidence, research-publication, OSF, policy and external licence
 gates remain explicitly blocked or gated and were not upgraded by this check.
+
+## 2026-07-17 v130 issue lifecycle reconciliation
+
+GitHub issue state was reconciled against generated Conductor acceptance criteria. Twelve issues
+with status `implemented` or `done` and no unchecked criteria were closed: #322, #328, #332, #333,
+#334, #335, #336, #337, #338, #355, #356 and #359. Project 18 read-back reports these rows as
+`Done`. Release-gated source, licence, research, evidence, publication, TypeScript 7 and account
+security issues remain open; no external approval was inferred.
