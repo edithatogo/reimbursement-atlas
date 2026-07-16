@@ -40,3 +40,4 @@
   publication approval.
 - [x] Expose machine-readable blocker IDs, evidence paths and next actions in the public status
   manifest and dashboard.
+- [x] Add a grouped, checksum-bound licence review handoff packet; approval remains a human gate.

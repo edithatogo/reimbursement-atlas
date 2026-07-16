@@ -203,6 +203,14 @@ epics:
           - "The report records only repository identity, expected card fields, drift reasons and mutation_performed=false."
           - "The workflow has no HF token, clone, push, or write-enabled publication step."
           - "Drift remains linked to issue #320 and does not imply publication approval."
+      - title: Add grouped licence review packet for accountable handoff
+        labels: ["type:publication", "type:review", "risk:licence", "phase:release-gate", "status:implemented"]
+        status: implemented
+        acceptance:
+          - "Generated batches group candidates by licence gate and publication scope without changing approval state."
+          - "Reviewer packet documents checksum, terms, attribution, restrictions and evidence requirements."
+          - "Dashboard exposes the grouped batch summary while keeping the detailed queue internal to governance."
+          - "Existing checksum-bound licence decision validation remains fail-closed."
   - id: ONT-001
     title: Local-only terminology seed workflow
     phase: slice

@@ -56,6 +56,7 @@ FILES = [
     Path("data/derived/architecture/import_cycles.csv"),
     Path("data/derived/release_readiness/release_gates.csv"),
     Path("data/derived/licence_review/licence_review_queue.csv"),
+    Path("data/derived/licence_review/licence_review_batches.csv"),
     Path("data/derived/source_url_licence_checklist/source_url_licence_checklist.csv"),
     Path("data/seed/conductor_tracks.csv"),
     Path("data/seed/roadmap_functions.csv"),

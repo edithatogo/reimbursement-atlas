@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 from dataclasses import asdict, dataclass
+from operator import itemgetter
 from pathlib import Path
 from typing import Any
 
@@ -64,12 +65,35 @@ def write_licence_review_queue(
     rows: list[LicenceReviewRecord],
     *,
     output_dir: Path,
-) -> tuple[Path, Path, Path, Path]:
-    """Write queue rows, summary and reviewer instructions."""
+) -> tuple[Path, Path, Path, Path, Path, Path]:
+    """Write queue rows, grouped batches, summary and reviewer instructions."""
     output_dir.mkdir(parents=True, exist_ok=True)
     payload = [asdict(row) for row in rows]
     jsonl_path = write_jsonl(payload, output_dir / "licence_review_queue.jsonl")
     csv_path = write_csv(payload, output_dir / "licence_review_queue.csv")
+    batch_keys = sorted(
+        {(row.licence_gate, row.publication_scope) for row in rows},
+        key=itemgetter(0, 1),
+    )
+    batches: list[dict[str, object]] = []
+    for licence_gate, publication_scope in batch_keys:
+        batch_rows = [
+            row
+            for row in rows
+            if row.licence_gate == licence_gate and row.publication_scope == publication_scope
+        ]
+        batches.append({
+            "licence_gate": licence_gate,
+            "publication_scope": publication_scope,
+            "artifact_count": len(batch_rows),
+            "pending_count": sum(row.review_status == "pending" for row in batch_rows),
+            "approved_count": sum(row.review_status == "approved" for row in batch_rows),
+            "blocked_count": sum(row.review_status == "blocked" for row in batch_rows),
+            "total_byte_size": sum(row.byte_size for row in batch_rows),
+            "raw_payload_count": sum(row.contains_raw_source_payload for row in batch_rows),
+            "review_action": "Human review required before publication consideration",
+        })
+    batch_path = write_csv(batches, output_dir / "licence_review_batches.csv")
     summary = {
         "schema_version": "licence-review-queue-v1",
         "artifact_count": len(rows),
@@ -96,13 +120,53 @@ queue to simulate approval, and do not publish it as evidence that review occurr
 """,
         encoding="utf-8",
     )
-    return jsonl_path, csv_path, summary_path, readme_path
+    packet_path = output_dir / "reviewer_packet.md"
+    batch_lines = "\n".join(
+        f"- `{batch['licence_gate']}` / `{batch['publication_scope']}`: "
+        f"{batch['artifact_count']} artefacts, {batch['total_byte_size']} bytes"
+        for batch in batches
+    )
+    packet_path.write_text(
+        """# Licence review packet
+
+This generated packet is a checklist for an accountable human reviewer. It does not
+grant approval, alter the publication manifest, or enable remote publication. Review
+the exact candidate file and checksum in `licence_review_queue.csv`, then record one
+complete decision row in `data/licence_review/decisions.jsonl`.
+
+## Current batches
+
+"""
+        + (batch_lines or "- No candidate artefacts are present.")
+        + """
+
+## Required decision fields
+
+Each decision must include `review_id`, `relative_path`, `checksum_sha256`, `decision`
+(`approved` or `blocked`), `reviewer`, `reviewed_at`, `source_terms`, `attribution`,
+`redistribution_permission`, `restrictions`, and `evidence`.
+
+## Review sequence
+
+1. Confirm the candidate checksum still matches the local file.
+2. Read the applicable provider terms and record the exact evidence location.
+3. Record attribution and redistribution restrictions, including any source-specific terms.
+4. Choose `approved` only when redistribution is permitted for this exact candidate;
+   otherwise choose `blocked`.
+5. Run `pixi run licence-review-validate` and retain the output with the handoff.
+
+The queue is regenerated from the publication manifest. Never edit generated queue rows to
+simulate a decision and never treat a passing validator as a substitute for human review.
+""",
+        encoding="utf-8",
+    )
+    return jsonl_path, csv_path, batch_path, summary_path, readme_path, packet_path
 
 
 def build_and_write_licence_review_queue(
     *,
     root: Path | None = None,
-) -> tuple[Path, Path, Path, Path]:
+) -> tuple[Path, Path, Path, Path, Path, Path]:
     """Build and write the repository's current licence review queue."""
     repo = root or project_root()
     rows = build_licence_review_queue(root=repo)

@@ -17,6 +17,12 @@ import Layout from "../../components/Layout.astro";
     limit={12}
   />
   <DataTable
+    title="Licence review batches"
+    description="Grouped review work is an operational aid only. No batch status grants redistribution approval."
+    fileName="licence_review_batches.csv"
+    columns={["licence_gate", "publication_scope", "artifact_count", "pending_count", "total_byte_size", "review_action"]}
+  />
+  <DataTable
     title="Source readiness"
     fileName="source_readiness.csv"
     columns={["source_id", "jurisdiction", "schedule", "domain", "grade", "score"]}
