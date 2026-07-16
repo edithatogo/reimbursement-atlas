@@ -45,26 +45,24 @@ def build_checklist(root: Path | None = None) -> list[dict[str, Any]]:
         if source_id not in FIRST_WAVE_SOURCE_IDS:
             continue
         source = registry.get(source_id, {})
-        rows.append(
-            {
-                "source_file_id": source_file["id"],
-                "source_id": source_id,
-                "source_version_id": source_file["source_version_id"],
-                "file_label": source_file["file_label"],
-                "source_url": source_file["source_url"],
-                "registry_url": source.get("primary_url", ""),
-                "acquisition_mode": source_file["acquisition_mode"],
-                "licence_gate": source_file["licence_gate"],
-                "url_verification_status": "pending_human_verification",
-                "licence_review_status": "pending_human_review",
-                "raw_handling": "ignored_local_only",
-                "required_evidence": (
-                    "Record access date, authoritative terms, permitted fields, attribution, "
-                    "redistribution decision, reviewer and evidence before publication."
-                ),
-                "licence_notes": source.get("licence_notes", ""),
-            }
-        )
+        rows.append({
+            "source_file_id": source_file["id"],
+            "source_id": source_id,
+            "source_version_id": source_file["source_version_id"],
+            "file_label": source_file["file_label"],
+            "source_url": source_file["source_url"],
+            "registry_url": source.get("primary_url", ""),
+            "acquisition_mode": source_file["acquisition_mode"],
+            "licence_gate": source_file["licence_gate"],
+            "url_verification_status": "pending_human_verification",
+            "licence_review_status": "pending_human_review",
+            "raw_handling": "ignored_local_only",
+            "required_evidence": (
+                "Record access date, authoritative terms, permitted fields, attribution, "
+                "redistribution decision, reviewer and evidence before publication."
+            ),
+            "licence_notes": source.get("licence_notes", ""),
+        })
     return rows
 
 
