@@ -870,3 +870,9 @@ The governed curl plan successfully acquired the July 2026 MBS TXT pair into ign
 storage and produced a 14,856-row derived-only bundle. Checksums, validation and provenance are
 tracked; the MBS licence and clinical review gate remains open in issue #23. PBS remains blocked
 only by the absent `PBS_API_SUBSCRIPTION_KEY`; other CMS targets remain licence-gated.
+
+## 2026-07-17 - Historical archive governance refreshed
+
+The official MBS archive links and licence boundary were rechecked. The metadata-only historical
+inventory remains 343 targets across 32 pages; issue #255 now carries the evidence. No historical
+payload was downloaded or promoted.

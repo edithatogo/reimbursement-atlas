@@ -6,7 +6,7 @@ licence gates. It is evidence for review, not a legal opinion or a blanket redis
 ## Australian MBS
 
 - Source: [MBS Online copyright information](https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/Content/copyright)
-- Accessed: 2026-07-16
+- Rechecked: 2026-07-17
 - Observation: the page states that material is Commonwealth copyright; limited personal,
   non-commercial, unaltered use is permitted; reproduction must retain the copyright and
   disclaimer notices; redistribution or commercial use requires prior written approval.
@@ -15,6 +15,18 @@ licence gates. It is evidence for review, not a legal opinion or a blanket redis
   until an accountable reviewer records the applicable permission and attribution.
 - Consequence: the source is public to access but is not treated as an open redistribution
   licence. Apache-2.0 applies to project-owned code and documentation only.
+
+## Historical MBS archive boundary
+
+- Archive index: [MBS Online downloads](https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/Content/downloads)
+- Historical index: [MBS Online 2010 to 2019](https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/Content/MBSOnline-2010)
+- Older index: [MBS Online previous downloads](https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/Content/Prev-Downloads)
+- Rechecked: 2026-07-17
+- Observation: the official downloads page exposes current item-map and descriptor files and
+  points to historical indexes; it does not convert the copyright notice into an open licence.
+- Repository decision: retain the 343-target historical inventory as metadata-only and
+  `manual_review_only`; do not mirror historical payloads until each target's terms and intended
+  derived fields are reviewed.
 
 ## Australian PBS API
 

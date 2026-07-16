@@ -830,3 +830,15 @@ evidence and remains open.
 
 Consequence: Source validation and contract gates pass, but clinical review, licence review,
 evidence readiness and publication readiness remain independently fail-closed.
+
+## 2026-07-17 - Keep historical MBS expansion metadata-only
+
+Decision: Advance historical coverage through an auditable archive inventory only; do not download
+or mirror historical MBS/PBS payloads until target-specific terms and intended derived fields are
+reviewed.
+
+Evidence: The official MBS downloads and historical index pages were rechecked. The inventory has
+343 targets across 32 archive pages, and issue #255 was updated with the evidence.
+
+Consequence: Historical expansion remains a review gate and cannot be treated as evidence or
+publication readiness.
