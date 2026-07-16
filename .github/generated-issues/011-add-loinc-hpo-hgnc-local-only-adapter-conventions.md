@@ -2,9 +2,9 @@
 
 Epic: `MAP-001` — Candidate crosswalk pipeline
 
-Labels: type:ontology, risk:licence, status:blocked
+Labels: type:ontology, risk:licence, status:implemented
 
-Status: `blocked`
+Status: `implemented`
 
 ## Background
 
@@ -13,7 +13,8 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Scope is confirmed: local-only terminology adapter conventions are recorded for LOINC, HPO and HGNC.
+- [x] Licence and data-governance implications are checked: restricted releases are not mirrored and synthetic concepts remain labelled.
+- [x] Tests or validation evidence are defined: ontology registry, mapping template and seed synchronisation gates.
+- [x] Documentation or Conductor context is updated in the ontology strategy.
+- [ ] Human clinical mapping review is complete for real source mappings.

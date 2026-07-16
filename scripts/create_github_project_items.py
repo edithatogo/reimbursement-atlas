@@ -163,6 +163,69 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
             "promoted "
             "to reviewed derived bundles."
         )
+    elif issue.title == "Add URL/licence verification checklist for first-wave sources":
+        acceptance = (
+            "- [x] Scope is confirmed: source-file and registry URLs for first-wave sources are "
+            "listed in a generated checklist.\n"
+            "- [x] Licence and data-governance implications are checked: licence gates and "
+            "ignored-raw handling are explicit.\n"
+            "- [x] Tests or validation evidence are defined: `pixi run "
+            "source-url-licence-checklist` "
+            "and focused unit tests.\n"
+            "- [x] Documentation or Conductor context is updated in the manual acquisition pack "
+            "and dashboard.\n"
+            "- [ ] Human URL reachability and source-term review is complete."
+        )
+    elif issue.title == "Implement CMS PFS parser prototype to ScheduleItemRecord":
+        acceptance = (
+            "- [x] Scope is confirmed: the fixture-backed CMS PFS CSV parser emits "
+            "`ScheduleItemRecord` values.\n"
+            "- [x] Licence and data-governance implications are checked: CPT descriptors "
+            "remain excluded from redistribution.\n"
+            "- [x] Tests or validation evidence are defined: focused parser and contract tests.\n"
+            "- [x] Documentation or Conductor context is updated in the parser and ingestion "
+            "plans.\n"
+            "- [ ] Validation against a reviewed RVU26C file is complete."
+        )
+    elif issue.title == "Add LOINC/HPO/HGNC local-only adapter conventions":
+        acceptance = (
+            "- [x] Scope is confirmed: local-only terminology adapter conventions are recorded "
+            "for LOINC, HPO and HGNC.\n"
+            "- [x] Licence and data-governance implications are checked: restricted releases "
+            "are not mirrored and synthetic concepts remain labelled.\n"
+            "- [x] Tests or validation evidence are defined: ontology registry, mapping template "
+            "and seed synchronisation gates.\n"
+            "- [x] Documentation or Conductor context is updated in the ontology strategy.\n"
+            "- [ ] Human clinical mapping review is complete for real source mappings."
+        )
+    elif issue.title == "Validate MBS parser against one manually downloaded XML release":
+        acceptance = (
+            "- [x] Parser contract and synthetic XML fixture are implemented.\n"
+            "- [ ] A real manually downloaded XML release is present in ignored local storage.\n"
+            "- [ ] Source URL, terms and checksum are recorded by an accountable reviewer.\n"
+            "- [ ] Parser output is validated without redistributing restricted descriptors."
+        )
+    elif issue.title == "Review first real July 2026 MBS TXT pair bundle outputs":
+        acceptance = (
+            "- [x] July 2026 MBS TXT-pair bundle and validation report are generated locally.\n"
+            "- [ ] Human domain/licence review confirms the joined and descriptor-only row "
+            "policy.\n"
+            "- [ ] Review decision is recorded against the bundle checksums before publication."
+        )
+    elif issue.title == "Validate PBS API CSV parser against a reviewed monthly public extract":
+        acceptance = (
+            "- [x] PBS API CSV parser and July 2026 local acquisition evidence exist.\n"
+            "- [ ] A human reviews the monthly extract fields, terms and effective-date join.\n"
+            "- [ ] The reviewed extract checksum and permitted derived fields are recorded."
+        )
+    elif issue.title == "Validate CMS ASP parser against July 2026 payment-limit files":
+        acceptance = (
+            "- [x] CMS ASP parser contract and synthetic fixture are implemented.\n"
+            "- [ ] July 2026 payment-limit payload is manually acquired into ignored local "
+            "storage.\n"
+            "- [ ] Source terms, checksum and permitted payment-limit fields are reviewed.\n"
+            "- [ ] Parsed output is validated without treating payment limits as net prices."
+        )
     elif issue.title == "Prototype Mojo fuzzy prefilter for large crosswalk candidate sets":
         acceptance = (
             "- [x] Scope is confirmed: candidate generation only, never an equivalence decision.\n"
@@ -202,6 +265,42 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
             "workflow runs the contract.\n"
             "- [ ] Accountable human source-licence approval and HF publication authorization "
             "are complete."
+        )
+    elif issue.title == "Add reviewed-source bundle workflow to live-source validation docs":
+        acceptance = (
+            "- [x] Scope is confirmed: the manual reviewed-source and MBS TXT-pair workflows "
+            "are documented.\n"
+            "- [x] Licence and data-governance implications are checked: raw payloads remain "
+            "ignored and derived bundles remain review-gated.\n"
+            "- [x] Tests or validation evidence are defined: source-content, source-contract "
+            "and reviewed-bundle validators.\n"
+            "- [x] Documentation or Conductor context is updated in the live-source playbook.\n"
+            "- [ ] Human source-specific licence review is complete for each candidate bundle."
+        )
+    elif issue.title == (
+        "Generate artifact-level licence review queue bound to publication checksums"
+    ):
+        acceptance = (
+            "- [x] Scope is confirmed: every publication candidate is represented by a generated "
+            "queue row.\n"
+            "- [x] Licence and data-governance implications are checked: rows are checksum-bound "
+            "and fail closed.\n"
+            "- [x] Tests or validation evidence are defined: deterministic queue generation and "
+            "licence-review validation.\n"
+            "- [x] Documentation or Conductor context is updated in the queue README and release "
+            "documentation.\n"
+            "- [ ] Human decisions are recorded for every candidate before publication."
+        )
+    elif issue.title == "Expose the checksum-bound licence review queue in the dashboard":
+        acceptance = (
+            "- [x] Scope is confirmed: the readiness dashboard exposes the generated queue and "
+            "checksum/status fields.\n"
+            "- [x] Licence and data-governance implications are checked: the view states that "
+            "display does not grant approval.\n"
+            "- [x] Tests or validation evidence are defined: dashboard build and generated-data "
+            "checks.\n"
+            "- [x] Documentation or Conductor context is updated in the readiness page.\n"
+            "- [ ] Human licence decisions are complete before publication."
         )
     elif issue.title == "Validate human licence decisions against checksum-bound queue rows":
         acceptance = (

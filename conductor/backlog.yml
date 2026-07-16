@@ -14,8 +14,8 @@ epics:
         labels: ["type:parser", "phase:1-slice", "good-first-issue", "status:implemented"]
         status: implemented
       - title: Add URL/licence verification checklist for first-wave sources
-        labels: ["risk:licence", "type:data-source", "status:blocked"]
-        status: blocked
+        labels: ["risk:licence", "type:data-source", "status:implemented"]
+        status: implemented
   - id: PARSE-001
     title: Parser contract implementation
     phase: slice
@@ -38,8 +38,8 @@ epics:
         labels: ["type:parser", "phase:1-slice", "type:medicines", "status:implemented"]
         status: implemented
       - title: Implement CMS PFS parser prototype to ScheduleItemRecord
-        labels: ["type:parser", "phase:1-slice", "risk:licence", "status:blocked"]
-        status: blocked
+        labels: ["type:parser", "phase:1-slice", "risk:licence", "status:implemented"]
+        status: implemented
   - id: MAP-001
     title: Candidate crosswalk pipeline
     phase: slice
@@ -50,8 +50,8 @@ epics:
         labels: ["type:mapping", "needs-clinical-review", "status:implemented"]
         status: implemented
       - title: Add LOINC/HPO/HGNC local-only adapter conventions
-        labels: ["type:ontology", "risk:licence", "status:blocked"]
-        status: blocked
+        labels: ["type:ontology", "risk:licence", "status:implemented"]
+        status: implemented
       - title: Build candidate crosswalk review queue format
         labels: ["type:mapping", "phase:1-slice", "status:implemented"]
         status: implemented
@@ -104,22 +104,26 @@ epics:
         labels: ["type:data-source", "risk:licence", "phase:1-slice", "status:implemented"]
         status: implemented
       - title: Validate MBS parser against one manually downloaded XML release
-        labels: ["type:parser", "phase:1-slice", "needs-clinical-review"]
+        labels: ["type:parser", "phase:1-slice", "needs-clinical-review", "status:blocked"]
+        status: blocked
       - title: Add derived-only MBS TXT pair bundle workflow with path-redacted snapshots
         labels: ["type:parser", "risk:licence", "phase:1-slice", "status:implemented"]
         status: implemented
       - title: Review first real July 2026 MBS TXT pair bundle outputs
-        labels: ["type:data-source", "needs-clinical-review", "phase:1-slice"]
+        labels: ["type:data-source", "needs-clinical-review", "phase:1-slice", "status:blocked"]
+        status: blocked
       - title: Validate CMS CLFS parser against one public file without CPT descriptor redistribution
         labels: ["type:parser", "risk:licence", "phase:1-slice", "status:blocked"]
         status: blocked
       - title: Validate PBS API CSV parser against a reviewed monthly public extract
-        labels: ["type:parser", "phase:1-slice", "type:medicines"]
+        labels: ["type:parser", "phase:1-slice", "type:medicines", "status:blocked"]
+        status: blocked
       - title: Record redacted PBS API multi-endpoint acquisition evidence
         labels: ["type:data-quality", "type:provenance", "type:parser", "phase:hardening", "status:implemented"]
         status: implemented
       - title: Validate CMS ASP parser against July 2026 payment-limit files
-        labels: ["type:parser", "phase:1-slice", "type:medicines"]
+        labels: ["type:parser", "phase:1-slice", "type:medicines", "status:blocked"]
+        status: blocked
       - title: Validate CMS PFS parser against RVU26C with CPT descriptor safeguards
         labels: ["type:parser", "risk:licence", "phase:1-slice", "status:blocked"]
         status: blocked
@@ -166,8 +170,8 @@ epics:
     priority: must
     issues:
       - title: Add reviewed-source bundle workflow to live-source validation docs
-        labels: ["type:data-source", "risk:licence", "phase:1-slice", "status:blocked"]
-        status: blocked
+        labels: ["type:data-source", "risk:licence", "phase:1-slice", "status:implemented"]
+        status: implemented
       - title: Add seed JSONL CSV synchronisation gate to CI
         labels: ["type:automation", "phase:1-slice", "status:implemented"]
         status: implemented
@@ -175,8 +179,8 @@ epics:
         labels: ["type:publication", "risk:licence", "phase:1-slice", "status:implemented"]
         status: implemented
       - title: Add Hugging Face dataset-card contract checks before public release
-        labels: ["type:publication", "type:quality", "risk:licence", "phase:hardening", "status:blocked"]
-        status: blocked
+        labels: ["type:publication", "type:quality", "risk:licence", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Make research package descriptors deterministic and non-self-referential
         labels: ["type:publication", "type:quality", "phase:hardening", "status:implemented"]
         status: implemented
@@ -285,11 +289,11 @@ epics:
         labels: ["type:publication", "phase:release-gate", "status:implemented"]
         status: implemented
       - title: Generate artifact-level licence review queue bound to publication checksums
-        labels: ["type:publication", "type:review", "risk:licence", "phase:release-gate", "status:blocked"]
-        status: blocked
+        labels: ["type:publication", "type:review", "risk:licence", "phase:release-gate", "status:implemented"]
+        status: implemented
       - title: Validate human licence decisions against checksum-bound queue rows
-        labels: ["type:publication", "type:review", "risk:licence", "phase:release-gate", "status:blocked"]
-        status: blocked
+        labels: ["type:publication", "type:review", "risk:licence", "phase:release-gate", "status:implemented"]
+        status: implemented
       - title: Expand OSF protocols and report scaffolds with required sections
         labels: ["type:research", "type:osf", "status:implemented"]
         status: implemented
@@ -385,8 +389,8 @@ epics:
         labels: ["type:track", "type:dashboard", "type:publication", "priority:must", "status:implemented"]
         status: implemented
       - title: Expose the checksum-bound licence review queue in the dashboard
-        labels: ["type:dashboard", "type:review", "risk:licence", "phase:release-gate", "status:blocked"]
-        status: blocked
+        labels: ["type:dashboard", "type:review", "risk:licence", "phase:release-gate", "status:implemented"]
+        status: implemented
       - title: Expose machine-readable release blockers and next actions in public status
         labels: ["type:dashboard", "type:release", "phase:release-gate", "status:implemented"]
         status: implemented

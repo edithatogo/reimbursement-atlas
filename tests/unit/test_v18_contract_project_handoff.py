@@ -103,6 +103,20 @@ def test_generated_roadmap_issue_preserves_implementation_status() -> None:
     assert "Status: `implemented`" in render_issue(issue)
 
 
+def test_project_status_preserves_implemented_licence_gated_controls() -> None:
+    """A licence-risk label must not hide a completed local control."""
+    from reimburse_atlas.github_project import build_github_project_items
+    from reimburse_atlas.registry import load_conductor_tracks
+
+    rows = build_github_project_items(load_conductor_tracks())
+    checklist = next(
+        row
+        for row in rows
+        if row.title == "Add URL/licence verification checklist for first-wave sources"
+    )
+    assert checklist.status == "done"
+
+
 def test_generated_issue_drafts_deduplicate_backlog_and_roadmap_rows() -> None:
     issues = [
         IssueDraft(epic_id="LIVE-001", epic_title="Live", title="Same title"),

@@ -2,7 +2,9 @@
 
 Epic: `LIVE-001` — Reviewed live-source validation
 
-Labels: type:parser, phase:1-slice, type:medicines
+Labels: type:parser, phase:1-slice, type:medicines, status:blocked
+
+Status: `blocked`
 
 ## Background
 
@@ -11,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] CMS ASP parser contract and synthetic fixture are implemented.
+- [ ] July 2026 payment-limit payload is manually acquired into ignored local storage.
+- [ ] Source terms, checksum and permitted payment-limit fields are reviewed.
+- [ ] Parsed output is validated without treating payment limits as net prices.

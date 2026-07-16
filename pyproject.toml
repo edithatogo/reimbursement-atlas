@@ -132,7 +132,7 @@ bandit = "bandit -q -c pyproject.toml -r src scripts"
 pip-audit = "pip-audit --strict"
 mutation = "PYTHONPATH=src python scripts/run_bounded_mutation.py"
 profile = "scalene src/reimburse_atlas/cli.py -- --help"
-qa = { depends-on = ["format-check", "lint", "typecheck", "seed-sync-check", "public-data-policy", "repo-automation", "sbom", "architecture-report", "release-readiness", "source-download-plan", "pbs-acquisition-evidence", "source-validation", "source-contracts", "historical-sources", "github-project-export", "final-handoff", "protocol-status", "roadmap-linkages", "data-quality", "data-dictionary", "licence-review-queue", "licence-review-validate", "evidence-readiness", "source-drift", "osf-plan", "research-package", "coverage", "smoke"] }
+qa = { depends-on = ["format-check", "lint", "typecheck", "seed-sync-check", "public-data-policy", "repo-automation", "sbom", "architecture-report", "release-readiness", "source-download-plan", "pbs-acquisition-evidence", "source-validation", "source-contracts", "source-url-licence-checklist", "historical-sources", "github-project-export", "final-handoff", "protocol-status", "roadmap-linkages", "data-quality", "data-dictionary", "licence-review-queue", "licence-review-validate", "evidence-readiness", "source-drift", "osf-plan", "research-package", "coverage", "smoke"] }
 schema-export = "PYTHONPATH=src python scripts/export_json_schema.py"
 zenodo-metadata = "PYTHONPATH=src python scripts/validate_zenodo_metadata.py"
 seed-validate = "PYTHONPATH=src python scripts/validate_seed_data.py"
@@ -171,6 +171,7 @@ pbs-acquisition-evidence = "PYTHONPATH=src python scripts/make_pbs_api_acquisiti
 source-download-attempt = "PYTHONPATH=src python scripts/make_source_download_plan.py --attempt"
 source-validation = "PYTHONPATH=src python scripts/make_source_validation.py"
 source-contracts = "PYTHONPATH=src python scripts/make_source_contracts.py"
+source-url-licence-checklist = "PYTHONPATH=src python scripts/make_source_url_licence_checklist.py"
 source-health-report = "PYTHONPATH=src python scripts/make_source_health_report.py"
 historical-sources = "PYTHONPATH=src python scripts/make_historical_source_index.py"
 github-project-export = "PYTHONPATH=src python scripts/make_github_project_export.py"

@@ -2,9 +2,9 @@
 
 Epic: `PUB-001` — Publication and dataset release readiness
 
-Labels: type:data-source, risk:licence, phase:1-slice, status:blocked
+Labels: type:data-source, risk:licence, phase:1-slice, status:implemented
 
-Status: `blocked`
+Status: `implemented`
 
 ## Background
 
@@ -13,7 +13,8 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Scope is confirmed: the manual reviewed-source and MBS TXT-pair workflows are documented.
+- [x] Licence and data-governance implications are checked: raw payloads remain ignored and derived bundles remain review-gated.
+- [x] Tests or validation evidence are defined: source-content, source-contract and reviewed-bundle validators.
+- [x] Documentation or Conductor context is updated in the live-source playbook.
+- [ ] Human source-specific licence review is complete for each candidate bundle.

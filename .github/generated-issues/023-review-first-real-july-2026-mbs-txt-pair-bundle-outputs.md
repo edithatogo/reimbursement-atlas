@@ -2,7 +2,9 @@
 
 Epic: `LIVE-001` — Reviewed live-source validation
 
-Labels: type:data-source, needs-clinical-review, phase:1-slice
+Labels: type:data-source, needs-clinical-review, phase:1-slice, status:blocked
+
+Status: `blocked`
 
 ## Background
 
@@ -11,7 +13,6 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] July 2026 MBS TXT-pair bundle and validation report are generated locally.
+- [ ] Human domain/licence review confirms the joined and descriptor-only row policy.
+- [ ] Review decision is recorded against the bundle checksums before publication.

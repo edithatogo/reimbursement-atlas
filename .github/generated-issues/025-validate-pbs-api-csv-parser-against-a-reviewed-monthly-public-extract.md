@@ -2,7 +2,9 @@
 
 Epic: `LIVE-001` — Reviewed live-source validation
 
-Labels: type:parser, phase:1-slice, type:medicines
+Labels: type:parser, phase:1-slice, type:medicines, status:blocked
+
+Status: `blocked`
 
 ## Background
 
@@ -11,7 +13,6 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] PBS API CSV parser and July 2026 local acquisition evidence exist.
+- [ ] A human reviews the monthly extract fields, terms and effective-date join.
+- [ ] The reviewed extract checksum and permitted derived fields are recorded.
