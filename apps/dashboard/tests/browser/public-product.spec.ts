@@ -87,3 +87,20 @@ for (const route of routes) {
     expect(pageErrors).toEqual([]);
   });
 }
+
+test("keeps the public search control keyboard reachable and functional", async ({ page }) => {
+  await page.goto("/sources/", { waitUntil: "networkidle" });
+  const firstTable = page.locator('section[data-table-section="true"]').first();
+  const filter = firstTable.locator("input[data-table-filter]");
+  const rows = firstTable.locator("tr[data-table-row]");
+  await expect(filter).toBeVisible();
+  await filter.focus();
+  await expect(filter).toBeFocused();
+
+  const token = (await rows.first().locator("td").first().innerText()).trim().slice(0, 6);
+  expect(token).not.toBe("");
+  await filter.fill(token);
+  await expect(rows.filter({ visible: true })).toHaveCount(1);
+  await filter.press("Tab");
+  await expect(page.locator(":focus")).toHaveCount(1);
+});

@@ -321,6 +321,13 @@ The browser smoke gate now covers all nine public routes in desktop and mobile C
 with CSS-pixel screenshot bounds. The automated matrix passes; cross-platform visual baselines,
 accessibility review and all source/publication decisions remain human handoff gates.
 
+## 2026-07-16: Dashboard keyboard interaction smoke
+
+The Playwright browser suite now verifies that the first public table search control is keyboard
+focusable and filters rows, in addition to the existing axe-core, route, performance and
+screenshot checks. This improves automated interaction evidence without converting it into human
+WCAG or cross-platform approval.
+
 ## 2026-07-16 — GitHub advanced secret scanning
 
 The live repository has provider secret scanning, push protection and Dependabot security updates
