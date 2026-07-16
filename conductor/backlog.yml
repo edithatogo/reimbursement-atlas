@@ -124,7 +124,8 @@ epics:
       - title: Harden CLI command surface and output contracts
         labels: ["type:cli", "phase:1-slice"]
       - title: Add optional read-only FastAPI smoke test
-        labels: ["type:api", "good-first-issue"]
+        labels: ["type:api", "good-first-issue", "status:implemented"]
+        status: implemented
       - title: Draft read-only MCP server implementation plan
         labels: ["type:mcp", "phase:2-expansion"]
   - id: DASH-002

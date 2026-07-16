@@ -2,7 +2,9 @@
 
 Epic: `IFACE-001` — Read-only interfaces
 
-Labels: type:api, good-first-issue
+Labels: type:api, good-first-issue, status:implemented
+
+Status: `implemented`
 
 ## Background
 
