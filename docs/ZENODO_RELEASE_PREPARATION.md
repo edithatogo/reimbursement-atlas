@@ -21,3 +21,8 @@ Before deposition, an accountable maintainer must confirm:
 Only then may a token-gated Zenodo workflow be enabled. The current release-readiness summary
 must continue to report `research_publication_ready: false` and no DOI until that decision is
 recorded.
+
+The manual `.github/workflows/zenodo-preflight.yml` workflow now validates the metadata and
+repository gates and emits a non-depositing preflight artifact. It has read-only permissions,
+does not accept a token and cannot create a DOI; a future deposition workflow requires a
+separately approved Zenodo environment and accountable publication authorization.

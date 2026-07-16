@@ -600,3 +600,10 @@ synthetic gold-standard and negative-control fixtures. The current result is rec
 precision 1.0 and specificity 1.0 at threshold 0.2, but the roadmap function remains a
 prototype and the benchmark remains review-required until real-source mappings are adjudicated.
 See `conductor/sessions/2026-07-16-v78-fuzzy-prefilter-benchmark.md`.
+
+## 2026-07-16: Historical and Zenodo review automation
+
+Repository-owned review automation is now in place: a scheduled metadata-only historical MBS
+inventory refresh opens normal PRs on archive drift, and a manual read-only Zenodo preflight
+validates metadata and release gates without accepting credentials or creating a DOI. Historical
+payloads, PBS extracts and Zenodo deposition remain externally approved work.
