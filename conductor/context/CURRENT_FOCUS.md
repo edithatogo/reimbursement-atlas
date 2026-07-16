@@ -863,3 +863,10 @@ evidence release, policy claims and external licence gates remain fail-closed.
 Thirteen implementation-complete issues were synchronized from generated drafts, closed under the
 status-aware Conductor rule, and read back as `Done` in Project 18. The generated acceptance
 contract preserves the distinction between local implementation and external approval.
+
+## 2026-07-17 - Real MBS acquisition recorded
+
+The governed curl plan successfully acquired the July 2026 MBS TXT pair into ignored local raw
+storage and produced a 14,856-row derived-only bundle. Checksums, validation and provenance are
+tracked; the MBS licence and clinical review gate remains open in issue #23. PBS remains blocked
+only by the absent `PBS_API_SUBSCRIPTION_KEY`; other CMS targets remain licence-gated.
