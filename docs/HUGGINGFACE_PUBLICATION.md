@@ -33,6 +33,12 @@ review; no remote mutation was performed during this verification.
 
 ## Latest non-mutating candidate validation
 
+The latest validation on `main` (`c7a55b3e4483265ffe60637714e930512ec22cdb`) was workflow
+run `29517250473`. The governed publication candidate built and validated successfully;
+`publish-dataset` and `publish-space` were skipped, so neither remote target was mutated.
+The existing destination metadata drift remains a reconciliation task and does not grant
+publication approval.
+
 Workflow run `29475142574` on merged main commit `e8b8a2e` repeated the candidate
 validation. The publication manifest, research package and static dashboard built and
 validated successfully; `publish-dataset` and `publish-space` were skipped. No Hugging
