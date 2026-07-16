@@ -647,11 +647,11 @@
     {
       "@id": "data/seed/graph_nodes.csv",
       "@type": "File",
-      "contentSize": 37322,
+      "contentSize": 37326,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "graph_nodes",
-      "sha256": "9729cb5ca18875352ea2ae7970b740907b2e475f7fe03ee0c49b57eb6d023188"
+      "sha256": "4ae3b14cf1bb31d3df90ede039133bd02e008981a123800c700e45deafd2185e"
     },
     {
       "@id": "data/seed/graph_edges.csv",
@@ -683,20 +683,20 @@
     {
       "@id": "data/seed/roadmap_functions.jsonl",
       "@type": "File",
-      "contentSize": 26019,
+      "contentSize": 26023,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "roadmap_functions",
-      "sha256": "096fc6f60e568b949493a462fcffc76bec5434e3b70995c8be921c0cfe43e93a"
+      "sha256": "9a209b187cef470df501e19437a0bff2025a3ddf909f71cae5854d30ab985ca0"
     },
     {
       "@id": "data/seed/roadmap_functions.csv",
       "@type": "File",
-      "contentSize": 19802,
+      "contentSize": 19806,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "roadmap_functions",
-      "sha256": "3ce60735ab3e93fbdf8acdd73445648ebdee640781c7bdd586de876a7a8bc4a0"
+      "sha256": "5f59ae311ecc0421b154539feba288500746628e26f27f04f16a403d209453fe"
     },
     {
       "@id": "data/seed/dataset_candidates.jsonl",
@@ -1493,20 +1493,20 @@
     {
       "@id": "data/derived/github_project/github_project_items.jsonl",
       "@type": "File",
-      "contentSize": 121679,
+      "contentSize": 122455,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "github_project_items",
-      "sha256": "c273b8013bf67feb9ddd7040dc4a40fc32b2401321a1667e9bc92aa801c3ef7a"
+      "sha256": "8ffccdfd4c31334231aa1e9cf6fef46e274fe7449dd29741bc6733574c546517"
     },
     {
       "@id": "data/derived/github_project/github_project_items.csv",
       "@type": "File",
-      "contentSize": 89250,
+      "contentSize": 90098,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "github_project_items",
-      "sha256": "2805636da4ce0bb8177db2d876d90bf98fd9c2ea18f8e17d78bece225d02da1a"
+      "sha256": "65b2ce579788bf40bf97a61e052ecc533a6a36bb56774f0ca76ae93f1c39dddd"
     },
     {
       "@id": "data/derived/final_handoff/final_handoff_tasks.jsonl",
@@ -1677,7 +1677,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "source_drift_report",
-      "sha256": "6d6b13acbd66f8b4e16a54ce0f1e310413d656ee6548039349496866cd2e76cc"
+      "sha256": "45fc955480345d2b8f4fb23c11daddc5944ca584f2e65aba7d14a362f1c7ade7"
     },
     {
       "@id": "data/derived/source_drift/source_drift_report.csv",
@@ -1686,7 +1686,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "source_drift_report",
-      "sha256": "110eb965a0f65cdd34f0f8cba760c06c4156347cf4c9f67c3b055c6aca8f7727"
+      "sha256": "c1fe16c778868db6b38289244471bed1c14ad10041012c14216f465d799fcb37"
     },
     {
       "@id": "data/derived/source_drift/summary.json",
