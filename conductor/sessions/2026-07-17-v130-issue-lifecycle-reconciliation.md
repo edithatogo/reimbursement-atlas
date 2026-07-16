@@ -26,3 +26,11 @@ Project 18 and closed after the implementation contract passed.
 
 Use the strict rule `implemented/done + zero unchecked criteria` for automatic issue closure. Do not
 close or promote release-gated work merely because repository-owned automation is complete.
+
+## Merge verification
+
+PR [#371](https://github.com/edithatogo/reimbursement-atlas/pull/371) merged as
+`81edb376b0de517cae045a4e885417da5c97fc25` after all protected checks passed, including
+`generated-artifacts`, `deterministic-regeneration`, Python 3.14, security, dashboard and browser
+matrix checks. The ordered CI regeneration harness was rerun on `main`; `git diff --exit-code`
+and `git diff --check` both passed. The merged tree is clean.

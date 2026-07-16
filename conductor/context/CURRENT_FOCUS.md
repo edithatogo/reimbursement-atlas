@@ -848,3 +848,12 @@ security issues remain open; no external approval was inferred.
 
 The generator contract itself is now tracked as issue [#370](https://github.com/edithatogo/reimbursement-atlas/issues/370),
 which is closed and marked `Done` in Project 18 after focused contract tests passed.
+## 2026-07-17 - Merged generated issue status contract
+
+PR [#371](https://github.com/edithatogo/reimbursement-atlas/pull/371) is merged at
+`81edb376b0de517cae045a4e885417da5c97fc25`. Generated issue drafts now preserve source status and
+render explicit local-versus-external acceptance criteria. The merged main tree passes the exact
+ordered regeneration harness with no diff and remains clean.
+
+Repository release readiness is green (`36/36` gates), but research publication, OSF registration,
+evidence release, policy claims and external licence gates remain fail-closed.

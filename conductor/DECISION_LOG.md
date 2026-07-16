@@ -793,3 +793,16 @@ Repository implementation completion is not treated as external approval.
 
 The renderer contract is tracked in Conductor and issue [#370](https://github.com/edithatogo/reimbursement-atlas/issues/370);
 the issue is closed as implemented and its Project 18 row is `Done`.
+
+## 2026-07-17 - Merge generated issue status contract
+
+Decision: Accept the status-aware generated issue renderer and its generated artefacts only after
+the protected PR checks and the exact ordered regeneration harness pass.
+
+Evidence: PR [#371](https://github.com/edithatogo/reimbursement-atlas/pull/371) merged as
+`81edb376b0de517cae045a4e885417da5c97fc25`; generated-artifacts, deterministic-regeneration,
+security, Python 3.14, dashboard and browser checks passed. Main was regenerated in CI order and
+`git diff --exit-code` passed.
+
+Consequence: Repository release readiness remains true, while external research, evidence,
+licence, policy and publication readiness remain independently fail-closed.
