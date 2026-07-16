@@ -2,9 +2,9 @@
 
 Epic: `PUBLIC-022` — Public product, citation and dashboard maturity
 
-Labels: type:dashboard, type:release, phase:release-gate, status:ready
+Labels: type:dashboard, type:release, phase:release-gate, status:implemented
 
-Status: `ready`
+Status: `implemented`
 
 ## Background
 

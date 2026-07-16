@@ -269,14 +269,14 @@ epics:
     title: Evidence readiness, source drift and data dictionary gates
     issues:
       - title: Generate evidence-readiness matrix for each protocolled research question
-        labels: ["type:data-quality", "phase:release-gate", "status:ready"]
-        status: ready
+        labels: ["type:data-quality", "phase:release-gate", "status:implemented"]
+        status: implemented
       - title: Add source/schema drift reporting to release readiness
-        labels: ["type:data-quality", "phase:release-gate", "status:ready"]
-        status: ready
+        labels: ["type:data-quality", "phase:release-gate", "status:implemented"]
+        status: implemented
       - title: Generate public artefact data dictionary for Hugging Face and OSF outputs
-        labels: ["type:publication", "phase:release-gate", "status:ready"]
-        status: ready
+        labels: ["type:publication", "phase:release-gate", "status:implemented"]
+        status: implemented
       - title: Generate artifact-level licence review queue bound to publication checksums
         labels: ["type:publication", "type:review", "risk:licence", "phase:release-gate", "status:blocked"]
         status: blocked
@@ -334,7 +334,8 @@ epics:
     priority: must
     issues:
       - title: Make actionlint and zizmor blocking protected-branch checks
-        labels: ["type:security", "type:supply-chain", "phase:hardening"]
+        labels: ["type:security", "type:supply-chain", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Enable GitHub non-provider secret-pattern scanning and validity checks
         labels: ["type:security", "type:repo-automation", "phase:hardening"]
       - title: Scan complete Git history for committed secrets
@@ -374,5 +375,5 @@ epics:
         labels: ["type:dashboard", "type:review", "risk:licence", "phase:release-gate", "status:blocked"]
         status: blocked
       - title: Expose machine-readable release blockers and next actions in public status
-        labels: ["type:dashboard", "type:release", "phase:release-gate", "status:ready"]
-        status: ready
+        labels: ["type:dashboard", "type:release", "phase:release-gate", "status:implemented"]
+        status: implemented
