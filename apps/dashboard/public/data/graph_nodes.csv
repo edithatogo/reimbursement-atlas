@@ -93,7 +93,7 @@ api,,,,,,,,,dataset:ds_world_bank_wdi_health,,,dataset_candidate,World Bank WDI 
 ,,,,,,,,,domain:services_hospital,,,domain,services_hospital,,,,,,,,,,,,,,
 ,,,,,,,,,domain:services_medicines_devices,,,domain,services_medicines_devices,,,,,,,,,,,,,,
 ,,,,,,,,,domain:utilisation,,,domain,utilisation,,,,,,,,,,,,,,
-,,,,,,,,,function:func_action_sha_pin_bot,github_action,,roadmap_function,action SHA pin resolver,,,,,,,,,must,,prototype,,,
+,,,,,,,,,function:func_action_sha_pin_bot,github_action,,roadmap_function,action SHA pin resolver,,,,,,,,,must,,implemented,,,
 ,,,,,,,,,function:func_action_sha_pin_policy_gate,github_action,,roadmap_function,action SHA policy gate,,,,,,,,,must,,implemented,,,
 ,,,,,,,,,function:func_citation_cff_validation,github_action,,roadmap_function,citation metadata validation,,,,,,,,,must,,implemented,,,
 ,,,,,,,,,function:func_cognitive_procedural_index,data_pipeline,,roadmap_function,cognitive/procedural relativity index,,,,,,,,,must,,implemented,,,

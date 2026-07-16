@@ -74,10 +74,13 @@ policy, CodeQL, dependency review, secret-history, reproducible-build and branch
 checks are blocking where appropriate. The pin-plan output remains in the repository so future
 dependency updates cannot silently reintroduce tag-pinned actions.
 
-The workflow-security check also runs `pixi run action-pin-policy`. This is a fail-closed,
-non-mutating policy gate: external actions must use a full 40-character commit SHA, while local
-actions and Docker references remain permitted. It does not resolve tags or open pull requests;
-dependency updates remain reviewable changes handled by the resolver evidence and normal review.
+The workflow-security check also runs `pixi run action-pin-policy`. This is a fail-closed
+policy gate: external actions must use a full 40-character commit SHA, while local actions
+and Docker references remain permitted. The scheduled
+`.github/workflows/action-pin-maintenance.yml` workflow separately resolves all external
+refs, refuses partial updates, preserves version comments, and opens a normal reviewable PR
+when a complete pin set is available. It never mutates `main` directly; resolver evidence is
+uploaded with each run.
 
 ## Next hardening steps
 
@@ -88,5 +91,6 @@ dependency updates remain reviewable changes handled by the resolver evidence an
 5. Add Hugging Face dataset-card checks before any public derived dataset release.
 
 SHA pinning is intentionally reviewed as a dependency-update operation rather than silently
-resolved during ordinary builds. Renovate, `pin-github-action` or a GitHub API-backed bot may
-propose updates, but the generated policy gate remains authoritative before merge.
+resolved during ordinary builds. The scheduled maintenance workflow is GitHub API-backed and
+creates a dedicated branch/PR, while the generated policy gate remains authoritative before
+merge. Network or resolver failures fail closed and leave the workflow unchanged.

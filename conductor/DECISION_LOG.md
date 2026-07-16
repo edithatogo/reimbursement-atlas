@@ -433,3 +433,15 @@ contract, a pre-upload asset-prefix validator, and a post-deploy live smoke chec
 deployment mechanism and verified software surface only; it does not claim Hugging Face
 publication, cross-platform visual approval, accessibility sign-off, research readiness or
 policy-claim readiness. Hugging Face mirroring remains separately token- and review-gated.
+
+## 2026-07-16 - Add scheduled action-pin maintenance
+
+Decision: Promote `func_action_sha_pin_bot` to `implemented` with a fail-closed scheduled and
+manual workflow that resolves complete action-pin sets and opens ordinary reviewable PRs.
+
+Rationale: Immutable action refs are a supply-chain control, but silently mutating protected
+branches would weaken provenance. The bot therefore refuses partial resolution, preserves
+version comments, uploads resolver evidence and never writes directly to `main`.
+
+Consequence: Future action updates remain subject to network availability, the generated
+immutable-action policy gate and the repository's normal protected-branch checks.
