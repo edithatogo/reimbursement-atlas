@@ -757,3 +757,18 @@ validation (`29492178596`), Hugging Face candidate validation with both publicat
 These runs confirm automation readiness only; no external publication mutation occurred and the
 human licence, protocol, evidence and release gates remain fail-closed. See
 `conductor/sessions/2026-07-16-v97-publication-preflight-refresh.md`.
+
+## 2026-07-17 v105 post-merge audit
+
+PR #311 merged to `main` as `bbb83e8770b8b73b3df8f3b817565eb7b1944328` after the full required
+CI matrix passed. The change redacts machine-specific executable paths from toolchain evidence and
+refreshes the deterministic dashboard, licence-queue and research-package projections. The local
+checkout is clean and post-merge policy, seed-sync, CLI validation, focused tests, Ruff and
+basedpyright checks pass. The current handoff bundle and archive are recorded in the sibling
+handoff manifest for this commit.
+
+The remaining work is unchanged and explicitly external: human review of the July 2026 MBS
+derived bundle and PBS extract, CMS parser/licence review, historical MBS/PBS scope approval,
+mapping calibration review, publication approval for OSF/Hugging Face/Zenodo, and the account-level
+GitHub non-provider secret-pattern and validity-check settings. No external source payload or
+publication mutation is implied by the merge.
