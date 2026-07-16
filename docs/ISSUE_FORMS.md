@@ -1,7 +1,7 @@
 # Issue forms
 
 The repository uses structured GitHub Issue Forms for source onboarding, parser work,
-analysis recipes and quality gates. `.github/ISSUE_TEMPLATE/config.yml` disables unstructured
+analysis recipes and quality gates. [`.github/ISSUE_TEMPLATE/config.yml`](../.github/ISSUE_TEMPLATE/config.yml) disables unstructured
 blank issues and directs security reports to private advisories.
 
 Use the forms to capture the minimum traceability fields before work enters the Conductor
