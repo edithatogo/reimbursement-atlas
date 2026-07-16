@@ -564,6 +564,13 @@ candidate artefacts remain pending until an accountable human records source ter
 redistribution permission, restrictions, evidence, reviewer and date. This validator does not
 grant approval or publish data.
 
+## 2026-07-16 v84 GitHub secret-setting verification
+
+Authenticated requests to enable GitHub non-provider secret-pattern scanning and secret-validity
+checks were accepted but the live repository settings API continues to report both controls as
+`disabled`. Provider scanning, push protection, Dependabot and full-history Gitleaks remain active.
+Issue #191 is therefore an explicit account/plan blocker, not a missing repository workflow.
+
 ## 2026-07-16: Policy demonstrator linkage surface
 
 The first policy demonstrator now reports genomic schedule-item pricing and genomic coverage

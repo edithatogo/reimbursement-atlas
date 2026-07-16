@@ -210,6 +210,19 @@ def render_issue(issue: IssueDraft) -> str:
             "- [ ] An accountable human has reviewed each candidate artefact before any approval "
             "record is added."
         )
+    elif issue.title == "Enable GitHub non-provider secret-pattern scanning and validity checks":
+        acceptance = (
+            "- [x] Scope is confirmed: request and verify the two distinct GitHub security "
+            "settings.\n"
+            "- [x] Licence and data-governance implications are checked: no secret values are "
+            "recorded in repository artefacts.\n"
+            "- [x] Tests or validation evidence are defined: full-history Gitleaks CI and live "
+            "repository-settings API evidence.\n"
+            "- [x] Documentation or Conductor context is updated.\n"
+            "- [ ] GitHub reports `secret_scanning_non_provider_patterns=enabled`.\n"
+            "- [ ] GitHub reports `secret_scanning_validity_checks=enabled`; current account state "
+            "remains disabled for both."
+        )
     else:
         acceptance = """- [ ] Scope is confirmed.
 - [ ] Licence and data-governance implications are checked.
