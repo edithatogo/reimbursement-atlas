@@ -2,7 +2,7 @@
 
 import pytest
 
-from scripts.check_osf_cli_contract import validate_contract
+from scripts.check_osf_cli_contract import main, validate_contract
 
 
 def _fake_pinned_run(_binary: str, *args: str) -> str:
@@ -29,3 +29,13 @@ def test_osf_cli_contract_rejects_wrong_version(monkeypatch: pytest.MonkeyPatch)
 
     monkeypatch.setattr("scripts.check_osf_cli_contract._run", _fake_old_run)
     assert "expected OSF CLI 1.0.0" in validate_contract("osf")[0]
+
+
+def test_osf_cli_contract_refuses_ambiguous_path_lookup(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The contract must never silently validate an unrelated PATH executable."""
+    monkeypatch.delenv("OSF_BIN", raising=False)
+    monkeypatch.setattr("sys.argv", ["check_osf_cli_contract"])
+    with pytest.raises(SystemExit, match="refusing ambiguous PATH lookup"):
+        main()

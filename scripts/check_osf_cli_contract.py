@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import argparse
 import os
-import shutil
 import subprocess  # nosec B404 - the contract probe must execute the selected CLI binary
 from pathlib import Path
 
@@ -68,15 +67,22 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--binary",
-        default=os.environ.get("OSF_BIN") or shutil.which("osf") or "osf",
-        help="OSF CLI executable (default: OSF_BIN or PATH lookup)",
+        default=None,
+        help="Pinned OSF CLI executable (required unless OSF_BIN is set)",
     )
     parser.add_argument("--expected-version", default=EXPECTED_VERSION)
     args = parser.parse_args()
-    failures = validate_contract(args.binary, args.expected_version)
+    binary = args.binary or os.environ.get("OSF_BIN")
+    if not binary:
+        message = (
+            "OSF CLI contract requires --binary or OSF_BIN; refusing ambiguous PATH lookup. "
+            "Install github.com/edithatogo/osf-cli-go/cmd/osf@v1.0.0 and select it explicitly."
+        )
+        raise SystemExit(message)
+    failures = validate_contract(binary, args.expected_version)
     if failures:
         raise SystemExit("OSF CLI contract failed: " + "; ".join(failures))
-    print(f"OSF CLI contract passed: {Path(args.binary).name} {args.expected_version}")
+    print(f"OSF CLI contract passed: {Path(binary).name} {args.expected_version}")
 
 
 if __name__ == "__main__":
