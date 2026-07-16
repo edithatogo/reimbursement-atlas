@@ -139,6 +139,13 @@ not itself a required status check, so it cannot create a circular protection de
 The completed implementation is tracked by issue [#279](https://github.com/edithatogo/reimbursement-atlas/issues/279)
 and is marked `Done` in live Project #18.
 
+## v93 OSF CLI contract refresh
+
+The upstream `osf-cli-go` latest release remains `v1.0.0`. The pinned binary was installed in
+an ignored temporary directory and `pixi run osf-cli-contract` passed. This closes the local
+toolchain-version uncertainty without changing the OSF mutation boundary; registration and
+publication remain fail-closed pending protocol, licence, evidence and human review.
+
 ## v19 follow-up
 
 Local quality, source-contract validation and release readiness are now green. The live
