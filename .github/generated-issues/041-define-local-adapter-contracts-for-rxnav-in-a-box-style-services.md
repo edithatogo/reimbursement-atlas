@@ -13,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: a read-only, local-only RxNav-compatible HTTP contract is defined without bundling RxNorm payloads or credentials.
-- [x] Licence and data-governance implications are checked: configuration defaults to local use and returned matches remain machine-generated candidates.
-- [x] Tests or validation evidence are defined: deterministic URL construction and minimal response parsing are covered by `tests/unit/test_terminologies_v5.py`.
-- [x] Documentation or Conductor context is updated in `docs/ONTOLOGY_STRATEGY.md`; domain review is still required before mapping promotion.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

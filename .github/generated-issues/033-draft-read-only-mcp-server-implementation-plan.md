@@ -13,6 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] A lazy optional MCP server exposes read-only source, analysis, readiness, and ingestion-plan resources.
-- [x] `mcp/tools.seed.json` and `docs/API_MCP_CLI_PLAN.md` document the read-only tool boundary and no-live-fetch policy.
-- [x] The optional interface module is import-tested without requiring the MCP SDK in the default environment.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

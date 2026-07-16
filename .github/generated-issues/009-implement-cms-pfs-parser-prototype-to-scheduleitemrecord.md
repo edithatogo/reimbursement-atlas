@@ -13,8 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: the fixture-backed CMS PFS CSV parser emits `ScheduleItemRecord` values.
-- [x] Licence and data-governance implications are checked: CPT descriptors remain excluded from redistribution.
-- [x] Tests or validation evidence are defined: focused parser and contract tests.
-- [x] Documentation or Conductor context is updated in the parser and ingestion plans.
-- [ ] Validation against a reviewed RVU26C file is complete.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

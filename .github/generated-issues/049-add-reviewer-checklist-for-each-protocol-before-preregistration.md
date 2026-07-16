@@ -13,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: the shared checklist is applied to every registered research question.
-- [x] Licence and data-governance implications are explicit checklist decisions.
-- [x] Tests or validation evidence are defined through protocol-status and OSF gate outputs.
-- [x] Documentation or Conductor context is updated in `docs/RESEARCH_PROTOCOL_REVIEW_CHECKLIST.md`; all current decisions remain pending human review.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

@@ -13,6 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Source-content validation is generated for the acquisition registry and runs in CI and source-health workflows.
-- [x] Licence-gated, metadata-only, missing, and executable-source states remain distinct and fail closed.
-- [x] Validation outputs are checksum/provenance-linked derived artefacts; raw live payloads remain ignored.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

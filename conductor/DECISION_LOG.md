@@ -790,3 +790,6 @@ that rule and were closed. GitHub Project 18 read-back reports their rows as `Do
 Consequence: Release-gated issues remain open, including source/licence review, evidence and
 publication decisions, TypeScript 7 compatibility and the GitHub account-level secret controls.
 Repository implementation completion is not treated as external approval.
+
+The renderer contract is tracked in Conductor and issue [#370](https://github.com/edithatogo/reimbursement-atlas/issues/370);
+the issue is closed as implemented and its Project 18 row is `Done`.

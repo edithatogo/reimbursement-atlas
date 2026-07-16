@@ -139,7 +139,9 @@ def generated_track_issues(
                 labels=[
                     "type:publication",
                     f"target:{row.get('target_platform', 'unknown')}",
+                    f"status:{row.get('status', 'planned')}",
                 ],
+                status=str(row.get("status", "planned")),
             )
         )
     return issues
@@ -149,7 +151,39 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
     """Render one GitHub issue draft."""
     labels = ", ".join(issue.labels) if issue.labels else "none"
     parent = f"Parent issue: {issue.parent_issue}\n\n" if issue.parent_issue else ""
-    if issue.title == "Expand reviewed coverage with historical MBS and PBS bundles":
+    if issue.epic_id == "OUTPUTS":
+        acceptance = (
+            "- [x] The output scope, target platform, repository path and release gate are "
+            "recorded in `data/seed/output_artifact_plans.jsonl`.\n"
+            "- [x] Licence and data-governance boundaries are explicit; an output plan does not "
+            "grant publication or redistribution approval.\n"
+            "- [x] Repository validation and regeneration commands are defined by the linked "
+            "publication, package, dashboard or release gates.\n"
+            "- [x] Conductor, generated issue and GitHub Project linkage is regenerated from the "
+            "same source record.\n"
+        )
+        if issue.status in {"planned", "drafted"}:
+            acceptance += (
+                "- [ ] The listed release gate and any required human or external approval are "
+                "complete before promotion."
+            )
+        else:
+            acceptance += (
+                "- [x] The repository-owned implementation is present; any separate human or "
+                "external publication gate remains fail-closed."
+            )
+    elif issue.status in {"implemented", "done"}:
+        acceptance = (
+            "- [x] Scope is implemented in repository code, generated artefacts, documentation "
+            "or protected automation.\n"
+            "- [x] Licence and data-governance boundaries are explicit; implementation status "
+            "does not grant external publication or evidence approval.\n"
+            "- [x] Tests, validation evidence or protected CI contracts exercise the local "
+            "implementation.\n"
+            "- [x] Conductor backlog, generated issue draft and GitHub Project linkage are "
+            "regenerated from the current source records."
+        )
+    elif issue.title == "Expand reviewed coverage with historical MBS and PBS bundles":
         acceptance = (
             "- [x] Scope is confirmed: metadata-only inventory automation is implemented; raw "
             "bundle acquisition remains gated.\n"

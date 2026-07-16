@@ -13,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is implemented: generated drafts are compared with remote issues and Project items by exact title/number.
-- [x] The default command is read-only; writes require explicit `--apply` and optional exact-title filters.
-- [x] No destructive issue, merge, branch or credential operation is exposed.
-- [x] Documentation and focused tests define the duplicate-avoidance boundary.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

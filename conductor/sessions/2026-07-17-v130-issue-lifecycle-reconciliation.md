@@ -16,6 +16,12 @@ Release-gated issues remain open, including the MBS, PBS and CMS source-review i
 destination reconciliation `#320`, TypeScript 7 compatibility `#362`, and account-level secret
 control issue `#191`.
 
+The generated issue renderer was also audited: implemented roadmap rows no longer render generic
+unchecked placeholders, and output-plan rows now preserve their source status and external gate.
+
+The corresponding Conductor backlog item was added and generated as issue `#370`; it was added to
+Project 18 and closed after the implementation contract passed.
+
 ## Decision
 
 Use the strict rule `implemented/done + zero unchecked criteria` for automatic issue closure. Do not

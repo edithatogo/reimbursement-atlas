@@ -13,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: exact source versions, effective dates, formats, checksums and licence gates are represented by the typed source-version contract.
-- [x] Licence and data-governance implications are checked: the schema stores metadata and provenance, not raw restricted payloads.
-- [x] Tests or validation evidence are defined by schema export, seed synchronisation and registry contract tests.
-- [x] Documentation or Conductor context is updated; source-specific reuse review is still required before publication.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

@@ -13,8 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: the readiness dashboard exposes the generated queue and checksum/status fields.
-- [x] Licence and data-governance implications are checked: the view states that display does not grant approval.
-- [x] Tests or validation evidence are defined: dashboard build and generated-data checks.
-- [x] Documentation or Conductor context is updated in the readiness page.
-- [ ] Human licence decisions are complete before publication.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

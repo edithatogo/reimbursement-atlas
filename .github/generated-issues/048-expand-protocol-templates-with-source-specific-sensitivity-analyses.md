@@ -13,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: all five protocol scaffolds include estimands, missingness, mapping, uncertainty, sensitivity and amendment sections.
-- [x] Licence and data-governance implications are checked in each protocol's source and publication gates.
-- [x] Tests or validation evidence are defined by protocol-status generation and release-readiness checks.
-- [x] Documentation or Conductor context is updated in `protocols/` and the review checklist; no protocol is treated as approved.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

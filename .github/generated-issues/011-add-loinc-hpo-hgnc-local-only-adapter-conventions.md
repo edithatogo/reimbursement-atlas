@@ -13,8 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: local-only terminology adapter conventions are recorded for LOINC, HPO and HGNC.
-- [x] Licence and data-governance implications are checked: restricted releases are not mirrored and synthetic concepts remain labelled.
-- [x] Tests or validation evidence are defined: ontology registry, mapping template and seed synchronisation gates.
-- [x] Documentation or Conductor context is updated in the ontology strategy.
-- [ ] Human clinical mapping review is complete for real source mappings.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

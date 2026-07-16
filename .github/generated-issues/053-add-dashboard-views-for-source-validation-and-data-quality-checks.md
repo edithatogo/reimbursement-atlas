@@ -13,6 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Public dashboard routes expose source validation, data-quality, and drift tables from generated artefacts.
-- [x] Dashboard assets are sanitised and checked for ignored raw-cache paths and absolute local paths.
-- [x] CI regenerates and builds the dashboard before protected merges.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

@@ -13,6 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Generated issue labels have corresponding repository labels with descriptions.
-- [x] The reconciled issue set carries generated labels without changing issue content.
-- [x] Label taxonomy alignment is recorded as an auditable Conductor session.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

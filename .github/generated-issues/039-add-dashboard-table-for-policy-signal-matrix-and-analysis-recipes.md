@@ -13,6 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] The `/analyses/` route renders analysis recipes and the policy signal matrix from generated artefacts.
-- [x] Columns expose quality gates, caveats, price observability, and restriction signals without claiming policy evidence readiness.
-- [x] Dashboard seed synchronisation and browser build cover the published route.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.
