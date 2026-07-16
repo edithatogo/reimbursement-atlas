@@ -54,8 +54,10 @@ def verify_manifest(  # noqa: PLR0912
     commit = manifest.get("commit")
     if not isinstance(tag, str) or not tag.startswith("v"):
         _fail("release manifest tag is invalid")
-    if not isinstance(commit, str) or len(commit) != 40 or any(
-        character not in "0123456789abcdef" for character in commit
+    if (
+        not isinstance(commit, str)
+        or len(commit) != 40
+        or any(character not in "0123456789abcdef" for character in commit)
     ):
         _fail("release manifest commit is invalid")
     if expected_tag is not None and tag != expected_tag:
@@ -85,8 +87,10 @@ def verify_manifest(  # noqa: PLR0912
         if relative_path in seen or ".." in Path(relative_path).parts:
             message = f"release subject path is unsafe or duplicated: {relative_path}"
             _fail(message)
-        if not isinstance(digest, str) or len(digest) != 64 or any(
-            character not in "0123456789abcdef" for character in digest
+        if (
+            not isinstance(digest, str)
+            or len(digest) != 64
+            or any(character not in "0123456789abcdef" for character in digest)
         ):
             message = f"release subject has an invalid SHA-256: {relative_path}"
             _fail(message)

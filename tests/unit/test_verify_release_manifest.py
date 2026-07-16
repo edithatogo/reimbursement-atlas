@@ -19,12 +19,15 @@ def test_verify_release_manifest_checks_subject_hashes(tmp_path: Path, monkeypat
     manifest_path = tmp_path / "release-manifest.json"
     manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
 
-    assert verify_manifest(
-        manifest_path,
-        tmp_path,
-        expected_tag="v1.2.3",
-        expected_commit="a" * 40,
-    ) == 1
+    assert (
+        verify_manifest(
+            manifest_path,
+            tmp_path,
+            expected_tag="v1.2.3",
+            expected_commit="a" * 40,
+        )
+        == 1
+    )
 
 
 def test_verify_release_manifest_rejects_tampering(tmp_path: Path, monkeypatch) -> None:
