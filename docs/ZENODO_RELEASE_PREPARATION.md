@@ -30,3 +30,8 @@ separately approved Zenodo environment and accountable publication authorization
 The non-depositing preflight was rerun successfully as workflow run `29473382399` on `main`.
 Its artifact records `mutation_performed: false`, `doi_created: false` and
 `human_publication_approval_required: true`.
+
+The tagged GitHub release workflow also performs a separate read-only governance preflight before
+building or attesting assets. It does not approve research publication or Zenodo deposition; it
+only prevents software release automation from bypassing repository, policy, licence-queue and
+action-integrity gates.

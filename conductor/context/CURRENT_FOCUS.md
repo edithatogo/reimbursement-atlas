@@ -658,3 +658,11 @@ dataset/Space candidate with both mutation jobs skipped. Zenodo preflight `29473
 validated metadata and repository gates without creating a DOI or mutating Zenodo. These runs
 confirm automation readiness, not publication approval; licence, protocol, evidence and policy
 gates remain fail-closed.
+
+## 2026-07-16 v87 tagged-release governance preflight
+
+The tagged release workflow now runs a least-privilege read-only preflight before the
+write-enabled build, attestation and GitHub release job. It requires repository release
+readiness, public-data policy, checksum-bound licence-queue validation and immutable action-pin
+policy to pass. This hardens software release provenance without changing the separate human
+licence, research, OSF, Hugging Face, Zenodo or policy-claim gates.

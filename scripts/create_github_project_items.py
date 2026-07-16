@@ -182,6 +182,8 @@ def render_issue(issue: IssueDraft) -> str:
             "reviewer.\n"
             "- [x] Tests or validation evidence are defined: `pixi run zenodo-metadata` and "
             "focused unit tests.\n"
+            "- [x] Tagged software releases require a least-privilege governance preflight before "
+            "asset creation and attestation.\n"
             "- [x] Documentation or Conductor context is updated; external deposition remains "
             "gated."
         )
