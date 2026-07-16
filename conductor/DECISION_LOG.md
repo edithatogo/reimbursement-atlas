@@ -778,3 +778,15 @@ artifact-prefix, deployment and post-deployment live-smoke gates for commit
 Consequence: The public product deployment is complete locally and externally observable. Evidence,
 licence, research, OSF, policy and Hugging Face destination gates remain fail-closed until their
 respective human review, credentials and explicit publication decisions are available.
+
+## 2026-07-17 - Reconcile implemented issue lifecycle state
+
+Decision: Close only GitHub issues whose generated Conductor status is `implemented` or `done` and
+whose acceptance criteria contain no unchecked item.
+
+Evidence: Issues #322, #328, #332, #333, #334, #335, #336, #337, #338, #355, #356 and #359 met
+that rule and were closed. GitHub Project 18 read-back reports their rows as `Done`.
+
+Consequence: Release-gated issues remain open, including source/licence review, evidence and
+publication decisions, TypeScript 7 compatibility and the GitHub account-level secret controls.
+Repository implementation completion is not treated as external approval.
