@@ -884,6 +884,14 @@ The GitHub Project synchronizer now compares generated issue bodies, ignores Git
 newline normalization, and reports body drift in read-only mode. Explicit `--apply` is required
 for body writes; closure, promotion and destructive operations remain unavailable. Issue #370's
 body was reconciled and the filtered dry run now reports only `present`.
+
+## 2026-07-17 v140 GitHub issue-body sync retry
+
+The first bulk body reconciliation found 119 stale remote issue bodies. It updated 67 issues before
+GitHub returned a transient 504 for issue #66. The synchronizer now retries transient 502/503/504 and
+timeout failures with bounded exponential backoff. A rerun completed the remaining updates, and the
+read-only verification now reports 172 `present` issues with zero body drift. Issue state, Project
+membership, labels and publication or research gates were not promoted or closed.
 ## 2026-07-17 - Merged generated issue status contract
 
 PR [#371](https://github.com/edithatogo/reimbursement-atlas/pull/371) is merged at

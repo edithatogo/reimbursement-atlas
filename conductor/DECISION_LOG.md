@@ -903,3 +903,17 @@ and the subsequent dry run reported only `present`. Focused project-handoff/unit
 Consequence: Future Conductor regeneration can expose stale remote issue content without silently
 mutating it. Body writes require `--apply`; no issue closure, promotion or destructive operation is
 introduced.
+
+## 2026-07-17 - Retry transient GitHub issue-sync failures
+
+Decision: Retry only transient GitHub CLI failures (HTTP 502/503/504 and timeout responses) up to
+three attempts with bounded exponential backoff. Permanent failures still stop the synchronizer and
+remain visible to the operator.
+
+Evidence: The initial explicit body reconciliation updated 67 of 119 issues before a GitHub 504 at
+issue #66. After the retry policy was added, the remaining bodies were reconciled and the dry run
+reported `present: 172` with no pending actions.
+
+Consequence: Large idempotent reconciliations are resilient to transient GitHub availability without
+silently retrying permission, validation or other permanent errors. Issue state and Project
+membership remain untouched.

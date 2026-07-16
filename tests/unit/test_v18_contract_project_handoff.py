@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import shutil
 from pathlib import Path
+from types import SimpleNamespace
 
 from reimburse_atlas.final_handoff import build_final_handoff_tasks, write_final_handoff_tasks
 from reimburse_atlas.github_project import build_github_project_items, write_github_project_items
@@ -19,6 +20,7 @@ from scripts.create_github_project_items import (
     render_issue,
 )
 from scripts.sync_github_project import (
+    _run_gh,  # noqa: PLC2701 - exercise the bounded CLI retry boundary directly.
     label_names,
     load_issue_drafts,
     normalise_body,
@@ -184,6 +186,26 @@ def test_project_sync_body_comparison_ignores_github_final_newline() -> None:
     """Generated body reconciliation must not churn on GitHub newline normalisation."""
     assert normalise_body("body\n") == normalise_body("body")
     assert normalise_body("body\n") != normalise_body("different\n")
+
+
+def test_project_sync_retries_transient_gh_failures(monkeypatch, tmp_path: Path) -> None:
+    """Transient GitHub availability failures get bounded retries."""
+    attempts = 0
+
+    def fake_run(*args, **kwargs):
+        nonlocal attempts
+        del args, kwargs
+        attempts += 1
+        if attempts == 1:
+            return SimpleNamespace(returncode=1, stderr="HTTP 504 Gateway Timeout", stdout="")
+        return SimpleNamespace(returncode=0, stderr="", stdout='{"ok": true}')
+
+    monkeypatch.setattr("scripts.sync_github_project.shutil.which", lambda _: "/usr/bin/gh")
+    monkeypatch.setattr("scripts.sync_github_project.subprocess.run", fake_run)
+    monkeypatch.setattr("scripts.sync_github_project.time.sleep", lambda _: None)
+
+    assert _run_gh(["api", "status"], root=tmp_path) == {"ok": True}
+    assert attempts == 2
 
 
 def test_project_sync_dry_run_reports_body_drift(monkeypatch, tmp_path: Path) -> None:
