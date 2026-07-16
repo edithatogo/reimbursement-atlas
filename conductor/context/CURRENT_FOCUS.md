@@ -920,3 +920,11 @@ only by the absent `PBS_API_SUBSCRIPTION_KEY`; other CMS targets remain licence-
 The official MBS archive links and licence boundary were rechecked. The metadata-only historical
 inventory remains 343 targets across 32 pages; issue #255 now carries the evidence. No historical
 payload was downloaded or promoted.
+
+## 2026-07-17 v141 live source-health verification
+
+The manually dispatched source-health workflow [run 29538465869](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29538465869)
+passed source validation, source contracts, source drift and release-readiness enforcement. Its
+acquisition report is `incomplete` for exactly one target: PBS. The workflow opened issue [#383](https://github.com/edithatogo/reimbursement-atlas/issues/383)
+with the actionable unblock condition: provide `PBS_API_SUBSCRIPTION_KEY` through the approved
+secret store and rerun acquisition. No key, raw payload or licence-gated source was committed.

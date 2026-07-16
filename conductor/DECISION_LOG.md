@@ -917,3 +917,17 @@ reported `present: 172` with no pending actions.
 Consequence: Large idempotent reconciliations are resilient to transient GitHub availability without
 silently retrying permission, validation or other permanent errors. Issue state and Project
 membership remain untouched.
+
+## 2026-07-17 - Verify live source-health state
+
+Decision: Treat the current GitHub source-health workflow as the authoritative acquisition status and
+keep the PBS target fail-closed until its runtime key is supplied through the approved secret store.
+
+Evidence: Workflow run [29538465869](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29538465869)
+completed successfully. Validation, contract, drift and release gates passed; the acquisition report
+classified exactly one target as incomplete and opened issue [#383](https://github.com/edithatogo/reimbursement-atlas/issues/383)
+for the missing `PBS_API_SUBSCRIPTION_KEY`.
+
+Consequence: The repository has current network-enabled evidence without treating an incomplete PBS
+acquisition as a source-health failure or committing credentials/raw payloads. MBS remains acquired
+but unreviewed, and CMS/historical targets remain governed by their licence/review gates.
