@@ -19,13 +19,13 @@ apps/dashboard/public/data/final_handoff_tasks.csv
 
 The artifact-level licence-review queue is generated separately at
 `data/derived/licence_review/`. It binds every publication candidate to its current
-SHA-256 checksum and keeps all 155 rows pending until an accountable reviewer records
+SHA-256 checksum and keeps all 159 rows pending until an accountable reviewer records
 decision evidence. The queue is a review-control artefact, not a licence approval, and
 cannot mutate a candidate to approved status.
 
 ## Main remaining environment-dependent tasks
 
-1. Review the 155 checksum-bound publication candidates in the licence-review queue, then
+1. Review the 159 checksum-bound publication candidates in the licence-review queue, then
    complete MBS, historical-source and CMS licence review before derived-data publication
    (`#23`, `#24`, `#26`, `#27`). The official MBS copyright notice is recorded in
    [`docs/SOURCE_LICENCE_EVIDENCE.md`](SOURCE_LICENCE_EVIDENCE.md); it is not an open

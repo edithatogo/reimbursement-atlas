@@ -20,7 +20,7 @@ The summary contains `required_blocker_count` and `public_release_ready`. Public
 The release matrix also verifies that `data/derived/licence_review/summary.json` exists,
 contains checksum-bound candidate rows, and explicitly has
 `approval_mutation_allowed: false`. This verifies the review-control mechanism only; the
-155 candidate rows remain pending until human licence/domain review is recorded.
+159 candidate rows remain pending until human licence/domain review is recorded.
 
 ## Current blocker pattern
 
@@ -40,11 +40,13 @@ Remaining blockers are external or require accountable human judgement:
 - Hugging Face publication requires the configured `HF_TOKEN` and target repository variables,
   but publication remains disabled until review gates pass.
 
-The latest read-only external preflight on merged main commit `e8b8a2e` completed successfully:
+The latest read-only external preflight on merged main commit `7e0e0016d488` completed successfully:
 OSF discovery/plan run `29475141289`, Hugging Face candidate validation run `29475142574`,
 Zenodo non-depositing preflight run `29475143715`, and source-health run `29475144835`.
 These runs validate automation and preserve fail-closed publication boundaries; they do not
-constitute human licence, research, evidence, policy or publication approval.
+constitute human licence, research, evidence, policy or publication approval. The required
+`zizmor` branch-protection check is now bound to GitHub Actions app `15368`; the prior queued
+Advanced Security binding was resolved through repository-admin GraphQL settings.
 - Mapping calibration, cross-platform dashboard visual review and policy claims
   require human adjudication.
 

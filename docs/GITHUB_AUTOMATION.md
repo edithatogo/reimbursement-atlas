@@ -87,11 +87,12 @@ CSV. This makes a PBS blocker actionable as `PBS_API_SUBSCRIPTION_KEY` without l
   This is retained as an account-level blocker in issue [#191](https://github.com/edithatogo/reimbursement-atlas/issues/191),
   not treated as a repository implementation failure.
 - CodeQL for Python and JavaScript/TypeScript.
-- The required `zizmor` context must remain bound to the passing repository-owned GitHub Actions
-  workflow (`app_id 15368`). On 2026-07-16, `main` was observed binding the same context to a
-  queued GitHub Advanced Security app check (`app_id 57789`); issue [#275](https://github.com/edithatogo/reimbursement-atlas/issues/275)
-  records the admin-only rebind. Do not remove the security requirement or use an administrator
-  merge bypass while the binding is corrected.
+- The required `zizmor` context is bound to the passing repository-owned GitHub Actions workflow
+  (`app_id 15368`). On 2026-07-16, repository-admin GraphQL remediation changed the binding
+  from the queued GitHub Advanced Security app check (`app_id 57789`) while preserving strict
+  protection and all 20 required contexts. Issue [#275](https://github.com/edithatogo/reimbursement-atlas/issues/275)
+  records the evidence. Do not remove the security requirement or use an administrator merge
+  bypass.
 - Dependabot and Renovate both configured, with Renovate preferred for grouped ecosystem updates.
 - SBOM generation and GitHub artifact attestations are implemented in
   `.github/workflows/release.yml`; consumers should follow

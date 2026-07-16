@@ -59,6 +59,9 @@ def parse_backlog(path: Path = BACKLOG) -> list[IssueDraft]:
         if current and (match := re.match(r"^        labels: (\[.+\])$", line)):
             parsed = ast.literal_eval(match.group(1))
             current.labels = [str(item) for item in parsed]
+            continue
+        if current and (match := re.match(r"^        status: (.+)$", line)):
+            current.status = _strip_quotes(match.group(1))
     return issues
 
 
@@ -224,6 +227,14 @@ def render_issue(issue: IssueDraft) -> str:
             "- [ ] GitHub reports `secret_scanning_non_provider_patterns=enabled`.\n"
             "- [ ] GitHub reports `secret_scanning_validity_checks=enabled`; current account state "
             "remains disabled for both."
+        )
+    elif issue.title == "Rebind the required zizmor check to the repository-owned workflow app":
+        acceptance = (
+            "- [x] Scope is confirmed: only the required `zizmor` app binding was changed.\n"
+            "- [x] Strict protection and all 20 required status contexts were preserved.\n"
+            "- [x] GraphQL and REST read-back confirm `zizmor` is bound to GitHub Actions app "
+            "`15368`, not Advanced Security app `57789`.\n"
+            "- [x] Conductor, documentation and GitHub issue evidence are updated."
         )
     else:
         acceptance = """- [ ] Scope is confirmed.
