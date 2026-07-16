@@ -2,7 +2,9 @@
 
 Epic: `DASH-002` — Generated artefact dashboard tables
 
-Labels: type:dashboard, type:mapping
+Labels: type:dashboard, type:mapping, status:implemented
+
+Status: `implemented`
 
 ## Background
 
@@ -11,7 +13,6 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] The `/crosswalks/` route renders candidate mappings, review queue, evidence, gold-standard, and negative-control tables.
+- [x] The view labels candidates as requiring domain review and does not imply mapping approval or evidence readiness.
+- [x] Generated crosswalk assets are included in dashboard seed synchronisation and route checks.

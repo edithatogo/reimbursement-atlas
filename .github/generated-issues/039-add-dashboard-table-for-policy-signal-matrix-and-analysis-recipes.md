@@ -2,7 +2,9 @@
 
 Epic: `PUB-001` — Publication and dataset release readiness
 
-Labels: type:dashboard, type:analysis
+Labels: type:dashboard, type:analysis, status:implemented
+
+Status: `implemented`
 
 ## Background
 
@@ -11,7 +13,6 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] The `/analyses/` route renders analysis recipes and the policy signal matrix from generated artefacts.
+- [x] Columns expose quality gates, caveats, price observability, and restriction signals without claiming policy evidence readiness.
+- [x] Dashboard seed synchronisation and browser build cover the published route.

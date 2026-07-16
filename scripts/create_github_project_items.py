@@ -279,6 +279,49 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912 - criteria are expl
             "- [x] The optional interface module is import-tested without requiring the MCP SDK "
             "in the default environment."
         )
+    elif issue.title == "Add readiness table views to Astro dashboard":
+        acceptance = (
+            "- [x] The `/readiness/` route renders source, analysis, ingestion, licence, and "
+            "release-readiness tables from generated dashboard-safe artefacts.\n"
+            "- [x] Route and dashboard asset contracts validate the generated CSV inputs without "
+            "including raw restricted payloads.\n"
+            "- [x] Readiness views preserve the separation between repository, evidence, and "
+            "publication readiness."
+        )
+    elif issue.title == "Add crosswalk review queue view to Astro dashboard":
+        acceptance = (
+            "- [x] The `/crosswalks/` route renders candidate mappings, review queue, evidence, "
+            "gold-standard, and negative-control tables.\n"
+            "- [x] The view labels candidates as requiring domain review and does not imply "
+            "mapping approval or evidence readiness.\n"
+            "- [x] Generated crosswalk assets are included in dashboard seed synchronisation and "
+            "route checks."
+        )
+    elif issue.title == "Add dashboard table for policy signal matrix and analysis recipes":
+        acceptance = (
+            "- [x] The `/analyses/` route renders analysis recipes and the policy signal matrix "
+            "from generated artefacts.\n"
+            "- [x] Columns expose quality gates, caveats, price observability, and restriction "
+            "signals without claiming policy evidence readiness.\n"
+            "- [x] Dashboard seed synchronisation and browser build cover the published route."
+        )
+    elif issue.title == "Add source-content validation gate for downloaded public files":
+        acceptance = (
+            "- [x] Source-content validation is generated for the acquisition registry and runs in "
+            "CI and source-health workflows.\n"
+            "- [x] Licence-gated, metadata-only, missing, and executable-source states remain "
+            "distinct and fail closed.\n"
+            "- [x] Validation outputs are checksum/provenance-linked derived artefacts; raw live "
+            "payloads remain ignored."
+        )
+    elif issue.title == "Add dashboard views for source validation and data-quality checks":
+        acceptance = (
+            "- [x] Public dashboard routes expose source validation, data-quality, and drift "
+            "tables from generated artefacts.\n"
+            "- [x] Dashboard assets are sanitised and checked for ignored raw-cache paths and "
+            "absolute local paths.\n"
+            "- [x] CI regenerates and builds the dashboard before protected merges."
+        )
     elif issue.title == "Rebind the required zizmor check to the repository-owned workflow app":
         acceptance = (
             "- [x] Scope is confirmed: only the required `zizmor` app binding was changed.\n"
