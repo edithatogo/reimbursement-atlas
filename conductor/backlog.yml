@@ -246,9 +246,11 @@ epics:
       - title: Expose source contracts GitHub Project rows and final handoff tasks in dashboard
         labels: ["type:dashboard", "phase:handoff"]
       - title: Distinguish partial source acquisition from complete handoff status
-        labels: ["type:data-quality", "type:handoff", "phase:hardening"]
+        labels: ["type:data-quality", "type:handoff", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Expose partial source acquisition in public status and dashboard blockers
-        labels: ["type:dashboard", "type:data-quality", "type:handoff", "phase:hardening"]
+        labels: ["type:dashboard", "type:data-quality", "type:handoff", "phase:hardening", "status:implemented"]
+        status: implemented
 
   - id: HANDOFF-019
     title: Codex bundle import and full track execution handoff
