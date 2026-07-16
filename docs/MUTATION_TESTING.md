@@ -9,8 +9,14 @@ Mutation testing is configured through `mutmut`, but it is intentionally a night
 ## Local command
 
 ```bash
-uv run mutmut run --max-children 2
+pixi run mutation
 ```
+
+The repository-owned runner uses an 80-minute default budget, starts mutmut in
+its own process group, and returns exit code `124` after terminating the group.
+Pass `--timeout-seconds` to the script for a shorter local smoke run. The
+workflow also has a job-level timeout and concurrency cancellation, so a
+scheduled run cannot occupy a runner indefinitely.
 
 The v7 validation attempt confirmed that mutmut can now:
 

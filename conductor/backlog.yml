@@ -345,7 +345,8 @@ epics:
         labels: ["type:test", "type:reproducibility", "phase:hardening", "status:implemented"]
         status: implemented
       - title: Bound mutation testing with timeouts and cancellation
-        labels: ["type:test", "type:mutation", "phase:hardening"]
+        labels: ["type:test", "type:mutation", "phase:hardening", "status:implemented"]
+        status: implemented
   - id: PUBLIC-022
     title: Public product, citation and dashboard maturity
     phase: implementation
