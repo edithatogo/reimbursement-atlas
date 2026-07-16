@@ -2,7 +2,9 @@
 
 Epic: `IFACE-001` — Read-only interfaces
 
-Labels: type:mcp, phase:2-expansion
+Labels: type:mcp, phase:2-expansion, status:implemented
+
+Status: `implemented`
 
 ## Background
 
@@ -11,7 +13,6 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] A lazy optional MCP server exposes read-only source, analysis, readiness, and ingestion-plan resources.
+- [x] `mcp/tools.seed.json` and `docs/API_MCP_CLI_PLAN.md` document the read-only tool boundary and no-live-fetch policy.
+- [x] The optional interface module is import-tested without requiring the MCP SDK in the default environment.

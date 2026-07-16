@@ -145,7 +145,7 @@ def generated_track_issues(
     return issues
 
 
-def render_issue(issue: IssueDraft) -> str:
+def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912 - criteria are explicit per track
     """Render one GitHub issue draft."""
     labels = ", ".join(issue.labels) if issue.labels else "none"
     parent = f"Parent issue: {issue.parent_issue}\n\n" if issue.parent_issue else ""
@@ -269,6 +269,15 @@ def render_issue(issue: IssueDraft) -> str:
             "- [x] `NOTICE` and public-doc freshness checks explicitly preserve provider-specific "
             "terms for source data and third-party materials.\n"
             "- [x] Unit and public documentation validation cover the code/data licence boundary."
+        )
+    elif issue.title == "Draft read-only MCP server implementation plan":
+        acceptance = (
+            "- [x] A lazy optional MCP server exposes read-only source, analysis, readiness, and "
+            "ingestion-plan resources.\n"
+            "- [x] `mcp/tools.seed.json` and `docs/API_MCP_CLI_PLAN.md` document the read-only "
+            "tool boundary and no-live-fetch policy.\n"
+            "- [x] The optional interface module is import-tested without requiring the MCP SDK "
+            "in the default environment."
         )
     elif issue.title == "Rebind the required zizmor check to the repository-owned workflow app":
         acceptance = (
