@@ -652,6 +652,17 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
             "- [ ] Licence, research, evidence and policy-claim gates are approved before a "
             "write-enabled reconciliation run."
         )
+    elif issue.title == "Schedule read-only Hugging Face destination metadata drift monitoring":
+        acceptance = (
+            "- [x] Scope is implemented: the scheduled/manual workflow checks public dataset and "
+            "Space metadata without credentials or mutation.\n"
+            "- [x] Licence and data-governance implications are checked: the report preserves the "
+            "source-specific data-licence boundary and remote publication remains gated.\n"
+            "- [x] Tests or validation evidence are defined by the destination contract unit test, "
+            "action-pin policy and the workflow artifact.\n"
+            "- [x] Documentation or Conductor context is updated; drift remains linked to issue "
+            "#320."
+        )
     else:
         acceptance = """- [ ] Scope is confirmed.
 - [ ] Licence and data-governance implications are checked.

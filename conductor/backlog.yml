@@ -195,6 +195,14 @@ epics:
           - "Candidate dataset and static Space bundles pass local publication and public-data policy gates."
           - "Remote mutation is permitted only after licence, research, evidence and policy-claim gates pass."
           - "The published dataset card declares source-specific licences and the Space declares Apache-2.0 code plus underlying-data restrictions."
+      - title: Schedule read-only Hugging Face destination metadata drift monitoring
+        labels: ["type:publication", "type:repo-automation", "risk:licence", "phase:hardening", "status:implemented"]
+        status: implemented
+        acceptance:
+          - "The scheduled/manual workflow uses read-only public API requests and contents-read permissions."
+          - "The report records only repository identity, expected card fields, drift reasons and mutation_performed=false."
+          - "The workflow has no HF token, clone, push, or write-enabled publication step."
+          - "Drift remains linked to issue #320 and does not imply publication approval."
   - id: ONT-001
     title: Local-only terminology seed workflow
     phase: slice

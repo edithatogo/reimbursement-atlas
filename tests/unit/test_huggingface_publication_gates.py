@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from scripts.check_huggingface_bundle import validate_bundle
+from scripts.check_huggingface_destination import destination_report
 from scripts.check_huggingface_publication_gates import publication_gate_failures
 
 
@@ -48,6 +49,31 @@ def test_huggingface_bundle_accepts_governed_dataset_card(tmp_path: Path) -> Non
     )
 
     assert validate_bundle(tmp_path) == []
+
+
+def test_huggingface_destination_report_is_read_only_and_detects_drift() -> None:
+    """The live destination contract records metadata only and flags mismatches."""
+    payloads = {
+        "https://huggingface.co/api/datasets/owner/dataset": {
+            "id": "owner/dataset",
+            "cardData": {"license": "other"},
+        },
+        "https://huggingface.co/api/spaces/owner/space": {
+            "id": "owner/space",
+            "cardData": {"license": "mit", "sdk": "gradio"},
+        },
+    }
+
+    def fetcher(url: str):
+        return payloads[url], None
+
+    report = destination_report("owner/dataset", "owner/space", fetcher)
+
+    assert report["mutation_performed"] is False
+    assert report["targets"]["dataset"]["status"] == "pass"
+    assert report["targets"]["space"]["status"] == "drift"
+    assert report["status"] == "drift"
+    assert "raw" not in json.dumps(report).lower()
 
 
 def test_publication_gates_fail_closed_for_review_candidate(tmp_path: Path) -> None:
