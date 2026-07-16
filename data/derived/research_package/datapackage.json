@@ -855,10 +855,10 @@
       "schema": {}
     },
     {
-      "bytes": 4287,
+      "bytes": 4095,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "json",
-      "hash": "dfb3717ade8978b4f88f91401c4bb32fd44208d7e30974c7ae62ba792c9ccca7",
+      "hash": "f071af6b8dcd130dec6624e1b38bd1b586cad9e64395fea6cdfc619334fb5d85",
       "mediatype": "application/json",
       "name": "external-quality-gates",
       "path": "data/derived/external_quality_gates.json",

@@ -1091,11 +1091,11 @@
     {
       "@id": "data/derived/external_quality_gates.json",
       "@type": "File",
-      "contentSize": 4287,
+      "contentSize": 4095,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "json",
       "name": "external_quality_gates",
-      "sha256": "dfb3717ade8978b4f88f91401c4bb32fd44208d7e30974c7ae62ba792c9ccca7"
+      "sha256": "f071af6b8dcd130dec6624e1b38bd1b586cad9e64395fea6cdfc619334fb5d85"
     },
     {
       "@id": "data/derived/external_quality_gates.csv",
