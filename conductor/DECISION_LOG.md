@@ -376,3 +376,16 @@ crosswalks from being mistaken for approved or evidence-ready mappings.
 
 Consequence: The status is always `review_required`, requires reviewer sign-off, and reports
 `evidence_ready: false` until human adjudication occurs.
+
+## 2026-07-16 - Close dashboard provenance and automated quality functions
+
+Decision: Mark the dashboard provenance drill-down and automated experience-quality functions as
+implemented, review-gated, while keeping public deployment as prototype.
+
+Rationale: The routes, generated provenance surfaces, axe-core checks, performance budgets,
+deep-link checks, browser smoke tests and retained visual evidence are implemented and passing.
+Automated evidence cannot substitute for human cross-platform visual or assistive-technology
+review, nor can it prove that a public deployment is live.
+
+Consequence: Conductor and generated project artefacts distinguish implemented local capability
+from the remaining human review and deployment-verification gates.

@@ -2,7 +2,9 @@
 
 Epic: `TRACK_LIVE_SOURCE_INGESTION` — Evidence-grade live source ingestion
 
-Labels: type:roadmap-function, priority:must, interface:data_pipeline
+Labels: type:roadmap-function, priority:must, interface:data_pipeline, status:planned
+
+Status: `planned`
 
 ## Background
 

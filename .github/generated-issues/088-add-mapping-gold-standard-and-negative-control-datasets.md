@@ -2,7 +2,9 @@
 
 Epic: `TRACK_MAPPING_WORKBENCH` — Human-in-the-loop mapping workbench
 
-Labels: type:roadmap-function, priority:must, interface:data_pipeline
+Labels: type:roadmap-function, priority:must, interface:data_pipeline, status:implemented
+
+Status: `implemented`
 
 ## Background
 

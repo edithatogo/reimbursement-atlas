@@ -88,6 +88,21 @@ def test_generated_issue_renders_parent_subissue_link() -> None:
     assert "Parent issue: Public product, citation and dashboard maturity" in rendered
 
 
+def test_generated_roadmap_issue_preserves_implementation_status() -> None:
+    """Roadmap status must be visible in drafts and Project imports."""
+    from scripts.create_github_project_items import generated_track_issues
+
+    issues = generated_track_issues(ROOT)
+    issue = next(
+        item
+        for item in issues
+        if item.title == "Add dashboard provenance and mapping-evidence drill-down"
+    )
+    assert issue.status == "implemented"
+    assert "status:implemented" in issue.labels
+    assert "Status: `implemented`" in render_issue(issue)
+
+
 def test_generated_issue_drafts_deduplicate_backlog_and_roadmap_rows() -> None:
     issues = [
         IssueDraft(epic_id="LIVE-001", epic_title="Live", title="Same title"),

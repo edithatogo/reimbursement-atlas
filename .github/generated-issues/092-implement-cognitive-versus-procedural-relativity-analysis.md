@@ -2,7 +2,9 @@
 
 Epic: `TRACK_POLICY_DEMONSTRATORS` — First policy demonstrators
 
-Labels: type:roadmap-function, priority:must, interface:data_pipeline
+Labels: type:roadmap-function, priority:must, interface:data_pipeline, status:implemented
+
+Status: `implemented`
 
 ## Background
 

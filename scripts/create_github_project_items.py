@@ -27,6 +27,7 @@ class IssueDraft:
     title: str
     labels: list[str] = field(default_factory=list)
     parent_issue: str | None = None
+    status: str | None = None
 
 
 def _strip_quotes(value: str) -> str:
@@ -94,12 +95,14 @@ def generated_track_issues(
                     "type:roadmap-function",
                     f"priority:{row.get('priority', 'unknown')}",
                     f"interface:{row.get('interface', 'unknown')}",
+                    f"status:{row.get('status', 'planned')}",
                 ],
                 parent_issue=(
                     str(track.get("title"))
                     if str(track.get("title")) in (parent_issue_titles or set())
                     else None
                 ),
+                status=str(row.get("status", "planned")),
             )
         )
     for row in _read_jsonl(seed_dir / "dataset_candidates.jsonl"):
@@ -159,13 +162,14 @@ def render_issue(issue: IssueDraft) -> str:
 - [ ] Licence and data-governance implications are checked.
 - [ ] Tests or validation evidence are defined.
 - [ ] Documentation or Conductor context is updated."""
+    status_line = f"Status: `{issue.status}`\n\n" if issue.status else ""
     return f"""# {issue.title}
 
 Epic: `{issue.epic_id}` — {issue.epic_title}
 
 {parent}Labels: {labels}
 
-## Background
+{status_line}## Background
 
 This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria
 before opening it in GitHub.

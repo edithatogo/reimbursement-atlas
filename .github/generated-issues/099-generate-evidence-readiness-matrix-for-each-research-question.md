@@ -2,7 +2,9 @@
 
 Epic: `TRACK_DATA_QUALITY_EVIDENCE` — Data quality, source validation and evidence readiness
 
-Labels: type:roadmap-function, priority:must, interface:data_pipeline
+Labels: type:roadmap-function, priority:must, interface:data_pipeline, status:implemented
+
+Status: `implemented`
 
 ## Background
 

@@ -555,3 +555,9 @@ The first policy demonstrator now reports genomic schedule-item pricing and geno
 decisions in one typed brief, including the restricted-coverage count and explicit separate
 denominators. This remains a fixture-backed, review-gated demonstrator and does not infer
 item-level equivalence, causality or evidence-ready policy claims.
+
+## 2026-07-16: Dashboard provenance and quality
+
+Dashboard provenance routes and automated experience-quality gates are implemented and review-
+gated. Keep public deployment separate until the canonical GitHub Pages URL is verified; browser
+automation does not replace human cross-platform visual or assistive-technology review.

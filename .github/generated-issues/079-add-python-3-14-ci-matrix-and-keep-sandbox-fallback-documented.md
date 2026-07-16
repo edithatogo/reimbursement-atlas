@@ -2,7 +2,9 @@
 
 Epic: `TRACK_RUNTIME_MOJO_PYTHON314` — Mojo-first runtime and Python 3.14 compatibility
 
-Labels: type:roadmap-function, priority:must, interface:github_action
+Labels: type:roadmap-function, priority:must, interface:github_action, status:implemented
+
+Status: `implemented`
 
 ## Background
 

@@ -2,7 +2,9 @@
 
 Epic: `TRACK_RESEARCH_PROTOCOLS_OSF` — OSF research protocol and report workflow
 
-Labels: type:roadmap-function, priority:must, interface:cli
+Labels: type:roadmap-function, priority:must, interface:cli, status:implemented
+
+Status: `implemented`
 
 ## Background
 

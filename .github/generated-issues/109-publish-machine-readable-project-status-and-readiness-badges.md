@@ -4,7 +4,9 @@ Epic: `TRACK_PUBLIC_PRODUCT_CITATION_DASHBOARD` — Public product, citation and
 
 Parent issue: Public product, citation and dashboard maturity
 
-Labels: type:roadmap-function, priority:should, interface:data_pipeline
+Labels: type:roadmap-function, priority:should, interface:data_pipeline, status:implemented
+
+Status: `implemented`
 
 ## Background
 

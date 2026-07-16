@@ -2,7 +2,9 @@
 
 Epic: `TRACK_CI_CD_SUPPLY_CHAIN` — CI/CD and supply-chain hardening
 
-Labels: type:roadmap-function, priority:must, interface:github_action
+Labels: type:roadmap-function, priority:must, interface:github_action, status:prototype
+
+Status: `prototype`
 
 ## Background
 
