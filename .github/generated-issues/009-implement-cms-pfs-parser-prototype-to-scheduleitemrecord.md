@@ -2,7 +2,9 @@
 
 Epic: `PARSE-001` — Parser contract implementation
 
-Labels: type:parser, phase:1-slice, risk:licence
+Labels: type:parser, phase:1-slice, risk:licence, status:blocked
+
+Status: `blocked`
 
 ## Background
 

@@ -2,7 +2,9 @@
 
 Epic: `ONT-001` — Local-only terminology seed workflow
 
-Labels: type:ontology, risk:licence, phase:1-slice
+Labels: type:ontology, risk:licence, phase:1-slice, status:blocked
+
+Status: `blocked`
 
 ## Background
 

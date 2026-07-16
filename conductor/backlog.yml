@@ -8,11 +8,13 @@ epics:
     priority: must
     issues:
       - title: Add source-version schema for MBS, CMS CLFS and NHS genomic directory
-        labels: ["type:data-source", "phase:1-slice", "risk:licence"]
+        labels: ["type:data-source", "phase:1-slice", "risk:licence", "status:blocked"]
+        status: blocked
       - title: Add tiny permissive parser fixtures with provenance metadata
         labels: ["type:parser", "phase:1-slice", "good-first-issue"]
       - title: Add URL/licence verification checklist for first-wave sources
-        labels: ["risk:licence", "type:data-source"]
+        labels: ["risk:licence", "type:data-source", "status:blocked"]
+        status: blocked
   - id: PARSE-001
     title: Parser contract implementation
     phase: slice
@@ -30,7 +32,8 @@ epics:
       - title: Implement CMS ASP parser prototype to ScheduleItemRecord
         labels: ["type:parser", "phase:1-slice", "type:medicines"]
       - title: Implement CMS PFS parser prototype to ScheduleItemRecord
-        labels: ["type:parser", "phase:1-slice", "risk:licence"]
+        labels: ["type:parser", "phase:1-slice", "risk:licence", "status:blocked"]
+        status: blocked
   - id: MAP-001
     title: Candidate crosswalk pipeline
     phase: slice
@@ -40,7 +43,8 @@ epics:
       - title: Define genomics/pathology basket and mapping evidence fields
         labels: ["type:mapping", "needs-clinical-review"]
       - title: Add LOINC/HPO/HGNC local-only adapter conventions
-        labels: ["type:ontology", "risk:licence"]
+        labels: ["type:ontology", "risk:licence", "status:blocked"]
+        status: blocked
       - title: Build candidate crosswalk review queue format
         labels: ["type:mapping", "phase:1-slice"]
   - id: ANA-001
@@ -82,15 +86,18 @@ epics:
     priority: must
     issues:
       - title: Add SourceSnapshotRecord and local cache provenance schema
-        labels: ["type:data-source", "risk:licence", "phase:1-slice"]
+        labels: ["type:data-source", "risk:licence", "phase:1-slice", "status:blocked"]
+        status: blocked
       - title: Validate MBS parser against one manually downloaded XML release
         labels: ["type:parser", "phase:1-slice", "needs-clinical-review"]
       - title: Add derived-only MBS TXT pair bundle workflow with path-redacted snapshots
-        labels: ["type:parser", "risk:licence", "phase:1-slice"]
+        labels: ["type:parser", "risk:licence", "phase:1-slice", "status:blocked"]
+        status: blocked
       - title: Review first real July 2026 MBS TXT pair bundle outputs
         labels: ["type:data-source", "needs-clinical-review", "phase:1-slice"]
       - title: Validate CMS CLFS parser against one public file without CPT descriptor redistribution
-        labels: ["type:parser", "risk:licence", "phase:1-slice"]
+        labels: ["type:parser", "risk:licence", "phase:1-slice", "status:blocked"]
+        status: blocked
       - title: Validate PBS API CSV parser against a reviewed monthly public extract
         labels: ["type:parser", "phase:1-slice", "type:medicines"]
       - title: Record redacted PBS API multi-endpoint acquisition evidence
@@ -98,9 +105,11 @@ epics:
       - title: Validate CMS ASP parser against July 2026 payment-limit files
         labels: ["type:parser", "phase:1-slice", "type:medicines"]
       - title: Validate CMS PFS parser against RVU26C with CPT descriptor safeguards
-        labels: ["type:parser", "risk:licence", "phase:1-slice"]
+        labels: ["type:parser", "risk:licence", "phase:1-slice", "status:blocked"]
+        status: blocked
       - title: Add public data policy check to CI for raw cache safeguards
-        labels: ["type:security", "risk:licence", "phase:1-slice"]
+        labels: ["type:security", "risk:licence", "phase:1-slice", "status:blocked"]
+        status: blocked
       - title: Add source-specific content validators for downloaded public files
         labels: ["type:data-source", "type:parser", "phase:1-slice"]
       - title: Add checksum pinning after first reviewed source downloads
@@ -134,13 +143,16 @@ epics:
     priority: must
     issues:
       - title: Add reviewed-source bundle workflow to live-source validation docs
-        labels: ["type:data-source", "risk:licence", "phase:1-slice"]
+        labels: ["type:data-source", "risk:licence", "phase:1-slice", "status:blocked"]
+        status: blocked
       - title: Add seed JSONL CSV synchronisation gate to CI
         labels: ["type:automation", "phase:1-slice"]
       - title: Add candidate publication manifest for Hugging Face dataset release
-        labels: ["type:publication", "risk:licence", "phase:1-slice"]
+        labels: ["type:publication", "risk:licence", "phase:1-slice", "status:blocked"]
+        status: blocked
       - title: Add Hugging Face dataset-card contract checks before public release
-        labels: ["type:publication", "type:quality", "risk:licence", "phase:hardening"]
+        labels: ["type:publication", "type:quality", "risk:licence", "phase:hardening", "status:blocked"]
+        status: blocked
       - title: Make research package descriptors deterministic and non-self-referential
         labels: ["type:publication", "type:quality", "phase:hardening"]
       - title: Add dashboard table for policy signal matrix and analysis recipes
@@ -152,7 +164,8 @@ epics:
     priority: should
     issues:
       - title: Add synthetic ontology concept seed parser and mapping templates
-        labels: ["type:ontology", "risk:licence", "phase:1-slice"]
+        labels: ["type:ontology", "risk:licence", "phase:1-slice", "status:blocked"]
+        status: blocked
       - title: Define local adapter contracts for RxNav-in-a-Box style services
         labels: ["type:ontology", "type:mcp", "phase:2-expansion"]
 
@@ -219,15 +232,20 @@ epics:
     title: Evidence readiness, source drift and data dictionary gates
     issues:
       - title: Generate evidence-readiness matrix for each protocolled research question
-        labels: ["type:data-quality", "phase:release-gate"]
+        labels: ["type:data-quality", "phase:release-gate", "status:ready"]
+        status: ready
       - title: Add source/schema drift reporting to release readiness
-        labels: ["type:data-quality", "phase:release-gate"]
+        labels: ["type:data-quality", "phase:release-gate", "status:ready"]
+        status: ready
       - title: Generate public artefact data dictionary for Hugging Face and OSF outputs
-        labels: ["type:publication", "phase:release-gate"]
+        labels: ["type:publication", "phase:release-gate", "status:ready"]
+        status: ready
       - title: Generate artifact-level licence review queue bound to publication checksums
-        labels: ["type:publication", "type:review", "risk:licence", "phase:release-gate"]
+        labels: ["type:publication", "type:review", "risk:licence", "phase:release-gate", "status:blocked"]
+        status: blocked
       - title: Validate human licence decisions against checksum-bound queue rows
-        labels: ["type:publication", "type:review", "risk:licence", "phase:release-gate"]
+        labels: ["type:publication", "type:review", "risk:licence", "phase:release-gate", "status:blocked"]
+        status: blocked
       - title: Expand OSF protocols and report scaffolds with required sections
         labels: ["type:research", "type:osf"]
 
@@ -305,6 +323,8 @@ epics:
       - title: Public product, citation and dashboard maturity
         labels: ["type:track", "type:dashboard", "type:publication", "priority:must"]
       - title: Expose the checksum-bound licence review queue in the dashboard
-        labels: ["type:dashboard", "type:review", "risk:licence", "phase:release-gate"]
+        labels: ["type:dashboard", "type:review", "risk:licence", "phase:release-gate", "status:blocked"]
+        status: blocked
       - title: Expose machine-readable release blockers and next actions in public status
-        labels: ["type:dashboard", "type:release", "phase:release-gate"]
+        labels: ["type:dashboard", "type:release", "phase:release-gate", "status:ready"]
+        status: ready
