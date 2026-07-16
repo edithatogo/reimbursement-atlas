@@ -105,7 +105,7 @@
       "name": "roadmap_functions",
       "parquet_path": "roadmap_functions/roadmap_functions.parquet",
       "rows": 45,
-      "sha256": "a646939e9a84624c7cd94385f1371587cf28a1141ed130cbd16b08f21b15a079"
+      "sha256": "2100a8cfe5c50651ce0ca689045208d2e43534d5bb9081d7b840a5692830b9b8"
     },
     {
       "csv_path": "dataset_candidates/dataset_candidates.csv",
@@ -264,16 +264,16 @@
       "jsonl_path": "repo_workflow_uses/repo_workflow_uses.jsonl",
       "name": "repo_workflow_uses",
       "parquet_path": "repo_workflow_uses/repo_workflow_uses.parquet",
-      "rows": 102,
-      "sha256": "7d5592fc7e62bdc197527502014e3cf7d8e77b1622ffdc7297bcb82d409851c4"
+      "rows": 105,
+      "sha256": "f342dbab97e046771128e2c34115091b7137c798269b8527e35b362a5ad373ae"
     },
     {
       "csv_path": "repo_workflow_policy/repo_workflow_policy.csv",
       "jsonl_path": "repo_workflow_policy/repo_workflow_policy.jsonl",
       "name": "repo_workflow_policy",
       "parquet_path": "repo_workflow_policy/repo_workflow_policy.parquet",
-      "rows": 76,
-      "sha256": "e566ba9b7cedc735739562f6703b1b4c600a53fdf0f34459f6afe2aeea5224af"
+      "rows": 80,
+      "sha256": "1fc52c85a1847b1bbc629ada7b87f5bdc06d69bde148df0036ef314bffe4df28"
     },
     {
       "csv_path": "repo_automation_controls/repo_automation_controls.csv",
@@ -393,7 +393,7 @@
       "name": "github_project_items",
       "parquet_path": "github_project_items/github_project_items.parquet",
       "rows": 170,
-      "sha256": "ddb85fc14214328da6df1f3bfd747de983fa7c6598cd715bbb40eb357fe4e4cb"
+      "sha256": "f41910b825d248ec207c85496e5c6960bdb26e887eedf4c36e43d6ebd4304ab3"
     },
     {
       "csv_path": "final_handoff_tasks/final_handoff_tasks.csv",
@@ -457,7 +457,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 161,
-      "sha256": "08a5f11f2a385be73856edf66d7c84023a36c63e0dd36223ffb95e8a89dc073c"
+      "sha256": "83d5e582d95af6bf841c79327bd35389158799cb43c42fae84d0286aa64e90a3"
     }
   ]
 }

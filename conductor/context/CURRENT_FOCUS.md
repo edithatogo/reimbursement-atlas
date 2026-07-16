@@ -581,6 +581,14 @@ Chromium and WebKit retain the interactive renderer; the full 40-test local brow
 
 ## 2026-07-16: Dashboard provenance and quality
 
-Dashboard provenance routes and automated experience-quality gates are implemented and review-
+ Dashboard provenance routes and automated experience-quality gates are implemented and review-
 gated. Browser automation does not replace human cross-platform visual or assistive-technology
 review.
+
+## 2026-07-16: Action-pin maintenance automation
+
+The action-pin maintenance workflow is now implemented. It runs weekly or manually, resolves
+all external action refs through the repository resolver, refuses partial updates, preserves
+human-readable version comments, and opens a dedicated normal PR rather than mutating `main`.
+The immutable-action policy gate remains authoritative, and network/resolution failures remain
+fail-closed. See `conductor/sessions/2026-07-16-v77-action-pin-maintenance.md`.

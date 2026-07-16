@@ -5,12 +5,16 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import cast
 
+import pytest
+
 from reimburse_atlas.action_pins import (
+    ActionPinResolutionRecord,
     first_sha_from_ls_remote,
     resolve_action_pin,
     resolve_action_pins,
 )
 from reimburse_atlas.automation import WorkflowPinClass, WorkflowUseRecord
+from scripts.apply_action_pin_resolutions import apply_resolutions
 from scripts.check_action_sha_pins import find_unpinned_actions
 
 
@@ -173,3 +177,44 @@ jobs:
     assert [(record.action, record.pin_class) for record in violations] == [
         ("actions/checkout", "major")
     ]
+
+
+def test_apply_resolutions_preserves_version_comment(tmp_path: Path) -> None:
+    workflow_dir = tmp_path / ".github" / "workflows"
+    workflow_dir.mkdir(parents=True)
+    workflow = workflow_dir / "ci.yml"
+    workflow.write_text("- uses: actions/checkout@v6 # v6\n", encoding="utf-8")
+    sha = "d" * 40
+    record = ActionPinResolutionRecord(
+        workflow=".github/workflows/ci.yml",
+        line=1,
+        action="actions/checkout",
+        ref="v6",
+        current_uses="actions/checkout@v6",
+        status="resolved",
+        resolved_sha=sha,
+        suggested_uses=f"actions/checkout@{sha}",
+        notes="test",
+    )
+    assert apply_resolutions(tmp_path, [record]) == 1
+    assert workflow.read_text(encoding="utf-8") == f"- uses: actions/checkout@{sha} # v6\n"
+
+
+def test_apply_resolutions_refuses_partial_updates(tmp_path: Path) -> None:
+    workflow_dir = tmp_path / ".github" / "workflows"
+    workflow_dir.mkdir(parents=True)
+    workflow = workflow_dir / "ci.yml"
+    workflow.write_text("- uses: actions/checkout@v6\n", encoding="utf-8")
+    record = ActionPinResolutionRecord(
+        workflow=".github/workflows/ci.yml",
+        line=1,
+        action="actions/checkout",
+        ref="v6",
+        current_uses="actions/checkout@v6",
+        status="blocked_network",
+        resolved_sha=None,
+        suggested_uses=None,
+        notes="test",
+    )
+    with pytest.raises(RuntimeError, match="Refusing partial action-pin update"):
+        apply_resolutions(tmp_path, [record])
