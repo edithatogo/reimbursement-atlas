@@ -424,7 +424,7 @@ policy claims, protocol readiness and source licence review are incomplete.
 ## 2026-07-16 — Checksum-bound licence review queue
 
 The publication manifest now has a generated artifact-level review queue under
-`data/derived/licence_review/`. It contains 155 checksum-bound candidates, all pending,
+`data/derived/licence_review/`. It contains 159 checksum-bound candidates, all pending,
 with zero approvals and `approval_mutation_allowed: false`. The queue is exposed through
 the data dictionary, local quality gates, release readiness, Conductor backlog and generated
 GitHub Project artefacts; it improves review readiness without bypassing human licence or
@@ -684,7 +684,7 @@ without relicensing MBS, PBS, CMS or third-party terminology data.
 
 ## 2026-07-16 v90 external preflight refresh
 
-Read-only preflights were rerun against merged main commit `e8b8a2e`. OSF workflow
+Read-only preflights were rerun against merged main commit `7e0e0016d488`. OSF workflow
 `29475141289` successfully discovered private project `q8cnx`, verified the pinned
 `osf-cli-go` v1.0.0 plan and kept all sync rows fail-closed; Hugging Face workflow
 `29475142574` built and validated the dataset/Space candidate with both publish jobs
@@ -692,8 +692,9 @@ skipped; Zenodo workflow `29475143715` validated metadata without a DOI or depos
 source-health workflow `29475144835` passed validation while retaining the single PBS
 `PBS_API_SUBSCRIPTION_KEY` acquisition blocker. No external publication mutation occurred.
 
-The current PR evidence also exposed a branch-protection integration defect: `main` binds the
-required `zizmor` context to GitHub Advanced Security app `57789`, whose check remains queued,
-instead of the passing repository-owned GitHub Actions app `15368`. Issue [#275](https://github.com/edithatogo/reimbursement-atlas/issues/275)
-tracks the admin-only remediation. The secure fix is to rebind the existing required context,
-not to remove the workflow gate or bypass merge protection.
+The current PR evidence exposed a branch-protection integration defect: `main` had bound the
+required `zizmor` context to GitHub Advanced Security app `57789`, whose check remained queued,
+instead of the passing repository-owned GitHub Actions app `15368`. A repository-admin GraphQL
+`updateBranchProtectionRule` mutation rebound the context to app `15368`, preserving strict
+protection and all 20 required contexts. Issue [#275](https://github.com/edithatogo/reimbursement-atlas/issues/275)
+was closed with GraphQL and REST read-back evidence; no workflow gate was removed or bypassed.

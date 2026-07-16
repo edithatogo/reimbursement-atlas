@@ -586,3 +586,16 @@ the current API route.
 Consequence: Issue [#275](https://github.com/edithatogo/reimbursement-atlas/issues/275) records
 the exact app IDs and evidence. No security gate was removed and no administrator merge bypass
 was used.
+
+## 2026-07-16 - Resolve required zizmor check binding
+
+Action: Used the repository-admin GraphQL `updateBranchProtectionRule` mutation to change only
+the `zizmor` required-check app from `57789` to GitHub Actions app `15368`.
+
+Evidence: The mutation returned all 20 required contexts with `zizmor` bound to
+`github-actions`; the REST read-back reports `{context: zizmor, app_id: 15368}` and strict
+status checks remain enabled. The REST write route returned 404 but was not needed after the
+successful GraphQL update.
+
+Consequence: Issue [#275](https://github.com/edithatogo/reimbursement-atlas/issues/275) is
+closed. Branch protection remains strict and no required security gate was removed or bypassed.
