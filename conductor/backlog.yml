@@ -188,7 +188,8 @@ epics:
       - title: Run pip-audit strict in network-enabled CI before public release
         labels: ["type:security", "phase:hardening"]
       - title: Maintain structured issue forms for source, analysis and quality work
-        labels: ["type:repo-automation", "phase:hardening"]
+        labels: ["type:repo-automation", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Add consumer release-attestation verification guide
         labels: ["type:security", "type:release", "phase:hardening"]
       - title: Schedule source-health and source-drift monitoring with issue escalation
