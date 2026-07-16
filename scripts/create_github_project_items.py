@@ -330,6 +330,32 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912 - criteria are expl
             "`15368`, not Advanced Security app `57789`.\n"
             "- [x] Conductor, documentation and GitHub issue evidence are updated."
         )
+    elif issue.title in {
+        "Add architecture-boundary import graph checks to CI",
+        "Add release-readiness matrix with required-blocker counts",
+        "Add data-quality checks as a release-readiness gate",
+        "Add research-question linkage matrix to roadmap and OSF planning",
+        "Add source-specific contract validation before reviewed-source bundle parsing",
+        "Generate GitHub Project import rows from Conductor tracks and issue drafts",
+        "Generate final network credential and review handoff checklist",
+        "Expose source contracts GitHub Project rows and final handoff tasks in dashboard",
+        "Add Codex import prompt for git bundle restoration and track execution",
+        "Verify Codex continuation process regenerates Conductor issue and project outputs",
+        "Ensure continuation agents record blockers rather than marking unavailable gates green",
+        "Run property integration and end-to-end harnesses as separate CI lanes",
+        "Use interpreter-bound module invocation for Pixi Python test tasks",
+        "Enforce deterministic generated-output regeneration",
+    }:
+        acceptance = (
+            "- [x] Scope is implemented in repository scripts, generated artefacts, documentation, "
+            "or protected CI workflows.\n"
+            "- [x] The implementation is fail-closed where evidence, review, or external access is "
+            "unavailable; it does not convert a blocker into a pass.\n"
+            "- [x] Focused tests or CI contracts exercise the implementation, and generated "
+            "outputs are regenerated in the repository-defined order.\n"
+            "- [x] Conductor backlog, generated issue draft, and GitHub Project row are marked "
+            "implemented."
+        )
     else:
         acceptance = """- [ ] Scope is confirmed.
 - [ ] Licence and data-governance implications are checked.

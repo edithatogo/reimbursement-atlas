@@ -187,11 +187,14 @@ epics:
     priority: must
     issues:
       - title: Add architecture-boundary import graph checks to CI
-        labels: ["type:architecture", "type:automation", "phase:hardening"]
+        labels: ["type:architecture", "type:automation", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Add release-readiness matrix with required-blocker counts
-        labels: ["type:release", "type:automation", "phase:hardening"]
+        labels: ["type:release", "type:automation", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Resolve GitHub Action SHA pinning plan and make zizmor blocking
-        labels: ["type:security", "type:supply-chain", "phase:hardening"]
+        labels: ["type:security", "type:supply-chain", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Run pip-audit strict in network-enabled CI before public release
         labels: ["type:security", "phase:hardening"]
       - title: Maintain structured issue forms for source, analysis and quality work
@@ -237,9 +240,11 @@ epics:
         labels: ["type:data-quality", "type:data-source", "phase:hardening", "status:implemented"]
         status: implemented
       - title: Add data-quality checks as a release-readiness gate
-        labels: ["type:data-quality", "type:release", "phase:hardening"]
+        labels: ["type:data-quality", "type:release", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Add research-question linkage matrix to roadmap and OSF planning
-        labels: ["type:research", "type:roadmap", "phase:hardening"]
+        labels: ["type:research", "type:roadmap", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Add dashboard views for source validation and data-quality checks
         labels: ["type:dashboard", "type:data-quality", "phase:hardening", "status:implemented"]
         status: implemented
@@ -273,13 +278,17 @@ epics:
     priority: must
     issues:
       - title: Add source-specific contract validation before reviewed-source bundle parsing
-        labels: ["type:data-quality", "type:parser", "phase:handoff"]
+        labels: ["type:data-quality", "type:parser", "phase:handoff", "status:implemented"]
+        status: implemented
       - title: Generate GitHub Project import rows from Conductor tracks and issue drafts
-        labels: ["type:repo-automation", "type:project", "phase:handoff"]
+        labels: ["type:repo-automation", "type:project", "phase:handoff", "status:implemented"]
+        status: implemented
       - title: Generate final network credential and review handoff checklist
-        labels: ["type:release", "type:handoff", "phase:handoff"]
+        labels: ["type:release", "type:handoff", "phase:handoff", "status:implemented"]
+        status: implemented
       - title: Expose source contracts GitHub Project rows and final handoff tasks in dashboard
-        labels: ["type:dashboard", "phase:handoff"]
+        labels: ["type:dashboard", "phase:handoff", "status:implemented"]
+        status: implemented
       - title: Distinguish partial source acquisition from complete handoff status
         labels: ["type:data-quality", "type:handoff", "phase:hardening", "status:implemented"]
         status: implemented
@@ -294,11 +303,14 @@ epics:
     priority: must
     issues:
       - title: Add Codex import prompt for git bundle restoration and track execution
-        labels: ["type:handoff", "type:repo-automation", "phase:handoff"]
+        labels: ["type:handoff", "type:repo-automation", "phase:handoff", "status:implemented"]
+        status: implemented
       - title: Verify Codex continuation process regenerates Conductor issue and project outputs
-        labels: ["type:project", "type:repo-automation", "phase:handoff"]
+        labels: ["type:project", "type:repo-automation", "phase:handoff", "status:implemented"]
+        status: implemented
       - title: Ensure continuation agents record blockers rather than marking unavailable gates green
-        labels: ["type:quality-gate", "type:release", "phase:handoff"]
+        labels: ["type:quality-gate", "type:release", "phase:handoff", "status:implemented"]
+        status: implemented
 
   - id: SEC-020
     title: Continuous security assurance and branch enforcement
@@ -324,11 +336,14 @@ epics:
     priority: must
     issues:
       - title: Run property integration and end-to-end harnesses as separate CI lanes
-        labels: ["type:test", "type:automation", "phase:hardening"]
+        labels: ["type:test", "type:automation", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Use interpreter-bound module invocation for Pixi Python test tasks
-        labels: ["type:test", "type:automation", "phase:hardening"]
+        labels: ["type:test", "type:automation", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Enforce deterministic generated-output regeneration
-        labels: ["type:test", "type:reproducibility", "phase:hardening"]
+        labels: ["type:test", "type:reproducibility", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Bound mutation testing with timeouts and cancellation
         labels: ["type:test", "type:mutation", "phase:hardening"]
   - id: PUBLIC-022

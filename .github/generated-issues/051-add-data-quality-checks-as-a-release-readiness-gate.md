@@ -2,7 +2,9 @@
 
 Epic: `DQ-001` — Data quality and evidence readiness gates
 
-Labels: type:data-quality, type:release, phase:hardening
+Labels: type:data-quality, type:release, phase:hardening, status:implemented
+
+Status: `implemented`
 
 ## Background
 
@@ -11,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Scope is implemented in repository scripts, generated artefacts, documentation, or protected CI workflows.
+- [x] The implementation is fail-closed where evidence, review, or external access is unavailable; it does not convert a blocker into a pass.
+- [x] Focused tests or CI contracts exercise the implementation, and generated outputs are regenerated in the repository-defined order.
+- [x] Conductor backlog, generated issue draft, and GitHub Project row are marked implemented.
