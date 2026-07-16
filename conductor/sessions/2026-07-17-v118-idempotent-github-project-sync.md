@@ -11,6 +11,8 @@ live repository and Conductor Project #18 without making implicit remote changes
 - Made the default mode read-only and exact-title based; writes require explicit `--apply` and
   optional repeated `--title` filters.
 - Added response-shape handling for GitHub CLI Project JSON and duplicate-aware tests.
+- Added available-label filtering so missing generated labels are reported without aborting a
+  safe issue and Project-item reconciliation.
 - Added backlog, generated issue and Project-row linkage plus operator documentation.
 
 ## Safety boundary

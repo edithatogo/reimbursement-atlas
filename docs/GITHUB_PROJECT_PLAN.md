@@ -78,4 +78,6 @@ pixi run github-project-sync --title "Add grouped licence review packet for acco
 
 The synchroniser never edits, closes, deletes, merges or force-pushes issues and does not print
 GitHub credentials. Similar existing issues are reported for human reconciliation rather than
-duplicated automatically.
+duplicated automatically. When an issue draft requests a label that does not exist in the
+repository, the label is skipped and reported; the issue and Project item can still be created
+without mutating the label taxonomy.
