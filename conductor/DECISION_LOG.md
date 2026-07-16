@@ -470,3 +470,15 @@ human/publication decisions.
 
 Consequence: The workflows open ordinary PRs or emit private preflight evidence only; they do
 not download raw historical files, accept publication tokens or mutate Zenodo.
+
+## 2026-07-16 - Enforce Hugging Face dataset-card metadata contract
+
+Decision: Make the dataset-card contract a blocking repository data-smoke check while keeping
+actual publication fail-closed.
+
+Rationale: A versioned card must distinguish Apache-2.0 repository code from source-specific
+data terms and must warn that only licence-approved manifest rows may be published. Presence of
+a card alone is too weak to catch accidental licensing ambiguity.
+
+Consequence: The validator checks metadata and disclosure markers on every pull request, but
+human source-licence review, release readiness and HF credentials remain required for mutation.
