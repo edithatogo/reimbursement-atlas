@@ -73,9 +73,12 @@ See `docs/reviews/SIMULATED_MULTI_AGENT_PROTOCOL_REVIEW_2026-07-11.md` for the a
 
 ## Latest read-only discovery
 
-OSF workflow run `29467568237` on `main` successfully ran the pinned CLI discovery path and
+OSF workflow run `29473382425` on `main` successfully ran the pinned CLI discovery path and
 the OSF plan. It found the expected private `Reimbursement Atlas` project (`q8cnx`);
 provisioning, registration, upload and publication were not performed. The sanitized project
 listing remains available only as a seven-day private workflow artifact, not as a tracked
 repository file. The sync-manifest check passed with every row fail-closed, so this evidence
 does not grant publication approval.
+
+The workflow used `osf-cli-go` `v1.0.0`; the local pinned contract also passes. The older
+unrelated `osf` executable on the workstation is not used as workflow evidence.

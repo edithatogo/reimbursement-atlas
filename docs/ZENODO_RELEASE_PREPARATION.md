@@ -26,3 +26,7 @@ The manual `.github/workflows/zenodo-preflight.yml` workflow now validates the m
 repository gates and emits a non-depositing preflight artifact. It has read-only permissions,
 does not accept a token and cannot create a DOI; a future deposition workflow requires a
 separately approved Zenodo environment and accountable publication authorization.
+
+The non-depositing preflight was rerun successfully as workflow run `29473382399` on `main`.
+Its artifact records `mutation_performed: false`, `doi_created: false` and
+`human_publication_approval_required: true`.

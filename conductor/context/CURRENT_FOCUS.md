@@ -648,3 +648,13 @@ Source-content, source-contract, data-quality, evidence-readiness, public-data-p
 licence-review validation gates pass. The MBS bundle remains local-only until human redistribution
 review approves the exact checksums; PBS current acquisition remains blocked by the absent
 `PBS_API_SUBSCRIPTION_KEY` credential.
+
+## 2026-07-16 v86 publication preflight evidence
+
+The pinned `osf-cli-go` v1.0.0 contract passes locally. Read-only OSF discovery workflow
+`29473382425` found the configured private project `q8cnx` and produced only a seven-day
+sanitized artifact. Hugging Face candidate validation `29473382378` built and validated the
+dataset/Space candidate with both mutation jobs skipped. Zenodo preflight `29473382399`
+validated metadata and repository gates without creating a DOI or mutating Zenodo. These runs
+confirm automation readiness, not publication approval; licence, protocol, evidence and policy
+gates remain fail-closed.

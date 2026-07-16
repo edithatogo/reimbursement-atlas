@@ -31,6 +31,13 @@ Astro dashboard with Apache-2.0 code metadata. This is destination drift, not pu
 evidence. Reconciliation must occur through the gated workflow after licence and research
 review; no remote mutation was performed during this verification.
 
+## Latest non-mutating candidate validation
+
+Hugging Face workflow run `29473382378` on `main` successfully regenerated the publication
+manifest and research package, built the dashboard, and validated the candidate bundle. Both
+publish jobs were skipped because `publish_dataset=false` and `publish_space=false`. This is
+candidate-build evidence only; it does not approve licences or mutate either remote target.
+
 Before either publication job can mutate a remote repository, the workflow runs
 `scripts/check_huggingface_bundle.py`. It verifies the Space metadata, dashboard status contract,
 publication manifest and forbidden raw/secret/local-path markers. A passing bundle check does not
