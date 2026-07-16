@@ -2,7 +2,9 @@
 
 Epic: `SEC-020` — Continuous security assurance and branch enforcement
 
-Labels: type:security, type:supply-chain, phase:hardening
+Labels: type:security, type:supply-chain, phase:hardening, status:implemented
+
+Status: `implemented`
 
 ## Background
 

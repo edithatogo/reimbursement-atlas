@@ -2,9 +2,9 @@
 
 Epic: `EVID-017` — Evidence readiness, source drift and data dictionary gates
 
-Labels: type:publication, phase:release-gate, status:ready
+Labels: type:publication, phase:release-gate, status:implemented
 
-Status: `ready`
+Status: `implemented`
 
 ## Background
 
