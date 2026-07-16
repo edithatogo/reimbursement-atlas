@@ -2,9 +2,9 @@
 
 Epic: `LIVE-001` — Reviewed live-source validation
 
-Labels: type:parser, risk:licence, phase:1-slice, status:blocked
+Labels: type:parser, risk:licence, phase:1-slice, status:implemented
 
-Status: `blocked`
+Status: `implemented`
 
 ## Background
 
@@ -13,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Scope is implemented in repository scripts, generated artefacts, documentation, or protected CI workflows.
+- [x] The implementation is fail-closed where evidence, review, or external access is unavailable; it does not convert a blocker into a pass.
+- [x] Focused tests or CI contracts exercise the implementation, and generated outputs are regenerated in the repository-defined order.
+- [x] Conductor backlog, generated issue draft, and GitHub Project row are marked implemented.
