@@ -639,3 +639,12 @@ The authoritative MBS Online copyright notice was recorded in
 personal, non-commercial, unaltered use and requires prior written approval for redistribution.
 The July 2026 derived pair bundle therefore remains `public_reuse_review`; public access is not
 being treated as an open-data licence. PBS API access remains credential- and terms-gated.
+
+## 2026-07-16 v85 MBS derived bundle revalidation
+
+The local July 2026 MBS TXT pair was reprocessed through the reviewed-pair workflow. The derived
+bundle and redacted provenance rows were refreshed without copying raw payloads or local paths.
+Source-content, source-contract, data-quality, evidence-readiness, public-data-policy and
+licence-review validation gates pass. The MBS bundle remains local-only until human redistribution
+review approves the exact checksums; PBS current acquisition remains blocked by the absent
+`PBS_API_SUBSCRIPTION_KEY` credential.

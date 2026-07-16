@@ -521,3 +521,16 @@ claiming them enabled would be false security evidence.
 
 Consequence: The repository-owned compensating control remains active, while the GitHub account or
 plan capability remains an explicit external blocker.
+
+## 2026-07-16 - Revalidate the July MBS reviewed pair
+
+Decision: Refresh the derived provenance for the locally cached July 2026 MBS TXT pair, but keep
+the bundle blocked from public redistribution.
+
+Rationale: The raw pair is available in the ignored local cache and the reviewed-pair parser can
+reproduce the derived item map and descriptor metadata. Reprocessing confirms the source-content,
+source-contract, public-data-policy and licence-queue controls without treating access to MBS
+Online as redistribution permission.
+
+Consequence: Only redacted derived provenance timestamps changed in the tracked bundle and licence
+queue. The MBS rows remain `public_reuse_review`; PBS current acquisition remains credential-gated.
