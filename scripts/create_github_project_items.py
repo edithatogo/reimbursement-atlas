@@ -241,6 +241,17 @@ def render_issue(issue: IssueDraft) -> str:
             "issues are opened or updated, and clear acquisition issues are closed.\n"
             "- [x] Workflow issue mutation is least-privilege and scoped to the source-health job."
         )
+    elif issue.title == "Make research package descriptors deterministic and non-self-referential":
+        acceptance = (
+            "- [x] Scope is confirmed: Frictionless, RO-Crate and DCAT descriptors describe "
+            "licence-safe derived artefacts only.\n"
+            "- [x] Licence and data-governance implications are checked: descriptor files are "
+            "excluded from the candidate manifest and do not change source-data terms.\n"
+            "- [x] Tests or validation evidence are defined: deterministic regeneration and "
+            "non-self-reference contract tests.\n"
+            "- [x] Documentation or Conductor context is updated in the publication-manifest "
+            "descriptor-determinism section."
+        )
     elif issue.title == "Rebind the required zizmor check to the repository-owned workflow app":
         acceptance = (
             "- [x] Scope is confirmed: only the required `zizmor` app binding was changed.\n"

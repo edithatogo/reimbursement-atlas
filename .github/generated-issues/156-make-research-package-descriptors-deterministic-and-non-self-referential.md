@@ -2,7 +2,9 @@
 
 Epic: `PUB-001` — Publication and dataset release readiness
 
-Labels: type:publication, type:quality, phase:hardening
+Labels: type:publication, type:quality, phase:hardening, status:implemented
+
+Status: `implemented`
 
 ## Background
 
@@ -11,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Scope is confirmed: Frictionless, RO-Crate and DCAT descriptors describe licence-safe derived artefacts only.
+- [x] Licence and data-governance implications are checked: descriptor files are excluded from the candidate manifest and do not change source-data terms.
+- [x] Tests or validation evidence are defined: deterministic regeneration and non-self-reference contract tests.
+- [x] Documentation or Conductor context is updated in the publication-manifest descriptor-determinism section.
