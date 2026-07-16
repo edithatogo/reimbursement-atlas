@@ -86,5 +86,11 @@ listing remains available only as a seven-day private workflow artifact, not as 
 repository file. The sync-manifest check passed with every row fail-closed, so this evidence
 does not grant publication approval.
 
-The workflow used `osf-cli-go` `v1.0.0`; the local pinned contract also passes. The older
-unrelated `osf` executable on the workstation is not used as workflow evidence.
+The workflow uses `osf-cli-go` `v1.0.0`; the upstream latest release is still `v1.0.0` as of
+2026-07-16. The pinned binary was installed into an ignored temporary directory and the local
+contract passed with `OSF CLI contract passed: osf 1.0.0`. An older unrelated `osf` executable
+on the workstation is not used as workflow evidence. This validates the toolchain only; it
+does not authorize OSF registration or publication.
+
+The current merged repository state is `73644d2`. The latest remote discovery evidence above is
+retained as a read-only preflight record; no OSF mutation occurred.

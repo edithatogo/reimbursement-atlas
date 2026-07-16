@@ -627,3 +627,15 @@ causes a queued or misbound required check. The validator is deliberately not it
 status context, avoiding a new circular branch-protection dependency.
 The implementation is tracked in [#279](https://github.com/edithatogo/reimbursement-atlas/issues/279),
 which was closed after PR #278 merged and the completed item was added to Project #18.
+
+## 2026-07-16 - Verify pinned osf-cli-go release and local contract
+
+Action: Checked the upstream `edithatogo/osf-cli-go` latest release and installed the pinned
+`v1.0.0` binary into an ignored temporary directory for local verification.
+
+Evidence: Upstream latest release is `v1.0.0`; the contract command passed with
+`OSF CLI contract passed: osf 1.0.0`. No token values were read or logged and no OSF API
+mutation occurred.
+
+Consequence: The pinned OSF toolchain is current and reproducible. OSF registration, upload
+and publication remain gated on protocol, licence, evidence and human approval.
