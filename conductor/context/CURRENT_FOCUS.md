@@ -666,3 +666,11 @@ write-enabled build, attestation and GitHub release job. It requires repository 
 readiness, public-data policy, checksum-bound licence-queue validation and immutable action-pin
 policy to pass. This hardens software release provenance without changing the separate human
 licence, research, OSF, Hugging Face, Zenodo or policy-claim gates.
+
+## 2026-07-16 v88 GitHub secret-control API recheck
+
+Two authenticated REST PATCH requests using the documented nested JSON payload for
+`secret_scanning_non_provider_patterns` and `secret_scanning_validity_checks` were accepted,
+but the authoritative repository response still reports both controls as `disabled`. Issue #191
+remains an account/plan blocker. Provider secret scanning, push protection, Dependabot security
+updates and full-history Gitleaks remain enabled as compensating controls.

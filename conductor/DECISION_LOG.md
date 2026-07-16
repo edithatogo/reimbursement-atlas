@@ -522,6 +522,19 @@ claiming them enabled would be false security evidence.
 Consequence: The repository-owned compensating control remains active, while the GitHub account or
 plan capability remains an explicit external blocker.
 
+## 2026-07-16 - Recheck GitHub advanced secret controls with JSON API payloads
+
+Decision: Keep issue #191 open after retrying both advanced GitHub secret-control settings with
+authenticated nested JSON PATCH payloads.
+
+Rationale: The API accepted the requests but returned the repository with
+`secret_scanning_non_provider_patterns=disabled` and `secret_scanning_validity_checks=disabled`.
+The live response is stronger evidence than a successful request status and does not support
+claiming the controls are active.
+
+Consequence: No repository workflow change is needed. Provider scanning, push protection,
+Dependabot and full-history Gitleaks remain the documented compensating controls.
+
 ## 2026-07-16 - Revalidate the July MBS reviewed pair
 
 Decision: Refresh the derived provenance for the locally cached July 2026 MBS TXT pair, but keep
