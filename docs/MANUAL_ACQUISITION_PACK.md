@@ -28,6 +28,17 @@ data/raw_live/<source_id>/<file_name>
 
 `data/raw_live/` is git-ignored. Commit only source metadata, checksums and derived rows.
 
+Generate the first-wave URL and licence checklist alongside the acquisition pack:
+
+```bash
+pixi run source-url-licence-checklist
+```
+
+The checklist is written to `data/derived/source_url_licence_checklist/`. It binds each
+source-file record to its exact URL, registry URL, acquisition mode and licence gate.
+Both URL verification and licence review remain explicitly pending until a human
+records authoritative evidence; generation does not grant permission to publish.
+
 ## First live validation target
 
 1. Review the MBS downloads page and download the July 2026 item-map and descriptor TXT files.

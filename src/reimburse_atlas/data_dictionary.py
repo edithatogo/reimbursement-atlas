@@ -17,6 +17,9 @@ from reimburse_atlas.publication import (
 from reimburse_atlas.registry import project_root
 
 GOVERNANCE_PATHS = (
+    Path("data/derived/source_url_licence_checklist/source_url_licence_checklist.jsonl"),
+    Path("data/derived/source_url_licence_checklist/source_url_licence_checklist.csv"),
+    Path("data/derived/source_url_licence_checklist/README.md"),
     Path("data/derived/licence_review/licence_review_queue.jsonl"),
     Path("data/derived/licence_review/licence_review_queue.csv"),
     Path("data/derived/licence_review/summary.json"),
@@ -112,7 +115,7 @@ def _read_json(path: Path) -> Any:
 
 
 def _scope_gate_notes(path: Path) -> tuple[str, str, str]:
-    if "licence_review" in path.parts:
+    if "licence_review" in path.parts or "source_url_licence_checklist" in path.parts:
         return (
             "internal_governance",
             "not_for_publication",

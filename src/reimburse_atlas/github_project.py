@@ -135,10 +135,10 @@ def _priority_from_labels(
 
 
 def _status_from_labels(labels: tuple[str, ...]) -> Literal["todo", "ready", "blocked", "done"]:
-    if "blocked" in labels or any(label.startswith("risk:") for label in labels):
-        return "blocked"
     if "status:implemented" in labels:
         return "done"
+    if "blocked" in labels or any(label.startswith("risk:") for label in labels):
+        return "blocked"
     if any(label.startswith("phase:release") for label in labels):
         return "ready"
     return "todo"

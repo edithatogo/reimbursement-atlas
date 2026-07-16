@@ -37,6 +37,13 @@ import ProvenancePanel from "../../components/ProvenancePanel.astro";
     columns={["id", "source_id", "file_name", "acquisition_mode", "licence_gate", "current_observation"]}
   />
   <DataTable
+    title="First-wave URL and licence checklist"
+    description="Exact source-file URLs and registry terms remain pending human verification before publication."
+    fileName="source_url_licence_checklist.csv"
+    columns={["source_file_id", "source_id", "source_url", "licence_gate", "url_verification_status", "licence_review_status"]}
+    limit={12}
+  />
+  <DataTable
     title="Manual acquisition pack"
     fileName="acquisition_steps.csv"
     columns={["step_id", "source_file_id", "source_id", "acquisition_mode", "raw_handling", "suggested_local_path"]}
