@@ -419,6 +419,13 @@ epics:
       - title: Bound mutation testing with timeouts and cancellation
         labels: ["type:test", "type:mutation", "phase:hardening", "status:implemented"]
         status: implemented
+      - title: Reassess TypeScript 7 after Astro checker peer support is available
+        labels: ["type:dashboard", "type:quality", "phase:hardening", "status:blocked"]
+        status: blocked
+        acceptance:
+          - "The current Astro checker peer contract is documented as the reason TypeScript 7 is not adopted."
+          - "The stack canary issue and dependency versions are linked in an auditable session."
+          - "The upgrade is re-tested with npm ci, astro check, build and browser gates before adoption."
   - id: PUBLIC-022
     title: Public product, citation and dashboard maturity
     phase: implementation

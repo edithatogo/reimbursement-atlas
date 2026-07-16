@@ -677,3 +677,16 @@ report uses stable `PATH:<executable>` values and does not expose workstation-sp
 
 Consequence: Software release readiness remains true, while research publication, evidence release,
 policy claims, source licensing and human review remain separate fail-closed gates.
+
+## 2026-07-17 - Adopt compatible stack-canary dashboard updates
+
+Decision: Upgrade the dashboard to `@cosmograph/react` `2.3.3` and Astro `7.1.0`, while retaining
+TypeScript `6.0.3` until the pinned Astro checker supports TypeScript 7.
+
+Evidence: Stack canary run `29526345487` passed Pixi, Python 3.14, external-quality, dependency,
+dashboard-build and Mojo smoke steps. Local `npm ci`, `astro check`, static build and production
+`npm audit` also passed. The canary opened issue [#360](https://github.com/edithatogo/reimbursement-atlas/issues/360)
+for the three available updates; TypeScript 7 remains an explicit compatibility follow-up.
+
+Consequence: The repository moves to the current compatible dashboard stack without using
+`--legacy-peer-deps` in CI or silently converting a peer incompatibility into an accepted gate.
