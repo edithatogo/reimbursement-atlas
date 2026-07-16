@@ -133,7 +133,7 @@ Deliverables:
 
 Tracked functions/issues:
 - `func_action_sha_pin_bot` — Automate GitHub Action SHA pinning (prototype, github_action)
-- `func_release_attestation_verify` — Add consumer-side artifact attestation verification (prototype, github_action)
+- `func_release_attestation_verify` — Verify release-manifest subjects locally and with GitHub attestations (implemented, github_action)
 - `func_docs_freshness_gate` — Add documentation freshness and claim-validation gate (implemented, github_action)
 
 ## [~] track_policy_demonstrators: First policy demonstrators

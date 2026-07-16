@@ -342,3 +342,14 @@ evidence release or policy claims are approved.
 Consequence: The release workflow now builds, attests, verifies and publishes the manifest. The
 manifest contains only relative paths, sizes and SHA-256 values for release subjects; no raw
 source payloads or credentials are introduced.
+## 2026-07-16 - Offline consumer verification for release manifests
+
+Decision: Provide a local, network-free verifier for the tagged release manifest before requiring
+GitHub attestation verification.
+
+Rationale: Consumers need a deterministic way to validate the downloaded subjects and expected
+tag/commit before invoking remote provenance checks. This adds integrity verification without
+confusing it with GitHub workflow provenance or research/publication approval.
+
+Consequence: `scripts/verify_release_manifest.py` fails closed on malformed metadata, unsafe paths,
+missing subjects, tag/commit mismatches and checksum changes.
