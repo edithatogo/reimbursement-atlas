@@ -548,3 +548,10 @@ The dashboard browser evidence now covers Chromium desktop/mobile, Firefox deskt
 desktop in the pinned CI workflow. This improves engine-level regression evidence and retains
 30-day test-report artifacts, but does not replace human cross-OS visual, accessibility or
 assistive-technology review.
+
+## 2026-07-16: Policy demonstrator linkage surface
+
+The first policy demonstrator now reports genomic schedule-item pricing and genomic coverage
+decisions in one typed brief, including the restricted-coverage count and explicit separate
+denominators. This remains a fixture-backed, review-gated demonstrator and does not infer
+item-level equivalence, causality or evidence-ready policy claims.
