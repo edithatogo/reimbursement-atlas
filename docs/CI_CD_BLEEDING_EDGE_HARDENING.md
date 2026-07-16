@@ -88,6 +88,11 @@ uploaded with each run.
 2. Preserve human-readable version tags as trailing YAML comments when updating pinned actions.
 3. Maintain branch protection requirements as workflows and required-check names evolve.
 4. Keep consumer-side attestation verification in the release handoff.
+
+Tagged releases now have a read-only preflight job that must pass repository release readiness,
+public-data policy, checksum-bound licence-queue validation and immutable action-pin policy before
+the build job can create release assets or attestations. This separates release authorization
+from the later write-enabled asset upload job.
 5. Add Hugging Face dataset-card checks before any public derived dataset release. **Implemented**:
    `scripts/check_huggingface_bundle.py` now requires mixed-data licence metadata, source-specific
    licensing disclosure and an explicit redistribution-permission warning; the data-smoke workflow

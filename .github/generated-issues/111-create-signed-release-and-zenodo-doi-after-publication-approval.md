@@ -16,4 +16,5 @@ before opening it in GitHub.
 - [x] Scope is confirmed: prepare and validate metadata locally; do not deposit or mint a DOI.
 - [ ] Licence and data-governance implications are checked by an accountable human reviewer.
 - [x] Tests or validation evidence are defined: `pixi run zenodo-metadata` and focused unit tests.
+- [x] Tagged software releases require a least-privilege governance preflight before asset creation and attestation.
 - [x] Documentation or Conductor context is updated; external deposition remains gated.
