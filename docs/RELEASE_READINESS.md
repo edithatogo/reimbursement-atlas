@@ -42,10 +42,11 @@ Remaining blockers are external or require accountable human judgement:
 - Hugging Face publication requires the configured `HF_TOKEN` and target repository variables,
   but publication remains disabled until review gates pass.
 
-The current branch preflights completed successfully without mutating external services:
+The latest recorded preflights completed successfully without mutating external services
+and the PBS acquisition change is now merged to `main` in commit `e7ec053` via PR #284:
 OSF discovery/plan run `29492178596`, Hugging Face candidate validation run
 `29492180053`, and Zenodo non-depositing preflight run `29492181534`. The current
-branch source-health report is clear (`incomplete_count: 0`), and the PBS public
+merged-main source-health report is clear (`incomplete_count: 0`), and the PBS public
 API runtime probe returned HTTP 200 without recording the subscription key. The
 latest merged-main preflight IDs above remain historical evidence only.
 These runs validate automation and preserve fail-closed publication boundaries; they do not
