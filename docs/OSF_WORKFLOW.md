@@ -65,6 +65,10 @@ project ID, title, schema version and whether creation occurred. It does not con
 repository variables or upload research files; configure `OSF_PROJECT_ID` separately
 only after checking the artifact and ownership.
 
+The idempotent provisioning check in workflow run `29460182675` returned `created: false` for
+private project `q8cnx`. This confirms the configured project is reusable without creating a
+duplicate; no OSF mutation occurred.
+
 See `docs/reviews/SIMULATED_MULTI_AGENT_PROTOCOL_REVIEW_2026-07-11.md` for the advisory review and unresolved human gates.
 
 ## Latest read-only discovery

@@ -507,3 +507,9 @@ OSF workflow run `29459949265` passed with the pinned `osf-cli-go v1.0.0` and re
 discovery enabled. It confirmed the expected private `Reimbursement Atlas` project `q8cnx`;
 provisioning, registration, upload and publication were skipped. The sanitized project listing
 is retained only as a seven-day private artifact and is not committed.
+
+## 2026-07-16: OSF idempotent provisioning evidence
+
+OSF workflow run `29460182675` passed with `provision=true` and returned `created: false`,
+`id: q8cnx`, `title: Reimbursement Atlas` and `public: false`. The existing private project is
+therefore reusable without duplicate creation; no project, component or file was mutated.
