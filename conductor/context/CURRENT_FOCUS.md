@@ -220,6 +220,12 @@ archive pages are tracked under `data/seed/historical_mbs_archive_targets.jsonl`
 `data/derived/historical_sources/`. The targets remain manual/licence-review only; this
 inventory does not authorize raw acquisition or redistribution.
 
+Native GitHub blocker issues now bind the two remaining release lanes: historical MBS/PBS
+coverage is tracked in [#255](https://github.com/edithatogo/reimbursement-atlas/issues/255),
+and Zenodo DOI deposition is tracked in
+[#256](https://github.com/edithatogo/reimbursement-atlas/issues/256). Both remain fail-closed
+until their stated human and external approvals are recorded.
+
 ## 2026-07-15 continuation: publication controls and reproducible evidence
 
 HF publication infrastructure is now configured with repository secret `HF_TOKEN` and

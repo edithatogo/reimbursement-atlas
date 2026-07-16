@@ -151,6 +151,13 @@ but an external DOI would imply archival/publication readiness that the current 
 status does not support.
 
 Consequence: Release metadata remains locally reproducible; no Zenodo record or DOI is created.
+
+## 2026-07-16 - Create native issues for external release blockers
+
+Decision: Create native GitHub issues [#255](https://github.com/edithatogo/reimbursement-atlas/issues/255)
+for historical MBS/PBS coverage and [#256](https://github.com/edithatogo/reimbursement-atlas/issues/256)
+for Zenodo DOI release. These issues mirror the generated Conductor drafts and make the remaining
+licence, source-access and publication approvals actionable without changing any release gate.
 ## 2026-07-15 — Historical MBS archive inventory and OSF CLI refresh
 
 Decision: Add a metadata-only inventory for historical MBS targets and pin the OSF
