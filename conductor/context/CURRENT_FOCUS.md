@@ -748,3 +748,12 @@ acquisition targets, and the public dashboard status no longer exposes the stale
 blocker. PBS source terms and human review remain release gates. PR #283 has all required checks
 passing with squash auto-merge enabled, but still requires one approving review before `main`
 can receive the change. See `conductor/sessions/2026-07-16-v96-pbs-public-key-and-source-health-refresh.md`.
+
+## 2026-07-16 v97 publication preflight refresh
+
+Read-only publication preflights passed on the current branch: OSF discovery and pinned CLI
+validation (`29492178596`), Hugging Face candidate validation with both publication flags off
+(`29492180053`), and Zenodo metadata/readiness validation without DOI creation (`29492181534`).
+These runs confirm automation readiness only; no external publication mutation occurred and the
+human licence, protocol, evidence and release gates remain fail-closed. See
+`conductor/sessions/2026-07-16-v97-publication-preflight-refresh.md`.
