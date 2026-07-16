@@ -25,7 +25,8 @@
 
 - [x] Add SHA-pinned GitHub Pages deployment workflow.
 - [x] Keep Hugging Face Space publication manual and token-gated, with local bundle validation.
-- [ ] Create signed release metadata and Zenodo DOI only after publication approval.
+- [x] Add deterministic release metadata and workflow attestation; Zenodo DOI creation remains
+  gated on publication approval.
 
 ## 4. Validation and handoff
 

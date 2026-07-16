@@ -328,3 +328,17 @@ non-provider pattern coverage is a separate security-configuration capability.
 
 Consequence: Issue #191 remains open for account/security-configuration work, with no false-positive
 claim that partner validity checks cover generic non-provider secrets.
+## 2026-07-16 - Deterministic release manifest before Zenodo deposition
+
+Decision: Add a deterministic `release-manifest.json` to the tagged GitHub release and attest it
+with the existing release workflow, while keeping Zenodo deposition disabled pending publication
+approval.
+
+Rationale: Existing attestations covered distributions, source archives and SBOMs, but consumers
+could not compare those subjects through one tag/commit-bound inventory. A manifest improves
+software supply-chain verification without implying that source licensing, OSF registration,
+evidence release or policy claims are approved.
+
+Consequence: The release workflow now builds, attests, verifies and publishes the manifest. The
+manifest contains only relative paths, sizes and SHA-256 values for release subjects; no raw
+source payloads or credentials are introduced.

@@ -220,5 +220,6 @@ Tracked sub-issues:
 - Add dashboard accessibility performance and visual regression gates
 - Publish machine-readable project status and readiness badges
 - Add documentation freshness and claim-validation gate
-- Create signed release and Zenodo DOI after publication approval
+- Create and attest deterministic release metadata; create signed release and Zenodo DOI only
+  after publication approval
 - Expand reviewed coverage with historical MBS and PBS bundles
