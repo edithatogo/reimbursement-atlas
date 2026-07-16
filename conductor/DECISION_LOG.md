@@ -706,3 +706,17 @@ green while human redistribution review remains pending.
 Consequence: The previous PBS credential blocker is resolved for this runtime session, but the
 source-health gate remains partial because licence-gated historical/CMS targets must not be fetched
 or promoted without accountable review.
+
+## 2026-07-17 - Enforce administrator branch-protection checks
+
+Decision: Enable administrator enforcement on the protected `main` branch without adding a second
+reviewer requirement.
+
+Evidence: GitHub REST read-back reports `enforce_admins.enabled=true`, strict required status
+checks, linear history, conversation resolution, force-push protection and deletion protection.
+Required pull-request reviews remain unset, so the solo-maintainer workflow is preserved without
+weakening the CI and security gates.
+
+Consequence: Administrators cannot bypass the required software-quality and supply-chain checks.
+GitHub non-provider secret-pattern scanning and validity checks remain disabled by account/feature
+availability; the attempted repository API enablement was ignored and is recorded on issue #191.
