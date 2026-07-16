@@ -1,2 +1,2 @@
 credential_names,evidence_path,recommended_action,status,task_id,title
-PBS_API_SUBSCRIPTION_KEY,data/derived/source_downloads/download_attempts.jsonl,"Provide `PBS_API_SUBSCRIPTION_KEY` through the approved secret store, then rerun acquisition.",partial,final_source_downloads,Run hardened curl/wget source download plan
+,data/derived/source_downloads/download_attempts.jsonl,Run the hardened source-download plan and review the acquisition attempts before promotion.,partial,final_source_downloads,Run hardened curl/wget source download plan

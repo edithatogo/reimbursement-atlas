@@ -39,9 +39,9 @@ mkdir -p data/raw_live/us_cms_clfs
 # Snapshot: # Metadata-only record; review the landing page or endpoint before downloading.
 # Parse: # No parser runs for metadata-only landing/API records.
 
-# step_007: PBS API v3 documentation and CSV distribution
-# URL: https://data.pbs.gov.au/document/91327.html
-mkdir -p 'data/raw_live/au_pbs/PBS API'
+# step_007: PBS public API v3 schedule and item endpoints
+# URL: https://data-api.health.gov.au/pbs/api/v3/schedules
+mkdir -p data/raw_live/au_pbs
 # Snapshot: # Metadata-only record; review the landing page or endpoint before downloading.
 # Parse: # No parser runs for metadata-only landing/API records.
 

@@ -117,7 +117,8 @@ def _curl_args(
     if resume_downloads:
         args.extend(["--continue-at", "-"])
     if record.acquisition_mode == "api_rate_limited":
-        args.extend(["--header", "Accept: application/json, text/csv;q=0.9, */*;q=0.1"])
+        # PBS v3 /schedules rejects a mixed JSON/CSV Accept header with HTTP 415.
+        args.extend(["--header", "Accept: application/json"])
     args.extend(["-o", str(target), str(record.source_url)])
     return args
 
@@ -140,7 +141,7 @@ def _wget_args(
     if resume_downloads:
         args.append("--continue")
     if record.acquisition_mode == "api_rate_limited":
-        args.extend(["--header=Accept: application/json, text/csv;q=0.9, */*;q=0.1"])
+        args.extend(["--header=Accept: application/json"])
     args.extend(["-O", str(target), str(record.source_url)])
     return args
 

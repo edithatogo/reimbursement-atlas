@@ -497,6 +497,18 @@ MBS item-map and descriptor downloads, six intentional licence-gated skips, and 
 validation and source contracts pass, but the final handoff remains `partial`; the new attempt
 history does not change evidence or publication readiness.
 
+## 2026-07-16 — PBS public-key acquisition and Accept-header correction
+
+The official Department of Health API catalogue publishes a `Subscription-Key` for unregistered
+public users. A runtime-only copy of the current catalogue value successfully fetched the PBS v3
+`/schedules` endpoint. The hardened downloader initially sent a mixed JSON/CSV `Accept` header,
+which PBS rejected with HTTP 415; it now sends `Accept: application/json` for the schedule probe.
+
+The latest acquisition attempt records three downloaded targets and six intentional
+licence-gated skips. PBS acquisition is no longer blocked on a missing private credential, but the
+July 2026 schedule remains `acquired_unreviewed`; field scope, source terms and any derived bundle
+still require accountable human review before evidence or publication claims.
+
 ## 2026-07-16 — Automation documentation drift audit
 
 The GitHub automation documentation was corrected to describe SBOM generation and artifact
