@@ -21,4 +21,5 @@ jobs:
         with:
           persist-credentials: false
       - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
-      - run: pixi run mutation
+      - name: Run bounded mutation suite
+        run: pixi run mutation

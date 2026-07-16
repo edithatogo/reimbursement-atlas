@@ -130,7 +130,7 @@ test = "python -m pytest -q"
 coverage = "python -m pytest --cov=src/reimburse_atlas --cov-report=term-missing --cov-report=xml --cov-fail-under=90"
 bandit = "bandit -q -c pyproject.toml -r src scripts"
 pip-audit = "pip-audit --strict"
-mutation = "mutmut run --paths-to-mutate src/reimburse_atlas"
+mutation = "PYTHONPATH=src python scripts/run_bounded_mutation.py"
 profile = "scalene src/reimburse_atlas/cli.py -- --help"
 qa = { depends-on = ["format-check", "lint", "typecheck", "seed-sync-check", "public-data-policy", "repo-automation", "sbom", "architecture-report", "release-readiness", "source-download-plan", "pbs-acquisition-evidence", "source-validation", "source-contracts", "historical-sources", "github-project-export", "final-handoff", "protocol-status", "roadmap-linkages", "data-quality", "data-dictionary", "licence-review-queue", "licence-review-validate", "evidence-readiness", "source-drift", "osf-plan", "research-package", "coverage", "smoke"] }
 schema-export = "PYTHONPATH=src python scripts/export_json_schema.py"

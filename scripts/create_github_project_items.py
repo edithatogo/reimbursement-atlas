@@ -345,6 +345,7 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912 - criteria are expl
         "Run property integration and end-to-end harnesses as separate CI lanes",
         "Use interpreter-bound module invocation for Pixi Python test tasks",
         "Enforce deterministic generated-output regeneration",
+        "Bound mutation testing with timeouts and cancellation",
     }:
         acceptance = (
             "- [x] Scope is implemented in repository scripts, generated artefacts, documentation, "

@@ -1499,20 +1499,20 @@
     {
       "@id": "data/derived/github_project/github_project_items.jsonl",
       "@type": "File",
-      "contentSize": 128175,
+      "contentSize": 128197,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "github_project_items",
-      "sha256": "8d7ad4102f2cd2d46fe1ff860698f93691cc1322d99113949fc17605f5a80b52"
+      "sha256": "2699f9778916fd2f9457ce1c296ed2044e5a3145d9295e7e7c3650474703a21f"
     },
     {
       "@id": "data/derived/github_project/github_project_items.csv",
       "@type": "File",
-      "contentSize": 94782,
+      "contentSize": 94806,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "github_project_items",
-      "sha256": "a4fbc0a5aa3e663fffb21b660adc37ced2b334ba5ed0fdbeb0b55d1e6f395284"
+      "sha256": "5f6d099970380750a580a9f9e2ab4960035c23500f2fdfb8806a87987f62d0f1"
     },
     {
       "@id": "data/derived/final_handoff/final_handoff_tasks.jsonl",
@@ -1683,7 +1683,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "source_drift_report",
-      "sha256": "72485ad578f960bedbdb49f3b983c82744e44ff18696d4d7a64f6ee4f666cb87"
+      "sha256": "af57ec5bad04bf3c834256f35c2e061f33f99e9c00c37a2e398d134198b51c42"
     },
     {
       "@id": "data/derived/source_drift/source_drift_report.csv",
@@ -1692,7 +1692,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "source_drift_report",
-      "sha256": "5d71557cde1a9b540f52e0395c9a2a943946c04aa68cdb4f7304d744b5aea7ad"
+      "sha256": "8aa9e2887da6b52b4e33f0be63265b2b1c69efd22b178a45565d634d2ff8c089"
     },
     {
       "@id": "data/derived/source_drift/summary.json",
