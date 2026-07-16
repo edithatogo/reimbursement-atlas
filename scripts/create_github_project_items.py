@@ -308,6 +308,50 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
             "- [x] Documentation or Conductor context is updated in `docs/ONTOLOGY_STRATEGY.md`; "
             "domain review is still required before mapping promotion."
         )
+    elif issue.title == "Add source-version schema for MBS, CMS CLFS and NHS genomic directory":
+        acceptance = (
+            "- [x] Scope is confirmed: exact source versions, effective dates, formats, checksums "
+            "and licence gates are represented by the typed source-version contract.\n"
+            "- [x] Licence and data-governance implications are checked: the schema stores "
+            "metadata and provenance, not raw restricted payloads.\n"
+            "- [x] Tests or validation evidence are defined by schema export, seed synchronisation "
+            "and registry contract tests.\n"
+            "- [x] Documentation or Conductor context is updated; source-specific reuse review is "
+            "still required before publication."
+        )
+    elif issue.title == "Record redacted PBS API multi-endpoint acquisition evidence":
+        acceptance = (
+            "- [x] Scope is confirmed: schedules, paginated items and fees are represented by "
+            "redacted counts, columns, checksums and review status.\n"
+            "- [x] Licence and data-governance implications are checked: raw API responses remain "
+            "ignored and the subscription key is never recorded.\n"
+            "- [x] Tests or validation evidence are defined by PBS acquisition evidence tests and "
+            "source-contract validation.\n"
+            "- [x] Documentation or Conductor context is updated; derived publication remains "
+            "pending source and licence review."
+        )
+    elif issue.title == "Add synthetic ontology concept seed parser and mapping templates":
+        acceptance = (
+            "- [x] Scope is confirmed: synthetic concepts and candidate mapping templates are "
+            "generated without importing restricted terminology payloads.\n"
+            "- [x] Licence and data-governance implications are checked: synthetic fixtures are "
+            "clearly labelled and external terminology remains local-only.\n"
+            "- [x] Tests or validation evidence are defined by ontology parsing and "
+            "mapping-template unit tests plus seed synchronisation.\n"
+            "- [x] Documentation or Conductor context is updated; domain adjudication is required "
+            "before any mapping becomes evidence."
+        )
+    elif issue.title == "Public product, citation and dashboard maturity":
+        acceptance = (
+            "- [x] Scope is confirmed: the Astro dashboard, public status manifest, citation "
+            "metadata and release documentation are maintained as one product surface.\n"
+            "- [x] Licence and data-governance implications are checked by public-data policy and "
+            "publication-manifest gates.\n"
+            "- [x] Tests or validation evidence are defined by dashboard build, browser matrix, "
+            "citation validation and public documentation checks.\n"
+            "- [x] Documentation or Conductor context is updated; evidence and publication claims "
+            "remain fail-closed."
+        )
     elif issue.title == "Run pip-audit strict in network-enabled CI before public release":
         acceptance = (
             "- [x] Scope is confirmed: CI runs `pip-audit --strict` using the pinned Pixi task.\n"
