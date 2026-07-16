@@ -183,6 +183,10 @@ and commit. GitHub attests and verifies the manifest before publishing it. This 
 consumer software provenance without changing the fail-closed status of Zenodo, OSF, Hugging Face,
 source licensing, evidence or policy-claim gates.
 
+The release consumer path now also has an offline verifier for manifest schema, expected tag/commit,
+safe relative paths and subject SHA-256 values. Consumers should run it before `gh attestation
+verify`; neither check substitutes for the human and publication gates.
+
 ## 2026-07-16 live Pages defect follow-up
 
 The public browser check found a deployment-only base-path defect: HTML loaded at the project

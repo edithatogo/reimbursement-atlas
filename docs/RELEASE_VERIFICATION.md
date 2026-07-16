@@ -21,6 +21,10 @@ TAG=v0.1.0
 ASSET=dist/reimbursement_atlas-0.1.0-py3-none-any.whl
 
 shasum -a 256 "$ASSET"
+python scripts/verify_release_manifest.py \
+  --manifest release-manifest.json \
+  --root . \
+  --expected-tag "$TAG"
 gh attestation verify "$ASSET" \
   --repo edithatogo/reimbursement-atlas \
   --signer-workflow edithatogo/reimbursement-atlas/.github/workflows/release.yml \
