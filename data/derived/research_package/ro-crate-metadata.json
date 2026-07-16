@@ -1422,7 +1422,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "download_attempts",
-      "sha256": "42548bb5e10a0b579f5efda0e560d05da4d729e676e47cd186586a3b23d08d2c"
+      "sha256": "fbf0a7e09b552b19f72acea0566637c054befd349946b8fb188ef728d01d1ee3"
     },
     {
       "@id": "data/derived/source_downloads/download_attempts.csv",
@@ -1431,7 +1431,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "download_attempts",
-      "sha256": "be87950c31ac6c83ba92a2814359917a1bcd1d6bd1d80d07f67266f4ad5e5a08"
+      "sha256": "a37d4fed7c8825b98cccdbe5953a325789ab92b21dfe1958cc953c4c35898159"
     },
     {
       "@id": "data/derived/source_downloads/pbs_api_acquisition.jsonl",
@@ -1863,7 +1863,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "source_snapshots",
-      "sha256": "de8ebb6a67a032265183174f154820fe0ac5a3b7ad1d52502ddcd544075cf87d"
+      "sha256": "f6390e78e4fc6038fbd33c2316cb5c38c8f9e6947c522969aba3f119edee7eba"
     },
     {
       "@id": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/source_snapshots.jsonl",
@@ -1872,7 +1872,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "source_snapshots",
-      "sha256": "88a0259e9f001c416b714b015ce0ec1055e09b7764ab93e6f082607dd0ff73e9"
+      "sha256": "00437c8341452517d11b19d4381b39dfaeb913e394ff52b7fb642a762cfb31fd"
     },
     {
       "@id": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/summary.json",

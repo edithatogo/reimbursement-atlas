@@ -690,3 +690,19 @@ for the three available updates; TypeScript 7 remains an explicit compatibility 
 
 Consequence: The repository moves to the current compatible dashboard stack without using
 `--legacy-peer-deps` in CI or silently converting a peer incompatibility into an accepted gate.
+
+## 2026-07-17 - Refresh runtime-only PBS acquisition and MBS derived evidence
+
+Action: Read the official Department of Health API catalogue through the browser route, used the
+displayed public-user PBS key only in the acquisition process environment, reran the hardened
+download plan, and reprocessed the local July 2026 MBS TXT pair.
+
+Evidence: The refreshed redacted attempt ledger records three downloads and six intentional
+`skipped_licence_gate` targets. The PBS key is absent from the worktree and generated command
+provenance remains `[REDACTED]`. The MBS bundle parser produced 14,856 schedule items; source
+validation, source contracts, licence-queue validation and repository release readiness remain
+green while human redistribution review remains pending.
+
+Consequence: The previous PBS credential blocker is resolved for this runtime session, but the
+source-health gate remains partial because licence-gated historical/CMS targets must not be fetched
+or promoted without accountable review.

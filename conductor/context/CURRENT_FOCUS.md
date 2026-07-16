@@ -782,3 +782,16 @@ schedule acquisition is now represented by redacted provenance and `acquired_unr
 evidence; no subscription key or raw payload is tracked. The source-health report is correctly
 `partial` because licence-gated CMS and historical targets remain unresolved, not because the
 PBS key is missing. The repository is clean, and the policy and seed-sync checks pass.
+
+## 2026-07-17 v124 source acquisition refresh
+
+The official Department of Health API catalogue was checked through the browser route and its
+public-user PBS `Subscription-Key` was used only as an ephemeral runtime value. The hardened
+source acquisition rerun recorded three downloaded executable targets: the July 2026 MBS item-map,
+the July 2026 MBS descriptor file and PBS v3 schedules. The key was not written to the repository,
+raw payloads remain ignored, and PBS acquisition evidence remains redacted.
+
+Source health remains `incomplete`/`partial` for the correct reason: six historical or CMS targets
+are intentionally `skipped_licence_gate`. The MBS pair was reprocessed into the existing derived-only
+bundle with 14,856 schedule items. Human licence review, source-term review and evidence promotion
+remain required before publication.
