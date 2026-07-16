@@ -51,3 +51,5 @@ jobs:
           pixi run release-readiness || true
           pixi run seed-lake
           pixi run research-package
+      - name: Validate Hugging Face dataset card contract
+        run: pixi run hf-bundle

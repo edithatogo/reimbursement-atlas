@@ -88,7 +88,11 @@ uploaded with each run.
 2. Preserve human-readable version tags as trailing YAML comments when updating pinned actions.
 3. Maintain branch protection requirements as workflows and required-check names evolve.
 4. Keep consumer-side attestation verification in the release handoff.
-5. Add Hugging Face dataset-card checks before any public derived dataset release.
+5. Add Hugging Face dataset-card checks before any public derived dataset release. **Implemented**:
+   `scripts/check_huggingface_bundle.py` now requires mixed-data licence metadata, source-specific
+   licensing disclosure and an explicit redistribution-permission warning; the data-smoke workflow
+   runs this contract on every pull request. This validates the card contract only and does not
+   approve source licences or enable publication.
 
 SHA pinning is intentionally reviewed as a dependency-update operation rather than silently
 resolved during ordinary builds. The scheduled maintenance workflow is GitHub API-backed and

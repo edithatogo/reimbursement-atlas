@@ -15,6 +15,13 @@ REQUIRED_FILES = (
     "apps/dashboard/dist/status.json",
 )
 FORBIDDEN_MARKERS = ("data/raw_live", "/Users/", "/Volumes/", "HF_TOKEN=", "OSF_TOKEN=")
+DATASET_CARD_MARKERS = (
+    "license: other",
+    "pretty_name:",
+    "source-specific licensing",
+    "does not grant apache-2.0 rights",
+    "publish only manifest rows with confirmed redistribution permission",
+)
 
 
 def validate_bundle(root: Path) -> list[str]:
@@ -26,6 +33,12 @@ def validate_bundle(root: Path) -> list[str]:
         for marker in ("sdk: static", "license: apache-2.0", "raw restricted source"):
             if marker not in text:
                 errors.append(f"SPACE_README.md missing marker: {marker}")
+    dataset_card = root / "infra/huggingface/DATASET_CARD.md"
+    if dataset_card.exists():
+        text = " ".join(dataset_card.read_text(encoding="utf-8").lower().split())
+        for marker in DATASET_CARD_MARKERS:
+            if marker not in text:
+                errors.append(f"DATASET_CARD.md missing marker: {marker}")
     for path in (
         (root / "apps/dashboard/dist").rglob("*") if (root / "apps/dashboard/dist").exists() else ()
     ):

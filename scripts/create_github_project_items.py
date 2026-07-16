@@ -185,6 +185,19 @@ def render_issue(issue: IssueDraft) -> str:
             "- [x] Documentation or Conductor context is updated; external deposition remains "
             "gated."
         )
+    elif issue.title == "Add Hugging Face dataset-card contract checks before public release":
+        acceptance = (
+            "- [x] Scope is confirmed: validate versioned dataset-card metadata before any HF "
+            "publication mutation.\n"
+            "- [x] Licence and data-governance implications are checked: the card distinguishes "
+            "Apache-2.0 code from source-specific data terms.\n"
+            "- [x] Tests or validation evidence are defined: `pixi run hf-bundle` and focused "
+            "unit tests.\n"
+            "- [x] Documentation or Conductor context is updated; the pull-request data-smoke "
+            "workflow runs the contract.\n"
+            "- [ ] Accountable human source-licence approval and HF publication authorization "
+            "are complete."
+        )
     else:
         acceptance = """- [ ] Scope is confirmed.
 - [ ] Licence and data-governance implications are checked.

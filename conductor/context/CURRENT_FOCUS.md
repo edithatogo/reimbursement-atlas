@@ -607,3 +607,11 @@ Repository-owned review automation is now in place: a scheduled metadata-only hi
 inventory refresh opens normal PRs on archive drift, and a manual read-only Zenodo preflight
 validates metadata and release gates without accepting credentials or creating a DOI. Historical
 payloads, PBS extracts and Zenodo deposition remain externally approved work.
+
+## 2026-07-16: Hugging Face dataset-card contract
+
+The Hugging Face bundle validator now checks the governed dataset-card contract, including
+mixed-data licence metadata, source-specific licensing disclosure and an explicit
+redistribution-permission warning. The data-smoke workflow runs this check on pull requests.
+This validates publication metadata hygiene only; it does not approve source licences or enable
+remote publication.
