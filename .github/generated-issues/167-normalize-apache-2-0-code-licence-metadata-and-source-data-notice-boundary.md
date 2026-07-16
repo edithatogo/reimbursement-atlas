@@ -2,7 +2,9 @@
 
 Epic: `REL-001` — Release readiness and architecture gates
 
-Labels: type:release, type:licence, type:automation, phase:hardening
+Labels: type:release, type:licence, type:automation, phase:hardening, status:implemented
+
+Status: `implemented`
 
 ## Background
 
@@ -11,7 +13,6 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Project-owned code and documentation declare Apache-2.0 in `pyproject.toml`, `CITATION.cff`, `LICENSE`, and `NOTICE`.
+- [x] `NOTICE` and public-doc freshness checks explicitly preserve provider-specific terms for source data and third-party materials.
+- [x] Unit and public documentation validation cover the code/data licence boundary.
