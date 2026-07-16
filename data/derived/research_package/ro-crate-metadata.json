@@ -1418,20 +1418,20 @@
     {
       "@id": "data/derived/source_downloads/download_attempts.jsonl",
       "@type": "File",
-      "contentSize": 7963,
+      "contentSize": 7949,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "download_attempts",
-      "sha256": "80b7416ffb3b19f7dd2e2c50a3e976e0aa59d5812ce04de3ae2dab51c61de2d2"
+      "sha256": "42548bb5e10a0b579f5efda0e560d05da4d729e676e47cd186586a3b23d08d2c"
     },
     {
       "@id": "data/derived/source_downloads/download_attempts.csv",
       "@type": "File",
-      "contentSize": 6586,
+      "contentSize": 6576,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "download_attempts",
-      "sha256": "1cc326e4e01979c1d600bf0f019124f5835257bbc7b1094bcc857be1adb8e1e9"
+      "sha256": "be87950c31ac6c83ba92a2814359917a1bcd1d6bd1d80d07f67266f4ad5e5a08"
     },
     {
       "@id": "data/derived/source_downloads/pbs_api_acquisition.jsonl",
@@ -1440,7 +1440,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "pbs_api_acquisition",
-      "sha256": "fdbafcc6406fdc6b61533b04fd6b2cae283b9e66816e1933a0a5795760a5ae86"
+      "sha256": "b641e4558da2ed44b26da06de2318b4d53d73d1534a78632c2109353a667101e"
     },
     {
       "@id": "data/derived/source_downloads/pbs_api_acquisition.csv",
@@ -1449,7 +1449,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "pbs_api_acquisition",
-      "sha256": "46096a650641f0a2fa8e7cc53cd1fd842f855168d3216bec8895348b56cde605"
+      "sha256": "2dff4651646c3662f42ef2dfd1e296202ef3eb78e969c1c7f094c99910d36051"
     },
     {
       "@id": "data/derived/source_downloads/pbs_api_acquisition_summary.json",
@@ -1458,7 +1458,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "json",
       "name": "pbs_api_acquisition_summary",
-      "sha256": "dc80eb884adc6cc9e30f20e3203f7d361482c274213d1b93d1c3de8967939185"
+      "sha256": "5a1f6c7a02c9261557a0a485ddd840b55188e433b80b405223a7563f7ab5c52f"
     },
     {
       "@id": "data/derived/source_validation/source_content_validation.jsonl",
