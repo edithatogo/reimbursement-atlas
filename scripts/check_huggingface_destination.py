@@ -7,11 +7,10 @@ import json
 import os
 import sys
 from collections.abc import Callable
+from http.client import HTTPSConnection
 from pathlib import Path
 from typing import Any, cast
-from urllib.error import HTTPError, URLError
-from urllib.parse import quote
-from urllib.request import Request, urlopen
+from urllib.parse import quote, urlsplit
 
 from reimburse_atlas.registry import project_root
 
@@ -25,15 +24,25 @@ def _fetch_json(url: str) -> tuple[dict[str, Any], str | None]:
     """Fetch public repository metadata without credentials or mutation."""
     if not url.startswith(f"{API_ROOT}/"):
         return {}, "refusing to request a URL outside the fixed Hugging Face API"
-    request = Request(  # noqa: S310 - URL is constrained to the public HTTPS API below
-        url,
-        headers={"Accept": "application/json", "User-Agent": "reimbursement-atlas"},
-    )
+    parsed = urlsplit(url)
+    if parsed.scheme != "https" or parsed.netloc != "huggingface.co":
+        return {}, "refusing to request a non-Hugging Face HTTPS endpoint"
+    path = parsed.path + (f"?{parsed.query}" if parsed.query else "")
+    connection = HTTPSConnection(parsed.netloc, timeout=20)
     try:
-        with urlopen(request, timeout=20) as response:  # nosec B310 - fixed HTTPS API endpoint
-            raw_payload: object = json.loads(response.read().decode("utf-8"))
-    except (HTTPError, URLError, TimeoutError, ValueError) as exc:
+        connection.request(
+            "GET",
+            path,
+            headers={"Accept": "application/json", "User-Agent": "reimbursement-atlas"},
+        )
+        response = connection.getresponse()
+        if response.status >= 400:
+            return {}, f"Hugging Face API returned HTTP {response.status}"
+        raw_payload: object = json.loads(response.read().decode("utf-8"))
+    except (OSError, TimeoutError, ValueError) as exc:
         return {}, str(exc)
+    finally:
+        connection.close()
     if not isinstance(raw_payload, dict):
         return {}, "Hugging Face API response was not a JSON object"
     payload = cast("dict[str, Any]", raw_payload)
