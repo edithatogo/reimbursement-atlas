@@ -35,6 +35,7 @@ FILES = [
     Path("data/derived/vertical_slice/negative_controls.csv"),
     Path("data/derived/vertical_slice/mapping_calibration_cases.csv"),
     Path("data/derived/vertical_slice/mapping_calibration_summary.csv"),
+    Path("data/derived/vertical_slice/mapping_review_status.csv"),
     Path("data/derived/manual_acquisition_pack/acquisition_steps.csv"),
     Path("data/derived/policy_demonstrators/policy_briefs.csv"),
     Path("data/derived/external_quality_gates.csv"),

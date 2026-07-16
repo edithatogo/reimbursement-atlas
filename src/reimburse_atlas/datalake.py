@@ -194,6 +194,7 @@ def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:  
         "negative_controls",
         "mapping_calibration_cases",
         "mapping_calibration_summary",
+        "mapping_review_status",
     ):
         table_path = vertical_dir / f"{table_name}.jsonl"
         if table_path.exists():

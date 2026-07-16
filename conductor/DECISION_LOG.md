@@ -353,3 +353,14 @@ confusing it with GitHub workflow provenance or research/publication approval.
 
 Consequence: `scripts/verify_release_manifest.py` fails closed on malformed metadata, unsafe paths,
 missing subjects, tag/commit mismatches and checksum changes.
+## 2026-07-16 - Fail-closed mapping review status
+
+Decision: Add one generated mapping review status row that joins candidate, evidence,
+gold-standard, negative-control and calibration counts for dashboard and publication consumers.
+
+Rationale: The workbench already exposed each review surface separately, but consumers had to
+infer the overall state. A single explicit row improves auditability while preventing candidate
+crosswalks from being mistaken for approved or evidence-ready mappings.
+
+Consequence: The status is always `review_required`, requires reviewer sign-off, and reports
+`evidence_ready: false` until human adjudication occurs.
