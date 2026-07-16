@@ -871,6 +871,12 @@ The repository-pinned `github.com/edithatogo/osf-cli-go/cmd/osf@v1.0.0` was inst
 temporary ignored directory and passed `pixi run osf-cli-contract`. The unrelated workstation
 `osf` `0.3.2` binary was not used as evidence. No OSF credentials or remote state were accessed;
 registration and publication remain fail-closed.
+
+## 2026-07-17 v138 output issue body reconciliation
+
+Remote output-plan issues #114-#118, #121 and #347-#350 were synchronized from their versioned
+`.github/generated-issues/` drafts. Repository-owned criteria are checked, while planned/drafted
+promotion and human/external review criteria remain unchecked. No issue was closed or promoted.
 ## 2026-07-17 - Merged generated issue status contract
 
 PR [#371](https://github.com/edithatogo/reimbursement-atlas/pull/371) is merged at

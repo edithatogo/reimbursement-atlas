@@ -879,3 +879,15 @@ registration, file or metadata was changed.
 
 Consequence: The CLI toolchain gate is green locally, while registration and publication remain
 fail-closed pending protocol, licence, governance and human review approval.
+
+## 2026-07-17 - Reconcile generated output issue bodies
+
+Decision: Synchronize remote output-plan issue bodies from tracked generated drafts without
+changing issue state or interpreting repository implementation as publication approval.
+
+Evidence: Issues #114, #115, #116, #117, #118, #121, #347, #348, #349 and #350 now contain the
+generated checked repository criteria and the appropriate unchecked promotion/review criterion.
+
+Consequence: Conductor drafts and remote issue content agree. OSF, Hugging Face, Zenodo and
+research publication gates remain open where their human, licence or credential requirements are
+not satisfied.
