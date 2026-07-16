@@ -20,6 +20,17 @@ The dataset/Space creation flow is still separate from the GitHub Actions dry-ru
 The repository secret is now configured and the dry-run has passed; publication remains
 blocked until the workflow's licence, research, evidence and policy gates pass.
 
+## Latest destination verification
+
+On 2026-07-16, the public API confirmed that both configured targets exist. The dataset
+currently contains only its README, license and Git attributes, and reports `mit` in its
+remote card metadata. The Space is running a Gradio scaffold with `app.py` and also reports
+MIT metadata. These destinations do not yet match the governed release candidates: the
+dataset card preserves source-specific licences, while the Space candidate is a static
+Astro dashboard with Apache-2.0 code metadata. This is destination drift, not publication
+evidence. Reconciliation must occur through the gated workflow after licence and research
+review; no remote mutation was performed during this verification.
+
 Before either publication job can mutate a remote repository, the workflow runs
 `scripts/check_huggingface_bundle.py`. It verifies the Space metadata, dashboard status contract,
 publication manifest and forbidden raw/secret/local-path markers. A passing bundle check does not
