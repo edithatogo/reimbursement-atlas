@@ -1283,20 +1283,20 @@
     {
       "@id": "data/derived/local_quality_gates/local_quality_gates.jsonl",
       "@type": "File",
-      "contentSize": 17968,
+      "contentSize": 17971,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "local_quality_gates",
-      "sha256": "a01c0f38ad3f4938f44497e7637b8f09c30b1ca3522f5cc9e7a1a4b39024ed34"
+      "sha256": "020a4de0e880048f044791e4f285f72c5d5742cad4789f716873c49ac226f5bb"
     },
     {
       "@id": "data/derived/local_quality_gates/local_quality_gates.csv",
       "@type": "File",
-      "contentSize": 13069,
+      "contentSize": 13072,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "local_quality_gates",
-      "sha256": "38968c5151fcbc1d2ef6cd67279b96ecf051d206a6173659998c4738b517c420"
+      "sha256": "fb22c1a5c8866fa1c62990cafc68d91962ac5a00f7454c23dcb4a51cb483ab3e"
     },
     {
       "@id": "data/derived/local_quality_gates/local_quality_gate_specs.jsonl",
@@ -1863,7 +1863,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "source_snapshots",
-      "sha256": "aecf2a40b94a329a40e346c2b66c0970899e359dd98863927ae4e76c8a5d127c"
+      "sha256": "4a31c3a813cc36ebd75246e18d837b4b7fbe1dabd4ab2ddf933b0fd214445d59"
     },
     {
       "@id": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/source_snapshots.jsonl",
@@ -1872,7 +1872,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "source_snapshots",
-      "sha256": "ab2c26db43b6563cdf5974cecd15a4908c7b03320a235effa4e6f6d6c501d004"
+      "sha256": "927cf31cde6fba77c06679c16ece10ba1b310faaf4f52f6dc83d55ed9c36f54f"
     },
     {
       "@id": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/summary.json",
