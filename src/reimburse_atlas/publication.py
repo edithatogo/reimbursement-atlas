@@ -188,6 +188,8 @@ DEFAULT_PUBLICATION_PATHS = (
     Path("data/derived/research_package/datapackage.json"),
     Path("data/derived/research_package/ro-crate-metadata.json"),
     Path("data/derived/research_package/dcat.jsonld"),
+    Path("data/derived/mojo/mojo_parity_report.json"),
+    Path("data/derived/mojo/fuzzy_prefilter_benchmark.json"),
     Path("data/derived/v14_validation_run.json"),
     Path("data/derived/v15_validation_run.json"),
     Path("data/derived/v16_validation_run.json"),

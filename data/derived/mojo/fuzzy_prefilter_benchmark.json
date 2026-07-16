@@ -1,0 +1,31 @@
+{
+  "false_negative_count": 0,
+  "false_positive_count": 0,
+  "fixture_type": "synthetic_reviewed_pairs",
+  "gold_standard_count": 2,
+  "gold_standard_scores": [
+    0.583333,
+    0.266667
+  ],
+  "negative_control_count": 2,
+  "negative_control_scores": [
+    0.0,
+    0.0
+  ],
+  "notes": [
+    "This is a candidate-generation prefilter, not an equivalence classifier.",
+    "Synthetic fixture performance does not establish real-source recall.",
+    "Human mapping adjudication is required before evidence-readiness claims."
+  ],
+  "precision": 1.0,
+  "publication_safe": true,
+  "python_reference_status": "pass",
+  "recall": 1.0,
+  "reviewer_signoff_required": true,
+  "schema_version": "fuzzy-prefilter-benchmark-v1",
+  "specificity": 1.0,
+  "status": "review_required",
+  "threshold": 0.2,
+  "true_negative_count": 2,
+  "true_positive_count": 2
+}

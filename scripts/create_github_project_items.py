@@ -146,7 +146,21 @@ def render_issue(issue: IssueDraft) -> str:
     """Render one GitHub issue draft."""
     labels = ", ".join(issue.labels) if issue.labels else "none"
     parent = f"Parent issue: {issue.parent_issue}\n\n" if issue.parent_issue else ""
-    if issue.title == "Create signed release and Zenodo DOI after publication approval":
+    if issue.title == "Prototype Mojo fuzzy prefilter for large crosswalk candidate sets":
+        acceptance = (
+            "- [x] Scope is confirmed: candidate generation only, never an equivalence decision.\n"
+            "- [x] Licence and data-governance implications are checked for the synthetic local "
+            "fixture.\n"
+            "- [x] Tests or validation evidence are defined: `pixi run fuzzy-benchmark` records "
+            "recall,\n"
+            "  precision and specificity at a deterministic threshold.\n"
+            "- [x] Documentation or Conductor context is updated.\n"
+            "- [ ] Human adjudication of real reviewed mappings is complete.\n\n"
+            "Current synthetic fixture evidence: recall `1.0`, precision `1.0`, specificity `1.0 "
+            "at\n"
+            "threshold `0.2`. This does not establish evidence-grade performance."
+        )
+    elif issue.title == "Create signed release and Zenodo DOI after publication approval":
         acceptance = (
             "- [x] Scope is confirmed: prepare and validate metadata locally; do not deposit or "
             "mint a DOI.\n"

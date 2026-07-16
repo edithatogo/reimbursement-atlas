@@ -440,6 +440,12 @@
           "@id": "infra/huggingface/SPACE_README.md"
         },
         {
+          "@id": "data/derived/mojo/mojo_parity_report.json"
+        },
+        {
+          "@id": "data/derived/mojo/fuzzy_prefilter_benchmark.json"
+        },
+        {
           "@id": "data/derived/v14_validation_run.json"
         },
         {
@@ -1371,7 +1377,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "590c009597cdc4beebffbd41950646638c521066d3784ff5ead429fa0a896cc4"
+      "sha256": "4d4f25db12b26382f96a15c44bc6c927e628bcea6c3ad2f874e7456b71d6898a"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
@@ -1380,7 +1386,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "02d763125f4c0831d13419f8e7d5c622692a96c7c02b040900fab7d9e7839c11"
+      "sha256": "14418073cd7067acc9d1f221ba0dee716651dfa5d34ac38c06749447feefd6e4"
     },
     {
       "@id": "data/derived/v13_validation_run.json",
@@ -1700,20 +1706,20 @@
     {
       "@id": "data/derived/data_dictionary/data_dictionary.jsonl",
       "@type": "File",
-      "contentSize": 92664,
+      "contentSize": 93996,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "data_dictionary",
-      "sha256": "83d5e582d95af6bf841c79327bd35389158799cb43c42fae84d0286aa64e90a3"
+      "sha256": "854cb9a300a0dc24698f8b7e05b3e59f4f0c8a7b51e37bce4d2a46a9d47e2c9c"
     },
     {
       "@id": "data/derived/data_dictionary/data_dictionary.csv",
       "@type": "File",
-      "contentSize": 69869,
+      "contentSize": 70929,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "data_dictionary",
-      "sha256": "790b2f424cb0c91d9b43364d7c01adead802933d66c7f8edadb837ac3cffa188"
+      "sha256": "5fb79716ede3cc36bc0dfd57521f604d2cfac1be3d9883dee79b509738cd04dc"
     },
     {
       "@id": "data/derived/data_dictionary/summary.json",
@@ -1722,7 +1728,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "json",
       "name": "summary",
-      "sha256": "28bf9ae5adf920726ccb4145250e9c30f0b707438c9d1878c6b87ebb6e53a111"
+      "sha256": "303b4cc2bbe9f125c4cb5f1bb9243d0f7fcc9b7f55cae8e3c40c8c29f1bb0298"
     },
     {
       "@id": "infra/huggingface/DATASET_CARD.md",
@@ -1750,6 +1756,24 @@
       "encodingFormat": "md",
       "name": "SPACE_README",
       "sha256": "fa4629ddb8411ac6258dea8a2c5cddccba84cf408b26b578aa20643bf07af703"
+    },
+    {
+      "@id": "data/derived/mojo/mojo_parity_report.json",
+      "@type": "File",
+      "contentSize": 892,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "encodingFormat": "json",
+      "name": "mojo_parity_report",
+      "sha256": "c4cef71aba8241095f0eef5f76b500d97ba1beac7e48430b9e4de70437114f2b"
+    },
+    {
+      "@id": "data/derived/mojo/fuzzy_prefilter_benchmark.json",
+      "@type": "File",
+      "contentSize": 852,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "encodingFormat": "json",
+      "name": "fuzzy_prefilter_benchmark",
+      "sha256": "b9504a401797fbb77ae8460ac4138ad60293a96a05ebeed5b27a48ce77396951"
     },
     {
       "@id": "data/derived/v14_validation_run.json",

@@ -13,7 +13,12 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Scope is confirmed: candidate generation only, never an equivalence decision.
+- [x] Licence and data-governance implications are checked for the synthetic local fixture.
+- [x] Tests or validation evidence are defined: `pixi run fuzzy-benchmark` records recall,
+  precision and specificity at a deterministic threshold.
+- [x] Documentation or Conductor context is updated.
+- [ ] Human adjudication of real reviewed mappings is complete.
+
+Current synthetic fixture evidence: recall `1.0`, precision `1.0`, specificity `1.0` at
+threshold `0.2`. This does not establish evidence-grade performance.

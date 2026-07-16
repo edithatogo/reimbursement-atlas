@@ -61,5 +61,6 @@ jobs:
           pixi run licence-review-queue
           pixi run seed-lake
           pixi run dashboard-seed
+          pixi run fuzzy-benchmark
       - name: Require a clean deterministic regeneration
         run: git diff --exit-code

@@ -592,3 +592,11 @@ all external action refs through the repository resolver, refuses partial update
 human-readable version comments, and opens a dedicated normal PR rather than mutating `main`.
 The immutable-action policy gate remains authoritative, and network/resolution failures remain
 fail-closed. See `conductor/sessions/2026-07-16-v77-action-pin-maintenance.md`.
+
+## 2026-07-16: Fuzzy prefilter benchmark evidence
+
+The Python fuzzy-prefilter reference now has a deterministic benchmark over the reviewed
+synthetic gold-standard and negative-control fixtures. The current result is recall 1.0,
+precision 1.0 and specificity 1.0 at threshold 0.2, but the roadmap function remains a
+prototype and the benchmark remains review-required until real-source mappings are adjudicated.
+See `conductor/sessions/2026-07-16-v78-fuzzy-prefilter-benchmark.md`.
