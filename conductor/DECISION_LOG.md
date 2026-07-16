@@ -401,6 +401,14 @@ runner-specific timing claims. The fuzzy prefilter still lacks adjudicated gold-
 
 Consequence: The runtime track distinguishes a parity-backed tokenizer from the uncalibrated
 candidate-generation prototype.
+
+## 2026-07-16 - Add cross-browser graph renderer fallback
+
+Decision: Keep the Cosmograph renderer on Chromium/WebKit and provide an explicit generated-data
+fallback on Firefox. Headless Firefox can fail during Cosmograph device initialisation even when
+the page and graph CSVs are valid; the fallback prevents console errors while preserving node and
+edge counts and links to the accessible table views. The browser matrix remains blocking and the
+fallback is covered by the route smoke suite.
 ## 2026-07-16 - Promote public dashboard deployment after live Pages verification
 
 Decision: Promote `func_dashboard_public_deploy` from `prototype` to `implemented`.

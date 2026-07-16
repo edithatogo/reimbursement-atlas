@@ -565,6 +565,10 @@ and performs a post-deploy live HTTP smoke check. The roadmap function is implem
 software deployment surface. Hugging Face mirroring, human visual/accessibility review and all
 research/publication readiness claims remain separately gated.
 
+The dashboard graph now degrades explicitly on Firefox when the Cosmograph device renderer is
+unavailable, exposing generated node/edge counts instead of emitting a browser console error.
+Chromium and WebKit retain the interactive renderer; the full 40-test local browser matrix passes.
+
 ## 2026-07-16: Dashboard provenance and quality
 
 Dashboard provenance routes and automated experience-quality gates are implemented and review-

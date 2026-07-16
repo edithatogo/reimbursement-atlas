@@ -47,6 +47,7 @@ export default function Graph({ baseUrl = "/" }: { baseUrl?: string }) {
   const publicBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
   const [nodes, setNodes] = useState<CsvState<GraphNode>>({ rows: [], error: null });
   const [edges, setEdges] = useState<CsvState<GraphEdge>>({ rows: [], error: null });
+  const [rendererSupported, setRendererSupported] = useState<boolean | null>(null);
 
   useEffect(() => {
     void loadCsv<GraphNode>(`${publicBase}data/graph_nodes.csv`)
@@ -59,6 +60,12 @@ export default function Graph({ baseUrl = "/" }: { baseUrl?: string }) {
       .catch((error: unknown) => {
         setEdges({ rows: [], error: error instanceof Error ? error.message : String(error) });
       });
+  }, []);
+
+  useEffect(() => {
+    // Cosmograph's headless Firefox device initialisation is not reliable; keep the
+    // generated graph data available through an explicit non-WebGL fallback there.
+    setRendererSupported(!/Firefox\//.test(navigator.userAgent));
   }, []);
 
   const points = useMemo(
@@ -85,6 +92,22 @@ export default function Graph({ baseUrl = "/" }: { baseUrl?: string }) {
 
   if (points.length === 0) {
     return <p>Graph data has not been generated yet. Run the dashboard seed task.</p>;
+  }
+
+  if (rendererSupported === null) {
+    return <p>Checking graph renderer support…</p>;
+  }
+
+  if (!rendererSupported) {
+    return (
+      <section aria-label="Graph renderer fallback">
+        <p>
+          This browser does not use the interactive graph renderer. The generated graph contains{" "}
+          {points.length} nodes and {links.length} edges; use the linked source, mapping and
+          roadmap tables for an accessible view.
+        </p>
+      </section>
+    );
   }
 
   return (
