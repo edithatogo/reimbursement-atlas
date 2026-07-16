@@ -19,6 +19,7 @@ def main() -> None:
     """Write a sensitivity report without changing canonical readiness grades."""
     root = project_root()
     output = root / "data" / "derived" / "readiness_sensitivity"
+    output.mkdir(parents=True, exist_ok=True)
     rows = readiness_grade_sensitivity_rows(load_source_registry(), THRESHOLD_SETS)
     write_jsonl(rows, output / "readiness_grade_sensitivity.jsonl")
     write_csv(rows, output / "readiness_grade_sensitivity.csv")
