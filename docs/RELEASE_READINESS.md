@@ -24,9 +24,17 @@ contains checksum-bound candidate rows, and explicitly has
 and source-derived candidates; the source-derived subset still requires human Commonwealth,
 provider-licence and domain review before external publication.
 
+## Current merged state
+
+As of 2026-07-17, `main` is at `912f69ad9ede30b66c34e4c1a7150d9dbf1bcf46`.
+The repository release gates are green, the current PBS v3 schedule acquisition is
+recorded as `acquired_unreviewed`, and source-health is intentionally `partial`: MBS
+and PBS evidence exists in ignored local raw storage, while CMS and historical targets
+remain skipped behind licence/review gates. This is not a missing PBS credential state.
+
 ## Current blocker pattern
 
-As of 2026-07-16, the managed Python 3.14, official Pixi, Node/dashboard,
+As of 2026-07-17, the managed Python 3.14, official Pixi, Node/dashboard,
 SBOM, architecture, public-data, action-pinning, CodeQL, dependency-review,
 zizmor and branch-protection gates pass. The public GitHub Pages dashboard is
 deployed and its machine-readable status contract remains explicitly gated for
@@ -42,11 +50,11 @@ Remaining blockers are external or require accountable human judgement:
 - Hugging Face publication requires the configured `HF_TOKEN` and target repository variables,
   but publication remains disabled until review gates pass.
 
-The latest recorded preflights completed successfully without mutating external services
-and the PBS acquisition change is now merged to `main` in commit `e7ec053` via PR #284:
+The latest recorded preflights completed successfully without mutating external services.
+The PBS acquisition refresh is now merged to `main`; the older preflight identifiers below
+remain historical evidence only:
 OSF discovery/plan run `29492178596`, Hugging Face candidate validation run
-`29492180053`, and Zenodo non-depositing preflight run `29492181534`. The current
-merged-main source-health report is clear (`incomplete_count: 0`), and the PBS public
+`29492180053`, and Zenodo non-depositing preflight run `29492181534`. The PBS public
 API runtime probe returned HTTP 200 without recording the subscription key. The
 latest merged-main preflight IDs above remain historical evidence only.
 These runs validate automation and preserve fail-closed publication boundaries; they do not

@@ -47,6 +47,8 @@ def test_source_health_report_selects_only_incomplete_acquisition_tasks(tmp_path
     assert report["task_ids"] == ["source_partial", "source_secret"]
     assert report["network_io"] is False
     assert report["mutation_performed"] is False
+    partial_item = report["items"][0]
+    assert "licence-gated" in partial_item["recommended_action"]
 
 
 def test_source_health_report_surfaces_missing_secret_name_without_secret_value(
