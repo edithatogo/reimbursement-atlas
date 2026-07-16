@@ -1418,20 +1418,20 @@
     {
       "@id": "data/derived/source_downloads/download_attempts.jsonl",
       "@type": "File",
-      "contentSize": 7949,
+      "contentSize": 7963,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "download_attempts",
-      "sha256": "fbf0a7e09b552b19f72acea0566637c054befd349946b8fb188ef728d01d1ee3"
+      "sha256": "b72d9b5a03b761440389d069cf38d3017900d0ae0086a7a48a35a0ff0dae75b8"
     },
     {
       "@id": "data/derived/source_downloads/download_attempts.csv",
       "@type": "File",
-      "contentSize": 6576,
+      "contentSize": 6586,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "download_attempts",
-      "sha256": "a37d4fed7c8825b98cccdbe5953a325789ab92b21dfe1958cc953c4c35898159"
+      "sha256": "8687f2353691cc5bcbad5ff1379c3bec59a8b9d5654dee0843b3c96cd3d90ac3"
     },
     {
       "@id": "data/derived/source_downloads/pbs_api_acquisition.jsonl",
@@ -1863,7 +1863,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "source_snapshots",
-      "sha256": "f6390e78e4fc6038fbd33c2316cb5c38c8f9e6947c522969aba3f119edee7eba"
+      "sha256": "289b3e22467be4bd8abf24367a233371f61ee2937a4836e6e4862fb065ab35ab"
     },
     {
       "@id": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/source_snapshots.jsonl",
@@ -1872,7 +1872,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "source_snapshots",
-      "sha256": "00437c8341452517d11b19d4381b39dfaeb913e394ff52b7fb642a762cfb31fd"
+      "sha256": "a6d0beffa419f5914d4daca0573da32be1ba5ec871c7363245143a87ba3824de"
     },
     {
       "@id": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/summary.json",

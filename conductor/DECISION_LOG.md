@@ -817,3 +817,16 @@ were synchronized from tracked drafts and Project 18 reports each as `Done`.
 
 Consequence: Closure records repository implementation completion only. Licence review, source
 review, research, evidence, policy and publication gates remain fail-closed in generated status.
+
+## 2026-07-17 - Record real MBS acquisition without promotion
+
+Decision: Treat the July 2026 MBS TXT pair as acquired local evidence and a derived parser fixture,
+not as a reviewed or publishable source bundle.
+
+Evidence: The governed curl plan recorded two successful downloads and seven gated/credentialed
+targets. The derived MBS bundle contains 14,856 schedule rows, checksum-bound redacted snapshots,
+no raw payload copies and `public_reuse_review` as its licence gate. Issue #23 was updated with the
+evidence and remains open.
+
+Consequence: Source validation and contract gates pass, but clinical review, licence review,
+evidence readiness and publication readiness remain independently fail-closed.
