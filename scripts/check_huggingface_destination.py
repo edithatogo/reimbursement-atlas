@@ -12,11 +12,10 @@ from pathlib import Path
 from typing import Any, cast
 from urllib.parse import quote, urlsplit
 
-from reimburse_atlas.registry import project_root
-
 DEFAULT_DATASET_REPO = "edithatogo/reimbursement-atlas"
 DEFAULT_SPACE_REPO = "edithatogo/reimbursement-atlas"
 API_ROOT = "https://huggingface.co/api"
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 Fetcher = Callable[[str], tuple[dict[str, Any], str | None]]
 
 
@@ -140,7 +139,7 @@ def main(argv: list[str] | None = None) -> int:
     report = destination_report(args.dataset_repo, args.space_repo)
     rendered = json.dumps(report, indent=2, sort_keys=True) + "\n"
     if args.output:
-        output = args.output if args.output.is_absolute() else project_root() / args.output
+        output = args.output if args.output.is_absolute() else PROJECT_ROOT / args.output
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(rendered, encoding="utf-8")
     print(rendered, end="")
