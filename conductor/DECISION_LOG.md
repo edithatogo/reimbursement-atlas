@@ -734,3 +734,18 @@ pinned workflows continue to run without an unreviewed allowlist change.
 
 Consequence: Future workflow changes using mutable action tags are rejected at the repository
 control plane in addition to the repository's actionlint, workflow-policy and zizmor checks.
+
+## 2026-07-17 - Recheck dashboard canary and TypeScript 7 compatibility
+
+Decision: Close the resolved stack-canary drift issue without forcing TypeScript 7 into the current
+Astro checker toolchain.
+
+Evidence: The npm registry reports current compatible versions of Astro `7.1.0`,
+`@cosmograph/react` `2.3.3` and `@astrojs/check` `0.9.9`. The checker declares
+`typescript: ^5.0.0 || ^6.0.0`, while TypeScript `7.0.2` is the latest release. `npm ci`,
+`astro check`, build and browser gates remain green on TypeScript `6.0.3`.
+
+Consequence: Issue [#360](https://github.com/edithatogo/reimbursement-atlas/issues/360) is closed
+as resolved. Issue [#362](https://github.com/edithatogo/reimbursement-atlas/issues/362) remains an
+explicit compatibility blocker until the upstream checker peer contract supports TypeScript 7;
+no unsupported peer override or `--legacy-peer-deps` path is used.

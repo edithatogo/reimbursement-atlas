@@ -812,3 +812,11 @@ read-only default workflow token permissions preserved. A workflow reference aud
 `uses:` entries pinned to full commit SHAs. Issue [#352](https://github.com/edithatogo/reimbursement-atlas/issues/352)
 was updated with the REST evidence and closed. The allowed-actions policy remains unchanged at
 `all`; immutable references, actionlint, workflow-policy and zizmor remain the enforcement layers.
+
+## 2026-07-17 v127 dashboard canary compatibility recheck
+
+The npm registry was rechecked after the compatible dashboard updates. Astro `7.1.0`,
+`@cosmograph/react` `2.3.3` and `@astrojs/check` `0.9.9` are current. TypeScript `7.0.2` remains
+unadopted because the checker peer contract is `^5.0.0 || ^6.0.0`; TypeScript `6.0.3` continues to
+pass `npm ci`, `astro check`, build and browser validation. Issue #360 was closed as resolved and
+#362 remains blocked pending upstream checker support.
