@@ -174,3 +174,22 @@ def test_research_package_generation_is_deterministic(tmp_path: Path) -> None:
     first = [path.read_bytes() for path in paths]
     write_research_package(tmp_path)
     assert [path.read_bytes() for path in paths] == first
+
+
+def test_research_package_descriptors_exclude_themselves(tmp_path: Path) -> None:
+    """Descriptors must not list or hash any descriptor from their own output set."""
+    paths = write_research_package(tmp_path)
+    descriptor_names = {path.name for path in paths}
+    datapackage = json.loads((tmp_path / "datapackage.json").read_text(encoding="utf-8"))
+    crate = json.loads((tmp_path / "ro-crate-metadata.json").read_text(encoding="utf-8"))
+    dcat = json.loads((tmp_path / "dcat.jsonld").read_text(encoding="utf-8"))
+
+    resource_paths = {str(resource["path"]) for resource in datapackage["resources"]}
+    crate_ids = {str(node.get("@id")) for node in crate["@graph"]}
+    distribution_paths = {
+        str(distribution["dcat:downloadURL"]) for distribution in dcat["dcat:distribution"]
+    }
+
+    assert descriptor_names.isdisjoint(resource_paths)
+    assert (descriptor_names - {"ro-crate-metadata.json"}).isdisjoint(crate_ids)
+    assert descriptor_names.isdisjoint(distribution_paths)

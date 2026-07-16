@@ -159,7 +159,8 @@ epics:
         labels: ["type:publication", "type:quality", "risk:licence", "phase:hardening", "status:blocked"]
         status: blocked
       - title: Make research package descriptors deterministic and non-self-referential
-        labels: ["type:publication", "type:quality", "phase:hardening"]
+        labels: ["type:publication", "type:quality", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Add dashboard table for policy signal matrix and analysis recipes
         labels: ["type:dashboard", "type:analysis"]
   - id: ONT-001
