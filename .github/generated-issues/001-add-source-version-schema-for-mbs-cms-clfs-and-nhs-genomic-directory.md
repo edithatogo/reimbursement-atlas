@@ -2,9 +2,9 @@
 
 Epic: `SRC-001` — First-wave source versioning and fixtures
 
-Labels: type:data-source, phase:1-slice, risk:licence, status:blocked
+Labels: type:data-source, phase:1-slice, risk:licence, status:implemented
 
-Status: `blocked`
+Status: `implemented`
 
 ## Background
 
@@ -13,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Scope is confirmed: exact source versions, effective dates, formats, checksums and licence gates are represented by the typed source-version contract.
+- [x] Licence and data-governance implications are checked: the schema stores metadata and provenance, not raw restricted payloads.
+- [x] Tests or validation evidence are defined by schema export, seed synchronisation and registry contract tests.
+- [x] Documentation or Conductor context is updated; source-specific reuse review is still required before publication.

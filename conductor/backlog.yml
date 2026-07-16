@@ -8,8 +8,8 @@ epics:
     priority: must
     issues:
       - title: Add source-version schema for MBS, CMS CLFS and NHS genomic directory
-        labels: ["type:data-source", "phase:1-slice", "risk:licence", "status:blocked"]
-        status: blocked
+        labels: ["type:data-source", "phase:1-slice", "risk:licence", "status:implemented"]
+        status: implemented
       - title: Add tiny permissive parser fixtures with provenance metadata
         labels: ["type:parser", "phase:1-slice", "good-first-issue", "status:implemented"]
         status: implemented
@@ -116,7 +116,8 @@ epics:
       - title: Validate PBS API CSV parser against a reviewed monthly public extract
         labels: ["type:parser", "phase:1-slice", "type:medicines"]
       - title: Record redacted PBS API multi-endpoint acquisition evidence
-        labels: ["type:data-quality", "type:provenance", "type:parser", "phase:hardening"]
+        labels: ["type:data-quality", "type:provenance", "type:parser", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Validate CMS ASP parser against July 2026 payment-limit files
         labels: ["type:parser", "phase:1-slice", "type:medicines"]
       - title: Validate CMS PFS parser against RVU26C with CPT descriptor safeguards
@@ -189,8 +190,8 @@ epics:
     priority: should
     issues:
       - title: Add synthetic ontology concept seed parser and mapping templates
-        labels: ["type:ontology", "risk:licence", "phase:1-slice", "status:blocked"]
-        status: blocked
+        labels: ["type:ontology", "risk:licence", "phase:1-slice", "status:implemented"]
+        status: implemented
       - title: Define local adapter contracts for RxNav-in-a-Box style services
         labels: ["type:ontology", "type:mcp", "phase:2-expansion", "status:implemented"]
         status: implemented
@@ -381,7 +382,8 @@ epics:
     priority: must
     issues:
       - title: Public product, citation and dashboard maturity
-        labels: ["type:track", "type:dashboard", "type:publication", "priority:must"]
+        labels: ["type:track", "type:dashboard", "type:publication", "priority:must", "status:implemented"]
+        status: implemented
       - title: Expose the checksum-bound licence review queue in the dashboard
         labels: ["type:dashboard", "type:review", "risk:licence", "phase:release-gate", "status:blocked"]
         status: blocked
