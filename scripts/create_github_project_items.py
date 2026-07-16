@@ -635,6 +635,23 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
             "- [x] Conductor backlog, generated issue draft, and GitHub Project row are marked "
             "implemented."
         )
+    elif issue.title == (
+        "Reconcile Hugging Face destination metadata with governed publication candidate"
+    ):
+        acceptance = (
+            "- [x] Scope is confirmed: read-only verification identifies the configured dataset "
+            "and Space and records current destination metadata.\n"
+            "- [x] Licence and data-governance implications are checked: remote mutation remains "
+            "blocked until the governed candidate gates pass.\n"
+            "- [x] Tests or validation evidence are defined: the Hugging Face candidate workflow "
+            "builds and validates both bundles with publication flags disabled.\n"
+            "- [x] Documentation or Conductor context is updated with the current destination "
+            "drift.\n"
+            "- [ ] Dataset card and Space metadata match the governed candidate, including the "
+            "Apache-2.0 code and source-specific data-licence boundary.\n"
+            "- [ ] Licence, research, evidence and policy-claim gates are approved before a "
+            "write-enabled reconciliation run."
+        )
     else:
         acceptance = """- [ ] Scope is confirmed.
 - [ ] Licence and data-governance implications are checked.

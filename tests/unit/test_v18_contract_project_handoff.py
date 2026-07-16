@@ -144,6 +144,20 @@ def test_generated_zenodo_issue_records_non_depositing_boundary() -> None:
     assert "accountable human reviewer" in rendered
 
 
+def test_generated_huggingface_issue_records_destination_drift_boundary() -> None:
+    rendered = render_issue(
+        IssueDraft(
+            epic_id="PUB-001",
+            epic_title="Publication and dataset release readiness",
+            title="Reconcile Hugging Face destination metadata with governed publication candidate",
+            status="blocked",
+        )
+    )
+    assert "destination metadata" in rendered
+    assert "write-enabled reconciliation run" in rendered
+    assert "Status: `blocked`" in rendered
+
+
 def test_generated_issue_paths_preserve_existing_numeric_prefixes(tmp_path: Path) -> None:
     existing = tmp_path / "042-keep-this-title.md"
     existing.write_text("old draft\n", encoding="utf-8")
