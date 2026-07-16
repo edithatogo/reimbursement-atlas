@@ -178,6 +178,8 @@ epics:
         labels: ["type:data-quality", "type:automation", "phase:hardening"]
       - title: Normalize Apache-2.0 code licence metadata and source-data NOTICE boundary
         labels: ["type:release", "type:licence", "type:automation", "phase:hardening"]
+      - title: Rebind the required zizmor check to the repository-owned workflow app
+        labels: ["type:security", "type:supply-chain", "type:repo-automation", "phase:hardening"]
 
   - id: OSF-002
     title: Protocol completeness and OSF release gates

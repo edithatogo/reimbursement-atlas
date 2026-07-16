@@ -681,3 +681,19 @@ The tracked code licence was normalized to the canonical Apache-2.0 text, projec
 moved to `NOTICE`, and the public-docs gate now verifies both the code licence and the explicit
 underlying-source-data boundary. This addresses GitHub's stale `Other/NOASSERTION` metadata risk
 without relicensing MBS, PBS, CMS or third-party terminology data.
+
+## 2026-07-16 v90 external preflight refresh
+
+Read-only preflights were rerun against merged main commit `e8b8a2e`. OSF workflow
+`29475141289` successfully discovered private project `q8cnx`, verified the pinned
+`osf-cli-go` v1.0.0 plan and kept all sync rows fail-closed; Hugging Face workflow
+`29475142574` built and validated the dataset/Space candidate with both publish jobs
+skipped; Zenodo workflow `29475143715` validated metadata without a DOI or deposit; and
+source-health workflow `29475144835` passed validation while retaining the single PBS
+`PBS_API_SUBSCRIPTION_KEY` acquisition blocker. No external publication mutation occurred.
+
+The current PR evidence also exposed a branch-protection integration defect: `main` binds the
+required `zizmor` context to GitHub Advanced Security app `57789`, whose check remains queued,
+instead of the passing repository-owned GitHub Actions app `15368`. Issue [#275](https://github.com/edithatogo/reimbursement-atlas/issues/275)
+tracks the admin-only remediation. The secure fix is to rebind the existing required context,
+not to remove the workflow gate or bypass merge protection.

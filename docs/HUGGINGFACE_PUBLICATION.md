@@ -33,6 +33,13 @@ review; no remote mutation was performed during this verification.
 
 ## Latest non-mutating candidate validation
 
+Workflow run `29475142574` on merged main commit `e8b8a2e` repeated the candidate
+validation. The publication manifest, research package and static dashboard built and
+validated successfully; `publish-dataset` and `publish-space` were skipped. No Hugging
+Face remote repository was mutated. Publication remains blocked by the governed licence,
+research, evidence and policy gates, and the existing destination metadata drift remains
+an explicit reconciliation task.
+
 Hugging Face workflow run `29473382378` on `main` successfully regenerated the publication
 manifest and research package, built the dashboard, and validated the candidate bundle. Both
 publish jobs were skipped because `publish_dataset=false` and `publish_space=false`. This is

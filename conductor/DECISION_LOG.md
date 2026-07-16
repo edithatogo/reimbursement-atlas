@@ -559,3 +559,30 @@ and makes the code/data distinction executable without treating provider data as
 
 Consequence: Code and project documentation remain Apache-2.0; underlying source terms remain
 source-specific and governed by the licence-review queue.
+
+## 2026-07-16 - Refresh non-mutating publication and source preflights
+
+Decision: Rerun OSF discovery/plan, Hugging Face candidate validation, Zenodo preflight and
+source-health monitoring against merged main without enabling any publication mutation.
+
+Rationale: External credentials are configured in GitHub, but current evidence must be tied to
+the merged commit and must distinguish automation readiness from human publication approval.
+
+Consequence: OSF run `29475141289`, Hugging Face run `29475142574`, Zenodo run `29475143715`
+and source-health run `29475144835` all passed. OSF/Hugging Face writes, Zenodo deposit and
+DOI creation did not occur; PBS acquisition remains blocked by the absent approved secret.
+
+## 2026-07-16 - Record stale Advanced Security zizmor check binding
+
+Decision: Keep the `zizmor` requirement enabled, but rebind its required-check app from the
+queued GitHub Advanced Security app `57789` to the passing repository-owned GitHub Actions app
+`15368` through repository-admin settings.
+
+Rationale: PR #274 has a passing SHA-pinned `zizmor` workflow, while the separately required
+Advanced Security check is queued without an associated Actions run and blocks normal merging.
+An authenticated REST update returned `404 Not Found`, so the setting cannot be changed through
+the current API route.
+
+Consequence: Issue [#275](https://github.com/edithatogo/reimbursement-atlas/issues/275) records
+the exact app IDs and evidence. No security gate was removed and no administrator merge bypass
+was used.
