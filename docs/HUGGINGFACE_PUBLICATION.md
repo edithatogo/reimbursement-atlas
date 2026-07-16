@@ -33,6 +33,12 @@ review; no remote mutation was performed during this verification.
 The reconciliation is tracked in GitHub issue [#320](https://github.com/edithatogo/reimbursement-atlas/issues/320)
 and remains blocked until the governed licence, research, evidence and policy gates pass.
 
+The scheduled/manual `huggingface-destination.yml` workflow performs a credential-free,
+read-only check of the configured dataset and Space API metadata. It records only repository
+identities, expected card fields and drift reasons in an artifact; it never clones, writes, or
+authenticates against Hugging Face. A drift result is an observation for issue #320, not
+publication approval.
+
 ## Latest non-mutating candidate validation
 
 The latest validation on `main` (`c7a55b3e4483265ffe60637714e930512ec22cdb`) was workflow
