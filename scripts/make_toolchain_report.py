@@ -76,6 +76,11 @@ class ToolchainRow:
     notes: str
 
 
+def _public_cli_path(executable: str) -> str:
+    """Return a stable executable reference without exposing a machine path."""
+    return f"PATH:{executable}"
+
+
 def package_row(name: str, kind: str, distribution: str) -> ToolchainRow:
     """Return one package availability row from installed distribution metadata."""
     try:
@@ -177,7 +182,7 @@ def cli_probe_row(name: str, command: tuple[str, ...]) -> ToolchainRow:
             kind="cli",
             available=False,
             version="",
-            path=path,
+            path=_public_cli_path(executable),
             notes="probe timed out",
         )
     except OSError as exc:
@@ -186,7 +191,7 @@ def cli_probe_row(name: str, command: tuple[str, ...]) -> ToolchainRow:
             kind="cli",
             available=False,
             version="",
-            path=path,
+            path=_public_cli_path(executable),
             notes=f"probe failed: {exc}",
         )
     outcome = classify_gate_result(completed.returncode, completed.stdout, completed.stderr)
@@ -212,7 +217,7 @@ def cli_probe_row(name: str, command: tuple[str, ...]) -> ToolchainRow:
         kind="cli",
         available=available,
         version=version,
-        path=path,
+        path=_public_cli_path(executable),
         notes=notes,
     )
 
@@ -254,6 +259,7 @@ def write_report(json_path: Path = DEFAULT_JSON_PATH, csv_path: Path = DEFAULT_C
         writer = csv.DictWriter(
             handle,
             fieldnames=["name", "kind", "available", "version", "path", "notes"],
+            lineterminator="\n",
         )
         writer.writeheader()
         writer.writerows(asdict(row) for row in rows)

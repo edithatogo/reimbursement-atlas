@@ -260,7 +260,7 @@ uv build
 cd apps/dashboard && npm ci && npm audit --omit=dev --audit-level=moderate && npm run build
 ```
 
-`pip-audit` is installed but remained blocked here by DNS resolution to `pypi.org`. Full mutmut is now wired correctly, but the configured run generated 3,673 mutants across 45 files and should remain a scheduled/manual gate rather than a fast PR blocker.
+The historical v7 sandbox run recorded `pip-audit` as DNS-blocked. The current external-quality run passes `pip-audit --strict` with no known vulnerabilities. Full mutmut is wired correctly, but the configured run generated 3,673 mutants across 45 files and should remain a scheduled/manual gate rather than a fast PR blocker.
 
 See:
 
@@ -291,7 +291,7 @@ New public metadata outputs:
 - `apps/dashboard/public/data/source_files.csv`
 - `apps/dashboard/public/data/external_quality_gates.csv`
 
-The external quality gate report distinguishes installed-but-network-blocked gates from missing tools. In the current runtime, `pip-audit` is installed but blocked by DNS access to `pypi.org`; `npm audit` passes; Pixi and Mojo executables are not present on `PATH`.
+The external quality gate report distinguishes installed-but-network-blocked gates from missing tools. The current runtime reports passing `pip-audit --strict`, `npm audit`, official Pixi and the Mojo toolchain. The generated report remains the authoritative dated record when network or runtime availability changes.
 
 See:
 
@@ -397,7 +397,7 @@ Source acquisition is now executable. The `source-download-plan` command emits c
 PYTHONPATH=src reimbursement-atlas source-download-plan --attempt --method curl
 ```
 
-In this sandbox, public MBS/PBS download attempts were classified as `blocked_network` because DNS resolution failed. This is recorded in `data/derived/source_downloads/download_attempts.*`; it is not treated as evidence that the sources are unavailable.
+The current acquisition evidence records a real July 2026 MBS TXT pair in ignored local storage and an acquired-but-unreviewed PBS API extract. MBS publication remains licence/research-review gated, while PBS acquisition requires the approved `PBS_API_SUBSCRIPTION_KEY`; historical DNS-blocked attempts remain preserved in `data/derived/source_downloads/download_attempts.*` and are not treated as evidence that sources are unavailable.
 
 OSF is now part of the research workflow. The repo generates an OSF component plan, protocol/report scaffolds, and a token-gated workflow for future OSF publication. Hugging Face publication is also explicit: the workflow now has separate gated jobs for publishing the derived dataset and deploying the Astro dashboard to a Hugging Face Space.
 

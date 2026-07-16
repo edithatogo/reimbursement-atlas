@@ -1,10 +1,10 @@
 name,kind,available,version,path,notes
-python,runtime,True,3.13.5,active Python interpreter,Linux x86_64 via python3
+python,runtime,True,3.14.5,active Python interpreter,Darwin arm64 via python3
 ruff,python-package,True,0.15.20,python environment,installed
 basedpyright,python-package,True,1.39.9,python environment,installed
 pytest,python-package,True,9.1.1,python environment,installed
 pytest-cov,python-package,True,7.1.0,python environment,installed
-hypothesis,python-package,True,6.156.1,python environment,installed
+hypothesis,python-package,True,6.156.2,python environment,installed
 mutmut,python-package,True,3.6.0,python environment,installed
 scalene,python-package,True,2.3.0,python environment,installed
 bandit,python-package,True,1.9.4,python environment,installed
@@ -17,7 +17,7 @@ pydantic,python-package,True,2.13.4,python environment,installed
 defusedxml,python-package,True,0.7.1,python environment,installed
 fastapi,python-package,True,0.139.0,python environment,installed
 mcp,python-package,True,1.28.1,python environment,installed
-astro,node-package,True,7.0.6,apps/dashboard/package-lock.json,locked
+astro,node-package,True,7.0.7,apps/dashboard/package-lock.json,locked
 @astrojs/check,node-package,True,0.9.9,apps/dashboard/package-lock.json,locked
 @astrojs/react,node-package,True,6.0.1,apps/dashboard/package-lock.json,locked
 @cosmograph/react,node-package,True,2.3.2,apps/dashboard/package-lock.json,locked
@@ -27,9 +27,9 @@ react,node-package,True,19.2.7,apps/dashboard/package-lock.json,locked
 react-dom,node-package,True,19.2.7,apps/dashboard/package-lock.json,locked
 uv.lock,lockfile,True,,uv.lock,present
 dashboard package-lock,lockfile,True,,apps/dashboard/package-lock.json,present
-uv,cli,True,uv 0.10.0,/opt/pyvenv/bin/uv,probe passed
-official-pixi-on-path,cli,False,,,not found on PATH
+uv,cli,True,uv 0.11.8 (0e961dd9a 2026-04-27 aarch64-apple-darwin),PATH:uv,probe passed
+official-pixi-on-path,cli,True,pixi 0.72.2,PATH:pixi,probe passed
 mojo-on-path,cli,False,,,not found on PATH
-mojo-via-uv-tool,cli,True,Mojo 0.26.2.0 (d627decc),/opt/pyvenv/bin/uv,probe passed
-node,cli,True,v22.16.0,/opt/nvm/versions/node/v22.16.0/bin/node,probe passed
-npm,cli,True,10.9.2,/opt/nvm/versions/node/v22.16.0/bin/npm,probe passed
+mojo-via-uv-tool,cli,True,Mojo 0.26.2.0 (d627decc),PATH:uv,probe passed
+node,cli,True,v26.5.0,PATH:node,probe passed
+npm,cli,True,11.17.0,PATH:npm,probe passed
