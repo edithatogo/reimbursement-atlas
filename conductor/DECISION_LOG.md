@@ -599,3 +599,14 @@ successful GraphQL update.
 
 Consequence: Issue [#275](https://github.com/edithatogo/reimbursement-atlas/issues/275) is
 closed. Branch protection remains strict and no required security gate was removed or bypassed.
+
+## 2026-07-16 - Reconcile live GitHub Project issue coverage
+
+Action: Audited live project #18 against the repository issue ledger and added missing items
+for issues #131, #140, #237, #255, #256 and #275.
+
+Evidence: Project item read-back shows closed issues #131, #140 and #275 as `Done`, and active
+issues #237, #255 and #256 as `Todo`. No issue bodies, labels or status gates were weakened.
+
+Consequence: The live board now covers the previously missing repository issue set. Local
+generated project rows remain the deterministic reconciliation source for later updates.
