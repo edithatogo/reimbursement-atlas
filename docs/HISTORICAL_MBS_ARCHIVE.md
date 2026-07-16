@@ -6,6 +6,10 @@ targets in:
 - `data/seed/historical_mbs_archive_targets.jsonl`
 - `data/derived/historical_sources/`
 
+The inventory is derived from the official [MBS Online downloads page](https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/Content/downloads),
+the [2010 to 2019 archive index](https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/Content/MBSOnline-2010),
+and the [previous downloads index](https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/Content/Prev-Downloads).
+
 The current inventory was refreshed from the official MBS archive index pages
 and contains 343 targets across 32 archive pages, spanning releases from 1974
 through 2026. It records official URLs, archive pages, file names and periods;
