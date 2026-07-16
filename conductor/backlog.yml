@@ -131,7 +131,8 @@ epics:
         labels: ["type:api", "good-first-issue", "status:implemented"]
         status: implemented
       - title: Draft read-only MCP server implementation plan
-        labels: ["type:mcp", "phase:2-expansion"]
+        labels: ["type:mcp", "phase:2-expansion", "status:implemented"]
+        status: implemented
   - id: DASH-002
     title: Generated artefact dashboard tables
     phase: slice
