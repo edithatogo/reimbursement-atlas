@@ -317,7 +317,9 @@ readable status contracts are validated, HF/OSF workflows are token-gated and fa
 Zenodo metadata is prepared without deposition, and release attestations have consumer
 verification guidance.
 
-The active queue is now explicitly external or human-reviewed:
+The active queue is now explicitly external or human-reviewed. The licence queue contains 159
+artifact candidates across project metadata, governance outputs and source-derived artefacts;
+that total is not a count of source files:
 
 1. Review the MBS bundle and CMS CLFS/PFS/ASP reuse boundaries (`#23`, `#24`, `#26`, `#27`).
 2. Acquire and review a PBS monthly extract (`#25`) and approve historical MBS/PBS scope.
@@ -450,7 +452,7 @@ policy claims, protocol readiness and source licence review are incomplete.
 ## 2026-07-16 — Checksum-bound licence review queue
 
 The publication manifest now has a generated artifact-level review queue under
-`data/derived/licence_review/`. It contains 159 checksum-bound candidates, all pending,
+`data/derived/licence_review/`. It contains 159 checksum-bound artifact candidates, all pending,
 with zero approvals and `approval_mutation_allowed: false`. The queue is exposed through
 the data dictionary, local quality gates, release readiness, Conductor backlog and generated
 GitHub Project artefacts; it improves review readiness without bypassing human licence or

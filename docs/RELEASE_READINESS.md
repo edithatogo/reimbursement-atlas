@@ -20,7 +20,9 @@ The summary contains `required_blocker_count` and `public_release_ready`. Public
 The release matrix also verifies that `data/derived/licence_review/summary.json` exists,
 contains checksum-bound candidate rows, and explicitly has
 `approval_mutation_allowed: false`. This verifies the review-control mechanism only; the
-159 candidate rows remain pending until human licence/domain review is recorded.
+159 artifact candidates remain pending. This includes project metadata, governance outputs,
+and source-derived candidates; the source-derived subset still requires human Commonwealth,
+provider-licence and domain review before external publication.
 
 ## Current blocker pattern
 

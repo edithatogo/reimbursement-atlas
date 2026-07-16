@@ -639,3 +639,15 @@ mutation occurred.
 
 Consequence: The pinned OSF toolchain is current and reproducible. OSF registration, upload
 and publication remain gated on protocol, licence, evidence and human approval.
+
+## 2026-07-16 - Clarify licence queue population
+
+Decision: Describe the 159-row licence queue as artifact candidates rather than source-derived
+files.
+
+Rationale: The queue intentionally includes project metadata, governance outputs, seed artefacts
+and source-derived candidates. Calling all 159 rows source-derived overstated the external data
+review workload, while removing the queue would weaken publication controls.
+
+Consequence: Documentation and Conductor context now distinguish the total artifact queue from
+the source-derived subset. All rows remain pending and publication remains fail-closed.
