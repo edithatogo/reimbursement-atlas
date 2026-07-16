@@ -772,3 +772,13 @@ derived bundle and PBS extract, CMS parser/licence review, historical MBS/PBS sc
 mapping calibration review, publication approval for OSF/Hugging Face/Zenodo, and the account-level
 GitHub non-provider secret-pattern and validity-check settings. No external source payload or
 publication mutation is implied by the merge.
+
+## 2026-07-17 v109 current merged-state audit
+
+PR #315 merged to `main` as `912f69ad9ede30b66c34e4c1a7150d9dbf1bcf46` after every required
+CI check passed, including the browser matrix, Python 3.14, dashboard, generated-artifact,
+seed, CodeQL, dependency-review, actionlint, zizmor and reproducible-build lanes. The PBS v3
+schedule acquisition is now represented by redacted provenance and `acquired_unreviewed`
+evidence; no subscription key or raw payload is tracked. The source-health report is correctly
+`partial` because licence-gated CMS and historical targets remain unresolved, not because the
+PBS key is missing. The repository is clean, and the policy and seed-sync checks pass.

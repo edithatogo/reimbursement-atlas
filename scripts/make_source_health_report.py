@@ -37,6 +37,11 @@ def _recommended_action(status: str) -> str:
             "Restore network access or run the documented acquisition command "
             "from an approved network."
         )
+    if status == "partial":
+        return (
+            "Review downloaded-source evidence and resolve remaining licence-gated "
+            "or unacquired targets before promotion."
+        )
     return (
         "Run the hardened source-download plan and review the acquisition "
         "attempts before promotion."
