@@ -9,7 +9,8 @@ import re
 import sys
 from pathlib import Path
 from typing import Any, cast
-from urllib.request import Request, urlopen
+
+import httpx
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / ".github" / "branch-protection.example.yml"
@@ -61,16 +62,17 @@ def validate_branch_protection(payload: dict[str, Any]) -> list[str]:
 
 def _live_payload(repo: str, token: str) -> dict[str, Any]:
     """Fetch required status checks without printing the bearer token."""
-    request = Request(
+    response = httpx.get(
         f"https://api.github.com/repos/{repo}/branches/main/protection/required_status_checks",
         headers={
             "Accept": "application/vnd.github+json",
             "Authorization": f"Bearer {token}",
             "X-GitHub-Api-Version": "2022-11-28",
         },
+        timeout=20,
     )
-    with urlopen(request, timeout=20) as response:  # noqa: S310 - fixed GitHub HTTPS endpoint
-        return json.load(response)
+    response.raise_for_status()
+    return cast("dict[str, Any]", response.json())
 
 
 def main(argv: list[str] | None = None) -> int:
