@@ -556,8 +556,17 @@ decisions in one typed brief, including the restricted-coverage count and explic
 denominators. This remains a fixture-backed, review-gated demonstrator and does not infer
 item-level equivalence, causality or evidence-ready policy claims.
 
+## 2026-07-16: Dashboard public deployment verification
+
+The GitHub Pages deployment is now verified at
+`https://edithatogo.github.io/reimbursement-atlas/`. Its SHA-pinned workflow builds with the
+project-site base path, validates asset prefixes before upload, runs browser smoke coverage,
+and performs a post-deploy live HTTP smoke check. The roadmap function is implemented for this
+software deployment surface. Hugging Face mirroring, human visual/accessibility review and all
+research/publication readiness claims remain separately gated.
+
 ## 2026-07-16: Dashboard provenance and quality
 
 Dashboard provenance routes and automated experience-quality gates are implemented and review-
-gated. Keep public deployment separate until the canonical GitHub Pages URL is verified; browser
-automation does not replace human cross-platform visual or assistive-technology review.
+gated. Browser automation does not replace human cross-platform visual or assistive-technology
+review.

@@ -218,7 +218,7 @@ Tracked sub-issues:
 - Add dashboard search filters downloads and stable deep links
 - Add dashboard provenance and mapping-evidence drill-down
 - Add dashboard accessibility performance and visual regression gates
-- `func_dashboard_provenance_drilldown` and `func_dashboard_accessibility_quality` are implemented locally and remain review-gated; public deployment remains prototype until its canonical URL is verified.
+- `func_dashboard_provenance_drilldown` and `func_dashboard_accessibility_quality` are implemented locally and remain review-gated. `func_dashboard_public_deploy` is implemented for GitHub Pages: the canonical URL is live, the Pages artifact-prefix gate passes, and the post-deploy live smoke workflow is configured. Hugging Face mirroring remains separately token-, licence- and review-gated through `func_hf_space_deploy`.
 - Publish machine-readable project status and readiness badges
 - Add documentation freshness and claim-validation gate
 - Create and attest deterministic release metadata; create signed release and Zenodo DOI only

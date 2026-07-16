@@ -401,3 +401,12 @@ runner-specific timing claims. The fuzzy prefilter still lacks adjudicated gold-
 
 Consequence: The runtime track distinguishes a parity-backed tokenizer from the uncalibrated
 candidate-generation prototype.
+## 2026-07-16 - Promote public dashboard deployment after live Pages verification
+
+Decision: Promote `func_dashboard_public_deploy` from `prototype` to `implemented`.
+The repository has a SHA-pinned GitHub Pages workflow, an explicit project-site base-path
+contract, a pre-upload asset-prefix validator, and a post-deploy live smoke check against
+`https://edithatogo.github.io/reimbursement-atlas/`. This status describes the implemented
+deployment mechanism and verified software surface only; it does not claim Hugging Face
+publication, cross-platform visual approval, accessibility sign-off, research readiness or
+policy-claim readiness. Hugging Face mirroring remains separately token- and review-gated.
