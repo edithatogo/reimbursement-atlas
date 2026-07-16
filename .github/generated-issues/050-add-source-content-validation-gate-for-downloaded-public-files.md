@@ -2,7 +2,9 @@
 
 Epic: `DQ-001` — Data quality and evidence readiness gates
 
-Labels: type:data-quality, type:data-source, phase:hardening
+Labels: type:data-quality, type:data-source, phase:hardening, status:implemented
+
+Status: `implemented`
 
 ## Background
 
@@ -11,7 +13,6 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Source-content validation is generated for the acquisition registry and runs in CI and source-health workflows.
+- [x] Licence-gated, metadata-only, missing, and executable-source states remain distinct and fail closed.
+- [x] Validation outputs are checksum/provenance-linked derived artefacts; raw live payloads remain ignored.

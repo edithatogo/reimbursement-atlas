@@ -140,9 +140,11 @@ epics:
     priority: should
     issues:
       - title: Add readiness table views to Astro dashboard
-        labels: ["type:dashboard", "phase:1-slice"]
+        labels: ["type:dashboard", "phase:1-slice", "status:implemented"]
+        status: implemented
       - title: Add crosswalk review queue view to Astro dashboard
-        labels: ["type:dashboard", "type:mapping"]
+        labels: ["type:dashboard", "type:mapping", "status:implemented"]
+        status: implemented
   - id: PUB-001
     title: Publication and dataset release readiness
     phase: slice
@@ -164,7 +166,8 @@ epics:
         labels: ["type:publication", "type:quality", "phase:hardening", "status:implemented"]
         status: implemented
       - title: Add dashboard table for policy signal matrix and analysis recipes
-        labels: ["type:dashboard", "type:analysis"]
+        labels: ["type:dashboard", "type:analysis", "status:implemented"]
+        status: implemented
   - id: ONT-001
     title: Local-only terminology seed workflow
     phase: slice
@@ -231,13 +234,15 @@ epics:
     priority: must
     issues:
       - title: Add source-content validation gate for downloaded public files
-        labels: ["type:data-quality", "type:data-source", "phase:hardening"]
+        labels: ["type:data-quality", "type:data-source", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Add data-quality checks as a release-readiness gate
         labels: ["type:data-quality", "type:release", "phase:hardening"]
       - title: Add research-question linkage matrix to roadmap and OSF planning
         labels: ["type:research", "type:roadmap", "phase:hardening"]
       - title: Add dashboard views for source validation and data-quality checks
-        labels: ["type:dashboard", "type:data-quality", "phase:hardening"]
+        labels: ["type:dashboard", "type:data-quality", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Add source-specific record-count and schema validators after first real downloads
         labels: ["type:parser", "type:data-quality", "phase:implementation"]
   - id: EVID-017

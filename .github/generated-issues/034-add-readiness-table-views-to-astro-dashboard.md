@@ -2,7 +2,9 @@
 
 Epic: `DASH-002` — Generated artefact dashboard tables
 
-Labels: type:dashboard, phase:1-slice
+Labels: type:dashboard, phase:1-slice, status:implemented
+
+Status: `implemented`
 
 ## Background
 
@@ -11,7 +13,6 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] The `/readiness/` route renders source, analysis, ingestion, licence, and release-readiness tables from generated dashboard-safe artefacts.
+- [x] Route and dashboard asset contracts validate the generated CSV inputs without including raw restricted payloads.
+- [x] Readiness views preserve the separation between repository, evidence, and publication readiness.

@@ -2,7 +2,9 @@
 
 Epic: `DQ-001` — Data quality and evidence readiness gates
 
-Labels: type:dashboard, type:data-quality, phase:hardening
+Labels: type:dashboard, type:data-quality, phase:hardening, status:implemented
+
+Status: `implemented`
 
 ## Background
 
@@ -11,7 +13,6 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Public dashboard routes expose source validation, data-quality, and drift tables from generated artefacts.
+- [x] Dashboard assets are sanitised and checked for ignored raw-cache paths and absolute local paths.
+- [x] CI regenerates and builds the dashboard before protected merges.
