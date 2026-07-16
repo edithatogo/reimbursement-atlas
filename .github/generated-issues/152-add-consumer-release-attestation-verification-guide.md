@@ -2,7 +2,9 @@
 
 Epic: `REL-001` — Release readiness and architecture gates
 
-Labels: type:security, type:release, phase:hardening
+Labels: type:security, type:release, phase:hardening, status:implemented
+
+Status: `implemented`
 
 ## Background
 

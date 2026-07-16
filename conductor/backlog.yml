@@ -79,7 +79,8 @@ epics:
         labels: ["type:automation", "good-first-issue", "status:implemented"]
         status: implemented
       - title: Add SBOM and SLSA provenance release jobs
-        labels: ["type:security", "phase:2-expansion"]
+        labels: ["type:security", "phase:2-expansion", "status:implemented"]
+        status: implemented
       - title: Convert backlog YAML to GitHub issues
         labels: ["type:automation", "phase:1-slice"]
   - id: LIVE-001
@@ -191,7 +192,8 @@ epics:
         labels: ["type:repo-automation", "phase:hardening", "status:implemented"]
         status: implemented
       - title: Add consumer release-attestation verification guide
-        labels: ["type:security", "type:release", "phase:hardening"]
+        labels: ["type:security", "type:release", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Schedule source-health and source-drift monitoring with issue escalation
         labels: ["type:data-quality", "type:automation", "phase:hardening"]
       - title: Normalize Apache-2.0 code licence metadata and source-data NOTICE boundary
