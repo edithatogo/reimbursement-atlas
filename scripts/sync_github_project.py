@@ -7,6 +7,7 @@ import json
 import os
 import shutil
 import subprocess  # nosec B404 - the fixed GitHub CLI boundary is shell-free and argument-list based.
+import time
 from pathlib import Path
 from typing import Any, cast
 
@@ -19,9 +20,19 @@ def _run_gh(args: list[str], *, root: Path) -> Any:
     if executable is None:
         message = "GitHub CLI executable 'gh' was not found on PATH"
         raise RuntimeError(message)
-    result = subprocess.run(  # nosec B603 - executable is resolved and shell execution is disabled.
-        [executable, *args], cwd=root, check=False, capture_output=True, text=True
-    )
+    result = None
+    for attempt in range(3):
+        result = subprocess.run(  # nosec B603 - executable is resolved and shell execution is disabled.
+            [executable, *args], cwd=root, check=False, capture_output=True, text=True
+        )
+        if result.returncode == 0:
+            break
+        detail = result.stderr.strip() or result.stdout.strip()
+        transient = any(marker in detail for marker in ("502", "503", "504", "timed out"))
+        if not transient or attempt == 2:
+            break
+        time.sleep(2**attempt)
+    assert result is not None
     if result.returncode != 0:
         detail = result.stderr.strip() or result.stdout.strip() or "unknown gh failure"
         message = f"gh {' '.join(args[:2])} failed: {detail}"
