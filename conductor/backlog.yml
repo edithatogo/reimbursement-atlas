@@ -195,7 +195,8 @@ epics:
         labels: ["type:security", "type:release", "phase:hardening", "status:implemented"]
         status: implemented
       - title: Schedule source-health and source-drift monitoring with issue escalation
-        labels: ["type:data-quality", "type:automation", "phase:hardening"]
+        labels: ["type:data-quality", "type:automation", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Normalize Apache-2.0 code licence metadata and source-data NOTICE boundary
         labels: ["type:release", "type:licence", "type:automation", "phase:hardening"]
       - title: Rebind the required zizmor check to the repository-owned workflow app
