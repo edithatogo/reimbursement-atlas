@@ -12,6 +12,8 @@ protection and avoiding another required-check deadlock.
 - Added unit tests for valid, missing-context and wrong-app contracts.
 - Documented administrator usage in `docs/GITHUB_AUTOMATION.md`.
 - Added the completed Conductor backlog item and generated issue/project artefacts.
+- Created and closed live issue [#279](https://github.com/edithatogo/reimbursement-atlas/issues/279)
+  after PR #278 merged; added the completed item to Project #18 as `Done`.
 
 ## Evidence
 
