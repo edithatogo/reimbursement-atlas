@@ -18,7 +18,7 @@
     "vscode": {
       "extensions": [
         "ms-python.python",
-        "charliermarsh.ruff",
+        "astral-sh.ruff",
         "detachhead.basedpyright",
         "redhat.vscode-yaml",
         "astro-build.astro-vscode"

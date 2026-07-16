@@ -8,7 +8,9 @@ from pathlib import Path
 
 def test_devcontainer_uses_pinned_official_pixi_image(repo_root: Path) -> None:
     """Codespaces must use a pinned Pixi image and the project environment."""
-    config = json.loads((repo_root / ".devcontainer" / "devcontainer.json").read_text())
+    config = json.loads(
+        (repo_root / ".devcontainer" / "devcontainer.json").read_text(encoding="utf-8")
+    )
 
     assert config["image"] == "ghcr.io/prefix-dev/pixi:0.72.2"
     assert config["postCreateCommand"] == "pixi install"
