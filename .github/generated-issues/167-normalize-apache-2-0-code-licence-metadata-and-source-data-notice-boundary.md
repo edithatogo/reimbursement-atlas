@@ -13,6 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Project-owned code and documentation declare Apache-2.0 in `pyproject.toml`, `CITATION.cff`, `LICENSE`, and `NOTICE`.
-- [x] `NOTICE` and public-doc freshness checks explicitly preserve provider-specific terms for source data and third-party materials.
-- [x] Unit and public documentation validation cover the code/data licence boundary.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

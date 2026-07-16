@@ -1,8 +1,8 @@
-# Implement Mojo fixed-width tokenizer kernel and Python parity test
+# Keep generated issue acceptance criteria and status synchronized
 
-Epic: `TRACK_RUNTIME_MOJO_PYTHON314` — Mojo-first runtime and Python 3.14 compatibility
+Epic: `DX-001` — Developer experience and release hardening
 
-Labels: type:roadmap-function, priority:must, interface:mojo_kernel, status:implemented
+Labels: type:automation, type:repo-automation, phase:hardening, status:implemented
 
 Status: `implemented`
 

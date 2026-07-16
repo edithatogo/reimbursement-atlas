@@ -105,6 +105,35 @@ def test_generated_roadmap_issue_preserves_implementation_status() -> None:
     assert "Status: `implemented`" in render_issue(issue)
 
 
+def test_generated_output_plan_preserves_status_and_external_gate() -> None:
+    """Output drafts must expose both local state and promotion boundaries."""
+    from scripts.create_github_project_items import generated_track_issues
+
+    issues = generated_track_issues(ROOT)
+    issue = next(item for item in issues if item.title == "Implement output plan: out_hf_dataset")
+    rendered = render_issue(issue)
+    assert issue.status == "planned"
+    assert "status:planned" in issue.labels
+    assert "Status: `planned`" in rendered
+    assert "human or external approval" in rendered
+    assert "- [ ]" in rendered
+
+
+def test_implemented_roadmap_issue_does_not_render_placeholder_checklist() -> None:
+    """Implemented roadmap rows must not look unstarted in GitHub."""
+    rendered = render_issue(
+        IssueDraft(
+            epic_id="TRACK_PUBLIC_PRODUCT_CITATION_DASHBOARD",
+            epic_title="Public product, citation and dashboard maturity",
+            title="Correct and schema-validate CITATION.cff",
+            status="implemented",
+        )
+    )
+    assert "Status: `implemented`" in rendered
+    assert "- [ ]" not in rendered
+    assert "does not grant external publication or evidence approval" in rendered
+
+
 def test_project_status_preserves_implemented_licence_gated_controls() -> None:
     """A licence-risk label must not hide a completed local control."""
     from reimburse_atlas.github_project import build_github_project_items

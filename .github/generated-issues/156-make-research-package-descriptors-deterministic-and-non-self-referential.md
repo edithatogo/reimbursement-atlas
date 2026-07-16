@@ -13,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: Frictionless, RO-Crate and DCAT descriptors describe licence-safe derived artefacts only.
-- [x] Licence and data-governance implications are checked: descriptor files are excluded from the candidate manifest and do not change source-data terms.
-- [x] Tests or validation evidence are defined: deterministic regeneration and non-self-reference contract tests.
-- [x] Documentation or Conductor context is updated in the publication-manifest descriptor-determinism section.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

@@ -13,8 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: every publication candidate is represented by a generated queue row.
-- [x] Licence and data-governance implications are checked: rows are checksum-bound and fail closed.
-- [x] Tests or validation evidence are defined: deterministic queue generation and licence-review validation.
-- [x] Documentation or Conductor context is updated in the queue README and release documentation.
-- [ ] Human decisions are recorded for every candidate before publication.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

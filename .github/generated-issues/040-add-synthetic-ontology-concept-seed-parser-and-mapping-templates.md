@@ -13,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: synthetic concepts and candidate mapping templates are generated without importing restricted terminology payloads.
-- [x] Licence and data-governance implications are checked: synthetic fixtures are clearly labelled and external terminology remains local-only.
-- [x] Tests or validation evidence are defined by ontology parsing and mapping-template unit tests plus seed synchronisation.
-- [x] Documentation or Conductor context is updated; domain adjudication is required before any mapping becomes evidence.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

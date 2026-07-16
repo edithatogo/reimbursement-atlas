@@ -13,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: strict protection requires the repository's security and harness contexts.
-- [x] Licence and data-governance implications are not altered by branch settings.
-- [x] Tests or validation evidence are defined by the branch-protection drift validator and live API read-back.
-- [x] Documentation or Conductor context is updated; no administrator bypass is used.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

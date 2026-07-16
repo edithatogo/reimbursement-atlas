@@ -13,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: only the required `zizmor` app binding was changed.
-- [x] Strict protection and all 20 required status contexts were preserved.
-- [x] GraphQL and REST read-back confirm `zizmor` is bound to GitHub Actions app `15368`, not Advanced Security app `57789`.
-- [x] Conductor, documentation and GitHub issue evidence are updated.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

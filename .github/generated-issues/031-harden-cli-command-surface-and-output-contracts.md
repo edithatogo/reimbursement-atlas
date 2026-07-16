@@ -13,6 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Read-only registry commands preserve Rich tables and expose explicit `--json` output.
-- [x] JSON contracts are covered by CLI end-to-end tests and contain derived metadata only.
-- [x] CLI/API/MCP documentation records the output contract and licence boundary.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

@@ -13,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: CI runs `pip-audit --strict` using the pinned Pixi task.
-- [x] Licence and data-governance implications are checked: advisory results do not alter source-data publication terms.
-- [x] Tests or validation evidence are defined: the protected `python-security` job and external-quality-gates artefact provide network-enabled evidence.
-- [x] Documentation or Conductor context is updated; local advisory lookup remains environment-dependent outside CI.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

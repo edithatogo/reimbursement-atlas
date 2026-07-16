@@ -13,8 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: validate versioned dataset-card metadata before any HF publication mutation.
-- [x] Licence and data-governance implications are checked: the card distinguishes Apache-2.0 code from source-specific data terms.
-- [x] Tests or validation evidence are defined: `pixi run hf-bundle` and focused unit tests.
-- [x] Documentation or Conductor context is updated; the pull-request data-smoke workflow runs the contract.
-- [ ] Accountable human source-licence approval and HF publication authorization are complete.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

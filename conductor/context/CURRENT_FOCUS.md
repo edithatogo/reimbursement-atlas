@@ -845,3 +845,6 @@ with status `implemented` or `done` and no unchecked criteria were closed: #322,
 #334, #335, #336, #337, #338, #355, #356 and #359. Project 18 read-back reports these rows as
 `Done`. Release-gated source, licence, research, evidence, publication, TypeScript 7 and account
 security issues remain open; no external approval was inferred.
+
+The generator contract itself is now tracked as issue [#370](https://github.com/edithatogo/reimbursement-atlas/issues/370),
+which is closed and marked `Done` in Project 18 after focused contract tests passed.

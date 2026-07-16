@@ -1,5 +1,5 @@
 version: 2
-updated: "2026-07-16"
+updated: "2026-07-17"
 epics:
   - id: SRC-001
     title: First-wave source versioning and fixtures
@@ -110,6 +110,14 @@ epics:
           - "Generated issue labels have corresponding repository labels with descriptions."
           - "The reconciled issue set carries the generated labels without changing issue content."
           - "Label taxonomy alignment is recorded as an auditable Conductor session."
+      - title: Keep generated issue acceptance criteria and status synchronized
+        labels: ["type:automation", "type:repo-automation", "phase:hardening", "status:implemented"]
+        status: implemented
+        acceptance:
+          - "Roadmap issue drafts with implemented status render checked local implementation criteria rather than generic unchecked placeholders."
+          - "Output-plan issue drafts preserve their source status and explicit external promotion gate."
+          - "Focused tests cover roadmap and output-plan rendering contracts."
+          - "Generated issue and GitHub Project artefacts are regenerated from the same source records."
   - id: LIVE-001
     title: Reviewed live-source validation
     phase: slice

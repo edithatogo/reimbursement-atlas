@@ -13,6 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] The `/crosswalks/` route renders candidate mappings, review queue, evidence, gold-standard, and negative-control tables.
-- [x] The view labels candidates as requiring domain review and does not imply mapping approval or evidence readiness.
-- [x] Generated crosswalk assets are included in dashboard seed synchronisation and route checks.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

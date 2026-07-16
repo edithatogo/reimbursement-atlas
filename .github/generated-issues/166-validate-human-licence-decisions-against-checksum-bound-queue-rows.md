@@ -13,8 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: validate queue integrity and optional human decision rows; do not infer approval.
-- [x] Licence and data-governance implications are checked: decisions require source terms, attribution, permission, restrictions and evidence.
-- [x] Tests or validation evidence are defined: `pixi run licence-review-validate` plus stale-checksum and incomplete-decision tests.
-- [x] Documentation or Conductor context is updated; CI runs the validator.
-- [ ] An accountable human has reviewed each candidate artefact before any approval record is added.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

@@ -13,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: schedules, paginated items and fees are represented by redacted counts, columns, checksums and review status.
-- [x] Licence and data-governance implications are checked: raw API responses remain ignored and the subscription key is never recorded.
-- [x] Tests or validation evidence are defined by PBS acquisition evidence tests and source-contract validation.
-- [x] Documentation or Conductor context is updated; derived publication remains pending source and licence review.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

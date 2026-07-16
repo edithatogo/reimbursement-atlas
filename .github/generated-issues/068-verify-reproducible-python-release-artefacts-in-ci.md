@@ -13,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: CI builds twice with a fixed `SOURCE_DATE_EPOCH` and compares artifact names and bytes.
-- [x] Licence and data-governance implications are checked through the release manifest and publication policy.
-- [x] Tests or validation evidence are defined by the required `reproducible-build` check and uploaded checksum evidence.
-- [x] Documentation or Conductor context is updated in `docs/RELEASE_VERIFICATION.md`.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.

@@ -13,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is implemented in repository scripts, generated artefacts, documentation, or protected CI workflows.
-- [x] The implementation is fail-closed where evidence, review, or external access is unavailable; it does not convert a blocker into a pass.
-- [x] Focused tests or CI contracts exercise the implementation, and generated outputs are regenerated in the repository-defined order.
-- [x] Conductor backlog, generated issue draft, and GitHub Project row are marked implemented.
+- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
+- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
+- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
+- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.
