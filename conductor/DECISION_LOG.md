@@ -720,3 +720,17 @@ weakening the CI and security gates.
 Consequence: Administrators cannot bypass the required software-quality and supply-chain checks.
 GitHub non-provider secret-pattern scanning and validity checks remain disabled by account/feature
 availability; the attempted repository API enablement was ignored and is recorded on issue #191.
+
+## 2026-07-17 - Enable repository-level GitHub Actions SHA enforcement
+
+Decision: Enable GitHub's repository-level `sha_pinning_required` control after verifying that all
+workflow action references are already immutable commit SHAs.
+
+Evidence: The Actions permissions REST read-back reports `enabled=true`,
+`default_workflow_permissions=read` and `sha_pinning_required=true`; the workflow reference audit
+contains no tag-only action references. Issue [#352](https://github.com/edithatogo/reimbursement-atlas/issues/352)
+was updated and closed as complete. The allowed-action policy remains unchanged at `all` so existing
+pinned workflows continue to run without an unreviewed allowlist change.
+
+Consequence: Future workflow changes using mutable action tags are rejected at the repository
+control plane in addition to the repository's actionlint, workflow-policy and zizmor checks.

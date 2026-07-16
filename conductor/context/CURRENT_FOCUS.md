@@ -804,3 +804,11 @@ deletion protection remain active; required pull-request reviews remain unset be
 solo-maintainer repository. GitHub non-provider secret-pattern scanning and secret-validity checks
 remain disabled because the repository API ignored the enablement request; no secret values were
 accessed or changed. The limitation is recorded in issue [#191](https://github.com/edithatogo/reimbursement-atlas/issues/191).
+
+## 2026-07-17 v126 Actions SHA-enforcement audit
+
+GitHub repository Actions permissions now report `sha_pinning_required=true`, with the existing
+read-only default workflow token permissions preserved. A workflow reference audit found all
+`uses:` entries pinned to full commit SHAs. Issue [#352](https://github.com/edithatogo/reimbursement-atlas/issues/352)
+was updated with the REST evidence and closed. The allowed-actions policy remains unchanged at
+`all`; immutable references, actionlint, workflow-policy and zizmor remain the enforcement layers.
