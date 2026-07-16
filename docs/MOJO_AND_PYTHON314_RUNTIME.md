@@ -24,7 +24,14 @@ the bounded parity workload, deterministic workload fingerprints and the officia
 runtime is recorded as an environment blocker; it cannot promote or invalidate
 the evidence-readiness status of the data product.
 
+`data/derived/mojo/fuzzy_prefilter_benchmark.json` records a deterministic thresholded
+benchmark over the reviewed synthetic gold-standard and negative-control pairs. The current
+fixture result is recall 1.0, precision 1.0 and specificity 1.0 at threshold 0.2, but the
+report remains `review_required`: synthetic fixtures do not establish real-source recall and
+human mapping adjudication is still required.
+
 The fixed-width tokenizer is implemented but review-gated. Its benchmark contract records
 input/output operation counts and canonical SHA-256 fingerprints, not machine-specific timing;
 this makes regeneration comparable across runners without presenting a synthetic performance
-claim. The fuzzy prefilter remains a prototype until gold-standard recall has been adjudicated.
+claim. The fuzzy prefilter remains a prototype until the benchmark has real reviewed mappings
+and gold-standard recall has been adjudicated.

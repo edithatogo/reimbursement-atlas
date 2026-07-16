@@ -853,6 +853,18 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/mojo/mojo_parity_report.json",
+      "dct:format": "json",
+      "dct:title": "mojo_parity_report"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/mojo/fuzzy_prefilter_benchmark.json",
+      "dct:format": "json",
+      "dct:title": "fuzzy_prefilter_benchmark"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/v14_validation_run.json",
       "dct:format": "json",
       "dct:title": "v14_validation_run"

@@ -104,3 +104,5 @@ jobs:
         run: uv run --all-extras bash scripts/run_mojo_smoke.sh
       - name: Mojo/Python parity report
         run: uv run --all-extras python scripts/make_mojo_parity_report.py
+      - name: Fuzzy prefilter benchmark
+        run: uv run --all-extras python scripts/make_fuzzy_prefilter_benchmark.py

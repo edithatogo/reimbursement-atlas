@@ -445,3 +445,16 @@ version comments, uploads resolver evidence and never writes directly to `main`.
 
 Consequence: Future action updates remain subject to network availability, the generated
 immutable-action policy gate and the repository's normal protected-branch checks.
+
+## 2026-07-16 - Add fuzzy prefilter benchmark evidence
+
+Decision: Add a deterministic benchmark for the Mojo/Python fuzzy-prefilter prototype without
+promoting it to implemented.
+
+Rationale: The synthetic reviewed fixtures currently produce recall, precision and specificity
+of 1.0 at threshold 0.2, but the fixture is too small and synthetic to establish real-source
+mapping performance. The benchmark makes this boundary visible rather than converting a local
+prototype result into an evidence claim.
+
+Consequence: Real reviewed mapping expansion and accountable human adjudication remain required
+before promotion or evidence-readiness claims.

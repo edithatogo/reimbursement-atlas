@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from reimburse_atlas.toolchain import classify_gate_result, run_external_quality_gate
+from scripts.make_fuzzy_prefilter_benchmark import build_benchmark
 from scripts.make_mojo_parity_report import build_mojo_parity_report
 
 
@@ -58,3 +59,13 @@ def test_mojo_parity_reference_contract_is_deterministic(repo_root: Path) -> Non
         report["benchmark_contract"]
         == build_mojo_parity_report(repo_root, run_smoke=False)["benchmark_contract"]
     )
+
+
+def test_fuzzy_prefilter_benchmark_records_recall_and_review_boundary(repo_root: Path) -> None:
+    """Synthetic recall evidence must remain separate from evidence readiness."""
+    report = build_benchmark(repo_root)
+
+    assert report["python_reference_status"] == "pass"
+    assert report["recall"] == 1.0
+    assert report["reviewer_signoff_required"] is True
+    assert report["status"] == "review_required"
