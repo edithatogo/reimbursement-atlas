@@ -27,7 +27,9 @@ cannot mutate a candidate to approved status.
 
 1. Review the 155 checksum-bound publication candidates in the licence-review queue, then
    complete MBS, historical-source and CMS licence review before derived-data publication
-   (`#23`, `#24`, `#26`, `#27`).
+   (`#23`, `#24`, `#26`, `#27`). The official MBS copyright notice is recorded in
+   [`docs/SOURCE_LICENCE_EVIDENCE.md`](SOURCE_LICENCE_EVIDENCE.md); it is not an open
+   redistribution licence and requires written approval for redistribution.
 2. Acquire and review a PBS monthly extract, then approve historical MBS/PBS scope (`#25`,
    [#255](https://github.com/edithatogo/reimbursement-atlas/issues/255)).
 3. Approve mapping calibration gold standards and negative controls (`#10`, `#11`).
