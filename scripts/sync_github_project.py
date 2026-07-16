@@ -5,7 +5,8 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import subprocess
+import shutil
+import subprocess  # nosec B404 - the fixed GitHub CLI boundary is shell-free and argument-list based.
 from pathlib import Path
 from typing import Any, cast
 
@@ -14,7 +15,13 @@ from reimburse_atlas.registry import project_root
 
 def _run_gh(args: list[str], *, root: Path) -> Any:
     """Run a GitHub CLI command without exposing authentication material."""
-    result = subprocess.run(["gh", *args], cwd=root, check=False, capture_output=True, text=True)
+    executable = shutil.which("gh")
+    if executable is None:
+        message = "GitHub CLI executable 'gh' was not found on PATH"
+        raise RuntimeError(message)
+    result = subprocess.run(  # nosec B603 - executable is resolved and shell execution is disabled.
+        [executable, *args], cwd=root, check=False, capture_output=True, text=True
+    )
     if result.returncode != 0:
         detail = result.stderr.strip() or result.stdout.strip() or "unknown gh failure"
         message = f"gh {' '.join(args[:2])} failed: {detail}"
