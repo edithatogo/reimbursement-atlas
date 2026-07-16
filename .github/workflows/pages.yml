@@ -41,7 +41,7 @@ jobs:
         run: |
           npm ci
           npm run build
-          npx playwright install --with-deps chromium
+          npx playwright install --with-deps chromium firefox webkit
       - name: Validate dashboard public quality
         run: uv run --all-extras python scripts/check_dashboard_quality.py
       - name: Validate dashboard routes
