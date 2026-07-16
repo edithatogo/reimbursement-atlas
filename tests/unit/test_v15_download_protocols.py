@@ -45,7 +45,7 @@ def test_download_plan_uses_hardened_quoted_curl_command(tmp_path: Path) -> None
     assert "--continue-at -" not in plan.command
     assert "--dump-header" in plan.command
     assert "--etag-save" in plan.command
-    assert "Accept: application/json" in plan.command
+    assert "Accept: text/csv" in plan.command
     assert "'$FILE" not in plan.command
     assert not plan.supports_resume
     assert plan.captures_headers
@@ -64,6 +64,19 @@ def test_missing_runtime_credential_is_blocked_and_redacted(
     assert "TEST_PBS_KEY" in attempt.error_summary
     assert "[REDACTED]" not in attempt.command
     assert not (tmp_path / "raw" / "au_mbs" / "name with spaces and $danger.csv").exists()
+
+
+def test_api_plan_defaults_to_json_for_suffixless_endpoint(tmp_path: Path) -> None:
+    plan = build_download_plan(
+        _source_file(
+            file_name="schedules.json",
+            expected_format="JSON or CSV",
+            source_url="https://example.org/api/schedules",
+        ),
+        output_dir=tmp_path,
+        preferred_method="curl",
+    )
+    assert "Accept: application/json" in plan.command
 
 
 def test_runtime_credential_is_injected_only_into_child_command(

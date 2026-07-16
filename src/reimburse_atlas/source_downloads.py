@@ -13,6 +13,7 @@ from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Literal
+from urllib.parse import urlsplit
 
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.models import DataAcquisitionAttemptRecord, SourceFileRecord
@@ -87,6 +88,17 @@ def _shell_join(args: list[str]) -> str:
     return " ".join(shlex.quote(arg) for arg in args)
 
 
+def _api_accept_header(record: SourceFileRecord) -> str:
+    """Choose an API response media type from the source contract."""
+    url_suffix = Path(urlsplit(str(record.source_url)).path).suffix.lower()
+    expected_format = record.expected_format.lower()
+    if url_suffix == ".csv" or ("csv" in expected_format and "json" not in expected_format):
+        return "text/csv"
+    # PBS endpoints such as /schedules have no suffix and reject a mixed
+    # JSON/CSV Accept header, so JSON is the safe API default.
+    return "application/json"
+
+
 def _curl_args(
     record: SourceFileRecord,
     target: Path,
@@ -117,8 +129,7 @@ def _curl_args(
     if resume_downloads:
         args.extend(["--continue-at", "-"])
     if record.acquisition_mode == "api_rate_limited":
-        # PBS v3 /schedules rejects a mixed JSON/CSV Accept header with HTTP 415.
-        args.extend(["--header", "Accept: application/json"])
+        args.extend(["--header", f"Accept: {_api_accept_header(record)}"])
     args.extend(["-o", str(target), str(record.source_url)])
     return args
 
@@ -141,7 +152,7 @@ def _wget_args(
     if resume_downloads:
         args.append("--continue")
     if record.acquisition_mode == "api_rate_limited":
-        args.extend(["--header=Accept: application/json"])
+        args.extend([f"--header=Accept: {_api_accept_header(record)}"])
     args.extend(["-O", str(target), str(record.source_url)])
     return args
 
