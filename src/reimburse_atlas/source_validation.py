@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import csv
 import hashlib
 import json
 import zipfile
@@ -15,6 +16,13 @@ from reimburse_atlas.source_downloads import safe_local_target
 
 MIN_TEXT_BYTES: Final[int] = 16
 HTML_MARKERS: Final[tuple[bytes, ...]] = (b"<!doctype html", b"<html", b"<head")
+CSV_REQUIRED_COLUMNS: Final[dict[str, tuple[str, ...]]] = {
+    "au_pbs": ("pbs_item_code", "drug_name", "effective_date"),
+    "us_cms_asp": ("hcpcs_code", "payment_limit", "effective_date"),
+    "us_cms_pfs": ("hcpcs_code", "effective_date"),
+    "us_cms_clfs": ("hcpcs", "payment_rate"),
+    "uk_genomic_test_directory": ("test_code", "test_name"),
+}
 SourceValidationStatus = Literal["pass", "warn", "fail", "missing", "skipped"]
 
 
@@ -147,6 +155,7 @@ def _validate_one(  # noqa: PLR0912
         issues.extend(_json_issues(target))
     if expected in {"csv", "json or csv"} and suffix == ".csv":
         observed_record_count = _line_record_count(target)
+        issues.extend(_csv_schema_issues(target, record.source_id))
     if expected == "txt" or suffix == ".txt":
         text_issues, observed_record_count = _text_file_issues(target)
         issues.extend(text_issues)
@@ -163,8 +172,10 @@ def _validate_one(  # noqa: PLR0912
             f"expected {record.expected_record_count}"
         )
     status = "pass" if not issues else "warn"
-    if any(issue == "file is empty" for issue in issues) or any(
-        "looks like HTML" in i for i in issues
+    if (
+        any(issue == "file is empty" for issue in issues)
+        or any("looks like HTML" in i for i in issues)
+        or any("missing required CSV columns" in issue for issue in issues)
     ):
         status = "fail"
     return _record(
@@ -288,6 +299,22 @@ def _line_record_count(path: Path) -> int:
     except UnicodeDecodeError:
         return 0
     return max(line_count - 1, 0)
+
+
+def _csv_schema_issues(path: Path, source_id: str) -> list[str]:
+    """Check the stable minimum header contract for a known CSV parser."""
+    required = CSV_REQUIRED_COLUMNS.get(source_id)
+    if required is None:
+        return []
+    try:
+        with path.open(newline="", encoding="utf-8-sig") as handle:
+            headers = tuple((header or "").strip().lower() for header in next(csv.reader(handle)))
+    except OSError, UnicodeDecodeError, StopIteration, csv.Error:
+        return ["CSV header could not be read"]
+    missing = tuple(column for column in required if column not in headers)
+    if missing:
+        return [f"missing required CSV columns: {', '.join(missing)}"]
+    return []
 
 
 def _text_file_issues(path: Path) -> tuple[list[str], int | None]:

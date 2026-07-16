@@ -61,6 +61,38 @@ def test_source_validation_detects_html_and_writes_outputs(tmp_path: Path) -> No
     assert json.loads(paths[2].read_text())["fail"] == 1
 
 
+def test_source_validation_enforces_known_csv_header_contract(tmp_path: Path) -> None:
+    """Known parser families must not accept an incompatible CSV."""
+    record = _source_file("pbs_items", expected_format="CSV").model_copy(
+        update={"source_id": "au_pbs", "file_name": "pbs_items.csv"}
+    )
+    target = safe_local_target(record, tmp_path)
+    target.parent.mkdir(parents=True)
+    target.write_text("code,description,price\n123,wrong shape,1.0\n", encoding="utf-8")
+
+    rows = build_source_content_validations([record], raw_dir=tmp_path)
+
+    assert rows[0].validation_status == "fail"
+    assert "missing required CSV columns" in rows[0].issues[0]
+
+
+def test_source_validation_accepts_parser_fixture_headers(tmp_path: Path) -> None:
+    """The minimum CSV contract accepts the synthetic parser fixture shape."""
+    record = _source_file("pbs_items", expected_format="CSV").model_copy(
+        update={"source_id": "au_pbs", "file_name": "pbs_items.csv"}
+    )
+    target = safe_local_target(record, tmp_path)
+    target.parent.mkdir(parents=True)
+    target.write_text(
+        "pbs_item_code,drug_name,effective_date\n123,fixture,2026-07-01\n",
+        encoding="utf-8",
+    )
+
+    rows = build_source_content_validations([record], raw_dir=tmp_path)
+
+    assert rows[0].validation_status == "pass"
+
+
 def test_source_validation_handles_json_and_zip_errors(tmp_path: Path) -> None:
     json_record = _source_file("json_bad", expected_format="json")
     json_target = safe_local_target(json_record, tmp_path).with_suffix(".json")

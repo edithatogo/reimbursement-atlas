@@ -25,8 +25,15 @@ apps/dashboard/public/data/source_contract_validation.csv
 - MBS July 2026 item-map TXT: expects the live headers `ITEM`, `MAPPED_ITEM`, `Item_Start_Date`, `Item_End_Date`, `Item_reuse_flag`, `Mapped_Item_Desc`, `Mapped_Item_Category`, `Mapped_Item_Group`, `Mapped_Item_Subgroup`, `Mapped_Item_Subheading`, `CATEGORY_DESC`, `GROUP_DESC`, `SUBGROUP_DESC`, `SUBHEADING_DESC`, `BTOS`, `BTOS_DESC`, `MODIFY_BBI_FLAG`.
 - MBS July 2026 descriptor TXT: expects the live headers `ITEM`, `DESCRIPTION_START`, `DESCRIPTION_END`, `LATEST`, `Description`.
 - CMS CLFS landing-page record: skipped until the extracted local ZIP is reviewed.
-- PBS API/CSV reviewed extract: expects a PBS item code, medicine label and effective date field once a reviewed CSV extract is staged.
-- CMS CLFS / ASP / PFS rows remain gated when they require manual licence review, landing-page extraction or CPT descriptor safeguards.
+- PBS API/CSV reviewed extract: expects `pbs_item_code`, `drug_name` and `effective_date` for the parser fixture shape once a reviewed CSV extract is staged.
+- CMS ASP reviewed CSV: expects `hcpcs_code`, `payment_limit` and `effective_date`.
+- CMS PFS reviewed CSV: expects `hcpcs_code` and `effective_date`.
+- CMS CLFS reviewed CSV: expects `hcpcs` and `payment_rate`; proprietary descriptors remain excluded unless licence review permits derived use.
+- NHS genomic directory CSV: expects `test_code` and `test_name`.
+
+The source-content validator now fails closed for a known CSV family when these minimum
+headers are absent. This is a structural preflight only: it does not establish that the
+rows are genuine, complete, current, licensed for reuse, or suitable for policy claims.
 
 ## Release posture
 
