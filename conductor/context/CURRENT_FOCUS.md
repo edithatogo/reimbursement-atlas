@@ -738,3 +738,13 @@ instead of the passing repository-owned GitHub Actions app `15368`. A repository
 `updateBranchProtectionRule` mutation rebound the context to app `15368`, preserving strict
 protection and all 20 required contexts. Issue [#275](https://github.com/edithatogo/reimbursement-atlas/issues/275)
 was closed with GraphQL and REST read-back evidence; no workflow gate was removed or bypassed.
+
+## 2026-07-16 v96 PBS public-key and source-health refresh
+
+The PBS public-user key path is now validated in the current PR branch: the official v3
+`/schedules` endpoint returned HTTP 200, the key remains runtime-only, and no credential value
+is tracked. The generated source-health report now reports `clear` with zero incomplete
+acquisition targets, and the public dashboard status no longer exposes the stale acquisition
+blocker. PBS source terms and human review remain release gates. PR #283 has all required checks
+passing with squash auto-merge enabled, but still requires one approving review before `main`
+can receive the change. See `conductor/sessions/2026-07-16-v96-pbs-public-key-and-source-health-refresh.md`.
