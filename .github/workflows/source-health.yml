@@ -28,14 +28,68 @@ jobs:
           persist-credentials: false
       - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
       - name: Attempt hardened source acquisition
+        id: source_acquisition
+        continue-on-error: true
         run: pixi run source-download-attempt
-      - name: Generate source health evidence
+      - name: Record acquisition outcome
+        if: always()
+        env:
+          ACQUISITION_OUTCOME: ${{ steps.source_acquisition.outcome }}
         run: |
           set -euo pipefail
+          mkdir -p data/derived/source_health
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          Path("data/derived/source_health/monitor_run_status.json").write_text(
+              json.dumps(
+                  {
+                      "schema_version": "source-health-monitor-run-v1",
+                      "acquisition_outcome": os.environ.get("ACQUISITION_OUTCOME", "unknown"),
+                      "evidence_generation_attempted": False,
+                      "mutation_performed": False,
+                  },
+                  sort_keys=True,
+              )
+              + "\n",
+              encoding="utf-8",
+          )
+          PY
+      - name: Generate source health evidence
+        if: always()
+        run: |
+          set +e
           pixi run source-validation
+          validation_status=$?
           pixi run source-contracts
+          contracts_status=$?
           pixi run source-drift
+          drift_status=$?
           pixi run release-readiness
+          readiness_status=$?
+          python - "$validation_status" "$contracts_status" "$drift_status" "$readiness_status" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          path = Path("data/derived/source_health/monitor_run_status.json")
+          payload = json.loads(path.read_text(encoding="utf-8"))
+          payload.update(
+              {
+                  "evidence_generation_attempted": True,
+                  "gate_return_codes": {
+                      "source_validation": int(sys.argv[1]),
+                      "source_contracts": int(sys.argv[2]),
+                      "source_drift": int(sys.argv[3]),
+                      "release_readiness": int(sys.argv[4]),
+                  },
+              }
+          )
+          path.write_text(json.dumps(payload, sort_keys=True) + "\n", encoding="utf-8")
+          PY
+          exit 0
       - name: Generate acquisition escalation report
         if: always()
         run: |
@@ -56,7 +110,23 @@ jobs:
               "release_readiness": Path("data/derived/release_readiness/summary.json"),
           }
           failures = []
+          run_status_path = Path("data/derived/source_health/monitor_run_status.json")
+          if not run_status_path.exists():
+              failures.append("monitor_run_status: missing")
+          else:
+              run_status = json.loads(run_status_path.read_text(encoding="utf-8"))
+              if run_status.get("acquisition_outcome") != "success":
+                  failures.append(
+                      "source_acquisition: "
+                      f"outcome={run_status.get('acquisition_outcome', 'unknown')}"
+                  )
+              for name, return_code in run_status.get("gate_return_codes", {}).items():
+                  if int(return_code) != 0:
+                      failures.append(f"{name}: return_code={return_code}")
           for name, path in checks.items():
+              if not path.exists():
+                  failures.append(f"{name}: missing")
+                  continue
               payload = json.loads(path.read_text(encoding="utf-8"))
               if any(
                   int(payload.get(key, 0)) > 0

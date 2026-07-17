@@ -165,6 +165,9 @@ epics:
       - title: Add local parser contract checks for acquired MBS and PBS caches
         labels: ["type:parser", "type:data-quality", "phase:hardening", "status:implemented"]
         status: implemented
+      - title: Preserve source-health evidence after acquisition timeouts
+        labels: ["type:data-quality", "type:automation", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Add checksum pinning after first reviewed source downloads
         labels: ["type:data-source", "type:provenance", "phase:1-slice", "status:implemented"]
         status: implemented
