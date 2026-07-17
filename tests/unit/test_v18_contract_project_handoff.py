@@ -173,9 +173,7 @@ def test_zenodo_metadata_output_is_implemented_without_doi_promotion() -> None:
     from scripts.create_github_project_items import generated_track_issues
 
     issues = generated_track_issues(ROOT)
-    metadata = next(
-        issue for issue in issues if issue.title == "Implement output plan: out_zenodo"
-    )
+    metadata = next(issue for issue in issues if issue.title == "Implement output plan: out_zenodo")
     doi = next(
         issue for issue in issues if issue.title == "Implement output plan: out_zenodo_release_doi"
     )
