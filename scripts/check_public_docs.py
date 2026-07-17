@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-import subprocess
+import subprocess  # nosec B404
 from pathlib import Path
 from typing import cast
 from urllib.parse import urlparse
@@ -34,7 +34,8 @@ CURRENT_STATE_DOCS = (
 
 def git_commit(root: Path, revision: str) -> str | None:
     """Resolve a commit reference without making the documentation gate write state."""
-    result = subprocess.run(
+    # The argv is fixed and shell-free; only the revision selector varies.
+    result = subprocess.run(  # nosec B603 B607
         ["git", "rev-parse", revision],
         cwd=root,
         capture_output=True,

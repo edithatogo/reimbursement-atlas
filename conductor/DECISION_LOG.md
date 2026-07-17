@@ -670,9 +670,11 @@ Decision: Treat the current merged commit in the handoff, release-readiness, OSF
 Conductor focus documents as a machine-checked invariant. Historical monitor snapshots may
 remain in the append-only evidence log, but they must not be mistaken for current state.
 
-Evidence: The documentation freshness gate now resolves `git rev-parse HEAD` and requires the
-full SHA in each authoritative current-state document. The gate and six focused unit tests pass
-on merged `main` `e639490`; no publication, source, credential or external state was changed.
+Evidence: The documentation freshness gate resolves the available base, first-parent or
+checked-out commit and requires the full SHA in each authoritative current-state document. The
+Python CI checkout fetches two commits so pull-request merge refs expose the base commit. The
+gate and seven focused unit tests pass on merged `main` `e639490`; no publication, source,
+credential or external state was changed.
 
 Consequence: Documentation drift becomes a protected CI failure rather than a manual review
 discovery. The change is tracked in the CI/CD and supply-chain Conductor track and generated

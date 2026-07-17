@@ -17,6 +17,8 @@ historical snapshots as current.
 - Corrected the current licence-review candidate count from 161 to 163.
 - Added a documentation freshness invariant that binds those five files to the checked-out
   full commit SHA.
+- Configured the Python CI checkout with `fetch-depth: 2` so PR merge refs expose the base
+  commit required by that invariant.
 - Retained historical monitor records and explicitly labelled them as historical evidence.
 
 ## Verification
