@@ -13,4 +13,4 @@ Protocol: Source transparency atlas,protocol,osf_source_transparency_protocol,pr
 Report: Source transparency atlas,report,osf_source_transparency_report,reports/source_transparency_report.md,Detailed analysis report populated after derived-data validation.,/reports/source_transparency_report.md,False,rq_source_transparency
 Output plan: protocol,protocol,osf_output_out_osf_protocol_pack,protocols/,Detailed OSF protocol pack for research questions.,/protocol/protocols,True,
 Output plan: report,report,osf_output_out_osf_reports,reports/,Question-specific detailed reports.,/report/reports,True,
-Output plan: preprint,preprint,osf_output_out_preprint_methods,papers/reimbursement_atlas_methods.md,Methods/design paper pathway.,/preprint/reimbursement_atlas_methods.md,False,
+Output plan: preprint,preprint,osf_output_out_preprint_methods,papers/reimbursement_atlas_methods.md,Methods/design paper scaffold; results and publication remain review-gated.,/preprint/reimbursement_atlas_methods.md,False,

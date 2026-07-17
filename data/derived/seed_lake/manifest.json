@@ -281,7 +281,7 @@
       "name": "repo_automation_controls",
       "parquet_path": "repo_automation_controls/repo_automation_controls.parquet",
       "rows": 20,
-      "sha256": "d39e58f46823d71d66c7edd108a9bf716e536ae1098527bc02785f4ee1142d85"
+      "sha256": "e8ff96ee9d14f2425277fa3106e65cf87c81ea24e15dd972b8fed0ab7542ed1b"
     },
     {
       "csv_path": "repo_action_sha_pin_plan/repo_action_sha_pin_plan.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 36,
-      "sha256": "b65bed83f131e43f2d7137a93d0a98b9d4b28802ad1a1f2233911b22bc1e2d8b"
+      "sha256": "7e0005026ce1456336b1348d4a5f849cd6dcb512c50259413f9a6617ffd5d6a3"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -409,7 +409,7 @@
       "name": "osf_component_plan",
       "parquet_path": "osf_component_plan/osf_component_plan.parquet",
       "rows": 15,
-      "sha256": "3e1180fae09c6a1ea1139a0dd5162a97855c9557a635b6831b21dd50a29dd04f"
+      "sha256": "41cf60a7c14b5689e633a3d9aff337357c0ed323a72130c40a4685e8b88722e5"
     },
     {
       "csv_path": "protocol_status/protocol_status.csv",
@@ -457,7 +457,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 166,
-      "sha256": "9d4825311a93eca38843352f7200eed9879c556ff17eb7db6c09ab2c944220f5"
+      "sha256": "461edcfe445c96e0548f7c4c15672fb48d6d9547d263140b7df3f6e7f578dcdd"
     }
   ]
 }

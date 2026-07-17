@@ -1152,3 +1152,17 @@ Dependabot enabled, with non-provider patterns and validity checks disabled.
 
 Consequence: The security issue is explicitly blocked by external account scope and environment
 policy, not hidden as a passing repository control.
+
+## 2026-07-17 - Correct SBOM automation-control detection
+
+Decision: Require both generated CycloneDX SBOM files before the repository automation matrix
+reports SBOM generation as implemented and advanced.
+
+Evidence: `data/derived/sbom/cyclonedx-python.json` and
+`data/derived/sbom/cyclonedx-dashboard.json` are tracked release-candidate artefacts, the release
+workflow generates and attests them, and `tests/unit/test_automation_controls.py` covers the
+implemented and incomplete states. The previous detector checked for a directory string in a set
+of file paths and incorrectly emitted `planned`.
+
+Consequence: Generated automation, release-readiness and dashboard evidence now distinguish the
+implemented SBOM control from a missing SBOM set without changing publication or evidence gates.
