@@ -15,3 +15,16 @@ def test_security_settings_workflow_is_readback_only() -> None:
     assert "gh issue edit 191" in workflow
     assert "gh api --method PATCH" not in workflow
     assert "actions/upload-artifact@" in workflow
+
+
+def test_huggingface_destination_monitor_only_writes_github_issue_evidence() -> None:
+    """Destination monitoring may synchronize its issue without mutating Hugging Face."""
+    workflow = Path(".github/workflows/huggingface-destination.yml").read_text(encoding="utf-8")
+    assert "contents: read" in workflow
+    assert "issues: write" in workflow
+    assert "GH_TOKEN: ${{ github.token }}" in workflow
+    assert "gh issue edit 320" in workflow
+    assert "actions/upload-artifact@" in workflow
+    assert "HF_TOKEN" not in workflow
+    assert "git push" not in workflow
+    assert "huggingface.co" not in workflow

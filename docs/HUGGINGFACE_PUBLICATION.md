@@ -49,9 +49,13 @@ and remains blocked until the governed licence, research, evidence and policy ga
 
 The scheduled/manual `huggingface-destination.yml` workflow performs a credential-free,
 read-only check of the configured dataset and Space API metadata. It records only repository
-identities, expected card fields and drift reasons in an artifact; it never clones, writes, or
-authenticates against Hugging Face. A drift result is an observation for issue #320, not
-publication approval.
+identities, expected card fields and drift reasons in an artifact; it never clones, writes to
+Hugging Face, or authenticates against Hugging Face. A drift result is an observation for issue
+#320, not publication approval.
+
+The monitor may update GitHub issue #320 with the same redacted report using `issues: write` and
+the workflow token. This is issue evidence synchronization only; it is not a Hugging Face
+mutation or publication approval.
 
 The latest read-only recheck on merged `main` (`c2cdea7`) was workflow run
 [29565126096](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29565126096).

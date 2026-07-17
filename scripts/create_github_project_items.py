@@ -163,7 +163,20 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
     """Render one GitHub issue draft."""
     labels = ", ".join(issue.labels) if issue.labels else "none"
     parent = f"Parent issue: {issue.parent_issue}\n\n" if issue.parent_issue else ""
-    if issue.epic_id == "RESEARCH-QUESTIONS":
+    if issue.title == "Schedule read-only Hugging Face destination metadata drift monitoring":
+        acceptance = (
+            "- [x] Scope is implemented: the scheduled/manual workflow checks public dataset and "
+            "Space metadata without credentials or mutation.\n"
+            "- [x] Licence and data-governance implications are checked: the report preserves the "
+            "source-specific data-licence boundary and remote publication remains gated.\n"
+            "- [x] Tests or validation evidence are defined by the destination contract unit test, "
+            "action-pin policy and the workflow artifact.\n"
+            "- [x] The workflow synchronizes issue #320 with redacted read-only evidence using "
+            "GitHub issue permission only.\n"
+            "- [x] Documentation or Conductor context is updated; drift remains linked to issue "
+            "#320."
+        )
+    elif issue.epic_id == "RESEARCH-QUESTIONS":
         protocol = f"`{issue.protocol_path}`" if issue.protocol_path else "the protocol registry"
         report = f"`{issue.report_path}`" if issue.report_path else "the report registry"
         acceptance = (
@@ -769,17 +782,6 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
             "Apache-2.0 code and source-specific data-licence boundary.\n"
             "- [ ] Licence, research, evidence and policy-claim gates are approved before a "
             "write-enabled reconciliation run."
-        )
-    elif issue.title == "Schedule read-only Hugging Face destination metadata drift monitoring":
-        acceptance = (
-            "- [x] Scope is implemented: the scheduled/manual workflow checks public dataset and "
-            "Space metadata without credentials or mutation.\n"
-            "- [x] Licence and data-governance implications are checked: the report preserves the "
-            "source-specific data-licence boundary and remote publication remains gated.\n"
-            "- [x] Tests or validation evidence are defined by the destination contract unit test, "
-            "action-pin policy and the workflow artifact.\n"
-            "- [x] Documentation or Conductor context is updated; drift remains linked to issue "
-            "#320."
         )
     elif issue.title == "Add grouped licence review packet for accountable handoff":
         acceptance = (

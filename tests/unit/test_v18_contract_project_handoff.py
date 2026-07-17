@@ -35,6 +35,19 @@ def _source_file(source_file_id: str):
     return next(record for record in load_source_files() if record.id == source_file_id)
 
 
+def test_huggingface_drift_issue_uses_track_specific_acceptance() -> None:
+    issue = IssueDraft(
+        epic_id="PUB-001",
+        epic_title="Publication and dataset release readiness",
+        title="Schedule read-only Hugging Face destination metadata drift monitoring",
+        status="implemented",
+    )
+    body = render_issue(issue)
+    assert "synchronizes issue #320" in body
+    assert "GitHub issue permission only" in body
+    assert "- [ ] Scope is confirmed." not in body
+
+
 def test_mbs_source_contract_passes_fixture() -> None:
     record = _source_file("au_mbs_20260701_imap_txt")
     fixture = ROOT / "tests" / "fixtures" / "mbs_txt" / "20260701_MBSONLINE_IMAP_fixture.TXT"

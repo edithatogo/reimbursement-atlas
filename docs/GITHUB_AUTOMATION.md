@@ -71,8 +71,11 @@ CSV projection, so maintainers can inspect acquisition follow-up without opening
 When acquisition evidence identifies a missing credential, the report also exposes the
 credential's environment-variable name (never its value) in the issue body and dashboard-safe
 CSV. This makes a PBS blocker actionable as `PBS_API_SUBSCRIPTION_KEY` without leaking secrets.
-The workflow grants `issues: write` only to the source-health job; the workflow default remains
-read-only for repository contents and does not grant issue mutation to unrelated jobs.
+The source-health job grants `issues: write` only for acquisition issue escalation. The Hugging
+Face destination monitor separately grants `issues: write` to synchronize issue #320 with its
+redacted read-only metadata report; it has no Hugging Face credentials or remote write path. All
+workflow defaults remain read-only for repository contents, and no unrelated job receives issue
+mutation permission.
 
 ## Security posture
 

@@ -13,7 +13,8 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
-- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
-- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
-- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.
+- [x] Scope is implemented: the scheduled/manual workflow checks public dataset and Space metadata without credentials or mutation.
+- [x] Licence and data-governance implications are checked: the report preserves the source-specific data-licence boundary and remote publication remains gated.
+- [x] Tests or validation evidence are defined by the destination contract unit test, action-pin policy and the workflow artifact.
+- [x] The workflow synchronizes issue #320 with redacted read-only evidence using GitHub issue permission only.
+- [x] Documentation or Conductor context is updated; drift remains linked to issue #320.
