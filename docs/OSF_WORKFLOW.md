@@ -119,3 +119,11 @@ The current read-only refresh on merged `main` (`c2cdea7`) was workflow run
 The pinned `osf-cli-go` v1.0.0 discovery returned 28 accessible projects and found the existing
 private `Reimbursement Atlas` project `q8cnx`. Provisioning, registration, upload and publication
 were skipped; no OSF project, node, registration or file was mutated.
+
+The latest read-only refresh on merged `main` (`fa5b042`)
+([29567562072](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29567562072))
+passed both OSF discovery and the component-plan job. Discovery again returned 28 accessible
+projects and the private `Reimbursement Atlas` project `q8cnx`; provisioning, registration,
+upload and publication were skipped. The sanitized discovery artifact was retained only as a
+short-lived workflow artifact, and no OSF project, node, registration, file or token-bearing
+payload was mutated or committed.
