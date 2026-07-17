@@ -937,3 +937,11 @@ then downloaded the PBS v3 schedules response successfully with the key redacted
 provenance. The monitor remains `incomplete` only because six historical MBS/CMS targets are
 intentionally `skipped_licence_gate`; issue [#383](https://github.com/edithatogo/reimbursement-atlas/issues/383)
 was updated with that review boundary. PBS credential availability is no longer the active blocker.
+
+## 2026-07-17 v143 TypeScript 7 compatibility recheck
+
+The npm registry reports TypeScript `7.0.2` and `7.1.0-dev.20260715.1`. The pinned
+`@astrojs/check@0.9.9` package still declares `typescript: ^5.0.0 || ^6.0.0`; an npm dependency
+resolution probe rejects TypeScript 7 with `ERESOLVE` before `astro check` can run. The dashboard
+remains on TypeScript `6.0.3`, with no legacy-peer override. Issue [#362](https://github.com/edithatogo/reimbursement-atlas/issues/362)
+now records this exact upstream compatibility boundary and the re-test condition.
