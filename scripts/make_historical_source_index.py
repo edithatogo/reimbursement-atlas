@@ -126,9 +126,11 @@ def extract_period(file_name: str) -> str:
     return "unknown"
 
 
-def _write_rows(rows: list[dict[str, str]], *, seed_path: Path, output_dir: Path) -> None:
+def write_rows(rows: list[dict[str, str]], *, seed_path: Path, output_dir: Path) -> None:
+    """Write the metadata inventory and its pending human review packet."""
     for row in rows:
         row["archive_period"] = extract_period(row["file_name"])
+        row.setdefault("file_kind", Path(row["file_name"]).suffix.lower().lstrip("."))
     seed_path.parent.mkdir(parents=True, exist_ok=True)
     output_dir.mkdir(parents=True, exist_ok=True)
     fields = sorted(rows[0]) if rows else ["id", "file_url"]
@@ -142,12 +144,56 @@ def _write_rows(rows: list[dict[str, str]], *, seed_path: Path, output_dir: Path
         writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
+    review_fields = [
+        "id",
+        "file_url",
+        "archive_page",
+        "archive_period",
+        "file_kind",
+        "licence_gate",
+        "download_policy",
+        "review_status",
+        "reviewer",
+        "reviewed_at",
+        "decision_evidence",
+        "permitted_derived_fields",
+        "review_notes",
+    ]
+    review_rows = [
+        {
+            "id": row["id"],
+            "file_url": row["file_url"],
+            "archive_page": row["archive_page"],
+            "archive_period": row["archive_period"],
+            "file_kind": row["file_kind"],
+            "licence_gate": row["licence_gate"],
+            "download_policy": row["download_policy"],
+            "review_status": "pending_human_review",
+            "reviewer": "",
+            "reviewed_at": "",
+            "decision_evidence": "",
+            "permitted_derived_fields": "",
+            "review_notes": "No acquisition or publication decision has been recorded.",
+        }
+        for row in rows
+    ]
+    (output_dir / "historical_mbs_review_queue.jsonl").write_text(
+        "".join(json.dumps(row, sort_keys=True) + "\n" for row in review_rows), encoding="utf-8"
+    )
+    with (output_dir / "historical_mbs_review_queue.csv").open(
+        "w", encoding="utf-8", newline=""
+    ) as handle:
+        writer = csv.DictWriter(handle, fieldnames=review_fields, lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(review_rows)
     summary = {
         "target_count": len(rows),
         "archive_page_count": len({row["archive_page"] for row in rows}),
         "periods": sorted({row["archive_period"] for row in rows}),
         "downloadable_targets": 0,
         "manual_review_targets": len(rows),
+        "review_queue_path": "historical_mbs_review_queue.jsonl",
+        "review_queue_status": "pending_human_review",
         "status": "metadata_only_review_required",
     }
     (output_dir / "summary.json").write_text(
@@ -182,7 +228,7 @@ def main() -> None:
             for line in args.seed.read_text(encoding="utf-8").splitlines()
             if line.strip()
         ]
-    _write_rows(rows, seed_path=args.seed, output_dir=args.output_dir)
+    write_rows(rows, seed_path=args.seed, output_dir=args.output_dir)
     print(json.dumps({"target_count": len(rows), "output_dir": str(args.output_dir)}))
 
 

@@ -6,6 +6,12 @@ targets in:
 - `data/seed/historical_mbs_archive_targets.jsonl`
 - `data/derived/historical_sources/`
 
+The derived directory also contains `historical_mbs_review_queue.csv` and
+`historical_mbs_review_queue.jsonl`. These are metadata-only review packets,
+not source bundles: each row has explicit blank reviewer, decision-evidence and
+permitted-derived-fields fields so an accountable human can record a target-level
+decision without modifying the inventory or acquiring a payload.
+
 The inventory is derived from the official [MBS Online downloads page](https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/Content/downloads),
 the [2010 to 2019 archive index](https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/Content/MBSOnline-2010),
 and the [previous downloads index](https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/Content/Prev-Downloads).
@@ -33,6 +39,8 @@ inventory is not evidence that a file may be downloaded, parsed or republished.
 Before acquiring a target, record source-specific terms, download it only into
 ignored `data/raw_live/`, snapshot its checksum and promote only permitted
 derived fields through the source-contract and reviewed-bundle gates.
+The review queue remains `pending_human_review` until that evidence is recorded;
+its presence never grants download, parsing or publication approval.
 
 The scheduled `.github/workflows/historical-source-inventory.yml` workflow refreshes this
 metadata-only inventory and opens a normal PR when official archive pages change. It never

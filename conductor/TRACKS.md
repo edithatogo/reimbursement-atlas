@@ -40,7 +40,7 @@ Tracked functions/issues:
 - `func_source_snapshot` — Maintain source snapshot provenance for all reviewed downloads (implemented, cli)
 - `func_source_diff` — Add source drift and schema diff reports (implemented, data_pipeline)
 - `func_source_download_hardened` — Harden source download commands with quoting, retry, resume and sidecar metadata (implemented, cli)
-- `func_historical_mbs_pbs_bundles` — Expand reviewed coverage with historical MBS and PBS bundles (planned, data_pipeline)
+- `func_historical_mbs_pbs_bundles` — Expand reviewed coverage with historical MBS and PBS bundles (in progress: metadata-only review packet implemented; reviewed payloads remain blocked, data_pipeline)
 
 ## [~] track_research_protocols_osf: OSF research protocol and report workflow
 

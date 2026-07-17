@@ -282,8 +282,8 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
         )
     elif issue.title == "Expand reviewed coverage with historical MBS and PBS bundles":
         acceptance = (
-            "- [x] Scope is confirmed: metadata-only inventory automation is implemented; raw "
-            "bundle acquisition remains gated.\n"
+            "- [x] Scope is confirmed: metadata-only inventory automation and a target-level "
+            "review packet are implemented; raw bundle acquisition remains gated.\n"
             "- [x] Licence and data-governance implications are checked: historical targets remain "
             "manual-review only.\n"
             "- [x] Tests or validation evidence are defined: `pixi run historical-sources`, source "
