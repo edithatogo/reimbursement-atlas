@@ -84,6 +84,13 @@ registration, upload and publication were skipped. The Hugging Face destination 
 reconfirmed the known Space metadata drift (`mit`/`gradio` versus governed
 `apache-2.0`/`static`) without mutation.
 
+The current merged-main refresh is workflow run
+[29567562072](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29567562072) on
+`fa5b042`. OSF discovery and the component plan passed, confirming 28 accessible projects and
+the private `Reimbursement Atlas` project `q8cnx`; all OSF mutation jobs were skipped. This
+refresh updates operational evidence only and does not change the false research-publication,
+OSF-registration, evidence-release or policy-claims readiness flags.
+
 The latest non-depositing Zenodo preflight on merged `main` (`efd835e`) was run
 `29552003859`; metadata and repository-readiness validation passed and no DOI deposit or
 external mutation was performed.

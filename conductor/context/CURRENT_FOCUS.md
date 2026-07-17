@@ -1137,3 +1137,13 @@ Atlas` project `q8cnx`. No OSF mutation occurred. Hugging Face destination workf
 governed `apache-2.0`/`static`); no remote mutation occurred. The repository release gate remains
 green, while licence, evidence, research, OSF, Hugging Face reconciliation and policy-claim gates
 remain external or human-approval dependent.
+
+## 2026-07-17 v165 OSF preflight refresh
+
+On merged `main` `fa5b042`, OSF workflow run
+[29567562072](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29567562072)
+passed pinned `osf-cli-go v1.0.0` discovery and the component plan. Discovery returned 28
+accessible projects and confirmed the private `Reimbursement Atlas` project `q8cnx`; provisioning,
+registration, upload and publication were skipped. No OSF mutation or token-bearing artifact was
+created. OSF registration and publication remain blocked by protocol, licence, evidence and
+accountable human review gates.
