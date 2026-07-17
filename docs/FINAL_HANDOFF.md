@@ -43,6 +43,23 @@ SHA-256 checksum and keeps all 163 rows pending until an accountable reviewer re
 decision evidence. The queue is a review-control artefact, not a licence approval, and
 cannot mutate a candidate to approved status.
 
+## Latest current-main external refresh
+
+The merged `main` commit `edc29a5` was rechecked without publication or destination mutation.
+OSF discovery [29596947892](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29596947892)
+passed and found the configured private project; Zenodo preflight
+[29596947909](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29596947909)
+passed in non-depositing mode; source health
+[29596947921](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29596947921)
+completed successfully with no operational blockers; and the Hugging Face destination monitor
+[29596947958](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29596947958)
+failed closed on the known Space drift (`mit`/`gradio` versus governed `apache-2.0`/`static`).
+The GitHub security-settings monitor
+[29596744210](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29596744210)
+reported `blocked_permissions` because the default workflow token cannot read the security
+analysis object. No external publication, DOI deposit, licence approval or destination mutation
+was performed.
+
 ## Main remaining environment-dependent tasks
 
 1. Review the 163 checksum-bound publication candidates in the licence-review queue, then
