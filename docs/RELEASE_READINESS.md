@@ -26,7 +26,7 @@ provider-licence and domain review before external publication.
 
 ## Current merged state
 
-As of 2026-07-17, `main` is at `adf0832` (the squash merge of the external preflight and
+As of 2026-07-17, `main` is at `adf0832` (the normal merge of the external preflight and
 quality-gate documentation update in PR #426). The repository release gates are green. The current PBS v3 schedule,
 items and fees acquisition is `acquired_unreviewed` from an ephemeral official catalogue key.
 Source-health is `review_required` with zero operational blockers: the MBS and PBS responses
