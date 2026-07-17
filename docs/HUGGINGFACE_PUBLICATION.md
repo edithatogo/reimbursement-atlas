@@ -55,6 +55,12 @@ publication approval.
 
 ## Latest non-mutating candidate validation
 
+The latest candidate validation on `main` (`7a6b03f`) was workflow run
+`29551588959`. The publication manifest, research package and static dashboard built and
+validated successfully; `publish-dataset` and `publish-space` were skipped. The separate
+destination metadata check [29551517641](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29551517641)
+reported the known two-field Space drift and performed no remote mutation.
+
 The latest validation on `main` (`c7a55b3e4483265ffe60637714e930512ec22cdb`) was workflow
 run `29517250473`. The governed publication candidate built and validated successfully;
 `publish-dataset` and `publish-space` were skipped, so neither remote target was mutated.

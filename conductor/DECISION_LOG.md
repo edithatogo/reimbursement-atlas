@@ -1113,3 +1113,19 @@ redacted the secret value.
 
 Consequence: PBS acquisition is no longer a missing-credential blocker, but licence review,
 human review, evidence readiness and publication readiness remain fail-closed.
+
+## 2026-07-17 - Refresh OSF and Hugging Face preflight evidence
+
+Decision: Run the OSF and Hugging Face workflows in non-mutating mode using the configured
+credentials only where the workflow contract permits it. Keep publication and provisioning
+disabled while the licence, research, evidence and policy gates remain blocking.
+
+Evidence: OSF run [29551589259](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29551589259)
+passed the pinned CLI, read-only discovery and fail-closed component plan; private project `q8cnx`
+was found. HF candidate run [29551588959](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29551588959)
+passed manifest, dashboard and bundle validation with both publish jobs skipped. HF destination
+check [29551517641](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29551517641)
+reported two known Space metadata mismatches and `mutation_performed: false`.
+
+Consequence: Toolchain and candidate-build readiness are current, but OSF/HF publication readiness
+and external destination reconciliation remain explicitly blocked.
