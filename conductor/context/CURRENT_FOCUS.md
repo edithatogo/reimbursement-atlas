@@ -1168,3 +1168,26 @@ artifact contained 28 accessible projects and the private `Reimbursement Atlas` 
 run `29569972301` also passed metadata and repository-readiness validation without deposit.
 These runs refresh operational evidence only and do not change the false research, evidence,
 policy, OSF-registration or public-publication readiness flags.
+
+## 2026-07-17 v169 current-main preflight convergence
+
+Merged `main` is now `e46a629`, with the repository working tree and all 36 repository gates
+green. Current non-mutating evidence is authoritative for this commit: OSF workflow
+[29571893420](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29571893420)
+discovered 28 accessible projects and the private `Reimbursement Atlas` project `q8cnx`, with
+provisioning, registration, upload and publication skipped. Zenodo workflow
+[29571894944](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29571894944)
+passed non-depositing validation. Credentialed source-health workflow
+[29571899135](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29571899135)
+schema-validated 14,867 PBS records and left six targets for licence review; the local
+workstation remains `partial` because `PBS_API_SUBSCRIPTION_KEY` is not present locally.
+
+The Hugging Face destination monitor [29571896396](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29571896396)
+failed closed on the unchanged Space metadata drift (`mit`/`gradio` versus governed
+`apache-2.0`/`static`) and performed no mutation. The GitHub security monitor
+[29571897692](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29571897692)
+reported `blocked_permissions` for its workflow-token readback; the authenticated repository
+API remains authoritative for enabled core controls and disabled account/plan-gated controls.
+The next implementable work is limited to maintaining these fail-closed controls and preparing
+reviewer-ready licence, research, mapping and visual-review decisions; no publication gate is
+promoted by these preflights.
