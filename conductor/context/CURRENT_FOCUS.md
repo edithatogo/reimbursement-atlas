@@ -966,3 +966,12 @@ drafts, GitHub Project rows and derived licence/data-dictionary outputs were reg
 [#348](https://github.com/edithatogo/reimbursement-atlas/issues/348) and
 [#349](https://github.com/edithatogo/reimbursement-atlas/issues/349) were body-reconciled without
 changing issue state or external publication approval.
+
+## 2026-07-17 v146 Implementation-issue lifecycle reconciliation
+
+Issues [#347](https://github.com/edithatogo/reimbursement-atlas/issues/347),
+[#348](https://github.com/edithatogo/reimbursement-atlas/issues/348) and
+[#349](https://github.com/edithatogo/reimbursement-atlas/issues/349) are now closed as
+implementation-complete. Each was closed with an audit comment after its generated acceptance
+criteria passed. Human identity, source-licence, research and external publication gates remain
+tracked in separate open issues and were not promoted.
