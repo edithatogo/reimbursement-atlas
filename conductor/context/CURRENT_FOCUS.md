@@ -1,8 +1,9 @@
 # Current focus
 
-## Current merged-main state (2026-07-18)
+## Release snapshot state (2026-07-18)
 
-`main` is at `be33424c4b4f7d257ccb69529fe3d50d79fc149b`. Repository release
+This focus record describes release snapshot `be33424c4b4f7d257ccb69529fe3d50d79fc149b`.
+The checked-out `main` tip may be newer. Repository release
 readiness is green at 36/36 gates with zero required blockers. The historical
 MBS inventory and target-level review packet are implemented, but all 343
 historical targets remain `pending_human_review` and no raw historical payloads

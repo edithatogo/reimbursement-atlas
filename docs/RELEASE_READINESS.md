@@ -1,6 +1,8 @@
 # Release readiness
 
-Current merged-main reference: `be33424c4b4f7d257ccb69529fe3d50d79fc149b` (2026-07-18).
+Release snapshot reference: `be33424c4b4f7d257ccb69529fe3d50d79fc149b` (2026-07-18).
+The checked-out `main` tip may be newer than this snapshot; regenerate this document when
+preparing a new handoff.
 The repository release gate summary is 36/36 passing with zero required blockers;
 research publication, OSF registration, evidence release and policy claims remain
 fail-closed. The latest non-mutating monitor evidence was collected on the merge
