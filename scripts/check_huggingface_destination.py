@@ -74,28 +74,32 @@ def _target(
     mismatches: list[str] = []
     if error:
         mismatches.append(f"metadata request failed: {error}")
-    if remote_id != repo:
-        mismatches.append(f"remote id is {remote_id!r}, expected {repo!r}")
-    for key, expected_value in expected.items():
-        if observed[key] != expected_value:
-            mismatches.append(
-                f"{key} is {observed[key]!r}, expected governed value {expected_value!r}"
-            )
+    else:
+        if remote_id != repo:
+            mismatches.append(f"remote id is {remote_id!r}, expected {repo!r}")
+        for key, expected_value in expected.items():
+            if observed[key] != expected_value:
+                mismatches.append(
+                    f"{key} is {observed[key]!r}, expected governed value {expected_value!r}"
+                )
     remediation: list[str] = []
     if error:
         remediation.append("Retry the read-only metadata check after the endpoint is reachable.")
-    if remote_id != repo:
-        remediation.append("Confirm the configured repository identity before any publication run.")
-    if observed.get("license") != expected.get("license"):
-        remediation.append(
-            f"Reconcile remote license metadata to {expected['license']!r} only after all "
-            "licence and publication gates pass."
-        )
-    if "sdk" in expected and observed.get("sdk") != expected.get("sdk"):
-        remediation.append(
-            f"Reconcile Space SDK metadata to {expected['sdk']!r} only after the static "
-            "dashboard bundle passes its publication gates."
-        )
+    else:
+        if remote_id != repo:
+            remediation.append(
+                "Confirm the configured repository identity before any publication run."
+            )
+        if observed.get("license") != expected.get("license"):
+            remediation.append(
+                f"Reconcile remote license metadata to {expected['license']!r} only after all "
+                "licence and publication gates pass."
+            )
+        if "sdk" in expected and observed.get("sdk") != expected.get("sdk"):
+            remediation.append(
+                f"Reconcile Space SDK metadata to {expected['sdk']!r} only after the static "
+                "dashboard bundle passes its publication gates."
+            )
     return {
         "kind": kind,
         "repo": repo,
