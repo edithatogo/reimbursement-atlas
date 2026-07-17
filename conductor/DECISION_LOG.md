@@ -1282,3 +1282,16 @@ preserved the repository's configured control and avoided an administrator bypas
 
 Evidence: PR #426 merged as `adf08324bd21a32c4ae3f37d14edd910c10ead5`; post-merge CI, security,
 Scorecard, harness, release-readiness and dashboard browser checks passed.
+
+## 2026-07-18 - Separate current merge state from monitor evidence
+
+Decision: Authoritative release, OSF, Zenodo and current-focus documents identify the actual
+merged `main` commit, while monitor run identifiers retain the commit they were executed against.
+
+Rationale: A squash merge creates a new commit after external read-only monitors have completed.
+Calling the monitor's parent commit current would make the public handoff stale; calling the
+monitor evidence current would overstate what was validated on the new merge commit.
+
+Consequence: Current-state documentation is accurate without inventing new external evidence.
+The documentation freshness gate continues to validate the checked-out commit and accepts the
+merge parent only as an explicitly labelled historical monitor snapshot.

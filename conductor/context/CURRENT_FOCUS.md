@@ -2,7 +2,7 @@
 
 ## Current merged-main state (2026-07-18)
 
-`main` is at `e639490f84d210aea9d819f6b37996ebad6714e9`. Repository release
+`main` is at `be33424c4b4f7d257ccb69529fe3d50d79fc149b`. Repository release
 readiness is green at 36/36 gates with zero required blockers. The historical
 MBS inventory and target-level review packet are implemented, but all 343
 historical targets remain `pending_human_review` and no raw historical payloads
@@ -11,7 +11,8 @@ mapping review, OSF registration/publication, Hugging Face Space drift, Zenodo
 deposit, and GitHub account-level security settings. Do not treat monitor passes
 as publication or evidence approval.
 
-Latest read-only monitor IDs on this commit: OSF `29591535952`, Zenodo
+Latest read-only monitor IDs were collected on the merge parent
+`e639490f84d210aea9d819f6b37996ebad6714e9`: OSF `29591535952`, Zenodo
 `29591537888`, source health `29591540127`, Hugging Face destination
 `29591542182`, and GitHub security settings `29591544121`.
 

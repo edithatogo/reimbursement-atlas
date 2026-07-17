@@ -1,7 +1,8 @@
 # OSF workflow
 
-Current merged-main monitor refresh (2026-07-18, commit
-`e639490f84d210aea9d819f6b37996ebad6714e9`) is run `29591535952`. Pinned
+Current repository commit is `be33424c4b4f7d257ccb69529fe3d50d79fc149b` (2026-07-18).
+The latest merged-main monitor refresh was run against its merge parent
+`e639490f84d210aea9d819f6b37996ebad6714e9` as run `29591535952`. Pinned
 `osf-cli-go v1.0.0` discovery and the component plan passed; provisioning,
 registration, upload and publication were skipped. The private
 `Reimbursement Atlas` project remains a reusable target, but protocol, licence,

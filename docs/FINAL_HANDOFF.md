@@ -19,7 +19,7 @@ apps/dashboard/public/data/final_handoff_tasks.csv
 
 ## Current merged-main state (2026-07-18)
 
-The current merged commit is `e639490f84d210aea9d819f6b37996ebad6714e9`.
+The current merged commit is `be33424c4b4f7d257ccb69529fe3d50d79fc149b`.
 The historical MBS inventory contains 343 metadata-only targets across 32 archive
 pages, and the target-level review packet is available under
 `data/derived/historical_sources/historical_mbs_review_queue.{csv,jsonl}`. All
