@@ -29,4 +29,4 @@ data/derived/source_validation/source_content_validation.csv
 data/derived/source_validation/summary.json
 ```
 
-This gate is intentionally conservative: it checks for common failure modes such as empty downloads, HTML error pages saved as `.TXT`, invalid JSON/ZIP structure and large deviations from expected record counts. Source-specific schema validators should be added after the first real reviewed downloads are available.
+This gate is intentionally conservative: it checks for common failure modes such as empty downloads, HTML error pages saved as `.TXT`, invalid JSON/ZIP structure and large deviations from expected record counts. The optional `pixi run local-parser-contracts` gate validates the MBS TXT pair and PBS API/CSV parser contracts against ignored local caches when those caches are present. It emits only redacted paths, checksums, counts and boolean checks; it never writes raw payloads, performs network I/O or changes licence/evidence readiness. With no local cache it reports `skipped`. Passing this local contract gate is parser evidence only, not human source review or publication approval.
