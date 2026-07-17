@@ -15,13 +15,13 @@ The `test-goblin` extra is a compatibility profile rather than a dependency on a
 ## Core quality gate
 
 ```bash
-PYTHONPATH=src ruff check .
-PYTHONPATH=src ruff format --check .
-PYTHONPATH=src basedpyright
-PYTHONPATH=src pytest --cov=src/reimburse_atlas --cov-report=term-missing --cov-report=xml --cov-fail-under=90 -q
-PYTHONPATH=src bandit -q -c pyproject.toml -r src scripts
-PYTHONPATH=src python -m compileall -q src scripts tests
-uv build
+pixi run lint
+pixi run format-check
+pixi run typecheck
+pixi run coverage
+pixi run bandit
+python -m compileall -q src scripts tests
+pixi run build
 ```
 
 ## Coverage policy
@@ -43,7 +43,7 @@ Bandit is now part of the installed quality gate. XML parsing uses `defusedxml` 
 `pip-audit` remains in the development extra. It should be run in CI or a network-enabled local environment:
 
 ```bash
-pip-audit --strict
+pixi run pip-audit
 ```
 
 ## Dashboard validation

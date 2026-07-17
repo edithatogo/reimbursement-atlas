@@ -136,8 +136,8 @@ PYTHONPATH=src ruff check .
 PYTHONPATH=src ruff format --check .
 PYTHONPATH=src basedpyright
 PYTHONPATH=src pytest --cov=src/reimburse_atlas --cov-report=term-missing --cov-report=xml --cov-fail-under=90 -q
-PYTHONPATH=src bandit -q -c pyproject.toml -r src scripts
-uv build
+pixi run bandit
+pixi run build
 ```
 
 

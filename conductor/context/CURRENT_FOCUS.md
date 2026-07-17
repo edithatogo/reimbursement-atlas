@@ -1023,3 +1023,10 @@ claim approval unchecked. Issues #109-#113 were body-reconciled without closing 
 
 Consequence: GitHub research issues no longer present completed local scaffolding as unstarted,
 while the evidence and human-governance boundary remains fail-closed.
+
+## 2026-07-17 v152 Pixi security and build task boundary
+
+The official Pixi environment now exposes executable `bandit`, `pip-audit` and `build` task
+aliases through the locked `uv` runner. A unit contract test protects the task definitions, and
+the local commands pass. This closes the prior local alias defect without changing the protected
+CI security scope or publication gates.
