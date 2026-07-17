@@ -1,5 +1,7 @@
 """Tests for the metadata-only historical MBS archive inventory."""
 
+from pathlib import Path
+
 from scripts import make_historical_source_index as historical_index
 
 
@@ -21,3 +23,10 @@ def test_historical_url_filter_is_official_https_only() -> None:
     assert historical_index.official_url(base, "2007-MBS.pdf") is not None
     assert historical_index.official_url(base, "https://example.com/file.pdf") is None
     assert historical_index.official_url(base, "http://www.mbsonline.gov.au/file.pdf") is None
+
+
+def test_historical_inventory_workflow_exposes_src_on_python_path() -> None:
+    workflow = (
+        Path(__file__).parents[2] / ".github/workflows/historical-source-inventory.yml"
+    ).read_text(encoding="utf-8")
+    assert "      PYTHONPATH: src" in workflow
