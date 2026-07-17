@@ -124,6 +124,6 @@ The latest read-only refresh on merged `main` (`fa5b042`)
 ([29567562072](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29567562072))
 passed both OSF discovery and the component-plan job. Discovery again returned 28 accessible
 projects and the private `Reimbursement Atlas` project `q8cnx`; provisioning, registration,
-upload and publication were skipped. The sanitized discovery artifact was retained only in the
+upload and publication were skipped. The sanitized discovery artifact was retained only as a
 short-lived workflow artifact, and no OSF project, node, registration, file or token-bearing
 payload was mutated or committed.

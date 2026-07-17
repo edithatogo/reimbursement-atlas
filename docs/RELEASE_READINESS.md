@@ -89,7 +89,7 @@ The current merged-main refresh is workflow run
 `fa5b042`. OSF discovery and the component plan passed, confirming 28 accessible projects and
 the private `Reimbursement Atlas` project `q8cnx`; all OSF mutation jobs were skipped. This
 refresh updates operational evidence only and does not change the false research-publication,
-OSF-registration, evidence-release or policy-claims readiness flags.
+OSF-registration, evidence-release or policy-claim readiness flags.
 
 The latest non-depositing Zenodo preflight on merged `main` (`efd835e`) was run
 `29552003859`; metadata and repository-readiness validation passed and no DOI deposit or
