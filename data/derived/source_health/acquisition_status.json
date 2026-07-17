@@ -3,22 +3,24 @@
   "incomplete_count": 1,
   "items": [
     {
-      "credential_names": [],
+      "credential_names": [
+        "PBS_API_SUBSCRIPTION_KEY"
+      ],
       "evidence_path": "data/derived/source_downloads/download_attempts.jsonl",
-      "operational_blocker_count": 0,
-      "recommended_action": "Complete the human source/licence review for the gated rows; no additional automated acquisition is required.",
+      "operational_blocker_count": 1,
+      "recommended_action": "Provide `PBS_API_SUBSCRIPTION_KEY` through the approved secret store, then rerun acquisition.",
       "review_required_count": 6,
-      "status": "review_required",
+      "status": "partial",
       "task_id": "final_source_downloads",
       "title": "Run hardened curl/wget source download plan"
     }
   ],
   "mutation_performed": false,
   "network_io": false,
-  "operational_blocker_count": 0,
+  "operational_blocker_count": 1,
   "review_required_count": 6,
   "schema_version": "source-health-acquisition-v1",
-  "status": "review_required",
+  "status": "incomplete",
   "task_ids": [
     "final_source_downloads"
   ]

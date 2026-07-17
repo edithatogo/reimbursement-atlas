@@ -20,3 +20,13 @@ delegates to the same `--attempt` path, so running the shell launcher also
 writes attempt rows and local metadata sidecars instead of bypassing provenance.
 
 In this sandbox, direct DNS resolution for `www.mbsonline.gov.au` and GitHub standalone Python downloads was blocked. The failure is recorded as a blocked network gate rather than silently ignored.
+
+## Current acquisition observation
+
+On 2026-07-17, the hardened `curl` attempt revalidated both July 2026 MBS TXT
+files into ignored local raw storage. Six other targets remain intentionally
+skipped behind source/licence review. The PBS API attempt is currently recorded
+as `blocked_secret` because `PBS_API_SUBSCRIPTION_KEY` was not present in the
+approved environment; no key or response payload is written to the repository.
+The authoritative current status is generated in
+`data/derived/source_health/acquisition_status.json`.

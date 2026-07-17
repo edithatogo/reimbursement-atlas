@@ -1262,8 +1262,8 @@
       "table_name": "download_plans"
     },
     {
-      "byte_size": 7949,
-      "checksum_sha256": "d59ceba3f2f5a4dad071088ff032e4f28870231c2113c6ac8219325b0357684c",
+      "byte_size": 7963,
+      "checksum_sha256": "512b563d7da85c491e96dd787bff50f47967e3fb78cd0d2ca980151bb82f7fb7",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "public_reuse_review",
@@ -1274,8 +1274,8 @@
       "table_name": "download_attempts"
     },
     {
-      "byte_size": 6576,
-      "checksum_sha256": "fac79ea9eab4f1e3eef2cff3849056926ffe9c65bbcd9993d44d40113f1acb09",
+      "byte_size": 6586,
+      "checksum_sha256": "2353a61f8de2014185a110be88b8116e6b1f970f490e4cc7453de5d87b71ec90",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
@@ -1719,7 +1719,7 @@
     },
     {
       "byte_size": 67439,
-      "checksum_sha256": "690dffec5739b8b6d590d823f1f6e0cff393adcc435fc5c76eed46ff46afba3f",
+      "checksum_sha256": "b9b7c7372f4f26f1641e7fe464165b60e1999266c130d4d54aae442224cae8ac",
       "contains_raw_source_payload": false,
       "file_format": "json",
       "licence_gate": "public_reuse_review",
@@ -1731,7 +1731,7 @@
     },
     {
       "byte_size": 75982,
-      "checksum_sha256": "dbed383b2af6feb8235fa810b87249ce38498a5823860caf83c37a381e44eb36",
+      "checksum_sha256": "b23d95534e8fbcae52777367c177877685d9f722a2ee69ed3d0652237bbf506b",
       "contains_raw_source_payload": false,
       "file_format": "json",
       "licence_gate": "public_reuse_review",

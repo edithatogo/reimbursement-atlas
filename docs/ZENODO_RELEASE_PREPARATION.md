@@ -29,7 +29,8 @@ separately approved Zenodo environment and accountable publication authorization
 
 The non-depositing preflight was rerun successfully as
 [workflow run 29569972301](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29569972301)
-on merged `main` commit `fc47649`.
+on merged `main` commit `fc47649` (the latest non-mutating preflight; the current repository
+commit is `db367f4`).
 Its artifact records `mutation_performed: false`, `doi_created: false` and
 `human_publication_approval_required: true`.
 
