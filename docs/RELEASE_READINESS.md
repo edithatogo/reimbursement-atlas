@@ -185,3 +185,15 @@ remain unchanged.
 The current merged commit `41d8a94` also passed CI, security, release readiness, browser validation,
 and GitHub Pages build, deploy and live smoke in run
 [29580400871](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29580400871).
+
+## Latest current-main external refresh
+
+Read-only monitors on current `main` `6d27f63` produced the same fail-closed boundary. OSF
+[29581492342](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29581492342),
+Zenodo [29581493945](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29581493945),
+source health [29581497364](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29581497364)
+and GitHub security [29581498956](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29581498956)
+completed successfully without external mutation. Hugging Face
+[29581495755](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29581495755)
+failed closed on the unchanged Space metadata drift. These checks do not grant licence,
+research, evidence, policy or publication approval.
