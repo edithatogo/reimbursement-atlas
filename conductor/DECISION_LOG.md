@@ -1129,3 +1129,13 @@ reported two known Space metadata mismatches and `mutation_performed: false`.
 
 Consequence: Toolchain and candidate-build readiness are current, but OSF/HF publication readiness
 and external destination reconciliation remain explicitly blocked.
+
+## 2026-07-17 - Record latest Zenodo non-depositing preflight
+
+Decision: Treat the latest Zenodo run as metadata and repository-readiness evidence only. Keep DOI
+creation and deposit disabled until publication, licence, research and evidence approvals exist.
+
+Evidence: Zenodo preflight [29552003859](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29552003859)
+passed metadata validation, repository readiness and boundary recording on merged `main`.
+
+Consequence: Zenodo automation is validated without implying DOI or archival publication readiness.

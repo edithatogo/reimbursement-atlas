@@ -75,6 +75,10 @@ policy-claim or publication-readiness flags.
 
 These states are tracked as evidence rather than hidden in prose.
 
+The latest non-depositing Zenodo preflight on merged `main` (`efd835e`) was run
+`29552003859`; metadata and repository-readiness validation passed and no DOI deposit or
+external mutation was performed.
+
 ## Source contract posture
 
 `source_contract_validation_summary` is now expected to pass when the reviewed MBS bundle
