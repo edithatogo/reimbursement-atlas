@@ -17,9 +17,27 @@ data/derived/final_handoff/summary.json
 apps/dashboard/public/data/final_handoff_tasks.csv
 ```
 
+## Current merged-main state (2026-07-18)
+
+The current merged commit is `8ee60ee66833171c440bac3d886796f06cee4ab0`.
+The historical MBS inventory contains 343 metadata-only targets across 32 archive
+pages, and the target-level review packet is available under
+`data/derived/historical_sources/historical_mbs_review_queue.{csv,jsonl}`. All
+targets remain `pending_human_review`; no historical payload is approved or
+tracked.
+
+The current read-only monitor refresh on this commit recorded OSF discovery and
+plan success (run `29591535952`), Zenodo non-depositing validation success
+(`29591537888`), source-health success with six review-only targets and zero
+operational blockers (`29591540127`), Hugging Face destination drift without
+mutation (`29591542182`), and GitHub security readback
+`blocked_permissions` because the workflow token cannot read account-level
+security-analysis settings (`29591544121`). These runs do not grant licence,
+research, evidence, policy or publication approval.
+
 The artifact-level licence-review queue is generated separately at
 `data/derived/licence_review/`. It binds every publication candidate to its current
-SHA-256 checksum and keeps all 161 rows pending until an accountable reviewer records
+SHA-256 checksum and keeps all 163 rows pending until an accountable reviewer records
 decision evidence. The queue is a review-control artefact, not a licence approval, and
 cannot mutate a candidate to approved status.
 
