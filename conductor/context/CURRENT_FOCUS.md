@@ -64,6 +64,12 @@ enabled, while non-provider pattern scanning and validity checks remain disabled
 secret access and keeps issue #191 current. Chrome access to the GitHub settings page is blocked
 by enterprise browser policy; no workaround is used.
 
+The first Actions dispatch authenticated successfully but GitHub omitted `security_and_analysis`
+from the `GITHUB_TOKEN` readback. The monitor now records this distinct condition as
+`blocked_permissions`; it does not infer that the account-bound controls are disabled when the
+API response is incomplete. A local authenticated readback remains `blocked_account` with the
+four observed statuses.
+
 
 ## 2026-07-04 v13 current focus
 
