@@ -1213,3 +1213,18 @@ GitHub security run [29572723999](https://github.com/edithatogo/reimbursement-at
 returned `blocked_permissions` because the workflow token could not read security-analysis
 settings; it did not infer a false pass. No publication, OSF mutation, Zenodo deposit, licence
 approval or security-setting mutation was performed.
+
+## 2026-07-17 v171 authenticated local PBS acquisition
+
+The official Department of Health API catalogue was accessed through the browser to obtain its
+published unregistered-user PBS key. The key was used only as an ephemeral environment variable
+for the hardened local acquisition command and was not printed, persisted, committed or included
+in provenance. The July 2026 PBS `/schedules` response downloaded successfully; the existing
+ignored `/items` and `/fees` cache was validated and redacted into four provenance rows covering
+10 schedule, 14,840 item and 17 fee records (14,867 total).
+
+The regenerated source-health report is now `review_required` with zero operational blockers and
+six licence-review targets. Source-content and source-contract validation have zero blocking
+failures, and the public-data policy check passed. This resolves the local PBS missing-secret
+operational blocker but does not approve redistribution, publication, research claims or source
+fields; the PBS extract remains `acquired_unreviewed` pending accountable review.

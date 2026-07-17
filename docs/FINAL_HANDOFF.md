@@ -42,10 +42,10 @@ cannot mutate a candidate to approved status.
    then create the signed release and Zenodo DOI (`#121`,
    [#256](https://github.com/edithatogo/reimbursement-atlas/issues/256)).
 
-The current source acquisition run is explicitly classified as partial: the July 2026 MBS
-pair was revalidated into ignored local raw storage, six targets remain licence-gated, and
-the PBS API attempt is blocked because `PBS_API_SUBSCRIPTION_KEY` is absent from the approved
-environment. The derived MBS bundle, strict software/security gates, GitHub Pages deployment,
+The current source acquisition run is explicitly classified as review-required: the July 2026
+MBS pair and PBS schedule were revalidated into ignored local raw storage, six targets remain
+licence-gated, and the PBS monthly extract remains acquired-unreviewed. The derived MBS bundle,
+strict software/security gates, GitHub Pages deployment,
 OSF CLI v1 verification and the downloadable archive are complete.
 Public evidence-release readiness still requires the remaining credential and human
 review gates.
@@ -54,7 +54,7 @@ Current release posture: the repository is ready for local software release and 
 public dashboard is live, while `research_publication_ready`, `evidence_release_ready`
 and `policy_claims_ready` remain fail-closed.
 
-The current merged release is `db367f4` (resolve the current value with `git rev-parse main`). The repository-controlled
+The current merged release is `353b368` (resolve the current value with `git rev-parse main`). The repository-controlled
 quality, security, source-contract, package, dashboard, citation and reproducibility gates
 are green; the remaining rows above require accountable external or human decisions rather
 than additional local implementation.
