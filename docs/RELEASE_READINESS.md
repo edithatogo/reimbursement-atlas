@@ -167,3 +167,17 @@ passed without publication or raw-payload mutation. Hugging Face
 failed closed on the unchanged Space drift, and GitHub security
 [29577729670](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577729670)
 reported `blocked_permissions`; neither monitor mutated its target.
+
+## Final merged-main monitor refresh
+
+The final merged commit `3d48d4e` was rechecked without publication or destination mutation.
+The [OSF plan](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29580009614) and
+[Zenodo preflight](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29580011165)
+passed in non-mutating modes. [Source health](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29580013970)
+downloaded only to ignored local storage, validated the reviewed MBS pair and PBS response
+schemas, and retained six licence-review targets. The [Hugging Face monitor](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29580012461)
+failed closed on Space metadata drift (`mit`/`gradio` versus governed `apache-2.0`/`static`),
+without mutation. The [GitHub security readback](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29580015474)
+reported `blocked_permissions` because the workflow token cannot read security-analysis settings.
+These results refresh evidence only; research, evidence, policy, licence and publication gates
+remain unchanged.
