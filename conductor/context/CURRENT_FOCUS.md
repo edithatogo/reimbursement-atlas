@@ -1030,3 +1030,13 @@ The official Pixi environment now exposes executable `bandit`, `pip-audit` and `
 aliases through the locked `uv` runner. A unit contract test protects the task definitions, and
 the local commands pass. This closes the prior local alias defect without changing the protected
 CI security scope or publication gates.
+
+## 2026-07-17 v153 External publication and toolchain recheck
+
+The pinned `osf-cli-go` v1.0.0 was installed through the official Go module path and its explicit
+binary contract passed. No OSF node, registration, upload or token-bearing artefact was created.
+The read-only Hugging Face check reaches both destinations: the dataset metadata passes, while the
+Space remains drifted (`mit`/`gradio` versus governed `apache-2.0`/`static`). GitHub API recheck
+also confirms account-level non-provider secret scanning and validity checks remain disabled.
+Issues #191, #320 and #362 contain the current external evidence and remain fail-closed where
+appropriate.
