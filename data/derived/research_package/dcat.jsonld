@@ -451,6 +451,18 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/toolchain/typescript_compatibility.json",
+      "dct:format": "json",
+      "dct:title": "typescript_compatibility"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/toolchain/typescript_compatibility.md",
+      "dct:format": "md",
+      "dct:title": "typescript_compatibility"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/repo_automation/workflow_uses.jsonl",
       "dct:format": "jsonl",
       "dct:title": "workflow_uses"

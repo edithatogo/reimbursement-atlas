@@ -1185,3 +1185,16 @@ continues to block evidence/publication readiness.
 The research-package descriptors also exclude `data/derived/licence_review/` governance outputs.
 Those outputs checksum the descriptors, so including both would create a cross-generator cycle;
 the review queue remains a separate checksum-bound handoff artefact.
+
+## 2026-07-17 - Add a read-only TypeScript 7 compatibility canary
+
+Decision: Keep the dashboard on TypeScript 6 while a scheduled canary checks the pinned
+`@astrojs/check` peer range and the TypeScript 7 channel. Only an explicit `upgrade_available`
+result may open or update the existing upgrade issue; the canary never mutates package files.
+
+Rationale: TypeScript 7.0.2 is available, but `@astrojs/check@0.9.9` currently declares
+`^5.0.0 || ^6.0.0`. A peer override would weaken reproducibility, while a periodic metadata check
+turns the external dependency blocker into an observable, reviewable transition.
+
+Consequence: The report is governed as a derived toolchain artefact and remains separate from the
+actual upgrade PR, which must pass npm, Astro and browser gates.

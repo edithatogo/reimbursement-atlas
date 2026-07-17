@@ -1102,3 +1102,10 @@ operational blockers and six licence-review targets: the executable MBS/PBS down
 while historical/CMS rows remain behind human reuse review. The acquisition escalation issue is
 therefore closed by the scheduled workflow when it next runs; licence, research and publication
 gates remain fail-closed.
+
+## 2026-07-17 v160 TypeScript compatibility canary
+
+The dashboard remains on TypeScript `6.0.3` because `@astrojs/check@0.9.9` accepts only TypeScript
+5 or 6. A scheduled read-only canary now records the current peer range and TypeScript 7 channel,
+and will open or update the existing upgrade issue only when the peer contract admits TypeScript 7.
+No package or lockfile mutation is performed by the canary.

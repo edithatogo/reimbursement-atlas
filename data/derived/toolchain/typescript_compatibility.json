@@ -1,0 +1,14 @@
+{
+  "candidate_typescript7": "7.0.2",
+  "checker": "@astrojs/check",
+  "checker_peer_typescript": "^5.0.0 || ^6.0.0",
+  "checker_version": "0.9.9",
+  "current_typescript": "6.0.3",
+  "errors": [],
+  "mutation_performed": false,
+  "network_io": true,
+  "schema_version": "typescript-compatibility-v1",
+  "status": "blocked_peer",
+  "target_channel": "7.x",
+  "upgrade_recommended": false
+}
