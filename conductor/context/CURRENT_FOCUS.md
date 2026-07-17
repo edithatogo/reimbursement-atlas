@@ -984,3 +984,10 @@ policy, destination-metadata and explicit publication approval remain fail-close
 [#114](https://github.com/edithatogo/reimbursement-atlas/issues/114) and
 [#115](https://github.com/edithatogo/reimbursement-atlas/issues/115) were reconciled and closed as
 implementation tasks only; destination drift remains tracked in [#320](https://github.com/edithatogo/reimbursement-atlas/issues/320).
+
+## 2026-07-17 v148 Deterministic quality evidence hardening
+
+Passing local quality gates now omit machine-dependent stdout/stderr excerpts from committed
+evidence; non-passing gates retain diagnostics. This prevents tool banners, test counts and runtime
+output from changing generated hashes across macOS and CI. PR [#390](https://github.com/edithatogo/reimbursement-atlas/pull/390)
+passed deterministic-regeneration and generated-artifact checks after the correction.
