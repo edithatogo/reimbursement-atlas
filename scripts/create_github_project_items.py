@@ -712,6 +712,7 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
         "Add source-specific contract validation before reviewed-source bundle parsing",
         "Generate GitHub Project import rows from Conductor tracks and issue drafts",
         "Generate final network credential and review handoff checklist",
+        "Automate verified git bundle and archive handoff export",
         "Expose source contracts GitHub Project rows and final handoff tasks in dashboard",
         "Add Codex import prompt for git bundle restoration and track execution",
         "Verify Codex continuation process regenerates Conductor issue and project outputs",
