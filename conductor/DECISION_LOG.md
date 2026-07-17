@@ -946,3 +946,17 @@ incomplete status is caused by six `skipped_licence_gate` records, not missing P
 
 Consequence: The PBS transport credential boundary is resolved for the protected runner, while source
 promotion remains fail-closed pending field/licence review and the separate MBS/CMS review decisions.
+
+## 2026-07-17 - Recheck TypeScript 7 against current checker metadata
+
+Decision: Do not force TypeScript 7 into the dashboard until the pinned Astro checker publishes a
+compatible peer contract. Keep TypeScript `6.0.3` and reject `--legacy-peer-deps` or an unsupported
+override.
+
+Evidence: npm reports TypeScript `7.0.2` as stable and `7.1.0-dev.20260715.1` as the current next
+build. `@astrojs/check@0.9.9` declares `typescript: ^5.0.0 || ^6.0.0`; a clean npm install probe
+returns `ERESOLVE` on TypeScript 7 before `astro check` executes. Existing npm CI, dashboard build
+and browser gates remain green on TypeScript `6.0.3`.
+
+Consequence: The bleeding-edge candidate is documented and tracked, but reproducible CI is preserved
+until upstream checker support exists. Issue #362 remains blocked for that explicit reason.

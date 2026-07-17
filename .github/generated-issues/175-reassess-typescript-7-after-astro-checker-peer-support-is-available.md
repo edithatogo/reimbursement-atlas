@@ -13,7 +13,9 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Scope is confirmed: evaluate the current stable TypeScript release against the pinned Astro checker contract.
+- [x] Licence and data-governance implications are checked; this is a toolchain-only change with no data publication effect.
+- [x] Tests or validation evidence are defined: npm registry peer metadata and a clean npm dependency-resolution probe.
+- [x] Documentation or Conductor context records the current compatibility boundary.
+- [x] TypeScript `7.0.2` is available, but `@astrojs/check@0.9.9` declares `typescript: ^5.0.0 || ^6.0.0`; npm rejects the unsupported tree.
+- [ ] Upgrade `@astrojs/check` or its checker peer contract, then rerun `npm ci`, `astro check`, build and browser gates before adoption.
