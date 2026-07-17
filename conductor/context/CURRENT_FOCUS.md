@@ -1228,3 +1228,14 @@ six licence-review targets. Source-content and source-contract validation have z
 failures, and the public-data policy check passed. This resolves the local PBS missing-secret
 operational blocker but does not approve redistribution, publication, research claims or source
 fields; the PBS extract remains `acquired_unreviewed` pending accountable review.
+
+## 2026-07-17 v172 credentialed source-health confirmation
+
+Current `main` `8c94035` was rechecked by the credentialed source-health workflow
+[29574452434](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29574452434).
+The workflow completed successfully and independently confirmed the local v171 boundary:
+the redacted PBS evidence covers 10 schedule, 14,840 item and 17 fee records (14,867 total),
+with zero schema failures and no raw payloads tracked. Source-health is `review_required` with
+zero operational blockers and six licence-review targets. Issue [#25](https://github.com/edithatogo/reimbursement-atlas/issues/25)
+now records that the old missing-secret state is resolved while accountable field/licence review
+remains required.
