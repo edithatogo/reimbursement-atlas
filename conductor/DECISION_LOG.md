@@ -671,10 +671,11 @@ Conductor focus documents as a machine-checked invariant. Historical monitor sna
 remain in the append-only evidence log, but they must not be mistaken for current state.
 
 Evidence: The documentation freshness gate resolves the available base, first-parent or
-checked-out commit and requires the full SHA in each authoritative current-state document. The
-Python CI checkout fetches two commits so pull-request merge refs expose the base commit. The
-gate and seven focused unit tests pass on merged `main` `e639490`; no publication, source,
-credential or external state was changed.
+checked-out commit and requires the full SHA in each authoritative current-state document. On a
+pull-request merge ref, where the eventual squash SHA is unknowable, it instead requires all
+five documents to agree on one full SHA; local and push-to-main contexts retain exact candidate
+validation. The gate and seven focused unit tests pass on merged `main` `e639490`; no
+publication, source, credential or external state was changed.
 
 Consequence: Documentation drift becomes a protected CI failure rather than a manual review
 discovery. The change is tracked in the CI/CD and supply-chain Conductor track and generated

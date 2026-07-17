@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import os
+import re
 import subprocess  # nosec B404
 from pathlib import Path
 from typing import cast
@@ -30,6 +32,7 @@ CURRENT_STATE_DOCS = (
     "docs/ZENODO_RELEASE_PREPARATION.md",
     "conductor/context/CURRENT_FOCUS.md",
 )
+FULL_SHA_PATTERN = re.compile(r"(?<![0-9a-f])([0-9a-f]{40})(?![0-9a-f])")
 
 
 def git_commit(root: Path, revision: str) -> str | None:
@@ -60,6 +63,14 @@ def current_state_commits(root: Path) -> tuple[str, ...]:
     return tuple(dict.fromkeys(commit for commit in candidates if commit is not None))
 
 
+def is_pull_request_ci() -> bool:
+    """Return whether the gate is running on a GitHub pull-request merge ref."""
+    return (
+        os.environ.get("GITHUB_ACTIONS") == "true"
+        and os.environ.get("GITHUB_EVENT_NAME") == "pull_request"
+    )
+
+
 def validate_public_docs(root: Path) -> list[str]:  # noqa: PLR0912 - explicit public-doc contract checks
     """Return documentation drift or overclaiming errors."""
     readme = (root / "README.md").read_text(encoding="utf-8")
@@ -83,13 +94,17 @@ def validate_public_docs(root: Path) -> list[str]:  # noqa: PLR0912 - explicit p
             path = root / relative
             text = path.read_text(encoding="utf-8") if path.exists() else ""
             matches = [commit for commit in commits if commit in text]
-            if not matches:
+            if not matches and not is_pull_request_ci():
                 errors.append(
                     f"{relative} does not reference a valid current-state commit "
                     f"({', '.join(commits)})"
                 )
             else:
-                document_commits.add(matches[0])
+                document_matches = matches or FULL_SHA_PATTERN.findall(text)
+                if not document_matches:
+                    errors.append(f"{relative} contains no full current-state commit")
+                else:
+                    document_commits.add(document_matches[0])
         if len(document_commits) > 1:
             errors.append(
                 "Authoritative current-state documents reference different commits: "
