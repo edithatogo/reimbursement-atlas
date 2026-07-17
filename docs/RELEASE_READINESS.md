@@ -157,3 +157,13 @@ passed as a monitor but reported `blocked_permissions` because its workflow toke
 security-analysis settings. These runs refresh operational evidence only and do not change the
 currently false research-publication, OSF-registration, evidence-release or policy-claim readiness
 flags.
+
+The v177 refresh on validated commit `5833b35` reconfirmed the same external boundaries:
+OSF [29577726446](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577726446),
+Zenodo [29577728066](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577728066)
+and source-health [29577731251](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577731251)
+passed without publication or raw-payload mutation. Hugging Face
+[29577724648](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577724648)
+failed closed on the unchanged Space drift, and GitHub security
+[29577729670](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577729670)
+reported `blocked_permissions`; neither monitor mutated its target.

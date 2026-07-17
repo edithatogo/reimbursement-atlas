@@ -1282,3 +1282,19 @@ The TypeScript compatibility canary queried the npm registry and observed candid
 no package files or lockfiles were mutated. Issue [#362](https://github.com/edithatogo/reimbursement-atlas/issues/362)
 now contains the fresh evidence. Keep the dashboard on TypeScript 6 until checker peer support
 lands; do not use a peer override that weakens reproducibility.
+
+## 2026-07-17 v177 current-branch external preflight refresh
+
+On validated commit `5833b35`, OSF
+[29577726446](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577726446),
+Zenodo [29577728066](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577728066)
+and source-health [29577731251](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577731251)
+passed in non-mutating modes. Source-health remains `review_required` with six licence-review
+targets and zero operational blockers. Hugging Face
+[29577724648](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577724648)
+again reported governed Space drift (`mit`/`gradio` versus `apache-2.0`/`static`) without
+mutation. GitHub security
+[29577729670](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577729670)
+again reported `blocked_permissions` because the workflow token cannot read security-analysis
+settings. No publication, DOI, destination metadata, repository setting or raw source mutation
+occurred.

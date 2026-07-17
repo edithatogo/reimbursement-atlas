@@ -71,3 +71,13 @@ closed on the known Space metadata drift without mutation; and GitHub security r
 [29576548821](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29576548821) reported
 `blocked_permissions` for security-analysis settings. No external publication, DOI deposit, licence
 approval or security-setting mutation was performed.
+
+The latest v177 read-only refresh on commit `5833b35` reconfirmed this boundary. OSF run
+[29577726446](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577726446),
+Zenodo run [29577728066](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577728066)
+and source-health run [29577731251](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577731251)
+passed without mutation. HF run
+[29577724648](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577724648)
+failed closed on Space metadata drift; GitHub security run
+[29577729670](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577729670)
+reported `blocked_permissions`.
