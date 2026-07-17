@@ -3,11 +3,9 @@
   "incomplete_count": 1,
   "items": [
     {
-      "credential_names": [
-        "PBS_API_SUBSCRIPTION_KEY"
-      ],
+      "credential_names": [],
       "evidence_path": "data/derived/source_downloads/download_attempts.jsonl",
-      "recommended_action": "Provide `PBS_API_SUBSCRIPTION_KEY` through the approved secret store, then rerun acquisition.",
+      "recommended_action": "Review downloaded-source evidence and resolve remaining licence-gated or unacquired targets before promotion.",
       "status": "partial",
       "task_id": "final_source_downloads",
       "title": "Run hardened curl/wget source download plan"
