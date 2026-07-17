@@ -229,6 +229,7 @@ epics:
           - "The report records only repository identity, expected card fields, drift reasons and mutation_performed=false."
           - "The workflow has no HF token, clone, push, or write-enabled publication step."
           - "Drift remains linked to issue #320 and does not imply publication approval."
+          - "The workflow synchronizes issue #320 with the redacted read-only report using only GitHub issue permission."
       - title: Add grouped licence review packet for accountable handoff
         labels: ["type:publication", "type:review", "risk:licence", "phase:release-gate", "status:implemented"]
         status: implemented

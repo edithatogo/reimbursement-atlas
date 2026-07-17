@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  issues: write
 
 concurrency:
   group: huggingface-destination-metadata
@@ -38,3 +39,13 @@ jobs:
           path: data/derived/publication/huggingface_destination_check.json
           if-no-files-found: error
           retention-days: 30
+      - name: Synchronize issue 320 with read-only drift evidence
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          report="data/derived/publication/huggingface_destination_check.json"
+          test -f "$report"
+          body="$(printf 'Automated Hugging Face destination metadata monitor.\n\nRead-only evidence from %s/%s/actions/runs/%s:\n\n%s' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" "$(cat "$report")")"
+          gh issue edit 320 --repo "$GITHUB_REPOSITORY" --body "$body"
