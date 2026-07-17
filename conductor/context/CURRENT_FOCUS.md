@@ -1337,6 +1337,15 @@ remained `blocked_permissions` because the workflow token cannot read security-a
 No publication, DOI deposit, licence approval, destination mutation or security-setting mutation
 occurred.
 
+## 2026-07-17 v182 current-main closure
+
+The v181 evidence record merged as `41d8a94f5e7f45656f799983bf3ec2d5f339f899`. All post-merge
+required checks passed, and GitHub Pages run
+[29580400871](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29580400871)
+completed build, deploy and live HTTPS smoke successfully. Current `main` is clean and the
+repository release gate remains true. External research, evidence, licence, OSF, Hugging Face,
+Zenodo and policy-claim gates remain fail-closed.
+
 ## 2026-07-17 v179 post-merge main closure
 
 PR [#426](https://github.com/edithatogo/reimbursement-atlas/pull/426) merged through the
