@@ -25,6 +25,8 @@ jobs:
           persist-credentials: false
       - uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
       - name: Read repository security settings
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: uv run --all-extras python scripts/check_github_security_settings.py --repo "$GITHUB_REPOSITORY"
       - name: Upload redacted settings evidence
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -43,7 +45,7 @@ jobs:
           test -f "$report"
           status="$(python -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["status"])' "$report")"
           body="$(cat "$report")"
-          body="Live readback from ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}:\n\n${body}"
+          body="$(printf 'Live readback from %s/%s/actions/runs/%s:\n\n%s' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" "$body")"
           if [ "$status" = "pass" ]; then
             gh issue close 191 --comment "$body" || true
           else
