@@ -29,3 +29,7 @@ For machine-checkable decisions, add rows to the optional
 `pixi run licence-review-validate`. The validator checks queue checksums, repository-relative
 paths, decision identifiers and the required human evidence fields. An empty decisions file is
 valid and preserves the current pending state.
+
+The approval-neutral JSON Schema at `data/licence_review/decision.schema.json`
+can be used to check an individual JSONL object before the repository validator
+is run. It does not create decisions or grant redistribution permission.
