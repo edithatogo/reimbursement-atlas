@@ -543,6 +543,10 @@ def _run_record(
     stderr: str,
     notes: str,
 ) -> QualityGateRunRecord:
+    # Successful command output is machine-dependent (counts, timings and tool banners). Keep
+    # diagnostics for non-passing gates, while making committed pass evidence byte-stable.
+    stable_stdout = stdout if status != "passed" else ""
+    stable_stderr = stderr if status != "passed" else ""
     return QualityGateRunRecord(
         id=spec.id,
         category=spec.category,
@@ -555,8 +559,8 @@ def _run_record(
         duration_seconds=0.0,
         blocking=spec.blocking,
         generated_at=generated_at,
-        stdout_excerpt=_excerpt(stdout, repo=repo),
-        stderr_excerpt=_excerpt(stderr, repo=repo),
+        stdout_excerpt=_excerpt(stable_stdout, repo=repo),
+        stderr_excerpt=_excerpt(stable_stderr, repo=repo),
         notes=notes,
     )
 

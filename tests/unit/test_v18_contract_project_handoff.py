@@ -118,11 +118,13 @@ def test_generated_output_plan_preserves_status_and_external_gate() -> None:
     from scripts.create_github_project_items import generated_track_issues
 
     issues = generated_track_issues(ROOT)
-    issue = next(item for item in issues if item.title == "Implement output plan: out_hf_dataset")
+    issue = next(
+        item for item in issues if item.title == "Implement output plan: out_osf_protocol_pack"
+    )
     rendered = render_issue(issue)
-    assert issue.status == "planned"
-    assert "status:planned" in issue.labels
-    assert "Status: `planned`" in rendered
+    assert issue.status == "drafted"
+    assert "status:drafted" in issue.labels
+    assert "Status: `drafted`" in rendered
     assert "human or external approval" in rendered
     assert "- [ ]" in rendered
 
@@ -141,6 +143,25 @@ def test_public_product_output_plans_reflect_local_implementation() -> None:
     assert set(observed) == expected
     assert all(issue.status == "implemented" for issue in observed.values())
     assert all("status:implemented" in issue.labels for issue in observed.values())
+    assert all(
+        "separate human or external publication gate remains fail-closed" in render_issue(issue)
+        for issue in observed.values()
+    )
+
+
+def test_hugging_face_output_plans_reflect_local_workflow_implementation() -> None:
+    """HF publication tooling is implemented even while remote publication is gated."""
+    from scripts.create_github_project_items import generated_track_issues
+
+    expected = {
+        "Implement output plan: out_hf_dataset",
+        "Implement output plan: out_hf_space",
+    }
+    observed = {
+        issue.title: issue for issue in generated_track_issues(ROOT) if issue.title in expected
+    }
+    assert set(observed) == expected
+    assert all(issue.status == "implemented" for issue in observed.values())
     assert all(
         "separate human or external publication gate remains fail-closed" in render_issue(issue)
         for issue in observed.values()

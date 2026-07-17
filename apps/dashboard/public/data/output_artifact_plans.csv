@@ -1,6 +1,6 @@
 id,notes,output_type,path,release_gate,status,target_platform,track_id
-out_hf_dataset,Licence-safe derived data only; no raw restricted descriptors.,dataset,infra/huggingface/DATASET_CARD.md,publication_manifest_passes,planned,huggingface_dataset,track_publication_hf_spaces
-out_hf_space,Static Astro dashboard for public exploration.,dashboard,apps/dashboard/dist,dashboard_build_and_public_data_policy_pass,planned,huggingface_space,track_publication_hf_spaces
+out_hf_dataset,Licence-safe derived data only; no raw restricted descriptors.,dataset,infra/huggingface/DATASET_CARD.md,publication_manifest_passes,implemented,huggingface_dataset,track_publication_hf_spaces
+out_hf_space,Static Astro dashboard for public exploration.,dashboard,apps/dashboard/dist,dashboard_build_and_public_data_policy_pass,implemented,huggingface_space,track_publication_hf_spaces
 out_osf_protocol_pack,Detailed OSF protocol pack for research questions.,protocol,protocols/,human_protocol_review,drafted,osf,track_research_protocols_osf
 out_osf_reports,Question-specific detailed reports.,report,reports/,analysis_protocol_complete,drafted,osf,track_research_protocols_osf
 out_preprint_methods,Methods/design paper pathway.,preprint,papers/reimbursement_atlas_methods.md,derived_data_available,planned,osf,track_research_protocols_osf
