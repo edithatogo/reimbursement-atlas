@@ -1321,6 +1321,22 @@ The repository is clean and the v82 handoff package is verified. Repository rele
 true; research publication, OSF registration, evidence release and policy claims remain false by
 design until licence, protocol, human-review and external-publication gates are satisfied.
 
+## 2026-07-17 v181 final external monitor refresh
+
+Read-only monitors ran against merged `main` `3d48d4e`. OSF
+[29580009614](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29580009614) and
+Zenodo [29580011165](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29580011165)
+passed without mutation. Source health
+[29580013970](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29580013970)
+downloaded only ignored local raw payloads, validated the reviewed MBS pair and PBS schemas,
+and retained six licence-review targets. Hugging Face
+[29580012461](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29580012461)
+failed closed on the unchanged Space metadata drift; the dataset metadata passed. GitHub
+security [29580015474](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29580015474)
+remained `blocked_permissions` because the workflow token cannot read security-analysis settings.
+No publication, DOI deposit, licence approval, destination mutation or security-setting mutation
+occurred.
+
 ## 2026-07-17 v179 post-merge main closure
 
 PR [#426](https://github.com/edithatogo/reimbursement-atlas/pull/426) merged through the

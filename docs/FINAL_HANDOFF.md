@@ -72,6 +72,12 @@ closed on the known Space metadata drift without mutation; and GitHub security r
 `blocked_permissions` for security-analysis settings. No external publication, DOI deposit, licence
 approval or security-setting mutation was performed.
 
+The final merged-main monitor refresh on `3d48d4e` is recorded in the release-readiness section:
+OSF and Zenodo passed non-mutating plans, source health retained six licence-review targets,
+Hugging Face failed closed on Space metadata drift, and GitHub security readback remained
+blocked by token/API visibility. No external publication, DOI deposit, licence approval or
+security-setting mutation was performed.
+
 The latest v177 read-only refresh on commit `5833b35` reconfirmed this boundary. OSF run
 [29577726446](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577726446),
 Zenodo run [29577728066](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577728066)
