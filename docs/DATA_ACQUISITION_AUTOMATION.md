@@ -30,3 +30,9 @@ as `blocked_secret` because `PBS_API_SUBSCRIPTION_KEY` was not present in the
 approved environment; no key or response payload is written to the repository.
 The authoritative current status is generated in
 `data/derived/source_health/acquisition_status.json`.
+
+The credentialed GitHub Actions source-health run on merged `main`
+([29571899135](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29571899135))
+completed with `review_required`: it schema-validated 14,867 PBS records and left all
+raw payloads in runner/local-only storage. This differs from the workstation result above
+because the workflow has the repository secret while the local environment does not.

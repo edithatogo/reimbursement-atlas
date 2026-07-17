@@ -109,3 +109,10 @@ grant permission to publish or imply evidence readiness. The mutation jobs also 
 protocol status, source contracts, data quality, licence gates and policy/evidence flags all pass.
 
 No raw restricted schedules, CPT descriptors, local ontology dumps or confidential prices should be published to Hugging Face.
+
+The latest current-main read-only destination check is workflow run
+[29571896396](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29571896396).
+The dataset still passes its governed `other` licence boundary; the Space still reports
+`mit`/`gradio` instead of `apache-2.0`/`static`. The run failed closed, synchronized issue
+[#320](https://github.com/edithatogo/reimbursement-atlas/issues/320), and performed no
+Hugging Face mutation.

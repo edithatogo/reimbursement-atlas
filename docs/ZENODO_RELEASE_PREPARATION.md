@@ -34,6 +34,12 @@ commit is `db367f4`).
 Its artifact records `mutation_performed: false`, `doi_created: false` and
 `human_publication_approval_required: true`.
 
+The latest current-main non-depositing preflight is
+[29571894944](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29571894944).
+It passed metadata and repository-readiness validation and recorded
+`mutation_performed: false`, `doi_created: false` and
+`human_publication_approval_required: true`.
+
 The tagged GitHub release workflow also performs a separate read-only governance preflight before
 building or attesting assets. It does not approve research publication or Zenodo deposition; it
 only prevents software release automation from bypassing repository, policy, licence-queue and

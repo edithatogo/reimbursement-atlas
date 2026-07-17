@@ -145,3 +145,10 @@ The subsequent local retry did not have `PBS_API_SUBSCRIPTION_KEY` in its approv
 environment and therefore recorded `blocked_secret` without writing a key or response
 payload. The workflow evidence above remains historical acquisition evidence; the locally
 generated source-health report records the current workstation boundary.
+
+The current-main security settings monitor run
+[29571897692](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29571897692)
+completed successfully but its redacted API response remained `blocked_permissions` because
+the workflow token could not read the security-analysis settings. The authenticated repository
+API readback still reports provider scanning, push protection and Dependabot enabled, with
+non-provider pattern scanning and validity checks disabled.
