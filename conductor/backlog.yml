@@ -363,6 +363,13 @@ epics:
       - title: Generate final network credential and review handoff checklist
         labels: ["type:release", "type:handoff", "phase:handoff", "status:implemented"]
         status: implemented
+      - title: Automate verified git bundle and archive handoff export
+        labels: ["type:release", "type:handoff", "type:repo-automation", "phase:handoff", "status:implemented"]
+        status: implemented
+        acceptance:
+          - "A repository-owned exporter creates a complete git bundle, tracked-only archive, redacted manifest and SHA-256 checksum file outside the checkout."
+          - "The exporter verifies the bundle and records only basenames, commit and fail-closed readiness booleans in the manifest."
+          - "Unit tests cover deterministic metadata, path-prefix rejection and absence of absolute paths in the manifest."
       - title: Expose source contracts GitHub Project rows and final handoff tasks in dashboard
         labels: ["type:dashboard", "phase:handoff", "status:implemented"]
         status: implemented

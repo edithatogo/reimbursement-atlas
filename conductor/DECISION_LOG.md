@@ -1,5 +1,17 @@
 # Decision log
 
+## 2026-07-17: Automate handoff package export
+
+Decision: make handoff packaging a repository-owned exporter that writes a complete git bundle,
+tracked-only archive, redacted manifest and SHA-256 checksum file to a caller-selected external
+directory. The exporter verifies the bundle before writing the manifest and records only
+basenames, the packaged commit and fail-closed readiness booleans. It deliberately does not
+change licence, human-review, OSF, Hugging Face, Zenodo or policy-claim gates.
+
+Rationale: manual bundle assembly was reproducible only by operator discipline and could leak
+absolute paths into handoff metadata. A tested command makes the delivery boundary auditable
+without placing raw source payloads or local paths in the repository.
+
 | Date | Decision | Status | Notes |
 |---|---|---|---|
 | 2026-07-03 | Use Conductor as project memory and agent handoff layer. | Accepted | See ADR 0004. |

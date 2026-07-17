@@ -52,6 +52,10 @@ Immediate next step: manually download the July 2026 MBS item-map and descriptor
 
 The current focus is evidence-grade transition and release handoff. Workflow policy, automation-control, action SHA-pinning, SBOM, CodeQL, secret-history and zizmor gates are green. The next work is to validate reviewed live-source bundles, complete accountable licence/domain/methods review, and preserve consumer-side attestation verification without weakening publication gates.
 
+The handoff package exporter is now repository-owned. It creates and verifies the git bundle,
+tracked-only archive, redacted manifest and checksums outside the checkout; this packaging
+mechanism does not change the separate licence, human-review, OSF, Hugging Face or policy gates.
+
 
 ## 2026-07-04 v13 current focus
 
