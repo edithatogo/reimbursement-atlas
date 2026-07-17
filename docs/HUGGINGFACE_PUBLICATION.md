@@ -71,7 +71,7 @@ contains the dated readback and remains blocked on approval gates.
 
 The monitor failed closed because the Space still reports `license: mit` and `sdk: gradio`.
 The workflow nevertheless uploaded the redacted report and synchronized issue `#320`, including
-the target-specific `remediation_plan`. This is the current merged-main evidence; it does not
+the target-specific `remediation_plan`. This is the current evidence on merged `main`; it does not
 authorize changing the Space or publishing the candidate bundle.
 
 ## Latest non-mutating candidate validation
