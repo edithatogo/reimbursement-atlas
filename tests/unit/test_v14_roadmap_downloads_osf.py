@@ -193,3 +193,11 @@ def test_research_package_descriptors_exclude_themselves(tmp_path: Path) -> None
     assert descriptor_names.isdisjoint(resource_paths)
     assert (descriptor_names - {"ro-crate-metadata.json"}).isdisjoint(crate_ids)
     assert descriptor_names.isdisjoint(distribution_paths)
+
+
+def test_research_package_excludes_licence_review_governance_outputs(tmp_path: Path) -> None:
+    """Governance queue hashes must not form a cycle with package descriptors."""
+    paths = write_research_package(tmp_path)
+    package = json.loads(paths[0].read_text(encoding="utf-8"))
+    resource_paths = {str(resource["path"]) for resource in package["resources"]}
+    assert not any(path.startswith("data/derived/licence_review/") for path in resource_paths)

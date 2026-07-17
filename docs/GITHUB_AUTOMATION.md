@@ -60,9 +60,12 @@ The scheduled source-health workflow first runs the hardened source-download att
 `data/derived/source_health/acquisition_status.json` and the review-friendly Markdown
 report beside the validation, contract, drift and release-readiness evidence. Raw downloads
 remain on the ephemeral runner and are never uploaded; only derived acquisition, validation,
-contract, drift and readiness evidence is retained. The issue is fail-open: missing handoff
-evidence, partial acquisition, network blocks and credential blocks keep the issue open;
-the issue is closed automatically only when the generated status is `clear`.
+contract, drift and readiness evidence is retained. The issue is fail-open for operational
+acquisition work: missing handoff evidence, network blocks and credential blocks keep the issue
+open. When all executable targets are acquired and only `skipped_licence_gate` rows remain, the
+report uses `review_required` and the acquisition issue is closed with a pointer to the separate
+human licence-review gates. The issue is also closed automatically when the generated status is
+`clear`.
 The public status manifest and dashboard automation page expose the same report through a
 CSV projection, so maintainers can inspect acquisition follow-up without opening CI logs.
 When acquisition evidence identifies a missing credential, the report also exposes the

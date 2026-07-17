@@ -21,12 +21,19 @@ class AcquisitionItem(TypedDict):
     recommended_action: str
     evidence_path: str
     credential_names: list[str]
+    review_required_count: int
+    operational_blocker_count: int
 
 
 _MISSING_CREDENTIAL_RE = re.compile(r"Required credential is absent:\s*([A-Z][A-Z0-9_]*)")
 
 
 def _recommended_action(status: str) -> str:
+    if status == "review_required":
+        return (
+            "Complete the human source/licence review for the gated rows; no additional "
+            "automated acquisition is required."
+        )
     if status == "blocked_secret":
         return (
             "Provide the required credential through the approved secret store, "
@@ -65,6 +72,38 @@ def _missing_credentials(repo: Path, evidence_path: str) -> list[str]:
         if match:
             names.add(match.group(1))
     return sorted(names)
+
+
+def _attempt_status_counts(repo: Path, evidence_path: str) -> dict[str, int]:
+    """Summarise redacted acquisition outcomes without exposing payloads."""
+    attempts_path = repo / evidence_path
+    if not attempts_path.is_file():
+        return {}
+    counts: dict[str, int] = {}
+    for line in attempts_path.read_text(encoding="utf-8").splitlines():
+        try:
+            record = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        status = str(record.get("status", "unknown"))
+        counts[status] = counts.get(status, 0) + 1
+    return counts
+
+
+def _classify_partial_task(repo: Path, evidence_path: str) -> tuple[str, int, int]:
+    """Separate actionable acquisition failures from licence-only review rows."""
+    counts = _attempt_status_counts(repo, evidence_path)
+    if not counts:
+        return "partial", 0, 1
+    review_count = counts.get("skipped_licence_gate", 0)
+    operational_count = sum(
+        count
+        for status, count in counts.items()
+        if status not in {"downloaded", "acquired", "acquired_unreviewed", "skipped_licence_gate"}
+    )
+    if operational_count == 0 and review_count:
+        return "review_required", review_count, 0
+    return "partial", review_count, max(operational_count, 1)
 
 
 def build_source_health_report(root: Path | None = None) -> dict[str, object]:
@@ -107,6 +146,12 @@ def build_source_health_report(root: Path | None = None) -> dict[str, object]:
             task.get("evidence_path", "data/derived/source_downloads/download_attempts.jsonl")
         )
         credential_names = _missing_credentials(repo, evidence_path)
+        review_required_count = 0
+        operational_blocker_count = 1
+        if status == "partial":
+            status, review_required_count, operational_blocker_count = _classify_partial_task(
+                repo, evidence_path
+            )
         recommended_action = _recommended_action(status)
         if credential_names:
             recommended_action = (
@@ -120,12 +165,20 @@ def build_source_health_report(root: Path | None = None) -> dict[str, object]:
             "recommended_action": recommended_action,
             "evidence_path": evidence_path,
             "credential_names": credential_names,
+            "review_required_count": review_required_count,
+            "operational_blocker_count": operational_blocker_count,
         })
     items.sort(key=itemgetter("task_id"))
     return {
         "schema_version": "source-health-acquisition-v1",
-        "status": "incomplete" if items else "clear",
+        "status": "incomplete"
+        if any(int(item.get("operational_blocker_count", 0)) > 0 for item in items)
+        else ("review_required" if items else "clear"),
         "incomplete_count": len(items),
+        "operational_blocker_count": sum(
+            int(item.get("operational_blocker_count", 0)) for item in items
+        ),
+        "review_required_count": sum(int(item.get("review_required_count", 0)) for item in items),
         "task_ids": [item["task_id"] for item in items],
         "items": items,
         "evidence_path": "data/derived/final_handoff/final_handoff_tasks.jsonl",
@@ -142,6 +195,8 @@ def _markdown(report: dict[str, object]) -> str:
         "",
         f"- Status: `{status}`",
         f"- Incomplete targets: `{report['incomplete_count']}`",
+        f"- Operational blockers: `{report.get('operational_blocker_count', 0)}`",
+        f"- Licence-review targets: `{report.get('review_required_count', 0)}`",
         "- This report performs no network I/O and no source-cache mutation.",
         "",
     ]
@@ -183,6 +238,8 @@ def write_source_health_report(
                 "credential_names": ",".join(
                     str(name) for name in cast("list[object]", item.get("credential_names", []))
                 ),
+                "review_required_count": int(str(item.get("review_required_count", 0))),
+                "operational_blocker_count": int(str(item.get("operational_blocker_count", 0))),
             }
             for item in items
         ],

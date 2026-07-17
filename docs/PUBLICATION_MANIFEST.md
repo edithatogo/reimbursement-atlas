@@ -41,3 +41,7 @@ the descriptor files themselves from the publication manifest. This prevents a
 descriptor from hashing its previous generation and makes repeated generation
 byte-stable. The descriptors still carry checksums for the licence-reviewed
 derived artefacts that they describe.
+
+Governance-only outputs under `data/derived/licence_review/` are excluded from the research
+package descriptors. The review queue hashes the descriptors, so including both sides would
+create a checksum cycle; the queue remains a separate fail-closed handoff artefact.

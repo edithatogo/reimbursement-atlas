@@ -13,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
-- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
-- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
-- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.
+- [x] Source-health evidence separates operational acquisition blockers from `skipped_licence_gate` rows with machine-readable counts.
+- [x] Licence-only review status remains publication-blocking but does not create a duplicate acquisition-outage issue.
+- [x] Focused tests cover incomplete, `review_required` and clear source-health states.
+- [x] Conductor context and the v159 session record the review boundary.

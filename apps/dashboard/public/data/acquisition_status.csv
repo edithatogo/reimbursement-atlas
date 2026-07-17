@@ -1,2 +1,2 @@
-credential_names,evidence_path,recommended_action,status,task_id,title
-,data/derived/source_downloads/download_attempts.jsonl,Review downloaded-source evidence and resolve remaining licence-gated or unacquired targets before promotion.,partial,final_source_downloads,Run hardened curl/wget source download plan
+credential_names,evidence_path,operational_blocker_count,recommended_action,review_required_count,status,task_id,title
+,data/derived/source_downloads/download_attempts.jsonl,0,Complete the human source/licence review for the gated rows; no additional automated acquisition is required.,6,review_required,final_source_downloads,Run hardened curl/wget source download plan

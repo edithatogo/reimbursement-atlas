@@ -14,6 +14,7 @@ DESCRIPTOR_PATHS = frozenset({
     "data/derived/research_package/ro-crate-metadata.json",
     "data/derived/research_package/dcat.jsonld",
 })
+LICENCE_REVIEW_PREFIX = "data/derived/licence_review/"
 
 
 def _descriptor_safe_manifest(manifest: PublicationManifest) -> PublicationManifest:
@@ -21,7 +22,10 @@ def _descriptor_safe_manifest(manifest: PublicationManifest) -> PublicationManif
     artifacts = tuple(
         artifact
         for artifact in manifest.artifacts
-        if artifact.relative_path not in DESCRIPTOR_PATHS
+        if (
+            artifact.relative_path not in DESCRIPTOR_PATHS
+            and not artifact.relative_path.startswith(LICENCE_REVIEW_PREFIX)
+        )
     )
     return replace(manifest, artifact_count=len(artifacts), artifacts=artifacts)
 

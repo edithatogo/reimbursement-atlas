@@ -104,6 +104,43 @@ def test_source_health_report_is_clear_when_acquisition_is_complete(tmp_path: Pa
     assert "No source-ingestion tasks" in paths[1].read_text(encoding="utf-8")
 
 
+def test_source_health_report_separates_licence_review_from_operational_blockers(
+    tmp_path: Path,
+) -> None:
+    """Licence-gated rows remain visible without creating an acquisition outage."""
+    _write_tasks(
+        tmp_path,
+        [
+            {
+                "id": "source_partial",
+                "task_group": "source_ingestion",
+                "status": "partial",
+                "title": "Downloaded sources with gated historical rows",
+                "evidence_path": "data/derived/source_downloads/download_attempts.jsonl",
+            }
+        ],
+    )
+    attempts = tmp_path / "data" / "derived" / "source_downloads"
+    attempts.mkdir(parents=True)
+    (attempts / "download_attempts.jsonl").write_text(
+        "\n".join([
+            json.dumps({"status": "downloaded"}),
+            json.dumps({"status": "skipped_licence_gate"}),
+        ])
+        + "\n",
+        encoding="utf-8",
+    )
+
+    report = build_source_health_report(tmp_path)
+    assert report["status"] == "review_required"
+    assert report["operational_blocker_count"] == 0
+    assert report["review_required_count"] == 1
+    item = report["items"][0]
+    assert item["status"] == "review_required"
+    assert item["operational_blocker_count"] == 0
+    assert "licence" in item["recommended_action"]
+
+
 def test_source_health_report_fails_open_when_handoff_is_missing(tmp_path: Path) -> None:
     report = build_source_health_report(tmp_path)
     assert report["status"] == "unknown"
