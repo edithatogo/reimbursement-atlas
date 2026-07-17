@@ -1191,3 +1191,25 @@ API remains authoritative for enabled core controls and disabled account/plan-ga
 The next implementable work is limited to maintaining these fail-closed controls and preparing
 reviewer-ready licence, research, mapping and visual-review decisions; no publication gate is
 promoted by these preflights.
+
+## 2026-07-17 v170 current-main external preflight maintenance
+
+On current `main` `70fbee2`, fresh non-mutating workflows reconfirmed the external boundary:
+OSF run [29572723985](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29572723985)
+completed pinned CLI discovery and the component plan, with 28 accessible project records and
+the private `Reimbursement Atlas` project `q8cnx` represented with a null `public` field. This
+field is not interpreted as public. Provisioning, registration, upload and publication remained
+skipped. Zenodo run [29572723927](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29572723927)
+validated metadata without deposit or DOI creation. Source-health run
+[29572724022](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29572724022)
+completed with zero operational blockers and six licence-review targets; credentialed PBS
+acquisition schema-validated 14,867 records and did not track raw payloads. The local workstation
+still lacks `PBS_API_SUBSCRIPTION_KEY`.
+
+Hugging Face run [29572723939](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29572723939)
+failed closed without mutation: the dataset remains aligned at `license=other`, while the Space
+still reports `license=mit` and `sdk=gradio` instead of governed `apache-2.0` and `static`.
+GitHub security run [29572723999](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29572723999)
+returned `blocked_permissions` because the workflow token could not read security-analysis
+settings; it did not infer a false pass. No publication, OSF mutation, Zenodo deposit, licence
+approval or security-setting mutation was performed.
