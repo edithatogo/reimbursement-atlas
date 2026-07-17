@@ -991,3 +991,13 @@ Passing local quality gates now omit machine-dependent stdout/stderr excerpts fr
 evidence; non-passing gates retain diagnostics. This prevents tool banners, test counts and runtime
 output from changing generated hashes across macOS and CI. PR [#390](https://github.com/edithatogo/reimbursement-atlas/pull/390)
 passed deterministic-regeneration and generated-artifact checks after the correction.
+
+## 2026-07-17 v149 Methods manuscript scaffold
+
+The planned methods/preprint output now has a review-bounded manuscript scaffold at
+`papers/reimbursement_atlas_methods.md`. The output registry and generated Project artefacts mark
+`out_preprint_methods` as `drafted`, not published or evidence-ready. The manuscript records the
+estimands, acquisition and licensing boundary, mapping adjudication, sensitivity plan and release
+gates without presenting live results or policy claims. Issue [#118](https://github.com/edithatogo/reimbursement-atlas/issues/118)
+was reconciled to the generated `drafted` state. OSF registration and preprint submission remain
+blocked by accountable methods, domain, licence and governance review.

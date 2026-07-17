@@ -1030,3 +1030,17 @@ and `pixi run local-quality` passed 27/27 gates.
 Consequence: Passing quality evidence remains auditable through typed status, command, return code,
 profile and notes fields while downstream research-package, licence-review and seed-lake hashes are
 stable across supported runners.
+
+## 2026-07-17 - Draft the methods manuscript without publication promotion
+
+Decision: Create the repository-owned methods/preprint scaffold and move `out_preprint_methods` from
+`planned` to `drafted`. Keep OSF registration, preprint submission, evidence readiness and policy
+claims fail-closed.
+
+Evidence: `papers/reimbursement_atlas_methods.md` defines the scope, estimands, source/licence
+boundary, mapping adjudication, sensitivity analysis and reproducibility gates. Protocol, report,
+Project and generated issue artefacts were regenerated, and issue #118 was body-reconciled to the
+same `drafted` status. No OSF or preprint mutation occurred.
+
+Consequence: The methods pathway is reviewable locally while its external publication boundary stays
+explicit and auditable.
