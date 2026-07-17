@@ -26,8 +26,8 @@ provider-licence and domain review before external publication.
 
 ## Current merged state
 
-As of 2026-07-17, `main` is at `e9b97f8` (the squash merge of the credentialed source-health
-confirmation). The repository release gates are green. The current PBS v3 schedule,
+As of 2026-07-17, `main` is at `c52e2b4` (the squash merge of the PBS cadence and retention
+boundary correction). The repository release gates are green. The current PBS v3 schedule,
 items and fees acquisition is `acquired_unreviewed` from an ephemeral official catalogue key.
 Source-health is `review_required` with zero operational blockers: the MBS and PBS responses
 exist in ignored local raw storage, while six historical/CMS targets remain gated by
@@ -137,3 +137,22 @@ failed closed on the known Space metadata drift without mutation. GitHub securit
 run [29571897692](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29571897692)
 confirmed the monitor's token-scope limitation; repository API readback remains authoritative
 for the core controls and the two account/plan-gated controls.
+
+## Latest Current-Main External Preflight Refresh
+
+The latest read-only refresh ran on merged `main` at `c52e2b4`. OSF run
+[29576544998](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29576544998)
+passed the pinned `osf-cli-go v1.0.0` plan and fail-closed synchronization checks; discovery,
+provisioning, registration, upload and publication were not requested. Zenodo run
+[29576546386](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29576546386)
+passed non-depositing validation and created no DOI. Source-health run
+[29576550575](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29576550575)
+passed with zero operational blockers and six licence-review targets; no raw payloads were
+tracked. The Hugging Face destination monitor
+[29576542896](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29576542896)
+failed closed on the known Space metadata drift (`mit`/`gradio` versus governed
+`apache-2.0`/`static`) without mutation. GitHub security readback
+[29576548821](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29576548821)
+passed as a monitor but reported `blocked_permissions` because its workflow token could not read
+security-analysis settings. These runs refresh operational evidence only and do not change the
+false research-publication, OSF-registration, evidence-release or policy-claim readiness flags.

@@ -1252,3 +1252,24 @@ dictionary, research package, licence queue, seed lake and dashboard seed.
 No PBS historical payload was downloaded or tracked. Long-term archival remains an operational
 task gated by source terms and accountable review; the July 2026 extract remains
 `acquired_unreviewed`.
+
+## 2026-07-17 v175 current-main external preflight evidence
+
+Merged `main` is `c52e2b4`. The latest read-only OSF workflow
+[29576544998](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29576544998) passed
+the pinned `osf-cli-go v1.0.0` plan and fail-closed manifest checks; discovery, provisioning,
+registration, upload and publication were not requested. Zenodo preflight
+[29576546386](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29576546386) passed
+without deposit or DOI creation. Source-health
+[29576550575](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29576550575) passed
+with zero operational blockers and six licence-review targets, and did not track raw payloads.
+
+The Hugging Face destination monitor
+[29576542896](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29576542896) failed
+closed because the reachable Space still reports `license=mit` and `sdk=gradio`, while the
+governed candidate contract requires `apache-2.0` and `static`. No remote mutation occurred.
+The GitHub security monitor
+[29576548821](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29576548821) passed
+as a workflow but recorded `blocked_permissions` because its token could not read security-analysis
+settings. These results refresh evidence only; all research, licence, evidence, policy and
+publication gates remain fail-closed.
