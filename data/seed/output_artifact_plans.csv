@@ -3,7 +3,7 @@ out_hf_dataset,Licence-safe derived data only; no raw restricted descriptors.,da
 out_hf_space,Static Astro dashboard for public exploration.,dashboard,apps/dashboard/dist,dashboard_build_and_public_data_policy_pass,implemented,huggingface_space,track_publication_hf_spaces
 out_osf_protocol_pack,Detailed OSF protocol pack for research questions.,protocol,protocols/,human_protocol_review,drafted,osf,track_research_protocols_osf
 out_osf_reports,Question-specific detailed reports.,report,reports/,analysis_protocol_complete,drafted,osf,track_research_protocols_osf
-out_preprint_methods,Methods/design paper pathway.,preprint,papers/reimbursement_atlas_methods.md,derived_data_available,planned,osf,track_research_protocols_osf
+out_preprint_methods,Methods/design paper scaffold; results and publication remain review-gated.,preprint,papers/reimbursement_atlas_methods.md,derived_data_available,drafted,osf,track_research_protocols_osf
 out_ro_crate,Research object metadata for release candidate.,archive,data/derived/research_package/ro-crate-metadata.json,metadata_validates,implemented,github,track_data_packaging_standards
 out_frictionless,Frictionless tabular package metadata.,archive,data/derived/research_package/datapackage.json,schema_resources_valid,implemented,github,track_data_packaging_standards
 out_zenodo,DOI-archive metadata after public release gates pass.,archive,.zenodo.json,release_readiness_passes,planned,zenodo,track_data_packaging_standards

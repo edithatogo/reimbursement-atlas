@@ -209,7 +209,7 @@ manual_review,,,,,,,,,mapping_resource:map_who_atc_ddd,,,mapping_resource,WHO AT
 ,,,,,,,,,output:out_mcp,,,output_plan,src/reimburse_atlas/mcp_server.py,,,,,mcp,,,,,,implemented,github,,
 ,,,,,,,,,output:out_osf_protocol_pack,,,output_plan,protocols/,,,,,protocol,,,,,,drafted,osf,,
 ,,,,,,,,,output:out_osf_reports,,,output_plan,reports/,,,,,report,,,,,,drafted,osf,,
-,,,,,,,,,output:out_preprint_methods,,,output_plan,papers/reimbursement_atlas_methods.md,,,,,preprint,,,,,,planned,osf,,
+,,,,,,,,,output:out_preprint_methods,,,output_plan,papers/reimbursement_atlas_methods.md,,,,,preprint,,,,,,drafted,osf,,
 ,,,,,,,,,output:out_protocol_status,,,output_plan,data/derived/protocols/protocol_status.csv,,,,,report,,,,,,implemented,github,,
 ,,,,,,,,,output:out_public_dashboard,,,output_plan,apps/dashboard/dist,,,,,dashboard,,,,,,implemented,github,,
 ,,,,,,,,,output:out_public_data_dictionary,,,output_plan,data/derived/data_dictionary/data_dictionary.csv,,,,,dataset,,,,,,implemented,huggingface_dataset,,
