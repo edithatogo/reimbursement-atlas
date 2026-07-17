@@ -1040,3 +1040,16 @@ Space remains drifted (`mit`/`gradio` versus governed `apache-2.0`/`static`). Gi
 also confirms account-level non-provider secret scanning and validity checks remain disabled.
 Issues #191, #320 and #362 contain the current external evidence and remain fail-closed where
 appropriate.
+
+## 2026-07-17 v154 Governed PBS acquisition refresh
+
+The manually dispatched source-health workflow [29551222886](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29551222886)
+used the existing GitHub Actions `PBS_API_SUBSCRIPTION_KEY` secret without exposing its value.
+It acquired and schema-validated the PBS v3 schedules response, 14,840 item records across two
+CSV pages, and 17 fee records. The redacted acquisition rows remain `acquired_unreviewed`, and
+the raw responses remain runner/local-cache-only.
+
+The source-health monitor remains `incomplete` because seven historical MBS/CMS targets are
+intentionally skipped behind licence gates. Issue [#383](https://github.com/edithatogo/reimbursement-atlas/issues/383)
+was refreshed by the workflow and remains open. No reviewed-source bundle, publication, OSF
+registration, Hugging Face mutation or policy claim was promoted.

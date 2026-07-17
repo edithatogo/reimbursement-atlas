@@ -63,6 +63,13 @@ The public API credential path is now executable, but the implementation remains
 the monthly-extract field/licence-review step. GitHub issue [#25](https://github.com/edithatogo/reimbursement-atlas/issues/25)
 tracks the reviewed extract and licence decision.
 
+## Latest governed acquisition evidence
+
+The source-health workflow [29551222886](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29551222886)
+ran with the GitHub Actions secret and acquired 10 schedule records, 14,840 item records across
+two pages, and 17 fee records. Source validation and source-contract validation passed for the
+three PBS endpoint classes. This is acquisition evidence, not licence or human review approval.
+
 ## Redacted acquisition evidence
 
 When the ignored local cache is available, run:

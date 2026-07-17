@@ -26,7 +26,7 @@ provider-licence and domain review before external publication.
 
 ## Current merged state
 
-As of 2026-07-17, `main` is at `912f69ad9ede30b66c34e4c1a7150d9dbf1bcf46`.
+As of 2026-07-17, `main` is at `6e6e134f08bf3dd94a6de31a1fb471ab06969dc8`.
 The repository release gates are green, the current PBS v3 schedule acquisition is
 recorded as `acquired_unreviewed`, and source-health is intentionally `partial`: MBS
 and PBS evidence exists in ignored local raw storage, while CMS and historical targets
@@ -51,6 +51,9 @@ Remaining blockers are external or require accountable human judgement:
   but publication remains disabled until review gates pass.
 
 The latest recorded preflights completed successfully without mutating external services.
+The governed source-health run [29551222886](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29551222886)
+also acquired and schema-validated 14,840 PBS item records and 17 PBS fee records while keeping
+the evidence `acquired_unreviewed`.
 The PBS acquisition refresh is now merged to `main`; the older preflight identifiers below
 remain historical evidence only:
 OSF discovery/plan run `29492178596`, Hugging Face candidate validation run
