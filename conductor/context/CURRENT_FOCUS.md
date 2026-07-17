@@ -1084,3 +1084,13 @@ API remains the current evidence: core secret scanning, push protection and Depe
 non-provider pattern scanning and validity checks remain disabled after the repository-level PATCH.
 Issue [#191](https://github.com/edithatogo/reimbursement-atlas/issues/191) records the requirement
 for account/UI administrator access outside this environment.
+
+## 2026-07-17 v158 SBOM control reconciliation
+
+The repository automation matrix had a generated-status defect: SBOM generation was implemented
+in the CI and release workflows, but the detector tested for a directory string rather than the
+two required CycloneDX files. The detector now requires both tracked SBOM outputs, a unit contract
+protects the incomplete and implemented states, and the generated automation artefact reports the
+control as `implemented` with `advanced` maturity. This is a repository-owned correction under the
+existing SBOM/SLSA issue; publication, evidence, licensing and external destination gates remain
+unchanged.

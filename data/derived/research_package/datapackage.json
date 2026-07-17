@@ -980,20 +980,20 @@
       }
     },
     {
-      "bytes": 5025,
+      "bytes": 5029,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "d39e58f46823d71d66c7edd108a9bf716e536ae1098527bc02785f4ee1142d85",
+      "hash": "e8ff96ee9d14f2425277fa3106e65cf87c81ea24e15dd972b8fed0ab7542ed1b",
       "mediatype": "application/json",
       "name": "automation-controls",
       "path": "data/derived/repo_automation/automation_controls.jsonl",
       "schema": {}
     },
     {
-      "bytes": 3168,
+      "bytes": 3172,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "c31c3806ae5995722ad87804496024e3d2dac4544f0b22d02df27ed969e23fe4",
+      "hash": "16917cac39444e47ffd177474fde09bffc21267c54496a5ef7ce5a26212366d3",
       "mediatype": "text/csv",
       "name": "automation-controls",
       "path": "data/derived/repo_automation/automation_controls.csv",
@@ -1445,20 +1445,20 @@
       }
     },
     {
-      "bytes": 5765,
+      "bytes": 5811,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "3e1180fae09c6a1ea1139a0dd5162a97855c9557a635b6831b21dd50a29dd04f",
+      "hash": "41cf60a7c14b5689e633a3d9aff337357c0ed323a72130c40a4685e8b88722e5",
       "mediatype": "application/json",
       "name": "component-plan",
       "path": "data/derived/osf/component_plan.jsonl",
       "schema": {}
     },
     {
-      "bytes": 3582,
+      "bytes": 3628,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "9753a823bccedcf3c70471e35dc025c2d802b0b111706d6eca6de31278be6216",
+      "hash": "49003bc65c28d5019562a2242dad73c1b0656ca88ab940f3070efaef38704ddd",
       "mediatype": "text/csv",
       "name": "component-plan",
       "path": "data/derived/osf/component_plan.csv",
@@ -1480,10 +1480,10 @@
       "schema": {}
     },
     {
-      "bytes": 5890,
+      "bytes": 5954,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "91864fbc5f5bb8287b0160a75c30368f2849850cb728248a591fb381d7df6fd5",
+      "hash": "fc66715aa0926af750781c63f35b480bd8e097738c4c338c88cf1865dd579338",
       "mediatype": "application/json",
       "name": "sync-manifest",
       "path": "data/derived/osf/sync_manifest.jsonl",

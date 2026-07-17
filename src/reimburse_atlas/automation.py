@@ -244,9 +244,19 @@ def automation_control_records(root: Path) -> list[AutomationControlRecord]:
         _control(
             "sbom_generation",
             "supply_chain",
-            "implemented" if "data/derived/sbom" in files else "planned",
+            "implemented"
+            if {
+                "data/derived/sbom/cyclonedx-python.json",
+                "data/derived/sbom/cyclonedx-dashboard.json",
+            }.issubset(files)
+            else "planned",
             "data/derived/sbom/*.json",
-            "advanced" if "data/derived/sbom/cyclonedx-python.json" in files else "prototype",
+            "advanced"
+            if {
+                "data/derived/sbom/cyclonedx-python.json",
+                "data/derived/sbom/cyclonedx-dashboard.json",
+            }.issubset(files)
+            else "prototype",
             "Attach SBOMs to releases and archive publication manifests with attestations.",
         ),
         _control(
