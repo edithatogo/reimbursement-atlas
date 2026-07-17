@@ -1110,20 +1110,20 @@
       "schema": {}
     },
     {
-      "bytes": 10405,
+      "bytes": 9760,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "1fcd9cc19c360924ff49657fc2d88ce93e3efb0617322863637580fe1eef0f3b",
+      "hash": "9c4181a11353dafaa83e794231d9b31ea06e256a210561fe4b72690ed5bdf5d6",
       "mediatype": "application/json",
       "name": "local-quality-gates",
       "path": "data/derived/local_quality_gates/local_quality_gates.jsonl",
       "schema": {}
     },
     {
-      "bytes": 5530,
+      "bytes": 4885,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "41ba9c8b33eb8979141ae895c5d42f0aed376c15e45939160f07aebf60a0850b",
+      "hash": "2e97c8cff9aeadb31d1c935c936e633db97e083eefa220e84a801a8fed8356ee",
       "mediatype": "text/csv",
       "name": "local-quality-gates",
       "path": "data/derived/local_quality_gates/local_quality_gates.csv",
@@ -1235,20 +1235,20 @@
       }
     },
     {
-      "bytes": 7741,
+      "bytes": 7723,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "eaf8b4ade74bee022354f8c827f4b5bc460c8484dc11ff2c0de163272d46d35b",
+      "hash": "47378183be0a44b9c60293495546ebdf48f61726ea5f2bf6f228184763d52d33",
       "mediatype": "application/json",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.jsonl",
       "schema": {}
     },
     {
-      "bytes": 4527,
+      "bytes": 4509,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "344b770359a0829e5afa9e25c27c801883b7ef9ab6d3104a3ed41374a4451843",
+      "hash": "bbde8e44f120c1072e324ef46c0ffda8c2bca068d7ebaa63b1870d3be9c7e7ba",
       "mediatype": "text/csv",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.csv",

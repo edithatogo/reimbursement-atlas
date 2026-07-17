@@ -1,6 +1,6 @@
 category,evidence,id,recommended_action,required,status
-code_quality,profile=ci blocking_failures=1,local_quality_profile,Inspect data/derived/local_quality_gates for failing blocking gates.,True,fail
-code_quality,local_quality status=failed return_code=1,ruff_check,Fix ruff_check before public release.,True,fail
+code_quality,profile=ci blocking_failures=0,local_quality_profile,Inspect data/derived/local_quality_gates for failing blocking gates.,True,pass
+code_quality,local_quality status=passed return_code=0,ruff_check,No action required.,True,pass
 code_quality,local_quality status=passed return_code=0,ruff_format_check,No action required.,True,pass
 code_quality,local_quality status=passed return_code=0,basedpyright,No action required.,True,pass
 code_quality,local_quality status=passed return_code=0,pytest_coverage,No action required.,True,pass

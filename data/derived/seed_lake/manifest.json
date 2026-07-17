@@ -313,7 +313,7 @@
       "name": "local_quality_gates",
       "parquet_path": "local_quality_gates/local_quality_gates.parquet",
       "rows": 27,
-      "sha256": "1fcd9cc19c360924ff49657fc2d88ce93e3efb0617322863637580fe1eef0f3b"
+      "sha256": "9c4181a11353dafaa83e794231d9b31ea06e256a210561fe4b72690ed5bdf5d6"
     },
     {
       "csv_path": "local_quality_gate_specs/local_quality_gate_specs.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 36,
-      "sha256": "eaf8b4ade74bee022354f8c827f4b5bc460c8484dc11ff2c0de163272d46d35b"
+      "sha256": "47378183be0a44b9c60293495546ebdf48f61726ea5f2bf6f228184763d52d33"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",

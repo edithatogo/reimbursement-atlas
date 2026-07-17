@@ -1,5 +1,5 @@
-{"category": "code_quality", "evidence": "profile=ci blocking_failures=1", "id": "local_quality_profile", "recommended_action": "Inspect data/derived/local_quality_gates for failing blocking gates.", "required": true, "status": "fail"}
-{"category": "code_quality", "evidence": "local_quality status=failed return_code=1", "id": "ruff_check", "recommended_action": "Fix ruff_check before public release.", "required": true, "status": "fail"}
+{"category": "code_quality", "evidence": "profile=ci blocking_failures=0", "id": "local_quality_profile", "recommended_action": "Inspect data/derived/local_quality_gates for failing blocking gates.", "required": true, "status": "pass"}
+{"category": "code_quality", "evidence": "local_quality status=passed return_code=0", "id": "ruff_check", "recommended_action": "No action required.", "required": true, "status": "pass"}
 {"category": "code_quality", "evidence": "local_quality status=passed return_code=0", "id": "ruff_format_check", "recommended_action": "No action required.", "required": true, "status": "pass"}
 {"category": "code_quality", "evidence": "local_quality status=passed return_code=0", "id": "basedpyright", "recommended_action": "No action required.", "required": true, "status": "pass"}
 {"category": "code_quality", "evidence": "local_quality status=passed return_code=0", "id": "pytest_coverage", "recommended_action": "No action required.", "required": true, "status": "pass"}
