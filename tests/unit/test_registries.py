@@ -25,6 +25,13 @@ def test_source_registry_loads_many_sources() -> None:
     assert "tier_1" in access_tier_counts(records)
 
 
+def test_pbs_registry_matches_documented_monthly_refresh() -> None:
+    """Keep the PBS registry aligned with the official monthly update cadence."""
+    pbs = next((record for record in load_source_registry() if record.id == "au_pbs"), None)
+    assert pbs is not None, "au_pbs record not found in source registry"
+    assert pbs.refresh_cadence == "monthly"
+
+
 def test_analysis_sources_resolve() -> None:
     """Each analysis must reference known source ids."""
     sources = load_source_registry()
