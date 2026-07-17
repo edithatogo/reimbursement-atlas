@@ -1308,3 +1308,15 @@ loop. Snapshot language preserves provenance and makes the boundary explicit.
 Consequence: Consumers can distinguish the evidence snapshot from the current checkout. The
 freshness gate still requires one consistent full SHA across the authoritative documents and
 validates it against the checkout or its merge parent where appropriate.
+
+## 2026-07-18 - Validate retained release snapshots by ancestry
+
+Decision: Permit authoritative documents to retain an older release snapshot when that commit is
+an ancestor of the checked-out history, while continuing to require one consistent full SHA.
+
+Rationale: Squash-merged documentation governance commits can move the live tip beyond the
+snapshot without invalidating the evidence the documents describe. Requiring only `HEAD` or
+`HEAD^1` would turn accurate historical provenance into a false failure.
+
+Consequence: The gate accepts a real, reachable snapshot but rejects arbitrary or inconsistent
+hash text. PR jobs retain their special handling for a future squash SHA that does not yet exist.

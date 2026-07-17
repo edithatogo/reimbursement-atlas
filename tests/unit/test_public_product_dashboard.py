@@ -5,7 +5,11 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from scripts.check_public_docs import build_public_docs_report, current_state_commits
+from scripts.check_public_docs import (
+    build_public_docs_report,
+    current_state_commits,
+    git_is_ancestor,
+)
 from scripts.make_public_status_manifest import build_public_status_manifest
 from scripts.sync_dashboard_seed import sanitise_public_text
 from scripts.validate_citation import validate_citation
@@ -150,3 +154,21 @@ def test_current_state_commits_support_pr_and_post_merge_checkouts(monkeypatch) 
     )
 
     assert current_state_commits(Path()) == ("a" * 40, "b" * 40)
+
+
+def test_git_is_ancestor_uses_a_shell_free_fixed_argv(monkeypatch) -> None:
+    """Snapshot validation can accept an older commit without accepting arbitrary text."""
+    calls = []
+
+    class Result:
+        returncode = 0
+
+    def fake_run(argv, **kwargs):
+        calls.append((argv, kwargs))
+        return Result()
+
+    monkeypatch.setattr("scripts.check_public_docs.subprocess.run", fake_run)
+
+    assert git_is_ancestor(Path(), "a" * 40)
+    assert calls[0][0] == ["git", "merge-base", "--is-ancestor", "a" * 40, "HEAD"]
+    assert calls[0][1].get("shell") is not True
