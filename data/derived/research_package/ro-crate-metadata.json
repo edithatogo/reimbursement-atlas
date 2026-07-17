@@ -1401,7 +1401,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "2889f9c45d21635781ef258df4f4ea97cb600e6c7cd177edc701e10aa2eb73eb"
+      "sha256": "ea83098e0ffc57835c74dda24d4455d5230ec5f52856d7300d6b7b15f5a0e301"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
@@ -1410,7 +1410,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "5a8274c3374cd1c04b5bc906374083bd7f141ed28274d6a4f08cb3ae44d7abd3"
+      "sha256": "8bb0825bb7836b49513975cdca4ec625a3352f65f252b8e05cd3684c4e8ef922"
     },
     {
       "@id": "data/derived/v13_validation_run.json",
@@ -1734,7 +1734,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "data_dictionary",
-      "sha256": "c5dd548645d6c8d4532004d7d7d71e8e58393f7ec93e70cf1a4ce39a43217a19"
+      "sha256": "851fdefad4bb71d4404b85dd04fdd172c8b778fa54ac379714d64b6bb20461a5"
     },
     {
       "@id": "data/derived/data_dictionary/data_dictionary.csv",
@@ -1743,7 +1743,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "data_dictionary",
-      "sha256": "3d6da57f5a9f17771e4a81e3a598acbf5417e6360409c7f28f2b7abc1524e4c9"
+      "sha256": "74459eb7e69168cdf8be1ba09499e72f84257b238bfc51b892e4fd1267a53e19"
     },
     {
       "@id": "data/derived/data_dictionary/summary.json",
@@ -1752,7 +1752,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "json",
       "name": "summary",
-      "sha256": "54bb4f72a786307b9de83898fe77bda73715f4fc0bcd2552188e11dd75e862bd"
+      "sha256": "47219fbafaf8e00cabafb969244cbf232c7b4def56165fe77ac538a1c2df9e84"
     },
     {
       "@id": "infra/huggingface/DATASET_CARD.md",
