@@ -26,7 +26,7 @@ provider-licence and domain review before external publication.
 
 ## Current merged state
 
-As of 2026-07-17, `main` is at `c2cdea79206a38692b41df8687f317e8375b5cd5`.
+As of 2026-07-17, `main` is at `471dab4` (the squash merge of the external preflight refresh).
 The repository release gates are green, the current PBS v3 schedule acquisition is
 recorded as `acquired_unreviewed`, and source-health is intentionally `partial`: MBS
 and PBS evidence exists in ignored local raw storage, while CMS and historical targets

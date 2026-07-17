@@ -1130,7 +1130,7 @@ No package or lockfile mutation is performed by the canary.
 
 ## 2026-07-17 v163 external preflight refresh
 
-On merged `main` `c2cdea7`, the pinned OSF workflow run `29565049272` passed read-only discovery
+On merged `main` `471dab4` (with the preflight evidence collected from `c2cdea7`), the pinned OSF workflow run `29565049272` passed read-only discovery
 and the component plan, finding 28 accessible projects and the existing private `Reimbursement
 Atlas` project `q8cnx`. No OSF mutation occurred. Hugging Face destination workflow run
 `29565126096` reconfirmed dataset metadata alignment and Space drift (`mit`/`gradio` versus
