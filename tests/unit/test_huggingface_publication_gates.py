@@ -72,6 +72,9 @@ def test_huggingface_destination_report_is_read_only_and_detects_drift() -> None
     assert report["mutation_performed"] is False
     assert report["targets"]["dataset"]["status"] == "pass"
     assert report["targets"]["space"]["status"] == "drift"
+    assert report["targets"]["space"]["remediation"]
+    assert report["remediation_plan"]["dataset"] == []
+    assert any("static" in item for item in report["remediation_plan"]["space"])
     assert report["status"] == "drift"
     assert "raw" not in json.dumps(report).lower()
 

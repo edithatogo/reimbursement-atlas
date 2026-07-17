@@ -81,6 +81,21 @@ def _target(
             mismatches.append(
                 f"{key} is {observed[key]!r}, expected governed value {expected_value!r}"
             )
+    remediation: list[str] = []
+    if error:
+        remediation.append("Retry the read-only metadata check after the endpoint is reachable.")
+    if remote_id != repo:
+        remediation.append("Confirm the configured repository identity before any publication run.")
+    if observed.get("license") != expected.get("license"):
+        remediation.append(
+            f"Reconcile remote license metadata to {expected['license']!r} only after all "
+            "licence and publication gates pass."
+        )
+    if "sdk" in expected and observed.get("sdk") != expected.get("sdk"):
+        remediation.append(
+            f"Reconcile Space SDK metadata to {expected['sdk']!r} only after the static "
+            "dashboard bundle passes its publication gates."
+        )
     return {
         "kind": kind,
         "repo": repo,
@@ -90,6 +105,7 @@ def _target(
         "observed": observed,
         "expected": expected,
         "mismatches": mismatches,
+        "remediation": remediation,
         "status": "pass" if not mismatches else "drift",
     }
 
@@ -103,6 +119,10 @@ def destination_report(
     dataset = _target("datasets", dataset_repo, {"license": "other"}, fetcher)
     space = _target("spaces", space_repo, {"license": "apache-2.0", "sdk": "static"}, fetcher)
     mismatches = [*dataset["mismatches"], *space["mismatches"]]
+    remediation_plan = {
+        "dataset": dataset["remediation"],
+        "space": space["remediation"],
+    }
     return {
         "schema_version": "huggingface-destination-check-v1",
         "mutation_performed": False,
@@ -114,6 +134,7 @@ def destination_report(
             "evidence_path": "docs/HUGGINGFACE_PUBLICATION.md",
         },
         "targets": {"dataset": dataset, "space": space},
+        "remediation_plan": remediation_plan,
         "status": "pass" if not mismatches else "drift",
         "mismatch_count": len(mismatches),
     }
