@@ -1127,3 +1127,13 @@ The dashboard remains on TypeScript `6.0.3` because `@astrojs/check@0.9.9` accep
 5 or 6. A scheduled read-only canary now records the current peer range and TypeScript 7 channel,
 and will open or update the existing upgrade issue only when the peer contract admits TypeScript 7.
 No package or lockfile mutation is performed by the canary.
+
+## 2026-07-17 v163 external preflight refresh
+
+On merged `main` `c2cdea7`, the pinned OSF workflow run `29565049272` passed read-only discovery
+and the component plan, finding 28 accessible projects and the existing private `Reimbursement
+Atlas` project `q8cnx`. No OSF mutation occurred. Hugging Face destination workflow run
+`29565126096` reconfirmed dataset metadata alignment and Space drift (`mit`/`gradio` versus
+governed `apache-2.0`/`static`); no remote mutation occurred. The repository release gate remains
+green, while licence, evidence, research, OSF, Hugging Face reconciliation and policy-claim gates
+remain external or human-approval dependent.

@@ -53,6 +53,13 @@ identities, expected card fields and drift reasons in an artifact; it never clon
 authenticates against Hugging Face. A drift result is an observation for issue #320, not
 publication approval.
 
+The latest read-only recheck on merged `main` (`c2cdea7`) was workflow run
+[29565126096](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29565126096).
+The dataset metadata still matches its governed `other` licence boundary. The Space remains
+drifted at `license: mit` and `sdk: gradio` versus the candidate `apache-2.0` and `static`.
+No remote mutation was attempted; issue [#320](https://github.com/edithatogo/reimbursement-atlas/issues/320)
+contains the dated readback and remains blocked on approval gates.
+
 ## Latest non-mutating candidate validation
 
 The latest candidate validation on `main` (`7a6b03f`) was workflow run
