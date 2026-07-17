@@ -1,14 +1,14 @@
 # Release readiness
 
-Release snapshot reference: `be33424c4b4f7d257ccb69529fe3d50d79fc149b` (2026-07-18).
+Release snapshot reference: `4693b32113b97868083ecf86d9fd8ae09dfa2e1b` (2026-07-18).
 The checked-out `main` tip may be newer than this snapshot; regenerate this document when
 preparing a new handoff.
 The repository release gate summary is 36/36 passing with zero required blockers;
 research publication, OSF registration, evidence release and policy claims remain
-fail-closed. The latest non-mutating monitor evidence was collected on the merge
-parent (`e639490f84d210aea9d819f6b37996ebad6714e9`): OSF `29591535952`, Zenodo
-`29591537888`, source health `29591540127`, Hugging Face destination
-`29591542182`, and GitHub security settings `29591544121`.
+fail-closed. The latest non-mutating monitor evidence was collected on this
+snapshot: OSF `29595536363`, Zenodo `29595536320`, source health
+`29595536399`, Hugging Face destination `29595536385`, and GitHub security
+settings `29595536535`.
 
 The release-readiness matrix consolidates local quality evidence, security gates, source-data governance, workflow policy, SBOMs, dashboard build status and architecture boundaries.
 
