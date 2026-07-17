@@ -1346,3 +1346,16 @@ reported `blocked_permissions` because it could not see the security-analysis ob
 
 Consequence: CI can become authoritative when the optional read-only secret is configured, while
 issue #191 remains correctly blocked and no credential is committed or exposed.
+
+## 2026-07-18 - Refresh current-main non-mutating external evidence
+
+Decision: Record the latest read-only monitor runs against merged `main` without promoting any
+publication, licence, research, evidence, policy or destination state.
+
+Evidence: OSF `29596947892` passed discovery, Zenodo `29596947909` passed non-depositing
+preflight, source health `29596947921` passed with no operational blockers, Hugging Face
+destination `29596947958` reported the existing Space metadata drift without mutation, and GitHub
+security `29596744210` reported `blocked_permissions` for the default workflow token.
+
+Consequence: The handoff is operationally current while all human-review and external-publication
+gates remain fail-closed.

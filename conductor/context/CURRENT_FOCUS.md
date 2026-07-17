@@ -20,6 +20,17 @@ The repo is now in the reviewed-source preparation and mapping-workbench phase. 
 sections below are retained as an audit log; this header and generated readiness outputs are
 authoritative for the current state.
 
+## 2026-07-18 v200 current-main external refresh
+
+Merged `main` is `edc29a5`. Non-mutating monitors completed on this commit: OSF discovery
+`29596947892`, Zenodo preflight `29596947909`, source health `29596947921`, and Hugging Face
+destination metadata `29596947958`. OSF, Zenodo and source health passed operationally; the
+Hugging Face Space remains drifted (`mit`/`gradio` versus governed `apache-2.0`/`static`) and
+was not mutated. GitHub security readback `29596744210` remains `blocked_permissions` with the
+default workflow token; the optional read-only `GH_SECURITY_SETTINGS_TOKEN` contract is now
+available but has not been configured. These runs do not grant licence, research, evidence,
+policy or publication approval.
+
 ## Immediate focus
 
 1. Keep all public artefacts dashboard-safe and licence-safe.
