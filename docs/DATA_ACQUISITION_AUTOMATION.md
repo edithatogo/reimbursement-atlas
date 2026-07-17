@@ -24,15 +24,16 @@ In this sandbox, direct DNS resolution for `www.mbsonline.gov.au` and GitHub sta
 ## Current acquisition observation
 
 On 2026-07-17, the hardened `curl` attempt revalidated both July 2026 MBS TXT
-files into ignored local raw storage. Six other targets remain intentionally
-skipped behind source/licence review. The PBS API attempt is currently recorded
-as `blocked_secret` because `PBS_API_SUBSCRIPTION_KEY` was not present in the
-approved environment; no key or response payload is written to the repository.
+files and the PBS v3 schedules response into ignored local raw storage. Six other
+targets remain intentionally skipped behind source/licence review. The PBS API
+runtime key was read from the official catalogue for this invocation only; it was
+not persisted, logged or committed. The current local source-health result is
+`review_required` with zero operational blockers and six licence-review targets.
 The authoritative current status is generated in
 `data/derived/source_health/acquisition_status.json`.
 
 The credentialed GitHub Actions source-health run on merged `main`
 ([29571899135](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29571899135))
 completed with `review_required`: it schema-validated 14,867 PBS records and left all
-raw payloads in runner/local-only storage. This differs from the workstation result above
-because the workflow has the repository secret while the local environment does not.
+raw payloads in runner/local-only storage. The local rerun now reaches the same
+review-required boundary without retaining the key.

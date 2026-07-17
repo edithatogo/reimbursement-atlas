@@ -84,3 +84,13 @@ schedule, effective date, page, record count, required/observed columns, byte si
 and an explicit `acquired_unreviewed` status. They never contain raw response fields or an
 absolute local path. CI preserves the existing metadata-only evidence when the ignored cache is
 absent, so deterministic regeneration does not require credentials or raw payloads.
+
+## 2026-07-17 local runtime recheck
+
+The current public-user key was read from the rendered official catalogue page and supplied only
+to the local acquisition process. The July 2026 `/schedules` response, existing `/items` pages
+and `/fees` response were retained only under ignored `data/raw_live/au_pbs/`. Redacted provenance
+records 10 schedule records, 14,840 item records across two pages and 17 fee records, for 14,867
+total PBS records. The key is absent from tracked files, generated commands and provenance.
+Source validation and source-contract checks have zero blocking failures; the extract remains
+`acquired_unreviewed` pending accountable licence and field review.

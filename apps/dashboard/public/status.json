@@ -1,14 +1,6 @@
 {
   "blockers": [
     {
-      "category": "source_ingestion",
-      "evidence_path": "data/derived/source_health/acquisition_status.json",
-      "id": "source_acquisition",
-      "next_action": "Complete remaining executable or credential-gated targets, then rerun source validation and source contracts.",
-      "status": "incomplete",
-      "summary": "Source acquisition requires follow-up: Run hardened curl/wget source download plan."
-    },
-    {
       "category": "human_review",
       "evidence_path": "data/derived/licence_review/summary.json",
       "id": "licence_review",

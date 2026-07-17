@@ -26,11 +26,11 @@ provider-licence and domain review before external publication.
 
 ## Current merged state
 
-As of 2026-07-17, `main` is at `db367f4` (the squash merge of the current review-decision evidence update).
-The repository release gates are green. The current PBS v3 schedule acquisition attempt is
-recorded as `blocked_secret` because `PBS_API_SUBSCRIPTION_KEY` is absent from the approved
-environment. Source-health is intentionally `partial`: the MBS pair exists in ignored local
-raw storage, while PBS, CMS and historical targets remain gated by credentials or
+As of 2026-07-17, `main` is at `353b368` (the squash merge of the current external preflight
+evidence update). The repository release gates are green. The current PBS v3 schedule,
+items and fees acquisition is `acquired_unreviewed` from an ephemeral official catalogue key.
+Source-health is `review_required` with zero operational blockers: the MBS and PBS responses
+exist in ignored local raw storage, while six historical/CMS targets remain gated by
 licence/review controls.
 
 ## Current blocker pattern
@@ -53,8 +53,8 @@ Remaining blockers are external or require accountable human judgement:
 
 The latest recorded preflights completed successfully without mutating external services.
 The latest local acquisition retry is a separate evidence record: it revalidated the MBS
-pair, skipped six licence-gated targets and classified the PBS attempt as `blocked_secret`
-because `PBS_API_SUBSCRIPTION_KEY` was absent. The generated source-health report is the
+pair and PBS v3 responses, skipped six licence-gated targets and classified source-health as
+`review_required` with zero operational blockers. The generated source-health report is the
 authoritative status for that local environment.
 The governed source-health run [29551222886](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29551222886)
 also acquired and schema-validated 14,840 PBS item records and 17 PBS fee records while keeping
