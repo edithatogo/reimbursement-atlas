@@ -143,5 +143,5 @@ tracked configuration or generated evidence.
 
 The subsequent local retry did not have `PBS_API_SUBSCRIPTION_KEY` in its approved
 environment and therefore recorded `blocked_secret` without writing a key or response
-payload. The workflow evidence above remains historical acquisition evidence; the local
+payload. The workflow evidence above remains historical acquisition evidence; the locally
 generated source-health report records the current workstation boundary.
