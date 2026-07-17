@@ -57,6 +57,11 @@ The monitor may update GitHub issue #320 with the same redacted report using `is
 the workflow token. This is issue evidence synchronization only; it is not a Hugging Face
 mutation or publication approval.
 
+Each target record also contains a `remediation` list and the report contains a
+`remediation_plan` keyed by dataset and Space. These instructions identify the metadata and
+candidate-bundle checks that must be completed before any correction, but they never authorize
+remote mutation or replace licence, research, evidence, policy or maintainer approval.
+
 The latest read-only recheck on merged `main` (`c2cdea7`) was workflow run
 [29565126096](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29565126096).
 The dataset metadata still matches its governed `other` licence boundary. The Space remains

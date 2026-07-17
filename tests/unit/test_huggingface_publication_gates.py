@@ -72,8 +72,24 @@ def test_huggingface_destination_report_is_read_only_and_detects_drift() -> None
     assert report["mutation_performed"] is False
     assert report["targets"]["dataset"]["status"] == "pass"
     assert report["targets"]["space"]["status"] == "drift"
+    assert report["targets"]["space"]["remediation"]
+    assert report["remediation_plan"]["dataset"] == []
+    assert any("static" in item for item in report["remediation_plan"]["space"])
     assert report["status"] == "drift"
     assert "raw" not in json.dumps(report).lower()
+
+
+def test_huggingface_destination_fetch_error_only_recommends_retry() -> None:
+    def fetcher(_url: str):
+        return {}, "temporary outage"
+
+    report = destination_report("owner/dataset", "owner/space", fetcher)
+
+    assert report["status"] == "drift"
+    assert report["targets"]["dataset"]["reachable"] is False
+    assert report["targets"]["space"]["remediation"] == [
+        "Retry the read-only metadata check after the endpoint is reachable."
+    ]
 
 
 def test_publication_gates_fail_closed_for_review_candidate(tmp_path: Path) -> None:

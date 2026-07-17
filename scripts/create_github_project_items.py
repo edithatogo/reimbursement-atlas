@@ -174,6 +174,8 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
             "action-pin policy and the workflow artifact.\n"
             "- [x] The workflow synchronizes issue #320 with redacted read-only evidence using "
             "GitHub issue permission only.\n"
+            "- [x] The report includes target-specific remediation steps that remain gated and "
+            "non-mutating.\n"
             "- [x] Documentation or Conductor context is updated; drift remains linked to issue "
             "#320."
         )
