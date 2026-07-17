@@ -129,7 +129,10 @@ the monitor uses `blocked_account`, not `pass`. This preserves the account/plan 
 keeping the repository's compensating controls visible: Gitleaks history scans, CodeQL, zizmor,
 dependency review, pinned Actions and protected-branch checks.
 
-The monitor uses `blocked_permissions` when the authenticated API response omits the security
+The monitor first uses the optional `GH_SECURITY_SETTINGS_TOKEN` Actions secret, which should be
+a fine-grained read-only token scoped only to this repository with `administration:read`, and
+falls back to the default `GITHUB_TOKEN` when that secret is not configured. The monitor uses
+`blocked_permissions` when the authenticated API response omits the security
 analysis object or one of its controls. That state means the token authenticated but cannot
 provide authoritative settings visibility; it must not be interpreted as an account-level
 disablement. The report includes `missing_controls` and the next action required to rerun with

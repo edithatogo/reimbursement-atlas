@@ -26,7 +26,9 @@ jobs:
       - uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
       - name: Read repository security settings
         env:
-          GH_TOKEN: ${{ github.token }}
+          # GITHUB_TOKEN cannot read all repository security-analysis settings.
+          # An optional fine-grained token may provide administration:read only.
+          GH_TOKEN: ${{ secrets.GH_SECURITY_SETTINGS_TOKEN || github.token }}
         run: uv run --all-extras python scripts/check_github_security_settings.py --repo "$GITHUB_REPOSITORY"
       - name: Upload redacted settings evidence
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1

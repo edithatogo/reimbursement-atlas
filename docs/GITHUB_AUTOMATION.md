@@ -94,6 +94,9 @@ mutation permission.
   `secret_scanning_validity_checks`; GitHub accepted the requests but returned `disabled` for both.
   This is retained as an account-level blocker in issue [#191](https://github.com/edithatogo/reimbursement-atlas/issues/191),
   not treated as a repository implementation failure.
+- The scheduled monitor accepts an optional `GH_SECURITY_SETTINGS_TOKEN` Actions secret for
+  authoritative settings readback. It must be a fine-grained, read-only token scoped only to this
+  repository with `administration:read`; the workflow never writes settings or exposes the token.
 - CodeQL for Python and JavaScript/TypeScript.
 - The required `zizmor` context is bound to the passing repository-owned GitHub Actions workflow
   (`app_id 15368`). On 2026-07-16, repository-admin GraphQL remediation changed the binding

@@ -1333,3 +1333,16 @@ API permissions.
 
 Consequence: The handoff is current for snapshot `4693b32113b97868083ecf86d9fd8ae09dfa2e1b`,
 while human licence, research, mapping, governance and publication gates remain fail-closed.
+
+## 2026-07-18 - Preserve read-only security-settings observability
+
+Decision: Allow the GitHub security-settings monitor to use an optional repository-scoped,
+fine-grained `GH_SECURITY_SETTINGS_TOKEN` with `administration:read`, falling back to the default
+`GITHUB_TOKEN`; do not grant the workflow mutation permissions.
+
+Evidence: The administrator API returned HTTP 200 for an enablement request but authoritative
+readback preserved both advanced controls as `disabled`. The scheduled monitor's default token
+reported `blocked_permissions` because it could not see the security-analysis object.
+
+Consequence: CI can become authoritative when the optional read-only secret is configured, while
+issue #191 remains correctly blocked and no credential is committed or exposed.
