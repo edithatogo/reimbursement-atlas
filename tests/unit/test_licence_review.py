@@ -75,6 +75,27 @@ def test_data_dictionary_marks_queue_internal(repo_root: Path) -> None:
     assert all(row.licence_gate == "not_for_publication" for row in queue_rows)
 
 
+def test_decision_schema_documents_all_required_human_fields(repo_root: Path) -> None:
+    """The committed reviewer schema stays aligned with the fail-closed contract."""
+    schema_path = repo_root / "data" / "licence_review" / "decision.schema.json"
+    schema = json.loads(schema_path.read_text(encoding="utf-8"))
+    assert schema["additionalProperties"] is False
+    assert set(schema["required"]) == {
+        "review_id",
+        "relative_path",
+        "checksum_sha256",
+        "decision",
+        "reviewer",
+        "reviewed_at",
+        "source_terms",
+        "attribution",
+        "redistribution_permission",
+        "restrictions",
+        "evidence",
+    }
+    assert schema["properties"]["decision"]["enum"] == ["approved", "blocked"]
+
+
 def test_validator_rejects_stale_candidate_checksum(tmp_path: Path) -> None:
     """A queue row cannot silently outlive the candidate it describes."""
     candidate = tmp_path / "data/derived/example.csv"
