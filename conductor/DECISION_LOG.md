@@ -1253,3 +1253,15 @@ recorded in `conductor/sessions/2026-07-17-v175-current-main-external-preflights
 
 Consequence: Repository release readiness remains green while research, evidence, policy, OSF,
 Zenodo, HF and account-security gates remain explicitly fail-closed.
+
+## 2026-07-17 - Resolve the actual merge blocker without bypassing controls
+
+Decision: Resolve the outdated review conversation required by repository conversation-resolution
+protection, then merge PR #426 through the normal auto-merge path.
+
+Rationale: Repository inspection showed no required human approval rule and no active ruleset. The
+actual blocking condition was one unresolved, outdated review thread. Resolving that stale thread
+preserved the repository's configured control and avoided an administrator bypass.
+
+Evidence: PR #426 merged as `adf08324bd21a32c4ae3f37d14edd910c10ead5`; post-merge CI, security,
+Scorecard, harness, release-readiness and dashboard browser checks passed.

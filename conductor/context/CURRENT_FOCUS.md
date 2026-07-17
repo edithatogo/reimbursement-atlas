@@ -1306,3 +1306,17 @@ The broader external-quality task passed all seven checks in the active runtime:
 zizmor, repository automation matrix, and Mojo availability through the pinned uv tool path.
 The refreshed derived reports are `data/derived/external_quality_gates.{json,csv}`. These are
 toolchain evidence only and do not promote research, evidence, licence or publication readiness.
+
+## 2026-07-17 v179 post-merge main closure
+
+PR [#426](https://github.com/edithatogo/reimbursement-atlas/pull/426) merged through the
+normal repository workflow. Current `main` is
+`adf08324bd21a32c4ae3f37d14edd910c10ead5`. The merge was held until its single outdated review
+conversation was resolved; no review or branch-protection bypass was used.
+
+Post-merge CI, security, continuous security assurance, OpenSSF Scorecard, harness assurance,
+uv quality parity, release readiness and the dashboard browser matrix all passed in runs
+`29578688658`, `29578688855`, `29578688876`, `29578688927`, `29578688779`, `29578688683`,
+`29578688893` and `29578688695`. GitHub Pages publication run `29578688681` was still running
+at session capture. These checks do not alter the existing external licence, research-review,
+OSF, Hugging Face, Zenodo or policy-claim blockers.

@@ -26,8 +26,8 @@ provider-licence and domain review before external publication.
 
 ## Current merged state
 
-As of 2026-07-17, `main` is at `c52e2b4` (the squash merge of the PBS cadence and retention
-boundary correction). The repository release gates are green. The current PBS v3 schedule,
+As of 2026-07-17, `main` is at `adf0832` (the squash merge of the external preflight and
+quality-gate documentation update in PR #426). The repository release gates are green. The current PBS v3 schedule,
 items and fees acquisition is `acquired_unreviewed` from an ephemeral official catalogue key.
 Source-health is `review_required` with zero operational blockers: the MBS and PBS responses
 exist in ignored local raw storage, while six historical/CMS targets remain gated by
@@ -140,7 +140,7 @@ for the core controls and the two account/plan-gated controls.
 
 ## Latest Current-Main External Preflight Refresh
 
-The latest read-only refresh ran on merged `main` at `c52e2b4`. OSF run
+The latest read-only refresh ran before the current merge at `c52e2b4`. OSF run
 [29576544998](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29576544998)
 passed the pinned `osf-cli-go v1.0.0` plan and fail-closed synchronization checks; discovery,
 provisioning, registration, upload and publication were not requested. Zenodo run
