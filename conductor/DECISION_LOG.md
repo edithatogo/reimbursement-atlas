@@ -1098,3 +1098,18 @@ performed beyond the previously authorized repository settings read/write attemp
 
 Consequence: External verification is current, explicit and fail-closed in Conductor and issue
 records.
+
+## 2026-07-17 - Record credentialed PBS acquisition without publication promotion
+
+Decision: Use the existing GitHub Actions `PBS_API_SUBSCRIPTION_KEY` only through the governed
+source-health workflow. Record the successful PBS v3 acquisition as `acquired_unreviewed`, while
+keeping raw responses outside Git and retaining the incomplete source-health state for the seven
+historical MBS/CMS targets skipped behind licence gates.
+
+Evidence: Source-health run [29551222886](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29551222886)
+acquired 10 schedules, 14,840 items across two pages, and 17 fees; source validation and source
+contracts reported 2 pass and 7 intentional skips with zero failures. The workflow and provenance
+redacted the secret value.
+
+Consequence: PBS acquisition is no longer a missing-credential blocker, but licence review,
+human review, evidence readiness and publication readiness remain fail-closed.

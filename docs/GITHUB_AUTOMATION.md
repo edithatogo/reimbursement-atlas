@@ -124,10 +124,13 @@ pass a captured `/branches/main/protection/required_status_checks` response with
 
 ## Current source-health evidence
 
-The live run on 2026-07-17 ([29539008697](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29539008697))
-passed validation, contract, drift and release-readiness enforcement and successfully downloaded the
-PBS v3 schedules response. The acquisition monitor remains incomplete because six historical MBS/CMS
-targets are intentionally `skipped_licence_gate`; issue [#383](https://github.com/edithatogo/reimbursement-atlas/issues/383)
+The latest live run on 2026-07-17
+([29551222886](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29551222886))
+passed validation, contract, drift and release-readiness enforcement. It acquired the PBS v3
+schedules response, 14,840 item records across two CSV pages, and 17 fee records. Those records
+remain `acquired_unreviewed` and raw payloads remain runner/local-cache-only. The acquisition monitor
+is still incomplete because seven historical MBS/CMS targets are intentionally
+`skipped_licence_gate`; issue [#383](https://github.com/edithatogo/reimbursement-atlas/issues/383)
 records that boundary. The current PBS public-user key is stored only in the GitHub Actions secret
 `PBS_API_SUBSCRIPTION_KEY`, and acquisition provenance redacts the header value. Never place it in
 tracked configuration or generated evidence.
