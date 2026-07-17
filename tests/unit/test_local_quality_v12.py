@@ -47,15 +47,21 @@ def test_quality_gate_classifies_success_and_failure(tmp_path: Path) -> None:
     failure = QualityGateSpec(
         id="failure",
         category="test",
-        command=("python", "-c", "raise SystemExit(3)"),
+        command=(
+            "python",
+            "-c",
+            "import sys; print('diagnostic', file=sys.stderr); raise SystemExit(3)",
+        ),
         cwd=".",
         profiles=("quick",),
     )
     assert run_quality_gate(success, root=tmp_path).status == "passed"
+    assert run_quality_gate(success, root=tmp_path).stdout_excerpt == ""
     failed = run_quality_gate(failure, root=tmp_path)
     assert failed.status == "failed"
     assert failed.return_code == 3
     assert failed.cwd == "."
+    assert failed.stderr_excerpt == "diagnostic"
 
 
 def test_quality_gate_summary_tracks_blocking_failures() -> None:
