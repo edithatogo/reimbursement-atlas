@@ -82,6 +82,11 @@ The current `main` commit `41d8a94` passed the complete protected workflow and G
 build, deploy and live smoke in run
 [29580400871](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29580400871).
 
+The latest read-only monitor refresh on `main` `6d27f63` is also recorded: OSF, Zenodo, source
+health and GitHub security passed without mutation; Hugging Face remained fail-closed on the
+known Space metadata drift. Runs: `29581492342`, `29581493945`, `29581497364`, `29581495755`,
+`29581498956`.
+
 The latest v177 read-only refresh on commit `5833b35` reconfirmed this boundary. OSF run
 [29577726446](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577726446),
 Zenodo run [29577728066](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577728066)

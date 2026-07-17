@@ -1299,6 +1299,18 @@ again reported `blocked_permissions` because the workflow token cannot read secu
 settings. No publication, DOI, destination metadata, repository setting or raw source mutation
 occurred.
 
+## 2026-07-17 v183 current-main external refresh
+
+Read-only monitors on current `main` `6d27f6314839186bb70a425dffd68270f7bf932d` completed for
+OSF [29581492342](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29581492342),
+Zenodo [29581493945](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29581493945),
+source health [29581497364](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29581497364),
+Hugging Face [29581495755](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29581495755)
+and GitHub security [29581498956](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29581498956).
+OSF, Zenodo, source health and security passed without mutation. Hugging Face again failed closed
+on Space metadata drift. No publication, DOI deposit, licence approval or security-setting mutation
+occurred.
+
 ## 2026-07-17 v178 external quality gate refresh
 
 The broader external-quality task passed all seven checks in the active runtime: strict
