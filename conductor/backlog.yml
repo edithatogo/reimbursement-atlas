@@ -416,6 +416,10 @@ epics:
       - title: Enable GitHub non-provider secret-pattern scanning and validity checks
         labels: ["type:security", "type:repo-automation", "phase:hardening", "status:blocked"]
         status: blocked
+        acceptance:
+          - "A scheduled read-only monitor records the four repository security settings without tokens or request headers."
+          - "The monitor keeps issue #191 synchronized and reports disabled advanced controls as blocked_account, never as pass."
+          - "Core scanning, push protection, Gitleaks, CodeQL, zizmor and dependency-review compensating controls remain documented."
       - title: Scan complete Git history for committed secrets
         labels: ["type:security", "phase:hardening", "status:implemented"]
         status: implemented

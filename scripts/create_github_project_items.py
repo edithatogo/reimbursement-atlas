@@ -438,6 +438,8 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
             "- [x] Tests or validation evidence are defined: full-history Gitleaks CI and live "
             "repository-settings API evidence.\n"
             "- [x] Documentation or Conductor context is updated.\n"
+            "- [x] A scheduled read-only monitor uploads redacted settings evidence and keeps "
+            "issue #191 synchronized without PATCH or secret access.\n"
             "- [ ] GitHub reports `secret_scanning_non_provider_patterns=enabled`.\n"
             "- [ ] GitHub reports `secret_scanning_validity_checks=enabled`; current account state "
             "remains disabled for both."

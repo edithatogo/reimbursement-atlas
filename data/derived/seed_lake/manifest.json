@@ -264,16 +264,16 @@
       "jsonl_path": "repo_workflow_uses/repo_workflow_uses.jsonl",
       "name": "repo_workflow_uses",
       "parquet_path": "repo_workflow_uses/repo_workflow_uses.parquet",
-      "rows": 118,
-      "sha256": "1c005cf91f48f2ea83a63792df662ebd4192450ddb597f1a171ed328245bf517"
+      "rows": 121,
+      "sha256": "8a38f5e9cb4da0554c75559a971e1beb5a61672f37ecee8933239443d54f9d29"
     },
     {
       "csv_path": "repo_workflow_policy/repo_workflow_policy.csv",
       "jsonl_path": "repo_workflow_policy/repo_workflow_policy.jsonl",
       "name": "repo_workflow_policy",
       "parquet_path": "repo_workflow_policy/repo_workflow_policy.parquet",
-      "rows": 96,
-      "sha256": "973e9b0e1d997c76309d1b9d05fc18e5820c91a1b4e1fedf2eddd260ec194e57"
+      "rows": 100,
+      "sha256": "c9e1fba1eb531fab048c814c1b6a815fd311f4d946b10b0202636b6bb260319f"
     },
     {
       "csv_path": "repo_automation_controls/repo_automation_controls.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 36,
-      "sha256": "9aea563a4c6c4a45fefcc222d3210d7cff8c22e3aba24886b322265f71c62c0d"
+      "sha256": "47378183be0a44b9c60293495546ebdf48f61726ea5f2bf6f228184763d52d33"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -457,7 +457,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 168,
-      "sha256": "f2e4615d46625e67377991af6b401b9f757820a7085e9e0eb29fb7dfa7389980"
+      "sha256": "ea1a75fdafb3c76821607705c636d43f86fd0f2704153bcd7c39bce3b4ecd892"
     }
   ]
 }

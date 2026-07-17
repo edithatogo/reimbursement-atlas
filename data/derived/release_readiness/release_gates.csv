@@ -15,7 +15,7 @@ data_governance,local_quality status=passed return_code=0,data_dictionary,No act
 data_governance,local_quality status=passed return_code=0,evidence_readiness,No action required.,True,pass
 data_governance,local_quality status=passed return_code=0,source_drift,No action required.,True,pass
 data_governance,checks=41 blocking_failures=0,data_quality_summary,Resolve blocking data-quality checks before release.,True,pass
-data_governance,table_count=168 total_rows=35077,data_dictionary_summary,Regenerate the data dictionary after publication-manifest changes.,True,pass
+data_governance,table_count=168 total_rows=35091,data_dictionary_summary,Regenerate the data dictionary after publication-manifest changes.,True,pass
 data_governance,blocked=0 prototype_ready=5,evidence_readiness_summary,Resolve blocked research questions before evidence release.,True,pass
 data_governance,blocking_failure_count=0 warnings=0,source_drift_summary,Review source drift failures before release.,True,pass
 data_governance,validations=9 missing=0 failures=0,source_content_validation_summary,"Download missing public files in a network-enabled environment, then rerun validation.",True,pass
@@ -29,7 +29,7 @@ security,external_quality outcome=passed return_code=0,npm_audit_dashboard,No ac
 supply_chain,external_quality outcome=passed return_code=0,zizmor_workflow_security,No action required.,False,pass
 toolchain,external_quality outcome=passed return_code=0,pixi_available,No action required.,False,pass
 toolchain,external_quality outcome=passed return_code=0,mojo_available_uv_tool,No action required.,False,pass
-supply_chain,fail=0 warn=0 pass=96,workflow_policy_matrix,Resolve fail records; gradually burn down warn records before hardened release.,True,pass
+supply_chain,fail=0 warn=0 pass=100,workflow_policy_matrix,Resolve fail records; gradually burn down warn records before hardened release.,True,pass
 supply_chain,"All workflow actions are already SHA-pinned, local, or docker references.",action_sha_pinning,Keep action pin resolver in scheduled CI.,False,pass
 supply_chain,sbom_count=2 component_count=671,sbom_generation,Attach SBOM files to release artefacts and attestations.,True,pass
 architecture,violations=0 cycles=0 unknown_layers=0,architecture_boundaries,"Fix layer violations, remove cycles, or update the layer map deliberately.",True,pass
