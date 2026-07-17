@@ -55,6 +55,9 @@ epics:
       - title: Build candidate crosswalk review queue format
         labels: ["type:mapping", "phase:1-slice", "status:implemented"]
         status: implemented
+      - title: Enforce human mapping and licence decision schemas in CI
+        labels: ["type:mapping", "type:review", "phase:hardening", "status:implemented"]
+        status: implemented
   - id: ANA-001
     title: Source openness and access-readiness index
     phase: slice
