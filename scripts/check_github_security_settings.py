@@ -62,11 +62,33 @@ def build_report(
     payload_dict = payload if isinstance(payload, dict) else {}
     security_value = payload_dict.get("security_and_analysis")
     security = cast("dict[str, Any]", security_value) if isinstance(security_value, dict) else {}
+    missing_controls: list[str] = []
     controls: dict[str, str] = {}
     for key in SECURITY_KEYS:
         control = security.get(key)
+        if key not in security or not isinstance(control, dict):
+            missing_controls.append(key)
         control_dict = cast("dict[str, Any]", control) if isinstance(control, dict) else {}
         controls[key] = str(control_dict.get("status", "unknown"))
+    if missing_controls:
+        return {
+            "schema_version": "github-security-settings-v1",
+            "repository": repo,
+            "status": "blocked_permissions",
+            "mutation_performed": False,
+            "network_io": True,
+            "error": (
+                "GitHub API response omitted security analysis settings; "
+                "token scope or API visibility is insufficient"
+            ),
+            "controls": controls,
+            "missing_controls": missing_controls,
+            "core_controls_ready": False,
+            "advanced_controls_ready": False,
+            "next_action": (
+                "Run this monitor with a token that can read repository security analysis settings."
+            ),
+        }
     advanced = all(controls[key] == ENABLED_STATUS for key in SECURITY_KEYS[2:])
     core = all(controls[key] == ENABLED_STATUS for key in SECURITY_KEYS[:2])
     return {

@@ -59,5 +59,16 @@ def test_build_report_redacts_unexpected_api_shapes() -> None:
         repo="edithatogo/reimbursement-atlas",
         payload={"security_and_analysis": {"secret_scanning": None}},
     )
-    assert report["status"] == "blocked_account"
+    assert report["status"] == "blocked_permissions"
     assert report["controls"][SECURITY_KEYS[0]] == "unknown"
+    assert report["missing_controls"] == list(SECURITY_KEYS)
+    assert "scope or API visibility" in report["error"]
+
+
+def test_build_report_distinguishes_missing_security_api_visibility() -> None:
+    """An authenticated API response without security settings is not an account state."""
+    report = build_report(repo="edithatogo/reimbursement-atlas", payload={})
+    assert report["status"] == "blocked_permissions"
+    assert report["missing_controls"] == list(SECURITY_KEYS)
+    assert report["controls"] == dict.fromkeys(SECURITY_KEYS, "unknown")
+    assert report["mutation_performed"] is False

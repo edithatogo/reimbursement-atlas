@@ -128,3 +128,9 @@ partner validity checks are separate advanced controls; when GitHub reports eith
 the monitor uses `blocked_account`, not `pass`. This preserves the account/plan blocker while
 keeping the repository's compensating controls visible: Gitleaks history scans, CodeQL, zizmor,
 dependency review, pinned Actions and protected-branch checks.
+
+The monitor uses `blocked_permissions` when the authenticated API response omits the security
+analysis object or one of its controls. That state means the token authenticated but cannot
+provide authoritative settings visibility; it must not be interpreted as an account-level
+disablement. The report includes `missing_controls` and the next action required to rerun with
+appropriate read visibility.

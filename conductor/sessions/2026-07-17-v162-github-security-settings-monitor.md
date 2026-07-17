@@ -26,3 +26,10 @@ The report therefore remains `blocked_account`; no secret values or tokens were 
 The repository API enablement request did not change the advanced settings. Chrome navigation to
 the GitHub security page was blocked by enterprise browser policy. Account/plan enablement remains
 an external maintainer action; compensating repository controls remain active and tested.
+
+## Follow-up correction
+
+The first merged Actions dispatch authenticated with `GITHUB_TOKEN` but the repository metadata
+response omitted `security_and_analysis`. The monitor now reports `blocked_permissions` with a
+redacted missing-controls list and an explicit API-visibility next action. It reserves
+`blocked_account` for complete readbacks that show the advanced settings disabled.
