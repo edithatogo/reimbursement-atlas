@@ -960,3 +960,16 @@ and browser gates remain green on TypeScript `6.0.3`.
 
 Consequence: The bleeding-edge candidate is documented and tracked, but reproducible CI is preserved
 until upstream checker support exists. Issue #362 remains blocked for that explicit reason.
+
+## 2026-07-17 - Refresh OSF read-only discovery
+
+Decision: Treat OSF authentication and project configuration as verified, but keep all OSF mutation
+and publication paths fail-closed until protocol, licence, methods and governance review is approved.
+
+Evidence: Workflow run [29545432007](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29545432007)
+passed the pinned `osf-cli-go` `v1.0.0` contract and OSF plan. Authenticated discovery listed 28
+projects and found the existing private `Reimbursement Atlas` project `q8cnx`; the sync manifest
+contained no publish-allowed rows. Provisioning, registration, upload and publication were skipped.
+
+Consequence: OSF credentials, project variable and CLI are operational. The remaining OSF boundary
+is human research/licence/governance approval, not repository authentication or toolchain setup.

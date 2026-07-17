@@ -92,12 +92,19 @@ temporary directory on 2026-07-17 and the local contract passed with
 workstation is not used as workflow evidence. This validates the toolchain only; it does
 not authorize OSF registration or publication.
 
-The current merged repository state is `c186e54` (`main`). The latest
-remote discovery evidence above is retained as a read-only preflight record; no OSF mutation
-occurred. The contract task now refuses ambiguous `PATH` lookup and requires `OSF_BIN` or
+The historical merged repository state referenced by the earlier preflight was `c186e54` (`main`).
+The latest remote discovery evidence above is retained as a read-only preflight record; no OSF
+mutation occurred. The contract task now refuses ambiguous `PATH` lookup and requires `OSF_BIN` or
 `--binary`, preventing an unrelated older `osf` executable from being mistaken for the pinned
 official CLI.
 
 The latest read-only refresh on `main` (`c7a55b3e4483265ffe60637714e930512ec22cdb`) was
 workflow run `29517248071`: discovery and the OSF component plan passed, provisioning and
 publication were skipped, and no OSF project, node, registration or file was mutated.
+
+The current read-only refresh on merged `main` (`9476628`) was workflow run
+`29545432007`. The pinned CLI discovery succeeded and found 28 accessible projects, including the
+private `Reimbursement Atlas` project `q8cnx`; the OSF component plan and fail-closed sync-manifest
+check also passed. Provisioning, registration, upload and publication were skipped, and no OSF
+project, node, registration or file was mutated. The sanitized project listing remains a temporary
+workflow artifact and no token or project payload is tracked.
