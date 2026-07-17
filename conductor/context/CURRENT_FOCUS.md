@@ -1404,3 +1404,11 @@ caches without network access or raw-payload export. It reports PBS duplicate it
 codes as a diagnostic because denormalised rows may represent multiple presentations
 or brands. Passing this gate is parser evidence only; licence, human source review,
 research review and publication gates remain separate.
+
+## 2026-07-17 v189 source-health acceptance refresh
+
+Merged `main` `48d61d2` passed source-health run
+[29587300544](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29587300544).
+The workflow recorded acquisition outcome and downstream gate return codes before completing
+the evidence and escalation steps. The current status is `review_required` with six licence
+targets and zero operational blockers; no publication or raw-payload mutation occurred.

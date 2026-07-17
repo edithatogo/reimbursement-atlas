@@ -118,3 +118,11 @@ The current Hugging Face destination readback [29584493383](https://github.com/e
 passes for the dataset (`license=other`) but fails closed for the Space because it reports
 `license=mit` and `sdk=gradio` rather than governed `apache-2.0` and `static`. The monitor made
 no remote mutation and synchronized issue [#320](https://github.com/edithatogo/reimbursement-atlas/issues/320).
+
+The current merged `main` commit `48d61d2` passed the protected workflow and GitHub Pages
+build, deploy and live smoke. Source-health acceptance run
+[29587300544](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29587300544)
+completed with `acquisition_outcome=success`, downstream validation/contract/drift/readiness
+return codes of zero, zero operational blockers and six licence-review targets. The workflow
+uploaded redacted evidence and performed no publication, licence approval, destination mutation
+or raw-payload commit.

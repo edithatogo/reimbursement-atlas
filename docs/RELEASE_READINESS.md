@@ -216,3 +216,13 @@ The destination monitor on current `main` `dfd9e18` [29584493383](https://github
 confirmed the Hugging Face dataset metadata passes (`license=other`) while the reachable Space
 has governed metadata drift (`license=mit`, `sdk=gradio`; expected `apache-2.0` and `static`).
 It failed closed with `mutation_performed=false`; no destination change was attempted.
+
+## v189 Current Source-Health Acceptance Run
+
+The merged `main` commit `48d61d2` was validated by source-health run
+[29587300544](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29587300544).
+The hardened workflow recorded `monitor_run_status.json`, generated source validation,
+source contracts, source drift, release-readiness and final-handoff evidence, and uploaded
+the redacted artifact. It reported `acquisition_outcome=success`, zero return codes for all
+four downstream gates, zero operational blockers and six licence-review targets. It performed
+no publication, licence approval, destination mutation or raw-payload commit.
