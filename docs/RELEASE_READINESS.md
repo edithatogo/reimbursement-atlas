@@ -20,13 +20,13 @@ The summary contains `required_blocker_count` and `public_release_ready`. Public
 The release matrix also verifies that `data/derived/licence_review/summary.json` exists,
 contains checksum-bound candidate rows, and explicitly has
 `approval_mutation_allowed: false`. This verifies the review-control mechanism only; the
-159 artifact candidates remain pending. This includes project metadata, governance outputs,
+161 artifact candidates remain pending. This includes project metadata, governance outputs,
 and source-derived candidates; the source-derived subset still requires human Commonwealth,
 provider-licence and domain review before external publication.
 
 ## Current merged state
 
-As of 2026-07-17, `main` is at `471dab4` (the squash merge of the external preflight refresh).
+As of 2026-07-17, `main` is at `fd41112` (the squash merge of the gated Hugging Face remediation plan).
 The repository release gates are green, the current PBS v3 schedule acquisition is
 recorded as `acquired_unreviewed`, and source-health is intentionally `partial`: MBS
 and PBS evidence exists in ignored local raw storage, while CMS and historical targets
@@ -94,6 +94,13 @@ OSF-registration, evidence-release or policy-claim readiness flags.
 The latest non-depositing Zenodo preflight on merged `main` (`efd835e`) was run
 `29552003859`; metadata and repository-readiness validation passed and no DOI deposit or
 external mutation was performed.
+
+The current merged commit `fd41112` also passed all repository-protected checks. Its manual
+Hugging Face destination monitor run `29569184790` intentionally failed closed on the known
+Space metadata drift, uploaded redacted evidence and synchronized issue `#320`; it performed no
+Hugging Face mutation. No newer OSF or Zenodo mutation-capable run has been performed on
+`fd41112`, so the latest OSF and Zenodo records above remain operational evidence from earlier
+merged commits, not publication approval.
 
 ## Source contract posture
 

@@ -62,12 +62,17 @@ Each target record also contains a `remediation` list and the report contains a
 candidate-bundle checks that must be completed before any correction, but they never authorize
 remote mutation or replace licence, research, evidence, policy or maintainer approval.
 
-The latest read-only recheck on merged `main` (`c2cdea7`) was workflow run
-[29565126096](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29565126096).
+The latest read-only recheck on merged `main` (`fd41112`) was workflow run
+[29569184790](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29569184790).
 The dataset metadata still matches its governed `other` licence boundary. The Space remains
 drifted at `license: mit` and `sdk: gradio` versus the candidate `apache-2.0` and `static`.
 No remote mutation was attempted; issue [#320](https://github.com/edithatogo/reimbursement-atlas/issues/320)
 contains the dated readback and remains blocked on approval gates.
+
+The monitor failed closed because the Space still reports `license: mit` and `sdk: gradio`.
+The workflow nevertheless uploaded the redacted report and synchronized issue `#320`, including
+the target-specific `remediation_plan`. This is the current merged-main evidence; it does not
+authorize changing the Space or publishing the candidate bundle.
 
 ## Latest non-mutating candidate validation
 

@@ -1147,3 +1147,14 @@ accessible projects and confirmed the private `Reimbursement Atlas` project `q8c
 registration, upload and publication were skipped. No OSF mutation or token-bearing artifact was
 created. OSF registration and publication remain blocked by protocol, licence, evidence and
 accountable human review gates.
+
+## 2026-07-17 v167 post-merge documentation and blocker boundary
+
+Merged `main` is now `fd41112`, with all protected repository checks green. The current
+Hugging Face destination monitor run `29569184790` failed closed on the known Space metadata
+drift (`mit`/`gradio` versus governed `apache-2.0`/`static`), uploaded redacted evidence and
+synchronized issue `#320` without remote mutation. The licence queue currently contains 161
+checksum-bound candidates with zero approvals. The latest OSF evidence remains successful
+read-only run `29567562072` on `fa5b042`; no newer OSF or Zenodo mutation-capable run has been
+performed on `fd41112`. Repository implementation is therefore current, while licence,
+research, evidence, policy, OSF and external Space reconciliation remain explicitly gated.
