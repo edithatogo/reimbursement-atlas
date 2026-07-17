@@ -1,5 +1,12 @@
 # Hugging Face publication plan
 
+Current merged-main destination readback (2026-07-18, monitor run
+`29591542182`) confirms the dataset reports governed `license=other`. The Space
+still reports `license=mit` and `sdk=gradio` instead of the governed candidate
+`apache-2.0` and `static`; the monitor failed closed and performed no mutation.
+Reconciliation remains blocked until the licence, evidence, research and policy
+gates pass.
+
 The repo records two Hugging Face targets:
 
 1. **Dataset**: licence-safe derived metadata and analysis outputs listed in `data/derived/publication_manifest.json`.

@@ -1,5 +1,12 @@
 # Release readiness
 
+Current merged-main reference: `8ee60ee66833171c440bac3d886796f06cee4ab0` (2026-07-18).
+The repository release gate summary is 36/36 passing with zero required blockers;
+research publication, OSF registration, evidence release and policy claims remain
+fail-closed. Current non-mutating monitor runs are OSF `29591535952`, Zenodo
+`29591537888`, source health `29591540127`, Hugging Face destination
+`29591542182`, and GitHub security settings `29591544121`.
+
 The release-readiness matrix consolidates local quality evidence, security gates, source-data governance, workflow policy, SBOMs, dashboard build status and architecture boundaries.
 
 It is intentionally stricter than a normal CI job: it distinguishes *failed*, *blocked by network*, *missing tool* and *warning* states so a sandbox or local workstation does not falsely claim public-release readiness.
