@@ -1016,3 +1016,17 @@ Face remote mutation was performed.
 
 Consequence: Conductor and GitHub lifecycle state distinguish completed publication tooling from
 unapproved external publication.
+
+## 2026-07-17 - Stabilize passing quality-gate evidence
+
+Decision: Omit stdout and stderr excerpts from passing local quality-gate records while retaining
+diagnostics for failed, blocked, missing-tool, timeout and other non-passing results.
+
+Evidence: PR #390 initially exposed generated-artifact and deterministic-regeneration failures from
+machine-dependent passing output. After the change, the rerun passed deterministic regeneration and
+generated artifacts, with all protected CI contexts green. The focused unit suite passed 278 tests
+and `pixi run local-quality` passed 27/27 gates.
+
+Consequence: Passing quality evidence remains auditable through typed status, command, return code,
+profile and notes fields while downstream research-package, licence-review and seed-lake hashes are
+stable across supported runners.
