@@ -19,7 +19,7 @@ merged to `main`.
   drifted from governed `apache-2.0`/`static`; no mutation.
 - Source-health workflow `29572724022`: success; zero operational blockers, six licence-review
   targets, 14,867 PBS records schema-validated, raw payloads untracked.
-- GitHub security workflow `29572723999`: success workflow with report status `blocked_permissions`;
+- GitHub security workflow `29572723999`: success; report status `blocked_permissions`;
   security-analysis fields were omitted by the workflow token, so no settings conclusion was inferred.
 
 ## Outcome
