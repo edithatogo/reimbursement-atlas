@@ -49,11 +49,24 @@ def git_commit(root: Path, revision: str) -> str | None:
     return commit if result.returncode == 0 and len(commit) == 40 else None
 
 
+def git_is_ancestor(root: Path, ancestor: str, descendant: str = "HEAD") -> bool:
+    """Return whether a documented snapshot is in the checked-out history."""
+    result = subprocess.run(  # nosec B603 B607
+        ["git", "merge-base", "--is-ancestor", ancestor, descendant],
+        cwd=root,
+        capture_output=True,
+        check=False,
+        text=True,
+    )
+    return result.returncode == 0
+
+
 def current_state_commits(root: Path) -> tuple[str, ...]:
-    """Return commits valid for a PR or its post-squash main checkout.
+    """Return commits immediately available to a PR or post-squash checkout.
 
     A PR cannot know its eventual squash SHA. Its base commit and first parent are
-    stable, while a post-merge checkout may expose only the new merge SHA.
+    stable, while a post-merge checkout may expose only the new merge SHA. Older
+    release snapshots are checked separately for ancestry.
     """
     candidates = [
         git_commit(root, "origin/main"),
@@ -94,13 +107,19 @@ def validate_public_docs(root: Path) -> list[str]:  # noqa: PLR0912 - explicit p
             path = root / relative
             text = path.read_text(encoding="utf-8") if path.exists() else ""
             matches = [commit for commit in commits if commit in text]
+            snapshot_matches = [
+                commit
+                for commit in FULL_SHA_PATTERN.findall(text)
+                if commit in commits or git_is_ancestor(root, commit)
+            ]
             if not matches and not is_pull_request_ci():
-                errors.append(
-                    f"{relative} does not reference a valid current-state commit "
-                    f"({', '.join(commits)})"
-                )
+                if not snapshot_matches:
+                    errors.append(
+                        f"{relative} does not reference a valid current-state or ancestor "
+                        f"release snapshot ({', '.join(commits)})"
+                    )
             else:
-                document_matches = matches or FULL_SHA_PATTERN.findall(text)
+                document_matches = matches or snapshot_matches or FULL_SHA_PATTERN.findall(text)
                 if not document_matches:
                     errors.append(f"{relative} contains no full current-state commit")
                 else:
