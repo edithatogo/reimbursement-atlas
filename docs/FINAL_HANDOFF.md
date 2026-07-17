@@ -101,3 +101,15 @@ The v178 external-quality refresh also passed strict `pip-audit`, dashboard `npm
 availability/reachability, zizmor, the repository automation matrix and Mojo availability. The
 derived evidence is in `data/derived/external_quality_gates.{json,csv}`; these checks do not
 constitute licence, research, evidence or publication approval.
+
+The latest current-main external refresh is on `431cff9`: OSF plan
+[29583980320](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29583980320),
+Hugging Face candidate validation
+[29583983277](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29583983277),
+Zenodo preflight
+[29583985161](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29583985161),
+GitHub security readback
+[29583987148](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29583987148),
+and source health
+[29583989402](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29583989402)
+passed. All publication and mutation-capable jobs were skipped; no external state was changed.

@@ -1371,3 +1371,20 @@ uv quality parity, release readiness and the dashboard browser matrix all passed
 `29578688893` and `29578688695`. GitHub Pages publication run `29578688681` was still running
 at session capture. These checks do not alter the existing external licence, research-review,
 OSF, Hugging Face, Zenodo or policy-claim blockers.
+
+## 2026-07-17 v185 current-main external monitor refresh
+
+On merged `main` `431cff92027a68b34ec117129f9b0506bd128046`, the non-mutating OSF plan
+[29583980320](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29583980320),
+Hugging Face candidate validation
+[29583983277](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29583983277),
+Zenodo preflight
+[29583985161](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29583985161),
+GitHub security readback
+[29583987148](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29583987148),
+and source-health monitor
+[29583989402](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29583989402)
+all passed. OSF discovery/provisioning/publication, Hugging Face dataset/Space publication and
+Zenodo deposit were skipped by explicit non-mutating inputs. No licence, research, evidence,
+publication, destination metadata or repository-setting approval was created; the external
+and human gates remain fail-closed.
