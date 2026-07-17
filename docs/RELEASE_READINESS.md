@@ -226,3 +226,15 @@ source contracts, source drift, release-readiness and final-handoff evidence, an
 the redacted artifact. It reported `acquisition_outcome=success`, zero return codes for all
 four downstream gates, zero operational blockers and six licence-review targets. It performed
 no publication, licence approval, destination mutation or raw-payload commit.
+
+## v190 Current Main Handoff Refresh
+
+The current merged `main` commit is `136f4e69fda3468b4d0050ce21459c7d1578200f`.
+Protected CI and the GitHub Pages build, deploy and live smoke gates passed for the merged
+documentation refresh. Source-health acceptance run
+[29587300544](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29587300544)
+remains the latest live acquisition evidence: `acquisition_outcome=success`, all four
+downstream gate return codes are zero, zero operational blockers and six licence-review
+targets. Issue [#439](https://github.com/edithatogo/reimbursement-atlas/issues/439) is
+resolved as an obsolete acquisition-outage escalation; the six review-only targets remain
+publication-blocking and are not treated as approvals.
