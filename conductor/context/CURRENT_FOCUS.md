@@ -1221,10 +1221,21 @@ published unregistered-user PBS key. The key was used only as an ephemeral envir
 for the hardened local acquisition command and was not printed, persisted, committed or included
 in provenance. The July 2026 PBS `/schedules` response downloaded successfully; the existing
 ignored `/items` and `/fees` cache was validated and redacted into four provenance rows covering
-10 schedule, 14,840 item and 17 fee records (14,867 total).
+10 schedules, 14,840 items, and 17 fees (14,867 total records).
 
 The regenerated source-health report is now `review_required` with zero operational blockers and
 six licence-review targets. Source-content and source-contract validation have zero blocking
 failures, and the public-data policy check passed. This resolves the local PBS missing-secret
 operational blocker but does not approve redistribution, publication, research claims or source
 fields; the PBS extract remains `acquired_unreviewed` pending accountable review.
+
+## 2026-07-17 v172 credentialed source-health confirmation
+
+Current `main` `8c94035` was rechecked by the credentialed source-health workflow
+[29574452434](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29574452434).
+The workflow completed successfully and independently confirmed the local v171 boundary:
+the redacted PBS evidence covers 10 schedules, 14,840 items, and 17 fees (14,867 total records),
+with zero schema failures and no raw payloads tracked. Source-health is `review_required` with
+zero operational blockers and six licence-review targets. Issue [#25](https://github.com/edithatogo/reimbursement-atlas/issues/25)
+now records that the old missing-secret state is resolved while accountable field/licence review
+remains required.
