@@ -17,9 +17,11 @@ data/derived/final_handoff/summary.json
 apps/dashboard/public/data/final_handoff_tasks.csv
 ```
 
-## Current merged-main state (2026-07-18)
+## Release snapshot state (2026-07-18)
 
-The current merged commit is `be33424c4b4f7d257ccb69529fe3d50d79fc149b`.
+This handoff describes release snapshot `be33424c4b4f7d257ccb69529fe3d50d79fc149b`.
+The checked-out `main` tip may be newer; run the command above and the documentation
+freshness gate when preparing a new handoff.
 The historical MBS inventory contains 343 metadata-only targets across 32 archive
 pages, and the target-level review packet is available under
 `data/derived/historical_sources/historical_mbs_review_queue.{csv,jsonl}`. All

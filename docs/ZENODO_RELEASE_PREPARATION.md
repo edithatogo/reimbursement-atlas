@@ -1,6 +1,8 @@
 # Zenodo release preparation
 
-Current repository commit is `be33424c4b4f7d257ccb69529fe3d50d79fc149b` (2026-07-18).
+Release snapshot described by this preflight is
+`be33424c4b4f7d257ccb69529fe3d50d79fc149b` (2026-07-18). The checked-out `main` tip may be
+newer; no Zenodo evidence is implied for a newer commit.
 The latest merged-main preflight was run against its merge parent
 `e639490f84d210aea9d819f6b37996ebad6714e9` as run `29591537888`. Metadata and
 repository-readiness validation passed; no DOI was created and no Zenodo deposit

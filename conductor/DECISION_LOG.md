@@ -1295,3 +1295,16 @@ monitor evidence current would overstate what was validated on the new merge com
 Consequence: Current-state documentation is accurate without inventing new external evidence.
 The documentation freshness gate continues to validate the checked-out commit and accepts the
 merge parent only as an explicitly labelled historical monitor snapshot.
+
+## 2026-07-18 - Use release-snapshot semantics for squash-merged handoffs
+
+Decision: Handoff and monitor headers use `release snapshot` language rather than claiming that
+the recorded SHA is the live `main` tip.
+
+Rationale: A protected squash merge necessarily creates a new tip after the documentation commit.
+Requiring the documentation to name that future squash SHA creates an unavoidable stale-header
+loop. Snapshot language preserves provenance and makes the boundary explicit.
+
+Consequence: Consumers can distinguish the evidence snapshot from the current checkout. The
+freshness gate still requires one consistent full SHA across the authoritative documents and
+validates it against the checkout or its merge parent where appropriate.
