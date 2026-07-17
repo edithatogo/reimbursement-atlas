@@ -989,3 +989,16 @@ publication approval was changed.
 
 Consequence: Conductor, generated issues and Project rows now distinguish repository implementation
 from external approval instead of incorrectly presenting completed software surfaces as unstarted.
+
+## 2026-07-17 - Close implementation-complete public output tasks
+
+Decision: Close GitHub issues #347, #348 and #349 as implementation tasks after their generated
+acceptance criteria became fully satisfied. Do not close or promote Zenodo, source-licence,
+research, evidence or publication approval issues.
+
+Evidence: Each issue body is generated with `status:implemented`, all repository-owned checklist
+items are checked, and the closing comment records that external gates remain fail-closed. The
+canonical output-plan registry and Project export retain the implemented status.
+
+Consequence: GitHub issue lifecycle now matches Conductor implementation status without conflating
+repository completion with human or external approval.
