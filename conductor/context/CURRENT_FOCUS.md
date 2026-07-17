@@ -928,3 +928,12 @@ passed source validation, source contracts, source drift and release-readiness e
 acquisition report is `incomplete` for exactly one target: PBS. The workflow opened issue [#383](https://github.com/edithatogo/reimbursement-atlas/issues/383)
 with the actionable unblock condition: provide `PBS_API_SUBSCRIPTION_KEY` through the approved
 secret store and rerun acquisition. No key, raw payload or licence-gated source was committed.
+
+## 2026-07-17 v142 PBS acquisition credential verified
+
+The current public-user PBS subscription key was stored in the repository's GitHub Actions secret
+store as `PBS_API_SUBSCRIPTION_KEY` without exposing its value. Source-health run [29539008697](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29539008697)
+then downloaded the PBS v3 schedules response successfully with the key redacted in acquisition
+provenance. The monitor remains `incomplete` only because six historical MBS/CMS targets are
+intentionally `skipped_licence_gate`; issue [#383](https://github.com/edithatogo/reimbursement-atlas/issues/383)
+was updated with that review boundary. PBS credential availability is no longer the active blocker.

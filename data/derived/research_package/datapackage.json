@@ -1285,20 +1285,20 @@
       }
     },
     {
-      "bytes": 7963,
+      "bytes": 7949,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "b72d9b5a03b761440389d069cf38d3017900d0ae0086a7a48a35a0ff0dae75b8",
+      "hash": "d59ceba3f2f5a4dad071088ff032e4f28870231c2113c6ac8219325b0357684c",
       "mediatype": "application/json",
       "name": "download-attempts",
       "path": "data/derived/source_downloads/download_attempts.jsonl",
       "schema": {}
     },
     {
-      "bytes": 6586,
+      "bytes": 6576,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "8687f2353691cc5bcbad5ff1379c3bec59a8b9d5654dee0843b3c96cd3d90ac3",
+      "hash": "fac79ea9eab4f1e3eef2cff3849056926ffe9c65bbcd9993d44d40113f1acb09",
       "mediatype": "text/csv",
       "name": "download-attempts",
       "path": "data/derived/source_downloads/download_attempts.csv",

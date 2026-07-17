@@ -124,9 +124,10 @@ pass a captured `/branches/main/protection/required_status_checks` response with
 
 ## Current source-health evidence
 
-The live run on 2026-07-17 ([29538465869](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29538465869))
-passed validation, contract, drift and release-readiness enforcement. It classified one acquisition
-target as incomplete, PBS, and opened [issue #383](https://github.com/edithatogo/reimbursement-atlas/issues/383).
-This is an expected fail-closed acquisition status caused by the absent `PBS_API_SUBSCRIPTION_KEY`,
-not a validation failure. Supply the key only through the approved secret store and rerun the workflow;
-never place it in tracked configuration or generated evidence.
+The live run on 2026-07-17 ([29539008697](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29539008697))
+passed validation, contract, drift and release-readiness enforcement and successfully downloaded the
+PBS v3 schedules response. The acquisition monitor remains incomplete because six historical MBS/CMS
+targets are intentionally `skipped_licence_gate`; issue [#383](https://github.com/edithatogo/reimbursement-atlas/issues/383)
+records that boundary. The current PBS public-user key is stored only in the GitHub Actions secret
+`PBS_API_SUBSCRIPTION_KEY`, and acquisition provenance redacts the header value. Never place it in
+tracked configuration or generated evidence.
