@@ -1412,3 +1412,11 @@ Merged `main` `48d61d2` passed source-health run
 The workflow recorded acquisition outcome and downstream gate return codes before completing
 the evidence and escalation steps. The current status is `review_required` with six licence
 targets and zero operational blockers; no publication or raw-payload mutation occurred.
+
+## 2026-07-18 v190 current-main handoff refresh
+
+The current merged `main` commit is `136f4e69fda3468b4d0050ce21459c7d1578200f`. The latest
+source-health acceptance run `29587300544` recorded successful acquisition, zero downstream
+gate failures, zero operational blockers and six licence-review targets. Issue #439 is now
+resolved as an obsolete outage escalation; review-only licence, human research/mapping and
+external publication gates remain fail-closed.

@@ -126,3 +126,10 @@ completed with `acquisition_outcome=success`, downstream validation/contract/dri
 return codes of zero, zero operational blockers and six licence-review targets. The workflow
 uploaded redacted evidence and performed no publication, licence approval, destination mutation
 or raw-payload commit.
+
+The current merged `main` commit is now
+`136f4e69fda3468b4d0050ce21459c7d1578200f`. The source-health outage escalation
+[#439](https://github.com/edithatogo/reimbursement-atlas/issues/439) was superseded by the
+successful acceptance evidence above and is closed as resolved operationally. The six
+licence-review targets, human mapping/research review, OSF/Hugging Face/Zenodo publication
+approval, and account-level GitHub security settings remain open and fail-closed.
