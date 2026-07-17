@@ -1158,3 +1158,13 @@ checksum-bound candidates with zero approvals. The latest OSF evidence remains s
 read-only run `29567562072` on `fa5b042`; no newer OSF or Zenodo mutation-capable run has been
 performed on `fd41112`. Repository implementation is therefore current, while licence,
 research, evidence, policy, OSF and external Space reconciliation remain explicitly gated.
+
+## 2026-07-17 v168 current OSF and Zenodo preflight evidence
+
+After the documentation merge to `fc47649`, the non-mutating OSF workflow run `29569972259`
+passed pinned `osf-cli-go v1.0.0` discovery and the component plan. The sanitized discovery
+artifact contained 28 accessible projects and the private `Reimbursement Atlas` project
+`q8cnx`; provisioning, registration, upload and publication were skipped. Zenodo preflight
+run `29569972301` also passed metadata and repository-readiness validation without deposit.
+These runs refresh operational evidence only and do not change the false research, evidence,
+policy, OSF-registration or public-publication readiness flags.

@@ -27,7 +27,9 @@ repository gates and emits a non-depositing preflight artifact. It has read-only
 does not accept a token and cannot create a DOI; a future deposition workflow requires a
 separately approved Zenodo environment and accountable publication authorization.
 
-The non-depositing preflight was rerun successfully as workflow run `29473382399` on `main`.
+The non-depositing preflight was rerun successfully as
+[workflow run 29569972301](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29569972301)
+on merged `main` commit `fc47649`.
 Its artifact records `mutation_performed: false`, `doi_created: false` and
 `human_publication_approval_required: true`.
 
