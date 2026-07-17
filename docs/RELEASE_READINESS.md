@@ -120,3 +120,20 @@ publication and Zenodo deposit were not performed.
 `source_contract_validation_summary` is now expected to pass when the reviewed MBS bundle
 is present and landing-page/manual-extract records are intentionally skipped. A warning
 there now means a real contract regression, not a placeholder for missing live evidence.
+
+## Latest Current-Main Preflights
+
+The latest non-mutating refresh on current merged `main` (`3754028`) completed as follows:
+OSF run [29571893420](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29571893420)
+passed the pinned OSF CLI plan and discovered 28 accessible projects, including the private
+`Reimbursement Atlas` project `q8cnx`; provisioning and publication were skipped. Zenodo run
+[29571894944](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29571894944)
+passed non-depositing validation. Source-health run
+[29571899135](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29571899135)
+completed with six licence-review targets and credentialed PBS acquisition evidence. The
+Hugging Face destination monitor
+[29571896396](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29571896396)
+failed closed on the known Space metadata drift without mutation. GitHub security settings
+run [29571897692](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29571897692)
+confirmed the monitor's token-scope limitation; repository API readback remains authoritative
+for the core controls and the two account/plan-gated controls.

@@ -138,3 +138,9 @@ The current merged-main refresh on `fc47649` is workflow run
 Pinned `osf-cli-go v1.0.0` discovery and the component plan passed; the sanitized artifact
 contained 28 accessible projects and the private `Reimbursement Atlas` project `q8cnx`.
 Provisioning, registration, upload and publication were skipped, and no OSF mutation occurred.
+
+The latest current-main refresh is workflow run
+[29571893420](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29571893420).
+Pinned `osf-cli-go v1.0.0` discovery found 28 accessible projects and the private
+`Reimbursement Atlas` project `q8cnx`; provisioning, registration, upload and publication
+were skipped. The sanitized discovery artifact contained no token-bearing fields.
