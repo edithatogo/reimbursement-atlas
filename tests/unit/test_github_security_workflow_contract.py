@@ -19,7 +19,9 @@ def test_security_settings_workflow_is_readback_only() -> None:
 
 def test_huggingface_destination_monitor_only_writes_github_issue_evidence() -> None:
     """Destination monitoring may synchronize its issue without mutating Hugging Face."""
-    workflow = Path(".github/workflows/huggingface-destination.yml").read_text(encoding="utf-8")
+    workflow = (
+        Path(__file__).parents[2] / ".github/workflows/huggingface-destination.yml"
+    ).read_text(encoding="utf-8")
     assert "contents: read" in workflow
     assert "issues: write" in workflow
     assert "GH_TOKEN: ${{ github.token }}" in workflow

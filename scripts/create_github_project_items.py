@@ -16,6 +16,7 @@ from typing import cast
 ROOT = Path(__file__).resolve().parents[1]
 BACKLOG = ROOT / "conductor" / "backlog.yml"
 OUTPUT = ROOT / ".github" / "generated-issues"
+HF_DRIFT_MONITOR_TITLE = "Schedule read-only Hugging Face destination metadata drift monitoring"
 
 
 @dataclass
@@ -163,7 +164,7 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
     """Render one GitHub issue draft."""
     labels = ", ".join(issue.labels) if issue.labels else "none"
     parent = f"Parent issue: {issue.parent_issue}\n\n" if issue.parent_issue else ""
-    if issue.title == "Schedule read-only Hugging Face destination metadata drift monitoring":
+    if issue.title == HF_DRIFT_MONITOR_TITLE:
         acceptance = (
             "- [x] Scope is implemented: the scheduled/manual workflow checks public dataset and "
             "Space metadata without credentials or mutation.\n"
