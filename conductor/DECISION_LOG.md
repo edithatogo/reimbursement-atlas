@@ -1222,3 +1222,17 @@ turns the external dependency blocker into an observable, reviewable transition.
 
 Consequence: The report is governed as a derived toolchain artefact and remains separate from the
 actual upgrade PR, which must pass npm, Astro and browser gates.
+
+## 2026-07-17 - Correct PBS cadence and rolling-history boundary
+
+Decision: Record the PBS public API as monthly and document its official thirteen-month rolling
+schedule window. Do not interpret the source registry's historical-version flag as proof of a
+complete PBS archive.
+
+Rationale: The official PBS API documentation describes monthly updates and thirteen retained
+schedules. The previous `quarterly` registry value contradicted both that source and the existing
+PBS status observation.
+
+Consequence: The seed registry, generated mirrors and public documentation now describe the
+source accurately. Long-term historical archiving remains local/operational and fail-closed behind
+runtime credentials, source terms and accountable review.

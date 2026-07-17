@@ -34,10 +34,14 @@ licence gates. It is evidence for review, not a legal opinion or a blanket redis
   [PBS API developer information](https://data.pbs.gov.au/api/pbs-api.html)
 - Accessed: 2026-07-16
 - Observation: the current acquisition route is an authenticated API surface with subscription
-  key access. The repository has not inferred redistribution permission from API availability.
+  key access. The official API documentation states that the public data mart retains thirteen
+  months of schedules, including the most recent schedule; this is a rolling retention window,
+  not a historical archive. The repository has not inferred redistribution permission from API
+  availability.
 - Repository decision: keep `PBS_API_SUBSCRIPTION_KEY` runtime-only, never log or commit it, and
   keep acquisition and publication blocked until the key, field scope, terms and reviewed
-  monthly extract are documented.
+  monthly extract are documented. Preserve any monthly history only in ignored local storage
+  after review; do not represent the API's rolling window as historical coverage.
 
 ## Review boundary
 

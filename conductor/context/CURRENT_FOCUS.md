@@ -1239,3 +1239,16 @@ with zero schema failures and no raw payloads tracked. Source-health is `review_
 zero operational blockers and six licence-review targets. Issue [#25](https://github.com/edithatogo/reimbursement-atlas/issues/25)
 now records that the old missing-secret state is resolved while accountable field/licence review
 remains required.
+
+## 2026-07-17 v174 PBS retention boundary and cadence correction
+
+The source registry now records the official PBS public API cadence as `monthly`, replacing the
+stale `quarterly` value. The official API documentation states that the public data mart retains
+thirteen months of schedules, so the repository now documents this as a rolling retention window
+rather than treating `historical_versions: true` as a complete archive. The correction is covered
+by `test_pbs_registry_matches_documented_monthly_refresh` and propagated through the data
+dictionary, research package, licence queue, seed lake and dashboard seed.
+
+No PBS historical payload was downloaded or tracked. Long-term archival remains an operational
+task gated by source terms and accountable review; the July 2026 extract remains
+`acquired_unreviewed`.

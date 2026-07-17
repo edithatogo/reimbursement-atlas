@@ -397,7 +397,7 @@ Source acquisition is now executable. The `source-download-plan` command emits c
 PYTHONPATH=src reimbursement-atlas source-download-plan --attempt --method curl
 ```
 
-The current acquisition evidence records a real July 2026 MBS TXT pair in ignored local storage and an acquired-but-unreviewed PBS API extract. MBS publication remains licence/research-review gated, while PBS acquisition requires the approved `PBS_API_SUBSCRIPTION_KEY`; historical DNS-blocked attempts remain preserved in `data/derived/source_downloads/download_attempts.*` and are not treated as evidence that sources are unavailable.
+The current acquisition evidence records a real July 2026 MBS TXT pair in ignored local storage and an acquired-but-unreviewed PBS API extract. MBS publication remains licence/research-review gated, while PBS acquisition requires the approved `PBS_API_SUBSCRIPTION_KEY`; the public PBS API retains a rolling thirteen-month window rather than a complete historical archive. See [`docs/HISTORICAL_PBS_ARCHIVE.md`](docs/HISTORICAL_PBS_ARCHIVE.md) for the boundary. Historical DNS-blocked attempts remain preserved in `data/derived/source_downloads/download_attempts.*` and are not treated as evidence that sources are unavailable.
 
 OSF is now part of the research workflow. The repo generates an OSF component plan, protocol/report scaffolds, and a token-gated workflow for future OSF publication. Hugging Face publication is also explicit: the workflow now has separate gated jobs for publishing the derived dataset and deploying the Astro dashboard to a Hugging Face Space.
 
