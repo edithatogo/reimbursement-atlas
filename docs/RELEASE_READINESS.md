@@ -197,3 +197,17 @@ completed successfully without external mutation. Hugging Face
 [29581495755](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29581495755)
 failed closed on the unchanged Space metadata drift. These checks do not grant licence,
 research, evidence, policy or publication approval.
+
+The current merged `main` `431cff9` was rechecked with non-mutating monitors: OSF plan
+[29583980320](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29583980320),
+Hugging Face candidate validation
+[29583983277](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29583983277),
+Zenodo preflight
+[29583985161](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29583985161),
+GitHub security readback
+[29583987148](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29583987148),
+and source health
+[29583989402](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29583989402)
+all passed. Publication, deposit, provisioning and destination mutation jobs were skipped by
+explicit false inputs. These operational passes do not change the false licence, evidence,
+research, policy or publication readiness flags.
