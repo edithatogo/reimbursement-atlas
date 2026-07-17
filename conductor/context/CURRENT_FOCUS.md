@@ -1273,3 +1273,12 @@ The GitHub security monitor
 as a workflow but recorded `blocked_permissions` because its token could not read security-analysis
 settings. These results refresh evidence only; all research, licence, evidence, policy and
 publication readiness values remain false and their gates remain fail-closed.
+
+## 2026-07-17 v176 TypeScript 7 compatibility recheck
+
+The TypeScript compatibility canary queried the npm registry and observed candidate TypeScript
+`7.0.2`, current dashboard TypeScript `6.0.3`, and `@astrojs/check` `0.9.9` with peer range
+`^5.0.0 || ^6.0.0`. The generated result is `blocked_peer` with `upgrade_recommended: false`;
+no package files or lockfiles were mutated. Issue [#362](https://github.com/edithatogo/reimbursement-atlas/issues/362)
+now contains the fresh evidence. Keep the dashboard on TypeScript 6 until checker peer support
+lands; do not use a peer override that weakens reproducibility.

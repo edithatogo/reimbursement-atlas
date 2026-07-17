@@ -41,6 +41,8 @@ cannot mutate a candidate to approved status.
 7. Regenerate release-readiness after the research, licence and publication gates complete,
    then create the signed release and Zenodo DOI (`#121`,
    [#256](https://github.com/edithatogo/reimbursement-atlas/issues/256)).
+8. Revisit TypeScript 7 after `@astrojs/check` declares peer support; the current canary observes
+   TypeScript `7.0.2` but `@astrojs/check 0.9.9` accepts only TypeScript 5 or 6 (`#362`).
 
 The current source acquisition run is explicitly classified as review-required: the July 2026
 MBS pair and PBS schedule were revalidated into ignored local raw storage, six targets remain
