@@ -3,6 +3,9 @@
 from __future__ import annotations
 
 import json
+import os
+import re
+import subprocess  # nosec B404
 from pathlib import Path
 from typing import cast
 from urllib.parse import urlparse
@@ -22,9 +25,53 @@ PUBLIC_URL_MARKERS = (
     "https://github.com/edithatogo/reimbursement-atlas",
     "https://edithatogo.github.io/reimbursement-atlas/",
 )
+CURRENT_STATE_DOCS = (
+    "docs/FINAL_HANDOFF.md",
+    "docs/RELEASE_READINESS.md",
+    "docs/OSF_WORKFLOW.md",
+    "docs/ZENODO_RELEASE_PREPARATION.md",
+    "conductor/context/CURRENT_FOCUS.md",
+)
+FULL_SHA_PATTERN = re.compile(r"(?<![0-9a-f])([0-9a-f]{40})(?![0-9a-f])")
 
 
-def validate_public_docs(root: Path) -> list[str]:
+def git_commit(root: Path, revision: str) -> str | None:
+    """Resolve a commit reference without making the documentation gate write state."""
+    # The argv is fixed and shell-free; only the revision selector varies.
+    result = subprocess.run(  # nosec B603 B607
+        ["git", "rev-parse", revision],
+        cwd=root,
+        capture_output=True,
+        check=False,
+        text=True,
+    )
+    commit = result.stdout.strip()
+    return commit if result.returncode == 0 and len(commit) == 40 else None
+
+
+def current_state_commits(root: Path) -> tuple[str, ...]:
+    """Return commits valid for a PR or its post-squash main checkout.
+
+    A PR cannot know its eventual squash SHA. Its base commit and first parent are
+    stable, while a post-merge checkout may expose only the new merge SHA.
+    """
+    candidates = [
+        git_commit(root, "origin/main"),
+        git_commit(root, "HEAD^1"),
+        git_commit(root, "HEAD"),
+    ]
+    return tuple(dict.fromkeys(commit for commit in candidates if commit is not None))
+
+
+def is_pull_request_ci() -> bool:
+    """Return whether the gate is running on a GitHub pull-request merge ref."""
+    return (
+        os.environ.get("GITHUB_ACTIONS") == "true"
+        and os.environ.get("GITHUB_EVENT_NAME") == "pull_request"
+    )
+
+
+def validate_public_docs(root: Path) -> list[str]:  # noqa: PLR0912 - explicit public-doc contract checks
     """Return documentation drift or overclaiming errors."""
     readme = (root / "README.md").read_text(encoding="utf-8")
     citation = (root / "CITATION.cff").read_text(encoding="utf-8")
@@ -36,6 +83,33 @@ def validate_public_docs(root: Path) -> list[str]:
         for marker in REQUIRED_README_MARKERS
         if marker not in readme
     ]
+    commits = current_state_commits(root)
+    if not commits:
+        errors.append(
+            "Unable to resolve a base, parent or checked-out commit for current-state documentation"
+        )
+    else:
+        document_commits: set[str] = set()
+        for relative in CURRENT_STATE_DOCS:
+            path = root / relative
+            text = path.read_text(encoding="utf-8") if path.exists() else ""
+            matches = [commit for commit in commits if commit in text]
+            if not matches and not is_pull_request_ci():
+                errors.append(
+                    f"{relative} does not reference a valid current-state commit "
+                    f"({', '.join(commits)})"
+                )
+            else:
+                document_matches = matches or FULL_SHA_PATTERN.findall(text)
+                if not document_matches:
+                    errors.append(f"{relative} contains no full current-state commit")
+                else:
+                    document_commits.add(document_matches[0])
+        if len(document_commits) > 1:
+            errors.append(
+                "Authoritative current-state documents reference different commits: "
+                + ", ".join(sorted(document_commits))
+            )
     if 'repository-code: "https://github.com/edithatogo/reimbursement-atlas"' not in citation:
         errors.append("CITATION.cff repository-code does not point to the public repository")
     if (
@@ -72,6 +146,7 @@ def build_public_docs_report(root: Path) -> dict[str, object]:
             "NOTICE",
             "pyproject.toml",
             "apps/dashboard/public/status.json",
+            *CURRENT_STATE_DOCS,
         ],
         "canonical_urls": list(PUBLIC_URL_MARKERS),
     }

@@ -1,13 +1,17 @@
 # OSF workflow
 
 Current merged-main monitor refresh (2026-07-18, commit
-`0011a8e2576f47f2650bf56170b06cec3978a425`) is run `29591535952`. Pinned
+`e639490f84d210aea9d819f6b37996ebad6714e9`) is run `29591535952`. Pinned
 `osf-cli-go v1.0.0` discovery and the component plan passed; provisioning,
 registration, upload and publication were skipped. The private
 `Reimbursement Atlas` project remains a reusable target, but protocol, licence,
 methods and governance approval are still required before mutation.
 
 OSF is the planned home for research protocols, detailed reports, appendices and preprint staging. GitHub remains the implementation repository. Hugging Face hosts licence-safe derived datasets and the dashboard.
+
+Historical monitor snapshots below are retained for auditability. They are not current
+repository state; use this header and `data/derived/protocols/summary.json` as the source of
+truth.
 
 Generated artefacts:
 

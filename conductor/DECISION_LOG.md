@@ -664,6 +664,23 @@ mutation occurred.
 Consequence: The pinned OSF toolchain is current and reproducible. OSF registration, upload
 and publication remain gated on protocol, licence, evidence and human approval.
 
+## 2026-07-18 - Bind current-state documentation to merged HEAD
+
+Decision: Treat the current merged commit in the handoff, release-readiness, OSF, Zenodo and
+Conductor focus documents as a machine-checked invariant. Historical monitor snapshots may
+remain in the append-only evidence log, but they must not be mistaken for current state.
+
+Evidence: The documentation freshness gate resolves the available base, first-parent or
+checked-out commit and requires the full SHA in each authoritative current-state document. On a
+pull-request merge ref, where the eventual squash SHA is unknowable, it instead requires all
+five documents to agree on one full SHA; local and push-to-main contexts retain exact candidate
+validation. The gate and seven focused unit tests pass on merged `main` `e639490`; no
+publication, source, credential or external state was changed.
+
+Consequence: Documentation drift becomes a protected CI failure rather than a manual review
+discovery. The change is tracked in the CI/CD and supply-chain Conductor track and generated
+issue/project artefacts.
+
 ## 2026-07-16 - Use the official PBS public-user key path
 
 Decision: Treat the public `Subscription-Key` displayed by the official Department of Health API

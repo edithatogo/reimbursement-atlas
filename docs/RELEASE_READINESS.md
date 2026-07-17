@@ -1,6 +1,6 @@
 # Release readiness
 
-Current merged-main reference: `8ee60ee66833171c440bac3d886796f06cee4ab0` (2026-07-18).
+Current merged-main reference: `e639490f84d210aea9d819f6b37996ebad6714e9` (2026-07-18).
 The repository release gate summary is 36/36 passing with zero required blockers;
 research publication, OSF registration, evidence release and policy claims remain
 fail-closed. Current non-mutating monitor runs are OSF `29591535952`, Zenodo
@@ -27,13 +27,17 @@ The summary contains `required_blocker_count` and `public_release_ready`. Public
 The release matrix also verifies that `data/derived/licence_review/summary.json` exists,
 contains checksum-bound candidate rows, and explicitly has
 `approval_mutation_allowed: false`. This verifies the review-control mechanism only; the
-161 artifact candidates remain pending. This includes project metadata, governance outputs,
+163 artifact candidates remain pending. This includes project metadata, governance outputs,
 and source-derived candidates; the source-derived subset still requires human Commonwealth,
 provider-licence and domain review before external publication.
 
 ## Current merged state
 
-As of 2026-07-17, `main` is at `41d8a94` (the squash merge of the final external-monitor evidence
+Historical monitor snapshots below are retained for auditability. They are not the current
+release state; use the current merged-main reference above and the generated readiness outputs
+as the source of truth.
+
+As of 2026-07-17, the historical `main` snapshot was `41d8a94` (the squash merge of the final external-monitor evidence
 record in PR #429). The repository release gates are green. The current PBS v3 schedule,
 items and fees acquisition is `acquired_unreviewed` from an ephemeral official catalogue key.
 Source-health is `review_required` with zero operational blockers: the MBS and PBS responses

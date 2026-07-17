@@ -19,7 +19,7 @@ apps/dashboard/public/data/final_handoff_tasks.csv
 
 ## Current merged-main state (2026-07-18)
 
-The current merged commit is `8ee60ee66833171c440bac3d886796f06cee4ab0`.
+The current merged commit is `e639490f84d210aea9d819f6b37996ebad6714e9`.
 The historical MBS inventory contains 343 metadata-only targets across 32 archive
 pages, and the target-level review packet is available under
 `data/derived/historical_sources/historical_mbs_review_queue.{csv,jsonl}`. All
@@ -43,7 +43,7 @@ cannot mutate a candidate to approved status.
 
 ## Main remaining environment-dependent tasks
 
-1. Review the 161 checksum-bound publication candidates in the licence-review queue, then
+1. Review the 163 checksum-bound publication candidates in the licence-review queue, then
    complete MBS, historical-source and CMS licence review before derived-data publication
    (`#23`, `#24`, `#26`, `#27`). The official MBS copyright notice is recorded in
    [`docs/SOURCE_LICENCE_EVIDENCE.md`](SOURCE_LICENCE_EVIDENCE.md); it is not an open
@@ -74,7 +74,11 @@ Current release posture: the repository is ready for local software release and 
 public dashboard is live, while `research_publication_ready`, `evidence_release_ready`
 and `policy_claims_ready` remain fail-closed.
 
-The current merged release is `41d8a94` (resolve the current value with `git rev-parse main`). The repository-controlled
+Historical monitor snapshots below are retained for auditability. They are not the current
+release state; use the current merged-main block above and the generated readiness outputs as
+the source of truth.
+
+The current merged release is `e639490` (resolve the current value with `git rev-parse main`). The repository-controlled
 quality, security, source-contract, package, dashboard, citation and reproducibility gates
 are green; the remaining rows above require accountable external or human decisions rather
 than additional local implementation.

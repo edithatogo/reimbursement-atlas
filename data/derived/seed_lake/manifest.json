@@ -265,7 +265,7 @@
       "name": "repo_workflow_uses",
       "parquet_path": "repo_workflow_uses/repo_workflow_uses.parquet",
       "rows": 121,
-      "sha256": "35b34354f7269021d84088dc469f6a76b2e1d20351c4fe6d4566ec368e151210"
+      "sha256": "2803aaf394b035377b50ebdb2a44bc1244208efe58cecbfab38b2f25c007c4da"
     },
     {
       "csv_path": "repo_workflow_policy/repo_workflow_policy.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 36,
-      "sha256": "89655e5395cb6cbf589a2d73c502db9d1636bdb11f67921d8940ab947062dd4b"
+      "sha256": "4cbe5badb59933ce5eb0450e60ec092b1364dff10c655613009fc5301e293138"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -392,8 +392,8 @@
       "jsonl_path": "github_project_items/github_project_items.jsonl",
       "name": "github_project_items",
       "parquet_path": "github_project_items/github_project_items.parquet",
-      "rows": 187,
-      "sha256": "8786494f94f3df4a34b8f84214076edc1f8869dc8b37415e29e8dbdaf2589abe"
+      "rows": 188,
+      "sha256": "67045504e2500263fb4768a6606ab0c511ec179425c9765dd4673864f8f689a8"
     },
     {
       "csv_path": "final_handoff_tasks/final_handoff_tasks.csv",
@@ -449,7 +449,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "b6c10e46f2b1268df4d9cbd09466c135f3fe54490845ec8fc814ce2e2f2f1f47"
+      "sha256": "d50cb23422c7a505b5fe1c0680d3719b570b21095b934acd8c73ee57a16a7b49"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
@@ -457,7 +457,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 170,
-      "sha256": "69311412ade6719d233857aa639376e06b9aa5c74afb6c39a404890ac5e1049a"
+      "sha256": "9e866f19dd5d62cd41d4d089fc714575fefca08c2388abec18bb45b29184d2ee"
     }
   ]
 }
