@@ -65,9 +65,9 @@ def build_report(
     missing_controls: list[str] = []
     controls: dict[str, str] = {}
     for key in SECURITY_KEYS:
-        if key not in security:
-            missing_controls.append(key)
         control = security.get(key)
+        if key not in security or not isinstance(control, dict):
+            missing_controls.append(key)
         control_dict = cast("dict[str, Any]", control) if isinstance(control, dict) else {}
         controls[key] = str(control_dict.get("status", "unknown"))
     if missing_controls:

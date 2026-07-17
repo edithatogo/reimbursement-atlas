@@ -61,7 +61,7 @@ def test_build_report_redacts_unexpected_api_shapes() -> None:
     )
     assert report["status"] == "blocked_permissions"
     assert report["controls"][SECURITY_KEYS[0]] == "unknown"
-    assert report["missing_controls"] == [*SECURITY_KEYS[1:]]
+    assert report["missing_controls"] == list(SECURITY_KEYS)
     assert "scope or API visibility" in report["error"]
 
 
