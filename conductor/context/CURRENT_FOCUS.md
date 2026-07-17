@@ -1252,3 +1252,57 @@ dictionary, research package, licence queue, seed lake and dashboard seed.
 No PBS historical payload was downloaded or tracked. Long-term archival remains an operational
 task gated by source terms and accountable review; the July 2026 extract remains
 `acquired_unreviewed`.
+
+## 2026-07-17 v175 current-main external preflight evidence
+
+Merged `main` is `c52e2b4`. The latest read-only OSF workflow
+[29576544998](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29576544998) passed
+the pinned `osf-cli-go v1.0.0` plan and fail-closed manifest checks; discovery, provisioning,
+registration, upload and publication were not requested. Zenodo preflight
+[29576546386](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29576546386) passed
+without deposit or DOI creation. Source-health
+[29576550575](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29576550575) passed
+with zero operational blockers and six licence-review targets, and did not track raw payloads.
+
+The Hugging Face destination monitor
+[29576542896](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29576542896) failed
+closed because the reachable Space still reports `license=mit` and `sdk=gradio`, while the
+governed candidate contract requires `apache-2.0` and `static`. No remote mutation occurred.
+The GitHub security monitor
+[29576548821](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29576548821) passed
+as a workflow but recorded `blocked_permissions` because its token could not read security-analysis
+settings. These results refresh evidence only; all research, licence, evidence, policy and
+publication readiness values remain false and their gates remain fail-closed.
+
+## 2026-07-17 v176 TypeScript 7 compatibility recheck
+
+The TypeScript compatibility canary queried the npm registry and observed candidate TypeScript
+`7.0.2`, current dashboard TypeScript `6.0.3`, and `@astrojs/check` `0.9.9` with peer range
+`^5.0.0 || ^6.0.0`. The generated result is `blocked_peer` with `upgrade_recommended: false`;
+no package files or lockfiles were mutated. Issue [#362](https://github.com/edithatogo/reimbursement-atlas/issues/362)
+now contains the fresh evidence. Keep the dashboard on TypeScript 6 until checker peer support
+lands; do not use a peer override that weakens reproducibility.
+
+## 2026-07-17 v177 current-branch external preflight refresh
+
+On validated commit `5833b35`, OSF
+[29577726446](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577726446),
+Zenodo [29577728066](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577728066)
+and source-health [29577731251](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577731251)
+passed in non-mutating modes. Source-health remains `review_required` with six licence-review
+targets and zero operational blockers. Hugging Face
+[29577724648](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577724648)
+again reported governed Space drift (`mit`/`gradio` versus `apache-2.0`/`static`) without
+mutation. GitHub security
+[29577729670](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577729670)
+again reported `blocked_permissions` because the workflow token cannot read security-analysis
+settings. No publication, DOI, destination metadata, repository setting or raw source mutation
+occurred.
+
+## 2026-07-17 v178 external quality gate refresh
+
+The broader external-quality task passed all seven checks in the active runtime: strict
+`pip-audit`, dashboard `npm audit`, official Pixi availability and installer reachability,
+zizmor, repository automation matrix, and Mojo availability through the pinned uv tool path.
+The refreshed derived reports are `data/derived/external_quality_gates.{json,csv}`. These are
+toolchain evidence only and do not promote research, evidence, licence or publication readiness.

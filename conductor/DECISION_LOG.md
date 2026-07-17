@@ -1236,3 +1236,20 @@ PBS status observation.
 Consequence: The seed registry, generated mirrors and public documentation now describe the
 source accurately. Long-term historical archiving remains local/operational and fail-closed behind
 runtime credentials, source terms and accountable review.
+
+## 2026-07-17 - Record current-main external preflight boundary
+
+Decision: Treat the v175 OSF, Zenodo, source-health, Hugging Face and GitHub security workflow
+results as operational evidence only. Do not mutate external publication destinations or repository
+security settings from these monitors.
+
+Rationale: OSF and Zenodo passed their non-mutating plans, source-health has no operational outage,
+the Hugging Face Space has known governed-metadata drift, and the security workflow token cannot
+read security-analysis settings. None of these results constitutes human licence, research or
+publication approval.
+
+Evidence: Runs `29576544998`, `29576546386`, `29576550575`, `29576542896` and `29576548821`,
+recorded in `conductor/sessions/2026-07-17-v175-current-main-external-preflights.md`.
+
+Consequence: Repository release readiness remains green while research, evidence, policy, OSF,
+Zenodo, HF and account-security gates remain explicitly fail-closed.
