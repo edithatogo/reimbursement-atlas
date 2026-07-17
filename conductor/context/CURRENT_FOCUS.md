@@ -1012,3 +1012,14 @@ support DOI creation. Issue [#121](https://github.com/edithatogo/reimbursement-a
 reconciled to the generated implementation status; issues [#256](https://github.com/edithatogo/reimbursement-atlas/issues/256)
 and [#350](https://github.com/edithatogo/reimbursement-atlas/issues/350) remain open for the external
 release and DOI decision.
+
+## 2026-07-17 v151 Research-question issue lifecycle reconciliation
+
+The five generated research-question issues now carry their `drafted` status, protocol/report
+paths and local validation boundary from `data/seed/research_questions.jsonl`. Their acceptance
+criteria mark repository-owned protocol and report scaffolds as implemented while keeping
+accountable protocol review, preregistration/OSF approval, reviewed-source evidence and policy
+claim approval unchecked. Issues #109-#113 were body-reconciled without closing or promoting them.
+
+Consequence: GitHub research issues no longer present completed local scaffolding as unstarted,
+while the evidence and human-governance boundary remains fail-closed.

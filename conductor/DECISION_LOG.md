@@ -1057,3 +1057,17 @@ regenerated. No Zenodo token, record, upload or DOI was created.
 
 Consequence: Conductor status now distinguishes completed metadata preparation from unapproved
 archival publication.
+
+## 2026-07-17 - Expose drafted research-question implementation state
+
+Decision: Mark generated research-question issues `drafted` when their protocol and report
+scaffolds exist, and render their paths plus deterministic local validation commands. Leave human
+protocol review, preregistration/OSF approval, reviewed-source evidence and policy claims as
+unchecked criteria.
+
+Evidence: The five rows in `data/seed/research_questions.jsonl` point to existing protocol/report
+scaffolds and `pixi run protocol-status`/`pixi run evidence-readiness` gates. The generated issue
+drafts and GitHub issue bodies were reconciled for #109-#113 without closing them.
+
+Consequence: Issue and Project state now distinguishes repository implementation from research
+approval and evidence readiness.

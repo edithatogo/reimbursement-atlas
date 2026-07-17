@@ -28,6 +28,9 @@ class IssueDraft:
     labels: list[str] = field(default_factory=list)
     parent_issue: str | None = None
     status: str | None = None
+    protocol_path: str | None = None
+    report_path: str | None = None
+    preregistration_status: str | None = None
 
 
 def _strip_quotes(value: str) -> str:
@@ -127,7 +130,16 @@ def generated_track_issues(
                 epic_id="RESEARCH-QUESTIONS",
                 epic_title="Protocolled policy research questions",
                 title=f"Complete protocol and report: {row.get('id')}",
-                labels=["type:research", "type:osf", "phase:analysis"],
+                labels=[
+                    "type:research",
+                    "type:osf",
+                    "phase:analysis",
+                    f"status:{row.get('preregistration_status', 'planned')}",
+                ],
+                status=str(row.get("preregistration_status", "planned")),
+                protocol_path=str(row.get("protocol_path", "")) or None,
+                report_path=str(row.get("report_path", "")) or None,
+                preregistration_status=str(row.get("preregistration_status", "planned")),
             )
         )
     for row in _read_jsonl(seed_dir / "output_artifact_plans.jsonl"):
@@ -151,7 +163,24 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
     """Render one GitHub issue draft."""
     labels = ", ".join(issue.labels) if issue.labels else "none"
     parent = f"Parent issue: {issue.parent_issue}\n\n" if issue.parent_issue else ""
-    if issue.epic_id == "OUTPUTS":
+    if issue.epic_id == "RESEARCH-QUESTIONS":
+        protocol = f"`{issue.protocol_path}`" if issue.protocol_path else "the protocol registry"
+        report = f"`{issue.report_path}`" if issue.report_path else "the report registry"
+        acceptance = (
+            f"- [x] The protocol scaffold is present at {protocol} and is linked to the "
+            f"machine-readable research-question registry.\n"
+            f"- [x] The report scaffold is present at {report} and its expected outputs and "
+            "dataset linkages are recorded.\n"
+            "- [x] `pixi run protocol-status`, `pixi run evidence-readiness` and the "
+            "research-package generation gates provide deterministic local validation.\n"
+            "- [x] Licence, source and publication boundaries remain fail-closed in the protocol "
+            "and release-readiness artefacts.\n"
+            "- [ ] An accountable human completes the protocol review checklist and approves any "
+            "preregistration or OSF registration.\n"
+            "- [ ] Reviewed source bundles and evidence-quality decisions support the research "
+            "claim before publication."
+        )
+    elif issue.epic_id == "OUTPUTS":
         acceptance = (
             "- [x] The output scope, target platform, repository path and release gate are "
             "recorded in `data/seed/output_artifact_plans.jsonl`.\n"
