@@ -7,7 +7,7 @@ complete decision row in `data/licence_review/decisions.jsonl`.
 
 ## Current batches
 
-- `public_reuse_review` / `public_derived_candidate`: 119 artefacts, 35388215 bytes
+- `public_reuse_review` / `public_derived_candidate`: 119 artefacts, 35393427 bytes
 - `public_reuse_review` / `public_metadata_candidate`: 42 artefacts, 580034 bytes
 
 ## Required decision fields
