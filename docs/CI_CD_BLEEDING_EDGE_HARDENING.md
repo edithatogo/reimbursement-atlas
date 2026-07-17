@@ -88,6 +88,12 @@ and `@cosmograph/react` `2.3.3`. TypeScript `7.0.2` was not adopted because the 
 legacy peer override would weaken reproducible CI. The follow-up is tracked in the Conductor
 backlog and should be re-tested after the checker publishes TypeScript 7 support.
 
+The scheduled `typescript-compatibility.yml` canary now checks that boundary without mutating
+`package.json` or the lockfile. It records the checker peer range and TypeScript 7 channel in
+`data/derived/toolchain/typescript_compatibility.*`; an upgrade issue is opened or updated only
+when the peer contract admits TypeScript 7. Adoption still requires a normal PR with `npm ci`,
+Astro check, build and browser validation.
+
 ## Next hardening steps
 
 1. Maintain the pin-plan and fail the generated-artifact gate if a dependency update introduces a tag-pinned action.

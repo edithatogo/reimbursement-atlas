@@ -17,5 +17,7 @@ before opening it in GitHub.
 - [x] Licence and data-governance implications are checked; this is a toolchain-only change with no data publication effect.
 - [x] Tests or validation evidence are defined: npm registry peer metadata and a clean npm dependency-resolution probe.
 - [x] Documentation or Conductor context records the current compatibility boundary.
+- [x] A scheduled read-only compatibility canary records the checker peer range and TypeScript 7 channel without mutating package files.
+- [x] The canary opens or updates this issue only when the checker peer contract admits TypeScript 7.
 - [x] TypeScript `7.0.2` is available, but `@astrojs/check@0.9.9` declares `typescript: ^5.0.0 || ^6.0.0`; npm rejects the unsupported tree.
 - [ ] Upgrade `@astrojs/check` or its checker peer contract, then rerun `npm ci`, `astro check`, build and browser gates before adoption.

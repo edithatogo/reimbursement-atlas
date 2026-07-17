@@ -446,6 +446,8 @@ epics:
         acceptance:
           - "The current Astro checker peer contract is documented as the reason TypeScript 7 is not adopted."
           - "The stack canary issue and dependency versions are linked in an auditable session."
+          - "A scheduled read-only compatibility canary records the checker peer range and TypeScript 7 channel without mutating package files."
+          - "The canary opens or updates this issue only when the checker peer contract admits TypeScript 7."
           - "The upgrade is re-tested with npm ci, astro check, build and browser gates before adoption."
   - id: PUBLIC-022
     title: Public product, citation and dashboard maturity

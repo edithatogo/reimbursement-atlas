@@ -118,6 +118,8 @@ DEFAULT_PUBLICATION_PATHS = (
     Path("data/derived/external_quality_gates.csv"),
     Path("data/derived/optional_toolchain_installs.json"),
     Path("data/derived/optional_toolchain_installs.csv"),
+    Path("data/derived/toolchain/typescript_compatibility.json"),
+    Path("data/derived/toolchain/typescript_compatibility.md"),
     Path("data/derived/repo_automation/workflow_uses.jsonl"),
     Path("data/derived/repo_automation/workflow_uses.csv"),
     Path("data/derived/repo_automation/workflow_policy.jsonl"),
