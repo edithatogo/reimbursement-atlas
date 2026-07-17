@@ -90,7 +90,7 @@ def _target(
             remediation.append(
                 "Confirm the configured repository identity before any publication run."
             )
-        if observed.get("license") != expected.get("license"):
+        if "license" in expected and observed.get("license") != expected.get("license"):
             remediation.append(
                 f"Reconcile remote license metadata to {expected['license']!r} only after all "
                 "licence and publication gates pass."
