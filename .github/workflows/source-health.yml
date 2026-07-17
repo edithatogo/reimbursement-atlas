@@ -116,12 +116,12 @@ jobs:
           body="$(cat "$body_path" 2>/dev/null || echo 'Source acquisition status report was not generated.')"
           body="$(printf '%s\n\nRun: %s' "$body" "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}")"
           number="$(gh issue list --state open --search "${title} in:title" --json number,title --jq ".[] | select(.title == \"${title}\") | .number" | head -n 1)"
-          if [ "$status" != "clear" ]; then
+          if [ "$status" = "incomplete" ] || [ "$status" = "unknown" ]; then
             if [ -n "$number" ]; then
               gh issue edit "$number" --body "$body"
             else
               gh issue create --title "$title" --body "$body" --label "type:data-quality"
             fi
           elif [ -n "$number" ]; then
-            gh issue close "$number" --comment "Source acquisition monitor is clear in run ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}."
+            gh issue close "$number" --comment "Executable source acquisition is complete; remaining rows are licence-review gates. See the generated source-health report in run ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}."
           fi

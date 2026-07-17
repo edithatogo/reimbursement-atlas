@@ -13,7 +13,6 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
-- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
-- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
-- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.
+- [x] Public status emits a `source_acquisition` blocker only for operational incomplete or unknown source-health states.
+- [x] Review-only source-health status remains visible through licence-review blockers and dashboard source-health evidence.
+- [x] Dashboard status and source-health CSV projections regenerate deterministically.

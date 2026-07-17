@@ -1166,3 +1166,22 @@ of file paths and incorrectly emitted `planned`.
 
 Consequence: Generated automation, release-readiness and dashboard evidence now distinguish the
 implemented SBOM control from a missing SBOM set without changing publication or evidence gates.
+## 2026-07-17 - Separate licence-only source review from acquisition outages
+
+Decision: Classify source-health evidence with `review_required` when every remaining acquisition
+row is `skipped_licence_gate` and no network, credential or validation blocker remains. Keep those
+rows publication-blocking, but close the operational acquisition issue so it does not duplicate
+the human licence-review queue.
+
+Rationale: The current network-enabled evidence contains three downloaded executable targets and
+six intentionally skipped licence-gated targets. Treating that state as an acquisition outage
+creates misleading automation and encourages unsafe attempts to automate a human decision.
+
+Consequence: `data/derived/source_health/acquisition_status.*` now reports separate operational and
+licence-review counts. The scheduled issue workflow only keeps the acquisition issue open for
+`incomplete` or `unknown` status; review-only status remains visible in generated reports and
+continues to block evidence/publication readiness.
+
+The research-package descriptors also exclude `data/derived/licence_review/` governance outputs.
+Those outputs checksum the descriptors, so including both would create a cross-generator cycle;
+the review queue remains a separate checksum-bound handoff artefact.

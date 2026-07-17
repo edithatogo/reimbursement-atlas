@@ -36,3 +36,7 @@ If the environment cannot resolve a host or reach the internet, `--attempt` reco
 - Add checksum pinning for known source releases after human review.
 - Add a `source diff` command to compare two reviewed source versions.
 - Add source-page monitoring that opens a GitHub issue when a listed file changes.
+
+The scheduled source-health report distinguishes operational acquisition blockers from
+`skipped_licence_gate` rows. Licence-only rows produce `review_required` evidence and remain
+publication-blocking, but do not create a duplicate acquisition-outage issue.

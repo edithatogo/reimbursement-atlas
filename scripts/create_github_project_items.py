@@ -231,6 +231,24 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
             "- [ ] Upgrade `@astrojs/check` or its checker peer contract, then rerun `npm ci`, "
             "`astro check`, build and browser gates before adoption."
         )
+    elif issue.title == "Distinguish partial source acquisition from complete handoff status":
+        acceptance = (
+            "- [x] Source-health evidence separates operational acquisition blockers from "
+            "`skipped_licence_gate` rows with machine-readable counts.\n"
+            "- [x] Licence-only review status remains publication-blocking but does not create a "
+            "duplicate acquisition-outage issue.\n"
+            "- [x] Focused tests cover incomplete, `review_required` and clear source-health "
+            "states.\n"
+            "- [x] Conductor context and the v159 session record the review boundary."
+        )
+    elif issue.title == "Expose partial source acquisition in public status and dashboard blockers":
+        acceptance = (
+            "- [x] Public status emits a `source_acquisition` blocker only for operational "
+            "incomplete or unknown source-health states.\n"
+            "- [x] Review-only source-health status remains visible through licence-review "
+            "blockers and dashboard source-health evidence.\n"
+            "- [x] Dashboard status and source-health CSV projections regenerate deterministically."
+        )
     elif issue.status in {"implemented", "done"}:
         acceptance = (
             "- [x] Scope is implemented in repository code, generated artefacts, documentation "

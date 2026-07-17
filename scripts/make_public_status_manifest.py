@@ -42,6 +42,39 @@ def _read_jsonl(root: Path, relative_path: str) -> list[dict[str, Any]]:
     return rows
 
 
+def _source_acquisition_blocker(root: Path) -> dict[str, Any] | None:
+    """Return an operational source blocker, excluding licence-only review rows."""
+    source_health = _read_summary(root, "data/derived/source_health/acquisition_status.json")
+    source_health_status = str(source_health.get("status", "partial"))
+    final_handoff_tasks = _read_jsonl(root, "data/derived/final_handoff/final_handoff_tasks.jsonl")
+    partial_source_tasks = [
+        task
+        for task in final_handoff_tasks
+        if task.get("status") == "partial" and task.get("task_group") == "source_ingestion"
+    ]
+    operational_source_gap = source_health_status in {"incomplete", "unknown"}
+    if partial_source_tasks and source_health_status not in {"review_required", "clear", "missing"}:
+        operational_source_gap = True
+    if not operational_source_gap:
+        return None
+    titles = ", ".join(
+        str(task.get("title", task.get("id", "unknown"))) for task in partial_source_tasks
+    )
+    if not titles:
+        titles = "Source acquisition health report requires follow-up"
+    return {
+        "id": "source_acquisition",
+        "category": "source_ingestion",
+        "status": source_health_status,
+        "summary": f"Source acquisition requires follow-up: {titles}.",
+        "next_action": (
+            "Complete remaining executable or credential-gated targets, then rerun "
+            "source validation and source contracts."
+        ),
+        "evidence_path": "data/derived/source_health/acquisition_status.json",
+    }
+
+
 def build_public_status_manifest(root: Path | None = None) -> dict[str, Any]:
     """Build separate software, evidence and publication readiness dimensions."""
     repo = root or project_root()
@@ -56,31 +89,10 @@ def build_public_status_manifest(root: Path | None = None) -> dict[str, Any]:
     pending_licence_reviews = int(
         _read_summary(repo, "data/derived/licence_review/summary.json").get("pending_count", 0)
     )
-    final_handoff_tasks = _read_jsonl(repo, "data/derived/final_handoff/final_handoff_tasks.jsonl")
-    source_health = _read_summary(repo, "data/derived/source_health/acquisition_status.json")
-    partial_source_tasks = [
-        task
-        for task in final_handoff_tasks
-        if task.get("status") == "partial" and task.get("task_group") == "source_ingestion"
-    ]
     blockers: list[dict[str, Any]] = []
-    if partial_source_tasks or source_health.get("status") not in {"clear", "missing"}:
-        titles = ", ".join(
-            str(task.get("title", task.get("id", "unknown"))) for task in partial_source_tasks
-        )
-        if not titles:
-            titles = "Source acquisition health report requires follow-up"
-        blockers.append({
-            "id": "source_acquisition",
-            "category": "source_ingestion",
-            "status": str(source_health.get("status", "partial")),
-            "summary": f"Source acquisition requires follow-up: {titles}.",
-            "next_action": (
-                "Complete remaining executable or credential-gated targets, then rerun "
-                "source validation and source contracts."
-            ),
-            "evidence_path": "data/derived/source_health/acquisition_status.json",
-        })
+    source_blocker = _source_acquisition_blocker(repo)
+    if source_blocker:
+        blockers.append(source_blocker)
     if pending_licence_reviews:
         blockers.append({
             "id": "licence_review",

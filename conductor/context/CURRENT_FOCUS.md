@@ -1094,3 +1094,11 @@ protects the incomplete and implemented states, and the generated automation art
 control as `implemented` with `advanced` maturity. This is a repository-owned correction under the
 existing SBOM/SLSA issue; publication, evidence, licensing and external destination gates remain
 unchanged.
+## 2026-07-17 v159 source-health review boundary
+
+The source-health monitor now distinguishes operational acquisition failures from intentional
+licence-gated skips. With the current evidence, the report is `review_required` with zero
+operational blockers and six licence-review targets: the executable MBS/PBS downloads succeeded,
+while historical/CMS rows remain behind human reuse review. The acquisition escalation issue is
+therefore closed by the scheduled workflow when it next runs; licence, research and publication
+gates remain fail-closed.

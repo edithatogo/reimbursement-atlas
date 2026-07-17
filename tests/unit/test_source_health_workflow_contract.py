@@ -20,3 +20,6 @@ def test_source_health_issue_permissions_are_job_scoped(repo_root: Path) -> None
     assert "issues: write" in source_health_job
     assert "if: failure()" in source_health_job
     assert "if: always()" in source_health_job
+    assert 'status" = "incomplete"' in source_health_job
+    assert 'status" = "unknown"' in source_health_job
+    assert "remaining rows are licence-review gates" in source_health_job

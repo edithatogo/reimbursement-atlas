@@ -70,6 +70,48 @@ def test_public_status_separates_software_evidence_and_publication(tmp_path: Pat
     }
 
 
+def test_public_status_does_not_duplicate_licence_only_source_review(tmp_path: Path) -> None:
+    """Review-only acquisition rows remain governed by the licence blocker."""
+    for relative, payload in {
+        "data/derived/release_readiness/summary.json": {
+            "repository_release_ready": True,
+            "evidence_release_ready": False,
+            "research_publication_ready": False,
+            "osf_registration_ready": False,
+        },
+        "data/derived/evidence_readiness/summary.json": {"row_count": 1},
+        "data/derived/data_quality/summary.json": {"blocking_failures": 0},
+        "data/derived/source_validation/summary.json": {"blocking_failures": 0},
+        "data/derived/licence_review/summary.json": {"pending_count": 1},
+        "data/derived/source_health/acquisition_status.json": {
+            "status": "review_required",
+            "incomplete_count": 1,
+            "operational_blocker_count": 0,
+            "review_required_count": 6,
+        },
+    }.items():
+        path = tmp_path / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(payload), encoding="utf-8")
+
+    handoff_path = tmp_path / "data/derived/final_handoff/final_handoff_tasks.jsonl"
+    handoff_path.parent.mkdir(parents=True, exist_ok=True)
+    handoff_path.write_text(
+        json.dumps({
+            "id": "final_source_downloads",
+            "status": "partial",
+            "task_group": "source_ingestion",
+            "title": "Run hardened source download plan",
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+
+    manifest = build_public_status_manifest(tmp_path)
+    assert "source_acquisition" not in {item["id"] for item in manifest["blockers"]}
+    assert "licence_review" in {item["id"] for item in manifest["blockers"]}
+
+
 def test_public_dashboard_assets_redact_local_raw_cache_paths() -> None:
     """Public derived assets must not expose ignored local raw-cache locations."""
     result = sanitise_public_text("source=data/raw_live/mbs/file.txt")

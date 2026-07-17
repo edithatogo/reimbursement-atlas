@@ -369,9 +369,17 @@ epics:
       - title: Distinguish partial source acquisition from complete handoff status
         labels: ["type:data-quality", "type:handoff", "phase:hardening", "status:implemented"]
         status: implemented
+        acceptance:
+          - "Source-health evidence separates operational acquisition blockers from skipped_licence_gate rows with machine-readable counts."
+          - "Licence-only review status remains publication-blocking but does not create a duplicate acquisition-outage issue."
+          - "Focused tests cover incomplete, review_required and clear source-health states."
       - title: Expose partial source acquisition in public status and dashboard blockers
         labels: ["type:dashboard", "type:data-quality", "type:handoff", "phase:hardening", "status:implemented"]
         status: implemented
+        acceptance:
+          - "Public status emits a source_acquisition blocker only for operational incomplete or unknown source-health states."
+          - "Review-only source-health status remains visible through licence-review blockers and dashboard source-health evidence."
+          - "Dashboard status and source-health CSV projections regenerate deterministically."
 
   - id: HANDOFF-019
     title: Codex bundle import and full track execution handoff

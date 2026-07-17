@@ -5,16 +5,20 @@
     {
       "credential_names": [],
       "evidence_path": "data/derived/source_downloads/download_attempts.jsonl",
-      "recommended_action": "Review downloaded-source evidence and resolve remaining licence-gated or unacquired targets before promotion.",
-      "status": "partial",
+      "operational_blocker_count": 0,
+      "recommended_action": "Complete the human source/licence review for the gated rows; no additional automated acquisition is required.",
+      "review_required_count": 6,
+      "status": "review_required",
       "task_id": "final_source_downloads",
       "title": "Run hardened curl/wget source download plan"
     }
   ],
   "mutation_performed": false,
   "network_io": false,
+  "operational_blocker_count": 0,
+  "review_required_count": 6,
   "schema_version": "source-health-acquisition-v1",
-  "status": "incomplete",
+  "status": "review_required",
   "task_ids": [
     "final_source_downloads"
   ]
