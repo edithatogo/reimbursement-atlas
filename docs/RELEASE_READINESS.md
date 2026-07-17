@@ -1,9 +1,10 @@
 # Release readiness
 
-Current merged-main reference: `e639490f84d210aea9d819f6b37996ebad6714e9` (2026-07-18).
+Current merged-main reference: `be33424c4b4f7d257ccb69529fe3d50d79fc149b` (2026-07-18).
 The repository release gate summary is 36/36 passing with zero required blockers;
 research publication, OSF registration, evidence release and policy claims remain
-fail-closed. Current non-mutating monitor runs are OSF `29591535952`, Zenodo
+fail-closed. The latest non-mutating monitor evidence was collected on the merge
+parent (`e639490f84d210aea9d819f6b37996ebad6714e9`): OSF `29591535952`, Zenodo
 `29591537888`, source health `29591540127`, Hugging Face destination
 `29591542182`, and GitHub security settings `29591544121`.
 
