@@ -32,6 +32,8 @@ def _gh_read(repo: str) -> tuple[dict[str, Any] | None, str | None]:
         return None, "gh executable is unavailable"
     except subprocess.TimeoutExpired:
         return None, "GitHub API read timed out"
+    except OSError as exc:
+        return None, f"GitHub CLI execution failed: {exc}"
     if result.returncode != 0:
         return None, result.stderr.strip() or f"gh api exited {result.returncode}"
     try:
@@ -57,11 +59,14 @@ def build_report(
             "error": error,
             "controls": {},
         }
-    security = cast("dict[str, Any]", (payload or {}).get("security_and_analysis", {}))
-    controls = {
-        key: str(cast("dict[str, Any]", security.get(key, {})).get("status", "unknown"))
-        for key in SECURITY_KEYS
-    }
+    payload_dict = payload if isinstance(payload, dict) else {}
+    security_value = payload_dict.get("security_and_analysis")
+    security = cast("dict[str, Any]", security_value) if isinstance(security_value, dict) else {}
+    controls: dict[str, str] = {}
+    for key in SECURITY_KEYS:
+        control = security.get(key)
+        control_dict = cast("dict[str, Any]", control) if isinstance(control, dict) else {}
+        controls[key] = str(control_dict.get("status", "unknown"))
     advanced = all(controls[key] == ENABLED_STATUS for key in SECURITY_KEYS[2:])
     core = all(controls[key] == ENABLED_STATUS for key in SECURITY_KEYS[:2])
     return {

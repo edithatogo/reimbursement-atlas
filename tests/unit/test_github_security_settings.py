@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from scripts.check_github_security_settings import build_report
+from scripts.check_github_security_settings import SECURITY_KEYS, build_report
 
 
 def test_build_report_distinguishes_account_blocker() -> None:
@@ -51,3 +51,13 @@ def test_build_report_records_environment_block_without_secrets() -> None:
     assert report["status"] == "blocked_environment"
     assert report["controls"] == {}
     assert "token" not in str(report).lower()
+
+
+def test_build_report_redacts_unexpected_api_shapes() -> None:
+    """Malformed API payloads remain an explicit blocked report, not an exception."""
+    report = build_report(
+        repo="edithatogo/reimbursement-atlas",
+        payload={"security_and_analysis": {"secret_scanning": None}},
+    )
+    assert report["status"] == "blocked_account"
+    assert report["controls"][SECURITY_KEYS[0]] == "unknown"
