@@ -1066,3 +1066,11 @@ built and validated the derived dataset candidate and static dashboard with both
 skipped. The separate destination metadata check [29551517641](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29551517641)
 reported the known Space metadata drift and performed no mutation. OSF/HF publication readiness
 therefore remains false.
+
+## 2026-07-17 v156 Zenodo non-depositing preflight
+
+Zenodo preflight [29552003859](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29552003859)
+passed metadata validation, repository-readiness validation and non-depositing boundary recording
+on merged `main` (`efd835e`). No DOI, deposit, token-bearing artefact or external mutation was
+created. `out_zenodo_release_doi` remains planned until human publication approval and a frozen
+reviewed release exist.
