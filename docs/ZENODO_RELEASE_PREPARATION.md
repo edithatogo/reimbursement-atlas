@@ -1,5 +1,11 @@
 # Zenodo release preparation
 
+Current merged-main preflight (2026-07-18, commit
+`0011a8e2576f47f2650bf56170b06cec3978a425`) is run `29591537888`. Metadata and
+repository-readiness validation passed; no DOI was created and no Zenodo deposit
+or external mutation occurred. Deposition remains gated on human licence,
+research and publication approval.
+
 The repository contains `.zenodo.json` as a locally validated metadata preparation record. It
 does not create a Zenodo record, reserve a DOI, upload source files or imply archival/publication
 approval.
