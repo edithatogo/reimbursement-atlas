@@ -81,3 +81,8 @@ passed without mutation. HF run
 failed closed on Space metadata drift; GitHub security run
 [29577729670](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29577729670)
 reported `blocked_permissions`.
+
+The v178 external-quality refresh also passed strict `pip-audit`, dashboard `npm audit`, Pixi
+availability/reachability, zizmor, the repository automation matrix and Mojo availability. The
+derived evidence is in `data/derived/external_quality_gates.{json,csv}`; these checks do not
+constitute licence, research, evidence or publication approval.

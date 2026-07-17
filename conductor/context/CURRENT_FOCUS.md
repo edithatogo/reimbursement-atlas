@@ -1298,3 +1298,11 @@ mutation. GitHub security
 again reported `blocked_permissions` because the workflow token cannot read security-analysis
 settings. No publication, DOI, destination metadata, repository setting or raw source mutation
 occurred.
+
+## 2026-07-17 v178 external quality gate refresh
+
+The broader external-quality task passed all seven checks in the active runtime: strict
+`pip-audit`, dashboard `npm audit`, official Pixi availability and installer reachability,
+zizmor, repository automation matrix, and Mojo availability through the pinned uv tool path.
+The refreshed derived reports are `data/derived/external_quality_gates.{json,csv}`. These are
+toolchain evidence only and do not promote research, evidence, licence or publication readiness.
