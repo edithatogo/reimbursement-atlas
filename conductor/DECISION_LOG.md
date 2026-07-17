@@ -973,3 +973,19 @@ contained no publish-allowed rows. Provisioning, registration, upload and public
 
 Consequence: OSF credentials, project variable and CLI are operational. The remaining OSF boundary
 is human research/licence/governance approval, not repository authentication or toolchain setup.
+
+## 2026-07-17 - Reconcile implemented public output-plan statuses
+
+Decision: Mark the citation file, deployed public dashboard and generated public status manifest as
+`implemented` in the canonical output-plan registry. Preserve human maintainer-identity, source
+licence and publication promotion gates as separate fail-closed criteria; leave Zenodo DOI output
+`planned`.
+
+Evidence: `pixi run citation-validate`, `pixi run public-docs`, the dashboard build/browser and
+GitHub Pages deployment gates pass. The exact deterministic regeneration sequence completed with no
+diff, and the focused unit suite passed 277 tests. Generated issue bodies for #347, #348 and #349
+were reconciled through the explicit synchronizer apply path; no issue state, Project membership or
+publication approval was changed.
+
+Consequence: Conductor, generated issues and Project rows now distinguish repository implementation
+from external approval instead of incorrectly presenting completed software surfaces as unstarted.

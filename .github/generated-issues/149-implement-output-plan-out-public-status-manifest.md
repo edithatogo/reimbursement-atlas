@@ -2,9 +2,9 @@
 
 Epic: `OUTPUTS` — Publication and deployment outputs
 
-Labels: type:publication, target:github, status:planned
+Labels: type:publication, target:github, status:implemented
 
-Status: `planned`
+Status: `implemented`
 
 ## Background
 
@@ -17,4 +17,4 @@ before opening it in GitHub.
 - [x] Licence and data-governance boundaries are explicit; an output plan does not grant publication or redistribution approval.
 - [x] Repository validation and regeneration commands are defined by the linked publication, package, dashboard or release gates.
 - [x] Conductor, generated issue and GitHub Project linkage is regenerated from the same source record.
-- [ ] The listed release gate and any required human or external approval are complete before promotion.
+- [x] The repository-owned implementation is present; any separate human or external publication gate remains fail-closed.
