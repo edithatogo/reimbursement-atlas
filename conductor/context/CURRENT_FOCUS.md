@@ -1307,6 +1307,20 @@ zizmor, repository automation matrix, and Mojo availability through the pinned u
 The refreshed derived reports are `data/derived/external_quality_gates.{json,csv}`. These are
 toolchain evidence only and do not promote research, evidence, licence or publication readiness.
 
+## 2026-07-17 v180 final merged-main verification
+
+The post-merge closure record is now merged as `8d89c41bb59e414e0c9b5152ff948122a684d020`
+through PR [#427](https://github.com/edithatogo/reimbursement-atlas/pull/427). Its required
+checks passed, including CI, readiness, security, CodeQL, dependency review, zizmor, Scorecard,
+the layered test harness, deterministic regeneration and the dashboard browser matrix.
+
+The GitHub Pages deployment for the merged state also completed its build, deploy and HTTPS live
+smoke successfully in run
+[29579421825](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29579421825).
+The repository is clean and the v82 handoff package is verified. Repository release readiness is
+true; research publication, OSF registration, evidence release and policy claims remain false by
+design until licence, protocol, human-review and external-publication gates are satisfied.
+
 ## 2026-07-17 v179 post-merge main closure
 
 PR [#426](https://github.com/edithatogo/reimbursement-atlas/pull/426) merged through the
