@@ -14,5 +14,5 @@ def test_python_security_and_build_tasks_use_locked_uv_runner() -> None:
         tasks = tomllib.load(handle)["tool"]["pixi"]["tasks"]
 
     assert tasks["bandit"].startswith("uv run --all-extras bandit ")
-    assert tasks["pip-audit"] == "uv run --all-extras pip-audit --strict"
+    assert tasks["pip-audit"] == "bash scripts/run_pip_audit.sh"
     assert tasks["build"] == "uv build"
