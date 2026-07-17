@@ -58,6 +58,7 @@ dev = [
   "filelock>=3.29.7",
   "pre-commit>=4.3.0",
   "interrogate>=1.7.0",
+  "jsonschema>=4.26.0",
   "mkdocs-material>=9.6.0",
 ]
 test-goblin = [
@@ -92,6 +93,7 @@ filelock = ">=3.29.7"
 polars = ">=1.35.0"
 pyarrow = ">=22.0.0"
 duckdb = ">=1.4.0"
+jsonschema = ">=4.26.0"
 
 [tool.pixi.feature.mojo.dependencies]
 max = "*"
@@ -133,7 +135,7 @@ pip-audit = "bash scripts/run_pip_audit.sh"
 build = "uv build"
 mutation = "PYTHONPATH=src python scripts/run_bounded_mutation.py"
 profile = "scalene src/reimburse_atlas/cli.py -- --help"
-qa = { depends-on = ["format-check", "lint", "typecheck", "seed-sync-check", "public-data-policy", "repo-automation", "sbom", "architecture-report", "release-readiness", "source-download-plan", "pbs-acquisition-evidence", "source-validation", "source-contracts", "source-url-licence-checklist", "historical-sources", "github-project-export", "final-handoff", "protocol-status", "roadmap-linkages", "data-quality", "data-dictionary", "licence-review-queue", "licence-review-validate", "evidence-readiness", "source-drift", "osf-plan", "research-package", "coverage", "smoke"] }
+qa = { depends-on = ["format-check", "lint", "typecheck", "seed-sync-check", "public-data-policy", "repo-automation", "sbom", "architecture-report", "release-readiness", "source-download-plan", "pbs-acquisition-evidence", "source-validation", "source-contracts", "source-url-licence-checklist", "historical-sources", "github-project-export", "final-handoff", "protocol-status", "roadmap-linkages", "data-quality", "data-dictionary", "licence-review-queue", "licence-review-validate", "review-schemas", "evidence-readiness", "source-drift", "osf-plan", "research-package", "coverage", "smoke"] }
 schema-export = "PYTHONPATH=src python scripts/export_json_schema.py"
 zenodo-metadata = "PYTHONPATH=src python scripts/validate_zenodo_metadata.py"
 seed-validate = "PYTHONPATH=src python scripts/validate_seed_data.py"
@@ -154,6 +156,7 @@ ontology-seed = "PYTHONPATH=src python scripts/make_ontology_seed.py"
 publication-manifest = "PYTHONPATH=src python scripts/make_publication_manifest.py"
 licence-review-queue = "PYTHONPATH=src python scripts/make_licence_review_queue.py"
 licence-review-validate = "PYTHONPATH=src python scripts/validate_licence_review.py"
+review-schemas = "PYTHONPATH=src python scripts/validate_review_schemas.py"
 toolchain-report = "PYTHONPATH=src python scripts/make_toolchain_report.py"
 external-quality-gates = "PYTHONPATH=src python scripts/run_external_quality_gates.py"
 repo-automation = "PYTHONPATH=src python scripts/make_repo_automation_matrix.py"
