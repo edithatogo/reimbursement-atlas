@@ -26,8 +26,8 @@ provider-licence and domain review before external publication.
 
 ## Current merged state
 
-As of 2026-07-17, `main` is at `353b368` (the squash merge of the current external preflight
-evidence update). The repository release gates are green. The current PBS v3 schedule,
+As of 2026-07-17, `main` is at `e9b97f8` (the squash merge of the credentialed source-health
+confirmation). The repository release gates are green. The current PBS v3 schedule,
 items and fees acquisition is `acquired_unreviewed` from an ephemeral official catalogue key.
 Source-health is `review_required` with zero operational blockers: the MBS and PBS responses
 exist in ignored local raw storage, while six historical/CMS targets remain gated by
@@ -56,7 +56,7 @@ The latest local acquisition retry is a separate evidence record: it revalidated
 pair and PBS v3 responses, skipped six licence-gated targets and classified source-health as
 `review_required` with zero operational blockers. The generated source-health report is the
 authoritative status for that local environment.
-The governed source-health run [29551222886](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29551222886)
+The governed source-health run [29574452434](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29574452434)
 also acquired and schema-validated 14,840 PBS item records and 17 PBS fee records while keeping
 the evidence `acquired_unreviewed`.
 The PBS acquisition refresh is now merged to `main`; the older preflight identifiers below

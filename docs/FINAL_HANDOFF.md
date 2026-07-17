@@ -54,7 +54,7 @@ Current release posture: the repository is ready for local software release and 
 public dashboard is live, while `research_publication_ready`, `evidence_release_ready`
 and `policy_claims_ready` remain fail-closed.
 
-The current merged release is `353b368` (resolve the current value with `git rev-parse main`). The repository-controlled
+The current merged release is `e9b97f8` (resolve the current value with `git rev-parse main`). The repository-controlled
 quality, security, source-contract, package, dashboard, citation and reproducibility gates
 are green; the remaining rows above require accountable external or human decisions rather
 than additional local implementation.
