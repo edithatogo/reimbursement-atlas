@@ -155,4 +155,5 @@ failed closed on the known Space metadata drift (`mit`/`gradio` versus governed
 [29576548821](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29576548821)
 passed as a monitor but reported `blocked_permissions` because its workflow token could not read
 security-analysis settings. These runs refresh operational evidence only and do not change the
-false research-publication, OSF-registration, evidence-release or policy-claim readiness flags.
+currently false research-publication, OSF-registration, evidence-release or policy-claim readiness
+flags.

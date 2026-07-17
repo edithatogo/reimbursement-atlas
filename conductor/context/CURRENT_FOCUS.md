@@ -1272,4 +1272,4 @@ The GitHub security monitor
 [29576548821](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29576548821) passed
 as a workflow but recorded `blocked_permissions` because its token could not read security-analysis
 settings. These results refresh evidence only; all research, licence, evidence, policy and
-publication gates remain fail-closed.
+publication readiness values remain false and their gates remain fail-closed.
