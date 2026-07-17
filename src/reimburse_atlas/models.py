@@ -390,6 +390,7 @@ class DataAcquisitionAttemptRecord(FrozenModel):
     target_path: NonEmptyStr
     status: Literal[
         "downloaded",
+        "local_cache_available",
         "blocked_network",
         "blocked_secret",
         "failed",

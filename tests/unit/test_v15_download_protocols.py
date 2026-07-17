@@ -66,6 +66,27 @@ def test_missing_runtime_credential_is_blocked_and_redacted(
     assert not (tmp_path / "raw" / "au_mbs" / "name with spaces and $danger.csv").exists()
 
 
+def test_missing_runtime_credential_reuses_existing_local_dataset(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.delenv("TEST_PBS_KEY", raising=False)
+    raw_dir = tmp_path / "raw"
+    target = raw_dir / "au_mbs" / "name_with_spaces_and_danger.csv"
+    target.parent.mkdir(parents=True)
+    target.write_text("fixture dataset\n", encoding="utf-8")
+
+    attempt = attempt_download(
+        _source_file(auth_env_var="TEST_PBS_KEY"),
+        output_dir=raw_dir,
+    )
+
+    assert attempt.status == "local_cache_available"
+    assert attempt.method == "manual"
+    assert attempt.bytes_downloaded == 0
+    assert "API refresh remains available" in attempt.error_summary
+    assert target.read_text(encoding="utf-8") == "fixture dataset\n"
+
+
 def test_api_plan_defaults_to_json_for_suffixless_endpoint(tmp_path: Path) -> None:
     plan = build_download_plan(
         _source_file(
