@@ -48,3 +48,13 @@ PYTHONPATH=src reimbursement-atlas vector-seed --build-lance
 
 Policy use remains limited to identifying which item pairs deserve expert review. Do not use these
 machine rows as billing, clinical or legal equivalence statements.
+
+## Human adjudication contract
+
+The optional `data/mapping_review/decisions.jsonl` file records human decisions
+against the exact candidate identity and confidence. Its shape is defined by
+[`data/mapping_review/decision.schema.json`](../data/mapping_review/decision.schema.json).
+The schema requires a reviewer role, relationship decision, scope and unit
+equivalence checks, evidence and rationale. It is approval-neutral: missing
+decisions keep the mapping gate at `review_required`, and a recorded decision
+does not override licence, clinical, research or release gates.

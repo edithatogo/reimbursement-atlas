@@ -116,6 +116,32 @@ def test_mapping_review_status_artifact_is_fail_closed() -> None:
     assert row["triggered_negative_control_count"] >= 1
 
 
+def test_mapping_decision_schema_requires_human_adjudication_fields() -> None:
+    """The reviewer contract must not permit anonymous or context-free approval."""
+    schema_path = project_root() / "data" / "mapping_review" / "decision.schema.json"
+    schema = json.loads(schema_path.read_text(encoding="utf-8"))
+
+    assert schema["additionalProperties"] is False
+    assert set(schema["required"]) >= {
+        "review_id",
+        "candidate_relationship",
+        "candidate_confidence",
+        "decision",
+        "reviewer",
+        "reviewer_role",
+        "relationship_decision",
+        "scope_equivalence",
+        "unit_equivalence",
+        "evidence",
+        "rationale",
+    }
+    assert schema["properties"]["decision"]["enum"] == [
+        "approved",
+        "rejected",
+        "deferred",
+    ]
+
+
 def test_mapping_calibration_summary_uses_safe_default_without_gold_cases() -> None:
     """Calibration remains conservative when no gold-standard cases are available."""
     summary = build_mapping_calibration_summary([])

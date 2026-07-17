@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/edithatogo/reimbursement-atlas/blob/main/data/mapping_review/decision.schema.json",
+  "title": "Reimbursement Atlas mapping review decision",
+  "description": "Schema for an accountable human adjudication bound to one generated mapping candidate.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "review_id",
+    "left_source_id",
+    "right_source_id",
+    "left_code",
+    "right_code",
+    "candidate_relationship",
+    "candidate_confidence",
+    "decision",
+    "reviewer",
+    "reviewer_role",
+    "reviewed_at",
+    "relationship_decision",
+    "scope_equivalence",
+    "unit_equivalence",
+    "evidence",
+    "rationale"
+  ],
+  "properties": {
+    "review_id": { "type": "string", "minLength": 1 },
+    "left_source_id": { "type": "string", "minLength": 1 },
+    "right_source_id": { "type": "string", "minLength": 1 },
+    "left_code": { "type": "string", "minLength": 1 },
+    "right_code": { "type": "string", "minLength": 1 },
+    "candidate_relationship": {
+      "enum": ["exact", "broader", "narrower", "related", "unmapped"]
+    },
+    "candidate_confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "decision": { "enum": ["approved", "rejected", "deferred"] },
+    "reviewer": { "type": "string", "minLength": 1 },
+    "reviewer_role": { "type": "string", "minLength": 1 },
+    "reviewed_at": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+    "relationship_decision": {
+      "enum": ["exact", "broader", "narrower", "related", "unmapped"]
+    },
+    "scope_equivalence": { "type": "string", "minLength": 1 },
+    "unit_equivalence": { "type": "string", "minLength": 1 },
+    "evidence": { "type": "string", "minLength": 1 },
+    "rationale": { "type": "string", "minLength": 1 },
+    "restrictions": { "type": "string", "minLength": 1 }
+  }
+}
