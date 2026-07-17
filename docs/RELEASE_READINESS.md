@@ -102,6 +102,14 @@ Hugging Face mutation. No newer OSF or Zenodo mutation-capable run has been perf
 `fd41112`, so the latest OSF and Zenodo records above remain operational evidence from earlier
 merged commits, not publication approval.
 
+After the documentation merge to `fc47649`, the current non-mutating preflights were rerun:
+OSF run [29569972259](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29569972259)
+passed discovery and the fail-closed component plan, finding 28 accessible projects and the
+private `Reimbursement Atlas` project `q8cnx`; Zenodo run
+[29569972301](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29569972301)
+passed metadata and repository-readiness validation. OSF provisioning, registration, upload,
+publication and Zenodo deposit were not performed.
+
 ## Source contract posture
 
 `source_contract_validation_summary` is now expected to pass when the reviewed MBS bundle

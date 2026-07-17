@@ -132,3 +132,9 @@ The repository is now at merged commit `fd41112`. No newer OSF workflow has been
 commit; the successful `29567562072` result above is therefore the latest operational OSF
 evidence, not evidence of a new registration or publication. Registration, upload and
 publication remain skipped until the protocol, licence, evidence and governance gates pass.
+
+The current merged-main refresh on `fc47649` is workflow run
+[29569972259](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29569972259).
+Pinned `osf-cli-go v1.0.0` discovery and the component plan passed; the sanitized artifact
+contained 28 accessible projects and the private `Reimbursement Atlas` project `q8cnx`.
+Provisioning, registration, upload and publication were skipped, and no OSF mutation occurred.
