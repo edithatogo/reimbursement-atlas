@@ -183,6 +183,26 @@ def test_zenodo_metadata_output_is_implemented_without_doi_promotion() -> None:
     assert "status:planned" in doi.labels
 
 
+def test_research_question_issue_exposes_local_scaffolds_and_review_gate() -> None:
+    """Research issues must distinguish drafted local work from human approval."""
+    from scripts.create_github_project_items import generated_track_issues
+
+    issue = next(
+        item
+        for item in generated_track_issues(ROOT)
+        if item.title == "Complete protocol and report: rq_genomics_coverage_price"
+    )
+    rendered = render_issue(issue)
+    assert issue.status == "drafted"
+    assert "status:drafted" in issue.labels
+    assert issue.protocol_path == "protocols/genomics_pathology_protocol.md"
+    assert issue.report_path == "reports/genomics_pathology_report.md"
+    assert "`protocols/genomics_pathology_protocol.md`" in rendered
+    assert "`reports/genomics_pathology_report.md`" in rendered
+    assert "accountable human completes the protocol review checklist" in rendered
+    assert rendered.count("- [ ]") == 2
+
+
 def test_implemented_roadmap_issue_does_not_render_placeholder_checklist() -> None:
     """Implemented roadmap rows must not look unstarted in GitHub."""
     rendered = render_issue(
