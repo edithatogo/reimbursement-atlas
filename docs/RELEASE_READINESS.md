@@ -26,7 +26,7 @@ provider-licence and domain review before external publication.
 
 ## Current merged state
 
-As of 2026-07-17, `main` is at `6e6e134f08bf3dd94a6de31a1fb471ab06969dc8`.
+As of 2026-07-17, `main` is at `c2cdea79206a38692b41df8687f317e8375b5cd5`.
 The repository release gates are green, the current PBS v3 schedule acquisition is
 recorded as `acquired_unreviewed`, and source-health is intentionally `partial`: MBS
 and PBS evidence exists in ignored local raw storage, while CMS and historical targets
@@ -74,6 +74,15 @@ automation and candidate validity only; they do not change the false research, e
 policy-claim or publication-readiness flags.
 
 These states are tracked as evidence rather than hidden in prose.
+
+The latest read-only external refresh on this commit passed OSF discovery and the OSF component
+plan in workflow run
+[29565049272](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29565049272).
+It found the existing private `Reimbursement Atlas` OSF project `q8cnx`; provisioning,
+registration, upload and publication were skipped. The Hugging Face destination check
+[29565126096](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29565126096)
+reconfirmed the known Space metadata drift (`mit`/`gradio` versus governed
+`apache-2.0`/`static`) without mutation.
 
 The latest non-depositing Zenodo preflight on merged `main` (`efd835e`) was run
 `29552003859`; metadata and repository-readiness validation passed and no DOI deposit or
