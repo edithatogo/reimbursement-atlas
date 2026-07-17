@@ -20,6 +20,7 @@ from reimburse_atlas.models import DataAcquisitionAttemptRecord, SourceFileRecor
 
 DownloadStatus = Literal[
     "downloaded",
+    "local_cache_available",
     "blocked_network",
     "blocked_secret",
     "failed",
@@ -363,6 +364,33 @@ def attempt_download(
     if record.auth_env_var:
         auth_value = os.environ.get(record.auth_env_var)
         if not auth_value:
+            if target_path.is_file() and target_path.stat().st_size > 0:
+                error_summary = (
+                    f"Credential absent; existing local dataset retained at {plan.target_path}. "
+                    "API refresh remains available when the credential is supplied."
+                )
+                attempt = DataAcquisitionAttemptRecord(
+                    id=attempt_id,
+                    source_file_id=record.id,
+                    attempted_at=attempted_at,
+                    method="manual",
+                    target_path=plan.target_path,
+                    status="local_cache_available",
+                    exit_code=None,
+                    bytes_downloaded=0,
+                    command=plan.command,
+                    error_summary=error_summary,
+                )
+                _write_attempt_metadata(
+                    record=record,
+                    plan=plan,
+                    status="local_cache_available",
+                    exit_code=None,
+                    bytes_downloaded=0,
+                    error_summary=error_summary,
+                    attempted_at=attempted_at,
+                )
+                return attempt
             error_summary = f"Required credential is absent: {record.auth_env_var}."
             attempt = DataAcquisitionAttemptRecord(
                 id=attempt_id,

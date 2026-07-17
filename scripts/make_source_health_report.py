@@ -99,7 +99,14 @@ def _classify_partial_task(repo: Path, evidence_path: str) -> tuple[str, int, in
     operational_count = sum(
         count
         for status, count in counts.items()
-        if status not in {"downloaded", "acquired", "acquired_unreviewed", "skipped_licence_gate"}
+        if status
+        not in {
+            "downloaded",
+            "local_cache_available",
+            "acquired",
+            "acquired_unreviewed",
+            "skipped_licence_gate",
+        }
     )
     if operational_count == 0 and review_count:
         return "review_required", review_count, 0

@@ -4,6 +4,26 @@ The PBS documentation confirms that the API is the current distribution mechanis
 Schedule, is updated monthly, exposes JSON and CSV responses, and uses a shared public rate
 limit. The documentation page is not a data extract.
 
+## Access decision
+
+The PBS public API documentation says that no user login is required, but the current API
+gateway still requires a `Subscription-Key` header. An unauthenticated request to the official
+v3 `/schedules` route returned HTTP 401 on 2026-07-18 with the gateway message that a
+subscription key must be supplied. This repository does not mislabel the API as keyless and
+does not attempt to bypass the gateway.
+
+The API supports JSON and CSV responses and is explicitly intended for users to download and
+store local copies. The Department's separately announced PBS API CSV files are published under
+the embargo section, not as an unrestricted public static download. The operational policy is:
+
+1. If `PBS_API_SUBSCRIPTION_KEY` is available, refresh the ignored local dataset through the
+   official API and record redacted evidence.
+2. If the key is unavailable but a non-empty ignored PBS cache already exists, reuse that
+   dataset for validation and analysis, record `local_cache_available`, and leave API refresh
+   available for a later credentialed run.
+3. If neither is available, record `blocked_secret`; do not fabricate a download or claim that
+   the current dataset was refreshed.
+
 ## Current probe
 
 The official Department of Health API catalogue publishes a `Subscription-Key` for unregistered
@@ -59,8 +79,10 @@ and the 17-row `/fees` extract for that schedule. These files are acquisition ev
 they remain outside Git, and no parser, reviewed bundle, evidence claim, or publication output is
 treated as complete until human field and licence review is recorded.
 
-The public API credential path is now executable, but the implementation remains fail-closed at
-the monthly-extract field/licence-review step. GitHub issue [#25](https://github.com/edithatogo/reimbursement-atlas/issues/25)
+The public API credential path is now executable, and the local-cache fallback prevents a
+missing key from invalidating an already acquired dataset. The implementation remains
+fail-closed at the monthly-extract field/licence-review step. GitHub issue
+[#25](https://github.com/edithatogo/reimbursement-atlas/issues/25)
 tracks the reviewed extract and licence decision.
 
 ## Latest governed acquisition evidence
@@ -84,6 +106,13 @@ schedule, effective date, page, record count, required/observed columns, byte si
 and an explicit `acquired_unreviewed` status. They never contain raw response fields or an
 absolute local path. CI preserves the existing metadata-only evidence when the ignored cache is
 absent, so deterministic regeneration does not require credentials or raw payloads.
+
+## 2026-07-18 access-mode recheck
+
+The official v3 route was probed without a credential and returned HTTP 401. The official
+documentation confirms that JSON and CSV are response formats, not keyless static files. The
+repository therefore uses the existing ignored cache when present and keeps the subscription-key
+API path for refresh.
 
 ## 2026-07-17 local runtime recheck
 

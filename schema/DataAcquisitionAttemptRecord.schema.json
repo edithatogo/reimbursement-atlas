@@ -36,6 +36,7 @@
     "status": {
       "enum": [
         "downloaded",
+        "local_cache_available",
         "blocked_network",
         "blocked_secret",
         "failed",
