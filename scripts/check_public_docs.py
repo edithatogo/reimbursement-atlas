@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 from typing import cast
 from urllib.parse import urlparse
@@ -22,6 +23,26 @@ PUBLIC_URL_MARKERS = (
     "https://github.com/edithatogo/reimbursement-atlas",
     "https://edithatogo.github.io/reimbursement-atlas/",
 )
+CURRENT_STATE_DOCS = (
+    "docs/FINAL_HANDOFF.md",
+    "docs/RELEASE_READINESS.md",
+    "docs/OSF_WORKFLOW.md",
+    "docs/ZENODO_RELEASE_PREPARATION.md",
+    "conductor/context/CURRENT_FOCUS.md",
+)
+
+
+def current_commit(root: Path) -> str | None:
+    """Return the checked-out commit used to bind current-state documentation."""
+    result = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=root,
+        capture_output=True,
+        check=False,
+        text=True,
+    )
+    commit = result.stdout.strip()
+    return commit if result.returncode == 0 and len(commit) == 40 else None
 
 
 def validate_public_docs(root: Path) -> list[str]:
@@ -36,6 +57,14 @@ def validate_public_docs(root: Path) -> list[str]:
         for marker in REQUIRED_README_MARKERS
         if marker not in readme
     ]
+    commit = current_commit(root)
+    if commit is None:
+        errors.append("Unable to resolve the checked-out commit for current-state documentation")
+    else:
+        for relative in CURRENT_STATE_DOCS:
+            path = root / relative
+            if not path.exists() or commit not in path.read_text(encoding="utf-8"):
+                errors.append(f"{relative} does not reference current commit {commit}")
     if 'repository-code: "https://github.com/edithatogo/reimbursement-atlas"' not in citation:
         errors.append("CITATION.cff repository-code does not point to the public repository")
     if (
@@ -72,6 +101,7 @@ def build_public_docs_report(root: Path) -> dict[str, object]:
             "NOTICE",
             "pyproject.toml",
             "apps/dashboard/public/status.json",
+            *CURRENT_STATE_DOCS,
         ],
         "canonical_urls": list(PUBLIC_URL_MARKERS),
     }

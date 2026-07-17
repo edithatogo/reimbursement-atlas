@@ -2,7 +2,7 @@
 
 ## Current merged-main state (2026-07-18)
 
-`main` is at `0011a8e2576f47f2650bf56170b06cec3978a425`. Repository release
+`main` is at `e639490f84d210aea9d819f6b37996ebad6714e9`. Repository release
 readiness is green at 36/36 gates with zero required blockers. The historical
 MBS inventory and target-level review packet are implemented, but all 343
 historical targets remain `pending_human_review` and no raw historical payloads
@@ -15,7 +15,9 @@ Latest read-only monitor IDs on this commit: OSF `29591535952`, Zenodo
 `29591537888`, source health `29591540127`, Hugging Face destination
 `29591542182`, and GitHub security settings `29591544121`.
 
-The repo is now in the reviewed-source preparation and mapping-workbench phase. v10 adds a redacted reviewed-source metadata rule and a dedicated MBS TXT-pair bundle workflow.
+The repo is now in the reviewed-source preparation and mapping-workbench phase. Historical
+sections below are retained as an audit log; this header and generated readiness outputs are
+authoritative for the current state.
 
 ## Immediate focus
 

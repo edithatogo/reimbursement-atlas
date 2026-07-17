@@ -9,7 +9,12 @@
     "LICENSE",
     "NOTICE",
     "pyproject.toml",
-    "apps/dashboard/public/status.json"
+    "apps/dashboard/public/status.json",
+    "docs/FINAL_HANDOFF.md",
+    "docs/RELEASE_READINESS.md",
+    "docs/OSF_WORKFLOW.md",
+    "docs/ZENODO_RELEASE_PREPARATION.md",
+    "conductor/context/CURRENT_FOCUS.md"
   ],
   "error_count": 0,
   "errors": [],
