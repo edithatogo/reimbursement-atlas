@@ -410,6 +410,9 @@ epics:
       - title: Require security and harness contexts in branch protection
         labels: ["type:security", "type:repo-automation", "phase:hardening", "status:implemented"]
         status: implemented
+      - title: Make Pixi security and build task aliases executable through uv
+        labels: ["type:toolchain", "type:security", "type:supply-chain", "phase:hardening", "status:implemented"]
+        status: implemented
 
   - id: HARNESS-021
     title: Layered harness engineering and deterministic regeneration

@@ -1071,3 +1071,16 @@ drafts and GitHub issue bodies were reconciled for #109-#113 without closing the
 
 Consequence: Issue and Project state now distinguishes repository implementation from research
 approval and evidence readiness.
+
+## 2026-07-17 - Route Pixi security and build aliases through locked uv
+
+Decision: Keep Pixi as the official environment/task orchestrator, but route the Python Bandit,
+pip-audit and package-build aliases through the Pixi-provided locked `uv` executable. Add a
+contract test for the three task definitions.
+
+Evidence: The previous direct Pixi aliases failed locally because the default environment did not
+expose the Python entry points. `pixi run bandit`, `pixi run pip-audit`, `pixi run build` and the
+focused task-contract test now pass.
+
+Consequence: Documented local and CI-referenced security/build task names are executable in a fresh
+environment without weakening the existing fail-closed gates.
