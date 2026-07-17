@@ -26,11 +26,12 @@ provider-licence and domain review before external publication.
 
 ## Current merged state
 
-As of 2026-07-17, `main` is at `fd41112` (the squash merge of the gated Hugging Face remediation plan).
-The repository release gates are green, the current PBS v3 schedule acquisition is
-recorded as `acquired_unreviewed`, and source-health is intentionally `partial`: MBS
-and PBS evidence exists in ignored local raw storage, while CMS and historical targets
-remain skipped behind licence/review gates. This is not a missing PBS credential state.
+As of 2026-07-17, `main` is at `db367f4` (the squash merge of the current review-decision evidence update).
+The repository release gates are green. The current PBS v3 schedule acquisition attempt is
+recorded as `blocked_secret` because `PBS_API_SUBSCRIPTION_KEY` is absent from the approved
+environment. Source-health is intentionally `partial`: the MBS pair exists in ignored local
+raw storage, while PBS, CMS and historical targets remain gated by credentials or
+licence/review controls.
 
 ## Current blocker pattern
 
@@ -51,6 +52,10 @@ Remaining blockers are external or require accountable human judgement:
   but publication remains disabled until review gates pass.
 
 The latest recorded preflights completed successfully without mutating external services.
+The latest local acquisition retry is a separate evidence record: it revalidated the MBS
+pair, skipped six licence-gated targets and classified the PBS attempt as `blocked_secret`
+because `PBS_API_SUBSCRIPTION_KEY` was absent. The generated source-health report is the
+authoritative status for that local environment.
 The governed source-health run [29551222886](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29551222886)
 also acquired and schema-validated 14,840 PBS item records and 17 PBS fee records while keeping
 the evidence `acquired_unreviewed`.
@@ -95,11 +100,11 @@ The latest non-depositing Zenodo preflight on merged `main` (`efd835e`) was run
 `29552003859`; metadata and repository-readiness validation passed and no DOI deposit or
 external mutation was performed.
 
-The current merged commit `fd41112` also passed all repository-protected checks. Its manual
+The merged commit `fd41112` also passed all repository-protected checks. Its manual
 Hugging Face destination monitor run `29569184790` intentionally failed closed on the known
 Space metadata drift, uploaded redacted evidence and synchronized issue `#320`; it performed no
 Hugging Face mutation. No newer OSF or Zenodo mutation-capable run has been performed on
-`fd41112`, so the latest OSF and Zenodo records above remain operational evidence from earlier
+that commit, so the latest OSF and Zenodo records above remain operational evidence from earlier
 merged commits, not publication approval.
 
 After the documentation merge to `fc47649`, the current non-mutating preflights were rerun:

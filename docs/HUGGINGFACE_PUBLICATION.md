@@ -67,7 +67,8 @@ The latest read-only recheck on merged `main` (`fd41112`) was workflow run
 The dataset metadata still matches its governed `other` licence boundary. The Space remains
 drifted at `license: mit` and `sdk: gradio` versus the candidate `apache-2.0` and `static`.
 No remote mutation was attempted; issue [#320](https://github.com/edithatogo/reimbursement-atlas/issues/320)
-contains the dated readback and remains blocked on approval gates.
+contains the dated readback and remains blocked on approval gates. The current repository
+commit is `db367f4`; no remote metadata mutation has been performed since that monitor run.
 
 The monitor failed closed because the Space still reports `license: mit` and `sdk: gradio`.
 The workflow nevertheless uploaded the redacted report and synchronized issue `#320`, including

@@ -128,7 +128,7 @@ upload and publication were skipped. The sanitized discovery artifact was retain
 short-lived workflow artifact, and no OSF project, node, registration, file or token-bearing
 payload was mutated or committed.
 
-The repository is now at merged commit `fd41112`. No newer OSF workflow has been run on that
+The repository is now at merged commit `db367f4`. No newer OSF workflow has been run on that
 commit; the successful `29567562072` result above is therefore the latest operational OSF
 evidence, not evidence of a new registration or publication. Registration, upload and
 publication remain skipped until the protocol, licence, evidence and governance gates pass.
