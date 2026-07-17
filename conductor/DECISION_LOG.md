@@ -1084,3 +1084,17 @@ focused task-contract test now pass.
 
 Consequence: Documented local and CI-referenced security/build task names are executable in a fresh
 environment without weakening the existing fail-closed gates.
+
+## 2026-07-17 - Record external publication and toolchain recheck
+
+Decision: Treat the explicit OSF CLI contract pass as repository/toolchain evidence only; do not
+convert it into OSF publication readiness. Keep the Hugging Face Space metadata drift and GitHub
+account-level security-setting limitations as external blockers.
+
+Evidence: `osf-cli-go` v1.0.0 installed via the pinned Go module and passed with an explicit binary;
+the HF read-only check passed for the dataset and reported Space metadata drift; the GitHub API
+reported both account-level security controls disabled. No publication or security mutation was
+performed beyond the previously authorized repository settings read/write attempt.
+
+Consequence: External verification is current, explicit and fail-closed in Conductor and issue
+records.
