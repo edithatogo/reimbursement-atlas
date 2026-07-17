@@ -1438,3 +1438,11 @@ The current handoff is maintained on merged `main`; resolve the exact current co
 gate failures, zero operational blockers and six licence-review targets. Issue #439 is now
 resolved as an obsolete outage escalation; review-only licence, human research/mapping and
 external publication gates remain fail-closed.
+## 2026-07-18 v199 security-settings token boundary
+
+The repository administrator API accepted a PATCH for the two advanced GitHub secret controls but
+preserved `disabled` for both. Local authoritative readback confirms core scanning and push
+protection are enabled; non-provider pattern scanning and validity checks remain blocked by the
+account/plan boundary. The scheduled monitor now accepts optional fine-grained secret
+`GH_SECURITY_SETTINGS_TOKEN` with repository-scoped `administration:read`, falling back to the
+default `GITHUB_TOKEN`; it remains read-only and never mutates settings. Issue #191 remains open.
