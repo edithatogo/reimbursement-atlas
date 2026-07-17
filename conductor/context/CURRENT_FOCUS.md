@@ -1001,3 +1001,14 @@ estimands, acquisition and licensing boundary, mapping adjudication, sensitivity
 gates without presenting live results or policy claims. Issue [#118](https://github.com/edithatogo/reimbursement-atlas/issues/118)
 was reconciled to the generated `drafted` state. OSF registration and preprint submission remain
 blocked by accountable methods, domain, licence and governance review.
+
+## 2026-07-17 v150 Zenodo metadata lifecycle reconciliation
+
+The local Zenodo metadata record and non-depositing preflight are implemented and validated by
+`pixi run zenodo-metadata`. The canonical output registry now marks `out_zenodo` as `implemented`
+with an explicit no-deposition boundary, while `out_zenodo_release_doi` remains `planned` until
+human publication approval, source/licence review, research review and a frozen tagged release
+support DOI creation. Issue [#121](https://github.com/edithatogo/reimbursement-atlas/issues/121) was
+reconciled to the generated implementation status; issues [#256](https://github.com/edithatogo/reimbursement-atlas/issues/256)
+and [#350](https://github.com/edithatogo/reimbursement-atlas/issues/350) remain open for the external
+release and DOI decision.

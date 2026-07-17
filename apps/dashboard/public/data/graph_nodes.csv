@@ -216,7 +216,7 @@ manual_review,,,,,,,,,mapping_resource:map_who_atc_ddd,,,mapping_resource,WHO AT
 ,,,,,,,,,output:out_public_status_manifest,,,output_plan,apps/dashboard/public/status.json,,,,,archive,,,,,,implemented,github,,
 ,,,,,,,,,output:out_ro_crate,,,output_plan,data/derived/research_package/ro-crate-metadata.json,,,,,archive,,,,,,implemented,github,,
 ,,,,,,,,,output:out_source_drift_report,,,output_plan,data/derived/source_drift/source_drift_report.csv,,,,,dataset,,,,,,implemented,github,,
-,,,,,,,,,output:out_zenodo,,,output_plan,.zenodo.json,,,,,archive,,,,,,planned,zenodo,,
+,,,,,,,,,output:out_zenodo,,,output_plan,.zenodo.json,,,,,archive,,,,,,implemented,zenodo,,
 ,,,,,,,,,output:out_zenodo_release_doi,,,output_plan,.zenodo.json,,,,,archive,,,,,,planned,zenodo,,
 ,,,,,,,,,recipe:recipe_cognitive_procedural_relativities,,,analysis_recipe,Do public fee schedules reward cognitive work differently from procedural work?,,,,,,,,,,,design,,,
 ,,,,,,,,,recipe:recipe_genomics_price_coverage,,,analysis_recipe,"How do public systems link genomic test coverage, eligibility and payment signals?",,,,,,,,,,,prototype,,,
