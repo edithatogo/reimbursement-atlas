@@ -211,3 +211,8 @@ and source health
 all passed. Publication, deposit, provisioning and destination mutation jobs were skipped by
 explicit false inputs. These operational passes do not change the false licence, evidence,
 research, policy or publication readiness flags.
+
+The destination monitor on current `main` `dfd9e18` [29584493383](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29584493383)
+confirmed the Hugging Face dataset metadata passes (`license=other`) while the reachable Space
+has governed metadata drift (`license=mit`, `sdk=gradio`; expected `apache-2.0` and `static`).
+It failed closed with `mutation_performed=false`; no destination change was attempted.

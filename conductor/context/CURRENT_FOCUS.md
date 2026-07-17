@@ -1388,3 +1388,11 @@ all passed. OSF discovery/provisioning/publication, Hugging Face dataset/Space p
 Zenodo deposit were skipped by explicit non-mutating inputs. No licence, research, evidence,
 publication, destination metadata or repository-setting approval was created; the external
 and human gates remain fail-closed.
+
+## 2026-07-17 v186 Hugging Face destination drift refresh
+
+The read-only destination monitor on `dfd9e18` [29584493383](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29584493383)
+confirmed the dataset metadata is aligned (`license=other`) but the reachable Space remains
+drifted (`license=mit`, `sdk=gradio`; governed values are `apache-2.0` and `static`). The run
+recorded `mutation_performed=false` and synchronized issue [#320](https://github.com/edithatogo/reimbursement-atlas/issues/320).
+Reconciliation remains prohibited until licence, evidence and publication gates pass.

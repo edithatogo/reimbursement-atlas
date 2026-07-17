@@ -113,3 +113,8 @@ GitHub security readback
 and source health
 [29583989402](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29583989402)
 passed. All publication and mutation-capable jobs were skipped; no external state was changed.
+
+The current Hugging Face destination readback [29584493383](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29584493383)
+passes for the dataset (`license=other`) but fails closed for the Space because it reports
+`license=mit` and `sdk=gradio` rather than governed `apache-2.0` and `static`. The monitor made
+no remote mutation and synchronized issue [#320](https://github.com/edithatogo/reimbursement-atlas/issues/320).
