@@ -32,10 +32,10 @@ CURRENT_STATE_DOCS = (
 )
 
 
-def current_commit(root: Path) -> str | None:
-    """Return the checked-out commit used to bind current-state documentation."""
+def git_commit(root: Path, revision: str) -> str | None:
+    """Resolve a commit reference without making the documentation gate write state."""
     result = subprocess.run(
-        ["git", "rev-parse", "HEAD"],
+        ["git", "rev-parse", revision],
         cwd=root,
         capture_output=True,
         check=False,
@@ -45,7 +45,21 @@ def current_commit(root: Path) -> str | None:
     return commit if result.returncode == 0 and len(commit) == 40 else None
 
 
-def validate_public_docs(root: Path) -> list[str]:
+def current_state_commits(root: Path) -> tuple[str, ...]:
+    """Return commits valid for a PR or its post-squash main checkout.
+
+    A PR cannot know its eventual squash SHA. Its base commit and first parent are
+    stable, while a post-merge checkout may expose only the new merge SHA.
+    """
+    candidates = [
+        git_commit(root, "origin/main"),
+        git_commit(root, "HEAD^1"),
+        git_commit(root, "HEAD"),
+    ]
+    return tuple(dict.fromkeys(commit for commit in candidates if commit is not None))
+
+
+def validate_public_docs(root: Path) -> list[str]:  # noqa: PLR0912 - explicit public-doc contract checks
     """Return documentation drift or overclaiming errors."""
     readme = (root / "README.md").read_text(encoding="utf-8")
     citation = (root / "CITATION.cff").read_text(encoding="utf-8")
@@ -57,14 +71,29 @@ def validate_public_docs(root: Path) -> list[str]:
         for marker in REQUIRED_README_MARKERS
         if marker not in readme
     ]
-    commit = current_commit(root)
-    if commit is None:
-        errors.append("Unable to resolve the checked-out commit for current-state documentation")
+    commits = current_state_commits(root)
+    if not commits:
+        errors.append(
+            "Unable to resolve a base, parent or checked-out commit for current-state documentation"
+        )
     else:
+        document_commits: set[str] = set()
         for relative in CURRENT_STATE_DOCS:
             path = root / relative
-            if not path.exists() or commit not in path.read_text(encoding="utf-8"):
-                errors.append(f"{relative} does not reference current commit {commit}")
+            text = path.read_text(encoding="utf-8") if path.exists() else ""
+            matches = [commit for commit in commits if commit in text]
+            if not matches:
+                errors.append(
+                    f"{relative} does not reference a valid current-state commit "
+                    f"({', '.join(commits)})"
+                )
+            else:
+                document_commits.add(matches[0])
+        if len(document_commits) > 1:
+            errors.append(
+                "Authoritative current-state documents reference different commits: "
+                + ", ".join(sorted(document_commits))
+            )
     if 'repository-code: "https://github.com/edithatogo/reimbursement-atlas"' not in citation:
         errors.append("CITATION.cff repository-code does not point to the public repository")
     if (

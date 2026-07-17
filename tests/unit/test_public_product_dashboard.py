@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from scripts.check_public_docs import build_public_docs_report
+from scripts.check_public_docs import build_public_docs_report, current_state_commits
 from scripts.make_public_status_manifest import build_public_status_manifest
 from scripts.sync_dashboard_seed import sanitise_public_text
 from scripts.validate_citation import validate_citation
@@ -135,3 +135,18 @@ def test_public_docs_verify_code_and_data_licence_boundary() -> None:
 
     assert "LICENSE" in report["checked_files"]
     assert "NOTICE" in report["checked_files"]
+
+
+def test_current_state_commits_support_pr_and_post_merge_checkouts(monkeypatch) -> None:
+    """The freshness gate accepts a PR base and its eventual first-parent merge."""
+    values = {
+        "origin/main": "a" * 40,
+        "HEAD^1": "a" * 40,
+        "HEAD": "b" * 40,
+    }
+    monkeypatch.setattr(
+        "scripts.check_public_docs.git_commit",
+        lambda _root, revision: values.get(revision),
+    )
+
+    assert current_state_commits(Path()) == ("a" * 40, "b" * 40)
