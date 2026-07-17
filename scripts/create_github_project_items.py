@@ -187,6 +187,21 @@ def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria 
             "- [x] Body writes require explicit `--apply`; default synchronization remains "
             "read-only and no issue is closed or promoted."
         )
+    elif issue.title == "Reassess TypeScript 7 after Astro checker peer support is available":
+        acceptance = (
+            "- [x] Scope is confirmed: evaluate the current stable TypeScript release against the "
+            "pinned Astro checker contract.\n"
+            "- [x] Licence and data-governance implications are checked; this is a toolchain-only "
+            "change with no data publication effect.\n"
+            "- [x] Tests or validation evidence are defined: npm registry peer metadata and a "
+            "clean "
+            "npm dependency-resolution probe.\n"
+            "- [x] Documentation or Conductor context records the current compatibility boundary.\n"
+            "- [x] TypeScript `7.0.2` is available, but `@astrojs/check@0.9.9` declares "
+            "`typescript: ^5.0.0 || ^6.0.0`; npm rejects the unsupported tree.\n"
+            "- [ ] Upgrade `@astrojs/check` or its checker peer contract, then rerun `npm ci`, "
+            "`astro check`, build and browser gates before adoption."
+        )
     elif issue.status in {"implemented", "done"}:
         acceptance = (
             "- [x] Scope is implemented in repository code, generated artefacts, documentation "
