@@ -1396,3 +1396,11 @@ confirmed the dataset metadata is aligned (`license=other`) but the reachable Sp
 drifted (`license=mit`, `sdk=gradio`; governed values are `apache-2.0` and `static`). The run
 recorded `mutation_performed=false` and synchronized issue [#320](https://github.com/edithatogo/reimbursement-atlas/issues/320).
 Reconciliation remains prohibited until licence, evidence and publication gates pass.
+
+## 2026-07-17 v187 local parser contracts
+
+The local parser-contract gate now validates ignored MBS TXT-pair and PBS API/CSV
+caches without network access or raw-payload export. It reports PBS duplicate item
+codes as a diagnostic because denormalised rows may represent multiple presentations
+or brands. Passing this gate is parser evidence only; licence, human source review,
+research review and publication gates remain separate.
