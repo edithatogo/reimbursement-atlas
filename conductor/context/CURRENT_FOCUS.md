@@ -955,3 +955,14 @@ Authenticated discovery listed 28 accessible projects and confirmed the existing
 registration, upload and publication were skipped; no OSF mutation or token-bearing artifact was
 created. OSF authentication is therefore operational, while human methods/licence/governance review
 still blocks publication.
+
+## 2026-07-17 v145 Public output-plan status reconciliation
+
+The source output-plan registry now marks the implemented `CITATION.cff`, GitHub Pages dashboard
+and public status manifest as `implemented`, while retaining their maintainer-identity or
+publication promotion gates as explicit fail-closed criteria. Seed CSV mirrors, generated issue
+drafts, GitHub Project rows and derived licence/data-dictionary outputs were regenerated. Issues
+[#347](https://github.com/edithatogo/reimbursement-atlas/issues/347),
+[#348](https://github.com/edithatogo/reimbursement-atlas/issues/348) and
+[#349](https://github.com/edithatogo/reimbursement-atlas/issues/349) were body-reconciled without
+changing issue state or external publication approval.

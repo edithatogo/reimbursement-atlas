@@ -127,6 +127,26 @@ def test_generated_output_plan_preserves_status_and_external_gate() -> None:
     assert "- [ ]" in rendered
 
 
+def test_public_product_output_plans_reflect_local_implementation() -> None:
+    """Public product outputs must not remain planned after their local gates pass."""
+    from scripts.create_github_project_items import generated_track_issues
+
+    issues = generated_track_issues(ROOT)
+    expected = {
+        "Implement output plan: out_citation_cff",
+        "Implement output plan: out_public_dashboard",
+        "Implement output plan: out_public_status_manifest",
+    }
+    observed = {issue.title: issue for issue in issues if issue.title in expected}
+    assert set(observed) == expected
+    assert all(issue.status == "implemented" for issue in observed.values())
+    assert all("status:implemented" in issue.labels for issue in observed.values())
+    assert all(
+        "separate human or external publication gate remains fail-closed" in render_issue(issue)
+        for issue in observed.values()
+    )
+
+
 def test_implemented_roadmap_issue_does_not_render_placeholder_checklist() -> None:
     """Implemented roadmap rows must not look unstarted in GitHub."""
     rendered = render_issue(
