@@ -9,7 +9,8 @@ Hugging Face evidence boundaries current without performing publication mutation
 
 ## Evidence
 
-- Main commit: `c2cdea79206a38692b41df8687f317e8375b5cd5`.
+- Preflight source commit: `c2cdea79206a38692b41df8687f317e8375b5cd5`; the documentation-only
+  refresh was subsequently squash-merged to main as `471dab4`.
 - OSF workflow run `29565049272` passed pinned `osf-cli-go v1.0.0` discovery and the component
   plan. It found 28 accessible projects, including private project `q8cnx` titled
   `Reimbursement Atlas`; provisioning, registration, upload and publication were skipped.
