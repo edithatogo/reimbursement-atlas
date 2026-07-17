@@ -229,7 +229,7 @@ no publication, licence approval, destination mutation or raw-payload commit.
 
 ## v190 Current Main Handoff Refresh
 
-The current merged `main` commit is `136f4e69fda3468b4d0050ce21459c7d1578200f`.
+The current merged `main` commit is `bd96bfeae1d80f7016d5552baa5c79e41daad073`.
 Protected CI and the GitHub Pages build, deploy and live smoke gates passed for the merged
 documentation refresh. Source-health acceptance run
 [29587300544](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29587300544)

@@ -1415,7 +1415,7 @@ targets and zero operational blockers; no publication or raw-payload mutation oc
 
 ## 2026-07-18 v190 current-main handoff refresh
 
-The current merged `main` commit is `136f4e69fda3468b4d0050ce21459c7d1578200f`. The latest
+The current merged `main` commit is `bd96bfeae1d80f7016d5552baa5c79e41daad073`. The latest
 source-health acceptance run `29587300544` recorded successful acquisition, zero downstream
 gate failures, zero operational blockers and six licence-review targets. Issue #439 is now
 resolved as an obsolete outage escalation; review-only licence, human research/mapping and

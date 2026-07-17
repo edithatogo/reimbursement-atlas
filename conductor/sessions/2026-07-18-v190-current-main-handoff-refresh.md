@@ -9,7 +9,7 @@ after PR #441.
 
 ## Evidence
 
-- Current main: `136f4e69fda3468b4d0050ce21459c7d1578200f`.
+- Current main at the time of the follow-up correction: `bd96bfeae1d80f7016d5552baa5c79e41daad073`.
 - Protected checks for PR #441 passed, including browser, Python 3.14, security, dashboard,
   readiness and reproducible-build gates.
 - Source-health acceptance run `29587300544` reported successful acquisition, zero operational
