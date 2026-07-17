@@ -1044,3 +1044,16 @@ same `drafted` status. No OSF or preprint mutation occurred.
 
 Consequence: The methods pathway is reviewable locally while its external publication boundary stays
 explicit and auditable.
+
+## 2026-07-17 - Separate Zenodo metadata implementation from DOI deposition
+
+Decision: Mark `out_zenodo` implemented because `.zenodo.json` and its non-depositing validation
+workflow are repository-owned and pass locally. Keep `out_zenodo_release_doi` planned because
+creating a DOI is an external publication mutation requiring accountable approval.
+
+Evidence: `pixi run zenodo-metadata` passed; `.zenodo.json` explicitly states that no deposition or
+DOI is implied; the output registry, seed mirror, generated issue and Project export were
+regenerated. No Zenodo token, record, upload or DOI was created.
+
+Consequence: Conductor status now distinguishes completed metadata preparation from unapproved
+archival publication.

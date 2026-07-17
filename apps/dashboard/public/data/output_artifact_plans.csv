@@ -6,7 +6,7 @@ out_osf_reports,Question-specific detailed reports.,report,reports/,analysis_pro
 out_preprint_methods,Methods/design paper scaffold; results and publication remain review-gated.,preprint,papers/reimbursement_atlas_methods.md,derived_data_available,drafted,osf,track_research_protocols_osf
 out_ro_crate,Research object metadata for release candidate.,archive,data/derived/research_package/ro-crate-metadata.json,metadata_validates,implemented,github,track_data_packaging_standards
 out_frictionless,Frictionless tabular package metadata.,archive,data/derived/research_package/datapackage.json,schema_resources_valid,implemented,github,track_data_packaging_standards
-out_zenodo,DOI-archive metadata after public release gates pass.,archive,.zenodo.json,release_readiness_passes,planned,zenodo,track_data_packaging_standards
+out_zenodo,Locally validated Zenodo metadata and non-depositing preflight; DOI creation remains gated.,archive,.zenodo.json,release_readiness_passes,implemented,zenodo,track_data_packaging_standards
 out_api,Optional read-only API surface with lazy imports and contract tests.,api,src/reimburse_atlas/api.py,read_only_contract_tests,implemented,github,track_policy_demonstrators
 out_mcp,Optional read-only MCP interface with lazy imports and contract tests.,mcp,src/reimburse_atlas/mcp_server.py,read_only_mcp_tests,implemented,github,track_policy_demonstrators
 out_protocol_status,Generated protocol/report completeness table for OSF gatekeeping and GitHub Project tracking.,report,data/derived/protocols/protocol_status.csv,protocol_status_generated_and_reviewed,implemented,github,track_research_protocols_osf

@@ -168,6 +168,23 @@ def test_hugging_face_output_plans_reflect_local_workflow_implementation() -> No
     )
 
 
+def test_zenodo_metadata_output_is_implemented_without_doi_promotion() -> None:
+    """Local Zenodo metadata must not be conflated with DOI deposition."""
+    from scripts.create_github_project_items import generated_track_issues
+
+    issues = generated_track_issues(ROOT)
+    metadata = next(
+        issue for issue in issues if issue.title == "Implement output plan: out_zenodo"
+    )
+    doi = next(
+        issue for issue in issues if issue.title == "Implement output plan: out_zenodo_release_doi"
+    )
+    assert metadata.status == "implemented"
+    assert "status:implemented" in metadata.labels
+    assert doi.status == "planned"
+    assert "status:planned" in doi.labels
+
+
 def test_implemented_roadmap_issue_does_not_render_placeholder_checklist() -> None:
     """Implemented roadmap rows must not look unstarted in GitHub."""
     rendered = render_issue(
