@@ -13,7 +13,7 @@ before opening it in GitHub.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: metadata-only inventory automation is implemented; raw bundle acquisition remains gated.
+- [x] Scope is confirmed: metadata-only inventory automation and a target-level review packet are implemented; raw bundle acquisition remains gated.
 - [x] Licence and data-governance implications are checked: historical targets remain manual-review only.
 - [x] Tests or validation evidence are defined: `pixi run historical-sources`, source validation and source contracts.
 - [x] Documentation or Conductor context is updated.

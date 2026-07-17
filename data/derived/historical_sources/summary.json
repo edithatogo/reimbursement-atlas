@@ -55,6 +55,8 @@
     "2026",
     "unknown"
   ],
+  "review_queue_path": "historical_mbs_review_queue.jsonl",
+  "review_queue_status": "pending_human_review",
   "status": "metadata_only_review_required",
   "target_count": 343
 }

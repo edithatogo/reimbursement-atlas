@@ -49,6 +49,13 @@ import Layout from "../../components/Layout.astro";
     columns={["archive_period", "file_name", "file_kind", "archive_page_id", "download_policy", "status"]}
   />
   <DataTable
+    title="Historical source review queue"
+    description="Metadata-only review assignments for historical targets. Blank reviewer and decision fields mean no human licence or acquisition decision has been recorded."
+    fileName="historical_mbs_review_queue.csv"
+    columns={["archive_period", "file_kind", "licence_gate", "download_policy", "review_status", "reviewer", "decision_evidence"]}
+    limit={12}
+  />
+  <DataTable
     title="External quality gates"
     fileName="external_quality_gates.csv"
     columns={["id", "outcome", "command", "notes"]}
