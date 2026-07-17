@@ -1074,3 +1074,13 @@ passed metadata validation, repository-readiness validation and non-depositing b
 on merged `main` (`efd835e`). No DOI, deposit, token-bearing artefact or external mutation was
 created. `out_zenodo_release_doi` remains planned until human publication approval and a frozen
 reviewed release exist.
+
+## 2026-07-17 v157 GitHub account-security boundary
+
+An authenticated Chrome attempt to inspect the GitHub account security surface was blocked by
+the environment's enterprise browser policy for `github.com`. No browser session data was read,
+no workaround was attempted, and no security setting was mutated. The authenticated repository
+API remains the current evidence: core secret scanning, push protection and Dependabot are enabled;
+non-provider pattern scanning and validity checks remain disabled after the repository-level PATCH.
+Issue [#191](https://github.com/edithatogo/reimbursement-atlas/issues/191) records the requirement
+for account/UI administrator access outside this environment.

@@ -1139,3 +1139,16 @@ Evidence: Zenodo preflight [29552003859](https://github.com/edithatogo/reimburse
 passed metadata validation, repository readiness and boundary recording on merged `main`.
 
 Consequence: Zenodo automation is validated without implying DOI or archival publication readiness.
+
+## 2026-07-17 - Preserve GitHub account-security browser boundary
+
+Decision: Do not work around the enterprise browser policy that blocks `github.com`. Keep the
+repository API read-back as the authoritative evidence and leave the account-level security gap
+open until an administrator can change it through an allowed account surface.
+
+Evidence: The authenticated Chrome route was blocked before page access. No session data or setting
+mutation occurred. GitHub API evidence still reports core secret scanning, push protection and
+Dependabot enabled, with non-provider patterns and validity checks disabled.
+
+Consequence: The security issue is explicitly blocked by external account scope and environment
+policy, not hidden as a passing repository control.
