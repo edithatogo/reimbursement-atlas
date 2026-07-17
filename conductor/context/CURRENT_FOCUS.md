@@ -975,3 +975,12 @@ Issues [#347](https://github.com/edithatogo/reimbursement-atlas/issues/347),
 implementation-complete. Each was closed with an audit comment after its generated acceptance
 criteria passed. Human identity, source-licence, research and external publication gates remain
 tracked in separate open issues and were not promoted.
+
+## 2026-07-17 v147 Hugging Face implementation lifecycle reconciliation
+
+The Hugging Face dataset and Space candidate workflows are implemented and validated in
+non-mutating mode. Their output-plan rows now use `implemented`, while licence, research, evidence,
+policy, destination-metadata and explicit publication approval remain fail-closed. Issues
+[#114](https://github.com/edithatogo/reimbursement-atlas/issues/114) and
+[#115](https://github.com/edithatogo/reimbursement-atlas/issues/115) were reconciled and closed as
+implementation tasks only; destination drift remains tracked in [#320](https://github.com/edithatogo/reimbursement-atlas/issues/320).

@@ -1002,3 +1002,17 @@ canonical output-plan registry and Project export retain the implemented status.
 
 Consequence: GitHub issue lifecycle now matches Conductor implementation status without conflating
 repository completion with human or external approval.
+
+## 2026-07-17 - Close Hugging Face implementation tasks without publication
+
+Decision: Mark `out_hf_dataset` and `out_hf_space` as `implemented` and close issues #114 and #115
+as repository implementation tasks. Keep Hugging Face publication and destination reconciliation
+blocked until licence, research, evidence, policy, metadata and explicit publication gates pass.
+
+Evidence: The token-gated workflow, dataset card, Space README, candidate bundle validator and
+non-mutating publication workflow are present. The candidate-validation contract passes with both
+publish inputs false. Remote dataset/Space metadata drift remains documented in #320; no Hugging
+Face remote mutation was performed.
+
+Consequence: Conductor and GitHub lifecycle state distinguish completed publication tooling from
+unapproved external publication.
