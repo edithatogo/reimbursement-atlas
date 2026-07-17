@@ -115,3 +115,16 @@ SHA pinning is intentionally reviewed as a dependency-update operation rather th
 resolved during ordinary builds. The scheduled maintenance workflow is GitHub API-backed and
 creates a dedicated branch/PR, while the generated policy gate remains authoritative before
 merge. Network or resolver failures fail closed and leave the workflow unchanged.
+
+## Account-bound GitHub security settings
+
+`.github/workflows/github-security-settings.yml` runs a scheduled, read-only `gh api` readback
+and uploads `data/derived/repo_automation/github_security_settings.json`. The report records only
+the four setting statuses and never includes tokens, request headers or secret values. It keeps
+issue #191 synchronized without attempting a repository mutation.
+
+Provider scanning and push protection are the core controls. Non-provider pattern scanning and
+partner validity checks are separate advanced controls; when GitHub reports either as disabled,
+the monitor uses `blocked_account`, not `pass`. This preserves the account/plan blocker while
+keeping the repository's compensating controls visible: Gitleaks history scans, CodeQL, zizmor,
+dependency review, pinned Actions and protected-branch checks.

@@ -361,6 +361,18 @@ evidence release or policy claims are approved.
 Consequence: The release workflow now builds, attests, verifies and publishes the manifest. The
 manifest contains only relative paths, sizes and SHA-256 values for release subjects; no raw
 source payloads or credentials are introduced.
+
+## 2026-07-17 - Monitor account-bound GitHub security controls
+
+Decision: Add a scheduled, read-only monitor for the four GitHub secret-scanning settings and
+keep issue #191 synchronized from redacted evidence.
+
+Rationale: The authenticated repository API accepted an enablement request but the authoritative
+readback remained `disabled` for non-provider pattern scanning and validity checks. A monitor makes
+the account/plan boundary observable without retrying mutations or handling secret values.
+
+Consequence: The monitor reports `blocked_account` until both advanced controls are enabled.
+Chrome access was also blocked by enterprise browser policy, so no browser workaround is attempted.
 ## 2026-07-16 - Offline consumer verification for release manifests
 
 Decision: Provide a local, network-free verifier for the tagged release manifest before requiring

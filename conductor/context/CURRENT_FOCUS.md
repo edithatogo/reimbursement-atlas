@@ -56,6 +56,14 @@ The handoff package exporter is now repository-owned. It creates and verifies th
 tracked-only archive, redacted manifest and checksums outside the checkout; this packaging
 mechanism does not change the separate licence, human-review, OSF, Hugging Face or policy gates.
 
+## 2026-07-17 v162 security-settings monitor
+
+The live GitHub security readback is `blocked_account`: provider scanning and push protection are
+enabled, while non-provider pattern scanning and validity checks remain disabled. The scheduled
+`.github/workflows/github-security-settings.yml` monitor records this state without mutation or
+secret access and keeps issue #191 current. Chrome access to the GitHub settings page is blocked
+by enterprise browser policy; no workaround is used.
+
 
 ## 2026-07-04 v13 current focus
 

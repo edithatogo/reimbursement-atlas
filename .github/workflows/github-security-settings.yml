@@ -1,0 +1,51 @@
+name: GitHub security settings monitor
+
+on:
+  schedule:
+    - cron: "23 3 * * 4"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-security-settings-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  readback:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
+      - name: Read repository security settings
+        run: uv run --all-extras python scripts/check_github_security_settings.py --repo "$GITHUB_REPOSITORY"
+      - name: Upload redacted settings evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: github-security-settings-${{ github.run_id }}
+          path: data/derived/repo_automation/github_security_settings.json
+          if-no-files-found: error
+          retention-days: 30
+      - name: Keep issue 191 synchronized with live state
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          report=data/derived/repo_automation/github_security_settings.json
+          test -f "$report"
+          status="$(python -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["status"])' "$report")"
+          body="$(cat "$report")"
+          body="Live readback from ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}:\n\n${body}"
+          if [ "$status" = "pass" ]; then
+            gh issue close 191 --comment "$body" || true
+          else
+            gh issue edit 191 --body "$(printf '%s\n\n%s' 'Automated live security-settings monitor.' "$body")"
+          fi
