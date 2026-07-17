@@ -19,7 +19,7 @@ apps/dashboard/public/data/final_handoff_tasks.csv
 
 ## Release snapshot state (2026-07-18)
 
-This handoff describes release snapshot `be33424c4b4f7d257ccb69529fe3d50d79fc149b`.
+This handoff describes release snapshot `4693b32113b97868083ecf86d9fd8ae09dfa2e1b`.
 The checked-out `main` tip may be newer; run the command above and the documentation
 freshness gate when preparing a new handoff.
 The historical MBS inventory contains 343 metadata-only targets across 32 archive
@@ -28,13 +28,13 @@ pages, and the target-level review packet is available under
 targets remain `pending_human_review`; no historical payload is approved or
 tracked.
 
-The current read-only monitor refresh on this commit recorded OSF discovery and
-plan success (run `29591535952`), Zenodo non-depositing validation success
-(`29591537888`), source-health success with six review-only targets and zero
-operational blockers (`29591540127`), Hugging Face destination drift without
-mutation (`29591542182`), and GitHub security readback
+The current read-only monitor refresh on this snapshot recorded OSF discovery and
+plan success (run `29595536363`), Zenodo non-depositing validation success
+(`29595536320`), source-health success with review-only targets and zero
+operational blockers (`29595536399`), Hugging Face destination drift without
+mutation (`29595536385`), and GitHub security readback
 `blocked_permissions` because the workflow token cannot read account-level
-security-analysis settings (`29591544121`). These runs do not grant licence,
+security-analysis settings (`29595536535`). These runs do not grant licence,
 research, evidence, policy or publication approval.
 
 The artifact-level licence-review queue is generated separately at

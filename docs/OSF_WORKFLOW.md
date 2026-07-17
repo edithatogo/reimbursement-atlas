@@ -1,10 +1,9 @@
 # OSF workflow
 
 Release snapshot described by this workflow record is
-`be33424c4b4f7d257ccb69529fe3d50d79fc149b` (2026-07-18). The checked-out `main` tip may be
+`4693b32113b97868083ecf86d9fd8ae09dfa2e1b` (2026-07-18). The checked-out `main` tip may be
 newer; no OSF monitor evidence is implied for a newer commit.
-The latest merged-main monitor refresh was run against its merge parent
-`e639490f84d210aea9d819f6b37996ebad6714e9` as run `29591535952`. Pinned
+The latest merged-main monitor refresh is run `29595536363`. Pinned
 `osf-cli-go v1.0.0` discovery and the component plan passed; provisioning,
 registration, upload and publication were skipped. The private
 `Reimbursement Atlas` project remains a reusable target, but protocol, licence,

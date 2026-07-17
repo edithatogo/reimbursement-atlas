@@ -1,7 +1,8 @@
 # Hugging Face publication plan
 
-Current merged-main destination readback (2026-07-18, monitor run
-`29591542182`) confirms the dataset reports governed `license=other`. The Space
+Current release-snapshot destination readback (2026-07-18, snapshot
+`4693b32113b97868083ecf86d9fd8ae09dfa2e1b`, monitor run `29595536385`) confirms
+the dataset reports governed `license=other`. The Space
 still reports `license=mit` and `sdk=gradio` instead of the governed candidate
 `apache-2.0` and `static`; the monitor failed closed and performed no mutation.
 Reconciliation remains blocked until the licence, evidence, research and policy

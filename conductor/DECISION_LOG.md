@@ -1320,3 +1320,16 @@ snapshot without invalidating the evidence the documents describe. Requiring onl
 
 Consequence: The gate accepts a real, reachable snapshot but rejects arbitrary or inconsistent
 hash text. PR jobs retain their special handling for a future squash SHA that does not yet exist.
+
+## 2026-07-18 - Refresh current non-mutating external monitor evidence
+
+Decision: Record the current snapshot's read-only OSF, Zenodo, source-health, Hugging Face and
+GitHub security monitor runs without treating operational success as publication approval.
+
+Evidence: Runs `29595536363`, `29595536320`, `29595536399`, `29595536385` and `29595536535`.
+OSF and Zenodo completed non-mutating validation; source health completed with review-only source
+decisions; Hugging Face remains blocked by Space metadata drift; GitHub security remains blocked by
+API permissions.
+
+Consequence: The handoff is current for snapshot `4693b32113b97868083ecf86d9fd8ae09dfa2e1b`,
+while human licence, research, mapping, governance and publication gates remain fail-closed.
