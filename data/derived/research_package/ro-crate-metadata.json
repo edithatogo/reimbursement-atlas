@@ -1710,7 +1710,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "data_dictionary",
-      "sha256": "461edcfe445c96e0548f7c4c15672fb48d6d9547d263140b7df3f6e7f578dcdd"
+      "sha256": "9d4825311a93eca38843352f7200eed9879c556ff17eb7db6c09ab2c944220f5"
     },
     {
       "@id": "data/derived/data_dictionary/data_dictionary.csv",
@@ -1719,7 +1719,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "data_dictionary",
-      "sha256": "546f7fd33323bade5160a9c1898c05819e00d36238dca2b836174c3f17925af4"
+      "sha256": "fd82af9970548e259bd5b423509212cb6b51752b22e0895b9ffb9ab6f596bca8"
     },
     {
       "@id": "data/derived/data_dictionary/summary.json",
@@ -1728,7 +1728,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "json",
       "name": "summary",
-      "sha256": "7032068d922028679ec3d6a334a4bf0a429c10297c65143994be4226ba5c52a8"
+      "sha256": "bd2894bc8ee90660fc017c9d3cde272098cf6aa9448280b884c4d94af66ddd4c"
     },
     {
       "@id": "infra/huggingface/DATASET_CARD.md",
