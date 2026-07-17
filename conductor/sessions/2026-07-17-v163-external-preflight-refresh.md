@@ -4,7 +4,7 @@ Date: 2026-07-17
 
 ## Scope
 
-Recheck the current merged main state after the security-monitor merge and keep the OSF and
+Recheck the current merged `main` state after the security-monitor merge and keep the OSF and
 Hugging Face evidence boundaries current without performing publication mutations.
 
 ## Evidence
