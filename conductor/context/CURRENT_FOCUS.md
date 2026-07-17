@@ -945,3 +945,13 @@ The npm registry reports TypeScript `7.0.2` and `7.1.0-dev.20260715.1`. The pinn
 resolution probe rejects TypeScript 7 with `ERESOLVE` before `astro check` can run. The dashboard
 remains on TypeScript `6.0.3`, with no legacy-peer override. Issue [#362](https://github.com/edithatogo/reimbursement-atlas/issues/362)
 now records this exact upstream compatibility boundary and the re-test condition.
+
+## 2026-07-17 v144 OSF read-only discovery refresh
+
+OSF workflow run [29545432007](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29545432007)
+passed pinned `osf-cli-go` `v1.0.0` verification, OSF planning and fail-closed synchronization checks.
+Authenticated discovery listed 28 accessible projects and confirmed the existing private
+`Reimbursement Atlas` project `q8cnx` through the configured `OSF_PROJECT_ID`. Provisioning,
+registration, upload and publication were skipped; no OSF mutation or token-bearing artifact was
+created. OSF authentication is therefore operational, while human methods/licence/governance review
+still blocks publication.
