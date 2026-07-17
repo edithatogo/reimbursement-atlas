@@ -108,3 +108,8 @@ private `Reimbursement Atlas` project `q8cnx`; the OSF component plan and fail-c
 check also passed. Provisioning, registration, upload and publication were skipped, and no OSF
 project, node, registration or file was mutated. The sanitized project listing remains a temporary
 workflow artifact and no token or project payload is tracked.
+
+The latest refresh on merged `main` (`7a6b03f`) was workflow run
+`29551589259`. The pinned `osf-cli-go` v1.0.0 discovery and component-plan jobs passed, and the
+private `Reimbursement Atlas` project `q8cnx` was accessible. Provisioning, registration, upload
+and publication were skipped; no OSF project, node, registration or file was mutated.

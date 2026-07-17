@@ -1053,3 +1053,16 @@ The source-health monitor remains `incomplete` because seven historical MBS/CMS 
 intentionally skipped behind licence gates. Issue [#383](https://github.com/edithatogo/reimbursement-atlas/issues/383)
 was refreshed by the workflow and remains open. No reviewed-source bundle, publication, OSF
 registration, Hugging Face mutation or policy claim was promoted.
+
+## 2026-07-17 v155 OSF and Hugging Face preflight refresh
+
+The OSF workflow [29551589259](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29551589259)
+passed the pinned `osf-cli-go` v1.0.0 discovery and component-plan jobs. Read-only discovery
+confirmed the private `Reimbursement Atlas` project `q8cnx`; provisioning, registration, upload
+and publication were skipped.
+
+The Hugging Face publication-candidate workflow [29551588959](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29551588959)
+built and validated the derived dataset candidate and static dashboard with both publish jobs
+skipped. The separate destination metadata check [29551517641](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29551517641)
+reported the known Space metadata drift and performed no mutation. OSF/HF publication readiness
+therefore remains false.
