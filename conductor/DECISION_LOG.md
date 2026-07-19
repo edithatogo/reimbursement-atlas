@@ -1,5 +1,21 @@
 # Decision log
 
+## 2026-07-19: Owner approval of non-paper recommendations
+
+Decision: approve the recommended non-paper scope: derived-only source processing within
+the recorded source terms, mapping benchmark decisions, protocol/report staging, dataset
+and dashboard publication preparation, and release-gate preparation. Explicitly do not
+publish papers, preprints or manuscripts.
+
+Rationale: the owner has authorized the repository work and non-paper publication path,
+but publication and evidence claims remain fail-closed until their exact technical gates
+are satisfied. This decision does not permit raw restricted payloads, unsupported policy
+claims, or bypassing OSF/Hugging Face credentials, remote snapshots, destination metadata
+checks or release attestations.
+
+Evidence: `data/mapping_review/decisions.jsonl`, `docs/REVIEW_DECISIONS.md`, and the
+generated OSF/Hugging Face handoff rows.
+
 ## 2026-07-17: Automate handoff package export
 
 Decision: make handoff packaging a repository-owned exporter that writes a complete git bundle,

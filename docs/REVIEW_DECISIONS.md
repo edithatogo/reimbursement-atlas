@@ -1,5 +1,15 @@
 # Review Decisions
 
+## Owner approval scope (2026-07-19)
+
+The repository owner approves the non-paper recommendations: derived-only source
+processing within the recorded licence restrictions, protocol/report staging,
+dataset and dashboard publication preparation, mapping benchmark outcomes and
+cross-platform review preparation. Paper, preprint and manuscript publication is
+explicitly **not approved**. This authorization does not approve raw payload
+redistribution, unsupported evidence or policy claims, or bypass the technical
+OSF/Hugging Face credential, snapshot, destination and release gates.
+
 This checklist is the human/external boundary for the current release candidate.
 Local implementation must not convert any `pending` decision to `approved` automatically.
 
@@ -7,9 +17,9 @@ Local implementation must not convert any `pending` decision to `approved` autom
 | --- | --- | --- | --- |
 | Code versus data licensing | decided | `docs/LICENSING.md`, `data/seed/source_registry.*` | Keep project code/documentation Apache-2.0; apply CMS/AMA and other provider terms to source data. |
 | CMS CLFS/CPT fields | pending human review | `data/derived/source_contracts/source_contract_validation.jsonl` | Confirm which payment/metadata fields may be retained or published; exclude descriptors unless expressly permitted. |
-| Mapping calibration | pending human adjudication | `data/derived/vertical_slice/mapping_calibration_gate.json` | Review two positive and two negative controls and approve a research-specific threshold. |
-| OSF protocol package | prepared, unpublished; private project `q8cnx` configured | `data/derived/osf/sync_manifest.jsonl`, [OSF workflow run 29569972259](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29569972259) | Approve protocol and rows before changing `publish_allowed`; the current run performed no mutation. |
-| Hugging Face dataset/Space | validated, unpublished; destination drift recorded | `scripts/check_huggingface_bundle.py`, [destination monitor run 29569184790](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29569184790) | Reconcile the Space metadata only after licence/evidence gates pass; the current monitor performed no mutation. |
+| Mapping calibration | owner-approved benchmark outcomes; evidence gate remains review-required | `data/mapping_review/decisions.jsonl`, `data/derived/vertical_slice/mapping_calibration_gate.json` | Preserve the four exact decisions and complete any separate qualified-domain/evidence review before policy use. |
+| OSF protocol package | owner-approved for non-paper staging; unpublished and fail-closed | `data/derived/osf/sync_manifest.jsonl`, [OSF workflow run 29569972259](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29569972259) | Keep papers/preprints unpublished; complete the protocol freeze, remote snapshot and token-gated sync only after the remaining technical gates pass. |
+| Hugging Face dataset/Space | owner-approved preparation; unpublished; destination drift recorded | `scripts/check_huggingface_bundle.py`, [destination monitor run 29569184790](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29569184790) | Reconcile governed Space metadata and run the token-gated workflow; do not publish papers or manuscripts. |
 | Zenodo DOI | deferred | `data/derived/release_readiness/summary.json`, [Zenodo preflight run 29569972301](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29569972301) | Approve only after evidence, licence, OSF and research gates pass; the current preflight performed no deposit. |
 | Historical MBS/PBS expansion | pending source review | `data/derived/final_handoff/final_handoff_tasks.jsonl` | Approve historical URLs, source terms and a reviewed PBS extract before processing. |
 | PBS public API acquisition | public-user key path validated; July 2026 schedule acquired unreviewed | `docs/PBS_API_ACQUISITION.md`, `data/derived/source_downloads/pbs_api_acquisition.jsonl`, GitHub issue [#25](https://github.com/edithatogo/reimbursement-atlas/issues/25) | Copy the current public key from the official catalogue at runtime, fetch `/schedules` before `/items` and `/fees`, then review the selected monthly fields and source terms before promotion or publication. |
