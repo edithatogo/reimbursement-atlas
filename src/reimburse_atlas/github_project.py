@@ -87,10 +87,11 @@ def build_github_project_items(
             track = track_by_title.get(epic_title)
             if track is None:
                 track_id = _EPIC_TRACK_MAP.get(parsed.get("epic_id", ""))
-                track = next(
-                    (candidate for candidate in tracks if candidate.id == track_id),
-                    None,
-                )
+                if track_id:
+                    track = next(
+                        (candidate for candidate in tracks if candidate.id == track_id),
+                        None,
+                    )
             rows.append(
                 GitHubProjectItemRecord(
                     id=f"project_issue_{path.stem.replace('-', '_')}",
