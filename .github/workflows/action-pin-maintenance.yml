@@ -6,8 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 concurrency:
   group: action-pin-maintenance
@@ -16,6 +15,9 @@ concurrency:
 jobs:
   maintain:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     timeout-minutes: 15
     env:
       GH_TOKEN: ${{ github.token }}

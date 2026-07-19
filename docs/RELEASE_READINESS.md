@@ -1,9 +1,9 @@
 # Release readiness
 
-Release snapshot reference: `4693b32113b97868083ecf86d9fd8ae09dfa2e1b` (2026-07-18).
-The checked-out `main` tip may be newer than this snapshot; regenerate this document when
-preparing a new handoff.
-The repository release gate summary is 36/36 passing with zero required blockers;
+Release snapshot reference: `89127e48ba0035a330aafa950c1bed0476ad0077` (2026-07-19).
+Regenerate this document after any further merge and before release review.
+The last merged-main repository release gate summary was 36/36 passing; the current
+branch must rerun the complete matrix before this state can be considered current.
 research publication, OSF registration, evidence release and policy claims remain
 fail-closed. The latest non-mutating monitor evidence was collected on this
 snapshot: OSF `29595536363`, Zenodo `29595536320`, source health

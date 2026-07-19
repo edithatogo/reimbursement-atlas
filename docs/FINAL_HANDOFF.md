@@ -17,11 +17,11 @@ data/derived/final_handoff/summary.json
 apps/dashboard/public/data/final_handoff_tasks.csv
 ```
 
-## Release snapshot state (2026-07-18)
+## Release snapshot state (2026-07-19)
 
-This handoff describes release snapshot `4693b32113b97868083ecf86d9fd8ae09dfa2e1b`.
-The checked-out `main` tip may be newer; run the command above and the documentation
-freshness gate when preparing a new handoff.
+This handoff describes current merged `main` snapshot
+`89127e48ba0035a330aafa950c1bed0476ad0077`.
+Regenerate this document after any further merge and before release review.
 The historical MBS inventory contains 343 metadata-only targets across 32 archive
 pages, and the target-level review packet is available under
 `data/derived/historical_sources/historical_mbs_review_queue.{csv,jsonl}`. All
@@ -45,7 +45,7 @@ cannot mutate a candidate to approved status.
 
 ## Latest current-main external refresh
 
-The merged `main` commit `edc29a5` was rechecked without publication or destination mutation.
+The merged `main` commit `89127e4` was rechecked without publication or destination mutation.
 OSF discovery [29596947892](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29596947892)
 passed and found the configured private project; Zenodo preflight
 [29596947909](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29596947909)

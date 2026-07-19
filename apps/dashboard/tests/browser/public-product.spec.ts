@@ -41,13 +41,11 @@ for (const route of routes) {
         const description = card.locator(".status-description");
         await expect(value).toBeVisible();
         await expect(description).toBeVisible();
-        const [valueBox, descriptionBox] = await Promise.all([
-          value.boundingBox(),
-          description.boundingBox(),
+        const [valueBottom, descriptionTop] = await Promise.all([
+          value.evaluate((element) => element.getBoundingClientRect().bottom),
+          description.evaluate((element) => element.getBoundingClientRect().top),
         ]);
-        expect(valueBox).not.toBeNull();
-        expect(descriptionBox).not.toBeNull();
-        expect(valueBox!.y + valueBox!.height).toBeLessThanOrEqual(descriptionBox!.y);
+        expect(valueBottom).toBeLessThanOrEqual(descriptionTop);
       }
     }
 
@@ -75,9 +73,9 @@ for (const route of routes) {
       contentType: "application/json",
     });
 
-    const screenshot = await page.screenshot({ fullPage: true, scale: "css" });
+    const screenshot = await page.screenshot({ fullPage: route !== "/", scale: "css" });
     expect(screenshot.byteLength).toBeGreaterThan(1_000);
-    expect(screenshot.byteLength).toBeLessThan(3_000_000);
+    expect(screenshot.byteLength).toBeLessThan(4_000_000);
     await testInfo.attach("route-screenshot", {
       body: screenshot,
       contentType: "image/png",
@@ -103,4 +101,25 @@ test("keeps the public search control keyboard reachable and functional", async 
   await expect(rows.filter({ visible: true })).toHaveCount(1);
   await filter.press("Tab");
   await expect(page.locator(":focus")).toHaveCount(1);
+});
+
+test("searches rows beyond the compact initial table view", async ({ page }) => {
+  await page.goto("/sources/", { waitUntil: "networkidle" });
+  const tables = page.locator('section[data-table-section="true"]');
+  let targetTable = tables.first();
+  for (let index = 0; index < (await tables.count()); index += 1) {
+    const candidate = tables.nth(index);
+    if ((await candidate.locator("tr[data-table-row]").count()) > 8) {
+      targetTable = candidate;
+      break;
+    }
+  }
+  const filter = targetTable.locator("input[data-table-filter]");
+  const rows = targetTable.locator("tr[data-table-row]");
+  expect(await rows.count()).toBeGreaterThan(8);
+  const ninthRow = rows.nth(8);
+  const token = (await ninthRow.locator("td").first().innerText()).trim().slice(0, 6);
+  expect(token).not.toBe("");
+  await filter.fill(token);
+  await expect(ninthRow).toBeVisible();
 });

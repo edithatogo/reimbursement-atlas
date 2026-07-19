@@ -18,7 +18,6 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/")
   : `${import.meta.env.BASE_URL}/`;
 const csvUrl = `${baseUrl}data/${csv.fileName}`;
 const visibleColumns = columns ?? csv.columns.slice(0, 8);
-const visibleRows = csv.rows.slice(0, limit);
 ---
 
 <section id={id} data-table-section={searchable ? "true" : undefined}>
@@ -31,7 +30,8 @@ const visibleRows = csv.rows.slice(0, limit);
     </label>
   )}
   <p class="muted">
-    Showing {visibleRows.length} of {csv.rows.length} rows from <code>{csv.fileName}</code>.
+    Showing the first {Math.min(limit, csv.rows.length)} of {csv.rows.length} rows from
+    <code>{csv.fileName}</code>. Filtering searches all rows.
     <a href={csvUrl}>Download CSV</a>
   </p>
   <div class="table-scroll">
@@ -43,8 +43,8 @@ const visibleRows = csv.rows.slice(0, limit);
       </thead>
       <tbody>
         {
-          visibleRows.map((row) => (
-            <tr data-table-row>
+          csv.rows.map((row, index) => (
+            <tr data-table-row data-table-overflow-row={index >= limit ? "true" : undefined} hidden={index >= limit}>
               {visibleColumns.map((column) => <td>{row[column] || "—"}</td>)}
             </tr>
           ))
@@ -60,11 +60,13 @@ const visibleRows = csv.rows.slice(0, limit);
       const input = section.querySelector<HTMLInputElement>("[data-table-filter]");
       if (!input) return;
       const rows = [...section.querySelectorAll<HTMLElement>("[data-table-row]")];
+      const overflowRows = rows.filter((row) => row.dataset.tableOverflowRow === "true");
       input.addEventListener("input", () => {
         const query = input.value.trim().toLowerCase();
         rows.forEach((row) => {
           row.hidden = query.length > 0 && !row.textContent?.toLowerCase().includes(query);
         });
+        if (!query) overflowRows.forEach((row) => (row.hidden = true));
       });
     });
   </script>

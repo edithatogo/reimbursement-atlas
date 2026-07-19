@@ -132,7 +132,7 @@ epics:
       - title: Add SourceSnapshotRecord and local cache provenance schema
         labels: ["type:data-source", "risk:licence", "phase:1-slice", "status:implemented"]
         status: implemented
-      - title: Validate MBS parser against one manually downloaded XML release
+      - title: Retain MBS XML adapter as a legacy-format compatibility fixture
         labels: ["type:parser", "phase:1-slice", "needs-clinical-review", "status:blocked"]
         status: blocked
       - title: Add derived-only MBS TXT pair bundle workflow with path-redacted snapshots

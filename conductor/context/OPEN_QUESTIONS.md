@@ -2,7 +2,7 @@
 
 ## Source and licensing
 
-1. Which MBS XML release should be the first manually validated live-source sample?
+1. Should the legacy MBS XML adapter remain fixture-only now that XML distribution is discontinued?
 2. Which CMS CLFS public file should be used for first live-source validation?
 3. What exact licence language governs redistribution of generated derived fields for MBS, PBS, CMS, NHS and other first-wave sources?
 4. How much CPT/HCPCS descriptor text can be stored in a public dataset without requiring additional licensing?
