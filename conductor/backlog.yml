@@ -418,6 +418,13 @@ epics:
       - title: Validate human licence decisions against checksum-bound queue rows
         labels: ["type:publication", "type:review", "risk:licence", "phase:release-gate", "status:implemented"]
         status: implemented
+      - title: Generate grouped licence decision matrix linked to provenance and transformations
+        labels: ["type:publication", "type:provenance", "type:review", "risk:licence", "phase:release-gate", "status:implemented"]
+        status: implemented
+        acceptance:
+          - Group code, source and generated-artefact decisions without granting row-level approval
+          - Link each group to source identifiers, allowed and excluded fields, transformation process and provenance evidence
+          - Regenerate the machine-readable and reviewer-facing matrix deterministically in local and CI quality gates
       - title: Expand OSF protocols and report scaffolds with required sections
         labels: ["type:research", "type:osf", "status:implemented"]
         status: implemented

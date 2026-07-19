@@ -23,12 +23,12 @@ metadata and derived fields only.
 
 | Source | Exact input | Transformation | Public boundary |
 | --- | --- | --- | --- |
-| MBS current release | July 2026 XML, `au_mbs_20260701_xml` | Parse `Data` records; map `ItemNum`, `Category`, `Group`, `Description`, `FeeStartDate` and `ScheduleFee` to `ScheduleItemRecord`; normalise dates and amounts | Derived approved fields only; raw XML and unrestricted descriptor redistribution excluded |
+| MBS current release | July 2026 XML, `au_mbs_20260701_xml` | Parse `Data` records; map `ItemNum`, `Category`, `Group`, `Description`, `FeeStartDate` and `ScheduleFee` to `ScheduleItemRecord`; normalise dates and amounts | Candidate derived fields only; raw XML and unrestricted descriptor redistribution excluded until source review |
 | MBS historical/full map | July 2026 item-map plus descriptor TXT pair | Parse both files; join on MBS item code; retain joined rows and flag descriptor-only rows | Raw TXT excluded; descriptor-only rows require separate treatment |
-| PBS | v3 schedules/items/fees or official CSV fallback | Validate endpoint schemas; join item/fee rows to `/schedules` by `schedule_code`; derive effective date; label prices as schedule/list or payment values | Three PBS derived acquisition artefacts approved; raw payloads, headers and credentials excluded |
-| CMS CLFS | Exact manually acquired release | Parse only licence-permitted numeric fields; never redistribute CPT descriptors | Human scope approved; checksum-bound file decision remains required after acquisition |
-| CMS PFS | Exact RVU release | Parse numeric RVUs/payment inputs with locality and conversion-factor caveats | Human scope approved; CPT descriptors excluded |
-| CMS ASP | Exact July 2026 payment-limit release | Parse payment-limit fields and permitted crosswalk metadata | Human scope approved; no coverage or net-price claims |
+| PBS | v3 schedules/items/fees or official CSV fallback | Validate endpoint schemas; join item/fee rows to `/schedules` by `schedule_code`; derive effective date; label prices as schedule/list or payment values | Locally validated candidate fields only; raw payloads, headers and credentials excluded until source review |
+| CMS CLFS | Exact manually acquired release | Parse only licence-permitted numeric fields; never redistribute CPT descriptors | Candidate scope is defined; checksum-bound field decision remains required after acquisition |
+| CMS PFS | Exact RVU release | Parse numeric RVUs/payment inputs with locality and conversion-factor caveats | Candidate numeric fields only; CPT descriptors excluded pending source review |
+| CMS ASP | Exact July 2026 payment-limit release | Parse payment-limit fields and permitted crosswalk metadata | Candidate payment fields only; no coverage or net-price claims pending source review |
 
 ## Academic citation rule
 
@@ -42,3 +42,12 @@ source data retain their provider-specific terms.
 Passing parser, source-contract and data-quality checks demonstrates computational
 reproducibility. It does not by itself establish licence approval, clinical validity, research
 evidence readiness, OSF registration or publication authorization.
+
+## Grouped review matrix
+
+The simple human decisions and their field-level boundaries are generated in
+[`LICENCE_DECISION_MATRIX.md`](LICENCE_DECISION_MATRIX.md) and
+[`LICENCE_DECISION_MATRIX.json`](LICENCE_DECISION_MATRIX.json). Those files reference
+this transformation table, the BPMN process and the checksum-bound review queue. A
+group recommendation never changes an individual candidate from `pending`; every final
+decision must retain its exact checksum and evidence.

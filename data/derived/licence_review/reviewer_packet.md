@@ -3,12 +3,17 @@
 This generated packet is a checklist for an accountable human reviewer. It does not
 grant approval, alter the publication manifest, or enable remote publication. Review
 the exact candidate file and checksum in `licence_review_queue.csv`, then record one
-complete decision row in `data/licence_review/decisions.jsonl`.
+complete decision row in the human decision record specified by
+`docs/REVIEW_DECISIONS.md`. Use the grouped questions in
+`docs/LICENCE_DECISION_MATRIX.md` to organise review, but do not replace the
+checksum-bound row-level record.
 
 ## Current batches
 
-- `public_reuse_review` / `public_derived_candidate`: 135 artefacts, 54032028 bytes
+- `public_reuse_review` / `public_derived_candidate`: 135 artefacts, 54033713 bytes
 - `public_reuse_review` / `public_metadata_candidate`: 42 artefacts, 588701 bytes
+
+Total candidate artefacts: 177; all remain `pending` until human review.
 
 ## Required decision fields
 

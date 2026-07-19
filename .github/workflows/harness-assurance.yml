@@ -76,6 +76,7 @@ jobs:
           pixi run research-package
           pixi run licence-review-queue
           pixi run licence-review-validate
+          pixi run licence-decision-matrix
           pixi run review-schemas
           pixi run local-parser-contracts
           pixi run fuzzy-benchmark

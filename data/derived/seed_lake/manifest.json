@@ -312,8 +312,8 @@
       "jsonl_path": "local_quality_gates/local_quality_gates.jsonl",
       "name": "local_quality_gates",
       "parquet_path": "local_quality_gates/local_quality_gates.parquet",
-      "rows": 27,
-      "sha256": "9c4181a11353dafaa83e794231d9b31ea06e256a210561fe4b72690ed5bdf5d6"
+      "rows": 20,
+      "sha256": "4a8b156f86326f9c8c7849c12b1e4969a5cf6c591d8f947115b6680cc3af3b2f"
     },
     {
       "csv_path": "local_quality_gate_specs/local_quality_gate_specs.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 36,
-      "sha256": "ac3c5a96e7853dc60cd12010ec4fb59734a8c2ecc22245021c2d5cb8e81a21f4"
+      "sha256": "9788369977f2c2c3904becd253528b27414cde967aeb0eeb00553d3e9721632e"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -392,8 +392,8 @@
       "jsonl_path": "github_project_items/github_project_items.jsonl",
       "name": "github_project_items",
       "parquet_path": "github_project_items/github_project_items.parquet",
-      "rows": 196,
-      "sha256": "0eabfc8a472580e1cdd7103ea2721362abeec46a86389d33b5f077e40b7d0afb"
+      "rows": 197,
+      "sha256": "62307b07181fe95c74febddbe4b8158bda6de40daa635d4c06ac1128973bf24c"
     },
     {
       "csv_path": "final_handoff_tasks/final_handoff_tasks.csv",
@@ -449,7 +449,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "428de683c771914e54a8469a64b9040680638d34d8ce299025b03640e8792601"
+      "sha256": "8ca0ea5e9872ad11301debbc4209478efacd7b9ecc308b2326c98efba51890a1"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
@@ -457,7 +457,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 184,
-      "sha256": "8116b303304f3e5541437f27b2210d8d185fa08af518721d8efaec52e7588e30"
+      "sha256": "610b9d1cb4d5f9ce0235d53d15b0085cfb392de227de903be0661224fed4be65"
     }
   ]
 }

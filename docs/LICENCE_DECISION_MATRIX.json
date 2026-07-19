@@ -1,0 +1,174 @@
+{
+  "approval_rule": "A group recommendation never grants approval; every approved or blocked artefact must retain a checksum-bound human decision.",
+  "generated_from": "data/derived/historical_sources/historical_source_catalog.jsonl",
+  "groups": [
+    {
+      "allowed_fields": [
+        "project-owned source, schemas, tests, docs and automation"
+      ],
+      "evidence_reference": "LICENSE; docs/LICENSING.md",
+      "excluded_fields": [
+        "third-party data, descriptors, ontologies, trademarks and provider documentation"
+      ],
+      "id": "code_and_documentation",
+      "provenance_required": "Preserve third-party notices and source-specific terms.",
+      "recommended_outcome": "Yes, for material the project owns or is authorized to license.",
+      "release_gate": "project_licence_decision",
+      "simple_question": "May project-owned code and documentation be distributed under Apache-2.0?",
+      "source_ids": [],
+      "source_record_count": 0,
+      "status": "decided",
+      "title": "Project code and documentation",
+      "transformation_reference": "docs/LICENSING.md"
+    },
+    {
+      "allowed_fields": [
+        "item code",
+        "category/group",
+        "approved label fields",
+        "effective date",
+        "schedule fee when permitted"
+      ],
+      "evidence_reference": "docs/SOURCE_LICENCE_EVIDENCE.md; issue #23; data/derived/reviewed_source_bundles/",
+      "excluded_fields": [
+        "raw XML",
+        "raw TXT",
+        "unrestricted descriptors",
+        "descriptor-only rows without separate approval"
+      ],
+      "id": "au_mbs",
+      "provenance_required": "Provider URL, release ID, retrieval timestamp, SHA-256, parser version, output checksum and attribution.",
+      "recommended_outcome": "Publish only permitted derived fields with attribution; retain raw XML/TXT locally and review descriptor-only rows separately.",
+      "release_gate": "human_licence_review",
+      "simple_question": "May the specified derived MBS fields be redistributed under the applicable Commonwealth terms?",
+      "source_ids": [
+        "au_mbs"
+      ],
+      "source_record_count": 0,
+      "status": "pending_human_review",
+      "title": "Australian MBS",
+      "transformation_reference": "docs/SOURCE_PROVENANCE_AND_TRANSFORMATIONS.md#current-source-transformations"
+    },
+    {
+      "allowed_fields": [
+        "schedule code",
+        "item code",
+        "effective date",
+        "reviewed schedule/list or payment value"
+      ],
+      "evidence_reference": "data/derived/source_downloads/pbs_api_acquisition.jsonl; issue #25",
+      "excluded_fields": [
+        "raw API/CSV payloads",
+        "request headers",
+        "API keys",
+        "unreviewed monthly extracts",
+        "net-price claims"
+      ],
+      "id": "au_pbs",
+      "provenance_required": "Endpoint or catalogue URL, key provenance without the secret, retrieval timestamp, checksum, parser version and source terms.",
+      "recommended_outcome": "Publish reviewed derived schedule/list or payment values with PBS attribution; never publish raw responses, headers or credentials.",
+      "release_gate": "human_licence_review",
+      "simple_question": "May the selected PBS schedule, item and fee fields be redistributed?",
+      "source_ids": [
+        "au_pbs"
+      ],
+      "source_record_count": 1,
+      "status": "pending_human_review",
+      "title": "Australian PBS",
+      "transformation_reference": "docs/SOURCE_PROVENANCE_AND_TRANSFORMATIONS.md#current-source-transformations; docs/PBS_API_ACQUISITION.md"
+    },
+    {
+      "allowed_fields": [
+        "reviewed numeric payment/RVU fields",
+        "effective dates",
+        "permitted locality or payment metadata"
+      ],
+      "evidence_reference": "data/derived/source_contracts/source_contract_validation.jsonl; data/derived/source_url_licence_checklist/",
+      "excluded_fields": [
+        "CPT descriptors",
+        "AMA-gated ZIP contents",
+        "restricted crosswalks",
+        "coverage claims",
+        "net-price claims"
+      ],
+      "id": "us_cms",
+      "provenance_required": "Exact CMS URL, release ID, access date, checksum, permitted-field decision, parser version, excluded-field record and attribution.",
+      "recommended_outcome": "Permit only reviewed numeric/payment fields and permitted metadata; exclude CPT descriptors, restricted crosswalks and unsupported coverage or net-price claims.",
+      "release_gate": "human_licence_review",
+      "simple_question": "Which numeric CMS payment fields may be retained and published without redistributing restricted descriptors?",
+      "source_ids": [
+        "us_cms_clfs",
+        "us_cms_pfs",
+        "us_cms_asp"
+      ],
+      "source_record_count": 309,
+      "status": "pending_human_review",
+      "title": "US CMS CLFS, PFS and ASP",
+      "transformation_reference": "docs/SOURCE_PROVENANCE_AND_TRANSFORMATIONS.md#current-source-transformations; data/derived/processes/historical_source_transformation.bpmn"
+    },
+    {
+      "allowed_fields": [
+        "reviewed test metadata",
+        "directory version",
+        "effective date",
+        "source link"
+      ],
+      "evidence_reference": "data/derived/historical_sources/historical_source_catalog.jsonl; data/derived/source_url_licence_checklist/",
+      "excluded_fields": [
+        "unreviewed raw workbooks",
+        "unnecessary personal or restricted content",
+        "unsupported coverage claims"
+      ],
+      "id": "uk_genomic",
+      "provenance_required": "Official publication URL, file checksum, directory version, parser version, field exclusions and attribution.",
+      "recommended_outcome": "Publish only reviewed directory metadata and preserve provider attribution and version identifiers.",
+      "release_gate": "human_licence_review",
+      "simple_question": "May transformed genomic-directory metadata be redistributed under NHS terms?",
+      "source_ids": [
+        "uk_genomic_test_directory"
+      ],
+      "source_record_count": 6,
+      "status": "pending_human_review",
+      "title": "NHS England genomic directories",
+      "transformation_reference": "docs/SOURCE_PROVENANCE_AND_TRANSFORMATIONS.md#current-source-transformations"
+    },
+    {
+      "allowed_fields": [
+        "schemas",
+        "provenance",
+        "data dictionaries",
+        "quality reports",
+        "protocol scaffolds",
+        "SBOMs",
+        "research-package metadata"
+      ],
+      "evidence_reference": "data/derived/publication_manifest.json; data/derived/research_package/; data/derived/licence_review/",
+      "excluded_fields": [
+        "raw source payloads",
+        "credentials",
+        "request headers",
+        "restricted source content",
+        "unapproved policy claims"
+      ],
+      "id": "generated_research_governance",
+      "provenance_required": "Repository commit, source IDs, input checksums, transformation version, output checksum and licence decision.",
+      "recommended_outcome": "Publish project-owned artefacts under Apache-2.0 or an explicitly recorded compatible metadata licence, while preserving embedded source restrictions.",
+      "release_gate": "human_licence_review",
+      "simple_question": "May project-generated provenance, quality, protocol, dictionary and research-package artefacts be published?",
+      "source_ids": [],
+      "source_record_count": 0,
+      "status": "pending_human_review",
+      "title": "Generated research and governance artefacts",
+      "transformation_reference": "docs/SOURCE_PROVENANCE_AND_TRANSFORMATIONS.md; data/derived/processes/historical_source_transformation.bpmn"
+    }
+  ],
+  "schema_version": "licence-decision-matrix-v1",
+  "source_catalogue_counts": {
+    "au_pbs": 1,
+    "uk_genomic_test_directory": 6,
+    "us_cms_asp": 250,
+    "us_cms_clfs": 10,
+    "us_cms_pfs": 49
+  },
+  "source_catalogue_scope": "Counts are historical_source_catalogue records only; a zero count means the source is governed elsewhere and is not evidence of source absence."
+}
