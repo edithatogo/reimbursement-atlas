@@ -177,6 +177,7 @@ def main() -> None:
     args = parser.parse_args()
     targets = _load_targets(args.seed)
     existing_rows: dict[str, dict[str, object]] = {}
+    failed_ids: set[str] = set()
     if args.retry_failed:
         checkpoint = args.output_dir / "historical_source_downloads.jsonl"
         if checkpoint.exists():
