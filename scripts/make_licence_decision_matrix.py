@@ -157,6 +157,8 @@ GROUPS: tuple[dict[str, Any], ...] = (
 def _catalogue_counts(root: Path) -> dict[str, int]:
     """Count historical catalogue records by source ID."""
     path = root / "data/derived/historical_sources/historical_source_catalog.jsonl"
+    if not path.is_file():
+        return {}
     counts: dict[str, int] = {}
     for line in path.read_text(encoding="utf-8").splitlines():
         if not line.strip():
