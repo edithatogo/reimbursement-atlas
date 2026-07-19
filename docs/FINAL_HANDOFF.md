@@ -3,13 +3,13 @@
 ## Current working snapshot (2026-07-19)
 
 The current continuation branch is `codex/provenance-decision-matrix` at commit
-`39e8415`. The authoritative generated release summary reports repository software
+`7afb925`. The authoritative generated release summary reports repository software
 release readiness `36/36` and `repository_release_ready=true`; research publication,
 OSF registration, evidence release and policy-claim readiness remain fail-closed.
 The current handoff table contains 12 tasks: 3 complete, 1 partial and 8 blocked by
 human review or external publication decisions. The checksum-bound licence queue has
-177 approved decision records, and the mapping calibration fixture remains 4 cases for
-smoke testing only. Use the generated files below as the source of truth; older commit
+177 approved decision records, and four exact mapping benchmark decisions are recorded;
+the mapping calibration fixture remains 4 cases for smoke testing only. Use the generated files below as the source of truth; older commit
 and count references later in this document are retained historical audit notes.
 
 The repo now generates a concrete handoff table for the remaining tasks that cannot be completed inside the sandbox. These are not vague TODOs: each row includes the required environment, command, evidence path, unblock condition and recommended action.
