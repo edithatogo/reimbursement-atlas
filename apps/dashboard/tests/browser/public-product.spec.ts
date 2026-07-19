@@ -41,10 +41,17 @@ for (const route of routes) {
         const description = card.locator(".status-description");
         await expect(value).toBeVisible();
         await expect(description).toBeVisible();
-        const [valueBottom, descriptionTop] = await Promise.all([
-          value.evaluate((element) => element.getBoundingClientRect().bottom),
-          description.evaluate((element) => element.getBoundingClientRect().top),
-        ]);
+        const [valueBottom, descriptionTop] = await card.evaluate((element) => {
+          const valueElement = element.querySelector<HTMLElement>(".status-value");
+          const descriptionElement = element.querySelector<HTMLElement>(".status-description");
+          if (!valueElement || !descriptionElement) {
+            throw new Error("Status card is missing its value or description element");
+          }
+          return [
+            valueElement.getBoundingClientRect().bottom,
+            descriptionElement.getBoundingClientRect().top,
+          ] as const;
+        });
         expect(valueBottom).toBeLessThanOrEqual(descriptionTop);
       }
     }
@@ -107,7 +114,8 @@ test("searches rows beyond the compact initial table view", async ({ page }) => 
   await page.goto("/sources/", { waitUntil: "networkidle" });
   const tables = page.locator('section[data-table-section="true"]');
   let targetTable = tables.first();
-  for (let index = 0; index < (await tables.count()); index += 1) {
+  const tableCount = await tables.count();
+  for (let index = 0; index < tableCount; index += 1) {
     const candidate = tables.nth(index);
     if ((await candidate.locator("tr[data-table-row]").count()) > 8) {
       targetTable = candidate;
