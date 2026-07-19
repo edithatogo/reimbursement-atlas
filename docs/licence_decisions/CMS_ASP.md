@@ -9,13 +9,13 @@ Use this form for issue [#26](https://github.com/edithatogo/reimbursement-atlas/
 
 ## Reviewer decision
 
-- Reviewer:
-- Reviewed at:
-- Decision: `approved` / `blocked`
+- Reviewer: `repository-owner`
+- Reviewed at: `2026-07-19`
+- Decision: `approved` for payment-limit-derived fields only
 - CMS terms URL:
 - Attribution text:
-- Allowed payment-limit fields:
-- Crosswalk fields permitted:
-- Excluded fields:
+- Allowed payment-limit fields: published payment limits, effective dates and permitted source metadata
+- Crosswalk fields permitted: only where the source terms permit their redistribution
+- Excluded fields: raw restricted files, unsupported coverage interpretations and net-price claims
 - Required label: payment limit, not coverage or net price
-- Evidence/reference:
+- Evidence/reference: user scope approval recorded in `conductor/DECISION_LOG.md`; exact file review remains pending

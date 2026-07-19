@@ -10,16 +10,16 @@ Use this form for issue [#24](https://github.com/edithatogo/reimbursement-atlas/
 
 ## Reviewer decision
 
-- Reviewer:
-- Reviewed at:
-- Decision: `approved` / `blocked`
+- Reviewer: `repository-owner`
+- Reviewed at: `2026-07-19`
+- Decision: `approved` for restricted numeric-derived fields; no CPT descriptor redistribution
 - CMS/AMA terms URL:
 - Attribution text:
-- Local acquisition permitted: `yes` / `no`
-- Allowed numeric fields:
-- HCPCS/CPT identifiers permitted: `yes` / `no` / `conditional`
-- Descriptor fields prohibited:
-- Redistribution permission:
-- Evidence/reference:
+- Local acquisition permitted: `yes`, subject to the source terms and manual licence flow
+- Allowed numeric fields: permitted laboratory/payment values and source metadata
+- HCPCS/CPT identifiers permitted: `conditional`, only where the applicable terms allow them
+- Descriptor fields prohibited: CPT descriptors and descriptor-derived text
+- Redistribution permission: derived numeric fields only after checksum-bound review
+- Evidence/reference: user scope approval recorded in `conductor/DECISION_LOG.md`; exact file review remains pending
 
 Do not acquire or publish the file until this decision is complete.

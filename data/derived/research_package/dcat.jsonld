@@ -919,6 +919,18 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/au_mbs_20260701_xml/au_mbs_20260701_xml_schedule_items.csv",
+      "dct:format": "csv",
+      "dct:title": "au_mbs_20260701_xml_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/au_mbs_20260701_xml/au_mbs_20260701_xml_schedule_items.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "au_mbs_20260701_xml_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/au_mbs_20260701_txt_pair_schedule_items.csv",
       "dct:format": "csv",
       "dct:title": "au_mbs_20260701_txt_pair_schedule_items"

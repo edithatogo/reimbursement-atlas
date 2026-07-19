@@ -2,8 +2,8 @@
   "blocking_failures": 0,
   "fail": 0,
   "missing": 0,
-  "pass": 2,
+  "pass": 3,
   "skipped": 8,
-  "validation_count": 10,
+  "validation_count": 11,
   "warn": 0
 }

@@ -18,7 +18,7 @@ from reimburse_atlas.parsers.normalise import XmlLikeElement, child_text, parse_
 
 MBS_DOWNLOAD_URL: HttpUrl = cast(
     "HttpUrl",
-    "https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/Content/downloads",
+    "https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/650f3eec0dfb990d3ca25692100069854/d4bd04ca56657072ca258df70023b066/$FILE/MBS-XML-20260701.XML",
 )
 
 
@@ -26,13 +26,19 @@ def _iter_item_elements(root: XmlLikeElement) -> list[XmlLikeElement]:
     candidates: list[XmlLikeElement] = []
     for element in root.iter():
         tag = element.tag.split("}")[-1].lower()
-        if tag in {"item", "mbsitem", "scheduleitem"}:
+        if tag in {"item", "mbsitem", "scheduleitem", "data"}:
             candidates.append(element)
     return candidates
 
 
-def parse_mbs_xml(path: Path) -> list[ScheduleItemRecord]:
-    """Parse an MBS-like XML file into schedule item records."""
+def parse_mbs_xml(
+    path: Path,
+    *,
+    source_version: str = "au_mbs_seed_fixture",
+    retrieved_at: str | None = None,
+    source_url: HttpUrl | None = None,
+) -> list[ScheduleItemRecord]:
+    """Parse an MBS XML release into schedule item records."""
     root = cast("XmlLikeElement", ET.parse(path).getroot())
     records: list[ScheduleItemRecord] = []
     for item in _iter_item_elements(root):
@@ -46,7 +52,16 @@ def parse_mbs_xml(path: Path) -> list[ScheduleItemRecord]:
             continue
         item_label = label or description or f"MBS item {code}"
         effective_from = parse_date(
-            child_text(item, ("startdate", "itemstartdate", "effective_from"))
+            child_text(
+                item,
+                (
+                    "feestartdate",
+                    "benefitstartdate",
+                    "startdate",
+                    "itemstartdate",
+                    "effective_from",
+                ),
+            )
         )
         records.append(
             ScheduleItemRecord(
@@ -69,11 +84,16 @@ def parse_mbs_xml(path: Path) -> list[ScheduleItemRecord]:
                 facility_component=False,
                 provenance=ProvenanceRecord(
                     source_id="au_mbs",
-                    source_url=MBS_DOWNLOAD_URL,
+                    source_url=source_url or MBS_DOWNLOAD_URL,
                     effective_date=effective_from,
-                    source_version="au_mbs_seed_fixture",
+                    source_version=source_version,
                     licence_class="public_reuse_unclear",
-                    transformation_notes=f"Parsed from local MBS XML-like file: {path.name}.",
+                    retrieved_at=retrieved_at,
+                    transformation_notes=(
+                        "Parsed Data records from the MBS XML release; selected ItemNum, "
+                        "Category/Group, Description, FeeStartDate and ScheduleFee into the "
+                        f"ScheduleItemRecord contract from {path.name}."
+                    ),
                 ),
             )
         )
