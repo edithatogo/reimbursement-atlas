@@ -39,7 +39,8 @@ PYTHONPATH=src uv run --all-extras python scripts/download_historical_sources.py
 ```
 
 The current catalog records CMS Physician Fee Schedule, CMS Average Sales Price,
-NHS England genomic directory and PBS legacy catalogue targets. Public targets
+CMS Clinical Laboratory Fee Schedule history, NHS England genomic directory and
+PBS legacy catalogue targets. Public targets
 are cached locally; AMA/licence-gated targets and the PBS page without a stable
 payload URL remain metadata-only. The family manifest currently contains 121
 downloaded payloads, while the MBS manifest remains a separate 343-target

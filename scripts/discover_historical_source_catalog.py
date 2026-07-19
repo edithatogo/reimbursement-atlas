@@ -19,6 +19,7 @@ CMS_PFS_INDEX = (
     "https://www.cms.gov/medicare/payment/fee-schedules/physician/national-payment-amount-file"
 )
 CMS_ASP_INDEX = "https://www.cms.gov/medicare/payment/part-b-drugs/asp-pricing-files"
+CMS_CLFS_INDEX = "https://www.cms.gov/medicare/payment/fee-schedules/clinical-laboratory-fee-schedule/clfs-history"
 NHS_GENOMICS_INDEX = "https://www.england.nhs.uk/publication/national-genomic-test-directories/"
 PBS_LEGACY_PAGE = "https://data.pbs.gov.au/document/89997.html"
 
@@ -99,7 +100,9 @@ def discover() -> list[dict[str, str]]:
     ]
     for page in pfs_pages:
         for url in fetch_links(page):
-            if urlparse(url).netloc == "www.cms.gov" and urlparse(url).path.lower().endswith((
+            if urlparse(url).netloc in ("www.cms.gov", "cms.gov") and urlparse(
+                url
+            ).path.lower().endswith((
                 ".zip",
                 ".csv",
                 ".txt",
@@ -115,7 +118,7 @@ def discover() -> list[dict[str, str]]:
                 )
     for url in fetch_links(CMS_ASP_INDEX):
         parsed = urlparse(url)
-        if parsed.netloc != "www.cms.gov" or not (
+        if parsed.netloc not in ("www.cms.gov", "cms.gov") or not (
             parsed.path.lower().endswith(".zip")
             or any(".zip" in value.lower() for value in parse_qs(parsed.query).get("file", []))
         ):
@@ -125,6 +128,23 @@ def discover() -> list[dict[str, str]]:
             target(
                 source_id="us_cms_asp",
                 page=CMS_ASP_INDEX,
+                url=url,
+                gate="restricted_or_licence_review" if gated else "public_reuse_review",
+                policy="metadata_only_manual_review" if gated else "download_for_local_review",
+            )
+        )
+    for url in fetch_links(CMS_CLFS_INDEX):
+        parsed = urlparse(url)
+        if parsed.netloc not in ("www.cms.gov", "cms.gov") or not parsed.path.lower().endswith((
+            ".pdf",
+            ".zip",
+        )):
+            continue
+        gated = parsed.path.lower().endswith(".zip")
+        rows.append(
+            target(
+                source_id="us_cms_clfs",
+                page=CMS_CLFS_INDEX,
                 url=url,
                 gate="restricted_or_licence_review" if gated else "public_reuse_review",
                 policy="metadata_only_manual_review" if gated else "download_for_local_review",

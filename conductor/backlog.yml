@@ -51,6 +51,12 @@ epics:
         acceptance:
           - "184 AMA/licence-gated ASP targets are catalogued but not downloaded."
           - "Human licence review remains required before redistribution or publication."
+      - title: Catalogue CMS CLFS historical documents and isolate CPT-restricted archives
+        labels: ["type:data-source", "type:licence", "risk:licence", "status:implemented"]
+        status: implemented
+        acceptance:
+          - "Official CLFS history documents are catalogued with source pages, direct URLs and checksums for public documents."
+          - "CLFS ZIP archives remain metadata-only because CPT/AMA reuse terms are not automatically accepted."
   - id: SRC-001
     title: First-wave source versioning and fixtures
     phase: slice
