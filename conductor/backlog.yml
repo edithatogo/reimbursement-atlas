@@ -428,6 +428,13 @@ epics:
       - title: Expand OSF protocols and report scaffolds with required sections
         labels: ["type:research", "type:osf", "status:implemented"]
         status: implemented
+      - title: Calculate mapping calibration sample size with documented power assumptions
+        labels: ["type:mapping", "type:research", "type:data-quality", "phase:release-gate", "status:implemented"]
+        status: implemented
+        acceptance:
+          - Implement reproducible confidence-interval and power-approximation calculations
+          - Document estimands, alpha, power, precision, independence and holdout assumptions
+          - Generate tested sample-size scenarios and a stratified development/holdout recommendation
 
   - id: HANDOFF-018
     title: Final local continuation and GitHub Project handoff gates

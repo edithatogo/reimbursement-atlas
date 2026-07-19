@@ -26,6 +26,8 @@ GOVERNANCE_PATHS = (
     Path("data/derived/licence_review/README.md"),
     Path("data/derived/toolchain/typescript_compatibility.json"),
     Path("data/derived/toolchain/typescript_compatibility.md"),
+    Path("data/derived/vertical_slice/mapping_power_calculation.json"),
+    Path("data/derived/vertical_slice/mapping_power_calculation.md"),
 )
 
 

@@ -88,6 +88,7 @@ The atlas is designed to answer questions like:
 - `data/seed/first_wave_ingestion_plan.*`: generated parser/source-version task tables.
 - `data/seed/source_acquisition_plan.*` and `data/seed/ingestion_readiness.*`: licence-gated acquisition/readiness tables.
 - `data/derived/vertical_slice/*`: generated no-network parser/crosswalk/policy-signal demonstration artefacts.
+- `data/derived/vertical_slice/mapping_power_calculation.json` and `.md`: reproducible mapping-calibration sample-size calculations, assumptions, limitations, and the current development/holdout recommendation. The four-case fixture remains smoke-test evidence only.
 - `data/seed/source_snapshots.*`: checksum/provenance records for committed synthetic fixtures.
 - `data/derived/reviewed_source_bundles/*`: checksum-bound, derived-only live-source candidates;
   raw payloads remain in ignored local storage.
