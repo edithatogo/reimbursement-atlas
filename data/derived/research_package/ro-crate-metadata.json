@@ -1539,7 +1539,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "345d4b59ea658edb7ecfc91a598d821cb0bb116a5db0291a2286737a5f6662f3"
+      "sha256": "6de08185e1fa2a1c382e143273b93e57f6717d1c25c169282cf46b92b9c0a07c"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
@@ -1548,7 +1548,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "5197dc995308af7cf80ad9367b0b7bbd102f26e94619096dab348f3df469f9ae"
+      "sha256": "2b7d989d064447460fa123a5927ae250c3500aa36f8ddcd59206beedec0fce15"
     },
     {
       "@id": "data/derived/v13_validation_run.json",
