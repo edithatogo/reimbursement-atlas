@@ -26,6 +26,31 @@ epics:
         acceptance:
           - "The process covers retrieval, hashing, licence review, parsing, normalisation, validation, packaging and publication."
           - "Documentation explains why BPMN 2.0 is used instead of the obsolete BPML terminology."
+  - id: HIST-002
+    title: Historical source family catalog and public-only archival
+    phase: implementation
+    workstream: sources
+    priority: must
+    issues:
+      - title: Discover official CMS PFS, CMS ASP, NHS genomic and PBS historical targets
+        labels: ["type:data-source", "type:automation", "risk:licence", "status:implemented"]
+        status: implemented
+        acceptance:
+          - "Catalog discovery is deterministic, HTTPS-only and records the official archive page and direct URL."
+          - "Duplicate filenames remain distinct through URL-stable target identifiers."
+          - "PBS metadata-only and AMA-gated targets remain explicit rather than being silently omitted."
+      - title: Download public historical family targets into ignored local cache
+        labels: ["type:data-source", "type:automation", "risk:licence", "status:implemented"]
+        status: implemented
+        acceptance:
+          - "121 public PFS, ASP and NHS payloads are locally cached and SHA-256 indexed."
+          - "Raw payloads are not tracked and publication metadata remains committed."
+      - title: Keep licence-gated historical targets fail-closed
+        labels: ["type:licence", "type:review", "risk:licence", "status:implemented"]
+        status: implemented
+        acceptance:
+          - "184 AMA/licence-gated ASP targets are catalogued but not downloaded."
+          - "Human licence review remains required before redistribution or publication."
   - id: SRC-001
     title: First-wave source versioning and fixtures
     phase: slice

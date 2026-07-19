@@ -19,7 +19,7 @@ from urllib.parse import urlparse
 
 from reimburse_atlas.registry import project_root
 
-OFFICIAL_HOSTS = {"www.mbsonline.gov.au"}
+OFFICIAL_HOSTS = {"www.mbsonline.gov.au", "www.cms.gov", "www.england.nhs.uk", "data.pbs.gov.au"}
 DEFAULT_SEED = Path("data/seed/historical_mbs_archive_targets.jsonl")
 DEFAULT_RAW = Path("data/raw_live/historical_sources")
 DEFAULT_OUTPUT = Path("data/derived/historical_sources")
@@ -174,8 +174,19 @@ def main() -> None:
         action="store_true",
         help="Retry only targets marked download_failed in the checkpoint.",
     )
+    parser.add_argument(
+        "--public-only",
+        action="store_true",
+        help="Process only targets explicitly marked download_for_local_review.",
+    )
     args = parser.parse_args()
     targets = _load_targets(args.seed)
+    if args.public_only:
+        targets = [
+            target
+            for target in targets
+            if target.get("download_policy") == "download_for_local_review"
+        ]
     existing_rows: dict[str, dict[str, object]] = {}
     failed_ids: set[str] = set()
     if args.retry_failed:

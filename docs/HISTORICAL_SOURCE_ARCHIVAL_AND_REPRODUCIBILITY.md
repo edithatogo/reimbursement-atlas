@@ -27,6 +27,24 @@ existing cache files by default, and stores payloads only under the ignored
 plan without network requests and `--force` only when intentionally replacing a
 local cache file.
 
+The multi-family catalog is refreshed with:
+
+```bash
+PYTHONPATH=src uv run --all-extras python scripts/discover_historical_source_catalog.py
+PYTHONPATH=src uv run --all-extras python scripts/download_historical_sources.py \
+  --seed data/derived/historical_sources/historical_source_catalog.jsonl \
+  --raw-dir data/raw_live/historical_sources/family_archive \
+  --output-dir data/derived/historical_sources/family_archive_v2 \
+  --public-only
+```
+
+The current catalog records CMS Physician Fee Schedule, CMS Average Sales Price,
+NHS England genomic directory and PBS legacy catalogue targets. Public targets
+are cached locally; AMA/licence-gated targets and the PBS page without a stable
+payload URL remain metadata-only. The family manifest currently contains 121
+downloaded payloads, while the MBS manifest remains a separate 343-target
+archive.
+
 ## Per-file evidence
 
 `data/derived/historical_sources/historical_source_downloads.jsonl` records, for
