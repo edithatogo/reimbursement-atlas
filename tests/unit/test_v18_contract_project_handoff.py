@@ -99,9 +99,7 @@ def test_github_project_export_covers_generated_issues(tmp_path: Path) -> None:
     assert any(row.item_type == "track" for row in rows)
     assert any(row.item_type == "issue" for row in rows)
     assert any(row.project_view == "Sources & ingestion" for row in rows)
-    assert all(
-        row.track_id is not None for row in rows if row.item_type == "issue"
-    )
+    assert all(row.track_id is not None for row in rows if row.item_type == "issue")
     paths = write_github_project_items(rows, output_dir=tmp_path / "project")
     assert all(path.exists() for path in paths)
 
@@ -110,9 +108,7 @@ def test_dataset_candidates_are_explicitly_planned() -> None:
     from scripts.create_github_project_items import generated_track_issues
 
     candidates = [
-        issue
-        for issue in generated_track_issues(ROOT)
-        if issue.epic_id == "DATASET-CANDIDATES"
+        issue for issue in generated_track_issues(ROOT) if issue.epic_id == "DATASET-CANDIDATES"
     ]
     assert candidates
     assert all(issue.status == "planned" for issue in candidates)
