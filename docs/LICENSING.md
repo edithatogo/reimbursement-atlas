@@ -34,7 +34,9 @@ published only when its source-specific manifest row records attribution,
 redistribution permission, evidence of licence review, and any required
 restrictions. Otherwise it remains local or metadata-only. The publication
 manifest, public-data policy, source-contract, evidence-readiness, and
-release-readiness gates are authoritative for each output.
+release-readiness gates are authoritative for each output. The grouped questions in
+[`LICENCE_DECISION_MATRIX.md`](LICENCE_DECISION_MATRIX.md) simplify review but never
+replace the checksum-bound row-level decision record.
 
 Hugging Face, OSF, Zenodo, and preprint publication workflows must preserve
 these per-artifact terms and must fail closed when a source gate is unresolved.

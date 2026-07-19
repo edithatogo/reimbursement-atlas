@@ -3,7 +3,7 @@
 - Status: `review_required`
 - Incomplete targets: `1`
 - Operational blockers: `0`
-- Licence-review targets: `6`
+- Licence-review targets: `7`
 - This report performs no network I/O and no source-cache mutation.
 
 ## Actions

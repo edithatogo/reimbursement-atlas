@@ -1,0 +1,97 @@
+{
+  "assumptions": [
+    "Positive and negative calibration cases are sampled separately and treated as independent.",
+    "Each case has one adjudicated reference outcome and one evaluated mapping outcome.",
+    "The confidence-interval calculations use a two-sided 95% normal approximation.",
+    "Power calculations use a one-sided alpha=0.05 test with 80% power.",
+    "No clustering, spectrum bias, class imbalance, verification bias or missing adjudications is modelled.",
+    "The synthetic four-case fixture is a smoke test and is not used to estimate the target metric."
+  ],
+  "confidence_interval_scenarios": [
+    {
+      "cases_per_class": 139,
+      "confidence": 0.95,
+      "expected_metric": 0.9,
+      "half_width": 0.05
+    },
+    {
+      "cases_per_class": 385,
+      "confidence": 0.95,
+      "expected_metric": 0.9,
+      "half_width": 0.03
+    },
+    {
+      "cases_per_class": 246,
+      "confidence": 0.95,
+      "expected_metric": 0.8,
+      "half_width": 0.05
+    },
+    {
+      "cases_per_class": 385,
+      "confidence": 0.95,
+      "expected_metric": 0.5,
+      "half_width": 0.05
+    }
+  ],
+  "current_fixture": {
+    "evidence_use": "smoke_test_only",
+    "negative_cases": 2,
+    "positive_cases": 2,
+    "total_cases": 4
+  },
+  "exact_power_scenarios": [
+    {
+      "achieved_alpha": 0.04584810111222408,
+      "achieved_power": 0.8057063959899641,
+      "alpha": 0.05,
+      "alternative_metric": 0.9,
+      "cases_per_class": 82,
+      "critical_positive_count": 72,
+      "null_metric": 0.8,
+      "power": 0.8
+    },
+    {
+      "achieved_alpha": 0.04857534487269886,
+      "achieved_power": 0.8129406533471752,
+      "alpha": 0.05,
+      "alternative_metric": 0.95,
+      "cases_per_class": 179,
+      "critical_positive_count": 168,
+      "null_metric": 0.9,
+      "power": 0.8
+    }
+  ],
+  "generated_from": "scripts/make_mapping_power_calculation.py",
+  "limitations": [
+    "The exact calculation is a one-sided, unadjusted binomial test; it does not model clustering, stratified estimands or multiplicity.",
+    "The design must be re-estimated if the estimand, acceptable null, prevalence, clustering or adjudication protocol changes.",
+    "Cases must be stratified across sources and mapping difficulty; duplicating near-identical cases does not increase effective sample size."
+  ],
+  "method": "normal_and_exact_binomial_proportions",
+  "power_scenarios": [
+    {
+      "alpha": 0.05,
+      "alternative_metric": 0.9,
+      "cases_per_class": 83,
+      "null_metric": 0.8,
+      "power": 0.8
+    },
+    {
+      "alpha": 0.05,
+      "alternative_metric": 0.95,
+      "cases_per_class": 184,
+      "null_metric": 0.9,
+      "power": 0.8
+    }
+  ],
+  "recommended_design": {
+    "development_cases_per_class": 300,
+    "development_total_cases": 600,
+    "holdout_cases_per_class": 75,
+    "holdout_total_cases": 150,
+    "independent_holdout_fraction": 0.2,
+    "rationale": "300 development cases per class gives approximately +/-3.4 points at an expected 90% metric and +/-4.5 points at an expected 80% metric; the holdout is additional.",
+    "total_cases_including_holdout": 750
+  },
+  "schema_version": "mapping-power-calculation-v1"
+}

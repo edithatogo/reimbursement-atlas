@@ -7,7 +7,7 @@ No network IO or remote mutation is performed by its generation.
 
 - Freeze schema: `osf-registration-freeze-v1`
 - Protocol digest: `d16aced4316d57a5e0e965707769142fc5c7a8c37461257c9884b019f11f2555`
-- Analysis manifest digest: `e5ca34c3eb30ff814306a801254fee8dc72eed5f7ff6049e2012ff9d02bbe3ed`
+- Analysis manifest digest: `ac45c327825f39322bd2b6972db350ec695933c525dc7700abb85216815cd708`
 - Source cutoff: `not-frozen`
 - Existing approval flag: `False`
 

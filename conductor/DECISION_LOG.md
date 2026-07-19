@@ -1,5 +1,21 @@
 # Decision log
 
+## 2026-07-19: Owner approval of non-paper recommendations
+
+Decision: approve the recommended non-paper scope: derived-only source processing within
+the recorded source terms, mapping benchmark decisions, protocol/report staging, dataset
+and dashboard publication preparation, and release-gate preparation. Explicitly do not
+publish papers, preprints or manuscripts.
+
+Rationale: the owner has authorized the repository work and non-paper publication path,
+but publication and evidence claims remain fail-closed until their exact technical gates
+are satisfied. This decision does not permit raw restricted payloads, unsupported policy
+claims, or bypassing OSF/Hugging Face credentials, remote snapshots, destination metadata
+checks or release attestations.
+
+Evidence: `data/mapping_review/decisions.jsonl`, `docs/REVIEW_DECISIONS.md`, and the
+generated OSF/Hugging Face handoff rows.
+
 ## 2026-07-17: Automate handoff package export
 
 Decision: make handoff packaging a repository-owned exporter that writes a complete git bundle,
@@ -1375,6 +1391,114 @@ security `29596744210` reported `blocked_permissions` for the default workflow t
 
 Consequence: The handoff is operationally current while all human-review and external-publication
 gates remain fail-closed.
+
+## 2026-07-19 - Owner approves bounded CMS derived-field scope
+
+Decision: Approve derived-only retention of permitted CMS numeric payment, RVU,
+locality, effective-date and source-version fields, with stable provenance. Exclude
+CPT/HCPCS descriptors, restricted crosswalks, raw files, headers, credentials,
+coverage conclusions and net-price claims. This does not authorize publication;
+exact source terms and checksum-bound release gates remain required.
+
+Evidence: User approval recorded in the Codex session; `docs/REVIEW_DECISIONS.md`,
+`docs/SOURCE_PROVENANCE_AND_TRANSFORMATIONS.md` and the CMS source-contract outputs.
+
+Consequence: CMS parsing and derived-field preparation may proceed within this
+boundary. Evidence, policy and external-publication readiness remain fail-closed.
+
+## 2026-07-19 - Owner approves mapping calibration protocol
+
+Decision: Approve a source-stratified mapping calibration protocol with recall and
+specificity as primary estimands, precision secondary, 300 positive plus 300
+negative development cases, and an untouched 75 positive plus 75 negative holdout.
+Cases must be independent at the evaluated entity level, reviewed by two blinded
+qualified reviewers, and adjudicated by a third reviewer when needed.
+
+Evidence: User approval recorded in the Codex session; `docs/MAPPING_CALIBRATION_PROTOCOL.md`
+and `data/derived/vertical_slice/mapping_power_calculation.json`.
+
+Consequence: The protocol is approved for implementation, but the current four-case
+fixture remains smoke-only and evidence, clinical-equivalence and policy gates stay
+`review_required` until the new case pack and holdout adjudication exist.
+
+## 2026-07-19 - Owner approves dashboard visual/accessibility baseline
+
+Decision: Approve the current tested dashboard baseline across the supported
+browser and device matrix, including layout, keyboard, focus, axe and route
+checks. This is scoped owner acceptance of the recorded baseline, not a universal
+WCAG conformance certification or a substitute for re-review after material UI
+changes.
+
+Evidence: User approval recorded in the Codex session; `docs/DASHBOARD_VALIDATION.md`
+and GitHub issue #188.
+
+Consequence: The dashboard review gate may reference the approved baseline while
+preserving automated regression checks and the fail-closed release boundary.
+
+## 2026-07-19 - Owner approves local-only OSF non-paper staging
+
+Decision: Keep OSF protocols, reports and research-package artefacts local. Do not
+upload, register, mutate or publish the private OSF project while paper publication
+is excluded. The pinned CLI, discovery and dry-run workflow remain available for a
+future explicit authorization.
+
+Evidence: User approval recorded in the Codex session; `data/derived/osf/sync_manifest.jsonl`,
+`docs/OSF_WORKFLOW.md` and the pinned `osf-cli-go v1.0.0` contract.
+
+Consequence: OSF remains technically prepared but externally unchanged and
+publication-readiness remains false.
+
+## 2026-07-19 - Owner approves local-only Hugging Face preparation
+
+Decision: Keep the Hugging Face dataset and Space candidate bundles local. Do not
+write either remote repository, correct Space metadata, publish the dataset or
+publish the Space. Retain the observed `MIT`/`Gradio` destination drift for a
+future separately authorized reconciliation.
+
+Evidence: User approval recorded in the Codex session; `docs/HUGGINGFACE_PUBLICATION.md`,
+`scripts/check_huggingface_bundle.py` and the destination monitor evidence.
+
+Consequence: Hugging Face remains technically prepared and fail-closed while no
+external destination is mutated.
+
+## 2026-07-19 - Owner approves local-only Zenodo archive
+
+Decision: Retain the verified local release bundle, archive and checksums, but do
+not deposit to Zenodo or mint a DOI. Evidence, source-licence, OSF and policy gates
+must pass before any external archival deposit.
+
+Evidence: User approval recorded in the Codex session; `data/derived/release_readiness/summary.json`,
+the Zenodo preflight evidence and the verified handoff manifest.
+
+Consequence: The release remains reproducible locally without creating an external
+archival or publication record.
+
+## 2026-07-19 - Owner approves fail-closed merge and release boundary
+
+Decision: Keep PR #464 open until required checks pass. Do not bypass review, merge,
+tag, sign, attest or publish a release while evidence, policy and source-licence
+gates remain unresolved. Treat the verified local handoff bundle as the current
+release artefact.
+
+Evidence: User approval recorded in the Codex session; PR #464 checks, release
+readiness summary and verified handoff manifest.
+
+Consequence: Repository automation may continue, but no remote merge or external
+release mutation is authorized by this decision.
+
+## 2026-07-19 - Owner approves historical MBS/PBS metadata and local-cache scope
+
+Decision: Approve tracking historical MBS/PBS catalogue metadata, URLs, release
+dates, checksums and acquisition attempts, and permit raw historical files only in
+ignored local storage. Parsing and publication remain blocked until each source's
+reuse terms are reviewed and recorded; PBS API refresh remains available through
+the existing credentialed runtime path.
+
+Evidence: User approval recorded in the Codex session; `data/derived/historical_sources/summary.json`,
+`data/derived/source_downloads/download_attempts.jsonl` and `docs/REVIEW_DECISIONS.md`.
+
+Consequence: Historical inventory and local acquisition work may proceed without
+implying redistribution rights, evidence readiness or temporal policy claims.
 
 ## 2026-07-19 - Refresh v113 post-merge preflight evidence
 

@@ -418,9 +418,24 @@ epics:
       - title: Validate human licence decisions against checksum-bound queue rows
         labels: ["type:publication", "type:review", "risk:licence", "phase:release-gate", "status:implemented"]
         status: implemented
+      - title: Generate grouped licence decision matrix linked to provenance and transformations
+        labels: ["type:publication", "type:provenance", "type:review", "risk:licence", "phase:release-gate", "status:implemented"]
+        status: implemented
+        acceptance:
+          - Group code, source and generated-artefact decisions without granting row-level approval
+          - Link each group to source identifiers, allowed and excluded fields, transformation process and provenance evidence
+          - Regenerate the machine-readable and reviewer-facing matrix deterministically in local and CI quality gates
       - title: Expand OSF protocols and report scaffolds with required sections
         labels: ["type:research", "type:osf", "status:implemented"]
         status: implemented
+      - title: Calculate mapping calibration sample size with documented power assumptions
+        labels: ["type:mapping", "type:research", "type:data-quality", "phase:release-gate", "status:implemented"]
+        status: implemented
+        acceptance:
+          - Implement reproducible confidence-interval and power-approximation calculations
+          - Include an exact one-sided binomial sensitivity calculation with achieved alpha and power
+          - Document estimands, alpha, power, precision, independence and holdout assumptions
+          - Generate tested sample-size scenarios and a stratified development/holdout recommendation
 
   - id: HANDOFF-018
     title: Final local continuation and GitHub Project handoff gates

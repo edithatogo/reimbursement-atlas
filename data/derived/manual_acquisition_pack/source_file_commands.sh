@@ -15,43 +15,55 @@ mkdir -p data/raw_live/au_mbs
 # Snapshot: reimbursement-atlas snapshot-local-file --source-version-id au_mbs_20260701_txt_pair --content-type text/plain data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT
 # Parse: # Bundle after both MBS TXT files are present: reimbursement-atlas reviewed-mbs-txt-pair-bundle data/raw_live/au_mbs/20260701_MBSONLINE_IMAP.TXT data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT --output-dir data/derived/reviewed_sources/au_mbs_20260701_txt_pair
 
-# step_003: MBS 2010 to 2019 archive downloads page
+# step_003: MBS 20260701 current-release XML
+# URL: https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/650f3eec0dfb990d3ca25692100069854/d4bd04ca56657072ca258df70023b066/$FILE/MBS-XML-20260701.XML
+mkdir -p data/raw_live/au_mbs
+# Snapshot: reimbursement-atlas snapshot-local-file --source-version-id au_mbs_20260701_xml --content-type application/xml data/raw_live/au_mbs/MBS-XML-20260701.XML
+# Parse: reimbursement-atlas parse-local-source --source-version-id au_mbs_20260701_xml data/raw_live/au_mbs/MBS-XML-20260701.XML --output-dir data/derived/reviewed_sources/au_mbs_20260701_xml
+
+# step_004: MBS 2010 to 2019 archive downloads page
 # URL: https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/Content/MBSOnline-2010
 mkdir -p data/raw_live/au_mbs
 # Snapshot: # Metadata-only record; review the landing page or endpoint before downloading.
 # Parse: # No parser runs for metadata-only landing/API records.
 
-# step_004: MBS 1989 to 2010 previous downloads page
+# step_005: MBS 1989 to 2010 previous downloads page
 # URL: https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/Content/Prev-Downloads
 mkdir -p data/raw_live/au_mbs
 # Snapshot: # Metadata-only record; review the landing page or endpoint before downloading.
 # Parse: # No parser runs for metadata-only landing/API records.
 
-# step_005: CMS 26CLABQ3 file page
+# step_006: CMS 26CLABQ3 file page
 # URL: https://www.cms.gov/medicare/payment/fee-schedules/clinical-laboratory-fee-schedule-clfs/files/26clabq3
 mkdir -p data/raw_live/us_cms_clfs
 # Snapshot: # Metadata-only record; review the landing page or endpoint before downloading.
 # Parse: # No parser runs for metadata-only landing/API records.
 
-# step_006: CMS 26CLABQ3 AMA-gated ZIP
+# step_007: CMS 26CLABQ3 AMA-gated ZIP
 # URL: https://www.cms.gov/license/ama?file=/files/zip/26clabq3.zip
 mkdir -p data/raw_live/us_cms_clfs
 # Snapshot: # Metadata-only record; review the landing page or endpoint before downloading.
 # Parse: # No parser runs for metadata-only landing/API records.
 
-# step_007: PBS public API v3 schedule and item endpoints
+# step_008: PBS public API v3 schedule and item endpoints
 # URL: https://data-api.health.gov.au/pbs/api/v3/schedules
 mkdir -p data/raw_live/au_pbs
 # Snapshot: # Metadata-only record; review the landing page or endpoint before downloading.
 # Parse: # No parser runs for metadata-only landing/API records.
 
-# step_008: CMS ASP July 2026 payment-limit files page
+# step_009: PBS API CSV files download page
+# URL: https://www.pbs.gov.au/info/browse/download
+mkdir -p data/raw_live/au_pbs
+# Snapshot: # Metadata-only record; review the landing page or endpoint before downloading.
+# Parse: # No parser runs for metadata-only landing/API records.
+
+# step_010: CMS ASP July 2026 payment-limit files page
 # URL: https://www.cms.gov/medicare/payment/part-b-drugs/asp-pricing-files
 mkdir -p data/raw_live/us_cms_asp
 # Snapshot: # Metadata-only record; review the landing page or endpoint before downloading.
 # Parse: # No parser runs for metadata-only landing/API records.
 
-# step_009: CMS PFS RVU26C relative value files page
+# step_011: CMS PFS RVU26C relative value files page
 # URL: https://www.cms.gov/medicare/payment/fee-schedules/physician/pfs-relative-value-files
 mkdir -p data/raw_live/us_cms_pfs
 # Snapshot: # Metadata-only record; review the landing page or endpoint before downloading.

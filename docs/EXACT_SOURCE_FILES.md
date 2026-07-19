@@ -28,6 +28,7 @@ flowchart LR
 
 | id | purpose |
 |---|---|
+| `au_mbs_20260701_xml` | Current MBS XML release, effective 1 July 2026; preferred native-format input for current-release parsing. |
 | `au_mbs_20260701_imap_txt` | Current MBS item-map TXT file. |
 | `au_mbs_20260701_desc_txt` | Current MBS descriptor TXT file. |
 | `au_mbs_2010_2019_downloads_page` | MBS archive index for historical releases from 2011 to 2019. |

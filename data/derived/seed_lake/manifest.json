@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 36,
-      "sha256": "ac3c5a96e7853dc60cd12010ec4fb59734a8c2ecc22245021c2d5cb8e81a21f4"
+      "sha256": "8dfac1215b04b5a47fb6b5cbe554d3e141650ab78197096e30a56d4490aa4f4e"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -368,8 +368,8 @@
       "jsonl_path": "source_download_attempts/source_download_attempts.jsonl",
       "name": "source_download_attempts",
       "parquet_path": "source_download_attempts/source_download_attempts.parquet",
-      "rows": 9,
-      "sha256": "b7769260afde39da0a0d7d3bd3fb290d7f1a76d50063e9530ad9028fc9625325"
+      "rows": 11,
+      "sha256": "657220aabd35d2930f38d8750649a917ea9a837c1d27a140750dcc1dac1c92e7"
     },
     {
       "csv_path": "source_content_validation/source_content_validation.csv",
@@ -392,8 +392,8 @@
       "jsonl_path": "github_project_items/github_project_items.jsonl",
       "name": "github_project_items",
       "parquet_path": "github_project_items/github_project_items.parquet",
-      "rows": 196,
-      "sha256": "0eabfc8a472580e1cdd7103ea2721362abeec46a86389d33b5f077e40b7d0afb"
+      "rows": 198,
+      "sha256": "de250164f880fc75719037fda8a2b8fb04a499a6ca0b51daea883fcfd8c569e5"
     },
     {
       "csv_path": "final_handoff_tasks/final_handoff_tasks.csv",
@@ -449,15 +449,15 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "428de683c771914e54a8469a64b9040680638d34d8ce299025b03640e8792601"
+      "sha256": "5d2217fd4ea28eee1b071573775cd45d65596f0cbb0e4c23af1a3a30fd688441"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
       "jsonl_path": "data_dictionary/data_dictionary.jsonl",
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
-      "rows": 184,
-      "sha256": "8116b303304f3e5541437f27b2210d8d185fa08af518721d8efaec52e7588e30"
+      "rows": 187,
+      "sha256": "f9c2778f0f9b386dc8e7a24aec9d17316451d4807a104edcf73f39cfdd4c0316"
     }
   ]
 }

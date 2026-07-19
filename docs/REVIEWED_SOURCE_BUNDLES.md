@@ -24,6 +24,23 @@ PYTHONPATH=src reimbursement-atlas reviewed-source-bundle \
 
 For real reviewed files, place the raw file under an ignored path such as `data/raw_live/au_pbs/` and run the same command against that path.
 
+## MBS XML-first current release
+
+For the current MBS release, prefer the provider's XML when it is available. The
+July 2026 XML is parsed into a derived-only bundle with the raw payload retained
+only under ignored local storage:
+
+```bash
+PYTHONPATH=src reimbursement-atlas reviewed-source-bundle \
+  --source-version-id au_mbs_20260701_xml \
+  --content-type application/xml \
+  data/raw_live/au_mbs/MBS-XML-20260701.XML
+```
+
+The tracked bundle records the source checksum, parser contract, transformation
+scope and output checksum. The TXT pair remains useful for historical/full-map
+coverage and is not a substitute for the XML current-release input.
+
 ## MBS TXT pair support
 
 MBS TXT validation uses a paired command because the item-map and descriptor files are separate:

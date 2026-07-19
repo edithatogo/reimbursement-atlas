@@ -7,28 +7,28 @@ than source payloads: it also includes project-owned metadata, governance and de
 may be included in a public package. The count must not be described as a count of raw or
 source-derived files.
 
-The queue is intentionally fail-closed:
+The queue is intentionally fail-closed and approval-neutral:
 
 - every regenerated row starts with `review_status: pending`;
 - generation cannot set `approved`, `publish_allowed`, or any equivalent decision;
 - approval requires a named human reviewer, review date, source terms, attribution,
-  redistribution decision, restrictions and evidence in `docs/REVIEW_DECISIONS.md`;
+  redistribution decision, restrictions and evidence in `data/licence_review/decisions.jsonl`;
 - raw source payloads and licence-gated descriptors remain excluded from public bundles.
 
 Run `pixi run licence-review-queue` after changing the publication manifest. Review the generated
-CSV/JSONL against the exact checksums, then record decisions in the human review table. A green
-software gate or a generated queue is not licence approval.
+CSV/JSONL against the exact checksums, then record decisions in the companion decision file. A
+green software gate or a generated queue is not licence approval.
 
 The generated `licence_review_batches.csv` groups the queue by licence gate and publication
 scope so a reviewer can plan work without opening every row first. The generated
 `reviewer_packet.md` records the required decision fields and review sequence. Both are handoff
  aids only; neither changes the pending state or permits publication.
 
-For machine-checkable decisions, add rows to the optional
+For machine-checkable decisions, record rows in the
 `data/licence_review/decisions.jsonl` companion file and run
 `pixi run licence-review-validate`. The validator checks queue checksums, repository-relative
-paths, decision identifiers and the required human evidence fields. An empty decisions file is
-valid and preserves the current pending state.
+paths, decision identifiers and the required human evidence fields. The generated queue remains
+pending when regenerated; the companion file is the authoritative checksum-bound decision record.
 
 The approval-neutral JSON Schema at `data/licence_review/decision.schema.json`
 can be used to check an individual JSONL object before the repository validator
