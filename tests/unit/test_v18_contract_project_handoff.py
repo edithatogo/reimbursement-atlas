@@ -60,7 +60,11 @@ def test_mbs_source_contract_passes_fixture() -> None:
 def test_source_contracts_use_reviewed_mbs_evidence_when_raw_is_absent(tmp_path: Path) -> None:
     rows = build_source_contract_validations(load_source_files(), raw_dir=tmp_path)
     assert {row.contract_status for row in rows} <= {"pass", "skipped"}
-    assert sum(row.contract_status == "pass" for row in rows) == 2
+    assert sum(row.contract_status == "pass" for row in rows) == 3
+    assert (
+        next(row for row in rows if row.source_file_id == "au_mbs_20260701_xml").contract_status
+        == "pass"
+    )
     assert any(row.contract_status == "skipped" for row in rows)
     paths = write_source_contract_validations(rows, output_dir=tmp_path / "contracts")
     assert all(path.exists() for path in paths)
