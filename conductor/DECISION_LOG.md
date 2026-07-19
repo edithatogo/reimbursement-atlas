@@ -1392,6 +1392,34 @@ security `29596744210` reported `blocked_permissions` for the default workflow t
 Consequence: The handoff is operationally current while all human-review and external-publication
 gates remain fail-closed.
 
+## 2026-07-19 - Owner approves bounded CMS derived-field scope
+
+Decision: Approve derived-only retention of permitted CMS numeric payment, RVU,
+locality, effective-date and source-version fields, with stable provenance. Exclude
+CPT/HCPCS descriptors, restricted crosswalks, raw files, headers, credentials,
+coverage conclusions and net-price claims. This does not authorize publication;
+exact source terms and checksum-bound release gates remain required.
+
+Evidence: User approval recorded in the Codex session; `docs/REVIEW_DECISIONS.md`,
+`docs/SOURCE_PROVENANCE_AND_TRANSFORMATIONS.md` and the CMS source-contract outputs.
+
+Consequence: CMS parsing and derived-field preparation may proceed within this
+boundary. Evidence, policy and external-publication readiness remain fail-closed.
+
+## 2026-07-19 - Owner approves historical MBS/PBS metadata and local-cache scope
+
+Decision: Approve tracking historical MBS/PBS catalogue metadata, URLs, release
+dates, checksums and acquisition attempts, and permit raw historical files only in
+ignored local storage. Parsing and publication remain blocked until each source's
+reuse terms are reviewed and recorded; PBS API refresh remains available through
+the existing credentialed runtime path.
+
+Evidence: User approval recorded in the Codex session; `data/derived/historical_sources/summary.json`,
+`data/derived/source_downloads/download_attempts.jsonl` and `docs/REVIEW_DECISIONS.md`.
+
+Consequence: Historical inventory and local acquisition work may proceed without
+implying redistribution rights, evidence readiness or temporal policy claims.
+
 ## 2026-07-19 - Refresh v113 post-merge preflight evidence
 
 Decision: Refresh the OSF registration packet and publication manifest after the merged
