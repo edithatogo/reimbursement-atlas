@@ -2,7 +2,9 @@
 
 Epic: `DATASET-CANDIDATES` — Additional dataset and country onboarding
 
-Labels: type:data-source, priority:must, phase:future
+Labels: type:data-source, priority:must, phase:future, status:planned
+
+Status: `planned`
 
 ## Background
 
