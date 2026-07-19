@@ -1375,3 +1375,21 @@ security `29596744210` reported `blocked_permissions` for the default workflow t
 
 Consequence: The handoff is operationally current while all human-review and external-publication
 gates remain fail-closed.
+
+## 2026-07-19 - Refresh v113 post-merge preflight evidence
+
+Decision: Refresh the OSF registration packet and publication manifest after the merged
+historical CLFS catalogue, while keeping all remote publication and destination metadata
+mutations disabled.
+
+Evidence: The official `osf-cli-go` `v1.0.0` contract passed when invoked explicitly from
+`/Users/doughnut/.local/bin/osf`. Citation, public documentation, dashboard route,
+policy-demonstrator, Zenodo metadata, Mojo parity and Hugging Face candidate checks passed.
+The Hugging Face dataset is aligned, but the Space still reports `license=mit` and
+`sdk=gradio` instead of governed `apache-2.0` and `static`; no mutation was attempted.
+The TypeScript canary remains blocked by `@astrojs/check@0.9.9` peer support
+`^5.0.0 || ^6.0.0`, and mapping/source-health evidence remains human-review gated.
+
+Consequence: Derived manifests now include the historical CLFS artefacts. OSF/Hugging
+Face publication, licence review, mapping adjudication and policy-claim readiness remain
+fail-closed and require their accountable external decisions.
