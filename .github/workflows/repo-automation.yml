@@ -34,6 +34,7 @@ jobs:
           pixi run source-validation
           pixi run source-contracts
           pixi run historical-sources
+          pixi run local-quality
           pixi run project-issues
           pixi run github-project-export
           pixi run final-handoff
