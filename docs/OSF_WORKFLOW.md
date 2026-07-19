@@ -1,8 +1,8 @@
 # OSF workflow
 
 Release snapshot described by this workflow record is
-`4693b32113b97868083ecf86d9fd8ae09dfa2e1b` (2026-07-18). The checked-out `main` tip may be
-newer; no OSF monitor evidence is implied for a newer commit.
+`89127e48ba0035a330aafa950c1bed0476ad0077` (2026-07-19). Regenerate this record after any
+further merge; no OSF monitor evidence is implied for a newer commit.
 The latest merged-main monitor refresh is run `29595536363`. Pinned
 `osf-cli-go v1.0.0` discovery and the component plan passed; provisioning,
 registration, upload and publication were skipped. The private

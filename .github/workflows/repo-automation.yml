@@ -34,10 +34,10 @@ jobs:
           pixi run source-validation
           pixi run source-contracts
           pixi run historical-sources
+          pixi run local-quality
           pixi run project-issues
           pixi run github-project-export
           pixi run final-handoff
-          pixi run dashboard-status
           pixi run protocol-status
           pixi run roadmap-linkages
           pixi run data-quality
@@ -45,6 +45,7 @@ jobs:
           pixi run evidence-readiness
           pixi run source-drift
           pixi run release-readiness || true
+          pixi run dashboard-status
           pixi run research-package
           pixi run licence-review-queue
           pixi run licence-review-validate

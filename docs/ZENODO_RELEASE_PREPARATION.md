@@ -1,8 +1,8 @@
 # Zenodo release preparation
 
 Release snapshot described by this preflight is
-`4693b32113b97868083ecf86d9fd8ae09dfa2e1b` (2026-07-18). The checked-out `main` tip may be
-newer; no Zenodo evidence is implied for a newer commit.
+`89127e48ba0035a330aafa950c1bed0476ad0077` (2026-07-19). Regenerate this preflight after any
+further merge; no Zenodo evidence is implied for a newer commit.
 The latest merged-main preflight is run `29595536320`. Metadata and
 repository-readiness validation passed; no DOI was created and no Zenodo deposit
 or external mutation occurred. Deposition remains gated on human licence,

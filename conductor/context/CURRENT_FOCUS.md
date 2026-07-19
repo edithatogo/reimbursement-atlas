@@ -1,10 +1,10 @@
 # Current focus
 
-## Release snapshot state (2026-07-18)
+## Release snapshot state (2026-07-19)
 
-This focus record describes release snapshot `4693b32113b97868083ecf86d9fd8ae09dfa2e1b`.
-The checked-out `main` tip may be newer. Repository release
-readiness is green at 36/36 gates with zero required blockers. The historical
+This focus record describes current merged `main` snapshot
+`89127e48ba0035a330aafa950c1bed0476ad0077`. Repository release readiness must be
+regenerated after any further merge. The historical
 MBS inventory and target-level review packet are implemented, but all 343
 historical targets remain `pending_human_review` and no raw historical payloads
 are tracked. Current remaining work is human or external: source/licence and
@@ -22,7 +22,8 @@ authoritative for the current state.
 
 ## 2026-07-18 v200 current-main external refresh
 
-Merged `main` is `edc29a5`. Non-mutating monitors completed on this commit: OSF discovery
+Merged `main` is `89127e4`. Non-mutating monitors completed on the preceding monitor snapshot;
+the PBS fallback implementation was merged in PR #457. OSF discovery
 `29596947892`, Zenodo preflight `29596947909`, source health `29596947921`, and Hugging Face
 destination metadata `29596947958`. OSF, Zenodo and source health passed operationally; the
 Hugging Face Space remains drifted (`mit`/`gradio` versus governed `apache-2.0`/`static`) and
