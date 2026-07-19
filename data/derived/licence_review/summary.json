@@ -2,9 +2,9 @@
   "all_approved": false,
   "approval_mutation_allowed": false,
   "approved_count": 0,
-  "artifact_count": 168,
+  "artifact_count": 169,
   "blocked_count": 0,
-  "pending_count": 168,
-  "review_required_count": 168,
+  "pending_count": 169,
+  "review_required_count": 169,
   "schema_version": "licence-review-queue-v1"
 }
