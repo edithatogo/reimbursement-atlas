@@ -91,6 +91,12 @@ DEFAULT_PUBLICATION_PATHS = (
     Path("data/derived/historical_sources/historical_source_downloads.jsonl"),
     Path("data/derived/historical_sources/historical_source_downloads.csv"),
     Path("data/derived/historical_sources/historical_source_downloads_summary.json"),
+    Path("data/derived/historical_sources/historical_source_catalog.jsonl"),
+    Path("data/derived/historical_sources/family_archive_v2/historical_source_downloads.jsonl"),
+    Path("data/derived/historical_sources/family_archive_v2/historical_source_downloads.csv"),
+    Path(
+        "data/derived/historical_sources/family_archive_v2/historical_source_downloads_summary.json"
+    ),
     Path("data/derived/processes/historical_source_transformation.bpmn"),
     Path("data/derived/vertical_slice/schedule_items.jsonl"),
     Path("data/derived/vertical_slice/schedule_items.csv"),

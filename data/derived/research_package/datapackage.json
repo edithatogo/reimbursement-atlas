@@ -605,6 +605,51 @@
       "schema": {}
     },
     {
+      "bytes": 201359,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "jsonl",
+      "hash": "9562b4b5c84036c924710821c91adfc55ce484700194065d4283294d9e06c88f",
+      "mediatype": "application/json",
+      "name": "historical-source-catalog",
+      "path": "data/derived/historical_sources/historical_source_catalog.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 119961,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "jsonl",
+      "hash": "e55eb037daca2b5f9826e9c7b47c125a4701ec9bbc08c4088cc1f2be7f571769",
+      "mediatype": "application/json",
+      "name": "historical-source-downloads",
+      "path": "data/derived/historical_sources/family_archive_v2/historical_source_downloads.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 85786,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "csv",
+      "hash": "16711e91caa92884c741312ccbd3695bf42a79f54a120c6fdf5683fbcbfb93f1",
+      "mediatype": "text/csv",
+      "name": "historical-source-downloads",
+      "path": "data/derived/historical_sources/family_archive_v2/historical_source_downloads.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 387,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "json",
+      "hash": "2b19a9ae5c5a8a1bd0f590744063bbf51c52b1b88e40dffd7c1574b3175b30b7",
+      "mediatype": "application/json",
+      "name": "historical-source-downloads-summary",
+      "path": "data/derived/historical_sources/family_archive_v2/historical_source_downloads_summary.json",
+      "schema": {}
+    },
+    {
       "bytes": 9174,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
@@ -1298,7 +1343,7 @@
       "bytes": 7725,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "eff4dc5fa1d3278b9a25b8579f2e44fc92d9fad6af67fb2f788e732b047c69a5",
+      "hash": "c731aa690ee1d604fd9879aa715a6a5de89c4ca8a2b91ff706e99c553e470fea",
       "mediatype": "application/json",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.jsonl",
@@ -1308,7 +1353,7 @@
       "bytes": 4511,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "b810e094068a39eebb8d3921096010cff126fba35216d4e66f7c131925f80fb4",
+      "hash": "a96e08050b4cbed833f6d31aa71a060cfa7a5958c4dd0fde924d57ea8cac5519",
       "mediatype": "text/csv",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.csv",
@@ -1465,20 +1510,20 @@
       }
     },
     {
-      "bytes": 142623,
+      "bytes": 144920,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "c2ddb57f89d28d4ea04bb0d4dae9044142e1b58de92639b0f470dc010d64851b",
+      "hash": "96437c829f7c2e550e7ca6fbc7a41d2797d42588ee31061d99343a5792537548",
       "mediatype": "application/json",
       "name": "github-project-items",
       "path": "data/derived/github_project/github_project_items.jsonl",
       "schema": {}
     },
     {
-      "bytes": 106115,
+      "bytes": 107841,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "ce1712c721eae29eac1ba5bc3112c3f9ae489dc7c66d3e033a64965ad69ab802",
+      "hash": "eb1769f99edda77e58d11bdc6c7497fc2f2b5dbc3d1617bf0bd8e82a846a23d5",
       "mediatype": "text/csv",
       "name": "github-project-items",
       "path": "data/derived/github_project/github_project_items.csv",
@@ -1693,7 +1738,7 @@
       "bytes": 6102,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "09362cc5265defc5eba997ae8177f0572e7dce21e64265de458d4fe0de582590",
+      "hash": "ea71e4c48cbbfa5338b25ec5dd4e31c96e8e4a515df8e40ccc8b8f9b589bdff6",
       "mediatype": "application/json",
       "name": "source-drift-report",
       "path": "data/derived/source_drift/source_drift_report.jsonl",
@@ -1703,7 +1748,7 @@
       "bytes": 3687,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "a6b21c31866301dfdf17d55ee9f8c6d0489e93ee161bdcc469d896f17c815390",
+      "hash": "5f066580bbb085c78e21d3480160a99fd72098e6a6d6972e4841bae02fc6bf91",
       "mediatype": "text/csv",
       "name": "source-drift-report",
       "path": "data/derived/source_drift/source_drift_report.csv",
@@ -1725,20 +1770,20 @@
       "schema": {}
     },
     {
-      "bytes": 105305,
+      "bytes": 108067,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "4406469f03ef82b050576ddb345a39817c00d7a518b85d6dedfac8940df044a5",
+      "hash": "a964189e382a8445827febeb3d7bd4c9807c94e47c984bada22aed9732680284",
       "mediatype": "application/json",
       "name": "data-dictionary",
       "path": "data/derived/data_dictionary/data_dictionary.jsonl",
       "schema": {}
     },
     {
-      "bytes": 79869,
+      "bytes": 82087,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "b57d5bb00f62c3a27e060bd53b649e23d3daa6a894885ba5b5745bfb17a453e6",
+      "hash": "558d0da72a83d57222a4aa615b392c03bba1f9393635c615b245d70b9ecbd6c4",
       "mediatype": "text/csv",
       "name": "data-dictionary",
       "path": "data/derived/data_dictionary/data_dictionary.csv",
@@ -1753,7 +1798,7 @@
       "bytes": 122,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "json",
-      "hash": "6445299178158f813043814622876bdec5652371a50fc22eaa627201a220824c",
+      "hash": "1fc1832bdab162fba851aa1487e6ea5dc24142d0d95edb75a0111c3f171d87e1",
       "mediatype": "application/json",
       "name": "summary",
       "path": "data/derived/data_dictionary/summary.json",

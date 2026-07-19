@@ -83,3 +83,10 @@ tracks:
     workstream: data
     goal: "Archive all discoverable historical source payloads locally, bind each to provenance/licence/citation metadata, and describe transformations in BPMN 2.0 without publishing unreviewed raw data."
     issue: "Generated from the historical-source archival and reproducibility workstream."
+  - id: track_historical_source_family_expansion
+    title: "Historical source family expansion"
+    priority: must
+    phase: implementation
+    workstream: data
+    goal: "Discover and locally archive public historical PBS, CMS PFS/ASP and NHS genomic targets while preserving explicit metadata-only and licence-gated boundaries."
+    issue: "Generated from the multi-family historical source catalog and public-only acquisition workstream."
