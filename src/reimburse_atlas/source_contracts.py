@@ -15,6 +15,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Literal
 
+from defusedxml import ElementTree as ET
+
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.models import SourceContractValidationRecord, SourceFileRecord
 from reimburse_atlas.registry import project_root
@@ -37,6 +39,11 @@ class SourceContract:
 
 
 CONTRACTS: dict[str, SourceContract] = {
+    "au_mbs_20260701_xml": SourceContract(
+        name="MBS current-release XML contract",
+        expected_columns=("itemnum", "category", "description", "feestartdate", "schedulefee"),
+        required_markers=("mbs_xml", "data"),
+    ),
     "au_mbs_20260701_imap_txt": SourceContract(
         name="MBS item-map TXT contract",
         expected_columns=(
@@ -228,6 +235,7 @@ def _validate_contract(
         if prefer_reviewed_bundle or record.id in {
             "au_mbs_20260701_imap_txt",
             "au_mbs_20260701_desc_txt",
+            "au_mbs_20260701_xml",
         }:
             reviewed = _reviewed_bundle_contract_evidence(record, reviewed_bundle_dir)
             if reviewed is not None:
@@ -251,7 +259,7 @@ def _reviewed_bundle_contract_evidence(
     """Use tracked contract observations when ignored raw files are absent."""
     if not bundle_dir.is_dir():
         return None
-    for path in sorted(bundle_dir.glob("bundle_*/source_contract_validation.jsonl")):
+    for path in sorted(bundle_dir.glob("*/source_contract_validation.jsonl")):
         try:
             rows = [
                 SourceContractValidationRecord.model_validate(json.loads(line))
@@ -292,6 +300,8 @@ def _validate_file(
         )
     if path.suffix.lower() == ".zip":
         return _validate_zip(record, contract, path, byte_size)
+    if path.suffix.lower() == ".xml":
+        return _validate_xml(record, contract, path, byte_size)
     observed_columns = _observed_columns(path, contract.delimiter_candidates)
     observed_markers = _observed_markers(path, _marker_candidates(contract))
     missing_columns = _missing_columns(contract, observed_columns)
@@ -318,6 +328,59 @@ def _validate_file(
             "Proceed to reviewed-source bundle parsing."
             if status == "pass"
             else "Inspect source layout and update the contract or parser before parsing."
+        ),
+    )
+
+
+def _validate_xml(
+    record: SourceFileRecord,
+    contract: SourceContract,
+    path: Path,
+    byte_size: int,
+) -> SourceContractValidationRecord:
+    """Validate XML structure and required fields without retaining raw content."""
+    try:
+        root = ET.parse(path).getroot()
+        assert root is not None
+    except (ET.ParseError, OSError) as exc:
+        return _make_record(
+            record,
+            contract,
+            status="fail",
+            byte_size=byte_size,
+            issues=(f"XML parsing failed: {type(exc).__name__}",),
+            recommended_action=(
+                "Reacquire the XML release and validate its structure before parsing."
+            ),
+        )
+
+    tags = {element.tag.rsplit("}", 1)[-1].lower() for element in root.iter()}
+    observed_markers = tuple(
+        marker
+        for marker in _marker_candidates(contract)
+        if marker.lower() in tags or marker.lower() == root.tag.lower()
+    )
+    observed_columns = tuple(column for column in contract.expected_columns if column in tags)
+    missing_columns = tuple(column for column in contract.expected_columns if column not in tags)
+    missing_markers = _missing_markers(contract, observed_markers)
+    issues = tuple(
+        [f"missing expected XML fields: {', '.join(missing_columns)}"] if missing_columns else []
+    ) + tuple(
+        [f"missing required XML markers: {', '.join(missing_markers)}"] if missing_markers else []
+    )
+    status: SourceContractStatus = "pass" if not issues else "warn"
+    return _make_record(
+        record,
+        contract,
+        status=status,
+        observed_columns=observed_columns,
+        observed_markers=observed_markers,
+        byte_size=byte_size,
+        issues=issues,
+        recommended_action=(
+            "Proceed to reviewed-source bundle parsing."
+            if status == "pass"
+            else "Inspect the XML schema and update the contract or parser before parsing."
         ),
     )
 

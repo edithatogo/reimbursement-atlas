@@ -219,6 +219,22 @@ publication workflows remain fail-closed and no raw or restricted source data is
 
 ## 2026-07-16 — Redacted PBS multi-endpoint acquisition evidence
 
+## 2026-07-19 — Human source-scope decisions and XML-first MBS current release
+
+Decision: approve the proposed derived-field scopes for MBS, CMS CLFS, CMS PFS, CMS ASP, PBS,
+historical MBS/PBS metadata and the mapping/review programme. Use the exact MBS July 2026 XML
+release for current-release parsing and retain the TXT pair for historical/full-map coverage.
+
+Rationale: the official July 2026 MBS page publishes an authoritative XML release while the
+item-map and descriptor TXT files serve a different historical/full-map purpose. The real XML
+`Data` shape is now parser-tested and the exact URL, checksum, effective date and transformation
+are registered. These decisions approve scope, not unrestricted raw redistribution or evidence
+claims; checksum-bound decisions remain required for each acquired candidate.
+
+Consequence: provenance and transformation requirements are documented in
+`docs/SOURCE_PROVENANCE_AND_TRANSFORMATIONS.md`. OSF, Hugging Face and Zenodo remain separate
+publication mutations gated by their respective workflows and final readiness checks.
+
 Decision: Record local PBS API acquisition evidence as a separate metadata-only artefact rather
 than extending the source registry with a stale, schedule-specific raw endpoint.
 

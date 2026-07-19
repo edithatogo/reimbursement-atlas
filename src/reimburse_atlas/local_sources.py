@@ -143,7 +143,21 @@ def parse_reviewed_local_file(
     if parser is None:
         msg = f"No parser registered for source id: {source_id}"
         raise KeyError(msg)
-    records = parser(path.expanduser().resolve())
+    resolved = path.expanduser().resolve()
+    if source_id == "au_mbs" and source_version_id != "au_mbs_seed_fixture":
+        versions = {version.id: version for version in load_source_versions()}
+        version = versions.get(source_version_id)
+        if version is None:
+            msg = f"Unknown source version id: {source_version_id}"
+            raise KeyError(msg)
+        records = parse_mbs_xml(
+            resolved,
+            source_version=source_version_id,
+            retrieved_at=version.retrieved_at,
+            source_url=version.source_url,
+        )
+    else:
+        records = parser(resolved)
     record_type = _record_type(records)
     output_dir.mkdir(parents=True, exist_ok=True)
     rows = pydantic_rows(list(records))
@@ -195,7 +209,7 @@ def build_reviewed_source_bundle(
     )
     bundle_dir = output_dir / snapshot.id
     bundle_dir.mkdir(parents=True, exist_ok=True)
-    bundle_snapshot = _redact_snapshot_local_path(snapshot)
+    bundle_snapshot = redact_snapshot_local_path(snapshot)
     snapshot_jsonl, _snapshot_csv = write_snapshot_records([bundle_snapshot], bundle_dir)
     parse_result = parse_reviewed_local_file(
         source_version_id=source_version_id,
@@ -258,7 +272,7 @@ def build_reviewed_source_bundle(
     )
 
 
-def _redact_snapshot_local_path(snapshot: SourceSnapshotRecord) -> SourceSnapshotRecord:
+def redact_snapshot_local_path(snapshot: SourceSnapshotRecord) -> SourceSnapshotRecord:
     """Return a bundle-safe snapshot record without private local raw paths."""
     return snapshot.model_copy(
         update={
@@ -377,8 +391,8 @@ def build_mbs_txt_pair_bundle(
     bundle_dir.mkdir(parents=True, exist_ok=True)
     snapshot_jsonl, _snapshot_csv = write_snapshot_records(
         [
-            _redact_snapshot_local_path(item_map_snapshot),
-            _redact_snapshot_local_path(descriptor_snapshot),
+            redact_snapshot_local_path(item_map_snapshot),
+            redact_snapshot_local_path(descriptor_snapshot),
         ],
         bundle_dir,
     )

@@ -48,7 +48,7 @@ def parse_date(value: object | None) -> date | None:
     text = clean_text(value)
     if text is None:
         return None
-    for fmt in ("%Y-%m-%d", "%d/%m/%Y", "%d-%m-%Y"):
+    for fmt in ("%Y-%m-%d", "%d/%m/%Y", "%d-%m-%Y", "%d.%m.%Y"):
         try:
             return datetime.strptime(text, fmt).date()  # noqa: DTZ007
         except ValueError:

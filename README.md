@@ -6,7 +6,12 @@
 
 A design-first repository for comparing public reimbursement schedules across US CMS, Australian MBS/PBS, and other public billing, tariff, drug, diagnostic, hospital and coverage-decision systems.
 
-This repository has moved from a design scaffold into a first executable, no-network vertical slice. It defines the context-management layer, policy requirements, source registry, analysis catalogue, ontology strategy, test strategy, dashboard architecture and automation plan, and now includes parser prototypes, readiness tables, reviewed-source bundle tooling, redacted MBS TXT-pair bundle support, publication manifests and generated vertical-slice artefacts.
+This repository has moved from a design scaffold into an executable, provenance-first vertical
+slice. It defines the context-management layer, policy requirements, source registry, analysis
+catalogue, ontology strategy, test strategy, dashboard architecture and automation plan, and now
+includes reviewed-source bundle tooling, a real MBS July 2026 XML parser path, redacted MBS TXT-pair
+support for historical/full-map workflows, publication manifests and generated vertical-slice
+artefacts.
 
 ## Current public status
 
@@ -19,6 +24,8 @@ publication remain explicit gates. See [`apps/dashboard/public/status.json`](app
 for the machine-readable status contract and [`CITATION.cff`](CITATION.cff) for citation metadata.
 Human and external release decisions are tracked in [`docs/REVIEW_DECISIONS.md`](docs/REVIEW_DECISIONS.md).
 Consumers can verify tagged release provenance using [`docs/RELEASE_VERIFICATION.md`](docs/RELEASE_VERIFICATION.md).
+Source-level provenance, licensing boundaries and transformations are defined in
+[`docs/SOURCE_PROVENANCE_AND_TRANSFORMATIONS.md`](docs/SOURCE_PROVENANCE_AND_TRANSFORMATIONS.md).
 
 Software and project-owned documentation are licensed under Apache-2.0. Underlying source data
 retain their own provider licences and are not relicensed by this repository; CMS/AMA terms apply
@@ -82,6 +89,8 @@ The atlas is designed to answer questions like:
 - `data/seed/source_acquisition_plan.*` and `data/seed/ingestion_readiness.*`: licence-gated acquisition/readiness tables.
 - `data/derived/vertical_slice/*`: generated no-network parser/crosswalk/policy-signal demonstration artefacts.
 - `data/seed/source_snapshots.*`: checksum/provenance records for committed synthetic fixtures.
+- `data/derived/reviewed_source_bundles/*`: checksum-bound, derived-only live-source candidates;
+  raw payloads remain in ignored local storage.
 - `data/derived/seed_lake/*`: local JSONL/CSV lake materialisation and manifest.
 - `data/derived/publication_manifest.json`: candidate public/Hugging Face dataset publication manifest.
 - `data/derived/toolchain_report.*`: local installed-toolchain availability report.

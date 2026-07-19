@@ -1,4 +1,17 @@
-# MBS reviewed TXT-pair bundle
+# MBS reviewed-source bundles
+
+The July 2026 MBS downloads page publishes two complementary machine-readable forms:
+
+- `MBS-XML-20260701.XML` is the authoritative current-release XML file and is the preferred
+  input for current-release parsing.
+- `20260701_MBSONLINE_IMAP.TXT` plus `20260701_MBSONLINE_DESC.TXT` are the historical item-map
+  and descriptor feeds and remain useful for complete-map and historical workflows.
+
+The repository previously used the TXT pair for the first live validation because that was the
+available historical source record. The XML parser now supports the real `Data` record shape;
+the two paths are retained because they answer different reproducibility questions. Every bundle
+must record the exact source URL, release/effective date, retrieval timestamp, byte count,
+SHA-256, parser version and field transformation.
 
 The MBS July 2026 historical TXT workflow is a **two-file acquisition**:
 

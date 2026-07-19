@@ -4,11 +4,16 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+from pydantic import HttpUrl
+
+from reimburse_atlas import local_sources
 from reimburse_atlas.local_sources import (
     parse_reviewed_local_file,
     snapshot_reviewed_local_file,
     version_source_id,
 )
+from reimburse_atlas.models import SourceVersionRecord
 
 
 def test_version_source_id_resolves_registered_seed_version() -> None:
@@ -43,3 +48,32 @@ def test_parse_reviewed_local_file(repo_root: Path, tmp_path: Path) -> None:
     assert result.record_count == 2
     assert result.jsonl_path.exists()
     assert result.csv_path.exists()
+
+
+def test_parse_reviewed_local_file_reports_unknown_mbs_version(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    """Unknown MBS versions should raise a useful error, not StopIteration."""
+    version = SourceVersionRecord(
+        id="au_mbs_missing",
+        source_id="au_mbs",
+        version_label="test",
+        source_url=HttpUrl("https://example.com/mbs.xml"),
+        format="xml",
+        parser_status="validated",
+        notes="test",
+    )
+    calls = 0
+
+    def versions() -> list[SourceVersionRecord]:
+        nonlocal calls
+        calls += 1
+        return [version] if calls == 1 else []
+
+    monkeypatch.setattr(local_sources, "load_source_versions", versions)
+    with pytest.raises(KeyError, match="Unknown source version id"):
+        parse_reviewed_local_file(
+            source_version_id=version.id,
+            path=tmp_path / "missing.xml",
+            output_dir=tmp_path / "output",
+        )

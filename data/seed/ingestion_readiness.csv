@@ -8,6 +8,7 @@ au_pbs,PbsFixtureAdapter -> future live PBS API/CSV adapter,2,licence_gate;live_
 us_cms_pfs,planned CMS PFS RVU/fee-schedule adapter,3,licence_gate;live_source_shape_unverified;parser_not_implemented,implement parser contract and tiny fixture
 us_cms_asp,planned CMS ASP drug-pricing adapter,3,licence_gate;live_source_shape_unverified;parser_not_implemented,implement parser contract and tiny fixture
 au_mbs,MbsXmlFixtureAdapter -> future live MBS XML adapter,1,licence_gate,promote fixture parser to live-source prototype
+au_mbs,MbsXmlFixtureAdapter -> future live MBS XML adapter,1,licence_gate,promote fixture parser to live-source prototype
 us_cms_clfs,CmsClfsFixtureAdapter -> future live CMS CLFS CSV adapter,0,none,promote fixture parser to live-source prototype
 au_pbs,PbsFixtureAdapter -> future live PBS API/CSV adapter,1,licence_gate,promote fixture parser to live-source prototype
 us_cms_asp,planned CMS ASP drug-pricing adapter,2,licence_gate;parser_not_implemented,implement parser contract and tiny fixture

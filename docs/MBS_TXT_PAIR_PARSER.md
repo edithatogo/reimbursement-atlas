@@ -2,7 +2,9 @@
 
 Date: 2026-07-04
 
-MBS Online currently exposes item-map and item-descriptor TXT files in addition to XML release pages. The repo now includes a parser for this two-file pattern.
+MBS Online currently exposes an XML release for current effective dates and item-map and
+item-descriptor TXT files for historical/full-map workflows. This parser is specifically for
+the latter pair; use `parse_mbs_xml` for the current XML release.
 
 ## Parser
 
@@ -48,4 +50,3 @@ PYTHONPATH=src reimbursement-atlas reviewed-mbs-txt-pair-bundle \
   data/raw_live/au_mbs/20260701_MBSONLINE_DESC.TXT \
   --output-dir data/derived/reviewed_source_bundles
 ```
-
