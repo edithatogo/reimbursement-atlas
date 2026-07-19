@@ -20,6 +20,16 @@ The repo is now in the reviewed-source preparation and mapping-workbench phase. 
 sections below are retained as an audit log; this header and generated readiness outputs are
 authoritative for the current state.
 
+## 2026-07-19 v113 post-merge preflight refresh
+
+The merged v112 handoff was rechecked without remote mutation. The official pinned OSF
+CLI `v1.0.0` contract passes from an explicit user-local binary. Citation, public-docs,
+dashboard-route, policy-demonstrator, Zenodo, Mojo and Hugging Face candidate checks pass.
+The OSF and publication manifests were regenerated for the 316-record historical source
+catalogue. Hugging Face Space metadata remains drifted (`mit`/`gradio` versus governed
+`apache-2.0`/`static`), TypeScript 7 remains blocked by the checker peer range, and source
+health/mapping/licence/research review gates remain fail-closed.
+
 ## 2026-07-18 v200 current-main external refresh
 
 Merged `main` is `89127e4`. Non-mutating monitors completed on the preceding monitor snapshot;
