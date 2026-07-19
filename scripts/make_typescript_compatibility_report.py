@@ -45,7 +45,7 @@ def _peer_supports_typescript7(peer_range: str) -> bool:
     return any(token in normalised for token in ("^7", "~7", "7.x", "7.*"))
 
 
-def build_report(  # noqa: PLR0914 - fields mirror the compatibility contract
+def build_report(  # ruff:ignore[too-many-locals] - fields mirror the compatibility contract
     root: Path | None = None,
     *,
     npm_view: NpmView | None = None,

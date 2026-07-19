@@ -64,7 +64,7 @@ def write_source_content_validations(
     return jsonl_path, csv_path, summary_path
 
 
-def _validate_one(  # noqa: PLR0912
+def _validate_one(  # ruff:ignore[too-many-branches]
     record: SourceFileRecord,
     raw_dir: Path,
     reviewed_bundle_dir: Path,

@@ -1,7 +1,7 @@
 """Generate an auditable sample-size calculation for mapping calibration."""
 
 # The report contains intentionally readable assumptions and formula descriptions.
-# ruff: noqa: E501, EM101, TRY003
+# ruff:file-ignore[line-too-long, raw-string-in-exception, raise-vanilla-args]
 
 from __future__ import annotations
 

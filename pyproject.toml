@@ -45,7 +45,7 @@ mcp = [
 ]
 dev = [
   "basedpyright>=1.35.0",
-  "ruff>=0.15.21",
+  "ruff==0.15.22",
   "pytest>=9.0.0",
   "pytest-cov>=7.0.0",
   "pytest-xdist>=3.8.0",
@@ -82,7 +82,7 @@ platforms = ["osx-arm64", "linux-64", "linux-aarch64"]
 python = ">=3.14"
 setuptools = ">=83.0.0"
 uv = ">=0.11.0"
-ruff = ">=0.15.21"
+ruff = "==0.15.22"
 basedpyright = ">=1.35.0"
 pytest = ">=9.0.0"
 pytest-cov = ">=7.0.0"
@@ -237,52 +237,52 @@ extend-exclude = [
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
-  "COM812",
-  "ISC001",
-  "D203",
-  "D213",
-  "T201",
-  "S101",
-  "FBT001",
-  "FBT002",
-  "PLR0913",
-  "PLR0917",
-  "TD002",
-  "TD003",
-  "FIX002",
-  "CPY001",
-  "TC001",
-  "TC002",
-  "TC003",
-  "DOC201",
-  "DOC501",
-  "S603",
-  "S607",
-  "INP001",
-  "S404",
-  "S405",
-  "S314",
-  "N817",
-  "PLR2004",
-  "ANN401",
-  "PLC0415",
-  "B008",
-  "PLC1901",
-  "C901",
-  "PERF401",
-  "PLW0108",
-  "UP046",
-  "UP047",
-  "PLR6201",
-  "S608",
+  "missing-trailing-comma",
+  "single-line-implicit-string-concatenation",
+  "incorrect-blank-line-before-class",
+  "multi-line-summary-second-line",
+  "print",
+  "assert",
+  "boolean-type-hint-positional-argument",
+  "boolean-default-value-positional-argument",
+  "too-many-arguments",
+  "too-many-positional-arguments",
+  "missing-todo-author",
+  "missing-todo-link",
+  "line-contains-todo",
+  "missing-copyright-notice",
+  "typing-only-first-party-import",
+  "typing-only-third-party-import",
+  "typing-only-standard-library-import",
+  "docstring-missing-returns",
+  "docstring-missing-exception",
+  "subprocess-without-shell-equals-true",
+  "start-process-with-partial-path",
+  "implicit-namespace-package",
+  "suspicious-subprocess-import",
+  "suspicious-xml-etree-import",
+  "suspicious-xml-element-tree-usage",
+  "camelcase-imported-as-acronym",
+  "magic-value-comparison",
+  "any-type",
+  "import-outside-top-level",
+  "function-call-in-default-argument",
+  "compare-to-empty-string",
+  "complex-structure",
+  "manual-list-comprehension",
+  "unnecessary-lambda",
+  "non-pep695-generic-class",
+  "non-pep695-generic-function",
+  "literal-membership",
+  "hardcoded-sql-expression",
 ]
 
-unfixable = ["ERA001"]
+unfixable = ["commented-out-code"]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/**/*.py" = ["ANN", "D", "S101", "PLR2004", "PLR0133", "RUF069"]
-"scripts/**/*.py" = ["T201"]
-"src/reimburse_atlas/cli.py" = ["T201", "PLR0914"]
+"tests/**/*.py" = ["ANN", "D", "assert", "magic-value-comparison", "comparison-of-constant", "float-equality-comparison"]
+"scripts/**/*.py" = ["print"]
+"src/reimburse_atlas/cli.py" = ["print", "too-many-locals"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"

@@ -131,7 +131,7 @@ def _safe_table_name(name: str) -> str:
     return name
 
 
-def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:  # noqa: PLR0914
+def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:  # ruff:ignore[too-many-locals]
     """Materialise seed registries into JSONL/CSV and optional analytical formats."""
     root = project_root()
     base = output_dir or root / "data" / "derived" / "seed_lake"

@@ -120,7 +120,7 @@ def normalise_body(value: Any) -> str:
     return value.rstrip() if isinstance(value, str) else ""
 
 
-def sync_project(  # noqa: PLR0912,PLR0914,PLR0915 - explicit sync state machine.
+def sync_project(  # ruff:ignore[too-many-branches, too-many-locals, too-many-statements] - explicit sync state machine.
     *,
     root: Path,
     repository: str,

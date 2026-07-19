@@ -46,7 +46,7 @@ class ActionPinResolutionRecord:
         return asdict(self)
 
 
-def resolve_action_pin(  # noqa: PLR0911
+def resolve_action_pin(  # ruff:ignore[too-many-return-statements]
     record: WorkflowUseRecord,
     *,
     timeout_seconds: int = 8,

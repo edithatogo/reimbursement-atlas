@@ -20,7 +20,7 @@ from scripts.create_github_project_items import (
     render_issue,
 )
 from scripts.sync_github_project import (
-    _run_gh,  # noqa: PLC2701 - exercise the bounded CLI retry boundary directly.
+    _run_gh,  # ruff:ignore[import-private-name] - exercise the bounded CLI retry boundary directly.
     label_names,
     load_issue_drafts,
     normalise_body,

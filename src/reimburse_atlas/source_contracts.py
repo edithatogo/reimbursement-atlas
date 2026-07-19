@@ -92,7 +92,7 @@ CONTRACTS: dict[str, SourceContract] = {
             ("pbs_item_code", "drug_name", "effective_date"),
         ),
         acceptable_marker_sets=(("pbs", "drug", "schedule"), ("pbs", "drug", "effective")),
-        skip_reason="Documentation/API endpoint record; validate a reviewed CSV or JSON extract instead.",  # noqa: E501
+        skip_reason="Documentation/API endpoint record; validate a reviewed CSV or JSON extract instead.",  # ruff:ignore[line-too-long]
     ),
     "au_mbs_2010_2019_downloads_page": SourceContract(
         name="MBS 2010-2019 archive landing-page contract",

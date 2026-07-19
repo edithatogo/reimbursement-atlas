@@ -162,7 +162,7 @@ def generated_track_issues(
     return issues
 
 
-def render_issue(issue: IssueDraft) -> str:  # noqa: PLR0912,PLR0915 - criteria are explicit per track
+def render_issue(issue: IssueDraft) -> str:  # ruff:ignore[too-many-branches, too-many-statements] - criteria are explicit per track
     """Render one GitHub issue draft."""
     labels = ", ".join(issue.labels) if issue.labels else "none"
     parent = f"Parent issue: {issue.parent_issue}\n\n" if issue.parent_issue else ""

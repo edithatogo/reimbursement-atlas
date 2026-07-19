@@ -28,7 +28,7 @@ from reimburse_atlas.registry import project_root
 from reimburse_atlas.review_queue import build_crosswalk_review_queue, review_rows
 
 
-def main() -> None:  # noqa: PLR0914
+def main() -> None:  # ruff:ignore[too-many-locals]
     """Parse local fixtures and write derived vertical-slice artefacts."""
     root = project_root()
     fixtures = root / "tests" / "fixtures"

@@ -42,11 +42,11 @@ class _References(HTMLParser):
 
 def _fetch(url: str, attempts: int) -> tuple[int, bytes]:
     """Fetch a URL with bounded retries for Pages/CDN propagation."""
-    request = Request(url, headers={"User-Agent": USER_AGENT})  # noqa: S310 - URL is validated below
+    request = Request(url, headers={"User-Agent": USER_AGENT})  # ruff:ignore[suspicious-url-open-usage] - URL is validated below
     last_error: Exception | None = None
     for attempt in range(attempts):
         try:
-            with urlopen(request, timeout=20) as response:  # noqa: S310  # nosec B310
+            with urlopen(request, timeout=20) as response:  # ruff:ignore[suspicious-url-open-usage]  # nosec B310
                 return response.status, response.read()
         except (HTTPError, URLError, TimeoutError) as error:
             last_error = error
