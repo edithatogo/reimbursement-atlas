@@ -145,9 +145,11 @@ def parse_reviewed_local_file(
         raise KeyError(msg)
     resolved = path.expanduser().resolve()
     if source_id == "au_mbs" and source_version_id != "au_mbs_seed_fixture":
-        version = next(
-            version for version in load_source_versions() if version.id == source_version_id
-        )
+        versions = {version.id: version for version in load_source_versions()}
+        version = versions.get(source_version_id)
+        if version is None:
+            msg = f"Unknown source version id: {source_version_id}"
+            raise KeyError(msg)
         records = parse_mbs_xml(
             resolved,
             source_version=source_version_id,
