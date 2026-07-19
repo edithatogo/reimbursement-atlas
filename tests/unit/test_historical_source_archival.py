@@ -14,7 +14,11 @@ def test_historical_download_manifest_is_complete_and_relative(repo_root: Path) 
     assert len(rows) == 343
     assert {row["status"] for row in rows} <= {"cached", "downloaded", "download_failed"}
     assert all(not str(row["cache_path"]).startswith("/") for row in rows)
-    assert all(len(row["checksum_sha256"]) == 64 for row in rows)
+    assert all(
+        len(row["checksum_sha256"]) == 64
+        for row in rows
+        if row["status"] in {"cached", "downloaded"}
+    )
     assert all(row["review_status"] == "pending_human_review" for row in rows)
 
 

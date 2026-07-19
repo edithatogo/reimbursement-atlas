@@ -138,7 +138,11 @@ def process_target(
         "source_url": target["file_url"],
         "file_name": target["file_name"],
         "file_kind": target["file_kind"],
-        "cache_path": str(destination.relative_to(project_root())),
+        "cache_path": (
+            str(destination.relative_to(project_root()))
+            if destination.is_relative_to(project_root())
+            else str(destination)
+        ),
         "status": status,
         "detail": detail,
         "licence_gate": target["licence_gate"],
@@ -185,7 +189,11 @@ def main() -> None:
             failed_ids = {
                 str(row["id"]) for row in checkpoint_rows if row.get("status") == "download_failed"
             }
-            targets = [target for target in targets if target["id"] in failed_ids]
+        targets = [
+            target
+            for target in targets
+            if target["id"] in failed_ids or str(target["id"]) not in existing_rows
+        ]
     if args.limit:
         targets = targets[: args.limit]
     target_ids = {target["id"] for target in targets}
@@ -203,11 +211,12 @@ def main() -> None:
             ): target
             for target in targets
         }
-        for future in as_completed(futures):
+        for index, future in enumerate(as_completed(futures), start=1):
             rows.append(future.result())
-            rows.sort(key=lambda row: str(row["id"]))
-            # Checkpoint after each target so an interrupted archive remains auditable.
-            write_manifest(rows, args.output_dir)
+            if index % 10 == 0 or index == len(futures):
+                rows.sort(key=lambda row: str(row["id"]))
+                # Periodic checkpoints balance resumability with concurrent I/O cost.
+                write_manifest(rows, args.output_dir)
     write_manifest(rows, args.output_dir)
     print(json.dumps({"target_count": len(rows), "output_dir": str(args.output_dir)}))
 
