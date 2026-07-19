@@ -916,6 +916,71 @@
       "version": "1.0.9"
     },
     {
+      "bom-ref": "pkg:pypi/httptools@0.8.0",
+      "hashes": [
+        {
+          "alg": "SHA256",
+          "content": "de242a49b5d18e0a8776e654e9f6bf6d89f3875a5c35b425a0e7ce940feb3fd6"
+        },
+        {
+          "alg": "SHA256",
+          "content": "159e9ab5f701ccd42e555a12f1ad8ff69702910fc1c996cf2bb66e5fcb7a231b"
+        },
+        {
+          "alg": "SHA256",
+          "content": "c4a9f1707e4823d54dfec6c33fa3697d302aed536ed352a7ebb5a061ddb869d0"
+        },
+        {
+          "alg": "SHA256",
+          "content": "d76ad7b951387e3632c8716a9bb03ac5b45c5f16119aa409db0459520887944e"
+        },
+        {
+          "alg": "SHA256",
+          "content": "a3b7387147361c3fd47a0bde763c5c91b5b4cd4dc9989b8ece84ff436c99843b"
+        },
+        {
+          "alg": "SHA256",
+          "content": "f256d6ce930c52ca1cb2a960b7da03548c454e7d28b06059ad41bfe789036ce0"
+        },
+        {
+          "alg": "SHA256",
+          "content": "19d1ee275bb59ba2643ba9a3a1e51cc0c788caf2b8df506368e03f56fdd08527"
+        },
+        {
+          "alg": "SHA256",
+          "content": "de1ed58a974e75d56560acc7e7fed01a454994429456f65209789992e41f2568"
+        },
+        {
+          "alg": "SHA256",
+          "content": "e93c227b595c6926c1acee96891dd9da4be338cfbe82e5cd3bb9d8dd7dc4ac0b"
+        },
+        {
+          "alg": "SHA256",
+          "content": "2a021c3a8e65cc125390d72f59b968afca3bdcaff25bd67965e0a055a14946ca"
+        },
+        {
+          "alg": "SHA256",
+          "content": "48774d39cbb70e2b1f71f88852a3087ae1d3a1eb80482bb48c13067ab080c14f"
+        },
+        {
+          "alg": "SHA256",
+          "content": "88eead8ec8680a9f146c655bc88445a325bd7921cfd8194c7337e9467282427d"
+        },
+        {
+          "alg": "SHA256",
+          "content": "2c032fa028f46871ec7e1fc59fc15e8023eab3e6bbe6ece786a1611719a5d081"
+        },
+        {
+          "alg": "SHA256",
+          "content": "384c17174464c8e873398b7af24f0b1f44d992c820328413951a625323155d77"
+        }
+      ],
+      "name": "httptools",
+      "purl": "pkg:pypi/httptools@0.8.0",
+      "type": "library",
+      "version": "0.8.0"
+    },
+    {
       "bom-ref": "pkg:pypi/httpx@0.28.1",
       "hashes": [
         {
@@ -3457,6 +3522,63 @@
       "version": "0.51.0"
     },
     {
+      "bom-ref": "pkg:pypi/uvloop@0.22.1",
+      "hashes": [
+        {
+          "alg": "SHA256",
+          "content": "3879b88423ec7e97cd4eba2a443aa26ed4e59b45e6b76aabf13fe2f27023a142"
+        },
+        {
+          "alg": "SHA256",
+          "content": "4baa86acedf1d62115c1dc6ad1e17134476688f08c6efd8a2ab076e815665c74"
+        },
+        {
+          "alg": "SHA256",
+          "content": "297c27d8003520596236bdb2335e6b3f649480bd09e00d1e3a99144b691d2a35"
+        },
+        {
+          "alg": "SHA256",
+          "content": "c1955d5a1dd43198244d47664a5858082a3239766a839b2102a269aaff7a4e25"
+        },
+        {
+          "alg": "SHA256",
+          "content": "b31dc2fccbd42adc73bc4e7cdbae4fc5086cf378979e53ca5d0301838c5682c6"
+        },
+        {
+          "alg": "SHA256",
+          "content": "93f617675b2d03af4e72a5333ef89450dfaa5321303ede6e67ba9c9d26878079"
+        },
+        {
+          "alg": "SHA256",
+          "content": "37554f70528f60cad66945b885eb01f1bb514f132d92b6eeed1c90fd54ed6289"
+        },
+        {
+          "alg": "SHA256",
+          "content": "b76324e2dc033a0b2f435f33eb88ff9913c156ef78e153fb210e03c13da746b3"
+        },
+        {
+          "alg": "SHA256",
+          "content": "badb4d8e58ee08dad957002027830d5c3b06aea446a6a3744483c2b3b745345c"
+        },
+        {
+          "alg": "SHA256",
+          "content": "b91328c72635f6f9e0282e4a57da7470c7350ab1c9f48546c0f2866205349d21"
+        },
+        {
+          "alg": "SHA256",
+          "content": "daf620c2995d193449393d6c62131b3fbd40a63bf7b307a1527856ace637fe88"
+        },
+        {
+          "alg": "SHA256",
+          "content": "6cde23eeda1a25c75b2e07d39970f3374105d5eafbaab2a4482be82f272d5a5e"
+        }
+      ],
+      "name": "uvloop",
+      "purl": "pkg:pypi/uvloop@0.22.1",
+      "type": "library",
+      "version": "0.22.1"
+    },
+    {
       "bom-ref": "pkg:pypi/virtualenv@21.5.1",
       "hashes": [
         {
@@ -3517,6 +3639,308 @@
       "purl": "pkg:pypi/watchdog@6.0.0",
       "type": "library",
       "version": "6.0.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/watchfiles@1.2.0",
+      "hashes": [
+        {
+          "alg": "SHA256",
+          "content": "b8c8358484d5fa12ef34f05b7f4168eaf1932f408725ff6d023c33ec17bd79d4"
+        },
+        {
+          "alg": "SHA256",
+          "content": "9f04b092229ad2c50126dd3c922c8822e51e605993764a33058d4a791ab42281"
+        },
+        {
+          "alg": "SHA256",
+          "content": "7a7ce236284f002a156f70add88efe5c70879cccbb658be0822c54b1306fc09d"
+        },
+        {
+          "alg": "SHA256",
+          "content": "b9909cc2b48468b575eefa944919e1fe8a36c5849d5c7c168f80a8c1db69398e"
+        },
+        {
+          "alg": "SHA256",
+          "content": "0a37faaed405c67e28e6be45a1fa4f206ef5a2860f27c237db9fa30704c38242"
+        },
+        {
+          "alg": "SHA256",
+          "content": "9649193aa27bd9ff2e80ff29bfaa93085496c7a3a377592823cc58b77ee88add"
+        },
+        {
+          "alg": "SHA256",
+          "content": "4e4ff8e37f99cf1da89e255e07c9c4b37c214038c4283707bdec308cb1b0ea1f"
+        },
+        {
+          "alg": "SHA256",
+          "content": "054dc20fd2e3132b4c3883b4a00d72fd6e1f56fdaf89fccd12e8057d74cd74d7"
+        },
+        {
+          "alg": "SHA256",
+          "content": "e140ed30ebde76796b686e67c182cff10ea2fbab186fafd1560f74bb5a473a6e"
+        },
+        {
+          "alg": "SHA256",
+          "content": "bb7e52ecf68ba46d22df23467b87cffeb2146908aa523ebfe803019618cfda06"
+        },
+        {
+          "alg": "SHA256",
+          "content": "23282a321c8baf9b3a3c4afff673f9fe65eb7fdc2338d765ccad9d3d1916a5ba"
+        },
+        {
+          "alg": "SHA256",
+          "content": "c0db965c5f79aa49fe672d297cf1febc5ad149b658594944f49a54a2b96270a7"
+        },
+        {
+          "alg": "SHA256",
+          "content": "71283b39fd17e5408eb123bd37aeecfd9d54c81fc184421943208aadb879d103"
+        },
+        {
+          "alg": "SHA256",
+          "content": "c5c19526f4e54a00f2666a6c0e9e40d582c09e865055ea7378bf0009aab857b3"
+        },
+        {
+          "alg": "SHA256",
+          "content": "d73a585accffa5ae39c17264c36ec3166d2fad7000c780f5ef83b2722afb9dd2"
+        },
+        {
+          "alg": "SHA256",
+          "content": "ae99b14c5f21e026e0e9d96f40e07d8570ebee6cafd9d8fc318354606daa7a28"
+        },
+        {
+          "alg": "SHA256",
+          "content": "4429f3b105524a10b72c3a819b091c495d2811d419c1e1e8df773a5a5974f831"
+        },
+        {
+          "alg": "SHA256",
+          "content": "43d818978d06062d9b22c4fab2ebe44cf5213d42dc8e62bda8c2760cfa2eeb33"
+        },
+        {
+          "alg": "SHA256",
+          "content": "b9f732dc58b2dbe69e464ccf8fff7a03b0dd0be439da4c0720d3558527d3d6b4"
+        },
+        {
+          "alg": "SHA256",
+          "content": "8f200104103feb097de4cab8fe4f5dd18a2026934c7dea98c55a2f5fd6d5a33b"
+        },
+        {
+          "alg": "SHA256",
+          "content": "63ac26eefbf4af1741247d6fb68b11c49a25b2f7413fbd318a83a12aaa9cf666"
+        },
+        {
+          "alg": "SHA256",
+          "content": "0c4997d4e4a55f0d02b6cde327322daf3a0400e5df6c6b15948994bf72497925"
+        },
+        {
+          "alg": "SHA256",
+          "content": "4c887eba18b7945ac73067a8b4a66f21cd46c2539b2bc68588f7be6c7eb6d26b"
+        },
+        {
+          "alg": "SHA256",
+          "content": "3416ff151bb6b5a8d8d11664974fbef4d9305b9b2957839ab5a270468fd8df30"
+        },
+        {
+          "alg": "SHA256",
+          "content": "0e831a271c035d89789cffc386b6aa1375f39f1cd25eb7ca0997e4970d152fc5"
+        },
+        {
+          "alg": "SHA256",
+          "content": "37a6721cdf3f65dbb13aa9503510ccb4451603ac837e44d265d7992a597e1374"
+        },
+        {
+          "alg": "SHA256",
+          "content": "2b37d10b5a63bd4d87e18472d80fa525bd670586fae62e5dd580452764879b65"
+        },
+        {
+          "alg": "SHA256",
+          "content": "0a105bc2283f67e8fbec74253ec2d94925de92ed72c0393f1206bf326b7b7b69"
+        },
+        {
+          "alg": "SHA256",
+          "content": "5327989a465505f05cfe06f04fa9d0c2fd5432bb243e10e6f012b1bdca3c8579"
+        },
+        {
+          "alg": "SHA256",
+          "content": "ecb47f183a8025b2aa18b546725c3657e542112ae9c0613a2af79b4fa8d04ad7"
+        },
+        {
+          "alg": "SHA256",
+          "content": "8520a4ab0e37f770afc34459c4f8f7019e153f9124dc101c15538365875d1ab2"
+        },
+        {
+          "alg": "SHA256",
+          "content": "71cd71740ed2c15211ebb237ced4e39a1cdf6f80566e5fe95428da1626f4fde6"
+        },
+        {
+          "alg": "SHA256",
+          "content": "f88af53d6ddaf72179ef613ddc905e6f4785f712b49b80b3bef9f3525e6194b4"
+        },
+        {
+          "alg": "SHA256",
+          "content": "cee9d5efd929efdac5f7e58f72b3376f676b64050a91c5b99a7094c5b2317488"
+        },
+        {
+          "alg": "SHA256",
+          "content": "b718bf356bbc15e559bd8ef41782b573b8ae0e3f177ab244b440568d7ea02cfb"
+        },
+        {
+          "alg": "SHA256",
+          "content": "922c0e019fe68b3ae392965a766b02a71ba1168c932cebc3733cd52c5fe5b377"
+        }
+      ],
+      "name": "watchfiles",
+      "purl": "pkg:pypi/watchfiles@1.2.0",
+      "type": "library",
+      "version": "1.2.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/websockets@16.1.1",
+      "hashes": [
+        {
+          "alg": "SHA256",
+          "content": "443aefe96b7fdb132e2a70806cca1f2af49bb3f28e47abcd7c2e9dcf4d8fa1b8"
+        },
+        {
+          "alg": "SHA256",
+          "content": "6456ff333092d509127d75a638cb411afae8ff17f092635015d1902efec8a293"
+        },
+        {
+          "alg": "SHA256",
+          "content": "fce6c48559c86d1ac3632ccb1bebc7d5442fbe79bd9bb0e40379ee54be2a4051"
+        },
+        {
+          "alg": "SHA256",
+          "content": "92b820d345f7a3fc7b8163949ee92df910f290c3fc517b3d5301c78065adafe1"
+        },
+        {
+          "alg": "SHA256",
+          "content": "2a606d9c24035242a3e256e9d5b77ed9cd6bccfcb7cf993e5ca3c0f6f68fb6a7"
+        },
+        {
+          "alg": "SHA256",
+          "content": "414e596c75f74e0994084694189d7dc9229fb278e33064d6784b73ffbba3ca31"
+        },
+        {
+          "alg": "SHA256",
+          "content": "536676848fc5961aca9d20389951f59169508f765637a172403dc5434d722fa0"
+        },
+        {
+          "alg": "SHA256",
+          "content": "97fd3a0e8b53efa41970ac1dff3d8cf0d2884cadeb4caaf95db7ad1526926ee3"
+        },
+        {
+          "alg": "SHA256",
+          "content": "7b1b19636af86a3c7995d4d028dbe376f39b4bf31541146f9c123582a6c94562"
+        },
+        {
+          "alg": "SHA256",
+          "content": "41c8e77f17294c0ac18008a7309b99b34ee72247ef10b6dff4c3f8b5ac29896b"
+        },
+        {
+          "alg": "SHA256",
+          "content": "9f63bcef7f4b02b06b35fc01c93b96c43b5e88e1e8868676caacf493d5a31f3a"
+        },
+        {
+          "alg": "SHA256",
+          "content": "dab9eb87869da2d6ed3af3f3adf28414baae6ec9d4df355ffc18889132f3436c"
+        },
+        {
+          "alg": "SHA256",
+          "content": "43e3a9fdd7cbf7ba6040c31fae0faf84ca1474fef777c4e37912f1540f854499"
+        },
+        {
+          "alg": "SHA256",
+          "content": "056ae37939ed7e9974f364f5864e76e49182622d8f9751ac1903c0d09b013985"
+        },
+        {
+          "alg": "SHA256",
+          "content": "a0eadbbf2c30f01efa58e1f110eb6fa293261f6b0b1aa38f7f48707107690af9"
+        },
+        {
+          "alg": "SHA256",
+          "content": "195c978b065fa40910582464f99d6b15c8b314c68e0546549a55ed83f4735328"
+        },
+        {
+          "alg": "SHA256",
+          "content": "4e8d01cc3bcae7bbf8167f944aeafefed590fae5693552bba9794a9df68371cc"
+        },
+        {
+          "alg": "SHA256",
+          "content": "0ffd3031ea8bda8d61762e84220186105ba3b748b3c8da2ae4f7816fac03e573"
+        },
+        {
+          "alg": "SHA256",
+          "content": "84a2cef8deffbd9ab8ee0ea546a2a6a7030c28f44e6cdd4547dbfeb489eb8999"
+        },
+        {
+          "alg": "SHA256",
+          "content": "3df13f73af9b3b38ab1195eb299ecb67a4330c911c97ae04043ff74085728abe"
+        },
+        {
+          "alg": "SHA256",
+          "content": "23253dd5bcae3f9aaee0a1d30967a8dbd52e5d3cff93a2e5b84df57b77d4750d"
+        },
+        {
+          "alg": "SHA256",
+          "content": "9c1c5705e314449e3308872fe084b8571ce078ee4fc55a98a769bdefe5917392"
+        },
+        {
+          "alg": "SHA256",
+          "content": "69e52d175a0a7d1e13b4b67ad41c560b7d98e8c6f6126eb0bda496c784faf8c7"
+        },
+        {
+          "alg": "SHA256",
+          "content": "1f79c89b5eb034d1722938a891916582f8f7f503f58ca22518a63c3f2cd18499"
+        },
+        {
+          "alg": "SHA256",
+          "content": "39f2a024af5c345ffe8fcf1ee18c049c024c94df393bb09b044a6917c77bde43"
+        },
+        {
+          "alg": "SHA256",
+          "content": "952303a7318d4cbe1011400839bb2051c9f84fa0a35923267f5daba34b15d458"
+        },
+        {
+          "alg": "SHA256",
+          "content": "249116b4a76063d930a46391ad56e135c286e4562a18309029fc2c73f4ed4c62"
+        },
+        {
+          "alg": "SHA256",
+          "content": "61922544a0587a13fd3f53e4c0e5e606510c7b0d9d22c8444e5fae22a06b38cb"
+        },
+        {
+          "alg": "SHA256",
+          "content": "46dcaa042cd1de6c59e7d9269fa63ff7572b6df40510600b678f0826b3c7af51"
+        },
+        {
+          "alg": "SHA256",
+          "content": "38565aca3e01ea8734e578fb2118dade0ecb0250533f29e22b8d1a7a196cf4d0"
+        },
+        {
+          "alg": "SHA256",
+          "content": "42f599f4d48c7e1a3338fdaac3acd075be3b3cf02d4b274f3bf2767aedd3d217"
+        },
+        {
+          "alg": "SHA256",
+          "content": "dcc04fedf83effaeb9cce98abc9469bb1b42ef85f03e01c8c1f4438ef7555737"
+        },
+        {
+          "alg": "SHA256",
+          "content": "8483c2096363120eea8b07c06ae7304d520f686665fffd4811fad423930a65d7"
+        },
+        {
+          "alg": "SHA256",
+          "content": "bcce07e23e5769375158f5efdcdafa8d5cd014b93c6683865b840ed65b96f231"
+        },
+        {
+          "alg": "SHA256",
+          "content": "6abbd3e82c731c8e531714466acd5d87b5e88ac3243465337ba71d68e23ae7e3"
+        }
+      ],
+      "name": "websockets",
+      "purl": "pkg:pypi/websockets@16.1.1",
+      "type": "library",
+      "version": "16.1.1"
     }
   ],
   "metadata": {

@@ -1413,7 +1413,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "sbom_summary",
-      "sha256": "036d646dfdf855cbba08d7a08c3aa3b8475a53c0c5e55ed9de211eea6299acbf"
+      "sha256": "e34fc9fcb653844d026d0d4e2807b39d7f3c9be2c154334689035bcfcaf919b7"
     },
     {
       "@id": "data/derived/sbom/sbom_summary.csv",
@@ -1422,16 +1422,16 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "sbom_summary",
-      "sha256": "61ded75767f5213166dc994a137d9206122e3e5c15dbc73afcd3164dc513e582"
+      "sha256": "75aacb57f8df7a659202031a201b5e02260bf8fe2cbea1c4bd27af5a004cd1fe"
     },
     {
       "@id": "data/derived/sbom/cyclonedx-python.json",
       "@type": "File",
-      "contentSize": 107599,
+      "contentSize": 121606,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "json",
       "name": "cyclonedx-python",
-      "sha256": "e412b2bad71cff3ce455ef4a099428693f6dbb8bbcd397cedcf748c300c37623"
+      "sha256": "e0978d60349fcda026e8792fa9f7335d24f8da39a7f757d831a8ba1d0acb3eb8"
     },
     {
       "@id": "data/derived/sbom/cyclonedx-dashboard.json",
@@ -1539,7 +1539,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "7a07e3af8c992938b79f9fba904a505a438d79013d48b01a0bb9fcb9ee326f3e"
+      "sha256": "8dfac1215b04b5a47fb6b5cbe554d3e141650ab78197096e30a56d4490aa4f4e"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
@@ -1548,7 +1548,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "b7450481eeb671529b20866cea63984cf685c57f6f5cc13655abbb409586d93a"
+      "sha256": "98ecda0f98dbaf2aaf3bd790c43e9bb1164f33e52ad352c7e7cede7d03a97a7a"
     },
     {
       "@id": "data/derived/v13_validation_run.json",

@@ -38,7 +38,7 @@ dependencies = [
 [project.optional-dependencies]
 api = [
   "fastapi>=0.139.0",
-  "uvicorn>=0.51.0",
+  "uvicorn[standard]>=0.51.0",
 ]
 mcp = [
   "mcp>=1.28,<2",
@@ -105,7 +105,7 @@ nodejs = ">=24.0.0"
 fastapi = ">=0.139.0"
 
 [tool.pixi.feature.api.pypi-dependencies]
-uvicorn = ">=0.51.0"
+uvicorn = { version = ">=0.51.0", extras = ["standard"] }
 
 [tool.pixi.feature.mcp.pypi-dependencies]
 mcp = ">=1.28,<2"
