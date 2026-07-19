@@ -1490,3 +1490,11 @@ dashboard builds cleanly (94 pages). Hugging Face mutation, OSF upload/registrat
 and paper publication remain blocked by licence, evidence, policy and explicit
 publication gates. Six checksum-drifted licence decisions require fresh human
 review and were not re-approved automatically.
+
+## 2026-07-19 v204 checksum-bound licence approval
+
+The repository owner approved the 11 current checksum-drifted derived artefacts
+under the existing grouped scope. `scripts/record_licence_approvals.py` verified
+the exact queue paths and SHA-256 values, and licence validation now reports
+`177/177` decisions approved. This does not approve raw payloads, restricted
+descriptors, unsupported claims, OSF registration, Hugging Face mutation or papers.
