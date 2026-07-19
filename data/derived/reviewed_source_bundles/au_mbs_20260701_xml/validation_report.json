@@ -1,0 +1,13 @@
+{
+  "byte_size": 8291891,
+  "cache_scope": "local_raw_only",
+  "checksum_sha256": "5834d849743a3eab2b8c03e826a5ed6a488a6f65cf4c4148da3ec227e5007805",
+  "licence_gate": "public_reuse_review",
+  "parse_success": true,
+  "raw_files_copied_to_bundle": false,
+  "record_count": 6045,
+  "record_type": "schedule_items",
+  "review_required_before_publication": true,
+  "source_id": "au_mbs",
+  "source_version_id": "au_mbs_20260701_xml"
+}

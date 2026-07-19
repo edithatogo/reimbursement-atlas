@@ -105,6 +105,7 @@ def _validate_one(  # noqa: PLR0912
         if prefer_reviewed_bundle or record.id in {
             "au_mbs_20260701_imap_txt",
             "au_mbs_20260701_desc_txt",
+            "au_mbs_20260701_xml",
         }:
             reviewed = _reviewed_bundle_evidence(record, reviewed_bundle_dir)
             if reviewed is not None:
@@ -199,11 +200,15 @@ def _reviewed_bundle_evidence(
     bundle_dir: Path,
 ) -> tuple[str, int, int, str] | None:
     """Use tracked derived evidence when the ignored raw payload is unavailable."""
-    if record.id not in {"au_mbs_20260701_imap_txt", "au_mbs_20260701_desc_txt"}:
+    if record.id not in {
+        "au_mbs_20260701_imap_txt",
+        "au_mbs_20260701_desc_txt",
+        "au_mbs_20260701_xml",
+    }:
         return None
     if not bundle_dir.is_dir():
         return None
-    for report_path in sorted(bundle_dir.glob("bundle_*/validation_report.json")):
+    for report_path in sorted(bundle_dir.glob("*/validation_report.json")):
         try:
             report = json.loads(report_path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError) as _exc:
@@ -214,6 +219,17 @@ def _reviewed_bundle_evidence(
             or not report.get("parse_success")
         ):
             continue
+        if record.id == "au_mbs_20260701_xml":
+            try:
+                bundle_ref = report_path.parent.relative_to(project_root())
+            except ValueError:
+                bundle_ref = report_path.parent.name
+            return (
+                f"reviewed_bundle:{bundle_ref}",
+                int(str(report.get("record_count", 0))),
+                int(str(report.get("byte_size", 0))),
+                str(report.get("checksum_sha256")),
+            )
         snapshot_kind = "descriptor" if "desc" in record.id else "item_map"
         snapshot = next(
             (
