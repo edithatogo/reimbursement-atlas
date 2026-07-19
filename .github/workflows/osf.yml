@@ -16,7 +16,7 @@ on:
         type: choice
         options: ["false", "true"]
       provision:
-        description: "Create the exact private Reimbursement Atlas OSF project if absent"
+        description: "Validate or create the exact Reimbursement Atlas OSF project if absent"
         required: true
         default: "false"
         type: choice
@@ -81,7 +81,7 @@ jobs:
           set -euo pipefail
           go install github.com/edithatogo/osf-cli-go/cmd/osf@v1.0.0
           go version -m "$(go env GOPATH)/bin/osf" | grep -F $'mod\tgithub.com/edithatogo/osf-cli-go\tv1.0.0'
-      - name: Provision exact private project idempotently
+      - name: Provision exact project idempotently
         env:
           OSF_TOKEN: ${{ secrets.OSF_TOKEN }}
         run: |
@@ -95,17 +95,13 @@ jobs:
           if [ -n "$existing" ]; then
             existing_id="${existing%%$'\t'*}"
             existing_public="${existing##*$'\t'}"
-            test "$existing_public" != "true" || {
-              echo "An existing public OSF project has the exact requested title; refusing to reuse it." >&2
-              exit 1
-            }
-            jq -n --arg id "$existing_id" --arg title "$title" \
-              '{schema_version:"osf-project-provision-v1",created:false,id:$id,title:$title,public:false}' \
+            jq -n --arg id "$existing_id" --arg title "$title" --argjson public "$existing_public" \
+              '{schema_version:"osf-project-provision-v1",created:false,id:$id,title:$title,public:$public}' \
               > osf-provision/project.json
           else
             "$osf_bin" projects create \
               --title "$title" \
-              --description "Private protocol and reproducibility workspace for the reimbursement-atlas research programme." \
+              --description "Protocol and reproducibility workspace for the reimbursement-atlas research programme." \
               --yes --output json > osf-provision/project-raw.json
             jq --arg title "$title" \
               'if .data then .data else . end | {schema_version:"osf-project-provision-v1",created:true,id,title:$title,public:(.public // false)}' \
@@ -113,7 +109,8 @@ jobs:
           fi
           test "$(jq -r '.id' osf-provision/project.json)" != "null"
           test "$(jq -r '.title' osf-provision/project.json)" = "$title"
-          test "$(jq -r '.public' osf-provision/project.json)" = "false"
+          test "$(jq -r '.public' osf-provision/project.json)" = "true" || \
+            echo "OSF project is private; public visibility remains an explicit follow-up." >&2
           rm -f osf-provision/projects.json osf-provision/project-raw.json
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:

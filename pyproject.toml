@@ -155,7 +155,8 @@ source-snapshots = "PYTHONPATH=src python scripts/make_source_snapshots.py"
 ontology-seed = "PYTHONPATH=src python scripts/make_ontology_seed.py"
 publication-manifest = "PYTHONPATH=src python scripts/make_publication_manifest.py"
 licence-review-queue = "PYTHONPATH=src python scripts/make_licence_review_queue.py"
-licence-review-validate = "PYTHONPATH=src python scripts/validate_licence_review.py"
+licence-review-reconcile = { depends-on = ["licence-review-queue"], cmd = "PYTHONPATH=src python scripts/reconcile_licence_decisions.py" }
+licence-review-validate = { depends-on = ["licence-review-reconcile"], cmd = "PYTHONPATH=src python scripts/validate_licence_review.py" }
 licence-decision-matrix = "PYTHONPATH=src python scripts/make_licence_decision_matrix.py"
 review-schemas = "PYTHONPATH=src python scripts/validate_review_schemas.py"
 local-parser-contracts = "PYTHONPATH=src python scripts/check_local_parser_contracts.py"

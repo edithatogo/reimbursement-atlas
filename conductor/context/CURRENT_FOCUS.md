@@ -1479,3 +1479,14 @@ has the old `license: mit`/`sdk: gradio` scaffold metadata. The Space was not
 partially mutated because the `apache-2.0`/`static` values describe the validated
 static dashboard deployment, which remains a publication-gated action. Papers,
 OSF registration and research publication remain deferred as requested.
+
+## 2026-07-19 v202 pre-publication implementation slice
+
+Protocol status now reports all five complete drafted protocol/report packages as
+OSF-ready for registration review, removing the prior circular `registered` gate.
+The OSF workflow now accepts the existing public `q8cnx` project. The registration
+freeze remains unapproved and all 15 sync rows remain fail-closed. The static
+dashboard builds cleanly (94 pages). Hugging Face mutation, OSF upload/registration,
+and paper publication remain blocked by licence, evidence, policy and explicit
+publication gates. Six checksum-drifted licence decisions require fresh human
+review and were not re-approved automatically.
