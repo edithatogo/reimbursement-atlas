@@ -13,7 +13,7 @@ No network IO or remote mutation is performed by its generation.
 
 ## Completeness
 
-- Protocols/reports OSF-ready: `0/5`
+- Protocols/reports OSF-ready: `5/5`
 - Manifest rows explicitly publishable: `0/15`
 - Manifest rows still blocked: `15`
 

@@ -1323,7 +1323,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "workflow_uses",
-      "sha256": "fd583dc3340d79aeffbb30f2e91e9beea0c6d784b4f860829bd373e2ed0ed425"
+      "sha256": "ed10929de171858e1345cabb54738ca1172c75f528e43c89d7e17fa0fe9e920f"
     },
     {
       "@id": "data/derived/repo_automation/workflow_uses.csv",
@@ -1332,7 +1332,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "workflow_uses",
-      "sha256": "021c988560facd43754cad24bb63874f5d09ca5add1abfc535028b9c9c22bdef"
+      "sha256": "ac035124b8c2efca57c4984596cce72b4d0e41f8a2c6c8a5b94df6f8eaa23d6c"
     },
     {
       "@id": "data/derived/repo_automation/workflow_policy.jsonl",
@@ -1742,20 +1742,20 @@
     {
       "@id": "data/derived/protocols/protocol_status.jsonl",
       "@type": "File",
-      "contentSize": 3114,
+      "contentSize": 3109,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "protocol_status",
-      "sha256": "026f257dc74c06b7234aba0b691e79b7731db6a136229e5cbf6a9fd4df95304a"
+      "sha256": "c29aee55e649b3c1b91d69d2a16563d3a974ac12921418bdcdaed4d60952be4f"
     },
     {
       "@id": "data/derived/protocols/protocol_status.csv",
       "@type": "File",
-      "contentSize": 1865,
+      "contentSize": 1860,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "protocol_status",
-      "sha256": "13fadefcbf44ac0f54291d11d92f93e20c04fd8badb7a6488021107948a05e0d"
+      "sha256": "e801de2adcc9addc4acae5f8dfd9337cf466436dea5c2669a533bfffb6d9f90e"
     },
     {
       "@id": "data/derived/protocols/summary.json",
@@ -1764,7 +1764,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "json",
       "name": "summary",
-      "sha256": "66292d89442e5f08cc0ee3c3719380fe7b69d8f7f72261b053951b544504558b"
+      "sha256": "2ad83cb6edb5ec0c252222b911b3a644c976bc7764ccecc101def4df0a897b99"
     },
     {
       "@id": "data/derived/roadmap_linkages/research_dataset_linkages.jsonl",

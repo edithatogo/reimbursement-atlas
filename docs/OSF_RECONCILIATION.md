@@ -90,3 +90,13 @@ deterministic, non-mutating review aid containing the freeze digests, protocol/r
 completeness, blocked manifest-row count and blank approval fields. It must be completed
 by an accountable human reviewer; generation never changes `review_approved` or
 `publish_allowed`.
+
+Protocol readiness is defined as a complete protocol/report package with a drafted
+or registered preregistration status. This avoids a circular gate in which a protocol
+had to be registered before it could be considered ready for registration review.
+Registration, licence approval, and OSF synchronisation remain separate gates.
+
+The current generated protocol status is `5/5` OSF-ready packages. The registration
+freeze remains a draft with `review_approved: false`, and all 15 synchronization rows
+remain `publish_allowed: false`; therefore no upload or registration submission is
+permitted in the current pass.

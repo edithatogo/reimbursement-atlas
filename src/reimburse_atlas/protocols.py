@@ -92,7 +92,7 @@ def build_protocol_status(
             and report_path.exists()
             and not missing
             and protocol_word_count >= 1200
-            and question.preregistration_status == "registered"
+            and question.preregistration_status in {"drafted", "registered"}
         )
         if not protocol_path.exists():
             next_step = "Create protocol scaffold."
