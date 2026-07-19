@@ -312,8 +312,8 @@
       "jsonl_path": "local_quality_gates/local_quality_gates.jsonl",
       "name": "local_quality_gates",
       "parquet_path": "local_quality_gates/local_quality_gates.parquet",
-      "rows": 20,
-      "sha256": "4a8b156f86326f9c8c7849c12b1e4969a5cf6c591d8f947115b6680cc3af3b2f"
+      "rows": 26,
+      "sha256": "8e740c31d8c5a1dd052e28bd5e308a8bdc7bb003eca86bdcc8a64f4bb547ba1b"
     },
     {
       "csv_path": "local_quality_gate_specs/local_quality_gate_specs.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 36,
-      "sha256": "9788369977f2c2c3904becd253528b27414cde967aeb0eeb00553d3e9721632e"
+      "sha256": "56a7d5b35edf00adad3c4083827b82b1eb48d63048820ba975647cb416d2af4f"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -457,7 +457,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 184,
-      "sha256": "610b9d1cb4d5f9ce0235d53d15b0085cfb392de227de903be0661224fed4be65"
+      "sha256": "8a662b210d098efbf13e3f4dbcbbe2a202e14a0efc2bbdc18ca53a688b6818bc"
     }
   ]
 }
