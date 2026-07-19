@@ -8,6 +8,7 @@ import re
 from html.parser import HTMLParser
 from operator import itemgetter
 from pathlib import Path
+from urllib.error import HTTPError, URLError
 from urllib.parse import parse_qs, urljoin, urlparse
 from urllib.request import Request, urlopen
 
@@ -20,7 +21,10 @@ CMS_PFS_INDEX = (
 CMS_ASP_INDEX = "https://www.cms.gov/medicare/payment/part-b-drugs/asp-pricing-files"
 NHS_GENOMICS_INDEX = "https://www.england.nhs.uk/publication/national-genomic-test-directories/"
 PBS_LEGACY_PAGE = "https://data.pbs.gov.au/document/89997.html"
-PUBLIC_HOSTS = {"www.cms.gov", "www.england.nhs.uk"}
+
+
+class CatalogDiscoveryError(RuntimeError):
+    """Raised when discovery cannot produce a safe replacement catalog."""
 
 
 class LinkParser(HTMLParser):
@@ -47,10 +51,13 @@ def fetch_links(url: str) -> list[str]:
     )
     if urlparse(url).scheme != "https":
         return []
-    with urlopen(request, timeout=30) as response:  # nosec B310  # noqa: S310
-        parser = LinkParser()
-        parser.feed(response.read().decode("utf-8", errors="replace"))
-    return sorted({urljoin(url, link) for link in parser.links})
+    try:
+        with urlopen(request, timeout=30) as response:  # nosec B310  # noqa: S310
+            parser = LinkParser()
+            parser.feed(response.read().decode("utf-8", errors="replace"))
+        return sorted({urljoin(url, link) for link in parser.links})
+    except HTTPError, URLError, TimeoutError:
+        return []
 
 
 def file_kind(url: str) -> str:
@@ -110,7 +117,7 @@ def discover() -> list[dict[str, str]]:
         parsed = urlparse(url)
         if parsed.netloc != "www.cms.gov" or not (
             parsed.path.lower().endswith(".zip")
-            or ".zip" in parse_qs(parsed.query).get("file", [""])[0].lower()
+            or any(".zip" in value.lower() for value in parse_qs(parsed.query).get("file", []))
         ):
             continue
         gated = "license" in url.lower() or "/apps/ama/" in url.lower()
@@ -162,6 +169,8 @@ def discover() -> list[dict[str, str]]:
 def main() -> None:
     """Write the deterministic metadata-only catalog."""
     rows = discover()
+    if len(rows) <= 1:
+        raise CatalogDiscoveryError
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(
         "".join(json.dumps(row, sort_keys=True) + "\n" for row in rows), encoding="utf-8"
