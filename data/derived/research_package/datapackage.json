@@ -1770,20 +1770,20 @@
       "schema": {}
     },
     {
-      "bytes": 109144,
+      "bytes": 109170,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "5bc722a9ddf8c4c5f0508f93251007d6ed319dd11f138417393b826c9cee95ca",
+      "hash": "2c97e13e66528ddd875d75b0d99ca7a3e23fb67b472df98c8cc1f98382d972d9",
       "mediatype": "application/json",
       "name": "data-dictionary",
       "path": "data/derived/data_dictionary/data_dictionary.jsonl",
       "schema": {}
     },
     {
-      "bytes": 82858,
+      "bytes": 82886,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "14c3b1a7e7ceb97df12ececc1970c07d5cbdfe81139a00d2d061d36517565eb4",
+      "hash": "39f00f1dfb1fcbc4bfe7525df076f34d5e0adf3cb6e23735c80b9a72faf4cc18",
       "mediatype": "text/csv",
       "name": "data-dictionary",
       "path": "data/derived/data_dictionary/data_dictionary.csv",

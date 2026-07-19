@@ -54,6 +54,52 @@ def one_sided_power_sample_size(
     return math.ceil((numerator / (alternative_proportion - null_proportion)) ** 2)
 
 
+def _binomial_upper_tail(trials: int, proportion: float, cutoff: int) -> float:
+    """Return P(X >= cutoff) for a binomial random variable."""
+    return sum(
+        math.comb(trials, successes)
+        * proportion**successes
+        * (1 - proportion) ** (trials - successes)
+        for successes in range(cutoff, trials + 1)
+    )
+
+
+def exact_one_sided_power_sample_size(
+    null_proportion: float,
+    alternative_proportion: float,
+    alpha: float = 0.05,
+    power: float = 0.8,
+) -> dict[str, float | int]:
+    """Return the smallest exact-binomial n meeting alpha and power targets."""
+    if not 0 < null_proportion < 1 or not 0 < alternative_proportion < 1:
+        raise ValueError("proportions must be between 0 and 1")
+    if alternative_proportion <= null_proportion:
+        raise ValueError("alternative_proportion must exceed null_proportion")
+    if not 0 < alpha < 1 or not 0 < power < 1:
+        raise ValueError("alpha and power must be between 0 and 1")
+    for trials in range(1, 10_000):
+        critical_count = next(
+            (
+                cutoff
+                for cutoff in range(trials + 1)
+                if _binomial_upper_tail(trials, null_proportion, cutoff) <= alpha
+            ),
+            None,
+        )
+        if critical_count is None:
+            continue
+        achieved_alpha = _binomial_upper_tail(trials, null_proportion, critical_count)
+        achieved_power = _binomial_upper_tail(trials, alternative_proportion, critical_count)
+        if achieved_power >= power:
+            return {
+                "cases_per_class": trials,
+                "critical_positive_count": critical_count,
+                "achieved_alpha": achieved_alpha,
+                "achieved_power": achieved_power,
+            }
+    raise ValueError("exact calculation exceeded the 10,000-case search bound")
+
+
 def build_calculation() -> dict[str, Any]:
     """Build the deterministic calculation and document its assumptions."""
     ci_scenarios = [
@@ -87,6 +133,17 @@ def build_calculation() -> dict[str, Any]:
         }
         for scenario in power_scenarios
     ]
+    exact_power_rows = [
+        {
+            **scenario,
+            "alpha": 0.05,
+            "power": 0.80,
+            **exact_one_sided_power_sample_size(
+                scenario["null_metric"], scenario["alternative_metric"]
+            ),
+        }
+        for scenario in power_scenarios
+    ]
     development_cases_per_class = 300
     holdout_fraction = 0.20
     holdout_cases_per_class = math.ceil(
@@ -94,7 +151,7 @@ def build_calculation() -> dict[str, Any]:
     )
     return {
         "schema_version": "mapping-power-calculation-v1",
-        "method": "normal_approximation_for_binomial_proportions",
+        "method": "normal_and_exact_binomial_proportions",
         "assumptions": [
             "Positive and negative calibration cases are sampled separately and treated as independent.",
             "Each case has one adjudicated reference outcome and one evaluated mapping outcome.",
@@ -111,6 +168,7 @@ def build_calculation() -> dict[str, Any]:
         },
         "confidence_interval_scenarios": ci_rows,
         "power_scenarios": power_rows,
+        "exact_power_scenarios": exact_power_rows,
         "recommended_design": {
             "development_cases_per_class": development_cases_per_class,
             "development_total_cases": development_cases_per_class * 2,
@@ -122,7 +180,7 @@ def build_calculation() -> dict[str, Any]:
             "rationale": "300 development cases per class gives approximately +/-3.4 points at an expected 90% metric and +/-4.5 points at an expected 80% metric; the holdout is additional.",
         },
         "limitations": [
-            "The normal approximation is planning guidance, not an exact binomial power calculation.",
+            "The exact calculation is a one-sided, unadjusted binomial test; it does not model clustering, stratified estimands or multiplicity.",
             "The design must be re-estimated if the estimand, acceptable null, prevalence, clustering or adjudication protocol changes.",
             "Cases must be stratified across sources and mapping difficulty; duplicating near-identical cases does not increase effective sample size.",
         ],
@@ -154,8 +212,10 @@ def render_markdown(result: dict[str, Any]) -> str:
         "## Calculation",
         "",
         "For confidence-interval planning, the implementation uses `n = z^2 p(1-p) / d^2`.",
-        "For one-sided power planning, it uses the standard normal approximation combining",
-        "the null and alternative variances. Both formulas are implemented in",
+        "For approximate power planning, it combines the null and alternative variances",
+        "with a normal approximation. The exact sensitivity uses a one-sided binomial",
+        "tail with the smallest integer cutoff whose null tail is at most alpha.",
+        "Both methods are implemented in",
         "`scripts/make_mapping_power_calculation.py` and covered by unit tests.",
         "",
         "| Expected metric | CI half-width | Cases per class |",
@@ -173,6 +233,15 @@ def render_markdown(result: dict[str, Any]) -> str:
     lines.extend(
         f"| {row['null_metric']:.0%} | {row['alternative_metric']:.0%} | {row['alpha']:.0%} | {row['power']:.0%} | {row['cases_per_class']} |"
         for row in result["power_scenarios"]
+    )
+    lines.extend([
+        "",
+        "| Null metric | Alternative metric | Alpha target | Power target | Cases per class | Achieved alpha | Achieved power |",
+        "| ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+    ])
+    lines.extend(
+        f"| {row['null_metric']:.0%} | {row['alternative_metric']:.0%} | {row['alpha']:.0%} | {row['power']:.0%} | {row['cases_per_class']} | {row['achieved_alpha']:.2%} | {row['achieved_power']:.2%} |"
+        for row in result["exact_power_scenarios"]
     )
     lines.extend([
         "",

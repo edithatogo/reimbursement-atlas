@@ -1868,20 +1868,20 @@
     {
       "@id": "data/derived/data_dictionary/data_dictionary.jsonl",
       "@type": "File",
-      "contentSize": 109144,
+      "contentSize": 109170,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "data_dictionary",
-      "sha256": "5bc722a9ddf8c4c5f0508f93251007d6ed319dd11f138417393b826c9cee95ca"
+      "sha256": "2c97e13e66528ddd875d75b0d99ca7a3e23fb67b472df98c8cc1f98382d972d9"
     },
     {
       "@id": "data/derived/data_dictionary/data_dictionary.csv",
       "@type": "File",
-      "contentSize": 82858,
+      "contentSize": 82886,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "data_dictionary",
-      "sha256": "14c3b1a7e7ceb97df12ececc1970c07d5cbdfe81139a00d2d061d36517565eb4"
+      "sha256": "39f00f1dfb1fcbc4bfe7525df076f34d5e0adf3cb6e23735c80b9a72faf4cc18"
     },
     {
       "@id": "data/derived/data_dictionary/summary.json",

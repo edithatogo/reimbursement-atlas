@@ -21,8 +21,10 @@ It remains a smoke test only.
 ## Calculation
 
 For confidence-interval planning, the implementation uses `n = z^2 p(1-p) / d^2`.
-For one-sided power planning, it uses the standard normal approximation combining
-the null and alternative variances. Both formulas are implemented in
+For approximate power planning, it combines the null and alternative variances
+with a normal approximation. The exact sensitivity uses a one-sided binomial
+tail with the smallest integer cutoff whose null tail is at most alpha.
+Both methods are implemented in
 `scripts/make_mapping_power_calculation.py` and covered by unit tests.
 
 | Expected metric | CI half-width | Cases per class |
@@ -37,6 +39,11 @@ the null and alternative variances. Both formulas are implemented in
 | 80% | 90% | 5% | 80% | 83 |
 | 90% | 95% | 5% | 80% | 184 |
 
+| Null metric | Alternative metric | Alpha target | Power target | Cases per class | Achieved alpha | Achieved power |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 80% | 90% | 5% | 80% | 82 | 4.58% | 80.57% |
+| 90% | 95% | 5% | 80% | 179 | 4.86% | 81.29% |
+
 ## Recommended design
 
 - Development set: **300 positive + 300 negative = 600 cases**.
@@ -50,6 +57,6 @@ information.
 
 ## Limitations
 
-- The normal approximation is planning guidance, not an exact binomial power calculation.
+- The exact calculation is a one-sided, unadjusted binomial test; it does not model clustering, stratified estimands or multiplicity.
 - The design must be re-estimated if the estimand, acceptable null, prevalence, clustering or adjudication protocol changes.
 - Cases must be stratified across sources and mapping difficulty; duplicating near-identical cases does not increase effective sample size.

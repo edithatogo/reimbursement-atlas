@@ -433,6 +433,7 @@ epics:
         status: implemented
         acceptance:
           - Implement reproducible confidence-interval and power-approximation calculations
+          - Include an exact one-sided binomial sensitivity calculation with achieved alpha and power
           - Document estimands, alpha, power, precision, independence and holdout assumptions
           - Generate tested sample-size scenarios and a stratified development/holdout recommendation
 
