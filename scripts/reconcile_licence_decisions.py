@@ -16,8 +16,7 @@ def reconcile(root: Path | None = None) -> int:
     queue = {
         row["relative_path"]: row
         for row in (
-            json.loads(line)
-            for line in queue_path.read_text(encoding="utf-8").splitlines()
+            json.loads(line) for line in queue_path.read_text(encoding="utf-8").splitlines()
         )
         if row.get("relative_path")
     }
