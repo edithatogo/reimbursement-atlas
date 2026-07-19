@@ -931,6 +931,24 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/au_mbs_20260701_xml/source_contract_validation.csv",
+      "dct:format": "csv",
+      "dct:title": "source_contract_validation"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/au_mbs_20260701_xml/source_contract_validation.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_contract_validation"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/au_mbs_20260701_xml/summary.json",
+      "dct:format": "json",
+      "dct:title": "summary"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/au_mbs_20260701_txt_pair_schedule_items.csv",
       "dct:format": "csv",
       "dct:title": "au_mbs_20260701_txt_pair_schedule_items"

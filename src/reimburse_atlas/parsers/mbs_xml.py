@@ -18,7 +18,7 @@ from reimburse_atlas.parsers.normalise import XmlLikeElement, child_text, parse_
 
 MBS_DOWNLOAD_URL: HttpUrl = cast(
     "HttpUrl",
-    "https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/650f3eec0dfb990d3ca25692100069854/d4bd04ca56657072ca258df70023b066/$FILE/MBS-XML-20260701.XML",
+    "https://www.mbsonline.gov.au/internet/mbsonline/publishing.nsf/Content/downloads",
 )
 
 
