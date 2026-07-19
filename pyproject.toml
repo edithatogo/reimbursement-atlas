@@ -20,7 +20,7 @@ classifiers = [
 ]
 dependencies = [
   "polars>=1.35.0",
-  "pyarrow>=22.0.0",
+  "pyarrow>=25.0.0",
   "duckdb>=1.4.0",
   "lancedb>=0.25.0",
   "pydantic>=2.12.0",
@@ -38,19 +38,19 @@ dependencies = [
 [project.optional-dependencies]
 api = [
   "fastapi>=0.139.0",
-  "uvicorn[standard]>=0.50.2",
+  "uvicorn>=0.51.0",
 ]
 mcp = [
   "mcp>=1.28,<2",
 ]
 dev = [
   "basedpyright>=1.35.0",
-  "ruff>=0.14.0",
+  "ruff>=0.15.21",
   "pytest>=9.0.0",
   "pytest-cov>=7.0.0",
   "pytest-xdist>=3.8.0",
   "pytest-randomly>=4.0.0",
-  "hypothesis>=6.156.2",
+  "hypothesis>=6.156.6",
   "mutmut>=3.3.0",
   "scalene>=1.5.0",
   "bandit[toml]>=1.9.4",
@@ -62,7 +62,7 @@ dev = [
   "mkdocs-material>=9.6.0",
 ]
 test-goblin = [
-  "hypothesis>=6.156.2",
+  "hypothesis>=6.156.6",
   "mutmut>=3.3.0",
   "pytest-randomly>=4.0.0",
 ]
@@ -82,16 +82,16 @@ platforms = ["osx-arm64", "linux-64", "linux-aarch64"]
 python = ">=3.14"
 setuptools = ">=83.0.0"
 uv = ">=0.11.0"
-ruff = ">=0.14.0"
+ruff = ">=0.15.21"
 basedpyright = ">=1.35.0"
 pytest = ">=9.0.0"
 pytest-cov = ">=7.0.0"
-hypothesis = ">=6.156.2"
+hypothesis = ">=6.156.6"
 bandit = ">=1.8.0"
 pip-audit = ">=2.9.0"
 filelock = ">=3.29.7"
 polars = ">=1.35.0"
-pyarrow = ">=22.0.0"
+pyarrow = ">=25.0.0"
 duckdb = ">=1.4.0"
 jsonschema = ">=4.26.0"
 
@@ -105,7 +105,7 @@ nodejs = ">=24.0.0"
 fastapi = ">=0.139.0"
 
 [tool.pixi.feature.api.pypi-dependencies]
-uvicorn = { version = ">=0.50.2", extras = ["standard"] }
+uvicorn = ">=0.51.0"
 
 [tool.pixi.feature.mcp.pypi-dependencies]
 mcp = ">=1.28,<2"

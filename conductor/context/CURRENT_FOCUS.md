@@ -1498,3 +1498,19 @@ under the existing grouped scope. `scripts/record_licence_approvals.py` verified
 the exact queue paths and SHA-256 values, and licence validation now reports
 `177/177` decisions approved. This does not approve raw payloads, restricted
 descriptors, unsupported claims, OSF registration, Hugging Face mutation or papers.
+
+## 2026-07-19 v205 dependency refresh and acquisition gate
+
+The repository-owned dependency refresh candidate upgrades PyArrow to 25.0.0,
+Ruff to 0.15.22, Hypothesis to 6.157.0 and Uvicorn to 0.51.0, removes the
+obsolete Uvicorn `standard` extra, and regenerates both `uv.lock` and
+`pixi.lock`. Local QA remains green at 345 passed, 2 skipped and 90% coverage.
+The resulting SBOM and release-readiness surfaces changed five checksum-bound
+derived artefacts; those rows are blocked pending explicit owner approval and
+are not merged to `main`.
+
+The hardened acquisition plan recorded current MBS TXT/XML downloads and PBS
+local-cache availability while correctly skipping seven metadata/licence-gated
+targets. Raw payloads remain ignored local evidence only. CMS CLFS, historical
+source reuse, mapping calibration, OSF registration, Hugging Face publication,
+dashboard visual baselines and research publication remain fail-closed.
