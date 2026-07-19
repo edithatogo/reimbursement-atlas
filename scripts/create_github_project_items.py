@@ -122,7 +122,9 @@ def generated_track_issues(
                     "type:data-source",
                     f"priority:{row.get('priority', 'unknown')}",
                     "phase:future",
+                    f"status:{row.get('parser_status', 'planned')}",
                 ],
+                status=str(row.get("parser_status", "planned")),
             )
         )
     for row in _read_jsonl(seed_dir / "research_questions.jsonl"):

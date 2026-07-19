@@ -348,11 +348,11 @@ epics:
         labels: ["type:release", "type:licence", "type:automation", "phase:hardening", "status:implemented"]
         status: implemented
       - title: Rebind the required zizmor check to the repository-owned workflow app
-        labels: ["type:security", "type:supply-chain", "type:repo-automation", "phase:hardening"]
-        status: done
+        labels: ["type:security", "type:supply-chain", "type:repo-automation", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Add branch-protection drift validator for strict required checks
-        labels: ["type:security", "type:repo-automation", "phase:hardening"]
-        status: done
+        labels: ["type:security", "type:repo-automation", "phase:hardening", "status:implemented"]
+        status: implemented
       - title: Bind authoritative release documentation to the checked-out commit
         labels: ["type:documentation", "type:repo-automation", "type:release", "phase:hardening", "status:implemented"]
         status: implemented

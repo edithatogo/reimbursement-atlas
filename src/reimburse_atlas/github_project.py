@@ -13,6 +13,36 @@ from reimburse_atlas.registry import project_root
 
 _PRIORITY_ORDER = ("must", "should", "could", "wont")
 
+# Legacy backlog epics predate the current track IDs. Keep their Project rows
+# linked to the owning track instead of leaving them as unassigned backlog work.
+_EPIC_TRACK_MAP = {
+    "SRC-001": "track_live_source_ingestion",
+    "PARSE-001": "track_live_source_ingestion",
+    "MAP-001": "track_mapping_workbench",
+    "ANA-001": "track_policy_demonstrators",
+    "DASH-001": "track_public_product_citation_dashboard",
+    "DX-001": "track_ci_cd_supply_chain",
+    "LIVE-001": "track_live_source_ingestion",
+    "IFACE-001": "track_public_product_citation_dashboard",
+    "DASH-002": "track_public_product_citation_dashboard",
+    "PUB-001": "track_publication_hf_spaces",
+    "ONT-001": "track_mapping_workbench",
+    "REL-001": "track_ci_cd_supply_chain",
+    "OSF-002": "track_research_protocols_osf",
+    "DQ-001": "track_data_quality_evidence",
+    "EVID-017": "track_data_quality_evidence",
+    "HANDOFF-018": "track_data_quality_evidence",
+    "HANDOFF-019": "track_data_quality_evidence",
+    "SEC-020": "track_ci_cd_supply_chain",
+    "HARNESS-021": "track_ci_cd_supply_chain",
+    "PUBLIC-022": "track_public_product_citation_dashboard",
+    "HIST-001": "track_historical_source_archival_reproducibility",
+    "HIST-002": "track_historical_source_archival_reproducibility",
+    "DATASET-CANDIDATES": "track_live_source_ingestion",
+    "RESEARCH-QUESTIONS": "track_research_protocols_osf",
+    "OUTPUTS": "track_data_packaging_standards",
+}
+
 
 def build_github_project_items(
     tracks: list[ConductorTrackRecord],
@@ -55,6 +85,13 @@ def build_github_project_items(
             labels = tuple(_split_labels(parsed.get("labels", "")))
             priority = _priority_from_labels(labels)
             track = track_by_title.get(epic_title)
+            if track is None:
+                track_id = _EPIC_TRACK_MAP.get(parsed.get("epic_id", ""))
+                if track_id:
+                    track = next(
+                        (candidate for candidate in tracks if candidate.id == track_id),
+                        None,
+                    )
             rows.append(
                 GitHubProjectItemRecord(
                     id=f"project_issue_{path.stem.replace('-', '_')}",
