@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-07-19T04:20:32.333729+00:00",
+  "licence_policy": "download_does_not_grant_redistribution_rights",
+  "raw_cache_policy": "ignored_local_only",
+  "schema_version": "historical-source-downloads-v1",
+  "status_counts": {
+    "cached": 343
+  },
+  "target_count": 343,
+  "transformation_process": "data/derived/processes/historical_source_transformation.bpmn"
+}

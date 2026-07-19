@@ -21,6 +21,7 @@ FILES = [
     Path("data/seed/ingestion_readiness.csv"),
     Path("data/derived/historical_sources/historical_mbs_archive_targets.csv"),
     Path("data/derived/historical_sources/historical_mbs_review_queue.csv"),
+    Path("data/derived/historical_sources/historical_source_downloads.csv"),
     Path("data/seed/source_snapshots.csv"),
     Path("data/seed/source_status.csv"),
     Path("data/seed/analysis_recipes.csv"),

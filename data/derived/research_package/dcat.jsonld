@@ -271,6 +271,30 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/historical_sources/historical_source_downloads.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "historical_source_downloads"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/historical_sources/historical_source_downloads.csv",
+      "dct:format": "csv",
+      "dct:title": "historical_source_downloads"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/historical_sources/historical_source_downloads_summary.json",
+      "dct:format": "json",
+      "dct:title": "historical_source_downloads_summary"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/processes/historical_source_transformation.bpmn",
+      "dct:format": "bpmn",
+      "dct:title": "historical_source_transformation"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/vertical_slice/schedule_items.jsonl",
       "dct:format": "jsonl",
       "dct:title": "schedule_items"

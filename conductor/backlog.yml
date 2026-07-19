@@ -1,6 +1,31 @@
 version: 2
 updated: "2026-07-17"
 epics:
+  - id: HIST-001
+    title: Historical source archival and reproducibility
+    phase: implementation
+    workstream: sources
+    priority: must
+    issues:
+      - title: Download and checksum all discoverable historical source targets into ignored local storage
+        labels: ["type:data-source", "type:automation", "risk:licence", "phase:implementation", "status:implemented"]
+        status: implemented
+        acceptance:
+          - "Acquisition is HTTPS-only, retrying, resumable and allowlisted to official hosts."
+          - "Raw payloads remain ignored and every target has a relative cache path, byte count and SHA-256."
+          - "Failures and cached files remain explicit in a generated manifest."
+      - title: Add academic provenance, citation and licence metadata for every historical target
+        labels: ["type:data-source", "type:licence", "type:publication", "risk:licence", "status:implemented"]
+        status: implemented
+        acceptance:
+          - "Every target records source URL, archive page, source version, citation key, licence gate and review state."
+          - "Download evidence does not imply redistribution permission."
+      - title: Represent source transformation and publication gates in BPMN 2.0
+        labels: ["type:research", "type:automation", "type:documentation", "status:implemented"]
+        status: implemented
+        acceptance:
+          - "The process covers retrieval, hashing, licence review, parsing, normalisation, validation, packaging and publication."
+          - "Documentation explains why BPMN 2.0 is used instead of the obsolete BPML terminology."
   - id: SRC-001
     title: First-wave source versioning and fixtures
     phase: slice
