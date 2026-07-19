@@ -77,6 +77,14 @@ non-mutating and does not submit or approve registrations.
 generated freeze is intentionally unapproved and therefore remains fail-closed
 until human methods, domain, licence and governance review is recorded.
 
+## Current project visibility
+
+On 2026-07-19, the OSF project `q8cnx` was made public through the authenticated
+OSF project controls. A public API readback confirmed `public: true`, with zero
+files, no registration, and no uploaded papers. This changes project visibility
+only; it does not approve or publish the protocol, research package, registration,
+or any evidence release.
+
 The same plan generates `data/derived/osf/registration_review_packet.md`. This is a
 deterministic, non-mutating review aid containing the freeze digests, protocol/report
 completeness, blocked manifest-row count and blank approval fields. It must be completed

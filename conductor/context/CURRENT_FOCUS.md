@@ -1468,3 +1468,14 @@ protection are enabled; non-provider pattern scanning and validity checks remain
 account/plan boundary. The scheduled monitor now accepts optional fine-grained secret
 `GH_SECURITY_SETTINGS_TOKEN` with repository-scoped `administration:read`, falling back to the
 default `GITHUB_TOKEN`; it remains read-only and never mutates settings. Issue #191 remains open.
+
+## 2026-07-19 v201 OSF visibility and Hugging Face boundary
+
+OSF project `q8cnx` is now public, confirmed by the authenticated project UI and
+the public OSF API (`public: true`). The project remains empty: no files,
+registration or papers were uploaded. Hugging Face destination readback confirms
+the dataset remains correctly governed as `license: other`, while the Space still
+has the old `license: mit`/`sdk: gradio` scaffold metadata. The Space was not
+partially mutated because the `apache-2.0`/`static` values describe the validated
+static dashboard deployment, which remains a publication-gated action. Papers,
+OSF registration and research publication remain deferred as requested.

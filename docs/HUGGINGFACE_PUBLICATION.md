@@ -118,6 +118,22 @@ protocol status, source contracts, data quality, licence gates and policy/eviden
 
 No raw restricted schedules, CPT descriptors, local ontology dumps or confidential prices should be published to Hugging Face.
 
+## 2026-07-19 decision boundary
+
+The live destination was rechecked with the authenticated Hub client. The dataset
+still correctly reports `license: other`; its source-specific licence boundary must
+not be replaced with the Apache-2.0 code licence. The Space still reports
+`license: mit` and `sdk: gradio`. No partial metadata mutation was performed:
+changing the Space card to `apache-2.0`/`static` while leaving the Gradio scaffold
+in place would misrepresent the deployed artefact. The governed correction remains
+coupled to the validated static dashboard deployment and therefore stays deferred
+until the publication gate is explicitly opened.
+
+The local bundle validator passes. The publication gate remains blocked by the
+research-publication, evidence-release, policy-claims and outstanding licence-review
+flags. This is an intentional release boundary, not a credential or connectivity
+failure.
+
 The latest current-main read-only destination check is workflow run
 [29571896396](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29571896396).
 The dataset still passes its governed `other` licence boundary; the Space still reports
