@@ -34,3 +34,10 @@ fail-closed.
 The current decision file records `approved` for each exact candidate under the approved
 derived/metadata scope. It does not approve raw payloads, restricted descriptors,
 confidential values, unsupported claims, or any later checksum change.
+
+## Merge and release boundary
+
+The owner-approved boundary is fail-closed: keep PR #464 open until its required
+checks pass; do not bypass review, merge, tag, sign, attest or publish a release
+while evidence, policy and source-licence gates remain unresolved. The verified
+local handoff bundle is the current release artefact.

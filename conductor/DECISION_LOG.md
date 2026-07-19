@@ -1473,6 +1473,19 @@ the Zenodo preflight evidence and the verified handoff manifest.
 Consequence: The release remains reproducible locally without creating an external
 archival or publication record.
 
+## 2026-07-19 - Owner approves fail-closed merge and release boundary
+
+Decision: Keep PR #464 open until required checks pass. Do not bypass review, merge,
+tag, sign, attest or publish a release while evidence, policy and source-licence
+gates remain unresolved. Treat the verified local handoff bundle as the current
+release artefact.
+
+Evidence: User approval recorded in the Codex session; PR #464 checks, release
+readiness summary and verified handoff manifest.
+
+Consequence: Repository automation may continue, but no remote merge or external
+release mutation is authorized by this decision.
+
 ## 2026-07-19 - Owner approves historical MBS/PBS metadata and local-cache scope
 
 Decision: Approve tracking historical MBS/PBS catalogue metadata, URLs, release
