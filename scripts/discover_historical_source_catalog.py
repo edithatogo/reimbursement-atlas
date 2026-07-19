@@ -100,7 +100,9 @@ def discover() -> list[dict[str, str]]:
     ]
     for page in pfs_pages:
         for url in fetch_links(page):
-            if urlparse(url).netloc == "www.cms.gov" and urlparse(url).path.lower().endswith((
+            if urlparse(url).netloc in ("www.cms.gov", "cms.gov") and urlparse(
+                url
+            ).path.lower().endswith((
                 ".zip",
                 ".csv",
                 ".txt",
@@ -116,7 +118,7 @@ def discover() -> list[dict[str, str]]:
                 )
     for url in fetch_links(CMS_ASP_INDEX):
         parsed = urlparse(url)
-        if parsed.netloc != "www.cms.gov" or not (
+        if parsed.netloc not in ("www.cms.gov", "cms.gov") or not (
             parsed.path.lower().endswith(".zip")
             or any(".zip" in value.lower() for value in parse_qs(parsed.query).get("file", []))
         ):
@@ -133,7 +135,10 @@ def discover() -> list[dict[str, str]]:
         )
     for url in fetch_links(CMS_CLFS_INDEX):
         parsed = urlparse(url)
-        if parsed.netloc != "www.cms.gov" or not parsed.path.lower().endswith((".pdf", ".zip")):
+        if parsed.netloc not in ("www.cms.gov", "cms.gov") or not parsed.path.lower().endswith((
+            ".pdf",
+            ".zip",
+        )):
             continue
         gated = parsed.path.lower().endswith(".zip")
         rows.append(
