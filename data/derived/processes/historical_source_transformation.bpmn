@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+  id="historical_source_transformation"
+  targetNamespace="https://github.com/edithatogo/reimbursement-atlas/processes">
+  <process id="historical_source_transformation_process" name="Historical source archival and derived-data transformation" isExecutable="false">
+    <startEvent id="start" name="Historical target selected"/>
+    <task id="enumerate" name="Enumerate official source target"/>
+    <task id="retrieve" name="Retrieve payload into ignored local cache"/>
+    <task id="hash" name="Record retrieval timestamp, byte size and SHA-256"/>
+    <task id="review" name="Review source terms and permitted reuse"/>
+    <exclusiveGateway id="licence_gate" name="Licence permits intended use?"/>
+    <task id="parse" name="Parse source with version-pinned parser"/>
+    <task id="normalise" name="Normalise into typed contract fields"/>
+    <task id="validate" name="Validate schema, content and data quality"/>
+    <task id="package" name="Emit citation, provenance and research package metadata"/>
+    <task id="publish" name="Publish only after evidence and release gates"/>
+    <endEvent id="end" name="Auditable derived artefact or blocked record"/>
+    <sequenceFlow id="f1" sourceRef="start" targetRef="enumerate"/>
+    <sequenceFlow id="f2" sourceRef="enumerate" targetRef="retrieve"/>
+    <sequenceFlow id="f3" sourceRef="retrieve" targetRef="hash"/>
+    <sequenceFlow id="f4" sourceRef="hash" targetRef="review"/>
+    <sequenceFlow id="f5" sourceRef="review" targetRef="licence_gate"/>
+    <sequenceFlow id="f6" sourceRef="licence_gate" targetRef="parse" name="approved"/>
+    <sequenceFlow id="f7" sourceRef="licence_gate" targetRef="end" name="blocked or metadata-only"/>
+    <sequenceFlow id="f8" sourceRef="parse" targetRef="normalise"/>
+    <sequenceFlow id="f9" sourceRef="normalise" targetRef="validate"/>
+    <sequenceFlow id="f10" sourceRef="validate" targetRef="package"/>
+    <sequenceFlow id="f11" sourceRef="package" targetRef="publish"/>
+    <sequenceFlow id="f12" sourceRef="publish" targetRef="end"/>
+  </process>
+</definitions>

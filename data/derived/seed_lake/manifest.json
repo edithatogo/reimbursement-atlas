@@ -96,8 +96,8 @@
       "jsonl_path": "conductor_tracks/conductor_tracks.jsonl",
       "name": "conductor_tracks",
       "parquet_path": "conductor_tracks/conductor_tracks.parquet",
-      "rows": 10,
-      "sha256": "c925020251d48680f3e6f32841914f77d9652ae33f92dda72bb09bf306bc954a"
+      "rows": 11,
+      "sha256": "214a84962ece9d5c07e3f8dacdc3fac57f938a53131054ca069e2ef3130bfc4f"
     },
     {
       "csv_path": "roadmap_functions/roadmap_functions.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 36,
-      "sha256": "61bffb3f6baee4b089e494399ec34a32499c0de6a441fb290ce329b0088492d5"
+      "sha256": "8db9981ebcd1b7570658ca5c7f08220fc80f04d8683b5df53400ec20c9b5c81f"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -392,8 +392,8 @@
       "jsonl_path": "github_project_items/github_project_items.jsonl",
       "name": "github_project_items",
       "parquet_path": "github_project_items/github_project_items.parquet",
-      "rows": 188,
-      "sha256": "17770736aaef94377c5cc6d3e675c61155ed84f2a4314ac9edd851f28bc2a855"
+      "rows": 192,
+      "sha256": "c2ddb57f89d28d4ea04bb0d4dae9044142e1b58de92639b0f470dc010d64851b"
     },
     {
       "csv_path": "final_handoff_tasks/final_handoff_tasks.csv",
@@ -449,15 +449,15 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "8dc120a1b5fa6af446a87d1ae0b4fd5b6ef8f01a8a84f751179856bdcdc90b20"
+      "sha256": "b23cadc44173f97dc0974ada9fe73260e45b8de2c885442c9dd9a2d7e6d2ba5e"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
       "jsonl_path": "data_dictionary/data_dictionary.jsonl",
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
-      "rows": 176,
-      "sha256": "063c9efc5ce3033a6a717d439d36cec9b91002582007a6e87294624a2f8005c3"
+      "rows": 180,
+      "sha256": "b7ba1ca01b9626c6fc375b21a668d2ab8c5a6619239f7d58c316f41b180b3916"
     }
   ]
 }

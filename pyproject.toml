@@ -180,6 +180,7 @@ source-url-licence-checklist = "PYTHONPATH=src python scripts/make_source_url_li
 source-health-report = "PYTHONPATH=src python scripts/make_source_health_report.py"
 typescript-compatibility = "PYTHONPATH=src python scripts/make_typescript_compatibility_report.py"
 historical-sources = "PYTHONPATH=src python scripts/make_historical_source_index.py"
+historical-acquisition = "PYTHONPATH=src python scripts/download_historical_sources.py"
 github-project-export = "PYTHONPATH=src python scripts/make_github_project_export.py"
 github-project-sync = "PYTHONPATH=src python scripts/sync_github_project.py"
 final-handoff = "PYTHONPATH=src python scripts/make_final_handoff.py"
