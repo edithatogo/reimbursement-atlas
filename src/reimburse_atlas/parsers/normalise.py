@@ -50,7 +50,7 @@ def parse_date(value: object | None) -> date | None:
         return None
     for fmt in ("%Y-%m-%d", "%d/%m/%Y", "%d-%m-%Y", "%d.%m.%Y"):
         try:
-            return datetime.strptime(text, fmt).date()  # noqa: DTZ007
+            return datetime.strptime(text, fmt).date()  # ruff:ignore[call-datetime-strptime-without-zone]
         except ValueError:
             continue
     return None

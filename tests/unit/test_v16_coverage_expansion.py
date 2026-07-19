@@ -22,7 +22,7 @@ from reimburse_atlas.source_validation import (
 )
 from reimburse_atlas.vector_index import (
     VectorIndexDependencyError,
-    _create_or_replace_table,  # noqa: PLC2701
+    _create_or_replace_table,  # ruff:ignore[import-private-name]
     build_lancedb_index,
     schedule_item_vector_rows,
     write_arrow_vector_seed,

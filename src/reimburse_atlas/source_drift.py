@@ -72,7 +72,7 @@ DEFAULT_DRIFT_PAIRS: tuple[tuple[str, str, Path, Path], ...] = (
 )
 
 
-def compare_tabular_files(  # noqa: PLR0914
+def compare_tabular_files(  # ruff:ignore[too-many-locals]
     left_path: Path,
     right_path: Path,
     *,

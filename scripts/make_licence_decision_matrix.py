@@ -1,7 +1,7 @@
 """Generate grouped licence decisions with provenance and transformation boundaries."""
 
 # The declarative decision text is intentionally verbose; keep it readable as a matrix.
-# ruff: noqa: E501
+# ruff:file-ignore[line-too-long]
 
 from __future__ import annotations
 

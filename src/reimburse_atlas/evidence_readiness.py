@@ -12,7 +12,7 @@ from reimburse_atlas.models import EvidenceReadinessRecord
 from reimburse_atlas.registry import project_root, read_jsonl
 
 
-def build_evidence_readiness(  # noqa: PLR0914
+def build_evidence_readiness(  # ruff:ignore[too-many-locals]
     root: Path | None = None,
 ) -> list[EvidenceReadinessRecord]:
     """Build research-question evidence-readiness rows from generated governance artefacts."""
@@ -196,7 +196,7 @@ def _stage_from_score(
     return "design"
 
 
-def _recommended_action(  # noqa: PLR0911
+def _recommended_action(  # ruff:ignore[too-many-return-statements]
     stage: Literal["blocked", "design", "prototype_ready", "evidence_ready"],
     *,
     protocol_score: float,

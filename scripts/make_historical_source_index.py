@@ -41,7 +41,7 @@ class _LinkParser(HTMLParser):
 def _fetch(url: str) -> str:
     """Fetch one official HTML index with a bounded HTTPS timeout."""
     # The caller supplies only HTTPS URLs constrained by official_url().
-    with urlopen(url, timeout=90) as response:  # noqa: S310  # nosec B310
+    with urlopen(url, timeout=90) as response:  # ruff:ignore[suspicious-url-open-usage]  # nosec B310
         return response.read().decode("utf-8", errors="replace")
 
 

@@ -84,7 +84,7 @@ def is_pull_request_ci() -> bool:
     )
 
 
-def validate_public_docs(root: Path) -> list[str]:  # noqa: PLR0912 - explicit public-doc contract checks
+def validate_public_docs(root: Path) -> list[str]:  # ruff:ignore[too-many-branches] - explicit public-doc contract checks
     """Return documentation drift or overclaiming errors."""
     readme = (root / "README.md").read_text(encoding="utf-8")
     citation = (root / "CITATION.cff").read_text(encoding="utf-8")

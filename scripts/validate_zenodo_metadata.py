@@ -11,7 +11,7 @@ from reimburse_atlas.registry import project_root, repo_relative
 REQUIRED_KEYS = ("title", "upload_type", "description", "creators", "license")
 
 
-def validate_metadata(path: Path) -> list[str]:  # noqa: PLR0912
+def validate_metadata(path: Path) -> list[str]:  # ruff:ignore[too-many-branches]
     """Return validation errors for a local, non-depositing Zenodo record."""
     try:
         payload: Any = json.loads(path.read_text(encoding="utf-8"))

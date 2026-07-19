@@ -47,13 +47,13 @@ class LinkParser(HTMLParser):
 
 def fetch_links(url: str) -> list[str]:
     """Fetch one official page and return absolute links."""
-    request = Request(  # noqa: S310 - URL is checked as HTTPS below
+    request = Request(  # ruff:ignore[suspicious-url-open-usage] - URL is checked as HTTPS below
         url, headers={"User-Agent": "reimbursement-atlas-source-catalog/1.0"}
     )
     if urlparse(url).scheme != "https":
         return []
     try:
-        with urlopen(request, timeout=30) as response:  # nosec B310  # noqa: S310
+        with urlopen(request, timeout=30) as response:  # nosec B310  # ruff:ignore[suspicious-url-open-usage]
             parser = LinkParser()
             parser.feed(response.read().decode("utf-8", errors="replace"))
         return sorted({urljoin(url, link) for link in parser.links})

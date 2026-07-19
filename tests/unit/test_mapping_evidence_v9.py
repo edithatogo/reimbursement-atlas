@@ -50,9 +50,9 @@ def test_schedule_item_vector_rows_are_lancedb_ready() -> None:
 
 def test_mapping_evidence_branch_helpers() -> None:
     from reimburse_atlas.analysis.mapping_evidence import (
-        _combined_confidence,  # noqa: PLC2701
-        _price_ratio,  # noqa: PLC2701
-        _review_priority,  # noqa: PLC2701
+        _combined_confidence,  # ruff:ignore[import-private-name]
+        _price_ratio,  # ruff:ignore[import-private-name]
+        _review_priority,  # ruff:ignore[import-private-name]
     )
 
     assert _price_ratio(None, 1.0) is None

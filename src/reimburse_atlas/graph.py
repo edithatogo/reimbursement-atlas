@@ -51,7 +51,7 @@ def _edge(source: str, target: str, relationship: str) -> dict[str, str]:
     return {"source": source, "target": target, "relationship": relationship}
 
 
-def build_seed_graph(  # noqa: PLR0912, PLR0914, PLR0915
+def build_seed_graph(  # ruff:ignore[too-many-branches, too-many-locals, too-many-statements]
     sources: list[SourceRecord],
     analyses: list[AnalysisRecord],
     ontologies: list[OntologyRecord],

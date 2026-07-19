@@ -37,7 +37,7 @@ def _load_manifest(path: Path) -> dict[str, Any]:
     return cast("dict[str, Any]", payload)
 
 
-def verify_manifest(  # noqa: PLR0912
+def verify_manifest(  # ruff:ignore[too-many-branches]
     manifest_path: Path,
     root: Path,
     *,
