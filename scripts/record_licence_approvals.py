@@ -23,7 +23,9 @@ def record_approvals(
     queue = {
         row["relative_path"]: row
         for row in (
-            json.loads(line) for line in queue_path.read_text(encoding="utf-8").splitlines()
+            json.loads(line)
+            for line in queue_path.read_text(encoding="utf-8").splitlines()
+            if line.strip()
         )
     }
     requested = set(paths)
@@ -33,7 +35,9 @@ def record_approvals(
         raise ValueError(message)
 
     decisions = [
-        json.loads(line) for line in decisions_path.read_text(encoding="utf-8").splitlines()
+        json.loads(line)
+        for line in decisions_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
     ]
     seen: set[str] = set()
     changed = 0
@@ -86,11 +90,14 @@ def main() -> None:
     parser.add_argument("--reviewer", default="repository-owner")
     parser.add_argument("--approval-reference", required=True)
     args = parser.parse_args()
-    count = record_approvals(
-        args.path,
-        reviewer=args.reviewer,
-        approval_reference=args.approval_reference,
-    )
+    try:
+        count = record_approvals(
+            args.path,
+            reviewer=args.reviewer,
+            approval_reference=args.approval_reference,
+        )
+    except ValueError as error:
+        parser.error(str(error))
     print(f"Recorded {count} checksum-bound licence approvals")
 
 
