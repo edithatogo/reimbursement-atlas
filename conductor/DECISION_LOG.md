@@ -1383,7 +1383,7 @@ historical CLFS catalogue, while keeping all remote publication and destination 
 mutations disabled.
 
 Evidence: The official `osf-cli-go` `v1.0.0` contract passed when invoked explicitly from
-`/Users/doughnut/.local/bin/osf`. Citation, public documentation, dashboard route,
+`~/.local/bin/osf`. Citation, public documentation, dashboard route,
 policy-demonstrator, Zenodo metadata, Mojo parity and Hugging Face candidate checks passed.
 The Hugging Face dataset is aligned, but the Space still reports `license=mit` and
 `sdk=gradio` instead of governed `apache-2.0` and `static`; no mutation was attempted.

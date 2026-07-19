@@ -9,7 +9,7 @@ preflights.
 ## Evidence
 
 - The official `osf-cli-go` `v1.0.0` binary was installed at
-  `/Users/doughnut/.local/bin/osf`; the explicit OSF CLI contract passed.
+  `~/.local/bin/osf`; the explicit OSF CLI contract passed.
 - Hugging Face dataset metadata is aligned, but the reachable Space remains drifted:
   observed `license=mit`, `sdk=gradio`; governed values are `apache-2.0` and `static`.
   No remote mutation was attempted because licence, evidence and publication gates
