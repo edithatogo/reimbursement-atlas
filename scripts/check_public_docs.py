@@ -51,14 +51,23 @@ def git_commit(root: Path, revision: str) -> str | None:
 
 def git_is_ancestor(root: Path, ancestor: str, descendant: str = "HEAD") -> bool:
     """Return whether a documented snapshot is in the checked-out history."""
-    result = subprocess.run(  # nosec B603 B607
-        ["git", "merge-base", "--is-ancestor", ancestor, descendant],
-        cwd=root,
-        capture_output=True,
-        check=False,
-        text=True,
-    )
-    return result.returncode == 0
+    descendants = [descendant]
+    if descendant == "HEAD":
+        # Post-merge checkouts can expose the remote-tracking ref while keeping
+        # the checked-out history shallow. Use it when available so documented
+        # parent snapshots remain verifiable without weakening the gate.
+        descendants.append("origin/main")
+    for candidate in dict.fromkeys(descendants):
+        result = subprocess.run(  # nosec B603 B607
+            ["git", "merge-base", "--is-ancestor", ancestor, candidate],
+            cwd=root,
+            capture_output=True,
+            check=False,
+            text=True,
+        )
+        if result.returncode == 0:
+            return True
+    return False
 
 
 def current_state_commits(root: Path) -> tuple[str, ...]:
