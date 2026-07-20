@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from datetime import UTC, datetime
 from pathlib import Path
 
 from reimburse_atlas.registry import project_root
@@ -41,6 +42,7 @@ def record_approvals(
     ]
     seen: set[str] = set()
     changed = 0
+    reviewed_at = datetime.now(UTC).date().isoformat()
     for decision in decisions:
         path = decision.get("relative_path")
         if path not in requested:
@@ -68,7 +70,7 @@ def record_approvals(
                 "descriptors."
             ),
             "reviewer": reviewer,
-            "reviewed_at": "2026-07-19",
+            "reviewed_at": reviewed_at,
         })
         changed += 1
 
