@@ -41,7 +41,7 @@ jobs:
           archive="gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
           base_url="https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}"
           curl --fail --silent --show-error --location "${base_url}/${archive}" --output "${archive}"
-          curl --fail --silent --show-error --location "${base_url}/checksums.txt" --output checksums.txt
+          curl --fail --silent --show-error --location "${base_url}/gitleaks_${GITLEAKS_VERSION}_checksums.txt" --output checksums.txt
           grep "  ${archive}$" checksums.txt | sha256sum --check --strict
           tar --extract --gzip --file "${archive}" gitleaks
           install --mode 0755 gitleaks "${RUNNER_TEMP}/gitleaks"
