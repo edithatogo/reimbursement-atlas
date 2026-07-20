@@ -1323,7 +1323,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "workflow_uses",
-      "sha256": "e412c3a99d9816a8857d28638e44b5ec3ea1ed3140b915823ff51e0a9cceaeb4"
+      "sha256": "e1ed45fde06551261f63ac99fae0ca8734dd1e65fceeea2f3b85be7a3da796df"
     },
     {
       "@id": "data/derived/repo_automation/workflow_uses.csv",
@@ -1332,7 +1332,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "workflow_uses",
-      "sha256": "57c67b1a41ca5ed07183d8202cb6da617a58d57b1e79adb6d055a43322a6c919"
+      "sha256": "f0b9dde44554cfee63c36af0fd839e609860ff448eda6f74ee0438a7f607c873"
     },
     {
       "@id": "data/derived/repo_automation/workflow_policy.jsonl",
