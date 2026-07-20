@@ -51,16 +51,41 @@ gates:
 - **Group C, dashboard review:** the tested browser/device baseline is accepted within its scope;
   automated browser, keyboard, focus and axe checks remain regression evidence, not universal WCAG
   certification. Re-review is required after material UI changes.
-- **Group D, OSF and Hugging Face preparation:** prepare and validate local OSF protocol/report
-  and Hugging Face dataset/Space candidate packages only. Do not upload, register, publish, or
-  correct remote destination metadata under this approval.
+- **Group D, OSF and Hugging Face preparation:** prepare and validate the OSF protocol/report
+  and Hugging Face dataset/Space candidate packages. Private OSF staging, an OSF draft
+  registration, and governed Hugging Face Space metadata reconciliation are approved; public
+  registration, dataset payload publication and paper publication remain gated.
 
 Paper, preprint, manuscript and other publication submission remains explicitly deferred until
 the final gate.
 
 ## Merge and release boundary
 
-The owner-approved boundary is fail-closed: keep PR #464 open until its required
-checks pass; do not bypass review, merge, tag, sign, attest or publish a release
+The owner-approved boundary is fail-closed: do not bypass review, merge, tag, sign,
+attest or publish a release
 while evidence, policy and source-licence gates remain unresolved. The verified
 local handoff bundle is the current release artefact.
+
+## External pre-publication actions (2026-07-20)
+
+The repository owner is the accountable reviewer for the approved pre-publication
+scope. The following external preparation actions were completed without publishing
+papers or making the research package public:
+
+- OSF CLI: the pinned `edithatogo/osf-cli-go v1.0.0` was used with private OSF
+  project `q8cnx`. The reviewed protocol, provenance, freeze, manifest, data-package
+  and RO-Crate files were uploaded privately. Chrome identified **OSF Preregistration**
+  as the appropriate template, and an OSF draft was created. The draft remains
+  unregistered and private pending protocol freeze and registration review.
+- Hugging Face: the Space metadata was reconciled through the authenticated account
+  to `license: apache-2.0` and `sdk: static`. The dataset remains governed as
+  `license: other`; no dataset payload or raw source was uploaded. The destination
+  check reports zero mismatches.
+- Source and evidence scope: the owner approved derived-only historical MBS/PBS
+  processing, CMS numeric/payment fields with AMA/CPT descriptors excluded, mapping
+  calibration review, and dashboard review. These approvals do not convert the
+  smoke fixture or prototype evidence into evidence-ready findings without the
+  documented review and holdout steps.
+
+The owner explicitly deferred paper, preprint, manuscript and public research-package
+publication. No token or secret is stored in the repository.
