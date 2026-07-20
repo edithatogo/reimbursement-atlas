@@ -33,9 +33,21 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+      - name: Install Gitleaks CLI
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITLEAKS_VERSION: "8.30.1"
+        run: |
+          set -euo pipefail
+          archive="gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          base_url="https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}"
+          curl --fail --silent --show-error --location "${base_url}/${archive}" --output "${archive}"
+          curl --fail --silent --show-error --location "${base_url}/checksums.txt" --output checksums.txt
+          grep "  ${archive}$" checksums.txt | sha256sum --check --strict
+          tar --extract --gzip --file "${archive}" gitleaks
+          install --mode 0755 gitleaks "${RUNNER_TEMP}/gitleaks"
+      - name: Scan complete Git history
+        run: |
+          "${RUNNER_TEMP}/gitleaks" git --redact --no-banner --exit-code 1
 
   reproducible-build:
     runs-on: ubuntu-latest
@@ -69,4 +81,3 @@ jobs:
             dist-b-files.txt
             reproducible-build-sha256.txt
           retention-days: 30
-
