@@ -565,3 +565,92 @@ epics:
       - title: Expose machine-readable release blockers and next actions in public status
         labels: ["type:dashboard", "type:release", "phase:release-gate", "status:implemented"]
         status: implemented
+  - id: RAC-OSF-001
+    title: OSF registration record quality and protocol freeze
+    phase: research
+    workstream: research
+    priority: must
+    track_id: track_osf_registration_record_quality
+    issues:
+      - title: Complete OSF Preregistration metadata and protocol sections
+        labels: ["type:research", "type:osf", "type:review", "priority:must", "status:blocked"]
+        status: blocked
+        acceptance:
+          - "Title, description, contributors, licence, subjects and tags are complete."
+          - "Each research question links to protocol, source, transformation and output artefacts."
+          - "Paper, preprint and manuscript publication remain explicitly excluded."
+      - title: Freeze OSF source cutoff and manifest digests
+        labels: ["type:research", "type:provenance", "type:reproducibility", "status:blocked"]
+        status: blocked
+        acceptance:
+          - "Source cutoff, protocol digest, analysis manifest and package digests are recorded."
+          - "OSF CLI validation passes against the draft or registration."
+      - title: Review and submit OSF registration without publishing papers
+        labels: ["type:research", "type:osf", "type:review", "risk:publication", "status:blocked"]
+        status: blocked
+        acceptance:
+          - "Accountable reviewer records an explicit registration decision."
+          - "Public registration or submission occurs only after explicit approval."
+  - id: RAC-EVIDENCE-001
+    title: Evidence adjudication and accountable-review closure
+    phase: hardening
+    workstream: evidence
+    priority: must
+    track_id: track_evidence_adjudication_review
+    issues:
+      - title: Build and review the stratified 750-case mapping pack
+        labels: ["type:mapping", "type:review", "type:evidence", "status:blocked"]
+        status: blocked
+      - title: Adjudicate mapping controls and evaluate untouched holdout
+        labels: ["type:mapping", "type:statistics", "type:review", "status:blocked"]
+        status: blocked
+      - title: Complete CMS MBS and PBS source-rights review records
+        labels: ["type:licence", "type:data-source", "type:review", "status:blocked"]
+        status: blocked
+      - title: Complete scoped dashboard visual and accessibility review
+        labels: ["type:dashboard", "type:accessibility", "type:review", "status:blocked"]
+        status: blocked
+      - title: Regenerate evidence readiness and final handoff after adjudication
+        labels: ["type:evidence", "type:release", "type:automation", "status:blocked"]
+        status: blocked
+  - id: RAC-SOURCE-001
+    title: Source provenance licensing and historical release reproducibility
+    phase: implementation
+    workstream: sources
+    priority: must
+    track_id: track_source_provenance_licence_release
+    issues:
+      - title: Reconcile historical catalogue targets retrieval evidence and checksums
+        labels: ["type:data-source", "type:provenance", "type:reproducibility", "status:implemented"]
+        status: implemented
+      - title: Complete source-specific licence and derived-field decision matrices
+        labels: ["type:licence", "type:data-source", "type:review", "status:blocked"]
+        status: blocked
+      - title: Generate BPMN 2.0 transformation lineage for source families
+        labels: ["type:research", "type:provenance", "type:documentation", "status:implemented"]
+        status: implemented
+      - title: Validate source content contracts and deterministic package manifests
+        labels: ["type:data-quality", "type:reproducibility", "type:release", "status:implemented"]
+        status: implemented
+  - id: RAC-RELEASE-001
+    title: Citation archive and public record maturity
+    phase: release
+    workstream: publication
+    priority: must
+    track_id: track_release_record_archive_maturity
+    issues:
+      - title: Reconcile README citation dashboard and package identity metadata
+        labels: ["type:documentation", "type:citation", "type:dashboard", "status:implemented"]
+        status: implemented
+      - title: Complete scoped dashboard visual accessibility and provenance review
+        labels: ["type:dashboard", "type:accessibility", "type:review", "status:blocked"]
+        status: blocked
+      - title: Validate OSF Hugging Face and GitHub identity and licence parity
+        labels: ["type:publication", "type:provenance", "type:licence", "status:implemented"]
+        status: implemented
+      - title: Generate signed archive SBOM provenance and attestation inputs
+        labels: ["type:release", "type:supply-chain", "type:security", "status:blocked"]
+        status: blocked
+      - title: Run final publication boundary review without submitting papers
+        labels: ["type:release", "type:review", "risk:publication", "status:blocked"]
+        status: blocked

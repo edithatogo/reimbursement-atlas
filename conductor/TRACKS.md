@@ -226,3 +226,59 @@ Tracked sub-issues:
   after publication approval
 - Expand reviewed coverage with historical MBS and PBS bundles
 - Add grouped licence review packet and batch summary for accountable handoff
+
+## [~] track_osf_registration_record_quality: OSF registration record quality and protocol freeze
+
+Priority: **must**
+Phase: `review`
+Workstream: `research_protocols`
+
+Context: [specification](tracks/track_osf_registration_record_quality/spec.md) | [implementation plan](tracks/track_osf_registration_record_quality/plan.md)
+
+Parent GitHub issue: [#484](https://github.com/edithatogo/reimbursement-atlas/issues/484)
+
+Tracked subissues: [#488](https://github.com/edithatogo/reimbursement-atlas/issues/488), [#489](https://github.com/edithatogo/reimbursement-atlas/issues/489), [#511](https://github.com/edithatogo/reimbursement-atlas/issues/511)
+
+Publication submission remains explicitly out of scope.
+
+## [~] track_evidence_adjudication_review: Evidence adjudication and accountable-review closure
+
+Priority: **must**
+Phase: `review`
+Workstream: `evidence`
+
+Context: [specification](tracks/track_evidence_adjudication_review/spec.md) | [implementation plan](tracks/track_evidence_adjudication_review/plan.md)
+
+Parent GitHub issue: [#485](https://github.com/edithatogo/reimbursement-atlas/issues/485)
+
+Tracked subissues: [#490](https://github.com/edithatogo/reimbursement-atlas/issues/490), [#491](https://github.com/edithatogo/reimbursement-atlas/issues/491), [#492](https://github.com/edithatogo/reimbursement-atlas/issues/492), [#493](https://github.com/edithatogo/reimbursement-atlas/issues/493), [#494](https://github.com/edithatogo/reimbursement-atlas/issues/494)
+
+Human review and source-rights decisions remain explicit gates.
+
+## [~] track_source_provenance_licence_release: Source provenance licensing and historical release reproducibility
+
+Priority: **must**
+Phase: `implementation`
+Workstream: `source_governance`
+
+Context: [specification](tracks/track_source_provenance_licence_release/spec.md) | [implementation plan](tracks/track_source_provenance_licence_release/plan.md)
+
+Parent GitHub issue: [#486](https://github.com/edithatogo/reimbursement-atlas/issues/486)
+
+Tracked subissues: [#495](https://github.com/edithatogo/reimbursement-atlas/issues/495), [#496](https://github.com/edithatogo/reimbursement-atlas/issues/496), [#497](https://github.com/edithatogo/reimbursement-atlas/issues/497), [#498](https://github.com/edithatogo/reimbursement-atlas/issues/498)
+
+Raw and licence-gated source payloads remain excluded from version control.
+
+## [~] track_release_record_archive_maturity: Citation archive and public record maturity
+
+Priority: **must**
+Phase: `release_preparation`
+Workstream: `release`
+
+Context: [specification](tracks/track_release_record_archive_maturity/spec.md) | [implementation plan](tracks/track_release_record_archive_maturity/plan.md)
+
+Parent GitHub issue: [#487](https://github.com/edithatogo/reimbursement-atlas/issues/487)
+
+Tracked subissues: [#499](https://github.com/edithatogo/reimbursement-atlas/issues/499), [#501](https://github.com/edithatogo/reimbursement-atlas/issues/501), [#503](https://github.com/edithatogo/reimbursement-atlas/issues/503), [#505](https://github.com/edithatogo/reimbursement-atlas/issues/505), [#507](https://github.com/edithatogo/reimbursement-atlas/issues/507)
+
+Final publication review is required before any paper or preprint submission.

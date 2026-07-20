@@ -1,0 +1,14 @@
+{
+  "track_id": "track_evidence_adjudication_review",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-07-20T00:00:00Z",
+  "updated_at": "2026-07-20T00:00:00Z",
+  "description": "Close accountable human evidence, mapping, source-rights and dashboard review gates.",
+  "evidence_schema": "1.0",
+  "gates": [
+    {"id": "mapping_adjudication", "kind": "human_review", "status": "pending", "evidence": "Current fixture remains smoke-only."},
+    {"id": "source_rights", "kind": "human_review", "status": "pending", "evidence": "CMS/MBS/PBS restrictions remain explicit."},
+    {"id": "visual_review", "kind": "human_review", "status": "pending", "evidence": "Automated browser evidence is not universal WCAG certification."}
+  ]
+}

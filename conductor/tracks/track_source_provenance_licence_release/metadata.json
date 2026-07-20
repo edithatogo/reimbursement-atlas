@@ -1,0 +1,14 @@
+{
+  "track_id": "track_source_provenance_licence_release",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-07-20T00:00:00Z",
+  "updated_at": "2026-07-20T00:00:00Z",
+  "description": "Make historical and live source provenance, licensing and transformations release-reproducible.",
+  "evidence_schema": "1.0",
+  "gates": [
+    {"id": "source_catalogue", "kind": "repository", "status": "pass", "evidence": "Historical source catalogues and acquisition manifests exist."},
+    {"id": "source_rights", "kind": "human_review", "status": "pending", "evidence": "Source-specific reuse decisions remain required."},
+    {"id": "raw_payload_policy", "kind": "repository", "status": "pass", "evidence": "Public-data policy excludes raw/local cache paths from tracked outputs."}
+  ]
+}

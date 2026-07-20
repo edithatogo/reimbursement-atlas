@@ -1,0 +1,14 @@
+{
+  "track_id": "track_release_record_archive_maturity",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-07-20T00:00:00Z",
+  "updated_at": "2026-07-20T00:00:00Z",
+  "description": "Align citation, dashboard, OSF, Hugging Face and archive records for a citable public product.",
+  "evidence_schema": "1.0",
+  "gates": [
+    {"id": "citation_metadata", "kind": "repository", "status": "pass", "evidence": "CITATION.cff validation passes."},
+    {"id": "destination_parity", "kind": "external", "status": "pass", "evidence": "HF dataset/Space destination report has zero mismatches."},
+    {"id": "archive_release", "kind": "external", "status": "pending", "evidence": "Signing, attestation, DOI and publication remain gated."}
+  ]
+}
