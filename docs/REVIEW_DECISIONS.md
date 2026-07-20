@@ -35,6 +35,29 @@ The current decision file records `approved` for each exact candidate under the 
 derived/metadata scope. It does not approve raw payloads, restricted descriptors,
 confidential values, unsupported claims, or any later checksum change.
 
+## Grouped Owner Direction (2026-07-20)
+
+The repository owner approved the grouped recommendations for the remaining pre-publication
+gates:
+
+- **Group A, source and licence scope:** historical MBS/PBS catalogue and local-cache work may
+  proceed as metadata-first, with source-specific reuse review before parsing or publication;
+  CMS CLFS work is limited to permitted derived numeric/payment fields and source metadata, with
+  CPT/HCPCS descriptors, restricted crosswalks and raw AMA-gated payloads excluded.
+- **Group B, mapping and evidence methodology:** retain the conservative human-review rule,
+  preserve the two negative controls and their triggered false-positive boundary, and keep the
+  four-case fixture smoke-only. The 750-case stratified pack, blinded dual review, adjudication
+  and untouched holdout remain required before evidence or policy use.
+- **Group C, dashboard review:** the tested browser/device baseline is accepted within its scope;
+  automated browser, keyboard, focus and axe checks remain regression evidence, not universal WCAG
+  certification. Re-review is required after material UI changes.
+- **Group D, OSF and Hugging Face preparation:** prepare and validate local OSF protocol/report
+  and Hugging Face dataset/Space candidate packages only. Do not upload, register, publish, or
+  correct remote destination metadata under this approval.
+
+Paper, preprint, manuscript and other publication submission remains explicitly deferred until
+the final gate.
+
 ## Merge and release boundary
 
 The owner-approved boundary is fail-closed: keep PR #464 open until its required

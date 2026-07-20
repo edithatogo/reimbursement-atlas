@@ -1501,16 +1501,29 @@ descriptors, unsupported claims, OSF registration, Hugging Face mutation or pape
 
 ## 2026-07-19 v205 dependency refresh and acquisition gate
 
-The repository-owned dependency refresh candidate upgrades PyArrow to 25.0.0,
-Ruff to 0.15.22, Hypothesis to 6.157.0 and Uvicorn to 0.51.0, removes the
-obsolete Uvicorn `standard` extra, and regenerates both `uv.lock` and
-`pixi.lock`. Local QA remains green at 345 passed, 2 skipped and 90% coverage.
-The resulting SBOM and release-readiness surfaces changed five checksum-bound
-derived artefacts; those rows are blocked pending explicit owner approval and
-are not merged to `main`.
+The repository-owned dependency refresh upgrades PyArrow to 25.0.0, Ruff to 0.15.22,
+Hypothesis to 6.157.0 and Uvicorn to 0.51.0 with the supported `standard` runtime extra;
+both `uv.lock` and `pixi.lock` are regenerated. Local QA remains green at 345 passed,
+2 skipped and 90% coverage. The resulting checksum-bound derived artefacts were explicitly
+re-approved and merged to `main` after hosted parity gates passed.
 
 The hardened acquisition plan recorded current MBS TXT/XML downloads and PBS
 local-cache availability while correctly skipping seven metadata/licence-gated
 targets. Raw payloads remain ignored local evidence only. CMS CLFS, historical
 source reuse, mapping calibration, OSF registration, Hugging Face publication,
 dashboard visual baselines and research publication remain fail-closed.
+
+## 2026-07-20 v206 grouped pre-publication direction
+
+The repository owner approved Groups A-D: metadata-first historical MBS/PBS scope and
+derived-only CMS CLFS numeric/payment scope; conservative mapping methodology with the
+four-case fixture remaining smoke-only; scoped dashboard baseline acceptance; and local-only
+OSF/Hugging Face preparation. The 750-case mapping pack, blinded dual review, adjudication and
+untouched holdout remain required before evidence or policy use.
+
+The approved dry runs passed OSF planning, Hugging Face candidate validation, dashboard status,
+source validation/contracts, data quality, evidence readiness, release readiness, final handoff
+and the 17-gate quick local-quality profile. The read-only Hugging Face destination check still
+reports the known Space metadata drift (`mit`/`gradio` versus governed `apache-2.0`/`static`);
+no remote mutation was attempted. OSF upload/registration, Hugging Face publication or metadata
+correction, and all paper/preprint/manuscript publication remain explicitly unauthorised.
