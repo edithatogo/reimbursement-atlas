@@ -1517,3 +1517,22 @@ The TypeScript canary remains blocked by `@astrojs/check@0.9.9` peer support
 Consequence: Derived manifests now include the historical CLFS artefacts. OSF/Hugging
 Face publication, licence review, mapping adjudication and policy-claim readiness remain
 fail-closed and require their accountable external decisions.
+
+## 2026-07-20 - Owner approves grouped pre-publication directions
+
+Decision: Approve Group A source/licence scope, Group B conservative mapping/evidence
+methodology, Group C scoped dashboard baseline review, and Group D local-only OSF/Hugging
+Face preparation. Historical MBS/PBS work remains metadata-first and licence-gated for
+redistribution; CMS CLFS remains derived numeric/payment fields only, excluding CPT/HCPCS
+descriptors, restricted crosswalks and raw AMA-gated payloads. Mapping remains smoke-only and
+review-required pending the stratified case pack, blinded dual review, adjudication and holdout.
+OSF and Hugging Face may be prepared and validated locally, but no upload, registration,
+publication or remote metadata correction is authorised. Publication remains deferred until
+the final gate.
+
+Evidence: User approval in the Codex session on 2026-07-20; `docs/REVIEW_DECISIONS.md`,
+`docs/SOURCE_FIELD_LICENCE_MATRIX.md`, `docs/MAPPING_CALIBRATION_PROTOCOL.md`,
+`docs/DASHBOARD_VALIDATION.md`, `docs/OSF_WORKFLOW.md` and `docs/HUGGINGFACE_PUBLICATION.md`.
+
+Consequence: Repository-owned preparation and validation may proceed. Human source-rights,
+mapping adjudication, external-destination mutation and publication gates remain fail-closed.
