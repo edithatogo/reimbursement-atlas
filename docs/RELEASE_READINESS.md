@@ -1,6 +1,6 @@
 # Release readiness
 
-Release snapshot reference: `89127e48ba0035a330aafa950c1bed0476ad0077` (2026-07-19).
+Release snapshot reference: `ef1826928c65d7702f0983742d69f14eff675079` (2026-07-20).
 Regenerate this document after any further merge and before release review.
 The last merged-main repository release gate summary was 36/36 passing; the current
 branch must rerun the complete matrix before this state can be considered current.
@@ -30,7 +30,7 @@ The summary contains `required_blocker_count` and `public_release_ready`. Public
 The release matrix also verifies that `data/derived/licence_review/summary.json` exists,
 contains checksum-bound candidate rows, and explicitly has
 `approval_mutation_allowed: false`. This verifies the review-control mechanism only; the
-163 artifact candidates remain pending. This includes project metadata, governance outputs,
+11 currently blocked artifact candidates remain pending. This includes project metadata, governance outputs,
 and source-derived candidates; the source-derived subset still requires human Commonwealth,
 provider-licence and domain review before external publication.
 

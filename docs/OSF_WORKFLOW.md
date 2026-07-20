@@ -1,7 +1,7 @@
 # OSF workflow
 
 Release snapshot described by this workflow record is
-`89127e48ba0035a330aafa950c1bed0476ad0077` (2026-07-19). Regenerate this record after any
+`ef1826928c65d7702f0983742d69f14eff675079` (2026-07-20). Regenerate this record after any
 further merge; no OSF monitor evidence is implied for a newer commit.
 The latest merged-main monitor refresh is run `29595536363`. Pinned
 `osf-cli-go v1.0.0` discovery and the component plan passed; provisioning,

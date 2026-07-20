@@ -1,7 +1,7 @@
 # Zenodo release preparation
 
 Release snapshot described by this preflight is
-`89127e48ba0035a330aafa950c1bed0476ad0077` (2026-07-19). Regenerate this preflight after any
+`ef1826928c65d7702f0983742d69f14eff675079` (2026-07-20). Regenerate this preflight after any
 further merge; no Zenodo evidence is implied for a newer commit.
 The latest merged-main preflight is run `29595536320`. Metadata and
 repository-readiness validation passed; no DOI was created and no Zenodo deposit
