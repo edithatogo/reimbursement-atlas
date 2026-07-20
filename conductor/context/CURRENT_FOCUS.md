@@ -3,7 +3,7 @@
 ## Release snapshot state (2026-07-20)
 
 This focus record describes current merged `main` snapshot
-`ca715a74cdb1a99c9ab27e5341c470927b659bea`. Repository release readiness must be
+`d58af03116c792f092146d15e849af048709cdbb`. Repository release readiness must be
 regenerated after any further merge. The historical
 MBS inventory and target-level review packet are implemented, but all 343
 historical targets remain `pending_human_review` and no raw historical payloads

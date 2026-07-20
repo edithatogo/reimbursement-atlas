@@ -3,7 +3,7 @@
 ## Current working snapshot (2026-07-20)
 
 The current merged `main` snapshot is commit
-`ca715a74cdb1a99c9ab27e5341c470927b659bea`. The authoritative generated release summary reports repository software
+`d58af03116c792f092146d15e849af048709cdbb`. The authoritative generated release summary reports repository software
 release readiness `36/36` and `repository_release_ready=true`; research publication,
 OSF registration, evidence release and policy-claim readiness remain fail-closed.
 The current handoff table contains 12 tasks: 3 complete, 1 partial and 8 blocked by
@@ -32,7 +32,7 @@ apps/dashboard/public/data/final_handoff_tasks.csv
 ## Release snapshot state (2026-07-20)
 
 This handoff describes current merged `main` snapshot
-`ca715a74cdb1a99c9ab27e5341c470927b659bea`.
+`d58af03116c792f092146d15e849af048709cdbb`.
 Regenerate this document after any further merge and before release review.
 The historical MBS inventory contains 343 metadata-only targets across 32 archive
 pages, and the target-level review packet is available under
@@ -57,7 +57,7 @@ cannot mutate a candidate to approved status.
 
 ## Latest current-main external refresh
 
-The merged `main` commit `ca715a74cdb1a99c9ab27e5341c470927b659bea` was rechecked without publication or destination mutation.
+The merged `main` commit `d58af03116c792f092146d15e849af048709cdbb` was rechecked without publication or destination mutation.
 OSF discovery [29596947892](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29596947892)
 passed and found the configured private project; Zenodo preflight
 [29596947909](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29596947909)
