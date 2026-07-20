@@ -1,6 +1,6 @@
 # Release readiness
 
-Release snapshot reference: `ef1826928c65d7702f0983742d69f14eff675079` (2026-07-20).
+Release snapshot reference: `ca715a74cdb1a99c9ab27e5341c470927b659bea` (2026-07-20).
 Regenerate this document after any further merge and before release review.
 The last merged-main repository release gate summary was 36/36 passing; the current
 branch must rerun the complete matrix before this state can be considered current.
