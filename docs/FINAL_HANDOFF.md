@@ -1,14 +1,14 @@
 # Final handoff checklist
 
-## Current working snapshot (2026-07-19)
+## Current working snapshot (2026-07-20)
 
-The current continuation branch is `codex/provenance-decision-matrix` at commit
-`7afb925`. The authoritative generated release summary reports repository software
+The current merged `main` snapshot is commit
+`ef1826928c65d7702f0983742d69f14eff675079`. The authoritative generated release summary reports repository software
 release readiness `36/36` and `repository_release_ready=true`; research publication,
 OSF registration, evidence release and policy-claim readiness remain fail-closed.
 The current handoff table contains 12 tasks: 3 complete, 1 partial and 8 blocked by
 human review or external publication decisions. The checksum-bound licence queue has
-177 approved decision records, and four exact mapping benchmark decisions are recorded;
+166 approved and 11 blocked decision records, and four exact mapping benchmark decisions are recorded;
 the mapping calibration fixture remains 4 cases for smoke testing only. Use the generated files below as the source of truth; older commit
 and count references later in this document are retained historical audit notes.
 
@@ -29,10 +29,10 @@ data/derived/final_handoff/summary.json
 apps/dashboard/public/data/final_handoff_tasks.csv
 ```
 
-## Release snapshot state (2026-07-19)
+## Release snapshot state (2026-07-20)
 
 This handoff describes current merged `main` snapshot
-`89127e48ba0035a330aafa950c1bed0476ad0077`.
+`ef1826928c65d7702f0983742d69f14eff675079`.
 Regenerate this document after any further merge and before release review.
 The historical MBS inventory contains 343 metadata-only targets across 32 archive
 pages, and the target-level review packet is available under
@@ -51,13 +51,13 @@ research, evidence, policy or publication approval.
 
 The artifact-level licence-review queue is generated separately at
 `data/derived/licence_review/`. It binds every publication candidate to its current
-SHA-256 checksum and keeps all 163 rows pending until an accountable reviewer records
+SHA-256 checksum and keeps the 11 currently blocked rows pending until an accountable reviewer records
 decision evidence. The queue is a review-control artefact, not a licence approval, and
 cannot mutate a candidate to approved status.
 
 ## Latest current-main external refresh
 
-The merged `main` commit `89127e4` was rechecked without publication or destination mutation.
+The merged `main` commit `ef1826928c65d7702f0983742d69f14eff675079` was rechecked without publication or destination mutation.
 OSF discovery [29596947892](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29596947892)
 passed and found the configured private project; Zenodo preflight
 [29596947909](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29596947909)
@@ -74,7 +74,7 @@ was performed.
 
 ## Main remaining environment-dependent tasks
 
-1. Review the 163 checksum-bound publication candidates in the licence-review queue, then
+1. Review the 11 currently blocked checksum-bound candidates in the licence-review queue, then
    complete MBS, historical-source and CMS licence review before derived-data publication
    (`#23`, `#24`, `#26`, `#27`). The official MBS copyright notice is recorded in
    [`docs/SOURCE_LICENCE_EVIDENCE.md`](SOURCE_LICENCE_EVIDENCE.md); it is not an open
