@@ -6,7 +6,7 @@ security,.github/workflows/security.yml,dependency_review,hardened,Block high-se
 supply_chain,.github/workflows/scorecard.yml,openssf_scorecard,advanced,Upload SARIF/code-scanning results for public repositories.,implemented
 supply_chain,.github/workflows/workflow-security.yml,zizmor_workflow_lint,advanced,Keep medium-and-higher findings blocking and retain SARIF evidence.,implemented
 supply_chain,.github/workflows/security-assurance.yml,actionlint_workflow_validation,advanced,Keep actionlint SHA-pinned and required by branch protection.,implemented
-security,.github/workflows/security-assurance.yml,secret_history_scan,advanced,Retain full-history scanning and rotate any credential before suppressing findings.,implemented
+security,.github/workflows/security-assurance.yml,secret_history_scan,seed,Retain full-history scanning and rotate any credential before suppressing findings.,missing
 supply_chain,.github/workflows/security-assurance.yml,reproducible_build_verification,advanced,Require byte-identical wheels and source distributions from the same locked source.,implemented
 quality,.github/workflows/harness-assurance.yml,layered_harness_assurance,advanced,"Keep property, integration, E2E and deterministic-regeneration lanes bounded.",implemented
 supply_chain,.github/workflows/release.yml,artifact_attestations,advanced,Attest all release bundles and dashboard artefacts.,implemented

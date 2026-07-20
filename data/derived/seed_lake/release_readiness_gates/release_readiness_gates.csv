@@ -15,7 +15,7 @@ data_governance,local_quality status=passed return_code=0,data_dictionary,No act
 data_governance,local_quality status=passed return_code=0,evidence_readiness,No action required.,True,pass
 data_governance,local_quality status=passed return_code=0,source_drift,No action required.,True,pass
 data_governance,checks=41 blocking_failures=0,data_quality_summary,Resolve blocking data-quality checks before release.,True,pass
-data_governance,table_count=187 total_rows=49257,data_dictionary_summary,Regenerate the data dictionary after publication-manifest changes.,True,pass
+data_governance,table_count=187 total_rows=49277,data_dictionary_summary,Regenerate the data dictionary after publication-manifest changes.,True,pass
 data_governance,blocked=0 prototype_ready=5,evidence_readiness_summary,Resolve blocked research questions before evidence release.,True,pass
 data_governance,blocking_failure_count=0 warnings=0,source_drift_summary,Review source drift failures before release.,True,pass
 data_governance,validations=11 missing=0 failures=0,source_content_validation_summary,"Download missing public files in a network-enabled environment, then rerun validation.",True,pass
