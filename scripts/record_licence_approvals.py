@@ -42,6 +42,7 @@ def record_approvals(
     ]
     seen: set[str] = set()
     changed = 0
+    reviewed_at = datetime.now(UTC).date().isoformat()
     for decision in decisions:
         path = decision.get("relative_path")
         if path not in requested:
@@ -69,7 +70,7 @@ def record_approvals(
                 "descriptors."
             ),
             "reviewer": reviewer,
-            "reviewed_at": datetime.now(UTC).date().isoformat(),
+            "reviewed_at": reviewed_at,
         })
         changed += 1
 
