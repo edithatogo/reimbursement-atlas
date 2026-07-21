@@ -8,12 +8,10 @@ Status: `implemented`
 
 ## Background
 
-This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria
-before opening it in GitHub.
+This issue was generated from `conductor/backlog.yml`; the criteria below are the track-specific acceptance contract.
 
 ## Acceptance criteria
 
-- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
-- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
-- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
-- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.
+- [ ] A repository-owned exporter creates a complete git bundle, tracked-only archive, redacted manifest and SHA-256 checksum file outside the checkout.
+- [ ] The exporter verifies the bundle and records only basenames, commit and fail-closed readiness booleans in the manifest.
+- [ ] Unit tests cover deterministic metadata, path-prefix rejection and absence of absolute paths in the manifest.

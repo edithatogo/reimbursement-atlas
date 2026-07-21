@@ -8,12 +8,10 @@ Status: `implemented`
 
 ## Background
 
-This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria
-before opening it in GitHub.
+This issue was generated from `conductor/backlog.yml`; the criteria below are the track-specific acceptance contract.
 
 ## Acceptance criteria
 
-- [x] Source-health evidence separates operational acquisition blockers from `skipped_licence_gate` rows with machine-readable counts.
-- [x] Licence-only review status remains publication-blocking but does not create a duplicate acquisition-outage issue.
-- [x] Focused tests cover incomplete, `review_required` and clear source-health states.
-- [x] Conductor context and the v159 session record the review boundary.
+- [ ] Source-health evidence separates operational acquisition blockers from skipped_licence_gate rows with machine-readable counts.
+- [ ] Licence-only review status remains publication-blocking but does not create a duplicate acquisition-outage issue.
+- [ ] Focused tests cover incomplete, review_required and clear source-health states.

@@ -8,12 +8,10 @@ Status: `implemented`
 
 ## Background
 
-This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria
-before opening it in GitHub.
+This issue was generated from `conductor/backlog.yml`; the criteria below are the track-specific acceptance contract.
 
 ## Acceptance criteria
 
-- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
-- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
-- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
-- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.
+- [ ] The documentation freshness gate resolves HEAD and verifies the authoritative handoff, release-readiness, OSF, Zenodo and current-focus documents contain one full commit from the checked-out history or an immediate PR base/parent.
+- [ ] Historical monitor snapshots remain clearly labelled as audit evidence rather than current release state.
+- [ ] A unit test and generated freshness report provide machine-readable evidence without exposing secrets or local paths.

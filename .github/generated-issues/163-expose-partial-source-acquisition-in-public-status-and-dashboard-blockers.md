@@ -8,11 +8,10 @@ Status: `implemented`
 
 ## Background
 
-This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria
-before opening it in GitHub.
+This issue was generated from `conductor/backlog.yml`; the criteria below are the track-specific acceptance contract.
 
 ## Acceptance criteria
 
-- [x] Public status emits a `source_acquisition` blocker only for operational incomplete or unknown source-health states.
-- [x] Review-only source-health status remains visible through licence-review blockers and dashboard source-health evidence.
-- [x] Dashboard status and source-health CSV projections regenerate deterministically.
+- [ ] Public status emits a source_acquisition blocker only for operational incomplete or unknown source-health states.
+- [ ] Review-only source-health status remains visible through licence-review blockers and dashboard source-health evidence.
+- [ ] Dashboard status and source-health CSV projections regenerate deterministically.
