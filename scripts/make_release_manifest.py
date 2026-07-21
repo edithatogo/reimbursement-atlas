@@ -47,7 +47,7 @@ def build_manifest(tag: str, commit: str, artifacts: list[Path]) -> dict[str, ob
     seen: set[str] = set()
     for path in sorted(artifacts, key=lambda item: item.as_posix()):
         relative = path.as_posix()
-        if path.is_absolute() or relative in seen:
+        if path.is_absolute() or ".." in path.parts or relative in seen:
             message = f"release artifact paths must be relative and unique: {relative}"
             raise ValueError(message)
         if not path.is_file():

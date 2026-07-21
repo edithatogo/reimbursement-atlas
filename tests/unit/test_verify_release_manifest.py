@@ -42,3 +42,27 @@ def test_verify_release_manifest_rejects_tampering(tmp_path: Path, monkeypatch) 
 
     with pytest.raises(ValueError, match="checksum mismatch"):
         verify_manifest(manifest_path, tmp_path)
+
+
+def test_verify_release_manifest_rejects_size_mismatch(tmp_path: Path, monkeypatch) -> None:
+    """A manifest must bind both subject bytes and checksum."""
+    monkeypatch.chdir(tmp_path)
+    subject = Path("release.whl")
+    subject.write_bytes(b"release")
+    manifest = build_manifest("v1.2.3", "a" * 40, [subject])
+    manifest["subjects"][0]["size"] = 999
+    manifest_path = tmp_path / "release-manifest.json"
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+    with pytest.raises(ValueError, match="size mismatch"):
+        verify_manifest(manifest_path, tmp_path)
+
+
+def test_build_release_manifest_rejects_parent_paths(tmp_path: Path, monkeypatch) -> None:
+    """Manifest generation must not create paths the verifier would reject."""
+    monkeypatch.chdir(tmp_path)
+    outside = tmp_path.parent / "outside-release.whl"
+    outside.write_bytes(b"release")
+
+    with pytest.raises(ValueError, match="relative and unique"):
+        build_manifest("v1.2.3", "a" * 40, [Path("../outside-release.whl")])
