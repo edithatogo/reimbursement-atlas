@@ -1,9 +1,9 @@
 {
   "track_id": "track_source_provenance_licence_release",
   "type": "feature",
-  "status": "new",
+  "status": "in_progress",
   "created_at": "2026-07-20T00:00:00Z",
-  "updated_at": "2026-07-20T00:00:00Z",
+  "updated_at": "2026-07-21T00:00:00Z",
   "description": "Make historical and live source provenance, licensing and transformations release-reproducible.",
   "evidence_schema": "1.0",
   "gates": [

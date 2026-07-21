@@ -1,9 +1,9 @@
 {
   "track_id": "track_release_record_archive_maturity",
   "type": "feature",
-  "status": "new",
+  "status": "in_progress",
   "created_at": "2026-07-20T00:00:00Z",
-  "updated_at": "2026-07-20T00:00:00Z",
+  "updated_at": "2026-07-21T00:00:00Z",
   "description": "Align citation, dashboard, OSF, Hugging Face and archive records for a citable public product.",
   "evidence_schema": "1.0",
   "gates": [
