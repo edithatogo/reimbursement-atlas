@@ -192,4 +192,6 @@ def test_registration_review_packet_is_explicitly_unapproved(tmp_path) -> None: 
     assert "Decision: `blocked`" in packet
     assert "Protocols/reports OSF-ready: `1/1`" in packet
     assert "Manifest rows explicitly publishable: `0/1`" in packet
+    assert "OSF metadata contract" in packet
+    assert "accountable contributor list must be confirmed" in packet
     assert "publish_allowed: true" in packet
