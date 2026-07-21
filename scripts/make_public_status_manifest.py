@@ -42,6 +42,33 @@ def _read_jsonl(root: Path, relative_path: str) -> list[dict[str, Any]]:
     return rows
 
 
+def _effective_licence_review_counts(root: Path) -> tuple[int, int]:
+    """Count current queue rows by valid checksum-bound decision status."""
+    queue = _read_jsonl(root, "data/derived/licence_review/licence_review_queue.jsonl")
+    if not queue:
+        summary = _read_summary(root, "data/derived/licence_review/summary.json")
+        return int(summary.get("approved_count", 0)), int(summary.get("pending_count", 0))
+    decisions = {
+        row.get("review_id"): row
+        for row in _read_jsonl(root, "data/licence_review/decisions.jsonl")
+        if row.get("review_id")
+    }
+    approved = 0
+    pending = 0
+    for row in queue:
+        decision = decisions.get(row.get("review_id"))
+        if (
+            decision
+            and decision.get("checksum_sha256") == row.get("checksum_sha256")
+            and decision.get("relative_path") == row.get("relative_path")
+            and decision.get("decision") == "approved"
+        ):
+            approved += 1
+        else:
+            pending += 1
+    return approved, pending
+
+
 def _source_acquisition_blocker(root: Path) -> dict[str, Any] | None:
     """Return an operational source blocker, excluding licence-only review rows."""
     source_health = _read_summary(root, "data/derived/source_health/acquisition_status.json")
@@ -86,9 +113,7 @@ def build_public_status_manifest(root: Path | None = None) -> dict[str, Any]:
     source_status = "pass" if source.get("blocking_failures") == 0 else "blocked"
     evidence_count = int(evidence.get("research_question_count", 0))
     evidence_ready = int(evidence.get("evidence_ready", 0))
-    pending_licence_reviews = int(
-        _read_summary(repo, "data/derived/licence_review/summary.json").get("pending_count", 0)
-    )
+    approved_licence_reviews, pending_licence_reviews = _effective_licence_review_counts(repo)
     blockers: list[dict[str, Any]] = []
     source_blocker = _source_acquisition_blocker(repo)
     if source_blocker:
@@ -159,6 +184,12 @@ def build_public_status_manifest(root: Path | None = None) -> dict[str, Any]:
             "osf_registration_ready": bool(release.get("osf_registration_ready")),
             "huggingface_publication": "manual approval and token required",
             "zenodo_doi": "manual release approval required",
+        },
+        "licence_review": {
+            "approved_rows": approved_licence_reviews,
+            "pending_rows": pending_licence_reviews,
+            "decision_source": "data/licence_review/decisions.jsonl",
+            "queue_source": "data/derived/licence_review/licence_review_queue.jsonl",
         },
         "blockers": blockers,
         "claims_policy": (

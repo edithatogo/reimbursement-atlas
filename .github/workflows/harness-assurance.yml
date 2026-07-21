@@ -74,7 +74,6 @@ jobs:
           pixi run evidence-readiness
           pixi run source-drift
           pixi run release-readiness || true
-          pixi run dashboard-status
           pixi run research-package
           pixi run licence-review-queue
           pixi run licence-review-validate
@@ -85,5 +84,7 @@ jobs:
           pixi run fuzzy-benchmark
           pixi run seed-lake
           pixi run dashboard-seed
+          # Generate status only after the final checksum-bound queue exists.
+          pixi run dashboard-status
       - name: Require a clean deterministic regeneration
         run: git diff --exit-code

@@ -45,7 +45,6 @@ jobs:
           pixi run evidence-readiness
           pixi run source-drift
           pixi run release-readiness || true
-          pixi run dashboard-status
           pixi run research-package
           pixi run licence-review-queue
           pixi run licence-review-validate
@@ -56,6 +55,9 @@ jobs:
           pixi run fuzzy-benchmark
           pixi run seed-lake
           pixi run dashboard-seed
+          # Generate the public status projection last, after all checksum-bound
+          # artefacts and the authoritative decision ledger have settled.
+          pixi run dashboard-status
       - name: Ensure generated files are committed
         run: |
           git diff --stat
