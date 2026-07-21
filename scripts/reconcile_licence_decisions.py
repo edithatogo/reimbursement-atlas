@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import json
+from datetime import UTC, datetime
 from pathlib import Path
 
 from reimburse_atlas.registry import project_root
 
 
 def reconcile(root: Path | None = None) -> int:
-    """Update stale decisions to blocked using the current queue checksum."""
+    """Reconcile decisions with the queue, failing closed for new candidates."""
     repo = root or project_root()
     queue_path = repo / "data/derived/licence_review/licence_review_queue.jsonl"
     decisions_path = repo / "data/licence_review/decisions.jsonl"
@@ -21,6 +22,7 @@ def reconcile(root: Path | None = None) -> int:
         if row.get("relative_path")
     }
     changed = 0
+    decisions: dict[str, dict[str, object]] = {}
     output: list[str] = []
     for line in decisions_path.read_text(encoding="utf-8").splitlines():
         decision = json.loads(line)
@@ -36,7 +38,50 @@ def reconcile(root: Path | None = None) -> int:
                 "Not approved for publication until the new checksum is reviewed."
             )
             changed += 1
-        output.append(json.dumps(decision, separators=(",", ":"), sort_keys=True))
+        decisions[str(decision["relative_path"])] = decision
+
+    # Keep the human ledger total with the generated queue. New candidates must
+    # be explicit blockers, never silently absent or implicitly approved.
+    reviewed_at = datetime.now(UTC).date().isoformat()
+    for path, current in queue.items():
+        if path in decisions:
+            continue
+        decisions[path] = {
+            "attribution": (
+                "Reimbursement Atlas project-owned or source-derived artefact; retain "
+                "applicable provider attribution recorded in the source registry and "
+                "provenance manifest."
+            ),
+            "checksum_sha256": current["checksum_sha256"],
+            "decision": "blocked",
+            "evidence": (
+                "New generated publication candidate has no human licence decision; "
+                "checksum-bound review is required before publication consideration."
+            ),
+            "redistribution_permission": (
+                "Not approved for publication until this checksum is reviewed."
+            ),
+            "relative_path": path,
+            "restrictions": current.get("restrictions")
+            or (
+                "Exclude raw source payloads, credentials, request headers, restricted "
+                "descriptors, confidential values, unsupported coverage/net-price claims "
+                "and source-specific fields not expressly permitted by applicable evidence."
+            ),
+            "review_id": current["review_id"],
+            "reviewed_at": reviewed_at,
+            "reviewer": "repository-owner",
+            "source_terms": (
+                "Licence review required; consult applicable provider terms and source "
+                "evidence in the source registry, provenance manifest and review matrix."
+            ),
+        }
+        changed += 1
+
+    output = [
+        json.dumps(decisions[path], separators=(",", ":"), sort_keys=True)
+        for path in sorted(decisions)
+    ]
     decisions_path.write_text("\n".join(output) + "\n", encoding="utf-8")
     return changed
 
