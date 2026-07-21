@@ -116,6 +116,54 @@ def test_public_status_does_not_duplicate_licence_only_source_review(tmp_path: P
     assert "licence_review" in {item["id"] for item in manifest["blockers"]}
 
 
+def test_public_status_uses_current_checksum_bound_decisions(tmp_path: Path) -> None:
+    """The status projection counts valid ledger decisions, not neutral queue rows."""
+    for relative, payload in {
+        "data/derived/release_readiness/summary.json": {
+            "repository_release_ready": True,
+            "evidence_release_ready": False,
+            "research_publication_ready": False,
+            "osf_registration_ready": False,
+        },
+        "data/derived/evidence_readiness/summary.json": {},
+        "data/derived/data_quality/summary.json": {"blocking_failures": 0},
+        "data/derived/source_validation/summary.json": {"blocking_failures": 0},
+    }.items():
+        path = tmp_path / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(payload), encoding="utf-8")
+
+    queue_path = tmp_path / "data/derived/licence_review/licence_review_queue.jsonl"
+    queue_path.parent.mkdir(parents=True, exist_ok=True)
+    queue_rows = [
+        {"review_id": "one", "relative_path": "README.md", "checksum_sha256": "a" * 64},
+        {"review_id": "two", "relative_path": "README.md", "checksum_sha256": "b" * 64},
+    ]
+    queue_path.write_text("\n".join(json.dumps(row) for row in queue_rows) + "\n")
+    decisions_path = tmp_path / "data/licence_review/decisions.jsonl"
+    decisions_path.parent.mkdir(parents=True, exist_ok=True)
+    decisions_path.write_text(
+        json.dumps({
+            "review_id": "one",
+            "relative_path": "README.md",
+            "checksum_sha256": "a" * 64,
+            "decision": "approved",
+        })
+        + "\n"
+    )
+    (tmp_path / "README.md").write_text("fixture\n")
+
+    manifest = build_public_status_manifest(tmp_path)
+
+    assert manifest["licence_review"] == {
+        "approved_rows": 1,
+        "pending_rows": 1,
+        "decision_source": "data/licence_review/decisions.jsonl",
+        "queue_source": "data/derived/licence_review/licence_review_queue.jsonl",
+    }
+    assert "licence_review" in {item["id"] for item in manifest["blockers"]}
+
+
 def test_public_dashboard_assets_redact_local_raw_cache_paths() -> None:
     """Public derived assets must not expose ignored local raw-cache locations."""
     result = sanitise_public_text("source=data/raw_live/mbs/file.txt")
