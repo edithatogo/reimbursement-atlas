@@ -1340,20 +1340,20 @@
       }
     },
     {
-      "bytes": 7743,
+      "bytes": 7742,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "ba30f99e2ea225c7e03f5e9ef3e0f41de0b2defcb47d07278ca7c7705698d6bd",
+      "hash": "1db4c9c170be55af016f13ec6bd6e1102d4b1931c979fa4953688a5826981247",
       "mediatype": "application/json",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.jsonl",
       "schema": {}
     },
     {
-      "bytes": 4529,
+      "bytes": 4528,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "6f02d31c086cc8e7861eb49428d57e948dac20c384f38a5aeb019dc241b38901",
+      "hash": "8bd8281c1746f4812d97e615e17ba1cdbf85cb8b00208ea071b53d3315714491",
       "mediatype": "text/csv",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.csv",
