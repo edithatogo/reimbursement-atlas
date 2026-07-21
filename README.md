@@ -1,5 +1,8 @@
 # Reimbursement Atlas Conductor
 
+Registry-facing release, licensing and identifier metadata is consolidated in
+[`docs/DATABASE_REGISTRY_METADATA.md`](docs/DATABASE_REGISTRY_METADATA.md).
+
 [![CI](https://github.com/edithatogo/reimbursement-atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/edithatogo/reimbursement-atlas/actions/workflows/ci.yml)
 [![Dashboard build](https://github.com/edithatogo/reimbursement-atlas/actions/workflows/dashboard-preview.yml/badge.svg)](https://github.com/edithatogo/reimbursement-atlas/actions/workflows/dashboard-preview.yml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
