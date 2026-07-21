@@ -197,6 +197,7 @@ DEFAULT_PUBLICATION_PATHS = (
     Path("data/derived/data_dictionary/data_dictionary.csv"),
     Path("data/derived/data_dictionary/summary.json"),
     Path("infra/huggingface/DATASET_CARD.md"),
+    Path("infra/huggingface/CROISSANT.json"),
     Path("infra/huggingface/README.md"),
     Path("infra/huggingface/SPACE_README.md"),
     Path("data/derived/research_package/datapackage.json"),

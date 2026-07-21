@@ -1770,20 +1770,20 @@
       "schema": {}
     },
     {
-      "bytes": 107616,
+      "bytes": 108114,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "fe68abe210f39e7e1e166c42bba338fed37c96a618957acaaa208b66b65502bb",
+      "hash": "111e893dace8a1d71c243d84122a4faad3ba81a130ed59870b2a67c1505b3835",
       "mediatype": "application/json",
       "name": "data-dictionary",
       "path": "data/derived/data_dictionary/data_dictionary.jsonl",
       "schema": {}
     },
     {
-      "bytes": 81787,
+      "bytes": 82142,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "d81c457052a481b48ba9fb513e9e194a76d09e70f0dc71d1a5d20d25a608d639",
+      "hash": "f700d7f6695e58927904e9dc0bbc1a3f1670feff451c5cbe94471fb6612b3b51",
       "mediatype": "text/csv",
       "name": "data-dictionary",
       "path": "data/derived/data_dictionary/data_dictionary.csv",
@@ -1798,10 +1798,20 @@
       "bytes": 122,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "json",
-      "hash": "7eaa2e28b692f8541b52423df1ed2cad1e61dc1eb233703fbbad1e509950e2cb",
+      "hash": "66e99bd325076f38e0c6988b8a275d0e435de445c14140b8b7e16f72b9a28a9a",
       "mediatype": "application/json",
       "name": "summary",
       "path": "data/derived/data_dictionary/summary.json",
+      "schema": {}
+    },
+    {
+      "bytes": 956,
+      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "format": "json",
+      "hash": "ee8c2276069f52613415c89432f88b47503d59f2dbc23840471a7d6e9937de24",
+      "mediatype": "application/json",
+      "name": "CROISSANT",
+      "path": "infra/huggingface/CROISSANT.json",
       "schema": {}
     },
     {

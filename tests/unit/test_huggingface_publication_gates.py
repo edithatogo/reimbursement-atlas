@@ -18,6 +18,14 @@ def _write_bundle_files(root: Path, *, dataset_card: str) -> None:
     (root / "infra/huggingface").mkdir(parents=True, exist_ok=True)
     (root / "apps/dashboard/dist").mkdir(parents=True, exist_ok=True)
     (root / "infra/huggingface/DATASET_CARD.md").write_text(dataset_card, encoding="utf-8")
+    (root / "infra/huggingface/CROISSANT.json").write_text(
+        json.dumps({
+            "@type": "sc:Dataset",
+            "license": "other",
+            "distribution": [{"name": "manifest"}],
+        }),
+        encoding="utf-8",
+    )
     (root / "infra/huggingface/README.md").write_text("dataset", encoding="utf-8")
     (root / "infra/huggingface/SPACE_README.md").write_text(
         "sdk: static\nlicense: apache-2.0\nraw restricted source\n", encoding="utf-8"

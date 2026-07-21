@@ -913,6 +913,12 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "infra/huggingface/CROISSANT.json",
+      "dct:format": "json",
+      "dct:title": "CROISSANT"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "infra/huggingface/README.md",
       "dct:format": "md",
       "dct:title": "README"
