@@ -1627,3 +1627,15 @@ unit tests.
 
 Consequence: Issue #489 now has a deterministic candidate cutoff and auditable basis, but remains
 open for owner approval and an exported active OSF registration snapshot.
+
+## 2026-07-21 - Make release attestation coverage executable
+
+Decision: Extend the release workflow contract tests beyond permission scoping. The test now
+requires attestations and pre-upload `gh attestation verify` coverage for Python distributions,
+the source archive, SBOMs and the deterministic release manifest.
+
+Boundary: This verifies the workflow contract only. A tagged trusted-publisher run is still
+required before claiming a cryptographically attested release.
+
+Evidence: `tests/unit/test_release_workflow_contract.py`, `.github/workflows/release.yml`, and
+issue #505.

@@ -22,3 +22,26 @@ def test_release_workflow_scopes_write_and_attestation_permissions_to_build(
     assert "contents: write" in build_job
     assert "id-token: write" in build_job
     assert "attestations: write" in build_job
+
+
+def test_release_workflow_attests_and_verifies_all_release_subject_classes(
+    repo_root: Path,
+) -> None:
+    """Every uploaded release subject must have workflow-bound provenance first."""
+    workflow = (repo_root / ".github" / "workflows" / "release.yml").read_text(encoding="utf-8")
+
+    for subject_path in (
+        "dist/*",
+        "reimbursement-atlas-*.tar.gz",
+        "data/derived/sbom/*.json",
+        "release-manifest.json",
+    ):
+        assert f"subject-path: {subject_path}" in workflow
+        assert (
+            "for artifact in dist/* reimbursement-atlas-*.tar.gz data/derived/sbom/*.json "
+            "release-manifest.json"
+        ) in workflow
+        assert 'gh attestation verify "$artifact"' in workflow
+
+    assert "Verify release attestations before upload" in workflow
+    assert "softprops/action-gh-release" in workflow
