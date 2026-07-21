@@ -1539,7 +1539,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "5b6c140fd302a72108cf682bb5cc2c54b0c3d56b9d3823feb9215117715e6116"
+      "sha256": "03de4f163da8b76e555ff7f6ed42198282c62856acc6dc0c6f70bd761e7fd38d"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
@@ -1548,7 +1548,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "13dcd1a45bcde0dfe1f8bf728eae63fd98cf59e8c3170b0d0a58a41332cad613"
+      "sha256": "6af9e4971e0cc6d511ab831c8d87be0b33e89b5064965f5541ba2b48effae7c2"
     },
     {
       "@id": "data/derived/v13_validation_run.json",
@@ -1868,20 +1868,20 @@
     {
       "@id": "data/derived/data_dictionary/data_dictionary.jsonl",
       "@type": "File",
-      "contentSize": 109863,
+      "contentSize": 107616,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "data_dictionary",
-      "sha256": "9a5006b254bced3e1078ab6ad38c6e3af678ec16c6d5d5497809f5a77138619f"
+      "sha256": "fe68abe210f39e7e1e166c42bba338fed37c96a618957acaaa208b66b65502bb"
     },
     {
       "@id": "data/derived/data_dictionary/data_dictionary.csv",
       "@type": "File",
-      "contentSize": 83452,
+      "contentSize": 81787,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "data_dictionary",
-      "sha256": "f72628018a4660d38f481530683d5a1ebed79a1266d09905ffab23dfbb4bc3cc"
+      "sha256": "d81c457052a481b48ba9fb513e9e194a76d09e70f0dc71d1a5d20d25a608d639"
     },
     {
       "@id": "data/derived/data_dictionary/summary.json",
@@ -1890,7 +1890,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "json",
       "name": "summary",
-      "sha256": "c7aa012e41bbf7de7a8251fe462d6dea174386d808ecc1ab019262fe5d811f23"
+      "sha256": "7eaa2e28b692f8541b52423df1ed2cad1e61dc1eb233703fbbad1e509950e2cb"
     },
     {
       "@id": "infra/huggingface/DATASET_CARD.md",
