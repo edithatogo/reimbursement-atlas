@@ -2,7 +2,7 @@ check_name,evidence_path,expected_value,id,observed_value,recommended_action,sev
 minimum_row_count,data/seed/source_registry.jsonl,>=50,source_registry_minimum_row_count,60,Add missing records or lower the expectation only through an ADR.,blocking,pass,source_registry
 minimum_row_count,data/seed/analysis_catalogue.jsonl,>=20,analysis_catalogue_minimum_row_count,25,Add missing records or lower the expectation only through an ADR.,blocking,pass,analysis_catalogue
 minimum_row_count,data/seed/source_files.jsonl,>=7,source_files_minimum_row_count,11,Add missing records or lower the expectation only through an ADR.,blocking,pass,source_files
-minimum_row_count,data/seed/conductor_tracks.jsonl,>=8,conductor_tracks_minimum_row_count,11,Add missing records or lower the expectation only through an ADR.,blocking,pass,conductor_tracks
+minimum_row_count,data/seed/conductor_tracks.jsonl,>=8,conductor_tracks_minimum_row_count,15,Add missing records or lower the expectation only through an ADR.,blocking,pass,conductor_tracks
 minimum_row_count,data/seed/roadmap_functions.jsonl,>=20,roadmap_functions_minimum_row_count,45,Add missing records or lower the expectation only through an ADR.,blocking,pass,roadmap_functions
 minimum_row_count,data/seed/dataset_candidates.jsonl,>=15,dataset_candidates_minimum_row_count,15,Add missing records or lower the expectation only through an ADR.,blocking,pass,dataset_candidates
 minimum_row_count,data/seed/mapping_resources.jsonl,>=12,mapping_resources_minimum_row_count,12,Add missing records or lower the expectation only through an ADR.,blocking,pass,mapping_resources
@@ -13,7 +13,7 @@ unique_id,data/seed/source_registry.jsonl,all ids unique and non-empty,source_re
 unique_id,data/seed/analysis_catalogue.jsonl,all ids unique and non-empty,analysis_catalogue_unique_id,25 ids,Rename duplicate/empty identifiers and regenerate derived outputs.,blocking,pass,analysis_catalogue
 unique_id,data/seed/source_versions.jsonl,all ids unique and non-empty,source_versions_unique_id,14 ids,Rename duplicate/empty identifiers and regenerate derived outputs.,blocking,pass,source_versions
 unique_id,data/seed/source_files.jsonl,all ids unique and non-empty,source_files_unique_id,11 ids,Rename duplicate/empty identifiers and regenerate derived outputs.,blocking,pass,source_files
-unique_id,data/seed/conductor_tracks.jsonl,all ids unique and non-empty,conductor_tracks_unique_id,11 ids,Rename duplicate/empty identifiers and regenerate derived outputs.,blocking,pass,conductor_tracks
+unique_id,data/seed/conductor_tracks.jsonl,all ids unique and non-empty,conductor_tracks_unique_id,15 ids,Rename duplicate/empty identifiers and regenerate derived outputs.,blocking,pass,conductor_tracks
 unique_id,data/seed/roadmap_functions.jsonl,all ids unique and non-empty,roadmap_functions_unique_id,45 ids,Rename duplicate/empty identifiers and regenerate derived outputs.,blocking,pass,roadmap_functions
 unique_id,data/seed/dataset_candidates.jsonl,all ids unique and non-empty,dataset_candidates_unique_id,15 ids,Rename duplicate/empty identifiers and regenerate derived outputs.,blocking,pass,dataset_candidates
 unique_id,data/seed/mapping_resources.jsonl,all ids unique and non-empty,mapping_resources_unique_id,12 ids,Rename duplicate/empty identifiers and regenerate derived outputs.,blocking,pass,mapping_resources

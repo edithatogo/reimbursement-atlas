@@ -90,3 +90,27 @@ tracks:
     workstream: data
     goal: "Discover and locally archive public historical PBS, CMS PFS/ASP and NHS genomic targets while preserving explicit metadata-only and licence-gated boundaries."
     issue: "Generated from the multi-family historical source catalog and public-only acquisition workstream."
+  - id: track_osf_registration_record_quality
+    title: "OSF registration record quality and protocol freeze"
+    priority: must
+    phase: research
+    workstream: research
+    goal: "Complete the OSF Preregistration metadata and protocol freeze to produce a citable, reproducible and reviewable research record without publishing papers."
+  - id: track_evidence_adjudication_review
+    title: "Evidence adjudication and accountable-review closure"
+    priority: must
+    phase: hardening
+    workstream: evidence
+    goal: "Close the mapping, source-licence, dashboard and research-methods review gates with explicit accountable-review evidence while preserving fail-closed evidence claims."
+  - id: track_source_provenance_licence_release
+    title: "Source provenance, licensing and historical release reproducibility"
+    priority: must
+    phase: implementation
+    workstream: data
+    goal: "Make every historical and live source release citable and reproducible through source-specific licence decisions, transformation lineage, checksums and release-safe derived outputs."
+  - id: track_release_record_archive_maturity
+    title: "Citation, archive and public record maturity"
+    priority: must
+    phase: release
+    workstream: publication
+    goal: "Bring the repository, OSF record, dashboard and release archive to a coherent citable state without claiming evidence readiness or publishing papers prematurely."

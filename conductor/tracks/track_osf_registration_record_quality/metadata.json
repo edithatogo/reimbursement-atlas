@@ -1,0 +1,14 @@
+{
+  "track_id": "track_osf_registration_record_quality",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-07-20T00:00:00Z",
+  "updated_at": "2026-07-20T00:00:00Z",
+  "description": "Complete and freeze the OSF Preregistration record without publishing papers.",
+  "evidence_schema": "1.0",
+  "gates": [
+    {"id": "osf_credentials", "kind": "external", "status": "pass", "evidence": "Pinned osf-cli-go v1.0.0 authenticated in Chrome-assisted workflow."},
+    {"id": "protocol_review", "kind": "human_review", "status": "pending", "evidence": "Accountable reviewer identified; draft content remains incomplete."},
+    {"id": "registration_submission", "kind": "external", "status": "pending", "evidence": "Submission is not authorized by this track."}
+  ]
+}

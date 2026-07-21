@@ -1,0 +1,53 @@
+{
+  "candidate_contract": {
+    "dataset_license": "other",
+    "evidence_path": "docs/HUGGINGFACE_PUBLICATION.md",
+    "source_data_license_boundary": "source-specific",
+    "space_license": "apache-2.0",
+    "space_sdk": "static"
+  },
+  "mismatch_count": 0,
+  "mutation_performed": false,
+  "remediation_plan": {
+    "dataset": [],
+    "space": []
+  },
+  "schema_version": "huggingface-destination-check-v1",
+  "status": "pass",
+  "targets": {
+    "dataset": {
+      "endpoint": "https://huggingface.co/api/datasets/edithatogo/reimbursement-atlas",
+      "expected": {
+        "license": "other"
+      },
+      "kind": "datasets",
+      "mismatches": [],
+      "observed": {
+        "license": "other"
+      },
+      "reachable": true,
+      "remediation": [],
+      "remote_id": "edithatogo/reimbursement-atlas",
+      "repo": "edithatogo/reimbursement-atlas",
+      "status": "pass"
+    },
+    "space": {
+      "endpoint": "https://huggingface.co/api/spaces/edithatogo/reimbursement-atlas",
+      "expected": {
+        "license": "apache-2.0",
+        "sdk": "static"
+      },
+      "kind": "spaces",
+      "mismatches": [],
+      "observed": {
+        "license": "apache-2.0",
+        "sdk": "static"
+      },
+      "reachable": true,
+      "remediation": [],
+      "remote_id": "edithatogo/reimbursement-atlas",
+      "repo": "edithatogo/reimbursement-atlas",
+      "status": "pass"
+    }
+  }
+}
