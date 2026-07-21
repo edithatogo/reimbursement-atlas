@@ -1568,3 +1568,12 @@ Evidence: `npm run build` completed with zero errors, warnings or hints. The Pla
 completed `44/44` tests across desktop Chromium, mobile Chromium, Firefox and WebKit; Axe scans
 reported no violations. This improves machine-verifiable accessibility but does not replace human
 visual, content or assistive-technology review.
+## 2026-07-21 - Bind release manifest subjects to safe paths, sizes and checksums
+
+Decision: Harden release-manifest generation and consumer verification so every subject is a
+relative, non-parent path and its declared byte size and SHA-256 are both verified before use.
+
+Evidence: `tests/unit/test_verify_release_manifest.py` passes `4` tests, including tampered
+checksum, size mismatch and parent-path rejection cases; Ruff passes on the changed files.
+This improves offline release integrity but does not create a cryptographic signature or attest a
+release without the GitHub trusted-publisher workflow.

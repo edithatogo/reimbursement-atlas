@@ -37,7 +37,7 @@ def _load_manifest(path: Path) -> dict[str, Any]:
     return cast("dict[str, Any]", payload)
 
 
-def verify_manifest(  # ruff:ignore[too-many-branches]
+def verify_manifest(  # ruff:ignore[too-many-branches,too-many-statements]
     manifest_path: Path,
     root: Path,
     *,
@@ -77,6 +77,7 @@ def verify_manifest(  # ruff:ignore[too-many-branches]
             _fail("release manifest subject must be an object")
         subject = cast("dict[str, Any]", raw_subject)
         relative_path = subject.get("path")
+        size = subject.get("size")
         digest = subject.get("sha256")
         if (
             not isinstance(relative_path, str)
@@ -86,6 +87,9 @@ def verify_manifest(  # ruff:ignore[too-many-branches]
             _fail("release subject paths must be relative")
         if relative_path in seen or ".." in Path(relative_path).parts:
             message = f"release subject path is unsafe or duplicated: {relative_path}"
+            _fail(message)
+        if not isinstance(size, int) or size < 0:
+            message = f"release subject has an invalid size: {relative_path}"
             _fail(message)
         if (
             not isinstance(digest, str)
@@ -100,6 +104,9 @@ def verify_manifest(  # ruff:ignore[too-many-branches]
             _fail(message)
         if not subject_path.is_file():
             message = f"release subject is missing: {relative_path}"
+            _fail(message)
+        if subject_path.stat().st_size != size:
+            message = f"release subject size mismatch: {relative_path}"
             _fail(message)
         if _sha256(subject_path) != digest:
             message = f"release subject checksum mismatch: {relative_path}"
