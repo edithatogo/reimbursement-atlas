@@ -127,6 +127,20 @@ def test_generated_issue_renders_parent_subissue_link() -> None:
     assert "Parent issue: Public product, citation and dashboard maturity" in rendered
 
 
+def test_backlog_acceptance_criteria_are_preserved_in_generated_issue() -> None:
+    """Track-specific backlog criteria must not degrade to generic placeholders."""
+    from scripts.create_github_project_items import parse_backlog
+
+    issue = next(
+        item
+        for item in parse_backlog()
+        if item.title == "Complete OSF Preregistration metadata and protocol sections"
+    )
+    rendered = render_issue(issue)
+    assert "Title, description, contributors, licence, subjects and tags are complete." in rendered
+    assert "Refine the acceptance criteria" not in rendered
+
+
 def test_generated_roadmap_issue_preserves_implementation_status() -> None:
     """Roadmap status must be visible in drafts and Project imports."""
     from scripts.create_github_project_items import generated_track_issues

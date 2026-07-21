@@ -8,8 +8,7 @@ Status: `prototype`
 
 ## Background
 
-This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria
-before opening it in GitHub.
+This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria before opening it in GitHub.
 
 ## Acceptance criteria
 

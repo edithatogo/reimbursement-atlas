@@ -8,14 +8,13 @@ Status: `implemented`
 
 ## Background
 
-This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria
-before opening it in GitHub.
+This issue was generated from `conductor/backlog.yml`; the criteria below are the track-specific acceptance contract.
 
 ## Acceptance criteria
 
-- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
-- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
-- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
-- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.
-- [x] The synchronizer detects generated issue-body drift by exact content after normalizing GitHub's final newline.
-- [x] Body writes require explicit `--apply`; default synchronization remains read-only and no issue is closed or promoted.
+- [ ] Roadmap issue drafts with implemented status render checked local implementation criteria rather than generic unchecked placeholders.
+- [ ] Output-plan issue drafts preserve their source status and explicit external promotion gate.
+- [ ] Focused tests cover roadmap and output-plan rendering contracts.
+- [ ] Generated issue and GitHub Project artefacts are regenerated from the same source records.
+- [ ] The GitHub synchronizer detects generated issue-body drift and only writes bodies with explicit --apply.
+- [ ] Body synchronization never closes issues or changes external publication approval state.

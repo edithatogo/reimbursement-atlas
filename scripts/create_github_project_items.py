@@ -32,6 +32,7 @@ class IssueDraft:
     protocol_path: str | None = None
     report_path: str | None = None
     preregistration_status: str | None = None
+    acceptance: list[str] = field(default_factory=list)
 
 
 def _strip_quotes(value: str) -> str:
@@ -66,6 +67,9 @@ def parse_backlog(path: Path = BACKLOG) -> list[IssueDraft]:
             continue
         if current and (match := re.match(r"^        status: (.+)$", line)):
             current.status = _strip_quotes(match.group(1))
+            continue
+        if current and (match := re.match(r'^          - "(.+)"$', line)):
+            current.acceptance.append(match.group(1))
     return issues
 
 
@@ -166,7 +170,9 @@ def render_issue(issue: IssueDraft) -> str:  # ruff:ignore[too-many-branches, to
     """Render one GitHub issue draft."""
     labels = ", ".join(issue.labels) if issue.labels else "none"
     parent = f"Parent issue: {issue.parent_issue}\n\n" if issue.parent_issue else ""
-    if issue.title == HF_DRIFT_MONITOR_TITLE:
+    if issue.acceptance:
+        acceptance = "\n".join(f"- [ ] {criterion}" for criterion in issue.acceptance)
+    elif issue.title == HF_DRIFT_MONITOR_TITLE:
         acceptance = (
             "- [x] Scope is implemented: the scheduled/manual workflow checks public dataset and "
             "Space metadata without credentials or mutation.\n"
@@ -819,6 +825,15 @@ def render_issue(issue: IssueDraft) -> str:  # ruff:ignore[too-many-branches, to
 - [ ] Tests or validation evidence are defined.
 - [ ] Documentation or Conductor context is updated."""
     status_line = f"Status: `{issue.status}`\n\n" if issue.status else ""
+    background = (
+        "This issue was generated from `conductor/backlog.yml`; the criteria below are the "
+        "track-specific acceptance contract."
+        if issue.acceptance
+        else (
+            "This issue was generated from `conductor/backlog.yml`. Refine the "
+            "acceptance criteria before opening it in GitHub."
+        )
+    )
     return f"""# {issue.title}
 
 Epic: `{issue.epic_id}` — {issue.epic_title}
@@ -827,8 +842,7 @@ Epic: `{issue.epic_id}` — {issue.epic_title}
 
 {status_line}## Background
 
-This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria
-before opening it in GitHub.
+{background}
 
 ## Acceptance criteria
 

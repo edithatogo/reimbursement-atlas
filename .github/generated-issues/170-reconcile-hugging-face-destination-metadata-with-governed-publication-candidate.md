@@ -8,14 +8,11 @@ Status: `blocked`
 
 ## Background
 
-This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria
-before opening it in GitHub.
+This issue was generated from `conductor/backlog.yml`; the criteria below are the track-specific acceptance contract.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: read-only verification identifies the configured dataset and Space and records current destination metadata.
-- [x] Licence and data-governance implications are checked: remote mutation remains blocked until the governed candidate gates pass.
-- [x] Tests or validation evidence are defined: the Hugging Face candidate workflow builds and validates both bundles with publication flags disabled.
-- [x] Documentation or Conductor context is updated with the current destination drift.
-- [ ] Dataset card and Space metadata match the governed candidate, including the Apache-2.0 code and source-specific data-licence boundary.
-- [ ] Licence, research, evidence and policy-claim gates are approved before a write-enabled reconciliation run.
+- [ ] Read-only verification records the configured dataset and Space identities and current card metadata.
+- [ ] Candidate dataset and static Space bundles pass local publication and public-data policy gates.
+- [ ] Remote mutation is permitted only after licence, research, evidence and policy-claim gates pass.
+- [ ] The published dataset card declares source-specific licences and the Space declares Apache-2.0 code plus underlying-data restrictions.

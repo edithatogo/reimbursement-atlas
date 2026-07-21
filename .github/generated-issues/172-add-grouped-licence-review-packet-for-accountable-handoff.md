@@ -8,12 +8,11 @@ Status: `implemented`
 
 ## Background
 
-This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria
-before opening it in GitHub.
+This issue was generated from `conductor/backlog.yml`; the criteria below are the track-specific acceptance contract.
 
 ## Acceptance criteria
 
-- [x] Scope is implemented in repository code, generated artefacts, documentation or protected automation.
-- [x] Licence and data-governance boundaries are explicit; implementation status does not grant external publication or evidence approval.
-- [x] Tests, validation evidence or protected CI contracts exercise the local implementation.
-- [x] Conductor backlog, generated issue draft and GitHub Project linkage are regenerated from the current source records.
+- [ ] Generated batches group candidates by licence gate and publication scope without changing approval state.
+- [ ] Reviewer packet documents checksum, terms, attribution, restrictions and evidence requirements.
+- [ ] Dashboard exposes the grouped batch summary while keeping the detailed queue internal to governance.
+- [ ] Existing checksum-bound licence decision validation remains fail-closed.

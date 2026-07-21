@@ -8,15 +8,11 @@ Status: `blocked`
 
 ## Background
 
-This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria
-before opening it in GitHub.
+This issue was generated from `conductor/backlog.yml`; the criteria below are the track-specific acceptance contract.
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: request and verify the two distinct GitHub security settings.
-- [x] Licence and data-governance implications are checked: no secret values are recorded in repository artefacts.
-- [x] Tests or validation evidence are defined: full-history Gitleaks CI and live repository-settings API evidence.
-- [x] Documentation or Conductor context is updated.
-- [x] A scheduled read-only monitor uploads redacted settings evidence and keeps issue #191 synchronized without PATCH or secret access.
-- [ ] GitHub reports `secret_scanning_non_provider_patterns=enabled`.
-- [ ] GitHub reports `secret_scanning_validity_checks=enabled`; current account state remains disabled for both.
+- [ ] A scheduled read-only monitor records the four repository security settings without tokens or request headers.
+- [ ] The monitor keeps issue #191 synchronized and reports disabled advanced controls as blocked_account, never as pass.
+- [ ] The monitor reports blocked_permissions when an authenticated API response omits security analysis settings, rather than inferring an account state.
+- [ ] Core scanning, push protection, Gitleaks, CodeQL, zizmor and dependency-review compensating controls remain documented.

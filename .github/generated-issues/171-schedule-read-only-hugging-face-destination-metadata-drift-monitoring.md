@@ -8,14 +8,13 @@ Status: `implemented`
 
 ## Background
 
-This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria
-before opening it in GitHub.
+This issue was generated from `conductor/backlog.yml`; the criteria below are the track-specific acceptance contract.
 
 ## Acceptance criteria
 
-- [x] Scope is implemented: the scheduled/manual workflow checks public dataset and Space metadata without credentials or mutation.
-- [x] Licence and data-governance implications are checked: the report preserves the source-specific data-licence boundary and remote publication remains gated.
-- [x] Tests or validation evidence are defined by the destination contract unit test, action-pin policy and the workflow artifact.
-- [x] The workflow synchronizes issue #320 with redacted read-only evidence using GitHub issue permission only.
-- [x] The report includes target-specific remediation steps that remain gated and non-mutating.
-- [x] Documentation or Conductor context is updated; drift remains linked to issue #320.
+- [ ] The scheduled/manual workflow uses read-only public API requests and contents-read permissions.
+- [ ] The report records only repository identity, expected card fields, drift reasons and mutation_performed=false.
+- [ ] The workflow has no HF token, clone, push, or write-enabled publication step.
+- [ ] Drift remains linked to issue #320 and does not imply publication approval.
+- [ ] The workflow synchronizes issue #320 with the redacted read-only report using only GitHub issue permission.
+- [ ] The report includes target-specific remediation steps that remain gated and non-mutating.
