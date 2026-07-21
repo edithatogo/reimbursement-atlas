@@ -1548,3 +1548,14 @@ TypeScript 7 would weaken reproducibility and is not an acceptable compatibility
 
 Owner/action: the next stack-canary run should re-evaluate the checker peer range and open the
 existing TypeScript 7 issue only when the upstream contract admits TypeScript 7.
+## 2026-07-21 - Verify GitHub secret-scanning account controls without overstating success
+
+Decision: Keep issue #191 open. Provider secret scanning, push protection and Dependabot
+security updates are enabled, but the authoritative repository API still reports
+`secret_scanning_non_provider_patterns=disabled` and `secret_scanning_validity_checks=disabled`
+after a repository PATCH attempt.
+
+Evidence: `GET /repos/edithatogo/reimbursement-atlas` immediately after the PATCH returned the
+unchanged disabled states. The failed mutation is recorded in issue #191. Do not claim these
+controls are enabled until the GitHub account or repository security settings UI/API returns
+`enabled`.
