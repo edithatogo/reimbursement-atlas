@@ -605,7 +605,7 @@ def _licence_review_queue_gate(repo: Path) -> ReleaseGateRecord:
             recommended_action="Run scripts/make_licence_review_queue.py.",
         )
     artifact_count = int(summary.get("artifact_count", 0))
-    pending_count = int(summary.get("pending_count", 0))
+    approved_count, pending_count = _effective_licence_decision_counts(repo, summary)
     mutation_allowed = bool(summary.get("approval_mutation_allowed", True))
     status: ReleaseGateStatus = (
         "pass" if artifact_count > 0 and mutation_allowed is False else "fail"
@@ -615,12 +615,48 @@ def _licence_review_queue_gate(repo: Path) -> ReleaseGateRecord:
         category="data_governance",
         status=status,
         required=True,
-        evidence=f"artifact_count={artifact_count} pending_count={pending_count}",
+        evidence=(
+            f"artifact_count={artifact_count} approved_count={approved_count} "
+            f"pending_count={pending_count}"
+        ),
         recommended_action=(
             "Use the checksum-bound queue and record human decisions before publication; "
             "generation never grants approval."
         ),
     )
+
+
+def _effective_licence_decision_counts(
+    repo: Path, queue_summary: dict[str, Any]
+) -> tuple[int, int]:
+    """Count only current queue rows with matching approved ledger decisions."""
+    queue_path = repo / "data" / "derived" / "licence_review" / "licence_review_queue.jsonl"
+    decisions_path = repo / "data" / "licence_review" / "decisions.jsonl"
+    try:
+        queue_rows = [
+            json.loads(line)
+            for line in queue_path.read_text().splitlines()
+            if line.strip()
+        ]
+        decision_rows = [
+            json.loads(line) for line in decisions_path.read_text().splitlines() if line.strip()
+        ]
+    except (OSError, json.JSONDecodeError):
+        return int(queue_summary.get("approved_count", 0)), int(
+            queue_summary.get("pending_count", 0)
+        )
+    decisions = {row.get("review_id"): row for row in decision_rows if row.get("review_id")}
+    approved = sum(
+        1
+        for row in queue_rows
+        if (
+            (decision := decisions.get(row.get("review_id")))
+            and decision.get("decision") == "approved"
+            and decision.get("checksum_sha256") == row.get("checksum_sha256")
+            and decision.get("relative_path") == row.get("relative_path")
+        )
+    )
+    return approved, max(0, len(queue_rows) - approved)
 
 
 def _map_gate_outcome(outcome: str) -> ReleaseGateStatus:

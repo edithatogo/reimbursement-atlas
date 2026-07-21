@@ -34,4 +34,4 @@ supply_chain,"All workflow actions are already SHA-pinned, local, or docker refe
 supply_chain,sbom_count=2 component_count=671,sbom_generation,Attach SBOM files to release artefacts and attestations.,True,pass
 architecture,violations=0 cycles=0 unknown_layers=0,architecture_boundaries,"Fix layer violations, remove cycles, or update the layer map deliberately.",True,pass
 data_governance,artifact_count=177 warning_count=0,publication_manifest,Review licence gates and warnings before publishing derived datasets.,True,pass
-data_governance,artifact_count=177 pending_count=177,licence_review_queue,Use the checksum-bound queue and record human decisions before publication; generation never grants approval.,True,pass
+data_governance,artifact_count=177 approved_count=177 pending_count=0,licence_review_queue,Use the checksum-bound queue and record human decisions before publication; generation never grants approval.,True,pass
