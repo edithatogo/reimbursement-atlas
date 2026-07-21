@@ -1,6 +1,6 @@
 # Current focus
 
-## Release snapshot state (2026-07-20)
+## Release snapshot state (2026-07-21)
 
 This focus record describes current merged `main` snapshot
 `d58af03116c792f092146d15e849af048709cdbb`. Repository release readiness must be
@@ -9,7 +9,8 @@ MBS inventory and target-level review packet are implemented, but all 343
 historical targets remain `pending_human_review` and no raw historical payloads
 are tracked. Current remaining work is human or external: source/licence and
 mapping review, OSF registration/publication, Hugging Face Space drift, Zenodo
-deposit, and GitHub account-level security settings. Do not treat monitor passes
+deposit, and GitHub account-level security settings. Hugging Face destination metadata
+drift was resolved on 2026-07-21; this does not authorize publication. Do not treat monitor passes
 as publication or evidence approval.
 
 Latest read-only monitor IDs were collected on this snapshot: OSF
