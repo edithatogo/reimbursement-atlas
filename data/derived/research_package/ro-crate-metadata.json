@@ -1535,20 +1535,20 @@
     {
       "@id": "data/derived/release_readiness/release_gates.jsonl",
       "@type": "File",
-      "contentSize": 7725,
+      "contentSize": 7742,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "9b82a644c905227bd5a5411a49db45b6f4c42ec448139be0b1b49971356b3d78"
+      "sha256": "5b6c140fd302a72108cf682bb5cc2c54b0c3d56b9d3823feb9215117715e6116"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
       "@type": "File",
-      "contentSize": 4511,
+      "contentSize": 4528,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "f59b1bea0b589b5251b395b764ae1a0595546d947b9150fa1f6ad2b155efc5ec"
+      "sha256": "13dcd1a45bcde0dfe1f8bf728eae63fd98cf59e8c3170b0d0a58a41332cad613"
     },
     {
       "@id": "data/derived/v13_validation_run.json",
