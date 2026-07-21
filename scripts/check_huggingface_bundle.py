@@ -33,7 +33,7 @@ def validate_bundle(root: Path) -> list[str]:  # ruff:ignore[too-many-branches]
     if croissant.exists():
         try:
             payload = json.loads(croissant.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
+        except OSError, json.JSONDecodeError:
             errors.append("CROISSANT.json is not valid JSON")
         else:
             if payload.get("@type") != "sc:Dataset":
