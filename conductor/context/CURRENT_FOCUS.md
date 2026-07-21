@@ -872,6 +872,15 @@ read-only default workflow token permissions preserved. A workflow reference aud
 was updated with the REST evidence and closed. The allowed-actions policy remains unchanged at
 `all`; immutable references, actionlint, workflow-policy and zizmor remain the enforcement layers.
 
+## 2026-07-21 solo-developer review-policy verification
+
+The live `main` branch protection was read back from GitHub after the repository-owner
+configuration change. `required_pull_request_reviews` is `null`: no approving review,
+secondary reviewer or collaborator review is required. Strict automated status checks,
+administrator enforcement, linear history, conversation resolution, force-push protection
+and deletion protection remain enabled. Human licence, research, mapping and publication
+decisions remain accountable-owner gates rather than GitHub reviewer requirements.
+
 ## 2026-07-17 v127 dashboard canary compatibility recheck
 
 The npm registry was rechecked after the compatible dashboard updates. Astro `7.1.0`,
