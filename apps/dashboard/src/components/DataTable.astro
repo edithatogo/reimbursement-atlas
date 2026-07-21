@@ -36,6 +36,7 @@ const visibleColumns = columns ?? csv.columns.slice(0, 8);
   </p>
   <div class="table-scroll">
     <table>
+      <caption class="sr-only">{title}</caption>
       <thead>
         <tr>
           {visibleColumns.map((column) => <th scope="col">{column}</th>)}
