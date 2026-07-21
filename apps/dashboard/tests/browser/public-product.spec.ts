@@ -58,6 +58,10 @@ for (const route of routes) {
 
     const accessibilityScan = await new AxeBuilder({ page }).analyze();
     expect(accessibilityScan.violations).toEqual([]);
+    const tables = page.locator("table");
+    for (let index = 0; index < await tables.count(); index += 1) {
+      await expect(tables.nth(index).locator("caption")).toHaveCount(1);
+    }
 
     const performanceMetrics = await page.evaluate(() => {
       const navigation = performance.getEntriesByType("navigation")[0] as

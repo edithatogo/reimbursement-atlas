@@ -1559,3 +1559,12 @@ Evidence: `GET /repos/edithatogo/reimbursement-atlas` immediately after the PATC
 unchanged disabled states. The failed mutation is recorded in issue #191. Do not claim these
 controls are enabled until the GitHub account or repository security settings UI/API returns
 `enabled`.
+## 2026-07-21 - Add semantic captions to dashboard data tables
+
+Decision: Add visually hidden `<caption>` elements to every generated dashboard data table and
+assert their presence in the browser review harness.
+
+Evidence: `npm run build` completed with zero errors, warnings or hints. The Playwright matrix
+completed `44/44` tests across desktop Chromium, mobile Chromium, Firefox and WebKit; Axe scans
+reported no violations. This improves machine-verifiable accessibility but does not replace human
+visual, content or assistive-technology review.
