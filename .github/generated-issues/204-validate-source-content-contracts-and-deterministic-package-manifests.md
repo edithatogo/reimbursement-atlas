@@ -1,6 +1,6 @@
 # Validate source content contracts and deterministic package manifests
 
-Epic: `RAC-SOURCE-001` — Source provenance licensing and historical release reproducibility
+Epic: `RAC-SOURCE-001` — Source provenance, licensing and historical release reproducibility
 
 Labels: type:data-quality, type:reproducibility, type:release, status:implemented
 

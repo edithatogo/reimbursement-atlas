@@ -1,6 +1,6 @@
 # Run final publication boundary review without submitting papers
 
-Epic: `RAC-RELEASE-001` — Citation archive and public record maturity
+Epic: `RAC-RELEASE-001` — Citation, archive and public record maturity
 
 Labels: type:release, type:review, risk:publication, status:blocked
 

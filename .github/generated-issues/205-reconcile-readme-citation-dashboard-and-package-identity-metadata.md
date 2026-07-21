@@ -1,6 +1,6 @@
 # Reconcile README citation dashboard and package identity metadata
 
-Epic: `RAC-RELEASE-001` — Citation archive and public record maturity
+Epic: `RAC-RELEASE-001` — Citation, archive and public record maturity
 
 Labels: type:documentation, type:citation, type:dashboard, status:implemented
 

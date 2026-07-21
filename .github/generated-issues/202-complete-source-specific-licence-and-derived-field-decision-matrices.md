@@ -1,6 +1,6 @@
 # Complete source-specific licence and derived-field decision matrices
 
-Epic: `RAC-SOURCE-001` — Source provenance licensing and historical release reproducibility
+Epic: `RAC-SOURCE-001` — Source provenance, licensing and historical release reproducibility
 
 Labels: type:licence, type:data-source, type:review, status:blocked
 

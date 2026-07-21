@@ -1,6 +1,6 @@
 # Generate BPMN 2.0 transformation lineage for source families
 
-Epic: `RAC-SOURCE-001` — Source provenance licensing and historical release reproducibility
+Epic: `RAC-SOURCE-001` — Source provenance, licensing and historical release reproducibility
 
 Labels: type:research, type:provenance, type:documentation, status:implemented
 

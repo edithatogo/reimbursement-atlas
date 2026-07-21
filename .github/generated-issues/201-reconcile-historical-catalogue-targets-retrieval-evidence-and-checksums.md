@@ -1,6 +1,6 @@
 # Reconcile historical catalogue targets retrieval evidence and checksums
 
-Epic: `RAC-SOURCE-001` — Source provenance licensing and historical release reproducibility
+Epic: `RAC-SOURCE-001` — Source provenance, licensing and historical release reproducibility
 
 Labels: type:data-source, type:provenance, type:reproducibility, status:implemented
 

@@ -1,6 +1,6 @@
 # Validate OSF Hugging Face and GitHub identity and licence parity
 
-Epic: `RAC-RELEASE-001` — Citation archive and public record maturity
+Epic: `RAC-RELEASE-001` — Citation, archive and public record maturity
 
 Labels: type:publication, type:provenance, type:licence, status:implemented
 

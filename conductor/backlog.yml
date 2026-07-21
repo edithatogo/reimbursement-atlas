@@ -614,7 +614,7 @@ epics:
         labels: ["type:evidence", "type:release", "type:automation", "status:blocked"]
         status: blocked
   - id: RAC-SOURCE-001
-    title: Source provenance licensing and historical release reproducibility
+    title: Source provenance, licensing and historical release reproducibility
     phase: implementation
     workstream: sources
     priority: must
@@ -633,7 +633,7 @@ epics:
         labels: ["type:data-quality", "type:reproducibility", "type:release", "status:implemented"]
         status: implemented
   - id: RAC-RELEASE-001
-    title: Citation archive and public record maturity
+    title: Citation, archive and public record maturity
     phase: release
     workstream: publication
     priority: must

@@ -1,6 +1,6 @@
 # Generate signed archive SBOM provenance and attestation inputs
 
-Epic: `RAC-RELEASE-001` — Citation archive and public record maturity
+Epic: `RAC-RELEASE-001` — Citation, archive and public record maturity
 
 Labels: type:release, type:supply-chain, type:security, status:blocked
 

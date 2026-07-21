@@ -1,6 +1,6 @@
 # Complete scoped dashboard visual accessibility and provenance review
 
-Epic: `RAC-RELEASE-001` — Citation archive and public record maturity
+Epic: `RAC-RELEASE-001` — Citation, archive and public record maturity
 
 Labels: type:dashboard, type:accessibility, type:review, status:blocked
 
