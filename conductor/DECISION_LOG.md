@@ -1536,3 +1536,15 @@ Evidence: User approval in the Codex session on 2026-07-20; `docs/REVIEW_DECISIO
 
 Consequence: Repository-owned preparation and validation may proceed. Human source-rights,
 mapping adjudication, external-destination mutation and publication gates remain fail-closed.
+## 2026-07-21 - Adopt compatible Astro patch release without forcing TypeScript 7
+
+Decision: Upgrade the dashboard from Astro `7.1.0` to `7.1.1`, retain TypeScript `6.0.3`,
+and keep the TypeScript 7 compatibility issue open.
+
+Evidence: `npm install --save-exact astro@7.1.1`, `npm run build` (0 errors, 0 warnings, 94
+pages built), and `npm audit --omit=dev --audit-level=moderate` (0 vulnerabilities) passed.
+`@astrojs/check@0.9.9` still declares the peer range `^5.0.0 || ^6.0.0`, so forcing
+TypeScript 7 would weaken reproducibility and is not an acceptable compatibility fix.
+
+Owner/action: the next stack-canary run should re-evaluate the checker peer range and open the
+existing TypeScript 7 issue only when the upstream contract admits TypeScript 7.
