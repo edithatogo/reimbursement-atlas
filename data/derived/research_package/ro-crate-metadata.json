@@ -470,6 +470,9 @@
           "@id": "infra/huggingface/DATASET_CARD.md"
         },
         {
+          "@id": "infra/huggingface/CROISSANT.json"
+        },
+        {
           "@id": "infra/huggingface/README.md"
         },
         {
@@ -1539,7 +1542,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "1db4c9c170be55af016f13ec6bd6e1102d4b1931c979fa4953688a5826981247"
+      "sha256": "12d4ecc9d39d293fd7254cfdc08b7796485057bf210cdd9e33c920a88fe833bd"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
@@ -1548,7 +1551,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "8bd8281c1746f4812d97e615e17ba1cdbf85cb8b00208ea071b53d3315714491"
+      "sha256": "4e1f4e4d5fa60a4dbc274751f1de6ef7afe5e36160b6788c555590d191d4e01c"
     },
     {
       "@id": "data/derived/v13_validation_run.json",
@@ -1868,20 +1871,20 @@
     {
       "@id": "data/derived/data_dictionary/data_dictionary.jsonl",
       "@type": "File",
-      "contentSize": 107616,
+      "contentSize": 108114,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "data_dictionary",
-      "sha256": "fe68abe210f39e7e1e166c42bba338fed37c96a618957acaaa208b66b65502bb"
+      "sha256": "e2ff6efa149f62249c44174039b3cae674772111c8163d56b3c8113578d849c6"
     },
     {
       "@id": "data/derived/data_dictionary/data_dictionary.csv",
       "@type": "File",
-      "contentSize": 81787,
+      "contentSize": 82142,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "data_dictionary",
-      "sha256": "d81c457052a481b48ba9fb513e9e194a76d09e70f0dc71d1a5d20d25a608d639"
+      "sha256": "19dbb33ba80931a6d844cc9a4475799fb954b4540b6ff0a5932f14405a80f5b1"
     },
     {
       "@id": "data/derived/data_dictionary/summary.json",
@@ -1890,7 +1893,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "json",
       "name": "summary",
-      "sha256": "7eaa2e28b692f8541b52423df1ed2cad1e61dc1eb233703fbbad1e509950e2cb"
+      "sha256": "aeec5919683e84e313151727ef85299a5abe2b0e568f919db5fedfefb0a722e5"
     },
     {
       "@id": "infra/huggingface/DATASET_CARD.md",
@@ -1900,6 +1903,15 @@
       "encodingFormat": "md",
       "name": "DATASET_CARD",
       "sha256": "4eb977cf482bb0bc038e3291179cec63ad1fd2384b7fdeab4f587806b4c7fe18"
+    },
+    {
+      "@id": "infra/huggingface/CROISSANT.json",
+      "@type": "File",
+      "contentSize": 956,
+      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "encodingFormat": "json",
+      "name": "CROISSANT",
+      "sha256": "ee8c2276069f52613415c89432f88b47503d59f2dbc23840471a7d6e9937de24"
     },
     {
       "@id": "infra/huggingface/README.md",

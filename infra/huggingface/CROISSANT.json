@@ -1,0 +1,27 @@
+{
+  "@context": [
+    "https://schema.org/",
+    "http://mlcommons.org/croissant/1.0"
+  ],
+  "@type": "sc:Dataset",
+  "name": "Reimbursement Atlas Seed Data",
+  "description": "Licence-gated derived metadata and research scaffolds for reimbursement analysis.",
+  "license": "other",
+  "version": "candidate",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "contentUrl": "data/derived/publication_manifest.json",
+      "encodingFormat": "application/json",
+      "name": "publication_manifest.json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "contentUrl": "data/derived/data_dictionary/data_dictionary.jsonl",
+      "encodingFormat": "application/jsonl",
+      "name": "data_dictionary.jsonl"
+    }
+  ],
+  "isBasedOn": "https://github.com/edithatogo/reimbursement-atlas",
+  "comment": "Candidate metadata only. Publish only manifest rows with confirmed redistribution permission; underlying source licences remain authoritative."
+}

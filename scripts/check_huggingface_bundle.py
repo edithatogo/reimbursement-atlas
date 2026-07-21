@@ -2,12 +2,14 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 from reimburse_atlas.registry import project_root, repo_relative
 
 REQUIRED_FILES = (
     "infra/huggingface/DATASET_CARD.md",
+    "infra/huggingface/CROISSANT.json",
     "infra/huggingface/README.md",
     "infra/huggingface/SPACE_README.md",
     "data/derived/publication_manifest.json",
@@ -24,9 +26,22 @@ DATASET_CARD_MARKERS = (
 )
 
 
-def validate_bundle(root: Path) -> list[str]:
+def validate_bundle(root: Path) -> list[str]:  # ruff:ignore[too-many-branches]
     """Return publication-bundle policy violations."""
     errors = [relative for relative in REQUIRED_FILES if not (root / relative).exists()]
+    croissant = root / "infra/huggingface/CROISSANT.json"
+    if croissant.exists():
+        try:
+            payload = json.loads(croissant.read_text(encoding="utf-8"))
+        except OSError, json.JSONDecodeError:
+            errors.append("CROISSANT.json is not valid JSON")
+        else:
+            if payload.get("@type") != "sc:Dataset":
+                errors.append("CROISSANT.json must describe an sc:Dataset")
+            if payload.get("license") != "other":
+                errors.append("CROISSANT.json must preserve the dataset license boundary")
+            if not payload.get("distribution"):
+                errors.append("CROISSANT.json must declare candidate distributions")
     space_readme = root / "infra/huggingface/SPACE_README.md"
     if space_readme.exists():
         text = space_readme.read_text(encoding="utf-8").lower()
