@@ -104,6 +104,9 @@ def test_mapping_calibration_report_keeps_reviewer_gate_explicit() -> None:
     assert report["status"] == "review_required"
     assert report["reviewer_signoff_required"] is True
     assert report["evidence_ready"] is False
+    assert report["target_case_gap"] == 746
+    assert report["holdout_cases_present"] == 0
+    assert report["holdout_status"] == "absent_pending_source_stratified_adjudication"
 
 
 def test_mapping_review_status_artifact_is_fail_closed() -> None:

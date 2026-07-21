@@ -17,11 +17,12 @@ Required checks for `main`:
 - dashboard build once Node dependencies are locked;
 - coverage threshold when optional dependencies are available.
 
-The live repository uses a single-maintainer policy: pull-request approvals are not required because
-there is no independent collaborator, but all required CI/security/harness checks, administrator
+The live repository uses a single-developer harness: pull-request approvals are not required and
+there is no secondary-reviewer dependency. All required CI/security/harness checks, administrator
 enforcement, linear history, conversation resolution, force-push protection and deletion protection
-remain enabled. If a trusted collaborator is added, enable the documented reviewer requirements in
-`.github/branch-protection.example.yml` rather than weakening the required checks.
+remain enabled. Source licence, research-methods, mapping adjudication and publication decisions
+remain explicit accountable-owner gates; they are not GitHub collaborator requirements and must not
+be represented as automated approval.
 
 ## Issue taxonomy
 
