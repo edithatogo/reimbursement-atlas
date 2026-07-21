@@ -53,7 +53,10 @@ remote snapshots and is suitable as the input contract for a future
 GitHub issue [#135](https://github.com/edithatogo/reimbursement-atlas/issues/135)
 tracks registration lifecycle verification. The OSF plan now generates
 `data/derived/osf/registration_freeze.json`, containing deterministic protocol
-and manifest fingerprints. A credentialed adapter can export registration
+and manifest fingerprints. It also records a proposed source cutoff from the
+latest non-null `retrieved_at` value in committed source metadata, while leaving
+the approved `source_cutoff` as `not-frozen` until the accountable owner accepts
+it. A credentialed adapter can export registration
 metadata and check it without network IO or mutation:
 
 ```bash

@@ -1613,3 +1613,17 @@ GitHub collaborator, and remain fail-closed until the accountable owner records 
 decision.
 
 Evidence: `.github/branch-protection.example.yml` and `docs/GITHUB_AUTOMATION.md`.
+
+## 2026-07-21 - Make the OSF source-cutoff proposal reproducible without freezing it
+
+Decision: Extend the deterministic OSF freeze artefact with the latest recorded source retrieval
+timestamp as a proposed cutoff, the source metadata basis, and an explicit pending-approval state.
+Keep `source_cutoff` as `not-frozen`; generation must not convert a computed proposal into an
+accountable research decision.
+
+Evidence: `src/reimburse_atlas/osf_registration.py`,
+`data/derived/osf/registration_freeze.json`, `docs/OSF_RECONCILIATION.md`, and 13 passing OSF
+unit tests.
+
+Consequence: Issue #489 now has a deterministic candidate cutoff and auditable basis, but remains
+open for owner approval and an exported active OSF registration snapshot.

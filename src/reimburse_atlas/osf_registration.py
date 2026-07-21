@@ -17,11 +17,18 @@ def build_registration_freeze(
 ) -> dict[str, object]:
     """Build deterministic fingerprints for a future reviewed registration."""
     paths = sorted((*((root / "protocols").glob("*.md")), *((root / "reports").glob("*.md"))))
+    proposed_cutoff = _latest_recorded_source_retrieval(root)
     return {
         "schema_version": "osf-registration-freeze-v1",
         "protocol_digest": _digest_paths(root, paths),
         "analysis_manifest_digest": _sha256_file(sync_manifest_path),
         "source_cutoff": source_cutoff,
+        "proposed_source_cutoff": proposed_cutoff,
+        "source_cutoff_status": "pending_accountable_approval",
+        "source_cutoff_basis": (
+            "Latest non-null retrieved_at in data/seed/source_snapshots.jsonl and "
+            "data/seed/source_versions.jsonl; this proposal is not an approval."
+        ),
         "review_approved": False,
         "registration_id": None,
         "status": "draft",
@@ -122,6 +129,23 @@ def _digest_paths(root: Path, paths: list[Path]) -> str:
 
 def _sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _latest_recorded_source_retrieval(root: Path) -> str | None:
+    """Return the latest recorded source retrieval timestamp without network IO."""
+    timestamps: list[str] = []
+    for relative_path in ("data/seed/source_snapshots.jsonl", "data/seed/source_versions.jsonl"):
+        path = root / relative_path
+        if not path.exists():
+            continue
+        for line in path.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            row = json.loads(line)
+            retrieved_at = row.get("retrieved_at")
+            if isinstance(retrieved_at, str) and retrieved_at:
+                timestamps.append(retrieved_at)
+    return max(timestamps) if timestamps else None
 
 
 def write_registration_freeze(freeze: dict[str, object], path: Path) -> Path:
