@@ -23,3 +23,6 @@ True,supply_chain,uv run --all-extras python scripts/make_repo_automation_matrix
 True,architecture,uv run --all-extras python scripts/make_architecture_report.py,.,0.0,1970-01-01T00:00:00+00:00,architecture_report,Gate passed in the active runtime.,0,passed,,
 True,supply_chain,uv run --all-extras python scripts/make_sbom.py,.,0.0,1970-01-01T00:00:00+00:00,sbom_generation,Gate passed in the active runtime.,0,passed,,
 True,build,uv build,.,0.0,1970-01-01T00:00:00+00:00,uv_build,Gate passed in the active runtime.,0,passed,,
+True,dashboard,npm ci,apps/dashboard,0.0,1970-01-01T00:00:00+00:00,npm_ci_dashboard,Gate passed in the active runtime.,0,passed,,
+True,security,npm audit --omit=dev --audit-level=moderate,apps/dashboard,0.0,1970-01-01T00:00:00+00:00,npm_audit_dashboard,Gate passed in the active runtime.,0,passed,,
+True,dashboard,npm run build,apps/dashboard,0.0,1970-01-01T00:00:00+00:00,dashboard_build,Gate passed in the active runtime.,0,passed,,
