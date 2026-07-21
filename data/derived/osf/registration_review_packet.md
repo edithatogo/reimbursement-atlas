@@ -17,6 +17,17 @@ No network IO or remote mutation is performed by its generation.
 - Manifest rows explicitly publishable: `0/15`
 - Manifest rows still blocked: `15`
 
+## OSF metadata contract
+
+- Title: `Reimbursement Atlas`
+- Description: Comparative reimbursement-data research programme with explicit source, provenance, transformation and publication boundaries.
+- Contributors: **accountable contributor list must be confirmed in OSF before registration**
+- Code licence: `Apache-2.0`
+- Underlying data terms: source-specific; preserve provider attribution and do not infer redistribution permission from the code licence.
+- Subjects: `health policy`, `health economics`, `reimbursement`, `data provenance`, `reproducible research`
+- Tags: `reimbursement-atlas`, `health-policy`, `health-economics`, `data-provenance`, `reproducible-research`
+- Required linked artefacts: protocol pack, research reports, data dictionary, publication manifest, Frictionless package, RO-Crate and transformation documentation.
+
 ## Required human decisions
 
 - [ ] Methods review completed

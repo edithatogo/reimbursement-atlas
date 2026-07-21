@@ -165,6 +165,37 @@ def build_registration_review_packet(
         f"- Manifest rows explicitly publishable: `{allowed_rows}/{len(manifest_rows)}`",
         f"- Manifest rows still blocked: `{blocked_rows}`",
         "",
+        "## OSF metadata contract",
+        "",
+        "- Title: `Reimbursement Atlas`",
+        (
+            "- Description: Comparative reimbursement-data research programme with explicit "
+            "source, provenance, transformation and publication boundaries."
+        ),
+        (
+            "- Contributors: **accountable contributor list must be confirmed in OSF before "
+            "registration**"
+        ),
+        "- Code licence: `Apache-2.0`",
+        (
+            "- Underlying data terms: source-specific; preserve provider attribution and do not "
+            "infer redistribution permission from the code licence."
+        ),
+        (
+            "- Subjects: `health policy`, `health economics`, `reimbursement`, `data provenance`, "
+            "`reproducible research`"
+        ),
+        (
+            "- Tags: `reimbursement-atlas`, `health-policy`, `health-economics`, "
+            "`data-provenance`, "
+            "`reproducible-research`"
+        ),
+        (
+            "- Required linked artefacts: protocol pack, research reports, data dictionary, "
+            "publication manifest, Frictionless package, RO-Crate and transformation "
+            "documentation."
+        ),
+        "",
         "## Required human decisions",
         "",
         "- [ ] Methods review completed",

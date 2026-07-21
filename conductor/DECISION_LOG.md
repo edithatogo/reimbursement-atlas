@@ -1577,3 +1577,12 @@ Evidence: `tests/unit/test_verify_release_manifest.py` passes `4` tests, includi
 checksum, size mismatch and parent-path rejection cases; Ruff passes on the changed files.
 This improves offline release integrity but does not create a cryptographic signature or attest a
 release without the GitHub trusted-publisher workflow.
+## 2026-07-21 - Make OSF metadata contract explicit in the registration review packet
+
+Decision: Extend the deterministic OSF review packet with title, description, contributor,
+code-licence, source-data-terms, subject, tag and linked-artefact fields. Leave contributor
+confirmation, source cutoff, approval and registration submission visibly unresolved.
+
+Evidence: `tests/unit/test_osf_sync.py` passes `12` tests; `OSF_BIN=/Users/doughnut/.local/bin/osf
+pixi run osf-cli-contract` passes for osf-cli-go `1.0.0`; `pixi run osf-plan` regenerates the
+packet without network IO or OSF mutation.
