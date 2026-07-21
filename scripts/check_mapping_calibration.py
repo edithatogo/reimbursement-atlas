@@ -8,6 +8,11 @@ from typing import Any
 
 from reimburse_atlas.registry import project_root
 
+try:  # Support both direct script execution and repository-level test imports.
+    from scripts.make_mapping_power_calculation import build_calculation
+except ModuleNotFoundError:  # pragma: no cover - exercised by the CLI path
+    from make_mapping_power_calculation import build_calculation
+
 REQUIRED_FILES = (
     "gold_standard_mappings.jsonl",
     "negative_controls.jsonl",
@@ -48,6 +53,10 @@ def build_mapping_calibration_report(root: Path) -> dict[str, Any]:
     ]
     errors = [error for error in structural_errors if error]
     triggered = int(summary.get("triggered_negative_control_count", 0))
+    design = build_calculation()["recommended_design"]
+    current_total = len(cases)
+    target_total = int(design["total_cases_including_holdout"])
+    target_gap = max(target_total - current_total, 0)
     return {
         "schema_version": "mapping-calibration-v1",
         "status": "fail" if errors else ("review_required" if triggered else "pass"),
@@ -55,6 +64,11 @@ def build_mapping_calibration_report(root: Path) -> dict[str, Any]:
         "gold_standard_count": len(gold),
         "negative_control_count": len(negative),
         "calibration_case_count": len(cases),
+        "recommended_design": design,
+        "target_case_gap": target_gap,
+        "development_cases_present": current_total,
+        "holdout_cases_present": 0,
+        "holdout_status": "absent_pending_source_stratified_adjudication",
         "triggered_negative_control_count": triggered,
         "reviewer_signoff_required": True,
         "evidence_ready": False,

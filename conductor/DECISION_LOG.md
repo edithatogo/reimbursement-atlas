@@ -1586,3 +1586,30 @@ confirmation, source cutoff, approval and registration submission visibly unreso
 Evidence: `tests/unit/test_osf_sync.py` passes `12` tests; `OSF_BIN=/Users/doughnut/.local/bin/osf
 pixi run osf-cli-contract` passes for osf-cli-go `1.0.0`; `pixi run osf-plan` regenerates the
 packet without network IO or OSF mutation.
+
+## 2026-07-21 - Make mapping calibration shortfall and holdout absence explicit
+
+Decision: Keep mapping evidence fail-closed and expose the planning gap in the generated
+calibration gate. The repository contains four synthetic smoke cases, against a calculated
+750-case design (600 development plus 150 independent holdout), so the gate now reports a
+746-case gap and zero holdout cases rather than implying that the design has been sampled.
+
+Evidence: `scripts/check_mapping_calibration.py`,
+`data/derived/vertical_slice/mapping_calibration_gate.json`, and the regression test in
+`tests/unit/test_gold_standard.py`. Focused mapping and power tests pass (`16 passed`).
+
+Consequence: Issues #490 and #491 remain open for real source-stratified sampling, accountable
+adjudication, and an untouched holdout. No synthetic rows were added to inflate the evidence.
+
+## 2026-07-21 - Keep repository workflow single-developer without weakening evidence gates
+
+Decision: Remove the dormant secondary-reviewer configuration from the branch-protection example
+and state the live policy plainly: one accountable developer, no required pull-request approval,
+and mandatory automated CI, security, reproducibility and conversation-resolution checks.
+
+Boundary: This does not waive source-licence decisions, research review, mapping adjudication or
+publication approval. Those are evidence and accountability gates, not a requirement for a second
+GitHub collaborator, and remain fail-closed until the accountable owner records the relevant
+decision.
+
+Evidence: `.github/branch-protection.example.yml` and `docs/GITHUB_AUTOMATION.md`.

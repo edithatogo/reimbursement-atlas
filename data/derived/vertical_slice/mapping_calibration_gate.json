@@ -1,11 +1,24 @@
 {
   "calibration_case_count": 4,
+  "development_cases_present": 4,
   "errors": [],
   "evidence_ready": false,
   "gold_standard_count": 2,
+  "holdout_cases_present": 0,
+  "holdout_status": "absent_pending_source_stratified_adjudication",
   "negative_control_count": 2,
+  "recommended_design": {
+    "development_cases_per_class": 300,
+    "development_total_cases": 600,
+    "holdout_cases_per_class": 75,
+    "holdout_total_cases": 150,
+    "independent_holdout_fraction": 0.2,
+    "rationale": "300 development cases per class gives approximately +/-3.4 points at an expected 90% metric and +/-4.5 points at an expected 80% metric; the holdout is additional.",
+    "total_cases_including_holdout": 750
+  },
   "reviewer_signoff_required": true,
   "schema_version": "mapping-calibration-v1",
   "status": "review_required",
+  "target_case_gap": 746,
   "triggered_negative_control_count": 2
 }
