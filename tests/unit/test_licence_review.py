@@ -67,12 +67,10 @@ def test_queue_writes_checksum_bound_outputs(tmp_path: Path) -> None:
 
 
 def test_data_dictionary_marks_queue_internal(repo_root: Path) -> None:
-    """The review queue is documented without becoming a public candidate."""
+    """The queue is excluded to prevent a publication-manifest cycle."""
     rows = build_data_dictionary(root=repo_root)
     queue_rows = [row for row in rows if "licence_review" in row.relative_path]
-    assert queue_rows
-    assert all(row.publication_scope == "internal_governance" for row in queue_rows)
-    assert all(row.licence_gate == "not_for_publication" for row in queue_rows)
+    assert not queue_rows
 
 
 def test_decision_schema_documents_all_required_human_fields(repo_root: Path) -> None:

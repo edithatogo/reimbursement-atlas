@@ -605,6 +605,11 @@ def _licence_review_queue_gate(repo: Path) -> ReleaseGateRecord:
             recommended_action="Run scripts/make_licence_review_queue.py.",
         )
     artifact_count = int(summary.get("artifact_count", 0))
+    # Keep this generated gate independent of the decision ledger. The ledger is
+    # checksum-bound to generated artefacts, so embedding its effective counts here
+    # would make release-readiness self-referential. Public status reports effective
+    # approvals separately.
+    approved_count = int(summary.get("approved_count", 0))
     pending_count = int(summary.get("pending_count", 0))
     mutation_allowed = bool(summary.get("approval_mutation_allowed", True))
     status: ReleaseGateStatus = (
@@ -615,7 +620,10 @@ def _licence_review_queue_gate(repo: Path) -> ReleaseGateRecord:
         category="data_governance",
         status=status,
         required=True,
-        evidence=f"artifact_count={artifact_count} pending_count={pending_count}",
+        evidence=(
+            f"artifact_count={artifact_count} approved_count={approved_count} "
+            f"pending_count={pending_count}"
+        ),
         recommended_action=(
             "Use the checksum-bound queue and record human decisions before publication; "
             "generation never grants approval."

@@ -1413,7 +1413,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "sbom_summary",
-      "sha256": "c403fb27eacd555d514eca08bfce114e6d5015a0c17ed83206d2f22b9093d788"
+      "sha256": "bb2411b56f895073e84384523a5151ed88f72cee97bc33e796a0961da4bd1119"
     },
     {
       "@id": "data/derived/sbom/sbom_summary.csv",
@@ -1422,7 +1422,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "sbom_summary",
-      "sha256": "b35688e18af312e5aff0de4261623619f2ebe393d604ca867479c1cd3cd82c07"
+      "sha256": "6b91e15d0942eca4d507c6c53f6653ab70b1b6611dd006ad778c10a922444b2f"
     },
     {
       "@id": "data/derived/sbom/cyclonedx-python.json",
@@ -1436,11 +1436,11 @@
     {
       "@id": "data/derived/sbom/cyclonedx-dashboard.json",
       "@type": "File",
-      "contentSize": 276217,
+      "contentSize": 276327,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "json",
       "name": "cyclonedx-dashboard",
-      "sha256": "baa7154cc1c2a662ac8e5cd00a9f23b77c623219e89d13602db1e3166a06488b"
+      "sha256": "6539f390e46a2afbffa473ddb394c91c60dd6ee1903d1d593187cb03c5906da4"
     },
     {
       "@id": "data/derived/local_quality_gates/local_quality_gates.jsonl",
@@ -1535,20 +1535,20 @@
     {
       "@id": "data/derived/release_readiness/release_gates.jsonl",
       "@type": "File",
-      "contentSize": 7725,
+      "contentSize": 7742,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "9b82a644c905227bd5a5411a49db45b6f4c42ec448139be0b1b49971356b3d78"
+      "sha256": "1db4c9c170be55af016f13ec6bd6e1102d4b1931c979fa4953688a5826981247"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
       "@type": "File",
-      "contentSize": 4511,
+      "contentSize": 4528,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "f59b1bea0b589b5251b395b764ae1a0595546d947b9150fa1f6ad2b155efc5ec"
+      "sha256": "8bd8281c1746f4812d97e615e17ba1cdbf85cb8b00208ea071b53d3315714491"
     },
     {
       "@id": "data/derived/v13_validation_run.json",
@@ -1868,20 +1868,20 @@
     {
       "@id": "data/derived/data_dictionary/data_dictionary.jsonl",
       "@type": "File",
-      "contentSize": 109863,
+      "contentSize": 107616,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "data_dictionary",
-      "sha256": "9a5006b254bced3e1078ab6ad38c6e3af678ec16c6d5d5497809f5a77138619f"
+      "sha256": "fe68abe210f39e7e1e166c42bba338fed37c96a618957acaaa208b66b65502bb"
     },
     {
       "@id": "data/derived/data_dictionary/data_dictionary.csv",
       "@type": "File",
-      "contentSize": 83452,
+      "contentSize": 81787,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "data_dictionary",
-      "sha256": "f72628018a4660d38f481530683d5a1ebed79a1266d09905ffab23dfbb4bc3cc"
+      "sha256": "d81c457052a481b48ba9fb513e9e194a76d09e70f0dc71d1a5d20d25a608d639"
     },
     {
       "@id": "data/derived/data_dictionary/summary.json",
@@ -1890,7 +1890,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "json",
       "name": "summary",
-      "sha256": "c7aa012e41bbf7de7a8251fe462d6dea174386d808ecc1ab019262fe5d811f23"
+      "sha256": "7eaa2e28b692f8541b52423df1ed2cad1e61dc1eb233703fbbad1e509950e2cb"
     },
     {
       "@id": "infra/huggingface/DATASET_CARD.md",
