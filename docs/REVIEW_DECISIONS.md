@@ -70,11 +70,11 @@ local handoff bundle is the current release artefact.
 
 The repository owner is the accountable reviewer for the approved pre-publication
 scope. The following external preparation actions were completed without publishing
-papers or making the research package public:
+  papers or making the research package public:
 
 - OSF CLI: the pinned `edithatogo/osf-cli-go v1.0.0` was used with private OSF
   project `q8cnx`. The reviewed protocol, provenance, freeze, manifest, data-package
-  and RO-Crate files were uploaded privately. Chrome identified **OSF Preregistration**
+  and RO-Crate files were uploaded privately. The owner selected **OSF Preregistration**
   as the appropriate template, and an OSF draft was created. The draft remains
   unregistered and private pending protocol freeze and registration review.
 - Hugging Face: the Space metadata was reconciled through the authenticated account
