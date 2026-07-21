@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 
 from reimburse_atlas.osf_registration import (
+    build_registration_freeze,
     build_registration_review_packet,
     check_registration_drift,
 )
@@ -195,3 +196,23 @@ def test_registration_review_packet_is_explicitly_unapproved(tmp_path) -> None: 
     assert "OSF metadata contract" in packet
     assert "accountable contributor list must be confirmed" in packet
     assert "publish_allowed: true" in packet
+
+
+def test_registration_freeze_exposes_proposed_cutoff_without_approval(tmp_path) -> None:  # type: ignore[no-untyped-def]
+    (tmp_path / "protocols").mkdir()
+    (tmp_path / "reports").mkdir()
+    (tmp_path / "data/seed").mkdir(parents=True)
+    (tmp_path / "data/seed/source_snapshots.jsonl").write_text(
+        json.dumps({"retrieved_at": "2026-07-03T00:00:00Z"}) + "\n", encoding="utf-8"
+    )
+    (tmp_path / "data/seed/source_versions.jsonl").write_text(
+        json.dumps({"retrieved_at": "2026-07-19T00:00:00Z"}) + "\n", encoding="utf-8"
+    )
+    manifest = tmp_path / "manifest.jsonl"
+    manifest.write_text("{}\n", encoding="utf-8")
+
+    freeze = build_registration_freeze(root=tmp_path, sync_manifest_path=manifest)
+
+    assert freeze["proposed_source_cutoff"] == "2026-07-19T00:00:00Z"
+    assert freeze["source_cutoff"] == "not-frozen"
+    assert freeze["source_cutoff_status"] == "pending_accountable_approval"
