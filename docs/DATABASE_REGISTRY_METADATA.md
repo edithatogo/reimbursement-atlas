@@ -54,6 +54,7 @@ and [`docs/RELEASE_VERIFICATION.md`](RELEASE_VERIFICATION.md).
 | OSF | Protocol/report scaffolds available | Registration/public record pending explicit gates |
 | Hugging Face | Dataset card, Croissant descriptor and static Space metadata available | Publication pending licence, evidence and policy gates |
 | Zenodo/DataCite | Release metadata and manifest scaffolds available | DOI/deposit not submitted |
+| FAIRsharing | Eligibility assessment record available | Search, record type and submission/acceptance pending |
 
 This status must be updated only from authoritative external evidence. Local
 validation, a green workflow or a prepared metadata file does not imply
