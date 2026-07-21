@@ -4527,7 +4527,7 @@
       "version": "3.1.0"
     },
     {
-      "bom-ref": "pkg:npm/astro@7.1.0",
+      "bom-ref": "pkg:npm/astro@7.1.1",
       "licenses": [
         {
           "license": {
@@ -4539,12 +4539,12 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-jXHNZXpO0HOuANLwv5uLg5WFXFmIMyDTMlokIb8sv10y8QItOFaikwrqvp6+Pe0MSqvp+aO7V1SfVriFcCEKgA=="
+          "value": "sha512-yfKhuvbz+DORHihJRL1DHcxyLcX9uTrxvz2nCSTzHH54k2DdACBfuOu2OAAAhdUC9xlu2IRXAiagqcPL3DftCg=="
         }
       ],
-      "purl": "pkg:npm/astro@7.1.0",
+      "purl": "pkg:npm/astro@7.1.1",
       "type": "library",
-      "version": "7.1.0"
+      "version": "7.1.1"
     },
     {
       "bom-ref": "pkg:npm/astro/node_modules/semver@7.8.5",
