@@ -1,5 +1,12 @@
 # Final handoff checklist
 
+## Current external refresh (2026-07-21)
+
+The public Hugging Face destination metadata now matches the governed candidate:
+the Space is `apache-2.0`/`static` and the dataset is `other`. The OSF project
+`q8cnx` is public, but no registration exists yet. These readbacks do not change
+the human licence, evidence, research or publication gates.
+
 ## Current working snapshot (2026-07-20)
 
 The current merged `main` snapshot is commit

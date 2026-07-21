@@ -1,5 +1,14 @@
 # Hugging Face publication plan
 
+## Current destination state (2026-07-21)
+
+Read-only Hub API inspection confirms the governed destination metadata now matches:
+the Space reports `sdk=static` and `license=apache-2.0` at commit
+`c0dade5b1ba2ae80741ee6049fa1c290f2affdec`, and the dataset reports
+`license=other` at commit `ef007dc91a5f1389fddda5839ead77b27d70eb27`.
+This resolves the metadata-drift issue; it does not authorize dataset publication or
+upgrade research, evidence, licence or policy readiness.
+
 Current release-snapshot destination readback (2026-07-18, snapshot
 `4693b32113b97868083ecf86d9fd8ae09dfa2e1b`, monitor run `29595536385`) confirms
 the dataset reports governed `license=other`. The Space
