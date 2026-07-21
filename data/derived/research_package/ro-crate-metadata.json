@@ -1448,20 +1448,20 @@
     {
       "@id": "data/derived/local_quality_gates/local_quality_gates.jsonl",
       "@type": "File",
-      "contentSize": 9760,
+      "contentSize": 7399,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "local_quality_gates",
-      "sha256": "9c4181a11353dafaa83e794231d9b31ea06e256a210561fe4b72690ed5bdf5d6"
+      "sha256": "4a8b156f86326f9c8c7849c12b1e4969a5cf6c591d8f947115b6680cc3af3b2f"
     },
     {
       "@id": "data/derived/local_quality_gates/local_quality_gates.csv",
       "@type": "File",
-      "contentSize": 4885,
+      "contentSize": 3819,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "local_quality_gates",
-      "sha256": "2e97c8cff9aeadb31d1c935c936e633db97e083eefa220e84a801a8fed8356ee"
+      "sha256": "dbd2706c9ca3c88a4828afeef76b93564777a24dd85fc6c6b43157abaf2ebb41"
     },
     {
       "@id": "data/derived/local_quality_gates/local_quality_gate_specs.jsonl",
@@ -1538,20 +1538,20 @@
     {
       "@id": "data/derived/release_readiness/release_gates.jsonl",
       "@type": "File",
-      "contentSize": 7742,
+      "contentSize": 7928,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "1db4c9c170be55af016f13ec6bd6e1102d4b1931c979fa4953688a5826981247"
+      "sha256": "0b027e6729e1966e89a5d02308b8b1527a868060d08a6570fc609654a2f3c966"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
       "@type": "File",
-      "contentSize": 4528,
+      "contentSize": 4714,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "8bd8281c1746f4812d97e615e17ba1cdbf85cb8b00208ea071b53d3315714491"
+      "sha256": "c981a7f389d2f31c818f6b5efb381cc7457e6ef2667e60e78f4176f07a034067"
     },
     {
       "@id": "data/derived/v13_validation_run.json",
@@ -1875,7 +1875,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "data_dictionary",
-      "sha256": "111e893dace8a1d71c243d84122a4faad3ba81a130ed59870b2a67c1505b3835"
+      "sha256": "3f2e88ff35881651e52c3618e4218c4bb334c9c5371347907393b8f8142dbc20"
     },
     {
       "@id": "data/derived/data_dictionary/data_dictionary.csv",
@@ -1884,7 +1884,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "data_dictionary",
-      "sha256": "f700d7f6695e58927904e9dc0bbc1a3f1670feff451c5cbe94471fb6612b3b51"
+      "sha256": "b16ea7c1b365a295897ce3171d872adceb906138d20a43856560245f377a4a39"
     },
     {
       "@id": "data/derived/data_dictionary/summary.json",
@@ -1893,7 +1893,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "json",
       "name": "summary",
-      "sha256": "66e99bd325076f38e0c6988b8a275d0e435de445c14140b8b7e16f72b9a28a9a"
+      "sha256": "778e6d2abc88c71294dc32c8e8fca9eeed1ebbe46ba5721da36c250bbfce182c"
     },
     {
       "@id": "infra/huggingface/DATASET_CARD.md",
