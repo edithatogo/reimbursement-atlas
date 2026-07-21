@@ -634,14 +634,12 @@ def _effective_licence_decision_counts(
     decisions_path = repo / "data" / "licence_review" / "decisions.jsonl"
     try:
         queue_rows = [
-            json.loads(line)
-            for line in queue_path.read_text().splitlines()
-            if line.strip()
+            json.loads(line) for line in queue_path.read_text().splitlines() if line.strip()
         ]
         decision_rows = [
             json.loads(line) for line in decisions_path.read_text().splitlines() if line.strip()
         ]
-    except (OSError, json.JSONDecodeError):
+    except OSError, json.JSONDecodeError:
         return int(queue_summary.get("approved_count", 0)), int(
             queue_summary.get("pending_count", 0)
         )
