@@ -1445,20 +1445,20 @@
     {
       "@id": "data/derived/local_quality_gates/local_quality_gates.jsonl",
       "@type": "File",
-      "contentSize": 9439,
+      "contentSize": 9760,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "local_quality_gates",
-      "sha256": "8e740c31d8c5a1dd052e28bd5e308a8bdc7bb003eca86bdcc8a64f4bb547ba1b"
+      "sha256": "9c4181a11353dafaa83e794231d9b31ea06e256a210561fe4b72690ed5bdf5d6"
     },
     {
       "@id": "data/derived/local_quality_gates/local_quality_gates.csv",
       "@type": "File",
-      "contentSize": 4749,
+      "contentSize": 4885,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "local_quality_gates",
-      "sha256": "6211bc7a98d97262504f4b8a82a3b8ffa1f3e8a8d37388a7695cb373019e0524"
+      "sha256": "2e97c8cff9aeadb31d1c935c936e633db97e083eefa220e84a801a8fed8356ee"
     },
     {
       "@id": "data/derived/local_quality_gates/local_quality_gate_specs.jsonl",
@@ -1872,7 +1872,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "data_dictionary",
-      "sha256": "e131c02223a82628f277d6498e563383a2c58ca158674b2557e6e36f9b6f0bf7"
+      "sha256": "9a5006b254bced3e1078ab6ad38c6e3af678ec16c6d5d5497809f5a77138619f"
     },
     {
       "@id": "data/derived/data_dictionary/data_dictionary.csv",
@@ -1881,7 +1881,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "data_dictionary",
-      "sha256": "ea832ee91f282887db5cadf0d123b3d4e21f2789b54c5c28e25c0a6f5ad7eac6"
+      "sha256": "f72628018a4660d38f481530683d5a1ebed79a1266d09905ffab23dfbb4bc3cc"
     },
     {
       "@id": "data/derived/data_dictionary/summary.json",
@@ -1890,7 +1890,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "json",
       "name": "summary",
-      "sha256": "75415bb56463c4f57cd5916966e9ef047d0862689d20a20858e25f396b864c3e"
+      "sha256": "c7aa012e41bbf7de7a8251fe462d6dea174386d808ecc1ab019262fe5d811f23"
     },
     {
       "@id": "infra/huggingface/DATASET_CARD.md",
