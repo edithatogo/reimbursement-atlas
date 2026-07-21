@@ -829,8 +829,10 @@ def render_issue(issue: IssueDraft) -> str:  # ruff:ignore[too-many-branches, to
         "This issue was generated from `conductor/backlog.yml`; the criteria below are the "
         "track-specific acceptance contract."
         if issue.acceptance
-        else "This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria\n"
-        "before opening it in GitHub."
+        else (
+            "This issue was generated from `conductor/backlog.yml`. Refine the "
+            "acceptance criteria before opening it in GitHub."
+        )
     )
     return f"""# {issue.title}
 
