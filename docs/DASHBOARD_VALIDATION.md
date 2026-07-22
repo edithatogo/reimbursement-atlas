@@ -116,6 +116,8 @@ uv run --all-extras python scripts/check_dashboard_pages_assets.py
 
 This prevents root-relative `/_astro/` or `/data/` references from reaching the public site.
 
+The accountable review record contract is [`schema/DashboardHumanReviewRecord.schema.json`](../schema/DashboardHumanReviewRecord.schema.json), with a copy-ready template in [`DASHBOARD_HUMAN_REVIEW_RECORD.md`](DASHBOARD_HUMAN_REVIEW_RECORD.md). It requires the deployed commit, reviewer, route/browser/OS/assistive-technology scope, provenance scope, findings and any remediation or waiver. The schema deliberately rejects the unscoped phrase `WCAG compliant`.
+
 After deployment, the Pages workflow runs a bounded live smoke check against the canonical
 HTTPS URL. It retries for CDN propagation, then verifies the HTML references, favicon, status
 manifest, graph CSVs and same-origin project routes all return HTTP 200:

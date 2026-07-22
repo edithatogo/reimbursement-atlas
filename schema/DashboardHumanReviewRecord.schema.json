@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DashboardHumanReviewRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "commit", "reviewer", "scope", "findings"],
+  "properties": {
+    "schema_version": {"const": "dashboard-human-review-v1"},
+    "status": {"enum": ["pending", "findings_recorded", "approved_within_scope", "rejected"]},
+    "commit": {"type": "string", "pattern": "^[0-9a-f]{7,64}$"},
+    "reviewer": {"type": "string", "minLength": 1},
+    "reviewed_at": {"type": ["string", "null"], "format": "date"},
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["routes", "browsers", "operating_systems", "assistive_technology", "provenance"],
+      "properties": {
+        "routes": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "browsers": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "operating_systems": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "assistive_technology": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "provenance": {"type": "boolean"}
+      }
+    },
+    "findings": {"type": "array", "items": {"type": "string"}},
+    "evidence_artifacts": {"type": "array", "items": {"type": "string"}},
+    "remediation_or_waiver": {"type": ["string", "null"]},
+    "approval_scope": {
+      "type": ["string", "null"],
+      "not": {"type": "string", "pattern": "WCAG compliant"}
+    }
+  }
+}
