@@ -101,7 +101,7 @@ was performed.
    TypeScript `7.0.2` but `@astrojs/check 0.9.9` accepts only TypeScript 5 or 6 (`#362`).
 
 The current source acquisition run is explicitly classified as review-required: the July 2026
-MBS pair and PBS schedule were revalidated into ignored local raw storage, six targets remain
+MBS pair and PBS schedule were revalidated into ignored local raw storage, seven targets remain
 licence-gated, and the PBS monthly extract remains acquired-unreviewed. The derived MBS bundle,
 strict software/security gates, GitHub Pages deployment,
 OSF CLI v1 verification and the downloadable archive are complete.
