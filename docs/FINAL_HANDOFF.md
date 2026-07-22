@@ -21,6 +21,12 @@ and count references later in this document are retained historical audit notes.
 
 The repo now generates a concrete handoff table for the remaining tasks that cannot be completed inside the sandbox. These are not vague TODOs: each row includes the required environment, command, evidence path, unblock condition and recommended action.
 
+Each generated handoff task is also traceable to its governing Conductor track and
+GitHub issue set. The JSONL and CSV records expose `conductor_track` and
+`github_issues`; these references are maintained by the task builder rather than
+entered in generated files, so regeneration cannot silently sever the delivery
+traceability chain.
+
 ## Command
 
 ```bash

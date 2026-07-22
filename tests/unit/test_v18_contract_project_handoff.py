@@ -428,6 +428,10 @@ def test_final_handoff_records_environment_bound_tasks(tmp_path: Path) -> None:
     assert any("reviewed-mbs-txt-pair-bundle" in row.command for row in rows)
     source_task = next(row for row in rows if row.id == "final_source_downloads")
     assert source_task.status == "partial"
+    assert source_task.conductor_track == "track_live_source_ingestion"
+    assert source_task.github_issues == (23, 25, 255)
+    assert all(row.conductor_track.startswith("track_") for row in rows)
+    assert all(row.github_issues for row in rows)
     mbs_task = next(row for row in rows if row.id == "final_mbs_pair_bundle")
     assert mbs_task.status == "complete"
     paths = write_final_handoff_tasks(rows, output_dir=tmp_path / "handoff")

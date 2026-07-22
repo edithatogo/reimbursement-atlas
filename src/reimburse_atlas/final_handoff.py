@@ -21,6 +21,8 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
     return [
         FinalHandoffTaskRecord(
             id="final_source_downloads",
+            conductor_track="track_live_source_ingestion",
+            github_issues=(23, 25, 255),
             task_group="source_ingestion",
             title="Run hardened curl/wget source download plan",
             status=_source_download_status(repo),
@@ -40,6 +42,8 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
         ),
         FinalHandoffTaskRecord(
             id="final_mbs_pair_bundle",
+            conductor_track="track_live_source_ingestion",
+            github_issues=(23,),
             task_group="source_ingestion",
             title="Create reviewed derived-only MBS TXT pair bundle",
             status=(
@@ -65,6 +69,8 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
         ),
         FinalHandoffTaskRecord(
             id="final_cms_clfs_licence_review",
+            conductor_track="track_source_provenance_licence_release",
+            github_issues=(24, 492, 496),
             task_group="source_ingestion",
             title="Review CMS CLFS AMA-gated file and derived-field policy",
             status="blocked_review",
@@ -82,6 +88,8 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
         ),
         FinalHandoffTaskRecord(
             id="final_pip_audit_strict",
+            conductor_track="track_ci_cd_supply_chain",
+            github_issues=(191,),
             task_group="security",
             title="Run pip-audit strict in a network-enabled environment",
             status=(
@@ -99,6 +107,8 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
         ),
         FinalHandoffTaskRecord(
             id="final_action_sha_pinning",
+            conductor_track="track_ci_cd_supply_chain",
+            github_issues=(191,),
             task_group="automation",
             title="Resolve GitHub Action tags to immutable SHAs",
             status=(
@@ -120,6 +130,8 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
         ),
         FinalHandoffTaskRecord(
             id="final_hf_dataset_space",
+            conductor_track="track_publication_hf_spaces",
+            github_issues=(534,),
             task_group="publication",
             title="Publish gated Hugging Face dataset and Space dry run",
             status="blocked_review",
@@ -140,6 +152,8 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
         ),
         FinalHandoffTaskRecord(
             id="final_osf_protocol_pack",
+            conductor_track="track_osf_registration_record_quality",
+            github_issues=(484, 488, 511),
             task_group="research",
             title="Create OSF protocol/report components and upload preregistration pack",
             status="blocked_review",
@@ -160,6 +174,8 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
         ),
         FinalHandoffTaskRecord(
             id="final_osf_registration_drift_check",
+            conductor_track="track_osf_registration_record_quality",
+            github_issues=(484, 489, 511),
             task_group="research",
             title="Verify OSF registration fingerprint and amendment state",
             status="blocked_review",
@@ -183,6 +199,8 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
         ),
         FinalHandoffTaskRecord(
             id="final_mapping_calibration_review",
+            conductor_track="track_evidence_adjudication_review",
+            github_issues=(490, 491),
             task_group="mappings",
             title="Adjudicate mapping gold standards and negative controls",
             status="blocked_review",
@@ -200,6 +218,8 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
         ),
         FinalHandoffTaskRecord(
             id="final_historical_source_expansion",
+            conductor_track="track_historical_source_archival_reproducibility",
+            github_issues=(255, 486, 492),
             task_group="source_ingestion",
             title="Review historical MBS/PBS source expansion and licence scope",
             status="blocked_review",
@@ -225,6 +245,8 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
         ),
         FinalHandoffTaskRecord(
             id="final_dashboard_visual_review",
+            conductor_track="track_public_product_citation_dashboard",
+            github_issues=(493, 501),
             task_group="release",
             title="Review cross-platform dashboard visual baselines",
             status="blocked_review",
@@ -245,6 +267,8 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
         ),
         FinalHandoffTaskRecord(
             id="final_release_candidate",
+            conductor_track="track_release_record_archive_maturity",
+            github_issues=(487, 507),
             task_group="release",
             title="Generate final release-readiness report and public archive",
             status="blocked_review",
