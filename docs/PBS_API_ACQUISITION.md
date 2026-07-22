@@ -88,9 +88,24 @@ the value is passed only to the child HTTP process and is removed from command p
 
 The July 2026 published schedule was selected as `schedule_code=4706` from `effective_date`.
 The ignored local cache contains the complete 14,840-row `/items` extract across two CSV pages
-and the 17-row `/fees` extract for that schedule. These files are acquisition evidence only:
-they remain outside Git, and no parser, reviewed bundle, evidence claim, or publication output is
-treated as complete until human field and licence review is recorded.
+and the 17-row `/fees` extract for that schedule. These raw responses remain outside Git. Under
+the owner-approved bounded derived-field scope, `reviewed-pbs-api-bundle` joins item rows to the
+schedule effective date, reduces them to `ScheduleItemRecord`, deterministically retains the
+first presentation for each PBS item code, and emits a checksum-bound derived-only bundle. This
+does not authorize raw response redistribution, confidential net-price claims, or paper/preprint
+publication.
+
+```bash
+PYTHONPATH=src pixi run python -m reimburse_atlas.cli reviewed-pbs-api-bundle \
+  data/raw_live/au_pbs/pbs_v3_items_4706.csv \
+  data/raw_live/au_pbs/pbs_v3_items_4706_page2.csv \
+  --schedules-path data/raw_live/au_pbs/pbs_v3_schedules.json \
+  --retrieved-at 2026-07-18T00:00:00+00:00
+```
+
+The July 2026 bundle contains 6,945 unique item codes from 14,840 input presentation rows.
+Its validation report records input checksums, page count, deduplication rule, retained count,
+and the explicit exclusion of raw files. The source snapshots redact local paths.
 
 The public API credential path is now executable, and the local-cache fallback prevents a
 missing key from invalidating an already acquired dataset. The implementation remains

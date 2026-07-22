@@ -1,0 +1,26 @@
+{
+  "cache_scope": "local_raw_only",
+  "deduplication_key": "item_code",
+  "deduplication_rule": "retain first row in page-name and source-row order",
+  "duplicate_item_count": 7895,
+  "input_checksums_sha256": [
+    "1bd0e95f100c015f39ee8ef8ab006998a1f63f347b52bcd2aec32c7efb1f9223",
+    "e2aa5f7cc9a1c642d483b5457e9f1086c650490d6dd47152e82eb54046866733",
+    "648b7b12160881125fed91925170469f9a44ecc680307cd67cbff2567b93646c"
+  ],
+  "input_page_count": 2,
+  "input_record_count": 14840,
+  "licence_gate": "public_reuse_review",
+  "parse_success": true,
+  "raw_files_copied_to_bundle": false,
+  "record_count": 6945,
+  "record_type": "schedule_items",
+  "review_required_before_publication": true,
+  "snapshot_ids": [
+    "snapshot_au_pbs_api_v3_current_month_1bd0e95f100c",
+    "snapshot_au_pbs_api_v3_current_month_e2aa5f7cc9a1",
+    "snapshot_au_pbs_api_v3_current_month_648b7b121608"
+  ],
+  "source_id": "au_pbs",
+  "source_version_id": "au_pbs_api_v3_current_month"
+}

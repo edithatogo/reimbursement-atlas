@@ -8,6 +8,7 @@ uses these functions to create checksum provenance and derived-only outputs.
 
 from __future__ import annotations
 
+import hashlib
 import json
 from collections.abc import Callable, Sequence
 from dataclasses import asdict, dataclass
@@ -27,6 +28,7 @@ from reimburse_atlas.parsers import (
     parse_cms_pfs_csv,
     parse_mbs_xml,
     parse_nhs_genomic_directory_csv,
+    parse_pbs_api_csv,
     parse_pbs_csv,
 )
 from reimburse_atlas.parsers.mbs_txt import MbsTxtParseStats, parse_mbs_txt_pair, parse_stats
@@ -340,6 +342,147 @@ class MbsTxtPairBundleResult:
     parsed_csv_path: Path
     validation_report_path: Path
     publication_manifest_path: Path
+
+
+@dataclass(frozen=True)
+class PbsApiBundleResult:
+    """Metadata returned after building a reviewed multi-page PBS API bundle."""
+
+    source_id: str
+    source_version_id: str
+    bundle_id: str
+    record_type: Literal["schedule_items"]
+    record_count: int
+    input_record_count: int
+    duplicate_item_count: int
+    bundle_dir: Path
+    snapshot_jsonl_path: Path
+    parsed_jsonl_path: Path
+    parsed_csv_path: Path
+    validation_report_path: Path
+    publication_manifest_path: Path
+
+
+def build_pbs_api_bundle(  # ruff:ignore[too-many-locals]
+    *,
+    item_paths: Sequence[Path],
+    schedules_path: Path,
+    output_dir: Path,
+    source_version_id: str = "au_pbs_api_v3_current_month",
+    retrieved_at: str | None = None,
+) -> PbsApiBundleResult:
+    """Build a derived-only PBS bundle from every acquired item page and schedules metadata."""
+    if not item_paths:
+        msg = "at least one PBS items page is required"
+        raise ValueError(msg)
+    ordered_item_paths = sorted(item_paths, key=lambda path: path.name)
+    input_paths = [*ordered_item_paths, schedules_path]
+    snapshots = [
+        snapshot_reviewed_local_file(
+            source_version_id=source_version_id,
+            path=path,
+            content_type="application/json" if path == schedules_path else "text/csv",
+            retrieved_at=retrieved_at,
+            licence_gate="public_reuse_review",
+            cache_scope="local_raw_only",
+            notes="Reviewed PBS API input; raw response is not copied into the bundle.",
+        )
+        for path in input_paths
+    ]
+    checksum_identity = "".join(snapshot.checksum_sha256 or "" for snapshot in snapshots)
+    checksum_suffix = hashlib.sha256(checksum_identity.encode()).hexdigest()[:8]
+    bundle_id = f"bundle_{source_version_id}_{file_sha256(schedules_path)[:8]}{checksum_suffix}"
+    bundle_dir = output_dir / bundle_id
+    bundle_dir.mkdir(parents=True, exist_ok=True)
+    snapshot_jsonl, _ = write_snapshot_records(
+        [redact_snapshot_local_path(snapshot) for snapshot in snapshots], bundle_dir
+    )
+
+    parsed = [
+        record for path in ordered_item_paths for record in parse_pbs_api_csv(path, schedules_path)
+    ]
+    records_by_code: dict[str, ScheduleItemRecord] = {}
+    for record in parsed:
+        records_by_code.setdefault(record.item_code, record)
+    records = [records_by_code[code] for code in sorted(records_by_code)]
+    rows = pydantic_rows(records)
+    parsed_jsonl = write_jsonl(rows, bundle_dir / f"{source_version_id}_schedule_items.jsonl")
+    parsed_csv = write_csv(rows, bundle_dir / f"{source_version_id}_schedule_items.csv")
+    duplicate_count = len(parsed) - len(records)
+    validation_report_path = bundle_dir / "validation_report.json"
+    validation_report_path.write_text(
+        json.dumps(
+            {
+                "source_id": "au_pbs",
+                "source_version_id": source_version_id,
+                "snapshot_ids": [snapshot.id for snapshot in snapshots],
+                "input_checksums_sha256": [snapshot.checksum_sha256 for snapshot in snapshots],
+                "input_page_count": len(item_paths),
+                "input_record_count": len(parsed),
+                "record_count": len(records),
+                "duplicate_item_count": duplicate_count,
+                "deduplication_key": "item_code",
+                "deduplication_rule": "retain first row in page-name and source-row order",
+                "record_type": "schedule_items",
+                "parse_success": bool(records),
+                "raw_files_copied_to_bundle": False,
+                "cache_scope": "local_raw_only",
+                "licence_gate": "public_reuse_review",
+                "review_required_before_publication": True,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    publication_manifest_path = bundle_dir / "publication_manifest.json"
+    publication_manifest_path.write_text(
+        json.dumps(
+            {
+                "project": "reimbursement-atlas-conductor",
+                "manifest_version": "reviewed-source-pbs-api-bundle-v1",
+                "bundle_id": bundle_id,
+                "source_id": "au_pbs",
+                "source_version_id": source_version_id,
+                "raw_files_copied": False,
+                "raw_cache_scope": "local_raw_only",
+                "snapshot_ids": [snapshot.id for snapshot in snapshots],
+                "derived_files": [
+                    parsed_jsonl.name,
+                    parsed_csv.name,
+                    snapshot_jsonl.name,
+                    validation_report_path.name,
+                ],
+                "licence_gate": "public_reuse_review",
+                "record_count": len(records),
+                "warnings": [
+                    "Retain PBS attribution and applicable source terms.",
+                    "Published amounts are not interpreted as confidential net prices.",
+                    "Raw API responses and local paths are excluded from this bundle.",
+                ],
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    return PbsApiBundleResult(
+        source_id="au_pbs",
+        source_version_id=source_version_id,
+        bundle_id=bundle_id,
+        record_type="schedule_items",
+        record_count=len(records),
+        input_record_count=len(parsed),
+        duplicate_item_count=duplicate_count,
+        bundle_dir=bundle_dir,
+        snapshot_jsonl_path=snapshot_jsonl,
+        parsed_jsonl_path=parsed_jsonl,
+        parsed_csv_path=parsed_csv,
+        validation_report_path=validation_report_path,
+        publication_manifest_path=publication_manifest_path,
+    )
 
 
 def build_mbs_txt_pair_bundle(

@@ -1,0 +1,27 @@
+{
+  "bundle_id": "bundle_au_pbs_api_v3_current_month_648b7b12ceb319f1",
+  "derived_files": [
+    "au_pbs_api_v3_current_month_schedule_items.jsonl",
+    "au_pbs_api_v3_current_month_schedule_items.csv",
+    "source_snapshots.jsonl",
+    "validation_report.json"
+  ],
+  "licence_gate": "public_reuse_review",
+  "manifest_version": "reviewed-source-pbs-api-bundle-v1",
+  "project": "reimbursement-atlas-conductor",
+  "raw_cache_scope": "local_raw_only",
+  "raw_files_copied": false,
+  "record_count": 6945,
+  "snapshot_ids": [
+    "snapshot_au_pbs_api_v3_current_month_1bd0e95f100c",
+    "snapshot_au_pbs_api_v3_current_month_e2aa5f7cc9a1",
+    "snapshot_au_pbs_api_v3_current_month_648b7b121608"
+  ],
+  "source_id": "au_pbs",
+  "source_version_id": "au_pbs_api_v3_current_month",
+  "warnings": [
+    "Retain PBS attribution and applicable source terms.",
+    "Published amounts are not interpreted as confidential net prices.",
+    "Raw API responses and local paths are excluded from this bundle."
+  ]
+}

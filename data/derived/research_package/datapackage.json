@@ -1265,20 +1265,20 @@
       }
     },
     {
-      "bytes": 56599,
+      "bytes": 56870,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "bf1bb230d9327c0a9219fe9b77c31004e3db91e23e0605551a06fbdf6eb3dccf",
+      "hash": "244ffda103ab0f2982df72f0048645586908eb228be42a11133456f0e1301f73",
       "mediatype": "application/json",
       "name": "import-edges",
       "path": "data/derived/architecture/import_edges.jsonl",
       "schema": {}
     },
     {
-      "bytes": 29830,
+      "bytes": 29970,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "52515bc22d38a404a6ac885534cbd212816074f0b8809c7ced58ebddcf171e3d",
+      "hash": "3112aee0a3f292f7b324df0e03b8143966050fe024658727762d1e762cc4c73a",
       "mediatype": "text/csv",
       "name": "import-edges",
       "path": "data/derived/architecture/import_edges.csv",
@@ -1293,7 +1293,7 @@
       "bytes": 5058,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "4c6e0d2c172f81d3c2417f6f3c5f279b3b8d8481d8df9d58ef360babbc5e8815",
+      "hash": "1f1161efcb72aacd4ca38fdf3428c4df01fff2763ce8c13ff5aae0c2aee81ce2",
       "mediatype": "application/json",
       "name": "layer-policy",
       "path": "data/derived/architecture/layer_policy.jsonl",
@@ -1303,7 +1303,7 @@
       "bytes": 2581,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "54c59ab2d315faa6e1b7ea00e926591293319e1c00c14fcb1732ef22821aa340",
+      "hash": "41f289390102d696be2c1b72f0786f7f60c6fda4c1067d3ccb9da827adc4c949",
       "mediatype": "text/csv",
       "name": "layer-policy",
       "path": "data/derived/architecture/layer_policy.csv",
@@ -1343,7 +1343,7 @@
       "bytes": 8390,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "39b307b9d98e80b3967ee8c8a5f825b1acc4a69a5a20afd3cd29393b43740fc3",
+      "hash": "7fb7a61e3b7cfc2cc6bd7b7b34a590182854cc0e6b33062fe4fdb5906e6b1c30",
       "mediatype": "application/json",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.jsonl",
@@ -1353,7 +1353,7 @@
       "bytes": 4998,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "f5b2f35e8f5dc9db7cf6e578972ff0d18b7267f6c9eb775a59151a486bad40e5",
+      "hash": "915a7c15960cb33d626e3c1f6c5f2a3950e14ab665609744b4023174d375e3e2",
       "mediatype": "text/csv",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.csv",
@@ -1770,20 +1770,20 @@
       "schema": {}
     },
     {
-      "bytes": 108362,
+      "bytes": 112537,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "a18d254ef8e75245e15d576094e00e7cf537251e9dbecc0d0284329900263ee6",
+      "hash": "c91e7df67726df0bbf91b3009228290a9bce71a2480820f39fdd4737b6e5bb30",
       "mediatype": "application/json",
       "name": "data-dictionary",
       "path": "data/derived/data_dictionary/data_dictionary.jsonl",
       "schema": {}
     },
     {
-      "bytes": 82418,
+      "bytes": 85940,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "925fb68494113bb447eef672afa712d3f36def04a47ea8b64deeb716d08944f8",
+      "hash": "3204722d942414408a9b4367e63ce0aa3eb5d41592eb1b7ae001a918507fa186",
       "mediatype": "text/csv",
       "name": "data-dictionary",
       "path": "data/derived/data_dictionary/data_dictionary.csv",
@@ -1798,7 +1798,7 @@
       "bytes": 122,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "json",
-      "hash": "e9733d42c9ce4df066d68cd88f485321df6293bc9941733005a2cc07af428ad3",
+      "hash": "98f9a4f03ce609b0d4bbb1eb39c374f298c769977e3ac343c1a0d106941a2e5b",
       "mediatype": "application/json",
       "name": "summary",
       "path": "data/derived/data_dictionary/summary.json",
@@ -2047,6 +2047,66 @@
       "mediatype": "application/json",
       "name": "validation-report",
       "path": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/validation_report.json",
+      "schema": {}
+    },
+    {
+      "bytes": 3909951,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "csv",
+      "hash": "15e5c7a3c41b545ed90d0d1bf21aa9849bd6eb1bad64cbd2fbc180b3d0333de8",
+      "mediatype": "text/csv",
+      "name": "au-pbs-api-v3-current-month-schedule-items",
+      "path": "data/derived/reviewed_source_bundles/bundle_au_pbs_api_v3_current_month_648b7b12ceb319f1/au_pbs_api_v3_current_month_schedule_items.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 6095362,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "jsonl",
+      "hash": "0c613d97430e441e8eefcca09332800ccac68f177d144e6fb4b11a1c94d83b3a",
+      "mediatype": "application/json",
+      "name": "au-pbs-api-v3-current-month-schedule-items",
+      "path": "data/derived/reviewed_source_bundles/bundle_au_pbs_api_v3_current_month_648b7b12ceb319f1/au_pbs_api_v3_current_month_schedule_items.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 1353,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "csv",
+      "hash": "db244b96ebaf00a347aea8478b595bd9de156f7c528e8bad005171b705258bf9",
+      "mediatype": "text/csv",
+      "name": "source-snapshots",
+      "path": "data/derived/reviewed_source_bundles/bundle_au_pbs_api_v3_current_month_648b7b12ceb319f1/source_snapshots.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 1844,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "jsonl",
+      "hash": "3eac52516e4bd51261f5a64a6f2331b9541ba5ad5f3d96b282fc12d54edeba78",
+      "mediatype": "application/json",
+      "name": "source-snapshots",
+      "path": "data/derived/reviewed_source_bundles/bundle_au_pbs_api_v3_current_month_648b7b12ceb319f1/source_snapshots.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 974,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "json",
+      "hash": "e4c603c12043f0f540a1b039c7e7727d2276fa4d8bfda0ee770723fbdce5d253",
+      "mediatype": "application/json",
+      "name": "validation-report",
+      "path": "data/derived/reviewed_source_bundles/bundle_au_pbs_api_v3_current_month_648b7b12ceb319f1/validation_report.json",
       "schema": {}
     }
   ],

@@ -1639,3 +1639,20 @@ required before claiming a cryptographically attested release.
 
 Evidence: `tests/unit/test_release_workflow_contract.py`, `.github/workflows/release.yml`, and
 issue #505.
+
+## 2026-07-22 - Promote the acquired PBS API extract into a bounded derived bundle
+
+Decision: Apply the repository owner's standing source-licence approval to the current
+checksum-bound PBS API inputs only within the documented derived-field scope. Join the two item
+pages to the schedules response, reduce them to `ScheduleItemRecord`, and retain the first row in
+page-name and source-row order for each PBS item code. Keep raw responses, headers, credentials,
+confidential net-price claims and paper/preprint publication outside scope.
+
+Evidence: `data/derived/source_downloads/pbs_api_acquisition.jsonl`,
+`data/derived/reviewed_source_bundles/bundle_au_pbs_api_v3_current_month_648b7b12ceb319f1/`,
+`docs/PBS_API_ACQUISITION.md`, and the owner direction that source licences are approved subject
+to the recorded restrictions.
+
+Consequence: The medicines family now has 6,945 reviewed PBS left-side codes. Mapping issue #490
+remains blocked on a rights-cleared ATC, RxNorm or CMS ASP counterpart and no mapping or atlas
+performance claim is made.
