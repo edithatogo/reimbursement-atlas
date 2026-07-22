@@ -6,7 +6,7 @@
       "id": "licence_review",
       "next_action": "Record accountable reviewer decisions in the checksum-bound queue.",
       "status": "blocked_review",
-      "summary": "16 publication candidates still require licence review."
+      "summary": "18 publication candidates still require licence review."
     },
     {
       "category": "research_review",
@@ -53,9 +53,9 @@
     "source_validation": "data/derived/source_validation/summary.json"
   },
   "licence_review": {
-    "approved_rows": 162,
+    "approved_rows": 160,
     "decision_source": "data/licence_review/decisions.jsonl",
-    "pending_rows": 16,
+    "pending_rows": 18,
     "queue_source": "data/derived/licence_review/licence_review_queue.jsonl"
   },
   "project": "reimbursement-atlas",
