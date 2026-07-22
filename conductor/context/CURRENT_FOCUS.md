@@ -1,5 +1,19 @@
 # Current focus
 
+## 2026-07-22 — Licence ledger and handoff consistency
+
+Merged main is `863095fcff3dabda8cdc186956081b9f36f8d345` after PRs #539–#541.
+The checksum-bound publication queue contains 178 candidates and the companion
+decision ledger contains 178 rows with no missing paths: 164 are approved and 14
+remain explicitly blocked. New candidates are reconciled into the ledger as blocked
+records by `scripts/reconcile_licence_decisions.py`, and a unit regression test keeps
+that invariant executable. Repository release readiness is true; evidence release,
+research publication, OSF registration and policy claims remain fail-closed.
+
+The remaining handoff rows require source/licence or domain review, mapping and visual
+review, OSF/Hugging Face/Zenodo authorization, or account-level GitHub security settings.
+No publication or external mutation is implied by the passing software gates.
+
 ## Release snapshot state (2026-07-21)
 
 This focus record describes current merged `main` snapshot
