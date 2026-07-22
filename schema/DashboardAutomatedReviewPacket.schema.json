@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edithatogo.github.io/reimbursement-atlas/schema/DashboardAutomatedReviewPacket.schema.json",
+  "title": "Dashboard automated review packet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "tested_commit", "test_count", "route_count", "project_count", "screenshot_count", "screenshot_sha256", "automated_scope", "human_review_required"],
+  "properties": {
+    "schema_version": {"const": "dashboard-automated-review-v1"},
+    "status": {"enum": ["pass", "fail", "missing_artifacts"]},
+    "tested_commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "test_count": {"type": "integer", "minimum": 0},
+    "route_count": {"type": "integer", "minimum": 0},
+    "project_count": {"type": "integer", "minimum": 0},
+    "screenshot_count": {"type": "integer", "minimum": 0},
+    "screenshot_sha256": {"type": "array", "items": {"type": "string", "pattern": "^[a-f0-9]{64}$"}},
+    "automated_scope": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "human_review_required": {"const": true}
+  }
+}

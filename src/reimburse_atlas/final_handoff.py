@@ -319,7 +319,10 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "treat a single macOS rendering as cross-platform proof."
             ),
             reason_code="dashboard_human_review_pending",
-            gate_evidence=("docs/DASHBOARD_VALIDATION.md",),
+            gate_evidence=(
+                "docs/DASHBOARD_VALIDATION.md",
+                "data/derived/dashboard_review/automated_review_packet.json",
+            ),
             review_record="data/derived/dashboard_review/human_review.json",
             external_state="not_applicable",
         ),
