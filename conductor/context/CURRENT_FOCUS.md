@@ -2,9 +2,9 @@
 
 ## 2026-07-22 — Licence ledger and handoff consistency
 
-Merged main is `665504e2f40f3b0309656d220f7e237190585d6f` after PR #551.
+Merged main is `578760f1647c01f11caaf5e1a7f7bf6d38129dea` after PR #555.
 The checksum-bound publication queue contains 178 candidates and the companion
-decision ledger contains 178 rows with no missing paths: 158 are approved and 20
+decision ledger contains 178 rows with no missing paths: 157 are approved and 21
 remain explicitly blocked. New candidates are reconciled into the ledger as blocked
 records by `scripts/reconcile_licence_decisions.py`, and a unit regression test keeps
 that invariant executable. Repository release readiness is true; evidence release,
