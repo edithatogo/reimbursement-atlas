@@ -6,7 +6,7 @@ Hugging Face destination metadata is reconciled: the Space is `apache-2.0`/`stat
 and the dataset remains `other`. OSF project `q8cnx` is public, while registration,
 licence, evidence, policy and publication gates remain fail-closed.
 
-Release snapshot reference: `863095fcff3dabda8cdc186956081b9f36f8d345` (2026-07-22).
+Release snapshot reference: `1e7b3ba5aa43acdd90bf48e9f4bc3eb2e124807e` (2026-07-22).
 Regenerate this document after any further merge and before release review.
 The last merged-main repository release gate summary was 36/36 passing; the current
 branch must rerun the complete matrix before this state can be considered current.
@@ -36,7 +36,7 @@ The summary contains `required_blocker_count` and `public_release_ready`. Public
 The release matrix also verifies that `data/derived/licence_review/summary.json` exists,
 contains checksum-bound candidate rows, and explicitly has
 `approval_mutation_allowed: false`. This verifies the review-control mechanism only; the
-14 currently blocked artifact candidates remain pending. This includes project metadata, governance outputs,
+16 currently blocked artifact candidates remain pending. This includes project metadata, governance outputs,
 and source-derived candidates; the source-derived subset still requires human Commonwealth,
 provider-licence and domain review before external publication.
 

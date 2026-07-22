@@ -220,3 +220,21 @@ def test_git_is_ancestor_uses_a_shell_free_fixed_argv(monkeypatch) -> None:
     assert git_is_ancestor(Path(), "a" * 40)
     assert calls[0][0] == ["git", "merge-base", "--is-ancestor", "a" * 40, "HEAD"]
     assert calls[0][1].get("shell") is not True
+
+
+def test_tracked_public_status_counts_match_decision_ledger(repo_root: Path) -> None:
+    """Prevent a merged handoff from publishing stale licence counts."""
+    status = json.loads(
+        (repo_root / "apps/dashboard/public/status.json").read_text(encoding="utf-8")
+    )
+    decisions = [
+        json.loads(line)
+        for line in (repo_root / "data/licence_review/decisions.jsonl")
+        .read_text(encoding="utf-8")
+        .splitlines()
+        if line.strip()
+    ]
+    approved = sum(row.get("decision") == "approved" for row in decisions)
+    blocked = sum(row.get("decision") == "blocked" for row in decisions)
+    assert status["licence_review"]["approved_rows"] == approved
+    assert status["licence_review"]["pending_rows"] == blocked
