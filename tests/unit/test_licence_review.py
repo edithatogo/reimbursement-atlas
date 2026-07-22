@@ -12,7 +12,11 @@ from reimburse_atlas.licence_review import (
     write_licence_review_queue,
 )
 from reimburse_atlas.licence_review_validation import validate_licence_review_queue
-from reimburse_atlas.publication import PublicationArtifact, PublicationManifest
+from reimburse_atlas.publication import (
+    PublicationArtifact,
+    PublicationManifest,
+    build_publication_manifest,
+)
 from scripts.reconcile_licence_decisions import reconcile
 
 
@@ -46,6 +50,36 @@ def test_queue_never_infers_approval() -> None:
     assert rows[0].review_status == "pending"
     assert rows[0].reviewer == ""
     assert rows[0].decision_evidence == ""
+
+
+def test_project_owned_metadata_does_not_enter_source_rights_queue() -> None:
+    """Apache-licensed operational metadata is not a provider-rights candidate."""
+    artifact = PublicationArtifact(
+        table_name="release_gates",
+        relative_path="data/derived/release_readiness/release_gates.jsonl",
+        file_format="jsonl",
+        row_count=1,
+        byte_size=2,
+        checksum_sha256="a" * 64,
+        publication_scope="project_owned_metadata",
+        licence_gate="apache_2_0_project_output",
+        contains_raw_source_payload=False,
+        notes="Project output",
+    )
+    manifest = PublicationManifest("project", "v1", 1, (artifact,), ())
+
+    assert build_licence_review_queue(manifest) == []
+
+
+def test_research_package_descriptors_are_project_owned(repo_root: Path) -> None:
+    """Package descriptors inherit neither payload rights nor source licences."""
+    manifest = build_publication_manifest(root=repo_root)
+    descriptors = [
+        row for row in manifest.artifacts if "data/derived/research_package/" in row.relative_path
+    ]
+
+    assert descriptors
+    assert {row.licence_gate for row in descriptors} == {"apache_2_0_project_output"}
 
 
 def test_queue_writes_checksum_bound_outputs(tmp_path: Path) -> None:

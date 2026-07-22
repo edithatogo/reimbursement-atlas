@@ -212,6 +212,14 @@ DEFAULT_PUBLICATION_PATHS = (
     Path("data/derived/v18_validation_run.json"),
 )
 
+PROJECT_OWNED_METADATA_PREFIXES = (
+    Path("data/derived/data_dictionary"),
+    Path("data/derived/final_handoff"),
+    Path("data/derived/release_readiness"),
+    Path("data/derived/research_package"),
+    Path("data/derived/source_drift"),
+)
+
 
 def file_sha256(path: Path) -> str:
     """Return a SHA-256 checksum for a file."""
@@ -254,6 +262,13 @@ def _scope_for(path: Path) -> tuple[str, str, bool, str]:
             "raw_or_local_cache",
             True,
             "Raw/cache path detected; do not publish.",
+        )
+    if any(path.is_relative_to(prefix) for prefix in PROJECT_OWNED_METADATA_PREFIXES):
+        return (
+            "project_owned_metadata",
+            "apache_2_0_project_output",
+            False,
+            "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
         )
     if "derived" in parts:
         return (
