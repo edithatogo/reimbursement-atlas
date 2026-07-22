@@ -33,3 +33,9 @@ pending when regenerated; the companion file is the authoritative checksum-bound
 The approval-neutral JSON Schema at `data/licence_review/decision.schema.json`
 can be used to check an individual JSONL object before the repository validator
 is run. It does not create decisions or grant redistribution permission.
+
+To append one complete decision safely, place the JSON object in a temporary file and
+run `pixi run licence-review-record path/to/decision.json`. The command verifies the
+current queue checksum, required fields and duplicate `review_id` before writing the
+companion ledger. It never edits generated queue rows, changes publication gates or
+publishes data.
