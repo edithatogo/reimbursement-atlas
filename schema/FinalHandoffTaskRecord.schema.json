@@ -2,20 +2,23 @@
   "additionalProperties": false,
   "description": "Generated task that remains for a network-enabled or credentialed environment.",
   "properties": {
+    "id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Id",
+      "type": "string"
+    },
     "conductor_track": {
       "minLength": 1,
       "title": "Conductor Track",
       "type": "string"
     },
     "github_issues": {
-      "items": { "type": "integer", "minimum": 1 },
-      "title": "GitHub Issues",
+      "default": [],
+      "items": {
+        "type": "integer"
+      },
+      "title": "Github Issues",
       "type": "array"
-    },
-    "id": {
-      "pattern": "^[a-z0-9_]+$",
-      "title": "Id",
-      "type": "string"
     },
     "task_group": {
       "enum": [
