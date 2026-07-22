@@ -42,6 +42,7 @@ def test_release_summary_tracks_required_blockers() -> None:
     summary = summarise_release_gates(gates)
     assert summary.gate_count == 3
     assert summary.required_blocker_count == 1
+    assert summary.review_pending_count == 0
     assert summary.repository_release_ready is False
     assert summary.research_publication_ready is False
 
@@ -175,6 +176,7 @@ def test_release_readiness_report_reads_generated_evidence(tmp_path: Path) -> No
 
     report = build_release_readiness_report(tmp_path)
     assert report.summary.required_blocker_count == 0
+    assert report.summary.review_pending_count == 2
     assert report.summary.repository_release_ready is True
     assert report.summary.osf_registration_ready is False
     paths = write_release_readiness_report(report, output_dir=tmp_path / "release")
