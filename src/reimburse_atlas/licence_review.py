@@ -65,6 +65,7 @@ def write_licence_review_queue(
     rows: list[LicenceReviewRecord],
     *,
     output_dir: Path,
+    root: Path | None = None,
 ) -> tuple[Path, Path, Path, Path, Path, Path]:
     """Write queue rows, grouped batches, summary and reviewer instructions."""
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -120,6 +121,19 @@ queue to simulate approval, and do not publish it as evidence that review occurr
 """,
         encoding="utf-8",
     )
+    decision_path = (root or output_dir.parent.parent) / "data" / "licence_review" / "decisions.jsonl"
+    decisions: list[dict[str, Any]] = []
+    if decision_path.exists():
+        decisions = [
+            json.loads(line)
+            for line in decision_path.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+    decision_counts = {
+        decision: sum(row.get("decision") == decision for row in decisions)
+        for decision in ("approved", "blocked")
+    }
+    blocked_rows = [row for row in decisions if row.get("decision") == "blocked"]
     packet_path = output_dir / "reviewer_packet.md"
     batch_lines = "\n".join(
         f"- `{batch['licence_gate']}` / `{batch['publication_scope']}`: "
@@ -143,7 +157,25 @@ checksum-bound row-level record.
         + (batch_lines or "- No candidate artefacts are present.")
         + f"""
 
-Total candidate artefacts: {len(rows)}; all remain `pending` until human review.
+Total candidate artefacts: {len(rows)}; generated queue rows remain `pending` by design.
+
+## Decision ledger snapshot
+
+The companion checksum-bound ledger currently records **{decision_counts['approved']} approved**
+and **{decision_counts['blocked']} blocked** decisions. These counts are informational;
+they do not change generated queue rows or authorize publication.
+
+### Blocked rows requiring re-review
+
+"""
+        + (
+            "\n".join(
+                f"- `{row.get('relative_path')}` — `{row.get('checksum_sha256')}`"
+                for row in sorted(blocked_rows, key=lambda item: str(item.get("relative_path", "")))
+            )
+            or "- None recorded."
+        )
+        + """
 
 ## Required decision fields
 
@@ -175,7 +207,11 @@ def build_and_write_licence_review_queue(
     """Build and write the repository's current licence review queue."""
     repo = root or project_root()
     rows = build_licence_review_queue(root=repo)
-    return write_licence_review_queue(rows, output_dir=repo / "data" / "derived" / "licence_review")
+    return write_licence_review_queue(
+        rows,
+        output_dir=repo / "data" / "derived" / "licence_review",
+        root=repo,
+    )
 
 
 def summary_as_dict(rows: list[LicenceReviewRecord]) -> dict[str, Any]:

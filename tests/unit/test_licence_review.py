@@ -67,6 +67,37 @@ def test_queue_writes_checksum_bound_outputs(tmp_path: Path) -> None:
     assert '"\n' not in paths[4].read_text(encoding="utf-8")
 
 
+def test_reviewer_packet_reports_companion_ledger_without_mutating_queue(
+    tmp_path: Path,
+) -> None:
+    """The human packet exposes unresolved hashes while generated rows stay neutral."""
+    root = tmp_path
+    decision_dir = root / "data" / "licence_review"
+    decision_dir.mkdir(parents=True)
+    checksum = "b" * 64
+    (decision_dir / "decisions.jsonl").write_text(
+        json.dumps({"decision": "approved", "relative_path": "approved.csv"})
+        + "\n"
+        + json.dumps({
+            "decision": "blocked",
+            "relative_path": "blocked.csv",
+            "checksum_sha256": checksum,
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+    paths = write_licence_review_queue(
+        build_licence_review_queue(_manifest()),
+        output_dir=root / "data" / "derived" / "licence_review",
+        root=root,
+    )
+    packet = paths[5].read_text(encoding="utf-8")
+    assert "1 approved" in packet
+    assert "1 blocked" in packet
+    assert "`blocked.csv`" in packet
+    assert "`pending` by design" in packet
+
+
 def test_data_dictionary_marks_queue_internal(repo_root: Path) -> None:
     """The queue is excluded to prevent a publication-manifest cycle."""
     rows = build_data_dictionary(root=repo_root)
