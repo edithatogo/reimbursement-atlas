@@ -1,41 +1,59 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
-from scripts.make_mapping_review_pack_plan import build_plan
+from scripts.make_mapping_review_pack_plan import FAMILY_QUOTAS, build_plan
 
 
-def test_pack_plan_fails_closed_without_enough_candidates(tmp_path: Path) -> None:
-    input_path = tmp_path / "data/derived/vertical_slice/mapping_evidence_matrix.jsonl"
-    input_path.parent.mkdir(parents=True)
-    input_path.write_text(
-        json.dumps({
-            "left_source_id": "a",
-            "left_code": "1",
-            "right_source_id": "b",
-            "right_code": "2",
-        })
-        + "\n"
+def _write_rows(path: Path, rows: list[dict[str, object]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        "".join(json.dumps(row, sort_keys=True) + "\n" for row in rows), encoding="utf-8"
     )
 
+
+def test_pack_plan_fails_closed_without_real_candidates(tmp_path: Path) -> None:
     plan = build_plan(tmp_path)
 
     assert plan["status"] == "blocked_source_cases"
-    assert plan["available_unique_candidates"] == 1
-    assert plan["target_case_gap"] == 749
+    assert plan["available_unique_candidates"] == 0
+    assert plan["target_case_gap"] == 750
     assert plan["development_case_ids"] == []
     assert plan["review_boundary"]["holdout_frozen"] is False
 
 
-def test_pack_plan_is_deterministic_and_keeps_holdout_separate(tmp_path: Path) -> None:
-    input_path = tmp_path / "data/derived/vertical_slice/mapping_evidence_matrix.jsonl"
-    input_path.parent.mkdir(parents=True)
-    rows = [
-        {"left_source_id": "a", "left_code": str(i), "right_source_id": "b", "right_code": str(i)}
-        for i in range(750)
-    ]
-    input_path.write_text("\n".join(json.dumps(row) for row in rows) + "\n")
+def test_pack_plan_requires_adjudication_before_split(tmp_path: Path) -> None:
+    frame_path = tmp_path / "data/derived/mapping_study/candidate_frame.jsonl"
+    _write_rows(frame_path, [{"case_id": "map_" + "a" * 20, "family": "procedures_pathology"}])
+
+    plan = build_plan(tmp_path)
+
+    assert plan["status"] == "blocked_adjudication"
+    assert plan["available_unique_candidates"] == 1
+    assert plan["adjudication_count"] == 0
+    assert plan["development_case_ids"] == []
+
+
+def test_pack_plan_is_deterministic_balanced_and_disjoint(tmp_path: Path) -> None:
+    frame_path = tmp_path / "data/derived/mapping_study/candidate_frame.jsonl"
+    adjudication_path = tmp_path / "data/mapping_study/adjudications.jsonl"
+    frame: list[dict[str, object]] = []
+    decisions: list[dict[str, object]] = []
+    index = 0
+    for family, quotas in FAMILY_QUOTAS.items():
+        for label in ("positive", "negative"):
+            for _ in range(quotas["development"] + quotas["holdout"]):
+                case_id = f"map_{index:020x}"
+                frame.append({"case_id": case_id, "family": family})
+                decisions.append({"case_id": case_id, "final_decision": label})
+                index += 1
+    _write_rows(frame_path, frame)
+    frame_sha256 = hashlib.sha256(frame_path.read_bytes()).hexdigest()
+    for decision in decisions:
+        decision["candidate_frame_sha256"] = frame_sha256
+    _write_rows(adjudication_path, decisions)
 
     first = build_plan(tmp_path)
     second = build_plan(tmp_path)
@@ -45,3 +63,4 @@ def test_pack_plan_is_deterministic_and_keeps_holdout_separate(tmp_path: Path) -
     assert len(first["development_case_ids"]) == 600
     assert len(first["holdout_case_ids"]) == 150
     assert set(first["development_case_ids"]).isdisjoint(first["holdout_case_ids"])
+    assert first["review_boundary"]["holdout_frozen"] is True

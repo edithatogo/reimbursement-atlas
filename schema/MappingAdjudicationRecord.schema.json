@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edithatogo.github.io/reimbursement-atlas/schema/MappingAdjudicationRecord.schema.json",
+  "title": "Mapping adjudication record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "candidate_frame_sha256", "case_id", "reviewer_a_decision", "reviewer_b_decision", "final_decision", "accountable_reviewer", "evidence_citations"],
+  "properties": {
+    "schema_version": {"const": "mapping-adjudication-v1"},
+    "candidate_frame_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "case_id": {"type": "string", "pattern": "^map_[a-f0-9]{20}$"},
+    "reviewer_a_decision": {"enum": ["positive", "negative", "exclude", "uncertain"]},
+    "reviewer_b_decision": {"enum": ["positive", "negative", "exclude", "uncertain"]},
+    "final_decision": {"enum": ["positive", "negative", "exclude"]},
+    "accountable_reviewer": {"type": "string", "minLength": 1},
+    "evidence_citations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+  }
+}

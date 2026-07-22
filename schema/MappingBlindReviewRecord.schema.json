@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edithatogo.github.io/reimbursement-atlas/schema/MappingBlindReviewRecord.schema.json",
+  "title": "Blinded mapping review record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "candidate_frame_sha256", "case_id", "reviewer_role", "decision", "confidence", "evidence_citations", "exclusion_reason"],
+  "properties": {
+    "schema_version": {"const": "mapping-blind-review-v1"},
+    "candidate_frame_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "case_id": {"type": "string", "pattern": "^map_[a-f0-9]{20}$"},
+    "reviewer_role": {"enum": ["reviewer_a", "reviewer_b"]},
+    "decision": {"enum": ["positive", "negative", "exclude", "uncertain"]},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "evidence_citations": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "exclusion_reason": {"type": ["string", "null"]}
+  }
+}
