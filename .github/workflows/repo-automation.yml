@@ -47,6 +47,9 @@ jobs:
           pixi run release-readiness || true
           pixi run research-package
           pixi run licence-review-queue
+          # Reconcile checksum-bound decisions after queue regeneration so CI
+          # cannot validate or publish a stale approval ledger.
+          pixi run licence-review-reconcile
           pixi run licence-review-validate
           pixi run licence-decision-matrix
           pixi run review-schemas
