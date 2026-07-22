@@ -444,6 +444,53 @@ def test_final_handoff_records_environment_bound_tasks(tmp_path: Path) -> None:
     assert all(path.exists() for path in paths)
 
 
+def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) -> None:
+    evidence = {
+        "data/derived/release_readiness/summary.json": {
+            "repository_release_ready": True,
+            "research_publication_ready": True,
+            "evidence_release_ready": True,
+            "policy_claims_ready": True,
+        },
+        "data/derived/osf/registration_freeze.json": {
+            "review_approved": True,
+            "source_cutoff_status": "approved",
+            "source_cutoff": "2026-07-19T00:00:00Z",
+        },
+        "data/derived/osf/remote_registration_snapshot.json": {
+            "registration_id": "abc12",
+            "status": "registered",
+        },
+        "data/derived/mapping_study/evaluation_summary.json": {
+            "status": "accepted",
+            "evaluated_once": True,
+        },
+        "data/derived/historical_sources/summary.json": {
+            "review_queue_status": "approved",
+            "status": "derived_processing_approved",
+        },
+        "data/derived/dashboard_review/human_review.json": {
+            "status": "approved_within_scope",
+            "reviewed_at": "2026-07-22T00:00:00Z",
+            "scope": {"provenance": True},
+        },
+    }
+    for relative, payload in evidence.items():
+        path = tmp_path / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(payload), encoding="utf-8")
+
+    rows = {row.id: row for row in build_final_handoff_tasks(tmp_path)}
+
+    assert rows["final_hf_dataset_space"].status == "ready_local"
+    assert rows["final_osf_protocol_pack"].status == "ready_local"
+    assert rows["final_osf_registration_drift_check"].status == "ready_local"
+    assert rows["final_mapping_calibration_review"].status == "complete"
+    assert rows["final_historical_source_expansion"].status == "complete"
+    assert rows["final_dashboard_visual_review"].status == "complete"
+    assert rows["final_release_candidate"].status == "ready_local"
+
+
 def test_mbs_descriptor_contract_passes_fixture() -> None:
     record = _source_file("au_mbs_20260701_desc_txt")
     fixture = ROOT / "tests" / "fixtures" / "mbs_txt" / "20260701_MBSONLINE_DESC_fixture.TXT"
