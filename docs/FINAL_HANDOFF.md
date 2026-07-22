@@ -64,7 +64,7 @@ cannot mutate a candidate to approved status.
 
 ## Latest current-main external refresh
 
-The prior merged `main` commit `d58af03116c792f092146d15e849af048709cdbb` was rechecked without publication or destination mutation; those monitor results are historical.
+The current merged `main` commit `1135c3bc5cbab8d069b7d2c9e0f4680fae30fa7d` is the software snapshot; older monitor results below are historical.
 OSF discovery [29596947892](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29596947892)
 passed and found the configured private project; Zenodo preflight
 [29596947909](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29596947909)
