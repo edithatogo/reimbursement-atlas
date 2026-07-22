@@ -3,12 +3,12 @@
   "type": "feature",
   "status": "in_progress",
   "created_at": "2026-07-20T00:00:00Z",
-  "updated_at": "2026-07-22T12:28:59Z",
+  "updated_at": "2026-07-22T13:15:00Z",
   "description": "Close accountable human evidence, mapping, source-rights and dashboard review gates.",
   "evidence_schema": "1.0",
   "gates": [
     {"id": "mapping_adjudication", "kind": "human_review", "status": "pending", "evidence": "Review pack and calibration calculations are generated; accountable adjudication remains pending."},
-    {"id": "source_rights", "kind": "human_review", "status": "pass", "evidence": "All 178 current checksum-bound rows are approved; CMS/MBS/PBS restrictions remain explicit."},
-    {"id": "visual_review", "kind": "human_review", "status": "pending", "evidence": "Automated browser evidence is not universal WCAG certification."}
+    {"id": "source_rights", "kind": "human_review", "status": "pass", "evidence": "The owner approved 178 checksum-bound rows across prior review packets. The current active source-rights queue contains 165 approved provider/source-derived candidates; 13 project-owned metadata descriptors are governed separately by Apache-2.0. CMS/MBS/PBS restrictions remain explicit."},
+    {"id": "visual_review", "kind": "human_review", "status": "pending", "evidence": "The commit-bound automated packet covers 44 browser tests and 36 screenshot hashes; scoped accountable human review remains pending and automated evidence is not universal WCAG certification."}
   ]
 }

@@ -6,7 +6,7 @@
 - [ ] EVID-03: Evaluate the untouched holdout and calculate uncertainty intervals. (Subissue #491)
 - [x] EVID-04: Complete CMS/MBS/PBS licence-scope review records. (Subissue #492)
 - [ ] EVID-05: Complete dashboard visual/accessibility review within stated scope. (Subissue #493)
-- [ ] EVID-06: Regenerate evidence-readiness and final-handoff outputs; preserve blockers. (Subissue #494)
+- [x] EVID-06: Regenerate evidence-readiness and final-handoff outputs; preserve blockers. (Subissue #494)
 
 ## Validation
 
