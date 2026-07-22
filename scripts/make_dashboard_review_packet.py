@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import subprocess
+import os
 from pathlib import Path
 
 from reimburse_atlas.registry import project_root
@@ -13,6 +13,10 @@ from reimburse_atlas.registry import project_root
 ROUTE_COUNT = 9
 PROJECT_COUNT = 4
 TEST_COUNT = 44
+
+
+class GitHeadResolutionError(ValueError):
+    """Raised when the dashboard packet cannot resolve the tested commit."""
 
 
 def build_packet(report_dir: Path, tested_commit: str) -> dict[str, object]:
@@ -42,15 +46,33 @@ def build_packet(report_dir: Path, tested_commit: str) -> dict[str, object]:
     }
 
 
-def _head(root: Path) -> str:
-    result = subprocess.run(
-        ["git", "rev-parse", "HEAD"],
-        cwd=root,
-        check=True,
-        capture_output=True,
-        text=True,
-    )
-    return result.stdout.strip()
+def resolve_head(root: Path) -> str:
+    """Resolve the tested commit without invoking a subprocess."""
+    if github_sha := os.environ.get("GITHUB_SHA"):
+        return github_sha
+
+    dot_git = root / ".git"
+    if dot_git.is_file():
+        marker = dot_git.read_text(encoding="utf-8").strip()
+        if not marker.startswith("gitdir: "):
+            raise GitHeadResolutionError
+        git_dir = (root / marker.removeprefix("gitdir: ")).resolve()
+    else:
+        git_dir = dot_git
+
+    head = (git_dir / "HEAD").read_text(encoding="utf-8").strip()
+    if not head.startswith("ref: "):
+        return head
+    ref = head.removeprefix("ref: ")
+    loose_ref = git_dir / ref
+    if loose_ref.is_file():
+        return loose_ref.read_text(encoding="utf-8").strip()
+    for line in (git_dir / "packed-refs").read_text(encoding="utf-8").splitlines():
+        if line and not line.startswith(("#", "^")):
+            commit, packed_ref = line.split(" ", maxsplit=1)
+            if packed_ref == ref:
+                return commit
+    raise GitHeadResolutionError(ref)
 
 
 def main() -> None:
@@ -64,7 +86,7 @@ def main() -> None:
     )
     args = parser.parse_args()
     root = project_root()
-    packet = build_packet(root / args.report_dir, _head(root))
+    packet = build_packet(root / args.report_dir, resolve_head(root))
     output = root / args.output
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(packet, indent=2, sort_keys=True) + "\n", encoding="utf-8")

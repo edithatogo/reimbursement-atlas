@@ -5,7 +5,7 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator
 
-from scripts.make_dashboard_review_packet import build_packet
+from scripts.make_dashboard_review_packet import build_packet, resolve_head
 
 
 def test_dashboard_packet_hashes_expected_screenshot_matrix(tmp_path: Path) -> None:
@@ -31,3 +31,22 @@ def test_dashboard_packet_fails_closed_when_artifacts_are_missing(tmp_path: Path
     assert packet["status"] == "missing_artifacts"
     assert packet["screenshot_count"] == 0
     assert packet["human_review_required"] is True
+
+
+def test_head_resolves_loose_and_packed_git_refs(tmp_path: Path, monkeypatch) -> None:  # type: ignore[no-untyped-def]
+    monkeypatch.delenv("GITHUB_SHA", raising=False)
+    git_dir = tmp_path / ".git"
+    git_dir.mkdir()
+    (git_dir / "HEAD").write_text("ref: refs/heads/main\n", encoding="utf-8")
+    (git_dir / "packed-refs").write_text(f"{'a' * 40} refs/heads/main\n", encoding="utf-8")
+    assert resolve_head(tmp_path) == "a" * 40
+
+    loose = git_dir / "refs/heads/main"
+    loose.parent.mkdir(parents=True)
+    loose.write_text("b" * 40 + "\n", encoding="utf-8")
+    assert resolve_head(tmp_path) == "b" * 40
+
+
+def test_head_prefers_ci_commit(tmp_path: Path, monkeypatch) -> None:  # type: ignore[no-untyped-def]
+    monkeypatch.setenv("GITHUB_SHA", "c" * 40)
+    assert resolve_head(tmp_path) == "c" * 40
