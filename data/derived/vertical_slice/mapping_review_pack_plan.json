@@ -1,0 +1,33 @@
+{
+  "available_unique_candidates": 8,
+  "development_case_ids": [],
+  "holdout_case_ids": [],
+  "input": "data/derived/vertical_slice/mapping_evidence_matrix.jsonl",
+  "input_sha256": "86f90cba77a5f0bf448aff67bdeb16395b489ee7a5ee19cbf89b3f9b8099ef80",
+  "randomisation": {
+    "algorithm": "sha256-sort",
+    "seed": "reimbursement-atlas-mapping-review-pack-v1"
+  },
+  "review_boundary": {
+    "case_text": "not stored by this planner; use rights-cleared local source records",
+    "evidence_ready": false,
+    "holdout_frozen": false,
+    "review_records": "not present; blinded dual review and adjudication remain pending"
+  },
+  "schema_version": "mapping-review-pack-plan-v1",
+  "source_strata_available": {
+    "au_mbs->us_cms_clfs": 4,
+    "au_mbs->us_cms_pfs": 4
+  },
+  "status": "blocked_source_cases",
+  "target_case_gap": 742,
+  "targets": {
+    "development_negative": 300,
+    "development_positive": 300,
+    "development_total": 600,
+    "holdout_negative": 75,
+    "holdout_positive": 75,
+    "holdout_total": 150,
+    "total": 750
+  }
+}

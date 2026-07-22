@@ -1,5 +1,6 @@
 # Implementation plan
 
+- [x] EVID-00: Add deterministic, fail-closed mapping pack planning and checksum-bound split contract. (Issue #485, subissue #490)
 - [ ] EVID-01: Generate the source-stratified 750-case mapping review pack. (Issue #485, subissue #490)
 - [ ] EVID-02: Complete blinded dual review and adjudication of positive/negative controls. (Subissue #491)
 - [ ] EVID-03: Evaluate the untouched holdout and calculate uncertainty intervals. (Subissue #491)

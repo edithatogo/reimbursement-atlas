@@ -1,6 +1,7 @@
 # Implementation plan
 
 - [x] REL-01: Reconcile README, CITATION.cff, dashboard status and package identity. (Issue #487, subissue #499)
+- [x] REL-01A: Add a structured human dashboard visual/accessibility/provenance review record contract. (Issue #487, subissue #501)
 - [ ] REL-02: Complete scoped visual/accessibility and provenance review evidence. (Subissue #501)
 - [x] REL-03: Validate OSF/HF/GitHub identity, metadata and licence-boundary parity. (Subissue #503)
 - [x] REL-04: Generate reproducible archive, SBOM, provenance and attestation inputs. (Subissue #505)
