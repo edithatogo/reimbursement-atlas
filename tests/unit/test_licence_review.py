@@ -240,6 +240,7 @@ def test_reconcile_adds_block_for_new_queue_candidate(tmp_path: Path) -> None:
             "review_id": "review_new",
             "relative_path": "infra/metadata.json",
             "checksum_sha256": checksum,
+            "review_status": "pending",
         })
         + "\n",
         encoding="utf-8",
