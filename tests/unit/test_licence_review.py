@@ -82,6 +82,19 @@ def test_research_package_descriptors_are_project_owned(repo_root: Path) -> None
     assert {row.licence_gate for row in descriptors} == {"apache_2_0_project_output"}
 
 
+def test_local_quality_reports_are_project_owned(repo_root: Path) -> None:
+    """Environment-specific harness reports must not require provider-rights review."""
+    manifest = build_publication_manifest(root=repo_root)
+    reports = [
+        row
+        for row in manifest.artifacts
+        if "data/derived/local_quality_gates/" in row.relative_path
+    ]
+
+    assert reports
+    assert {row.licence_gate for row in reports} == {"apache_2_0_project_output"}
+
+
 def test_queue_writes_checksum_bound_outputs(tmp_path: Path) -> None:
     """Queue output preserves the candidate checksum and fail-closed summary."""
     paths = write_licence_review_queue(

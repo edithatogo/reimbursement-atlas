@@ -45,7 +45,7 @@
     "source_validation": "data/derived/source_validation/summary.json"
   },
   "licence_review": {
-    "approved_rows": 165,
+    "approved_rows": 161,
     "decision_source": "data/licence_review/decisions.jsonl",
     "pending_rows": 0,
     "queue_source": "data/derived/licence_review/licence_review_queue.jsonl"

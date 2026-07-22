@@ -1216,7 +1216,7 @@
     },
     {
       "bytes": 9760,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
       "hash": "9c4181a11353dafaa83e794231d9b31ea06e256a210561fe4b72690ed5bdf5d6",
       "mediatype": "application/json",
@@ -1226,7 +1226,7 @@
     },
     {
       "bytes": 4885,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
       "hash": "2e97c8cff9aeadb31d1c935c936e633db97e083eefa220e84a801a8fed8356ee",
       "mediatype": "text/csv",
@@ -1241,7 +1241,7 @@
     },
     {
       "bytes": 7340,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
       "hash": "f1e985d1cacbacce24d30d26e88d7b287f89e2bf453b3ff345532abdaafff72e",
       "mediatype": "application/json",
@@ -1251,7 +1251,7 @@
     },
     {
       "bytes": 4136,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
       "hash": "053c7fedada5748760df88266eae727ef9357dd4fafe56f76b7268fbd241f22f",
       "mediatype": "text/csv",
@@ -1343,7 +1343,7 @@
       "bytes": 8390,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "b4c7ae3515ffa4e139fc0fd6d51e89d5e6416584fe48d6eb8f9088f83501232f",
+      "hash": "39b307b9d98e80b3967ee8c8a5f825b1acc4a69a5a20afd3cd29393b43740fc3",
       "mediatype": "application/json",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.jsonl",
@@ -1353,7 +1353,7 @@
       "bytes": 4998,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "f1f5ad13b9b63db9e7c548fb7b8f1d81a85b439dfc62ab05f0504cd5ce0efa4e",
+      "hash": "f5b2f35e8f5dc9db7cf6e578972ff0d18b7267f6c9eb775a59151a486bad40e5",
       "mediatype": "text/csv",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.csv",
