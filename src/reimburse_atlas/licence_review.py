@@ -32,6 +32,28 @@ class LicenceReviewRecord:
     restrictions: str
 
 
+def _read_decision_ledger(
+    root: Path | None,
+    output_dir: Path,
+) -> tuple[dict[str, int], list[dict[str, Any]]]:
+    """Read the optional companion ledger for reviewer-only packet context."""
+    decision_path = (
+        (root or output_dir.parent.parent) / "data" / "licence_review" / "decisions.jsonl"
+    )
+    if not decision_path.exists():
+        return {"approved": 0, "blocked": 0}, []
+    decisions = [
+        json.loads(line)
+        for line in decision_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    counts = {
+        decision: sum(row.get("decision") == decision for row in decisions)
+        for decision in ("approved", "blocked")
+    }
+    return counts, [row for row in decisions if row.get("decision") == "blocked"]
+
+
 def build_licence_review_queue(
     manifest: PublicationManifest | None = None,
     *,
@@ -121,19 +143,7 @@ queue to simulate approval, and do not publish it as evidence that review occurr
 """,
         encoding="utf-8",
     )
-    decision_path = (root or output_dir.parent.parent) / "data" / "licence_review" / "decisions.jsonl"
-    decisions: list[dict[str, Any]] = []
-    if decision_path.exists():
-        decisions = [
-            json.loads(line)
-            for line in decision_path.read_text(encoding="utf-8").splitlines()
-            if line.strip()
-        ]
-    decision_counts = {
-        decision: sum(row.get("decision") == decision for row in decisions)
-        for decision in ("approved", "blocked")
-    }
-    blocked_rows = [row for row in decisions if row.get("decision") == "blocked"]
+    decision_counts, blocked_rows = _read_decision_ledger(root, output_dir)
     packet_path = output_dir / "reviewer_packet.md"
     batch_lines = "\n".join(
         f"- `{batch['licence_gate']}` / `{batch['publication_scope']}`: "
@@ -161,8 +171,8 @@ Total candidate artefacts: {len(rows)}; generated queue rows remain `pending` by
 
 ## Decision ledger snapshot
 
-The companion checksum-bound ledger currently records **{decision_counts['approved']} approved**
-and **{decision_counts['blocked']} blocked** decisions. These counts are informational;
+The companion checksum-bound ledger currently records **{decision_counts["approved"]} approved**
+and **{decision_counts["blocked"]} blocked** decisions. These counts are informational;
 they do not change generated queue rows or authorize publication.
 
 ### Blocked rows requiring re-review
