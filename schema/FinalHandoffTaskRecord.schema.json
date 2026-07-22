@@ -7,6 +7,19 @@
       "title": "Id",
       "type": "string"
     },
+    "conductor_track": {
+      "minLength": 1,
+      "title": "Conductor Track",
+      "type": "string"
+    },
+    "github_issues": {
+      "default": [],
+      "items": {
+        "type": "integer"
+      },
+      "title": "Github Issues",
+      "type": "array"
+    },
     "task_group": {
       "enum": [
         "source_ingestion",
@@ -65,6 +78,7 @@
   },
   "required": [
     "id",
+    "conductor_track",
     "task_group",
     "title",
     "status",

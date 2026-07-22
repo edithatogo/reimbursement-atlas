@@ -613,6 +613,8 @@ class FinalHandoffTaskRecord(FrozenModel):
     """Generated task that remains for a network-enabled or credentialed environment."""
 
     id: SourceId
+    conductor_track: NonEmptyStr
+    github_issues: tuple[int, ...] = ()
     task_group: Literal[
         "source_ingestion",
         "security",
