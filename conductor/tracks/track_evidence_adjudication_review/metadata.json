@@ -8,7 +8,7 @@
   "evidence_schema": "1.0",
   "gates": [
     {"id": "mapping_adjudication", "kind": "human_review", "status": "pending", "evidence": "Review pack and calibration calculations are generated; accountable adjudication remains pending."},
-    {"id": "source_rights", "kind": "human_review", "status": "pending", "evidence": "CMS/MBS/PBS restrictions remain explicit."},
+    {"id": "source_rights", "kind": "human_review", "status": "pass", "evidence": "All 178 current checksum-bound rows are approved; CMS/MBS/PBS restrictions remain explicit."},
     {"id": "visual_review", "kind": "human_review", "status": "pending", "evidence": "Automated browser evidence is not universal WCAG certification."}
   ]
 }
