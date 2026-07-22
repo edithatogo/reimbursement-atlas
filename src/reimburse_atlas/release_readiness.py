@@ -6,7 +6,7 @@ import csv
 import json
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Any, Literal
+from typing import Any, Literal, cast
 
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.registry import project_root
@@ -52,6 +52,7 @@ class ReleaseReadinessSummary:
     blocked_count: int
     missing_count: int
     required_blocker_count: int
+    review_pending_count: int
     repository_release_ready: bool
     research_publication_ready: bool
     osf_registration_ready: bool
@@ -111,6 +112,8 @@ def build_release_readiness_report(root: Path | None = None) -> ReleaseReadiness
         _architecture_gate(repo),
         _publication_manifest_gate(repo),
         _licence_review_queue_gate(repo),
+        _mapping_study_gate(repo),
+        _dashboard_human_review_gate(repo),
     ]
     summary = summarise_release_gates(gates)
     return ReleaseReadinessReport(gates=tuple(gates), summary=summary)
@@ -132,6 +135,9 @@ def summarise_release_gates(gates: list[ReleaseGateRecord]) -> ReleaseReadinessS
         blocked_count=counts["blocked"],
         missing_count=counts["missing"],
         required_blocker_count=required_blocker_count,
+        review_pending_count=sum(
+            1 for gate in gates if not gate.required and gate.status == "blocked"
+        ),
         repository_release_ready=required_blocker_count == 0,
         research_publication_ready=False,
         osf_registration_ready=False,
@@ -156,6 +162,57 @@ def write_release_readiness_report(
         encoding="utf-8",
     )
     return jsonl_path, csv_path, summary_path
+
+
+def _mapping_study_gate(repo: Path) -> ReleaseGateRecord:
+    summary = _read_json(repo / "data/derived/mapping_study/candidate_frame_summary.json")
+    evaluation = _read_json(repo / "data/derived/mapping_study/evaluation_summary.json")
+    accepted = evaluation.get("status") == "accepted" and evaluation.get("evaluated_once") is True
+    return ReleaseGateRecord(
+        id="mapping_study_human_review",
+        category="data_governance",
+        status="pass" if accepted else "blocked",
+        required=False,
+        evidence=(
+            f"candidate_status={summary.get('status', 'missing')} "
+            f"candidate_count={summary.get('candidate_count', 0)} "
+            f"evaluation_status={evaluation.get('status', 'missing')}"
+        ),
+        recommended_action=(
+            "Complete the rights-cleared candidate frame, blinded adjudication and one-time "
+            "holdout evaluation before evidence claims."
+        ),
+    )
+
+
+def _dashboard_human_review_gate(repo: Path) -> ReleaseGateRecord:
+    review = _read_json(repo / "data/derived/dashboard_review/human_review.json")
+    raw_scope = review.get("scope")
+    scope: dict[str, Any] = cast("dict[str, Any]", raw_scope) if isinstance(raw_scope, dict) else {}
+    approved = (
+        review.get("status") == "approved_within_scope"
+        and bool(review.get("reviewed_at"))
+        and bool(review.get("reviewer"))
+        and scope.get("provenance") is True
+        and bool(scope.get("routes"))
+        and bool(scope.get("browsers"))
+        and bool(scope.get("operating_systems"))
+        and bool(scope.get("assistive_technology"))
+    )
+    return ReleaseGateRecord(
+        id="dashboard_human_review",
+        category="dashboard",
+        status="pass" if approved else "blocked",
+        required=False,
+        evidence=(
+            f"record_status={review.get('status', 'missing')} "
+            f"provenance_reviewed={scope.get('provenance', False)}"
+        ),
+        recommended_action=(
+            "Complete the commit-bound visual, keyboard, screen-reader and provenance review "
+            "within the declared scope."
+        ),
+    )
 
 
 def _local_quality_gate(repo: Path) -> ReleaseGateRecord:

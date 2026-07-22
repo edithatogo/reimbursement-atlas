@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edithatogo.github.io/reimbursement-atlas/schema/MappingCandidateFrameRecord.schema.json",
+  "title": "Mapping candidate frame record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "case_id", "family", "left_source_id", "left_code",
+    "right_source_id", "right_code", "source_versions", "provenance_checksums",
+    "evidence_fields", "proposed_label_hypothesis", "proposed_difficulty",
+    "duplicate_group"
+  ],
+  "properties": {
+    "schema_version": {"const": "mapping-candidate-frame-v1"},
+    "case_id": {"type": "string", "pattern": "^map_[a-f0-9]{20}$"},
+    "family": {"enum": ["procedures_pathology", "medicines", "genomics_coverage", "devices_other"]},
+    "left_source_id": {"type": "string", "minLength": 1},
+    "left_code": {"type": "string", "minLength": 1},
+    "right_source_id": {"type": "string", "minLength": 1},
+    "right_code": {"type": "string", "minLength": 1},
+    "source_versions": {"type": "array", "minItems": 2, "items": {"type": "string", "minLength": 1}},
+    "provenance_checksums": {"type": "array", "minItems": 2, "items": {"type": "string", "pattern": "^[a-f0-9]{64}$"}},
+    "evidence_fields": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "proposed_label_hypothesis": {"enum": ["positive_candidate", "negative_candidate", "ambiguous"]},
+    "proposed_difficulty": {"enum": ["routine", "hard", "ambiguous"]},
+    "duplicate_group": {"type": "string", "pattern": "^[a-f0-9]{16}$"}
+  }
+}

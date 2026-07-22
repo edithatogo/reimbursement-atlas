@@ -27,6 +27,11 @@ def reconcile(root: Path | None = None) -> int:
     for line in decisions_path.read_text(encoding="utf-8").splitlines():
         decision = json.loads(line)
         current = queue.get(decision.get("relative_path"))
+        if current is None:
+            # The active ledger contains only artefacts that require source-rights
+            # review. Project-owned metadata is governed by the code licence.
+            changed += 1
+            continue
         if current and decision.get("checksum_sha256") != current["checksum_sha256"]:
             decision["checksum_sha256"] = current["checksum_sha256"]
             decision["decision"] = "blocked"

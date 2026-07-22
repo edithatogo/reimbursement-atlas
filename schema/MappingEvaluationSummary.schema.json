@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edithatogo.github.io/reimbursement-atlas/schema/MappingEvaluationSummary.schema.json",
+  "title": "Mapping holdout evaluation summary",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "candidate_frame_sha256", "holdout_fingerprint", "threshold_source", "denominators", "exclusions", "metrics", "evaluated_once"],
+  "properties": {
+    "schema_version": {"const": "mapping-evaluation-summary-v1"},
+    "status": {"enum": ["blocked", "evaluated", "accepted", "rejected"]},
+    "candidate_frame_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "holdout_fingerprint": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "threshold_source": {"const": "development_only"},
+    "denominators": {"type": "object"},
+    "exclusions": {"type": "object"},
+    "metrics": {"type": "object"},
+    "evaluated_once": {"type": "boolean"}
+  }
+}

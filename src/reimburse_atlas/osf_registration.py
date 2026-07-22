@@ -220,6 +220,23 @@ def build_registration_review_packet(
             "documentation."
         ),
         "",
+        "## Temporal disclosure",
+        "",
+        (
+            "Source discovery, acquisition engineering, fixture-based exploratory analyses and "
+            "software implementation began before this registration."
+        ),
+        (
+            "The powered 750-case mapping study, blinded reference review, threshold selection "
+            "and untouched holdout evaluation have not begun because the real-source candidate "
+            "frame and accountable approval gates remain incomplete."
+        ),
+        (
+            "The registration must distinguish retrospective repository development from the "
+            "prospective confirmatory mapping evaluation; it must not describe earlier work as "
+            "preregistered."
+        ),
+        "",
         "## Required human decisions",
         "",
         "- [ ] Methods review completed",

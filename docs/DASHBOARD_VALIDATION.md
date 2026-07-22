@@ -120,6 +120,8 @@ The accountable review record contract is [`schema/DashboardHumanReviewRecord.sc
 
 When a completed record is placed at `data/derived/dashboard_review/human_review.json`, the `review-schemas` Pixi task validates it automatically. An absent record remains an explicit pending human-review state rather than a failed software gate.
 
+The latest automated browser run is summarized in `data/derived/dashboard_review/automated_review_packet.json`. It binds the tested commit to the 36 retained route screenshots from nine route families across four browser/device projects. Screenshot binaries remain in the Playwright or GitHub Actions artifact; the committed packet retains their SHA-256 digests. This packet is an input to, not a substitute for, the accountable human review record.
+
 After deployment, the Pages workflow runs a bounded live smoke check against the canonical
 HTTPS URL. It retries for CDN propagation, then verifies the HTML references, favicon, status
 manifest, graph CSVs and same-origin project routes all return HTTP 200:

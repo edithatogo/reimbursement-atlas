@@ -74,6 +74,59 @@
       "minLength": 1,
       "title": "Recommended Action",
       "type": "string"
+    },
+    "reason_code": {
+      "default": "unspecified",
+      "minLength": 1,
+      "title": "Reason Code",
+      "type": "string"
+    },
+    "gate_evidence": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Gate Evidence",
+      "type": "array"
+    },
+    "review_record": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Review Record"
+    },
+    "external_state": {
+      "default": "pending",
+      "enum": [
+        "not_applicable",
+        "pending",
+        "ready",
+        "submitted",
+        "published"
+      ],
+      "title": "External State",
+      "type": "string"
+    },
+    "last_verified_at": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Last Verified At"
     }
   },
   "required": [

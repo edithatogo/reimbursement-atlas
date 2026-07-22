@@ -1,0 +1,86 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+from jsonschema import Draft202012Validator
+
+from scripts.make_mapping_candidate_frame import build_candidate_frame, write_candidate_frame
+
+
+def _record(source_id: str, code: str, version: str, label: str) -> dict[str, object]:
+    return {
+        "source_id": source_id,
+        "item_code": code,
+        "item_label": label,
+        "item_description": label,
+        "domain": "pathology",
+        "provenance": {"source_version": version},
+    }
+
+
+def _write_bundle(root: Path, name: str, rows: list[dict[str, object]]) -> None:
+    path = root / "data/derived/reviewed_source_bundles" / name / f"{name}_schedule_items.jsonl"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("".join(json.dumps(row) + "\n" for row in rows), encoding="utf-8")
+
+
+def test_candidate_frame_uses_reviewed_bundles_and_never_fixtures(tmp_path: Path) -> None:
+    _write_bundle(
+        tmp_path,
+        "mbs",
+        [_record("au_mbs", "100", "mbs-v1", "molecular pathology assay")],
+    )
+    _write_bundle(
+        tmp_path,
+        "clfs",
+        [
+            _record("us_cms_clfs", "800", "clfs-v1", "molecular pathology assay"),
+            _record("us_cms_clfs", "900", "clfs-v1", "unrelated imaging service"),
+        ],
+    )
+
+    rows, summary = build_candidate_frame(tmp_path)
+
+    assert rows
+    assert summary["fixture_rows_used"] == 0
+    assert summary["status"] == "blocked_source_families"
+    assert summary["family_summary"]["procedures_pathology"]["available"] == 2
+    assert {row["proposed_label_hypothesis"] for row in rows} >= {
+        "positive_candidate",
+        "negative_candidate",
+    }
+
+
+def test_candidate_frame_rows_validate_and_output_is_deterministic(tmp_path: Path) -> None:
+    _write_bundle(
+        tmp_path,
+        "mbs",
+        [_record("au_mbs", "100", "mbs-v1", "molecular pathology assay")],
+    )
+    _write_bundle(
+        tmp_path,
+        "clfs",
+        [_record("us_cms_clfs", "800", "clfs-v1", "molecular pathology assay")],
+    )
+    rows, summary = build_candidate_frame(tmp_path)
+    write_candidate_frame(tmp_path, rows, summary)
+    first = (tmp_path / "data/derived/mapping_study/candidate_frame.jsonl").read_bytes()
+    rows_again, summary_again = build_candidate_frame(tmp_path)
+    write_candidate_frame(tmp_path, rows_again, summary_again)
+    second = (tmp_path / "data/derived/mapping_study/candidate_frame.jsonl").read_bytes()
+    schema = json.loads(
+        Path("schema/MappingCandidateFrameRecord.schema.json").read_text(encoding="utf-8")
+    )
+
+    assert first == second
+    assert not list(Draft202012Validator(schema).iter_errors(rows[0]))
+
+
+def test_current_repository_fails_closed_without_cross_family_reviewed_bundles() -> None:
+    rows, summary = build_candidate_frame(Path.cwd())
+
+    assert rows == []
+    assert summary["candidate_count"] == 0
+    assert summary["target_gap"] == 1500
+    assert summary["status"] == "blocked_source_families"

@@ -63,6 +63,8 @@ def build_licence_review_queue(
     candidate = manifest or build_publication_manifest(root=root)
     rows: list[LicenceReviewRecord] = []
     for artifact in sorted(candidate.artifacts, key=lambda item: item.relative_path):
+        if artifact.licence_gate == "apache_2_0_project_output":
+            continue
         digest = hashlib.sha256(artifact.relative_path.encode("utf-8")).hexdigest()[:16]
         rows.append(
             LicenceReviewRecord(
