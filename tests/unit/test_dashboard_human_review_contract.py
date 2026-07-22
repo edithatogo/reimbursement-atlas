@@ -5,6 +5,8 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator
 
+from scripts.validate_review_schemas import validate_review_document
+
 
 def _schema() -> dict[str, object]:
     return json.loads(
@@ -57,3 +59,13 @@ def test_dashboard_review_schema_rejects_unscoped_wcag_claim() -> None:
     errors = list(Draft202012Validator(_schema()).iter_errors(record))
 
     assert any("not" in error.validator for error in errors)
+
+
+def test_dashboard_review_document_is_optional_until_human_review_exists() -> None:
+    errors = validate_review_document(
+        Path.cwd(),
+        "schema/DashboardHumanReviewRecord.schema.json",
+        "data/derived/dashboard_review/human_review.json",
+    )
+
+    assert errors == []

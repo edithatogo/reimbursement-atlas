@@ -15,6 +15,13 @@ REVIEW_CONTRACTS = (
     ("licence_review", "decision.schema.json", "decisions.jsonl"),
     ("mapping_review", "decision.schema.json", "decisions.jsonl"),
 )
+JSON_REVIEW_CONTRACTS = (
+    (
+        "dashboard_review",
+        "schema/DashboardHumanReviewRecord.schema.json",
+        "data/derived/dashboard_review/human_review.json",
+    ),
+)
 
 
 def validate_review_file(
@@ -52,6 +59,32 @@ def validate_review_file(
     return errors
 
 
+def validate_review_document(root: Path, schema_name: str, document_name: str) -> list[str]:
+    """Return validation errors for one optional JSON review document."""
+    schema_path = root / schema_name
+    document_path = root / document_name
+    try:
+        schema = json.loads(schema_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        return [f"{schema_path}: cannot read schema: {error}"]
+    try:
+        Draft202012Validator.check_schema(schema)
+        validator = Draft202012Validator(schema)
+    except SchemaError as error:  # pragma: no cover - defensive boundary for a committed schema
+        return [f"{schema_path}: invalid JSON Schema: {error}"]
+    if not document_path.exists():
+        return []
+    try:
+        instance: Any = json.loads(document_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        return [f"{document_path}: invalid JSON: {error}"]
+    return [
+        f"{document_path}:{'.'.join(str(part) for part in error.absolute_path) or '$'}: "
+        f"{error.message}"
+        for error in cast("Any", validator).iter_errors(instance)
+    ]
+
+
 def main() -> None:
     """Exit non-zero when any optional human decision file violates its schema."""
     root = project_root()
@@ -66,6 +99,9 @@ def main() -> None:
             else 0
         )
         counts.append(f"{review_dir}={count}")
+    for review_dir, schema_name, document_name in JSON_REVIEW_CONTRACTS:
+        errors.extend(validate_review_document(root, schema_name, document_name))
+        counts.append(f"{review_dir}={'1' if (root / document_name).exists() else '0'}")
     if errors:
         raise SystemExit("Review schema validation failed:\n- " + "\n- ".join(errors))
     print("Review schema validation passed: " + ", ".join(counts))
