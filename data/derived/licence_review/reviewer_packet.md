@@ -17,33 +17,13 @@ Total candidate artefacts: 178; generated queue rows remain `pending` by design.
 
 ## Decision ledger snapshot
 
-The companion checksum-bound ledger currently records **157 approved**
-and **21 blocked** decisions. These counts are informational;
+The companion checksum-bound ledger currently records **178 approved**
+and **0 blocked** decisions. These counts are informational;
 they do not change generated queue rows or authorize publication.
 
 ### Blocked rows requiring re-review
 
-- `data/derived/data_dictionary/data_dictionary.csv` — `2d9928b577107f768136aad40c9097e10ec69abceb660e39cfa70174170ff1cd`
-- `data/derived/data_dictionary/data_dictionary.jsonl` — `de048dca89c93f5e771ea1a8abd7ebb9952cdbffea1a7750e437b3b0b06d461e`
-- `data/derived/data_dictionary/summary.json` — `aeec5919683e84e313151727ef85299a5abe2b0e568f919db5fedfefb0a722e5`
-- `data/derived/final_handoff/final_handoff_tasks.csv` — `1c618fea61bb78f37ed4baa948bc43345b87ffbda9658b1e568c77839789682c`
-- `data/derived/final_handoff/final_handoff_tasks.jsonl` — `370b9ce29eb465df7d28f63f46f2f00468f6f1c3d02347804b1a2f8dbfd22cf6`
-- `data/derived/local_quality_gates/local_quality_gates.csv` — `2e97c8cff9aeadb31d1c935c936e633db97e083eefa220e84a801a8fed8356ee`
-- `data/derived/local_quality_gates/local_quality_gates.jsonl` — `9c4181a11353dafaa83e794231d9b31ea06e256a210561fe4b72690ed5bdf5d6`
-- `data/derived/osf/sync_manifest.jsonl` — `a6335ac24c7dd2cc70da8e49361587b86b7f3bd65e56571ccf602e246080a5f7`
-- `data/derived/release_readiness/release_gates.csv` — `4e1f4e4d5fa60a4dbc274751f1de6ef7afe5e36160b6788c555590d191d4e01c`
-- `data/derived/release_readiness/release_gates.jsonl` — `12d4ecc9d39d293fd7254cfdc08b7796485057bf210cdd9e33c920a88fe833bd`
-- `data/derived/research_package/datapackage.json` — `bd1b196d2ea71f07d76d7ba169351cbecb2656b798214f7307a698f11a1c24a1`
-- `data/derived/research_package/dcat.jsonld` — `c89abcde09658d85feb9b1915bfef0a038beca8125bab52cc9cdf8dbd6269799`
-- `data/derived/research_package/ro-crate-metadata.json` — `ebd89d52d3be7eb49c7d02b732ae9dd382926f06dac53d9e136c9640b50ec291`
-- `data/derived/sbom/cyclonedx-dashboard.json` — `6539f390e46a2afbffa473ddb394c91c60dd6ee1903d1d593187cb03c5906da4`
-- `data/derived/sbom/sbom_summary.csv` — `6b91e15d0942eca4d507c6c53f6653ab70b1b6611dd006ad778c10a922444b2f`
-- `data/derived/sbom/sbom_summary.jsonl` — `bb2411b56f895073e84384523a5151ed88f72cee97bc33e796a0961da4bd1119`
-- `data/derived/source_downloads/download_attempts.csv` — `bf5e47a37f4bf536e30aeda750cbdab54d84a95a17557b0ab3aae73bb615e02f`
-- `data/derived/source_downloads/download_attempts.jsonl` — `2fceba2169fc0e0dc55b03853b7a278f4a98d062a8ff4aa498ceecea4676be27`
-- `data/derived/source_drift/source_drift_report.csv` — `bcbefc1ca7e5c27a3d34cd2c2747861fa6f4a011d72fce9a2f1dcaf277a2a72d`
-- `data/derived/source_drift/source_drift_report.jsonl` — `518817361f5a6478d33843a44d4da82bcdd76a92f9d7bc32e004a04d06f0f033`
-- `infra/huggingface/CROISSANT.json` — `ee8c2276069f52613415c89432f88b47503d59f2dbc23840471a7d6e9937de24`
+- None recorded.
 
 ## Required decision fields
 

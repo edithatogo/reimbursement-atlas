@@ -15,7 +15,7 @@ release readiness `36/36` and `repository_release_ready=true`; research publicat
 OSF registration, evidence release and policy-claim readiness remain fail-closed.
 The current handoff table contains 12 tasks: 3 complete, 1 partial and 8 blocked by
 human review or external publication decisions. The checksum-bound licence queue has
-157 approved and 21 blocked decision records, and four exact mapping benchmark decisions are recorded;
+178 approved and 0 blocked decision records, and four exact mapping benchmark decisions are recorded;
 the mapping calibration fixture remains 4 cases for smoke testing only. Use the generated files below as the source of truth; older commit
 and count references later in this document are retained historical audit notes.
 
@@ -64,9 +64,9 @@ research, evidence, policy or publication approval.
 
 The artifact-level licence-review queue is generated separately at
 `data/derived/licence_review/`. It binds every publication candidate to its current
-SHA-256 checksum and keeps the 20 currently blocked rows pending until an accountable reviewer records
-decision evidence. The queue is a review-control artefact, not a licence approval, and
-cannot mutate a candidate to approved status.
+SHA-256 checksum. The current owner-approved ledger contains a decision for every
+candidate; future checksum changes are automatically returned to review. The queue is
+a review-control artefact and does not by itself clear evidence or publication gates.
 
 ## Latest current-main external refresh
 
@@ -87,8 +87,8 @@ was performed.
 
 ## Main remaining environment-dependent tasks
 
-1. Review the 16 currently blocked checksum-bound candidates in the licence-review queue, then
-   complete MBS, historical-source and CMS licence review before derived-data publication
+1. Complete source-content and domain review for MBS, historical-source and CMS fields before
+   derived-data publication
    (`#23`, `#24`, `#26`, `#27`). The official MBS copyright notice is recorded in
    [`docs/SOURCE_LICENCE_EVIDENCE.md`](SOURCE_LICENCE_EVIDENCE.md); it is not an open
    redistribution licence and requires written approval for redistribution.
@@ -100,15 +100,15 @@ was performed.
 5. Run the gated Hugging Face dataset/Space publication workflow after the remaining licence,
    evidence and policy gates pass; `HF_TOKEN` is now configured in GitHub.
 6. Complete cross-platform dashboard visual and accessibility review.
-7. Regenerate release-readiness after the research, licence and publication gates complete,
+7. Regenerate release-readiness after the research and publication gates complete,
    then create the signed release and Zenodo DOI (`#121`,
    [#256](https://github.com/edithatogo/reimbursement-atlas/issues/256)).
 8. Revisit TypeScript 7 after `@astrojs/check` declares peer support; the current canary observes
    TypeScript `7.0.2` but `@astrojs/check 0.9.9` accepts only TypeScript 5 or 6 (`#362`).
 
 The current source acquisition run is explicitly classified as review-required: the July 2026
-MBS pair and PBS schedule were revalidated into ignored local raw storage, seven targets remain
-licence-gated, and the PBS monthly extract remains acquired-unreviewed. The derived MBS bundle,
+MBS pair and PBS schedule were revalidated into ignored local raw storage, and the PBS monthly
+extract remains acquired-unreviewed. The derived MBS bundle,
 strict software/security gates, GitHub Pages deployment,
 OSF CLI v1 verification and the downloadable archive are complete.
 Public evidence-release readiness still requires the remaining credential and human

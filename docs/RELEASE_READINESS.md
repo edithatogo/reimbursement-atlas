@@ -36,9 +36,8 @@ The summary contains `required_blocker_count` and `public_release_ready`. Public
 The release matrix also verifies that `data/derived/licence_review/summary.json` exists,
 contains checksum-bound candidate rows, and explicitly has
 `approval_mutation_allowed: false`. This verifies the review-control mechanism only; the
-16 currently blocked artifact candidates remain pending. This includes project metadata, governance outputs,
-and source-derived candidates; the source-derived subset still requires human Commonwealth,
-provider-licence and domain review before external publication.
+current owner-approved ledger covers all 178 candidates. Source-content, domain, evidence and
+publication review remain separate, and provider restrictions continue to apply.
 
 ## Current merged state
 
@@ -63,9 +62,9 @@ research evidence and policy claims.
 
 Remaining blockers are external or require accountable human judgement:
 
-- MBS and historical-source reuse terms require licence review before public
-  derived-data publication.
-- CMS CLFS/PFS/ASP fields require source-specific licence decisions.
+- MBS and historical-source content/domain review remains required before public
+  derived-data publication; the owner-approved licence scope is recorded separately.
+- CMS CLFS/PFS/ASP fields require source-content and field-scope review.
 - OSF registration requires an approved protocol freeze and write-authorized
   credentials; repository configuration alone does not authorize publication.
 - Hugging Face publication requires the configured `HF_TOKEN` and target repository variables,
