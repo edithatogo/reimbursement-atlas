@@ -952,6 +952,37 @@ def reviewed_mbs_txt_pair_bundle_command(
     console.print_json(json.dumps(asdict(result), default=str, indent=2))
 
 
+@app.command("reviewed-pbs-api-bundle")
+def reviewed_pbs_api_bundle_command(
+    item_paths: Annotated[
+        list[Path],
+        typer.Argument(help="Reviewed local PBS API items CSV pages."),
+    ],
+    schedules_path: Annotated[
+        Path,
+        typer.Option(help="Reviewed local PBS API schedules JSON response."),
+    ],
+    output_dir: Annotated[
+        Path,
+        typer.Option(help="Directory for derived-only reviewed PBS API bundles."),
+    ] = (project_root() / "data" / "derived" / "reviewed_source_bundles"),
+    retrieved_at: Annotated[
+        str | None,
+        typer.Option(help="Optional ISO-8601 retrieval timestamp for all API responses."),
+    ] = None,
+) -> None:
+    """Create a derived-only reviewed bundle from all PBS API items pages."""
+    from reimburse_atlas.local_sources import build_pbs_api_bundle
+
+    result = build_pbs_api_bundle(
+        item_paths=item_paths,
+        schedules_path=schedules_path,
+        output_dir=output_dir,
+        retrieved_at=retrieved_at,
+    )
+    console.print_json(json.dumps(asdict(result), default=str, indent=2))
+
+
 @app.command("manual-acquisition-pack")
 def manual_acquisition_pack(
     output_dir: Annotated[

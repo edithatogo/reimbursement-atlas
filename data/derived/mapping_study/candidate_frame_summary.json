@@ -6,7 +6,7 @@
     "devices_other": {
       "available": 0,
       "gap": 200,
-      "left_records": 20901,
+      "left_records": 27846,
       "right_records": 0,
       "status": "blocked_source_family",
       "target": 200
@@ -22,7 +22,7 @@
     "medicines": {
       "available": 0,
       "gap": 400,
-      "left_records": 0,
+      "left_records": 6945,
       "right_records": 0,
       "status": "blocked_source_family",
       "target": 400
