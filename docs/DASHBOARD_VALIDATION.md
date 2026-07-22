@@ -118,6 +118,8 @@ This prevents root-relative `/_astro/` or `/data/` references from reaching the 
 
 The accountable review record contract is [`schema/DashboardHumanReviewRecord.schema.json`](../schema/DashboardHumanReviewRecord.schema.json), with a copy-ready template in [`DASHBOARD_HUMAN_REVIEW_RECORD.md`](DASHBOARD_HUMAN_REVIEW_RECORD.md). It requires the deployed commit, reviewer, route/browser/OS/assistive-technology scope, provenance scope, findings and any remediation or waiver. The schema deliberately rejects the unscoped phrase `WCAG compliant`.
 
+When a completed record is placed at `data/derived/dashboard_review/human_review.json`, the `review-schemas` Pixi task validates it automatically. An absent record remains an explicit pending human-review state rather than a failed software gate.
+
 After deployment, the Pages workflow runs a bounded live smoke check against the canonical
 HTTPS URL. It retries for CDN propagation, then verifies the HTML references, favicon, status
 manifest, graph CSVs and same-origin project routes all return HTTP 200:
