@@ -13,6 +13,7 @@ from reimburse_atlas.licence_review import (
 )
 from reimburse_atlas.licence_review_validation import validate_licence_review_queue
 from reimburse_atlas.publication import PublicationArtifact, PublicationManifest
+from scripts.reconcile_licence_decisions import reconcile
 
 
 def _manifest() -> PublicationManifest:
@@ -224,3 +225,40 @@ def test_validator_accepts_complete_block_decision(tmp_path: Path) -> None:
     decisions = tmp_path / "decisions.jsonl"
     decisions.write_text(json.dumps(fields) + "\n", encoding="utf-8")
     assert validate_licence_review_queue(queue, root=tmp_path, decisions_path=decisions) == []
+
+
+def test_reconcile_adds_block_for_new_queue_candidate(tmp_path: Path) -> None:
+    """New candidates must enter the ledger as blocked, not disappear."""
+    candidate = tmp_path / "infra" / "metadata.json"
+    candidate.parent.mkdir(parents=True)
+    candidate.write_text('{"license":"other"}\n', encoding="utf-8")
+    checksum = hashlib.sha256(candidate.read_bytes()).hexdigest()
+    queue_dir = tmp_path / "data" / "derived" / "licence_review"
+    queue_dir.mkdir(parents=True)
+    (queue_dir / "licence_review_queue.jsonl").write_text(
+        json.dumps({
+            "review_id": "review_new",
+            "relative_path": "infra/metadata.json",
+            "checksum_sha256": checksum,
+            "review_status": "pending",
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+    decisions_path = tmp_path / "data" / "licence_review" / "decisions.jsonl"
+    decisions_path.parent.mkdir(parents=True)
+    decisions_path.write_text("", encoding="utf-8")
+
+    assert reconcile(tmp_path) == 1
+    decision = json.loads(decisions_path.read_text(encoding="utf-8"))
+    assert decision["relative_path"] == "infra/metadata.json"
+    assert decision["checksum_sha256"] == checksum
+    assert decision["decision"] == "blocked"
+    assert (
+        validate_licence_review_queue(
+            queue_dir / "licence_review_queue.jsonl",
+            root=tmp_path,
+            decisions_path=decisions_path,
+        )
+        == []
+    )
