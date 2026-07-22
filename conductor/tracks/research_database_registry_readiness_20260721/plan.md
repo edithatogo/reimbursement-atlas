@@ -10,7 +10,7 @@
 
 - [x] [Issue #531](https://github.com/edithatogo/reimbursement-atlas/issues/531) — checksum-bound licensing and release metadata validated.
 - [ ] [Issue #532](https://github.com/edithatogo/reimbursement-atlas/issues/532)
-- [ ] [Issue #533](https://github.com/edithatogo/reimbursement-atlas/issues/533)
+- [x] [Issue #533](https://github.com/edithatogo/reimbursement-atlas/issues/533) — eligibility assessed and submission deferred until searchable-service maturity.
 - [x] [Issue #534](https://github.com/edithatogo/reimbursement-atlas/issues/534) — Croissant and remote Hugging Face identity/licence parity validated.
 
 ## Phase 3: Reconciliation and closeout
