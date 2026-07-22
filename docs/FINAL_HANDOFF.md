@@ -10,12 +10,12 @@ the human licence, evidence, research or publication gates.
 ## Current working snapshot (2026-07-22)
 
 The current merged `main` snapshot is commit
-`1e7b3ba5aa43acdd90bf48e9f4bc3eb2e124807e`. The authoritative generated release summary reports repository software
+`665504e2f40f3b0309656d220f7e237190585d6f`. The authoritative generated release summary reports repository software
 release readiness `36/36` and `repository_release_ready=true`; research publication,
 OSF registration, evidence release and policy-claim readiness remain fail-closed.
 The current handoff table contains 12 tasks: 3 complete, 1 partial and 8 blocked by
 human review or external publication decisions. The checksum-bound licence queue has
-162 approved and 16 blocked decision records, and four exact mapping benchmark decisions are recorded;
+158 approved and 20 blocked decision records, and four exact mapping benchmark decisions are recorded;
 the mapping calibration fixture remains 4 cases for smoke testing only. Use the generated files below as the source of truth; older commit
 and count references later in this document are retained historical audit notes.
 
@@ -45,7 +45,7 @@ apps/dashboard/public/data/final_handoff_tasks.csv
 ## Release snapshot state (2026-07-20)
 
 This handoff describes current merged `main` snapshot
-`1e7b3ba5aa43acdd90bf48e9f4bc3eb2e124807e`.
+`665504e2f40f3b0309656d220f7e237190585d6f`.
 Regenerate this document after any further merge and before release review.
 The historical MBS inventory contains 343 metadata-only targets across 32 archive
 pages, and the target-level review packet is available under
@@ -64,13 +64,13 @@ research, evidence, policy or publication approval.
 
 The artifact-level licence-review queue is generated separately at
 `data/derived/licence_review/`. It binds every publication candidate to its current
-SHA-256 checksum and keeps the 16 currently blocked rows pending until an accountable reviewer records
+SHA-256 checksum and keeps the 20 currently blocked rows pending until an accountable reviewer records
 decision evidence. The queue is a review-control artefact, not a licence approval, and
 cannot mutate a candidate to approved status.
 
 ## Latest current-main external refresh
 
-The current merged `main` commit `1e7b3ba5aa43acdd90bf48e9f4bc3eb2e124807e` is the software snapshot; older monitor results below are historical.
+The current merged `main` commit `665504e2f40f3b0309656d220f7e237190585d6f` is the software snapshot; older monitor results below are historical.
 OSF discovery [29596947892](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29596947892)
 passed and found the configured private project; Zenodo preflight
 [29596947909](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29596947909)
