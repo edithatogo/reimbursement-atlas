@@ -8,10 +8,10 @@
 
 ## Phase 2: Registry deliverables
 
-- [ ] [Issue #531](https://github.com/edithatogo/reimbursement-atlas/issues/531)
+- [x] [Issue #531](https://github.com/edithatogo/reimbursement-atlas/issues/531) — checksum-bound licensing and release metadata validated.
 - [ ] [Issue #532](https://github.com/edithatogo/reimbursement-atlas/issues/532)
 - [ ] [Issue #533](https://github.com/edithatogo/reimbursement-atlas/issues/533)
-- [ ] [Issue #534](https://github.com/edithatogo/reimbursement-atlas/issues/534)
+- [x] [Issue #534](https://github.com/edithatogo/reimbursement-atlas/issues/534) — Croissant and remote Hugging Face identity/licence parity validated.
 
 ## Phase 3: Reconciliation and closeout
 
