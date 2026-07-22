@@ -6,7 +6,7 @@ Hugging Face destination metadata is reconciled: the Space is `apache-2.0`/`stat
 and the dataset remains `other`. OSF project `q8cnx` is public, while registration,
 licence, evidence, policy and publication gates remain fail-closed.
 
-Release snapshot reference: `665504e2f40f3b0309656d220f7e237190585d6f` (2026-07-22).
+Release snapshot reference: `578760f1647c01f11caaf5e1a7f7bf6d38129dea` (2026-07-22).
 Regenerate this document after any further merge and before release review.
 The last merged-main repository release gate summary was 36/36 passing; the current
 branch must rerun the complete matrix before this state can be considered current.

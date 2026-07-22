@@ -111,7 +111,7 @@ mutation occurred. The contract task now refuses ambiguous `PATH` lookup and req
 `--binary`, preventing an unrelated older `osf` executable from being mistaken for the pinned
 official CLI.
 
-The latest read-only refresh on `main` (`665504e2f40f3b0309656d220f7e237190585d6f`) was
+The latest read-only refresh on `main` (`578760f1647c01f11caaf5e1a7f7bf6d38129dea`) was
 workflow run `29517248071`: discovery and the OSF component plan passed, provisioning and
 publication were skipped, and no OSF project, node, registration or file was mutated.
 
