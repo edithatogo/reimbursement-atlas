@@ -17,8 +17,8 @@ Total candidate artefacts: 178; generated queue rows remain `pending` by design.
 
 ## Decision ledger snapshot
 
-The companion checksum-bound ledger currently records **158 approved**
-and **20 blocked** decisions. These counts are informational;
+The companion checksum-bound ledger currently records **157 approved**
+and **21 blocked** decisions. These counts are informational;
 they do not change generated queue rows or authorize publication.
 
 ### Blocked rows requiring re-review
@@ -30,11 +30,12 @@ they do not change generated queue rows or authorize publication.
 - `data/derived/final_handoff/final_handoff_tasks.jsonl` — `370b9ce29eb465df7d28f63f46f2f00468f6f1c3d02347804b1a2f8dbfd22cf6`
 - `data/derived/local_quality_gates/local_quality_gates.csv` — `2e97c8cff9aeadb31d1c935c936e633db97e083eefa220e84a801a8fed8356ee`
 - `data/derived/local_quality_gates/local_quality_gates.jsonl` — `9c4181a11353dafaa83e794231d9b31ea06e256a210561fe4b72690ed5bdf5d6`
+- `data/derived/osf/sync_manifest.jsonl` — `a6335ac24c7dd2cc70da8e49361587b86b7f3bd65e56571ccf602e246080a5f7`
 - `data/derived/release_readiness/release_gates.csv` — `4e1f4e4d5fa60a4dbc274751f1de6ef7afe5e36160b6788c555590d191d4e01c`
 - `data/derived/release_readiness/release_gates.jsonl` — `12d4ecc9d39d293fd7254cfdc08b7796485057bf210cdd9e33c920a88fe833bd`
-- `data/derived/research_package/datapackage.json` — `3366a9be0ae9236087d2575ed84902352ebb246fef0d115c3e3b8513b1b567d3`
+- `data/derived/research_package/datapackage.json` — `bd1b196d2ea71f07d76d7ba169351cbecb2656b798214f7307a698f11a1c24a1`
 - `data/derived/research_package/dcat.jsonld` — `c89abcde09658d85feb9b1915bfef0a038beca8125bab52cc9cdf8dbd6269799`
-- `data/derived/research_package/ro-crate-metadata.json` — `88a7034b04022f579fce00e469dc89b1a16eac870981e509e1ae8a02068619d4`
+- `data/derived/research_package/ro-crate-metadata.json` — `ebd89d52d3be7eb49c7d02b732ae9dd382926f06dac53d9e136c9640b50ec291`
 - `data/derived/sbom/cyclonedx-dashboard.json` — `6539f390e46a2afbffa473ddb394c91c60dd6ee1903d1d593187cb03c5906da4`
 - `data/derived/sbom/sbom_summary.csv` — `6b91e15d0942eca4d507c6c53f6653ab70b1b6611dd006ad778c10a922444b2f`
 - `data/derived/sbom/sbom_summary.jsonl` — `bb2411b56f895073e84384523a5151ed88f72cee97bc33e796a0961da4bd1119`
