@@ -425,6 +425,12 @@ def test_final_handoff_records_environment_bound_tasks(tmp_path: Path) -> None:
     )
     assert not any(row.status == "blocked_secret" for row in rows)
     assert any(row.status == "blocked_review" for row in rows)
+    cms_task = next(row for row in rows if row.id == "final_cms_clfs_licence_review")
+    assert cms_task.status == "complete"
+    assert cms_task.reason_code == "checksum_bound_scope_approved"
+    assert cms_task.review_record == "data/licence_review/decisions.jsonl"
+    assert all(row.reason_code != "unspecified" for row in rows)
+    assert all(row.gate_evidence for row in rows)
     assert any("reviewed-mbs-txt-pair-bundle" in row.command for row in rows)
     source_task = next(row for row in rows if row.id == "final_source_downloads")
     assert source_task.status == "partial"

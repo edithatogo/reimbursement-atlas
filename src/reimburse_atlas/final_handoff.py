@@ -39,6 +39,9 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "data/raw_live storage."
             ),
             recommended_action="Run first, then rerun source-validation and source-contracts.",
+            reason_code="source_acquisition_partial",
+            gate_evidence=("data/derived/source_downloads/download_attempts.jsonl",),
+            external_state="ready",
         ),
         FinalHandoffTaskRecord(
             id="final_mbs_pair_bundle",
@@ -66,6 +69,13 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             recommended_action=(
                 "Commit only derived rows and redacted provenance after licence review."
             ),
+            reason_code=(
+                "reviewed_bundle_complete"
+                if _mbs_pair_bundle_complete(repo)
+                else "reviewed_bundle_pending"
+            ),
+            gate_evidence=("data/derived/reviewed_source_bundles/",),
+            external_state="not_applicable",
         ),
         FinalHandoffTaskRecord(
             id="final_cms_clfs_licence_review",
@@ -73,7 +83,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             github_issues=(24, 492, 496),
             task_group="source_ingestion",
             title="Review CMS CLFS AMA-gated file and derived-field policy",
-            status="blocked_review",
+            status="complete" if _licence_review_complete(repo) else "blocked_review",
             required_environment=(
                 "Human review of AMA/CPT licence implications before parsing or publishing fields."
             ),
@@ -85,6 +95,18 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             recommended_action=(
                 "Avoid CPT descriptor redistribution; publish payment/metadata only when permitted."
             ),
+            reason_code=(
+                "checksum_bound_scope_approved"
+                if _licence_review_complete(repo)
+                else "source_scope_review_pending"
+            ),
+            gate_evidence=(
+                "data/derived/licence_review/licence_review_queue.jsonl",
+                "data/licence_review/decisions.jsonl",
+                "docs/REVIEW_DECISIONS.md",
+            ),
+            review_record="data/licence_review/decisions.jsonl",
+            external_state="not_applicable",
         ),
         FinalHandoffTaskRecord(
             id="final_pip_audit_strict",
@@ -104,6 +126,9 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "PyPI advisory lookup completes with no unresolved vulnerabilities."
             ),
             recommended_action="Make this a required release gate in CI before public release.",
+            reason_code="external_security_gate",
+            gate_evidence=("data/derived/external_quality_gates.json",),
+            external_state="not_applicable",
         ),
         FinalHandoffTaskRecord(
             id="final_action_sha_pinning",
@@ -127,6 +152,9 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             recommended_action=(
                 "Keep all third-party Actions SHA-pinned and zizmor medium findings blocking."
             ),
+            reason_code="action_pin_gate",
+            gate_evidence=("data/derived/repo_automation/action_pin_resolution.jsonl",),
+            external_state="not_applicable",
         ),
         FinalHandoffTaskRecord(
             id="final_hf_dataset_space",
@@ -149,6 +177,12 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "The dry run has passed; inspect the candidate bundle and publish only after "
                 "the remaining review gates are approved."
             ),
+            reason_code="publication_review_pending",
+            gate_evidence=(
+                "data/derived/release_readiness/summary.json",
+                "data/derived/publication_manifest/summary.json",
+            ),
+            external_state="pending",
         ),
         FinalHandoffTaskRecord(
             id="final_osf_protocol_pack",
@@ -171,6 +205,13 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "The private project and token-gated plan are configured; keep upload fail-closed "
                 "until the reviewed preregistration decision is recorded."
             ),
+            reason_code="osf_registration_review_pending",
+            gate_evidence=(
+                "data/derived/osf/registration_freeze.json",
+                "data/derived/osf/osf_publication_manifest.json",
+            ),
+            review_record="data/derived/osf/registration_freeze.json",
+            external_state="pending",
         ),
         FinalHandoffTaskRecord(
             id="final_osf_registration_drift_check",
@@ -196,6 +237,10 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "Run the check before any upload or amendment; treat drift as a new review "
                 "decision rather than overwriting the registered state."
             ),
+            reason_code="osf_registration_snapshot_pending",
+            gate_evidence=("data/derived/osf/registration_freeze.json",),
+            review_record="data/derived/osf/registration_freeze.json",
+            external_state="pending",
         ),
         FinalHandoffTaskRecord(
             id="final_mapping_calibration_review",
@@ -215,6 +260,12 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "Do not use the current calibration precision/specificity as evidence-grade "
                 "performance; resolve the two triggered negative controls first."
             ),
+            reason_code="mapping_adjudication_pending",
+            gate_evidence=(
+                "data/derived/vertical_slice/mapping_review_pack_plan.json",
+                "data/derived/vertical_slice/mapping_calibration_gate.json",
+            ),
+            external_state="not_applicable",
         ),
         FinalHandoffTaskRecord(
             id="final_historical_source_expansion",
@@ -242,6 +293,9 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "temporal evidence from missing releases. The current archive inventory covers "
                 "343 targets across 32 pages, but no raw historical payloads are approved."
             ),
+            reason_code="historical_source_review_pending",
+            gate_evidence=("data/derived/historical_sources/summary.json",),
+            external_state="not_applicable",
         ),
         FinalHandoffTaskRecord(
             id="final_dashboard_visual_review",
@@ -264,6 +318,10 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "Use the existing 9-route browser smoke suite as the pre-review gate; do not "
                 "treat a single macOS rendering as cross-platform proof."
             ),
+            reason_code="dashboard_human_review_pending",
+            gate_evidence=("docs/DASHBOARD_VALIDATION.md",),
+            review_record="data/derived/dashboard_review/human_review.json",
+            external_state="not_applicable",
         ),
         FinalHandoffTaskRecord(
             id="final_release_candidate",
@@ -287,6 +345,9 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             recommended_action=(
                 "Only then cut a signed, attested public release and archive to Zenodo/OSF."
             ),
+            reason_code="external_release_review_pending",
+            gate_evidence=("data/derived/release_readiness/summary.json",),
+            external_state="pending",
         ),
     ]
 
@@ -331,6 +392,39 @@ def _mbs_pair_available(repo: Path) -> bool:
         (bundle / "validation_report.json").is_file()
         for bundle in bundles.glob("bundle_au_mbs_20260701_txt_pair_*/")
     )
+
+
+def _licence_review_complete(repo: Path) -> bool:
+    """Return true when every current checksum-bound queue row is approved."""
+    queue = _read_jsonl(repo / "data/derived/licence_review/licence_review_queue.jsonl")
+    decisions = _read_jsonl(repo / "data/licence_review/decisions.jsonl")
+    approved = {
+        (row.get("review_id"), row.get("relative_path"), row.get("checksum_sha256"))
+        for row in decisions
+        if row.get("decision") == "approved"
+    }
+    required = {
+        (row.get("review_id"), row.get("relative_path"), row.get("checksum_sha256"))
+        for row in queue
+    }
+    return bool(required) and required <= approved
+
+
+def _read_jsonl(path: Path) -> list[dict[str, object]]:
+    if not path.is_file():
+        return []
+    rows: list[dict[str, object]] = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        try:
+            value = json.loads(line)
+        except json.JSONDecodeError:
+            return []
+        if not isinstance(value, dict):
+            return []
+        rows.append(value)
+    return rows
 
 
 def _mbs_pair_bundle_complete(repo: Path) -> bool:

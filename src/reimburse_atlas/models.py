@@ -638,3 +638,14 @@ class FinalHandoffTaskRecord(FrozenModel):
     evidence_path: NonEmptyStr
     unblock_condition: NonEmptyStr
     recommended_action: NonEmptyStr
+    reason_code: NonEmptyStr = "unspecified"
+    gate_evidence: tuple[NonEmptyStr, ...] = ()
+    review_record: NonEmptyStr | None = None
+    external_state: Literal[
+        "not_applicable",
+        "pending",
+        "ready",
+        "submitted",
+        "published",
+    ] = "pending"
+    last_verified_at: NonEmptyStr | None = None
