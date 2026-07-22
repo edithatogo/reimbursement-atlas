@@ -10,9 +10,9 @@ licence gates. It is evidence for review, not a legal opinion or a blanket redis
 - Observation: the page states that material is Commonwealth copyright; limited personal,
   non-commercial, unaltered use is permitted; reproduction must retain the copyright and
   disclaimer notices; redistribution or commercial use requires prior written approval.
-- Repository decision: keep raw MBS files in ignored local storage; keep the July 2026 derived
-  pair bundle as `public_reuse_review`; do not publish the bundle or descriptor-derived fields
-  until an accountable reviewer records the applicable permission and attribution.
+- Repository decision: keep raw MBS files in ignored local storage; the repository owner has
+  approved the current checksum-bound derived/metadata scope with attribution and restrictions.
+  This does not approve raw-file redistribution, descriptor redistribution, or broader use.
 - Consequence: the source is public to access but is not treated as an open redistribution
   licence. Apache-2.0 applies to project-owned code and documentation only.
 
@@ -25,8 +25,8 @@ licence gates. It is evidence for review, not a legal opinion or a blanket redis
 - Observation: the official downloads page exposes current item-map and descriptor files and
   points to historical indexes; it does not convert the copyright notice into an open licence.
 - Repository decision: retain the 343-target historical inventory as metadata-only and
-  `manual_review_only`; do not mirror historical payloads until each target's terms and intended
-  derived fields are reviewed.
+  `manual_review_only`; the owner-approved scope applies to recorded derived/metadata
+  candidates, not unreviewed historical payloads or broader redistribution.
 
 ## Australian PBS API
 
@@ -46,6 +46,6 @@ licence gates. It is evidence for review, not a legal opinion or a blanket redis
 ## Review boundary
 
 The source registry, source-contract reports, publication manifest and checksum-bound licence
-queue must agree before any derived source rows move from review to publication. A maintainer
-or domain/licensing reviewer must record the source terms, permitted fields, attribution,
-redistribution decision, reviewer and date in the accountable review process.
+queue must agree before any derived source rows move from review to publication. The owner
+approval is recorded in `data/licence_review/decisions.jsonl` for the exact current checksums;
+source-content, domain, evidence and release gates remain separate and are not silently cleared.

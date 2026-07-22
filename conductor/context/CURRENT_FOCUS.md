@@ -10,7 +10,7 @@ records by `scripts/reconcile_licence_decisions.py`, and a unit regression test 
 that invariant executable. Repository release readiness is true; evidence release,
 research publication, OSF registration and policy claims remain fail-closed.
 
-The remaining handoff rows require source/licence or domain review, mapping and visual
+The remaining handoff rows require source-content/domain review, mapping and visual
 review, OSF/Hugging Face/Zenodo authorization, or account-level GitHub security settings.
 No publication or external mutation is implied by the passing software gates.
 
@@ -43,7 +43,8 @@ dashboard-route, policy-demonstrator, Zenodo, Mojo and Hugging Face candidate ch
 The OSF and publication manifests were regenerated for the 316-record historical source
 catalogue. Hugging Face Space metadata remains drifted (`mit`/`gradio` versus governed
 `apache-2.0`/`static`), TypeScript 7 remains blocked by the checker peer range, and source
-health/mapping/licence/research review gates remain fail-closed.
+health/mapping/research review gates remain fail-closed; the owner-approved checksum-bound
+licence ledger is complete for the current candidates.
 
 ## 2026-07-18 v200 current-main external refresh
 

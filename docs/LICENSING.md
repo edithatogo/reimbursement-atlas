@@ -12,11 +12,14 @@ descriptors, ontologies, trademarks, or third-party documentation.
 
 ## Source data
 
-Every external source is governed by its own terms. Source records therefore
-carry source-specific licence gates and attribution notes. Examples include:
+Every external source is governed by its own terms. The repository owner has
+approved the current checksum-bound derived/metadata licence scope. Source
+records continue to carry source-specific attribution and restrictions; this
+approval does not relicense provider data or permit raw-payload redistribution.
+Examples include:
 
 - Australian MBS and PBS materials: retain Commonwealth or publisher terms and
-  confirm downstream redistribution before publishing derived fields. The current
+  retain the approved downstream scope when publishing derived fields. The current
   MBS Online copyright notice permits limited personal, non-commercial, unaltered
   use and requires written approval for redistribution; see
   [`SOURCE_LICENCE_EVIDENCE.md`](SOURCE_LICENCE_EVIDENCE.md).
@@ -30,8 +33,8 @@ carry source-specific licence gates and attribution notes. Examples include:
 ## Derived outputs
 
 Derived tables are not automatically Apache-2.0. A derived output may be
-published only when its source-specific manifest row records attribution,
-redistribution permission, evidence of licence review, and any required
+published only when its source-specific manifest row records attribution, the
+approved scope, evidence of licence review, and any required
 restrictions. Otherwise it remains local or metadata-only. The publication
 manifest, public-data policy, source-contract, evidence-readiness, and
 release-readiness gates are authoritative for each output. The grouped questions in

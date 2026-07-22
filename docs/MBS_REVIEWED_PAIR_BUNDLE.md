@@ -46,8 +46,9 @@ The bundle validation report deliberately warns when descriptor-only rows exist.
 
 The current local July 2026 acquisition produced 14,856 rows: 14,854 joined item-map rows and
 2 descriptor-only rows. The committed bundle records both source checksums, but its
-`licence_gate` remains `public_reuse_review`; this is a review packet, not an approved public
-dataset.
+`licence_gate` remains `public_reuse_review` as a conservative source label; the current
+owner-approved checksum-bound derived/metadata scope is recorded in
+`data/licence_review/decisions.jsonl`. This is not approval for raw or descriptor redistribution.
 
 ## Why this matters
 
