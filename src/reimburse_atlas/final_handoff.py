@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Literal
+from typing import Literal, cast
 
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.models import FinalHandoffTaskRecord
@@ -423,7 +423,7 @@ def _read_jsonl(path: Path) -> list[dict[str, object]]:
             return []
         if not isinstance(value, dict):
             return []
-        rows.append(value)
+        rows.append(cast("dict[str, object]", value))
     return rows
 
 

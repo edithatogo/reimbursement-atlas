@@ -6,7 +6,7 @@ import hashlib
 import json
 from collections import defaultdict
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 from reimburse_atlas.crosswalk import jaccard_similarity, tokenise
 from reimburse_atlas.io import write_csv, write_jsonl
@@ -105,8 +105,11 @@ def _load_reviewed_schedule_records(
         for line in path.read_text(encoding="utf-8").splitlines():
             if not line.strip():
                 continue
-            row = json.loads(line)
-            provenance = row.get("provenance") or {}
+            row = cast("dict[str, Any]", json.loads(line))
+            raw_provenance = row.get("provenance")
+            provenance = (
+                cast("dict[str, Any]", raw_provenance) if isinstance(raw_provenance, dict) else {}
+            )
             source_id = str(row.get("source_id", ""))
             code = str(row.get("item_code", ""))
             version = str(provenance.get("source_version", ""))
