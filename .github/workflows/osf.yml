@@ -245,10 +245,14 @@ jobs:
 
           registration_title="Reimbursement Atlas repository and data record"
           curl --globoff --fail --silent --show-error \
+            "https://api.osf.io/v2/nodes/$OSF_PROJECT_ID/registrations/?page[size]=100" \
+            -H "Authorization: Bearer $OSF_TOKEN" > osf-publication/registrations.json
+          registration_id="$(jq -r --arg title "$registration_title" '[.data[] | select(.attributes.title == $title)] | first | .id // empty' osf-publication/registrations.json)"
+          curl --globoff --fail --silent --show-error \
             "https://api.osf.io/v2/nodes/$OSF_PROJECT_ID/draft_registrations/?page[size]=100" \
             -H "Authorization: Bearer $OSF_TOKEN" > osf-publication/drafts.json
           draft_id="$(jq -r --arg title "$registration_title" '[.data[] | select(.attributes.title == $title)] | first | .id // empty' osf-publication/drafts.json)"
-          if [ -z "$draft_id" ]; then
+          if [ -z "$registration_id" ] && [ -z "$draft_id" ]; then
             jq -cn --arg title "$registration_title" --arg description "$description" \
               --arg schema_id "5df83f7dd28338001ac0ab0d" \
               '{
@@ -270,16 +274,53 @@ jobs:
               > osf-publication/draft-created.json
             draft_id="$(jq -r '.data.id // empty' osf-publication/draft-created.json)"
           fi
-          test -n "$draft_id"
-          jq -cn --arg id "$draft_id" --arg title "$registration_title" \
-            --arg project_id "$OSF_PROJECT_ID" \
-            '{schema_version:"osf-registration-draft-receipt-v1",draft_id:$id,title:$title,project_id:$project_id,status:"draft",submitted:false}' \
-            > osf-publication/registration-draft.json
+          if [ -z "$registration_id" ]; then
+            test -n "$draft_id"
+            jq -cn --arg draft_id "$draft_id" \
+              '{
+                data: {
+                  type: "registrations",
+                  attributes: {
+                    draft_registration: $draft_id,
+                    registration_choice: "immediate"
+                  }
+                }
+              }' > osf-publication/registration-request.json
+            curl --fail --silent --show-error \
+              -X POST "https://api.osf.io/v2/nodes/$OSF_PROJECT_ID/registrations/" \
+              -H "Authorization: Bearer $OSF_TOKEN" \
+              -H "Content-Type: application/vnd.api+json" \
+              --data-binary @osf-publication/registration-request.json \
+              > osf-publication/registration-created.json
+            registration_id="$(jq -r '.data.id // empty' osf-publication/registration-created.json)"
+          fi
+          test -n "$registration_id"
+          curl --fail --silent --show-error \
+            "https://api.osf.io/v2/registrations/$registration_id/" \
+            -H "Authorization: Bearer $OSF_TOKEN" \
+            > osf-publication/registration-response.json
+          jq '{
+            schema_version: "osf-registration-receipt-v1",
+            registration_id: .data.id,
+            title: .data.attributes.title,
+            registration_url: .data.links.html,
+            registered_at: .data.attributes.date_registered,
+            public: .data.attributes.public,
+            pending_registration_approval: .data.attributes.pending_registration_approval,
+            status: (if .data.attributes.pending_registration_approval then "pending_approval" else "registered" end),
+            submitted: true,
+            immutable: true
+          }' osf-publication/registration-response.json \
+            > osf-publication/registration.json
+          test "$(jq -r '.submitted' osf-publication/registration.json)" = "true"
 
           rm -rf osf-publication/verified osf-publication/remote-files.json \
             osf-publication/project-update.json osf-publication/project-response.json \
-            osf-publication/drafts.json osf-publication/draft-created.json \
-            osf-publication/draft-request.json
+            osf-publication/registrations.json osf-publication/drafts.json \
+            osf-publication/draft-created.json osf-publication/draft-request.json \
+            osf-publication/registration-request.json \
+            osf-publication/registration-created.json \
+            osf-publication/registration-response.json
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: osf-publication-receipt
