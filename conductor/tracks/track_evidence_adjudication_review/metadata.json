@@ -3,12 +3,13 @@
   "type": "feature",
   "status": "in_progress",
   "created_at": "2026-07-20T00:00:00Z",
-  "updated_at": "2026-07-23T00:00:00Z",
+  "updated_at": "2026-07-23T05:20:00Z",
   "description": "Close accountable human evidence, mapping, source-rights and dashboard review gates.",
   "evidence_schema": "1.0",
   "gates": [
-    {"id": "mapping_adjudication", "kind": "human_review", "status": "pending", "evidence": "Review pack and calibration calculations are generated; accountable adjudication remains pending."},
-    {"id": "source_rights", "kind": "human_review", "status": "pass", "evidence": "The owner approved 178 checksum-bound rows across prior review packets. The current active source-rights queue contains 165 approved provider/source-derived candidates; 13 project-owned metadata descriptors are governed separately by Apache-2.0. CMS/MBS/PBS restrictions remain explicit."},
-    {"id": "visual_review", "kind": "human_review", "status": "pending", "evidence": "The commit-bound automated packet covers 44 browser tests and 36 screenshot hashes; scoped accountable human review remains pending and automated evidence is not universal WCAG certification."}
+    {"id": "mapping_adjudication", "kind": "human_review", "status": "blocked", "evidence": "Both isolated reviewers completed all 1,500 frozen cases and independent proposals cover every case. The proposal contains 104 positive, 794 negative and 602 excluded cases, leaving a 421-case family/label quota gap. The checksum-bound owner packet is blocked_candidate_spectrum; a separately versioned counterpart-expansion cycle is required before split creation."},
+    {"id": "counterpart_spectrum", "kind": "source_acquisition", "status": "in_progress", "evidence": "The official July 2026 CMS HCPCS Level II ZIP was acquired to ignored raw storage and verified as SHA-256 5591fed257e4d2307c1d2dc9c66abc8e346b1f4c076e9e48559799e2de14b70a. A derived adapter must exclude numeric CPT and D-series dental descriptors and preserve licence/provenance evidence."},
+    {"id": "source_rights", "kind": "human_review", "status": "pass", "evidence": "The current checksum-bound ledger validates 194 approved decisions. CMS/MBS/PBS/HCPCS restrictions remain explicit; Apache-2.0 applies only to project code and metadata."},
+    {"id": "visual_review", "kind": "human_review", "status": "pending", "evidence": "The commit-bound automated packet covers 44 browser tests and 36 screenshot hashes against commit 591d84a1b5c4dd7d703414562c1fe2082dd7ef32; scoped accountable human review remains pending and automated evidence is not universal WCAG certification."}
   ]
 }

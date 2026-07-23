@@ -31,6 +31,7 @@ tier_1,4,2,3,3,0,genomics,A,England,National Genomic Test Directory,12,uk_genomi
 tier_2,2,2,3,3,2,costs,A,England,NHS reference costs / patient-level costing outputs,12,uk_nhs_reference_costs,NHS England
 tier_1,4,2,3,3,0,hospital_outpatient,A,United States,Ambulatory Surgical Center Payment System,12,us_cms_asc,Medicare
 tier_1,4,2,3,3,0,devices_equipment,A,United States,DMEPOS Fee Schedule,12,us_cms_dmepos,Medicare
+tier_1,4,2,3,3,0,medical_services,A,United States,HCPCS Level II,12,us_cms_hcpcs_level_ii,Medicare
 tier_1,4,2,3,3,0,coverage_decisions,A,United States,Medicare Coverage Database,12,us_cms_mcd,Medicare
 tier_2,2,2,3,3,2,medicines,A,United States,Part D Prescriber and Drug Spending Public Use Files,12,us_cms_partd_puf,Medicare Part D
 tier_2,2,2,3,3,0,medicines,B,Finland,Medicine reimbursement and price data,10,fi_kela_reimbursements,Kela

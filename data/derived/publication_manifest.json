@@ -1,52 +1,52 @@
 {
-  "artifact_count": 208,
+  "artifact_count": 211,
   "artifacts": [
     {
-      "byte_size": 40759,
-      "checksum_sha256": "7ec52cb335f24bdf7265dec849b7610c7ac49f9c1740c4fedfb34b048b80464f",
+      "byte_size": 41622,
+      "checksum_sha256": "ab9505309ce996c0fe5508408705cdb6b860220f3e7cdbafea237608cbfba6a3",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "public_reuse_review",
       "notes": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "publication_scope": "public_metadata_candidate",
       "relative_path": "data/seed/source_registry.jsonl",
-      "row_count": 63,
+      "row_count": 64,
       "table_name": "source_registry"
     },
     {
-      "byte_size": 23666,
-      "checksum_sha256": "53cf47eeec58a0d8c915d54093b591fe3f12f1ce026e23d6534b1bba9e91bf41",
+      "byte_size": 24258,
+      "checksum_sha256": "90928c47a4faa82ac32dff6dfd6d99c323cb3cc6e004e76689df0474e9b60a96",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
       "notes": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "publication_scope": "public_metadata_candidate",
       "relative_path": "data/seed/source_registry.csv",
-      "row_count": 63,
+      "row_count": 64,
       "table_name": "source_registry"
     },
     {
-      "byte_size": 9541,
-      "checksum_sha256": "a5c696b211e58e6e98a045a354e4fcb9fc13ce910d4bd84f3f6c54ca03033e4f",
+      "byte_size": 10154,
+      "checksum_sha256": "53f3f3c403ce56c20c167637ce3cc5b77ddea93a1e4d74c1ff2cf1c47ac58fa6",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "public_reuse_review",
       "notes": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "publication_scope": "public_metadata_candidate",
       "relative_path": "data/seed/source_versions.jsonl",
-      "row_count": 18,
+      "row_count": 19,
       "table_name": "source_versions"
     },
     {
-      "byte_size": 6157,
-      "checksum_sha256": "9c49ff355508e197210425f66c1d30fbbde47d334181133702d999561089a26c",
+      "byte_size": 6579,
+      "checksum_sha256": "f7e125e7e72b1c45df90fb7fd7a306714a8929ca4e7849fe5949079b5ded2466",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
       "notes": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "publication_scope": "public_metadata_candidate",
       "relative_path": "data/seed/source_versions.csv",
-      "row_count": 18,
+      "row_count": 19,
       "table_name": "source_versions"
     },
     {
@@ -410,15 +410,15 @@
       "table_name": "runtime_targets"
     },
     {
-      "byte_size": 6487,
-      "checksum_sha256": "031f83be06019688e91114c0828c12eb75b82d7d34855989d89c4215f59d73cd",
+      "byte_size": 6847,
+      "checksum_sha256": "0de6f91a3283d7ba4e35de147975a0f572d90d7307b767319f01d4d30ff998fe",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
       "notes": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "publication_scope": "public_metadata_candidate",
       "relative_path": "data/seed/source_readiness.csv",
-      "row_count": 60,
+      "row_count": 63,
       "table_name": "source_readiness"
     },
     {
@@ -434,27 +434,27 @@
       "table_name": "analysis_readiness"
     },
     {
-      "byte_size": 6455,
-      "checksum_sha256": "bb00a1f6068ef431837eb444e29b501ccdc76f8382202e5a2476f246ab3f2eec",
+      "byte_size": 8287,
+      "checksum_sha256": "913f8de9aadcb93eaf8d00c192612ca28d63195aa61984f17676b4ab2b942add",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
       "notes": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "publication_scope": "public_metadata_candidate",
       "relative_path": "data/seed/source_acquisition_plan.csv",
-      "row_count": 14,
+      "row_count": 18,
       "table_name": "source_acquisition_plan"
     },
     {
-      "byte_size": 2027,
-      "checksum_sha256": "6edfb9530ab9a7e330f8f462d0b79ca68de8587802a0228d6342b5e359fce5e7",
+      "byte_size": 2539,
+      "checksum_sha256": "1d37ea4ad70f4accf02cfa09d810d0babdeb5d2f87d6816a89b6bcbf12c1d3c9",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
       "notes": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "publication_scope": "public_metadata_candidate",
       "relative_path": "data/seed/ingestion_readiness.csv",
-      "row_count": 14,
+      "row_count": 18,
       "table_name": "ingestion_readiness"
     },
     {
@@ -626,8 +626,8 @@
       "table_name": "historical_source_transformation"
     },
     {
-      "byte_size": 9174,
-      "checksum_sha256": "8e68fc3d257f19ea57ddb88f03d79b6f1433953ce9d5bf0efe662769cb067d2c",
+      "byte_size": 9354,
+      "checksum_sha256": "4ad44bf64089bc10d634d74745d272581821e224c13ea66da275d9fbd41ae291",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "public_reuse_review",
@@ -638,8 +638,8 @@
       "table_name": "schedule_items"
     },
     {
-      "byte_size": 6248,
-      "checksum_sha256": "6a3fc7d27690227b8807b978b4eae344f93c0556c06a9e85da8584d1501e95b3",
+      "byte_size": 6428,
+      "checksum_sha256": "80d813b781a03b611a096c25b10825b47d8a82a15d6e0563dd963efc655eeae0",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
@@ -1035,7 +1035,7 @@
     },
     {
       "byte_size": 43105,
-      "checksum_sha256": "e1ed45fde06551261f63ac99fae0ca8734dd1e65fceeea2f3b85be7a3da796df",
+      "checksum_sha256": "f45b4a268ef9674247ed8ce7571c3909159a875276d21eb9c269c27ca119b4a2",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "public_reuse_review",
@@ -1047,7 +1047,7 @@
     },
     {
       "byte_size": 25894,
-      "checksum_sha256": "f0b9dde44554cfee63c36af0fd839e609860ff448eda6f74ee0438a7f607c873",
+      "checksum_sha256": "f20c23fabc0f54ac5d3058633a0e4939ffe424a58a2f9de8f70d71ff0fb691d0",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
@@ -1202,8 +1202,8 @@
       "table_name": "cyclonedx-dashboard"
     },
     {
-      "byte_size": 9760,
-      "checksum_sha256": "9c4181a11353dafaa83e794231d9b31ea06e256a210561fe4b72690ed5bdf5d6",
+      "byte_size": 10787,
+      "checksum_sha256": "c360969574134f8f8e3c7eca3d963b6c7397ff1275d7aef929f06bb2412ffaeb",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "apache_2_0_project_output",
@@ -1214,8 +1214,8 @@
       "table_name": "local_quality_gates"
     },
     {
-      "byte_size": 4885,
-      "checksum_sha256": "2e97c8cff9aeadb31d1c935c936e633db97e083eefa220e84a801a8fed8356ee",
+      "byte_size": 5911,
+      "checksum_sha256": "02d3cd69be757ad48378d2807b77c04fdb701e861271630ec24cfaa4f4121d88",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "apache_2_0_project_output",
@@ -1250,32 +1250,32 @@
       "table_name": "local_quality_gate_specs"
     },
     {
-      "byte_size": 56870,
-      "checksum_sha256": "244ffda103ab0f2982df72f0048645586908eb228be42a11133456f0e1301f73",
+      "byte_size": 59394,
+      "checksum_sha256": "e67f0b63383a2cf744a1f1764d5af8520779b167170991da9d754f04d1f34cb4",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "public_reuse_review",
       "notes": "Derived artefact; review source-specific licence notes before external publication.",
       "publication_scope": "public_derived_candidate",
       "relative_path": "data/derived/architecture/import_edges.jsonl",
-      "row_count": 206,
+      "row_count": 215,
       "table_name": "import_edges"
     },
     {
-      "byte_size": 29970,
-      "checksum_sha256": "3112aee0a3f292f7b324df0e03b8143966050fe024658727762d1e762cc4c73a",
+      "byte_size": 31315,
+      "checksum_sha256": "66c23416f294c4a38425ebb8519edbe29b3c40283cbe18bb4ffd40dab39e4448",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
       "notes": "Derived artefact; review source-specific licence notes before external publication.",
       "publication_scope": "public_derived_candidate",
       "relative_path": "data/derived/architecture/import_edges.csv",
-      "row_count": 206,
+      "row_count": 215,
       "table_name": "import_edges"
     },
     {
       "byte_size": 5058,
-      "checksum_sha256": "1f1161efcb72aacd4ca38fdf3428c4df01fff2763ce8c13ff5aae0c2aee81ce2",
+      "checksum_sha256": "8131da01322d6aa203dd0627cd11b11c02c9d3b24b4b2d52471abb809a458634",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "public_reuse_review",
@@ -1287,7 +1287,7 @@
     },
     {
       "byte_size": 2581,
-      "checksum_sha256": "41f289390102d696be2c1b72f0786f7f60c6fda4c1067d3ccb9da827adc4c949",
+      "checksum_sha256": "dcff4cbe5b6862d1ac04e94b4ba90f345e7ae6f070e7dc80bc830c9d2f849bce",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
@@ -1322,8 +1322,8 @@
       "table_name": "import_cycles"
     },
     {
-      "byte_size": 8415,
-      "checksum_sha256": "f4bbea8fb04670bb85e0b57847897ad7ae68bd5d443b28aaa13785af7de520f8",
+      "byte_size": 8431,
+      "checksum_sha256": "105f2e9be47e3e79497e91a00050f85b0d7fa7c91539a20234081240ed2cb9a0",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "apache_2_0_project_output",
@@ -1334,8 +1334,8 @@
       "table_name": "release_gates"
     },
     {
-      "byte_size": 5023,
-      "checksum_sha256": "e8759106952fdd1b1c4b13956a83e59ea5f34f9e6c39c44bb8ede3079558c64c",
+      "byte_size": 5039,
+      "checksum_sha256": "1fc62b730301aeefcaf2db99316c65aee2abd3422abcd01f9ff0d01eb2eb2989",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "apache_2_0_project_output",
@@ -1514,8 +1514,8 @@
       "table_name": "github_project_items"
     },
     {
-      "byte_size": 12028,
-      "checksum_sha256": "2e54e048c74c25ce9bce1f1457349d84abacdbf6ab669900a9dc9ecbf566297f",
+      "byte_size": 12191,
+      "checksum_sha256": "909dda326179f3047965eb28b16b992de6ef00174fffb5d5c00ca87a0b2a1f55",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "apache_2_0_project_output",
@@ -1526,8 +1526,8 @@
       "table_name": "final_handoff_tasks"
     },
     {
-      "byte_size": 8675,
-      "checksum_sha256": "9e287ed955cdc367a80d1a431fd43dcbd5c0ae51cf6caf6e955e9bbcf2757da9",
+      "byte_size": 8838,
+      "checksum_sha256": "59f2e0585e0c0d487c8033369c0c5cb1f53a8472b0b053a38516210887bbf1ad",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "apache_2_0_project_output",
@@ -1659,7 +1659,7 @@
     },
     {
       "byte_size": 15129,
-      "checksum_sha256": "3c913262f0640fe5203ed8142cd389b5479c097b4764b78d0e09e0e94ac5b0ac",
+      "checksum_sha256": "0f1bab279bba6f364e15deb6f6ad89da0a305219094a91463247dc32285c073c",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "public_reuse_review",
@@ -1671,7 +1671,7 @@
     },
     {
       "byte_size": 8714,
-      "checksum_sha256": "a671f60027e77b9866bc14f7b1ad80e51a2efb7fdc949c2898eeae42309ad9ea",
+      "checksum_sha256": "38d527475399c87ae12cf32431cbcf0c11783a1f393ba30026959dc56f7e7c5e",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "public_reuse_review",
@@ -1731,7 +1731,7 @@
     },
     {
       "byte_size": 6102,
-      "checksum_sha256": "1faf1bdb4be9d8f00607e9a96a82b09b7fd45decdabdf8d495c5a71868eb89c3",
+      "checksum_sha256": "2c6ba9514983fff87e1c6f5c5097c0de7dfab41e4b2b8faf13ac1672af884288",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "apache_2_0_project_output",
@@ -1743,7 +1743,7 @@
     },
     {
       "byte_size": 3687,
-      "checksum_sha256": "e8847e6d0b4ad68ba72b40847170817f912bff8c18c384ebdbea1e52ec1aafa5",
+      "checksum_sha256": "dfe2e38ece19f487382e3512af95587d877eb9282117dfa879fb1dd3c7b34bfe",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "apache_2_0_project_output",
@@ -1766,32 +1766,32 @@
       "table_name": "summary"
     },
     {
-      "byte_size": 133029,
-      "checksum_sha256": "e703ce527799e3cb3cceca2e0a5dcc02791a8cecfb7d7ae42470dc0b76395dfc",
+      "byte_size": 135654,
+      "checksum_sha256": "a9e8f22e77639f005e02b09e7dab453f8636f2305d871c33def495a6be584f38",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "apache_2_0_project_output",
       "notes": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "publication_scope": "project_owned_metadata",
       "relative_path": "data/derived/data_dictionary/data_dictionary.jsonl",
-      "row_count": 214,
+      "row_count": 217,
       "table_name": "data_dictionary"
     },
     {
-      "byte_size": 103127,
-      "checksum_sha256": "805cc2fef4f700957bf4fd4c543cdf7b6fcf91c084bb2d8997b235ab42f02a44",
+      "byte_size": 105363,
+      "checksum_sha256": "bf76af7486e7e1cb4c7b7bb8c714ec58343d4da5e4a234fcd2b8cf1f45238563",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "apache_2_0_project_output",
       "notes": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "publication_scope": "project_owned_metadata",
       "relative_path": "data/derived/data_dictionary/data_dictionary.csv",
-      "row_count": 214,
+      "row_count": 217,
       "table_name": "data_dictionary"
     },
     {
       "byte_size": 123,
-      "checksum_sha256": "42dc001fdb5a8ff4e47402a274ee8e269cf2edb858ccba30f6da96d18683d5eb",
+      "checksum_sha256": "660c01ac2ac97d2cd588ae001a9d870eaabe0c0c5e9fff8bb5978661f52ad6d6",
       "contains_raw_source_payload": false,
       "file_format": "json",
       "licence_gate": "apache_2_0_project_output",
@@ -1850,8 +1850,8 @@
       "table_name": "SPACE_README"
     },
     {
-      "byte_size": 90542,
-      "checksum_sha256": "71489d0aa8ccbbf09a25cb7196a0c0c3d5824ca2fcaa247fb62361c8abae17ee",
+      "byte_size": 92137,
+      "checksum_sha256": "3f5c63f71133594398b919a94f55b9ba3f0657c3a56d3ac8b6cd06de8b12f4b8",
       "contains_raw_source_payload": false,
       "file_format": "json",
       "licence_gate": "apache_2_0_project_output",
@@ -1862,8 +1862,8 @@
       "table_name": "datapackage"
     },
     {
-      "byte_size": 104178,
-      "checksum_sha256": "8593d4bf1cb4945a92fd0025e1948e6da67f358a7ff1e6530acbbefb0385bba0",
+      "byte_size": 106149,
+      "checksum_sha256": "4835e20c8e6673bda688d39a8844b073b1de3fe8816fcd284d9c815e1f2c6800",
       "contains_raw_source_payload": false,
       "file_format": "json",
       "licence_gate": "apache_2_0_project_output",
@@ -1874,8 +1874,8 @@
       "table_name": "ro-crate-metadata"
     },
     {
-      "byte_size": 43369,
-      "checksum_sha256": "03ddbf754b0f5e39f76cf3dadcba4e37e5660145dd0022f1422df586e8d80d7d",
+      "byte_size": 44248,
+      "checksum_sha256": "bde2368ab05c13196671dd30751bdfd2e7c8d0c3964c677eb0a3e72b2acb6b97",
       "contains_raw_source_payload": false,
       "file_format": "jsonld",
       "licence_gate": "apache_2_0_project_output",
@@ -2374,6 +2374,42 @@
       "notes": "Derived artefact; review source-specific licence notes before external publication.",
       "publication_scope": "public_derived_candidate",
       "relative_path": "data/derived/reviewed_source_bundles/snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5/validation_report.json",
+      "row_count": 0,
+      "table_name": "validation_report"
+    },
+    {
+      "byte_size": 5990926,
+      "checksum_sha256": "048f2ee2506e37a4d98679729f2784dbcb656f094ca2cd92798f610c5b3685df",
+      "contains_raw_source_payload": false,
+      "file_format": "csv",
+      "licence_gate": "public_reuse_review",
+      "notes": "Derived artefact; review source-specific licence notes before external publication.",
+      "publication_scope": "public_derived_candidate",
+      "relative_path": "data/derived/reviewed_source_bundles/snapshot_us_cms_hcpcs_level_ii_2026_07_5591fed257e4/us_cms_hcpcs_level_ii_2026_07_schedule_items.csv",
+      "row_count": 8725,
+      "table_name": "us_cms_hcpcs_level_ii_2026_07_schedule_items"
+    },
+    {
+      "byte_size": 8880439,
+      "checksum_sha256": "d1dc10fd298e1125641bfd774e7adfa6f6895e903a5074c7af3826c8643e7794",
+      "contains_raw_source_payload": false,
+      "file_format": "jsonl",
+      "licence_gate": "public_reuse_review",
+      "notes": "Derived artefact; review source-specific licence notes before external publication.",
+      "publication_scope": "public_derived_candidate",
+      "relative_path": "data/derived/reviewed_source_bundles/snapshot_us_cms_hcpcs_level_ii_2026_07_5591fed257e4/us_cms_hcpcs_level_ii_2026_07_schedule_items.jsonl",
+      "row_count": 8725,
+      "table_name": "us_cms_hcpcs_level_ii_2026_07_schedule_items"
+    },
+    {
+      "byte_size": 886,
+      "checksum_sha256": "5f7e0027f11cbb1b4f948bff80866bb4a1d739a7757900adc5a39c6713a874a4",
+      "contains_raw_source_payload": false,
+      "file_format": "json",
+      "licence_gate": "public_reuse_review",
+      "notes": "Derived artefact; review source-specific licence notes before external publication.",
+      "publication_scope": "public_derived_candidate",
+      "relative_path": "data/derived/reviewed_source_bundles/snapshot_us_cms_hcpcs_level_ii_2026_07_5591fed257e4/validation_report.json",
       "row_count": 0,
       "table_name": "validation_report"
     },

@@ -88,3 +88,9 @@ def test_current_repository_reports_partial_real_counterpart_coverage() -> None:
     assert summary["family_summary"]["genomics_coverage"]["status"] == "ready"
     assert summary["family_summary"]["devices_other"]["status"] == "ready"
     assert summary["status"] == "ready_for_blinded_review"
+
+
+def test_main_cycle_guard_is_covered_by_immutable_output_contract() -> None:
+    source = Path("scripts/make_mapping_candidate_frame.py").read_text(encoding="utf-8")
+    assert 'output_dir = OUTPUT_DIR / "expansion_v2"' in source
+    assert "immutable_predecessor_sha256" in source

@@ -20,7 +20,10 @@ FRAME_TARGETS = {
     "devices_other": 200,
 }
 SOURCE_FAMILIES = {
-    "procedures_pathology": ({"au_mbs"}, {"us_cms_clfs", "us_cms_pfs"}),
+    "procedures_pathology": (
+        {"au_mbs"},
+        {"us_cms_clfs", "us_cms_pfs", "us_cms_hcpcs_level_ii"},
+    ),
     "medicines": ({"au_pbs"}, {"atc", "rxnorm", "us_cms_asp"}),
     "genomics_coverage": ({"au_mbs", "uk_genomic_test_directory"}, {"loinc", "hpo"}),
     "devices_other": (
@@ -82,10 +85,14 @@ def build_candidate_frame(root: Path) -> tuple[list[dict[str, object]], dict[str
 
 
 def write_candidate_frame(
-    root: Path, rows: list[dict[str, object]], summary: dict[str, object]
+    root: Path,
+    rows: list[dict[str, object]],
+    summary: dict[str, object],
+    *,
+    output_dir: Path = OUTPUT_DIR,
 ) -> None:
     """Write deterministic frame rows and summary."""
-    output = root / OUTPUT_DIR
+    output = root / output_dir
     output.mkdir(parents=True, exist_ok=True)
     write_jsonl(rows, output / "candidate_frame.jsonl")
     write_csv(rows, output / "candidate_frame.csv")
@@ -280,13 +287,31 @@ def main() -> None:
     """Write the current real-source mapping candidate frame and summary."""
     root = project_root()
     rows, summary = build_candidate_frame(root)
-    write_candidate_frame(root, rows, summary)
+    output_dir = OUTPUT_DIR
+    frozen_frame = root / OUTPUT_DIR / "candidate_frame.jsonl"
+    blind_reviews = root / "data/mapping_study/blind_reviews.jsonl"
+    if frozen_frame.exists() and blind_reviews.exists():
+        candidate_bytes = "".join(
+            json.dumps(row, sort_keys=True, default=str) + "\n" for row in rows
+        ).encode()
+        if (
+            hashlib.sha256(candidate_bytes).digest()
+            != hashlib.sha256(frozen_frame.read_bytes()).digest()
+        ):
+            output_dir = OUTPUT_DIR / "expansion_v2"
+            summary["schema_version"] = "mapping-candidate-frame-summary-v2"
+            summary["study_cycle"] = "expansion_v2"
+            summary["immutable_predecessor_sha256"] = hashlib.sha256(
+                frozen_frame.read_bytes()
+            ).hexdigest()
+    write_candidate_frame(root, rows, summary, output_dir=output_dir)
     print(
         json.dumps(
             {
                 "status": summary["status"],
                 "candidate_count": len(rows),
                 "target_gap": summary["target_gap"],
+                "output_dir": str(output_dir),
             },
             indent=2,
         )

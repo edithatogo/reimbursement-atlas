@@ -18,13 +18,14 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/")
   : `${import.meta.env.BASE_URL}/`;
 ---
 
-<Layout title={`Analysis: ${row.id}`}>
+<Layout title={`Analysis: ${row.id} | Reimbursement Atlas`}>
   <p class="eyebrow">Analysis detail</p>
   <h1>{row.id}</h1>
   <p class="muted">Registered research question, source requirements and quality constraints.</p>
   <p><a class="button-link" href={`${baseUrl}analyses/`}>Back to analyses</a></p>
   <div class="table-scroll">
     <table>
+      <caption class="sr-only">Catalogue fields for analysis {row.id}</caption>
       <thead><tr><th scope="col">Field</th><th scope="col">Value</th></tr></thead>
       <tbody>{fields.map(([field, value]) => <tr><th scope="row">{field}</th><td>{value}</td></tr>)}</tbody>
     </table>

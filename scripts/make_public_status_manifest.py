@@ -161,6 +161,20 @@ def build_public_status_manifest(root: Path | None = None) -> dict[str, Any]:
             "next_action": ("Complete accountable methods, domain, licence and governance review."),
             "evidence_path": "data/derived/protocols/protocol_status.jsonl",
         })
+    existing_blocker_ids = {str(blocker["id"]) for blocker in blockers}
+    for gate in _read_jsonl(repo, "data/derived/release_readiness/release_gates.jsonl"):
+        gate_id = str(gate.get("id", ""))
+        if gate.get("status") != "blocked" or not gate_id or gate_id in existing_blocker_ids:
+            continue
+        blockers.append({
+            "id": gate_id,
+            "category": str(gate.get("category", "release_gate")),
+            "status": "blocked",
+            "summary": str(gate.get("evidence", "Release gate is blocked.")),
+            "next_action": str(gate.get("recommended_action", "Resolve the release gate.")),
+            "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
+        })
+        existing_blocker_ids.add(gate_id)
     return {
         "schema_version": "public-status-v1",
         "project": "reimbursement-atlas",

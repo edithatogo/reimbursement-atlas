@@ -8,8 +8,8 @@
       "jsonl_path": "source_registry/source_registry.jsonl",
       "name": "source_registry",
       "parquet_path": "source_registry/source_registry.parquet",
-      "rows": 63,
-      "sha256": "f624088fda4d83da580fc465e225599dd3f391126c818381d8583a0d99999046"
+      "rows": 64,
+      "sha256": "85b3c9b84481704208da5c1ed2afbc354902176c013c5fdc9bbf173e9fb68c10"
     },
     {
       "csv_path": "analysis_catalogue/analysis_catalogue.csv",
@@ -32,8 +32,8 @@
       "jsonl_path": "source_versions/source_versions.jsonl",
       "name": "source_versions",
       "parquet_path": "source_versions/source_versions.parquet",
-      "rows": 18,
-      "sha256": "a5c696b211e58e6e98a045a354e4fcb9fc13ce910d4bd84f3f6c54ca03033e4f"
+      "rows": 19,
+      "sha256": "53f3f3c403ce56c20c167637ce3cc5b77ddea93a1e4d74c1ff2cf1c47ac58fa6"
     },
     {
       "csv_path": "source_files/source_files.csv",
@@ -328,8 +328,8 @@
       "jsonl_path": "architecture_import_edges/architecture_import_edges.jsonl",
       "name": "architecture_import_edges",
       "parquet_path": "architecture_import_edges/architecture_import_edges.parquet",
-      "rows": 213,
-      "sha256": "c9156b4f8a68d8df6ac6dfdcdfbbfbc5bb2737bdc5097441ccd9db5c362373bd"
+      "rows": 215,
+      "sha256": "e67f0b63383a2cf744a1f1764d5af8520779b167170991da9d754f04d1f34cb4"
     },
     {
       "csv_path": "architecture_layer_policy/architecture_layer_policy.csv",
@@ -337,7 +337,7 @@
       "name": "architecture_layer_policy",
       "parquet_path": "architecture_layer_policy/architecture_layer_policy.parquet",
       "rows": 22,
-      "sha256": "96564af7da9cd9f552d9ac2ce724904b7cb8fd6fd4b373bea803356a23a41062"
+      "sha256": "8131da01322d6aa203dd0627cd11b11c02c9d3b24b4b2d52471abb809a458634"
     },
     {
       "csv_path": "architecture_import_cycles/architecture_import_cycles.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 38,
-      "sha256": "8f8f67dd222c78854f54269324b736e87db48bb0618cf82a9ab0674b3c1cbe6c"
+      "sha256": "cbd1c39b782cbf97baee6d72ab6c8f2d34e8589ed6924e2e76cf025dc6eec98e"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -401,7 +401,7 @@
       "name": "final_handoff_tasks",
       "parquet_path": "final_handoff_tasks/final_handoff_tasks.parquet",
       "rows": 12,
-      "sha256": "2e54e048c74c25ce9bce1f1457349d84abacdbf6ab669900a9dc9ecbf566297f"
+      "sha256": "909dda326179f3047965eb28b16b992de6ef00174fffb5d5c00ca87a0b2a1f55"
     },
     {
       "csv_path": "osf_component_plan/osf_component_plan.csv",
@@ -433,7 +433,7 @@
       "name": "data_quality_checks",
       "parquet_path": "data_quality_checks/data_quality_checks.parquet",
       "rows": 41,
-      "sha256": "3c913262f0640fe5203ed8142cd389b5479c097b4764b78d0e09e0e94ac5b0ac"
+      "sha256": "0f1bab279bba6f364e15deb6f6ad89da0a305219094a91463247dc32285c073c"
     },
     {
       "csv_path": "evidence_readiness/evidence_readiness.csv",
@@ -449,15 +449,15 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "1faf1bdb4be9d8f00607e9a96a82b09b7fd45decdabdf8d495c5a71868eb89c3"
+      "sha256": "2c6ba9514983fff87e1c6f5c5097c0de7dfab41e4b2b8faf13ac1672af884288"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
       "jsonl_path": "data_dictionary/data_dictionary.jsonl",
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
-      "rows": 214,
-      "sha256": "8052aa39cc8e95e29d3449f6e2d5ecd0af3a24c8fe7f90f7970a75066e37c457"
+      "rows": 217,
+      "sha256": "fe7fa79b4740fc519d2ba1bb36807a4933516c2bbe5d287fb966e9b9dcc6ecfc"
     }
   ]
 }

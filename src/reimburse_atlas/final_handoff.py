@@ -265,16 +265,21 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             task_group="mappings",
             title="Adjudicate mapping gold standards and negative controls",
             status="complete" if _mapping_evaluation_accepted(repo) else "blocked_review",
-            required_environment="Human domain review of the synthetic mapping calibration cases.",
-            command="pixi run mapping-calibration",
-            evidence_path="data/derived/vertical_slice/mapping_calibration_gate.json",
+            required_environment=(
+                "Two isolated blinded reviews and accountable adjudication of the separately "
+                "frozen expansion cycle."
+            ),
+            command=(
+                "pixi run mapping-blind-review-packets && pixi run mapping-adjudication-packet"
+            ),
+            evidence_path="data/derived/mapping_study/adjudication_owner_packet.json",
             unblock_condition=(
-                "Reviewer confirms the positive/negative control outcomes and approves the "
-                "mapping threshold for the intended research question."
+                "The expansion cycle fills the approved family/label quotas, accountable "
+                "adjudication is frozen, and the untouched holdout is evaluated exactly once."
             ),
             recommended_action=(
-                "Do not use the current calibration precision/specificity as evidence-grade "
-                "performance; resolve the two triggered negative controls first."
+                "Preserve the first frame and its 421-case quota gap as immutable evidence. "
+                "Review expansion_v2 independently; do not disclose or evaluate its holdout early."
             ),
             reason_code=(
                 "mapping_holdout_accepted"
@@ -282,8 +287,8 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 else "mapping_adjudication_pending"
             ),
             gate_evidence=(
-                "data/derived/vertical_slice/mapping_review_pack_plan.json",
-                "data/derived/vertical_slice/mapping_calibration_gate.json",
+                "data/derived/mapping_study/adjudication_owner_packet.json",
+                "data/derived/mapping_study/expansion_v2/candidate_frame_summary.json",
             ),
             external_state="not_applicable",
         ),
@@ -293,7 +298,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             github_issues=(255, 486, 492),
             task_group="source_ingestion",
             title="Review historical MBS/PBS source expansion and licence scope",
-            status="complete" if _historical_review_complete(repo) else "blocked_review",
+            status="complete" if _historical_review_complete(repo) else "partial",
             required_environment=(
                 "Human source/licence review plus network access to historical MBS and "
                 "PBS releases."
@@ -304,19 +309,18 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             ),
             evidence_path="data/derived/historical_sources/summary.json",
             unblock_condition=(
-                "Historical release URLs, reuse terms and a reviewed PBS extract are approved "
-                "for derived-only processing; the metadata-only archive inventory is already "
-                "generated."
+                "Acquire and validate the approved historical release payloads into ignored raw "
+                "storage; the metadata inventory and source-specific reuse policy are complete."
             ),
             recommended_action=(
-                "Keep historical pages and unreviewed PBS extracts metadata-only; do not infer "
-                "temporal evidence from missing releases. The current archive inventory covers "
-                "343 targets across 32 pages, but no raw historical payloads are approved."
+                "Continue derived-only processing under the approved source-specific licences. "
+                "The inventory covers 343 targets across 32 pages; missing payloads remain an "
+                "acquisition gap and must not be inferred as temporal evidence."
             ),
             reason_code=(
                 "historical_source_review_complete"
                 if _historical_review_complete(repo)
-                else "historical_source_review_pending"
+                else "historical_source_acquisition_partial"
             ),
             gate_evidence=("data/derived/historical_sources/summary.json",),
             external_state="not_applicable",
@@ -339,8 +343,9 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "accessibility, layout or provenance regressions."
             ),
             recommended_action=(
-                "Use the existing 9-route browser smoke suite as the pre-review gate; do not "
-                "treat a single macOS rendering as cross-platform proof."
+                "Use the 11-route, 64-test, four-project browser packet as the pre-review gate; "
+                "complete scoped VoiceOver, visual and provenance review without claiming "
+                "universal WCAG conformance."
             ),
             reason_code=(
                 "dashboard_human_review_approved"
@@ -521,7 +526,7 @@ def _dashboard_review_approved(repo: Path) -> bool:
         and bool(scope.get("operating_systems"))
         and bool(scope.get("assistive_technology"))
         and automated.get("status") == "pass"
-        and automated.get("screenshot_count") == 36
+        and automated.get("screenshot_count") == 44
         and review.get("commit") == automated.get("tested_commit")
     )
 

@@ -1,6 +1,14 @@
 {
   "blockers": [
     {
+      "category": "source_ingestion",
+      "evidence_path": "data/derived/source_health/acquisition_status.json",
+      "id": "source_acquisition",
+      "next_action": "Complete remaining executable or credential-gated targets, then rerun source validation and source contracts.",
+      "status": "incomplete",
+      "summary": "Source acquisition requires follow-up: Run hardened curl/wget source download plan, Review historical MBS/PBS source expansion and licence scope."
+    },
+    {
       "category": "research_review",
       "evidence_path": "data/derived/evidence_readiness/summary.json",
       "id": "evidence_release",
@@ -23,6 +31,22 @@
       "next_action": "Complete accountable methods, domain, licence and governance review.",
       "status": "gated",
       "summary": "OSF registration is not approved."
+    },
+    {
+      "category": "data_governance",
+      "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
+      "id": "mapping_study_human_review",
+      "next_action": "Complete the rights-cleared candidate frame, blinded adjudication and one-time holdout evaluation before evidence claims.",
+      "status": "blocked",
+      "summary": "candidate_status=ready_for_blinded_review candidate_count=1500 evaluation_status=blocked"
+    },
+    {
+      "category": "dashboard",
+      "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
+      "id": "dashboard_human_review",
+      "next_action": "Complete the commit-bound visual, keyboard, screen-reader and provenance review within the declared scope.",
+      "status": "blocked",
+      "summary": "record_status=missing provenance_reviewed=False commit_parity=False"
     }
   ],
   "claims_policy": "Do not claim evidence or public-release readiness until reviewed sources, licences, human research review and release gates pass.",
@@ -45,7 +69,7 @@
     "source_validation": "data/derived/source_validation/summary.json"
   },
   "licence_review": {
-    "approved_rows": 191,
+    "approved_rows": 194,
     "decision_source": "data/licence_review/decisions.jsonl",
     "pending_rows": 0,
     "queue_source": "data/derived/licence_review/licence_review_queue.jsonl"

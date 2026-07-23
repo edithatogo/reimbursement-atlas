@@ -20,11 +20,15 @@
   classification metadata and treat restricted ATC,
   GMDN, UMDNS and SNOMED CT content as optional local enrichment rather than a candidate-frame
   prerequisite. (Issue #490)
+- [x] SRC-11: Acquire the official July 2026 CMS alpha-numeric HCPCS Level II archive, verify
+  SHA-256, and generate a derived-only bundle that excludes numeric CPT and `D`-series dental
+  descriptors while recording transformation and licence scope. (Issue #490)
 
-Issue #490 is repository-complete: the frozen candidate frame now uses reviewed, checksum-bound
-RxNorm CPC, CMS ASP/PFS, HPO and openFDA derived bundles. Restricted terminology remains optional
-local enrichment and is not required for the evidence study. Blinded adjudication and the untouched
-holdout remain independently gated under issue #491.
+Issue #490 is repository-complete for source acquisition: reviewed, checksum-bound RxNorm CPC,
+CMS ASP/PFS/HCPCS Level II, HPO and openFDA bundles provide a structurally complete 1,500-case
+`expansion_v2` frame. The first frozen review remains immutable and empirically spectrum-blocked;
+the expansion must be reviewed as a new cycle under issue #491. Restricted terminology remains
+optional local enrichment.
 
 ## Validation
 

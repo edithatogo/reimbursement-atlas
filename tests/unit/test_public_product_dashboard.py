@@ -56,6 +56,27 @@ def test_public_status_separates_software_evidence_and_publication(tmp_path: Pat
         json.dumps({"status": "incomplete", "incomplete_count": 1}),
         encoding="utf-8",
     )
+    release_gates_path = tmp_path / "data/derived/release_readiness/release_gates.jsonl"
+    release_gates_path.write_text(
+        "\n".join([
+            json.dumps({
+                "id": "mapping_study_human_review",
+                "category": "data_governance",
+                "status": "blocked",
+                "evidence": "mapping review incomplete",
+                "recommended_action": "Complete adjudication.",
+            }),
+            json.dumps({
+                "id": "dashboard_human_review",
+                "category": "dashboard",
+                "status": "blocked",
+                "evidence": "dashboard review incomplete",
+                "recommended_action": "Complete scoped review.",
+            }),
+        ])
+        + "\n",
+        encoding="utf-8",
+    )
 
     manifest = build_public_status_manifest(tmp_path)
 
@@ -71,6 +92,8 @@ def test_public_status_separates_software_evidence_and_publication(tmp_path: Pat
         "research_publication",
         "osf_registration",
         "source_acquisition",
+        "mapping_study_human_review",
+        "dashboard_human_review",
     }
 
 

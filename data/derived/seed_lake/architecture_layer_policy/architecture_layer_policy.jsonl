@@ -1,6 +1,6 @@
 {"edge_count": 13, "evidence": "13 observed import edge(s).", "id": "foundation_to_foundation", "recommended_action": "No action required.", "source_layer": "foundation", "status": "pass", "target_layer": "foundation"}
 {"edge_count": 0, "evidence": "0 observed import edge(s).", "id": "foundation_to_unknown", "recommended_action": "Assign unknown modules to a named architecture layer.", "source_layer": "foundation", "status": "pass", "target_layer": "unknown"}
-{"edge_count": 24, "evidence": "24 observed import edge(s).", "id": "parsing_to_foundation", "recommended_action": "No action required.", "source_layer": "parsing", "status": "pass", "target_layer": "foundation"}
+{"edge_count": 26, "evidence": "26 observed import edge(s).", "id": "parsing_to_foundation", "recommended_action": "No action required.", "source_layer": "parsing", "status": "pass", "target_layer": "foundation"}
 {"edge_count": 15, "evidence": "15 observed import edge(s).", "id": "parsing_to_parsing", "recommended_action": "No action required.", "source_layer": "parsing", "status": "pass", "target_layer": "parsing"}
 {"edge_count": 0, "evidence": "0 observed import edge(s).", "id": "parsing_to_unknown", "recommended_action": "Assign unknown modules to a named architecture layer.", "source_layer": "parsing", "status": "pass", "target_layer": "unknown"}
 {"edge_count": 18, "evidence": "18 observed import edge(s).", "id": "analysis_to_foundation", "recommended_action": "No action required.", "source_layer": "analysis", "status": "pass", "target_layer": "foundation"}

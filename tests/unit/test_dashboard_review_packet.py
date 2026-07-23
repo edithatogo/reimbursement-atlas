@@ -11,7 +11,7 @@ from scripts.make_dashboard_review_packet import build_packet, resolve_head
 def test_dashboard_packet_hashes_expected_screenshot_matrix(tmp_path: Path) -> None:
     report = tmp_path / "report/data"
     report.mkdir(parents=True)
-    for index in range(36):
+    for index in range(44):
         (report / f"{index:02}.png").write_bytes(b"png" + bytes([index]))
 
     packet = build_packet(tmp_path / "report", "a" * 40)
@@ -20,7 +20,7 @@ def test_dashboard_packet_hashes_expected_screenshot_matrix(tmp_path: Path) -> N
     )
 
     assert packet["status"] == "pass"
-    assert packet["screenshot_count"] == 36
+    assert packet["screenshot_count"] == 44
     assert packet["human_review_required"] is True
     assert not list(Draft202012Validator(schema).iter_errors(packet))
 
@@ -50,3 +50,24 @@ def test_head_resolves_loose_and_packed_git_refs(tmp_path: Path, monkeypatch) ->
 def test_head_prefers_ci_commit(tmp_path: Path, monkeypatch) -> None:  # type: ignore[no-untyped-def]
     monkeypatch.setenv("GITHUB_SHA", "c" * 40)
     assert resolve_head(tmp_path) == "c" * 40
+
+
+def test_head_resolves_ref_from_worktree_common_git_dir(tmp_path: Path, monkeypatch) -> None:  # type: ignore[no-untyped-def]
+    monkeypatch.delenv("GITHUB_SHA", raising=False)
+    common = tmp_path / "common"
+    worktree_git = common / "worktrees" / "review"
+    worktree_git.mkdir(parents=True)
+    project = tmp_path / "project"
+    project.mkdir()
+    (project / ".git").write_text(
+        f"gitdir: {worktree_git.relative_to(project, walk_up=True)}\n",
+        encoding="utf-8",
+    )
+    (worktree_git / "HEAD").write_text("ref: refs/heads/review\n", encoding="utf-8")
+    (worktree_git / "commondir").write_text("../..\n", encoding="utf-8")
+    (common / "packed-refs").write_text(
+        f"{'d' * 40} refs/heads/review\n",
+        encoding="utf-8",
+    )
+
+    assert resolve_head(project) == "d" * 40

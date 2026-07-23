@@ -200,7 +200,7 @@ def _dashboard_human_review_gate(repo: Path) -> ReleaseGateRecord:
         and bool(scope.get("operating_systems"))
         and bool(scope.get("assistive_technology"))
         and automated.get("status") == "pass"
-        and automated.get("screenshot_count") == 36
+        and automated.get("screenshot_count") == 44
         and review.get("commit") == automated.get("tested_commit")
     )
     return ReleaseGateRecord(
@@ -667,12 +667,9 @@ def _licence_review_queue_gate(repo: Path) -> ReleaseGateRecord:
             recommended_action="Run scripts/make_licence_review_queue.py.",
         )
     artifact_count = int(summary.get("artifact_count", 0))
-    # Keep this generated gate independent of the decision ledger. The ledger is
-    # checksum-bound to generated artefacts, so embedding its effective counts here
-    # would make release-readiness self-referential. Public status reports effective
-    # approvals separately.
     approved_count = int(summary.get("approved_count", 0))
     pending_count = int(summary.get("pending_count", 0))
+    blocked_count = int(summary.get("blocked_count", 0))
     mutation_allowed = bool(summary.get("approval_mutation_allowed", True))
     status: ReleaseGateStatus = (
         "pass" if artifact_count > 0 and mutation_allowed is False else "fail"
@@ -684,7 +681,7 @@ def _licence_review_queue_gate(repo: Path) -> ReleaseGateRecord:
         required=True,
         evidence=(
             f"artifact_count={artifact_count} approved_count={approved_count} "
-            f"pending_count={pending_count}"
+            f"pending_count={pending_count} blocked_count={blocked_count}"
         ),
         recommended_action=(
             "Use the checksum-bound queue and record human decisions before publication; "
