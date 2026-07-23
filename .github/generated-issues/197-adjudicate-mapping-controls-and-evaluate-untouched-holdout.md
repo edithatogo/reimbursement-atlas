@@ -17,3 +17,4 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 - [x] The deterministic split contains 300 positive and 300 negative development cases plus an untouched 75 positive and 75 negative holdout.
 - [x] Thresholds are tuned on development only; holdout predictions are frozen before truth is evaluated once.
 - [x] Sensitivity, specificity, precision, NPV and balanced accuracy include exact 95 percent intervals overall and by family.
+- [x] Any material source, mapping-rule, model or threshold change creates a new immutable cycle and untouched holdout; the evaluated holdout is never retuned or pooled.

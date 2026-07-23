@@ -41,12 +41,25 @@
 - [x] Expose machine-readable blocker IDs, evidence paths and next actions in the public status
   manifest and dashboard.
 - [x] Add a grouped, checksum-bound licence review handoff packet; approval remains a human gate.
-- [~] Regenerate the 44-screenshot, 64-test automated review packet against the final release
+- [x] Regenerate the 44-screenshot, 64-test automated review packet against the final release
   candidate across Chromium desktop/mobile, Firefox and WebKit, binding every route, browser,
   viewport, screenshot, provenance assertion and prohibited-content result to the tested commit.
-  The fail-closed v2 harness is implemented; fresh hosted evidence for the final commit remains
-  pending. (Issue #493)
-- [ ] Record the accountable owner review with exact browser, OS, assistive-technology, route,
-  provenance and exception scope using `approved_within_scope`. (Issue #493)
+  Hosted run `30018170812` passed 64/64 tests and produced 44 screenshots; automated packet
+  SHA-256 is `c4b0e68ab0afe24930a9af71ff6a4f9aad23b2898fe96fc9cec859df2af777f9`.
+  (Issue #493)
+- [x] Record the accountable owner review with exact browser, OS, assistive-technology, route,
+  provenance and exception scope using `approved_within_scope`. Owner packet SHA-256 is
+  `a21669b4d57169be7a7104247e857f79915a6cd7eb477673e0734763b4fc58cf`;
+  manual VoiceOver and universal WCAG conformance remain excluded. (Issue #493)
 - [x] Reject incomplete, stale or universal-conformance dashboard review records in readiness and
   schema gates. (Issue #493)
+- [x] Require a fresh commit-bound browser packet and scoped owner decision whenever dashboard
+  routes, rendered evidence fields, provenance contracts or readiness values materially change.
+  Ordinary non-dashboard changes remain governed by evidence-fingerprint validation rather than
+  an overbroad universal accessibility claim. (Issue #493)
+- [x] Fingerprint every public dashboard payload, including synchronized CSV downloads, while
+  excluding only the `dashboard_human_review` release-gate row that is the review's own
+  self-attestation receipt. Test both material-change invalidation and receipt-cycle avoidance.
+  (Issue #493)
+- [x] Regenerate the hosted browser packet and accountable scoped review against the strengthened
+  complete-public-payload fingerprint before re-closing this track. (Issue #493)

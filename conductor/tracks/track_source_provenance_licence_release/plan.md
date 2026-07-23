@@ -32,6 +32,10 @@
   pagination, validate total/skip continuity and unique product codes, retain the aggregate payload
   under ignored raw storage, and create a separately versioned reviewed derived bundle. Preserve
   the first-page source version for immutable predecessor cycles. (Issue #490, subissue #491)
+- [x] SRC-14: Run the hardened source acquisition, content-contract and drift gates on a weekly
+  schedule. Upload derived-only evidence, escalate failures through bounded GitHub issues, and
+  reopen source acquisition only when a counterpart family loses quota sufficiency or its licence
+  terms materially change. (Issue #490)
 
 Issue #490 is repository-complete for source acquisition: reviewed, checksum-bound RxNorm CPC,
 CMS ASP/PFS/HCPCS Level II, HPO and openFDA bundles provide a structurally complete 1,500-case

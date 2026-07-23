@@ -1,15 +1,16 @@
 {
   "track_id": "track_source_provenance_licence_release",
   "type": "feature",
-  "status": "in_progress",
+  "status": "completed",
   "created_at": "2026-07-20T00:00:00Z",
-  "updated_at": "2026-07-23T05:50:00Z",
+  "updated_at": "2026-07-24T00:00:00Z",
   "description": "Make historical and live source provenance, licensing and transformations release-reproducible.",
   "evidence_schema": "1.0",
   "gates": [
     {"id": "source_catalogue", "kind": "repository", "status": "pass", "evidence": "Historical source catalogues and acquisition manifests exist."},
-    {"id": "source_rights", "kind": "human_review", "status": "pass", "evidence": "All 194 current checksum-bound rows are approved; source-specific restrictions remain authoritative."},
+    {"id": "source_rights", "kind": "human_review", "status": "pass", "evidence": "All 199 current checksum-bound rows are approved; source-specific restrictions remain authoritative."},
     {"id": "raw_payload_policy", "kind": "repository", "status": "pass", "evidence": "Public-data policy excludes raw/local cache paths from tracked outputs."},
-    {"id": "counterpart_sources", "kind": "source_acquisition", "status": "pass", "evidence": "Reviewed RxNorm CPC, CMS ASP/PFS/HCPCS Level II, HPO and openFDA bundles produce a separately versioned 1,500-case expansion frame with no structural family gap. Fresh blinded review remains issue #491, not a source-acquisition gate."}
+    {"id": "counterpart_sources", "kind": "source_acquisition", "status": "pass", "evidence": "Reviewed RxNorm CPC, CMS ASP/PFS/HCPCS Level II, HPO and openFDA bundles produce a separately versioned 1,500-case expansion frame with no structural family gap. Fresh blinded review remains issue #491, not a source-acquisition gate."},
+    {"id": "source_drift_monitor", "kind": "repository_automation", "status": "pass", "evidence": "The weekly least-privilege source-health workflow reruns acquisition, content, contract, drift and readiness gates, uploads derived-only evidence, and synchronizes bounded escalation issues."}
   ]
 }

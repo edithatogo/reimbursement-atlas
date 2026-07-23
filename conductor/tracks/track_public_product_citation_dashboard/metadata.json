@@ -1,16 +1,16 @@
 {
   "track_id": "track_public_product_citation_dashboard",
   "type": "feature",
-  "status": "in_progress",
+  "status": "completed",
   "created_at": "2026-07-05T00:00:00Z",
-  "updated_at": "2026-07-23T06:50:08Z",
+  "updated_at": "2026-07-24T00:00:00Z",
   "description": "Present a citable accessible public dashboard with bounded review evidence.",
   "gates": [
     {
       "id": "dashboard_human_review",
       "kind": "human_review",
-      "status": "pending",
-      "evidence": "The fail-closed v2 harness validates 64 tests, 11 routes across four browser projects, 44 attributable screenshots, provenance assertions, prohibited-content checks and current-commit parity. Fresh hosted evidence for the final commit and accountable scoped VoiceOver, visual and provenance review remain pending."
+      "status": "pass",
+      "evidence": "Hosted run 30021368386 passed 64 tests across 11 routes and four browser projects with 44 attributable screenshots. The accountable owner approved automated packet 1a8f4e32f371a7b000ab2a81494955beb8ea38dd5b330fcc9aa98b9d539b5600 and owner packet 4c14f3bf86cd23568d9123dc2503459af8c505a66742184a74db4798828e5338 within the declared visual, automated accessibility and provenance scope. Manual VoiceOver and universal WCAG conformance are excluded."
     }
   ]
 }

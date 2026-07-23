@@ -9,6 +9,8 @@ from reimburse_atlas.dashboard_review import (
     dashboard_data_fingerprint,
     dashboard_review_evidence,
     dashboard_source_fingerprint,
+    normalize_csv_receipt,
+    normalize_public_status_dashboard_receipt,
     resolve_repo_head,
 )
 from scripts.make_dashboard_owner_review_packet import PROVENANCE_INPUTS, build_packet
@@ -161,6 +163,94 @@ def test_dashboard_evidence_invalidates_changed_displayed_data(tmp_path: Path) -
     evidence = dashboard_review_evidence(root)
 
     assert evidence["checks"]["displayed_data_parity"] is False
+
+
+def test_dashboard_data_fingerprint_covers_rendered_csv_files(tmp_path: Path) -> None:
+    public = tmp_path / "apps/dashboard/public/data"
+    public.mkdir(parents=True)
+    dataset = public / "source_status.csv"
+    dataset.write_text("source,status\nMBS,ready\n", encoding="utf-8")
+    original = dashboard_data_fingerprint(tmp_path)
+
+    dataset.write_text("source,status\nMBS,blocked\n", encoding="utf-8")
+
+    assert dashboard_data_fingerprint(tmp_path) != original
+
+
+def test_dashboard_data_fingerprint_ignores_only_its_release_gate_receipt(
+    tmp_path: Path,
+) -> None:
+    public = tmp_path / "apps/dashboard/public/data"
+    public.mkdir(parents=True)
+    gates = public / "release_gates.csv"
+    gates.write_text(
+        "category,evidence,id,recommended_action,required,status\n"
+        "dashboard,head=aaa failed_checks=human_scoped_approval,"
+        "dashboard_human_review,Review,False,blocked\n"
+        "release,registration=pending,osf_registration,Wait,False,blocked\n",
+        encoding="utf-8",
+    )
+    original = dashboard_data_fingerprint(tmp_path)
+    gates.write_text(
+        "category,evidence,id,recommended_action,required,status\n"
+        "dashboard,head=bbb failed_checks=none,"
+        "dashboard_human_review,Review,False,pass\n"
+        "release,registration=pending,osf_registration,Wait,False,blocked\n",
+        encoding="utf-8",
+    )
+
+    assert dashboard_data_fingerprint(tmp_path) == original
+
+    gates.write_text(
+        "category,evidence,id,recommended_action,required,status\n"
+        "dashboard,head=bbb failed_checks=none,"
+        "dashboard_human_review,Review,False,pass\n"
+        "release,registration=public,osf_registration,Wait,False,pass\n",
+        encoding="utf-8",
+    )
+
+    assert dashboard_data_fingerprint(tmp_path) != original
+
+
+def test_public_status_normalization_replaces_only_dashboard_receipt() -> None:
+    baseline = {
+        "blockers": [
+            {"id": "dashboard_human_review", "status": "blocked", "summary": "review pending"},
+            {"id": "osf_registration", "status": "blocked", "summary": "snapshot missing"},
+        ]
+    }
+    current = {
+        "blockers": [
+            {"id": "dashboard_human_review", "status": "pass", "summary": "approved"},
+            {"id": "osf_registration", "status": "pass", "summary": "registration public"},
+        ]
+    }
+
+    normalized = json.loads(
+        normalize_public_status_dashboard_receipt(
+            json.dumps(current).encode(),
+            json.dumps(baseline).encode(),
+        )
+    )
+
+    assert normalized["blockers"][0] == baseline["blockers"][0]
+    assert normalized["blockers"][1] == current["blockers"][1]
+
+
+def test_csv_normalization_replaces_only_named_self_receipt() -> None:
+    baseline = b"id,status\nfinal_dashboard_visual_review,blocked\nosf_registration,blocked\n"
+    current = b"id,status\nfinal_dashboard_visual_review,complete\nosf_registration,pass\n"
+
+    normalized = normalize_csv_receipt(
+        current,
+        baseline,
+        key="id",
+        value="final_dashboard_visual_review",
+    )
+
+    assert normalized == (
+        b"id,status\nfinal_dashboard_visual_review,blocked\nosf_registration,pass\n"
+    )
 
 
 def test_owner_packet_does_not_hash_its_dependent_release_summary() -> None:

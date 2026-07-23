@@ -85,6 +85,15 @@ for (const route of routes) {
     }
     await expectNoPageLevelHorizontalOverflow(page);
     if (route === "/") {
+      const reimbursementLineCount = await page.locator(".home-title").evaluate((element) => {
+        const text = element.firstChild;
+        if (!(text instanceof Text)) throw new Error("Home title text node is missing");
+        const range = document.createRange();
+        range.setStart(text, 0);
+        range.setEnd(text, "Reimbursement".length);
+        return [...range.getClientRects()].filter((rect) => rect.width > 0).length;
+      });
+      expect(reimbursementLineCount).toBe(1);
       const statusCards = page.locator(".status-card");
       await expect(statusCards).toHaveCount(3);
       for (let index = 0; index < await statusCards.count(); index += 1) {

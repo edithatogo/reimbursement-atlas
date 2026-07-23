@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
+import csv
 import hashlib
+import io
 import json
+import subprocess  # nosec B404 - fixed git reader; commit and path are constrained below.
 from pathlib import Path
 from typing import Any, cast
 
@@ -40,7 +43,19 @@ SOURCE_FILES = (
     Path("apps/dashboard/playwright.config.ts"),
     Path("apps/dashboard/tsconfig.json"),
 )
-DATA_FILES = (Path("apps/dashboard/public/status.json"),)
+DATA_ROOT = Path("apps/dashboard/public")
+SELF_ATTESTATION_FILE = Path("apps/dashboard/public/data/release_gates.csv")
+PUBLIC_STATUS_FILE = Path("apps/dashboard/public/status.json")
+SELF_ATTESTATION_CSV_ROWS = {
+    Path("apps/dashboard/public/data/final_handoff_tasks.csv"): (
+        "id",
+        "final_dashboard_visual_review",
+    ),
+    Path("apps/dashboard/public/data/source_drift_report.csv"): (
+        "id",
+        "source_drift_final_handoff_jsonl_to_final_handoff_csv",
+    ),
+}
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -73,18 +88,137 @@ def dashboard_source_fingerprint(repo: Path) -> str:
     return digest.hexdigest()
 
 
-def dashboard_data_fingerprint(repo: Path) -> str:
-    """Hash the generated public state whose values are displayed by the dashboard."""
+def dashboard_data_fingerprint(
+    repo: Path,
+    *,
+    self_attestation_commit: str | None = None,
+) -> str:
+    """Hash every public dashboard payload without recursively hashing its receipt."""
+    public_root = repo / DATA_ROOT
+    paths = (
+        [path.relative_to(repo) for path in public_root.rglob("*") if path.is_file()]
+        if public_root.is_dir()
+        else []
+    )
     digest = hashlib.sha256()
-    for path in DATA_FILES:
+    for path in sorted(paths):
         absolute = repo / path
-        if not absolute.is_file():
-            continue
+        content = absolute.read_bytes()
+        if path == SELF_ATTESTATION_FILE:
+            content = _release_gates_without_dashboard_receipt(content)
+        elif self_attestation_commit and (
+            path == PUBLIC_STATUS_FILE or path in SELF_ATTESTATION_CSV_ROWS
+        ):
+            baseline = _git_file_at_commit(repo, self_attestation_commit, path)
+            if baseline is not None:
+                if path == PUBLIC_STATUS_FILE:
+                    content = normalize_public_status_dashboard_receipt(content, baseline)
+                else:
+                    key, value = SELF_ATTESTATION_CSV_ROWS[path]
+                    content = normalize_csv_receipt(content, baseline, key=key, value=value)
         digest.update(path.as_posix().encode("utf-8"))
         digest.update(b"\0")
-        digest.update(absolute.read_bytes())
+        digest.update(content)
         digest.update(b"\0")
     return digest.hexdigest()
+
+
+def _release_gates_without_dashboard_receipt(content: bytes) -> bytes:
+    """Remove the review's own rendered receipt while retaining every other gate."""
+    text = content.decode("utf-8")
+    reader = csv.DictReader(io.StringIO(text))
+    if reader.fieldnames is None:
+        return content
+    rows = [row for row in reader if row.get("id") != "dashboard_human_review"]
+    output = io.StringIO(newline="")
+    writer = csv.DictWriter(output, fieldnames=reader.fieldnames, lineterminator="\n")
+    writer.writeheader()
+    writer.writerows(rows)
+    return output.getvalue().encode("utf-8")
+
+
+def normalize_public_status_dashboard_receipt(content: bytes, baseline: bytes) -> bytes:
+    """Restore only the dashboard receipt from the reviewed commit."""
+    try:
+        raw_payload = json.loads(content)
+        raw_baseline_payload = json.loads(baseline)
+    except json.JSONDecodeError:
+        return content
+    if not isinstance(raw_payload, dict) or not isinstance(raw_baseline_payload, dict):
+        return content
+    payload = cast("dict[str, Any]", raw_payload)
+    baseline_payload = cast("dict[str, Any]", raw_baseline_payload)
+    blockers = payload.get("blockers")
+    baseline_blockers = baseline_payload.get("blockers")
+    if not isinstance(blockers, list) or not isinstance(baseline_blockers, list):
+        return content
+    blocker_rows = cast("list[Any]", blockers)
+    baseline_rows = cast("list[Any]", baseline_blockers)
+    baseline_receipt: dict[str, Any] | None = None
+    for row in baseline_rows:
+        if isinstance(row, dict):
+            typed_row = cast("dict[str, Any]", row)
+            if typed_row.get("id") == "dashboard_human_review":
+                baseline_receipt = typed_row
+                break
+    if baseline_receipt is None:
+        return content
+    normalized_rows: list[Any] = []
+    for row in blocker_rows:
+        is_dashboard_receipt = (
+            isinstance(row, dict)
+            and cast("dict[str, Any]", row).get("id") == "dashboard_human_review"
+        )
+        if not is_dashboard_receipt:
+            normalized_rows.append(row)
+    baseline_index = baseline_rows.index(baseline_receipt)
+    normalized_rows.insert(min(baseline_index, len(normalized_rows)), baseline_receipt)
+    payload["blockers"] = normalized_rows
+    return (json.dumps(payload, indent=2, sort_keys=True) + "\n").encode("utf-8")
+
+
+def normalize_csv_receipt(
+    content: bytes,
+    baseline: bytes,
+    *,
+    key: str,
+    value: str,
+) -> bytes:
+    """Restore one self-derived CSV receipt from the reviewed commit."""
+    current_reader = csv.DictReader(io.StringIO(content.decode("utf-8")))
+    baseline_reader = csv.DictReader(io.StringIO(baseline.decode("utf-8")))
+    if current_reader.fieldnames is None or baseline_reader.fieldnames != current_reader.fieldnames:
+        return content
+    current_rows = list(current_reader)
+    baseline_rows = list(baseline_reader)
+    baseline_receipt = next((row for row in baseline_rows if row.get(key) == value), None)
+    if baseline_receipt is None:
+        return content
+    normalized_rows = [row for row in current_rows if row.get(key) != value]
+    baseline_index = baseline_rows.index(baseline_receipt)
+    normalized_rows.insert(min(baseline_index, len(normalized_rows)), baseline_receipt)
+    output = io.StringIO(newline="")
+    writer = csv.DictWriter(
+        output,
+        fieldnames=current_reader.fieldnames,
+        lineterminator="\n",
+    )
+    writer.writeheader()
+    writer.writerows(normalized_rows)
+    return output.getvalue().encode("utf-8")
+
+
+def _git_file_at_commit(repo: Path, commit: str, path: Path) -> bytes | None:
+    """Read one reviewed file without trusting mutable working-tree receipts."""
+    if len(commit) != 40 or any(character not in "0123456789abcdef" for character in commit):
+        return None
+    result = subprocess.run(  # nosec B603 - no shell; commit is a validated SHA.
+        ("git", "show", f"{commit}:{path.as_posix()}"),
+        cwd=repo,
+        check=False,
+        capture_output=True,
+    )
+    return result.stdout if result.returncode == 0 else None
 
 
 def resolve_repo_head(repo: Path) -> str | None:
@@ -140,7 +274,14 @@ def dashboard_review_evidence(repo: Path) -> dict[str, object]:
     raw_prohibited = owner.get("prohibited_content_check")
     prohibited = cast("dict[str, Any]", raw_prohibited) if isinstance(raw_prohibited, dict) else {}
     source_fingerprint = dashboard_source_fingerprint(repo)
-    data_fingerprint = dashboard_data_fingerprint(repo)
+    data_fingerprint = dashboard_data_fingerprint(
+        repo,
+        self_attestation_commit=(
+            cast("str", automated["tested_commit"])
+            if isinstance(automated.get("tested_commit"), str)
+            else None
+        ),
+    )
     checks = {
         "automated_pass": automated.get("status") == "pass",
         "coverage_complete": (

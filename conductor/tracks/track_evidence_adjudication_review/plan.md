@@ -104,11 +104,15 @@
 - [x] EVID-06: Regenerate evidence-readiness and final-handoff outputs; preserve blockers. (Subissue #494)
 - [x] EVID-05A: Refresh the dashboard packet after readiness values changed. The accountable owner
   approved the 64-test, 44-screenshot packet from the hosted browser workflow for commit
-  `fdb873b718127df4edc44da6a92b1e634c83641c`; automated packet SHA-256 is
-  `4b7d6a2ff93faaee29eaef7110869326391a211ede5f8c9e33ccce3aa2dd2833`
+  `55540b09b94532f49da491d3d56fea0b398729ca`; automated packet SHA-256 is
+  `c4b0e68ab0afe24930a9af71ff6a4f9aad23b2898fe96fc9cec859df2af777f9`
   and owner packet SHA-256 is
-  `4d85e8af64b71dcda7c7427533281189da25cbfdc8bf371220f31fe859f5547b`.
+  `a21669b4d57169be7a7104247e857f79915a6cd7eb477673e0734763b4fc58cf`.
   Manual VoiceOver and universal WCAG conformance remain outside scope. (Issue #493)
+- [x] EVID-07: Preserve the frozen `expansion_v9` frame, adjudication ledger, development split,
+  sealed holdout predictions and one-time evaluation as immutable evidence. Any material source,
+  mapping-rule, model or threshold change must create a separately named cycle with a new blinded
+  review and untouched holdout; predecessor cycles cannot be overwritten or pooled. (Issue #491)
 
 ## Validation
 

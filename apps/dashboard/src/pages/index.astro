@@ -8,7 +8,7 @@ import StatusOverview from "../components/StatusOverview.astro";
   title="Reimbursement Atlas"
   description="Citable, provenance-aware dashboard for public reimbursement metadata and research readiness."
 >
-  <h1>Reimbursement Atlas</h1>
+  <h1 class="home-title">Reimbursement Atlas</h1>
   <p>
     A public, citable software surface for exploring reimbursement sources, policy analyses,
     source versions and ontology mapping strategy. Every view is built from generated artefacts,
@@ -21,3 +21,11 @@ import StatusOverview from "../components/StatusOverview.astro";
   </section>
   <Graph client:only="react" baseUrl={import.meta.env.BASE_URL} />
 </Layout>
+
+<style>
+  .home-title {
+    max-width: 16ch;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+</style>

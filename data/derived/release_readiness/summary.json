@@ -1,6 +1,6 @@
 {
   "blocked_count": 2,
-  "evidence_release_ready": true,
+  "evidence_release_ready": false,
   "fail_count": 0,
   "gate_count": 40,
   "missing_count": 0,

@@ -9,7 +9,7 @@
 - [x] REL-02A: Bind accountable approval to both dashboard implementation and generated displayed
   data, recompute all readiness and blocker provenance assertions, and fail automation when either
   packet becomes stale. The post-transition browser run
-  [30013013498](https://github.com/edithatogo/reimbursement-atlas/actions/runs/30013013498)
+  [30018170812](https://github.com/edithatogo/reimbursement-atlas/actions/runs/30018170812)
   passed 64/64 tests and produced the stable 44-screenshot packet. Any later OSF/readiness state
   transition requires a fresh bounded packet.
 - [x] REL-03: Validate OSF/HF/GitHub identity, metadata and licence-boundary parity. (Subissue #503)
@@ -36,6 +36,15 @@
   release assets before credentials or remote mutation are used. (Issue #532)
 - [ ] REL-09: Publish the versioned Zenodo record and verify DataCite DOI resolution only after
   mapping, dashboard, OSF registration, licence and release gates independently pass. (Issue #532)
+- [x] REL-10: Add a daily read-only OSF registration monitor. Emit a redacted receipt and canonical
+  snapshot when active/public, and maintain one bounded status comment on issue #532 without
+  re-uploading files, modifying the registration or publishing papers. (Issue #532)
+- [ ] REL-11: After the OSF registration is active and public, regenerate readiness and dashboard
+  evidence, create the exact signed/attested GitHub release, and verify every release asset before
+  any Zenodo credential is used. (Issue #532)
+- [ ] REL-12: Deposit the verified release assets to one Zenodo concept record, verify remote
+  filename/size/SHA-256 parity and DataCite metadata/DOI resolution, then record the concept DOI in
+  the subsequent repository release. Papers and preprints remain excluded. (Issue #532)
 
 ## Validation
 
