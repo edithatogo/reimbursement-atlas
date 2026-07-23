@@ -36,8 +36,7 @@ def record_decision(
         retained = [
             line
             for line in existing.splitlines()
-            if not line.strip()
-            or json.loads(line).get("review_id") != decision.get("review_id")
+            if not line.strip() or json.loads(line).get("review_id") != decision.get("review_id")
         ]
         existing = "\n".join(retained)
     combined = existing.rstrip("\n") + ("\n" if existing.strip() else "")
