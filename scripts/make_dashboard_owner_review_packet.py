@@ -9,6 +9,7 @@ import re
 from pathlib import Path
 from typing import Any, cast
 
+from reimburse_atlas.dashboard_review import dashboard_source_fingerprint
 from reimburse_atlas.registry import project_root
 from scripts.make_dashboard_review_packet import PROJECTS, ROUTES, resolve_head
 
@@ -128,6 +129,7 @@ def build_packet(root: Path) -> dict[str, Any]:
     """Return deterministic evidence and a bounded accountable-review checklist."""
     automated = _read_json(root / AUTOMATED)
     current_head = resolve_head(root)
+    source_fingerprint = dashboard_source_fingerprint(root)
     provenance = [
         {
             "path": path.as_posix(),
@@ -146,6 +148,7 @@ def build_packet(root: Path) -> dict[str, Any]:
         automated.get("status") == "pass"
         and automated.get("coverage_complete") is True
         and automated.get("tested_commit") == current_head
+        and automated.get("source_fingerprint") == source_fingerprint
         and routes == list(ROUTES)
         and projects == list(PROJECTS)
         and len(screenshot_evidence) == len(ROUTES) * len(PROJECTS)
@@ -157,6 +160,7 @@ def build_packet(root: Path) -> dict[str, Any]:
         "status": ("pending_accountable_review" if machine_ready else "automated_evidence_blocked"),
         "tested_commit": automated.get("tested_commit"),
         "current_head": current_head,
+        "source_fingerprint": source_fingerprint,
         "commit_parity": automated.get("tested_commit") == current_head,
         "automated_status": automated.get("status", "missing"),
         "workflow": automated.get("workflow", {}),

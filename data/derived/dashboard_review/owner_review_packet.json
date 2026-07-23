@@ -17,7 +17,7 @@
     "desktop-webkit"
   ],
   "commit_parity": true,
-  "current_head": "9ce021257c502684874b5b6792a813a92639a68d",
+  "current_head": "345576a6f34f3a5ff1d29dd7bca95ebd3abb9f91",
   "prohibited_content_check": {
     "files_checked": 77,
     "findings": [],
@@ -115,11 +115,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 600109,
+      "byte_size": 580022,
       "file": "embedded",
       "project": "desktop-chromium",
       "route": "/",
-      "sha256": "32e69d9dbc1240d867c0ee7e5d3da675666b7f21c4ace018b21be3935a410b8a",
+      "sha256": "3f589e6ee8c78e2a9373e9b4ecd127190ef2f5b4978ea685c68062f24ecc7c26",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -154,11 +154,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 463878,
+      "byte_size": 467922,
       "file": "embedded",
       "project": "mobile-chromium",
       "route": "/",
-      "sha256": "d03a5d294d0938e2140589c2fe583aec61aba3ad6fc09c42839a0eec53ca9f7b",
+      "sha256": "8a512c4c604686c5517d019599bbed741727fe82b73eedc2250ff503106cd732",
       "viewport": {
         "height": 727,
         "width": 393
@@ -219,11 +219,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 198724,
+      "byte_size": 208466,
       "file": "embedded",
       "project": "desktop-chromium",
       "route": "/analyses/cognitive_vs_procedural_ratio/",
-      "sha256": "ecafb2b5bf3c1e9189d98fd0fe5c66876e43a23526a0f58c2566b88ba2ec81b2",
+      "sha256": "3c9ecc706f09a44d0c70fc09ece92f89741d4e19e08cc0318025b8ae8ddfb0ef",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -232,11 +232,11 @@
     {
       "browser": "firefox",
       "browser_version": "151.0",
-      "byte_size": 177723,
+      "byte_size": 189895,
       "file": "embedded",
       "project": "desktop-firefox",
       "route": "/analyses/cognitive_vs_procedural_ratio/",
-      "sha256": "130328e786ab7146823cc36eaacac2c7a8c1eda8eab43b217401dc4ad2e55685",
+      "sha256": "e793252b98379ffc05651be98c67fbed0a9c67d816f4574d378a1212ecba3e1e",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -245,11 +245,11 @@
     {
       "browser": "webkit",
       "browser_version": "26.5",
-      "byte_size": 245297,
+      "byte_size": 254896,
       "file": "embedded",
       "project": "desktop-webkit",
       "route": "/analyses/cognitive_vs_procedural_ratio/",
-      "sha256": "aa3947630983fbadeee8b5b0a3e427165e9eb7be8604ac69c48c395612631531",
+      "sha256": "9461e7e1acf1d24c2ef94b2354319221fb0a175f4fa31f59ebede3c72d88bbe1",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -258,11 +258,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 143920,
+      "byte_size": 148321,
       "file": "embedded",
       "project": "mobile-chromium",
       "route": "/analyses/cognitive_vs_procedural_ratio/",
-      "sha256": "54d592a7dc4efa0045454c9fafd206d3509d9b6cc992d7201305be2bc7101787",
+      "sha256": "6c09d32bd87626e571de4e4234351f95d636f731eb53ceacf3f6cc77662c8967",
       "viewport": {
         "height": 727,
         "width": 393
@@ -685,13 +685,14 @@
       }
     }
   ],
+  "source_fingerprint": "5b1861dc00dae4250de447c96b35b2ea2f9206f9e200f1aeb49f6d6d7949d8da",
   "status": "pending_accountable_review",
-  "tested_commit": "9ce021257c502684874b5b6792a813a92639a68d",
+  "tested_commit": "345576a6f34f3a5ff1d29dd7bca95ebd3abb9f91",
   "workflow": {
-    "artifact_name": "dashboard-browser-review-30003870004",
+    "artifact_name": "dashboard-browser-review-30004589594",
     "run_attempt": "1",
-    "run_id": "30003870004",
+    "run_id": "30004589594",
     "workflow": "Dashboard browser matrix",
-    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30003870004"
+    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30004589594"
   }
 }

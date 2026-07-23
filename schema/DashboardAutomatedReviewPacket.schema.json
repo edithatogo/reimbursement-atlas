@@ -9,6 +9,10 @@
     "schema_version": {"const": "dashboard-automated-review-v2"},
     "status": {"enum": ["pass", "fail", "missing_artifacts"]},
     "tested_commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "source_fingerprint": {
+      "type": ["string", "null"],
+      "pattern": "^[a-f0-9]{64}$"
+    },
     "test_count": {"type": "integer", "minimum": 0},
     "expected_test_count": {"const": 64},
     "junit": {

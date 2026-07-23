@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from reimburse_atlas.dashboard_review import dashboard_review_evidence
+from reimburse_atlas.dashboard_review import dashboard_review_evidence, dashboard_source_fingerprint
 from scripts.make_dashboard_owner_review_packet import build_packet
 from scripts.make_dashboard_review_packet import PROJECTS, ROUTES
 
@@ -66,6 +66,10 @@ def _machine_ready_root(tmp_path: Path) -> Path:
         },
     )
     _write_json(tmp_path, "data/derived/publication_manifest.json", {"status": "gated"})
+    automated_path = tmp_path / "data/derived/dashboard_review/automated_review_packet.json"
+    automated = json.loads(automated_path.read_text(encoding="utf-8"))
+    automated["source_fingerprint"] = dashboard_source_fingerprint(tmp_path)
+    automated_path.write_text(json.dumps(automated), encoding="utf-8")
     return tmp_path
 
 
@@ -121,7 +125,10 @@ def test_dashboard_evidence_serializes_stable_evidence_commit(tmp_path: Path) ->
     automated = tmp_path / "data/derived/dashboard_review/automated_review_packet.json"
     automated.parent.mkdir(parents=True)
     automated.write_text(
-        json.dumps({"tested_commit": "a" * 40}),
+        json.dumps({
+            "tested_commit": "a" * 40,
+            "source_fingerprint": dashboard_source_fingerprint(tmp_path),
+        }),
         encoding="utf-8",
     )
     git = tmp_path / ".git"
