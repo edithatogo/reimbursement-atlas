@@ -38,7 +38,7 @@
       "id": "mapping_study_human_review",
       "next_action": "Complete the rights-cleared candidate frame, blinded adjudication and one-time holdout evaluation before evidence claims.",
       "status": "blocked",
-      "summary": "candidate_status=ready_for_blinded_review candidate_count=1500 evaluation_status=blocked"
+      "summary": "cycle=expansion_v7 candidate_status=ready_for_blinded_review candidate_count=1500 evaluation_status=blocked"
     },
     {
       "category": "dashboard",

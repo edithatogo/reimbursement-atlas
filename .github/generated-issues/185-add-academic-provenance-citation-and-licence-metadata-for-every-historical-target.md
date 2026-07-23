@@ -12,5 +12,5 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] Every target records source URL, archive page, source version, citation key, licence gate and review state.
-- [ ] Download evidence does not imply redistribution permission.
+- [x] Every target records source URL, archive page, source version, citation key, licence gate and review state.
+- [x] Download evidence does not imply redistribution permission.

@@ -12,6 +12,6 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] Source-health evidence separates operational acquisition blockers from skipped_licence_gate rows with machine-readable counts.
-- [ ] Licence-only review status remains publication-blocking but does not create a duplicate acquisition-outage issue.
-- [ ] Focused tests cover incomplete, review_required and clear source-health states.
+- [x] Source-health evidence separates operational acquisition blockers from skipped_licence_gate rows with machine-readable counts.
+- [x] Licence-only review status remains publication-blocking but does not create a duplicate acquisition-outage issue.
+- [x] Focused tests cover incomplete, review_required and clear source-health states.

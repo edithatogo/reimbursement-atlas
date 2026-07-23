@@ -69,8 +69,13 @@ def build_evaluation(root: Path, cycle: str = DEFAULT_CYCLE) -> dict[str, Any]:
     """Build a fail-closed evaluation from exact frozen-holdout predictions."""
     paths = mapping_study_paths(cycle)
     plan_path = root / paths.split_plan
+    frame_sha256 = (
+        hashlib.sha256((root / paths.frame).read_bytes()).hexdigest()
+        if (root / paths.frame).is_file()
+        else "0" * 64
+    )
     if not plan_path.is_file() or cast("dict[str, Any]", _read(plan_path)).get("status") != "ready":
-        return _blocked("split_not_ready")
+        return _blocked("split_not_ready", cycle=cycle, frame_sha256=frame_sha256)
     plan = cast("dict[str, Any]", _read(plan_path))
     holdout = cast("list[str]", plan["holdout_case_ids"])
     fingerprint = hashlib.sha256("\n".join(sorted(holdout)).encode()).hexdigest()
@@ -78,12 +83,27 @@ def build_evaluation(root: Path, cycle: str = DEFAULT_CYCLE) -> dict[str, Any]:
     if prior_path.is_file():
         prior = cast("dict[str, Any]", _read(prior_path))
         if prior.get("evaluated_once") is True and prior.get("holdout_fingerprint") != fingerprint:
-            return _blocked("holdout_fingerprint_changed", fingerprint=fingerprint)
+            return _blocked(
+                "holdout_fingerprint_changed",
+                cycle=cycle,
+                frame_sha256=str(plan["input_sha256"]),
+                fingerprint=fingerprint,
+            )
     predictions = {str(row.get("case_id")): row for row in _jsonl(root / paths.holdout_predictions)}
     if set(predictions) != set(holdout):
-        return _blocked("holdout_predictions_incomplete", fingerprint=fingerprint)
+        return _blocked(
+            "holdout_predictions_incomplete",
+            cycle=cycle,
+            frame_sha256=str(plan["input_sha256"]),
+            fingerprint=fingerprint,
+        )
     if any(row.get("threshold_source") != "development_only" for row in predictions.values()):
-        return _blocked("threshold_not_development_only", fingerprint=fingerprint)
+        return _blocked(
+            "threshold_not_development_only",
+            cycle=cycle,
+            frame_sha256=str(plan["input_sha256"]),
+            fingerprint=fingerprint,
+        )
     frame = {str(row["case_id"]): row for row in _jsonl(root / paths.frame)}
     truth = {
         str(row["case_id"]): row["final_decision"]
@@ -162,11 +182,18 @@ def _estimate(successes: int, total: int) -> dict[str, Any]:
     }
 
 
-def _blocked(reason: str, *, fingerprint: str = "0" * 64) -> dict[str, Any]:
+def _blocked(
+    reason: str,
+    *,
+    cycle: str = DEFAULT_CYCLE,
+    frame_sha256: str = "0" * 64,
+    fingerprint: str = "0" * 64,
+) -> dict[str, Any]:
     return {
         "schema_version": "mapping-evaluation-summary-v1",
+        "study_cycle": cycle,
         "status": "blocked",
-        "candidate_frame_sha256": "0" * 64,
+        "candidate_frame_sha256": frame_sha256,
         "holdout_fingerprint": fingerprint,
         "threshold_source": "development_only",
         "denominators": {},

@@ -12,5 +12,5 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] Official CLFS history documents are catalogued with source pages, direct URLs and checksums for public documents.
-- [ ] CLFS ZIP archives remain metadata-only because CPT/AMA reuse terms are not automatically accepted.
+- [x] Official CLFS history documents are catalogued with source pages, direct URLs and checksums for public documents.
+- [x] CLFS ZIP archives remain metadata-only because CPT/AMA reuse terms are not automatically accepted.

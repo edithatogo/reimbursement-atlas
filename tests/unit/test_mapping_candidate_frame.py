@@ -103,7 +103,7 @@ def test_main_cycle_guard_is_covered_by_immutable_output_contract() -> None:
 def test_positive_candidates_are_ranked_by_score() -> None:
     source = Path("scripts/make_mapping_candidate_frame.py").read_text(encoding="utf-8")
 
-    assert '-float(row["candidate_score"])' in source
-    assert 'float(row["candidate_score"])' in source
+    assert '-float(cast("float | int", row["candidate_score"]))' in source
+    assert 'float(cast("float | int", row["candidate_score"]))' in source
     assert "    )[:limit]" not in source
     assert "POSITIVE_CANDIDATE_TARGETS" in source

@@ -12,7 +12,7 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] Two fresh isolated reviews cover every checksum-bound expansion_v2 case without hypothesis or split disclosure.
+- [ ] Two fresh isolated reviews cover every case in the current checksum-bound, codebook-defined expansion cycle without hypothesis, candidate-score or split disclosure.
 - [ ] Accountable adjudication freezes reference labels before any development or holdout assignment.
 - [ ] The deterministic split contains 300 positive and 300 negative development cases plus an untouched 75 positive and 75 negative holdout.
 - [ ] Thresholds are tuned on development only; holdout predictions are frozen before truth is evaluated once.

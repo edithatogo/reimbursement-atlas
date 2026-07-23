@@ -12,7 +12,7 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] Generated batches group candidates by licence gate and publication scope without changing approval state.
-- [ ] Reviewer packet documents checksum, terms, attribution, restrictions and evidence requirements.
-- [ ] Dashboard exposes the grouped batch summary while keeping the detailed queue internal to governance.
-- [ ] Existing checksum-bound licence decision validation remains fail-closed.
+- [x] Generated batches group candidates by licence gate and publication scope without changing approval state.
+- [x] Reviewer packet documents checksum, terms, attribution, restrictions and evidence requirements.
+- [x] Dashboard exposes the grouped batch summary while keeping the detailed queue internal to governance.
+- [x] Existing checksum-bound licence decision validation remains fail-closed.

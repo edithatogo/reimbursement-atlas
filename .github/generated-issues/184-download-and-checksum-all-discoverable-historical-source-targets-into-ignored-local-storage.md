@@ -12,6 +12,6 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] Acquisition is HTTPS-only, retrying, resumable and allowlisted to official hosts.
-- [ ] Raw payloads remain ignored and every target has a relative cache path, byte count and SHA-256.
-- [ ] Failures and cached files remain explicit in a generated manifest.
+- [x] Acquisition is HTTPS-only, retrying, resumable and allowlisted to official hosts.
+- [x] Raw payloads remain ignored and every target has a relative cache path, byte count and SHA-256.
+- [x] Failures and cached files remain explicit in a generated manifest.

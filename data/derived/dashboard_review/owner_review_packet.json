@@ -18,9 +18,9 @@
   ],
   "provenance_inputs": [
     {
-      "byte_size": 3863,
+      "byte_size": 3882,
       "path": "apps/dashboard/public/status.json",
-      "sha256": "bf4ba66cf4830281fa894bf748dfff89da296195d5d9ff52328df92f8c8f5a53"
+      "sha256": "47f888bb2ead1900b0f6eb2087086f9fa838f740c86fb6448204d8c3ec6b2d5f"
     },
     {
       "byte_size": 126,
@@ -36,6 +36,11 @@
       "byte_size": 406,
       "path": "data/derived/release_readiness/summary.json",
       "sha256": "a1b9a2f0c12eec40c7b76889cc83b306eb5ded64225ed7931615dfce95d4f9d4"
+    },
+    {
+      "byte_size": 118850,
+      "path": "data/derived/publication_manifest.json",
+      "sha256": "0a4a495f90043c197d52165261546bb76ca34f24a2b5de262bd829ece152317a"
     }
   ],
   "record_schema": "schema/DashboardHumanReviewRecord.schema.json",

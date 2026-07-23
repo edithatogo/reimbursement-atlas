@@ -15,7 +15,7 @@ data_governance,local_quality status=passed return_code=0,data_dictionary,No act
 data_governance,local_quality status=passed return_code=0,evidence_readiness,No action required.,True,pass
 data_governance,local_quality status=passed return_code=0,source_drift,No action required.,True,pass
 data_governance,checks=41 blocking_failures=0,data_quality_summary,Resolve blocking data-quality checks before release.,True,pass
-data_governance,table_count=217 total_rows=187498,data_dictionary_summary,Regenerate the data dictionary after publication-manifest changes.,True,pass
+data_governance,table_count=217 total_rows=187508,data_dictionary_summary,Regenerate the data dictionary after publication-manifest changes.,True,pass
 data_governance,blocked=0 prototype_ready=5,evidence_readiness_summary,Resolve blocked research questions before evidence release.,True,pass
 data_governance,blocking_failure_count=0 warnings=0,source_drift_summary,Review source drift failures before release.,True,pass
 data_governance,validations=11 missing=0 failures=0,source_content_validation_summary,"Download missing public files in a network-enabled environment, then rerun validation.",True,pass
@@ -35,5 +35,5 @@ supply_chain,sbom_count=2 component_count=671,sbom_generation,Attach SBOM files 
 architecture,violations=0 cycles=0 unknown_layers=0,architecture_boundaries,"Fix layer violations, remove cycles, or update the layer map deliberately.",True,pass
 data_governance,artifact_count=211 warning_count=0,publication_manifest,Review licence gates and warnings before publishing derived datasets.,True,pass
 data_governance,artifact_count=194 approved_count=194 pending_count=0 blocked_count=0,licence_review_queue,Use the checksum-bound queue and record human decisions before publication; generation never grants approval.,True,pass
-data_governance,candidate_status=ready_for_blinded_review candidate_count=1500 evaluation_status=blocked,mapping_study_human_review,"Complete the rights-cleared candidate frame, blinded adjudication and one-time holdout evaluation before evidence claims.",False,blocked
+data_governance,cycle=expansion_v7 candidate_status=ready_for_blinded_review candidate_count=1500 evaluation_status=blocked,mapping_study_human_review,"Complete the rights-cleared candidate frame, blinded adjudication and one-time holdout evaluation before evidence claims.",False,blocked
 dashboard,record_status=missing provenance_reviewed=False commit_parity=False,dashboard_human_review,"Complete the commit-bound visual, keyboard, screen-reader and provenance review within the declared scope.",False,blocked

@@ -55,12 +55,22 @@ jobs:
           pixi run review-schemas
           pixi run local-parser-contracts
           pixi run mapping-power-calculation
+          pixi run mapping-candidate-frame
+          pixi run mapping-active-review-packets
+          pixi run mapping-active-review-ledger
+          pixi run mapping-active-adjudication
+          pixi run mapping-active-split
+          pixi run mapping-active-evaluation
+          pixi run mapping-cycle-registry
           pixi run fuzzy-benchmark
           pixi run seed-lake
           pixi run dashboard-seed
           # Generate the public status projection last, after all checksum-bound
           # artefacts and the authoritative decision ledger have settled.
           pixi run dashboard-status
+          pixi run dashboard-owner-review-packet
+          pixi run zenodo-draft
+          pixi run zenodo-deposition-plan
       - name: Ensure generated files are committed
         run: |
           git diff --stat

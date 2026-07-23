@@ -43,7 +43,9 @@ def _request(
         url, data=data, headers=headers, method=method
     )
     try:
-        with urllib.request.urlopen(request, timeout=120) as response:  # ruff:ignore[suspicious-url-open-usage]
+        with urllib.request.urlopen(  # nosec B310  # ruff:ignore[suspicious-url-open-usage]
+            request, timeout=120
+        ) as response:
             body = response.read()
     except urllib.error.HTTPError as exc:
         safe_url = url.split("?", maxsplit=1)[0]

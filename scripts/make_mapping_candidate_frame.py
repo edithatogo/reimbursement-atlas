@@ -89,7 +89,7 @@ def build_candidate_frame(  # ruff:ignore[too-many-locals]
         score_summary[family] = {}
         for hypothesis in ("positive_candidate", "negative_candidate"):
             scores = sorted(
-                float(row["candidate_score"])
+                float(cast("float | int", row["candidate_score"]))
                 for row in frame
                 if row["family"] == family and row["proposed_label_hypothesis"] == hypothesis
             )
@@ -232,7 +232,10 @@ def _family_candidates(  # ruff:ignore[too-many-locals]
             for row in unique.values()
             if row["proposed_label_hypothesis"] == "positive_candidate"
         ),
-        key=lambda row: (-float(row["candidate_score"]), str(row["case_id"])),
+        key=lambda row: (
+            -float(cast("float | int", row["candidate_score"])),
+            str(row["case_id"]),
+        ),
     )
     negative = sorted(
         (
@@ -240,7 +243,10 @@ def _family_candidates(  # ruff:ignore[too-many-locals]
             for row in unique.values()
             if row["proposed_label_hypothesis"] == "negative_candidate"
         ),
-        key=lambda row: (float(row["candidate_score"]), str(row["case_id"])),
+        key=lambda row: (
+            float(cast("float | int", row["candidate_score"])),
+            str(row["case_id"]),
+        ),
     )
     positive_target = min(POSITIVE_CANDIDATE_TARGETS[family], limit)
     used_groups: set[str] = set()
