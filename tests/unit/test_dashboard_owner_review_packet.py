@@ -55,15 +55,15 @@ def _machine_ready_root(tmp_path: Path) -> Path:
         },
     )
     _write_json(tmp_path, "data/derived/source_validation/summary.json", {"status": "pass"})
-    _write_json(
-        tmp_path,
-        "data/derived/evidence_readiness/summary.json",
-        {"evidence_release_ready": False},
-    )
+    _write_json(tmp_path, "data/derived/evidence_readiness/summary.json", {})
     _write_json(
         tmp_path,
         "data/derived/release_readiness/summary.json",
-        {"repository_release_ready": True, "research_publication_ready": False},
+        {
+            "evidence_release_ready": False,
+            "repository_release_ready": True,
+            "research_publication_ready": False,
+        },
     )
     _write_json(tmp_path, "data/derived/publication_manifest.json", {"status": "gated"})
     return tmp_path
@@ -107,12 +107,12 @@ def test_owner_packet_blocks_prohibited_public_content(
     }
 
 
-def test_owner_packet_fails_closed_for_stale_legacy_evidence() -> None:
+def test_current_owner_packet_is_ready_for_bounded_accountable_review() -> None:
     packet = build_packet(Path.cwd())
 
-    assert packet["status"] == "automated_evidence_blocked"
-    assert packet["routes"] == []
-    assert packet["screenshot_count"] == 0
+    assert packet["status"] == "pending_accountable_review"
+    assert packet["routes"] == list(ROUTES)
+    assert packet["screenshot_count"] == 44
     assert packet["automated_test_count"] == 64
     assert len(packet["provenance_inputs"]) >= 4
 

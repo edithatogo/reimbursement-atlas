@@ -64,7 +64,7 @@ def _provenance_assertions(root: Path) -> list[dict[str, object]]:
         (
             "evidence-release-readiness",
             "evidence.evidence_release_ready",
-            Path("data/derived/evidence_readiness/summary.json"),
+            Path("data/derived/release_readiness/summary.json"),
             "evidence_release_ready",
         ),
         (
@@ -85,6 +85,9 @@ def _provenance_assertions(root: Path) -> list[dict[str, object]]:
         source = _read_json(root / source_path)
         displayed = _value_at(status, displayed_path)
         expected = _value_at(source, source_field)
+        if identifier == "source-validation-status" and expected is None:
+            failures = source.get("blocking_failures")
+            expected = "pass" if failures == 0 else "blocked" if isinstance(failures, int) else None
         assertions.append({
             "id": identifier,
             "displayed_path": f"apps/dashboard/public/status.json#{displayed_path}",

@@ -10,9 +10,14 @@
   ],
   "automated_status": "pass",
   "automated_test_count": 64,
-  "browser_projects": [],
-  "commit_parity": false,
-  "current_head": "8b425e5b4d7a3757f6526e24c164dff00d578d0e",
+  "browser_projects": [
+    "desktop-chromium",
+    "mobile-chromium",
+    "desktop-firefox",
+    "desktop-webkit"
+  ],
+  "commit_parity": true,
+  "current_head": "9ce021257c502684874b5b6792a813a92639a68d",
   "prohibited_content_check": {
     "files_checked": 77,
     "findings": [],
@@ -27,20 +32,20 @@
     {
       "displayed_path": "apps/dashboard/public/status.json#evidence.source_validation",
       "displayed_value": "pass",
-      "expected_value": null,
+      "expected_value": "pass",
       "id": "source-validation-status",
       "source_field": "status",
       "source_path": "data/derived/source_validation/summary.json",
-      "status": "fail"
+      "status": "pass"
     },
     {
       "displayed_path": "apps/dashboard/public/status.json#evidence.evidence_release_ready",
       "displayed_value": false,
-      "expected_value": null,
+      "expected_value": false,
       "id": "evidence-release-readiness",
       "source_field": "evidence_release_ready",
-      "source_path": "data/derived/evidence_readiness/summary.json",
-      "status": "fail"
+      "source_path": "data/derived/release_readiness/summary.json",
+      "status": "pass"
     },
     {
       "displayed_path": "apps/dashboard/public/status.json#software.repository_release_ready",
@@ -65,7 +70,7 @@
     {
       "byte_size": 3523,
       "path": "apps/dashboard/public/status.json",
-      "sha256": "a0f71ff04084583bf642bcd1c19119c8a844afbc16ba5885aa7b7d59939d6a01"
+      "sha256": "5e95cc49f23a793da2713341d9064e0feae3db07bb137e8a1f0ce625d79f5309"
     },
     {
       "byte_size": 126,
@@ -90,12 +95,603 @@
   ],
   "record_schema": "schema/DashboardHumanReviewRecord.schema.json",
   "required_record": "data/derived/dashboard_review/human_review.json",
-  "route_coverage_bounded": false,
-  "routes": [],
+  "route_coverage_bounded": true,
+  "routes": [
+    "/",
+    "/analyses/",
+    "/analyses/cognitive_vs_procedural_ratio/",
+    "/automation/",
+    "/crosswalks/",
+    "/demonstrators/",
+    "/ontologies/",
+    "/readiness/",
+    "/roadmap/",
+    "/sources/",
+    "/sources/au_mbs/"
+  ],
   "schema_version": "dashboard-owner-review-packet-v2",
-  "screenshot_count": 0,
-  "screenshots": [],
-  "status": "automated_evidence_blocked",
-  "tested_commit": "80a2de943497318bae4337e8bc114520437ab238",
-  "workflow": {}
+  "screenshot_count": 44,
+  "screenshots": [
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 600109,
+      "file": "embedded",
+      "project": "desktop-chromium",
+      "route": "/",
+      "sha256": "32e69d9dbc1240d867c0ee7e5d3da675666b7f21c4ace018b21be3935a410b8a",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "firefox",
+      "browser_version": "151.0",
+      "byte_size": 308045,
+      "file": "embedded",
+      "project": "desktop-firefox",
+      "route": "/",
+      "sha256": "be5eb4d7903ac1b04d8dab02a8f3ee4a469ec9eed9d390a05e89a3752f1ab80e",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "webkit",
+      "browser_version": "26.5",
+      "byte_size": 381289,
+      "file": "embedded",
+      "project": "desktop-webkit",
+      "route": "/",
+      "sha256": "c25a6fdb55c6b848781a1bfbad859350b64250ef9cd5788713ebad75875c4ce6",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 463878,
+      "file": "embedded",
+      "project": "mobile-chromium",
+      "route": "/",
+      "sha256": "d03a5d294d0938e2140589c2fe583aec61aba3ad6fc09c42839a0eec53ca9f7b",
+      "viewport": {
+        "height": 727,
+        "width": 393
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 403769,
+      "file": "embedded",
+      "project": "desktop-chromium",
+      "route": "/analyses/",
+      "sha256": "3fcce9562d19fda1010af8547bad0e5a035d9bf6774ba9c9207843865a06f741",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "firefox",
+      "browser_version": "151.0",
+      "byte_size": 414286,
+      "file": "embedded",
+      "project": "desktop-firefox",
+      "route": "/analyses/",
+      "sha256": "ccf5147eca2d9c23d21acfffd3ff5c4e3fdfa80d32abaaa088523c1756921da7",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "webkit",
+      "browser_version": "26.5",
+      "byte_size": 494323,
+      "file": "embedded",
+      "project": "desktop-webkit",
+      "route": "/analyses/",
+      "sha256": "4214a517b4f4400ed0a7b97e0b8e85596859e6c0a5b2111f5def663f68bc8ad5",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 309644,
+      "file": "embedded",
+      "project": "mobile-chromium",
+      "route": "/analyses/",
+      "sha256": "b6fe19c4b9fa07aa528f889eac80b491d62982a7df49ed13467053bc1cfc573c",
+      "viewport": {
+        "height": 727,
+        "width": 393
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 198724,
+      "file": "embedded",
+      "project": "desktop-chromium",
+      "route": "/analyses/cognitive_vs_procedural_ratio/",
+      "sha256": "ecafb2b5bf3c1e9189d98fd0fe5c66876e43a23526a0f58c2566b88ba2ec81b2",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "firefox",
+      "browser_version": "151.0",
+      "byte_size": 177723,
+      "file": "embedded",
+      "project": "desktop-firefox",
+      "route": "/analyses/cognitive_vs_procedural_ratio/",
+      "sha256": "130328e786ab7146823cc36eaacac2c7a8c1eda8eab43b217401dc4ad2e55685",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "webkit",
+      "browser_version": "26.5",
+      "byte_size": 245297,
+      "file": "embedded",
+      "project": "desktop-webkit",
+      "route": "/analyses/cognitive_vs_procedural_ratio/",
+      "sha256": "aa3947630983fbadeee8b5b0a3e427165e9eb7be8604ac69c48c395612631531",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 143920,
+      "file": "embedded",
+      "project": "mobile-chromium",
+      "route": "/analyses/cognitive_vs_procedural_ratio/",
+      "sha256": "54d592a7dc4efa0045454c9fafd206d3509d9b6cc992d7201305be2bc7101787",
+      "viewport": {
+        "height": 727,
+        "width": 393
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 1358406,
+      "file": "embedded",
+      "project": "desktop-chromium",
+      "route": "/automation/",
+      "sha256": "704dd5a957b00de37197b8cb01a8f5ec1e64fb0b1642213ffa8034fcd509c150",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "firefox",
+      "browser_version": "151.0",
+      "byte_size": 1432460,
+      "file": "embedded",
+      "project": "desktop-firefox",
+      "route": "/automation/",
+      "sha256": "28a73156ea866c8130ceb31fc7f8065147756568e1ca36224626ac3120135fe5",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "webkit",
+      "browser_version": "26.5",
+      "byte_size": 1620830,
+      "file": "embedded",
+      "project": "desktop-webkit",
+      "route": "/automation/",
+      "sha256": "eca569a27dd3da38900969adaa5dd5e84066417c412cb0c811b3c0cdb3b91fdd",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 791991,
+      "file": "embedded",
+      "project": "mobile-chromium",
+      "route": "/automation/",
+      "sha256": "47fb625a48784e108c3e4fd52f722136d4ed58f950fd8fc4519ce9e9d82bd5e7",
+      "viewport": {
+        "height": 727,
+        "width": 393
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 533761,
+      "file": "embedded",
+      "project": "desktop-chromium",
+      "route": "/crosswalks/",
+      "sha256": "af2ce421dd5e53369f722a8ccd6bdb8f03865cfb01c8dd2c719e83b0220e81b0",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "firefox",
+      "browser_version": "151.0",
+      "byte_size": 546205,
+      "file": "embedded",
+      "project": "desktop-firefox",
+      "route": "/crosswalks/",
+      "sha256": "fb00ea29bf338fd821f7c9b7c38cb66b0bb777bb8e28e8aedc12d3d7cec1f192",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "webkit",
+      "browser_version": "26.5",
+      "byte_size": 625762,
+      "file": "embedded",
+      "project": "desktop-webkit",
+      "route": "/crosswalks/",
+      "sha256": "91ee72ed8e64c1351f7007a15d9a9a4d078c98c114784d492253d51d9dd8afc1",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 391896,
+      "file": "embedded",
+      "project": "mobile-chromium",
+      "route": "/crosswalks/",
+      "sha256": "9f8e7e4c936174b6cfb82415d5ab5df9cb2a15a014f3941d7d0053d9d1d60db5",
+      "viewport": {
+        "height": 727,
+        "width": 393
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 197367,
+      "file": "embedded",
+      "project": "desktop-chromium",
+      "route": "/demonstrators/",
+      "sha256": "807315280c236d8c603a47ddeb00d973b97111e04ebd10fa20f3f846a0a19a1f",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "firefox",
+      "browser_version": "151.0",
+      "byte_size": 173517,
+      "file": "embedded",
+      "project": "desktop-firefox",
+      "route": "/demonstrators/",
+      "sha256": "8d38978e4794e856fca258806e96c82d098fc61483f6c1d336b473c56752c09b",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "webkit",
+      "browser_version": "26.5",
+      "byte_size": 238367,
+      "file": "embedded",
+      "project": "desktop-webkit",
+      "route": "/demonstrators/",
+      "sha256": "050f6bee679e7a8e75d3034ea34bd4904f61a1fc31b508e2ab43a1fef22f0740",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 134982,
+      "file": "embedded",
+      "project": "mobile-chromium",
+      "route": "/demonstrators/",
+      "sha256": "1e4ada400a86123e8099603e2754cdabf90d85e09c839ee5476290964441e8bc",
+      "viewport": {
+        "height": 727,
+        "width": 393
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 314194,
+      "file": "embedded",
+      "project": "desktop-chromium",
+      "route": "/ontologies/",
+      "sha256": "98d68835a5580f101d5520a5f0ed46be0a8e0bdf8704f25d6e589fab41a295b2",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "firefox",
+      "browser_version": "151.0",
+      "byte_size": 301191,
+      "file": "embedded",
+      "project": "desktop-firefox",
+      "route": "/ontologies/",
+      "sha256": "9658afe9c29947b97a1adb7bf26dbc7f9c91501d460abfd7b9a498e81373d141",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "webkit",
+      "browser_version": "26.5",
+      "byte_size": 377905,
+      "file": "embedded",
+      "project": "desktop-webkit",
+      "route": "/ontologies/",
+      "sha256": "ee7bb0877182d930bfb08caa1c457b4498ff7f214e7105f3ba2dc1d2c07d844a",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 210483,
+      "file": "embedded",
+      "project": "mobile-chromium",
+      "route": "/ontologies/",
+      "sha256": "d547c74ea2d7d74f03fb09c5162a6121890ba55afec360f8c2f2681b9a5ebf12",
+      "viewport": {
+        "height": 727,
+        "width": 393
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 1244615,
+      "file": "embedded",
+      "project": "desktop-chromium",
+      "route": "/readiness/",
+      "sha256": "ca3cc8b8939430d1323c38251ee2af58023a9df78d375eb9a6d5c69c54bfc055",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "firefox",
+      "browser_version": "151.0",
+      "byte_size": 1317548,
+      "file": "embedded",
+      "project": "desktop-firefox",
+      "route": "/readiness/",
+      "sha256": "39df54ac37a7eeee2a94d4e8aee68ae5aa6517a9320afc7b491f7fe827d2f471",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "webkit",
+      "browser_version": "26.5",
+      "byte_size": 1497136,
+      "file": "embedded",
+      "project": "desktop-webkit",
+      "route": "/readiness/",
+      "sha256": "44574f6d5db9df54665f241e4d923ef4e21518d247841b9b59bf218c9662becf",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 818423,
+      "file": "embedded",
+      "project": "mobile-chromium",
+      "route": "/readiness/",
+      "sha256": "b1a78f65665ccdcbd39e140d4d345ddd2a33ff725da3142c7580620fd8eda100",
+      "viewport": {
+        "height": 727,
+        "width": 393
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 1142114,
+      "file": "embedded",
+      "project": "desktop-chromium",
+      "route": "/roadmap/",
+      "sha256": "eb554c2da1f34b7a4d05eec38bab98998c4abf3ad4703a81749668e88b5b90f7",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "firefox",
+      "browser_version": "151.0",
+      "byte_size": 1209478,
+      "file": "embedded",
+      "project": "desktop-firefox",
+      "route": "/roadmap/",
+      "sha256": "579f4785e1ff82475e4cdfd3eef32141c42c3edcc9f220033b278d694bfb3ac9",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "webkit",
+      "browser_version": "26.5",
+      "byte_size": 1363598,
+      "file": "embedded",
+      "project": "desktop-webkit",
+      "route": "/roadmap/",
+      "sha256": "10c85c5ef1982a3634e673a490ff75977a0f7495f666beb7d371362b759586f8",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 643010,
+      "file": "embedded",
+      "project": "mobile-chromium",
+      "route": "/roadmap/",
+      "sha256": "52731320dee27186a97a6212a56db4444f8b7d53467612e5b23084c3d59a4259",
+      "viewport": {
+        "height": 727,
+        "width": 393
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 1261282,
+      "file": "embedded",
+      "project": "desktop-chromium",
+      "route": "/sources/",
+      "sha256": "21300e48882953723eaee3cc9532afa88f20c91a10392aac7c3184ff2a0bb43b",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "firefox",
+      "browser_version": "151.0",
+      "byte_size": 1363051,
+      "file": "embedded",
+      "project": "desktop-firefox",
+      "route": "/sources/",
+      "sha256": "5a7c3aeafbe367a5009b891ed9707d7b53960a27696d8ac35589ec60ecc61be9",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "webkit",
+      "browser_version": "26.5",
+      "byte_size": 1519973,
+      "file": "embedded",
+      "project": "desktop-webkit",
+      "route": "/sources/",
+      "sha256": "b618123bc25b12d81f083e505919ede65f70c91e73ddcd9a5a5ea03f6af867ed",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 649558,
+      "file": "embedded",
+      "project": "mobile-chromium",
+      "route": "/sources/",
+      "sha256": "4cc35939ff7c01dfe72467226dea82105c49a1f16c9f8947866e0ebf71e3211a",
+      "viewport": {
+        "height": 727,
+        "width": 393
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 190013,
+      "file": "embedded",
+      "project": "desktop-chromium",
+      "route": "/sources/au_mbs/",
+      "sha256": "7653dfb7cebcd308a876e1bc48f705a070de40b99cfa2b5422bb483de54ba119",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "firefox",
+      "browser_version": "151.0",
+      "byte_size": 169435,
+      "file": "embedded",
+      "project": "desktop-firefox",
+      "route": "/sources/au_mbs/",
+      "sha256": "987273df55aabbc1f76fd2b32114665083de7ecbf137d87839798a38eca2bf28",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "webkit",
+      "browser_version": "26.5",
+      "byte_size": 233988,
+      "file": "embedded",
+      "project": "desktop-webkit",
+      "route": "/sources/au_mbs/",
+      "sha256": "1aa61e90a4d67edf63d5d553bf32a1485360b87a1ff0c8d9ff3ca429e9673b78",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "byte_size": 142949,
+      "file": "embedded",
+      "project": "mobile-chromium",
+      "route": "/sources/au_mbs/",
+      "sha256": "975ee3c360592e5f9fdf6898bd9e7dcfcdc7412225a86ae0007f0f18bc610481",
+      "viewport": {
+        "height": 727,
+        "width": 393
+      }
+    }
+  ],
+  "status": "pending_accountable_review",
+  "tested_commit": "9ce021257c502684874b5b6792a813a92639a68d",
+  "workflow": {
+    "artifact_name": "dashboard-browser-review-30003870004",
+    "run_attempt": "1",
+    "run_id": "30003870004",
+    "workflow": "Dashboard browser matrix",
+    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30003870004"
+  }
 }
