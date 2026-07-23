@@ -243,7 +243,9 @@ jobs:
             osf-publication/project-response.json > osf-publication/project.json
           test "$(jq -r '.public' osf-publication/project.json)" = "true"
 
-          registration_title="Reimbursement Atlas repository and data record"
+          registration_title="Reimbursement Atlas"
+          registration_schema_id="5df83f7dd28338001ac0ab0d"
+          registration_subject_id="584240da54be81056cecacac"
           curl --globoff --fail --silent --show-error \
             "https://api.osf.io/v2/nodes/$OSF_PROJECT_ID/registrations/?page[size]=100" \
             -H "Authorization: Bearer $OSF_TOKEN" > osf-publication/registrations.json
@@ -251,10 +253,21 @@ jobs:
           curl --globoff --fail --silent --show-error \
             "https://api.osf.io/v2/nodes/$OSF_PROJECT_ID/draft_registrations/?page[size]=100" \
             -H "Authorization: Bearer $OSF_TOKEN" > osf-publication/drafts.json
-          draft_id="$(jq -r --arg title "$registration_title" '[.data[] | select(.attributes.title == $title)] | first | .id // empty' osf-publication/drafts.json)"
+          draft_id="$(
+            jq -r --arg project_id "$OSF_PROJECT_ID" --arg schema_id "$registration_schema_id" '
+              [
+                .data[]
+                | select(.relationships.branched_from.data.id == $project_id)
+                | select(.relationships.registration_schema.data.id == $schema_id)
+              ]
+              | sort_by(.attributes.datetime_updated)
+              | last
+              | .id // empty
+            ' osf-publication/drafts.json
+          )"
           if [ -z "$registration_id" ] && [ -z "$draft_id" ]; then
             jq -cn --arg title "$registration_title" --arg description "$description" \
-              --arg schema_id "5df83f7dd28338001ac0ab0d" \
+              --arg schema_id "$registration_schema_id" \
               '{
                 data: {
                   type: "draft_registrations",
@@ -291,6 +304,16 @@ jobs:
               -H "Content-Type: application/vnd.api+json" \
               --data-binary @osf-publication/draft-update.json \
               > osf-publication/draft-updated.json
+            jq -cn --arg subject_id "$registration_subject_id" \
+              '{data: [{type: "subjects", id: $subject_id}]}' \
+              > osf-publication/draft-subject.json
+            curl --fail-with-body --silent --show-error \
+              -X POST \
+              "https://api.osf.io/v2/draft_registrations/$draft_id/relationships/subjects/" \
+              -H "Authorization: Bearer $OSF_TOKEN" \
+              -H "Content-Type: application/vnd.api+json" \
+              --data-binary @osf-publication/draft-subject.json \
+              > osf-publication/draft-subject-response.json
             jq -cn --arg draft_id "$draft_id" \
               '{
                 data: {
@@ -334,6 +357,8 @@ jobs:
             osf-publication/registrations.json osf-publication/drafts.json \
             osf-publication/draft-created.json osf-publication/draft-request.json \
             osf-publication/draft-update.json osf-publication/draft-updated.json \
+            osf-publication/draft-subject.json \
+            osf-publication/draft-subject-response.json \
             osf-publication/registration-request.json \
             osf-publication/registration-created.json \
             osf-publication/registration-response.json
