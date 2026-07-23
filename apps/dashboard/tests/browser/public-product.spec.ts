@@ -78,6 +78,11 @@ for (const route of routes) {
     await expect(page.locator('nav a[aria-current="page"]')).toHaveText(
       navLabelByRoute.get(route) ?? "",
     );
+    if (route === "/analyses/cognitive_vs_procedural_ratio/") {
+      await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+        "Cognitive versus procedural reward index",
+      );
+    }
     await expectNoPageLevelHorizontalOverflow(page);
     if (route === "/") {
       const statusCards = page.locator(".status-card");
