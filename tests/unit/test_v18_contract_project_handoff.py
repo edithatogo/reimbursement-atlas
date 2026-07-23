@@ -6,9 +6,13 @@ import shutil
 from pathlib import Path
 from types import SimpleNamespace
 
-from reimburse_atlas.dashboard_review import dashboard_source_fingerprint
+from reimburse_atlas.dashboard_review import (
+    dashboard_data_fingerprint,
+    dashboard_source_fingerprint,
+)
 from reimburse_atlas.final_handoff import build_final_handoff_tasks, write_final_handoff_tasks
 from reimburse_atlas.github_project import build_github_project_items, write_github_project_items
+from reimburse_atlas.osf_registration import registration_snapshot_sha256
 from reimburse_atlas.registry import load_conductor_tracks, load_source_files
 from reimburse_atlas.source_contracts import (
     build_source_contract_validations,
@@ -464,10 +468,25 @@ def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) ->
             "review_approved": True,
             "source_cutoff_status": "approved",
             "source_cutoff": "2026-07-19T00:00:00Z",
+            "protocol_digest": "protocol",
+            "analysis_manifest_digest": "manifest",
         },
         "data/derived/osf/remote_registration_snapshot.json": {
+            "schema_version": "osf-registration-snapshot-v1",
             "registration_id": "abc12",
+            "registration_url": "https://osf.io/abc12/",
             "status": "registered",
+            "submitted_at": "2026-07-23T13:00:00Z",
+            "immutable": True,
+            "public": True,
+            "pending_registration_approval": False,
+            "withdrawn": False,
+            "embargoed": False,
+            "remote_verified_at": "2026-07-23T13:05:00Z",
+            "receipt_sha256": "e" * 64,
+            "protocol_digest": "protocol",
+            "analysis_manifest_digest": "manifest",
+            "source_cutoff": "2026-07-19T00:00:00Z",
         },
         "data/derived/mapping_study/evaluation_summary.json": {
             "status": "accepted",
@@ -545,13 +564,20 @@ def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) ->
     source_fingerprint = dashboard_source_fingerprint(tmp_path)
     automated_payload = json.loads(automated_path.read_text(encoding="utf-8"))
     automated_payload["source_fingerprint"] = source_fingerprint
+    data_fingerprint = dashboard_data_fingerprint(tmp_path)
+    automated_payload["data_fingerprint"] = data_fingerprint
     automated_path.write_text(json.dumps(automated_payload), encoding="utf-8")
     owner_payload = json.loads(owner_path.read_text(encoding="utf-8"))
     owner_payload["source_fingerprint"] = source_fingerprint
+    owner_payload["data_fingerprint"] = data_fingerprint
     owner_path.write_text(json.dumps(owner_payload), encoding="utf-8")
     human["automated_packet_sha256"] = hashlib.sha256(automated_path.read_bytes()).hexdigest()
     human["owner_packet_sha256"] = hashlib.sha256(owner_path.read_bytes()).hexdigest()
     human_path.write_text(json.dumps(human), encoding="utf-8")
+    snapshot_path = tmp_path / "data/derived/osf/remote_registration_snapshot.json"
+    snapshot = json.loads(snapshot_path.read_text(encoding="utf-8"))
+    snapshot["snapshot_sha256"] = registration_snapshot_sha256(snapshot)
+    snapshot_path.write_text(json.dumps(snapshot), encoding="utf-8")
 
     rows = {row.id: row for row in build_final_handoff_tasks(tmp_path)}
 

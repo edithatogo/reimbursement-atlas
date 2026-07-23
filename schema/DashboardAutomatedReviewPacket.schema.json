@@ -4,12 +4,16 @@
   "title": "Dashboard automated review packet",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "status", "tested_commit", "test_count", "expected_test_count", "junit", "routes", "projects", "route_count", "project_count", "coverage_complete", "screenshot_count", "screenshots", "workflow", "report_error", "automated_scope", "human_review_required"],
+  "required": ["schema_version", "status", "tested_commit", "source_fingerprint", "data_fingerprint", "test_count", "expected_test_count", "junit", "routes", "projects", "route_count", "project_count", "coverage_complete", "screenshot_count", "screenshots", "workflow", "report_error", "automated_scope", "human_review_required"],
   "properties": {
     "schema_version": {"const": "dashboard-automated-review-v2"},
     "status": {"enum": ["pass", "fail", "missing_artifacts"]},
     "tested_commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
     "source_fingerprint": {
+      "type": ["string", "null"],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "data_fingerprint": {
       "type": ["string", "null"],
       "pattern": "^[a-f0-9]{64}$"
     },

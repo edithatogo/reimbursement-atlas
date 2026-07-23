@@ -337,7 +337,8 @@ jobs:
             "https://api.osf.io/v2/registrations/$registration_id/" \
             -H "Authorization: Bearer $OSF_TOKEN" \
             > osf-publication/registration-response.json
-          jq '{
+          remote_verified_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          jq --arg remote_verified_at "$remote_verified_at" '{
             schema_version: "osf-registration-receipt-v1",
             registration_id: .data.id,
             title: .data.attributes.title,
@@ -345,6 +346,9 @@ jobs:
             registered_at: .data.attributes.date_registered,
             public: .data.attributes.public,
             pending_registration_approval: .data.attributes.pending_registration_approval,
+            withdrawn: (.data.attributes.withdrawn // false),
+            embargoed: (.data.attributes.embargoed // false),
+            remote_verified_at: $remote_verified_at,
             status: (if .data.attributes.pending_registration_approval then "pending_approval" else "registered" end),
             submitted: true,
             immutable: true

@@ -166,7 +166,7 @@ def _result(
     }
 
 
-def _validate_remote_snapshot(remote: dict[str, object]) -> list[str]:
+def _validate_remote_snapshot(remote: dict[str, object]) -> list[str]:  # ruff:ignore[too-many-branches]
     """Validate the immutable metadata contract before comparing fingerprints."""
     errors: list[str] = []
     if remote.get("schema_version") != "osf-registration-snapshot-v1":
@@ -182,6 +182,20 @@ def _validate_remote_snapshot(remote: dict[str, object]) -> list[str]:
         errors.append("submitted_at")
     if remote.get("immutable") is not True:
         errors.append("immutable")
+    if remote.get("public") is not True:
+        errors.append("public")
+    if remote.get("pending_registration_approval") is not False:
+        errors.append("pending_registration_approval")
+    if remote.get("withdrawn") is not False:
+        errors.append("withdrawn")
+    if remote.get("embargoed") is not False:
+        errors.append("embargoed")
+    remote_verified_at = remote.get("remote_verified_at")
+    if not isinstance(remote_verified_at, str) or not remote_verified_at:
+        errors.append("remote_verified_at")
+    receipt_sha256 = remote.get("receipt_sha256")
+    if not isinstance(receipt_sha256, str) or _SHA256_RE.fullmatch(receipt_sha256) is None:
+        errors.append("receipt_sha256")
     snapshot_sha256 = remote.get("snapshot_sha256")
     if not isinstance(snapshot_sha256, str) or _SHA256_RE.fullmatch(snapshot_sha256) is None:
         errors.append("snapshot_sha256")
@@ -216,9 +230,16 @@ def build_remote_registration_snapshot(
     if receipt.get("public") is not True or receipt.get("immutable") is not True:
         message = "OSF registration must be public and immutable"
         raise ValueError(message)
+    if receipt.get("pending_registration_approval") is not False:
+        message = "OSF registration approval is still pending"
+        raise ValueError(message)
+    if receipt.get("withdrawn") is True or receipt.get("embargoed") is True:
+        message = "OSF registration must be active, unembargoed and not withdrawn"
+        raise ValueError(message)
     registration_id = receipt.get("registration_id")
     registration_url = receipt.get("registration_url")
     submitted_at = receipt.get("registered_at")
+    remote_verified_at = receipt.get("remote_verified_at")
     if not isinstance(registration_id, str) or not registration_id:
         message = "OSF registration receipt is missing registration_id"
         raise ValueError(message)
@@ -227,6 +248,9 @@ def build_remote_registration_snapshot(
         raise ValueError(message)
     if not isinstance(submitted_at, str) or not submitted_at:
         message = "OSF registration receipt is missing registered_at"
+        raise ValueError(message)
+    if not isinstance(remote_verified_at, str) or not remote_verified_at:
+        message = "OSF registration receipt is missing remote_verified_at"
         raise ValueError(message)
 
     required = ("protocol_digest", "analysis_manifest_digest", "source_cutoff")
@@ -242,6 +266,19 @@ def build_remote_registration_snapshot(
         "status": "registered",
         "submitted_at": submitted_at,
         "immutable": True,
+        "public": True,
+        "pending_registration_approval": False,
+        "withdrawn": False,
+        "embargoed": False,
+        "remote_verified_at": remote_verified_at,
+        "receipt_sha256": hashlib.sha256(
+            json.dumps(
+                dict(receipt),
+                ensure_ascii=True,
+                separators=(",", ":"),
+                sort_keys=True,
+            ).encode("utf-8")
+        ).hexdigest(),
         "protocol_digest": freeze["protocol_digest"],
         "analysis_manifest_digest": freeze["analysis_manifest_digest"],
         "source_cutoff": freeze["source_cutoff"],

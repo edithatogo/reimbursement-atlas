@@ -174,6 +174,12 @@ def _remote(**overrides: object) -> dict[str, object]:
         "status": "registered",
         "submitted_at": "2026-07-16T00:00:00Z",
         "immutable": True,
+        "public": True,
+        "pending_registration_approval": False,
+        "withdrawn": False,
+        "embargoed": False,
+        "remote_verified_at": "2026-07-23T13:05:00Z",
+        "receipt_sha256": "e" * 64,
         "protocol_digest": "protocol",
         "analysis_manifest_digest": "manifest",
         "source_cutoff": "2026-07-01",
@@ -250,6 +256,10 @@ def test_build_remote_registration_snapshot_binds_receipt_to_freeze() -> None:
         "public": True,
         "immutable": True,
         "status": "registered",
+        "pending_registration_approval": False,
+        "withdrawn": False,
+        "embargoed": False,
+        "remote_verified_at": "2026-07-23T13:05:00Z",
     }
 
     snapshot = build_remote_registration_snapshot(receipt, _freeze())
@@ -283,6 +293,10 @@ def test_build_remote_registration_snapshot_rejects_unready_receipt(
         "public": True,
         "immutable": True,
         "status": "registered",
+        "pending_registration_approval": False,
+        "withdrawn": False,
+        "embargoed": False,
+        "remote_verified_at": "2026-07-23T13:05:00Z",
     }
     receipt[field] = value
 
@@ -309,6 +323,10 @@ def test_build_remote_registration_snapshot_rejects_incomplete_freeze(
         "public": True,
         "immutable": True,
         "status": "registered",
+        "pending_registration_approval": False,
+        "withdrawn": False,
+        "embargoed": False,
+        "remote_verified_at": "2026-07-23T13:05:00Z",
     }
 
     with pytest.raises(ValueError, match=message):

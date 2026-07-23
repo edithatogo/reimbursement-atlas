@@ -31,6 +31,12 @@ Python and dashboard SBOMs, release manifest and machine-readable attestation re
 records its role, filename, byte size, SHA-256 and Zenodo-compatible MD5 checksum. Missing roles or
 checksum drift block draft creation, DOI reservation and publication.
 
+The tagged GitHub release publishes the machine-readable receipts emitted by
+`gh attestation verify --format json`. Every remote Zenodo transition requires the exact GitHub
+release tag, downloads that tag's assets, reconstructs the inventory paths, and verifies each
+subject against its receipt, signer workflow and tag ref before generating deposition inputs.
+This prevents a source-only workflow checkout from being mistaken for a frozen release payload.
+
 Preflight wording is retained only in `preflight.json`. The final Zenodo and DataCite metadata
 must describe the release itself and must not claim that it is merely a preparation record.
 DataCite validation requires named ORCID-bearing creators, explicit software and derived-data
@@ -58,7 +64,18 @@ The `Zenodo preflight` workflow now separates five transitions:
   `RESERVE_ZENODO_DOI` confirmation is supplied.
 - `publish` is irreversible and requires every gate plus `PUBLISH_ZENODO_RECORD`.
 - `verify` reads the remote deposition state and records the DOI, record URL and filename,
-  byte-size and checksum parity for every frozen release asset.
+  byte-size and checksum parity for every frozen release asset. For a published record it also
+  resolves the version DOI without credentials, queries DataCite, verifies title, creator ORCID,
+  publisher, version and software resource type, and records concept and version DOIs separately.
+
+Both `reserve` and `publish` first read the unpublished draft and require complete remote file and
+publication-critical metadata parity. Publication additionally requires a non-empty reserved
+version DOI. A mismatch fails before the irreversible publish action.
+
+For every mode except `plan`, set `release_tag` to the exact published GitHub release tag. The
+workflow rejects an empty tag, a tag that does not equal the package version, missing release
+assets, missing attestation receipts, receipt verification failure and inventory drift before it
+reads the Zenodo token.
 
 `scripts/zenodo_deposition.py` sends bearer credentials only to
 `https://zenodo.org/api` or `https://sandbox.zenodo.org/api`; redirects to arbitrary API hosts are

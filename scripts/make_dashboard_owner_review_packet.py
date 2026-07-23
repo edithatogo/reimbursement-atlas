@@ -9,9 +9,13 @@ import re
 from pathlib import Path
 from typing import Any, cast
 
-from reimburse_atlas.dashboard_review import dashboard_source_fingerprint
+from reimburse_atlas.dashboard_review import (
+    dashboard_data_fingerprint,
+    dashboard_source_fingerprint,
+)
 from reimburse_atlas.registry import project_root
 from scripts.make_dashboard_review_packet import PROJECTS, ROUTES, resolve_head
+from scripts.make_public_status_manifest import build_public_status_manifest
 
 AUTOMATED = Path("data/derived/dashboard_review/automated_review_packet.json")
 OUTPUT = Path("data/derived/dashboard_review/owner_review_packet.json")
@@ -54,6 +58,7 @@ def _value_at(value: dict[str, Any], path: str) -> object:
 
 def _provenance_assertions(root: Path) -> list[dict[str, object]]:
     status = _read_json(root / "apps/dashboard/public/status.json")
+    expected_status = build_public_status_manifest(root)
     checks = (
         (
             "source-validation-status",
@@ -79,6 +84,12 @@ def _provenance_assertions(root: Path) -> list[dict[str, object]]:
             Path("data/derived/release_readiness/summary.json"),
             "research_publication_ready",
         ),
+        (
+            "osf-registration-readiness",
+            "publication.osf_registration_ready",
+            Path("data/derived/release_readiness/summary.json"),
+            "osf_registration_ready",
+        ),
     )
     assertions: list[dict[str, object]] = []
     for identifier, displayed_path, source_path, source_field in checks:
@@ -97,6 +108,39 @@ def _provenance_assertions(root: Path) -> list[dict[str, object]]:
             "expected_value": expected,
             "status": "pass" if displayed == expected and expected is not None else "fail",
         })
+    for identifier, displayed_path in (
+        ("software-status", "software.status"),
+        ("evidence-status", "evidence.status"),
+        ("publication-status", "publication.status"),
+    ):
+        displayed = _value_at(status, displayed_path)
+        expected = _value_at(expected_status, displayed_path)
+        assertions.append({
+            "id": identifier,
+            "displayed_path": f"apps/dashboard/public/status.json#{displayed_path}",
+            "source_path": "scripts/make_public_status_manifest.py",
+            "source_field": displayed_path,
+            "displayed_value": displayed,
+            "expected_value": expected,
+            "status": "pass" if displayed == expected else "fail",
+        })
+    displayed_blockers = status.get("blockers")
+    expected_blockers = expected_status.get("blockers")
+    displayed_digest = hashlib.sha256(
+        json.dumps(displayed_blockers, separators=(",", ":"), sort_keys=True).encode()
+    ).hexdigest()
+    expected_digest = hashlib.sha256(
+        json.dumps(expected_blockers, separators=(",", ":"), sort_keys=True).encode()
+    ).hexdigest()
+    assertions.append({
+        "id": "complete-blocker-projection",
+        "displayed_path": "apps/dashboard/public/status.json#blockers",
+        "source_path": "scripts/make_public_status_manifest.py",
+        "source_field": "blockers",
+        "displayed_value": displayed_digest,
+        "expected_value": expected_digest,
+        "status": "pass" if displayed_digest == expected_digest else "fail",
+    })
     return assertions
 
 
@@ -129,6 +173,7 @@ def build_packet(root: Path) -> dict[str, Any]:
     automated = _read_json(root / AUTOMATED)
     current_head = resolve_head(root)
     source_fingerprint = dashboard_source_fingerprint(root)
+    data_fingerprint = dashboard_data_fingerprint(root)
     provenance = [
         {
             "path": path.as_posix(),
@@ -147,6 +192,7 @@ def build_packet(root: Path) -> dict[str, Any]:
         automated.get("status") == "pass"
         and automated.get("coverage_complete") is True
         and automated.get("source_fingerprint") == source_fingerprint
+        and automated.get("data_fingerprint") == data_fingerprint
         and routes == list(ROUTES)
         and projects == list(PROJECTS)
         and len(screenshot_evidence) == len(ROUTES) * len(PROJECTS)
@@ -159,6 +205,7 @@ def build_packet(root: Path) -> dict[str, Any]:
         "tested_commit": automated.get("tested_commit"),
         "current_head": current_head,
         "source_fingerprint": source_fingerprint,
+        "data_fingerprint": data_fingerprint,
         "commit_parity": automated.get("tested_commit") == current_head,
         "review_target_parity": automated.get("source_fingerprint") == source_fingerprint,
         "automated_status": automated.get("status", "missing"),

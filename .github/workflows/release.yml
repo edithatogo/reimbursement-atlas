@@ -27,6 +27,9 @@ jobs:
           pixi run public-data-policy
           pixi run licence-review-validate
           pixi run action-pin-policy
+          pixi run zenodo-metadata
+          pixi run zenodo-draft
+          pixi run release-identity --tag "$GITHUB_REF_NAME"
 
   build:
     needs: preflight
@@ -57,6 +60,15 @@ jobs:
             --artifact dist/* \
             --artifact reimbursement-atlas-*.tar.gz \
             --artifact data/derived/sbom/*.json
+      - name: Validate release asset identity
+        run: |
+          pixi run zenodo-metadata
+          pixi run zenodo-draft
+          args=(--tag "$GITHUB_REF_NAME")
+          for artifact in dist/* reimbursement-atlas-*.tar.gz; do
+            args+=(--asset "$artifact")
+          done
+          pixi run release-identity "${args[@]}"
       - name: Attest Python distributions
         uses: actions/attest@a1948c3f048ba23858d222213b7c278aabede763 # v4
         with:
@@ -79,12 +91,15 @@ jobs:
         run: |
           set -euo pipefail
           signer="${GITHUB_REPOSITORY}/.github/workflows/release.yml"
+          mkdir -p data/derived/attestations
           for artifact in dist/* reimbursement-atlas-*.tar.gz data/derived/sbom/*.json release-manifest.json; do
             gh attestation verify "$artifact" \
               --repo "$GITHUB_REPOSITORY" \
               --signer-workflow "$signer" \
               --source-ref "$GITHUB_REF" \
-              --deny-self-hosted-runners
+              --deny-self-hosted-runners \
+              --format json \
+              > "data/derived/attestations/$(basename "$artifact").json"
           done
       - uses: softprops/action-gh-release@718ea10b132b3b2eba29c1007bb80653f286566b # v3
         with:
@@ -92,4 +107,5 @@ jobs:
             dist/*
             reimbursement-atlas-*.tar.gz
             data/derived/sbom/*.json
+            data/derived/attestations/*.json
             release-manifest.json

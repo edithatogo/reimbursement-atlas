@@ -6,10 +6,14 @@
   owner approved the refreshed 64-test, 44-screenshot packet for the declared browser, route,
   automated accessibility and provenance scope. Manual VoiceOver and universal WCAG conformance
   remain explicitly outside scope. (Subissue #501, issue #493)
+- [x] REL-02A: Bind accountable approval to both dashboard implementation and generated displayed
+  data, recompute all readiness and blocker provenance assertions, and fail automation when either
+  packet becomes stale. Any OSF/readiness state transition requires a fresh bounded packet.
 - [x] REL-03: Validate OSF/HF/GitHub identity, metadata and licence-boundary parity. (Subissue #503)
 - [~] REL-04: Generate reproducible archive, wheel, sdist, SBOM, provenance, release manifest and
-  attestation receipts. The v2 inventory contract is implemented; signed final-release assets
-  remain pending until upstream evidence and dashboard gates pass. (Subissue #505)
+  machine-readable attestation receipts. The v2 inventory contract and exact-tag release download
+  and receipt-verification path are implemented; signed final-release assets remain pending until
+  upstream OSF registration evidence passes and the tag is published. (Subissue #505)
 - [ ] REL-05: Run final release-readiness and publication boundary review; do not publish papers. (Subissue #507)
 - [x] REL-06: Generate a deterministic Zenodo/DataCite draft manifest for software plus permitted
   derived data, with Apache-2.0 applied only to code and source-specific rights retained for data.
@@ -24,6 +28,9 @@
 - [x] REL-08A: Require the complete archive-publication gate before draft creation, DOI reservation
   or publication; retain a non-mutating plan mode, reject legacy or drifted inventories, and verify
   remote filename, size and checksum parity. (Issue #532)
+- [x] REL-08B: Make tagged GitHub releases publish machine-readable attestation verification
+  receipts, and require Zenodo transitions to download and re-verify the exact tag's complete
+  release assets before credentials or remote mutation are used. (Issue #532)
 - [ ] REL-09: Publish the versioned Zenodo record and verify DataCite DOI resolution only after
   mapping, dashboard, OSF registration, licence and release gates independently pass. (Issue #532)
 

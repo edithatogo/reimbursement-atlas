@@ -125,6 +125,90 @@ def test_remote_file_parity_checks_names_sizes_and_checksums() -> None:
     }
 
 
+def test_remote_metadata_parity_checks_publication_critical_fields() -> None:
+    local = {
+        "title": "Atlas",
+        "upload_type": "software",
+        "description": "Description",
+        "creators": [{"name": "Mordaunt, Dylan", "orcid": "0000-0002-9775-0603"}],
+        "keywords": ["health economics", "reimbursement"],
+        "license": "Apache-2.0",
+        "version": "0.1.0",
+        "related_identifiers": [
+            {"identifier": "https://example.test", "relation": "isIdenticalTo"}
+        ],
+    }
+    remote = {**local, "keywords": list(reversed(local["keywords"]))}
+
+    passing = zenodo_deposition._remote_metadata_parity(local, remote)  # ruff:ignore[private-member-access]
+    remote["version"] = "0.2.0"
+    failing = zenodo_deposition._remote_metadata_parity(local, remote)  # ruff:ignore[private-member-access]
+
+    assert passing["status"] == "pass"
+    assert failing == {"status": "fail", "mismatched_fields": ["version"]}
+
+
+def test_publish_requires_remote_parity_and_reserved_doi() -> None:
+    metadata = {
+        "title": "Atlas",
+        "upload_type": "software",
+        "description": "Description",
+        "creators": [],
+        "keywords": [],
+        "license": "Apache-2.0",
+        "version": "0.1.0",
+        "related_identifiers": [],
+    }
+    files = [{"filename": "package.whl", "byte_size": 3, "sha256": "a" * 64, "md5": "b" * 32}]
+    response = {
+        "metadata": metadata,
+        "files": [{"key": "package.whl", "size": 3, "checksum": f"md5:{'b' * 32}"}],
+    }
+
+    with pytest.raises(ValueError, match="reserved version DOI"):
+        zenodo_deposition._require_remote_draft_parity(  # ruff:ignore[private-member-access]
+            response, metadata, files, require_reserved_doi=True
+        )
+    response["metadata"] = {**metadata, "prereserve_doi": {"doi": "10.5281/zenodo.123"}}
+    file_parity, metadata_parity = zenodo_deposition._require_remote_draft_parity(  # ruff:ignore[private-member-access]
+        response, metadata, files, require_reserved_doi=True
+    )
+    assert file_parity["status"] == "pass"
+    assert metadata_parity["status"] == "pass"
+
+
+def test_datacite_parity_requires_identity_and_orcid() -> None:
+    local = {
+        "title": "Atlas",
+        "version": "0.1.0",
+        "creators": [{"orcid": "0000-0002-9775-0603"}],
+    }
+    payload = {
+        "data": {
+            "attributes": {
+                "titles": [{"title": "Atlas"}],
+                "publisher": "Zenodo",
+                "version": "0.1.0",
+                "types": {"resourceTypeGeneral": "Software"},
+                "creators": [
+                    {
+                        "nameIdentifiers": [
+                            {
+                                "nameIdentifier": "https://orcid.org/0000-0002-9775-0603",
+                                "nameIdentifierScheme": "ORCID",
+                            }
+                        ]
+                    }
+                ],
+            }
+        }
+    }
+
+    assert zenodo_deposition._datacite_parity(local, payload)["status"] == "pass"  # ruff:ignore[private-member-access]
+    payload["data"]["attributes"]["version"] = "0.2.0"
+    assert zenodo_deposition._datacite_parity(local, payload)["status"] == "fail"  # ruff:ignore[private-member-access]
+
+
 def test_load_inputs_rejects_legacy_frozen_inventory(tmp_path: Path) -> None:
     output = tmp_path / "data/derived/zenodo"
     output.mkdir(parents=True)

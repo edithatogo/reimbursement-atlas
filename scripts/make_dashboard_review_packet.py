@@ -13,7 +13,10 @@ from typing import Any, cast
 
 from defusedxml import ElementTree as ET
 
-from reimburse_atlas.dashboard_review import dashboard_source_fingerprint
+from reimburse_atlas.dashboard_review import (
+    dashboard_data_fingerprint,
+    dashboard_source_fingerprint,
+)
 from reimburse_atlas.registry import project_root
 
 ROUTES = (
@@ -191,6 +194,7 @@ def build_packet(
     tested_commit: str,
     *,
     source_fingerprint: str | None = None,
+    data_fingerprint: str | None = None,
 ) -> dict[str, object]:
     """Build a fail-closed packet from Playwright JSON, JUnit, and attachments."""
     try:
@@ -205,6 +209,7 @@ def build_packet(
             coverage_complete=False,
             report_error=str(caught) or type(caught).__name__,
             source_fingerprint=source_fingerprint,
+            data_fingerprint=data_fingerprint,
         )
     coverage_complete = _coverage_complete(screenshots)
     status = "pass" if _tests_passed(statuses, junit) and coverage_complete else "fail"
@@ -217,6 +222,7 @@ def build_packet(
         coverage_complete=coverage_complete,
         report_error=None,
         source_fingerprint=source_fingerprint,
+        data_fingerprint=data_fingerprint,
     )
 
 
@@ -230,12 +236,14 @@ def _packet(
     coverage_complete: bool,
     report_error: str | None,
     source_fingerprint: str | None,
+    data_fingerprint: str | None,
 ) -> dict[str, object]:
     return {
         "schema_version": "dashboard-automated-review-v2",
         "status": status,
         "tested_commit": tested_commit,
         "source_fingerprint": source_fingerprint,
+        "data_fingerprint": data_fingerprint,
         "test_count": test_count,
         "expected_test_count": EXPECTED_TEST_COUNT,
         "junit": junit,
@@ -317,6 +325,7 @@ def main() -> None:
         root / args.report_dir,
         resolve_head(root),
         source_fingerprint=dashboard_source_fingerprint(root),
+        data_fingerprint=dashboard_data_fingerprint(root),
     )
     output = root / args.output
     output.parent.mkdir(parents=True, exist_ok=True)

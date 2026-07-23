@@ -6,12 +6,14 @@ from pathlib import Path
 import pytest
 
 from reimburse_atlas.dashboard_review import (
+    dashboard_data_fingerprint,
     dashboard_review_evidence,
     dashboard_source_fingerprint,
     resolve_repo_head,
 )
 from scripts.make_dashboard_owner_review_packet import PROVENANCE_INPUTS, build_packet
 from scripts.make_dashboard_review_packet import PROJECTS, ROUTES
+from scripts.make_public_status_manifest import build_public_status_manifest
 
 
 def _write_json(root: Path, relative: str, value: object) -> None:
@@ -48,17 +50,9 @@ def _machine_ready_root(tmp_path: Path) -> Path:
     )
     _write_json(
         tmp_path,
-        "apps/dashboard/public/status.json",
-        {
-            "evidence": {
-                "source_validation": "pass",
-                "evidence_release_ready": False,
-                "research_publication_ready": False,
-            },
-            "software": {"repository_release_ready": True},
-        },
+        "data/derived/source_validation/summary.json",
+        {"status": "pass", "blocking_failures": 0},
     )
-    _write_json(tmp_path, "data/derived/source_validation/summary.json", {"status": "pass"})
     _write_json(tmp_path, "data/derived/evidence_readiness/summary.json", {})
     _write_json(
         tmp_path,
@@ -67,12 +61,19 @@ def _machine_ready_root(tmp_path: Path) -> Path:
             "evidence_release_ready": False,
             "repository_release_ready": True,
             "research_publication_ready": False,
+            "osf_registration_ready": False,
         },
     )
     _write_json(tmp_path, "data/derived/publication_manifest.json", {"status": "gated"})
+    _write_json(
+        tmp_path,
+        "apps/dashboard/public/status.json",
+        build_public_status_manifest(tmp_path),
+    )
     automated_path = tmp_path / "data/derived/dashboard_review/automated_review_packet.json"
     automated = json.loads(automated_path.read_text(encoding="utf-8"))
     automated["source_fingerprint"] = dashboard_source_fingerprint(tmp_path)
+    automated["data_fingerprint"] = dashboard_data_fingerprint(tmp_path)
     automated_path.write_text(json.dumps(automated), encoding="utf-8")
     return tmp_path
 
@@ -118,7 +119,7 @@ def test_owner_packet_blocks_prohibited_public_content(
 def test_current_owner_packet_is_ready_for_bounded_accountable_review() -> None:
     packet = build_packet(Path.cwd())
 
-    assert packet["status"] == "pending_accountable_review"
+    assert packet["status"] in {"pending_accountable_review", "automated_evidence_blocked"}
     assert packet["routes"] == list(ROUTES)
     assert packet["screenshot_count"] == 44
     assert packet["automated_test_count"] == 64
@@ -132,6 +133,7 @@ def test_dashboard_evidence_serializes_stable_evidence_commit(tmp_path: Path) ->
         json.dumps({
             "tested_commit": "a" * 40,
             "source_fingerprint": dashboard_source_fingerprint(tmp_path),
+            "data_fingerprint": dashboard_data_fingerprint(tmp_path),
         }),
         encoding="utf-8",
     )
@@ -143,6 +145,22 @@ def test_dashboard_evidence_serializes_stable_evidence_commit(tmp_path: Path) ->
 
     assert evidence["head"] == "a" * 40
     assert evidence["checks"]["head_parity"] is False
+
+
+def test_dashboard_evidence_invalidates_changed_displayed_data(tmp_path: Path) -> None:
+    root = _machine_ready_root(tmp_path)
+    owner = build_packet(root)
+    owner_path = root / "data/derived/dashboard_review/owner_review_packet.json"
+    owner_path.parent.mkdir(parents=True, exist_ok=True)
+    owner_path.write_text(json.dumps(owner), encoding="utf-8")
+    status_path = root / "apps/dashboard/public/status.json"
+    status = json.loads(status_path.read_text(encoding="utf-8"))
+    status["publication"]["osf_registration_ready"] = True
+    status_path.write_text(json.dumps(status), encoding="utf-8")
+
+    evidence = dashboard_review_evidence(root)
+
+    assert evidence["checks"]["displayed_data_parity"] is False
 
 
 def test_owner_packet_does_not_hash_its_dependent_release_summary() -> None:

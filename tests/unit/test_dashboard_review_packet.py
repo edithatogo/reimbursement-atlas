@@ -85,7 +85,12 @@ def test_dashboard_packet_parses_attributable_complete_matrix(tmp_path: Path, mo
     monkeypatch.setenv("GITHUB_RUN_ATTEMPT", "2")
     monkeypatch.setenv("GITHUB_WORKFLOW", "Dashboard browser matrix")
 
-    packet = build_packet(report, "a" * 40)
+    packet = build_packet(
+        report,
+        "a" * 40,
+        source_fingerprint="b" * 64,
+        data_fingerprint="c" * 64,
+    )
     schema = json.loads(
         Path("schema/DashboardAutomatedReviewPacket.schema.json").read_text(encoding="utf-8")
     )

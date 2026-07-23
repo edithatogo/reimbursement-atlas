@@ -22,6 +22,10 @@ on:
         description: Exact confirmation required by the selected mutating mode
         required: false
         type: string
+      release_tag:
+        description: Exact published GitHub release tag whose assets will be deposited
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -64,9 +68,59 @@ jobs:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
+          ref: ${{ inputs.release_tag }}
       - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
+      - name: Download and verify exact GitHub release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: |
+          set -euo pipefail
+          test -n "$RELEASE_TAG"
+          test "$RELEASE_TAG" = "v$(pixi run --quiet python -c \
+            'import tomllib; print(tomllib.load(open("pyproject.toml", "rb"))["project"]["version"])')"
+          mkdir -p release-assets dist data/derived/sbom data/derived/attestations
+          gh release download "$RELEASE_TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --dir release-assets
+          find release-assets -maxdepth 1 -type f -name '*.whl' -exec cp {} dist/ \;
+          find release-assets -maxdepth 1 -type f -name 'reimburse_atlas-*.tar.gz' \
+            -exec cp {} dist/ \;
+          find release-assets -maxdepth 1 -type f -name 'reimbursement-atlas-v*.tar.gz' \
+            -exec cp {} . \;
+          find release-assets -maxdepth 1 -type f -name 'cyclonedx-*.json' \
+            -exec cp {} data/derived/sbom/ \;
+          find release-assets -maxdepth 1 -type f -name '*.json.json' \
+            -exec cp {} data/derived/attestations/ \;
+          cp release-assets/release-manifest.json .
+          test "$(jq -r '.tag' release-manifest.json)" = "$RELEASE_TAG"
+          test "$(jq -r '.commit' release-manifest.json)" = "$(git rev-parse HEAD)"
+          signer="${GITHUB_REPOSITORY}/.github/workflows/release.yml"
+          for artifact in dist/* reimbursement-atlas-*.tar.gz data/derived/sbom/*.json release-manifest.json; do
+            receipt="data/derived/attestations/$(basename "$artifact").json"
+            test -s "$receipt"
+            digest="$(sha256sum "$artifact" | cut -d' ' -f1)"
+            jq -e --arg name "$(basename "$artifact")" --arg digest "$digest" \
+              'any(.[]; any(.verificationResult.statement.subject[];
+                .name == $name and .digest.sha256 == $digest))' \
+              "$receipt" >/dev/null
+            gh attestation verify "$artifact" \
+              --repo "$GITHUB_REPOSITORY" \
+              --signer-workflow "$signer" \
+              --source-ref "refs/tags/$RELEASE_TAG" \
+              --deny-self-hosted-runners
+          done
       - name: Regenerate deterministic deposition inputs
-        run: pixi run zenodo-metadata && pixi run zenodo-draft
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: |
+          pixi run zenodo-metadata
+          pixi run zenodo-draft
+          args=(--tag "$RELEASE_TAG")
+          for artifact in dist/* reimbursement-atlas-*.tar.gz; do
+            args+=(--asset "$artifact")
+          done
+          pixi run release-identity "${args[@]}"
       - name: Execute explicit Zenodo transition
         env:
           ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}

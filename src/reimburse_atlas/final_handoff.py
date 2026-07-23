@@ -496,12 +496,11 @@ def _osf_review_approved(repo: Path) -> bool:
 
 
 def _osf_snapshot_available(repo: Path) -> bool:
+    from reimburse_atlas.osf_registration import check_registration_drift
+
+    freeze = _read_json(repo / "data/derived/osf/registration_freeze.json")
     snapshot = _read_json(repo / "data/derived/osf/remote_registration_snapshot.json")
-    return bool(snapshot.get("registration_id")) and snapshot.get("status") in {
-        "draft",
-        "registered",
-        "embargoed",
-    }
+    return check_registration_drift(freeze, snapshot)["status"] == "ready"
 
 
 def _mapping_evaluation_accepted(repo: Path) -> bool:

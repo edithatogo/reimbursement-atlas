@@ -40,6 +40,7 @@ SOURCE_FILES = (
     Path("apps/dashboard/playwright.config.ts"),
     Path("apps/dashboard/tsconfig.json"),
 )
+DATA_FILES = (Path("apps/dashboard/public/status.json"),)
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -68,6 +69,20 @@ def dashboard_source_fingerprint(repo: Path) -> str:
         digest.update(path.as_posix().encode("utf-8"))
         digest.update(b"\0")
         digest.update((repo / path).read_bytes())
+        digest.update(b"\0")
+    return digest.hexdigest()
+
+
+def dashboard_data_fingerprint(repo: Path) -> str:
+    """Hash the generated public state whose values are displayed by the dashboard."""
+    digest = hashlib.sha256()
+    for path in DATA_FILES:
+        absolute = repo / path
+        if not absolute.is_file():
+            continue
+        digest.update(path.as_posix().encode("utf-8"))
+        digest.update(b"\0")
+        digest.update(absolute.read_bytes())
         digest.update(b"\0")
     return digest.hexdigest()
 
@@ -125,6 +140,7 @@ def dashboard_review_evidence(repo: Path) -> dict[str, object]:
     raw_prohibited = owner.get("prohibited_content_check")
     prohibited = cast("dict[str, Any]", raw_prohibited) if isinstance(raw_prohibited, dict) else {}
     source_fingerprint = dashboard_source_fingerprint(repo)
+    data_fingerprint = dashboard_data_fingerprint(repo)
     checks = {
         "automated_pass": automated.get("status") == "pass",
         "coverage_complete": (
@@ -141,6 +157,10 @@ def dashboard_review_evidence(repo: Path) -> dict[str, object]:
         and automated.get("tested_commit") == owner.get("tested_commit")
         and automated.get("source_fingerprint") == source_fingerprint
         and owner.get("source_fingerprint") == source_fingerprint,
+        "displayed_data_parity": (
+            automated.get("data_fingerprint") == data_fingerprint
+            and owner.get("data_fingerprint") == data_fingerprint
+        ),
         "provenance_assertions_pass": bool(assertions)
         and all(item.get("status") == "pass" for item in assertions),
         "prohibited_content_pass": prohibited.get("status") == "pass",

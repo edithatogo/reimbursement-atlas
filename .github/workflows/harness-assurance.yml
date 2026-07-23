@@ -95,6 +95,7 @@ jobs:
           # Generate status only after the final checksum-bound queue exists.
           pixi run dashboard-status
           pixi run dashboard-owner-review-packet
+          pixi run dashboard-review-current
           pixi run zenodo-draft
           pixi run zenodo-deposition-plan
       - name: Require a clean deterministic regeneration
