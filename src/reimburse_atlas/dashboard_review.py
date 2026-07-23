@@ -46,6 +46,16 @@ SOURCE_FILES = (
 DATA_ROOT = Path("apps/dashboard/public")
 SELF_ATTESTATION_FILE = Path("apps/dashboard/public/data/release_gates.csv")
 PUBLIC_STATUS_FILE = Path("apps/dashboard/public/status.json")
+SELF_ATTESTATION_CSV_ROWS = {
+    Path("apps/dashboard/public/data/final_handoff_tasks.csv"): (
+        "id",
+        "final_dashboard_visual_review",
+    ),
+    Path("apps/dashboard/public/data/source_drift_report.csv"): (
+        "id",
+        "source_drift_final_handoff_jsonl_to_final_handoff_csv",
+    ),
+}
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -96,10 +106,16 @@ def dashboard_data_fingerprint(
         content = absolute.read_bytes()
         if path == SELF_ATTESTATION_FILE:
             content = _release_gates_without_dashboard_receipt(content)
-        elif path == PUBLIC_STATUS_FILE and self_attestation_commit:
+        elif self_attestation_commit and (
+            path == PUBLIC_STATUS_FILE or path in SELF_ATTESTATION_CSV_ROWS
+        ):
             baseline = _git_file_at_commit(repo, self_attestation_commit, path)
             if baseline is not None:
-                content = normalize_public_status_dashboard_receipt(content, baseline)
+                if path == PUBLIC_STATUS_FILE:
+                    content = normalize_public_status_dashboard_receipt(content, baseline)
+                else:
+                    key, value = SELF_ATTESTATION_CSV_ROWS[path]
+                    content = normalize_csv_receipt(content, baseline, key=key, value=value)
         digest.update(path.as_posix().encode("utf-8"))
         digest.update(b"\0")
         digest.update(content)
@@ -149,15 +165,47 @@ def normalize_public_status_dashboard_receipt(content: bytes, baseline: bytes) -
         return content
     normalized_rows: list[Any] = []
     for row in blocker_rows:
-        if (
+        is_dashboard_receipt = (
             isinstance(row, dict)
             and cast("dict[str, Any]", row).get("id") == "dashboard_human_review"
-        ):
-            normalized_rows.append(baseline_receipt)
-        else:
+        )
+        if not is_dashboard_receipt:
             normalized_rows.append(row)
+    baseline_index = baseline_rows.index(baseline_receipt)
+    normalized_rows.insert(min(baseline_index, len(normalized_rows)), baseline_receipt)
     payload["blockers"] = normalized_rows
     return (json.dumps(payload, indent=2, sort_keys=True) + "\n").encode("utf-8")
+
+
+def normalize_csv_receipt(
+    content: bytes,
+    baseline: bytes,
+    *,
+    key: str,
+    value: str,
+) -> bytes:
+    """Restore one self-derived CSV receipt from the reviewed commit."""
+    current_reader = csv.DictReader(io.StringIO(content.decode("utf-8")))
+    baseline_reader = csv.DictReader(io.StringIO(baseline.decode("utf-8")))
+    if current_reader.fieldnames is None or baseline_reader.fieldnames != current_reader.fieldnames:
+        return content
+    current_rows = list(current_reader)
+    baseline_rows = list(baseline_reader)
+    baseline_receipt = next((row for row in baseline_rows if row.get(key) == value), None)
+    if baseline_receipt is None:
+        return content
+    normalized_rows = [row for row in current_rows if row.get(key) != value]
+    baseline_index = baseline_rows.index(baseline_receipt)
+    normalized_rows.insert(min(baseline_index, len(normalized_rows)), baseline_receipt)
+    output = io.StringIO(newline="")
+    writer = csv.DictWriter(
+        output,
+        fieldnames=current_reader.fieldnames,
+        lineterminator="\n",
+    )
+    writer.writeheader()
+    writer.writerows(normalized_rows)
+    return output.getvalue().encode("utf-8")
 
 
 def _git_file_at_commit(repo: Path, commit: str, path: Path) -> bytes | None:

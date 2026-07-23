@@ -9,6 +9,7 @@ from reimburse_atlas.dashboard_review import (
     dashboard_data_fingerprint,
     dashboard_review_evidence,
     dashboard_source_fingerprint,
+    normalize_csv_receipt,
     normalize_public_status_dashboard_receipt,
     resolve_repo_head,
 )
@@ -234,6 +235,22 @@ def test_public_status_normalization_replaces_only_dashboard_receipt() -> None:
 
     assert normalized["blockers"][0] == baseline["blockers"][0]
     assert normalized["blockers"][1] == current["blockers"][1]
+
+
+def test_csv_normalization_replaces_only_named_self_receipt() -> None:
+    baseline = b"id,status\nfinal_dashboard_visual_review,blocked\nosf_registration,blocked\n"
+    current = b"id,status\nfinal_dashboard_visual_review,complete\nosf_registration,pass\n"
+
+    normalized = normalize_csv_receipt(
+        current,
+        baseline,
+        key="id",
+        value="final_dashboard_visual_review",
+    )
+
+    assert normalized == (
+        b"id,status\nfinal_dashboard_visual_review,blocked\nosf_registration,pass\n"
+    )
 
 
 def test_owner_packet_does_not_hash_its_dependent_release_summary() -> None:

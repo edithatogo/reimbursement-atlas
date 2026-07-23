@@ -34,7 +34,7 @@ supply_chain,"All workflow actions are already SHA-pinned, local, or docker refe
 supply_chain,sbom_count=2 component_count=671,sbom_generation,Attach SBOM files to release artefacts and attestations.,True,pass
 architecture,violations=0 cycles=0 unknown_layers=0,architecture_boundaries,"Fix layer violations, remove cycles, or update the layer map deliberately.",True,pass
 data_governance,artifact_count=211 warning_count=0,publication_manifest,Review licence gates and warnings before publishing derived datasets.,True,pass
-data_governance,artifact_count=199 approved_count=197 pending_count=2 blocked_count=0,licence_review_queue,Use the checksum-bound queue and record human decisions before publication; generation never grants approval.,True,pass
+data_governance,artifact_count=199 approved_count=199 pending_count=0 blocked_count=0,licence_review_queue,Use the checksum-bound queue and record human decisions before publication; generation never grants approval.,True,pass
 data_governance,cycle=expansion_v9 candidate_status=ready_for_private_blinded_review candidate_count=1500 evaluation_status=accepted,mapping_study_human_review,"Complete the rights-cleared candidate frame, blinded adjudication and one-time holdout evaluation before evidence claims.",False,pass
 dashboard,head=950c4b6061dadc48ebf0d729b35b3f7cfab87739 failed_checks=none,dashboard_human_review,"Complete the commit-bound visual, keyboard, screen-reader and provenance review within the declared scope.",False,pass
 release,status=blocked reasons=remote_registration_snapshot_missing registration_id=missing,osf_registration,"Submit the approved checksum-bound registration, export an immutable remote snapshot, and verify exact protocol, manifest and source-cutoff parity.",False,blocked
