@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Literal, cast
 
 from reimburse_atlas.io import write_csv, write_jsonl
+from reimburse_atlas.mapping_study_paths import latest_mapping_study_cycle, mapping_study_paths
 from reimburse_atlas.models import FinalHandoffTaskRecord
 from reimburse_atlas.registry import project_root
 
@@ -18,6 +19,8 @@ HandoffStatus = Literal[
 def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTaskRecord]:
     """Build the remaining tasks that require network, credentials or review."""
     repo = root or project_root()
+    mapping_cycle = latest_mapping_study_cycle(repo)
+    mapping_paths = mapping_study_paths(mapping_cycle)
     return [
         FinalHandoffTaskRecord(
             id="final_source_downloads",
@@ -270,16 +273,18 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "frozen expansion cycle."
             ),
             command=(
-                "pixi run mapping-blind-review-packets && pixi run mapping-adjudication-packet"
+                f"PYTHONPATH=src python scripts/make_mapping_blind_review_ledger.py --cycle "
+                f"{mapping_cycle} && PYTHONPATH=src python "
+                f"scripts/make_mapping_adjudication_packet.py --cycle {mapping_cycle}"
             ),
-            evidence_path="data/derived/mapping_study/adjudication_owner_packet.json",
+            evidence_path=mapping_paths.owner_packet.as_posix(),
             unblock_condition=(
                 "The expansion cycle fills the approved family/label quotas, accountable "
                 "adjudication is frozen, and the untouched holdout is evaluated exactly once."
             ),
             recommended_action=(
-                "Preserve the first frame and its 421-case quota gap as immutable evidence. "
-                "Review expansion_v2 independently; do not disclose or evaluate its holdout early."
+                f"Preserve prior cycles as immutable evidence. Complete {mapping_cycle} under its "
+                "bounded codebook; do not disclose or evaluate its holdout early."
             ),
             reason_code=(
                 "mapping_holdout_accepted"
@@ -287,8 +292,8 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 else "mapping_adjudication_pending"
             ),
             gate_evidence=(
-                "data/derived/mapping_study/adjudication_owner_packet.json",
-                "data/derived/mapping_study/expansion_v2/candidate_frame_summary.json",
+                mapping_paths.owner_packet.as_posix(),
+                (mapping_paths.derived / "candidate_frame_summary.json").as_posix(),
             ),
             external_state="not_applicable",
         ),
@@ -499,7 +504,8 @@ def _osf_snapshot_available(repo: Path) -> bool:
 
 
 def _mapping_evaluation_accepted(repo: Path) -> bool:
-    evaluation = _read_json(repo / "data/derived/mapping_study/evaluation_summary.json")
+    cycle = latest_mapping_study_cycle(repo)
+    evaluation = _read_json(repo / mapping_study_paths(cycle).evaluation)
     return evaluation.get("status") == "accepted" and evaluation.get("evaluated_once") is True
 
 

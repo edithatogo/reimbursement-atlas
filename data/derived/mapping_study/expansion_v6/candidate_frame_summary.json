@@ -1,0 +1,124 @@
+{
+  "candidate_count": 1500,
+  "candidate_frame_sha256": "f35e9728cb7ad69a1a867aef5cc1cb28d6cd789cbaf59bb94cbc06c7edb80134",
+  "candidate_score_summary": {
+    "devices_other": {
+      "negative_candidate": {
+        "count": 60,
+        "maximum": 0.0,
+        "median": 0.0,
+        "minimum": 0.0
+      },
+      "positive_candidate": {
+        "count": 140,
+        "maximum": 0.3333333333333333,
+        "median": 0.23529411764705882,
+        "minimum": 0.2
+      }
+    },
+    "genomics_coverage": {
+      "negative_candidate": {
+        "count": 80,
+        "maximum": 0.0,
+        "median": 0.0,
+        "minimum": 0.0
+      },
+      "positive_candidate": {
+        "count": 220,
+        "maximum": 0.42857142857142855,
+        "median": 0.23205128205128206,
+        "minimum": 0.21428571428571427
+      }
+    },
+    "medicines": {
+      "negative_candidate": {
+        "count": 150,
+        "maximum": 0.03571428571428571,
+        "median": 0.03225806451612903,
+        "minimum": 0.01818181818181818
+      },
+      "positive_candidate": {
+        "count": 250,
+        "maximum": 0.6666666666666666,
+        "median": 0.5625,
+        "minimum": 0.5
+      }
+    },
+    "procedures_pathology": {
+      "negative_candidate": {
+        "count": 200,
+        "maximum": 0.0,
+        "median": 0.0,
+        "minimum": 0.0
+      },
+      "positive_candidate": {
+        "count": 400,
+        "maximum": 0.6666666666666666,
+        "median": 0.3333333333333333,
+        "minimum": 0.2857142857142857
+      }
+    }
+  },
+  "effective_unique_groups": 1256,
+  "family_summary": {
+    "devices_other": {
+      "available": 200,
+      "gap": 0,
+      "left_records": 27846,
+      "right_records": 1000,
+      "status": "ready",
+      "target": 200
+    },
+    "genomics_coverage": {
+      "available": 300,
+      "gap": 0,
+      "left_records": 20901,
+      "right_records": 19836,
+      "status": "ready",
+      "target": 300
+    },
+    "medicines": {
+      "available": 400,
+      "gap": 0,
+      "left_records": 6945,
+      "right_records": 31036,
+      "status": "ready",
+      "target": 400
+    },
+    "procedures_pathology": {
+      "available": 600,
+      "gap": 0,
+      "left_records": 20901,
+      "right_records": 8740,
+      "status": "ready",
+      "target": 600
+    }
+  },
+  "fixture_rows_used": 0,
+  "immutable_predecessor_sha256": "96f9f2465dfe84d65f36172a4d679230dd4a7bbd014407683ccc53d51331041d",
+  "review_blinded": true,
+  "schema_version": "mapping-candidate-frame-summary-v2",
+  "source_pair_coverage": {
+    "au_mbs->hpo": 300,
+    "au_mbs->us_cms_hcpcs_level_ii": 600,
+    "au_mbs->us_fda_device_classification": 174,
+    "au_pbs->rxnorm": 383,
+    "au_pbs->us_cms_asp": 17,
+    "au_pbs->us_fda_device_classification": 26
+  },
+  "source_version_coverage": {
+    "au_mbs_20260701_txt_pair": 847,
+    "au_mbs_20260701_xml": 227,
+    "au_pbs_api_v3_current_month": 426,
+    "hpo_current_20260723": 300,
+    "rxnorm_cpc_20260706": 383,
+    "us_cms_asp_july_2026_payment_limit": 17,
+    "us_cms_hcpcs_level_ii_2026_07": 600,
+    "us_fda_device_classification_20260723_page1": 200
+  },
+  "split_assigned": false,
+  "status": "ready_for_blinded_review",
+  "study_cycle": "expansion_v6",
+  "target_count": 1500,
+  "target_gap": 0
+}

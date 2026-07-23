@@ -11,6 +11,16 @@
       ]
     }
   ],
+  "descriptions": [
+    {
+      "description": "Reproducible, licence-aware tooling for comparing public reimbursement schedules, coverage decisions and policy-analysis metadata across jurisdictions. This record is release metadata preparation only; no Zenodo deposition or DOI is implied.",
+      "descriptionType": "Abstract"
+    },
+    {
+      "description": "Apache-2.0 applies to software only. Derived data retain source-specific rights recorded in the provenance and licensing manifests.",
+      "descriptionType": "TechnicalInfo"
+    }
+  ],
   "publicationYear": "2026",
   "publisher": "Zenodo",
   "relatedIdentifiers": [
@@ -18,6 +28,21 @@
       "relatedIdentifier": "https://github.com/edithatogo/reimbursement-atlas",
       "relatedIdentifierType": "URL",
       "relationType": "IsIdenticalTo"
+    },
+    {
+      "relatedIdentifier": "https://osf.io/q8cnx/",
+      "relatedIdentifierType": "URL",
+      "relationType": "IsSupplementedBy"
+    },
+    {
+      "relatedIdentifier": "https://huggingface.co/datasets/edithatogo/reimbursement-atlas",
+      "relatedIdentifierType": "URL",
+      "relationType": "IsSupplementedBy"
+    },
+    {
+      "relatedIdentifier": "https://huggingface.co/spaces/edithatogo/reimbursement-atlas",
+      "relatedIdentifierType": "URL",
+      "relationType": "IsSupplementedBy"
     }
   ],
   "rightsList": [
@@ -31,6 +56,20 @@
     }
   ],
   "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "subjects": [
+    {
+      "subject": "health economics"
+    },
+    {
+      "subject": "reimbursement"
+    },
+    {
+      "subject": "public data"
+    },
+    {
+      "subject": "reproducible research"
+    }
+  ],
   "titles": [
     {
       "title": "Reimbursement Atlas Conductor"
@@ -38,5 +77,6 @@
   ],
   "types": {
     "resourceTypeGeneral": "Software"
-  }
+  },
+  "version": "0.1.0"
 }

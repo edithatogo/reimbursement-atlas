@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 from operator import itemgetter
@@ -10,13 +11,8 @@ from typing import Any, cast
 
 from reimburse_atlas.crosswalk import jaccard_similarity, tokenise
 from reimburse_atlas.io import write_jsonl
+from reimburse_atlas.mapping_study_paths import DEFAULT_CYCLE, mapping_study_paths
 from reimburse_atlas.registry import project_root
-
-PLAN = Path("data/derived/vertical_slice/mapping_review_pack_plan.json")
-CASES = Path("data/derived/mapping_study/blind_review_packets/reviewer_a_cases.jsonl")
-ADJUDICATIONS = Path("data/mapping_study/adjudications.jsonl")
-MODEL = Path("data/derived/mapping_study/development_threshold.json")
-PREDICTIONS = Path("data/mapping_study/holdout_predictions.jsonl")
 
 
 def _json(path: Path) -> dict[str, Any]:
@@ -49,18 +45,23 @@ def _balanced_accuracy(
     return (sensitivity + specificity) / 2
 
 
-def build_threshold_predictions(root: Path) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+def build_threshold_predictions(  # ruff:ignore[too-many-locals]
+    root: Path, cycle: str = DEFAULT_CYCLE
+) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     """Return a development-tuned model and predictions without consulting holdout labels."""
-    plan = _json(root / PLAN)
+    paths = mapping_study_paths(cycle)
+    plan = _json(root / paths.split_plan)
     if plan.get("status") != "ready":
         message = "mapping split is not ready"
         raise ValueError(message)
     development = cast("list[str]", plan["development_case_ids"])
     holdout = cast("list[str]", plan["holdout_case_ids"])
-    cases = {str(row["case_id"]): row for row in _jsonl(root / CASES)}
+    cases = {
+        str(row["case_id"]): row for row in _jsonl(root / paths.packets / "reviewer_a_cases.jsonl")
+    }
     adjudications = {
         str(row["case_id"]): str(row["final_decision"])
-        for row in _jsonl(root / ADJUDICATIONS)
+        for row in _jsonl(root / paths.adjudications)
         if row.get("case_id") in development
         and row.get("final_decision") in {"positive", "negative"}
     }
@@ -84,6 +85,7 @@ def build_threshold_predictions(root: Path) -> tuple[dict[str, Any], list[dict[s
     holdout_fingerprint = hashlib.sha256("\n".join(sorted(holdout)).encode()).hexdigest()
     model = {
         "schema_version": "mapping-development-threshold-v1",
+        "study_cycle": cycle,
         "candidate_frame_sha256": plan["input_sha256"],
         "algorithm": "token_jaccard",
         "decision_rule": "positive_when_score_greater_than_or_equal_to_threshold",
@@ -113,12 +115,16 @@ def build_threshold_predictions(root: Path) -> tuple[dict[str, Any], list[dict[s
 
 def main() -> None:
     """Write the frozen development model and holdout predictions."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--cycle", default=DEFAULT_CYCLE)
+    args = parser.parse_args()
     root = project_root()
-    model, predictions = build_threshold_predictions(root)
-    model_path = root / MODEL
+    paths = mapping_study_paths(args.cycle)
+    model, predictions = build_threshold_predictions(root, args.cycle)
+    model_path = root / paths.threshold_model
     model_path.parent.mkdir(parents=True, exist_ok=True)
     model_path.write_text(json.dumps(model, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    write_jsonl(predictions, root / PREDICTIONS)
+    write_jsonl(predictions, root / paths.holdout_predictions)
     print(
         json.dumps(
             {

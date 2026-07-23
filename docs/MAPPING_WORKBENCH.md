@@ -3,6 +3,11 @@
 The mapping workbench adds a transparent pre-embedding baseline for cross-jurisdictional reimbursement
 item mapping. It is intended for candidate triage, not automated equivalence.
 
+Blinded validation uses the bounded family relations in
+[`MAPPING_STUDY_CODEBOOK.md`](MAPPING_STUDY_CODEBOOK.md). Candidate scores and hypotheses are
+hidden from reviewers, and each immutable study cycle retains its own checksum-bound packet,
+review ledger, adjudication and holdout artifacts.
+
 Current generated artefacts:
 
 - `data/derived/vertical_slice/mapping_evidence_matrix.jsonl`

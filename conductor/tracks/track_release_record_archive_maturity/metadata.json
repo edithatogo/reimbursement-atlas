@@ -10,6 +10,6 @@
     {"id": "citation_metadata", "kind": "repository", "status": "pass", "evidence": "CITATION.cff validation passes."},
     {"id": "destination_parity", "kind": "external", "status": "pass", "evidence": "HF dataset/Space destination report has zero mismatches."},
     {"id": "archive_release", "kind": "external", "status": "pending", "evidence": "Repository release readiness is true. Signed release, attestation and archive publication remain downstream of mapping, dashboard and OSF registration evidence gates."},
-    {"id": "zenodo_datacite", "kind": "external_publication", "status": "pending", "evidence": "Deterministic Zenodo/DataCite metadata and dry-run preflight exist. DOI reservation, publication and resolution verification require a frozen file set, credentials and explicit gated external mutation; papers and preprints remain excluded."}
+    {"id": "zenodo_datacite", "kind": "external_publication", "status": "pending", "evidence": "Deterministic Zenodo/DataCite metadata, frozen inventory and token-gated plan/draft/reserve/publish/verify workflow exist. The client accepts tokens only for official HTTPS Zenodo endpoints. DOI reservation and publication require exact confirmations plus mapping, dashboard, OSF registration and research-release readiness; papers and preprints are excluded."}
   ]
 }

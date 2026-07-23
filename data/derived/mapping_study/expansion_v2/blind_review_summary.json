@@ -1,0 +1,16 @@
+{
+  "accountable_adjudication_complete": false,
+  "agreement_count": 1387,
+  "candidate_frame_sha256": "29b357cb20ee2328bb995e733b71075f549703a46f0b62e8a31c0a052a25916c",
+  "disagreement_count": 113,
+  "independent_roles_complete": true,
+  "ledger_record_count": 3000,
+  "percent_agreement": 0.9246666666666666,
+  "reviewer_case_count": 1500,
+  "role_file_sha256": {
+    "reviewer_a": "ef3fd0d2bba6420c5cd46626aa2eed58a25cd1afa71e1d21e1b678249a6a0b3d",
+    "reviewer_b": "abc5707e29fb32cf5392bfd0277982f929b3523ba915f1ebc6507bac683cfc02"
+  },
+  "schema_version": "mapping-blind-review-summary-v1",
+  "study_cycle": "expansion_v2"
+}

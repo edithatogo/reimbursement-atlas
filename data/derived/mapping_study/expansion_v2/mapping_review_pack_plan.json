@@ -1,0 +1,63 @@
+{
+  "adjudication_count": 0,
+  "adjudications": "data/mapping_study/expansion_v2/adjudications.jsonl",
+  "available_unique_candidates": 1500,
+  "blind_reviews": "data/mapping_study/expansion_v2/blind_reviews.jsonl",
+  "development_case_ids": [],
+  "family_label_gaps": {
+    "devices_other": {
+      "negative": 50,
+      "positive": 50
+    },
+    "genomics_coverage": {
+      "negative": 75,
+      "positive": 75
+    },
+    "medicines": {
+      "negative": 100,
+      "positive": 100
+    },
+    "procedures_pathology": {
+      "negative": 150,
+      "positive": 150
+    }
+  },
+  "holdout_case_ids": [],
+  "inadmissible_adjudication_count": 0,
+  "independently_reviewed_count": 1500,
+  "input": "data/derived/mapping_study/expansion_v2/candidate_frame.jsonl",
+  "input_sha256": "29b357cb20ee2328bb995e733b71075f549703a46f0b62e8a31c0a052a25916c",
+  "randomisation": {
+    "algorithm": "sha256-sort",
+    "seed": "reimbursement-atlas-mapping-review-pack-v1"
+  },
+  "review_boundary": {
+    "candidate_hypotheses_are_truth": false,
+    "evidence_ready": false,
+    "holdout_frozen": false,
+    "review_records": "two blinded reviews and accountable adjudication required",
+    "split_assigned_after_reference_labels": false
+  },
+  "schema_version": "mapping-review-pack-plan-v2",
+  "source_strata_available": {
+    "au_mbs->hpo": 300,
+    "au_mbs->us_cms_hcpcs_level_ii": 599,
+    "au_mbs->us_cms_pfs": 1,
+    "au_mbs->us_fda_device_classification": 146,
+    "au_pbs->rxnorm": 371,
+    "au_pbs->us_cms_asp": 29,
+    "au_pbs->us_fda_device_classification": 54
+  },
+  "status": "blocked_adjudication",
+  "study_cycle": "expansion_v2",
+  "target_case_gap": 750,
+  "targets": {
+    "development_negative": 300,
+    "development_positive": 300,
+    "development_total": 600,
+    "holdout_negative": 75,
+    "holdout_positive": 75,
+    "holdout_total": 150,
+    "total": 750
+  }
+}

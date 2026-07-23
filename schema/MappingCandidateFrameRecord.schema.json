@@ -11,9 +11,17 @@
     "duplicate_group"
   ],
   "properties": {
-    "schema_version": {"const": "mapping-candidate-frame-v1"},
+    "schema_version": {"enum": ["mapping-candidate-frame-v1", "mapping-candidate-frame-v2"]},
     "case_id": {"type": "string", "pattern": "^map_[a-f0-9]{20}$"},
     "family": {"enum": ["procedures_pathology", "medicines", "genomics_coverage", "devices_other"]},
+    "target_relation": {
+      "enum": [
+        "clinically_comparable_service_or_test_class",
+        "same_active_ingredient_or_therapeutic_moiety",
+        "same_gene_phenotype_analyte_or_test_family_linkage",
+        "same_device_class_or_intended_use"
+      ]
+    },
     "left_source_id": {"type": "string", "minLength": 1},
     "left_code": {"type": "string", "minLength": 1},
     "right_source_id": {"type": "string", "minLength": 1},
@@ -22,7 +30,14 @@
     "provenance_checksums": {"type": "array", "minItems": 2, "items": {"type": "string", "pattern": "^[a-f0-9]{64}$"}},
     "evidence_fields": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
     "proposed_label_hypothesis": {"enum": ["positive_candidate", "negative_candidate", "ambiguous"]},
+    "candidate_score": {"type": "number", "minimum": 0, "maximum": 1},
     "proposed_difficulty": {"enum": ["routine", "hard", "ambiguous"]},
     "duplicate_group": {"type": "string", "pattern": "^[a-f0-9]{16}$"}
-  }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"schema_version": {"const": "mapping-candidate-frame-v2"}}},
+      "then": {"required": ["target_relation", "candidate_score"]}
+    }
+  ]
 }

@@ -1,0 +1,61 @@
+{
+  "accountable_adjudication_complete": false,
+  "agreement_count": 1162,
+  "candidate_frame_sha256": "630ea737a420486a5204660789284ffbff6a1f353e36e779f31fe1dd41646a22",
+  "cohen_kappa": 0.544067208270459,
+  "decision_pair_counts": {
+    "exclude->exclude": 0,
+    "exclude->negative": 0,
+    "exclude->positive": 0,
+    "exclude->uncertain": 0,
+    "negative->exclude": 5,
+    "negative->negative": 789,
+    "negative->positive": 294,
+    "negative->uncertain": 39,
+    "positive->exclude": 0,
+    "positive->negative": 0,
+    "positive->positive": 373,
+    "positive->uncertain": 0,
+    "uncertain->exclude": 0,
+    "uncertain->negative": 0,
+    "uncertain->positive": 0,
+    "uncertain->uncertain": 0
+  },
+  "disagreement_count": 338,
+  "family_agreement": {
+    "devices_other": {
+      "agreement_count": 168,
+      "case_count": 200,
+      "disagreement_count": 32,
+      "percent_agreement": 0.84
+    },
+    "genomics_coverage": {
+      "agreement_count": 178,
+      "case_count": 300,
+      "disagreement_count": 122,
+      "percent_agreement": 0.5933333333333334
+    },
+    "medicines": {
+      "agreement_count": 400,
+      "case_count": 400,
+      "disagreement_count": 0,
+      "percent_agreement": 1.0
+    },
+    "procedures_pathology": {
+      "agreement_count": 416,
+      "case_count": 600,
+      "disagreement_count": 184,
+      "percent_agreement": 0.6933333333333334
+    }
+  },
+  "independent_roles_complete": true,
+  "ledger_record_count": 3000,
+  "percent_agreement": 0.7746666666666666,
+  "reviewer_case_count": 1500,
+  "role_file_sha256": {
+    "reviewer_a": "c9feb0002aaab3a2e0415ecb087f970d9a1ba066169bc075ecc776c076258af1",
+    "reviewer_b": "d001ab9c939ceade6308cd25c7b28ff45aad8e63ddea615aee8ade449ffc8a04"
+  },
+  "schema_version": "mapping-blind-review-summary-v1",
+  "study_cycle": "expansion_v7"
+}

@@ -44,6 +44,9 @@ def test_candidate_frame_uses_reviewed_bundles_and_never_fixtures(tmp_path: Path
 
     assert rows
     assert summary["fixture_rows_used"] == 0
+    assert summary["source_pair_coverage"]
+    assert summary["source_version_coverage"]
+    assert summary["candidate_score_summary"]["procedures_pathology"]
     assert summary["status"] == "blocked_source_families"
     assert summary["family_summary"]["procedures_pathology"]["available"] == 2
     assert {row["proposed_label_hypothesis"] for row in rows} >= {
@@ -82,6 +85,7 @@ def test_current_repository_reports_partial_real_counterpart_coverage() -> None:
 
     assert len(rows) == 1500
     assert summary["candidate_count"] == 1500
+    assert summary["effective_unique_groups"] == 1500
     assert summary["target_gap"] == 0
     assert summary["family_summary"]["medicines"]["status"] == "ready"
     assert summary["family_summary"]["procedures_pathology"]["status"] == "ready"
@@ -92,5 +96,14 @@ def test_current_repository_reports_partial_real_counterpart_coverage() -> None:
 
 def test_main_cycle_guard_is_covered_by_immutable_output_contract() -> None:
     source = Path("scripts/make_mapping_candidate_frame.py").read_text(encoding="utf-8")
-    assert 'output_dir = OUTPUT_DIR / "expansion_v2"' in source
+    assert 'candidate_dir = OUTPUT_DIR / f"expansion_v{cycle}"' in source
     assert "immutable_predecessor_sha256" in source
+
+
+def test_positive_candidates_are_ranked_by_score() -> None:
+    source = Path("scripts/make_mapping_candidate_frame.py").read_text(encoding="utf-8")
+
+    assert '-float(row["candidate_score"])' in source
+    assert 'float(row["candidate_score"])' in source
+    assert "    )[:limit]" not in source
+    assert "POSITIVE_CANDIDATE_TARGETS" in source

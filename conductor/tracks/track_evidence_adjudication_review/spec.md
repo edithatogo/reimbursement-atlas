@@ -9,6 +9,11 @@ scope, artefact/checksum, review method and resulting limitation.
 ## Requirements
 
 - Build and review the stratified 750-case mapping pack with blinded dual review and holdout evaluation.
+- Define family-specific positive estimands before review: clinical comparability for
+  procedures/pathology, active ingredient or therapeutic moiety for medicines,
+  gene/phenotype/analyte/test-family linkage for genomics/coverage, and device class or intended
+  use for devices. A positive decision never implies universal billing, coverage or price
+  equivalence.
 - Adjudicate positive and negative controls, preserving false-positive boundaries.
 - Record CMS AMA/CPT, MBS/PBS reuse and historical-source decisions separately.
 - Review dashboard visual/accessibility evidence within its tested browser scope.

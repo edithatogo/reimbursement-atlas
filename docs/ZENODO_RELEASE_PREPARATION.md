@@ -35,6 +35,28 @@ repository gates and emits a non-depositing preflight artifact. It has read-only
 does not accept a token and cannot create a DOI; a future deposition workflow requires a
 separately approved Zenodo environment and accountable publication authorization.
 
+## Token-gated deposition workflow
+
+The `Zenodo preflight` workflow now separates five transitions:
+
+- `plan` regenerates metadata and evaluates upstream gates without credentials or mutation.
+- `draft` creates an unpublished deposit and uploads the frozen inventory only after the
+  `CREATE_ZENODO_DRAFT` confirmation and `zenodo-production` environment approval.
+- `reserve` adds `prereserve_doi` only after every archive-publication gate passes and the exact
+  `RESERVE_ZENODO_DOI` confirmation is supplied.
+- `publish` is irreversible and requires every gate plus `PUBLISH_ZENODO_RECORD`.
+- `verify` reads the remote deposition state and records the DOI, record URL and remote file count.
+
+`scripts/zenodo_deposition.py` sends bearer credentials only to
+`https://zenodo.org/api` or `https://sandbox.zenodo.org/api`; redirects to arbitrary API hosts are
+rejected before a token is read. The implementation follows the official
+[Zenodo deposit API](https://developers.zenodo.org/), including bucket uploads and the explicit
+publish action. The generated `external_state.json` is redacted and never contains a token.
+
+The current repository remains in `plan` state. The workflow must not reserve or publish a DOI
+until mapping adjudication, the one-time holdout, scoped dashboard review, OSF registration,
+licensing and release-readiness independently pass.
+
 The non-depositing preflight was rerun successfully as
 [workflow run 29569972301](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29569972301)
 on merged `main` commit `fc47649` (the latest non-mutating preflight; the current repository

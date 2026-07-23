@@ -4,7 +4,8 @@ from __future__ import annotations
 
 import hashlib
 import json
-from collections import defaultdict
+import statistics
+from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, cast
 
@@ -19,6 +20,12 @@ FRAME_TARGETS = {
     "genomics_coverage": 300,
     "devices_other": 200,
 }
+POSITIVE_CANDIDATE_TARGETS = {
+    "procedures_pathology": 400,
+    "medicines": 250,
+    "genomics_coverage": 220,
+    "devices_other": 140,
+}
 SOURCE_FAMILIES = {
     "procedures_pathology": (
         {"au_mbs"},
@@ -31,9 +38,17 @@ SOURCE_FAMILIES = {
         {"gmdn", "umdns", "snomed_ct_device", "us_fda_device_classification"},
     ),
 }
+TARGET_RELATIONS = {
+    "procedures_pathology": "clinically_comparable_service_or_test_class",
+    "medicines": "same_active_ingredient_or_therapeutic_moiety",
+    "genomics_coverage": "same_gene_phenotype_analyte_or_test_family_linkage",
+    "devices_other": "same_device_class_or_intended_use",
+}
 
 
-def build_candidate_frame(root: Path) -> tuple[list[dict[str, object]], dict[str, object]]:
+def build_candidate_frame(  # ruff:ignore[too-many-locals]
+    root: Path,
+) -> tuple[list[dict[str, object]], dict[str, object]]:
     """Return candidate hypotheses and a fail-closed family coverage summary."""
     records, source_checksums = _load_reviewed_schedule_records(root)
     by_source: dict[str, list[dict[str, Any]]] = defaultdict(list)
@@ -65,6 +80,25 @@ def build_candidate_frame(root: Path) -> tuple[list[dict[str, object]], dict[str
 
     frame = sorted(frame, key=lambda row: str(row["case_id"]))
     duplicate_groups = {str(row["duplicate_group"]) for row in frame}
+    source_pairs = Counter(f"{row['left_source_id']}->{row['right_source_id']}" for row in frame)
+    source_versions = Counter(
+        str(version) for row in frame for version in cast("list[str]", row["source_versions"])
+    )
+    score_summary: dict[str, dict[str, dict[str, float | int]]] = {}
+    for family in FRAME_TARGETS:
+        score_summary[family] = {}
+        for hypothesis in ("positive_candidate", "negative_candidate"):
+            scores = sorted(
+                float(row["candidate_score"])
+                for row in frame
+                if row["family"] == family and row["proposed_label_hypothesis"] == hypothesis
+            )
+            score_summary[family][hypothesis] = {
+                "count": len(scores),
+                "minimum": min(scores) if scores else 0.0,
+                "median": statistics.median(scores) if scores else 0.0,
+                "maximum": max(scores) if scores else 0.0,
+            }
     summary: dict[str, object] = {
         "schema_version": "mapping-candidate-frame-summary-v1",
         "status": (
@@ -76,6 +110,9 @@ def build_candidate_frame(root: Path) -> tuple[list[dict[str, object]], dict[str
         "candidate_count": len(frame),
         "target_gap": max(0, sum(FRAME_TARGETS.values()) - len(frame)),
         "effective_unique_groups": len(duplicate_groups),
+        "source_pair_coverage": dict(sorted(source_pairs.items())),
+        "source_version_coverage": dict(sorted(source_versions.items())),
+        "candidate_score_summary": score_summary,
         "family_summary": family_summary,
         "fixture_rows_used": 0,
         "review_blinded": True,
@@ -152,7 +189,7 @@ def _family_candidates(  # ruff:ignore[too-many-locals]
         key=lambda row: hashlib.sha256(
             f"{family}|{row.get('source_id')}|{row.get('item_code')}".encode()
         ).hexdigest(),
-    )[:limit]
+    )
     for left in ordered_left:
         left_tokens = set(tokenise(_text(left)))
         rare_tokens = sorted(
@@ -195,7 +232,7 @@ def _family_candidates(  # ruff:ignore[too-many-locals]
             for row in unique.values()
             if row["proposed_label_hypothesis"] == "positive_candidate"
         ),
-        key=lambda row: str(row["case_id"]),
+        key=lambda row: (-float(row["candidate_score"]), str(row["case_id"])),
     )
     negative = sorted(
         (
@@ -203,17 +240,39 @@ def _family_candidates(  # ruff:ignore[too-many-locals]
             for row in unique.values()
             if row["proposed_label_hypothesis"] == "negative_candidate"
         ),
-        key=lambda row: str(row["case_id"]),
+        key=lambda row: (float(row["candidate_score"]), str(row["case_id"])),
     )
-    selected = [*positive[: limit // 2], *negative[: limit - (limit // 2)]]
+    positive_target = min(POSITIVE_CANDIDATE_TARGETS[family], limit)
+    used_groups: set[str] = set()
+    selected = _take_unique_groups(positive, positive_target, used_groups)
+    selected.extend(_take_unique_groups(negative, limit - len(selected), used_groups))
     if len(selected) < limit:
         selected_ids = {str(row["case_id"]) for row in selected}
-        remainder = sorted(
-            (row for row in unique.values() if str(row["case_id"]) not in selected_ids),
-            key=lambda row: str(row["case_id"]),
-        )
-        selected.extend(remainder[: limit - len(selected)])
+        remainder = [
+            row
+            for row in sorted(
+                (row for row in unique.values() if str(row["case_id"]) not in selected_ids),
+                key=lambda row: str(row["case_id"]),
+            )
+            if str(row["duplicate_group"]) not in used_groups
+        ]
+        selected.extend(_take_unique_groups(remainder, limit - len(selected), used_groups))
     return sorted(selected, key=lambda row: str(row["case_id"]))
+
+
+def _take_unique_groups(
+    rows: list[dict[str, object]], count: int, used_groups: set[str]
+) -> list[dict[str, object]]:
+    selected: list[dict[str, object]] = []
+    for row in rows:
+        duplicate_group = str(row["duplicate_group"])
+        if duplicate_group in used_groups:
+            continue
+        used_groups.add(duplicate_group)
+        selected.append(row)
+        if len(selected) == count:
+            break
+    return selected
 
 
 def _stable_index(row: dict[str, Any], count: int) -> int:
@@ -253,9 +312,10 @@ def _candidate_row(
     left_key = f"{left['source_id']}:{left_provenance['source_version']}"
     right_key = f"{right['source_id']}:{right_provenance['source_version']}"
     return {
-        "schema_version": "mapping-candidate-frame-v1",
+        "schema_version": "mapping-candidate-frame-v2",
         "case_id": f"map_{hashlib.sha256(identity.encode()).hexdigest()[:20]}",
         "family": family,
+        "target_relation": TARGET_RELATIONS[family],
         "left_source_id": left["source_id"],
         "left_code": left["item_code"],
         "right_source_id": right["source_id"],
@@ -264,6 +324,7 @@ def _candidate_row(
         "provenance_checksums": [source_checksums[left_key], source_checksums[right_key]],
         "evidence_fields": ["item_code", "item_label", "item_description", "domain"],
         "proposed_label_hypothesis": hypothesis,
+        "candidate_score": score,
         "proposed_difficulty": "routine"
         if score >= 0.7
         else "hard"
@@ -294,15 +355,25 @@ def main() -> None:
         candidate_bytes = "".join(
             json.dumps(row, sort_keys=True, default=str) + "\n" for row in rows
         ).encode()
-        if (
-            hashlib.sha256(candidate_bytes).digest()
-            != hashlib.sha256(frozen_frame.read_bytes()).digest()
-        ):
-            output_dir = OUTPUT_DIR / "expansion_v2"
+        candidate_digest = hashlib.sha256(candidate_bytes).digest()
+        predecessor = frozen_frame
+        if candidate_digest != hashlib.sha256(frozen_frame.read_bytes()).digest():
+            cycle = 2
+            while True:
+                candidate_dir = OUTPUT_DIR / f"expansion_v{cycle}"
+                candidate_frame = root / candidate_dir / "candidate_frame.jsonl"
+                if not candidate_frame.exists():
+                    output_dir = candidate_dir
+                    break
+                if candidate_digest == hashlib.sha256(candidate_frame.read_bytes()).digest():
+                    output_dir = candidate_dir
+                    break
+                predecessor = candidate_frame
+                cycle += 1
             summary["schema_version"] = "mapping-candidate-frame-summary-v2"
-            summary["study_cycle"] = "expansion_v2"
+            summary["study_cycle"] = output_dir.name
             summary["immutable_predecessor_sha256"] = hashlib.sha256(
-                frozen_frame.read_bytes()
+                predecessor.read_bytes()
             ).hexdigest()
     write_candidate_frame(root, rows, summary, output_dir=output_dir)
     print(

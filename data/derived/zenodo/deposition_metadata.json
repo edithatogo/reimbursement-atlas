@@ -19,8 +19,24 @@
       "identifier": "https://github.com/edithatogo/reimbursement-atlas",
       "relation": "isIdenticalTo",
       "resource_type": "software"
+    },
+    {
+      "identifier": "https://osf.io/q8cnx/",
+      "relation": "isSupplementedBy",
+      "resource_type": "other"
+    },
+    {
+      "identifier": "https://huggingface.co/datasets/edithatogo/reimbursement-atlas",
+      "relation": "isSupplementedBy",
+      "resource_type": "dataset"
+    },
+    {
+      "identifier": "https://huggingface.co/spaces/edithatogo/reimbursement-atlas",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
     }
   ],
   "title": "Reimbursement Atlas Conductor",
-  "upload_type": "software"
+  "upload_type": "software",
+  "version": "0.1.0"
 }

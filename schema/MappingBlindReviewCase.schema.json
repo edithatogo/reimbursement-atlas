@@ -6,14 +6,29 @@
   "additionalProperties": false,
   "required": ["schema_version", "candidate_frame_sha256", "case_id", "family", "left", "right", "allowed_decisions"],
   "properties": {
-    "schema_version": {"const": "mapping-blind-review-case-v1"},
+    "schema_version": {"enum": ["mapping-blind-review-case-v1", "mapping-blind-review-case-v2"]},
     "candidate_frame_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
     "case_id": {"type": "string", "pattern": "^map_[a-f0-9]{20}$"},
     "family": {"enum": ["procedures_pathology", "medicines", "genomics_coverage", "devices_other"]},
+    "target_relation": {
+      "enum": [
+        "clinically_comparable_service_or_test_class",
+        "same_active_ingredient_or_therapeutic_moiety",
+        "same_gene_phenotype_analyte_or_test_family_linkage",
+        "same_device_class_or_intended_use"
+      ]
+    },
+    "decision_question": {"type": "string", "minLength": 1},
     "left": {"$ref": "#/$defs/evidence"},
     "right": {"$ref": "#/$defs/evidence"},
     "allowed_decisions": {"const": ["positive", "negative", "exclude", "uncertain"]}
   },
+  "allOf": [
+    {
+      "if": {"properties": {"schema_version": {"const": "mapping-blind-review-case-v2"}}},
+      "then": {"required": ["target_relation", "decision_question"]}
+    }
+  ],
   "$defs": {
     "evidence": {
       "type": "object",

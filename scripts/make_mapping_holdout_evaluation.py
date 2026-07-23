@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import math
@@ -9,13 +10,8 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any, cast
 
+from reimburse_atlas.mapping_study_paths import DEFAULT_CYCLE, mapping_study_paths
 from reimburse_atlas.registry import project_root
-
-PLAN = Path("data/derived/vertical_slice/mapping_review_pack_plan.json")
-FRAME = Path("data/derived/mapping_study/candidate_frame.jsonl")
-ADJUDICATIONS = Path("data/mapping_study/adjudications.jsonl")
-PREDICTIONS = Path("data/mapping_study/holdout_predictions.jsonl")
-OUTPUT = Path("data/derived/mapping_study/evaluation_summary.json")
 
 
 def exact_interval(successes: int, total: int, alpha: float = 0.05) -> tuple[float, float]:
@@ -69,28 +65,29 @@ def _jsonl(path: Path) -> list[dict[str, Any]]:
     ]
 
 
-def build_evaluation(root: Path) -> dict[str, Any]:
+def build_evaluation(root: Path, cycle: str = DEFAULT_CYCLE) -> dict[str, Any]:
     """Build a fail-closed evaluation from exact frozen-holdout predictions."""
-    plan_path = root / PLAN
+    paths = mapping_study_paths(cycle)
+    plan_path = root / paths.split_plan
     if not plan_path.is_file() or cast("dict[str, Any]", _read(plan_path)).get("status") != "ready":
         return _blocked("split_not_ready")
     plan = cast("dict[str, Any]", _read(plan_path))
     holdout = cast("list[str]", plan["holdout_case_ids"])
     fingerprint = hashlib.sha256("\n".join(sorted(holdout)).encode()).hexdigest()
-    prior_path = root / OUTPUT
+    prior_path = root / paths.evaluation
     if prior_path.is_file():
         prior = cast("dict[str, Any]", _read(prior_path))
         if prior.get("evaluated_once") is True and prior.get("holdout_fingerprint") != fingerprint:
             return _blocked("holdout_fingerprint_changed", fingerprint=fingerprint)
-    predictions = {str(row.get("case_id")): row for row in _jsonl(root / PREDICTIONS)}
+    predictions = {str(row.get("case_id")): row for row in _jsonl(root / paths.holdout_predictions)}
     if set(predictions) != set(holdout):
         return _blocked("holdout_predictions_incomplete", fingerprint=fingerprint)
     if any(row.get("threshold_source") != "development_only" for row in predictions.values()):
         return _blocked("threshold_not_development_only", fingerprint=fingerprint)
-    frame = {str(row["case_id"]): row for row in _jsonl(root / FRAME)}
+    frame = {str(row["case_id"]): row for row in _jsonl(root / paths.frame)}
     truth = {
         str(row["case_id"]): row["final_decision"]
-        for row in _jsonl(root / ADJUDICATIONS)
+        for row in _jsonl(root / paths.adjudications)
         if row.get("final_decision") in {"positive", "negative"}
     }
     grouped: dict[str, list[str]] = defaultdict(list)
@@ -101,6 +98,7 @@ def build_evaluation(root: Path) -> dict[str, Any]:
     accepted = all(value["balanced_accuracy"]["estimate"] >= 0.7 for value in metrics.values())
     return {
         "schema_version": "mapping-evaluation-summary-v1",
+        "study_cycle": cycle,
         "status": "accepted" if accepted else "rejected",
         "candidate_frame_sha256": plan["input_sha256"],
         "holdout_fingerprint": fingerprint,
@@ -141,7 +139,13 @@ def _metrics(
         "negative_predictive_value": _estimate(tn, tn + fn),
         "balanced_accuracy": {
             "estimate": (sensitivity["estimate"] + specificity["estimate"]) / 2,
-            "interval_method": "component_exact_intervals_reported_separately",
+            "lower_95": (sensitivity["lower_95"] + specificity["lower_95"]) / 2,
+            "upper_95": (sensitivity["upper_95"] + specificity["upper_95"]) / 2,
+            "interval_method": "mean_of_component_clopper_pearson_bounds",
+            "interpretation": (
+                "Conservative composite bounds; balanced accuracy is not itself a binomial "
+                "proportion. Exact Clopper-Pearson intervals are reported for each component."
+            ),
         },
     }
 
@@ -174,9 +178,12 @@ def _blocked(reason: str, *, fingerprint: str = "0" * 64) -> dict[str, Any]:
 
 def main() -> None:
     """Write the current holdout evaluation state."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--cycle", default=DEFAULT_CYCLE)
+    args = parser.parse_args()
     root = project_root()
-    result = build_evaluation(root)
-    output = root / OUTPUT
+    result = build_evaluation(root, args.cycle)
+    output = root / mapping_study_paths(args.cycle).evaluation
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps({"status": result["status"], "exclusions": result["exclusions"]}, indent=2))

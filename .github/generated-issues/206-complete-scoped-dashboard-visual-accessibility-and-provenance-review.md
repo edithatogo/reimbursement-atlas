@@ -8,11 +8,10 @@ Status: `blocked`
 
 ## Background
 
-This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria before opening it in GitHub.
+This issue was generated from `conductor/backlog.yml`; the criteria below are the track-specific acceptance contract.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [ ] The schema-valid owner record is bound to the release commit and automated review packet.
+- [ ] Visual, keyboard, VoiceOver, responsive and provenance checks are explicitly scoped.
+- [ ] All unresolved exceptions are recorded or remediated before release promotion.

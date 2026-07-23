@@ -4,9 +4,11 @@ from __future__ import annotations
 
 import hashlib
 import json
+import tomllib
 from pathlib import Path
 from typing import Any, cast
 
+from reimburse_atlas.mapping_study_paths import latest_mapping_study_cycle, mapping_study_paths
 from reimburse_atlas.registry import project_root
 
 FILES = (
@@ -14,17 +16,31 @@ FILES = (
     Path("LICENSE"),
     Path("CITATION.cff"),
     Path(".zenodo.json"),
-    Path("data/derived/mapping_study/candidate_frame_summary.json"),
+    Path("data/derived/publication_manifest.json"),
+    Path("data/derived/sbom/cyclonedx-python.json"),
+    Path("data/derived/sbom/cyclonedx-dashboard.json"),
+    Path("docs/SOURCE_PROVENANCE_AND_TRANSFORMATIONS.md"),
+    Path("docs/LICENSING.md"),
 )
 
 
 def build_draft(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
     """Return Zenodo metadata, DataCite metadata and a frozen file inventory."""
     base = cast("dict[str, Any]", json.loads((root / ".zenodo.json").read_text(encoding="utf-8")))
+    project = cast(
+        "dict[str, Any]",
+        tomllib.loads((root / "pyproject.toml").read_text(encoding="utf-8"))["project"],
+    )
+    version = str(project["version"])
+    mapping_cycle = latest_mapping_study_cycle(root)
+    files = (
+        *FILES,
+        mapping_study_paths(mapping_cycle).derived / "candidate_frame_summary.json",
+    )
     creators = cast("list[dict[str, Any]]", base.get("creators", []))
     missing_orcid = [str(item.get("name", "unnamed")) for item in creators if not item.get("orcid")]
     inventory_rows: list[dict[str, Any]] = []
-    for relative in FILES:
+    for relative in files:
         path = root / relative
         if path.is_file():
             inventory_rows.append({
@@ -34,12 +50,13 @@ def build_draft(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, A
             })
     inventory: dict[str, Any] = {
         "schema_version": "zenodo-file-inventory-v1",
-        "status": "frozen" if len(inventory_rows) == len(FILES) else "blocked_missing_files",
+        "status": "frozen" if len(inventory_rows) == len(files) else "blocked_missing_files",
         "files": inventory_rows,
         "paper_or_preprint_included": False,
     }
     zenodo = {
         **base,
+        "version": version,
         "notes": (
             "Apache-2.0 applies to software only. Derived data retain source-specific rights; "
             "raw and restricted source payloads are excluded."
@@ -71,6 +88,18 @@ def build_draft(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, A
         ],
         "publisher": "Zenodo",
         "publicationYear": "2026",
+        "version": version,
+        "subjects": [{"subject": keyword} for keyword in base.get("keywords", [])],
+        "descriptions": [
+            {"description": base["description"], "descriptionType": "Abstract"},
+            {
+                "description": (
+                    "Apache-2.0 applies to software only. Derived data retain source-specific "
+                    "rights recorded in the provenance and licensing manifests."
+                ),
+                "descriptionType": "TechnicalInfo",
+            },
+        ],
         "rightsList": [
             {
                 "rights": "Apache License 2.0 (software only)",
@@ -83,7 +112,7 @@ def build_draft(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, A
             {
                 "relatedIdentifier": item["identifier"],
                 "relatedIdentifierType": "URL",
-                "relationType": "IsIdenticalTo",
+                "relationType": _datacite_relation(str(item["relation"])),
             }
             for item in cast("list[dict[str, Any]]", base.get("related_identifiers", []))
         ],
@@ -110,6 +139,14 @@ def build_draft(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, A
         ],
     }
     return zenodo, datacite, {"inventory": inventory, "preflight": preflight}
+
+
+def _datacite_relation(value: str) -> str:
+    """Translate Zenodo's lower-camel relation spelling to DataCite."""
+    if not value or not value.startswith("is"):
+        message = f"unsupported related-identifier relation: {value}"
+        raise ValueError(message)
+    return f"Is{value[2:]}"
 
 
 def main() -> None:

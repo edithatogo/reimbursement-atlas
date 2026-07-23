@@ -599,17 +599,31 @@ epics:
     track_id: track_evidence_adjudication_review
     issues:
       - title: Build and review the stratified 750-case mapping pack
-        labels: ["type:mapping", "type:review", "type:evidence", "status:blocked"]
-        status: blocked
+        labels: ["type:mapping", "type:review", "type:evidence", "status:implemented"]
+        status: implemented
+        acceptance:
+          - "Rights-cleared RxNorm, CMS ASP/PFS/HCPCS, HPO and openFDA counterparts are acquired as reviewed derived bundles."
+          - "A separately versioned 1,500-case expansion frame is frozen with no structural family gap."
+          - "Raw payloads remain ignored and restricted terminology is optional local enrichment."
       - title: Adjudicate mapping controls and evaluate untouched holdout
         labels: ["type:mapping", "type:statistics", "type:review", "status:blocked"]
         status: blocked
+        acceptance:
+          - "Two fresh isolated reviews cover every case in the current checksum-bound, codebook-defined expansion cycle without hypothesis, candidate-score or split disclosure."
+          - "Accountable adjudication freezes reference labels before any development or holdout assignment."
+          - "The deterministic split contains 300 positive and 300 negative development cases plus an untouched 75 positive and 75 negative holdout."
+          - "Thresholds are tuned on development only; holdout predictions are frozen before truth is evaluated once."
+          - "Sensitivity, specificity, precision, NPV and balanced accuracy include exact 95 percent intervals overall and by family."
       - title: Complete CMS MBS and PBS source-rights review records
         labels: ["type:licence", "type:data-source", "type:review", "status:blocked"]
         status: blocked
       - title: Complete scoped dashboard visual and accessibility review
         labels: ["type:dashboard", "type:accessibility", "type:review", "status:blocked"]
         status: blocked
+        acceptance:
+          - "The review packet is bound to the tested release commit and includes screenshot hashes, browser results, keyboard/focus checks and provenance samples."
+          - "The accountable owner records browser, OS, assistive technology, routes, provenance scope, findings and exceptions."
+          - "The decision is approved_within_scope and makes no universal WCAG conformance claim."
       - title: Regenerate evidence readiness and final handoff after adjudication
         labels: ["type:evidence", "type:release", "type:automation", "status:blocked"]
         status: blocked
@@ -645,6 +659,10 @@ epics:
       - title: Complete scoped dashboard visual accessibility and provenance review
         labels: ["type:dashboard", "type:accessibility", "type:review", "status:blocked"]
         status: blocked
+        acceptance:
+          - "The schema-valid owner record is bound to the release commit and automated review packet."
+          - "Visual, keyboard, VoiceOver, responsive and provenance checks are explicitly scoped."
+          - "All unresolved exceptions are recorded or remediated before release promotion."
       - title: Validate OSF Hugging Face and GitHub identity and licence parity
         labels: ["type:publication", "type:provenance", "type:licence", "status:implemented"]
         status: implemented
@@ -654,3 +672,8 @@ epics:
       - title: Run final publication boundary review without submitting papers
         labels: ["type:release", "type:review", "risk:publication", "status:blocked"]
         status: blocked
+        acceptance:
+          - "Zenodo and DataCite payloads, file inventory, checksums, SBOM and attestations validate against the frozen release."
+          - "Mapping, dashboard, OSF registration, licence and release-readiness gates independently pass before deposition."
+          - "The version DOI resolves and remote checksums are verified after publication."
+          - "Papers, manuscripts and preprints are excluded."

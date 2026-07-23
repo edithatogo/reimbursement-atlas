@@ -8,11 +8,11 @@ Status: `blocked`
 
 ## Background
 
-This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria before opening it in GitHub.
+This issue was generated from `conductor/backlog.yml`; the criteria below are the track-specific acceptance contract.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [ ] Zenodo and DataCite payloads, file inventory, checksums, SBOM and attestations validate against the frozen release.
+- [ ] Mapping, dashboard, OSF registration, licence and release-readiness gates independently pass before deposition.
+- [ ] The version DOI resolves and remote checksums are verified after publication.
+- [ ] Papers, manuscripts and preprints are excluded.

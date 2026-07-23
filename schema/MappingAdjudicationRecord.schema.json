@@ -6,13 +6,29 @@
   "additionalProperties": false,
   "required": ["schema_version", "candidate_frame_sha256", "case_id", "reviewer_a_decision", "reviewer_b_decision", "final_decision", "accountable_reviewer", "evidence_citations"],
   "properties": {
-    "schema_version": {"const": "mapping-adjudication-v1"},
+    "schema_version": {"enum": ["mapping-adjudication-v1", "mapping-adjudication-v2"]},
     "candidate_frame_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
     "case_id": {"type": "string", "pattern": "^map_[a-f0-9]{20}$"},
+    "target_relation": {
+      "enum": [
+        "clinically_comparable_service_or_test_class",
+        "same_active_ingredient_or_therapeutic_moiety",
+        "same_gene_phenotype_analyte_or_test_family_linkage",
+        "same_device_class_or_intended_use"
+      ]
+    },
     "reviewer_a_decision": {"enum": ["positive", "negative", "exclude", "uncertain"]},
     "reviewer_b_decision": {"enum": ["positive", "negative", "exclude", "uncertain"]},
     "final_decision": {"enum": ["positive", "negative", "exclude"]},
     "accountable_reviewer": {"type": "string", "minLength": 1},
+    "accountable_approved_at": {"type": "string", "format": "date-time"},
+    "approved_proposal_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
     "evidence_citations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
-  }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"schema_version": {"const": "mapping-adjudication-v2"}}},
+      "then": {"required": ["target_relation"]}
+    }
+  ]
 }
