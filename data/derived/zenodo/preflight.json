@@ -1,0 +1,15 @@
+{
+  "doi_reserved": false,
+  "missing_creator_orcids": [],
+  "mutation_performed": false,
+  "paper_or_preprint_submission_allowed": false,
+  "published": false,
+  "required_upstream_gates": [
+    "mapping_study_human_review",
+    "dashboard_human_review",
+    "osf_registration",
+    "release_readiness"
+  ],
+  "schema_version": "zenodo-deposition-preflight-v2",
+  "status": "ready_for_draft_deposit"
+}

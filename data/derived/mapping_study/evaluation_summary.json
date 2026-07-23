@@ -1,0 +1,13 @@
+{
+  "candidate_frame_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "denominators": {},
+  "evaluated_once": false,
+  "exclusions": {
+    "reason": "split_not_ready"
+  },
+  "holdout_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+  "metrics": {},
+  "schema_version": "mapping-evaluation-summary-v1",
+  "status": "blocked",
+  "threshold_source": "development_only"
+}

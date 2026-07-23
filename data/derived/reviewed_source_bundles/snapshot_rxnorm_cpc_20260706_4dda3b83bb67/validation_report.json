@@ -1,0 +1,14 @@
+{
+  "byte_size": 30506659,
+  "cache_scope": "local_raw_only",
+  "checksum_sha256": "4dda3b83bb67af5f8349a5fd455a4c54b8290921cffecc362163cd00f27439a5",
+  "licence_gate": "public_reuse_review",
+  "parse_success": true,
+  "raw_file_copied_to_bundle": false,
+  "record_count": 30146,
+  "record_type": "schedule_items",
+  "review_required_before_publication": true,
+  "snapshot_id": "snapshot_rxnorm_cpc_20260706_4dda3b83bb67",
+  "source_id": "rxnorm",
+  "source_version_id": "rxnorm_cpc_20260706"
+}

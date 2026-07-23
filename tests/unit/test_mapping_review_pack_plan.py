@@ -39,8 +39,10 @@ def test_pack_plan_requires_adjudication_before_split(tmp_path: Path) -> None:
 def test_pack_plan_is_deterministic_balanced_and_disjoint(tmp_path: Path) -> None:
     frame_path = tmp_path / "data/derived/mapping_study/candidate_frame.jsonl"
     adjudication_path = tmp_path / "data/mapping_study/adjudications.jsonl"
+    reviews_path = tmp_path / "data/mapping_study/blind_reviews.jsonl"
     frame: list[dict[str, object]] = []
     decisions: list[dict[str, object]] = []
+    reviews: list[dict[str, object]] = []
     index = 0
     for family, quotas in FAMILY_QUOTAS.items():
         for label in ("positive", "negative"):
@@ -53,7 +55,17 @@ def test_pack_plan_is_deterministic_balanced_and_disjoint(tmp_path: Path) -> Non
     frame_sha256 = hashlib.sha256(frame_path.read_bytes()).hexdigest()
     for decision in decisions:
         decision["candidate_frame_sha256"] = frame_sha256
+        decision["reviewer_a_decision"] = decision["final_decision"]
+        decision["reviewer_b_decision"] = decision["final_decision"]
+        for role in ("reviewer_a", "reviewer_b"):
+            reviews.append({
+                "candidate_frame_sha256": frame_sha256,
+                "case_id": decision["case_id"],
+                "reviewer_role": role,
+                "decision": decision["final_decision"],
+            })
     _write_rows(adjudication_path, decisions)
+    _write_rows(reviews_path, reviews)
 
     first = build_plan(tmp_path)
     second = build_plan(tmp_path)
@@ -64,3 +76,29 @@ def test_pack_plan_is_deterministic_balanced_and_disjoint(tmp_path: Path) -> Non
     assert len(first["holdout_case_ids"]) == 150
     assert set(first["development_case_ids"]).isdisjoint(first["holdout_case_ids"])
     assert first["review_boundary"]["holdout_frozen"] is True
+
+
+def test_pack_plan_rejects_adjudication_without_two_blind_reviews(tmp_path: Path) -> None:
+    frame_path = tmp_path / "data/derived/mapping_study/candidate_frame.jsonl"
+    adjudication_path = tmp_path / "data/mapping_study/adjudications.jsonl"
+    case_id = "map_" + "a" * 20
+    _write_rows(frame_path, [{"case_id": case_id, "family": "procedures_pathology"}])
+    frame_sha256 = hashlib.sha256(frame_path.read_bytes()).hexdigest()
+    _write_rows(
+        adjudication_path,
+        [
+            {
+                "case_id": case_id,
+                "candidate_frame_sha256": frame_sha256,
+                "reviewer_a_decision": "positive",
+                "reviewer_b_decision": "positive",
+                "final_decision": "positive",
+            }
+        ],
+    )
+
+    plan = build_plan(tmp_path)
+
+    assert plan["adjudication_count"] == 0
+    assert plan["inadmissible_adjudication_count"] == 1
+    assert plan["status"] == "blocked_adjudication"

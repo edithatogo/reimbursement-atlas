@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edithatogo.github.io/reimbursement-atlas/schema/MappingBlindReviewCase.schema.json",
+  "title": "Blinded mapping review case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "candidate_frame_sha256", "case_id", "family", "left", "right", "allowed_decisions"],
+  "properties": {
+    "schema_version": {"const": "mapping-blind-review-case-v1"},
+    "candidate_frame_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "case_id": {"type": "string", "pattern": "^map_[a-f0-9]{20}$"},
+    "family": {"enum": ["procedures_pathology", "medicines", "genomics_coverage", "devices_other"]},
+    "left": {"$ref": "#/$defs/evidence"},
+    "right": {"$ref": "#/$defs/evidence"},
+    "allowed_decisions": {"const": ["positive", "negative", "exclude", "uncertain"]}
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_id", "code", "label", "description", "domain", "source_version", "bundle_sha256", "source_url"],
+      "properties": {
+        "source_id": {"type": "string", "minLength": 1},
+        "code": {"type": "string", "minLength": 1},
+        "label": {"type": "string", "minLength": 1},
+        "description": {"type": ["string", "null"]},
+        "domain": {"type": "string", "minLength": 1},
+        "source_version": {"type": "string", "minLength": 1},
+        "bundle_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "source_url": {"type": ["string", "null"], "format": "uri"}
+      }
+    }
+  }
+}

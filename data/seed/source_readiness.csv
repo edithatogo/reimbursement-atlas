@@ -25,6 +25,8 @@ tier_1,4,2,3,3,2,post_acute,A,United States,Skilled Nursing Facility Prospective
 tier_1,4,2,3,3,2,contextual,A,Multi-country,Global Health Observatory,14,who_gho,WHO
 tier_1,4,2,3,1,2,medical_services,A,Belgium,NomenSoft nomenclature,12,be_inami,INAMI/RIZIV
 tier_1,4,2,3,1,2,medical_services,A,Brazil,"SIGTAP procedures, medicines and OPM table",12,br_sigtap,SUS
+tier_1,4,2,3,3,0,genomics,A,International,Human Phenotype Ontology,12,hpo,Human Phenotype Ontology Consortium
+tier_1,4,2,3,3,0,medicines,A,United States,RxNorm Current Prescribable Content,12,rxnorm,National Library of Medicine
 tier_1,4,2,3,3,0,genomics,A,England,National Genomic Test Directory,12,uk_genomic_test_directory,NHS Genomic Medicine Service
 tier_2,2,2,3,3,2,costs,A,England,NHS reference costs / patient-level costing outputs,12,uk_nhs_reference_costs,NHS England
 tier_1,4,2,3,3,0,hospital_outpatient,A,United States,Ambulatory Surgical Center Payment System,12,us_cms_asc,Medicare
@@ -34,6 +36,7 @@ tier_2,2,2,3,3,2,medicines,A,United States,Part D Prescriber and Drug Spending P
 tier_2,2,2,3,3,0,medicines,B,Finland,Medicine reimbursement and price data,10,fi_kela_reimbursements,Kela
 tier_2,2,2,3,1,2,devices,B,France,Liste des Produits et Prestations,10,fr_lpp,Assurance Maladie
 tier_2,2,2,3,1,2,medical_services,B,Norway,Tariffs for reimbursement claims,10,no_helfo_tariffs,Helfo
+tier_1,4,0,3,3,0,devices,B,United States,Device Product Classification,10,us_fda_device_classification,Food and Drug Administration
 tier_2,2,2,0,3,2,hospital,B,Canada,Case Mix Groups and resource intensity weights,9,ca_ciihi_cmg,CIHI
 tier_2,2,2,0,3,2,medical_services,B,Canada - Ontario,Schedule of Benefits,9,ca_on_ohip,OHIP
 tier_2,2,2,0,3,2,medical_services,B,Germany,Einheitlicher Bewertungsmaßstab,9,de_ebm,GKV/KBV

@@ -15,6 +15,18 @@ REVIEW_CONTRACTS = (
     ("licence_review", "decision.schema.json", "decisions.jsonl"),
     ("mapping_review", "decision.schema.json", "decisions.jsonl"),
 )
+ROOT_JSONL_REVIEW_CONTRACTS = (
+    (
+        "mapping_study_blind_reviews",
+        "schema/MappingBlindReviewRecord.schema.json",
+        "data/mapping_study/blind_reviews.jsonl",
+    ),
+    (
+        "mapping_study_adjudications",
+        "schema/MappingAdjudicationRecord.schema.json",
+        "data/mapping_study/adjudications.jsonl",
+    ),
+)
 JSON_REVIEW_CONTRACTS = (
     (
         "dashboard_review",
@@ -85,6 +97,33 @@ def validate_review_document(root: Path, schema_name: str, document_name: str) -
     ]
 
 
+def validate_root_jsonl_review(root: Path, schema_name: str, document_name: str) -> list[str]:
+    """Validate an optional JSONL review file against a root-level schema."""
+    schema_path = root / schema_name
+    document_path = root / document_name
+    try:
+        schema = json.loads(schema_path.read_text(encoding="utf-8"))
+        Draft202012Validator.check_schema(schema)
+        validator = Draft202012Validator(schema)
+    except (OSError, json.JSONDecodeError, SchemaError) as error:
+        return [f"{schema_path}: cannot load valid schema: {error}"]
+    if not document_path.exists():
+        return []
+    errors: list[str] = []
+    for line_number, line in enumerate(document_path.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.strip():
+            continue
+        try:
+            instance: Any = json.loads(line)
+        except json.JSONDecodeError as error:
+            errors.append(f"{document_path}:{line_number}: invalid JSON: {error.msg}")
+            continue
+        for validation_error in cast("Any", validator).iter_errors(instance):
+            location = ".".join(str(part) for part in validation_error.absolute_path) or "$"
+            errors.append(f"{document_path}:{line_number}:{location}: {validation_error.message}")
+    return errors
+
+
 def main() -> None:
     """Exit non-zero when any optional human decision file violates its schema."""
     root = project_root()
@@ -102,6 +141,15 @@ def main() -> None:
     for review_dir, schema_name, document_name in JSON_REVIEW_CONTRACTS:
         errors.extend(validate_review_document(root, schema_name, document_name))
         counts.append(f"{review_dir}={'1' if (root / document_name).exists() else '0'}")
+    for review_name, schema_name, document_name in ROOT_JSONL_REVIEW_CONTRACTS:
+        errors.extend(validate_root_jsonl_review(root, schema_name, document_name))
+        path = root / document_name
+        count = (
+            sum(1 for line in path.read_text(encoding="utf-8").splitlines() if line.strip())
+            if path.exists()
+            else 0
+        )
+        counts.append(f"{review_name}={count}")
     if errors:
         raise SystemExit("Review schema validation failed:\n- " + "\n- ".join(errors))
     print("Review schema validation passed: " + ", ".join(counts))

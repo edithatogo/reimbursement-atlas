@@ -1,0 +1,14 @@
+{
+  "byte_size": 23019454,
+  "cache_scope": "local_raw_only",
+  "checksum_sha256": "3b646565695329aa399e937883c68d5d424d0df5eaab2f22baa0e08d44fdbe87",
+  "licence_gate": "public_reuse_review",
+  "parse_success": true,
+  "raw_file_copied_to_bundle": false,
+  "record_count": 19836,
+  "record_type": "schedule_items",
+  "review_required_before_publication": true,
+  "snapshot_id": "snapshot_hpo_current_20260723_3b6465656953",
+  "source_id": "hpo",
+  "source_version_id": "hpo_current_20260723"
+}

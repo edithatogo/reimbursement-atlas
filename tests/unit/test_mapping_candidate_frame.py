@@ -77,10 +77,14 @@ def test_candidate_frame_rows_validate_and_output_is_deterministic(tmp_path: Pat
     assert not list(Draft202012Validator(schema).iter_errors(rows[0]))
 
 
-def test_current_repository_fails_closed_without_cross_family_reviewed_bundles() -> None:
+def test_current_repository_reports_partial_real_counterpart_coverage() -> None:
     rows, summary = build_candidate_frame(Path.cwd())
 
-    assert rows == []
-    assert summary["candidate_count"] == 0
-    assert summary["target_gap"] == 1500
-    assert summary["status"] == "blocked_source_families"
+    assert len(rows) == 1500
+    assert summary["candidate_count"] == 1500
+    assert summary["target_gap"] == 0
+    assert summary["family_summary"]["medicines"]["status"] == "ready"
+    assert summary["family_summary"]["procedures_pathology"]["status"] == "ready"
+    assert summary["family_summary"]["genomics_coverage"]["status"] == "ready"
+    assert summary["family_summary"]["devices_other"]["status"] == "ready"
+    assert summary["status"] == "ready_for_blinded_review"

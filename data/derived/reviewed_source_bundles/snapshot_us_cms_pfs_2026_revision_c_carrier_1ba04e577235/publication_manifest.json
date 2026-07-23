@@ -1,0 +1,21 @@
+{
+  "derived_files": [
+    "us_cms_pfs_2026_revision_c_carrier_schedule_items.jsonl",
+    "us_cms_pfs_2026_revision_c_carrier_schedule_items.csv",
+    "source_snapshots.jsonl",
+    "validation_report.json"
+  ],
+  "licence_gate": "public_reuse_review",
+  "manifest_version": "reviewed-source-bundle-v1",
+  "project": "reimbursement-atlas-conductor",
+  "raw_cache_scope": "local_raw_only",
+  "raw_file_copied": false,
+  "record_count": 1635,
+  "snapshot_id": "snapshot_us_cms_pfs_2026_revision_c_carrier_1ba04e577235",
+  "source_id": "us_cms_pfs",
+  "source_version_id": "us_cms_pfs_2026_revision_c_carrier",
+  "warnings": [
+    "Confirm source-specific redistribution terms before publishing derived rows.",
+    "Do not publish raw local_path values if they expose private filesystem locations."
+  ]
+}

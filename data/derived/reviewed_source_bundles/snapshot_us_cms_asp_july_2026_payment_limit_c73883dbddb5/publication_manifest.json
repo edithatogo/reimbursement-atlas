@@ -1,0 +1,21 @@
+{
+  "derived_files": [
+    "us_cms_asp_july_2026_payment_limit_schedule_items.jsonl",
+    "us_cms_asp_july_2026_payment_limit_schedule_items.csv",
+    "source_snapshots.jsonl",
+    "validation_report.json"
+  ],
+  "licence_gate": "public_reuse_review",
+  "manifest_version": "reviewed-source-bundle-v1",
+  "project": "reimbursement-atlas-conductor",
+  "raw_cache_scope": "local_raw_only",
+  "raw_file_copied": false,
+  "record_count": 890,
+  "snapshot_id": "snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5",
+  "source_id": "us_cms_asp",
+  "source_version_id": "us_cms_asp_july_2026_payment_limit",
+  "warnings": [
+    "Confirm source-specific redistribution terms before publishing derived rows.",
+    "Do not publish raw local_path values if they expose private filesystem locations."
+  ]
+}

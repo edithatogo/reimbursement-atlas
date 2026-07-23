@@ -49,7 +49,7 @@ def test_dashboard_review_schema_rejects_unscoped_wcag_claim() -> None:
             "routes": ["/"],
             "browsers": ["Chromium"],
             "operating_systems": ["macOS"],
-            "assistive_technology": [],
+            "assistive_technology": ["VoiceOver"],
             "provenance": True,
         },
         "findings": [],

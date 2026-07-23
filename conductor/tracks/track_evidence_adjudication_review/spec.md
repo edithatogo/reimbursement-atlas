@@ -13,6 +13,10 @@ scope, artefact/checksum, review method and resulting limitation.
 - Record CMS AMA/CPT, MBS/PBS reuse and historical-source decisions separately.
 - Review dashboard visual/accessibility evidence within its tested browser scope.
 - Keep prototype results distinct from evidence-ready or policy-ready claims.
+- Keep reviewers blind to the other pass and to development/holdout assignment; freeze labels
+  before deterministic splitting and make the one-time holdout fingerprint immutable.
+- Report exact binomial intervals and family-specific denominators/exclusions; never generalise a
+  completed stratum to unsupported atlas-wide performance.
 
 ## Acceptance criteria
 
@@ -21,6 +25,8 @@ scope, artefact/checksum, review method and resulting limitation.
 - [ ] Dashboard review records viewport/browser scope and unresolved accessibility limitations.
 - [ ] Evidence-readiness output changes only when its acceptance criteria are met.
 - [ ] Final handoff lists no silently resolved review blockers.
+- [ ] Candidate-frame quotas, review independence, split disjointness and holdout one-time use are
+  machine-validated and fail closed.
 
 ## External gates
 

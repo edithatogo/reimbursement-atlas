@@ -15,10 +15,10 @@
       "additionalProperties": false,
       "required": ["routes", "browsers", "operating_systems", "assistive_technology", "provenance"],
       "properties": {
-        "routes": {"type": "array", "items": {"type": "string", "minLength": 1}},
-        "browsers": {"type": "array", "items": {"type": "string", "minLength": 1}},
-        "operating_systems": {"type": "array", "items": {"type": "string", "minLength": 1}},
-        "assistive_technology": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "routes": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "browsers": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "operating_systems": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "assistive_technology": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
         "provenance": {"type": "boolean"}
       }
     },

@@ -12,6 +12,7 @@ from reimburse_atlas.registry import project_root
 
 INPUT = Path("data/derived/mapping_study/candidate_frame.jsonl")
 ADJUDICATIONS = Path("data/mapping_study/adjudications.jsonl")
+BLIND_REVIEWS = Path("data/mapping_study/blind_reviews.jsonl")
 OUTPUT = Path("data/derived/vertical_slice/mapping_review_pack_plan.json")
 SEED = "reimbursement-atlas-mapping-review-pack-v1"
 FAMILY_QUOTAS = {
@@ -51,6 +52,30 @@ def build_plan(root: Path | None = None) -> dict[str, Any]:  # ruff:ignore[too-m
         if row.get("candidate_frame_sha256") == frame_sha256
         and row.get("final_decision") in {"positive", "negative"}
     }
+    review_pairs: dict[str, dict[str, dict[str, Any]]] = {}
+    for review in _rows(repo / BLIND_REVIEWS):
+        case_id = str(review.get("case_id", ""))
+        role = str(review.get("reviewer_role", ""))
+        if (
+            case_id in unique
+            and review.get("candidate_frame_sha256") == frame_sha256
+            and role in {"reviewer_a", "reviewer_b"}
+        ):
+            review_pairs.setdefault(case_id, {})[role] = review
+    independently_reviewed = {
+        case_id
+        for case_id, pair in review_pairs.items()
+        if set(pair) == {"reviewer_a", "reviewer_b"}
+    }
+    admissible_adjudications = {
+        case_id: decision
+        for case_id, decision in adjudications.items()
+        if case_id in independently_reviewed
+        and decision.get("reviewer_a_decision")
+        == review_pairs[case_id]["reviewer_a"].get("decision")
+        and decision.get("reviewer_b_decision")
+        == review_pairs[case_id]["reviewer_b"].get("decision")
+    }
 
     development: list[str] = []
     holdout: list[str] = []
@@ -60,7 +85,7 @@ def build_plan(root: Path | None = None) -> dict[str, Any]:  # ruff:ignore[too-m
         for label in ("positive", "negative"):
             case_ids = _ordered([
                 case_id
-                for case_id, decision in adjudications.items()
+                for case_id, decision in admissible_adjudications.items()
                 if case_id in unique
                 and unique[case_id].get("family") == family
                 and decision.get("final_decision") == label
@@ -75,7 +100,7 @@ def build_plan(root: Path | None = None) -> dict[str, Any]:  # ruff:ignore[too-m
         gap for family in quota_gaps.values() for gap in family.values()
     )
     available = len(unique)
-    adjudicated = len(adjudications)
+    adjudicated = len(admissible_adjudications)
     source_strata = Counter(
         f"{row.get('left_source_id')}->{row.get('right_source_id')}" for row in unique.values()
     )
@@ -89,6 +114,9 @@ def build_plan(root: Path | None = None) -> dict[str, Any]:  # ruff:ignore[too-m
         "input": str(INPUT),
         "input_sha256": frame_sha256,
         "adjudications": str(ADJUDICATIONS),
+        "blind_reviews": str(BLIND_REVIEWS),
+        "independently_reviewed_count": len(independently_reviewed),
+        "inadmissible_adjudication_count": len(adjudications) - adjudicated,
         "adjudication_count": adjudicated,
         "randomisation": {"algorithm": "sha256-sort", "seed": SEED},
         "targets": {

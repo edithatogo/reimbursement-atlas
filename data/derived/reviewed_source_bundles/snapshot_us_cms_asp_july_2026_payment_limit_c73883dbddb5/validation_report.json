@@ -1,0 +1,14 @@
+{
+  "byte_size": 62434,
+  "cache_scope": "local_raw_only",
+  "checksum_sha256": "c73883dbddb5e5eb8397a2e5fa008e71760e81236c9ee5b5d92f4918daeead2e",
+  "licence_gate": "public_reuse_review",
+  "parse_success": true,
+  "raw_file_copied_to_bundle": false,
+  "record_count": 890,
+  "record_type": "schedule_items",
+  "review_required_before_publication": true,
+  "snapshot_id": "snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5",
+  "source_id": "us_cms_asp",
+  "source_version_id": "us_cms_asp_july_2026_payment_limit"
+}

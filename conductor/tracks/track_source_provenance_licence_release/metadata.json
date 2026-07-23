@@ -3,12 +3,13 @@
   "type": "feature",
   "status": "in_progress",
   "created_at": "2026-07-20T00:00:00Z",
-  "updated_at": "2026-07-22T12:45:39Z",
+  "updated_at": "2026-07-23T00:00:00Z",
   "description": "Make historical and live source provenance, licensing and transformations release-reproducible.",
   "evidence_schema": "1.0",
   "gates": [
     {"id": "source_catalogue", "kind": "repository", "status": "pass", "evidence": "Historical source catalogues and acquisition manifests exist."},
     {"id": "source_rights", "kind": "human_review", "status": "pass", "evidence": "All 178 current checksum-bound rows are approved; source-specific restrictions remain authoritative."},
-    {"id": "raw_payload_policy", "kind": "repository", "status": "pass", "evidence": "Public-data policy excludes raw/local cache paths from tracked outputs."}
+    {"id": "raw_payload_policy", "kind": "repository", "status": "pass", "evidence": "Public-data policy excludes raw/local cache paths from tracked outputs."},
+    {"id": "counterpart_sources", "kind": "source_acquisition", "status": "pending", "evidence": "PBS supplies 6,945 reviewed left-side codes; authoritative rights-cleared counterpart bundles remain to be acquired."}
   ]
 }

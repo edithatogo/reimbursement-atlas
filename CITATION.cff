@@ -4,7 +4,8 @@ message: "If you use this software or its derived research artefacts, please cit
 type: software
 authors:
   - given-names: "Dylan"
-    family-names: "and collaborators"
+    family-names: "Mordaunt"
+    orcid: "https://orcid.org/0000-0002-9775-0603"
 version: 0.1.0
 date-released: 2026-07-03
 license: Apache-2.0

@@ -9,7 +9,7 @@ description = "Bleeding-edge comparative reimbursement atlas for CMS, MBS/PBS an
 readme = "README.md"
 requires-python = ">=3.14"
 license = "Apache-2.0"
-authors = [{ name = "Dylan and collaborators" }]
+authors = [{ name = "Dylan Mordaunt" }]
 keywords = ["health-economics", "reimbursement", "cms", "mbs", "pbs", "hta", "polars", "duckdb", "lancedb", "mojo"]
 classifiers = [
   "Development Status :: 2 - Pre-Alpha",
@@ -138,6 +138,7 @@ profile = "scalene src/reimburse_atlas/cli.py -- --help"
 qa = { depends-on = ["format-check", "lint", "typecheck", "seed-sync-check", "public-data-policy", "repo-automation", "sbom", "architecture-report", "source-download-plan", "pbs-acquisition-evidence", "source-validation", "source-contracts", "source-url-licence-checklist", "historical-sources", "github-project-export", "final-handoff", "protocol-status", "roadmap-linkages", "data-quality", "data-dictionary", "evidence-readiness", "source-drift", "release-readiness", "licence-review-queue", "licence-review-validate", "licence-decision-matrix", "review-schemas", "local-parser-contracts", "mapping-power-calculation", "mapping-candidate-frame", "mapping-review-pack-plan", "osf-plan", "research-package", "coverage", "smoke"] }
 schema-export = "PYTHONPATH=src python scripts/export_json_schema.py"
 zenodo-metadata = "PYTHONPATH=src python scripts/validate_zenodo_metadata.py"
+zenodo-draft = "PYTHONPATH=src python scripts/make_zenodo_deposition_draft.py"
 seed-validate = "PYTHONPATH=src python scripts/validate_seed_data.py"
 seed-sync = "PYTHONPATH=src python scripts/sync_seed_csvs.py"
 seed-sync-check = "PYTHONPATH=src python scripts/validate_seed_sync.py"
@@ -197,6 +198,8 @@ mapping-calibration = "PYTHONPATH=src python scripts/check_mapping_calibration.p
 mapping-review-pack-plan = "PYTHONPATH=src python scripts/make_mapping_review_pack_plan.py"
 mapping-power-calculation = "PYTHONPATH=src python scripts/make_mapping_power_calculation.py"
 mapping-candidate-frame = "PYTHONPATH=src python scripts/make_mapping_candidate_frame.py"
+mapping-blind-review-packets = "PYTHONPATH=src python scripts/make_mapping_blind_review_packets.py"
+mapping-holdout-evaluation = "PYTHONPATH=src python scripts/make_mapping_holdout_evaluation.py"
 source-drift = "PYTHONPATH=src python scripts/make_source_drift_report.py"
 protocol-status = "PYTHONPATH=src python scripts/make_protocol_status.py"
 osf-plan = "PYTHONPATH=src python scripts/make_osf_plan.py"

@@ -1,0 +1,26 @@
+{
+  "creators": [
+    {
+      "name": "Mordaunt, Dylan",
+      "orcid": "0000-0002-9775-0603"
+    }
+  ],
+  "description": "Reproducible, licence-aware tooling for comparing public reimbursement schedules, coverage decisions and policy-analysis metadata across jurisdictions. This record is release metadata preparation only; no Zenodo deposition or DOI is implied.",
+  "keywords": [
+    "health economics",
+    "reimbursement",
+    "public data",
+    "reproducible research"
+  ],
+  "license": "Apache-2.0",
+  "notes": "Apache-2.0 applies to software only. Derived data retain source-specific rights; raw and restricted source payloads are excluded.",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/edithatogo/reimbursement-atlas",
+      "relation": "isIdenticalTo",
+      "resource_type": "software"
+    }
+  ],
+  "title": "Reimbursement Atlas Conductor",
+  "upload_type": "software"
+}

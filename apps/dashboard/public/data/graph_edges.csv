@@ -21,6 +21,12 @@ source:us_cms_asp,jurisdiction:united_states,in_jurisdiction
 source:us_cms_asp,domain:medicines,covers_domain
 source:us_cms_mcd,jurisdiction:united_states,in_jurisdiction
 source:us_cms_mcd,domain:coverage_decisions,covers_domain
+source:hpo,jurisdiction:international,in_jurisdiction
+source:hpo,domain:genomics,covers_domain
+source:us_fda_device_classification,jurisdiction:united_states,in_jurisdiction
+source:us_fda_device_classification,domain:devices,covers_domain
+source:rxnorm,jurisdiction:united_states,in_jurisdiction
+source:rxnorm,domain:medicines,covers_domain
 source:us_medicaid_state_fees,jurisdiction:united_states,in_jurisdiction
 source:us_medicaid_state_fees,domain:medical_services,covers_domain
 source:uk_nhs_payment_scheme,jurisdiction:england,in_jurisdiction
@@ -132,6 +138,10 @@ version:au_mbs_20260701_xml,source:au_mbs,version_of
 version:us_cms_clfs_26clabq3_ama_zip,source:us_cms_clfs,version_of
 version:au_pbs_api_v3_current_month,source:au_pbs,version_of
 version:us_cms_asp_july_2026_payment_limit,source:us_cms_asp,version_of
+version:us_cms_pfs_2026_revision_c_carrier,source:us_cms_pfs,version_of
+version:hpo_current_20260723,source:hpo,version_of
+version:us_fda_device_classification_20260723_page1,source:us_fda_device_classification,version_of
+version:rxnorm_cpc_20260706,source:rxnorm,version_of
 version:us_cms_pfs_rvu26c,source:us_cms_pfs,version_of
 source_file:au_mbs_20260701_imap_txt,version:au_mbs_20260701_txt_pair,file_for_version
 source_file:au_mbs_20260701_imap_txt,source:au_mbs,file_for_source

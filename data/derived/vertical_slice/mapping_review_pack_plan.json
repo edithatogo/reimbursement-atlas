@@ -1,7 +1,8 @@
 {
   "adjudication_count": 0,
   "adjudications": "data/mapping_study/adjudications.jsonl",
-  "available_unique_candidates": 0,
+  "available_unique_candidates": 1500,
+  "blind_reviews": "data/mapping_study/blind_reviews.jsonl",
   "development_case_ids": [],
   "family_label_gaps": {
     "devices_other": {
@@ -22,8 +23,10 @@
     }
   },
   "holdout_case_ids": [],
+  "inadmissible_adjudication_count": 0,
+  "independently_reviewed_count": 0,
   "input": "data/derived/mapping_study/candidate_frame.jsonl",
-  "input_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "input_sha256": "275fdb0742ad2e8227b09a737799678f139f644e2a9f9cba06ac6c112ffcddca",
   "randomisation": {
     "algorithm": "sha256-sort",
     "seed": "reimbursement-atlas-mapping-review-pack-v1"
@@ -36,8 +39,15 @@
     "split_assigned_after_reference_labels": false
   },
   "schema_version": "mapping-review-pack-plan-v2",
-  "source_strata_available": {},
-  "status": "blocked_source_cases",
+  "source_strata_available": {
+    "au_mbs->hpo": 300,
+    "au_mbs->us_cms_pfs": 600,
+    "au_mbs->us_fda_device_classification": 146,
+    "au_pbs->rxnorm": 371,
+    "au_pbs->us_cms_asp": 29,
+    "au_pbs->us_fda_device_classification": 54
+  },
+  "status": "blocked_adjudication",
   "target_case_gap": 750,
   "targets": {
     "development_negative": 300,
