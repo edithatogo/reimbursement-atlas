@@ -69,24 +69,41 @@ Set `OSF_REGISTRATION_SNAPSHOT` to the path of the exported registration
 snapshot before running the command. Keep the credentialed export outside
 tracked source directories.
 
+The token-gated GitHub workflow emits a sanitized registration receipt. After
+placing that receipt at
+`data/derived/osf/remote_registration_receipt.json`, build the canonical
+snapshot with:
+
+```bash
+pixi run osf-registration-snapshot
+```
+
+The generator rejects receipts that are pending, private, mutable, incomplete,
+or inconsistent with the approved local freeze. The snapshot digest is
+recomputed over canonical JSON excluding the self-referential digest field;
+validation rejects a well-formed but incorrect digest.
+
 The command reports `blocked` when review or an active remote registration is
 missing, `drift` when protocol or manifest fingerprints differ, and `ready`
 only when the snapshot matches and `review_approved` is explicitly true. The
 remote snapshot must also declare schema `osf-registration-snapshot-v1`, an
 `https://osf.io/` registration URL, a submission timestamp, `immutable: true`,
-and a lowercase SHA-256 `snapshot_sha256`; this prevents an underspecified or
-mutable export from being treated as registration evidence. The command remains
+and a canonical lowercase SHA-256 `snapshot_sha256`; this prevents an
+underspecified, mutable or tampered export from being treated as registration
+evidence. The command remains
 non-mutating and does not submit or approve registrations.
 generated freeze is intentionally unapproved and therefore remains fail-closed
 until human methods, domain, licence and governance review is recorded.
 
 ## Current project visibility
 
-On 2026-07-19, the OSF project `q8cnx` was made public through the authenticated
-OSF project controls. A public API readback confirmed `public: true`, with zero
-files, no registration, and no uploaded papers. This changes project visibility
-only; it does not approve or publish the protocol, research package, registration,
-or any evidence release.
+The OSF project `q8cnx` is public. On 2026-07-23, token-gated GitHub Actions run
+`30010023356` uploaded and round-trip verified 11 approved protocol, report and
+repository records, then submitted immediate-public registration `gqk4z`.
+OSF returned `pending_registration_approval: true`, so the registration remains
+private during its administrator confirmation window. No active snapshot or
+release-readiness claim is generated until OSF confirms it. Papers, preprints,
+raw payloads and restricted descriptors were not uploaded.
 
 The same plan generates `data/derived/osf/registration_review_packet.md`. This is a
 deterministic, non-mutating review aid containing the freeze digests, protocol/report

@@ -573,15 +573,15 @@ epics:
     track_id: track_osf_registration_record_quality
     issues:
       - title: Complete OSF Preregistration metadata and protocol sections
-        labels: ["type:research", "type:osf", "type:review", "priority:must", "status:blocked"]
-        status: blocked
+        labels: ["type:research", "type:osf", "type:review", "priority:must", "status:implemented"]
+        status: implemented
         acceptance:
           - "Title, description, contributors, licence, subjects and tags are complete."
           - "Each research question links to protocol, source, transformation and output artefacts."
           - "Paper, preprint and manuscript publication remain explicitly excluded."
       - title: Freeze OSF source cutoff and manifest digests
-        labels: ["type:research", "type:provenance", "type:reproducibility", "status:blocked"]
-        status: blocked
+        labels: ["type:research", "type:provenance", "type:reproducibility", "status:implemented"]
+        status: implemented
         acceptance:
           - "Source cutoff, protocol digest, analysis manifest and package digests are recorded."
           - "OSF CLI validation passes against the draft or registration."

@@ -1,5 +1,20 @@
 # Current focus
 
+## 2026-07-23 — Evidence closure and OSF confirmation boundary
+
+Branch `codex/complete-approved-groups` has completed the rights-cleared 1,500-case
+counterpart frame, 750-case adjudicated mapping study, untouched 150-case holdout
+evaluation and refreshed scoped dashboard review. Repository and evidence release
+readiness are true; research-policy claims remain deliberately unready (`0/5`).
+
+OSF project `q8cnx` is public. Workflow run `30010023356` round-trip verified 11
+approved records and submitted immediate-public registration `gqk4z`. OSF currently
+reports the immutable submission as private and pending administrator confirmation.
+The canonical snapshot generator rejects that pending receipt. After OSF confirmation,
+rerun the token-gated workflow, regenerate the snapshot and readiness outputs, then
+complete the signed GitHub and Zenodo/DataCite release. Papers and preprints remain
+excluded.
+
 ## 2026-07-22 — Licence ledger and handoff consistency
 
 Merged main is `578760f1647c01f11caaf5e1a7f7bf6d38129dea` after PR #555.

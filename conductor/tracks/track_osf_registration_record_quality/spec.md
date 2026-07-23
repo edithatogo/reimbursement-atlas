@@ -2,8 +2,8 @@
 
 ## Overview
 
-Complete the private OSF Preregistration draft created from the Reimbursement Atlas
-project. The record must describe the research questions, protocol scope, source
+Complete the OSF registration created from the public Reimbursement Atlas project.
+The record must describe the research questions, protocol scope, source
 cutoff, provenance, transformations, licensing boundaries, analysis outputs and
 publication exclusions before any registration submission.
 
@@ -17,10 +17,10 @@ publication exclusions before any registration submission.
 
 ## Acceptance criteria
 
-- [ ] OSF Preregistration metadata is complete and internally consistent.
-- [ ] Protocol sections identify all five research questions and their outputs.
-- [ ] Source cutoff, manifest digest and licence boundaries are frozen and verified.
-- [ ] OSF draft validation passes; submission remains a separate explicitly approved action.
+- [x] OSF registration metadata is complete and internally consistent.
+- [x] Protocol sections identify all five research questions and their outputs.
+- [x] Source cutoff, manifest digest and licence boundaries are frozen and verified.
+- [x] OSF validation passes and submission has explicit accountable approval.
 - [ ] Repository outputs record the OSF draft/registration state and URL.
 
 ## External gates

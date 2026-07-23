@@ -2,12 +2,16 @@ from __future__ import annotations
 
 import json
 
+import pytest
+
 from reimburse_atlas.osf_registration import (
     apply_publication_decision,
     apply_registration_decision,
     build_registration_freeze,
     build_registration_review_packet,
+    build_remote_registration_snapshot,
     check_registration_drift,
+    registration_snapshot_sha256,
 )
 from reimburse_atlas.osf_sync import (
     OsfRemoteRecord,
@@ -170,12 +174,13 @@ def _remote(**overrides: object) -> dict[str, object]:
         "status": "registered",
         "submitted_at": "2026-07-16T00:00:00Z",
         "immutable": True,
-        "snapshot_sha256": "a" * 64,
         "protocol_digest": "protocol",
         "analysis_manifest_digest": "manifest",
         "source_cutoff": "2026-07-01",
     }
     remote.update(overrides)
+    if "snapshot_sha256" not in overrides:
+        remote["snapshot_sha256"] = registration_snapshot_sha256(remote)
     return remote
 
 
@@ -198,6 +203,16 @@ def test_registration_check_rejects_incomplete_remote_snapshot() -> None:
     result = check_registration_drift(_freeze(), remote)
     assert result["status"] == "blocked"
     assert result["reasons"] == ["invalid_remote_registration:snapshot_sha256"]
+
+
+def test_registration_check_rejects_mismatched_snapshot_digest() -> None:
+    remote = _remote()
+    remote["source_cutoff"] = "2026-07-02"
+
+    result = check_registration_drift(_freeze(), remote)
+
+    assert result["status"] == "blocked"
+    assert result["reasons"] == ["invalid_remote_registration:snapshot_sha256_mismatch"]
 
 
 def test_registration_check_rejects_invalid_remote_metadata() -> None:
@@ -224,6 +239,51 @@ def test_registration_check_accepts_matching_reviewed_registration() -> None:
     assert result["status"] == "ready"
     assert result["network_io"] is False
     assert result["mutation_performed"] is False
+
+
+def test_build_remote_registration_snapshot_binds_receipt_to_freeze() -> None:
+    receipt = {
+        "schema_version": "osf-registration-receipt-v1",
+        "registration_id": "abc12",
+        "registration_url": "https://osf.io/abc12/",
+        "registered_at": "2026-07-23T13:00:00Z",
+        "public": True,
+        "immutable": True,
+        "status": "registered",
+    }
+
+    snapshot = build_remote_registration_snapshot(receipt, _freeze())
+
+    assert snapshot["snapshot_sha256"] == registration_snapshot_sha256(snapshot)
+    assert check_registration_drift(_freeze(), snapshot)["status"] == "ready"
+
+
+@pytest.mark.parametrize(
+    ("field", "value", "message"),
+    [
+        ("status", "pending_approval", "not active"),
+        ("public", False, "public and immutable"),
+        ("immutable", False, "public and immutable"),
+    ],
+)
+def test_build_remote_registration_snapshot_rejects_unready_receipt(
+    field: str,
+    value: object,
+    message: str,
+) -> None:
+    receipt: dict[str, object] = {
+        "schema_version": "osf-registration-receipt-v1",
+        "registration_id": "abc12",
+        "registration_url": "https://osf.io/abc12/",
+        "registered_at": "2026-07-23T13:00:00Z",
+        "public": True,
+        "immutable": True,
+        "status": "registered",
+    }
+    receipt[field] = value
+
+    with pytest.raises(ValueError, match=message):
+        build_remote_registration_snapshot(receipt, _freeze())
 
 
 def test_registration_review_packet_is_explicitly_unapproved(tmp_path) -> None:  # type: ignore[no-untyped-def]

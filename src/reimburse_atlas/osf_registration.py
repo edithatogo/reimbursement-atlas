@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+from collections.abc import Mapping
 from pathlib import Path
 from typing import Literal, cast
 
@@ -184,7 +185,69 @@ def _validate_remote_snapshot(remote: dict[str, object]) -> list[str]:
     snapshot_sha256 = remote.get("snapshot_sha256")
     if not isinstance(snapshot_sha256, str) or _SHA256_RE.fullmatch(snapshot_sha256) is None:
         errors.append("snapshot_sha256")
+    elif snapshot_sha256 != registration_snapshot_sha256(remote):
+        errors.append("snapshot_sha256_mismatch")
     return errors
+
+
+def registration_snapshot_sha256(snapshot: Mapping[str, object]) -> str:
+    """Hash the canonical snapshot payload without its self-referential digest."""
+    payload = {key: value for key, value in snapshot.items() if key != "snapshot_sha256"}
+    canonical = json.dumps(
+        payload,
+        ensure_ascii=True,
+        separators=(",", ":"),
+        sort_keys=True,
+    ).encode("utf-8")
+    return hashlib.sha256(canonical).hexdigest()
+
+
+def build_remote_registration_snapshot(
+    receipt: Mapping[str, object],
+    freeze: Mapping[str, object],
+) -> dict[str, object]:
+    """Build a checksum-bound snapshot from a verified active OSF receipt."""
+    if receipt.get("schema_version") != "osf-registration-receipt-v1":
+        message = "invalid OSF registration receipt schema"
+        raise ValueError(message)
+    if receipt.get("status") != "registered":
+        message = "OSF registration is not active"
+        raise ValueError(message)
+    if receipt.get("public") is not True or receipt.get("immutable") is not True:
+        message = "OSF registration must be public and immutable"
+        raise ValueError(message)
+    registration_id = receipt.get("registration_id")
+    registration_url = receipt.get("registration_url")
+    submitted_at = receipt.get("registered_at")
+    if not isinstance(registration_id, str) or not registration_id:
+        message = "OSF registration receipt is missing registration_id"
+        raise ValueError(message)
+    if not isinstance(registration_url, str) or not registration_url.startswith("https://osf.io/"):
+        message = "OSF registration receipt has an invalid registration_url"
+        raise ValueError(message)
+    if not isinstance(submitted_at, str) or not submitted_at:
+        message = "OSF registration receipt is missing registered_at"
+        raise ValueError(message)
+
+    required = ("protocol_digest", "analysis_manifest_digest", "source_cutoff")
+    missing = [field for field in required if not isinstance(freeze.get(field), str)]
+    if missing or freeze.get("review_approved") is not True:
+        detail = ",".join(missing) if missing else "review_approved"
+        message = f"OSF registration freeze is incomplete: {detail}"
+        raise ValueError(message)
+    snapshot: dict[str, object] = {
+        "schema_version": "osf-registration-snapshot-v1",
+        "registration_id": registration_id,
+        "registration_url": registration_url,
+        "status": "registered",
+        "submitted_at": submitted_at,
+        "immutable": True,
+        "protocol_digest": freeze["protocol_digest"],
+        "analysis_manifest_digest": freeze["analysis_manifest_digest"],
+        "source_cutoff": freeze["source_cutoff"],
+    }
+    snapshot["snapshot_sha256"] = registration_snapshot_sha256(snapshot)
+    return snapshot
 
 
 def _digest_paths(root: Path, paths: list[Path]) -> str:
