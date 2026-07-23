@@ -18,6 +18,10 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/")
   : `${import.meta.env.BASE_URL}/`;
 const csvUrl = `${baseUrl}data/${csv.fileName}`;
 const visibleColumns = columns ?? csv.columns.slice(0, 8);
+const tableKey = (id ?? `${fileName}-${title}`).toLowerCase().replace(/[^a-z0-9]+/g, "-");
+const resultId = `${tableKey}-results`;
+const tableId = `${tableKey}-table`;
+const initialCount = Math.min(limit, csv.rows.length);
 ---
 
 <section id={id} data-table-section={searchable ? "true" : undefined}>
@@ -25,17 +29,33 @@ const visibleColumns = columns ?? csv.columns.slice(0, 8);
   {description && <p class="muted">{description}</p>}
   {searchable && (
     <label class="table-filter">
-      Filter rows
-      <input type="search" data-table-filter placeholder="Search this table" />
+      Filter {title} rows
+      <input
+        type="search"
+        data-table-filter
+        data-initial-limit={limit}
+        aria-controls={tableId}
+        aria-describedby={resultId}
+        placeholder="Search this table"
+      />
     </label>
   )}
   <p class="muted">
-    Showing the first {Math.min(limit, csv.rows.length)} of {csv.rows.length} rows from
+    <span
+      id={resultId}
+      data-table-result-count
+      role={searchable ? "status" : undefined}
+      aria-live={searchable ? "polite" : undefined}
+      aria-atomic={searchable ? "true" : undefined}
+    >
+      Showing the first {initialCount} of {csv.rows.length} rows.
+    </span>{" "}
+    Data are from
     <code>{csv.fileName}</code>. Filtering searches all rows.
     <a href={csvUrl}>Download CSV</a>
   </p>
   <div class="table-scroll">
-    <table>
+    <table id={tableId}>
       <caption class="sr-only">{title}</caption>
       <thead>
         <tr>
@@ -59,15 +79,24 @@ const visibleColumns = columns ?? csv.columns.slice(0, 8);
   <script>
     document.querySelectorAll<HTMLElement>("[data-table-section]").forEach((section) => {
       const input = section.querySelector<HTMLInputElement>("[data-table-filter]");
+      const result = section.querySelector<HTMLElement>("[data-table-result-count]");
       if (!input) return;
       const rows = [...section.querySelectorAll<HTMLElement>("[data-table-row]")];
-      const overflowRows = rows.filter((row) => row.dataset.tableOverflowRow === "true");
+      const initialLimit = Number.parseInt(input.dataset.initialLimit ?? "8", 10);
       input.addEventListener("input", () => {
         const query = input.value.trim().toLowerCase();
-        rows.forEach((row) => {
-          row.hidden = query.length > 0 && !row.textContent?.toLowerCase().includes(query);
+        let visibleCount = 0;
+        rows.forEach((row, index) => {
+          const matches = row.textContent?.toLowerCase().includes(query) ?? false;
+          row.hidden = query.length > 0 ? !matches : index >= initialLimit;
+          if (!row.hidden) visibleCount += 1;
         });
-        if (!query) overflowRows.forEach((row) => (row.hidden = true));
+        if (result) {
+          result.textContent =
+            query.length > 0
+              ? `Showing ${visibleCount} matching ${visibleCount === 1 ? "row" : "rows"} of ${rows.length}.`
+              : `Showing the first ${Math.min(initialLimit, rows.length)} of ${rows.length} rows.`;
+        }
       });
     });
   </script>

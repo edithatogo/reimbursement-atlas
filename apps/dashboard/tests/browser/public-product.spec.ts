@@ -1,9 +1,10 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
+import { expect, type Page, test } from "@playwright/test";
 
 const routes = [
   "/",
   "/analyses/",
+  "/analyses/cognitive_vs_procedural_ratio/",
   "/automation/",
   "/crosswalks/",
   "/demonstrators/",
@@ -11,12 +12,54 @@ const routes = [
   "/readiness/",
   "/roadmap/",
   "/sources/",
+  "/sources/au_mbs/",
 ];
+
+const navLabelByRoute = new Map([
+  ["/", "Graph"],
+  ["/analyses/", "Analyses"],
+  ["/analyses/cognitive_vs_procedural_ratio/", "Analyses"],
+  ["/automation/", "Automation"],
+  ["/crosswalks/", "Crosswalks"],
+  ["/demonstrators/", "Demonstrators"],
+  ["/ontologies/", "Ontologies"],
+  ["/readiness/", "Readiness"],
+  ["/roadmap/", "Roadmap"],
+  ["/sources/", "Sources"],
+  ["/sources/au_mbs/", "Sources"],
+]);
 
 const PERFORMANCE_BUDGET = {
   domContentLoadedMs: 5_000,
   transferredBytes: 8_000_000,
 };
+
+async function expectNoPageLevelHorizontalOverflow(page: Page) {
+  const measurement = await page.evaluate(() => {
+    const root = document.documentElement;
+    const offenders = [...document.querySelectorAll<HTMLElement>("body *")]
+      .filter((element) => {
+        const bounds = element.getBoundingClientRect();
+        return bounds.right > root.clientWidth + 1 || bounds.left < -1;
+      })
+      .slice(0, 10)
+      .map((element) => ({
+        tag: element.tagName.toLowerCase(),
+        className: element.className,
+        left: element.getBoundingClientRect().left,
+        right: element.getBoundingClientRect().right,
+      }));
+    return {
+      clientWidth: root.clientWidth,
+      scrollWidth: root.scrollWidth,
+      offenders,
+    };
+  });
+  expect(
+    measurement.scrollWidth,
+    `Page-level overflow detected:\n${JSON.stringify(measurement, null, 2)}`,
+  ).toBeLessThanOrEqual(measurement.clientWidth + 1);
+}
 
 for (const route of routes) {
   test(`renders public route ${route}`, async ({ page }, testInfo) => {
@@ -32,6 +75,10 @@ for (const route of routes) {
     await expect(page.locator("html[lang]")).toHaveCount(1);
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page).toHaveTitle(/Reimbursement Atlas/);
+    await expect(page.locator('nav a[aria-current="page"]')).toHaveText(
+      navLabelByRoute.get(route) ?? "",
+    );
+    await expectNoPageLevelHorizontalOverflow(page);
     if (route === "/") {
       const statusCards = page.locator(".status-card");
       await expect(statusCards).toHaveCount(3);
@@ -84,7 +131,7 @@ for (const route of routes) {
       contentType: "application/json",
     });
 
-    const screenshot = await page.screenshot({ fullPage: route !== "/", scale: "css" });
+    const screenshot = await page.screenshot({ fullPage: true, scale: "css" });
     expect(screenshot.byteLength).toBeGreaterThan(1_000);
     expect(screenshot.byteLength).toBeLessThan(4_000_000);
     await testInfo.attach("route-screenshot", {
@@ -97,21 +144,65 @@ for (const route of routes) {
   });
 }
 
-test("keeps the public search control keyboard reachable and functional", async ({ page }) => {
+test("supports skip navigation and visible keyboard focus", async ({ page }, testInfo) => {
+  await page.goto("/", { waitUntil: "networkidle" });
+  const skipLink = page.getByRole("link", { name: "Skip to main content" });
+  if (testInfo.project.name === "desktop-webkit") {
+    // Headless WebKit inherits macOS's optional link-tab preference. Explicit focus
+    // still verifies the application focus target and keyboard activation path.
+    await skipLink.focus();
+  } else {
+    await page.keyboard.press("Tab");
+  }
+  await expect(skipLink).toBeFocused();
+  await skipLink.press("Enter");
+  await expect(page.locator("#main-content")).toBeFocused();
+
+  await page.goto("/", { waitUntil: "networkidle" });
+  const graphNav = page.getByRole("navigation", { name: "Dashboard sections" }).getByRole("link", {
+    name: "Graph",
+  });
+  if (testInfo.project.name === "desktop-webkit") {
+    await graphNav.focus();
+  } else {
+    await page.keyboard.press("Tab");
+    await page.keyboard.press("Tab");
+  }
+  await expect(graphNav).toBeFocused();
+  const focusStyle = await graphNav.evaluate((element) => {
+    const style = getComputedStyle(element);
+    return { outlineStyle: style.outlineStyle, outlineWidth: style.outlineWidth };
+  });
+  expect(focusStyle.outlineStyle).not.toBe("none");
+  expect(Number.parseFloat(focusStyle.outlineWidth)).toBeGreaterThan(0);
+});
+
+test("keeps the public search control keyboard reachable and announces result counts", async ({
+  page,
+}) => {
   await page.goto("/sources/", { waitUntil: "networkidle" });
   const firstTable = page.locator('section[data-table-section="true"]').first();
   const filter = firstTable.locator("input[data-table-filter]");
   const rows = firstTable.locator("tr[data-table-row]");
+  const results = firstTable.locator('[role="status"][data-table-result-count]');
   await expect(filter).toBeVisible();
+  await expect(results).toContainText(/^Showing the first \d+ of \d+ rows\.$/);
   await filter.focus();
   await expect(filter).toBeFocused();
 
-  const token = (await rows.first().locator("td").first().innerText()).trim().slice(0, 6);
-  expect(token).not.toBe("");
-  await filter.fill(token);
-  await expect(rows.filter({ visible: true })).toHaveCount(1);
+  await filter.fill("au_mbs");
+  const matchingRows = rows.filter({ visible: true });
+  const matchingCount = await matchingRows.count();
+  expect(matchingCount).toBeGreaterThan(0);
+  await expect(results).toHaveText(
+    `Showing ${matchingCount} matching ${matchingCount === 1 ? "row" : "rows"} of ${await rows.count()}.`,
+  );
   await filter.press("Tab");
   await expect(page.locator(":focus")).toHaveCount(1);
+  await filter.fill("no-such-dashboard-record");
+  await expect(results).toHaveText(`Showing 0 matching rows of ${await rows.count()}.`);
+  await filter.fill("");
+  await expect(results).toContainText(/^Showing the first \d+ of \d+ rows\.$/);
 });
 
 test("searches rows beyond the compact initial table view", async ({ page }) => {
@@ -134,4 +225,47 @@ test("searches rows beyond the compact initial table view", async ({ page }) => 
   expect(token).not.toBe("");
   await filter.fill(token);
   await expect(ninthRow).toBeVisible();
+});
+
+test("provides a semantic graph alternative in every browser", async ({ page }) => {
+  await page.goto("/", { waitUntil: "networkidle" });
+  const alternative = page.locator("details.graph-alternative");
+  await expect(alternative).toBeVisible();
+  await alternative.locator("summary").focus();
+  await expect(alternative.locator("summary")).toBeFocused();
+  await alternative.locator("summary").press("Enter");
+  await expect(alternative.getByRole("table", { name: /graph nodes/i })).toBeVisible();
+  await expect(alternative.getByRole("link", { name: "complete node CSV" })).toHaveAttribute(
+    "href",
+    /data\/graph_nodes\.csv$/,
+  );
+  await expect(alternative.getByRole("link", { name: "complete relationship CSV" })).toHaveAttribute(
+    "href",
+    /data\/graph_edges\.csv$/,
+  );
+});
+
+test("keeps tables local and page reflow bounded at 200% and 400% equivalents", async ({
+  page,
+}) => {
+  for (const viewport of [
+    { width: 640, height: 900, label: "200%" },
+    { width: 320, height: 900, label: "400%" },
+  ]) {
+    await page.setViewportSize({ width: viewport.width, height: viewport.height });
+    for (const route of [
+      "/sources/",
+      "/sources/au_mbs/",
+      "/analyses/cognitive_vs_procedural_ratio/",
+      "/readiness/",
+    ]) {
+      await page.goto(route, { waitUntil: "networkidle" });
+      await expectNoPageLevelHorizontalOverflow(page);
+      const tables = page.locator(".table-scroll");
+      expect(
+        await tables.count(),
+        `${route} should retain table-local scrolling at the ${viewport.label} equivalent`,
+      ).toBeGreaterThan(0);
+    }
+  }
 });

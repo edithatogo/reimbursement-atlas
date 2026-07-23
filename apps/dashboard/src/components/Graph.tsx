@@ -98,6 +98,44 @@ export default function Graph({ baseUrl = "/" }: { baseUrl?: string }) {
     return <p>Checking graph renderer support…</p>;
   }
 
+  const accessibleAlternative = (
+    <details className="graph-alternative">
+      <summary>
+        Accessible graph data alternative: {points.length} nodes and {links.length} relationships
+      </summary>
+      <p>
+        The canvas is a visual overview only. This semantic table provides the first{" "}
+        {Math.min(points.length, 25)} nodes. Download the{" "}
+        <a href={`${publicBase}data/graph_nodes.csv`}>complete node CSV</a> and{" "}
+        <a href={`${publicBase}data/graph_edges.csv`}>complete relationship CSV</a>, or use the
+        source, crosswalk and roadmap sections for the full generated evidence.
+      </p>
+      <div className="table-scroll" tabIndex={0} aria-label="Scrollable graph node table">
+        <table>
+          <caption>First {Math.min(points.length, 25)} graph nodes</caption>
+          <thead>
+            <tr>
+              <th scope="col">Label</th>
+              <th scope="col">Kind</th>
+              <th scope="col">Jurisdiction</th>
+              <th scope="col">Domain</th>
+            </tr>
+          </thead>
+          <tbody>
+            {points.slice(0, 25).map((point) => (
+              <tr key={point.id}>
+                <th scope="row">{point.label || point.id}</th>
+                <td>{point.kind || "Not recorded"}</td>
+                <td>{point.jurisdiction || "Not recorded"}</td>
+                <td>{point.domain || "Not recorded"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </details>
+  );
+
   if (!rendererSupported) {
     return (
       <section aria-label="Graph renderer fallback">
@@ -106,6 +144,7 @@ export default function Graph({ baseUrl = "/" }: { baseUrl?: string }) {
           {points.length} nodes and {links.length} edges; use the linked source, mapping and
           roadmap tables for an accessible view.
         </p>
+        {accessibleAlternative}
       </section>
     );
   }
@@ -115,7 +154,7 @@ export default function Graph({ baseUrl = "/" }: { baseUrl?: string }) {
       <p>
         Loaded {points.length} nodes and {links.length} edges from generated seed CSV files.
       </p>
-      <div style={{ height: "720px" }}>
+      <div className="graph-visual" aria-hidden="true">
         <Suspense fallback={<p>Loading graph renderer…</p>}>
           <Cosmograph
             points={points}
@@ -132,6 +171,7 @@ export default function Graph({ baseUrl = "/" }: { baseUrl?: string }) {
           />
         </Suspense>
       </div>
+      {accessibleAlternative}
     </section>
   );
 }
