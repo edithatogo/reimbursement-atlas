@@ -1,14 +1,6 @@
 {
   "blockers": [
     {
-      "category": "human_review",
-      "evidence_path": "data/derived/licence_review/summary.json",
-      "id": "licence_review",
-      "next_action": "Record accountable reviewer decisions in the checksum-bound queue.",
-      "status": "blocked_review",
-      "summary": "44 publication candidates still require licence review."
-    },
-    {
       "category": "research_review",
       "evidence_path": "data/derived/evidence_readiness/summary.json",
       "id": "evidence_release",
@@ -53,9 +45,9 @@
     "source_validation": "data/derived/source_validation/summary.json"
   },
   "licence_review": {
-    "approved_rows": 147,
+    "approved_rows": 191,
     "decision_source": "data/licence_review/decisions.jsonl",
-    "pending_rows": 44,
+    "pending_rows": 0,
     "queue_source": "data/derived/licence_review/licence_review_queue.jsonl"
   },
   "project": "reimbursement-atlas",
