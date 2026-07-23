@@ -237,8 +237,22 @@ def main() -> None:
     parser.add_argument("--cycle", default=DEFAULT_CYCLE)
     args = parser.parse_args()
     root = project_root()
-    result = build_evaluation(root, args.cycle)
     output = root / mapping_study_paths(args.cycle).evaluation
+    if output.is_file():
+        existing = cast("dict[str, Any]", _read(output))
+        if existing.get("evaluated_once") is True:
+            print(
+                json.dumps(
+                    {
+                        "status": existing["status"],
+                        "preserved": True,
+                        "reason": "holdout_evaluation_already_sealed",
+                    },
+                    indent=2,
+                )
+            )
+            return
+    result = build_evaluation(root, args.cycle)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps({"status": result["status"], "exclusions": result["exclusions"]}, indent=2))

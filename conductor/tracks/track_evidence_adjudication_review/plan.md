@@ -21,7 +21,7 @@
   yield only 104 positive and 794 negative includable cases. The packet is therefore
   `blocked_candidate_spectrum` with a 421-case family/label quota gap; owner approval may freeze
   the proposal but cannot waive the approved design. (Subissue #491)
-- [~] EVID-02B: Generate cycle-scoped, checksum-bound blind packets for the separately frozen
+- [x] EVID-02B: Generate cycle-scoped, checksum-bound blind packets for the separately frozen
   `expansion_v2` frame and complete two fresh isolated reviews without reading the predecessor
   review, other reviewer, hypotheses or split assignment. Then fill the documented family/label
   deficits before creating development and holdout splits. The packet contains 1,500 cases and is
@@ -48,8 +48,10 @@
   checksum-bound reviews achieved 81.07% agreement and Cohen's kappa 0.664. Independent
   adjudication proposes 860 positive, 624 negative and 16 excluded cases with zero family-label
   quota gaps. The exact proposal SHA-256
-  `dd45a5f8a94d6e050e67c4ee88226104a4e599e8dcd016822e0e9ab7f3830ef5` is pending
-  accountable-owner approval. No split or holdout has been created or exposed.
+  `dd45a5f8a94d6e050e67c4ee88226104a4e599e8dcd016822e0e9ab7f3830ef5` was approved
+  by accountable reviewer `edithatogo` on 2026-07-23. The resulting 1,500 immutable
+  adjudication rows are frozen at SHA-256
+  `6c30943a871b72cd2ddce637e840d6a1a2a8a6a0fda89658da95414c1495d545`.
   (Subissue #491)
 - [x] EVID-02F: Implement the licence-scoped RVU26C local enrichment path for procedure/pathology
   review. Descriptor-bearing hypotheses are ignored local evidence; the tracked summary is
@@ -58,10 +60,10 @@
 - [x] EVID-02G: Expand device evidence from the first 1,000 openFDA classifications to the complete
   7,084-record corpus, with deterministic page and payload checksums. Use it only in a new
   immutable study cycle; do not alter predecessor packets or decisions. (Subissue #491)
-- [~] EVID-02H: Freeze the dual-tier `expansion_v9` cycle, validate two distinct reviewer-session
+- [x] EVID-02H: Freeze the dual-tier `expansion_v9` cycle, validate two distinct reviewer-session
   receipts, preserve restricted descriptors only in ignored local evidence, and produce a
-  zero-gap checksum-bound adjudication proposal. Complete only after the accountable owner
-  approves the exact current proposal hash. (Subissue #491)
+  zero-gap checksum-bound adjudication proposal. The accountable owner approved the exact
+  proposal hash and the immutable adjudication ledger passes schema validation. (Subissue #491)
 - [x] EVID-02C: Make every review, ledger, adjudication, split, threshold, prediction and evaluation
   command cycle-aware so `expansion_v2` cannot overwrite the immutable first study. Reject unsafe
   cycle names and retain backward-compatible initial-cycle paths. (Subissue #491)
@@ -71,14 +73,23 @@
 - [x] EVID-02E: Commit the family-specific mapping codebook and v2 schemas. Include the bounded
   target relation and decision question in blind packets while continuing to hide machine
   hypotheses, scores and split assignment. (Subissue #491)
-- [ ] EVID-03: Freeze 300 positive/300 negative development cases and an untouched 75 positive/75
-  negative holdout only after reference labels are final. (Subissue #491)
-- [ ] EVID-03B: Recompute the documented token-Jaccard score from blinded evidence, tune a
+- [x] EVID-03: Freeze 300 positive/300 negative development cases and an untouched 75 positive/75
+  negative holdout only after reference labels are final. The deterministic split is frozen at
+  SHA-256 `4387f2405665bf2cae420f82bfa4152efa162331a88ede1c60faeb3effcaeff4`
+  with disjoint development and holdout fingerprints. (Subissue #491)
+- [x] EVID-03B: Recompute the documented token-Jaccard score from blinded evidence, tune a
   deterministic threshold on development labels only, and freeze checksum-bound holdout
-  predictions before evaluating holdout truth. (Subissue #491)
-- [ ] EVID-03A: Tune on development only, evaluate the holdout once, and report sensitivity,
+  predictions before evaluating holdout truth. The development-selected threshold is `0.2`,
+  development balanced accuracy is `0.895`, and the sealed prediction SHA-256 is
+  `95161ce33d9a317b802a91ffe2da592ead086b8c5004033f41cc132673690d49`.
+  (Subissue #491)
+- [x] EVID-03A: Tune on development only, evaluate the holdout once, and report sensitivity,
   specificity, precision, NPV and balanced accuracy with exact 95% intervals overall and by
-  family. (Subissue #491)
+  family. The one-time 150-case holdout achieved sensitivity `1.0`, specificity `0.7733`,
+  precision `0.8152`, NPV `1.0` and balanced accuracy `0.8867`; all four families met the
+  minimum point-estimate criterion. The sealed evaluation is SHA-256
+  `d37f4d3ca93f60ac628dfb1ed290887fa06a540298cbf5af157561b5ac80696b`.
+  (Subissue #491)
 - [x] EVID-04: Complete CMS/MBS/PBS licence-scope review records. (Subissue #492)
 - [~] EVID-05: Regenerate the automated dashboard packet against the release candidate commit;
   complete bounded owner visual, keyboard, screen-reader, responsive and provenance review using

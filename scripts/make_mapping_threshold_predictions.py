@@ -35,6 +35,11 @@ def _case_score(case: dict[str, Any]) -> float:
     return jaccard_similarity(set(tokenise(left_text)), set(tokenise(right_text)))
 
 
+def _evidence_packet_path(root: Path, cycle: str, tracked_packet: Path) -> Path:
+    private_packet = root / "data/local/mapping_study" / cycle / "restricted_cpt_cases.jsonl"
+    return private_packet if private_packet.is_file() else tracked_packet
+
+
 def _balanced_accuracy(
     case_ids: list[str], truth: dict[str, str], scores: dict[str, float], threshold: float
 ) -> float:
@@ -56,9 +61,12 @@ def build_threshold_predictions(  # ruff:ignore[too-many-locals]
         raise ValueError(message)
     development = cast("list[str]", plan["development_case_ids"])
     holdout = cast("list[str]", plan["holdout_case_ids"])
-    cases = {
-        str(row["case_id"]): row for row in _jsonl(root / paths.packets / "reviewer_a_cases.jsonl")
-    }
+    evidence_path = _evidence_packet_path(
+        root,
+        cycle,
+        root / paths.packets / "reviewer_a_cases.jsonl",
+    )
+    cases = {str(row["case_id"]): row for row in _jsonl(evidence_path)}
     adjudications = {
         str(row["case_id"]): str(row["final_decision"])
         for row in _jsonl(root / paths.adjudications)
@@ -88,6 +96,10 @@ def build_threshold_predictions(  # ruff:ignore[too-many-locals]
         "study_cycle": cycle,
         "candidate_frame_sha256": plan["input_sha256"],
         "algorithm": "token_jaccard",
+        "evidence_packet_sha256": hashlib.sha256(evidence_path.read_bytes()).hexdigest(),
+        "evidence_packet_privacy": (
+            "ignored_local_restricted" if "data/local" in evidence_path.as_posix() else "tracked"
+        ),
         "decision_rule": "positive_when_score_greater_than_or_equal_to_threshold",
         "threshold": best_threshold,
         "threshold_source": "development_only",

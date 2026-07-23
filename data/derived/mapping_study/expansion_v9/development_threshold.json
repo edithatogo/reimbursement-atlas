@@ -1,0 +1,17 @@
+{
+  "algorithm": "token_jaccard",
+  "candidate_frame_sha256": "1d11079141b1c4e45bbea85f2630c2f16074efce808492bb616af817ca478818",
+  "decision_rule": "positive_when_score_greater_than_or_equal_to_threshold",
+  "development_balanced_accuracy": 0.895,
+  "development_case_count": 600,
+  "development_fingerprint": "169a596e09b230c2ef2ab9bd049241a0bed64c7213308bbec4fbfdedd1dce27e",
+  "evidence_packet_privacy": "ignored_local_restricted",
+  "evidence_packet_sha256": "03b49bff99bbbf661ccc3d4a14eacedc650468e723d85634c4da7b3129346f1d",
+  "holdout_case_count": 150,
+  "holdout_fingerprint": "c0d5f6ffc76a7a6e39f1b0d75fc00297a41cf4496842073c6f34234ffb86e115",
+  "holdout_labels_accessed_during_tuning": false,
+  "schema_version": "mapping-development-threshold-v1",
+  "study_cycle": "expansion_v9",
+  "threshold": 0.2,
+  "threshold_source": "development_only"
+}
