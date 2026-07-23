@@ -44,6 +44,10 @@
   No split or holdout exists. Closing this task requires authoritative positive crosswalks or
   accountable domain adjudication that supplies additional evidence; quotas cannot be waived.
   (Subissue #491)
+- [x] EVID-02F: Implement the licence-scoped RVU26C local enrichment path for procedure/pathology
+  review. Descriptor-bearing hypotheses are ignored local evidence; the tracked summary is
+  checksum-bound and descriptor-free. A new immutable study cycle and fresh isolated reviews are
+  still required before any additional positives can enter the accountable packet. (Subissue #491)
 - [x] EVID-02C: Make every review, ledger, adjudication, split, threshold, prediction and evaluation
   command cycle-aware so `expansion_v2` cannot overwrite the immutable first study. Reject unsafe
   cycle names and retain backward-compatible initial-cycle paths. (Subissue #491)

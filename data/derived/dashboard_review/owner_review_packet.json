@@ -38,9 +38,9 @@
       "sha256": "a1b9a2f0c12eec40c7b76889cc83b306eb5ded64225ed7931615dfce95d4f9d4"
     },
     {
-      "byte_size": 118850,
+      "byte_size": 118849,
       "path": "data/derived/publication_manifest.json",
-      "sha256": "0a4a495f90043c197d52165261546bb76ca34f24a2b5de262bd829ece152317a"
+      "sha256": "5659cab19376380e871ec8a58da1b700433f20e3f20a49b42f9bc90f7c348b55"
     }
   ],
   "record_schema": "schema/DashboardHumanReviewRecord.schema.json",

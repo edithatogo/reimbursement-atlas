@@ -1,0 +1,32 @@
+{
+  "candidate_count": 16076,
+  "candidates_per_item": 3,
+  "cpt_record_count": 11738,
+  "descriptor_storage": "ignored_local_only",
+  "local_packet_sha256": "b65337fa5e7b9182b8dd54a474e1c707dc27e503ebe9274799b0e66c836316ec",
+  "mbs_bundle_sha256": "d9fcfd875dfb97ae4550f53f823b9001e6f885d2f0b84c47705d29de91b8567c",
+  "mbs_record_count": 14856,
+  "minimum_score": 0.12,
+  "public_output_fields": [
+    "source checksums",
+    "release identity",
+    "record counts",
+    "candidate count",
+    "method parameters"
+  ],
+  "restrictions": [
+    "Do not commit or publish CPT descriptions.",
+    "Candidate hypotheses are not mapping truth.",
+    "A fresh blinded review and accountable adjudication are required."
+  ],
+  "schema_version": "local-cpt-enrichment-summary-v1",
+  "source": {
+    "archive_member": "PPRRVU2026_Jul_nonQPP.csv",
+    "archive_sha256": "d45a158e02694c1539e7f88192c611883e377181eda86dc213359707bcacbacb",
+    "copyright_notice_sha256": "e3a86b58cb9723cfd504eec107f543fe18d49635bf905ea0dc1a4dfa4787265a",
+    "effective_period": "2026-07",
+    "release": "RVU26C",
+    "source_id": "us_cms_pfs_rvu26c"
+  },
+  "status": "ready_for_local_blinded_review"
+}
