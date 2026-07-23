@@ -8,6 +8,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Literal, cast
 
+from reimburse_atlas.dashboard_review import dashboard_review_evidence
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.mapping_study_paths import latest_mapping_study_cycle, mapping_study_paths
 from reimburse_atlas.registry import project_root
@@ -189,33 +190,16 @@ def _mapping_study_gate(repo: Path) -> ReleaseGateRecord:
 
 
 def _dashboard_human_review_gate(repo: Path) -> ReleaseGateRecord:
-    review = _read_json(repo / "data/derived/dashboard_review/human_review.json")
-    automated = _read_json(repo / "data/derived/dashboard_review/automated_review_packet.json")
-    raw_scope = review.get("scope")
-    scope: dict[str, Any] = cast("dict[str, Any]", raw_scope) if isinstance(raw_scope, dict) else {}
-    approved = (
-        review.get("status") == "approved_within_scope"
-        and bool(review.get("reviewed_at"))
-        and bool(review.get("reviewer"))
-        and scope.get("provenance") is True
-        and bool(scope.get("routes"))
-        and bool(scope.get("browsers"))
-        and bool(scope.get("operating_systems"))
-        and bool(scope.get("assistive_technology"))
-        and automated.get("status") == "pass"
-        and automated.get("screenshot_count") == 44
-        and review.get("commit") == automated.get("tested_commit")
-    )
+    evidence = dashboard_review_evidence(repo)
+    checks = cast("dict[str, bool]", evidence["checks"])
+    approved = all(checks.values())
+    failed = ",".join(key for key, value in checks.items() if not value) or "none"
     return ReleaseGateRecord(
         id="dashboard_human_review",
         category="dashboard",
         status="pass" if approved else "blocked",
         required=False,
-        evidence=(
-            f"record_status={review.get('status', 'missing')} "
-            f"provenance_reviewed={scope.get('provenance', False)} "
-            f"commit_parity={review.get('commit') == automated.get('tested_commit')}"
-        ),
+        evidence=(f"head={evidence['head'] or 'missing'} failed_checks={failed}"),
         recommended_action=(
             "Complete the commit-bound visual, keyboard, screen-reader and provenance review "
             "within the declared scope."

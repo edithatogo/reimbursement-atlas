@@ -8,6 +8,20 @@ from jsonschema import Draft202012Validator, FormatChecker
 
 from scripts.validate_review_schemas import validate_review_document
 
+ROUTES = [
+    "/",
+    "/analyses/",
+    "/analyses/cognitive_vs_procedural_ratio/",
+    "/automation/",
+    "/crosswalks/",
+    "/demonstrators/",
+    "/ontologies/",
+    "/readiness/",
+    "/roadmap/",
+    "/sources/",
+    "/sources/au_mbs/",
+]
+
 
 def _schema() -> dict[str, object]:
     return json.loads(
@@ -31,12 +45,15 @@ def test_dashboard_review_template_is_valid() -> None:
         "commit": "70c99a7",
         "reviewer": "pending-accountable-reviewer",
         "reviewed_at": None,
+        "automated_packet_sha256": None,
+        "owner_packet_sha256": None,
         "scope": {
-            "routes": ["/"],
+            "routes": ROUTES,
             "browsers": ["Chromium"],
             "operating_systems": ["macOS"],
             "assistive_technology": ["pending"],
             "provenance": False,
+            "prohibited_content": False,
         },
         "findings": [],
         "evidence_artifacts": [],
@@ -56,12 +73,15 @@ def _approved_record() -> dict[str, object]:
         "commit": "70c99a7",
         "reviewer": "reviewer",
         "reviewed_at": "2026-07-23T08:30:00Z",
+        "automated_packet_sha256": "a" * 64,
+        "owner_packet_sha256": "b" * 64,
         "scope": {
-            "routes": ["/"],
+            "routes": ROUTES,
             "browsers": ["Chromium"],
             "operating_systems": ["macOS"],
             "assistive_technology": ["VoiceOver"],
             "provenance": True,
+            "prohibited_content": True,
         },
         "findings": [],
         "evidence_artifacts": ["dashboard-review-evidence-123"],
@@ -126,6 +146,30 @@ def test_dashboard_review_schema_requires_provenance_for_approval() -> None:
     errors = _errors(record)
 
     assert any(error.validator == "const" for error in errors)
+
+
+def test_dashboard_review_schema_rejects_unbounded_route_subset() -> None:
+    record = _approved_record()
+    scope = record["scope"]
+    assert isinstance(scope, dict)
+    scope["routes"] = ["/"]
+
+    assert any(error.validator == "minItems" for error in _errors(record))
+
+
+def test_production_validator_checks_date_time_format(tmp_path: Path) -> None:
+    record = _approved_record()
+    record["reviewed_at"] = "not-a-date"
+    path = tmp_path / "review.json"
+    path.write_text(json.dumps(record), encoding="utf-8")
+
+    errors = validate_review_document(
+        Path.cwd(),
+        "schema/DashboardHumanReviewRecord.schema.json",
+        path.as_posix(),
+    )
+
+    assert any("date-time" in error for error in errors)
 
 
 def test_dashboard_review_document_is_optional_until_human_review_exists() -> None:

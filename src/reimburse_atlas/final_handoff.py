@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 from typing import Literal, cast
 
+from reimburse_atlas.dashboard_review import dashboard_review_approved as dashboard_gate_approved
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.mapping_study_paths import latest_mapping_study_cycle, mapping_study_paths
 from reimburse_atlas.models import FinalHandoffTaskRecord
@@ -518,23 +519,7 @@ def _historical_review_complete(repo: Path) -> bool:
 
 
 def _dashboard_review_approved(repo: Path) -> bool:
-    review = _read_json(repo / "data/derived/dashboard_review/human_review.json")
-    automated = _read_json(repo / "data/derived/dashboard_review/automated_review_packet.json")
-    raw_scope = review.get("scope")
-    scope = cast("dict[str, object]", raw_scope) if isinstance(raw_scope, dict) else {}
-    return (
-        review.get("status") == "approved_within_scope"
-        and bool(review.get("reviewed_at"))
-        and bool(review.get("reviewer"))
-        and scope.get("provenance") is True
-        and bool(scope.get("routes"))
-        and bool(scope.get("browsers"))
-        and bool(scope.get("operating_systems"))
-        and bool(scope.get("assistive_technology"))
-        and automated.get("status") == "pass"
-        and automated.get("screenshot_count") == 44
-        and review.get("commit") == automated.get("tested_commit")
-    )
+    return dashboard_gate_approved(repo)
 
 
 def _read_json(path: Path) -> dict[str, object]:

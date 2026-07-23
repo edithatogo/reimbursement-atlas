@@ -1,38 +1,243 @@
-"""Summarise commit-bound Playwright evidence without claiming human approval."""
+"""Build commit-bound dashboard evidence from structured Playwright reports."""
 
 from __future__ import annotations
 
 import argparse
+import base64
 import hashlib
 import json
 import os
+import xml.etree.ElementTree as ET
+from collections.abc import Iterator
 from pathlib import Path
+from typing import Any, cast
 
 from reimburse_atlas.registry import project_root
 
-ROUTE_COUNT = 11
-PROJECT_COUNT = 4
-TEST_COUNT = 64
+ROUTES = (
+    "/",
+    "/analyses/",
+    "/analyses/cognitive_vs_procedural_ratio/",
+    "/automation/",
+    "/crosswalks/",
+    "/demonstrators/",
+    "/ontologies/",
+    "/readiness/",
+    "/roadmap/",
+    "/sources/",
+    "/sources/au_mbs/",
+)
+PROJECTS = (
+    "desktop-chromium",
+    "mobile-chromium",
+    "desktop-firefox",
+    "desktop-webkit",
+)
+EXPECTED_TEST_COUNT = 64
 
 
 class GitHeadResolutionError(ValueError):
     """Raised when the dashboard packet cannot resolve the tested commit."""
 
 
-def build_packet(report_dir: Path, tested_commit: str) -> dict[str, object]:
-    """Build a deterministic packet from retained route screenshots."""
-    screenshots = sorted(report_dir.glob("data/*.png"))
-    hashes = sorted(hashlib.sha256(path.read_bytes()).hexdigest() for path in screenshots)
-    expected = ROUTE_COUNT * PROJECT_COUNT
+class ReportEvidenceError(ValueError):
+    """Raised when structured browser evidence is absent or malformed."""
+
+
+def _sha256_bytes(value: bytes) -> str:
+    return hashlib.sha256(value).hexdigest()
+
+
+def _iter_specs(suites: list[dict[str, Any]]) -> Iterator[dict[str, Any]]:
+    for suite in suites:
+        yield from cast("list[dict[str, Any]]", suite.get("specs", []))
+        yield from _iter_specs(cast("list[dict[str, Any]]", suite.get("suites", [])))
+
+
+def _attachment_bytes(attachment: dict[str, Any], report_dir: Path) -> tuple[bytes, str]:
+    if body := attachment.get("body"):
+        try:
+            return base64.b64decode(cast("str", body), validate=True), "embedded"
+        except ValueError as error:
+            raise ReportEvidenceError from error
+    raw_path = attachment.get("path")
+    if not isinstance(raw_path, str) or not raw_path:
+        raise ReportEvidenceError
+    path = Path(raw_path)
+    candidates = (path, report_dir / path, report_dir.parent / path)
+    resolved = next((candidate for candidate in candidates if candidate.is_file()), None)
+    if resolved is None:
+        raise ReportEvidenceError
+    return resolved.read_bytes(), resolved.name
+
+
+def _parse_context(attachment: dict[str, Any], report_dir: Path) -> dict[str, Any]:
+    body, _ = _attachment_bytes(attachment, report_dir)
+    try:
+        value = json.loads(body)
+    except json.JSONDecodeError as error:
+        raise ReportEvidenceError from error
+    if not isinstance(value, dict):
+        raise ReportEvidenceError
+    return cast("dict[str, Any]", value)
+
+
+def _junit_summary(path: Path) -> dict[str, int]:
+    if not path.is_file():
+        raise ReportEvidenceError
+    try:
+        root = ET.parse(path).getroot()
+    except ET.ParseError as error:
+        raise ReportEvidenceError from error
+    suites = [root] if root.tag == "testsuite" else list(root.findall(".//testsuite"))
+    if not suites:
+        raise ReportEvidenceError
+    top = suites if root.tag == "testsuite" else list(root.findall("./testsuite"))
+    counted = top or suites
     return {
-        "schema_version": "dashboard-automated-review-v1",
-        "status": "pass" if len(screenshots) == expected else "missing_artifacts",
+        key: sum(int(suite.attrib.get(key, "0")) for suite in counted)
+        for key in ("tests", "failures", "errors", "skipped")
+    }
+
+
+def _workflow_metadata() -> dict[str, object]:
+    server = os.environ.get("GITHUB_SERVER_URL")
+    repository = os.environ.get("GITHUB_REPOSITORY")
+    run_id = os.environ.get("GITHUB_RUN_ID")
+    workflow_url = (
+        f"{server}/{repository}/actions/runs/{run_id}" if server and repository and run_id else None
+    )
+    return {
+        "workflow": os.environ.get("GITHUB_WORKFLOW"),
+        "run_id": run_id,
+        "run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT"),
+        "artifact_name": f"dashboard-browser-review-{run_id}" if run_id else None,
+        "workflow_url": workflow_url,
+    }
+
+
+def _route_screenshot(
+    test: dict[str, Any], report_dir: Path
+) -> tuple[str, dict[str, object] | None]:
+    project = cast("str", test.get("projectName"))
+    results = cast("list[dict[str, Any]]", test.get("results", []))
+    final = results[-1] if results else {}
+    status = cast("str", final.get("status", "missing"))
+    attachments = cast("list[dict[str, Any]]", final.get("attachments", []))
+    screenshot = next(
+        (item for item in attachments if item.get("name") == "route-screenshot"), None
+    )
+    context_attachment = next(
+        (item for item in attachments if item.get("name") == "dashboard-review-context"), None
+    )
+    if screenshot is None and context_attachment is None:
+        return status, None
+    if screenshot is None or context_attachment is None:
+        raise ReportEvidenceError
+    context = _parse_context(context_attachment, report_dir)
+    image, filename = _attachment_bytes(screenshot, report_dir)
+    if context.get("project") != project:
+        raise ReportEvidenceError
+    return status, {
+        "route": context.get("route"),
+        "project": project,
+        "viewport": context.get("viewport"),
+        "browser": context.get("browser"),
+        "browser_version": context.get("browserVersion"),
+        "file": filename,
+        "sha256": _sha256_bytes(image),
+        "byte_size": len(image),
+    }
+
+
+def _parse_reports(
+    report_dir: Path,
+) -> tuple[list[dict[str, object]], list[str], dict[str, int]]:
+    report = cast(
+        "dict[str, Any]",
+        json.loads((report_dir / "results.json").read_text(encoding="utf-8")),
+    )
+    screenshots: list[dict[str, object]] = []
+    statuses: list[str] = []
+    for spec in _iter_specs(cast("list[dict[str, Any]]", report.get("suites", []))):
+        for test in cast("list[dict[str, Any]]", spec.get("tests", [])):
+            status, screenshot = _route_screenshot(test, report_dir)
+            statuses.append(status)
+            if screenshot is not None:
+                screenshots.append(screenshot)
+    return screenshots, statuses, _junit_summary(report_dir / "results.xml")
+
+
+def _coverage_complete(screenshots: list[dict[str, object]]) -> bool:
+    expected = {(route, project) for route in ROUTES for project in PROJECTS}
+    observed = {(cast("str", row["route"]), cast("str", row["project"])) for row in screenshots}
+    return observed == expected and len(screenshots) == len(expected)
+
+
+def _tests_passed(statuses: list[str], junit: dict[str, int]) -> bool:
+    return (
+        len(statuses) == EXPECTED_TEST_COUNT
+        and all(status == "passed" for status in statuses)
+        and junit == {"tests": EXPECTED_TEST_COUNT, "failures": 0, "errors": 0, "skipped": 0}
+    )
+
+
+def build_packet(report_dir: Path, tested_commit: str) -> dict[str, object]:
+    """Build a fail-closed packet from Playwright JSON, JUnit, and attachments."""
+    try:
+        screenshots, statuses, junit = _parse_reports(report_dir)
+    except (OSError, json.JSONDecodeError, ReportEvidenceError, KeyError, TypeError) as caught:
+        return _packet(
+            tested_commit=tested_commit,
+            status="missing_artifacts",
+            screenshots=[],
+            test_count=0,
+            junit={"tests": 0, "failures": 0, "errors": 0, "skipped": 0},
+            coverage_complete=False,
+            report_error=str(caught) or type(caught).__name__,
+        )
+    coverage_complete = _coverage_complete(screenshots)
+    status = "pass" if _tests_passed(statuses, junit) and coverage_complete else "fail"
+    return _packet(
+        tested_commit=tested_commit,
+        status=status,
+        screenshots=screenshots,
+        test_count=len(statuses),
+        junit=junit,
+        coverage_complete=coverage_complete,
+        report_error=None,
+    )
+
+
+def _packet(
+    *,
+    tested_commit: str,
+    status: str,
+    screenshots: list[dict[str, object]],
+    test_count: int,
+    junit: dict[str, int],
+    coverage_complete: bool,
+    report_error: str | None,
+) -> dict[str, object]:
+    return {
+        "schema_version": "dashboard-automated-review-v2",
+        "status": status,
         "tested_commit": tested_commit,
-        "test_count": TEST_COUNT,
-        "route_count": ROUTE_COUNT,
-        "project_count": PROJECT_COUNT,
+        "test_count": test_count,
+        "expected_test_count": EXPECTED_TEST_COUNT,
+        "junit": junit,
+        "routes": list(ROUTES),
+        "projects": list(PROJECTS),
+        "route_count": len(ROUTES),
+        "project_count": len(PROJECTS),
+        "coverage_complete": coverage_complete,
         "screenshot_count": len(screenshots),
-        "screenshot_sha256": hashes,
+        "screenshots": sorted(
+            screenshots,
+            key=lambda item: (cast("str", item["route"]), cast("str", item["project"])),
+        ),
+        "workflow": _workflow_metadata(),
+        "report_error": report_error,
         "automated_scope": [
             "axe violations",
             "keyboard search and focus",
@@ -87,7 +292,7 @@ def resolve_head(root: Path) -> str:
 def main() -> None:
     """Write the local dashboard automated-review packet."""
     parser = argparse.ArgumentParser()
-    parser.add_argument("--report-dir", type=Path, default=Path("apps/playwright-report"))
+    parser.add_argument("--report-dir", type=Path, default=Path("apps/test-results"))
     parser.add_argument(
         "--output",
         type=Path,
@@ -101,7 +306,8 @@ def main() -> None:
     output.write_text(json.dumps(packet, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(
         json.dumps(
-            {key: packet[key] for key in ("status", "tested_commit", "screenshot_count")}, indent=2
+            {key: packet[key] for key in ("status", "tested_commit", "screenshot_count")},
+            indent=2,
         )
     )
 
