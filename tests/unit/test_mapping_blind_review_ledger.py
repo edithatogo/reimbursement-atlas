@@ -52,6 +52,7 @@ def test_build_ledger_requires_complete_isolated_roles(tmp_path: Path) -> None:
     assert summary["agreement_count"] == 1
     assert summary["disagreement_count"] == 1
     assert summary["percent_agreement"] == 0.5
+    assert summary["cohen_kappa"] == pytest.approx(1 / 3)
     assert summary["accountable_adjudication_complete"] is False
 
 
@@ -64,4 +65,34 @@ def test_build_ledger_rejects_role_metadata_drift(tmp_path: Path) -> None:
     )
 
     with pytest.raises(ValueError, match="metadata"):
+        build_ledger(tmp_path)
+
+
+def test_build_ledger_rejects_v2_target_relation_drift(tmp_path: Path) -> None:
+    _fixture(tmp_path)
+    packet = tmp_path / ("data/derived/mapping_study/blind_review_packets/reviewer_a_cases.jsonl")
+    cases = ["map_" + "1" * 20, "map_" + "2" * 20]
+    _write(
+        packet,
+        [
+            {
+                "schema_version": "mapping-blind-review-case-v2",
+                "case_id": case_id,
+                "target_relation": "same_device_class_or_intended_use",
+            }
+            for case_id in cases
+        ],
+    )
+    for role in ("reviewer_a", "reviewer_b"):
+        path = tmp_path / f"data/mapping_study/{role}_reviews.jsonl"
+        rows = [
+            {
+                **json.loads(line),
+                "target_relation": "same_active_ingredient_or_therapeutic_moiety",
+            }
+            for line in path.read_text(encoding="utf-8").splitlines()
+        ]
+        _write(path, rows)
+
+    with pytest.raises(ValueError, match="target relation"):
         build_ledger(tmp_path)

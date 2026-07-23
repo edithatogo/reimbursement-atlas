@@ -4,12 +4,24 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: Non-mutating mode until all upstream gates pass
+        description: Explicit deposition transition
         required: true
-        default: dry-run
+        default: plan
         type: choice
         options:
-          - dry-run
+          - plan
+          - draft
+          - reserve
+          - publish
+          - verify
+      deposition_id:
+        description: Existing deposition ID for reserve, publish, or verify
+        required: false
+        type: string
+      confirmation:
+        description: Exact confirmation required by the selected mutating mode
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -32,8 +44,49 @@ jobs:
           pixi run release-readiness
           pixi run public-data-policy
           pixi run action-pin-policy
+      - name: Evaluate archive publication gates
+        run: pixi run zenodo-deposition-plan
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: zenodo-preflight-${{ github.run_id }}
           path: data/derived/zenodo/
           retention-days: 30
+
+  remote:
+    if: inputs.mode != 'plan'
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: zenodo-production
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
+      - name: Regenerate deterministic deposition inputs
+        run: pixi run zenodo-metadata && pixi run zenodo-draft
+      - name: Execute explicit Zenodo transition
+        env:
+          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
+          ZENODO_API_URL: ${{ vars.ZENODO_API_URL || 'https://zenodo.org/api' }}
+          DEPOSITION_ID: ${{ inputs.deposition_id }}
+          CONFIRMATION: ${{ inputs.confirmation }}
+          MODE: ${{ inputs.mode }}
+        run: |
+          set -euo pipefail
+          test -n "$ZENODO_TOKEN"
+          args=(--mode "$MODE")
+          if [[ -n "$DEPOSITION_ID" ]]; then
+            args+=(--deposition-id "$DEPOSITION_ID")
+          fi
+          if [[ -n "$CONFIRMATION" ]]; then
+            args+=(--confirm "$CONFIRMATION")
+          fi
+          PYTHONPATH=src python scripts/zenodo_deposition.py "${args[@]}"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: zenodo-external-state-${{ github.run_id }}
+          path: data/derived/zenodo/external_state.json
+          retention-days: 90

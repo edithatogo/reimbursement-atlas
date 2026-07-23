@@ -22,7 +22,7 @@ def _case(case_id: str, left: str, right: str) -> dict[str, object]:
     }
 
 
-def _fixture(root: Path, holdout_decisions: tuple[str, str]) -> None:
+def _fixture(root: Path, holdout_decisions: tuple[str, str], cycle: str = "initial") -> None:
     development = [f"map_{value:020x}" for value in range(4)]
     holdout = [f"map_{value:020x}" for value in range(4, 6)]
     plan = {
@@ -31,11 +31,18 @@ def _fixture(root: Path, holdout_decisions: tuple[str, str]) -> None:
         "development_case_ids": development,
         "holdout_case_ids": holdout,
     }
-    path = root / "data/derived/vertical_slice/mapping_review_pack_plan.json"
+    if cycle == "initial":
+        derived = root / "data/derived/mapping_study"
+        review = root / "data/mapping_study"
+        path = root / "data/derived/vertical_slice/mapping_review_pack_plan.json"
+    else:
+        derived = root / "data/derived/mapping_study" / cycle
+        review = root / "data/mapping_study" / cycle
+        path = derived / "mapping_review_pack_plan.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(plan), encoding="utf-8")
     _write_jsonl(
-        root / "data/derived/mapping_study/blind_review_packets/reviewer_a_cases.jsonl",
+        derived / "blind_review_packets/reviewer_a_cases.jsonl",
         [
             _case(development[0], "same procedure", "same procedure"),
             _case(development[1], "same medicine", "same medicine"),
@@ -46,7 +53,7 @@ def _fixture(root: Path, holdout_decisions: tuple[str, str]) -> None:
         ],
     )
     _write_jsonl(
-        root / "data/mapping_study/adjudications.jsonl",
+        review / "adjudications.jsonl",
         [
             *[
                 {"case_id": case_id, "final_decision": decision}
@@ -87,3 +94,12 @@ def test_holdout_truth_cannot_change_tuned_threshold(tmp_path: Path) -> None:
 
     assert first_model == second_model
     assert first_predictions == second_predictions
+
+
+def test_threshold_outputs_are_bound_to_named_cycle(tmp_path: Path) -> None:
+    _fixture(tmp_path, ("positive", "negative"), "expansion_v2")
+
+    model, predictions = build_threshold_predictions(tmp_path, "expansion_v2")
+
+    assert model["study_cycle"] == "expansion_v2"
+    assert len(predictions) == 2

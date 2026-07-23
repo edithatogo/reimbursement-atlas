@@ -1,6 +1,9 @@
 # Mapping methods
 
 Cross-jurisdiction reimbursement comparison depends on mapping items that rarely align one-to-one.
+The powered validation study applies the family-specific positive estimands in
+[`MAPPING_STUDY_CODEBOOK.md`](MAPPING_STUDY_CODEBOOK.md); it does not treat every positive
+relationship as billing-code equivalence.
 
 ## Mapping hierarchy
 

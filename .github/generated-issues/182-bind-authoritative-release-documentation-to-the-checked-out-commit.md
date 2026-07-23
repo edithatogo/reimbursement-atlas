@@ -12,6 +12,6 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] The documentation freshness gate resolves HEAD and verifies the authoritative handoff, release-readiness, OSF, Zenodo and current-focus documents contain one full commit from the checked-out history or an immediate PR base/parent.
-- [ ] Historical monitor snapshots remain clearly labelled as audit evidence rather than current release state.
-- [ ] A unit test and generated freshness report provide machine-readable evidence without exposing secrets or local paths.
+- [x] The documentation freshness gate resolves HEAD and verifies the authoritative handoff, release-readiness, OSF, Zenodo and current-focus documents contain one full commit from the checked-out history or an immediate PR base/parent.
+- [x] Historical monitor snapshots remain clearly labelled as audit evidence rather than current release state.
+- [x] A unit test and generated freshness report provide machine-readable evidence without exposing secrets or local paths.

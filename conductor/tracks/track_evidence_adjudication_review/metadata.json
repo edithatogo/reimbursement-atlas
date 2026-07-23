@@ -3,12 +3,12 @@
   "type": "feature",
   "status": "in_progress",
   "created_at": "2026-07-20T00:00:00Z",
-  "updated_at": "2026-07-23T05:20:00Z",
+  "updated_at": "2026-07-23T06:30:00Z",
   "description": "Close accountable human evidence, mapping, source-rights and dashboard review gates.",
   "evidence_schema": "1.0",
   "gates": [
-    {"id": "mapping_adjudication", "kind": "human_review", "status": "blocked", "evidence": "Both isolated reviewers completed all 1,500 frozen cases and independent proposals cover every case. The proposal contains 104 positive, 794 negative and 602 excluded cases, leaving a 421-case family/label quota gap. The checksum-bound owner packet is blocked_candidate_spectrum; a separately versioned counterpart-expansion cycle is required before split creation."},
-    {"id": "counterpart_spectrum", "kind": "source_acquisition", "status": "in_progress", "evidence": "The official July 2026 CMS HCPCS Level II ZIP was acquired to ignored raw storage and verified as SHA-256 5591fed257e4d2307c1d2dc9c66abc8e346b1f4c076e9e48559799e2de14b70a. A derived adapter must exclude numeric CPT and D-series dental descriptors and preserve licence/provenance evidence."},
+    {"id": "mapping_adjudication", "kind": "human_review", "status": "blocked", "evidence": "The final deduplicated expansion_v7 frame contains 1,500 unique groups at SHA-256 630ea737a420486a5204660789284ffbff6a1f353e36e779f31fe1dd41646a22. Two isolated reviews are complete (77.47% agreement; Cohen's kappa 0.544). Independent proposal SHA-256 7e6e2d1e383dfbd49d4066bb9dbd87a971c0a556ef2ad69a21fb0fc776a986d8 yields 462 positive, 1,033 negative and 5 excluded cases but leaves 83 procedure/pathology and 27 device positive cases missing. No split or holdout was exposed. Authoritative positive crosswalk evidence or accountable domain adjudication is required; quotas cannot be waived."},
+    {"id": "counterpart_spectrum", "kind": "source_acquisition", "status": "pass", "evidence": "Reviewed RxNorm CPC, CMS ASP/PFS/HCPCS Level II, HPO and openFDA bundles produce the separately frozen 1,500-case expansion_v2 frame at SHA-256 29b357cb20ee2328bb995e733b71075f549703a46f0b62e8a31c0a052a25916c with no structural family gap. Restricted terminology remains optional local enrichment."},
     {"id": "source_rights", "kind": "human_review", "status": "pass", "evidence": "The current checksum-bound ledger validates 194 approved decisions. CMS/MBS/PBS/HCPCS restrictions remain explicit; Apache-2.0 applies only to project code and metadata."},
     {"id": "visual_review", "kind": "human_review", "status": "pending", "evidence": "The commit-bound automated packet covers 44 browser tests and 36 screenshot hashes against commit 591d84a1b5c4dd7d703414562c1fe2082dd7ef32; scoped accountable human review remains pending and automated evidence is not universal WCAG certification."}
   ]

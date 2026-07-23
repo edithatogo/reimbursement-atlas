@@ -2,18 +2,16 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 from collections import Counter
 from pathlib import Path
 from typing import Any, cast
 
+from reimburse_atlas.mapping_study_paths import DEFAULT_CYCLE, mapping_study_paths
 from reimburse_atlas.registry import project_root
 
-FRAME = Path("data/derived/mapping_study/candidate_frame.jsonl")
-REVIEWS = Path("data/mapping_study/blind_reviews.jsonl")
-PROPOSALS = Path("data/mapping_study/adjudication_proposals.jsonl")
-OUTPUT = Path("data/derived/mapping_study/adjudication_owner_packet.json")
 FAMILY_LABEL_TARGETS = {
     "procedures_pathology": 150,
     "medicines": 100,
@@ -30,10 +28,11 @@ def _jsonl(path: Path) -> list[dict[str, Any]]:
     ]
 
 
-def build_packet(root: Path) -> dict[str, Any]:
+def build_packet(root: Path, cycle: str = DEFAULT_CYCLE) -> dict[str, Any]:
     """Return a bounded owner packet after validating every proposal."""
-    frame_path = root / FRAME
-    proposal_path = root / PROPOSALS
+    paths = mapping_study_paths(cycle)
+    frame_path = root / paths.frame
+    proposal_path = root / paths.proposals
     frame_sha256 = hashlib.sha256(frame_path.read_bytes()).hexdigest()
     frame = {str(row["case_id"]): row for row in _jsonl(frame_path)}
     proposals = {str(row["case_id"]): row for row in _jsonl(proposal_path)}
@@ -41,7 +40,7 @@ def build_packet(root: Path) -> dict[str, Any]:
         message = "adjudication proposals must cover the complete frozen frame"
         raise ValueError(message)
     reviews: dict[str, dict[str, str]] = {}
-    for row in _jsonl(root / REVIEWS):
+    for row in _jsonl(root / paths.blind_reviews):
         reviews.setdefault(str(row["case_id"]), {})[str(row["reviewer_role"])] = str(
             row["decision"]
         )
@@ -54,6 +53,9 @@ def build_packet(root: Path) -> dict[str, Any]:
             "reviewer_b_decision"
         ) != pair.get("reviewer_b"):
             message = f"proposal reviewer decisions do not match blind ledger: {case_id}"
+            raise ValueError(message)
+        if frame[case_id].get("target_relation") != proposal.get("target_relation"):
+            message = f"proposal target relation does not match frozen frame: {case_id}"
             raise ValueError(message)
     counts = Counter(
         (str(frame[case_id]["family"]), str(proposal["final_decision"]))
@@ -73,6 +75,7 @@ def build_packet(root: Path) -> dict[str, Any]:
     proposal_sha256 = hashlib.sha256(proposal_path.read_bytes()).hexdigest()
     return {
         "schema_version": "mapping-adjudication-owner-packet-v1",
+        "study_cycle": cycle,
         "status": "ready_for_owner_approval" if total_gap == 0 else "blocked_candidate_spectrum",
         "candidate_frame_sha256": frame_sha256,
         "proposal_sha256": proposal_sha256,
@@ -90,9 +93,12 @@ def build_packet(root: Path) -> dict[str, Any]:
 
 def main() -> None:
     """Write the current checksum-bound owner packet."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--cycle", default=DEFAULT_CYCLE)
+    args = parser.parse_args()
     root = project_root()
-    packet = build_packet(root)
-    output = root / OUTPUT
+    packet = build_packet(root, args.cycle)
+    output = root / mapping_study_paths(args.cycle).owner_packet
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(packet, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps(packet, indent=2, sort_keys=True))

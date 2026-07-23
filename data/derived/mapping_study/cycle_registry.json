@@ -1,0 +1,91 @@
+{
+  "active_cycle": "expansion_v7",
+  "cycle_count": 7,
+  "records": [
+    {
+      "active": false,
+      "candidate_count": 1500,
+      "candidate_frame_sha256": "275fdb0742ad2e8227b09a737799678f139f644e2a9f9cba06ac6c112ffcddca",
+      "cycle": "initial",
+      "effective_unique_groups": 1477,
+      "holdout_evaluated_once": false,
+      "proposal_sha256": "9d731d828d332912b3caad8070b057ea680dfebfb9e591a00da15edf49b761ee",
+      "quota_gap": 421,
+      "reviewer_case_count": 1500,
+      "status": "spectrum_blocked"
+    },
+    {
+      "active": false,
+      "candidate_count": 1500,
+      "candidate_frame_sha256": "29b357cb20ee2328bb995e733b71075f549703a46f0b62e8a31c0a052a25916c",
+      "cycle": "expansion_v2",
+      "effective_unique_groups": 1477,
+      "holdout_evaluated_once": false,
+      "proposal_sha256": "45a370dbf0f1173089504face0c2f488c5318debd526ad480c544e404c5a0c32",
+      "quota_gap": 282,
+      "reviewer_case_count": 1500,
+      "status": "spectrum_blocked"
+    },
+    {
+      "active": false,
+      "candidate_count": 1500,
+      "candidate_frame_sha256": "edf052d2313b36255869bdc8d0432157fdfacb543d957f51a8a7d7f968aa00f2",
+      "cycle": "expansion_v3",
+      "effective_unique_groups": 1459,
+      "holdout_evaluated_once": false,
+      "proposal_sha256": "1568dd9aac6a0d215d085b90d7d66ee3414c5d047b2ff0b271a460c29a3097fa",
+      "quota_gap": 269,
+      "reviewer_case_count": 1500,
+      "status": "spectrum_blocked"
+    },
+    {
+      "active": false,
+      "candidate_count": 1500,
+      "candidate_frame_sha256": "96dd6ca318e1328b12d293b65c3ff58becc77ec747e32693375ef1745e16fd4e",
+      "cycle": "expansion_v4",
+      "effective_unique_groups": 1459,
+      "holdout_evaluated_once": false,
+      "proposal_sha256": null,
+      "quota_gap": null,
+      "reviewer_case_count": 0,
+      "status": "superseded_before_review"
+    },
+    {
+      "active": false,
+      "candidate_count": 1500,
+      "candidate_frame_sha256": "96f9f2465dfe84d65f36172a4d679230dd4a7bbd014407683ccc53d51331041d",
+      "cycle": "expansion_v5",
+      "effective_unique_groups": 1303,
+      "holdout_evaluated_once": false,
+      "proposal_sha256": "1be85b4d84558848444b333d2bb0d2544a3a813d980aba762335b1a0c15311dc",
+      "quota_gap": 5,
+      "reviewer_case_count": 1500,
+      "status": "spectrum_blocked"
+    },
+    {
+      "active": false,
+      "candidate_count": 1500,
+      "candidate_frame_sha256": "f35e9728cb7ad69a1a867aef5cc1cb28d6cd789cbaf59bb94cbc06c7edb80134",
+      "cycle": "expansion_v6",
+      "effective_unique_groups": 1256,
+      "holdout_evaluated_once": false,
+      "proposal_sha256": null,
+      "quota_gap": null,
+      "reviewer_case_count": 0,
+      "status": "superseded_before_review"
+    },
+    {
+      "active": true,
+      "candidate_count": 1500,
+      "candidate_frame_sha256": "630ea737a420486a5204660789284ffbff6a1f353e36e779f31fe1dd41646a22",
+      "cycle": "expansion_v7",
+      "effective_unique_groups": 1500,
+      "holdout_evaluated_once": false,
+      "proposal_sha256": "7e6e2d1e383dfbd49d4066bb9dbd87a971c0a556ef2ad69a21fb0fc776a986d8",
+      "quota_gap": 110,
+      "reviewer_case_count": 1500,
+      "status": "spectrum_blocked"
+    }
+  ],
+  "schema_version": "mapping-study-cycle-registry-v1"
+}

@@ -2,17 +2,16 @@
 
 Epic: `RAC-EVIDENCE-001` — Evidence adjudication and accountable-review closure
 
-Labels: type:mapping, type:review, type:evidence, status:blocked
+Labels: type:mapping, type:review, type:evidence, status:implemented
 
-Status: `blocked`
+Status: `implemented`
 
 ## Background
 
-This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria before opening it in GitHub.
+This issue was generated from `conductor/backlog.yml`; the criteria below are the track-specific acceptance contract.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Rights-cleared RxNorm, CMS ASP/PFS/HCPCS, HPO and openFDA counterparts are acquired as reviewed derived bundles.
+- [x] A separately versioned 1,500-case expansion frame is frozen with no structural family gap.
+- [x] Raw payloads remain ignored and restricted terminology is optional local enrichment.

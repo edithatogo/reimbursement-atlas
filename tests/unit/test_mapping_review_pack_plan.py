@@ -36,6 +36,19 @@ def test_pack_plan_requires_adjudication_before_split(tmp_path: Path) -> None:
     assert plan["development_case_ids"] == []
 
 
+def test_named_cycle_is_isolated_from_initial_cycle(tmp_path: Path) -> None:
+    initial = tmp_path / "data/derived/mapping_study/candidate_frame.jsonl"
+    expansion = tmp_path / "data/derived/mapping_study/expansion_v2/candidate_frame.jsonl"
+    _write_rows(initial, [{"case_id": "map_" + "a" * 20, "family": "procedures_pathology"}])
+    _write_rows(expansion, [{"case_id": "map_" + "b" * 20, "family": "medicines"}])
+
+    plan = build_plan(tmp_path, "expansion_v2")
+
+    assert plan["study_cycle"] == "expansion_v2"
+    assert plan["input"].endswith("mapping_study/expansion_v2/candidate_frame.jsonl")
+    assert plan["available_unique_candidates"] == 1
+
+
 def test_pack_plan_is_deterministic_balanced_and_disjoint(tmp_path: Path) -> None:
     frame_path = tmp_path / "data/derived/mapping_study/candidate_frame.jsonl"
     adjudication_path = tmp_path / "data/mapping_study/adjudications.jsonl"
@@ -48,7 +61,11 @@ def test_pack_plan_is_deterministic_balanced_and_disjoint(tmp_path: Path) -> Non
         for label in ("positive", "negative"):
             for _ in range(quotas["development"] + quotas["holdout"]):
                 case_id = f"map_{index:020x}"
-                frame.append({"case_id": case_id, "family": family})
+                frame.append({
+                    "case_id": case_id,
+                    "family": family,
+                    "duplicate_group": f"{index:016x}",
+                })
                 decisions.append({"case_id": case_id, "final_decision": label})
                 index += 1
     _write_rows(frame_path, frame)
@@ -75,6 +92,7 @@ def test_pack_plan_is_deterministic_balanced_and_disjoint(tmp_path: Path) -> Non
     assert len(first["development_case_ids"]) == 600
     assert len(first["holdout_case_ids"]) == 150
     assert set(first["development_case_ids"]).isdisjoint(first["holdout_case_ids"])
+    assert set(first["development_duplicate_groups"]).isdisjoint(first["holdout_duplicate_groups"])
     assert first["review_boundary"]["holdout_frozen"] is True
 
 

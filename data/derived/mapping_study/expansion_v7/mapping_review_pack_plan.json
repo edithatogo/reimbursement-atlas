@@ -1,0 +1,66 @@
+{
+  "adjudication_count": 0,
+  "adjudications": "data/mapping_study/expansion_v7/adjudications.jsonl",
+  "available_unique_candidates": 1500,
+  "blind_reviews": "data/mapping_study/expansion_v7/blind_reviews.jsonl",
+  "deduplicated_adjudication_count": 0,
+  "development_case_ids": [],
+  "development_duplicate_groups": [],
+  "duplicate_group_exclusion_count": 0,
+  "family_label_gaps": {
+    "devices_other": {
+      "negative": 50,
+      "positive": 50
+    },
+    "genomics_coverage": {
+      "negative": 75,
+      "positive": 75
+    },
+    "medicines": {
+      "negative": 100,
+      "positive": 100
+    },
+    "procedures_pathology": {
+      "negative": 150,
+      "positive": 150
+    }
+  },
+  "holdout_case_ids": [],
+  "holdout_duplicate_groups": [],
+  "inadmissible_adjudication_count": 0,
+  "independently_reviewed_count": 1500,
+  "input": "data/derived/mapping_study/expansion_v7/candidate_frame.jsonl",
+  "input_sha256": "630ea737a420486a5204660789284ffbff6a1f353e36e779f31fe1dd41646a22",
+  "randomisation": {
+    "algorithm": "sha256-sort",
+    "seed": "reimbursement-atlas-mapping-review-pack-v1"
+  },
+  "review_boundary": {
+    "candidate_hypotheses_are_truth": false,
+    "evidence_ready": false,
+    "holdout_frozen": false,
+    "review_records": "two blinded reviews and accountable adjudication required",
+    "split_assigned_after_reference_labels": false
+  },
+  "schema_version": "mapping-review-pack-plan-v2",
+  "source_strata_available": {
+    "au_mbs->hpo": 300,
+    "au_mbs->us_cms_hcpcs_level_ii": 600,
+    "au_mbs->us_fda_device_classification": 176,
+    "au_pbs->rxnorm": 390,
+    "au_pbs->us_cms_asp": 10,
+    "au_pbs->us_fda_device_classification": 24
+  },
+  "status": "blocked_adjudication",
+  "study_cycle": "expansion_v7",
+  "target_case_gap": 750,
+  "targets": {
+    "development_negative": 300,
+    "development_positive": 300,
+    "development_total": 600,
+    "holdout_negative": 75,
+    "holdout_positive": 75,
+    "holdout_total": 150,
+    "total": 750
+  }
+}

@@ -12,5 +12,5 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] 184 AMA/licence-gated ASP targets are catalogued but not downloaded.
-- [ ] Human licence review remains required before redistribution or publication.
+- [x] 184 AMA/licence-gated ASP targets are catalogued but not downloaded.
+- [x] Human licence review remains required before redistribution or publication.

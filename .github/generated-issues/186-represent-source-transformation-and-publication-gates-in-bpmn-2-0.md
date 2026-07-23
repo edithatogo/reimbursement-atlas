@@ -12,5 +12,5 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] The process covers retrieval, hashing, licence review, parsing, normalisation, validation, packaging and publication.
-- [ ] Documentation explains why BPMN 2.0 is used instead of the obsolete BPML terminology.
+- [x] The process covers retrieval, hashing, licence review, parsing, normalisation, validation, packaging and publication.
+- [x] Documentation explains why BPMN 2.0 is used instead of the obsolete BPML terminology.

@@ -2,18 +2,16 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 from collections import Counter
 from pathlib import Path
 from typing import Any
 
+from reimburse_atlas.mapping_study_paths import DEFAULT_CYCLE, mapping_study_paths
 from reimburse_atlas.registry import project_root
 
-INPUT = Path("data/derived/mapping_study/candidate_frame.jsonl")
-ADJUDICATIONS = Path("data/mapping_study/adjudications.jsonl")
-BLIND_REVIEWS = Path("data/mapping_study/blind_reviews.jsonl")
-OUTPUT = Path("data/derived/vertical_slice/mapping_review_pack_plan.json")
 SEED = "reimbursement-atlas-mapping-review-pack-v1"
 FAMILY_QUOTAS = {
     "procedures_pathology": {"development": 120, "holdout": 30},
@@ -36,11 +34,14 @@ def _ordered(case_ids: list[str]) -> list[str]:
     )
 
 
-def build_plan(root: Path | None = None) -> dict[str, Any]:  # ruff:ignore[too-many-locals]
+def build_plan(  # ruff:ignore[too-many-locals]
+    root: Path | None = None, cycle: str = DEFAULT_CYCLE
+) -> dict[str, Any]:
     """Return a reproducible split only after checksum-bound adjudication."""
     repo = root or project_root()
-    input_path = repo / INPUT
-    adjudication_path = repo / ADJUDICATIONS
+    paths = mapping_study_paths(cycle)
+    input_path = repo / paths.frame
+    adjudication_path = repo / paths.adjudications
     rows = _rows(input_path)
     unique = {str(row.get("case_id")): row for row in rows if row.get("case_id")}
     frame_sha256 = (
@@ -53,7 +54,7 @@ def build_plan(root: Path | None = None) -> dict[str, Any]:  # ruff:ignore[too-m
         and row.get("final_decision") in {"positive", "negative"}
     }
     review_pairs: dict[str, dict[str, dict[str, Any]]] = {}
-    for review in _rows(repo / BLIND_REVIEWS):
+    for review in _rows(repo / paths.blind_reviews):
         case_id = str(review.get("case_id", ""))
         role = str(review.get("reviewer_role", ""))
         if (
@@ -76,6 +77,14 @@ def build_plan(root: Path | None = None) -> dict[str, Any]:  # ruff:ignore[too-m
         and decision.get("reviewer_b_decision")
         == review_pairs[case_id]["reviewer_b"].get("decision")
     }
+    deduplicated_adjudications: dict[str, dict[str, Any]] = {}
+    seen_duplicate_groups: set[str] = set()
+    for case_id in _ordered(list(admissible_adjudications)):
+        duplicate_group = str(unique[case_id].get("duplicate_group") or case_id)
+        if duplicate_group in seen_duplicate_groups:
+            continue
+        seen_duplicate_groups.add(duplicate_group)
+        deduplicated_adjudications[case_id] = admissible_adjudications[case_id]
 
     development: list[str] = []
     holdout: list[str] = []
@@ -85,7 +94,7 @@ def build_plan(root: Path | None = None) -> dict[str, Any]:  # ruff:ignore[too-m
         for label in ("positive", "negative"):
             case_ids = _ordered([
                 case_id
-                for case_id, decision in admissible_adjudications.items()
+                for case_id, decision in deduplicated_adjudications.items()
                 if case_id in unique
                 and unique[case_id].get("family") == family
                 and decision.get("final_decision") == label
@@ -106,18 +115,21 @@ def build_plan(root: Path | None = None) -> dict[str, Any]:  # ruff:ignore[too-m
     )
     return {
         "schema_version": "mapping-review-pack-plan-v2",
+        "study_cycle": cycle,
         "status": "ready"
         if ready
         else "blocked_adjudication"
         if available
         else "blocked_source_cases",
-        "input": str(INPUT),
+        "input": str(paths.frame),
         "input_sha256": frame_sha256,
-        "adjudications": str(ADJUDICATIONS),
-        "blind_reviews": str(BLIND_REVIEWS),
+        "adjudications": str(paths.adjudications),
+        "blind_reviews": str(paths.blind_reviews),
         "independently_reviewed_count": len(independently_reviewed),
         "inadmissible_adjudication_count": len(adjudications) - adjudicated,
         "adjudication_count": adjudicated,
+        "deduplicated_adjudication_count": len(deduplicated_adjudications),
+        "duplicate_group_exclusion_count": adjudicated - len(deduplicated_adjudications),
         "randomisation": {"algorithm": "sha256-sort", "seed": SEED},
         "targets": {
             "development_total": 600,
@@ -134,6 +146,18 @@ def build_plan(root: Path | None = None) -> dict[str, Any]:  # ruff:ignore[too-m
         "source_strata_available": dict(sorted(source_strata.items())),
         "development_case_ids": sorted(development) if ready else [],
         "holdout_case_ids": sorted(holdout) if ready else [],
+        "development_duplicate_groups": (
+            sorted(
+                str(unique[case_id].get("duplicate_group") or case_id) for case_id in development
+            )
+            if ready
+            else []
+        ),
+        "holdout_duplicate_groups": (
+            sorted(str(unique[case_id].get("duplicate_group") or case_id) for case_id in holdout)
+            if ready
+            else []
+        ),
         "review_boundary": {
             "candidate_hypotheses_are_truth": False,
             "review_records": "two blinded reviews and accountable adjudication required",
@@ -146,10 +170,13 @@ def build_plan(root: Path | None = None) -> dict[str, Any]:  # ruff:ignore[too-m
 
 def main() -> None:
     """Write the deterministic mapping review-pack plan."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--cycle", default=DEFAULT_CYCLE)
+    args = parser.parse_args()
     root = project_root()
-    output = root / OUTPUT
+    output = root / mapping_study_paths(args.cycle).split_plan
     output.parent.mkdir(parents=True, exist_ok=True)
-    plan = build_plan(root)
+    plan = build_plan(root, args.cycle)
     output.write_text(json.dumps(plan, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(
         json.dumps(

@@ -1,0 +1,14 @@
+{
+  "candidate_frame_sha256": "630ea737a420486a5204660789284ffbff6a1f353e36e779f31fe1dd41646a22",
+  "denominators": {},
+  "evaluated_once": false,
+  "exclusions": {
+    "reason": "split_not_ready"
+  },
+  "holdout_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+  "metrics": {},
+  "schema_version": "mapping-evaluation-summary-v1",
+  "status": "blocked",
+  "study_cycle": "expansion_v7",
+  "threshold_source": "development_only"
+}

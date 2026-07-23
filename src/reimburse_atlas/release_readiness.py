@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any, Literal, cast
 
 from reimburse_atlas.io import write_csv, write_jsonl
+from reimburse_atlas.mapping_study_paths import latest_mapping_study_cycle, mapping_study_paths
 from reimburse_atlas.registry import project_root
 
 ReleaseGateStatus = Literal["pass", "warn", "fail", "blocked", "missing"]
@@ -165,8 +166,10 @@ def write_release_readiness_report(
 
 
 def _mapping_study_gate(repo: Path) -> ReleaseGateRecord:
-    summary = _read_json(repo / "data/derived/mapping_study/candidate_frame_summary.json")
-    evaluation = _read_json(repo / "data/derived/mapping_study/evaluation_summary.json")
+    cycle = latest_mapping_study_cycle(repo)
+    paths = mapping_study_paths(cycle)
+    summary = _read_json(repo / paths.derived / "candidate_frame_summary.json")
+    evaluation = _read_json(repo / paths.evaluation)
     accepted = evaluation.get("status") == "accepted" and evaluation.get("evaluated_once") is True
     return ReleaseGateRecord(
         id="mapping_study_human_review",
@@ -174,7 +177,7 @@ def _mapping_study_gate(repo: Path) -> ReleaseGateRecord:
         status="pass" if accepted else "blocked",
         required=False,
         evidence=(
-            f"candidate_status={summary.get('status', 'missing')} "
+            f"cycle={cycle} candidate_status={summary.get('status', 'missing')} "
             f"candidate_count={summary.get('candidate_count', 0)} "
             f"evaluation_status={evaluation.get('status', 'missing')}"
         ),

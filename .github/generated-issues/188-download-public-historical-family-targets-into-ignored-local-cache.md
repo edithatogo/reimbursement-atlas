@@ -12,5 +12,5 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] 121 public PFS, ASP and NHS payloads are locally cached and SHA-256 indexed.
-- [ ] Raw payloads are not tracked and publication metadata remains committed.
+- [x] 121 public PFS, ASP and NHS payloads are locally cached and SHA-256 indexed.
+- [x] Raw payloads are not tracked and publication metadata remains committed.

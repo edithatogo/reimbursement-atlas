@@ -1,0 +1,19 @@
+{
+  "candidate_frame_sha256": "96f9f2465dfe84d65f36172a4d679230dd4a7bbd014407683ccc53d51331041d",
+  "case_count": 1500,
+  "hypotheses_exposed": false,
+  "missing_evidence_case_ids": [],
+  "reviewer_roles": [
+    "reviewer_a",
+    "reviewer_b"
+  ],
+  "role_packet_sha256": {
+    "reviewer_a": "d051b77b77fe27e27fc25b44c075aaa4635a4c7eddc057fe4c4ef7fa1f223040",
+    "reviewer_b": "d051b77b77fe27e27fc25b44c075aaa4635a4c7eddc057fe4c4ef7fa1f223040"
+  },
+  "role_packets_identical": true,
+  "schema_version": "mapping-blind-review-packet-manifest-v1",
+  "split_assignment_exposed": false,
+  "status": "ready",
+  "study_cycle": "expansion_v5"
+}

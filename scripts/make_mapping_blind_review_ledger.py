@@ -2,21 +2,16 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
+from collections import Counter
 from pathlib import Path
 from typing import Any, cast
 
 from reimburse_atlas.io import write_jsonl
+from reimburse_atlas.mapping_study_paths import DEFAULT_CYCLE, mapping_study_paths
 from reimburse_atlas.registry import project_root
-
-MANIFEST = Path("data/derived/mapping_study/blind_review_packets/manifest.json")
-ROLE_FILES = {
-    "reviewer_a": Path("data/mapping_study/reviewer_a_reviews.jsonl"),
-    "reviewer_b": Path("data/mapping_study/reviewer_b_reviews.jsonl"),
-}
-OUTPUT = Path("data/mapping_study/blind_reviews.jsonl")
-SUMMARY = Path("data/derived/mapping_study/blind_review_summary.json")
 
 
 def _jsonl(path: Path) -> list[dict[str, Any]]:
@@ -27,17 +22,25 @@ def _jsonl(path: Path) -> list[dict[str, Any]]:
     ]
 
 
-def build_ledger(root: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+def build_ledger(  # ruff:ignore[too-many-locals]
+    root: Path, cycle: str = DEFAULT_CYCLE
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     """Return a canonical ledger only when both isolated role files are complete."""
+    paths = mapping_study_paths(cycle)
     manifest = cast(
         "dict[str, Any]",
-        json.loads((root / MANIFEST).read_text(encoding="utf-8")),
+        json.loads((root / paths.manifest).read_text(encoding="utf-8")),
     )
     frame_sha256 = str(manifest["candidate_frame_sha256"])
     expected_count = int(manifest["case_count"])
+    packet_path = root / paths.packets / "reviewer_a_cases.jsonl"
+    packet_cases = (
+        {str(row["case_id"]): row for row in _jsonl(packet_path)} if packet_path.is_file() else {}
+    )
     by_role: dict[str, dict[str, dict[str, Any]]] = {}
     role_hashes: dict[str, str] = {}
-    for role, relative_path in ROLE_FILES.items():
+    role_files = {"reviewer_a": paths.reviewer_a, "reviewer_b": paths.reviewer_b}
+    for role, relative_path in role_files.items():
         path = root / relative_path
         rows = _jsonl(path)
         indexed = {str(row.get("case_id")): row for row in rows}
@@ -49,6 +52,13 @@ def build_ledger(root: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
             for row in rows
         ):
             message = f"{role} review metadata does not match the frozen frame"
+            raise ValueError(message)
+        if any(
+            packet_cases.get(case_id, {}).get("target_relation") != row.get("target_relation")
+            for case_id, row in indexed.items()
+            if packet_cases.get(case_id, {}).get("schema_version") == "mapping-blind-review-case-v2"
+        ):
+            message = f"{role} review target relation does not match the blinded case"
             raise ValueError(message)
         by_role[role] = indexed
         role_hashes[role] = hashlib.sha256(path.read_bytes()).hexdigest()
@@ -63,8 +73,43 @@ def build_ledger(root: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
         by_role["reviewer_a"][case_id]["decision"] == by_role["reviewer_b"][case_id]["decision"]
         for case_id in by_role["reviewer_a"]
     )
+    decisions = ("positive", "negative", "exclude", "uncertain")
+    pair_counts = Counter(
+        (
+            str(by_role["reviewer_a"][case_id]["decision"]),
+            str(by_role["reviewer_b"][case_id]["decision"]),
+        )
+        for case_id in by_role["reviewer_a"]
+    )
+    marginal_a = Counter(str(row["decision"]) for row in by_role["reviewer_a"].values())
+    marginal_b = Counter(str(row["decision"]) for row in by_role["reviewer_b"].values())
+    expected_agreement = sum(
+        marginal_a[decision] * marginal_b[decision] for decision in decisions
+    ) / (expected_count * expected_count)
+    observed_agreement = agreements / expected_count
+    kappa = (
+        (observed_agreement - expected_agreement) / (1 - expected_agreement)
+        if expected_agreement < 1
+        else 1.0
+    )
+    family_summary: dict[str, dict[str, int | float]] = {}
+    for family in sorted({str(row.get("family")) for row in packet_cases.values()}):
+        case_ids = [
+            case_id for case_id, row in packet_cases.items() if str(row.get("family")) == family
+        ]
+        family_agreements = sum(
+            by_role["reviewer_a"][case_id]["decision"] == by_role["reviewer_b"][case_id]["decision"]
+            for case_id in case_ids
+        )
+        family_summary[family] = {
+            "case_count": len(case_ids),
+            "agreement_count": family_agreements,
+            "disagreement_count": len(case_ids) - family_agreements,
+            "percent_agreement": family_agreements / len(case_ids),
+        }
     summary = {
         "schema_version": "mapping-blind-review-summary-v1",
+        "study_cycle": cycle,
         "candidate_frame_sha256": frame_sha256,
         "reviewer_case_count": expected_count,
         "ledger_record_count": len(ledger),
@@ -72,6 +117,13 @@ def build_ledger(root: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
         "agreement_count": agreements,
         "disagreement_count": expected_count - agreements,
         "percent_agreement": agreements / expected_count,
+        "cohen_kappa": kappa,
+        "decision_pair_counts": {
+            f"{left}->{right}": pair_counts[left, right]
+            for left in decisions
+            for right in decisions
+        },
+        "family_agreement": family_summary,
         "independent_roles_complete": True,
         "accountable_adjudication_complete": False,
     }
@@ -80,10 +132,14 @@ def build_ledger(root: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
 
 def main() -> None:
     """Write the canonical review ledger and bounded agreement summary."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--cycle", default=DEFAULT_CYCLE)
+    args = parser.parse_args()
     root = project_root()
-    ledger, summary = build_ledger(root)
-    write_jsonl(ledger, root / OUTPUT)
-    summary_path = root / SUMMARY
+    paths = mapping_study_paths(args.cycle)
+    ledger, summary = build_ledger(root, args.cycle)
+    write_jsonl(ledger, root / paths.blind_reviews)
+    summary_path = root / paths.blind_review_summary
     summary_path.parent.mkdir(parents=True, exist_ok=True)
     summary_path.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps(summary, indent=2, sort_keys=True))

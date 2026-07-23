@@ -2,16 +2,15 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 from pathlib import Path
 from typing import Any, cast
 
 from reimburse_atlas.io import write_jsonl
+from reimburse_atlas.mapping_study_paths import DEFAULT_CYCLE, mapping_study_paths
 from reimburse_atlas.registry import project_root
-
-FRAME = Path("data/derived/mapping_study/candidate_frame.jsonl")
-OUTPUT = Path("data/derived/mapping_study/blind_review_packets")
 
 
 def _jsonl(path: Path) -> list[dict[str, Any]]:
@@ -24,9 +23,12 @@ def _jsonl(path: Path) -> list[dict[str, Any]]:
     ]
 
 
-def build_packets(root: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+def build_packets(
+    root: Path, cycle: str = DEFAULT_CYCLE
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     """Return blinded cases and a frozen-frame manifest."""
-    frame_path = root / FRAME
+    paths = mapping_study_paths(cycle)
+    frame_path = root / paths.frame
     if not frame_path.is_file():
         return [], {"status": "blocked_missing_frame", "case_count": 0}
     frame_sha256 = hashlib.sha256(frame_path.read_bytes()).hexdigest()
@@ -60,10 +62,27 @@ def build_packets(root: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
             missing_evidence.append(str(candidate["case_id"]))
             continue
         cases.append({
-            "schema_version": "mapping-blind-review-case-v1",
+            "schema_version": (
+                "mapping-blind-review-case-v2"
+                if candidate.get("target_relation")
+                else "mapping-blind-review-case-v1"
+            ),
             "candidate_frame_sha256": frame_sha256,
             "case_id": candidate["case_id"],
             "family": candidate["family"],
+            **(
+                {
+                    "target_relation": candidate["target_relation"],
+                    "decision_question": (
+                        "Do the left and right records satisfy the stated target relation within "
+                        "the evidence shown? Positive means the bounded relation is supported; it "
+                        "does not imply billing-code equivalence, identical coverage, or equal "
+                        "price."
+                    ),
+                }
+                if candidate.get("target_relation")
+                else {}
+            ),
             "left": _evidence(left, versions[0], candidate["provenance_checksums"][0]),
             "right": _evidence(right, versions[1], candidate["provenance_checksums"][1]),
             "allowed_decisions": ["positive", "negative", "exclude", "uncertain"],
@@ -71,6 +90,7 @@ def build_packets(root: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     cases.sort(key=lambda row: str(row["case_id"]))
     return cases, {
         "schema_version": "mapping-blind-review-packet-manifest-v1",
+        "study_cycle": cycle,
         "status": "ready" if len(cases) == 1500 and not missing_evidence else "blocked",
         "candidate_frame_sha256": frame_sha256,
         "case_count": len(cases),
@@ -95,9 +115,14 @@ def _evidence(row: dict[str, Any], version: str, checksum: object) -> dict[str, 
     }
 
 
-def write_packets(root: Path, cases: list[dict[str, Any]], manifest: dict[str, Any]) -> None:
+def write_packets(
+    root: Path,
+    cases: list[dict[str, Any]],
+    manifest: dict[str, Any],
+    cycle: str = DEFAULT_CYCLE,
+) -> None:
     """Write identical role packets and checksum parity evidence."""
-    output = root / OUTPUT
+    output = root / mapping_study_paths(cycle).packets
     output.mkdir(parents=True, exist_ok=True)
     role_hashes: dict[str, str] = {}
     for role in ("reviewer_a", "reviewer_b"):
@@ -112,9 +137,12 @@ def write_packets(root: Path, cases: list[dict[str, Any]], manifest: dict[str, A
 
 def main() -> None:
     """Generate the blinded review packets."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--cycle", default=DEFAULT_CYCLE)
+    args = parser.parse_args()
     root = project_root()
-    cases, manifest = build_packets(root)
-    write_packets(root, cases, manifest)
+    cases, manifest = build_packets(root, args.cycle)
+    write_packets(root, cases, manifest, args.cycle)
     print(json.dumps(manifest, indent=2, sort_keys=True))
 
 

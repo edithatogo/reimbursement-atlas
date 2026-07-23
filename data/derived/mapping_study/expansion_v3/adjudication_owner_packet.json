@@ -1,0 +1,51 @@
+{
+  "accountable_owner_approval_required": true,
+  "approval_effect": "Approval freezes only the proposed reference decisions for this exact frame and proposal checksum; it does not waive family quotas or authorize evidence claims.",
+  "candidate_frame_sha256": "edf052d2313b36255869bdc8d0432157fdfacb543d957f51a8a7d7f968aa00f2",
+  "family_decision_counts": {
+    "devices_other": {
+      "exclude": 1,
+      "negative": 199,
+      "positive": 0
+    },
+    "genomics_coverage": {
+      "exclude": 13,
+      "negative": 286,
+      "positive": 1
+    },
+    "medicines": {
+      "exclude": 3,
+      "negative": 273,
+      "positive": 124
+    },
+    "procedures_pathology": {
+      "exclude": 17,
+      "negative": 578,
+      "positive": 5
+    }
+  },
+  "family_label_quota_gaps": {
+    "devices_other": {
+      "negative": 0,
+      "positive": 50
+    },
+    "genomics_coverage": {
+      "negative": 0,
+      "positive": 74
+    },
+    "medicines": {
+      "negative": 0,
+      "positive": 0
+    },
+    "procedures_pathology": {
+      "negative": 0,
+      "positive": 145
+    }
+  },
+  "proposal_count": 1500,
+  "proposal_sha256": "1568dd9aac6a0d215d085b90d7d66ee3414c5d047b2ff0b271a460c29a3097fa",
+  "schema_version": "mapping-adjudication-owner-packet-v1",
+  "status": "blocked_candidate_spectrum",
+  "study_cycle": "expansion_v3",
+  "total_quota_gap": 269
+}

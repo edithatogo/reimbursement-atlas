@@ -16,14 +16,39 @@
       "sha256": "ccc88e53efba37ed35aae8113e024af4772647db1b6187b3f948e8ead22754d4"
     },
     {
-      "byte_size": 767,
+      "byte_size": 1233,
       "path": ".zenodo.json",
-      "sha256": "f2f1b4cd095f54bdf10821c5942941f4e1c6cd63e5a8a667e3fc52242b1cedaa"
+      "sha256": "db0869ef009d9cb6b33220d826bf618bd202cde29fd83d42e792ecfce59329d9"
     },
     {
-      "byte_size": 1105,
-      "path": "data/derived/mapping_study/candidate_frame_summary.json",
-      "sha256": "a60e25f16b4570642d13ef7ad0870252031be4a47235211cfbdfff743b8e0f5b"
+      "byte_size": 118850,
+      "path": "data/derived/publication_manifest.json",
+      "sha256": "0a4a495f90043c197d52165261546bb76ca34f24a2b5de262bd829ece152317a"
+    },
+    {
+      "byte_size": 121606,
+      "path": "data/derived/sbom/cyclonedx-python.json",
+      "sha256": "e0978d60349fcda026e8792fa9f7335d24f8da39a7f757d831a8ba1d0acb3eb8"
+    },
+    {
+      "byte_size": 276327,
+      "path": "data/derived/sbom/cyclonedx-dashboard.json",
+      "sha256": "6539f390e46a2afbffa473ddb394c91c60dd6ee1903d1d593187cb03c5906da4"
+    },
+    {
+      "byte_size": 3869,
+      "path": "docs/SOURCE_PROVENANCE_AND_TRANSFORMATIONS.md",
+      "sha256": "f72ac24a5e28745ff5e246b6c3537cd199eea5bbaa8530be8cc419b1b62fd5fe"
+    },
+    {
+      "byte_size": 2579,
+      "path": "docs/LICENSING.md",
+      "sha256": "75de3481e4ecc015f5c69bcfac473b2aacf0afe1f95906a2418c975d52e5c140"
+    },
+    {
+      "byte_size": 3252,
+      "path": "data/derived/mapping_study/expansion_v7/candidate_frame_summary.json",
+      "sha256": "d2fa9a3d6530d9bbfa9f80eda4220e92c88388b1f6f7e0fb70b99fbc69a8b805"
     }
   ],
   "paper_or_preprint_included": false,

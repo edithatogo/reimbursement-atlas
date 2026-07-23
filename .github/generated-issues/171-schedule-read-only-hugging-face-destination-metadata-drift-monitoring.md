@@ -12,9 +12,9 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] The scheduled/manual workflow uses read-only public API requests and contents-read permissions.
-- [ ] The report records only repository identity, expected card fields, drift reasons and mutation_performed=false.
-- [ ] The workflow has no HF token, clone, push, or write-enabled publication step.
-- [ ] Drift remains linked to issue #320 and does not imply publication approval.
-- [ ] The workflow synchronizes issue #320 with the redacted read-only report using only GitHub issue permission.
-- [ ] The report includes target-specific remediation steps that remain gated and non-mutating.
+- [x] The scheduled/manual workflow uses read-only public API requests and contents-read permissions.
+- [x] The report records only repository identity, expected card fields, drift reasons and mutation_performed=false.
+- [x] The workflow has no HF token, clone, push, or write-enabled publication step.
+- [x] Drift remains linked to issue #320 and does not imply publication approval.
+- [x] The workflow synchronizes issue #320 with the redacted read-only report using only GitHub issue permission.
+- [x] The report includes target-specific remediation steps that remain gated and non-mutating.
