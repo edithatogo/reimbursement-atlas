@@ -71,3 +71,22 @@ def test_record_decision_rejects_stale_checksum_without_write(tmp_path: Path) ->
         record_decision(decision_file, root=root)
 
     assert not (root / "data/licence_review/decisions.jsonl").exists()
+
+
+def test_record_decision_can_replace_current_decision_explicitly(tmp_path: Path) -> None:
+    root, checksum = _fixture_repo(tmp_path)
+    decision_file = tmp_path / "decision.json"
+    blocked = _decision(checksum)
+    decision_file.write_text(json.dumps(blocked), encoding="utf-8")
+    record_decision(decision_file, root=root)
+
+    approved = blocked | {
+        "decision": "approved",
+        "redistribution_permission": "Approved within documented derived-field scope.",
+    }
+    decision_file.write_text(json.dumps(approved), encoding="utf-8")
+    record_decision(decision_file, root=root, replace=True)
+
+    rows = (root / "data/licence_review/decisions.jsonl").read_text(encoding="utf-8").splitlines()
+    assert len(rows) == 1
+    assert json.loads(rows[0])["decision"] == "approved"

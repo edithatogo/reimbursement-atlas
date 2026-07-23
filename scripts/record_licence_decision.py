@@ -11,7 +11,9 @@ from reimburse_atlas.licence_review_validation import validate_licence_review_qu
 from reimburse_atlas.registry import project_root
 
 
-def record_decision(decision_path: Path, *, root: Path | None = None) -> None:
+def record_decision(
+    decision_path: Path, *, root: Path | None = None, replace: bool = False
+) -> None:
     """Validate and append one decision without touching generated queue files."""
     repo = root or project_root()
     queue_path = repo / "data/derived/licence_review/licence_review_queue.jsonl"
@@ -27,9 +29,16 @@ def record_decision(decision_path: Path, *, root: Path | None = None) -> None:
         for line in existing.splitlines()
         if line.strip()
     ]
-    if decision.get("review_id") in existing_review_ids:
+    if decision.get("review_id") in existing_review_ids and not replace:
         message = f"review_id already exists: {decision.get('review_id')}"
         raise ValueError(message)
+    if replace:
+        retained = [
+            line
+            for line in existing.splitlines()
+            if not line.strip() or json.loads(line).get("review_id") != decision.get("review_id")
+        ]
+        existing = "\n".join(retained)
     combined = existing.rstrip("\n") + ("\n" if existing.strip() else "")
     combined += json.dumps(decision, sort_keys=True) + "\n"
     with tempfile.NamedTemporaryFile(
@@ -58,9 +67,14 @@ def main() -> None:
 
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("decision", type=Path, help="JSON file containing one complete decision")
+    parser.add_argument(
+        "--replace",
+        action="store_true",
+        help="Replace an existing decision for the same current review identifier.",
+    )
     args = parser.parse_args()
     try:
-        record_decision(args.decision)
+        record_decision(args.decision, replace=args.replace)
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         raise SystemExit(str(exc)) from exc
     print("Recorded validated checksum-bound licence decision")
