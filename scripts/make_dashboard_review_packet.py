@@ -7,10 +7,11 @@ import base64
 import hashlib
 import json
 import os
-import xml.etree.ElementTree as ET
 from collections.abc import Iterator
 from pathlib import Path
 from typing import Any, cast
+
+from defusedxml import ElementTree as ET
 
 from reimburse_atlas.registry import project_root
 

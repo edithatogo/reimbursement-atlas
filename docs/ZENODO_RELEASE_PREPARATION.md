@@ -4,6 +4,10 @@ This document describes a local preflight contract, not a current external depos
 Regenerate the preflight against the exact tagged release; no Zenodo evidence is implied for a
 newer commit.
 
+The last reconciled public release snapshot is
+`578760f1647c01f11caaf5e1a7f7bf6d38129dea`; every later candidate must regenerate and revalidate
+the inventory before any deposition transition.
+
 The repository contains `.zenodo.json` as a locally validated metadata preparation record. It
 does not create a Zenodo record, reserve a DOI, upload source files or imply archival/publication
 approval.

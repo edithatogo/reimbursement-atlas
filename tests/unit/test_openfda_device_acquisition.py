@@ -50,3 +50,50 @@ def test_openfda_acquisition_rejects_total_drift() -> None:
             fetch_json=drifting_fetch,
             page_size=2,
         )
+
+
+@pytest.mark.parametrize("page_size", [0, 1001])
+def test_openfda_acquisition_rejects_invalid_page_size(page_size: int) -> None:
+    with pytest.raises(OpenFdaAcquisitionError, match="page_size"):
+        acquire_complete_device_classifications(page_size=page_size)
+
+
+def test_openfda_acquisition_rejects_duplicate_product_codes() -> None:
+    def duplicate_fetch(_url: str) -> dict[str, object]:
+        return {
+            "meta": {"results": {"total": 2, "skip": 0}},
+            "results": [{"product_code": "AAA"}, {"product_code": "AAA"}],
+        }
+
+    with pytest.raises(OpenFdaAcquisitionError, match="duplicate"):
+        acquire_complete_device_classifications(fetch_json=duplicate_fetch, page_size=2)
+
+
+def test_openfda_acquisition_rejects_empty_page() -> None:
+    def empty_fetch(_url: str) -> dict[str, object]:
+        return {"meta": {"results": {"total": 2, "skip": 0}}, "results": []}
+
+    with pytest.raises(OpenFdaAcquisitionError, match="page metadata"):
+        acquire_complete_device_classifications(fetch_json=empty_fetch, page_size=2)
+
+
+def test_openfda_acquisition_rejects_skip_drift() -> None:
+    def drifted_fetch(_url: str) -> dict[str, object]:
+        return {
+            "meta": {"results": {"total": 1, "skip": 1}},
+            "results": [{"product_code": "AAA"}],
+        }
+
+    with pytest.raises(OpenFdaAcquisitionError, match="page metadata"):
+        acquire_complete_device_classifications(fetch_json=drifted_fetch, page_size=1)
+
+
+def test_openfda_acquisition_rejects_missing_product_code() -> None:
+    def missing_code_fetch(_url: str) -> dict[str, object]:
+        return {
+            "meta": {"results": {"total": 1, "skip": 0}},
+            "results": [{"product_code": ""}],
+        }
+
+    with pytest.raises(OpenFdaAcquisitionError, match="missing"):
+        acquire_complete_device_classifications(fetch_json=missing_code_fetch, page_size=1)

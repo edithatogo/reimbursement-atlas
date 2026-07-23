@@ -98,5 +98,6 @@ def _fetch_json(url: str) -> dict[str, Any]:
         url,
         headers={"User-Agent": "reimbursement-atlas/0.1 source-acquisition"},
     )
-    with urllib.request.urlopen(request, timeout=60) as response:  # ruff:ignore[suspicious-url-open-usage]
+    # The request URL is constructed from the fixed HTTPS openFDA endpoint.
+    with urllib.request.urlopen(request, timeout=60) as response:  # nosec B310  # ruff:ignore[suspicious-url-open-usage]
         return cast("dict[str, Any]", json.load(response))
