@@ -23,7 +23,10 @@ SOURCE_FAMILIES = {
     "procedures_pathology": ({"au_mbs"}, {"us_cms_clfs", "us_cms_pfs"}),
     "medicines": ({"au_pbs"}, {"atc", "rxnorm", "us_cms_asp"}),
     "genomics_coverage": ({"au_mbs", "uk_genomic_test_directory"}, {"loinc", "hpo"}),
-    "devices_other": ({"au_mbs", "au_pbs"}, {"gmdn", "umdns", "snomed_ct_device"}),
+    "devices_other": (
+        {"au_mbs", "au_pbs"},
+        {"gmdn", "umdns", "snomed_ct_device", "us_fda_device_classification"},
+    ),
 }
 
 
@@ -121,7 +124,7 @@ def _load_reviewed_schedule_records(
     return list(records.values()), checksums
 
 
-def _family_candidates(
+def _family_candidates(  # ruff:ignore[too-many-locals]
     family: str,
     left_rows: list[dict[str, Any]],
     right_rows: list[dict[str, Any]],
@@ -131,28 +134,95 @@ def _family_candidates(
 ) -> list[dict[str, object]]:
     if not left_rows or not right_rows:
         return []
-    right_tokens = [tokenise(_text(row)) for row in right_rows]
-    candidates: list[tuple[float, dict[str, Any], dict[str, Any]]] = []
-    for left in left_rows:
-        left_tokens = tokenise(_text(left))
+    right_tokens = [set(tokenise(_text(row))) for row in right_rows]
+    token_index: dict[str, set[int]] = defaultdict(set)
+    for index, tokens in enumerate(right_tokens):
+        for token in tokens:
+            token_index[token].add(index)
+    candidates: list[tuple[float, dict[str, Any], dict[str, Any], str]] = []
+    ordered_left = sorted(
+        left_rows,
+        key=lambda row: hashlib.sha256(
+            f"{family}|{row.get('source_id')}|{row.get('item_code')}".encode()
+        ).hexdigest(),
+    )[:limit]
+    for left in ordered_left:
+        left_tokens = set(tokenise(_text(left)))
+        rare_tokens = sorted(
+            (token for token in left_tokens if token in token_index),
+            key=lambda token: (len(token_index[token]), token),
+        )[:3]
+        matching_indices: set[int] = set()
+        for token in rare_tokens:
+            matching_indices.update(token_index[token])
+        if not matching_indices:
+            matching_indices = {_stable_index(left, len(right_rows))}
+        elif len(matching_indices) > 512:
+            matching_indices = set(sorted(matching_indices)[:512])
         scored = sorted(
             (
-                (jaccard_similarity(left_tokens, tokens), right)
-                for right, tokens in zip(right_rows, right_tokens, strict=True)
+                (jaccard_similarity(left_tokens, right_tokens[index]), right_rows[index])
+                for index in matching_indices
             ),
             key=lambda item: (-item[0], str(item[1]["source_id"]), str(item[1]["item_code"])),
         )
         if scored:
+            negative_index = _negative_index(left, left_tokens, right_tokens)
             candidates.extend((
-                (scored[0][0], left, scored[0][1]),
-                (scored[-1][0], left, scored[-1][1]),
+                (scored[0][0], left, scored[0][1], "positive_candidate"),
+                (
+                    jaccard_similarity(left_tokens, right_tokens[negative_index]),
+                    left,
+                    right_rows[negative_index],
+                    "negative_candidate",
+                ),
             ))
     rows = [
-        _candidate_row(family, score, left, right, source_checksums)
-        for score, left, right in candidates
+        _candidate_row(family, score, left, right, hypothesis, source_checksums)
+        for score, left, right, hypothesis in candidates
     ]
     unique = {str(row["case_id"]): row for row in rows}
-    return sorted(unique.values(), key=lambda row: str(row["case_id"]))[:limit]
+    positive = sorted(
+        (
+            row
+            for row in unique.values()
+            if row["proposed_label_hypothesis"] == "positive_candidate"
+        ),
+        key=lambda row: str(row["case_id"]),
+    )
+    negative = sorted(
+        (
+            row
+            for row in unique.values()
+            if row["proposed_label_hypothesis"] == "negative_candidate"
+        ),
+        key=lambda row: str(row["case_id"]),
+    )
+    selected = [*positive[: limit // 2], *negative[: limit - (limit // 2)]]
+    if len(selected) < limit:
+        selected_ids = {str(row["case_id"]) for row in selected}
+        remainder = sorted(
+            (row for row in unique.values() if str(row["case_id"]) not in selected_ids),
+            key=lambda row: str(row["case_id"]),
+        )
+        selected.extend(remainder[: limit - len(selected)])
+    return sorted(selected, key=lambda row: str(row["case_id"]))
+
+
+def _stable_index(row: dict[str, Any], count: int) -> int:
+    identity = f"{row.get('source_id')}|{row.get('item_code')}"
+    return int(hashlib.sha256(identity.encode()).hexdigest()[:16], 16) % count
+
+
+def _negative_index(
+    row: dict[str, Any], left_tokens: set[str], right_tokens: list[set[str]]
+) -> int:
+    start = _stable_index(row, len(right_tokens))
+    for offset in range(min(len(right_tokens), 256)):
+        index = (start + offset) % len(right_tokens)
+        if left_tokens.isdisjoint(right_tokens[index]):
+            return index
+    return start
 
 
 def _candidate_row(
@@ -160,6 +230,7 @@ def _candidate_row(
     score: float,
     left: dict[str, Any],
     right: dict[str, Any],
+    hypothesis: str,
     source_checksums: dict[str, str],
 ) -> dict[str, object]:
     left_provenance = left["provenance"]
@@ -185,13 +256,7 @@ def _candidate_row(
         "source_versions": [left_provenance["source_version"], right_provenance["source_version"]],
         "provenance_checksums": [source_checksums[left_key], source_checksums[right_key]],
         "evidence_fields": ["item_code", "item_label", "item_description", "domain"],
-        "proposed_label_hypothesis": (
-            "positive_candidate"
-            if score >= 0.5
-            else "negative_candidate"
-            if score <= 0.2
-            else "ambiguous"
-        ),
+        "proposed_label_hypothesis": hypothesis,
         "proposed_difficulty": "routine"
         if score >= 0.7
         else "hard"

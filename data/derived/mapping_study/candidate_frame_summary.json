@@ -1,38 +1,38 @@
 {
-  "candidate_count": 0,
-  "candidate_frame_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "effective_unique_groups": 0,
+  "candidate_count": 1500,
+  "candidate_frame_sha256": "dbd1132f76d708733ff9e4703a85bdbdf0038588ba1ed7626a0dfaa6b7aa4fc0",
+  "effective_unique_groups": 1478,
   "family_summary": {
     "devices_other": {
-      "available": 0,
-      "gap": 200,
+      "available": 200,
+      "gap": 0,
       "left_records": 27846,
-      "right_records": 0,
-      "status": "blocked_source_family",
+      "right_records": 1000,
+      "status": "ready",
       "target": 200
     },
     "genomics_coverage": {
-      "available": 0,
-      "gap": 300,
+      "available": 300,
+      "gap": 0,
       "left_records": 20901,
-      "right_records": 0,
-      "status": "blocked_source_family",
+      "right_records": 19836,
+      "status": "ready",
       "target": 300
     },
     "medicines": {
-      "available": 0,
-      "gap": 400,
+      "available": 400,
+      "gap": 0,
       "left_records": 6945,
-      "right_records": 0,
-      "status": "blocked_source_family",
+      "right_records": 890,
+      "status": "ready",
       "target": 400
     },
     "procedures_pathology": {
-      "available": 0,
-      "gap": 600,
+      "available": 600,
+      "gap": 0,
       "left_records": 20901,
-      "right_records": 0,
-      "status": "blocked_source_family",
+      "right_records": 15,
+      "status": "ready",
       "target": 600
     }
   },
@@ -40,7 +40,7 @@
   "review_blinded": true,
   "schema_version": "mapping-candidate-frame-summary-v1",
   "split_assigned": false,
-  "status": "blocked_source_families",
+  "status": "ready_for_blinded_review",
   "target_count": 1500,
-  "target_gap": 1500
+  "target_gap": 0
 }

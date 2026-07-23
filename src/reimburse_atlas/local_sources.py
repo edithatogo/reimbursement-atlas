@@ -31,7 +31,10 @@ from reimburse_atlas.parsers import (
     parse_pbs_api_csv,
     parse_pbs_csv,
 )
+from reimburse_atlas.parsers.cms_pfs_csv import parse_cms_pfs_carrier_csv
+from reimburse_atlas.parsers.hpo_json import parse_hpo_json
 from reimburse_atlas.parsers.mbs_txt import MbsTxtParseStats, parse_mbs_txt_pair, parse_stats
+from reimburse_atlas.parsers.openfda_device_json import parse_openfda_device_classification
 from reimburse_atlas.registry import load_source_versions
 from reimburse_atlas.snapshots import file_sha256, write_snapshot_records
 
@@ -45,6 +48,8 @@ PARSER_BY_SOURCE_ID: dict[str, Parser] = {
     "us_cms_clfs": cast("Parser", parse_cms_clfs_csv),
     "us_cms_pfs": cast("Parser", parse_cms_pfs_csv),
     "uk_genomic_test_directory": cast("Parser", parse_nhs_genomic_directory_csv),
+    "hpo": cast("Parser", parse_hpo_json),
+    "us_fda_device_classification": cast("Parser", parse_openfda_device_classification),
 }
 
 
@@ -158,6 +163,47 @@ def parse_reviewed_local_file(
             retrieved_at=version.retrieved_at,
             source_url=version.source_url,
         )
+    elif source_id in {
+        "us_cms_asp",
+        "us_cms_pfs",
+        "hpo",
+        "us_fda_device_classification",
+    }:
+        versions = {version.id: version for version in load_source_versions()}
+        version = versions.get(source_version_id)
+        if version is None:
+            msg = f"Unknown source version id: {source_version_id}"
+            raise KeyError(msg)
+        if source_id == "us_cms_asp":
+            records = parse_cms_asp_csv(
+                resolved,
+                source_version=source_version_id,
+                retrieved_at=version.retrieved_at,
+            )
+        elif source_version_id == "us_cms_pfs_2026_revision_c_carrier":
+            records = parse_cms_pfs_carrier_csv(
+                resolved,
+                source_version=source_version_id,
+                retrieved_at=version.retrieved_at,
+            )
+        elif source_id == "us_cms_pfs":
+            records = parse_cms_pfs_csv(
+                resolved,
+                source_version=source_version_id,
+                retrieved_at=version.retrieved_at,
+            )
+        elif source_id == "hpo":
+            records = parse_hpo_json(
+                resolved,
+                source_version=source_version_id,
+                retrieved_at=version.retrieved_at,
+            )
+        else:
+            records = parse_openfda_device_classification(
+                resolved,
+                source_version=source_version_id,
+                retrieved_at=version.retrieved_at,
+            )
     else:
         records = parser(resolved)
     record_type = _record_type(records)

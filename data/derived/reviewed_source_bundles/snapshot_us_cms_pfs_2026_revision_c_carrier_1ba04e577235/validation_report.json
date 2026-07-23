@@ -1,0 +1,14 @@
+{
+  "byte_size": 216131,
+  "cache_scope": "local_raw_only",
+  "checksum_sha256": "1ba04e577235ff871c6836bbcc2adcdef247370772dd6558edebce9adf2df397",
+  "licence_gate": "public_reuse_review",
+  "parse_success": true,
+  "raw_file_copied_to_bundle": false,
+  "record_count": 1635,
+  "record_type": "schedule_items",
+  "review_required_before_publication": true,
+  "snapshot_id": "snapshot_us_cms_pfs_2026_revision_c_carrier_1ba04e577235",
+  "source_id": "us_cms_pfs",
+  "source_version_id": "us_cms_pfs_2026_revision_c_carrier"
+}

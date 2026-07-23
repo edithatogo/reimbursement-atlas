@@ -1,0 +1,14 @@
+{
+  "byte_size": 2630946,
+  "cache_scope": "local_raw_only",
+  "checksum_sha256": "4aa1f75d2a3a915b0713ce95012699220b6b4c4e945d1f278e7a3ea63ed9a1e6",
+  "licence_gate": "public_reuse_review",
+  "parse_success": true,
+  "raw_file_copied_to_bundle": false,
+  "record_count": 1000,
+  "record_type": "schedule_items",
+  "review_required_before_publication": true,
+  "snapshot_id": "snapshot_us_fda_device_classification_20260723_page1_4aa1f75d2a3a",
+  "source_id": "us_fda_device_classification",
+  "source_version_id": "us_fda_device_classification_20260723_page1"
+}

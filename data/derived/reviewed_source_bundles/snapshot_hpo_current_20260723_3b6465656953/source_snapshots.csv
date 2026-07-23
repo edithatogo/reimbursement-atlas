@@ -1,0 +1,2 @@
+byte_size,cache_scope,checksum_sha256,content_type,id,licence_gate,local_path,notes,retrieved_at,source_id,source_url,source_version_id
+23019454,local_raw_only,3b646565695329aa399e937883c68d5d424d0df5eaab2f22baa0e08d44fdbe87,application/json,snapshot_hpo_current_20260723_3b6465656953,public_reuse_review,,Reviewed local source bundle metadata; raw file is not copied into the bundle. Local raw path redacted for derived bundle publication safety.,2026-07-23T01:58:45.970401+00:00,hpo,https://purl.obolibrary.org/obo/hp.json,hpo_current_20260723

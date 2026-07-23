@@ -508,12 +508,21 @@ def _historical_review_complete(repo: Path) -> bool:
 
 def _dashboard_review_approved(repo: Path) -> bool:
     review = _read_json(repo / "data/derived/dashboard_review/human_review.json")
+    automated = _read_json(repo / "data/derived/dashboard_review/automated_review_packet.json")
     raw_scope = review.get("scope")
     scope = cast("dict[str, object]", raw_scope) if isinstance(raw_scope, dict) else {}
     return (
         review.get("status") == "approved_within_scope"
         and bool(review.get("reviewed_at"))
+        and bool(review.get("reviewer"))
         and scope.get("provenance") is True
+        and bool(scope.get("routes"))
+        and bool(scope.get("browsers"))
+        and bool(scope.get("operating_systems"))
+        and bool(scope.get("assistive_technology"))
+        and automated.get("status") == "pass"
+        and automated.get("screenshot_count") == 36
+        and review.get("commit") == automated.get("tested_commit")
     )
 
 

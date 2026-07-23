@@ -472,7 +472,20 @@ def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) ->
         "data/derived/dashboard_review/human_review.json": {
             "status": "approved_within_scope",
             "reviewed_at": "2026-07-22T00:00:00Z",
-            "scope": {"provenance": True},
+            "reviewer": "accountable-owner",
+            "commit": "a" * 40,
+            "scope": {
+                "provenance": True,
+                "routes": ["/"],
+                "browsers": ["Chromium"],
+                "operating_systems": ["macOS"],
+                "assistive_technology": ["VoiceOver"],
+            },
+        },
+        "data/derived/dashboard_review/automated_review_packet.json": {
+            "status": "pass",
+            "tested_commit": "a" * 40,
+            "screenshot_count": 36,
         },
     }
     for relative, payload in evidence.items():

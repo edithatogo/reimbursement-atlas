@@ -1,0 +1,35 @@
+{
+  "creators": [
+    {
+      "name": "Dylan and collaborators"
+    }
+  ],
+  "publicationYear": "2026",
+  "publisher": "Zenodo",
+  "relatedIdentifiers": [
+    {
+      "relatedIdentifier": "https://github.com/edithatogo/reimbursement-atlas",
+      "relatedIdentifierType": "URL",
+      "relationType": "IsIdenticalTo"
+    }
+  ],
+  "rightsList": [
+    {
+      "rights": "Apache License 2.0 (software only)",
+      "rightsIdentifier": "Apache-2.0",
+      "rightsIdentifierScheme": "SPDX"
+    },
+    {
+      "rights": "Derived data retain source-specific rights recorded in provenance."
+    }
+  ],
+  "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "titles": [
+    {
+      "title": "Reimbursement Atlas Conductor"
+    }
+  ],
+  "types": {
+    "resourceTypeGeneral": "Software"
+  }
+}

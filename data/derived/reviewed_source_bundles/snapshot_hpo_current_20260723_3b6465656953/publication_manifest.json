@@ -1,0 +1,21 @@
+{
+  "derived_files": [
+    "hpo_current_20260723_schedule_items.jsonl",
+    "hpo_current_20260723_schedule_items.csv",
+    "source_snapshots.jsonl",
+    "validation_report.json"
+  ],
+  "licence_gate": "public_reuse_review",
+  "manifest_version": "reviewed-source-bundle-v1",
+  "project": "reimbursement-atlas-conductor",
+  "raw_cache_scope": "local_raw_only",
+  "raw_file_copied": false,
+  "record_count": 19836,
+  "snapshot_id": "snapshot_hpo_current_20260723_3b6465656953",
+  "source_id": "hpo",
+  "source_version_id": "hpo_current_20260723",
+  "warnings": [
+    "Confirm source-specific redistribution terms before publishing derived rows.",
+    "Do not publish raw local_path values if they expose private filesystem locations."
+  ]
+}

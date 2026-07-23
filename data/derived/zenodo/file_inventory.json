@@ -1,0 +1,37 @@
+{
+  "files": [
+    {
+      "byte_size": 26968,
+      "path": "README.md",
+      "sha256": "aa1c56d3c316014d74f7489c62ed269efc0269ede07b907e670945c2c4d2e7df"
+    },
+    {
+      "byte_size": 11358,
+      "path": "LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "byte_size": 620,
+      "path": "CITATION.cff",
+      "sha256": "cf4837aa8ac04b0b892fe6e848008e3bcc156f4fde8a030863dd384b2e11a767"
+    },
+    {
+      "byte_size": 737,
+      "path": ".zenodo.json",
+      "sha256": "3ac6ae9700492374659ff1b04be87fa84555c2efdc219ade1a93b957958ce7ba"
+    },
+    {
+      "byte_size": 98010,
+      "path": "data/derived/publication_manifest.json",
+      "sha256": "c31ad69468edd8be9cf067b24109ac378f182cfa24ad26c847f9c350892799a9"
+    },
+    {
+      "byte_size": 1103,
+      "path": "data/derived/mapping_study/candidate_frame_summary.json",
+      "sha256": "6d60f12bbe064863ab72b3cd21fbfcbc9d1533ee051507573d8b9a920aa2040e"
+    }
+  ],
+  "paper_or_preprint_included": false,
+  "schema_version": "zenodo-file-inventory-v1",
+  "status": "frozen"
+}
