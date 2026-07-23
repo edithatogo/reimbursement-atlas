@@ -199,6 +199,7 @@ mapping-review-pack-plan = "PYTHONPATH=src python scripts/make_mapping_review_pa
 mapping-power-calculation = "PYTHONPATH=src python scripts/make_mapping_power_calculation.py"
 mapping-candidate-frame = "PYTHONPATH=src python scripts/make_mapping_candidate_frame.py"
 mapping-blind-review-packets = "PYTHONPATH=src python scripts/make_mapping_blind_review_packets.py"
+mapping-blind-review-ledger = "PYTHONPATH=src python scripts/make_mapping_blind_review_ledger.py"
 mapping-holdout-evaluation = "PYTHONPATH=src python scripts/make_mapping_holdout_evaluation.py"
 mapping-threshold-predictions = "PYTHONPATH=src python scripts/make_mapping_threshold_predictions.py"
 source-drift = "PYTHONPATH=src python scripts/make_source_drift_report.py"

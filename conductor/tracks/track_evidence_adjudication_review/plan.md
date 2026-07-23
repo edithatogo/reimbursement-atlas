@@ -5,10 +5,12 @@
 - [x] EVID-01A: Generate and checksum at least 1,500 non-fixture candidate hypotheses with the
   approved 600/400/300/200 family quotas, duplicate-group exclusion and source/period coverage.
   Freeze the frame before review. (Subissue #490)
-- [~] EVID-02: Generate two isolated, byte-identical blinded packets without hypothesis or split
+- [x] EVID-02: Generate two isolated, byte-identical blinded packets without hypothesis or split
   disclosure; complete both reviews with evidence citations, confidence and
-  exclusion reasons; reviewers cannot see each other or split assignment. (Subissue #491)
-- [ ] EVID-02A: Deterministically adjudicate disagreements and false-positive controls in one
+  exclusion reasons; reviewers cannot see each other or split assignment. Two isolated reviewers
+  completed 1,500 cases each; agreement was 894/1,500 and 606 cases require adjudication.
+  (Subissue #491)
+- [~] EVID-02A: Deterministically adjudicate disagreements and false-positive controls in one
   checksum-bound accountable-owner packet. (Subissue #491)
 - [ ] EVID-03: Freeze 300 positive/300 negative development cases and an untouched 75 positive/75
   negative holdout only after reference labels are final. (Subissue #491)

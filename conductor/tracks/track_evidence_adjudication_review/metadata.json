@@ -3,12 +3,12 @@
   "type": "feature",
   "status": "in_progress",
   "created_at": "2026-07-20T00:00:00Z",
-  "updated_at": "2026-07-23T00:00:00Z",
+  "updated_at": "2026-07-23T03:30:00Z",
   "description": "Close accountable human evidence, mapping, source-rights and dashboard review gates.",
   "evidence_schema": "1.0",
   "gates": [
-    {"id": "mapping_adjudication", "kind": "human_review", "status": "pending", "evidence": "Review pack and calibration calculations are generated; accountable adjudication remains pending."},
-    {"id": "source_rights", "kind": "human_review", "status": "pass", "evidence": "The owner approved 178 checksum-bound rows across prior review packets. The current active source-rights queue contains 165 approved provider/source-derived candidates; 13 project-owned metadata descriptors are governed separately by Apache-2.0. CMS/MBS/PBS restrictions remain explicit."},
-    {"id": "visual_review", "kind": "human_review", "status": "pending", "evidence": "The commit-bound automated packet covers 44 browser tests and 36 screenshot hashes; scoped accountable human review remains pending and automated evidence is not universal WCAG certification."}
+    {"id": "mapping_adjudication", "kind": "human_review", "status": "in_progress", "evidence": "Both isolated reviewers completed all 1,500 frozen cases. The canonical ledger contains 3,000 records with 894 agreements and 606 disagreements; accountable adjudication and one-time holdout evaluation remain pending."},
+    {"id": "source_rights", "kind": "human_review", "status": "pass", "evidence": "The current checksum-bound ledger validates 191 approved decisions. CMS/MBS/PBS restrictions remain explicit; Apache-2.0 applies only to project code and metadata."},
+    {"id": "visual_review", "kind": "human_review", "status": "pending", "evidence": "The commit-bound automated packet covers 44 browser tests and 36 screenshot hashes against commit 591d84a1b5c4dd7d703414562c1fe2082dd7ef32; scoped accountable human review remains pending and automated evidence is not universal WCAG certification."}
   ]
 }
