@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/edithatogo/reimbursement-atlas/schema/ZenodoReleaseAssetInventory.schema.json",
+  "title": "Zenodo release asset inventory",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "required_roles",
+    "missing_roles",
+    "files",
+    "paper_or_preprint_included"
+  ],
+  "properties": {
+    "schema_version": {"const": "zenodo-release-asset-inventory-v2"},
+    "status": {"enum": ["frozen", "blocked_missing_release_assets"]},
+    "required_roles": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "missing_roles": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "paper_or_preprint_included": {"const": false},
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role", "path", "filename", "byte_size", "sha256", "md5"],
+        "properties": {
+          "role": {"type": "string"},
+          "path": {"type": "string", "pattern": "^(?!/)(?!.*\\.\\.).+$"},
+          "filename": {"type": "string", "minLength": 1},
+          "byte_size": {"type": "integer", "minimum": 0},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "md5": {"type": "string", "pattern": "^[0-9a-f]{32}$"}
+        }
+      }
+    }
+  }
+}

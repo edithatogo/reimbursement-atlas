@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/edithatogo/reimbursement-atlas/schema/DataCiteMetadata.schema.json",
+  "title": "DataCite metadata contract",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "types",
+    "titles",
+    "creators",
+    "publisher",
+    "publicationYear",
+    "rightsList",
+    "relatedIdentifiers",
+    "fundingReferences",
+    "dates",
+    "geoLocations"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "http://datacite.org/schema/kernel-4"},
+    "creators": {"type": "array", "minItems": 1},
+    "rightsList": {"type": "array", "minItems": 1},
+    "relatedIdentifiers": {"type": "array", "minItems": 1},
+    "fundingReferences": {"type": "array"},
+    "dates": {"type": "array", "minItems": 1},
+    "geoLocations": {"type": "array", "minItems": 1}
+  }
+}
