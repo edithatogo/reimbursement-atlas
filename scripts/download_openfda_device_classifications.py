@@ -28,9 +28,7 @@ def main() -> None:
     parser.add_argument("--pause-seconds", type=float, default=0.1)
     args = parser.parse_args()
     root = project_root()
-    payload, summary = acquire_complete_device_classifications(
-        pause_seconds=args.pause_seconds
-    )
+    payload, summary = acquire_complete_device_classifications(pause_seconds=args.pause_seconds)
     raw_output = root / args.raw_output
     summary_output = root / args.summary_output
     raw_output.parent.mkdir(parents=True, exist_ok=True)
