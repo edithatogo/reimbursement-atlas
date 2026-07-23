@@ -59,7 +59,7 @@ def acquire_complete_device_classifications(  # ruff:ignore[too-many-locals]
         skip += len(page_rows)
         if pause_seconds:
             time.sleep(pause_seconds)
-    if expected_total is None or len(rows) != expected_total:
+    if len(rows) != expected_total:
         message = f"incomplete openFDA corpus: expected={expected_total}, observed={len(rows)}"
         raise OpenFdaAcquisitionError(message)
     product_codes = [str(row.get("product_code", "")).strip() for row in rows]
