@@ -1,5 +1,6 @@
 source_id,parser_name,blocker_count,blockers,recommended_next_action
 au_mbs,MbsXmlFixtureAdapter -> future live MBS XML adapter,2,licence_gate;live_source_shape_unverified,promote fixture parser to live-source prototype
+us_cms_hcpcs_level_ii,planned source-specific adapter,2,licence_gate;parser_not_implemented,implement parser contract and tiny fixture
 us_cms_clfs,CmsClfsFixtureAdapter -> future live CMS CLFS CSV adapter,1,live_source_shape_unverified,promote fixture parser to live-source prototype
 uk_genomic_test_directory,NhsGenomicDirectoryFixtureAdapter -> future live NHS workbook adapter,2,licence_gate;live_source_shape_unverified,promote fixture parser to live-source prototype
 au_mbs,MbsXmlFixtureAdapter -> future live MBS XML adapter,1,licence_gate,promote fixture parser to live-source prototype
