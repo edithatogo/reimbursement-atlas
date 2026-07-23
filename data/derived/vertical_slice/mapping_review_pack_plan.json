@@ -26,7 +26,7 @@
   "inadmissible_adjudication_count": 0,
   "independently_reviewed_count": 0,
   "input": "data/derived/mapping_study/candidate_frame.jsonl",
-  "input_sha256": "dbd1132f76d708733ff9e4703a85bdbdf0038588ba1ed7626a0dfaa6b7aa4fc0",
+  "input_sha256": "275fdb0742ad2e8227b09a737799678f139f644e2a9f9cba06ac6c112ffcddca",
   "randomisation": {
     "algorithm": "sha256-sort",
     "seed": "reimbursement-atlas-mapping-review-pack-v1"
@@ -43,7 +43,8 @@
     "au_mbs->hpo": 300,
     "au_mbs->us_cms_pfs": 600,
     "au_mbs->us_fda_device_classification": 146,
-    "au_pbs->us_cms_asp": 400,
+    "au_pbs->rxnorm": 371,
+    "au_pbs->us_cms_asp": 29,
     "au_pbs->us_fda_device_classification": 54
   },
   "status": "blocked_adjudication",

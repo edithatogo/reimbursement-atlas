@@ -1,5 +1,5 @@
 {
-  "candidate_frame_sha256": "dbd1132f76d708733ff9e4703a85bdbdf0038588ba1ed7626a0dfaa6b7aa4fc0",
+  "candidate_frame_sha256": "275fdb0742ad2e8227b09a737799678f139f644e2a9f9cba06ac6c112ffcddca",
   "case_count": 1500,
   "hypotheses_exposed": false,
   "missing_evidence_case_ids": [],
@@ -8,8 +8,8 @@
     "reviewer_b"
   ],
   "role_packet_sha256": {
-    "reviewer_a": "fcfd49f9db832cf79461e0c6a1e29ed378811b6a26b44a88fbaf96cccebc2886",
-    "reviewer_b": "fcfd49f9db832cf79461e0c6a1e29ed378811b6a26b44a88fbaf96cccebc2886"
+    "reviewer_a": "001a1744c5ee9ba3f8db4c1f6b5b0ce1d8a55a118c43d12db9a006a79f074c10",
+    "reviewer_b": "001a1744c5ee9ba3f8db4c1f6b5b0ce1d8a55a118c43d12db9a006a79f074c10"
   },
   "role_packets_identical": true,
   "schema_version": "mapping-blind-review-packet-manifest-v1",

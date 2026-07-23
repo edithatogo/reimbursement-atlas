@@ -1,7 +1,8 @@
 {
   "creators": [
     {
-      "name": "Dylan and collaborators"
+      "name": "Mordaunt, Dylan",
+      "orcid": "0000-0002-9775-0603"
     }
   ],
   "description": "Reproducible, licence-aware tooling for comparing public reimbursement schedules, coverage decisions and policy-analysis metadata across jurisdictions. This record is release metadata preparation only; no Zenodo deposition or DOI is implied.",

@@ -10,20 +10,20 @@
   "profile": "data-package",
   "resources": [
     {
-      "bytes": 38542,
+      "bytes": 40759,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "format": "jsonl",
-      "hash": "fc609dd151a0e3007104db940c89b1e29ab03bd80703a26bdd88c5e6c2d027c4",
+      "hash": "7ec52cb335f24bdf7265dec849b7610c7ac49f9c1740c4fedfb34b048b80464f",
       "mediatype": "application/json",
       "name": "source-registry",
       "path": "data/seed/source_registry.jsonl",
       "schema": {}
     },
     {
-      "bytes": 22268,
+      "bytes": 23666,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "format": "csv",
-      "hash": "66c7cc67730cc6a904ff5cb928a9c26c8674c9193d712a3b2b6f5df1d0bef4bf",
+      "hash": "53cf47eeec58a0d8c915d54093b591fe3f12f1ce026e23d6534b1bba9e91bf41",
       "mediatype": "text/csv",
       "name": "source-registry",
       "path": "data/seed/source_registry.csv",
@@ -35,20 +35,20 @@
       }
     },
     {
-      "bytes": 7166,
+      "bytes": 9541,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "format": "jsonl",
-      "hash": "35bd24d8548979d472e844862686d5bd45ef08fd85a8d389792fc0e6a9822037",
+      "hash": "a5c696b211e58e6e98a045a354e4fcb9fc13ce910d4bd84f3f6c54ca03033e4f",
       "mediatype": "application/json",
       "name": "source-versions",
       "path": "data/seed/source_versions.jsonl",
       "schema": {}
     },
     {
-      "bytes": 4548,
+      "bytes": 6157,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "format": "csv",
-      "hash": "40a8c512063daa0aa53eb51193293fed5d262f132eb46eac437117710bf92ee3",
+      "hash": "9c49ff355508e197210425f66c1d30fbbde47d334181133702d999561089a26c",
       "mediatype": "text/csv",
       "name": "source-versions",
       "path": "data/seed/source_versions.csv",
@@ -235,10 +235,10 @@
       }
     },
     {
-      "bytes": 38770,
+      "bytes": 39771,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "format": "csv",
-      "hash": "c5839efb5517880e747a0dbf74c2299d265376bb7b49084a464a0a4c6b2e6338",
+      "hash": "cf28be8e6fd11afc44ec1926d7153cd26659fe7aefbc76c6afe6d47d34a40ed3",
       "mediatype": "text/csv",
       "name": "graph-nodes",
       "path": "data/seed/graph_nodes.csv",
@@ -250,10 +250,10 @@
       }
     },
     {
-      "bytes": 39894,
+      "bytes": 40510,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "format": "csv",
-      "hash": "450b700e4613ee560f374189d3592601338c8455d2ec93f6b6a496ef202a8571",
+      "hash": "119b5f823cb46f36acca00b6626948f92712357f680f391e7f05e0918d46ce70",
       "mediatype": "text/csv",
       "name": "graph-edges",
       "path": "data/seed/graph_edges.csv",
@@ -1340,20 +1340,20 @@
       }
     },
     {
-      "bytes": 8390,
+      "bytes": 8415,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "7fb7a61e3b7cfc2cc6bd7b7b34a590182854cc0e6b33062fe4fdb5906e6b1c30",
+      "hash": "f4bbea8fb04670bb85e0b57847897ad7ae68bd5d443b28aaa13785af7de520f8",
       "mediatype": "application/json",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.jsonl",
       "schema": {}
     },
     {
-      "bytes": 4998,
+      "bytes": 5023,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "915a7c15960cb33d626e3c1f6c5f2a3950e14ab665609744b4023174d375e3e2",
+      "hash": "e8759106952fdd1b1c4b13956a83e59ea5f34f9e6c39c44bb8ede3079558c64c",
       "mediatype": "text/csv",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.csv",
@@ -1668,7 +1668,7 @@
       "bytes": 15129,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "1a1d5a1e7e0ccb31e5d18e3f70e6ba75884d88438432da5d5b9a2f8d6b231782",
+      "hash": "3c913262f0640fe5203ed8142cd389b5479c097b4764b78d0e09e0e94ac5b0ac",
       "mediatype": "application/json",
       "name": "data-quality-checks",
       "path": "data/derived/data_quality/data_quality_checks.jsonl",
@@ -1678,7 +1678,7 @@
       "bytes": 8714,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "64c3c5b1c8647d810395687ad91bd3669ead6bf18d18b0c4192f783d48f9d649",
+      "hash": "a671f60027e77b9866bc14f7b1ad80e51a2efb7fdc949c2898eeae42309ad9ea",
       "mediatype": "text/csv",
       "name": "data-quality-checks",
       "path": "data/derived/data_quality/data_quality_checks.csv",
@@ -1738,7 +1738,7 @@
       "bytes": 6102,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "82fa322b6ebbf16982012462b6cea135be6c97f61c232ad25b40a8c6fdbfa0ce",
+      "hash": "1faf1bdb4be9d8f00607e9a96a82b09b7fd45decdabdf8d495c5a71868eb89c3",
       "mediatype": "application/json",
       "name": "source-drift-report",
       "path": "data/derived/source_drift/source_drift_report.jsonl",
@@ -1748,7 +1748,7 @@
       "bytes": 3687,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "159eb6d6e2b1d19160410089f1fc9c03a698aefe3e9d723c905e8342b360e090",
+      "hash": "e8847e6d0b4ad68ba72b40847170817f912bff8c18c384ebdbea1e52ec1aafa5",
       "mediatype": "text/csv",
       "name": "source-drift-report",
       "path": "data/derived/source_drift/source_drift_report.csv",
@@ -1770,20 +1770,20 @@
       "schema": {}
     },
     {
-      "bytes": 112537,
+      "bytes": 133029,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "c91e7df67726df0bbf91b3009228290a9bce71a2480820f39fdd4737b6e5bb30",
+      "hash": "e703ce527799e3cb3cceca2e0a5dcc02791a8cecfb7d7ae42470dc0b76395dfc",
       "mediatype": "application/json",
       "name": "data-dictionary",
       "path": "data/derived/data_dictionary/data_dictionary.jsonl",
       "schema": {}
     },
     {
-      "bytes": 85940,
+      "bytes": 103127,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "3204722d942414408a9b4367e63ce0aa3eb5d41592eb1b7ae001a918507fa186",
+      "hash": "805cc2fef4f700957bf4fd4c543cdf7b6fcf91c084bb2d8997b235ab42f02a44",
       "mediatype": "text/csv",
       "name": "data-dictionary",
       "path": "data/derived/data_dictionary/data_dictionary.csv",
@@ -1795,10 +1795,10 @@
       }
     },
     {
-      "bytes": 122,
+      "bytes": 123,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "json",
-      "hash": "98f9a4f03ce609b0d4bbb1eb39c374f298c769977e3ac343c1a0d106941a2e5b",
+      "hash": "42dc001fdb5a8ff4e47402a274ee8e269cf2edb858ccba30f6da96d18683d5eb",
       "mediatype": "application/json",
       "name": "summary",
       "path": "data/derived/data_dictionary/summary.json",
@@ -2107,6 +2107,306 @@
       "mediatype": "application/json",
       "name": "validation-report",
       "path": "data/derived/reviewed_source_bundles/bundle_au_pbs_api_v3_current_month_648b7b12ceb319f1/validation_report.json",
+      "schema": {}
+    },
+    {
+      "bytes": 11812774,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "csv",
+      "hash": "03c7180bfcc85648f357a8ff55490eca4ac468b2e469107ffa4a3c6c0615a786",
+      "mediatype": "text/csv",
+      "name": "hpo-current-20260723-schedule-items",
+      "path": "data/derived/reviewed_source_bundles/snapshot_hpo_current_20260723_3b6465656953/hpo_current_20260723_schedule_items.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 18450700,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "jsonl",
+      "hash": "62b5797ed86396877650fb69963685ce4c3218a15f87de1ce1d524819373c8df",
+      "mediatype": "application/json",
+      "name": "hpo-current-20260723-schedule-items",
+      "path": "data/derived/reviewed_source_bundles/snapshot_hpo_current_20260723_3b6465656953/hpo_current_20260723_schedule_items.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 546,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "csv",
+      "hash": "6610701da8dbf33780eaf220a5b197853740c7583e226454ec000f728a852bb2",
+      "mediatype": "text/csv",
+      "name": "source-snapshots",
+      "path": "data/derived/reviewed_source_bundles/snapshot_hpo_current_20260723_3b6465656953/source_snapshots.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 619,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "jsonl",
+      "hash": "80f3f471390269b41c65fa37c9e22ac1135c8b4775bedda63579dc36f3391a70",
+      "mediatype": "application/json",
+      "name": "source-snapshots",
+      "path": "data/derived/reviewed_source_bundles/snapshot_hpo_current_20260723_3b6465656953/source_snapshots.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 494,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "json",
+      "hash": "9fcc4c67cb81fd9ef0f6de72b7947773e821ffe9b7949be7a1a55ac55ab4c509",
+      "mediatype": "application/json",
+      "name": "validation-report",
+      "path": "data/derived/reviewed_source_bundles/snapshot_hpo_current_20260723_3b6465656953/validation_report.json",
+      "schema": {}
+    },
+    {
+      "bytes": 17725931,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "csv",
+      "hash": "e97159c114f7f1c447f632d390100a0484e5430a275c7851929f8f5059456ea9",
+      "mediatype": "text/csv",
+      "name": "rxnorm-cpc-20260706-schedule-items",
+      "path": "data/derived/reviewed_source_bundles/snapshot_rxnorm_cpc_20260706_4dda3b83bb67/rxnorm_cpc_20260706_schedule_items.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 27822443,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "jsonl",
+      "hash": "29a827543e367d37f1a75ccc86b3b7e971a14b5fecf50ae9622807703ca01bf3",
+      "mediatype": "application/json",
+      "name": "rxnorm-cpc-20260706-schedule-items",
+      "path": "data/derived/reviewed_source_bundles/snapshot_rxnorm_cpc_20260706_4dda3b83bb67/rxnorm_cpc_20260706_schedule_items.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 572,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "csv",
+      "hash": "1b438854aba2a56b6752ce7b307cd0bf528a4f3aeba49ff1a1274cb882a0ad03",
+      "mediatype": "text/csv",
+      "name": "source-snapshots",
+      "path": "data/derived/reviewed_source_bundles/snapshot_rxnorm_cpc_20260706_4dda3b83bb67/source_snapshots.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 645,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "jsonl",
+      "hash": "0c455f94bdbcd9c8e778be97724d589e68074965d030644d6179fe3e67f64740",
+      "mediatype": "application/json",
+      "name": "source-snapshots",
+      "path": "data/derived/reviewed_source_bundles/snapshot_rxnorm_cpc_20260706_4dda3b83bb67/source_snapshots.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 495,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "json",
+      "hash": "bed2d8df19f3d8ab225659e2117c6ebfd0dc4bec658d59c30b7068889bc663fe",
+      "mediatype": "application/json",
+      "name": "validation-report",
+      "path": "data/derived/reviewed_source_bundles/snapshot_rxnorm_cpc_20260706_4dda3b83bb67/validation_report.json",
+      "schema": {}
+    },
+    {
+      "bytes": 598,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "csv",
+      "hash": "304d0cb0a112ec2258cb9ea8bf12ae088fc18adfbf4795fd22f1c0716cd4a8d5",
+      "mediatype": "text/csv",
+      "name": "source-snapshots",
+      "path": "data/derived/reviewed_source_bundles/snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5/source_snapshots.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 671,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "jsonl",
+      "hash": "851e23abaf7d1e088c8a1c74d6f3a5ef8827fa56c392bc64aade53bd3aeaa89d",
+      "mediatype": "application/json",
+      "name": "source-snapshots",
+      "path": "data/derived/reviewed_source_bundles/snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5/source_snapshots.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 556380,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "csv",
+      "hash": "c1ddb5cf262591380df67fd6b8f1cf5e42e22f74d58a02be3706abccbf889b6c",
+      "mediatype": "text/csv",
+      "name": "us-cms-asp-july-2026-payment-limit-schedule-items",
+      "path": "data/derived/reviewed_source_bundles/snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5/us_cms_asp_july_2026_payment_limit_schedule_items.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 840774,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "jsonl",
+      "hash": "38aa615f12ff3fc5a35066396f27906c2284b347e4090c3220bef21f229a93c1",
+      "mediatype": "application/json",
+      "name": "us-cms-asp-july-2026-payment-limit-schedule-items",
+      "path": "data/derived/reviewed_source_bundles/snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5/us_cms_asp_july_2026_payment_limit_schedule_items.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 524,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "json",
+      "hash": "d9d81a4a87991d93ff7940e7a200ce6eedcc6de614f9542292697c8d19ad4c00",
+      "mediatype": "application/json",
+      "name": "validation-report",
+      "path": "data/derived/reviewed_source_bundles/snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5/validation_report.json",
+      "schema": {}
+    },
+    {
+      "bytes": 598,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "csv",
+      "hash": "b4d9f79afddeb87b646f22afb3ac323b47739e11c031f40c4f1821a5d278e492",
+      "mediatype": "text/csv",
+      "name": "source-snapshots",
+      "path": "data/derived/reviewed_source_bundles/snapshot_us_cms_pfs_2026_revision_c_carrier_1ba04e577235/source_snapshots.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 671,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "jsonl",
+      "hash": "280932f878ee83260ff94f09b66249f8593b5fdb012326f2906e410cf9cc261d",
+      "mediatype": "application/json",
+      "name": "source-snapshots",
+      "path": "data/derived/reviewed_source_bundles/snapshot_us_cms_pfs_2026_revision_c_carrier_1ba04e577235/source_snapshots.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 991175,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "csv",
+      "hash": "796f1b115f7603e1a0afa7f1a9c209d758eec294a5280b66009dc86d62d07486",
+      "mediatype": "text/csv",
+      "name": "us-cms-pfs-2026-revision-c-carrier-schedule-items",
+      "path": "data/derived/reviewed_source_bundles/snapshot_us_cms_pfs_2026_revision_c_carrier_1ba04e577235/us_cms_pfs_2026_revision_c_carrier_schedule_items.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 1505962,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "jsonl",
+      "hash": "28169b6db59010f1801432f6bb259b652c05cc4cd1fe5ab1a9766cc025bf6dab",
+      "mediatype": "application/json",
+      "name": "us-cms-pfs-2026-revision-c-carrier-schedule-items",
+      "path": "data/derived/reviewed_source_bundles/snapshot_us_cms_pfs_2026_revision_c_carrier_1ba04e577235/us_cms_pfs_2026_revision_c_carrier_schedule_items.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 526,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "json",
+      "hash": "ecfa97cebb9042e9838cc6e0c93b2484378dc3374dc4d032d1b4d366cf30ed79",
+      "mediatype": "application/json",
+      "name": "validation-report",
+      "path": "data/derived/reviewed_source_bundles/snapshot_us_cms_pfs_2026_revision_c_carrier_1ba04e577235/validation_report.json",
+      "schema": {}
+    },
+    {
+      "bytes": 634,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "csv",
+      "hash": "147bfb3ab15311d56fd65db102e5d03b0d16e561a324cab3764e52b9c63c1e46",
+      "mediatype": "text/csv",
+      "name": "source-snapshots",
+      "path": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_page1_4aa1f75d2a3a/source_snapshots.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 707,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "jsonl",
+      "hash": "cda0f7b56f66a5fa32fd885bfe19e69bdafa9b86d9f5c8a1cf73e115d06054cf",
+      "mediatype": "application/json",
+      "name": "source-snapshots",
+      "path": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_page1_4aa1f75d2a3a/source_snapshots.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 768918,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "csv",
+      "hash": "ab3ceabfb59b2a0d74db48326d080e84779b37d5e7032df1dd3553d1713e7a53",
+      "mediatype": "text/csv",
+      "name": "us-fda-device-classification-20260723-page1-schedule-items",
+      "path": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_page1_4aa1f75d2a3a/us_fda_device_classification_20260723_page1_schedule_items.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 1098790,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "jsonl",
+      "hash": "463392fd741b7d6a9516b6c4cfe1dabd407a8f759b666d598ee9d4106568fa00",
+      "mediatype": "application/json",
+      "name": "us-fda-device-classification-20260723-page1-schedule-items",
+      "path": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_page1_4aa1f75d2a3a/us_fda_device_classification_20260723_page1_schedule_items.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 563,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "format": "json",
+      "hash": "f46ffb413732c6e8f74b4fbcdde5ad199d485f1e6bfb41c137c796568e45c925",
+      "mediatype": "application/json",
+      "name": "validation-report",
+      "path": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_page1_4aa1f75d2a3a/validation_report.json",
       "schema": {}
     }
   ],

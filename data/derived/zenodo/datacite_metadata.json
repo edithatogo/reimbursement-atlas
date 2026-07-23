@@ -1,7 +1,14 @@
 {
   "creators": [
     {
-      "name": "Dylan and collaborators"
+      "name": "Mordaunt, Dylan",
+      "nameIdentifiers": [
+        {
+          "nameIdentifier": "0000-0002-9775-0603",
+          "nameIdentifierScheme": "ORCID",
+          "schemeUri": "https://orcid.org"
+        }
+      ]
     }
   ],
   "publicationYear": "2026",

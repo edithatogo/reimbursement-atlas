@@ -1,7 +1,7 @@
 {
   "candidate_count": 1500,
-  "candidate_frame_sha256": "dbd1132f76d708733ff9e4703a85bdbdf0038588ba1ed7626a0dfaa6b7aa4fc0",
-  "effective_unique_groups": 1478,
+  "candidate_frame_sha256": "275fdb0742ad2e8227b09a737799678f139f644e2a9f9cba06ac6c112ffcddca",
+  "effective_unique_groups": 1477,
   "family_summary": {
     "devices_other": {
       "available": 200,
@@ -23,7 +23,7 @@
       "available": 400,
       "gap": 0,
       "left_records": 6945,
-      "right_records": 890,
+      "right_records": 31036,
       "status": "ready",
       "target": 400
     },

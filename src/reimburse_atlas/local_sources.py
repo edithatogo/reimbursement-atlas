@@ -35,6 +35,7 @@ from reimburse_atlas.parsers.cms_pfs_csv import parse_cms_pfs_carrier_csv
 from reimburse_atlas.parsers.hpo_json import parse_hpo_json
 from reimburse_atlas.parsers.mbs_txt import MbsTxtParseStats, parse_mbs_txt_pair, parse_stats
 from reimburse_atlas.parsers.openfda_device_json import parse_openfda_device_classification
+from reimburse_atlas.parsers.rxnorm_rrf import parse_rxnorm_rrf
 from reimburse_atlas.registry import load_source_versions
 from reimburse_atlas.snapshots import file_sha256, write_snapshot_records
 
@@ -50,6 +51,7 @@ PARSER_BY_SOURCE_ID: dict[str, Parser] = {
     "uk_genomic_test_directory": cast("Parser", parse_nhs_genomic_directory_csv),
     "hpo": cast("Parser", parse_hpo_json),
     "us_fda_device_classification": cast("Parser", parse_openfda_device_classification),
+    "rxnorm": cast("Parser", parse_rxnorm_rrf),
 }
 
 
@@ -168,6 +170,7 @@ def parse_reviewed_local_file(
         "us_cms_pfs",
         "hpo",
         "us_fda_device_classification",
+        "rxnorm",
     }:
         versions = {version.id: version for version in load_source_versions()}
         version = versions.get(source_version_id)
@@ -198,8 +201,14 @@ def parse_reviewed_local_file(
                 source_version=source_version_id,
                 retrieved_at=version.retrieved_at,
             )
-        else:
+        elif source_id == "us_fda_device_classification":
             records = parse_openfda_device_classification(
+                resolved,
+                source_version=source_version_id,
+                retrieved_at=version.retrieved_at,
+            )
+        else:
+            records = parse_rxnorm_rrf(
                 resolved,
                 source_version=source_version_id,
                 retrieved_at=version.retrieved_at,

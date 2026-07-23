@@ -1084,6 +1084,156 @@
       "dcat:downloadURL": "data/derived/reviewed_source_bundles/bundle_au_pbs_api_v3_current_month_648b7b12ceb319f1/validation_report.json",
       "dct:format": "json",
       "dct:title": "validation_report"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_hpo_current_20260723_3b6465656953/hpo_current_20260723_schedule_items.csv",
+      "dct:format": "csv",
+      "dct:title": "hpo_current_20260723_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_hpo_current_20260723_3b6465656953/hpo_current_20260723_schedule_items.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "hpo_current_20260723_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_hpo_current_20260723_3b6465656953/source_snapshots.csv",
+      "dct:format": "csv",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_hpo_current_20260723_3b6465656953/source_snapshots.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_hpo_current_20260723_3b6465656953/validation_report.json",
+      "dct:format": "json",
+      "dct:title": "validation_report"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_rxnorm_cpc_20260706_4dda3b83bb67/rxnorm_cpc_20260706_schedule_items.csv",
+      "dct:format": "csv",
+      "dct:title": "rxnorm_cpc_20260706_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_rxnorm_cpc_20260706_4dda3b83bb67/rxnorm_cpc_20260706_schedule_items.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "rxnorm_cpc_20260706_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_rxnorm_cpc_20260706_4dda3b83bb67/source_snapshots.csv",
+      "dct:format": "csv",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_rxnorm_cpc_20260706_4dda3b83bb67/source_snapshots.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_rxnorm_cpc_20260706_4dda3b83bb67/validation_report.json",
+      "dct:format": "json",
+      "dct:title": "validation_report"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5/source_snapshots.csv",
+      "dct:format": "csv",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5/source_snapshots.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5/us_cms_asp_july_2026_payment_limit_schedule_items.csv",
+      "dct:format": "csv",
+      "dct:title": "us_cms_asp_july_2026_payment_limit_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5/us_cms_asp_july_2026_payment_limit_schedule_items.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "us_cms_asp_july_2026_payment_limit_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5/validation_report.json",
+      "dct:format": "json",
+      "dct:title": "validation_report"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_pfs_2026_revision_c_carrier_1ba04e577235/source_snapshots.csv",
+      "dct:format": "csv",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_pfs_2026_revision_c_carrier_1ba04e577235/source_snapshots.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_pfs_2026_revision_c_carrier_1ba04e577235/us_cms_pfs_2026_revision_c_carrier_schedule_items.csv",
+      "dct:format": "csv",
+      "dct:title": "us_cms_pfs_2026_revision_c_carrier_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_pfs_2026_revision_c_carrier_1ba04e577235/us_cms_pfs_2026_revision_c_carrier_schedule_items.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "us_cms_pfs_2026_revision_c_carrier_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_pfs_2026_revision_c_carrier_1ba04e577235/validation_report.json",
+      "dct:format": "json",
+      "dct:title": "validation_report"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_page1_4aa1f75d2a3a/source_snapshots.csv",
+      "dct:format": "csv",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_page1_4aa1f75d2a3a/source_snapshots.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_page1_4aa1f75d2a3a/us_fda_device_classification_20260723_page1_schedule_items.csv",
+      "dct:format": "csv",
+      "dct:title": "us_fda_device_classification_20260723_page1_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_page1_4aa1f75d2a3a/us_fda_device_classification_20260723_page1_schedule_items.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "us_fda_device_classification_20260723_page1_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_page1_4aa1f75d2a3a/validation_report.json",
+      "dct:format": "json",
+      "dct:title": "validation_report"
     }
   ],
   "dct:description": "Licence-safe metadata and derived tables for comparative reimbursement research.",

@@ -8,8 +8,8 @@
       "jsonl_path": "source_registry/source_registry.jsonl",
       "name": "source_registry",
       "parquet_path": "source_registry/source_registry.parquet",
-      "rows": 60,
-      "sha256": "4b0233c80638a0b0f81fabdc5371e595cb1ee37c10f4356af175b72286dd3a72"
+      "rows": 63,
+      "sha256": "f624088fda4d83da580fc465e225599dd3f391126c818381d8583a0d99999046"
     },
     {
       "csv_path": "analysis_catalogue/analysis_catalogue.csv",
@@ -32,8 +32,8 @@
       "jsonl_path": "source_versions/source_versions.jsonl",
       "name": "source_versions",
       "parquet_path": "source_versions/source_versions.parquet",
-      "rows": 14,
-      "sha256": "35bd24d8548979d472e844862686d5bd45ef08fd85a8d389792fc0e6a9822037"
+      "rows": 18,
+      "sha256": "a5c696b211e58e6e98a045a354e4fcb9fc13ce910d4bd84f3f6c54ca03033e4f"
     },
     {
       "csv_path": "source_files/source_files.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 38,
-      "sha256": "7fb7a61e3b7cfc2cc6bd7b7b34a590182854cc0e6b33062fe4fdb5906e6b1c30"
+      "sha256": "f4bbea8fb04670bb85e0b57847897ad7ae68bd5d443b28aaa13785af7de520f8"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -433,7 +433,7 @@
       "name": "data_quality_checks",
       "parquet_path": "data_quality_checks/data_quality_checks.parquet",
       "rows": 41,
-      "sha256": "1a1d5a1e7e0ccb31e5d18e3f70e6ba75884d88438432da5d5b9a2f8d6b231782"
+      "sha256": "3c913262f0640fe5203ed8142cd389b5479c097b4764b78d0e09e0e94ac5b0ac"
     },
     {
       "csv_path": "evidence_readiness/evidence_readiness.csv",
@@ -449,15 +449,15 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "82fa322b6ebbf16982012462b6cea135be6c97f61c232ad25b40a8c6fdbfa0ce"
+      "sha256": "1faf1bdb4be9d8f00607e9a96a82b09b7fd45decdabdf8d495c5a71868eb89c3"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
       "jsonl_path": "data_dictionary/data_dictionary.jsonl",
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
-      "rows": 189,
-      "sha256": "c91e7df67726df0bbf91b3009228290a9bce71a2480820f39fdd4737b6e5bb30"
+      "rows": 214,
+      "sha256": "e703ce527799e3cb3cceca2e0a5dcc02791a8cecfb7d7ae42470dc0b76395dfc"
     }
   ]
 }

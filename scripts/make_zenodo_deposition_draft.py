@@ -14,7 +14,6 @@ FILES = (
     Path("LICENSE"),
     Path("CITATION.cff"),
     Path(".zenodo.json"),
-    Path("data/derived/publication_manifest.json"),
     Path("data/derived/mapping_study/candidate_frame_summary.json"),
 )
 

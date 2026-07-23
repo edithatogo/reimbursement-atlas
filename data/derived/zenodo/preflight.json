@@ -1,8 +1,6 @@
 {
   "doi_reserved": false,
-  "missing_creator_orcids": [
-    "Dylan and collaborators"
-  ],
+  "missing_creator_orcids": [],
   "mutation_performed": false,
   "paper_or_preprint_submission_allowed": false,
   "published": false,
@@ -13,5 +11,5 @@
     "release_readiness"
   ],
   "schema_version": "zenodo-deposition-preflight-v2",
-  "status": "blocked_metadata_identity"
+  "status": "ready_for_draft_deposit"
 }
