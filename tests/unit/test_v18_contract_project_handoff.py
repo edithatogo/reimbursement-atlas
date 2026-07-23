@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import shutil
 from pathlib import Path
@@ -447,6 +448,10 @@ def test_final_handoff_records_environment_bound_tasks(tmp_path: Path) -> None:
 
 
 def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) -> None:
+    commit = "a" * 40
+    git_dir = tmp_path / ".git"
+    git_dir.mkdir()
+    (git_dir / "HEAD").write_text(commit, encoding="utf-8")
     evidence = {
         "data/derived/release_readiness/summary.json": {
             "repository_release_ready": True,
@@ -475,7 +480,9 @@ def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) ->
             "status": "approved_within_scope",
             "reviewed_at": "2026-07-22T00:00:00Z",
             "reviewer": "accountable-owner",
-            "commit": "a" * 40,
+            "commit": commit,
+            "automated_packet_sha256": "",
+            "owner_packet_sha256": "",
             "scope": {
                 "provenance": True,
                 "routes": ["/"],
@@ -486,14 +493,55 @@ def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) ->
         },
         "data/derived/dashboard_review/automated_review_packet.json": {
             "status": "pass",
-            "tested_commit": "a" * 40,
+            "tested_commit": commit,
             "screenshot_count": 44,
+            "coverage_complete": True,
+            "routes": [
+                "/",
+                "/analyses/",
+                "/analyses/cognitive_vs_procedural_ratio/",
+                "/automation/",
+                "/crosswalks/",
+                "/demonstrators/",
+                "/ontologies/",
+                "/readiness/",
+                "/roadmap/",
+                "/sources/",
+                "/sources/au_mbs/",
+            ],
+            "projects": [
+                "desktop-chromium",
+                "mobile-chromium",
+                "desktop-firefox",
+                "desktop-webkit",
+            ],
+            "workflow": {
+                "workflow": "Dashboard browser matrix",
+                "run_id": "123",
+                "run_attempt": "1",
+                "artifact_name": "dashboard-browser-review-123",
+                "workflow_url": "https://github.com/owner/repo/actions/runs/123",
+            },
+        },
+        "data/derived/dashboard_review/owner_review_packet.json": {
+            "tested_commit": commit,
+            "current_head": commit,
+            "commit_parity": True,
+            "provenance_assertions": [{"status": "pass"}],
+            "prohibited_content_check": {"status": "pass"},
         },
     }
     for relative, payload in evidence.items():
         path = tmp_path / relative
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(payload), encoding="utf-8")
+    human_path = tmp_path / "data/derived/dashboard_review/human_review.json"
+    human = json.loads(human_path.read_text(encoding="utf-8"))
+    automated_path = tmp_path / "data/derived/dashboard_review/automated_review_packet.json"
+    owner_path = tmp_path / "data/derived/dashboard_review/owner_review_packet.json"
+    human["automated_packet_sha256"] = hashlib.sha256(automated_path.read_bytes()).hexdigest()
+    human["owner_packet_sha256"] = hashlib.sha256(owner_path.read_bytes()).hexdigest()
+    human_path.write_text(json.dumps(human), encoding="utf-8")
 
     rows = {row.id: row for row in build_final_handoff_tasks(tmp_path)}
 
