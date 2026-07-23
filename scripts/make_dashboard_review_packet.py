@@ -90,6 +90,8 @@ def _junit_summary(path: Path) -> dict[str, int]:
         root = ET.parse(path).getroot()
     except ET.ParseError as error:
         raise ReportEvidenceError from error
+    if root is None:
+        raise ReportEvidenceError
     suites = [root] if root.tag == "testsuite" else list(root.findall(".//testsuite"))
     if not suites:
         raise ReportEvidenceError
