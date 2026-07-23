@@ -21,9 +21,9 @@
       "sha256": "db0869ef009d9cb6b33220d826bf618bd202cde29fd83d42e792ecfce59329d9"
     },
     {
-      "byte_size": 118850,
+      "byte_size": 118849,
       "path": "data/derived/publication_manifest.json",
-      "sha256": "0a4a495f90043c197d52165261546bb76ca34f24a2b5de262bd829ece152317a"
+      "sha256": "5659cab19376380e871ec8a58da1b700433f20e3f20a49b42f9bc90f7c348b55"
     },
     {
       "byte_size": 121606,
@@ -36,9 +36,9 @@
       "sha256": "6539f390e46a2afbffa473ddb394c91c60dd6ee1903d1d593187cb03c5906da4"
     },
     {
-      "byte_size": 3869,
+      "byte_size": 4804,
       "path": "docs/SOURCE_PROVENANCE_AND_TRANSFORMATIONS.md",
-      "sha256": "f72ac24a5e28745ff5e246b6c3537cd199eea5bbaa8530be8cc419b1b62fd5fe"
+      "sha256": "288d7603b1efd50642f2f53804d973eb0bc63b9a30638420f5e66bf372fed31c"
     },
     {
       "byte_size": 2579,
