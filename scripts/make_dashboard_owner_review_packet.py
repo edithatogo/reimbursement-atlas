@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import re
@@ -184,9 +185,30 @@ def build_packet(root: Path) -> dict[str, Any]:
 
 def main() -> None:
     """Write the bounded accountable-review packet."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--refresh",
+        action="store_true",
+        help="Replace the tracked packet after ingesting fresh commit-bound browser evidence.",
+    )
+    args = parser.parse_args()
     root = project_root()
-    packet = build_packet(root)
     output = root / OUTPUT
+    if output.is_file() and not args.refresh:
+        existing = _read_json(output)
+        print(
+            json.dumps(
+                {
+                    "status": existing.get("status", "missing"),
+                    "tested_commit": existing.get("tested_commit"),
+                    "preserved": True,
+                    "reason": "explicit_refresh_required",
+                },
+                indent=2,
+            )
+        )
+        return
+    packet = build_packet(root)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(packet, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(

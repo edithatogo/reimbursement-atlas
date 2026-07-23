@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pytest
 
+from reimburse_atlas.dashboard_review import dashboard_review_evidence
 from scripts.make_dashboard_owner_review_packet import build_packet
 from scripts.make_dashboard_review_packet import PROJECTS, ROUTES
 
@@ -114,3 +115,20 @@ def test_owner_packet_fails_closed_for_stale_legacy_evidence() -> None:
     assert packet["screenshot_count"] == 0
     assert packet["automated_test_count"] == 64
     assert len(packet["provenance_inputs"]) >= 4
+
+
+def test_dashboard_evidence_serializes_stable_evidence_commit(tmp_path: Path) -> None:
+    automated = tmp_path / "data/derived/dashboard_review/automated_review_packet.json"
+    automated.parent.mkdir(parents=True)
+    automated.write_text(
+        json.dumps({"tested_commit": "a" * 40}),
+        encoding="utf-8",
+    )
+    git = tmp_path / ".git"
+    git.mkdir()
+    (git / "HEAD").write_text("b" * 40, encoding="utf-8")
+
+    evidence = dashboard_review_evidence(tmp_path)
+
+    assert evidence["head"] == "a" * 40
+    assert evidence["checks"]["head_parity"] is False

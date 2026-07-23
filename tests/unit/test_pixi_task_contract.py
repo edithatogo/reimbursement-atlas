@@ -45,3 +45,6 @@ def test_dashboard_owner_packet_task_imports_repository_scripts() -> None:
         tasks = tomllib.load(handle)["tool"]["pixi"]["tasks"]
 
     assert tasks["dashboard-owner-review-packet"].startswith("PYTHONPATH=.:src ")
+    assert tasks["dashboard-owner-review-packet-refresh"].endswith(
+        "make_dashboard_owner_review_packet.py --refresh"
+    )

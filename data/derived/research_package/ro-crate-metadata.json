@@ -1656,7 +1656,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "f1dd539080761c57a50099795cb5c1332cb18a1b1f7a935b5e5f23c35178a2f1"
+      "sha256": "37000241f39c21d22fbd60b6ce9703c985cf6bf6878f264d410bccaa48f33f6f"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
@@ -1665,7 +1665,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "342f0020c05c196e65f782cf064e034cf1287f7a6d256ad8da5ef42f7b970232"
+      "sha256": "c681c983457d2f2f523ae3d9074a51feadc872fed3bcb1e61d304e528be1c0b6"
     },
     {
       "@id": "data/derived/v13_validation_run.json",
@@ -1989,7 +1989,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "data_dictionary",
-      "sha256": "e60bb0ec63575a632aaf29814d2e231796f454230c9b30cd47e3ef3da56fd770"
+      "sha256": "7ec5086c09760bf40dca20ff6612bfab77ad83ed94bba0955ad35e3553d9c22e"
     },
     {
       "@id": "data/derived/data_dictionary/data_dictionary.csv",
@@ -1998,7 +1998,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "data_dictionary",
-      "sha256": "6736f79e7119ca725b273cceae2109d8d455684d3ec0cb6bdaec07e16ccc092b"
+      "sha256": "6ba512ef70607f3e2d26127bb1412eeb5ccfc165c50749eea1c7be77bd61771b"
     },
     {
       "@id": "data/derived/data_dictionary/summary.json",
@@ -2007,7 +2007,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "json",
       "name": "summary",
-      "sha256": "8823176ab9d1e1ead7bd6a13fbfe6fa3b42d79f0cad705161050b903366bf9dd"
+      "sha256": "d0fd4ae0807bd76ac38bfa6508eb994f4ef0619d59f62ec742bb97d88200967b"
     },
     {
       "@id": "infra/huggingface/DATASET_CARD.md",

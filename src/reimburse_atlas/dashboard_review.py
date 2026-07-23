@@ -86,7 +86,10 @@ def dashboard_review_evidence(repo: Path) -> dict[str, object]:
     automated = _read_json(automated_path)
     owner = _read_json(owner_path)
     human = _read_json(repo / HUMAN_PATH)
-    head = resolve_repo_head(repo)
+    checkout_head = resolve_repo_head(repo)
+    evidence_head = (
+        human.get("commit") or owner.get("tested_commit") or automated.get("tested_commit")
+    )
     workflow = automated.get("workflow")
     workflow_data = cast("dict[str, Any]", workflow) if isinstance(workflow, dict) else {}
     raw_assertions = owner.get("provenance_assertions")
@@ -107,10 +110,10 @@ def dashboard_review_evidence(repo: Path) -> dict[str, object]:
             bool(workflow_data.get(field))
             for field in ("workflow", "run_id", "run_attempt", "artifact_name", "workflow_url")
         ),
-        "head_parity": bool(head)
-        and automated.get("tested_commit") == head
-        and owner.get("tested_commit") == head
-        and owner.get("current_head") == head
+        "head_parity": bool(checkout_head)
+        and automated.get("tested_commit") == checkout_head
+        and owner.get("tested_commit") == checkout_head
+        and owner.get("current_head") == checkout_head
         and owner.get("commit_parity") is True,
         "provenance_assertions_pass": bool(assertions)
         and all(item.get("status") == "pass" for item in assertions),
@@ -119,14 +122,17 @@ def dashboard_review_evidence(repo: Path) -> dict[str, object]:
             human.get("status") == "approved_within_scope"
             and bool(human.get("reviewed_at"))
             and bool(human.get("reviewer"))
-            and human.get("commit") == head
+            and human.get("commit") == checkout_head
         ),
         "packet_hash_parity": (
             human.get("automated_packet_sha256") == _sha256(automated_path)
             and human.get("owner_packet_sha256") == _sha256(owner_path)
         ),
     }
-    return {"head": head, "checks": checks}
+    # Generated readiness output must describe the evidence, not an ephemeral
+    # pull-request merge commit. The checkout SHA remains part of the parity
+    # predicate above and is deliberately not serialized.
+    return {"head": evidence_head, "checks": checks}
 
 
 def dashboard_review_approved(repo: Path) -> bool:
