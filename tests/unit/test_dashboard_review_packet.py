@@ -50,3 +50,26 @@ def test_head_resolves_loose_and_packed_git_refs(tmp_path: Path, monkeypatch) ->
 def test_head_prefers_ci_commit(tmp_path: Path, monkeypatch) -> None:  # type: ignore[no-untyped-def]
     monkeypatch.setenv("GITHUB_SHA", "c" * 40)
     assert resolve_head(tmp_path) == "c" * 40
+
+
+def test_head_resolves_ref_from_worktree_common_git_dir(
+    tmp_path: Path, monkeypatch
+) -> None:  # type: ignore[no-untyped-def]
+    monkeypatch.delenv("GITHUB_SHA", raising=False)
+    common = tmp_path / "common"
+    worktree_git = common / "worktrees" / "review"
+    worktree_git.mkdir(parents=True)
+    project = tmp_path / "project"
+    project.mkdir()
+    (project / ".git").write_text(
+        f"gitdir: {worktree_git.relative_to(project, walk_up=True)}\n",
+        encoding="utf-8",
+    )
+    (worktree_git / "HEAD").write_text("ref: refs/heads/review\n", encoding="utf-8")
+    (worktree_git / "commondir").write_text("../..\n", encoding="utf-8")
+    (common / "packed-refs").write_text(
+        f"{'d' * 40} refs/heads/review\n",
+        encoding="utf-8",
+    )
+
+    assert resolve_head(project) == "d" * 40

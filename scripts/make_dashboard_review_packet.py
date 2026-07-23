@@ -64,14 +64,23 @@ def resolve_head(root: Path) -> str:
     if not head.startswith("ref: "):
         return head
     ref = head.removeprefix("ref: ")
-    loose_ref = git_dir / ref
-    if loose_ref.is_file():
-        return loose_ref.read_text(encoding="utf-8").strip()
-    for line in (git_dir / "packed-refs").read_text(encoding="utf-8").splitlines():
-        if line and not line.startswith(("#", "^")):
-            commit, packed_ref = line.split(" ", maxsplit=1)
-            if packed_ref == ref:
-                return commit
+    git_dirs = [git_dir]
+    common_dir_marker = git_dir / "commondir"
+    if common_dir_marker.is_file():
+        common_dir = (git_dir / common_dir_marker.read_text(encoding="utf-8").strip()).resolve()
+        git_dirs.append(common_dir)
+    for candidate_dir in git_dirs:
+        loose_ref = candidate_dir / ref
+        if loose_ref.is_file():
+            return loose_ref.read_text(encoding="utf-8").strip()
+        packed_refs = candidate_dir / "packed-refs"
+        if not packed_refs.is_file():
+            continue
+        for line in packed_refs.read_text(encoding="utf-8").splitlines():
+            if line and not line.startswith(("#", "^")):
+                commit, packed_ref = line.split(" ", maxsplit=1)
+                if packed_ref == ref:
+                    return commit
     raise GitHeadResolutionError(ref)
 
 
