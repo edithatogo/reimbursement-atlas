@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pytest
+
 from scripts.make_dashboard_owner_review_packet import build_packet
 from scripts.make_dashboard_review_packet import PROJECTS, ROUTES
 
@@ -68,7 +70,9 @@ def _machine_ready_root(tmp_path: Path) -> Path:
 
 def test_owner_packet_is_machine_ready_but_does_not_imply_human_approval(
     tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
 ) -> None:
+    monkeypatch.delenv("GITHUB_SHA", raising=False)
     packet = build_packet(_machine_ready_root(tmp_path))
 
     assert packet["status"] == "pending_accountable_review"
@@ -80,7 +84,11 @@ def test_owner_packet_is_machine_ready_but_does_not_imply_human_approval(
     assert "approved_within_scope" in packet["accountable_checklist"][-1]
 
 
-def test_owner_packet_blocks_prohibited_public_content(tmp_path: Path) -> None:
+def test_owner_packet_blocks_prohibited_public_content(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.delenv("GITHUB_SHA", raising=False)
     root = _machine_ready_root(tmp_path)
     (root / "apps/dashboard/public/leak.txt").write_text(
         "source=/Users/example/data/raw_live/payload.csv",
