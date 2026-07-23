@@ -1,0 +1,223 @@
+{
+  "candidate_frame_sha256": "1d11079141b1c4e45bbea85f2630c2f16074efce808492bb616af817ca478818",
+  "denominators": {
+    "devices_other": 20,
+    "genomics_coverage": 30,
+    "medicines": 40,
+    "overall": 150,
+    "procedures_pathology": 60
+  },
+  "evaluated_once": true,
+  "exclusions": {
+    "count": 0,
+    "reasons": []
+  },
+  "holdout_fingerprint": "c0d5f6ffc76a7a6e39f1b0d75fc00297a41cf4496842073c6f34234ffb86e115",
+  "metrics": {
+    "devices_other": {
+      "balanced_accuracy": {
+        "estimate": 0.8,
+        "interpretation": "Conservative composite bounds; balanced accuracy is not itself a binomial proportion. Exact Clopper-Pearson intervals are reported for each component.",
+        "interval_method": "mean_of_component_clopper_pearson_bounds",
+        "lower_95": 0.47694048439409215,
+        "upper_95": 0.9392238709400864
+      },
+      "confusion": {
+        "fn": 0,
+        "fp": 4,
+        "tn": 6,
+        "tp": 10
+      },
+      "negative_predictive_value": {
+        "estimate": 1.0,
+        "lower_95": 0.5407418735600993,
+        "n": 6,
+        "upper_95": 1.0
+      },
+      "precision": {
+        "estimate": 0.7142857142857143,
+        "lower_95": 0.41896474281633844,
+        "n": 14,
+        "upper_95": 0.9161106816928726
+      },
+      "sensitivity": {
+        "estimate": 1.0,
+        "lower_95": 0.6915028921812392,
+        "n": 10,
+        "upper_95": 1.0
+      },
+      "specificity": {
+        "estimate": 0.6,
+        "lower_95": 0.2623780766069451,
+        "n": 10,
+        "upper_95": 0.8784477418801728
+      }
+    },
+    "genomics_coverage": {
+      "balanced_accuracy": {
+        "estimate": 0.7333333333333334,
+        "interpretation": "Conservative composite bounds; balanced accuracy is not itself a binomial proportion. Exact Clopper-Pearson intervals are reported for each component.",
+        "interval_method": "mean_of_component_clopper_pearson_bounds",
+        "lower_95": 0.4973236843043869,
+        "upper_95": 0.8670693263613017
+      },
+      "confusion": {
+        "fn": 0,
+        "fp": 8,
+        "tn": 7,
+        "tp": 15
+      },
+      "negative_predictive_value": {
+        "estimate": 1.0,
+        "lower_95": 0.5903836027749965,
+        "n": 7,
+        "upper_95": 1.0
+      },
+      "precision": {
+        "estimate": 0.6521739130434783,
+        "lower_95": 0.42734396303649425,
+        "n": 23,
+        "upper_95": 0.8362364016250501
+      },
+      "sensitivity": {
+        "estimate": 1.0,
+        "lower_95": 0.7819806390894659,
+        "n": 15,
+        "upper_95": 1.0
+      },
+      "specificity": {
+        "estimate": 0.4666666666666667,
+        "lower_95": 0.21266672951930793,
+        "n": 15,
+        "upper_95": 0.7341386527226035
+      }
+    },
+    "medicines": {
+      "balanced_accuracy": {
+        "estimate": 1.0,
+        "interpretation": "Conservative composite bounds; balanced accuracy is not itself a binomial proportion. Exact Clopper-Pearson intervals are reported for each component.",
+        "interval_method": "mean_of_component_clopper_pearson_bounds",
+        "lower_95": 0.8315665290169145,
+        "upper_95": 1.0
+      },
+      "confusion": {
+        "fn": 0,
+        "fp": 0,
+        "tn": 20,
+        "tp": 20
+      },
+      "negative_predictive_value": {
+        "estimate": 1.0,
+        "lower_95": 0.8315665290169145,
+        "n": 20,
+        "upper_95": 1.0
+      },
+      "precision": {
+        "estimate": 1.0,
+        "lower_95": 0.8315665290169145,
+        "n": 20,
+        "upper_95": 1.0
+      },
+      "sensitivity": {
+        "estimate": 1.0,
+        "lower_95": 0.8315665290169145,
+        "n": 20,
+        "upper_95": 1.0
+      },
+      "specificity": {
+        "estimate": 1.0,
+        "lower_95": 0.8315665290169145,
+        "n": 20,
+        "upper_95": 1.0
+      }
+    },
+    "overall": {
+      "balanced_accuracy": {
+        "estimate": 0.8866666666666667,
+        "interpretation": "Conservative composite bounds; balanced accuracy is not itself a binomial proportion. Exact Clopper-Pearson intervals are reported for each component.",
+        "interval_method": "mean_of_component_clopper_pearson_bounds",
+        "lower_95": 0.8070416611203907,
+        "upper_95": 0.931032216183915
+      },
+      "confusion": {
+        "fn": 0,
+        "fp": 17,
+        "tn": 58,
+        "tp": 75
+      },
+      "negative_predictive_value": {
+        "estimate": 1.0,
+        "lower_95": 0.93837899109608,
+        "n": 58,
+        "upper_95": 1.0
+      },
+      "precision": {
+        "estimate": 0.8152173913043478,
+        "lower_95": 0.720712758560675,
+        "n": 92,
+        "upper_95": 0.8885123336324865
+      },
+      "sensitivity": {
+        "estimate": 1.0,
+        "lower_95": 0.9520049359448577,
+        "n": 75,
+        "upper_95": 1.0
+      },
+      "specificity": {
+        "estimate": 0.7733333333333333,
+        "lower_95": 0.6620783862959236,
+        "n": 75,
+        "upper_95": 0.8620644323678299
+      }
+    },
+    "procedures_pathology": {
+      "balanced_accuracy": {
+        "estimate": 0.9166666666666667,
+        "interpretation": "Conservative composite bounds; balanced accuracy is not itself a binomial proportion. Exact Clopper-Pearson intervals are reported for each component.",
+        "interval_method": "mean_of_component_clopper_pearson_bounds",
+        "lower_95": 0.7685424964719141,
+        "upper_95": 0.9717891517659643
+      },
+      "confusion": {
+        "fn": 0,
+        "fp": 5,
+        "tn": 25,
+        "tp": 30
+      },
+      "negative_predictive_value": {
+        "estimate": 1.0,
+        "lower_95": 0.8628148284692874,
+        "n": 25,
+        "upper_95": 1.0
+      },
+      "precision": {
+        "estimate": 0.8571428571428571,
+        "lower_95": 0.6974286483090484,
+        "n": 35,
+        "upper_95": 0.9519392215963611
+      },
+      "sensitivity": {
+        "estimate": 1.0,
+        "lower_95": 0.884296691777972,
+        "n": 30,
+        "upper_95": 1.0
+      },
+      "specificity": {
+        "estimate": 0.8333333333333334,
+        "lower_95": 0.6527883011658562,
+        "n": 30,
+        "upper_95": 0.9435783035319285
+      }
+    }
+  },
+  "schema_version": "mapping-evaluation-summary-v1",
+  "sealed_input_sha256": {
+    "adjudications_sha256": "6c30943a871b72cd2ddce637e840d6a1a2a8a6a0fda89658da95414c1495d545",
+    "holdout_predictions_sha256": "95161ce33d9a317b802a91ffe2da592ead086b8c5004033f41cc132673690d49",
+    "split_plan_sha256": "4387f2405665bf2cae420f82bfa4152efa162331a88ede1c60faeb3effcaeff4",
+    "threshold_model_sha256": "75758b61ff70e2e2d8455db5ab2ec09136f537027732f9faff31905537258b83"
+  },
+  "status": "accepted",
+  "study_cycle": "expansion_v9",
+  "threshold_source": "development_only"
+}

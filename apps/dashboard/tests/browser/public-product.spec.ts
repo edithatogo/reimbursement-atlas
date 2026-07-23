@@ -1,7 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, type Page, test } from "@playwright/test";
+import { expect, type Browser, type Page, test, type TestInfo } from "@playwright/test";
 
-const routes = [
+export const routes = [
   "/",
   "/analyses/",
   "/analyses/cognitive_vs_procedural_ratio/",
@@ -62,7 +62,7 @@ async function expectNoPageLevelHorizontalOverflow(page: Page) {
 }
 
 for (const route of routes) {
-  test(`renders public route ${route}`, async ({ page }, testInfo) => {
+  test(`renders public route ${route}`, async ({ browser, page }, testInfo) => {
     const consoleErrors: string[] = [];
     const pageErrors: string[] = [];
     page.on("console", (message) => {
@@ -78,6 +78,11 @@ for (const route of routes) {
     await expect(page.locator('nav a[aria-current="page"]')).toHaveText(
       navLabelByRoute.get(route) ?? "",
     );
+    if (route === "/analyses/cognitive_vs_procedural_ratio/") {
+      await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+        "Cognitive versus procedural reward index",
+      );
+    }
     await expectNoPageLevelHorizontalOverflow(page);
     if (route === "/") {
       const statusCards = page.locator(".status-card");
@@ -138,9 +143,28 @@ for (const route of routes) {
       body: screenshot,
       contentType: "image/png",
     });
+    await attachReviewContext(browser, page, route, testInfo);
 
     expect(consoleErrors).toEqual([]);
     expect(pageErrors).toEqual([]);
+  });
+}
+
+async function attachReviewContext(
+  browser: Browser,
+  page: Page,
+  route: string,
+  testInfo: TestInfo,
+) {
+  await testInfo.attach("dashboard-review-context", {
+    body: JSON.stringify({
+      route,
+      project: testInfo.project.name,
+      viewport: page.viewportSize(),
+      browser: browser.browserType().name(),
+      browserVersion: browser.version(),
+    }),
+    contentType: "application/json",
   });
 }
 

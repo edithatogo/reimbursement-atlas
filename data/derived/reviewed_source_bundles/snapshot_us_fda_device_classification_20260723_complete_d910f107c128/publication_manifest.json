@@ -1,0 +1,21 @@
+{
+  "derived_files": [
+    "us_fda_device_classification_20260723_complete_schedule_items.jsonl",
+    "us_fda_device_classification_20260723_complete_schedule_items.csv",
+    "source_snapshots.jsonl",
+    "validation_report.json"
+  ],
+  "licence_gate": "public_reuse_review",
+  "manifest_version": "reviewed-source-bundle-v1",
+  "project": "reimbursement-atlas-conductor",
+  "raw_cache_scope": "local_raw_only",
+  "raw_file_copied": false,
+  "record_count": 7084,
+  "snapshot_id": "snapshot_us_fda_device_classification_20260723_complete_d910f107c128",
+  "source_id": "us_fda_device_classification",
+  "source_version_id": "us_fda_device_classification_20260723_complete",
+  "warnings": [
+    "Confirm source-specific redistribution terms before publishing derived rows.",
+    "Do not publish raw local_path values if they expose private filesystem locations."
+  ]
+}

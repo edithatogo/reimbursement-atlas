@@ -103,3 +103,42 @@ def test_threshold_outputs_are_bound_to_named_cycle(tmp_path: Path) -> None:
 
     assert model["study_cycle"] == "expansion_v2"
     assert len(predictions) == 2
+
+
+def test_private_cycle_recomputes_scores_from_checksum_bound_local_evidence(
+    tmp_path: Path,
+) -> None:
+    cycle = "expansion_v9"
+    _fixture(tmp_path, ("positive", "negative"), cycle)
+    tracked = tmp_path / f"data/derived/mapping_study/{cycle}/blind_review_packets"
+    _write_jsonl(
+        tracked / "reviewer_a_cases.jsonl",
+        [
+            {
+                "case_id": f"map_{value:020x}",
+                "evidence_location": "ignored_local_packet",
+            }
+            for value in range(6)
+        ],
+    )
+    private = tmp_path / f"data/local/mapping_study/{cycle}/restricted_cpt_cases.jsonl"
+    _write_jsonl(
+        private,
+        [
+            _case(f"map_{value:020x}", left, right)
+            for value, (left, right) in enumerate((
+                ("same procedure", "same procedure"),
+                ("same medicine", "same medicine"),
+                ("alpha procedure", "unrelated device"),
+                ("beta medicine", "different phenotype"),
+                ("matching test", "matching test"),
+                ("first concept", "second concept"),
+            ))
+        ],
+    )
+
+    model, predictions = build_threshold_predictions(tmp_path, cycle)
+
+    assert model["evidence_packet_privacy"] == "ignored_local_restricted"
+    assert len(model["evidence_packet_sha256"]) == 64
+    assert len(predictions) == 2

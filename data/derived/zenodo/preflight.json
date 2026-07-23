@@ -3,6 +3,12 @@
   "missing_creator_orcids": [],
   "mutation_performed": false,
   "paper_or_preprint_submission_allowed": false,
+  "preflight_inputs": {
+    "mapping_summary": "data/derived/mapping_study/expansion_v9/candidate_frame_summary.json",
+    "mapping_summary_present": true,
+    "metadata_source": ".zenodo.json",
+    "source_description": "Reproducible, licence-aware tooling for comparing public reimbursement schedules, coverage decisions and policy-analysis metadata across jurisdictions. This record is release metadata preparation only; no Zenodo deposition or DOI is implied."
+  },
   "published": false,
   "required_upstream_gates": [
     "mapping_study_human_review",
@@ -11,5 +17,5 @@
     "release_readiness"
   ],
   "schema_version": "zenodo-deposition-preflight-v2",
-  "status": "ready_for_draft_deposit"
+  "status": "blocked_missing_release_assets"
 }

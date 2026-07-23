@@ -5,11 +5,82 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+from collections.abc import Mapping
 from pathlib import Path
 from typing import Literal, cast
 
 RegistrationStatus = Literal["blocked", "drift", "ready"]
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
+
+
+def apply_publication_decision(
+    manifest_rows: list[dict[str, object]], decision: dict[str, object] | None
+) -> list[dict[str, object]]:
+    """Authorize only exact checksum-bound OSF rows from an accountable decision."""
+    approvals: dict[str, str] = {}
+    if decision and decision.get("status") == "approved_within_scope":
+        raw_approvals = decision.get("approved_artifacts")
+        if isinstance(raw_approvals, list):
+            for item in cast("list[object]", raw_approvals):
+                if not isinstance(item, dict):
+                    continue
+                approval = cast("dict[str, object]", item)
+                identifier = approval.get("id")
+                sha256 = approval.get("sha256")
+                if isinstance(identifier, str) and isinstance(sha256, str):
+                    approvals[identifier] = sha256
+
+    decided_rows: list[dict[str, object]] = []
+    for row in manifest_rows:
+        decided = dict(row)
+        identifier = row.get("id")
+        sha256 = row.get("sha256")
+        approved = (
+            isinstance(identifier, str)
+            and isinstance(sha256, str)
+            and _SHA256_RE.fullmatch(sha256) is not None
+            and approvals.get(identifier) == sha256
+            and row.get("exists") is True
+        )
+        decided["publish_allowed"] = approved
+        decided["blocked_reason"] = (
+            None
+            if approved
+            else "No matching checksum-bound OSF publication approval exists for this row."
+        )
+        decided_rows.append(decided)
+    return decided_rows
+
+
+def apply_registration_decision(
+    freeze: dict[str, object], decision: dict[str, object] | None
+) -> dict[str, object]:
+    """Apply an accountable registration decision only to an exact current freeze."""
+    decided = dict(freeze)
+    reason = "registration_decision_missing"
+    if decision and decision.get("status") == "approved_for_registration":
+        expected = {
+            "protocol_digest": decision.get("protocol_digest"),
+            "analysis_manifest_digest": decision.get("analysis_manifest_digest"),
+            "proposed_source_cutoff": decision.get("source_cutoff"),
+        }
+        mismatches = [field for field, value in expected.items() if decided.get(field) != value]
+        if not mismatches:
+            decided.update({
+                "source_cutoff": decision["source_cutoff"],
+                "source_cutoff_status": "approved",
+                "review_approved": True,
+                "review_record": "data/osf_review/registration_decision.json",
+                "reviewer": decision.get("reviewer"),
+                "reviewed_at": decision.get("reviewed_at"),
+                "status": "approved_for_registration",
+            })
+            return decided
+        reason = "registration_decision_drift:" + ",".join(mismatches)
+    elif decision is not None:
+        reason = "registration_decision_not_approved"
+    decided["decision_reason"] = reason
+    return decided
 
 
 def build_registration_freeze(
@@ -95,7 +166,7 @@ def _result(
     }
 
 
-def _validate_remote_snapshot(remote: dict[str, object]) -> list[str]:
+def _validate_remote_snapshot(remote: dict[str, object]) -> list[str]:  # ruff:ignore[too-many-branches]
     """Validate the immutable metadata contract before comparing fingerprints."""
     errors: list[str] = []
     if remote.get("schema_version") != "osf-registration-snapshot-v1":
@@ -111,10 +182,109 @@ def _validate_remote_snapshot(remote: dict[str, object]) -> list[str]:
         errors.append("submitted_at")
     if remote.get("immutable") is not True:
         errors.append("immutable")
+    if remote.get("public") is not True:
+        errors.append("public")
+    if remote.get("pending_registration_approval") is not False:
+        errors.append("pending_registration_approval")
+    if remote.get("withdrawn") is not False:
+        errors.append("withdrawn")
+    if remote.get("embargoed") is not False:
+        errors.append("embargoed")
+    remote_verified_at = remote.get("remote_verified_at")
+    if not isinstance(remote_verified_at, str) or not remote_verified_at:
+        errors.append("remote_verified_at")
+    receipt_sha256 = remote.get("receipt_sha256")
+    if not isinstance(receipt_sha256, str) or _SHA256_RE.fullmatch(receipt_sha256) is None:
+        errors.append("receipt_sha256")
     snapshot_sha256 = remote.get("snapshot_sha256")
     if not isinstance(snapshot_sha256, str) or _SHA256_RE.fullmatch(snapshot_sha256) is None:
         errors.append("snapshot_sha256")
+    elif snapshot_sha256 != registration_snapshot_sha256(remote):
+        errors.append("snapshot_sha256_mismatch")
     return errors
+
+
+def registration_snapshot_sha256(snapshot: Mapping[str, object]) -> str:
+    """Hash the canonical snapshot payload without its self-referential digest."""
+    payload = {key: value for key, value in snapshot.items() if key != "snapshot_sha256"}
+    canonical = json.dumps(
+        payload,
+        ensure_ascii=True,
+        separators=(",", ":"),
+        sort_keys=True,
+    ).encode("utf-8")
+    return hashlib.sha256(canonical).hexdigest()
+
+
+def build_remote_registration_snapshot(
+    receipt: Mapping[str, object],
+    freeze: Mapping[str, object],
+) -> dict[str, object]:
+    """Build a checksum-bound snapshot from a verified active OSF receipt."""
+    if receipt.get("schema_version") != "osf-registration-receipt-v1":
+        message = "invalid OSF registration receipt schema"
+        raise ValueError(message)
+    if receipt.get("status") != "registered":
+        message = "OSF registration is not active"
+        raise ValueError(message)
+    if receipt.get("public") is not True or receipt.get("immutable") is not True:
+        message = "OSF registration must be public and immutable"
+        raise ValueError(message)
+    if receipt.get("pending_registration_approval") is not False:
+        message = "OSF registration approval is still pending"
+        raise ValueError(message)
+    if receipt.get("withdrawn") is True or receipt.get("embargoed") is True:
+        message = "OSF registration must be active, unembargoed and not withdrawn"
+        raise ValueError(message)
+    registration_id = receipt.get("registration_id")
+    registration_url = receipt.get("registration_url")
+    submitted_at = receipt.get("registered_at")
+    remote_verified_at = receipt.get("remote_verified_at")
+    if not isinstance(registration_id, str) or not registration_id:
+        message = "OSF registration receipt is missing registration_id"
+        raise ValueError(message)
+    if not isinstance(registration_url, str) or not registration_url.startswith("https://osf.io/"):
+        message = "OSF registration receipt has an invalid registration_url"
+        raise ValueError(message)
+    if not isinstance(submitted_at, str) or not submitted_at:
+        message = "OSF registration receipt is missing registered_at"
+        raise ValueError(message)
+    if not isinstance(remote_verified_at, str) or not remote_verified_at:
+        message = "OSF registration receipt is missing remote_verified_at"
+        raise ValueError(message)
+
+    required = ("protocol_digest", "analysis_manifest_digest", "source_cutoff")
+    missing = [field for field in required if not isinstance(freeze.get(field), str)]
+    if missing or freeze.get("review_approved") is not True:
+        detail = ",".join(missing) if missing else "review_approved"
+        message = f"OSF registration freeze is incomplete: {detail}"
+        raise ValueError(message)
+    snapshot: dict[str, object] = {
+        "schema_version": "osf-registration-snapshot-v1",
+        "registration_id": registration_id,
+        "registration_url": registration_url,
+        "status": "registered",
+        "submitted_at": submitted_at,
+        "immutable": True,
+        "public": True,
+        "pending_registration_approval": False,
+        "withdrawn": False,
+        "embargoed": False,
+        "remote_verified_at": remote_verified_at,
+        "receipt_sha256": hashlib.sha256(
+            json.dumps(
+                dict(receipt),
+                ensure_ascii=True,
+                separators=(",", ":"),
+                sort_keys=True,
+            ).encode("utf-8")
+        ).hexdigest(),
+        "protocol_digest": freeze["protocol_digest"],
+        "analysis_manifest_digest": freeze["analysis_manifest_digest"],
+        "source_cutoff": freeze["source_cutoff"],
+    }
+    snapshot["snapshot_sha256"] = registration_snapshot_sha256(snapshot)
+    return snapshot
 
 
 def _digest_paths(root: Path, paths: list[Path]) -> str:
@@ -169,6 +339,10 @@ def build_registration_review_packet(
     complete_protocols = sum(row.get("osf_ready") is True for row in protocol_rows)
     allowed_rows = sum(row.get("publish_allowed") is True for row in manifest_rows)
     blocked_rows = len(manifest_rows) - allowed_rows
+    approved = (
+        freeze.get("review_approved") is True and freeze.get("source_cutoff_status") == "approved"
+    )
+    checkbox = "x" if approved else " "
     lines = [
         "# OSF preregistration review packet",
         "",
@@ -228,33 +402,34 @@ def build_registration_review_packet(
         ),
         (
             "The powered 750-case mapping study, blinded reference review, threshold selection "
-            "and untouched holdout evaluation have not begun because the real-source candidate "
-            "frame and accountable approval gates remain incomplete."
+            "and one-time untouched holdout evaluation were completed before this registration."
         ),
         (
-            "The registration must distinguish retrospective repository development from the "
-            "prospective confirmatory mapping evaluation; it must not describe earlier work as "
-            "preregistered."
+            "The registration must describe source acquisition, repository development, mapping "
+            "adjudication and holdout evaluation as retrospective work. It must not describe "
+            "those completed activities as preregistered or prospective."
         ),
         "",
         "## Required human decisions",
         "",
-        "- [ ] Methods review completed",
-        "- [ ] Domain/clinical review completed",
-        "- [ ] Source licence and derived-field review completed",
-        "- [ ] Governance and publication review completed",
-        "- [ ] Source cutoff and analysis manifest approved",
+        f"- [{checkbox}] Methods review completed",
+        f"- [{checkbox}] Domain/clinical review completed",
+        f"- [{checkbox}] Source licence and derived-field review completed",
+        f"- [{checkbox}] Governance and publication review completed",
+        f"- [{checkbox}] Source cutoff and analysis manifest approved",
         "",
         "## Approval record",
         "",
-        "- Reviewer(s):",
-        "- Decision: `blocked`",
-        "- Reviewed at:",
-        "- Approval reference:",
+        f"- Reviewer: `{freeze.get('reviewer', 'pending')}`",
+        f"- Decision: `{'approved_for_registration' if approved else 'blocked'}`",
+        f"- Reviewed at: `{freeze.get('reviewed_at', 'pending')}`",
+        f"- Review record: `{freeze.get('review_record', 'pending')}`",
         "",
-        "The decision must be recorded by an accountable human reviewer before any",
-        "sync-manifest row changes to `publish_allowed: true` or any registration",
-        "submission is attempted.",
+        (
+            "Only exact checksum-bound rows authorized by the accountable publication decision "
+            "may be synchronized."
+        ),
+        "Papers, preprints, raw source payloads and restricted descriptors remain excluded.",
         "",
     ]
     return "\n".join(lines)
@@ -284,3 +459,10 @@ def _read_jsonl(path: Path) -> list[dict[str, object]]:
             raise TypeError
         rows.append(cast("dict[str, object]", payload))
     return rows
+
+
+def read_optional_object(path: Path) -> dict[str, object] | None:
+    """Read an optional JSON decision document."""
+    if not path.is_file():
+        return None
+    return _read_object(path)

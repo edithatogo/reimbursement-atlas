@@ -3,13 +3,14 @@
   "type": "feature",
   "status": "in_progress",
   "created_at": "2026-07-20T00:00:00Z",
-  "updated_at": "2026-07-23T05:50:00Z",
+  "updated_at": "2026-07-23T13:08:00Z",
   "description": "Align citation, dashboard, OSF, Hugging Face and archive records for a citable public product.",
   "evidence_schema": "1.0",
   "gates": [
     {"id": "citation_metadata", "kind": "repository", "status": "pass", "evidence": "CITATION.cff validation passes."},
     {"id": "destination_parity", "kind": "external", "status": "pass", "evidence": "HF dataset/Space destination report has zero mismatches."},
-    {"id": "archive_release", "kind": "external", "status": "pending", "evidence": "Repository release readiness is true. Signed release, attestation and archive publication remain downstream of mapping, dashboard and OSF registration evidence gates."},
-    {"id": "zenodo_datacite", "kind": "external_publication", "status": "pending", "evidence": "Deterministic Zenodo/DataCite metadata, frozen inventory and token-gated plan/draft/reserve/publish/verify workflow exist. The client accepts tokens only for official HTTPS Zenodo endpoints. DOI reservation and publication require exact confirmations plus mapping, dashboard, OSF registration and research-release readiness; papers and preprints are excluded."}
+    {"id": "dashboard_accountable_review", "kind": "human_review", "status": "pass", "evidence": "The accountable owner approved the refreshed 64-test, 44-screenshot packet within its declared browser, route, automated accessibility and provenance scope; manual VoiceOver and universal WCAG conformance are excluded."},
+    {"id": "archive_release", "kind": "external", "status": "pending", "evidence": "The v2 release-asset inventory requires wheel, sdist, source archive, both SBOMs, release manifest and attestation receipts. Signed final assets remain downstream of mapping, dashboard and OSF registration evidence gates."},
+    {"id": "zenodo_datacite", "kind": "external_publication", "status": "pending", "evidence": "Deterministic Zenodo/DataCite metadata, a fail-closed v2 inventory contract and token-gated plan/draft/reserve/publish/verify workflow exist. Draft, reservation and publication all require the complete archive gate and remote checksum parity. Papers and preprints are excluded."}
   ]
 }

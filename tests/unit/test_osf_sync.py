@@ -2,10 +2,16 @@ from __future__ import annotations
 
 import json
 
+import pytest
+
 from reimburse_atlas.osf_registration import (
+    apply_publication_decision,
+    apply_registration_decision,
     build_registration_freeze,
     build_registration_review_packet,
+    build_remote_registration_snapshot,
     check_registration_drift,
+    registration_snapshot_sha256,
 )
 from reimburse_atlas.osf_sync import (
     OsfRemoteRecord,
@@ -54,6 +60,64 @@ def test_reconciliation_blocks_unapproved_or_missing_rows() -> None:
     )
     assert {action.reason for action in actions} == {"publish_not_allowed", "local_file_missing"}
     assert all(action.action == "blocked" for action in actions)
+
+
+def test_publication_decision_requires_exact_current_checksum() -> None:
+    digest = "a" * 64
+    decision = {
+        "status": "approved_within_scope",
+        "approved_artifacts": [
+            {"id": "protocol", "sha256": digest},
+            {"id": "missing", "sha256": digest},
+        ],
+    }
+    rows = apply_publication_decision(
+        [
+            _row(sha256=digest),
+            _row(id="drift", sha256="b" * 64),
+            _row(id="missing", sha256=digest, exists=False),
+        ],
+        decision,
+    )
+    assert [row["publish_allowed"] for row in rows] == [True, False, False]
+    assert rows[0]["blocked_reason"] is None
+    assert rows[1]["blocked_reason"]
+
+
+def test_publication_decision_fails_closed_without_approval() -> None:
+    rows = apply_publication_decision([_row(sha256="a" * 64)], None)
+    assert rows[0]["publish_allowed"] is False
+
+
+def test_registration_decision_applies_only_to_exact_freeze() -> None:
+    freeze = {
+        "protocol_digest": "a" * 64,
+        "analysis_manifest_digest": "b" * 64,
+        "proposed_source_cutoff": "2026-07-23T00:00:00Z",
+        "source_cutoff": "not-frozen",
+        "source_cutoff_status": "pending_accountable_approval",
+        "review_approved": False,
+        "status": "draft",
+    }
+    decision = {
+        "status": "approved_for_registration",
+        "protocol_digest": "a" * 64,
+        "analysis_manifest_digest": "b" * 64,
+        "source_cutoff": "2026-07-23T00:00:00Z",
+        "reviewer": "owner",
+        "reviewed_at": "2026-07-23T12:00:00Z",
+    }
+    approved = apply_registration_decision(freeze, decision)
+    assert approved["review_approved"] is True
+    assert approved["source_cutoff_status"] == "approved"
+    assert approved["status"] == "approved_for_registration"
+
+    stale = apply_registration_decision(
+        {**freeze, "analysis_manifest_digest": "c" * 64},
+        decision,
+    )
+    assert stale["review_approved"] is False
+    assert stale["decision_reason"] == "registration_decision_drift:analysis_manifest_digest"
 
 
 def test_reconciliation_prunes_only_managed_remote_rows() -> None:
@@ -110,12 +174,19 @@ def _remote(**overrides: object) -> dict[str, object]:
         "status": "registered",
         "submitted_at": "2026-07-16T00:00:00Z",
         "immutable": True,
-        "snapshot_sha256": "a" * 64,
+        "public": True,
+        "pending_registration_approval": False,
+        "withdrawn": False,
+        "embargoed": False,
+        "remote_verified_at": "2026-07-23T13:05:00Z",
+        "receipt_sha256": "e" * 64,
         "protocol_digest": "protocol",
         "analysis_manifest_digest": "manifest",
         "source_cutoff": "2026-07-01",
     }
     remote.update(overrides)
+    if "snapshot_sha256" not in overrides:
+        remote["snapshot_sha256"] = registration_snapshot_sha256(remote)
     return remote
 
 
@@ -138,6 +209,16 @@ def test_registration_check_rejects_incomplete_remote_snapshot() -> None:
     result = check_registration_drift(_freeze(), remote)
     assert result["status"] == "blocked"
     assert result["reasons"] == ["invalid_remote_registration:snapshot_sha256"]
+
+
+def test_registration_check_rejects_mismatched_snapshot_digest() -> None:
+    remote = _remote()
+    remote["source_cutoff"] = "2026-07-02"
+
+    result = check_registration_drift(_freeze(), remote)
+
+    assert result["status"] == "blocked"
+    assert result["reasons"] == ["invalid_remote_registration:snapshot_sha256_mismatch"]
 
 
 def test_registration_check_rejects_invalid_remote_metadata() -> None:
@@ -166,6 +247,92 @@ def test_registration_check_accepts_matching_reviewed_registration() -> None:
     assert result["mutation_performed"] is False
 
 
+def test_build_remote_registration_snapshot_binds_receipt_to_freeze() -> None:
+    receipt = {
+        "schema_version": "osf-registration-receipt-v1",
+        "registration_id": "abc12",
+        "registration_url": "https://osf.io/abc12/",
+        "registered_at": "2026-07-23T13:00:00Z",
+        "public": True,
+        "immutable": True,
+        "status": "registered",
+        "pending_registration_approval": False,
+        "withdrawn": False,
+        "embargoed": False,
+        "remote_verified_at": "2026-07-23T13:05:00Z",
+    }
+
+    snapshot = build_remote_registration_snapshot(receipt, _freeze())
+
+    assert snapshot["snapshot_sha256"] == registration_snapshot_sha256(snapshot)
+    assert check_registration_drift(_freeze(), snapshot)["status"] == "ready"
+
+
+@pytest.mark.parametrize(
+    ("field", "value", "message"),
+    [
+        ("schema_version", "wrong", "invalid OSF registration receipt schema"),
+        ("status", "pending_approval", "not active"),
+        ("public", False, "public and immutable"),
+        ("immutable", False, "public and immutable"),
+        ("registration_id", "", "missing registration_id"),
+        ("registration_url", "https://example.invalid/abc12", "invalid registration_url"),
+        ("registered_at", "", "missing registered_at"),
+    ],
+)
+def test_build_remote_registration_snapshot_rejects_unready_receipt(
+    field: str,
+    value: object,
+    message: str,
+) -> None:
+    receipt: dict[str, object] = {
+        "schema_version": "osf-registration-receipt-v1",
+        "registration_id": "abc12",
+        "registration_url": "https://osf.io/abc12/",
+        "registered_at": "2026-07-23T13:00:00Z",
+        "public": True,
+        "immutable": True,
+        "status": "registered",
+        "pending_registration_approval": False,
+        "withdrawn": False,
+        "embargoed": False,
+        "remote_verified_at": "2026-07-23T13:05:00Z",
+    }
+    receipt[field] = value
+
+    with pytest.raises(ValueError, match=message):
+        build_remote_registration_snapshot(receipt, _freeze())
+
+
+@pytest.mark.parametrize(
+    ("freeze", "message"),
+    [
+        ({"review_approved": True}, "protocol_digest,analysis_manifest_digest,source_cutoff"),
+        (_freeze(review_approved=False), "review_approved"),
+    ],
+)
+def test_build_remote_registration_snapshot_rejects_incomplete_freeze(
+    freeze: dict[str, object],
+    message: str,
+) -> None:
+    receipt: dict[str, object] = {
+        "schema_version": "osf-registration-receipt-v1",
+        "registration_id": "abc12",
+        "registration_url": "https://osf.io/abc12/",
+        "registered_at": "2026-07-23T13:00:00Z",
+        "public": True,
+        "immutable": True,
+        "status": "registered",
+        "pending_registration_approval": False,
+        "withdrawn": False,
+        "embargoed": False,
+        "remote_verified_at": "2026-07-23T13:05:00Z",
+    }
+
+    with pytest.raises(ValueError, match=message):
+        build_remote_registration_snapshot(receipt, freeze)
+
+
 def test_registration_review_packet_is_explicitly_unapproved(tmp_path) -> None:  # type: ignore[no-untyped-def]
     freeze = tmp_path / "freeze.json"
     freeze.write_text(
@@ -192,12 +359,47 @@ def test_registration_review_packet_is_explicitly_unapproved(tmp_path) -> None: 
     )
     assert "Decision: `blocked`" in packet
     assert "Temporal disclosure" in packet
-    assert "must not describe earlier work as preregistered" in packet
+    assert "must not describe those completed activities as preregistered" in packet
     assert "Protocols/reports OSF-ready: `1/1`" in packet
     assert "Manifest rows explicitly publishable: `0/1`" in packet
     assert "OSF metadata contract" in packet
     assert "accountable contributor list must be confirmed" in packet
-    assert "publish_allowed: true" in packet
+    assert "exact checksum-bound rows" in packet
+
+
+def test_registration_review_packet_records_scoped_approval(tmp_path) -> None:
+    freeze = tmp_path / "freeze.json"
+    freeze.write_text(
+        json.dumps({
+            "schema_version": "osf-registration-freeze-v1",
+            "protocol_digest": "protocol",
+            "analysis_manifest_digest": "manifest",
+            "source_cutoff": "2026-07-23T00:00:00Z",
+            "source_cutoff_status": "approved",
+            "review_approved": True,
+            "reviewer": "owner",
+            "reviewed_at": "2026-07-23T12:00:00Z",
+            "review_record": "data/osf_review/registration_decision.json",
+        }),
+        encoding="utf-8",
+    )
+    protocols = tmp_path / "protocols.jsonl"
+    protocols.write_text(json.dumps({"osf_ready": True}) + "\n", encoding="utf-8")
+    manifest = tmp_path / "manifest.jsonl"
+    manifest.write_text(json.dumps({"publish_allowed": True}) + "\n", encoding="utf-8")
+
+    packet = build_registration_review_packet(
+        freeze_path=freeze,
+        protocol_status_path=protocols,
+        sync_manifest_path=manifest,
+    )
+
+    assert "Decision: `approved_for_registration`" in packet
+    assert "- [x] Source cutoff and analysis manifest approved" in packet
+    assert (
+        "Papers, preprints, raw source payloads and restricted descriptors remain excluded."
+        in packet
+    )
 
 
 def test_registration_freeze_exposes_proposed_cutoff_without_approval(tmp_path) -> None:  # type: ignore[no-untyped-def]

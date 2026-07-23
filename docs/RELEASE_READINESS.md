@@ -1,5 +1,18 @@
 # Release readiness
 
+## Current release boundary (2026-07-23)
+
+The release branch reports `repository_release_ready=true` and
+`evidence_release_ready=true`. The mapping study and refreshed scoped dashboard
+review pass their independent gates. Research-policy claims remain deliberately
+unready because none of the five research questions has a released claim package.
+
+OSF project `q8cnx` is public and its 11 approved files pass remote SHA-256
+round-trip verification. Registration `gqk4z` has been submitted but OSF still
+reports `pending_registration_approval=true` and `public=false`; therefore the
+canonical snapshot generator and `osf_registration_ready` fail closed. Zenodo and
+DataCite publication remain downstream. No paper or preprint is in the release.
+
 ## Current external refresh (2026-07-21)
 
 Hugging Face destination metadata is reconciled: the Space is `apache-2.0`/`static`

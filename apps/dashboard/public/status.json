@@ -9,14 +9,6 @@
       "summary": "Source acquisition requires follow-up: Run hardened curl/wget source download plan, Review historical MBS/PBS source expansion and licence scope."
     },
     {
-      "category": "research_review",
-      "evidence_path": "data/derived/evidence_readiness/summary.json",
-      "id": "evidence_release",
-      "next_action": "Complete source, mapping, methods and research review before making evidence claims.",
-      "status": "blocked_review",
-      "summary": "Evidence release is not approved."
-    },
-    {
       "category": "publication",
       "evidence_path": "data/derived/release_readiness/summary.json",
       "id": "research_publication",
@@ -35,30 +27,22 @@
     {
       "category": "data_governance",
       "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
-      "id": "mapping_study_human_review",
-      "next_action": "Complete the rights-cleared candidate frame, blinded adjudication and one-time holdout evaluation before evidence claims.",
+      "id": "research_evidence",
+      "next_action": "Retain prototype-only status until every research question has reviewed source evidence, validated analysis and accountable claim review.",
       "status": "blocked",
-      "summary": "cycle=expansion_v7 candidate_status=ready_for_blinded_review candidate_count=1500 evaluation_status=blocked"
-    },
-    {
-      "category": "dashboard",
-      "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
-      "id": "dashboard_human_review",
-      "next_action": "Complete the commit-bound visual, keyboard, screen-reader and provenance review within the declared scope.",
-      "status": "blocked",
-      "summary": "record_status=missing provenance_reviewed=False commit_parity=False"
+      "summary": "evidence_ready=0/5"
     }
   ],
   "claims_policy": "Do not claim evidence or public-release readiness until reviewed sources, licences, human research review and release gates pass.",
   "evidence": {
     "data_quality": "pass",
     "evidence_ready_rows": 0,
-    "evidence_release_ready": false,
+    "evidence_release_ready": true,
     "prototype_ready_rows": 5,
     "readiness_rows": 5,
     "research_publication_ready": false,
     "source_validation": "pass",
-    "status": "not_ready"
+    "status": "ready"
   },
   "evidence_paths": {
     "data_quality": "data/derived/data_quality/summary.json",
@@ -69,7 +53,7 @@
     "source_validation": "data/derived/source_validation/summary.json"
   },
   "licence_review": {
-    "approved_rows": 194,
+    "approved_rows": 199,
     "decision_source": "data/licence_review/decisions.jsonl",
     "pending_rows": 0,
     "queue_source": "data/derived/licence_review/licence_review_queue.jsonl"

@@ -7,15 +7,15 @@ No network IO or remote mutation is performed by its generation.
 
 - Freeze schema: `osf-registration-freeze-v1`
 - Protocol digest: `d16aced4316d57a5e0e965707769142fc5c7a8c37461257c9884b019f11f2555`
-- Analysis manifest digest: `a6335ac24c7dd2cc70da8e49361587b86b7f3bd65e56571ccf602e246080a5f7`
-- Source cutoff: `not-frozen`
-- Existing approval flag: `False`
+- Analysis manifest digest: `e2d87ba924cbd01b8954d45c66ddd28d88c17ff3746aea1a91de616445230678`
+- Source cutoff: `2026-07-23T00:00:00Z`
+- Existing approval flag: `True`
 
 ## Completeness
 
 - Protocols/reports OSF-ready: `5/5`
-- Manifest rows explicitly publishable: `0/15`
-- Manifest rows still blocked: `15`
+- Manifest rows explicitly publishable: `11/15`
+- Manifest rows still blocked: `4`
 
 ## OSF metadata contract
 
@@ -31,24 +31,23 @@ No network IO or remote mutation is performed by its generation.
 ## Temporal disclosure
 
 Source discovery, acquisition engineering, fixture-based exploratory analyses and software implementation began before this registration.
-The powered 750-case mapping study, blinded reference review, threshold selection and untouched holdout evaluation have not begun because the real-source candidate frame and accountable approval gates remain incomplete.
-The registration must distinguish retrospective repository development from the prospective confirmatory mapping evaluation; it must not describe earlier work as preregistered.
+The powered 750-case mapping study, blinded reference review, threshold selection and one-time untouched holdout evaluation were completed before this registration.
+The registration must describe source acquisition, repository development, mapping adjudication and holdout evaluation as retrospective work. It must not describe those completed activities as preregistered or prospective.
 
 ## Required human decisions
 
-- [ ] Methods review completed
-- [ ] Domain/clinical review completed
-- [ ] Source licence and derived-field review completed
-- [ ] Governance and publication review completed
-- [ ] Source cutoff and analysis manifest approved
+- [x] Methods review completed
+- [x] Domain/clinical review completed
+- [x] Source licence and derived-field review completed
+- [x] Governance and publication review completed
+- [x] Source cutoff and analysis manifest approved
 
 ## Approval record
 
-- Reviewer(s):
-- Decision: `blocked`
-- Reviewed at:
-- Approval reference:
+- Reviewer: `edithatogo`
+- Decision: `approved_for_registration`
+- Reviewed at: `2026-07-23T12:00:54Z`
+- Review record: `data/osf_review/registration_decision.json`
 
-The decision must be recorded by an accountable human reviewer before any
-sync-manifest row changes to `publish_allowed: true` or any registration
-submission is attempted.
+Only exact checksum-bound rows authorized by the accountable publication decision may be synchronized.
+Papers, preprints, raw source payloads and restricted descriptors remain excluded.

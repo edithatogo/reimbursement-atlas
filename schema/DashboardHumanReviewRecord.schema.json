@@ -3,23 +3,34 @@
   "title": "DashboardHumanReviewRecord",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "status", "commit", "reviewer", "scope", "findings"],
+  "required": ["schema_version", "status", "commit", "reviewer", "scope", "findings", "automated_packet_sha256", "owner_packet_sha256"],
   "properties": {
     "schema_version": {"const": "dashboard-human-review-v1"},
     "status": {"enum": ["pending", "findings_recorded", "approved_within_scope", "rejected"]},
     "commit": {"type": "string", "pattern": "^[0-9a-f]{7,64}$"},
     "reviewer": {"type": "string", "minLength": 1},
-    "reviewed_at": {"type": ["string", "null"]},
+    "reviewed_at": {"type": ["string", "null"], "format": "date-time"},
+    "automated_packet_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "owner_packet_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
     "scope": {
       "type": "object",
       "additionalProperties": false,
       "required": ["routes", "browsers", "operating_systems", "assistive_technology", "provenance"],
       "properties": {
-        "routes": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "routes": {
+          "type": "array",
+          "minItems": 11,
+          "maxItems": 11,
+          "uniqueItems": true,
+          "items": {
+            "enum": ["/", "/analyses/", "/analyses/cognitive_vs_procedural_ratio/", "/automation/", "/crosswalks/", "/demonstrators/", "/ontologies/", "/readiness/", "/roadmap/", "/sources/", "/sources/au_mbs/"]
+          }
+        },
         "browsers": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
         "operating_systems": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
         "assistive_technology": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
-        "provenance": {"type": "boolean"}
+        "provenance": {"type": "boolean"},
+        "prohibited_content": {"type": "boolean"}
       }
     },
     "findings": {"type": "array", "items": {"type": "string"}},
@@ -44,14 +55,18 @@
         "required": ["status"]
       },
       "then": {
-        "required": ["reviewed_at", "evidence_artifacts", "approval_scope"],
+        "required": ["reviewed_at", "evidence_artifacts", "approval_scope", "automated_packet_sha256", "owner_packet_sha256"],
         "properties": {
           "reviewed_at": {"type": "string", "format": "date-time"},
+          "automated_packet_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "owner_packet_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
           "evidence_artifacts": {"minItems": 1},
           "approval_scope": {"type": "string", "minLength": 1},
           "scope": {
+            "required": ["prohibited_content"],
             "properties": {
-              "provenance": {"const": true}
+              "provenance": {"const": true},
+              "prohibited_content": {"const": true}
             }
           }
         }

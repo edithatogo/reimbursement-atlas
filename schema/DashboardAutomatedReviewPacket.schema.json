@@ -4,17 +4,100 @@
   "title": "Dashboard automated review packet",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "status", "tested_commit", "test_count", "route_count", "project_count", "screenshot_count", "screenshot_sha256", "automated_scope", "human_review_required"],
+  "required": ["schema_version", "status", "tested_commit", "source_fingerprint", "data_fingerprint", "test_count", "expected_test_count", "junit", "routes", "projects", "route_count", "project_count", "coverage_complete", "screenshot_count", "screenshots", "workflow", "report_error", "automated_scope", "human_review_required"],
   "properties": {
-    "schema_version": {"const": "dashboard-automated-review-v1"},
+    "schema_version": {"const": "dashboard-automated-review-v2"},
     "status": {"enum": ["pass", "fail", "missing_artifacts"]},
     "tested_commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "source_fingerprint": {
+      "type": ["string", "null"],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "data_fingerprint": {
+      "type": ["string", "null"],
+      "pattern": "^[a-f0-9]{64}$"
+    },
     "test_count": {"type": "integer", "minimum": 0},
-    "route_count": {"type": "integer", "minimum": 0},
-    "project_count": {"type": "integer", "minimum": 0},
-    "screenshot_count": {"type": "integer", "minimum": 0},
-    "screenshot_sha256": {"type": "array", "items": {"type": "string", "pattern": "^[a-f0-9]{64}$"}},
+    "expected_test_count": {"const": 64},
+    "junit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tests", "failures", "errors", "skipped"],
+      "properties": {
+        "tests": {"type": "integer", "minimum": 0},
+        "failures": {"type": "integer", "minimum": 0},
+        "errors": {"type": "integer", "minimum": 0},
+        "skipped": {"type": "integer", "minimum": 0}
+      }
+    },
+    "routes": {
+      "type": "array",
+      "const": ["/", "/analyses/", "/analyses/cognitive_vs_procedural_ratio/", "/automation/", "/crosswalks/", "/demonstrators/", "/ontologies/", "/readiness/", "/roadmap/", "/sources/", "/sources/au_mbs/"]
+    },
+    "projects": {
+      "type": "array",
+      "const": ["desktop-chromium", "mobile-chromium", "desktop-firefox", "desktop-webkit"]
+    },
+    "route_count": {"const": 11},
+    "project_count": {"const": 4},
+    "coverage_complete": {"type": "boolean"},
+    "screenshot_count": {"type": "integer", "minimum": 0, "maximum": 44},
+    "screenshots": {
+      "type": "array",
+      "maxItems": 44,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["route", "project", "viewport", "browser", "browser_version", "file", "sha256", "byte_size"],
+        "properties": {
+          "route": {"type": "string", "minLength": 1},
+          "project": {"type": "string", "minLength": 1},
+          "viewport": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["width", "height"],
+            "properties": {
+              "width": {"type": "integer", "minimum": 1},
+              "height": {"type": "integer", "minimum": 1}
+            }
+          },
+          "browser": {"enum": ["chromium", "firefox", "webkit"]},
+          "browser_version": {"type": "string", "minLength": 1},
+          "file": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "byte_size": {"type": "integer", "minimum": 1}
+        }
+      }
+    },
+    "workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workflow", "run_id", "run_attempt", "artifact_name", "workflow_url"],
+      "properties": {
+        "workflow": {"type": ["string", "null"]},
+        "run_id": {"type": ["string", "null"], "pattern": "^[0-9]+$"},
+        "run_attempt": {"type": ["string", "null"], "pattern": "^[0-9]+$"},
+        "artifact_name": {"type": ["string", "null"]},
+        "workflow_url": {"type": ["string", "null"], "format": "uri"}
+      }
+    },
+    "report_error": {"type": ["string", "null"]},
     "automated_scope": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
     "human_review_required": {"const": true}
-  }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "pass"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "test_count": {"const": 64},
+          "junit": {"properties": {"tests": {"const": 64}, "failures": {"const": 0}, "errors": {"const": 0}, "skipped": {"const": 0}}},
+          "coverage_complete": {"const": true},
+          "screenshot_count": {"const": 44},
+          "screenshots": {"minItems": 44},
+          "report_error": {"type": "null"}
+        }
+      }
+    }
+  ]
 }

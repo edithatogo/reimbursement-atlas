@@ -48,9 +48,11 @@
       "percent_agreement": 0.6933333333333334
     }
   },
+  "independence_receipts_validated": false,
   "independent_roles_complete": true,
   "ledger_record_count": 3000,
   "percent_agreement": 0.7746666666666666,
+  "review_receipt_sha256": {},
   "reviewer_case_count": 1500,
   "role_file_sha256": {
     "reviewer_a": "c9feb0002aaab3a2e0415ecb087f970d9a1ba066169bc075ecc776c076258af1",

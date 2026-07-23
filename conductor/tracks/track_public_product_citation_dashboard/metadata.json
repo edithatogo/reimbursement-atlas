@@ -3,14 +3,14 @@
   "type": "feature",
   "status": "in_progress",
   "created_at": "2026-07-05T00:00:00Z",
-  "updated_at": "2026-07-23T05:50:00Z",
+  "updated_at": "2026-07-23T06:50:08Z",
   "description": "Present a citable accessible public dashboard with bounded review evidence.",
   "gates": [
     {
       "id": "dashboard_human_review",
       "kind": "human_review",
       "status": "pending",
-      "evidence": "Automated 64-test browser matrix passed with 44 screenshot hashes bound to commit 8e695ab711bb41c4af87c93371912dbaa4db3e70; responsive, axe, keyboard, semantic graph and provenance-link defects are remediated. Accountable scoped VoiceOver, visual and provenance review remains absent."
+      "evidence": "The fail-closed v2 harness validates 64 tests, 11 routes across four browser projects, 44 attributable screenshots, provenance assertions, prohibited-content checks and current-commit parity. Fresh hosted evidence for the final commit and accountable scoped VoiceOver, visual and provenance review remain pending."
     }
   ]
 }

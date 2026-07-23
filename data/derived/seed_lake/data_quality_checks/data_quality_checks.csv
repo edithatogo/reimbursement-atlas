@@ -11,7 +11,7 @@ minimum_row_count,data/seed/output_artifact_plans.jsonl,>=10,output_artifact_pla
 minimum_row_count,data/derived/vertical_slice/schedule_items.jsonl,>=10,vertical_schedule_items_minimum_row_count,10,Add missing records or lower the expectation only through an ADR.,blocking,pass,vertical_schedule_items
 unique_id,data/seed/source_registry.jsonl,all ids unique and non-empty,source_registry_unique_id,64 ids,Rename duplicate/empty identifiers and regenerate derived outputs.,blocking,pass,source_registry
 unique_id,data/seed/analysis_catalogue.jsonl,all ids unique and non-empty,analysis_catalogue_unique_id,25 ids,Rename duplicate/empty identifiers and regenerate derived outputs.,blocking,pass,analysis_catalogue
-unique_id,data/seed/source_versions.jsonl,all ids unique and non-empty,source_versions_unique_id,19 ids,Rename duplicate/empty identifiers and regenerate derived outputs.,blocking,pass,source_versions
+unique_id,data/seed/source_versions.jsonl,all ids unique and non-empty,source_versions_unique_id,20 ids,Rename duplicate/empty identifiers and regenerate derived outputs.,blocking,pass,source_versions
 unique_id,data/seed/source_files.jsonl,all ids unique and non-empty,source_files_unique_id,11 ids,Rename duplicate/empty identifiers and regenerate derived outputs.,blocking,pass,source_files
 unique_id,data/seed/conductor_tracks.jsonl,all ids unique and non-empty,conductor_tracks_unique_id,15 ids,Rename duplicate/empty identifiers and regenerate derived outputs.,blocking,pass,conductor_tracks
 unique_id,data/seed/roadmap_functions.jsonl,all ids unique and non-empty,roadmap_functions_unique_id,45 ids,Rename duplicate/empty identifiers and regenerate derived outputs.,blocking,pass,roadmap_functions

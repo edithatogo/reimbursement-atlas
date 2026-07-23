@@ -8,8 +8,10 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Literal, cast
 
+from reimburse_atlas.dashboard_review import dashboard_review_evidence
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.mapping_study_paths import latest_mapping_study_cycle, mapping_study_paths
+from reimburse_atlas.osf_registration import check_registration_drift
 from reimburse_atlas.registry import project_root
 
 ReleaseGateStatus = Literal["pass", "warn", "fail", "blocked", "missing"]
@@ -115,6 +117,8 @@ def build_release_readiness_report(root: Path | None = None) -> ReleaseReadiness
         _licence_review_queue_gate(repo),
         _mapping_study_gate(repo),
         _dashboard_human_review_gate(repo),
+        _osf_registration_gate(repo),
+        _research_evidence_gate(repo),
     ]
     summary = summarise_release_gates(gates)
     return ReleaseReadinessReport(gates=tuple(gates), summary=summary)
@@ -127,6 +131,18 @@ def summarise_release_gates(gates: list[ReleaseGateRecord]) -> ReleaseReadinessS
     required_blocker_count = sum(
         1 for gate in gates if gate.required and gate.status in {"fail", "blocked", "missing"}
     )
+    gate_status = {gate.id: gate.status for gate in gates}
+    repository_ready = required_blocker_count == 0
+    evidence_ready = repository_ready and all(
+        gate_status.get(identifier) == "pass"
+        for identifier in (
+            "mapping_study_human_review",
+            "dashboard_human_review",
+            "licence_review_queue",
+        )
+    )
+    osf_ready = gate_status.get("osf_registration") == "pass"
+    research_evidence_ready = gate_status.get("research_evidence") == "pass"
     return ReleaseReadinessSummary(
         schema_version="release-readiness-v2",
         gate_count=len(gates),
@@ -139,11 +155,11 @@ def summarise_release_gates(gates: list[ReleaseGateRecord]) -> ReleaseReadinessS
         review_pending_count=sum(
             1 for gate in gates if not gate.required and gate.status == "blocked"
         ),
-        repository_release_ready=required_blocker_count == 0,
-        research_publication_ready=False,
-        osf_registration_ready=False,
-        evidence_release_ready=False,
-        policy_claims_ready=False,
+        repository_release_ready=repository_ready,
+        research_publication_ready=evidence_ready and osf_ready and research_evidence_ready,
+        osf_registration_ready=osf_ready,
+        evidence_release_ready=evidence_ready,
+        policy_claims_ready=evidence_ready and research_evidence_ready,
     )
 
 
@@ -189,36 +205,65 @@ def _mapping_study_gate(repo: Path) -> ReleaseGateRecord:
 
 
 def _dashboard_human_review_gate(repo: Path) -> ReleaseGateRecord:
-    review = _read_json(repo / "data/derived/dashboard_review/human_review.json")
-    automated = _read_json(repo / "data/derived/dashboard_review/automated_review_packet.json")
-    raw_scope = review.get("scope")
-    scope: dict[str, Any] = cast("dict[str, Any]", raw_scope) if isinstance(raw_scope, dict) else {}
-    approved = (
-        review.get("status") == "approved_within_scope"
-        and bool(review.get("reviewed_at"))
-        and bool(review.get("reviewer"))
-        and scope.get("provenance") is True
-        and bool(scope.get("routes"))
-        and bool(scope.get("browsers"))
-        and bool(scope.get("operating_systems"))
-        and bool(scope.get("assistive_technology"))
-        and automated.get("status") == "pass"
-        and automated.get("screenshot_count") == 44
-        and review.get("commit") == automated.get("tested_commit")
-    )
+    evidence = dashboard_review_evidence(repo)
+    checks = cast("dict[str, bool]", evidence["checks"])
+    approved = all(checks.values())
+    failed = ",".join(key for key, value in checks.items() if not value) or "none"
     return ReleaseGateRecord(
         id="dashboard_human_review",
         category="dashboard",
         status="pass" if approved else "blocked",
         required=False,
-        evidence=(
-            f"record_status={review.get('status', 'missing')} "
-            f"provenance_reviewed={scope.get('provenance', False)} "
-            f"commit_parity={review.get('commit') == automated.get('tested_commit')}"
-        ),
+        evidence=(f"head={evidence['head'] or 'missing'} failed_checks={failed}"),
         recommended_action=(
             "Complete the commit-bound visual, keyboard, screen-reader and provenance review "
             "within the declared scope."
+        ),
+    )
+
+
+def _osf_registration_gate(repo: Path) -> ReleaseGateRecord:
+    freeze = _read_json(repo / "data/derived/osf/registration_freeze.json")
+    remote_path = repo / "data/derived/osf/remote_registration_snapshot.json"
+    remote = _read_json(remote_path) if remote_path.is_file() else None
+    result = check_registration_drift(freeze, remote)
+    reasons = cast("list[str]", result.get("reasons", []))
+    return ReleaseGateRecord(
+        id="osf_registration",
+        category="release",
+        status="pass" if result.get("status") == "ready" else "blocked",
+        required=False,
+        evidence=(
+            f"status={result.get('status', 'blocked')} "
+            f"reasons={','.join(reasons) if reasons else 'none'} "
+            f"registration_id={result.get('registration_id') or 'missing'}"
+        ),
+        recommended_action=(
+            "Submit the approved checksum-bound registration, export an immutable remote "
+            "snapshot, and verify exact protocol, manifest and source-cutoff parity."
+        ),
+    )
+
+
+def _research_evidence_gate(repo: Path) -> ReleaseGateRecord:
+    summary = _read_json(repo / "data/derived/evidence_readiness/summary.json")
+    question_count = summary.get("research_question_count")
+    evidence_ready = summary.get("evidence_ready")
+    complete = (
+        isinstance(question_count, int) and question_count > 0 and evidence_ready == question_count
+    )
+    return ReleaseGateRecord(
+        id="research_evidence",
+        category="data_governance",
+        status="pass" if complete else "blocked",
+        required=False,
+        evidence=(
+            f"evidence_ready={evidence_ready if isinstance(evidence_ready, int) else 0}/"
+            f"{question_count if isinstance(question_count, int) else 0}"
+        ),
+        recommended_action=(
+            "Retain prototype-only status until every research question has reviewed source "
+            "evidence, validated analysis and accountable claim review."
         ),
     )
 

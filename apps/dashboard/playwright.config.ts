@@ -8,7 +8,12 @@ export default defineConfig({
   ...(process.env.CI ? { workers: 2 } : {}),
   fullyParallel: true,
   outputDir: "../test-results",
-  reporter: [["list"], ["html", { open: "never", outputFolder: "../playwright-report" }]],
+  reporter: [
+    ["list"],
+    ["html", { open: "never", outputFolder: "../playwright-report" }],
+    ["json", { outputFile: "../test-results/results.json" }],
+    ["junit", { outputFile: "../test-results/results.xml" }],
+  ],
   use: {
     baseURL: "http://127.0.0.1:4321",
     browserName: "chromium",

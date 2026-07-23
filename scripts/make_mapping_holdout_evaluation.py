@@ -55,6 +55,10 @@ def _read(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
 def _jsonl(path: Path) -> list[dict[str, Any]]:
     if not path.is_file():
         return []
@@ -65,7 +69,9 @@ def _jsonl(path: Path) -> list[dict[str, Any]]:
     ]
 
 
-def build_evaluation(root: Path, cycle: str = DEFAULT_CYCLE) -> dict[str, Any]:
+def build_evaluation(  # ruff:ignore[too-many-locals]
+    root: Path, cycle: str = DEFAULT_CYCLE
+) -> dict[str, Any]:
     """Build a fail-closed evaluation from exact frozen-holdout predictions."""
     paths = mapping_study_paths(cycle)
     plan_path = root / paths.split_plan
@@ -79,12 +85,33 @@ def build_evaluation(root: Path, cycle: str = DEFAULT_CYCLE) -> dict[str, Any]:
     plan = cast("dict[str, Any]", _read(plan_path))
     holdout = cast("list[str]", plan["holdout_case_ids"])
     fingerprint = hashlib.sha256("\n".join(sorted(holdout)).encode()).hexdigest()
+    input_paths = {
+        "split_plan_sha256": plan_path,
+        "adjudications_sha256": root / paths.adjudications,
+        "threshold_model_sha256": root / paths.threshold_model,
+        "holdout_predictions_sha256": root / paths.holdout_predictions,
+    }
+    if any(not path.is_file() for path in input_paths.values()):
+        return _blocked(
+            "sealed_evaluation_inputs_incomplete",
+            cycle=cycle,
+            frame_sha256=str(plan["input_sha256"]),
+            fingerprint=fingerprint,
+        )
+    input_checksums = {name: _sha256(path) for name, path in input_paths.items()}
     prior_path = root / paths.evaluation
     if prior_path.is_file():
         prior = cast("dict[str, Any]", _read(prior_path))
-        if prior.get("evaluated_once") is True and prior.get("holdout_fingerprint") != fingerprint:
+        if prior.get("evaluated_once") is True:
+            prior_checksums = prior.get("sealed_input_sha256")
+            reason = (
+                "holdout_evaluation_already_sealed"
+                if prior.get("holdout_fingerprint") == fingerprint
+                and prior_checksums == input_checksums
+                else "sealed_evaluation_inputs_changed"
+            )
             return _blocked(
-                "holdout_fingerprint_changed",
+                reason,
                 cycle=cycle,
                 frame_sha256=str(plan["input_sha256"]),
                 fingerprint=fingerprint,
@@ -122,6 +149,7 @@ def build_evaluation(root: Path, cycle: str = DEFAULT_CYCLE) -> dict[str, Any]:
         "status": "accepted" if accepted else "rejected",
         "candidate_frame_sha256": plan["input_sha256"],
         "holdout_fingerprint": fingerprint,
+        "sealed_input_sha256": input_checksums,
         "threshold_source": "development_only",
         "denominators": {name: len(case_ids) for name, case_ids in grouped.items()},
         "exclusions": {"count": 0, "reasons": []},
@@ -209,8 +237,22 @@ def main() -> None:
     parser.add_argument("--cycle", default=DEFAULT_CYCLE)
     args = parser.parse_args()
     root = project_root()
-    result = build_evaluation(root, args.cycle)
     output = root / mapping_study_paths(args.cycle).evaluation
+    if output.is_file():
+        existing = cast("dict[str, Any]", _read(output))
+        if existing.get("evaluated_once") is True:
+            print(
+                json.dumps(
+                    {
+                        "status": existing["status"],
+                        "preserved": True,
+                        "reason": "holdout_evaluation_already_sealed",
+                    },
+                    indent=2,
+                )
+            )
+            return
+    result = build_evaluation(root, args.cycle)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps({"status": result["status"], "exclusions": result["exclusions"]}, indent=2))

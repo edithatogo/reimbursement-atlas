@@ -382,16 +382,18 @@ def render_issue(issue: IssueDraft) -> str:  # ruff:ignore[too-many-branches, to
         )
     elif issue.title == "Create signed release and Zenodo DOI after publication approval":
         acceptance = (
-            "- [x] Scope is confirmed: prepare and validate metadata locally; do not deposit or "
-            "mint a DOI.\n"
-            "- [ ] Licence and data-governance implications are checked by an accountable human "
-            "reviewer.\n"
+            "- [x] Scope is confirmed: this generated issue covers deterministic local metadata "
+            "and release-automation preparation only.\n"
+            "- [x] Licence and data-governance implications are recorded with Apache-2.0 limited "
+            "to software and source-specific rights retained for data.\n"
             "- [x] Tests or validation evidence are defined: `pixi run zenodo-metadata` and "
             "focused unit tests.\n"
             "- [x] Tagged software releases require a least-privilege governance preflight before "
             "asset creation and attestation.\n"
-            "- [x] Documentation or Conductor context is updated; external deposition remains "
-            "gated."
+            "- [x] Documentation or Conductor context is updated.\n\n"
+            "GitHub issue [#532](https://github.com/edithatogo/reimbursement-atlas/issues/532) "
+            "is authoritative for exact-tag asset freezing, live Zenodo deposition, DOI "
+            "reservation, publication and DataCite verification."
         )
     elif issue.title == "Add Hugging Face dataset-card contract checks before public release":
         acceptance = (

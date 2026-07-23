@@ -1,0 +1,11 @@
+{
+  "analysis_manifest_digest": "e2d87ba924cbd01b8954d45c66ddd28d88c17ff3746aea1a91de616445230678",
+  "approval_reference": "Accountable owner approval in Codex task on 2026-07-23; registration is limited to repository and data records and excludes papers and preprints.",
+  "protocol_digest": "d16aced4316d57a5e0e965707769142fc5c7a8c37461257c9884b019f11f2555",
+  "reviewed_at": "2026-07-23T12:00:54Z",
+  "reviewer": "edithatogo",
+  "schema_version": "osf-registration-decision-v1",
+  "scope": "repository_data_and_research_records_only",
+  "source_cutoff": "2026-07-23T00:00:00Z",
+  "status": "approved_for_registration"
+}

@@ -41,6 +41,7 @@ jobs:
           pixi run source-validation
           pixi run source-contracts
           pixi run github-project-export
+          pixi run osf-plan
           pixi run final-handoff
           pixi run protocol-status
           pixi run roadmap-linkages

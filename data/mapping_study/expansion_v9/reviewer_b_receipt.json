@@ -1,0 +1,15 @@
+{
+  "schema_version": "mapping-reviewer-session-receipt-v1",
+  "reviewer_role": "reviewer_b",
+  "reviewer_session_id": "0e2f7526-4d60-45de-bbac-c8a77980ab32",
+  "bounded_mandate": "Independently classify the complete blinded mapping packet under the bounded calibration protocol.",
+  "candidate_frame_sha256": "1d11079141b1c4e45bbea85f2630c2f16074efce808492bb616af817ca478818",
+  "packet_sha256": "03b49bff99bbbf661ccc3d4a14eacedc650468e723d85634c4da7b3129346f1d",
+  "started_at": "2026-07-23T06:43:37.035Z",
+  "completed_at": "2026-07-23T06:43:37.091Z",
+  "isolation_attestation": {
+    "other_review_not_accessed": true,
+    "hypotheses_not_accessed": true,
+    "split_assignment_not_accessed": true
+  }
+}

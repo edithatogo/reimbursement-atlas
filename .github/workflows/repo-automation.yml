@@ -37,6 +37,7 @@ jobs:
           pixi run local-quality
           pixi run project-issues
           pixi run github-project-export
+          pixi run osf-plan
           pixi run final-handoff
           pixi run protocol-status
           pixi run roadmap-linkages
@@ -69,6 +70,7 @@ jobs:
           # artefacts and the authoritative decision ledger have settled.
           pixi run dashboard-status
           pixi run dashboard-owner-review-packet
+          pixi run dashboard-review-current
           pixi run zenodo-draft
           pixi run zenodo-deposition-plan
       - name: Ensure generated files are committed

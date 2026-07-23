@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 import json
+from datetime import datetime
 from pathlib import Path
 from typing import Any, cast
 
-from jsonschema import Draft202012Validator
+from jsonschema import Draft202012Validator, FormatChecker
 from jsonschema.exceptions import SchemaError
 
 from reimburse_atlas.registry import project_root
@@ -39,13 +40,52 @@ CYCLE_JSONL_REVIEW_CONTRACTS = (
         "adjudications.jsonl",
     ),
 )
+CYCLE_JSON_REVIEW_CONTRACTS = (
+    (
+        "mapping_reviewer_a_receipt",
+        "schema/MappingReviewerSessionReceipt.schema.json",
+        "reviewer_a_receipt.json",
+    ),
+    (
+        "mapping_reviewer_b_receipt",
+        "schema/MappingReviewerSessionReceipt.schema.json",
+        "reviewer_b_receipt.json",
+    ),
+)
 JSON_REVIEW_CONTRACTS = (
     (
         "dashboard_review",
         "schema/DashboardHumanReviewRecord.schema.json",
         "data/derived/dashboard_review/human_review.json",
     ),
+    (
+        "osf_publication_review",
+        "schema/OsfPublicationDecision.schema.json",
+        "data/osf_review/publication_decision.json",
+    ),
+    (
+        "osf_registration_review",
+        "schema/OsfRegistrationDecision.schema.json",
+        "data/osf_review/registration_decision.json",
+    ),
 )
+
+
+def _is_date_time(value: object) -> bool:
+    if not isinstance(value, str):
+        return True
+    try:
+        datetime.fromisoformat(value)
+    except ValueError:
+        return False
+    return "T" in value
+
+
+def _format_checker() -> FormatChecker:
+    checker = FormatChecker()
+    if "date-time" not in checker.checkers:
+        checker.checks("date-time")(_is_date_time)
+    return checker
 
 
 def validate_review_file(
@@ -61,7 +101,7 @@ def validate_review_file(
 
     try:
         Draft202012Validator.check_schema(schema)
-        validator = Draft202012Validator(schema)
+        validator = Draft202012Validator(schema, format_checker=_format_checker())
     except SchemaError as error:  # pragma: no cover - defensive boundary for a committed schema
         return [f"{schema_path}: invalid JSON Schema: {error}"]
 
@@ -93,7 +133,7 @@ def validate_review_document(root: Path, schema_name: str, document_name: str) -
         return [f"{schema_path}: cannot read schema: {error}"]
     try:
         Draft202012Validator.check_schema(schema)
-        validator = Draft202012Validator(schema)
+        validator = Draft202012Validator(schema, format_checker=_format_checker())
     except SchemaError as error:  # pragma: no cover - defensive boundary for a committed schema
         return [f"{schema_path}: invalid JSON Schema: {error}"]
     if not document_path.exists():
@@ -116,7 +156,7 @@ def validate_root_jsonl_review(root: Path, schema_name: str, document_name: str)
     try:
         schema = json.loads(schema_path.read_text(encoding="utf-8"))
         Draft202012Validator.check_schema(schema)
-        validator = Draft202012Validator(schema)
+        validator = Draft202012Validator(schema, format_checker=_format_checker())
     except (OSError, json.JSONDecodeError, SchemaError) as error:
         return [f"{schema_path}: cannot load valid schema: {error}"]
     if not document_path.exists():
@@ -169,6 +209,11 @@ def main() -> None:
             errors.extend(validate_root_jsonl_review(root, schema_name, relative))
             count = sum(1 for line in path.read_text(encoding="utf-8").splitlines() if line.strip())
             counts.append(f"{review_name}[{path.parent.name}]={count}")
+    for review_name, schema_name, filename in CYCLE_JSON_REVIEW_CONTRACTS:
+        for path in sorted(cycle_root.glob(f"*/{filename}")):
+            relative = path.relative_to(root).as_posix()
+            errors.extend(validate_review_document(root, schema_name, relative))
+            counts.append(f"{review_name}[{path.parent.name}]=1")
     if errors:
         raise SystemExit("Review schema validation failed:\n- " + "\n- ".join(errors))
     print("Review schema validation passed: " + ", ".join(counts))

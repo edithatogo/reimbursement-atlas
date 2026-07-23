@@ -20,6 +20,7 @@
     "reviewer_a_decision": {"enum": ["positive", "negative", "exclude", "uncertain"]},
     "reviewer_b_decision": {"enum": ["positive", "negative", "exclude", "uncertain"]},
     "final_decision": {"enum": ["positive", "negative", "exclude"]},
+    "rationale": {"type": "string", "minLength": 1},
     "accountable_reviewer": {"type": "string", "minLength": 1},
     "accountable_approved_at": {"type": "string", "format": "date-time"},
     "approved_proposal_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
@@ -28,7 +29,7 @@
   "allOf": [
     {
       "if": {"properties": {"schema_version": {"const": "mapping-adjudication-v2"}}},
-      "then": {"required": ["target_relation"]}
+      "then": {"required": ["target_relation", "rationale"]}
     }
   ]
 }

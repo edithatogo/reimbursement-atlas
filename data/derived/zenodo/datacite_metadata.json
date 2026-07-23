@@ -11,14 +11,32 @@
       ]
     }
   ],
+  "dates": [
+    {
+      "date": "2020/2026",
+      "dateType": "Valid"
+    }
+  ],
   "descriptions": [
     {
-      "description": "Reproducible, licence-aware tooling for comparing public reimbursement schedules, coverage decisions and policy-analysis metadata across jurisdictions. This record is release metadata preparation only; no Zenodo deposition or DOI is implied.",
+      "description": "Reproducible, licence-aware software and permitted derived metadata for comparing public reimbursement schedules, coverage decisions and policy-analysis metadata across jurisdictions.",
       "descriptionType": "Abstract"
     },
     {
       "description": "Apache-2.0 applies to software only. Derived data retain source-specific rights recorded in the provenance and licensing manifests.",
       "descriptionType": "TechnicalInfo"
+    }
+  ],
+  "fundingReferences": [],
+  "geoLocations": [
+    {
+      "geoLocationPlace": "Australia"
+    },
+    {
+      "geoLocationPlace": "United States"
+    },
+    {
+      "geoLocationPlace": "United Kingdom"
     }
   ],
   "publicationYear": "2026",

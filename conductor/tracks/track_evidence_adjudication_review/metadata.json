@@ -1,15 +1,15 @@
 {
   "track_id": "track_evidence_adjudication_review",
   "type": "feature",
-  "status": "in_progress",
+  "status": "completed",
   "created_at": "2026-07-20T00:00:00Z",
-  "updated_at": "2026-07-23T06:30:00Z",
+  "updated_at": "2026-07-23T12:00:54Z",
   "description": "Close accountable human evidence, mapping, source-rights and dashboard review gates.",
   "evidence_schema": "1.0",
   "gates": [
-    {"id": "mapping_adjudication", "kind": "human_review", "status": "blocked", "evidence": "The final deduplicated expansion_v7 frame contains 1,500 unique groups at SHA-256 630ea737a420486a5204660789284ffbff6a1f353e36e779f31fe1dd41646a22. Two isolated reviews are complete (77.47% agreement; Cohen's kappa 0.544). Independent proposal SHA-256 7e6e2d1e383dfbd49d4066bb9dbd87a971c0a556ef2ad69a21fb0fc776a986d8 yields 462 positive, 1,033 negative and 5 excluded cases but leaves 83 procedure/pathology and 27 device positive cases missing. No split or holdout was exposed. Authoritative positive crosswalk evidence or accountable domain adjudication is required; quotas cannot be waived."},
-    {"id": "counterpart_spectrum", "kind": "source_acquisition", "status": "pass", "evidence": "Reviewed RxNorm CPC, CMS ASP/PFS/HCPCS Level II, HPO and openFDA bundles produce the separately frozen 1,500-case expansion_v2 frame at SHA-256 29b357cb20ee2328bb995e733b71075f549703a46f0b62e8a31c0a052a25916c with no structural family gap. Restricted terminology remains optional local enrichment."},
-    {"id": "source_rights", "kind": "human_review", "status": "pass", "evidence": "The current checksum-bound ledger validates 194 approved decisions. CMS/MBS/PBS/HCPCS restrictions remain explicit; Apache-2.0 applies only to project code and metadata."},
-    {"id": "visual_review", "kind": "human_review", "status": "pending", "evidence": "The commit-bound automated packet covers 44 browser tests and 36 screenshot hashes against commit 591d84a1b5c4dd7d703414562c1fe2082dd7ef32; scoped accountable human review remains pending and automated evidence is not universal WCAG certification."}
+    {"id": "mapping_adjudication", "kind": "human_review", "status": "pass", "evidence": "The expansion_v9 frame contains 1,500 unique groups at SHA-256 1d11079141b1c4e45bbea85f2630c2f16074efce808492bb616af817ca478818. Two isolated receipt-bound reviews achieved 81.07% agreement and Cohen's kappa 0.664. Accountable reviewer edithatogo approved proposal SHA-256 dd45a5f8a94d6e050e67c4ee88226104a4e599e8dcd016822e0e9ab7f3830ef5 on 2026-07-23. The immutable adjudications are SHA-256 6c30943a871b72cd2ddce637e840d6a1a2a8a6a0fda89658da95414c1495d545. A development-only threshold of 0.2 achieved 0.895 balanced accuracy; the sealed 150-case holdout achieved 1.0 sensitivity, 0.7733 specificity, 0.8152 precision, 1.0 NPV and 0.8867 balanced accuracy. Evaluation SHA-256: d37f4d3ca93f60ac628dfb1ed290887fa06a540298cbf5af157561b5ac80696b."},
+    {"id": "counterpart_spectrum", "kind": "source_acquisition", "status": "pass", "evidence": "Reviewed RxNorm CPC, CMS ASP/PFS/HCPCS Level II, HPO and complete 7,084-record openFDA bundles plus ignored local restricted CPT evidence produce the separately frozen 1,500-case expansion_v9 frame with no structural family gap. Restricted descriptors remain local and untracked."},
+    {"id": "source_rights", "kind": "human_review", "status": "pass", "evidence": "The current checksum-bound ledger validates 199 approved decisions. CMS/MBS/PBS/HCPCS restrictions remain explicit; Apache-2.0 applies only to project code and metadata."},
+    {"id": "visual_review", "kind": "human_review", "status": "pass", "evidence": "Accountable reviewer edithatogo approved commit 345576a6f34f3a5ff1d29dd7bca95ebd3abb9f91 within the tested scope. Hosted run 30004589594 passed 64 tests with exact 11-route by 4-project coverage, 44 attributable screenshots, source-fingerprint parity, structured provenance assertions and prohibited-content checks. Automated packet SHA-256: 8bd309e36319971ad2439eefdba6f3a7d175021cd4ef6dc4f2b3ae59aa951523; owner packet SHA-256: acac3971909baaa8a85cb3da638b5957cb1d0902edeae39d9f203bcad9af5405. Independent manual VoiceOver testing was not performed; this is not a universal accessibility-conformance claim."}
   ]
 }
