@@ -8,7 +8,7 @@
   "evidence_schema": "1.0",
   "gates": [
     {"id": "source_catalogue", "kind": "repository", "status": "pass", "evidence": "Historical source catalogues and acquisition manifests exist."},
-    {"id": "source_rights", "kind": "human_review", "status": "pass", "evidence": "All 191 current checksum-bound rows are approved; source-specific restrictions remain authoritative."},
+    {"id": "source_rights", "kind": "human_review", "status": "pass", "evidence": "All 194 current checksum-bound rows are approved; source-specific restrictions remain authoritative."},
     {"id": "raw_payload_policy", "kind": "repository", "status": "pass", "evidence": "Public-data policy excludes raw/local cache paths from tracked outputs."},
     {"id": "counterpart_sources", "kind": "source_acquisition", "status": "pass", "evidence": "Reviewed RxNorm CPC, CMS ASP/PFS/HCPCS Level II, HPO and openFDA bundles produce a separately versioned 1,500-case expansion frame with no structural family gap. Fresh blinded review remains issue #491, not a source-acquisition gate."}
   ]

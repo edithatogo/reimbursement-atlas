@@ -1,10 +1,11 @@
 {
-  "all_approved": false,
+  "all_approved": true,
   "approval_mutation_allowed": false,
-  "approved_count": 0,
-  "artifact_count": 191,
+  "approved_count": 194,
+  "artifact_count": 194,
   "blocked_count": 0,
-  "pending_count": 191,
-  "review_required_count": 191,
+  "pending_count": 0,
+  "queue_pending_count": 194,
+  "review_required_count": 194,
   "schema_version": "licence-review-queue-v1"
 }
