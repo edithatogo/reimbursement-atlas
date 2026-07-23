@@ -3,14 +3,14 @@
   "type": "feature",
   "status": "in_progress",
   "created_at": "2026-07-05T00:00:00Z",
-  "updated_at": "2026-07-23T00:00:00Z",
+  "updated_at": "2026-07-23T03:30:00Z",
   "description": "Present a citable accessible public dashboard with bounded review evidence.",
   "gates": [
     {
       "id": "dashboard_human_review",
       "kind": "human_review",
       "status": "pending",
-      "evidence": "Automated 44-test browser matrix passed; accountable scoped review record is absent."
+      "evidence": "Automated 44-test browser matrix passed with 36 screenshot hashes bound to commit 591d84a1b5c4dd7d703414562c1fe2082dd7ef32; accountable scoped review record is absent."
     }
   ]
 }

@@ -20,7 +20,10 @@ FRAME_TARGETS = {
     "devices_other": 200,
 }
 SOURCE_FAMILIES = {
-    "procedures_pathology": ({"au_mbs"}, {"us_cms_clfs", "us_cms_pfs"}),
+    "procedures_pathology": (
+        {"au_mbs"},
+        {"us_cms_clfs", "us_cms_pfs", "us_cms_hcpcs_level_ii"},
+    ),
     "medicines": ({"au_pbs"}, {"atc", "rxnorm", "us_cms_asp"}),
     "genomics_coverage": ({"au_mbs", "uk_genomic_test_directory"}, {"loinc", "hpo"}),
     "devices_other": (
