@@ -43,6 +43,13 @@
   SHA-256 `7e6e2d1e383dfbd49d4066bb9dbd87a971c0a556ef2ad69a21fb0fc776a986d8`.
   No split or holdout exists. Closing this task requires authoritative positive crosswalks or
   accountable domain adjudication that supplies additional evidence; quotas cannot be waived.
+  `expansion_v9` is the successor evidence cycle. Its 1,500-case frame is frozen at SHA-256
+  `1d11079141b1c4e45bbea85f2630c2f16074efce808492bb616af817ca478818`; two isolated
+  checksum-bound reviews achieved 81.07% agreement and Cohen's kappa 0.664. Independent
+  adjudication proposes 860 positive, 624 negative and 16 excluded cases with zero family-label
+  quota gaps. The exact proposal SHA-256
+  `dd45a5f8a94d6e050e67c4ee88226104a4e599e8dcd016822e0e9ab7f3830ef5` is pending
+  accountable-owner approval. No split or holdout has been created or exposed.
   (Subissue #491)
 - [x] EVID-02F: Implement the licence-scoped RVU26C local enrichment path for procedure/pathology
   review. Descriptor-bearing hypotheses are ignored local evidence; the tracked summary is
@@ -51,6 +58,10 @@
 - [x] EVID-02G: Expand device evidence from the first 1,000 openFDA classifications to the complete
   7,084-record corpus, with deterministic page and payload checksums. Use it only in a new
   immutable study cycle; do not alter predecessor packets or decisions. (Subissue #491)
+- [~] EVID-02H: Freeze the dual-tier `expansion_v9` cycle, validate two distinct reviewer-session
+  receipts, preserve restricted descriptors only in ignored local evidence, and produce a
+  zero-gap checksum-bound adjudication proposal. Complete only after the accountable owner
+  approves the exact current proposal hash. (Subissue #491)
 - [x] EVID-02C: Make every review, ledger, adjudication, split, threshold, prediction and evaluation
   command cycle-aware so `expansion_v2` cannot overwrite the immutable first study. Reject unsafe
   cycle names and retain backward-compatible initial-cycle paths. (Subissue #491)
