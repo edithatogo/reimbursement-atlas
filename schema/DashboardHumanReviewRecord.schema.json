@@ -9,7 +9,7 @@
     "status": {"enum": ["pending", "findings_recorded", "approved_within_scope", "rejected"]},
     "commit": {"type": "string", "pattern": "^[0-9a-f]{7,64}$"},
     "reviewer": {"type": "string", "minLength": 1},
-    "reviewed_at": {"type": ["string", "null"], "format": "date"},
+    "reviewed_at": {"type": ["string", "null"]},
     "scope": {
       "type": "object",
       "additionalProperties": false,
@@ -23,11 +23,39 @@
       }
     },
     "findings": {"type": "array", "items": {"type": "string"}},
-    "evidence_artifacts": {"type": "array", "items": {"type": "string"}},
+    "evidence_artifacts": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
     "remediation_or_waiver": {"type": ["string", "null"]},
     "approval_scope": {
       "type": ["string", "null"],
-      "not": {"type": "string", "pattern": "WCAG compliant"}
+      "not": {
+        "type": "string",
+        "pattern": "[Ww][Cc][Aa][Gg](\\s+[0-9.]+)?\\s+([Cc][Oo][Mm][Pp][Ll][Ii][Aa][Nn][Tt]|[Cc][Oo][Nn][Ff][Oo][Rr][Mm]([Aa][Nn][Tt]|[Aa][Nn][Cc][Ee]))"
+      }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"status": {"const": "approved_within_scope"}},
+        "required": ["status"]
+      },
+      "then": {
+        "required": ["reviewed_at", "evidence_artifacts", "approval_scope"],
+        "properties": {
+          "reviewed_at": {"type": "string", "format": "date-time"},
+          "evidence_artifacts": {"minItems": 1},
+          "approval_scope": {"type": "string", "minLength": 1},
+          "scope": {
+            "properties": {
+              "provenance": {"const": true}
+            }
+          }
+        }
+      }
+    }
+  ]
 }

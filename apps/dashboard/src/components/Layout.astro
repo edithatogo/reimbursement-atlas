@@ -9,6 +9,23 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const publicPath = (path: string) => `${baseUrl}${path.replace(/^\//, "")}`;
+const requestPath = Astro.url.pathname.startsWith(baseUrl)
+  ? `/${Astro.url.pathname.slice(baseUrl.length).replace(/^\/|\/$/g, "")}`
+  : Astro.url.pathname;
+const normalizedPath = requestPath === "/" ? "/" : `${requestPath.replace(/\/$/, "")}/`;
+const isCurrent = (path: string) =>
+  path === "/" ? normalizedPath === "/" : normalizedPath.startsWith(path);
+const navigation = [
+  ["/", "Graph"],
+  ["/sources/", "Sources"],
+  ["/analyses/", "Analyses"],
+  ["/crosswalks/", "Crosswalks"],
+  ["/ontologies/", "Ontologies"],
+  ["/demonstrators/", "Demonstrators"],
+  ["/readiness/", "Readiness"],
+  ["/automation/", "Automation"],
+  ["/roadmap/", "Roadmap"],
+] as const;
 ---
 
 <html lang="en">
@@ -18,33 +35,49 @@ const publicPath = (path: string) => `${baseUrl}${path.replace(/^\//, "")}`;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <link rel="icon" href={publicPath("/favicon.svg")} />
-    <style>
+    <style is:global>
       :root {
         color-scheme: light;
         --ink: #173042;
         --muted: #567080;
         --paper: #f5f1e8;
         --panel: #fffdf7;
-        --accent: #c45a32;
+        --accent: #a54524;
         --line: #d9cec0;
         font-family: Georgia, "Times New Roman", serif;
         line-height: 1.5;
       }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        max-width: 100%;
+      }
       body {
         margin: 0;
+        max-width: 100%;
         background: radial-gradient(circle at top right, #f8dcc8, transparent 34rem), var(--paper);
         color: var(--ink);
       }
+      .site-header,
       main {
         margin: 0 auto;
         max-width: 1240px;
         padding: 2rem;
+        width: 100%;
+      }
+      main > *,
+      section,
+      .status-grid > * {
+        min-width: 0;
       }
       nav {
         display: flex;
         flex-wrap: wrap;
         gap: 0.75rem;
-        margin: 1rem 0 2rem;
+        margin: 0;
       }
       nav a,
       .button-link {
@@ -60,12 +93,38 @@ const publicPath = (path: string) => `${baseUrl}${path.replace(/^\//, "")}`;
         border-color: var(--accent);
         color: var(--accent);
       }
+      nav a[aria-current="page"] {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: var(--panel);
+        font-weight: 700;
+      }
+      :where(a, button, input, summary, [tabindex]):focus-visible {
+        outline: 0.2rem solid #0b6e8a;
+        outline-offset: 0.2rem;
+      }
+      .skip-link {
+        background: var(--ink);
+        color: var(--panel);
+        left: 1rem;
+        padding: 0.6rem 0.9rem;
+        position: fixed;
+        text-decoration: none;
+        top: 0.75rem;
+        transform: translateY(-200%);
+        transition: transform 120ms ease-out;
+        z-index: 100;
+      }
+      .skip-link:focus {
+        transform: translateY(0);
+      }
       section {
         margin: 2rem 0;
       }
       table {
         border-collapse: collapse;
-        width: 100%;
+        min-width: 100%;
+        width: max-content;
       }
       th,
       td {
@@ -74,6 +133,7 @@ const publicPath = (path: string) => `${baseUrl}${path.replace(/^\//, "")}`;
         padding: 0.45rem 0.55rem;
         text-align: left;
         vertical-align: top;
+        overflow-wrap: anywhere;
       }
       th {
         font-size: 0.9rem;
@@ -82,7 +142,10 @@ const publicPath = (path: string) => `${baseUrl}${path.replace(/^\//, "")}`;
         font-size: 0.88rem;
       }
       .table-scroll {
+        max-width: 100%;
         overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        scrollbar-gutter: stable;
       }
       .muted {
         color: var(--muted);
@@ -101,10 +164,22 @@ const publicPath = (path: string) => `${baseUrl}${path.replace(/^\//, "")}`;
       }
       code {
         border-radius: 0.25rem;
+        overflow-wrap: anywhere;
         padding: 0.1rem 0.25rem;
       }
+      pre {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        white-space: pre-wrap;
+      }
+      img,
+      svg,
+      canvas {
+        height: auto;
+        max-width: 100%;
+      }
       h1, h2, h3 { line-height: 1.1; }
-      h1 { font-size: clamp(2.5rem, 8vw, 5.5rem); max-width: 12ch; }
+      h1 { font-size: clamp(2.25rem, 8vw, 5.5rem); max-width: 12ch; overflow-wrap: anywhere; }
       h2 { color: var(--accent); }
       .eyebrow { color: var(--accent); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
       .section-heading { align-items: end; display: flex; gap: 1rem; justify-content: space-between; }
@@ -121,22 +196,48 @@ const publicPath = (path: string) => `${baseUrl}${path.replace(/^\//, "")}`;
       .table-filter { color: var(--muted); display: flex; flex-direction: column; font-size: 0.9rem; gap: 0.25rem; max-width: 24rem; }
       .table-filter input { border: 1px solid var(--line); border-radius: 0.3rem; font: inherit; padding: 0.5rem; }
       .provenance-panel { margin: 2rem 0; }
-      @media (max-width: 700px) { main { padding: 1rem; } .status-grid { grid-template-columns: 1fr; } .section-heading { align-items: start; flex-direction: column; } }
+      .graph-visual { height: min(720px, 70vh); max-width: 100%; overflow: hidden; }
+      .graph-alternative { background: var(--panel); border: 1px solid var(--line); border-radius: 0.6rem; padding: 1rem; }
+      .graph-alternative summary { cursor: pointer; font-weight: 700; }
+      @media (max-width: 700px) {
+        .site-header,
+        main { padding: 1rem; }
+        .status-grid { grid-template-columns: 1fr; }
+        .section-heading { align-items: start; flex-direction: column; }
+      }
+      @media (forced-colors: active) {
+        nav a[aria-current="page"] { border: 0.2rem solid currentColor; }
+        :where(a, button, input, summary, [tabindex]):focus-visible { outline: 0.2rem solid Highlight; }
+      }
     </style>
   </head>
   <body>
-    <main>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
       <nav aria-label="Dashboard sections">
-        <a href={publicPath("/")}>Graph</a>
-        <a href={publicPath("/sources/")}>Sources</a>
-        <a href={publicPath("/analyses/")}>Analyses</a>
-        <a href={publicPath("/crosswalks/")}>Crosswalks</a>
-        <a href={publicPath("/ontologies/")}>Ontologies</a>
-        <a href={publicPath("/readiness/")}>Readiness</a>
-        <a href={publicPath("/automation/")}>Automation</a>
-        <a href={publicPath("/roadmap/")}>Roadmap</a>
+        {
+          navigation.map(([path, label]) => (
+            <a href={publicPath(path)} aria-current={isCurrent(path) ? "page" : undefined}>
+              {label}
+            </a>
+          ))
+        }
       </nav>
+    </header>
+    <main id="main-content" tabindex="-1">
       <slot />
     </main>
+    <script>
+      document.querySelectorAll<HTMLElement>(".table-scroll").forEach((region, index) => {
+        if (!region.hasAttribute("tabindex")) region.tabIndex = 0;
+        if (!region.hasAttribute("aria-label")) {
+          const caption = region.querySelector("caption")?.textContent?.trim();
+          region.setAttribute(
+            "aria-label",
+            caption ? `Scrollable table: ${caption}` : `Scrollable data table ${index + 1}`,
+          );
+        }
+      });
+    </script>
   </body>
 </html>

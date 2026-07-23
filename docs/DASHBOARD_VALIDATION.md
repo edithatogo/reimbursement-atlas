@@ -20,7 +20,8 @@ cd apps/dashboard
 npm run build
 ```
 
-The build performs `astro check` before `astro build`. It currently renders nine static routes:
+The build performs `astro check` before `astro build`. It currently renders nine public route
+families plus generated source and analysis detail routes:
 
 - `/`
 - `/sources/`
@@ -43,15 +44,18 @@ cd apps/dashboard && npm run build
 cd ../.. && pixi run dashboard-quality
 ```
 
-The dashboard tables provide client-side text filtering, CSV downloads and stable section anchors.
-Source and mapping pages link back to generated provenance and review artefacts.
+The dashboard tables provide client-side text filtering, live result-count announcements, CSV
+downloads, captions and stable section anchors. Wide tables remain inside keyboard-focusable,
+locally scrollable containers rather than widening the page. Source and mapping pages link back to
+generated provenance and review artefacts.
 
 ## Browser smoke gate
 
-Playwright exercises every public route in desktop and mobile Chromium profiles, checks status
-codes, page metadata, console errors and page-error events, runs axe-core accessibility checks,
-enforces a 5-second DOMContentLoaded and 8 MB transferred-resource budget, and captures bounded
-screenshot and performance artefacts for CI diagnostics:
+Playwright exercises every public route family plus representative source and analysis detail
+routes in desktop and mobile Chromium, Firefox and WebKit profiles. It checks status codes, page
+metadata, current-navigation state, captions, page-level horizontal overflow, console errors and
+page-error events; runs axe-core accessibility checks; enforces a 5-second DOMContentLoaded and
+8 MB transferred-resource budget; and captures bounded screenshot and performance artefacts:
 
 ```bash
 cd apps/dashboard
@@ -62,7 +66,9 @@ npm run test:browser
 The GitHub Pages workflow retains the Playwright HTML report, route screenshots, performance
 metrics and axe-core attachments as `dashboard-review-evidence-<run-id>` for 30 days. Reviewers
 should inspect that artifact on both desktop and mobile profiles and record the human visual and
-accessibility decision in issue [#188](https://github.com/edithatogo/reimbursement-atlas/issues/188).
+accessibility decision in issue [#493](https://github.com/edithatogo/reimbursement-atlas/issues/493).
+Public blocker/provenance parity is tracked in issue
+[#501](https://github.com/edithatogo/reimbursement-atlas/issues/501).
 Artifact availability is evidence for review, not approval by itself.
 
 Pixel-diff baselines are intentionally not committed yet because the project currently validates
@@ -71,13 +77,19 @@ and human review. Pull requests now exercise Chromium desktop/mobile plus Firefo
 WebKit desktop through the pinned `dashboard-browser.yml` workflow. The responsive smoke matrix
 and axe-core checks are automated, but they do not substitute for approval of platform-specific
 visual or accessibility baselines.
-The suite also checks that the first public table's search control is keyboard-focusable and
-filters rows when used from the keyboard. This is interaction evidence, not WCAG conformance or
-human assistive-technology approval.
+The suite also checks skip navigation, visible keyboard focus, filter result announcements, the
+semantic graph alternative, representative detail pages, and bounded reflow at 640 px and 320 px
+viewports (200% and 400% desktop-width equivalents). These are automated interaction and reflow
+checks, not WCAG conformance or human assistive-technology approval.
 
 ## Cosmograph compatibility note
 
 The current Cosmograph dependency chain imports `gl-bench`. Under the Astro 7 / Vite 8 / Rolldown build path, the browser field can resolve to a minified file without a default ESM export. The dashboard config aliases `gl-bench` to its ESM module file so the static build succeeds without patching vendored package files.
+
+The WebGL canvas is treated as a visual overview. Every supported browser receives a semantic,
+keyboard-operable alternative with node counts, a bounded node table and links to the complete
+generated node and relationship CSVs. Firefox may use only that alternative where the headless
+renderer is unavailable.
 
 ## Dashboard-safe data contract
 
@@ -116,7 +128,7 @@ uv run --all-extras python scripts/check_dashboard_pages_assets.py
 
 This prevents root-relative `/_astro/` or `/data/` references from reaching the public site.
 
-The accountable review record contract is [`schema/DashboardHumanReviewRecord.schema.json`](../schema/DashboardHumanReviewRecord.schema.json), with a copy-ready template in [`DASHBOARD_HUMAN_REVIEW_RECORD.md`](DASHBOARD_HUMAN_REVIEW_RECORD.md). It requires the deployed commit, reviewer, route/browser/OS/assistive-technology scope, provenance scope, findings and any remediation or waiver. The schema deliberately rejects the unscoped phrase `WCAG compliant`.
+The accountable review record contract is [`schema/DashboardHumanReviewRecord.schema.json`](../schema/DashboardHumanReviewRecord.schema.json), with a copy-ready template in [`DASHBOARD_HUMAN_REVIEW_RECORD.md`](DASHBOARD_HUMAN_REVIEW_RECORD.md). It requires the deployed commit, reviewer, route/browser/OS/assistive-technology scope, provenance scope, findings and any remediation or waiver. An `approved_within_scope` record additionally requires a date-time, at least one durable evidence artifact, a non-empty bounded approval scope and completed provenance review. The schema rejects case variants of unscoped `WCAG compliant` or `WCAG conformant` claims.
 
 When a completed record is placed at `data/derived/dashboard_review/human_review.json`, the `review-schemas` Pixi task validates it automatically. An absent record remains an explicit pending human-review state rather than a failed software gate.
 

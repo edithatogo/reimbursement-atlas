@@ -24,6 +24,10 @@ EXPECTED_DETAIL_ROUTES = (
     "/sources/au_mbs/",
     "/analyses/cognitive_vs_procedural_ratio/",
 )
+DETAIL_INDEX_ROUTES = {
+    "/sources/": "/sources/",
+    "/analyses/": "/analyses/",
+}
 
 
 class _Links(HTMLParser):
@@ -46,28 +50,47 @@ def _route_file(dist: Path, route: str) -> Path:
     return dist / ("index.html" if route == "/" else route.strip("/") + "/index.html")
 
 
+def _validate_page_links(dist: Path, route: str, page: Path) -> tuple[list[str], set[str]]:
+    """Validate one route's local links and return discovered detail routes."""
+    errors: list[str] = []
+    details: set[str] = set()
+    parser = _Links()
+    parser.feed(page.read_text(encoding="utf-8"))
+    detail_prefix = DETAIL_INDEX_ROUTES.get(route)
+    for link in parser.links:
+        if detail_prefix and link.startswith(detail_prefix) and link != detail_prefix:
+            details.add(link)
+        if link.startswith("/data/") or link == "/status.json":
+            target = dist / link.lstrip("/")
+        elif link in EXPECTED_ROUTES:
+            target = _route_file(dist, link)
+        else:
+            continue
+        if not target.exists():
+            errors.append(f"{route} links to missing target: {link}")
+    return errors, details
+
+
 def validate_dashboard_routes(dist: Path) -> list[str]:
     """Return missing route or local navigation errors."""
     errors: list[str] = []
+    linked_detail_routes: set[str] = set()
     for route in EXPECTED_ROUTES:
         page = _route_file(dist, route)
         if not page.exists():
             errors.append(f"missing generated route: {route}")
             continue
-        parser = _Links()
-        parser.feed(page.read_text(encoding="utf-8"))
-        for link in parser.links:
-            if link.startswith("/data/") or link == "/status.json":
-                target = dist / link.lstrip("/")
-            elif link in EXPECTED_ROUTES:
-                target = _route_file(dist, link)
-            else:
-                continue
-            if not target.exists():
-                errors.append(f"{route} links to missing target: {link}")
+        link_errors, details = _validate_page_links(dist, route, page)
+        errors.extend(link_errors)
+        linked_detail_routes.update(details)
     for route in EXPECTED_DETAIL_ROUTES:
         if not _route_file(dist, route).exists():
             errors.append(f"missing generated detail route: {route}")
+    if not linked_detail_routes:
+        errors.append("source and analysis indexes expose no generated detail routes")
+    for route in sorted(linked_detail_routes):
+        if not _route_file(dist, route).exists():
+            errors.append(f"index links to missing generated detail route: {route}")
     return errors
 
 
@@ -79,7 +102,7 @@ def main() -> None:
         raise SystemExit("Dashboard route check failed:\n- " + "\n- ".join(errors))
     print(
         "Dashboard route check passed: "
-        f"{len(EXPECTED_ROUTES)} public routes and {len(EXPECTED_DETAIL_ROUTES)} detail routes."
+        f"{len(EXPECTED_ROUTES)} public route families and all linked detail routes."
     )
 
 
