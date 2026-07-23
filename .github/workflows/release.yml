@@ -24,6 +24,7 @@ jobs:
         run: |
           set -euo pipefail
           pixi run release-readiness
+          pixi run archive-publication-gate
           pixi run public-data-policy
           pixi run licence-review-validate
           pixi run action-pin-policy

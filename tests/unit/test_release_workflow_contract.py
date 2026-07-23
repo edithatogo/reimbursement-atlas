@@ -22,6 +22,7 @@ def test_release_workflow_scopes_write_and_attestation_permissions_to_build(
     assert "contents: write" in build_job
     assert "id-token: write" in build_job
     assert "attestations: write" in build_job
+    assert "pixi run archive-publication-gate" in workflow
 
 
 def test_release_workflow_attests_and_verifies_all_release_subject_classes(

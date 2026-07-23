@@ -8,7 +8,10 @@
   remain explicitly outside scope. (Subissue #501, issue #493)
 - [x] REL-02A: Bind accountable approval to both dashboard implementation and generated displayed
   data, recompute all readiness and blocker provenance assertions, and fail automation when either
-  packet becomes stale. Any OSF/readiness state transition requires a fresh bounded packet.
+  packet becomes stale. The post-transition browser run
+  [30013013498](https://github.com/edithatogo/reimbursement-atlas/actions/runs/30013013498)
+  passed 64/64 tests and produced the stable 44-screenshot packet. Any later OSF/readiness state
+  transition requires a fresh bounded packet.
 - [x] REL-03: Validate OSF/HF/GitHub identity, metadata and licence-boundary parity. (Subissue #503)
 - [~] REL-04: Generate reproducible archive, wheel, sdist, SBOM, provenance, release manifest and
   machine-readable attestation receipts. The v2 inventory contract and exact-tag release download

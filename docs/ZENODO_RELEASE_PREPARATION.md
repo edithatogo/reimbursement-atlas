@@ -90,5 +90,7 @@ licensing and release-readiness independently pass.
 
 The tagged GitHub release workflow also performs a separate read-only governance preflight before
 building or attesting assets. It does not approve research publication or Zenodo deposition; it
-only prevents software release automation from bypassing repository, policy, licence-queue and
-action-integrity gates.
+only prevents release automation from bypassing repository, evidence, OSF registration, policy,
+licence-queue and action-integrity gates. The preflight invokes the same fail-closed
+`archive-publication-gate` predicate used by Zenodo mutation modes; regenerating a readiness report
+that still contains blocked gates is not sufficient.
