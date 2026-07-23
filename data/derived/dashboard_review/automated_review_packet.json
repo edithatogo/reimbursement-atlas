@@ -9,7 +9,7 @@
     "table captions"
   ],
   "coverage_complete": true,
-  "data_fingerprint": "875c457b7929bc2e257cfbb54968dd3902fd98137484e213dbb9907f096135be",
+  "data_fingerprint": "f17f95ff0824dbfde98502ccb0dbcfc8b5e8df90f4a9d9971621a4efec0df0e7",
   "expected_test_count": 64,
   "human_review_required": true,
   "junit": {
@@ -46,11 +46,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 556028,
+      "byte_size": 584549,
       "file": "embedded",
       "project": "desktop-chromium",
       "route": "/",
-      "sha256": "54fe52670c8c57c4fca16b7d5ef166364f545d9c378df0024c092c4311b0cfd6",
+      "sha256": "b505d5680c0e31c6694937083f55aece0f2d2c7ebfd9923f50bc299947507196",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -59,11 +59,11 @@
     {
       "browser": "firefox",
       "browser_version": "151.0",
-      "byte_size": 278589,
+      "byte_size": 319889,
       "file": "embedded",
       "project": "desktop-firefox",
       "route": "/",
-      "sha256": "c9301eb650b36daa1ed90da6a5ac1a65ec020cecbb5870e9622902fb210a85b0",
+      "sha256": "f287b31ef0ae15dd275418e86b45ccac684141163c955a00ff8fea1d8731cd98",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -72,11 +72,11 @@
     {
       "browser": "webkit",
       "browser_version": "26.5",
-      "byte_size": 350147,
+      "byte_size": 575143,
       "file": "embedded",
       "project": "desktop-webkit",
       "route": "/",
-      "sha256": "37fa6d2c3c2fce9c99b8a3aaf72ac6667730517ff443626ccc0f0ec54e3c6d02",
+      "sha256": "6c97857ef4bcf827eafa212e5a4c9fb945b4dd3e0adda84983cb7d61d7b06e00",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -85,11 +85,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 413965,
+      "byte_size": 464119,
       "file": "embedded",
       "project": "mobile-chromium",
       "route": "/",
-      "sha256": "e1b2db8226c90d6d23fc0851d8773dc995e9cbb31eec5d57a75b99103c84cf72",
+      "sha256": "caecc28fbd599b2a9ad390695fd1584bc02e7651d1dbf5a105a1e639ff264150",
       "viewport": {
         "height": 727,
         "width": 393
@@ -619,12 +619,12 @@
   "source_fingerprint": "5b1861dc00dae4250de447c96b35b2ea2f9206f9e200f1aeb49f6d6d7949d8da",
   "status": "pass",
   "test_count": 64,
-  "tested_commit": "49757bcb1be06b086354cb826f8f143fd57b70a4",
+  "tested_commit": "21c97faa4ae9d64ab8ff53aceb67202e6bc2dc7b",
   "workflow": {
-    "artifact_name": "dashboard-browser-review-30013013498",
+    "artifact_name": "dashboard-browser-review-30013955376",
     "run_attempt": "1",
-    "run_id": "30013013498",
+    "run_id": "30013955376",
     "workflow": "Dashboard browser matrix",
-    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30013013498"
+    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30013955376"
   }
 }
