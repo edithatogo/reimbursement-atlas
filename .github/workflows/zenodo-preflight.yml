@@ -115,7 +115,7 @@ jobs:
           RELEASE_TAG: ${{ inputs.release_tag }}
         run: |
           pixi run zenodo-metadata
-          pixi run zenodo-draft
+          pixi run zenodo-draft --release-assets
           args=(--tag "$RELEASE_TAG")
           for artifact in dist/* reimbursement-atlas-*.tar.gz; do
             args+=(--asset "$artifact")

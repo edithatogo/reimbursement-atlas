@@ -56,3 +56,12 @@ def test_release_inventory_requires_every_release_and_provenance_role(tmp_path: 
     assert inventory["missing_roles"] == []
     assert {row["role"] for row in inventory["files"]} == set(RELEASE_ASSET_PATTERNS)
     assert all(len(row["sha256"]) == 64 and len(row["md5"]) == 32 for row in inventory["files"])
+
+
+def test_draft_requires_explicit_release_asset_discovery() -> None:
+    root = Path.cwd()
+
+    _, _, evidence = build_draft(root)
+
+    assert evidence["inventory"]["status"] == "blocked_missing_release_assets"
+    assert evidence["inventory"]["files"] == []

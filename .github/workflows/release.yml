@@ -64,7 +64,7 @@ jobs:
       - name: Validate release asset identity
         run: |
           pixi run zenodo-metadata
-          pixi run zenodo-draft
+          pixi run zenodo-draft --release-assets
           args=(--tag "$GITHUB_REF_NAME")
           for artifact in dist/* reimbursement-atlas-*.tar.gz; do
             args+=(--asset "$artifact")

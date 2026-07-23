@@ -46,6 +46,7 @@ def test_release_workflow_attests_and_verifies_all_release_subject_classes(
 
     assert "Verify release attestations before upload" in workflow
     assert "softprops/action-gh-release" in workflow
+    assert "pixi run zenodo-draft --release-assets" in workflow
     assert "--format json" in workflow
     assert "data/derived/attestations/*.json" in workflow
 
@@ -58,4 +59,8 @@ def test_zenodo_workflow_consumes_exact_attested_github_release(repo_root: Path)
     assert 'test "$(jq -r \'.commit\' release-manifest.json)" = "$(git rev-parse HEAD)"' in workflow
     assert ".verificationResult.statement.subject[]" in workflow
     assert '--source-ref "refs/tags/$RELEASE_TAG"' in workflow
+    assert "pixi run zenodo-draft --release-assets" in workflow
+    assert workflow.index('gh release download "$RELEASE_TAG"') < workflow.index(
+        "pixi run zenodo-draft --release-assets"
+    )
     assert 'pixi run release-identity "${args[@]}"' in workflow

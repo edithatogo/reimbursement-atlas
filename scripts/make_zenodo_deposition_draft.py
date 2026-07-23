@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import tomllib
@@ -79,7 +80,9 @@ def build_release_asset_inventory(root: Path) -> dict[str, Any]:
     }
 
 
-def build_draft(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
+def build_draft(
+    root: Path, *, include_release_assets: bool = False
+) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
     """Return Zenodo metadata, DataCite metadata and a frozen file inventory."""
     base = cast("dict[str, Any]", json.loads((root / ".zenodo.json").read_text(encoding="utf-8")))
     project = cast(
@@ -91,7 +94,18 @@ def build_draft(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, A
     mapping_summary = mapping_study_paths(mapping_cycle).derived / "candidate_frame_summary.json"
     creators = cast("list[dict[str, Any]]", base.get("creators", []))
     missing_orcid = [str(item.get("name", "unnamed")) for item in creators if not item.get("orcid")]
-    inventory = build_release_asset_inventory(root)
+    inventory = (
+        build_release_asset_inventory(root)
+        if include_release_assets
+        else {
+            "schema_version": "zenodo-release-asset-inventory-v2",
+            "status": "blocked_missing_release_assets",
+            "required_roles": sorted(RELEASE_ASSET_PATTERNS),
+            "missing_roles": sorted(RELEASE_ASSET_PATTERNS),
+            "files": [],
+            "paper_or_preprint_included": False,
+        }
+    )
     preflight_inputs = {
         "metadata_source": ".zenodo.json",
         "mapping_summary": mapping_summary.as_posix(),
@@ -214,10 +228,17 @@ def _datacite_relation(value: str) -> str:
 
 def main() -> None:
     """Write local non-depositing release metadata."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--release-assets",
+        action="store_true",
+        help="Inventory explicit exact-tag release assets already staged in canonical paths.",
+    )
+    args = parser.parse_args()
     root = project_root()
     output = root / "data/derived/zenodo"
     output.mkdir(parents=True, exist_ok=True)
-    zenodo, datacite, evidence = build_draft(root)
+    zenodo, datacite, evidence = build_draft(root, include_release_assets=args.release_assets)
     for name, payload in (
         ("deposition_metadata.json", zenodo),
         ("datacite_metadata.json", datacite),
