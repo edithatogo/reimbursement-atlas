@@ -1,11 +1,11 @@
 {
   "blocked_network": 0,
-  "blocked_review": 7,
+  "blocked_review": 6,
   "blocked_secret": 0,
   "complete": 4,
   "download_ready": true,
   "download_ready_note": "Repo archive is ready; remaining tasks require network, credentials, or human licence/research review.",
-  "partial": 1,
+  "partial": 2,
   "ready_local": 0,
   "task_count": 12
 }

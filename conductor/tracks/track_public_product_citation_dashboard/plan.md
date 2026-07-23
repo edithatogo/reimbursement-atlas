@@ -41,10 +41,10 @@
 - [x] Expose machine-readable blocker IDs, evidence paths and next actions in the public status
   manifest and dashboard.
 - [x] Add a grouped, checksum-bound licence review handoff packet; approval remains a human gate.
-- [x] Regenerate the 36-screenshot automated review packet against the current release candidate
+- [x] Regenerate the 44-screenshot, 64-test automated review packet against the current release candidate
   across Chromium desktop/mobile, Firefox and WebKit, binding routes and provenance samples to the
   tested commit. (Issue #493)
 - [ ] Record the accountable owner review with exact browser, OS, assistive-technology, route,
   provenance and exception scope using `approved_within_scope`. (Issue #493)
-- [ ] Reject incomplete, stale or universal-conformance dashboard review records in readiness and
+- [x] Reject incomplete, stale or universal-conformance dashboard review records in readiness and
   schema gates. (Issue #493)

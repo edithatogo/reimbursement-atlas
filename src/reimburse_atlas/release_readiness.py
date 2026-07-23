@@ -200,7 +200,7 @@ def _dashboard_human_review_gate(repo: Path) -> ReleaseGateRecord:
         and bool(scope.get("operating_systems"))
         and bool(scope.get("assistive_technology"))
         and automated.get("status") == "pass"
-        and automated.get("screenshot_count") == 36
+        and automated.get("screenshot_count") == 44
         and review.get("commit") == automated.get("tested_commit")
     )
     return ReleaseGateRecord(

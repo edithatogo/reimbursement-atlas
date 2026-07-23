@@ -16,14 +16,12 @@ def test_bundle_excludes_restricted_descriptors_and_joins_continuations(
     with ZipFile(archive, "w") as package:
         package.writestr(
             "HCPC2026_JUL_ANWEB_test.txt",
-            "\n".join(
-                [
-                    _line("A1001", "3", "Permitted first line", "Permitted item"),
-                    _line("A1001", "4", "continued"),
-                    _line("12345", "3", "Restricted CPT", "CPT"),
-                    _line("D0123", "3", "Restricted dental", "Dental"),
-                ]
-            ),
+            "\n".join([
+                _line("A1001", "3", "Permitted first line", "Permitted item"),
+                _line("A1001", "4", "continued"),
+                _line("12345", "3", "Restricted CPT", "CPT"),
+                _line("D0123", "3", "Restricted dental", "Dental"),
+            ]),
         )
     bundle = build_hcpcs_level_ii_bundle(archive, tmp_path / "out")
     output = next(bundle.glob("*schedule_items.jsonl")).read_text(encoding="utf-8")

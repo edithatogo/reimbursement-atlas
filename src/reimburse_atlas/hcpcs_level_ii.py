@@ -9,10 +9,16 @@ import zipfile
 from datetime import date
 from pathlib import Path
 
+from pydantic import HttpUrl
+
 from reimburse_atlas.contracts import ProvenanceRecord, ScheduleItemRecord
 from reimburse_atlas.io import pydantic_rows, write_csv, write_jsonl
 
 _PERMITTED_CODE = re.compile(r"^[A-CE-Z][0-9A-Z]{4}$")
+
+
+class HcpcsArchiveStructureError(ValueError):
+    """Raised when the CMS archive lacks its expected fixed-width member."""
 
 
 def build_hcpcs_level_ii_bundle(
@@ -30,7 +36,7 @@ def build_hcpcs_level_ii_bundle(
             if name.upper().endswith(".TXT") and "_ANWEB_" in name.upper()
         )
         if len(names) != 1:
-            raise ValueError("expected exactly one HCPCS ANWEB fixed-width text member")
+            raise HcpcsArchiveStructureError
         lines = package.read(names[0]).decode("cp1252").splitlines()
 
     rows, excluded = _parse_lines(lines, version_id=version_id, archive_sha=archive_sha)
@@ -44,10 +50,7 @@ def build_hcpcs_level_ii_bundle(
         "schema_version": "reviewed-hcpcs-level-ii-bundle-v1",
         "source_id": "us_cms_hcpcs_level_ii",
         "source_version_id": version_id,
-        "source_url": (
-            "https://www.cms.gov/files/zip/"
-            "july-2026-alpha-numeric-hcpcs-file.zip"
-        ),
+        "source_url": ("https://www.cms.gov/files/zip/july-2026-alpha-numeric-hcpcs-file.zip"),
         "raw_sha256": archive_sha,
         "raw_file_copied": False,
         "record_count": len(rows),
@@ -108,10 +111,7 @@ def _parse_lines(
     provenance = ProvenanceRecord(
         source_id="us_cms_hcpcs_level_ii",
         source_version=version_id,
-        source_url=(
-            "https://www.cms.gov/files/zip/"
-            "july-2026-alpha-numeric-hcpcs-file.zip"
-        ),
+        source_url=HttpUrl("https://www.cms.gov/files/zip/july-2026-alpha-numeric-hcpcs-file.zip"),
         retrieved_at="2026-07-23T00:00:00Z",
         licence_class="public_reuse_unclear",
         transformation_notes=(

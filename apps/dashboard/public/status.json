@@ -23,6 +23,22 @@
       "next_action": "Complete accountable methods, domain, licence and governance review.",
       "status": "gated",
       "summary": "OSF registration is not approved."
+    },
+    {
+      "category": "data_governance",
+      "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
+      "id": "mapping_study_human_review",
+      "next_action": "Complete the rights-cleared candidate frame, blinded adjudication and one-time holdout evaluation before evidence claims.",
+      "status": "blocked",
+      "summary": "candidate_status=ready_for_blinded_review candidate_count=1500 evaluation_status=blocked"
+    },
+    {
+      "category": "dashboard",
+      "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
+      "id": "dashboard_human_review",
+      "next_action": "Complete the commit-bound visual, keyboard, screen-reader and provenance review within the declared scope.",
+      "status": "blocked",
+      "summary": "record_status=missing provenance_reviewed=False commit_parity=False"
     }
   ],
   "claims_policy": "Do not claim evidence or public-release readiness until reviewed sources, licences, human research review and release gates pass.",

@@ -294,9 +294,10 @@ def main() -> None:
         candidate_bytes = "".join(
             json.dumps(row, sort_keys=True, default=str) + "\n" for row in rows
         ).encode()
-        if hashlib.sha256(candidate_bytes).digest() != hashlib.sha256(
-            frozen_frame.read_bytes()
-        ).digest():
+        if (
+            hashlib.sha256(candidate_bytes).digest()
+            != hashlib.sha256(frozen_frame.read_bytes()).digest()
+        ):
             output_dir = OUTPUT_DIR / "expansion_v2"
             summary["schema_version"] = "mapping-candidate-frame-summary-v2"
             summary["study_cycle"] = "expansion_v2"

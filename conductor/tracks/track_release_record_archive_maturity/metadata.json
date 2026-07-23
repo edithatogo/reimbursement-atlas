@@ -3,13 +3,13 @@
   "type": "feature",
   "status": "in_progress",
   "created_at": "2026-07-20T00:00:00Z",
-  "updated_at": "2026-07-23T03:30:00Z",
+  "updated_at": "2026-07-23T05:50:00Z",
   "description": "Align citation, dashboard, OSF, Hugging Face and archive records for a citable public product.",
   "evidence_schema": "1.0",
   "gates": [
     {"id": "citation_metadata", "kind": "repository", "status": "pass", "evidence": "CITATION.cff validation passes."},
     {"id": "destination_parity", "kind": "external", "status": "pass", "evidence": "HF dataset/Space destination report has zero mismatches."},
-    {"id": "archive_release", "kind": "external", "status": "pending", "evidence": "Signing, attestation, DOI and publication remain gated."},
-    {"id": "zenodo_datacite", "kind": "external_publication", "status": "pending", "evidence": "Draft generation and validation are repository work; DOI reservation, publication and resolution verification require gated external mutation."}
+    {"id": "archive_release", "kind": "external", "status": "pending", "evidence": "Repository release readiness is true. Signed release, attestation and archive publication remain downstream of mapping, dashboard and OSF registration evidence gates."},
+    {"id": "zenodo_datacite", "kind": "external_publication", "status": "pending", "evidence": "Deterministic Zenodo/DataCite metadata and dry-run preflight exist. DOI reservation, publication and resolution verification require a frozen file set, credentials and explicit gated external mutation; papers and preprints remain excluded."}
   ]
 }
