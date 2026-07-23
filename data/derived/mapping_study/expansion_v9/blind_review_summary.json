@@ -1,0 +1,66 @@
+{
+  "accountable_adjudication_complete": false,
+  "agreement_count": 1216,
+  "candidate_frame_sha256": "1d11079141b1c4e45bbea85f2630c2f16074efce808492bb616af817ca478818",
+  "cohen_kappa": 0.6640174521638932,
+  "decision_pair_counts": {
+    "exclude->exclude": 0,
+    "exclude->negative": 4,
+    "exclude->positive": 0,
+    "exclude->uncertain": 1,
+    "negative->exclude": 0,
+    "negative->negative": 551,
+    "negative->positive": 96,
+    "negative->uncertain": 53,
+    "positive->exclude": 0,
+    "positive->negative": 0,
+    "positive->positive": 654,
+    "positive->uncertain": 40,
+    "uncertain->exclude": 0,
+    "uncertain->negative": 2,
+    "uncertain->positive": 88,
+    "uncertain->uncertain": 11
+  },
+  "disagreement_count": 284,
+  "family_agreement": {
+    "devices_other": {
+      "agreement_count": 173,
+      "case_count": 200,
+      "disagreement_count": 27,
+      "percent_agreement": 0.865
+    },
+    "genomics_coverage": {
+      "agreement_count": 225,
+      "case_count": 300,
+      "disagreement_count": 75,
+      "percent_agreement": 0.75
+    },
+    "medicines": {
+      "agreement_count": 334,
+      "case_count": 400,
+      "disagreement_count": 66,
+      "percent_agreement": 0.835
+    },
+    "procedures_pathology": {
+      "agreement_count": 484,
+      "case_count": 600,
+      "disagreement_count": 116,
+      "percent_agreement": 0.8066666666666666
+    }
+  },
+  "independence_receipts_validated": true,
+  "independent_roles_complete": true,
+  "ledger_record_count": 3000,
+  "percent_agreement": 0.8106666666666666,
+  "review_receipt_sha256": {
+    "reviewer_a": "ef93989a83d70c42b6b4fa076b686c28b2f37ef61828b339f7958d23aabf4bd0",
+    "reviewer_b": "d95257f83370c204b67e972a202e4c0620e8922f411ed6a54c3a4dd1a17fe32e"
+  },
+  "reviewer_case_count": 1500,
+  "role_file_sha256": {
+    "reviewer_a": "c149728366a9930573f168e3b3cb95ba3ab32bfd00864e58952eb0ff035c78b5",
+    "reviewer_b": "ea43073af2aadbaba1ea9d411a3f2ed483530d59e5d82117bd7f5fed893df17b"
+  },
+  "schema_version": "mapping-blind-review-summary-v1",
+  "study_cycle": "expansion_v9"
+}

@@ -40,6 +40,18 @@ CYCLE_JSONL_REVIEW_CONTRACTS = (
         "adjudications.jsonl",
     ),
 )
+CYCLE_JSON_REVIEW_CONTRACTS = (
+    (
+        "mapping_reviewer_a_receipt",
+        "schema/MappingReviewerSessionReceipt.schema.json",
+        "reviewer_a_receipt.json",
+    ),
+    (
+        "mapping_reviewer_b_receipt",
+        "schema/MappingReviewerSessionReceipt.schema.json",
+        "reviewer_b_receipt.json",
+    ),
+)
 JSON_REVIEW_CONTRACTS = (
     (
         "dashboard_review",
@@ -187,6 +199,11 @@ def main() -> None:
             errors.extend(validate_root_jsonl_review(root, schema_name, relative))
             count = sum(1 for line in path.read_text(encoding="utf-8").splitlines() if line.strip())
             counts.append(f"{review_name}[{path.parent.name}]={count}")
+    for review_name, schema_name, filename in CYCLE_JSON_REVIEW_CONTRACTS:
+        for path in sorted(cycle_root.glob(f"*/{filename}")):
+            relative = path.relative_to(root).as_posix()
+            errors.extend(validate_review_document(root, schema_name, relative))
+            counts.append(f"{review_name}[{path.parent.name}]=1")
     if errors:
         raise SystemExit("Review schema validation failed:\n- " + "\n- ".join(errors))
     print("Review schema validation passed: " + ", ".join(counts))

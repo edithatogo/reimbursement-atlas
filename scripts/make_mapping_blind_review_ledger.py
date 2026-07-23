@@ -32,7 +32,10 @@ def _review_receipts(
     if manifest.get("schema_version") != "mapping-blind-review-packet-manifest-v2":
         return {}
     receipts: dict[str, dict[str, Any]] = {}
-    packet_hashes = cast("dict[str, str]", manifest["role_packet_sha256"])
+    review_packet_sha256 = str(
+        manifest.get("private_packet_sha256")
+        or cast("dict[str, str]", manifest["role_packet_sha256"])["reviewer_a"]
+    )
     for role in ("reviewer_a", "reviewer_b"):
         path = root / review_root / f"{role}_receipt.json"
         if not path.is_file():
@@ -48,7 +51,7 @@ def _review_receipts(
             "schema_version": "mapping-reviewer-session-receipt-v1",
             "reviewer_role": role,
             "candidate_frame_sha256": manifest["candidate_frame_sha256"],
-            "packet_sha256": packet_hashes[role],
+            "packet_sha256": review_packet_sha256,
             "isolation_attestation": required_attestations,
         }
         text_fields = ("reviewer_session_id", "bounded_mandate", "started_at", "completed_at")

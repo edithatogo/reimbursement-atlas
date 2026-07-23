@@ -60,6 +60,7 @@ def _add_v2_receipts(root: Path) -> None:
         "schema_version": "mapping-blind-review-packet-manifest-v2",
         "candidate_frame_sha256": "a" * 64,
         "case_count": 2,
+        "private_packet_sha256": packet_hash,
         "role_packet_sha256": {"reviewer_a": packet_hash, "reviewer_b": packet_hash},
     }
     (packet_root / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
