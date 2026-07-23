@@ -52,9 +52,7 @@ def test_head_prefers_ci_commit(tmp_path: Path, monkeypatch) -> None:  # type: i
     assert resolve_head(tmp_path) == "c" * 40
 
 
-def test_head_resolves_ref_from_worktree_common_git_dir(
-    tmp_path: Path, monkeypatch
-) -> None:  # type: ignore[no-untyped-def]
+def test_head_resolves_ref_from_worktree_common_git_dir(tmp_path: Path, monkeypatch) -> None:  # type: ignore[no-untyped-def]
     monkeypatch.delenv("GITHUB_SHA", raising=False)
     common = tmp_path / "common"
     worktree_git = common / "worktrees" / "review"

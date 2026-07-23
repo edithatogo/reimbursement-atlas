@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edithatogo.github.io/reimbursement-atlas/schema/MappingHoldoutPrediction.schema.json",
+  "title": "Frozen holdout prediction",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "candidate_frame_sha256",
+    "case_id",
+    "score",
+    "threshold",
+    "threshold_source",
+    "prediction"
+  ],
+  "properties": {
+    "schema_version": {"const": "mapping-holdout-prediction-v1"},
+    "candidate_frame_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "case_id": {"type": "string", "pattern": "^map_[a-f0-9]{20}$"},
+    "score": {"type": "number", "minimum": 0, "maximum": 1},
+    "threshold": {"type": "number", "minimum": 0, "maximum": 1},
+    "threshold_source": {"const": "development_only"},
+    "prediction": {"enum": ["positive", "negative"]}
+  }
+}

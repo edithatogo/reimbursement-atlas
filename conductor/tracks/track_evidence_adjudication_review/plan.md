@@ -12,6 +12,9 @@
   checksum-bound accountable-owner packet. (Subissue #491)
 - [ ] EVID-03: Freeze 300 positive/300 negative development cases and an untouched 75 positive/75
   negative holdout only after reference labels are final. (Subissue #491)
+- [~] EVID-03B: Recompute the documented token-Jaccard score from blinded evidence, tune a
+  deterministic threshold on development labels only, and freeze checksum-bound holdout
+  predictions before evaluating holdout truth. (Subissue #491)
 - [ ] EVID-03A: Tune on development only, evaluate the holdout once, and report sensitivity,
   specificity, precision, NPV and balanced accuracy with exact 95% intervals overall and by
   family. (Subissue #491)
