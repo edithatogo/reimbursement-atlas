@@ -386,8 +386,7 @@ def test_generated_issue_drafts_deduplicate_backlog_and_roadmap_rows() -> None:
     assert len(deduplicate_issues(issues)) == 1
 
 
-def test_generated_zenodo_issue_records_non_depositing_boundary() -> None:
-    """The generated Zenodo issue separates preparation from human approval."""
+def test_generated_zenodo_issue_separates_preparation_from_live_deposition() -> None:
     rendered = render_issue(
         IssueDraft(
             epic_id="TRACK_DATA_PACKAGING_STANDARDS",
@@ -395,8 +394,9 @@ def test_generated_zenodo_issue_records_non_depositing_boundary() -> None:
             title="Create signed release and Zenodo DOI after publication approval",
         )
     )
-    assert "do not deposit or mint a DOI" in rendered
-    assert "accountable human reviewer" in rendered
+    assert "release-automation preparation only" in rendered
+    assert "#532" in rendered
+    assert "authoritative" in rendered
 
 
 def test_generated_huggingface_issue_records_destination_drift_boundary() -> None:

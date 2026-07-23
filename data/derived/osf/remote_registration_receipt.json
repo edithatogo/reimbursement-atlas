@@ -1,12 +1,15 @@
 {
   "immutable": true,
+  "embargoed": false,
   "pending_registration_approval": true,
   "public": false,
   "registered_at": "2026-07-23T13:12:48.143383",
   "registration_id": "gqk4z",
   "registration_url": "https://osf.io/gqk4z/",
+  "remote_verified_at": "2026-07-23T13:47:26Z",
   "schema_version": "osf-registration-receipt-v1",
   "status": "pending_approval",
   "submitted": true,
-  "title": "Reimbursement Atlas"
+  "title": "Reimbursement Atlas",
+  "withdrawn": false
 }
