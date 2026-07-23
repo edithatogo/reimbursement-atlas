@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import csv
 import hashlib
+import io
 import json
 from pathlib import Path
 from typing import Any, cast
@@ -40,7 +42,8 @@ SOURCE_FILES = (
     Path("apps/dashboard/playwright.config.ts"),
     Path("apps/dashboard/tsconfig.json"),
 )
-DATA_FILES = (Path("apps/dashboard/public/status.json"),)
+DATA_ROOT = Path("apps/dashboard/public")
+SELF_ATTESTATION_FILE = Path("apps/dashboard/public/data/release_gates.csv")
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -74,17 +77,38 @@ def dashboard_source_fingerprint(repo: Path) -> str:
 
 
 def dashboard_data_fingerprint(repo: Path) -> str:
-    """Hash the generated public state whose values are displayed by the dashboard."""
+    """Hash every public dashboard payload without recursively hashing its receipt."""
+    public_root = repo / DATA_ROOT
+    paths = (
+        [path.relative_to(repo) for path in public_root.rglob("*") if path.is_file()]
+        if public_root.is_dir()
+        else []
+    )
     digest = hashlib.sha256()
-    for path in DATA_FILES:
+    for path in sorted(paths):
         absolute = repo / path
-        if not absolute.is_file():
-            continue
+        content = absolute.read_bytes()
+        if path == SELF_ATTESTATION_FILE:
+            content = _release_gates_without_dashboard_receipt(content)
         digest.update(path.as_posix().encode("utf-8"))
         digest.update(b"\0")
-        digest.update(absolute.read_bytes())
+        digest.update(content)
         digest.update(b"\0")
     return digest.hexdigest()
+
+
+def _release_gates_without_dashboard_receipt(content: bytes) -> bytes:
+    """Remove the review's own rendered receipt while retaining every other gate."""
+    text = content.decode("utf-8")
+    reader = csv.DictReader(io.StringIO(text))
+    if reader.fieldnames is None:
+        return content
+    rows = [row for row in reader if row.get("id") != "dashboard_human_review"]
+    output = io.StringIO(newline="")
+    writer = csv.DictWriter(output, fieldnames=reader.fieldnames, lineterminator="\n")
+    writer.writeheader()
+    writer.writerows(rows)
+    return output.getvalue().encode("utf-8")
 
 
 def resolve_repo_head(repo: Path) -> str | None:

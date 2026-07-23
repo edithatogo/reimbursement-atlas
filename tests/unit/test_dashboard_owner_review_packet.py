@@ -163,6 +163,53 @@ def test_dashboard_evidence_invalidates_changed_displayed_data(tmp_path: Path) -
     assert evidence["checks"]["displayed_data_parity"] is False
 
 
+def test_dashboard_data_fingerprint_covers_rendered_csv_files(tmp_path: Path) -> None:
+    public = tmp_path / "apps/dashboard/public/data"
+    public.mkdir(parents=True)
+    dataset = public / "source_status.csv"
+    dataset.write_text("source,status\nMBS,ready\n", encoding="utf-8")
+    original = dashboard_data_fingerprint(tmp_path)
+
+    dataset.write_text("source,status\nMBS,blocked\n", encoding="utf-8")
+
+    assert dashboard_data_fingerprint(tmp_path) != original
+
+
+def test_dashboard_data_fingerprint_ignores_only_its_release_gate_receipt(
+    tmp_path: Path,
+) -> None:
+    public = tmp_path / "apps/dashboard/public/data"
+    public.mkdir(parents=True)
+    gates = public / "release_gates.csv"
+    gates.write_text(
+        "category,evidence,id,recommended_action,required,status\n"
+        "dashboard,head=aaa failed_checks=human_scoped_approval,"
+        "dashboard_human_review,Review,False,blocked\n"
+        "release,registration=pending,osf_registration,Wait,False,blocked\n",
+        encoding="utf-8",
+    )
+    original = dashboard_data_fingerprint(tmp_path)
+    gates.write_text(
+        "category,evidence,id,recommended_action,required,status\n"
+        "dashboard,head=bbb failed_checks=none,"
+        "dashboard_human_review,Review,False,pass\n"
+        "release,registration=pending,osf_registration,Wait,False,blocked\n",
+        encoding="utf-8",
+    )
+
+    assert dashboard_data_fingerprint(tmp_path) == original
+
+    gates.write_text(
+        "category,evidence,id,recommended_action,required,status\n"
+        "dashboard,head=bbb failed_checks=none,"
+        "dashboard_human_review,Review,False,pass\n"
+        "release,registration=public,osf_registration,Wait,False,pass\n",
+        encoding="utf-8",
+    )
+
+    assert dashboard_data_fingerprint(tmp_path) != original
+
+
 def test_owner_packet_does_not_hash_its_dependent_release_summary() -> None:
     """Prevent a cryptographic cycle between review evidence and release readiness."""
     assert Path("data/derived/release_readiness/summary.json") not in PROVENANCE_INPUTS

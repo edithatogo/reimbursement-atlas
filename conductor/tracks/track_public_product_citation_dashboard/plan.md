@@ -57,3 +57,9 @@
   routes, rendered evidence fields, provenance contracts or readiness values materially change.
   Ordinary non-dashboard changes remain governed by evidence-fingerprint validation rather than
   an overbroad universal accessibility claim. (Issue #493)
+- [x] Fingerprint every public dashboard payload, including synchronized CSV downloads, while
+  excluding only the `dashboard_human_review` release-gate row that is the review's own
+  self-attestation receipt. Test both material-change invalidation and receipt-cycle avoidance.
+  (Issue #493)
+- [ ] Regenerate the hosted browser packet and accountable scoped review against the strengthened
+  complete-public-payload fingerprint before re-closing this track. (Issue #493)

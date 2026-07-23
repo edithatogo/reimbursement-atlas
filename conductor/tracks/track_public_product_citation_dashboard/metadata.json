@@ -1,7 +1,7 @@
 {
   "track_id": "track_public_product_citation_dashboard",
   "type": "feature",
-  "status": "completed",
+  "status": "in_progress",
   "created_at": "2026-07-05T00:00:00Z",
   "updated_at": "2026-07-24T00:00:00Z",
   "description": "Present a citable accessible public dashboard with bounded review evidence.",
@@ -9,8 +9,8 @@
     {
       "id": "dashboard_human_review",
       "kind": "human_review",
-      "status": "pass",
-      "evidence": "Hosted run 30018170812 passed 64 tests across 11 routes and four browser projects with 44 attributable screenshots. The accountable owner approved automated packet c4b0e68ab0afe24930a9af71ff6a4f9aad23b2898fe96fc9cec859df2af777f9 and owner packet a21669b4d57169be7a7104247e857f79915a6cd7eb477673e0734763b4fc58cf within the declared visual, automated accessibility and provenance scope. Manual VoiceOver and universal WCAG conformance are excluded."
+      "status": "pending",
+      "evidence": "The prior hosted packet remains preserved as historical evidence but became stale when the complete-public-payload fingerprint contract was strengthened. A fresh 11-route, four-browser packet and scoped accountable review are required. Manual VoiceOver and universal WCAG conformance remain excluded."
     }
   ]
 }

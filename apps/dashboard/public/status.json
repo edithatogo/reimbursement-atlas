@@ -9,6 +9,14 @@
       "summary": "Source acquisition requires follow-up: Run hardened curl/wget source download plan, Review historical MBS/PBS source expansion and licence scope."
     },
     {
+      "category": "research_review",
+      "evidence_path": "data/derived/evidence_readiness/summary.json",
+      "id": "evidence_release",
+      "next_action": "Complete source, mapping, methods and research review before making evidence claims.",
+      "status": "blocked_review",
+      "summary": "Evidence release is not approved."
+    },
+    {
       "category": "publication",
       "evidence_path": "data/derived/release_readiness/summary.json",
       "id": "research_publication",
@@ -25,6 +33,14 @@
       "summary": "OSF registration is not approved."
     },
     {
+      "category": "dashboard",
+      "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
+      "id": "dashboard_human_review",
+      "next_action": "Complete the commit-bound visual, keyboard, screen-reader and provenance review within the declared scope.",
+      "status": "blocked",
+      "summary": "head=55540b09b94532f49da491d3d56fea0b398729ca failed_checks=displayed_data_parity"
+    },
+    {
       "category": "data_governance",
       "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
       "id": "research_evidence",
@@ -37,12 +53,12 @@
   "evidence": {
     "data_quality": "pass",
     "evidence_ready_rows": 0,
-    "evidence_release_ready": true,
+    "evidence_release_ready": false,
     "prototype_ready_rows": 5,
     "readiness_rows": 5,
     "research_publication_ready": false,
     "source_validation": "pass",
-    "status": "ready"
+    "status": "not_ready"
   },
   "evidence_paths": {
     "data_quality": "data/derived/data_quality/summary.json",
