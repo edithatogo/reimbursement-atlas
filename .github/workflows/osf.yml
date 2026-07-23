@@ -244,7 +244,7 @@ jobs:
           test "$(jq -r '.public' osf-publication/project.json)" = "true"
 
           registration_title="Reimbursement Atlas repository and data record"
-          curl --fail --silent --show-error \
+          curl --globoff --fail --silent --show-error \
             "https://api.osf.io/v2/nodes/$OSF_PROJECT_ID/draft_registrations/?page[size]=100" \
             -H "Authorization: Bearer $OSF_TOKEN" > osf-publication/drafts.json
           draft_id="$(jq -r --arg title "$registration_title" '[.data[] | select(.attributes.title == $title)] | first | .id // empty' osf-publication/drafts.json)"
