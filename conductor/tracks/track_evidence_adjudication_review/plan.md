@@ -1,11 +1,12 @@
 # Implementation plan
 
 - [x] EVID-00: Add deterministic, fail-closed mapping pack planning and checksum-bound split contract. (Issue #485, subissue #490)
-- [~] EVID-01: Generate the source-stratified 750-case mapping review pack. (Issue #485, subissue #490)
-- [ ] EVID-01A: Generate and checksum at least 1,500 non-fixture candidate hypotheses with the
+- [x] EVID-01: Generate the source-stratified 750-case mapping review pack. (Issue #485, subissue #490)
+- [x] EVID-01A: Generate and checksum at least 1,500 non-fixture candidate hypotheses with the
   approved 600/400/300/200 family quotas, duplicate-group exclusion and source/period coverage.
   Freeze the frame before review. (Subissue #490)
-- [ ] EVID-02: Complete two isolated blinded reviews with evidence citations, confidence and
+- [~] EVID-02: Generate two isolated, byte-identical blinded packets without hypothesis or split
+  disclosure; complete both reviews with evidence citations, confidence and
   exclusion reasons; reviewers cannot see each other or split assignment. (Subissue #491)
 - [ ] EVID-02A: Deterministically adjudicate disagreements and false-positive controls in one
   checksum-bound accountable-owner packet. (Subissue #491)
@@ -15,7 +16,7 @@
   specificity, precision, NPV and balanced accuracy with exact 95% intervals overall and by
   family. (Subissue #491)
 - [x] EVID-04: Complete CMS/MBS/PBS licence-scope review records. (Subissue #492)
-- [ ] EVID-05: Regenerate the automated dashboard packet against the release candidate commit and
+- [~] EVID-05: Regenerate the automated dashboard packet against the release candidate commit;
   complete bounded owner visual, keyboard, screen-reader, responsive and provenance review using
   `approved_within_scope`; do not claim universal WCAG conformance. (Subissue #493)
 - [x] EVID-06: Regenerate evidence-readiness and final-handoff outputs; preserve blockers. (Subissue #494)

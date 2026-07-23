@@ -21,9 +21,9 @@
       "sha256": "3ac6ae9700492374659ff1b04be87fa84555c2efdc219ade1a93b957958ce7ba"
     },
     {
-      "byte_size": 98010,
+      "byte_size": 113852,
       "path": "data/derived/publication_manifest.json",
-      "sha256": "c31ad69468edd8be9cf067b24109ac378f182cfa24ad26c847f9c350892799a9"
+      "sha256": "3344c4e81a88946bbea05bd1508b0b6d4f80af7448e03843c61732e1416a345f"
     },
     {
       "byte_size": 1103,
