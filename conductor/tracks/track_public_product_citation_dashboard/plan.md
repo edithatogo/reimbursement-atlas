@@ -44,12 +44,12 @@
 - [x] Regenerate the 44-screenshot, 64-test automated review packet against the final release
   candidate across Chromium desktop/mobile, Firefox and WebKit, binding every route, browser,
   viewport, screenshot, provenance assertion and prohibited-content result to the tested commit.
-  Hosted run `30014543059` passed 64/64 tests and produced 44 screenshots; automated packet
-  SHA-256 is `baf26fcdf1855447de472caa81d1418a3a8e3203fc54bbcf117ef3a08c211f3c`.
+  Hosted run `30018170812` passed 64/64 tests and produced 44 screenshots; automated packet
+  SHA-256 is `c4b0e68ab0afe24930a9af71ff6a4f9aad23b2898fe96fc9cec859df2af777f9`.
   (Issue #493)
 - [x] Record the accountable owner review with exact browser, OS, assistive-technology, route,
   provenance and exception scope using `approved_within_scope`. Owner packet SHA-256 is
-  `acfa8a605d88f1385a1672fc1852999dd2a35cff9caf207d9805a7c8a2e0ba96`;
+  `a21669b4d57169be7a7104247e857f79915a6cd7eb477673e0734763b4fc58cf`;
   manual VoiceOver and universal WCAG conformance remain excluded. (Issue #493)
 - [x] Reject incomplete, stale or universal-conformance dashboard review records in readiness and
   schema gates. (Issue #493)

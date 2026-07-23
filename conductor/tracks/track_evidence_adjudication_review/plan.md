@@ -104,10 +104,10 @@
 - [x] EVID-06: Regenerate evidence-readiness and final-handoff outputs; preserve blockers. (Subissue #494)
 - [x] EVID-05A: Refresh the dashboard packet after readiness values changed. The accountable owner
   approved the 64-test, 44-screenshot packet from the hosted browser workflow for commit
-  `af80e23`; automated packet SHA-256 is
-  `baf26fcdf1855447de472caa81d1418a3a8e3203fc54bbcf117ef3a08c211f3c`
+  `55540b09b94532f49da491d3d56fea0b398729ca`; automated packet SHA-256 is
+  `c4b0e68ab0afe24930a9af71ff6a4f9aad23b2898fe96fc9cec859df2af777f9`
   and owner packet SHA-256 is
-  `acfa8a605d88f1385a1672fc1852999dd2a35cff9caf207d9805a7c8a2e0ba96`.
+  `a21669b4d57169be7a7104247e857f79915a6cd7eb477673e0734763b4fc58cf`.
   Manual VoiceOver and universal WCAG conformance remain outside scope. (Issue #493)
 - [x] EVID-07: Preserve the frozen `expansion_v9` frame, adjudication ledger, development split,
   sealed holdout predictions and one-time evaluation as immutable evidence. Any material source,

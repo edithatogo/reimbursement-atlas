@@ -9,7 +9,7 @@
 - [x] REL-02A: Bind accountable approval to both dashboard implementation and generated displayed
   data, recompute all readiness and blocker provenance assertions, and fail automation when either
   packet becomes stale. The post-transition browser run
-  [30014543059](https://github.com/edithatogo/reimbursement-atlas/actions/runs/30014543059)
+  [30018170812](https://github.com/edithatogo/reimbursement-atlas/actions/runs/30018170812)
   passed 64/64 tests and produced the stable 44-screenshot packet. Any later OSF/readiness state
   transition requires a fresh bounded packet.
 - [x] REL-03: Validate OSF/HF/GitHub identity, metadata and licence-boundary parity. (Subissue #503)
