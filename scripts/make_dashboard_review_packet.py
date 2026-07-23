@@ -10,9 +10,9 @@ from pathlib import Path
 
 from reimburse_atlas.registry import project_root
 
-ROUTE_COUNT = 9
+ROUTE_COUNT = 11
 PROJECT_COUNT = 4
-TEST_COUNT = 44
+TEST_COUNT = 64
 
 
 class GitHeadResolutionError(ValueError):
