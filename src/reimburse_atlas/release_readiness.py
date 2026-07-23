@@ -139,6 +139,7 @@ def summarise_release_gates(gates: list[ReleaseGateRecord]) -> ReleaseReadinessS
             "mapping_study_human_review",
             "dashboard_human_review",
             "licence_review_queue",
+            "research_evidence",
         )
     )
     osf_ready = gate_status.get("osf_registration") == "pass"
@@ -159,7 +160,7 @@ def summarise_release_gates(gates: list[ReleaseGateRecord]) -> ReleaseReadinessS
         research_publication_ready=evidence_ready and osf_ready and research_evidence_ready,
         osf_registration_ready=osf_ready,
         evidence_release_ready=evidence_ready,
-        policy_claims_ready=evidence_ready and research_evidence_ready,
+        policy_claims_ready=evidence_ready,
     )
 
 

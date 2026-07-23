@@ -6,6 +6,7 @@ import csv
 import hashlib
 import io
 import json
+import subprocess  # nosec B404 - fixed git reader; commit and path are constrained below.
 from pathlib import Path
 from typing import Any, cast
 
@@ -44,6 +45,7 @@ SOURCE_FILES = (
 )
 DATA_ROOT = Path("apps/dashboard/public")
 SELF_ATTESTATION_FILE = Path("apps/dashboard/public/data/release_gates.csv")
+PUBLIC_STATUS_FILE = Path("apps/dashboard/public/status.json")
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -76,7 +78,11 @@ def dashboard_source_fingerprint(repo: Path) -> str:
     return digest.hexdigest()
 
 
-def dashboard_data_fingerprint(repo: Path) -> str:
+def dashboard_data_fingerprint(
+    repo: Path,
+    *,
+    self_attestation_commit: str | None = None,
+) -> str:
     """Hash every public dashboard payload without recursively hashing its receipt."""
     public_root = repo / DATA_ROOT
     paths = (
@@ -90,6 +96,10 @@ def dashboard_data_fingerprint(repo: Path) -> str:
         content = absolute.read_bytes()
         if path == SELF_ATTESTATION_FILE:
             content = _release_gates_without_dashboard_receipt(content)
+        elif path == PUBLIC_STATUS_FILE and self_attestation_commit:
+            baseline = _git_file_at_commit(repo, self_attestation_commit, path)
+            if baseline is not None:
+                content = normalize_public_status_dashboard_receipt(content, baseline)
         digest.update(path.as_posix().encode("utf-8"))
         digest.update(b"\0")
         digest.update(content)
@@ -109,6 +119,58 @@ def _release_gates_without_dashboard_receipt(content: bytes) -> bytes:
     writer.writeheader()
     writer.writerows(rows)
     return output.getvalue().encode("utf-8")
+
+
+def normalize_public_status_dashboard_receipt(content: bytes, baseline: bytes) -> bytes:
+    """Restore only the dashboard receipt from the reviewed commit."""
+    try:
+        raw_payload = json.loads(content)
+        raw_baseline_payload = json.loads(baseline)
+    except json.JSONDecodeError:
+        return content
+    if not isinstance(raw_payload, dict) or not isinstance(raw_baseline_payload, dict):
+        return content
+    payload = cast("dict[str, Any]", raw_payload)
+    baseline_payload = cast("dict[str, Any]", raw_baseline_payload)
+    blockers = payload.get("blockers")
+    baseline_blockers = baseline_payload.get("blockers")
+    if not isinstance(blockers, list) or not isinstance(baseline_blockers, list):
+        return content
+    blocker_rows = cast("list[Any]", blockers)
+    baseline_rows = cast("list[Any]", baseline_blockers)
+    baseline_receipt: dict[str, Any] | None = None
+    for row in baseline_rows:
+        if isinstance(row, dict):
+            typed_row = cast("dict[str, Any]", row)
+            if typed_row.get("id") == "dashboard_human_review":
+                baseline_receipt = typed_row
+                break
+    if baseline_receipt is None:
+        return content
+    normalized_rows: list[Any] = []
+    for row in blocker_rows:
+        if (
+            isinstance(row, dict)
+            and cast("dict[str, Any]", row).get("id") == "dashboard_human_review"
+        ):
+            normalized_rows.append(baseline_receipt)
+        else:
+            normalized_rows.append(row)
+    payload["blockers"] = normalized_rows
+    return (json.dumps(payload, indent=2, sort_keys=True) + "\n").encode("utf-8")
+
+
+def _git_file_at_commit(repo: Path, commit: str, path: Path) -> bytes | None:
+    """Read one reviewed file without trusting mutable working-tree receipts."""
+    if len(commit) != 40 or any(character not in "0123456789abcdef" for character in commit):
+        return None
+    result = subprocess.run(  # nosec B603 - no shell; commit is a validated SHA.
+        ("git", "show", f"{commit}:{path.as_posix()}"),
+        cwd=repo,
+        check=False,
+        capture_output=True,
+    )
+    return result.stdout if result.returncode == 0 else None
 
 
 def resolve_repo_head(repo: Path) -> str | None:
@@ -164,7 +226,14 @@ def dashboard_review_evidence(repo: Path) -> dict[str, object]:
     raw_prohibited = owner.get("prohibited_content_check")
     prohibited = cast("dict[str, Any]", raw_prohibited) if isinstance(raw_prohibited, dict) else {}
     source_fingerprint = dashboard_source_fingerprint(repo)
-    data_fingerprint = dashboard_data_fingerprint(repo)
+    data_fingerprint = dashboard_data_fingerprint(
+        repo,
+        self_attestation_commit=(
+            cast("str", automated["tested_commit"])
+            if isinstance(automated.get("tested_commit"), str)
+            else None
+        ),
+    )
     checks = {
         "automated_pass": automated.get("status") == "pass",
         "coverage_complete": (

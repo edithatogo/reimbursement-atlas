@@ -9,6 +9,7 @@ from reimburse_atlas.dashboard_review import (
     dashboard_data_fingerprint,
     dashboard_review_evidence,
     dashboard_source_fingerprint,
+    normalize_public_status_dashboard_receipt,
     resolve_repo_head,
 )
 from scripts.make_dashboard_owner_review_packet import PROVENANCE_INPUTS, build_packet
@@ -208,6 +209,31 @@ def test_dashboard_data_fingerprint_ignores_only_its_release_gate_receipt(
     )
 
     assert dashboard_data_fingerprint(tmp_path) != original
+
+
+def test_public_status_normalization_replaces_only_dashboard_receipt() -> None:
+    baseline = {
+        "blockers": [
+            {"id": "dashboard_human_review", "status": "blocked", "summary": "review pending"},
+            {"id": "osf_registration", "status": "blocked", "summary": "snapshot missing"},
+        ]
+    }
+    current = {
+        "blockers": [
+            {"id": "dashboard_human_review", "status": "pass", "summary": "approved"},
+            {"id": "osf_registration", "status": "pass", "summary": "registration public"},
+        ]
+    }
+
+    normalized = json.loads(
+        normalize_public_status_dashboard_receipt(
+            json.dumps(current).encode(),
+            json.dumps(baseline).encode(),
+        )
+    )
+
+    assert normalized["blockers"][0] == baseline["blockers"][0]
+    assert normalized["blockers"][1] == current["blockers"][1]
 
 
 def test_owner_packet_does_not_hash_its_dependent_release_summary() -> None:

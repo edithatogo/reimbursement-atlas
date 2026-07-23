@@ -44,6 +44,40 @@ def test_release_summary_tracks_required_blockers() -> None:
     assert summary.required_blocker_count == 1
     assert summary.review_pending_count == 0
     assert summary.repository_release_ready is False
+
+
+def test_evidence_release_requires_completed_research_evidence() -> None:
+    gates = [
+        ReleaseGateRecord(
+            id=identifier,
+            category="data_governance",
+            status="pass",
+            required=False,
+            evidence="approved",
+            recommended_action="none",
+        )
+        for identifier in (
+            "mapping_study_human_review",
+            "dashboard_human_review",
+            "licence_review_queue",
+        )
+    ]
+    gates.append(
+        ReleaseGateRecord(
+            id="research_evidence",
+            category="data_governance",
+            status="blocked",
+            required=False,
+            evidence="0/5 research questions evidence-ready",
+            recommended_action="complete evidence review",
+        )
+    )
+
+    summary = summarise_release_gates(gates)
+
+    assert summary.repository_release_ready is True
+    assert summary.evidence_release_ready is False
+    assert summary.policy_claims_ready is False
     assert summary.research_publication_ready is False
 
 
