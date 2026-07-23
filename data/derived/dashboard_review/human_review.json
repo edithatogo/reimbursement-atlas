@@ -1,11 +1,11 @@
 {
   "approval_scope": "Approved within the refreshed tested dashboard scope: visual inspection of the 44 commit-bound screenshots; automated keyboard, focus, axe, semantic, responsive-overflow, provenance and prohibited-content checks across the declared browser matrix. This approval is not a universal accessibility or WCAG-conformance claim. An independent manual VoiceOver session was not performed.",
-  "automated_packet_sha256": "fe629e0e0050db6db1ff745b68aefe095574dc8ae938f14684322053741bade3",
-  "commit": "21c97faa4ae9d64ab8ff53aceb67202e6bc2dc7b",
+  "automated_packet_sha256": "baf26fcdf1855447de472caa81d1418a3a8e3203fc54bbcf117ef3a08c211f3c",
+  "commit": "af80e2399e09441c95ff73abf899fe7d94dfb539",
   "evidence_artifacts": [
     "data/derived/dashboard_review/automated_review_packet.json",
     "data/derived/dashboard_review/owner_review_packet.json",
-    "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30013955376",
+    "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30014543059",
     "https://github.com/edithatogo/reimbursement-atlas/pull/582"
   ],
   "findings": [
@@ -14,9 +14,9 @@
     "Every displayed aggregate readiness value and the complete blocker projection matched the regenerated provenance records.",
     "Independent manual VoiceOver testing was not performed and is excluded from this bounded approval."
   ],
-  "owner_packet_sha256": "ac983cc800ec821153aebdafe1298eb60f2f59f687348f595decc24ce7288dac",
+  "owner_packet_sha256": "acfa8a605d88f1385a1672fc1852999dd2a35cff9caf207d9805a7c8a2e0ba96",
   "remediation_or_waiver": "No unresolved automated, visual or provenance finding remains in the refreshed packet. Manual VoiceOver remains an explicitly documented scope limitation rather than a claim of conformance.",
-  "reviewed_at": "2026-07-23T14:10:00Z",
+  "reviewed_at": "2026-07-23T14:16:00Z",
   "reviewer": "edithatogo",
   "schema_version": "dashboard-human-review-v1",
   "scope": {
