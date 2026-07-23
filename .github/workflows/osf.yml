@@ -145,13 +145,19 @@ jobs:
           "$(go env GOPATH)/bin/osf" --help >/dev/null
       - name: Verify OSF synchronization remains fail closed
         run: |
+          pixi run review-schemas
           uv run python - <<'PY'
           import json
           from pathlib import Path
 
           rows = [json.loads(line) for line in Path("data/derived/osf/sync_manifest.jsonl").read_text().splitlines()]
-          if not rows or any(row["publish_allowed"] for row in rows):
-              raise SystemExit("OSF sync manifest must contain only fail-closed rows before human review")
+          allowed = [row for row in rows if row["publish_allowed"]]
+          if len(allowed) != 11:
+              raise SystemExit(f"expected 11 exact approved OSF rows, found {len(allowed)}")
+          prohibited = {"papers", "preprints", "raw_live"}
+          for row in allowed:
+              if any(part in row["local_path"].lower() for part in prohibited):
+                  raise SystemExit(f"prohibited OSF publication row: {row['local_path']}")
           PY
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
@@ -177,7 +183,7 @@ jobs:
         with:
           go-version: "1.26.5"
           cache: false
-      - name: Guard token and project configuration
+      - name: Synchronize exact approved records and create registration draft
         env:
           OSF_TOKEN: ${{ secrets.OSF_TOKEN }}
           OSF_PROJECT_ID: ${{ vars.OSF_PROJECT_ID }}
@@ -186,7 +192,80 @@ jobs:
           test -n "$OSF_TOKEN"
           test -n "$OSF_PROJECT_ID"
           go install github.com/edithatogo/osf-cli-go/cmd/osf@v1.0.0
-          "$(go env GOPATH)/bin/osf" whoami --output json >/dev/null
+          osf_bin="$(go env GOPATH)/bin/osf"
+          "$osf_bin" whoami --output json >/dev/null
           test "$(jq -s '[.[] | select(.publish_allowed == true)] | length' data/derived/osf/sync_manifest.jsonl)" -gt 0
-          echo "Remote mutation remains blocked until reviewed sync-manifest rows are explicitly approved."
-          exit 1
+          mkdir -p osf-publication/verified
+          : > osf-publication/files.jsonl
+
+          while IFS=$'\t' read -r id local_path checksum; do
+            test -f "$local_path"
+            test "$(sha256sum "$local_path" | cut -d' ' -f1)" = "$checksum"
+            case "$local_path" in
+              papers/*|data/raw_live/*) echo "prohibited OSF path: $local_path" >&2; exit 1 ;;
+            esac
+            "$osf_bin" files upload --node "$OSF_PROJECT_ID" \
+              --conflict overwrite "$local_path" >/dev/null
+          done < <(
+            jq -r 'select(.publish_allowed == true) | [.id,.local_path,.sha256] | @tsv' \
+              data/derived/osf/sync_manifest.jsonl
+          )
+
+          "$osf_bin" files list "$OSF_PROJECT_ID" --output json > osf-publication/remote-files.json
+          while IFS=$'\t' read -r id local_path checksum; do
+            name="$(basename "$local_path")"
+            remote_id="$(jq -r --arg name "$name" '[.[] | select(.kind == "file" and .name == $name)] | if length == 1 then .[0].id else empty end' osf-publication/remote-files.json)"
+            test -n "$remote_id"
+            "$osf_bin" files download --file "$remote_id" \
+              "osf-publication/verified/$name" --conflict overwrite >/dev/null
+            test "$(sha256sum "osf-publication/verified/$name" | cut -d' ' -f1)" = "$checksum"
+            jq -cn --arg id "$id" --arg path "$local_path" --arg name "$name" \
+              --arg remote_id "$remote_id" --arg sha256 "$checksum" \
+              '{id:$id,local_path:$path,remote_name:$name,remote_file_id:$remote_id,sha256:$sha256,verified:true}' \
+              >> osf-publication/files.jsonl
+          done < <(
+            jq -r 'select(.publish_allowed == true) | [.id,.local_path,.sha256] | @tsv' \
+              data/derived/osf/sync_manifest.jsonl
+          )
+          test "$(wc -l < osf-publication/files.jsonl | tr -d ' ')" = "11"
+
+          description="Public protocol, provenance and reproducibility record for Reimbursement Atlas. Source acquisition, mapping adjudication and holdout evaluation predated registration. Papers and preprints are excluded."
+          jq -cn --arg id "$OSF_PROJECT_ID" --arg description "$description" \
+            '{data:{type:"nodes",id:$id,attributes:{public:true,description:$description}}}' \
+            > osf-publication/project-update.json
+          curl --fail --silent --show-error \
+            -X PATCH "https://api.osf.io/v2/nodes/$OSF_PROJECT_ID/" \
+            -H "Authorization: Bearer $OSF_TOKEN" \
+            -H "Content-Type: application/vnd.api+json" \
+            --data-binary @osf-publication/project-update.json \
+            > osf-publication/project-response.json
+          jq '{schema_version:"osf-public-project-v1",id:.data.id,title:.data.attributes.title,public:.data.attributes.public,description:.data.attributes.description}' \
+            osf-publication/project-response.json > osf-publication/project.json
+          test "$(jq -r '.public' osf-publication/project.json)" = "true"
+
+          registration_title="Reimbursement Atlas repository and data record"
+          curl --fail --silent --show-error \
+            "https://api.osf.io/v2/nodes/$OSF_PROJECT_ID/draft_registrations/?page[size]=100" \
+            -H "Authorization: Bearer $OSF_TOKEN" > osf-publication/drafts.json
+          draft_id="$(jq -r --arg title "$registration_title" '[.data[] | select(.attributes.title == $title)] | first | .id // empty' osf-publication/drafts.json)"
+          if [ -z "$draft_id" ]; then
+            "$osf_bin" registrations create "$OSF_PROJECT_ID" \
+              --title "$registration_title" \
+              --description "$description" --yes --output json \
+              > osf-publication/draft-created.json
+            draft_id="$(jq -r '.id // .data.id // empty' osf-publication/draft-created.json)"
+          fi
+          test -n "$draft_id"
+          jq -cn --arg id "$draft_id" --arg title "$registration_title" \
+            --arg project_id "$OSF_PROJECT_ID" \
+            '{schema_version:"osf-registration-draft-receipt-v1",draft_id:$id,title:$title,project_id:$project_id,status:"draft",submitted:false}' \
+            > osf-publication/registration-draft.json
+
+          rm -rf osf-publication/verified osf-publication/remote-files.json \
+            osf-publication/project-update.json osf-publication/project-response.json \
+            osf-publication/drafts.json osf-publication/draft-created.json
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: osf-publication-receipt
+          path: osf-publication/
+          retention-days: 30
