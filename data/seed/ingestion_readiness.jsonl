@@ -15,5 +15,6 @@
 {"blocker_count": 2, "blockers": "licence_gate;parser_not_implemented", "parser_name": "planned CMS PFS RVU/fee-schedule adapter", "recommended_next_action": "implement parser contract and tiny fixture", "source_id": "us_cms_pfs"}
 {"blocker_count": 2, "blockers": "licence_gate;parser_not_implemented", "parser_name": "planned source-specific adapter", "recommended_next_action": "implement parser contract and tiny fixture", "source_id": "hpo"}
 {"blocker_count": 2, "blockers": "licence_gate;parser_not_implemented", "parser_name": "planned source-specific adapter", "recommended_next_action": "implement parser contract and tiny fixture", "source_id": "us_fda_device_classification"}
+{"blocker_count": 2, "blockers": "licence_gate;parser_not_implemented", "parser_name": "planned source-specific adapter", "recommended_next_action": "implement parser contract and tiny fixture", "source_id": "us_fda_device_classification"}
 {"blocker_count": 2, "blockers": "licence_gate;parser_not_implemented", "parser_name": "planned source-specific adapter", "recommended_next_action": "implement parser contract and tiny fixture", "source_id": "rxnorm"}
 {"blocker_count": 2, "blockers": "licence_gate;parser_not_implemented", "parser_name": "planned CMS PFS RVU/fee-schedule adapter", "recommended_next_action": "implement parser contract and tiny fixture", "source_id": "us_cms_pfs"}

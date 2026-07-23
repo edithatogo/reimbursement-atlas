@@ -23,6 +23,15 @@ def _jsonl(path: Path) -> list[dict[str, Any]]:
     ]
 
 
+def is_sealed_cycle(root: Path, cycle: str) -> bool:
+    """Return whether immutable holdout evidence closes this cycle."""
+    evaluation = root / mapping_study_paths(cycle).evaluation
+    if not evaluation.is_file():
+        return False
+    record = cast("dict[str, Any]", json.loads(evaluation.read_text(encoding="utf-8")))
+    return record.get("evaluated_once") is True
+
+
 def build_packets(
     root: Path, cycle: str = DEFAULT_CYCLE
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
@@ -141,6 +150,18 @@ def main() -> None:
     parser.add_argument("--cycle", default=DEFAULT_CYCLE)
     args = parser.parse_args()
     root = project_root()
+    if is_sealed_cycle(root, args.cycle):
+        print(
+            json.dumps(
+                {
+                    "status": "preserved",
+                    "study_cycle": args.cycle,
+                    "reason": "holdout_evaluation_already_sealed",
+                },
+                indent=2,
+            )
+        )
+        return
     cases, manifest = build_packets(root, args.cycle)
     write_packets(root, cases, manifest, args.cycle)
     print(json.dumps(manifest, indent=2, sort_keys=True))

@@ -1225,6 +1225,36 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_complete_d910f107c128/source_snapshots.csv",
+      "dct:format": "csv",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_complete_d910f107c128/source_snapshots.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_complete_d910f107c128/us_fda_device_classification_20260723_complete_schedule_items.csv",
+      "dct:format": "csv",
+      "dct:title": "us_fda_device_classification_20260723_complete_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_complete_d910f107c128/us_fda_device_classification_20260723_complete_schedule_items.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "us_fda_device_classification_20260723_complete_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_complete_d910f107c128/validation_report.json",
+      "dct:format": "json",
+      "dct:title": "validation_report"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_page1_4aa1f75d2a3a/source_snapshots.csv",
       "dct:format": "csv",
       "dct:title": "source_snapshots"

@@ -351,4 +351,5 @@ manual_review,,,,,,,,,mapping_resource:map_who_atc_ddd,,,mapping_resource,WHO AT
 ,,,,,,,,nested ZIP/CSV,version:us_cms_pfs_2026_revision_c_carrier,,,source_version,CMS PFS 2026 Revision C carrier pricing,,,,,,validated,,,,,,,,
 ,,,,,,,,ZIP/CSV/XLSX/TXT/PDF,version:us_cms_pfs_rvu26c,,,source_version,CMS PFS RVU26C July 2026 release,,,,,,validated,,,,,,,,
 ,,,,,,,,csv fixture,version:us_cms_pfs_seed_fixture,,,source_version,synthetic seed fixture for CMS PFS parser contract,,,,,,prototype,,,,,,,,
+,,,,,,,,paginated openFDA JSON API,version:us_fda_device_classification_20260723_complete,,,source_version,Complete openFDA device classification corpus retrieved 2026-07-23,,,,,,validated,,,,,,,,
 ,,,,,,,,openFDA JSON API,version:us_fda_device_classification_20260723_page1,,,source_version,openFDA device classification first page retrieved 2026-07-23,,,,,,validated,,,,,,,,

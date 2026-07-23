@@ -33,20 +33,12 @@
       "summary": "OSF registration is not approved."
     },
     {
-      "category": "data_governance",
-      "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
-      "id": "mapping_study_human_review",
-      "next_action": "Complete the rights-cleared candidate frame, blinded adjudication and one-time holdout evaluation before evidence claims.",
-      "status": "blocked",
-      "summary": "cycle=expansion_v7 candidate_status=ready_for_blinded_review candidate_count=1500 evaluation_status=blocked"
-    },
-    {
       "category": "dashboard",
       "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
       "id": "dashboard_human_review",
       "next_action": "Complete the commit-bound visual, keyboard, screen-reader and provenance review within the declared scope.",
       "status": "blocked",
-      "summary": "record_status=missing provenance_reviewed=False commit_parity=False"
+      "summary": "head=8b425e5b4d7a3757f6526e24c164dff00d578d0e failed_checks=coverage_complete,workflow_attributed,head_parity,provenance_assertions_pass,human_scoped_approval,packet_hash_parity"
     }
   ],
   "claims_policy": "Do not claim evidence or public-release readiness until reviewed sources, licences, human research review and release gates pass.",
@@ -69,7 +61,7 @@
     "source_validation": "data/derived/source_validation/summary.json"
   },
   "licence_review": {
-    "approved_rows": 194,
+    "approved_rows": 199,
     "decision_source": "data/licence_review/decisions.jsonl",
     "pending_rows": 0,
     "queue_source": "data/derived/licence_review/licence_review_queue.jsonl"

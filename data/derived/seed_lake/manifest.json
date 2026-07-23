@@ -32,8 +32,8 @@
       "jsonl_path": "source_versions/source_versions.jsonl",
       "name": "source_versions",
       "parquet_path": "source_versions/source_versions.parquet",
-      "rows": 19,
-      "sha256": "dd3319faadc6d5b9e60b00a586ba1e5618232f2f50ba971a7d7fd516be3608c8"
+      "rows": 20,
+      "sha256": "01287377b7da7e400c2657a5a42320a0051c6d2355caae9541afa3d9b6dae5fc"
     },
     {
       "csv_path": "source_files/source_files.csv",
@@ -328,8 +328,8 @@
       "jsonl_path": "architecture_import_edges/architecture_import_edges.jsonl",
       "name": "architecture_import_edges",
       "parquet_path": "architecture_import_edges/architecture_import_edges.parquet",
-      "rows": 218,
-      "sha256": "b7deb88d0090ee79e5c4d68b2b346ad160870dc3d555c4d433b22e296cad667b"
+      "rows": 220,
+      "sha256": "af721ea117efa431324404f552c600cafd1daeae5a7b12481bb76540332816af"
     },
     {
       "csv_path": "architecture_layer_policy/architecture_layer_policy.csv",
@@ -337,7 +337,7 @@
       "name": "architecture_layer_policy",
       "parquet_path": "architecture_layer_policy/architecture_layer_policy.parquet",
       "rows": 22,
-      "sha256": "e9415bcbe27930786e7ce00df95a3d063228d8c16d2f5f1c7782854fb7eae059"
+      "sha256": "3327ffb03e1ff603c58ec6cf533af1cae56cb9ccbc380e4b0bde5e4f0d4ba587"
     },
     {
       "csv_path": "architecture_import_cycles/architecture_import_cycles.csv",
@@ -401,7 +401,7 @@
       "name": "final_handoff_tasks",
       "parquet_path": "final_handoff_tasks/final_handoff_tasks.parquet",
       "rows": 12,
-      "sha256": "b05e55cf424c30122c5b562fffd5675147923b120f6128f8c72aff7e72cebb22"
+      "sha256": "f3ffda9edefa63375b3e8d15ee6e92c4bd0d47efb2d7adeb40e9dce29b9710d6"
     },
     {
       "csv_path": "osf_component_plan/osf_component_plan.csv",
@@ -433,7 +433,7 @@
       "name": "data_quality_checks",
       "parquet_path": "data_quality_checks/data_quality_checks.parquet",
       "rows": 41,
-      "sha256": "0f1bab279bba6f364e15deb6f6ad89da0a305219094a91463247dc32285c073c"
+      "sha256": "ff4125eb040a6cb9941d02c08b085d8e79e79fbffb32b4a7751f0f2955d993ae"
     },
     {
       "csv_path": "evidence_readiness/evidence_readiness.csv",
@@ -449,15 +449,15 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "a145fb87613b07c4d7119aba100d3f1a1016fd5704ea9ae79c94408caf7760bc"
+      "sha256": "afa87392f182ea7084af570f403ecdbaa14cfdf7efd589f8940a65ec753c9c80"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
       "jsonl_path": "data_dictionary/data_dictionary.jsonl",
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
-      "rows": 217,
-      "sha256": "32edf89f6b6cdafdfefa7114a1a283a8302daa3388d60a1493d2514c9f210160"
+      "rows": 222,
+      "sha256": "e60bb0ec63575a632aaf29814d2e231796f454230c9b30cd47e3ef3da56fd770"
     }
   ]
 }

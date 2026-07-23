@@ -20,5 +20,5 @@
     }
   },
   "schema_version": "zenodo-external-state-v1",
-  "status": "ready_for_draft"
+  "status": "blocked"
 }

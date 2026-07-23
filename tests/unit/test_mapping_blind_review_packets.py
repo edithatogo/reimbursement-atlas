@@ -1,8 +1,9 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
-from scripts.make_mapping_blind_review_packets import build_packets
+from scripts.make_mapping_blind_review_packets import build_packets, is_sealed_cycle
 
 
 def test_current_blind_packets_are_complete_and_hide_hypotheses() -> None:
@@ -33,3 +34,15 @@ def test_codebook_cycle_exposes_relation_but_not_hypothesis() -> None:
     assert all(case["target_relation"] for case in cases)
     assert all("billing-code equivalence" in case["decision_question"] for case in cases)
     assert all("candidate_score" not in case for case in cases)
+
+
+def test_sealed_cycle_is_not_eligible_for_packet_regeneration(tmp_path: Path) -> None:
+    evaluation = tmp_path / "data/derived/mapping_study/expansion_v9/evaluation_summary.json"
+    evaluation.parent.mkdir(parents=True)
+    evaluation.write_text(
+        json.dumps({"evaluated_once": True}),
+        encoding="utf-8",
+    )
+
+    assert is_sealed_cycle(tmp_path, "expansion_v9") is True
+    assert is_sealed_cycle(tmp_path, "expansion_v8") is False
