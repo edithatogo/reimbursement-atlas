@@ -5,7 +5,11 @@ from pathlib import Path
 
 import pytest
 
-from reimburse_atlas.dashboard_review import dashboard_review_evidence, dashboard_source_fingerprint
+from reimburse_atlas.dashboard_review import (
+    dashboard_review_evidence,
+    dashboard_source_fingerprint,
+    resolve_repo_head,
+)
 from scripts.make_dashboard_owner_review_packet import PROVENANCE_INPUTS, build_packet
 from scripts.make_dashboard_review_packet import PROJECTS, ROUTES
 
@@ -144,3 +148,40 @@ def test_dashboard_evidence_serializes_stable_evidence_commit(tmp_path: Path) ->
 def test_owner_packet_does_not_hash_its_dependent_release_summary() -> None:
     """Prevent a cryptographic cycle between review evidence and release readiness."""
     assert Path("data/derived/release_readiness/summary.json") not in PROVENANCE_INPUTS
+
+
+def test_resolve_repo_head_reads_detached_and_loose_refs(tmp_path: Path) -> None:
+    git = tmp_path / ".git"
+    git.mkdir()
+    (git / "HEAD").write_text("a" * 40, encoding="utf-8")
+    assert resolve_repo_head(tmp_path) == "a" * 40
+
+    (git / "HEAD").write_text("ref: refs/heads/main", encoding="utf-8")
+    branch = git / "refs/heads/main"
+    branch.parent.mkdir(parents=True)
+    branch.write_text("b" * 40, encoding="utf-8")
+    assert resolve_repo_head(tmp_path) == "b" * 40
+
+
+def test_resolve_repo_head_reads_worktree_packed_ref(tmp_path: Path) -> None:
+    common = tmp_path / "common"
+    worktree_git = common / "worktrees/current"
+    worktree_git.mkdir(parents=True)
+    (worktree_git / "HEAD").write_text("ref: refs/heads/release", encoding="utf-8")
+    (worktree_git / "commondir").write_text("../..", encoding="utf-8")
+    (common / "packed-refs").write_text(
+        f"# pack-refs\n{'c' * 40} refs/heads/release\n^{'d' * 40}\n",
+        encoding="utf-8",
+    )
+    (tmp_path / ".git").write_text(
+        f"gitdir: {worktree_git.as_posix()}",
+        encoding="utf-8",
+    )
+
+    assert resolve_repo_head(tmp_path) == "c" * 40
+
+
+def test_resolve_repo_head_rejects_invalid_gitdir_marker(tmp_path: Path) -> None:
+    (tmp_path / ".git").write_text("invalid", encoding="utf-8")
+
+    assert resolve_repo_head(tmp_path) is None

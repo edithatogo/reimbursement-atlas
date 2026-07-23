@@ -261,9 +261,13 @@ def test_build_remote_registration_snapshot_binds_receipt_to_freeze() -> None:
 @pytest.mark.parametrize(
     ("field", "value", "message"),
     [
+        ("schema_version", "wrong", "invalid OSF registration receipt schema"),
         ("status", "pending_approval", "not active"),
         ("public", False, "public and immutable"),
         ("immutable", False, "public and immutable"),
+        ("registration_id", "", "missing registration_id"),
+        ("registration_url", "https://example.invalid/abc12", "invalid registration_url"),
+        ("registered_at", "", "missing registered_at"),
     ],
 )
 def test_build_remote_registration_snapshot_rejects_unready_receipt(
@@ -284,6 +288,31 @@ def test_build_remote_registration_snapshot_rejects_unready_receipt(
 
     with pytest.raises(ValueError, match=message):
         build_remote_registration_snapshot(receipt, _freeze())
+
+
+@pytest.mark.parametrize(
+    ("freeze", "message"),
+    [
+        ({"review_approved": True}, "protocol_digest,analysis_manifest_digest,source_cutoff"),
+        (_freeze(review_approved=False), "review_approved"),
+    ],
+)
+def test_build_remote_registration_snapshot_rejects_incomplete_freeze(
+    freeze: dict[str, object],
+    message: str,
+) -> None:
+    receipt: dict[str, object] = {
+        "schema_version": "osf-registration-receipt-v1",
+        "registration_id": "abc12",
+        "registration_url": "https://osf.io/abc12/",
+        "registered_at": "2026-07-23T13:00:00Z",
+        "public": True,
+        "immutable": True,
+        "status": "registered",
+    }
+
+    with pytest.raises(ValueError, match=message):
+        build_remote_registration_snapshot(receipt, freeze)
 
 
 def test_registration_review_packet_is_explicitly_unapproved(tmp_path) -> None:  # type: ignore[no-untyped-def]

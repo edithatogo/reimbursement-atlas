@@ -1440,7 +1440,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "workflow_uses",
-      "sha256": "3b37646956f96fa6d5bfb862fb1ff09f767c6657648fd5712d201df08d31eca4"
+      "sha256": "edc4fe60c0e535f8b28c29de2ab15cc4e0c8e156d7669b58848613c238c96416"
     },
     {
       "@id": "data/derived/repo_automation/workflow_uses.csv",
@@ -1449,7 +1449,7 @@
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "workflow_uses",
-      "sha256": "2931241dc8ed34785499833e72e2268ca3305c3a9b75c3c950d8ec392078f3c1"
+      "sha256": "1bc678bf07b8bd92a45c69148cc761dd26367ad8997616b3e97ab852386705d1"
     },
     {
       "@id": "data/derived/repo_automation/workflow_policy.jsonl",
@@ -1656,7 +1656,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "ae3c15f74a1e64e1c04681d8f72dc671a072be91be743336e92a4073769ed123"
+      "sha256": "430b25741fee5a979e9d379150ed8bf6aae1e812df98c076aca435fcb2ae3d59"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
@@ -1665,7 +1665,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "72bd57eb0ea0ea75adde98b1e3a046f309af5c2f6f89198a8d07c5ec6599ff4e"
+      "sha256": "711fe74c5b31a93d89676be67ddb7a353c5766237aa4c2de7972fa8d9fdc8490"
     },
     {
       "@id": "data/derived/v13_validation_run.json",
@@ -1778,20 +1778,20 @@
     {
       "@id": "data/derived/github_project/github_project_items.jsonl",
       "@type": "File",
-      "contentSize": 167818,
+      "contentSize": 167821,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "github_project_items",
-      "sha256": "2be7eed56d473add53648a800b03818ef4a6842a78c5757c24fefb5a6529fe18"
+      "sha256": "7148ae6d5d2b7067bb2b8241bdf70a2d2532096a407378250b1da4d743eaa28f"
     },
     {
       "@id": "data/derived/github_project/github_project_items.csv",
       "@type": "File",
-      "contentSize": 126557,
+      "contentSize": 126560,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "github_project_items",
-      "sha256": "e984d4462180bfee015649a2a98735ae5e5e0d2d43c9cdc5555e308d74af1460"
+      "sha256": "ed81cace26f1a9ff644eb66f694a6526ed34a4645f323531940be69ef2522eee"
     },
     {
       "@id": "data/derived/final_handoff/final_handoff_tasks.jsonl",
@@ -1962,7 +1962,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "source_drift_report",
-      "sha256": "6921d6a70833464ba2d5d78e4db91bd48f43da47897352c61a27f458ee30cece"
+      "sha256": "cfecc89ea77e33905a114dfdf4fbe99f59685151ce6d37322703c207d661e8b9"
     },
     {
       "@id": "data/derived/source_drift/source_drift_report.csv",
@@ -1971,7 +1971,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "source_drift_report",
-      "sha256": "ffacabd79b446c6536f80989db531fc5939e93fe3cbb2b7c770af6f9c7224d4e"
+      "sha256": "dd87fe871e4175e8496e61e72fbc88c17d1221d94cdcee200cf62315074ee242"
     },
     {
       "@id": "data/derived/source_drift/summary.json",

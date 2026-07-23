@@ -3,7 +3,10 @@
   "adjudications": "data/mapping_study/adjudications.jsonl",
   "available_unique_candidates": 1500,
   "blind_reviews": "data/mapping_study/blind_reviews.jsonl",
+  "deduplicated_adjudication_count": 0,
   "development_case_ids": [],
+  "development_duplicate_groups": [],
+  "duplicate_group_exclusion_count": 0,
   "family_label_gaps": {
     "devices_other": {
       "negative": 50,
@@ -23,8 +26,9 @@
     }
   },
   "holdout_case_ids": [],
+  "holdout_duplicate_groups": [],
   "inadmissible_adjudication_count": 0,
-  "independently_reviewed_count": 0,
+  "independently_reviewed_count": 1500,
   "input": "data/derived/mapping_study/candidate_frame.jsonl",
   "input_sha256": "275fdb0742ad2e8227b09a737799678f139f644e2a9f9cba06ac6c112ffcddca",
   "randomisation": {
@@ -48,6 +52,7 @@
     "au_pbs->us_fda_device_classification": 54
   },
   "status": "blocked_adjudication",
+  "study_cycle": "initial",
   "target_case_gap": 750,
   "targets": {
     "development_negative": 300,
