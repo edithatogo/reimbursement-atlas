@@ -249,13 +249,26 @@ jobs:
             -H "Authorization: Bearer $OSF_TOKEN" > osf-publication/drafts.json
           draft_id="$(jq -r --arg title "$registration_title" '[.data[] | select(.attributes.title == $title)] | first | .id // empty' osf-publication/drafts.json)"
           if [ -z "$draft_id" ]; then
-            "$osf_bin" registrations create "$OSF_PROJECT_ID" \
-              --title "$registration_title" \
-              --description "$description" \
-              --schema "5df83f7dd28338001ac0ab0d" \
-              --yes --output json \
+            jq -cn --arg title "$registration_title" --arg description "$description" \
+              --arg schema_id "5df83f7dd28338001ac0ab0d" \
+              '{
+                data: {
+                  type: "draft_registrations",
+                  attributes: {title: $title, description: $description},
+                  relationships: {
+                    registration_schema: {
+                      data: {type: "registration_schemas", id: $schema_id}
+                    }
+                  }
+                }
+              }' > osf-publication/draft-request.json
+            curl --fail --silent --show-error \
+              -X POST "https://api.osf.io/v2/nodes/$OSF_PROJECT_ID/draft_registrations/" \
+              -H "Authorization: Bearer $OSF_TOKEN" \
+              -H "Content-Type: application/vnd.api+json" \
+              --data-binary @osf-publication/draft-request.json \
               > osf-publication/draft-created.json
-            draft_id="$(jq -r '.id // .data.id // empty' osf-publication/draft-created.json)"
+            draft_id="$(jq -r '.data.id // empty' osf-publication/draft-created.json)"
           fi
           test -n "$draft_id"
           jq -cn --arg id "$draft_id" --arg title "$registration_title" \
@@ -265,7 +278,8 @@ jobs:
 
           rm -rf osf-publication/verified osf-publication/remote-files.json \
             osf-publication/project-update.json osf-publication/project-response.json \
-            osf-publication/drafts.json osf-publication/draft-created.json
+            osf-publication/drafts.json osf-publication/draft-created.json \
+            osf-publication/draft-request.json
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: osf-publication-receipt
