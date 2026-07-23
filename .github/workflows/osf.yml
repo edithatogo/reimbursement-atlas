@@ -251,7 +251,9 @@ jobs:
           if [ -z "$draft_id" ]; then
             "$osf_bin" registrations create "$OSF_PROJECT_ID" \
               --title "$registration_title" \
-              --description "$description" --yes --output json \
+              --description "$description" \
+              --schema "5df83f7dd28338001ac0ab0d" \
+              --yes --output json \
               > osf-publication/draft-created.json
             draft_id="$(jq -r '.id // .data.id // empty' osf-publication/draft-created.json)"
           fi
