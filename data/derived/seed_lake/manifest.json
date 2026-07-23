@@ -33,7 +33,7 @@
       "name": "source_versions",
       "parquet_path": "source_versions/source_versions.parquet",
       "rows": 19,
-      "sha256": "53f3f3c403ce56c20c167637ce3cc5b77ddea93a1e4d74c1ff2cf1c47ac58fa6"
+      "sha256": "dd3319faadc6d5b9e60b00a586ba1e5618232f2f50ba971a7d7fd516be3608c8"
     },
     {
       "csv_path": "source_files/source_files.csv",
@@ -57,7 +57,7 @@
       "name": "source_status",
       "parquet_path": "source_status/source_status.parquet",
       "rows": 5,
-      "sha256": "8ad3c805ff638915711f15e0d27645fed23bbf66f88f6c7d8c3fd7d6224aadb2"
+      "sha256": "7cebb6721789bb15a714e368c988d4ee1618f971d15bdfc3260bb46d5546a096"
     },
     {
       "csv_path": "sample_schedule_items/sample_schedule_items.csv",

@@ -35,20 +35,20 @@
       }
     },
     {
-      "bytes": 10154,
+      "bytes": 10317,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "format": "jsonl",
-      "hash": "53f3f3c403ce56c20c167637ce3cc5b77ddea93a1e4d74c1ff2cf1c47ac58fa6",
+      "hash": "dd3319faadc6d5b9e60b00a586ba1e5618232f2f50ba971a7d7fd516be3608c8",
       "mediatype": "application/json",
       "name": "source-versions",
       "path": "data/seed/source_versions.jsonl",
       "schema": {}
     },
     {
-      "bytes": 6579,
+      "bytes": 6748,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "format": "csv",
-      "hash": "f7e125e7e72b1c45df90fb7fd7a306714a8929ca4e7849fe5949079b5ded2466",
+      "hash": "f735cb8786d9c83cd10d1dd47d13c4e7d5c9e43d9982e7794d5daada6fa13370",
       "mediatype": "text/csv",
       "name": "source-versions",
       "path": "data/seed/source_versions.csv",
@@ -85,20 +85,20 @@
       }
     },
     {
-      "bytes": 2897,
+      "bytes": 2968,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "format": "jsonl",
-      "hash": "35edb29b88428edc9e6edf6bf41cf59277600c397304041f65ed619630632a9b",
+      "hash": "33bf9797d723910566094bd21ee106410a17210529ef99e1dcf381ee47838b9b",
       "mediatype": "application/json",
       "name": "source-status",
       "path": "data/seed/source_status.jsonl",
       "schema": {}
     },
     {
-      "bytes": 2339,
+      "bytes": 2406,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "format": "csv",
-      "hash": "c40eceb24beae39347b1a4db566efdf3a829ae0c614103a387c801814121d876",
+      "hash": "513965d60f8c441ab7942306c459c35955e84b5e8a83949d3686475f767f2975",
       "mediatype": "text/csv",
       "name": "source-status",
       "path": "data/seed/source_status.csv",

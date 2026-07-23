@@ -665,20 +665,20 @@
     {
       "@id": "data/seed/source_versions.jsonl",
       "@type": "File",
-      "contentSize": 10154,
+      "contentSize": 10317,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "source_versions",
-      "sha256": "53f3f3c403ce56c20c167637ce3cc5b77ddea93a1e4d74c1ff2cf1c47ac58fa6"
+      "sha256": "dd3319faadc6d5b9e60b00a586ba1e5618232f2f50ba971a7d7fd516be3608c8"
     },
     {
       "@id": "data/seed/source_versions.csv",
       "@type": "File",
-      "contentSize": 6579,
+      "contentSize": 6748,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "source_versions",
-      "sha256": "f7e125e7e72b1c45df90fb7fd7a306714a8929ca4e7849fe5949079b5ded2466"
+      "sha256": "f735cb8786d9c83cd10d1dd47d13c4e7d5c9e43d9982e7794d5daada6fa13370"
     },
     {
       "@id": "data/seed/source_files.jsonl",
@@ -701,20 +701,20 @@
     {
       "@id": "data/seed/source_status.jsonl",
       "@type": "File",
-      "contentSize": 2897,
+      "contentSize": 2968,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "source_status",
-      "sha256": "35edb29b88428edc9e6edf6bf41cf59277600c397304041f65ed619630632a9b"
+      "sha256": "33bf9797d723910566094bd21ee106410a17210529ef99e1dcf381ee47838b9b"
     },
     {
       "@id": "data/seed/source_status.csv",
       "@type": "File",
-      "contentSize": 2339,
+      "contentSize": 2406,
       "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "source_status",
-      "sha256": "c40eceb24beae39347b1a4db566efdf3a829ae0c614103a387c801814121d876"
+      "sha256": "513965d60f8c441ab7942306c459c35955e84b5e8a83949d3686475f767f2975"
     },
     {
       "@id": "data/seed/source_snapshots.jsonl",

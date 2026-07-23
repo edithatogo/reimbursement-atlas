@@ -23,6 +23,11 @@
 - [x] SRC-11: Acquire the official July 2026 CMS alpha-numeric HCPCS Level II archive, verify
   SHA-256, and generate a derived-only bundle that excludes numeric CPT and `D`-series dental
   descriptors while recording transformation and licence scope. (Issue #490)
+- [x] SRC-12: Add an official RVU26C local-only CPT enrichment adapter. Validate the CMS archive
+  member and embedded copyright notice, retain descriptor-bearing candidates only under ignored
+  `data/local/`, and publish only release identity, checksums, counts, parameters and restrictions.
+  This capability supplies optional evidence for #491; it does not weaken the completed
+  rights-cleared acquisition scope in #490. (Issue #490, subissue #491)
 
 Issue #490 is repository-complete for source acquisition: reviewed, checksum-bound RxNorm CPC,
 CMS ASP/PFS/HCPCS Level II, HPO and openFDA bundles provide a structurally complete 1,500-case

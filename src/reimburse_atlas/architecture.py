@@ -54,6 +54,7 @@ _LAYER_BY_ROOT_MODULE: dict[str, ArchitectureLayer] = {
     "hcpcs_level_ii": "parsing",
     "analysis": "analysis",
     "crosswalk": "analysis",
+    "local_cpt_enrichment": "analysis",
     "demonstrators": "analysis",
     "graph": "analysis",
     "gold_standard": "analysis",
