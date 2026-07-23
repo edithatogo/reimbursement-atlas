@@ -605,6 +605,7 @@ epics:
           - "Rights-cleared RxNorm, CMS ASP/PFS/HCPCS, HPO and openFDA counterparts are acquired as reviewed derived bundles."
           - "A separately versioned 1,500-case expansion frame is frozen with no structural family gap."
           - "Raw payloads remain ignored and restricted terminology is optional local enrichment."
+          - "Weekly source-health monitoring reruns acquisition, contract and drift gates and escalates material source or licence changes."
       - title: Adjudicate mapping controls and evaluate untouched holdout
         labels: ["type:mapping", "type:statistics", "type:review", "status:implemented"]
         status: implemented
@@ -614,6 +615,7 @@ epics:
           - "The deterministic split contains 300 positive and 300 negative development cases plus an untouched 75 positive and 75 negative holdout."
           - "Thresholds are tuned on development only; holdout predictions are frozen before truth is evaluated once."
           - "Sensitivity, specificity, precision, NPV and balanced accuracy include exact 95 percent intervals overall and by family."
+          - "Any material source, mapping-rule, model or threshold change creates a new immutable cycle and untouched holdout; the evaluated holdout is never retuned or pooled."
       - title: Complete CMS MBS and PBS source-rights review records
         labels: ["type:licence", "type:data-source", "type:review", "status:implemented"]
         status: implemented
@@ -624,6 +626,7 @@ epics:
           - "The review packet is bound to the tested release commit and includes screenshot hashes, browser results, keyboard/focus checks and provenance samples."
           - "The accountable owner records browser, OS, assistive technology, routes, provenance scope, findings and exceptions."
           - "The decision is approved_within_scope and makes no universal WCAG conformance claim."
+          - "Material route, displayed-evidence, provenance-contract or readiness changes require a fresh commit-bound packet and scoped owner decision."
       - title: Regenerate evidence readiness and final handoff after adjudication
         labels: ["type:evidence", "type:release", "type:automation", "status:implemented"]
         status: implemented
@@ -677,3 +680,12 @@ epics:
           - "Mapping, dashboard, OSF registration, licence and release-readiness gates independently pass before deposition."
           - "The version DOI resolves and remote checksums are verified after publication."
           - "Papers, manuscripts and preprints are excluded."
+          - "The signed GitHub release precedes Zenodo deposition, and every deposited asset is verified against its exact-tag attestation."
+      - title: Monitor OSF registration and synchronize the Zenodo release gate
+        labels: ["type:automation", "type:osf", "type:release", "status:implemented"]
+        status: implemented
+        acceptance:
+          - "A scheduled read-only monitor records the OSF registration transition without uploading files or mutating the registration."
+          - "The monitor emits a redacted receipt and validates a canonical snapshot only for an active public immutable registration."
+          - "One bounded status comment on issue 532 reports the verified state and next release action."
+          - "Papers and preprints remain excluded."

@@ -1,0 +1,140 @@
+name: OSF registration monitor
+
+on:
+  schedule:
+    - cron: "23 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: osf-registration-monitor
+  cancel-in-progress: true
+
+jobs:
+  verify-registration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      issues: write
+    env:
+      PYTHONPATH: src
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
+      - name: Read registration state without mutating OSF
+        env:
+          OSF_TOKEN: ${{ secrets.OSF_TOKEN }}
+        run: |
+          set -euo pipefail
+          test -n "$OSF_TOKEN"
+          mkdir -p osf-registration-monitor
+          registration_id="$(
+            jq -r '.registration_id' data/derived/osf/remote_registration_receipt.json
+          )"
+          test -n "$registration_id"
+          test "$registration_id" != "null"
+          curl --fail --silent --show-error \
+            "https://api.osf.io/v2/registrations/$registration_id/" \
+            -H "Authorization: Bearer $OSF_TOKEN" \
+            > osf-registration-monitor/remote.json
+          remote_verified_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          jq --arg remote_verified_at "$remote_verified_at" '{
+            schema_version: "osf-registration-receipt-v1",
+            registration_id: .data.id,
+            title: .data.attributes.title,
+            registration_url: .data.links.html,
+            registered_at: .data.attributes.date_registered,
+            public: .data.attributes.public,
+            pending_registration_approval: .data.attributes.pending_registration_approval,
+            withdrawn: (.data.attributes.withdrawn // false),
+            embargoed: (.data.attributes.embargoed // false),
+            remote_verified_at: $remote_verified_at,
+            status: (
+              if .data.attributes.withdrawn then "withdrawn"
+              elif .data.attributes.pending_registration_approval then "pending_approval"
+              elif .data.attributes.public then "registered"
+              else "private"
+              end
+            ),
+            submitted: true,
+            immutable: true
+          }' osf-registration-monitor/remote.json \
+            > osf-registration-monitor/registration.json
+          rm osf-registration-monitor/remote.json
+      - name: Validate active public registration snapshot
+        id: registration
+        run: |
+          set -euo pipefail
+          receipt="osf-registration-monitor/registration.json"
+          public="$(jq -r '.public' "$receipt")"
+          pending="$(jq -r '.pending_registration_approval' "$receipt")"
+          withdrawn="$(jq -r '.withdrawn' "$receipt")"
+          if [ "$public" = "true" ] && [ "$pending" = "false" ] && [ "$withdrawn" = "false" ]; then
+            pixi run osf-registration-snapshot \
+              --receipt "$receipt" \
+              --output osf-registration-monitor/remote_registration_snapshot.json
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+            echo "OSF registration is active, immutable and public." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            jq -r '"OSF registration remains fail-closed: status=\(.status), public=\(.public), pending_registration_approval=\(.pending_registration_approval), withdrawn=\(.withdrawn)."' \
+              "$receipt" >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Upload redacted registration evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: osf-registration-monitor-${{ github.run_id }}
+          path: osf-registration-monitor/
+          if-no-files-found: error
+          retention-days: 90
+      - name: Synchronize issue 532 status comment
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REGISTRATION_READY: ${{ steps.registration.outputs.ready }}
+        run: |
+          set -euo pipefail
+          marker="<!-- osf-registration-monitor -->"
+          receipt="osf-registration-monitor/registration.json"
+          if [ ! -s "$receipt" ]; then
+            body="$marker
+          Automated OSF registration verification did not produce a receipt. Inspect run ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}."
+          else
+            status="$(jq -r '.status' "$receipt")"
+            public="$(jq -r '.public' "$receipt")"
+            pending="$(jq -r '.pending_registration_approval' "$receipt")"
+            verified="$(jq -r '.remote_verified_at' "$receipt")"
+            if [ "$REGISTRATION_READY" = "true" ]; then
+              next="Registration is active and public. Freeze the exact GitHub release assets, verify attestations, then execute the approved Zenodo/DataCite sequence."
+            else
+              next="Keep release and Zenodo deposition blocked until OSF reports an active public registration."
+            fi
+            body="$marker
+          Automated OSF registration state:
+
+          - Status: \`$status\`
+          - Public: \`$public\`
+          - Pending approval: \`$pending\`
+          - Verified at: \`$verified\`
+          - Evidence: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
+
+          $next
+
+          Papers and preprints remain excluded."
+          fi
+          comment_id="$(
+            gh api "repos/${GITHUB_REPOSITORY}/issues/532/comments" --paginate \
+              --jq ".[] | select(.body | contains(\"$marker\")) | .id" | head -n 1
+          )"
+          if [ -n "$comment_id" ]; then
+            gh api --method PATCH "repos/${GITHUB_REPOSITORY}/issues/comments/$comment_id" \
+              -f body="$body" >/dev/null
+          else
+            gh issue comment 532 --body "$body"
+          fi

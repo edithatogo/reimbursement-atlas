@@ -22,13 +22,15 @@ citation metadata and publication status.
 
 ## Acceptance criteria
 
-- [ ] Every target has URL, retrieval timestamp, version, checksum, citation and licence state.
-- [ ] Every derived output links to source versions and transformation steps.
-- [ ] Restricted descriptors and raw payloads are excluded by policy gates.
-- [ ] Historical failures, missing releases and metadata-only targets remain visible.
-- [ ] Rebuilds produce deterministic manifests and package metadata.
-- [ ] Every mapping family reports left/right record sufficiency and names missing counterpart
+- [x] Every target has URL, retrieval timestamp, version, checksum, citation and licence state.
+- [x] Every derived output links to source versions and transformation steps.
+- [x] Restricted descriptors and raw payloads are excluded by policy gates.
+- [x] Historical failures, missing releases and metadata-only targets remain visible.
+- [x] Rebuilds produce deterministic manifests and package metadata.
+- [x] Every mapping family reports left/right record sufficiency and names missing counterpart
   source groups without using fixtures.
+- [x] Scheduled monitoring re-runs acquisition, content-contract and drift checks and escalates
+  material source or licence changes without publishing raw payloads.
 
 ## Authoritative inputs
 

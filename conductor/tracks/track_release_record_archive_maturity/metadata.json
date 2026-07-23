@@ -3,7 +3,7 @@
   "type": "feature",
   "status": "in_progress",
   "created_at": "2026-07-20T00:00:00Z",
-  "updated_at": "2026-07-23T13:08:00Z",
+  "updated_at": "2026-07-24T00:00:00Z",
   "description": "Align citation, dashboard, OSF, Hugging Face and archive records for a citable public product.",
   "evidence_schema": "1.0",
   "gates": [
@@ -11,6 +11,8 @@
     {"id": "destination_parity", "kind": "external", "status": "pass", "evidence": "HF dataset/Space destination report has zero mismatches."},
     {"id": "dashboard_accountable_review", "kind": "human_review", "status": "pass", "evidence": "The accountable owner approved the refreshed 64-test, 44-screenshot packet within its declared browser, route, automated accessibility and provenance scope; manual VoiceOver and universal WCAG conformance are excluded."},
     {"id": "archive_release", "kind": "external", "status": "pending", "evidence": "The v2 release-asset inventory requires wheel, sdist, source archive, both SBOMs, release manifest and attestation receipts. Signed final assets remain downstream of mapping, dashboard and OSF registration evidence gates."},
-    {"id": "zenodo_datacite", "kind": "external_publication", "status": "pending", "evidence": "Deterministic Zenodo/DataCite metadata, a fail-closed v2 inventory contract and token-gated plan/draft/reserve/publish/verify workflow exist. Draft, reservation and publication all require the complete archive gate and remote checksum parity. Papers and preprints are excluded."}
+    {"id": "osf_registration_monitor", "kind": "repository_automation", "status": "pass", "evidence": "A daily least-privilege monitor reads the exact registration, validates a canonical public snapshot when eligible, uploads redacted evidence and synchronizes one bounded issue #532 comment without OSF mutation."},
+    {"id": "zenodo_credentials", "kind": "external_credential", "status": "pending", "evidence": "The repository does not currently expose a ZENODO_TOKEN Actions secret. The workflow fails before remote mutation when the credential is absent."},
+    {"id": "zenodo_datacite", "kind": "external_publication", "status": "pending", "evidence": "Deterministic Zenodo/DataCite metadata, a fail-closed v2 inventory contract and token-gated plan/draft/reserve/publish/verify workflow exist. Draft, reservation and publication all require an active public OSF registration, the complete exact-tag archive gate and remote checksum parity. Papers and preprints are excluded."}
   ]
 }
