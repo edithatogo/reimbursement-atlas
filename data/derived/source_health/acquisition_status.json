@@ -1,7 +1,17 @@
 {
   "evidence_path": "data/derived/final_handoff/final_handoff_tasks.jsonl",
-  "incomplete_count": 1,
+  "incomplete_count": 2,
   "items": [
+    {
+      "credential_names": [],
+      "evidence_path": "data/derived/historical_sources/summary.json",
+      "operational_blocker_count": 1,
+      "recommended_action": "Review downloaded-source evidence and resolve remaining licence-gated or unacquired targets before promotion.",
+      "review_required_count": 0,
+      "status": "partial",
+      "task_id": "final_historical_source_expansion",
+      "title": "Review historical MBS/PBS source expansion and licence scope"
+    },
     {
       "credential_names": [],
       "evidence_path": "data/derived/source_downloads/download_attempts.jsonl",
@@ -15,11 +25,12 @@
   ],
   "mutation_performed": false,
   "network_io": false,
-  "operational_blocker_count": 0,
+  "operational_blocker_count": 1,
   "review_required_count": 7,
   "schema_version": "source-health-acquisition-v1",
-  "status": "review_required",
+  "status": "incomplete",
   "task_ids": [
+    "final_historical_source_expansion",
     "final_source_downloads"
   ]
 }

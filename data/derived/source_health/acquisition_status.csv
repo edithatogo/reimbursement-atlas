@@ -1,2 +1,3 @@
 credential_names,evidence_path,operational_blocker_count,recommended_action,review_required_count,status,task_id,title
+,data/derived/historical_sources/summary.json,1,Review downloaded-source evidence and resolve remaining licence-gated or unacquired targets before promotion.,0,partial,final_historical_source_expansion,Review historical MBS/PBS source expansion and licence scope
 ,data/derived/source_downloads/download_attempts.jsonl,0,Complete the human source/licence review for the gated rows; no additional automated acquisition is required.,7,review_required,final_source_downloads,Run hardened curl/wget source download plan

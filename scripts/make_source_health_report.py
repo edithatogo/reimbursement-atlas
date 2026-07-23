@@ -66,6 +66,8 @@ def _missing_credentials(repo: Path, evidence_path: str) -> list[str]:
             record = json.loads(line)
         except json.JSONDecodeError:
             continue
+        if not isinstance(record, dict):
+            continue
         if record.get("status") != "blocked_secret":
             continue
         match = _MISSING_CREDENTIAL_RE.search(str(record.get("error_summary", "")))
@@ -84,6 +86,8 @@ def _attempt_status_counts(repo: Path, evidence_path: str) -> dict[str, int]:
         try:
             record = json.loads(line)
         except json.JSONDecodeError:
+            continue
+        if not isinstance(record, dict):
             continue
         status = str(record.get("status", "unknown"))
         counts[status] = counts.get(status, 0) + 1

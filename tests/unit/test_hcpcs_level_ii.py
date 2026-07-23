@@ -2,7 +2,12 @@ import json
 from pathlib import Path
 from zipfile import ZipFile
 
-from reimburse_atlas.hcpcs_level_ii import build_hcpcs_level_ii_bundle
+import pytest
+
+from reimburse_atlas.hcpcs_level_ii import (
+    HcpcsArchiveStructureError,
+    build_hcpcs_level_ii_bundle,
+)
 
 
 def _line(code: str, record_type: str, long: str, short: str = "") -> str:
@@ -21,6 +26,7 @@ def test_bundle_excludes_restricted_descriptors_and_joins_continuations(
                 _line("A1001", "4", "continued"),
                 _line("12345", "3", "Restricted CPT", "CPT"),
                 _line("D0123", "3", "Restricted dental", "Dental"),
+                "short",
             ]),
         )
     bundle = build_hcpcs_level_ii_bundle(archive, tmp_path / "out")
@@ -30,3 +36,18 @@ def test_bundle_excludes_restricted_descriptors_and_joins_continuations(
     assert row["item_description"] == "Permitted first line continued"
     assert "12345" not in output
     assert "D0123" not in output
+    report = json.loads((bundle / "validation_report.json").read_text(encoding="utf-8"))
+    assert report["excluded_record_counts"] == {
+        "dental_d_series": 1,
+        "non_procedure_or_malformed": 1,
+        "numeric_cpt": 1,
+    }
+
+
+def test_bundle_rejects_archive_without_single_anweb_member(tmp_path: Path) -> None:
+    archive = tmp_path / "hcpcs.zip"
+    with ZipFile(archive, "w") as package:
+        package.writestr("unexpected.txt", "not the CMS member")
+
+    with pytest.raises(HcpcsArchiveStructureError):
+        build_hcpcs_level_ii_bundle(archive, tmp_path / "out")

@@ -150,6 +150,6 @@ def test_source_health_report_fails_open_when_handoff_is_missing(tmp_path: Path)
 def test_tracked_source_health_count_matches_current_acquisition_report() -> None:
     """Keep current blocker prose anchored to the generated acquisition evidence."""
     report = build_source_health_report(Path())
-    assert report["status"] == "review_required"
+    assert report["status"] == "incomplete"
     assert report["review_required_count"] == 7
-    assert report["operational_blocker_count"] == 0
+    assert report["operational_blocker_count"] == 1
