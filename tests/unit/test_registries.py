@@ -23,6 +23,7 @@ def test_source_registry_loads_many_sources() -> None:
     assert len(records) >= 60
     assert duplicate_source_ids(records) == []
     assert "tier_1" in access_tier_counts(records)
+    assert "us_cms_hcpcs_level_ii" in source_ids(records)
 
 
 def test_pbs_registry_matches_documented_monthly_refresh() -> None:
