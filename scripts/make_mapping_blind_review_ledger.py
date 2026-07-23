@@ -22,6 +22,51 @@ def _jsonl(path: Path) -> list[dict[str, Any]]:
     ]
 
 
+def _review_receipts(
+    root: Path,
+    *,
+    review_root: Path,
+    manifest: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+    """Validate session separation for receipt-enabled packet manifests."""
+    if manifest.get("schema_version") != "mapping-blind-review-packet-manifest-v2":
+        return {}
+    receipts: dict[str, dict[str, Any]] = {}
+    packet_hashes = cast("dict[str, str]", manifest["role_packet_sha256"])
+    for role in ("reviewer_a", "reviewer_b"):
+        path = root / review_root / f"{role}_receipt.json"
+        if not path.is_file():
+            message = f"{role} independent-review receipt is required"
+            raise ValueError(message)
+        receipt = cast("dict[str, Any]", json.loads(path.read_text(encoding="utf-8")))
+        required_attestations = {
+            "other_review_not_accessed": True,
+            "hypotheses_not_accessed": True,
+            "split_assignment_not_accessed": True,
+        }
+        expected = {
+            "schema_version": "mapping-reviewer-session-receipt-v1",
+            "reviewer_role": role,
+            "candidate_frame_sha256": manifest["candidate_frame_sha256"],
+            "packet_sha256": packet_hashes[role],
+            "isolation_attestation": required_attestations,
+        }
+        text_fields = ("reviewer_session_id", "bounded_mandate", "started_at", "completed_at")
+        if any(receipt.get(key) != value for key, value in expected.items()) or any(
+            not str(receipt.get(field, "")).strip() for field in text_fields
+        ):
+            message = f"{role} independent-review receipt is invalid"
+            raise ValueError(message)
+        receipts[role] = receipt
+    if (
+        receipts["reviewer_a"]["reviewer_session_id"]
+        == receipts["reviewer_b"]["reviewer_session_id"]
+    ):
+        message = "isolated reviewers must use distinct session identifiers"
+        raise ValueError(message)
+    return receipts
+
+
 def build_ledger(  # ruff:ignore[too-many-locals]
     root: Path, cycle: str = DEFAULT_CYCLE
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
@@ -33,6 +78,7 @@ def build_ledger(  # ruff:ignore[too-many-locals]
     )
     frame_sha256 = str(manifest["candidate_frame_sha256"])
     expected_count = int(manifest["case_count"])
+    receipts = _review_receipts(root, review_root=paths.review, manifest=manifest)
     packet_path = root / paths.packets / "reviewer_a_cases.jsonl"
     packet_cases = (
         {str(row["case_id"]): row for row in _jsonl(packet_path)} if packet_path.is_file() else {}
@@ -114,6 +160,12 @@ def build_ledger(  # ruff:ignore[too-many-locals]
         "reviewer_case_count": expected_count,
         "ledger_record_count": len(ledger),
         "role_file_sha256": role_hashes,
+        "review_receipt_sha256": {
+            role: hashlib.sha256(
+                (root / paths.review / f"{role}_receipt.json").read_bytes()
+            ).hexdigest()
+            for role in receipts
+        },
         "agreement_count": agreements,
         "disagreement_count": expected_count - agreements,
         "percent_agreement": agreements / expected_count,
@@ -125,6 +177,7 @@ def build_ledger(  # ruff:ignore[too-many-locals]
         },
         "family_agreement": family_summary,
         "independent_roles_complete": True,
+        "independence_receipts_validated": bool(receipts),
         "accountable_adjudication_complete": False,
     }
     return ledger, summary

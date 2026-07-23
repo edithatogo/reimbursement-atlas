@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edithatogo.github.io/reimbursement-atlas/schema/MappingReviewerSessionReceipt.schema.json",
+  "title": "Mapping reviewer session receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "reviewer_role",
+    "reviewer_session_id",
+    "bounded_mandate",
+    "candidate_frame_sha256",
+    "packet_sha256",
+    "started_at",
+    "completed_at",
+    "isolation_attestation"
+  ],
+  "properties": {
+    "schema_version": {"const": "mapping-reviewer-session-receipt-v1"},
+    "reviewer_role": {"enum": ["reviewer_a", "reviewer_b"]},
+    "reviewer_session_id": {"type": "string", "minLength": 8},
+    "bounded_mandate": {"type": "string", "minLength": 20},
+    "candidate_frame_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "packet_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "started_at": {"type": "string", "format": "date-time"},
+    "completed_at": {"type": "string", "format": "date-time"},
+    "isolation_attestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "other_review_not_accessed",
+        "hypotheses_not_accessed",
+        "split_assignment_not_accessed"
+      ],
+      "properties": {
+        "other_review_not_accessed": {"const": true},
+        "hypotheses_not_accessed": {"const": true},
+        "split_assignment_not_accessed": {"const": true}
+      }
+    }
+  }
+}

@@ -10,7 +10,7 @@ from pydantic import HttpUrl
 
 from reimburse_atlas.contracts import ProvenanceRecord, ScheduleItemRecord
 
-OPENFDA_URL: HttpUrl = cast("HttpUrl", "https://api.fda.gov/device/classification.json?limit=1000")
+OPENFDA_URL: HttpUrl = cast("HttpUrl", "https://api.fda.gov/device/classification.json")
 
 
 def parse_openfda_device_classification(

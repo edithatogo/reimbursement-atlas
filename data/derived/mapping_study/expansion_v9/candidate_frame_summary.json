@@ -1,0 +1,41 @@
+{
+  "candidate_count": 1500,
+  "candidate_frame_sha256": "1d11079141b1c4e45bbea85f2630c2f16074efce808492bb616af817ca478818",
+  "descriptor_storage": "ignored_local_only",
+  "effective_unique_groups": 1500,
+  "family_summary": {
+    "devices_other": {
+      "available": 200,
+      "gap": 0,
+      "status": "ready",
+      "target": 200
+    },
+    "genomics_coverage": {
+      "available": 300,
+      "gap": 0,
+      "status": "ready",
+      "target": 300
+    },
+    "medicines": {
+      "available": 400,
+      "gap": 0,
+      "status": "ready",
+      "target": 400
+    },
+    "procedures_pathology": {
+      "available": 600,
+      "gap": 0,
+      "status": "ready",
+      "target": 600
+    }
+  },
+  "fixture_rows_used": 0,
+  "private_case_count": 1500,
+  "private_cpt_case_count": 400,
+  "private_packet_sha256": "03b49bff99bbbf661ccc3d4a14eacedc650468e723d85634c4da7b3129346f1d",
+  "review_blinded": true,
+  "schema_version": "mapping-candidate-frame-summary-v3",
+  "split_assigned": false,
+  "status": "ready_for_private_blinded_review",
+  "study_cycle": "expansion_v9"
+}

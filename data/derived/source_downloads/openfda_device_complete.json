@@ -1,0 +1,20 @@
+{
+  "page_count": 8,
+  "page_sha256": [
+    "f87d6eab1beaf835426444eba9886d40bcac1653161f260116727d6e765102c2",
+    "b8289d67fdc62f7f38a337300f20b91c6d5b621df65f421f9b0e6b302127fec4",
+    "f98c3a3dcd023533d27656f300b57528d247d65b98bd0fdb958173bb63ee63dd",
+    "c414d15da18b99c3fdc803b46d2fe23f0ef1b76f44f6cd32833a05ed81bc4d68",
+    "d3e82adbf334f80311ac5f09f2169bdbddee202ca9024870509c3928cb6bfa27",
+    "7706ad351acc80354156f3186d7fb90dacb47750153e80093dcea49d0178e6be",
+    "8763e3ea780272b65b238dd3f9536451743a8087e39e488d3e5b08241232734e",
+    "63cf22f4b89334d3114cad75fef80169f5e6a15bd2b70068837f24acc2351f5e"
+  ],
+  "page_size": 1000,
+  "payload_sha256": "d910f107c128ea07534dbfd089b9c86f99c881bb36919726e37dcc2403b2359c",
+  "record_count": 7084,
+  "schema_version": "openfda-device-acquisition-v1",
+  "source_url": "https://api.fda.gov/device/classification.json",
+  "status": "complete",
+  "unique_product_codes": 7084
+}

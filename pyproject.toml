@@ -200,6 +200,8 @@ mapping-review-pack-plan = "PYTHONPATH=src python scripts/make_mapping_review_pa
 mapping-power-calculation = "PYTHONPATH=src python scripts/make_mapping_power_calculation.py"
 mapping-candidate-frame = "PYTHONPATH=src python scripts/make_mapping_candidate_frame.py"
 mapping-local-cpt-enrichment = "PYTHONPATH=src python scripts/make_local_cpt_enrichment.py data/raw_live/us_cms_pfs/rvu26c-updated-06-30-2026.zip data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/au_mbs_20260701_txt_pair_schedule_items.jsonl"
+mapping-private-enriched-cycle = "PYTHONPATH=src python scripts/make_mapping_private_enriched_cycle.py"
+openfda-device-complete = "PYTHONPATH=src python scripts/download_openfda_device_classifications.py"
 mapping-blind-review-packets = "PYTHONPATH=src python scripts/make_mapping_blind_review_packets.py"
 mapping-blind-review-ledger = "PYTHONPATH=src python scripts/make_mapping_blind_review_ledger.py"
 mapping-adjudication-packet = "PYTHONPATH=src python scripts/make_mapping_adjudication_packet.py"

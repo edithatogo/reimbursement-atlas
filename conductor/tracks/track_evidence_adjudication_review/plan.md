@@ -48,6 +48,9 @@
   review. Descriptor-bearing hypotheses are ignored local evidence; the tracked summary is
   checksum-bound and descriptor-free. A new immutable study cycle and fresh isolated reviews are
   still required before any additional positives can enter the accountable packet. (Subissue #491)
+- [x] EVID-02G: Expand device evidence from the first 1,000 openFDA classifications to the complete
+  7,084-record corpus, with deterministic page and payload checksums. Use it only in a new
+  immutable study cycle; do not alter predecessor packets or decisions. (Subissue #491)
 - [x] EVID-02C: Make every review, ledger, adjudication, split, threshold, prediction and evaluation
   command cycle-aware so `expansion_v2` cannot overwrite the immutable first study. Reject unsafe
   cycle names and retain backward-compatible initial-cycle paths. (Subissue #491)

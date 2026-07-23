@@ -28,6 +28,10 @@
   `data/local/`, and publish only release identity, checksums, counts, parameters and restrictions.
   This capability supplies optional evidence for #491; it does not weaken the completed
   rights-cleared acquisition scope in #490. (Issue #490, subissue #491)
+- [x] SRC-13: Acquire the complete public openFDA device-classification corpus using deterministic
+  pagination, validate total/skip continuity and unique product codes, retain the aggregate payload
+  under ignored raw storage, and create a separately versioned reviewed derived bundle. Preserve
+  the first-page source version for immutable predecessor cycles. (Issue #490, subissue #491)
 
 Issue #490 is repository-complete for source acquisition: reviewed, checksum-bound RxNorm CPC,
 CMS ASP/PFS/HCPCS Level II, HPO and openFDA bundles provide a structurally complete 1,500-case

@@ -34,7 +34,22 @@ def approve(
     """Return immutable final adjudications only for the exact approved proposal."""
     paths = mapping_study_paths(cycle)
     proposal_path = root / paths.proposals
+    owner_packet_path = root / paths.owner_packet
+    if not owner_packet_path.is_file():
+        message = "checksum-bound owner packet is required before adjudication approval"
+        raise ValueError(message)
+    owner_packet = cast(
+        "dict[str, Any]",
+        json.loads(owner_packet_path.read_text(encoding="utf-8")),
+    )
     actual_sha256 = hashlib.sha256(proposal_path.read_bytes()).hexdigest()
+    if (
+        owner_packet.get("status") != "ready_for_owner_approval"
+        or owner_packet.get("total_quota_gap") != 0
+        or owner_packet.get("proposal_sha256") != actual_sha256
+    ):
+        message = "adjudication owner packet is not ready with zero quota gaps"
+        raise ValueError(message)
     if proposal_sha256 != actual_sha256:
         message = "approved proposal SHA-256 does not match the current proposal file"
         raise ValueError(message)
