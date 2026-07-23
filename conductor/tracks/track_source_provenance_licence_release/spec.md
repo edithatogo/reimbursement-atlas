@@ -14,6 +14,11 @@ citation metadata and publication status.
 - Describe retrieval, parsing, normalisation, validation and packaging as BPMN 2.0-compatible process steps.
 - Separate source licence, derived-field permission and public-release decisions.
 - Make source cutoff and transformation manifests reproducible from a clean checkout.
+- Prefer authoritative, redistribution-compatible counterpart sources: RxNorm Current
+  Prescribable Content before full RxNorm, CMS public payment files before restricted descriptor
+  products, and open identifier/metadata fields before restricted device terminologies.
+- Record published CMS payment limits as payment limits, never confidential manufacturer ASP or
+  net prices.
 
 ## Acceptance criteria
 
@@ -22,6 +27,8 @@ citation metadata and publication status.
 - [ ] Restricted descriptors and raw payloads are excluded by policy gates.
 - [ ] Historical failures, missing releases and metadata-only targets remain visible.
 - [ ] Rebuilds produce deterministic manifests and package metadata.
+- [ ] Every mapping family reports left/right record sufficiency and names missing counterpart
+  source groups without using fixtures.
 
 ## Authoritative inputs
 
