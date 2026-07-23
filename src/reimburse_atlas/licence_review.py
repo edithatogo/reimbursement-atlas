@@ -54,6 +54,34 @@ def _read_decision_ledger(
     return counts, [row for row in decisions if row.get("decision") == "blocked"]
 
 
+def _effective_decisions(
+    rows: list[LicenceReviewRecord],
+    *,
+    root: Path | None,
+    output_dir: Path,
+) -> dict[str, str]:
+    """Return current checksum-matched decisions keyed by review identifier."""
+    decision_path = (
+        (root or output_dir.parent.parent) / "data" / "licence_review" / "decisions.jsonl"
+    )
+    if not decision_path.is_file():
+        return {}
+    current = {(row.review_id, row.relative_path, row.checksum_sha256) for row in rows}
+    effective: dict[str, str] = {}
+    for line in decision_path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        decision = json.loads(line)
+        identity = (
+            decision.get("review_id"),
+            decision.get("relative_path"),
+            decision.get("checksum_sha256"),
+        )
+        if identity in current and decision.get("decision") in {"approved", "blocked"}:
+            effective[str(decision["review_id"])] = str(decision["decision"])
+    return effective
+
+
 def build_licence_review_queue(
     manifest: PublicationManifest | None = None,
     *,
@@ -85,7 +113,7 @@ def build_licence_review_queue(
     return rows
 
 
-def write_licence_review_queue(
+def write_licence_review_queue(  # ruff:ignore[too-many-locals]
     rows: list[LicenceReviewRecord],
     *,
     output_dir: Path,
@@ -96,6 +124,7 @@ def write_licence_review_queue(
     payload = [asdict(row) for row in rows]
     jsonl_path = write_jsonl(payload, output_dir / "licence_review_queue.jsonl")
     csv_path = write_csv(payload, output_dir / "licence_review_queue.csv")
+    effective_decisions = _effective_decisions(rows, root=root, output_dir=output_dir)
     batch_keys = sorted(
         {(row.licence_gate, row.publication_scope) for row in rows},
         key=itemgetter(0, 1),
@@ -107,26 +136,29 @@ def write_licence_review_queue(
             for row in rows
             if row.licence_gate == licence_gate and row.publication_scope == publication_scope
         ]
+        batch_statuses = [effective_decisions.get(row.review_id, "pending") for row in batch_rows]
         batches.append({
             "licence_gate": licence_gate,
             "publication_scope": publication_scope,
             "artifact_count": len(batch_rows),
-            "pending_count": sum(row.review_status == "pending" for row in batch_rows),
-            "approved_count": sum(row.review_status == "approved" for row in batch_rows),
-            "blocked_count": sum(row.review_status == "blocked" for row in batch_rows),
+            "pending_count": batch_statuses.count("pending"),
+            "approved_count": batch_statuses.count("approved"),
+            "blocked_count": batch_statuses.count("blocked"),
             "total_byte_size": sum(row.byte_size for row in batch_rows),
             "raw_payload_count": sum(row.contains_raw_source_payload for row in batch_rows),
             "review_action": "Human review required before publication consideration",
         })
     batch_path = write_csv(batches, output_dir / "licence_review_batches.csv")
+    effective_statuses = [effective_decisions.get(row.review_id, "pending") for row in rows]
     summary = {
         "schema_version": "licence-review-queue-v1",
         "artifact_count": len(rows),
         "review_required_count": sum(row.licence_gate != "permissive_candidate" for row in rows),
-        "pending_count": sum(row.review_status == "pending" for row in rows),
-        "approved_count": sum(row.review_status == "approved" for row in rows),
-        "blocked_count": sum(row.review_status == "blocked" for row in rows),
-        "all_approved": bool(rows) and all(row.review_status == "approved" for row in rows),
+        "queue_pending_count": sum(row.review_status == "pending" for row in rows),
+        "pending_count": effective_statuses.count("pending"),
+        "approved_count": effective_statuses.count("approved"),
+        "blocked_count": effective_statuses.count("blocked"),
+        "all_approved": bool(rows) and all(status == "approved" for status in effective_statuses),
         "approval_mutation_allowed": False,
     }
     summary_path = output_dir / "summary.json"

@@ -145,6 +145,36 @@ def test_reviewer_packet_reports_companion_ledger_without_mutating_queue(
     assert "`pending` by design" in packet
 
 
+def test_summary_reports_effective_checksum_matched_decisions(tmp_path: Path) -> None:
+    root = tmp_path
+    rows = build_licence_review_queue(_manifest())
+    decision_dir = root / "data/licence_review"
+    decision_dir.mkdir(parents=True)
+    row = rows[0]
+    (decision_dir / "decisions.jsonl").write_text(
+        json.dumps({
+            "review_id": row.review_id,
+            "relative_path": row.relative_path,
+            "checksum_sha256": row.checksum_sha256,
+            "decision": "approved",
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+
+    paths = write_licence_review_queue(
+        rows,
+        output_dir=root / "data/derived/licence_review",
+        root=root,
+    )
+    summary = json.loads(paths[3].read_text(encoding="utf-8"))
+
+    assert summary["queue_pending_count"] == 1
+    assert summary["pending_count"] == 0
+    assert summary["approved_count"] == 1
+    assert summary["all_approved"] is True
+
+
 def test_data_dictionary_marks_queue_internal(repo_root: Path) -> None:
     """The queue is excluded to prevent a publication-manifest cycle."""
     rows = build_data_dictionary(root=repo_root)
