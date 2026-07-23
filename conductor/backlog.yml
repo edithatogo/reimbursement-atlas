@@ -657,8 +657,8 @@ epics:
         labels: ["type:documentation", "type:citation", "type:dashboard", "status:implemented"]
         status: implemented
       - title: Complete scoped dashboard visual accessibility and provenance review
-        labels: ["type:dashboard", "type:accessibility", "type:review", "status:blocked"]
-        status: blocked
+        labels: ["type:dashboard", "type:accessibility", "type:review", "status:implemented"]
+        status: implemented
         acceptance:
           - "The schema-valid owner record is bound to the release commit and automated review packet."
           - "Visual, keyboard, VoiceOver, responsive and provenance checks are explicitly scoped."

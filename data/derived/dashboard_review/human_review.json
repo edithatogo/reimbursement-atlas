@@ -1,20 +1,21 @@
 {
-  "approval_scope": "Approved within the tested dashboard scope: visual inspection of the 44 commit-bound screenshots; automated keyboard, focus, axe, semantic, responsive-overflow, provenance and prohibited-content checks across the declared browser matrix. This approval is not a universal accessibility or WCAG-conformance claim. An independent manual VoiceOver session was not performed.",
-  "automated_packet_sha256": "8bd309e36319971ad2439eefdba6f3a7d175021cd4ef6dc4f2b3ae59aa951523",
-  "commit": "345576a6f34f3a5ff1d29dd7bca95ebd3abb9f91",
+  "approval_scope": "Approved within the refreshed tested dashboard scope: visual inspection of the 44 commit-bound screenshots; automated keyboard, focus, axe, semantic, responsive-overflow, provenance and prohibited-content checks across the declared browser matrix. This approval is not a universal accessibility or WCAG-conformance claim. An independent manual VoiceOver session was not performed.",
+  "automated_packet_sha256": "4b7d6a2ff93faaee29eaef7110869326391a211ede5f8c9e33ccce3aa2dd2833",
+  "commit": "fdb873b718127df4edc44da6a92b1e634c83641c",
   "evidence_artifacts": [
     "data/derived/dashboard_review/automated_review_packet.json",
     "data/derived/dashboard_review/owner_review_packet.json",
-    "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30004589594"
+    "https://github.com/edithatogo/reimbursement-atlas/pull/582"
   ],
   "findings": [
-    "The analysis detail page initially exposed a machine slug as its reader-facing heading; commit 345576a replaced it with the catalogue title and the full browser matrix passed.",
-    "No clipping, page-level horizontal overflow, restricted raw content, secret-like values or provenance mismatch remained in the reviewed packet.",
+    "The refreshed full browser matrix passed 64 of 64 tests across Chromium desktop and mobile, Firefox and WebKit.",
+    "No clipping, page-level horizontal overflow, restricted raw content, secret-like values or provenance mismatch remained in the 44 reviewed screenshots and machine-readable packet.",
+    "Displayed source-validation and release-readiness values matched their generated provenance records.",
     "Independent manual VoiceOver testing was not performed and is excluded from this bounded approval."
   ],
-  "owner_packet_sha256": "acac3971909baaa8a85cb3da638b5957cb1d0902edeae39d9f203bcad9af5405",
-  "remediation_or_waiver": "The machine-slug heading was remediated before approval. Manual VoiceOver remains an explicitly documented scope limitation rather than a claim of conformance.",
-  "reviewed_at": "2026-07-23T12:00:54Z",
+  "owner_packet_sha256": "4d85e8af64b71dcda7c7427533281189da25cbfdc8bf371220f31fe859f5547b",
+  "remediation_or_waiver": "No unresolved automated, visual or provenance finding remains in the refreshed packet. Manual VoiceOver remains an explicitly documented scope limitation rather than a claim of conformance.",
+  "reviewed_at": "2026-07-23T13:08:00Z",
   "reviewer": "edithatogo",
   "schema_version": "dashboard-human-review-v1",
   "scope": {

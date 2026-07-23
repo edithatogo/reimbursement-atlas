@@ -2,9 +2,9 @@
 
 Epic: `RAC-RELEASE-001` — Citation, archive and public record maturity
 
-Labels: type:dashboard, type:accessibility, type:review, status:blocked
+Labels: type:dashboard, type:accessibility, type:review, status:implemented
 
-Status: `blocked`
+Status: `implemented`
 
 ## Background
 
@@ -12,6 +12,6 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] The schema-valid owner record is bound to the release commit and automated review packet.
-- [ ] Visual, keyboard, VoiceOver, responsive and provenance checks are explicitly scoped.
-- [ ] All unresolved exceptions are recorded or remediated before release promotion.
+- [x] The schema-valid owner record is bound to the release commit and automated review packet.
+- [x] Visual, keyboard, VoiceOver, responsive and provenance checks are explicitly scoped.
+- [x] All unresolved exceptions are recorded or remediated before release promotion.

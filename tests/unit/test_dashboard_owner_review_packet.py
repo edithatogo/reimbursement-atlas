@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 from reimburse_atlas.dashboard_review import dashboard_review_evidence, dashboard_source_fingerprint
-from scripts.make_dashboard_owner_review_packet import build_packet
+from scripts.make_dashboard_owner_review_packet import PROVENANCE_INPUTS, build_packet
 from scripts.make_dashboard_review_packet import PROJECTS, ROUTES
 
 
@@ -139,3 +139,8 @@ def test_dashboard_evidence_serializes_stable_evidence_commit(tmp_path: Path) ->
 
     assert evidence["head"] == "a" * 40
     assert evidence["checks"]["head_parity"] is False
+
+
+def test_owner_packet_does_not_hash_its_dependent_release_summary() -> None:
+    """Prevent a cryptographic cycle between review evidence and release readiness."""
+    assert Path("data/derived/release_readiness/summary.json") not in PROVENANCE_INPUTS

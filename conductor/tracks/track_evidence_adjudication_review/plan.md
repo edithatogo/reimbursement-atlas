@@ -102,6 +102,13 @@
   projects. Independent manual VoiceOver testing was not performed and no universal
   accessibility-conformance claim is made. (Subissue #493)
 - [x] EVID-06: Regenerate evidence-readiness and final-handoff outputs; preserve blockers. (Subissue #494)
+- [x] EVID-05A: Refresh the dashboard packet after readiness values changed. The accountable owner
+  approved the 64-test, 44-screenshot packet from the hosted browser workflow for commit
+  `fdb873b718127df4edc44da6a92b1e634c83641c`; automated packet SHA-256 is
+  `4b7d6a2ff93faaee29eaef7110869326391a211ede5f8c9e33ccce3aa2dd2833`
+  and owner packet SHA-256 is
+  `4d85e8af64b71dcda7c7427533281189da25cbfdc8bf371220f31fe859f5547b`.
+  Manual VoiceOver and universal WCAG conformance remain outside scope. (Issue #493)
 
 ## Validation
 

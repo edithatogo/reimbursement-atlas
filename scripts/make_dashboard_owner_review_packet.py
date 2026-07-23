@@ -19,7 +19,6 @@ PROVENANCE_INPUTS = (
     Path("apps/dashboard/public/status.json"),
     Path("data/derived/source_validation/summary.json"),
     Path("data/derived/evidence_readiness/summary.json"),
-    Path("data/derived/release_readiness/summary.json"),
     Path("data/derived/publication_manifest.json"),
 )
 PROHIBITED_PATTERNS = {

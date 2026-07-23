@@ -308,7 +308,7 @@ jobs:
               '{data: [{type: "subjects", id: $subject_id}]}' \
               > osf-publication/draft-subject.json
             curl --fail-with-body --silent --show-error \
-              -X POST \
+              -X PATCH \
               "https://api.osf.io/v2/draft_registrations/$draft_id/relationships/subjects/" \
               -H "Authorization: Bearer $OSF_TOKEN" \
               -H "Content-Type: application/vnd.api+json" \
