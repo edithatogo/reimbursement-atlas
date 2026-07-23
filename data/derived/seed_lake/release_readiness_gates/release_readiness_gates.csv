@@ -15,7 +15,7 @@ data_governance,local_quality status=passed return_code=0,data_dictionary,No act
 data_governance,local_quality status=passed return_code=0,evidence_readiness,No action required.,True,pass
 data_governance,local_quality status=passed return_code=0,source_drift,No action required.,True,pass
 data_governance,checks=41 blocking_failures=0,data_quality_summary,Resolve blocking data-quality checks before release.,True,pass
-data_governance,table_count=222 total_rows=201708,data_dictionary_summary,Regenerate the data dictionary after publication-manifest changes.,True,pass
+data_governance,table_count=222 total_rows=201710,data_dictionary_summary,Regenerate the data dictionary after publication-manifest changes.,True,pass
 data_governance,blocked=0 prototype_ready=5,evidence_readiness_summary,Resolve blocked research questions before evidence release.,True,pass
 data_governance,blocking_failure_count=0 warnings=0,source_drift_summary,Review source drift failures before release.,True,pass
 data_governance,validations=11 missing=0 failures=0,source_content_validation_summary,"Download missing public files in a network-enabled environment, then rerun validation.",True,pass
@@ -36,6 +36,6 @@ architecture,violations=0 cycles=0 unknown_layers=0,architecture_boundaries,"Fix
 data_governance,artifact_count=211 warning_count=0,publication_manifest,Review licence gates and warnings before publishing derived datasets.,True,pass
 data_governance,artifact_count=199 approved_count=199 pending_count=0 blocked_count=0,licence_review_queue,Use the checksum-bound queue and record human decisions before publication; generation never grants approval.,True,pass
 data_governance,cycle=expansion_v9 candidate_status=ready_for_private_blinded_review candidate_count=1500 evaluation_status=accepted,mapping_study_human_review,"Complete the rights-cleared candidate frame, blinded adjudication and one-time holdout evaluation before evidence claims.",False,pass
-dashboard,head=345576a6f34f3a5ff1d29dd7bca95ebd3abb9f91 failed_checks=none,dashboard_human_review,"Complete the commit-bound visual, keyboard, screen-reader and provenance review within the declared scope.",False,pass
+dashboard,head=af80e2399e09441c95ff73abf899fe7d94dfb539 failed_checks=none,dashboard_human_review,"Complete the commit-bound visual, keyboard, screen-reader and provenance review within the declared scope.",False,pass
 release,status=blocked reasons=remote_registration_snapshot_missing registration_id=missing,osf_registration,"Submit the approved checksum-bound registration, export an immutable remote snapshot, and verify exact protocol, manifest and source-cutoff parity.",False,blocked
 data_governance,evidence_ready=0/5,research_evidence,"Retain prototype-only status until every research question has reviewed source evidence, validated analysis and accountable claim review.",False,blocked
