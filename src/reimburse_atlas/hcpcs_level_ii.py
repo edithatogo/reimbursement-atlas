@@ -75,10 +75,14 @@ def _parse_lines(
 ) -> tuple[list[ScheduleItemRecord], dict[str, int]]:
     descriptions: dict[str, list[str]] = {}
     labels: dict[str, str] = {}
-    excluded = {"numeric_cpt": 0, "dental_d_series": 0, "malformed": 0}
+    excluded = {
+        "numeric_cpt": 0,
+        "dental_d_series": 0,
+        "non_procedure_or_malformed": 0,
+    }
     for line in lines:
         if len(line) < 91:
-            excluded["malformed"] += 1
+            excluded["non_procedure_or_malformed"] += 1
             continue
         code = line[0:5].strip().upper()
         record_type = line[10:11]
@@ -91,6 +95,7 @@ def _parse_lines(
                 excluded["dental_d_series"] += 1
             continue
         if not _PERMITTED_CODE.fullmatch(code) or record_type not in {"3", "4"}:
+            excluded["non_procedure_or_malformed"] += 1
             continue
         long_text = " ".join(line[11:91].split())
         if record_type == "3":

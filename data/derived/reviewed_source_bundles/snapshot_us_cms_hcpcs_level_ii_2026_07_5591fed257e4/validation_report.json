@@ -1,7 +1,7 @@
 {
   "excluded_record_counts": {
     "dental_d_series": 0,
-    "malformed": 7699,
+    "non_procedure_or_malformed": 8082,
     "numeric_cpt": 0
   },
   "licence_scope": "Derived public-use alpha-numeric HCPCS Level II metadata only. Numeric CPT Level I and D-series dental descriptors are excluded.",
