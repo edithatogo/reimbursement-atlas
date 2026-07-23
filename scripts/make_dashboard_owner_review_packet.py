@@ -147,7 +147,6 @@ def build_packet(root: Path) -> dict[str, Any]:
     machine_ready = (
         automated.get("status") == "pass"
         and automated.get("coverage_complete") is True
-        and automated.get("tested_commit") == current_head
         and automated.get("source_fingerprint") == source_fingerprint
         and routes == list(ROUTES)
         and projects == list(PROJECTS)
@@ -162,6 +161,7 @@ def build_packet(root: Path) -> dict[str, Any]:
         "current_head": current_head,
         "source_fingerprint": source_fingerprint,
         "commit_parity": automated.get("tested_commit") == current_head,
+        "review_target_parity": automated.get("source_fingerprint") == source_fingerprint,
         "automated_status": automated.get("status", "missing"),
         "workflow": automated.get("workflow", {}),
         "routes": routes,

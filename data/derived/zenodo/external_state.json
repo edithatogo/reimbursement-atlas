@@ -6,17 +6,14 @@
   "publication_gate": {
     "evidence": "data/derived/release_readiness/summary.json",
     "missing_or_false": [
-      "evidence_release_ready",
-      "osf_registration_ready",
-      "research_publication_ready"
+      "osf_registration_ready"
     ],
     "reason_code": "archive_upstream_gates_pending",
     "status": "blocked",
     "summary": {
-      "evidence_release_ready": false,
+      "evidence_release_ready": true,
       "osf_registration_ready": false,
-      "repository_release_ready": true,
-      "research_publication_ready": false
+      "repository_release_ready": true
     }
   },
   "schema_version": "zenodo-external-state-v1",

@@ -12,6 +12,76 @@ RegistrationStatus = Literal["blocked", "drift", "ready"]
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
 
+def apply_publication_decision(
+    manifest_rows: list[dict[str, object]], decision: dict[str, object] | None
+) -> list[dict[str, object]]:
+    """Authorize only exact checksum-bound OSF rows from an accountable decision."""
+    approvals: dict[str, str] = {}
+    if decision and decision.get("status") == "approved_within_scope":
+        raw_approvals = decision.get("approved_artifacts")
+        if isinstance(raw_approvals, list):
+            for item in cast("list[object]", raw_approvals):
+                if not isinstance(item, dict):
+                    continue
+                approval = cast("dict[str, object]", item)
+                identifier = approval.get("id")
+                sha256 = approval.get("sha256")
+                if isinstance(identifier, str) and isinstance(sha256, str):
+                    approvals[identifier] = sha256
+
+    decided_rows: list[dict[str, object]] = []
+    for row in manifest_rows:
+        decided = dict(row)
+        identifier = row.get("id")
+        sha256 = row.get("sha256")
+        approved = (
+            isinstance(identifier, str)
+            and isinstance(sha256, str)
+            and _SHA256_RE.fullmatch(sha256) is not None
+            and approvals.get(identifier) == sha256
+            and row.get("exists") is True
+        )
+        decided["publish_allowed"] = approved
+        decided["blocked_reason"] = (
+            None
+            if approved
+            else "No matching checksum-bound OSF publication approval exists for this row."
+        )
+        decided_rows.append(decided)
+    return decided_rows
+
+
+def apply_registration_decision(
+    freeze: dict[str, object], decision: dict[str, object] | None
+) -> dict[str, object]:
+    """Apply an accountable registration decision only to an exact current freeze."""
+    decided = dict(freeze)
+    reason = "registration_decision_missing"
+    if decision and decision.get("status") == "approved_for_registration":
+        expected = {
+            "protocol_digest": decision.get("protocol_digest"),
+            "analysis_manifest_digest": decision.get("analysis_manifest_digest"),
+            "proposed_source_cutoff": decision.get("source_cutoff"),
+        }
+        mismatches = [field for field, value in expected.items() if decided.get(field) != value]
+        if not mismatches:
+            decided.update({
+                "source_cutoff": decision["source_cutoff"],
+                "source_cutoff_status": "approved",
+                "review_approved": True,
+                "review_record": "data/osf_review/registration_decision.json",
+                "reviewer": decision.get("reviewer"),
+                "reviewed_at": decision.get("reviewed_at"),
+                "status": "approved_for_registration",
+            })
+            return decided
+        reason = "registration_decision_drift:" + ",".join(mismatches)
+    elif decision is not None:
+        reason = "registration_decision_not_approved"
+    decided["decision_reason"] = reason
+    return decided
+
+
 def build_registration_freeze(
     *, root: Path, sync_manifest_path: Path, source_cutoff: str = "not-frozen"
 ) -> dict[str, object]:
@@ -169,6 +239,10 @@ def build_registration_review_packet(
     complete_protocols = sum(row.get("osf_ready") is True for row in protocol_rows)
     allowed_rows = sum(row.get("publish_allowed") is True for row in manifest_rows)
     blocked_rows = len(manifest_rows) - allowed_rows
+    approved = (
+        freeze.get("review_approved") is True and freeze.get("source_cutoff_status") == "approved"
+    )
+    checkbox = "x" if approved else " "
     lines = [
         "# OSF preregistration review packet",
         "",
@@ -228,33 +302,34 @@ def build_registration_review_packet(
         ),
         (
             "The powered 750-case mapping study, blinded reference review, threshold selection "
-            "and untouched holdout evaluation have not begun because the real-source candidate "
-            "frame and accountable approval gates remain incomplete."
+            "and one-time untouched holdout evaluation were completed before this registration."
         ),
         (
-            "The registration must distinguish retrospective repository development from the "
-            "prospective confirmatory mapping evaluation; it must not describe earlier work as "
-            "preregistered."
+            "The registration must describe source acquisition, repository development, mapping "
+            "adjudication and holdout evaluation as retrospective work. It must not describe "
+            "those completed activities as preregistered or prospective."
         ),
         "",
         "## Required human decisions",
         "",
-        "- [ ] Methods review completed",
-        "- [ ] Domain/clinical review completed",
-        "- [ ] Source licence and derived-field review completed",
-        "- [ ] Governance and publication review completed",
-        "- [ ] Source cutoff and analysis manifest approved",
+        f"- [{checkbox}] Methods review completed",
+        f"- [{checkbox}] Domain/clinical review completed",
+        f"- [{checkbox}] Source licence and derived-field review completed",
+        f"- [{checkbox}] Governance and publication review completed",
+        f"- [{checkbox}] Source cutoff and analysis manifest approved",
         "",
         "## Approval record",
         "",
-        "- Reviewer(s):",
-        "- Decision: `blocked`",
-        "- Reviewed at:",
-        "- Approval reference:",
+        f"- Reviewer: `{freeze.get('reviewer', 'pending')}`",
+        f"- Decision: `{'approved_for_registration' if approved else 'blocked'}`",
+        f"- Reviewed at: `{freeze.get('reviewed_at', 'pending')}`",
+        f"- Review record: `{freeze.get('review_record', 'pending')}`",
         "",
-        "The decision must be recorded by an accountable human reviewer before any",
-        "sync-manifest row changes to `publish_allowed: true` or any registration",
-        "submission is attempted.",
+        (
+            "Only exact checksum-bound rows authorized by the accountable publication decision "
+            "may be synchronized."
+        ),
+        "Papers, preprints, raw source payloads and restricted descriptors remain excluded.",
         "",
     ]
     return "\n".join(lines)
@@ -284,3 +359,10 @@ def _read_jsonl(path: Path) -> list[dict[str, object]]:
             raise TypeError
         rows.append(cast("dict[str, object]", payload))
     return rows
+
+
+def read_optional_object(path: Path) -> dict[str, object] | None:
+    """Read an optional JSON decision document."""
+    if not path.is_file():
+        return None
+    return _read_object(path)

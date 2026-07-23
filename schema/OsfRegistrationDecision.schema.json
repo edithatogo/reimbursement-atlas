@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OsfRegistrationDecision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "reviewer",
+    "reviewed_at",
+    "protocol_digest",
+    "analysis_manifest_digest",
+    "source_cutoff",
+    "scope",
+    "approval_reference"
+  ],
+  "properties": {
+    "schema_version": {"const": "osf-registration-decision-v1"},
+    "status": {"const": "approved_for_registration"},
+    "reviewer": {"type": "string", "minLength": 1},
+    "reviewed_at": {"type": "string", "format": "date-time"},
+    "protocol_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "analysis_manifest_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_cutoff": {"type": "string", "format": "date-time"},
+    "scope": {"const": "repository_data_and_research_records_only"},
+    "approval_reference": {"type": "string", "minLength": 1}
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "approval_reference": "Accountable owner approval in Codex task on 2026-07-23; papers and preprints remain excluded.",
+  "approved_artifacts": [
+    {
+      "id": "osf_project_root",
+      "sha256": "aa1c56d3c316014d74f7489c62ed269efc0269ede07b907e670945c2c4d2e7df"
+    },
+    {
+      "id": "osf_genomics_coverage_price_protocol",
+      "sha256": "5782be112c3488f79aef2b4eaebcbd7c1ddf9fa56ff3b68295be84ad6fd2282d"
+    },
+    {
+      "id": "osf_genomics_coverage_price_report",
+      "sha256": "e082fa3b9823a85be971fdaa9f33aecaa53a9a8b41ec9a5cbe1372bb25436e3f"
+    },
+    {
+      "id": "osf_cognitive_procedural_protocol",
+      "sha256": "f826d961ecce46a9c5c04c06c456567c9fc5a9c89d997283bed8e25c8f33d6f1"
+    },
+    {
+      "id": "osf_cognitive_procedural_report",
+      "sha256": "db8ab6e642d494d30c1f3c0bf04f491f4a1bb34c680fd0ae9defc231e1868663"
+    },
+    {
+      "id": "osf_medicine_opacity_protocol",
+      "sha256": "876a690d9866e810669258548faec5da71f1995e71a38574fd732236d8ae87cf"
+    },
+    {
+      "id": "osf_medicine_opacity_report",
+      "sha256": "3433a5fb5a5876b7fb4d79c1fd9513698cfb57adfb6275a4bf217e0f7c3b623e"
+    },
+    {
+      "id": "osf_local_national_coverage_protocol",
+      "sha256": "b8cf9d3a1cca949d0c53c12cc87dd039bbef1036493b37df0c5991200bac0d40"
+    },
+    {
+      "id": "osf_local_national_coverage_report",
+      "sha256": "12d437f173d7054910029aedbf55f554f12cbf22d88b06c0a3d9ea71c41c0318"
+    },
+    {
+      "id": "osf_source_transparency_protocol",
+      "sha256": "6143da26ac9f3cc944925723ee4d8a74c7f1892da9820c1fc07e404927f851fe"
+    },
+    {
+      "id": "osf_source_transparency_report",
+      "sha256": "a1e531828e3fddd43a3a9b3666a3f1e277dd55b1b44db6e90683e8d97b7a162a"
+    }
+  ],
+  "excluded_artifact_classes": [
+    "papers_and_preprints",
+    "raw_source_payloads",
+    "restricted_descriptors",
+    "missing_directory_placeholders"
+  ],
+  "reviewed_at": "2026-07-23T12:00:54Z",
+  "reviewer": "edithatogo",
+  "schema_version": "osf-publication-decision-v1",
+  "scope": "repository_data_and_research_records_only",
+  "status": "approved_within_scope"
+}

@@ -6,6 +6,7 @@ import shutil
 from pathlib import Path
 from types import SimpleNamespace
 
+from reimburse_atlas.dashboard_review import dashboard_source_fingerprint
 from reimburse_atlas.final_handoff import build_final_handoff_tasks, write_final_handoff_tasks
 from reimburse_atlas.github_project import build_github_project_items, write_github_project_items
 from reimburse_atlas.registry import load_conductor_tracks, load_source_files
@@ -494,6 +495,7 @@ def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) ->
         "data/derived/dashboard_review/automated_review_packet.json": {
             "status": "pass",
             "tested_commit": commit,
+            "source_fingerprint": "",
             "screenshot_count": 44,
             "coverage_complete": True,
             "routes": [
@@ -527,6 +529,7 @@ def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) ->
             "tested_commit": commit,
             "current_head": commit,
             "commit_parity": True,
+            "source_fingerprint": "",
             "provenance_assertions": [{"status": "pass"}],
             "prohibited_content_check": {"status": "pass"},
         },
@@ -539,6 +542,13 @@ def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) ->
     human = json.loads(human_path.read_text(encoding="utf-8"))
     automated_path = tmp_path / "data/derived/dashboard_review/automated_review_packet.json"
     owner_path = tmp_path / "data/derived/dashboard_review/owner_review_packet.json"
+    source_fingerprint = dashboard_source_fingerprint(tmp_path)
+    automated_payload = json.loads(automated_path.read_text(encoding="utf-8"))
+    automated_payload["source_fingerprint"] = source_fingerprint
+    automated_path.write_text(json.dumps(automated_payload), encoding="utf-8")
+    owner_payload = json.loads(owner_path.read_text(encoding="utf-8"))
+    owner_payload["source_fingerprint"] = source_fingerprint
+    owner_path.write_text(json.dumps(owner_payload), encoding="utf-8")
     human["automated_packet_sha256"] = hashlib.sha256(automated_path.read_bytes()).hexdigest()
     human["owner_packet_sha256"] = hashlib.sha256(owner_path.read_bytes()).hexdigest()
     human_path.write_text(json.dumps(human), encoding="utf-8")

@@ -91,9 +91,16 @@
   `d37f4d3ca93f60ac628dfb1ed290887fa06a540298cbf5af157561b5ac80696b`.
   (Subissue #491)
 - [x] EVID-04: Complete CMS/MBS/PBS licence-scope review records. (Subissue #492)
-- [~] EVID-05: Regenerate the automated dashboard packet against the release candidate commit;
+- [x] EVID-05: Regenerate the automated dashboard packet against the release candidate commit;
   complete bounded owner visual, keyboard, screen-reader, responsive and provenance review using
-  `approved_within_scope`; do not claim universal WCAG conformance. (Subissue #493)
+  `approved_within_scope`; do not claim universal WCAG conformance. The accountable owner
+  approved commit `345576a6f34f3a5ff1d29dd7bca95ebd3abb9f91` against automated packet
+  SHA-256 `8bd309e36319971ad2439eefdba6f3a7d175021cd4ef6dc4f2b3ae59aa951523`
+  and owner packet SHA-256
+  `acac3971909baaa8a85cb3da638b5957cb1d0902edeae39d9f203bcad9af5405`.
+  The scope covers 64 automated tests and 44 screenshots across 11 routes and four browser
+  projects. Independent manual VoiceOver testing was not performed and no universal
+  accessibility-conformance claim is made. (Subissue #493)
 - [x] EVID-06: Regenerate evidence-readiness and final-handoff outputs; preserve blockers. (Subissue #494)
 
 ## Validation

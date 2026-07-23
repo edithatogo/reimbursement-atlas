@@ -58,6 +58,16 @@ JSON_REVIEW_CONTRACTS = (
         "schema/DashboardHumanReviewRecord.schema.json",
         "data/derived/dashboard_review/human_review.json",
     ),
+    (
+        "osf_publication_review",
+        "schema/OsfPublicationDecision.schema.json",
+        "data/osf_review/publication_decision.json",
+    ),
+    (
+        "osf_registration_review",
+        "schema/OsfRegistrationDecision.schema.json",
+        "data/osf_review/registration_decision.json",
+    ),
 )
 
 

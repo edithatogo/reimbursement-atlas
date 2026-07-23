@@ -176,7 +176,7 @@ def test_release_readiness_report_reads_generated_evidence(tmp_path: Path) -> No
 
     report = build_release_readiness_report(tmp_path)
     assert report.summary.required_blocker_count == 0
-    assert report.summary.review_pending_count == 2
+    assert report.summary.review_pending_count == 4
     assert report.summary.repository_release_ready is True
     assert report.summary.osf_registration_ready is False
     paths = write_release_readiness_report(report, output_dir=tmp_path / "release")

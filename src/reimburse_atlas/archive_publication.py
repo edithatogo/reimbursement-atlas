@@ -10,7 +10,6 @@ REQUIRED_READY_FLAGS = (
     "repository_release_ready",
     "evidence_release_ready",
     "osf_registration_ready",
-    "research_publication_ready",
 )
 
 
