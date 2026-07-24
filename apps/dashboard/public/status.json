@@ -33,28 +33,20 @@
       "summary": "OSF registration is not approved."
     },
     {
-      "category": "dashboard",
-      "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
-      "id": "dashboard_human_review",
-      "next_action": "Complete the commit-bound visual, keyboard, screen-reader and provenance review within the declared scope.",
-      "status": "blocked",
-      "summary": "head=184680362f7975a502d2abf87f93b020f19cc7e7 failed_checks=displayed_data_parity"
-    },
-    {
       "category": "data_governance",
       "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
       "id": "research_evidence",
       "next_action": "Retain prototype-only status until every research question has reviewed source evidence, validated analysis and accountable claim review.",
       "status": "blocked",
-      "summary": "evidence_ready=0/5"
+      "summary": "evidence_ready=1/5"
     }
   ],
   "claims_policy": "Do not claim evidence or public-release readiness until reviewed sources, licences, human research review and release gates pass.",
   "evidence": {
     "data_quality": "pass",
-    "evidence_ready_rows": 0,
+    "evidence_ready_rows": 1,
     "evidence_release_ready": false,
-    "prototype_ready_rows": 5,
+    "prototype_ready_rows": 4,
     "readiness_rows": 5,
     "research_publication_ready": false,
     "source_validation": "pass",

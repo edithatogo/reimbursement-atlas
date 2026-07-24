@@ -12,9 +12,11 @@ from reimburse_atlas.registry import project_root
 from reimburse_atlas.source_drift import compare_tabular_files, write_source_drift_report
 
 
-def test_evidence_readiness_marks_protocolled_questions_as_prototype_ready() -> None:
+def test_evidence_readiness_marks_only_approved_complete_claim_as_evidence_ready() -> None:
     rows = build_evidence_readiness()
-    assert {row.readiness_stage for row in rows} == {"prototype_ready"}
+    stages = {row.research_question_id: row.readiness_stage for row in rows}
+    assert stages["rq_source_transparency"] == "evidence_ready"
+    assert set(stages.values()) == {"prototype_ready", "evidence_ready"}
     assert all(row.protocol_score > 0.8 for row in rows)
     assert all(row.data_quality_blockers == 0 for row in rows)
 
@@ -24,7 +26,8 @@ def test_evidence_readiness_writes_summary(tmp_path: Path) -> None:
     _, _, summary_path = write_evidence_readiness(rows, output_dir=tmp_path)
     summary = json.loads(summary_path.read_text(encoding="utf-8"))
     assert summary["research_question_count"] == len(rows)
-    assert summary["prototype_ready"] == len(rows)
+    assert summary["prototype_ready"] == len(rows) - 1
+    assert summary["evidence_ready"] == 1
 
 
 def test_source_drift_detects_removed_columns(tmp_path: Path) -> None:
@@ -202,6 +205,22 @@ def test_evidence_readiness_requires_valid_approved_claim_package(tmp_path: Path
         encoding="utf-8",
     )
     digest = hashlib.sha256(package.read_bytes()).hexdigest()
+    review_record = tmp_path / "data/research_claims/ready-review.json"
+    review_record.parent.mkdir(parents=True)
+    review_record.write_text(
+        json.dumps({
+            "research_question_id": "ready",
+            "claim_package_path": "data/derived/research_claims/ready.json",
+            "claim_package_sha256": digest,
+            "status": "approved_within_scope",
+            "reviewed_derived_inputs": True,
+            "analysis_validated": True,
+            "reviewer": "accountable-owner",
+            "approval_scope": "Bounded test claim.",
+        })
+        + "\n",
+        encoding="utf-8",
+    )
     _write_jsonl(
         tmp_path / "data/research_claims/decisions.jsonl",
         [
@@ -212,7 +231,7 @@ def test_evidence_readiness_requires_valid_approved_claim_package(tmp_path: Path
                 "status": "approved_within_scope",
                 "reviewed_derived_inputs": True,
                 "analysis_validated": True,
-                "review_record": "owner-review-1",
+                "review_record": "data/research_claims/ready-review.json",
             }
         ],
     )
@@ -220,11 +239,35 @@ def test_evidence_readiness_requires_valid_approved_claim_package(tmp_path: Path
     row = build_evidence_readiness(tmp_path)[0]
     assert row.readiness_stage == "evidence_ready"
     assert row.claim_package_status == "approved"
+    assert row.recommended_action == (
+        "Scoped claim package is evidence-ready within its approved boundaries."
+    )
 
     package.write_text('{"analysis_status":"partial"}\n', encoding="utf-8")
     stale = build_evidence_readiness(tmp_path)[0]
     assert stale.readiness_stage == "prototype_ready"
     assert stale.claim_package_status == "invalid"
+
+    package.write_text(
+        json.dumps({
+            "research_question_id": "ready",
+            "analysis_status": "complete",
+            "missing_reviewed_sources": [],
+            "validation": {
+                "deterministic": True,
+                "reviewed_inputs_only": True,
+                "raw_payloads_included": False,
+                "restricted_descriptors_included": False,
+                "analysis_validated": True,
+            },
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+    review_record.unlink()
+    missing_review = build_evidence_readiness(tmp_path)[0]
+    assert missing_review.readiness_stage == "prototype_ready"
+    assert missing_review.claim_package_status == "pending"
 
 
 def test_evidence_readiness_source_blocker_and_empty_summary(tmp_path: Path) -> None:

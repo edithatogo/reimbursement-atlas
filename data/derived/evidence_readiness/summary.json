@@ -2,7 +2,7 @@
   "average_readiness_score": 0.8366,
   "blocked": 0,
   "design": 0,
-  "evidence_ready": 0,
-  "prototype_ready": 5,
+  "evidence_ready": 1,
+  "prototype_ready": 4,
   "research_question_count": 5
 }
