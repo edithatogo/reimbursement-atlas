@@ -1,10 +1,12 @@
 # Final handoff checklist
 
-## Current implementation state (2026-07-23)
+## Current implementation state (2026-07-24)
 
-The current release branch has completed the mapping counterpart, blinded
+The current merged-main baseline is
+`bdd46e716a459dadf3adea976f609a9bfa23c984`. The release branch has completed the mapping counterpart, blinded
 adjudication, untouched holdout and refreshed scoped dashboard-review gates.
-`repository_release_ready=true` and `evidence_release_ready=true`.
+`repository_release_ready=true` and `evidence_release_ready=false`: all five
+research questions remain prototype-only until checksum-bound claim packages pass.
 
 OSF workflow run
 [`30010023356`](https://github.com/edithatogo/reimbursement-atlas/actions/runs/30010023356)
@@ -13,6 +15,7 @@ round-trip verified 11 approved files and submitted registration
 `pending_registration_approval` and private, so `osf_registration_ready` remains
 false and no active snapshot is claimed. Zenodo/DataCite release remains downstream
 of OSF confirmation and final signed assets. Papers and preprints remain excluded.
+Read-only monitor run `30052988061` reconfirmed the pending registration state.
 
 ## Current external refresh (2026-07-21)
 
@@ -21,9 +24,9 @@ the Space is `apache-2.0`/`static` and the dataset is `other`. The OSF project
 `q8cnx` is public, but no registration exists yet. These readbacks do not change
 the human licence, evidence, research or publication gates.
 
-## Current working snapshot (2026-07-22)
+## Historical working snapshot (2026-07-22)
 
-The current merged `main` snapshot is commit
+The then-current merged `main` snapshot was commit
 `578760f1647c01f11caaf5e1a7f7bf6d38129dea`. The authoritative generated release summary reports repository software
 release readiness `36/36` and `repository_release_ready=true`; research publication,
 OSF registration, evidence release and policy-claim readiness remain fail-closed.
@@ -82,9 +85,10 @@ SHA-256 checksum. The current owner-approved ledger contains a decision for ever
 candidate; future checksum changes are automatically returned to review. The queue is
 a review-control artefact and does not by itself clear evidence or publication gates.
 
-## Latest current-main external refresh
+## Historical current-main external refresh
 
-The current merged `main` commit `578760f1647c01f11caaf5e1a7f7bf6d38129dea` is the software snapshot; older monitor results below are historical.
+Commit `578760f1647c01f11caaf5e1a7f7bf6d38129dea` was the software snapshot for
+the historical monitor results below.
 OSF discovery [29596947892](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29596947892)
 passed and found the configured private project; Zenodo preflight
 [29596947909](https://github.com/edithatogo/reimbursement-atlas/actions/runs/29596947909)
