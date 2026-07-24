@@ -10,7 +10,7 @@ checksum-bound row-level record.
 
 ## Current batches
 
-- `public_reuse_review` / `public_derived_candidate`: 156 artefacts, 173219454 bytes
+- `public_reuse_review` / `public_derived_candidate`: 156 artefacts, 173223192 bytes
 - `public_reuse_review` / `public_metadata_candidate`: 43 artefacts, 615677 bytes
 
 Total candidate artefacts: 199; generated queue rows remain `pending` by design.

@@ -6,16 +6,16 @@ No network IO or remote mutation is performed by its generation.
 ## Freeze
 
 - Freeze schema: `osf-registration-freeze-v1`
-- Protocol digest: `d16aced4316d57a5e0e965707769142fc5c7a8c37461257c9884b019f11f2555`
-- Analysis manifest digest: `e2d87ba924cbd01b8954d45c66ddd28d88c17ff3746aea1a91de616445230678`
-- Source cutoff: `2026-07-23T00:00:00Z`
-- Existing approval flag: `True`
+- Protocol digest: `ad4c5fcfb9fdab5bacf40c3e4df8b6bca64fdf88aff902538a97945492439402`
+- Analysis manifest digest: `b98b302f7f101a0660d1eebf322b17d9750f3ccde686afd79fa649bef3c72622`
+- Source cutoff: `not-frozen`
+- Existing approval flag: `False`
 
 ## Completeness
 
 - Protocols/reports OSF-ready: `5/5`
-- Manifest rows explicitly publishable: `11/15`
-- Manifest rows still blocked: `4`
+- Manifest rows explicitly publishable: `6/15`
+- Manifest rows still blocked: `9`
 
 ## OSF metadata contract
 
@@ -36,18 +36,18 @@ The registration must describe source acquisition, repository development, mappi
 
 ## Required human decisions
 
-- [x] Methods review completed
-- [x] Domain/clinical review completed
-- [x] Source licence and derived-field review completed
-- [x] Governance and publication review completed
-- [x] Source cutoff and analysis manifest approved
+- [ ] Methods review completed
+- [ ] Domain/clinical review completed
+- [ ] Source licence and derived-field review completed
+- [ ] Governance and publication review completed
+- [ ] Source cutoff and analysis manifest approved
 
 ## Approval record
 
-- Reviewer: `edithatogo`
-- Decision: `approved_for_registration`
-- Reviewed at: `2026-07-23T12:00:54Z`
-- Review record: `data/osf_review/registration_decision.json`
+- Reviewer: `pending`
+- Decision: `blocked`
+- Reviewed at: `pending`
+- Review record: `pending`
 
 Only exact checksum-bound rows authorized by the accountable publication decision may be synchronized.
 Papers, preprints, raw source payloads and restricted descriptors remain excluded.

@@ -2,9 +2,9 @@
 
 Epic: `DQ-001` — Data quality and evidence readiness gates
 
-Labels: type:research, type:analysis, phase:analysis, status:blocked
+Labels: type:research, type:analysis, phase:analysis, status:in-progress
 
-Status: `blocked`
+Status: `in_progress`
 
 ## Background
 

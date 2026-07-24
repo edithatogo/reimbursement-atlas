@@ -3,7 +3,7 @@
 ## Current implementation state (2026-07-24)
 
 The current merged-main baseline is
-`bdd46e716a459dadf3adea976f609a9bfa23c984`. The release branch has completed the mapping counterpart, blinded
+`b2b4cdf0f2488cb2ef2eea83f0e2f47bdd46a1b1`. The release branch has completed the mapping counterpart, blinded
 adjudication, untouched holdout and refreshed scoped dashboard-review gates.
 `repository_release_ready=true` and `evidence_release_ready=false`: all five
 research questions remain prototype-only until checksum-bound claim packages pass.

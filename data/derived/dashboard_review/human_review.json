@@ -1,23 +1,21 @@
 {
-  "approval_scope": "Approved within the refreshed tested dashboard scope: visual inspection of the 44 commit-bound screenshots; automated keyboard, focus, axe, semantic, responsive-overflow, provenance and prohibited-content checks across the declared browser matrix. This approval is not a universal accessibility or WCAG-conformance claim. An independent manual VoiceOver session was not performed.",
-  "automated_packet_sha256": "82fe4cfc6abce3b9d212a63e046f7280c25dc081bcb5b2622b18da25e6655238",
-  "commit": "184680362f7975a502d2abf87f93b020f19cc7e7",
+  "approval_scope": "Approved within the declared routes and browser matrix for visual, automated accessibility, responsive-layout, keyboard, provenance and prohibited-content checks. This approval does not establish universal accessibility-standard compliance and does not confirm an independent manual VoiceOver review.",
+  "automated_packet_sha256": "bd6f6d15e4e2277fc715911318c1861576a60a5504bfb78aa9e2ccfd7f1b738b",
+  "commit": "93bb01f16367f2ee42e778041aae20095e345cd9",
   "evidence_artifacts": [
     "data/derived/dashboard_review/automated_review_packet.json",
     "data/derived/dashboard_review/owner_review_packet.json",
-    "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30065705666",
-    "https://github.com/edithatogo/reimbursement-atlas/pull/587"
+    "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30074501462",
+    "https://github.com/edithatogo/reimbursement-atlas/pull/588"
   ],
   "findings": [
-    "The refreshed full browser matrix passed 64 of 64 tests across Chromium desktop and mobile, Firefox and WebKit for the strengthened complete-public-payload review contract.",
-    "The home hero word-fragmentation finding was remediated before this packet and is protected by a browser assertion.",
-    "No clipping, page-level horizontal overflow, restricted raw content, secret-like values or provenance mismatch remained in the 44 reviewed screenshots and machine-readable packet.",
-    "Every displayed aggregate readiness value and the complete blocker projection matched the regenerated provenance records.",
-    "Independent manual VoiceOver testing was not performed and is excluded from this bounded approval."
+    "The refreshed full browser matrix passed 64 of 64 tests across Chromium desktop and mobile, Firefox and WebKit.",
+    "The 44 commit-bound screenshots and machine-readable packet cover the declared visual, responsive-layout, keyboard, automated accessibility, provenance and prohibited-content checks.",
+    "Universal WCAG conformance and independent manual VoiceOver confirmation are outside this approval."
   ],
-  "owner_packet_sha256": "4f8b8babf44930ae6e04e0db6225d68d855824737edddacadf6bd5dc3ab7b571",
-  "remediation_or_waiver": "No unresolved automated, visual or provenance finding remains in the refreshed packet. Manual VoiceOver remains an explicitly documented scope limitation rather than a claim of conformance.",
-  "reviewed_at": "2026-07-24T04:36:59Z",
+  "owner_packet_sha256": "04e3de1e0933dc5cfcbe401cbaa4f51040b710089c89be00f77771edf5c00841",
+  "remediation_or_waiver": "No unresolved finding is recorded within the approved scope. Independent manual VoiceOver review remains explicitly out of scope.",
+  "reviewed_at": "2026-07-24T07:20:59Z",
   "reviewer": "edithatogo",
   "schema_version": "dashboard-human-review-v1",
   "scope": {

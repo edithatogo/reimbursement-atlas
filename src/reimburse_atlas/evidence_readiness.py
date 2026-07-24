@@ -162,7 +162,7 @@ def _read_rows(path: Path) -> list[dict[str, Any]]:
     return read_jsonl(path)
 
 
-def _claim_package_state(
+def _claim_package_state(  # ruff:ignore[too-many-return-statements]
     repo: Path, row: dict[str, Any]
 ) -> tuple[Literal["invalid", "pending", "approved"], str | None, str | None]:
     package_path = row.get("claim_package_path")
@@ -180,12 +180,59 @@ def _claim_package_state(
     observed = hashlib.sha256(candidate.read_bytes()).hexdigest()
     if observed != expected_sha256:
         return "invalid", str(expected_sha256), str(review_record) if review_record else None
+    try:
+        package = cast(
+            "dict[str, Any]",
+            json.loads(candidate.read_text(encoding="utf-8")),
+        )
+    except json.JSONDecodeError, OSError:
+        return "invalid", str(expected_sha256), str(review_record) if review_record else None
+    validation = cast("dict[str, Any]", package.get("validation", {}))
+    package_complete = (
+        package.get("research_question_id") == row.get("research_question_id")
+        and package.get("analysis_status") == "complete"
+        and validation.get("deterministic") is True
+        and validation.get("reviewed_inputs_only") is True
+        and validation.get("raw_payloads_included") is False
+        and validation.get("restricted_descriptors_included") is False
+        and validation.get("analysis_validated") is True
+        and package.get("missing_reviewed_sources") == []
+    )
+    if not package_complete:
+        return "invalid", str(expected_sha256), str(review_record) if review_record else None
+    review_complete = False
+    if isinstance(review_record, str) and review_record:
+        review_path = (repo / review_record).resolve()
+        try:
+            review_path.relative_to(repo.resolve())
+        except ValueError:
+            pass
+        else:
+            try:
+                review = cast(
+                    "dict[str, Any]",
+                    json.loads(review_path.read_text(encoding="utf-8")),
+                )
+            except json.JSONDecodeError, OSError:
+                pass
+            else:
+                review_complete = (
+                    review.get("research_question_id") == row.get("research_question_id")
+                    and review.get("claim_package_path") == package_path
+                    and review.get("claim_package_sha256") == expected_sha256
+                    and review.get("status") == "approved_within_scope"
+                    and review.get("reviewed_derived_inputs") is True
+                    and review.get("analysis_validated") is True
+                    and isinstance(review.get("reviewer"), str)
+                    and bool(review.get("reviewer"))
+                    and isinstance(review.get("approval_scope"), str)
+                    and bool(review.get("approval_scope"))
+                )
     approved = (
         row.get("status") == "approved_within_scope"
         and row.get("reviewed_derived_inputs") is True
         and row.get("analysis_validated") is True
-        and isinstance(review_record, str)
-        and bool(review_record)
+        and review_complete
     )
     return (
         "approved" if approved else "pending",
@@ -236,7 +283,7 @@ def _stage_from_score(
 ) -> Literal["blocked", "design", "prototype_ready", "evidence_ready"]:
     if data_quality_blockers or source_validation_blockers:
         return "blocked"
-    if claim_package_approved and score >= 0.86 and protocol_score >= 0.9 and missing_linkages == 0:
+    if claim_package_approved and protocol_score >= 0.9 and missing_linkages == 0:
         return "evidence_ready"
     if score >= 0.62 and protocol_score >= 0.65:
         return "prototype_ready"
@@ -272,7 +319,7 @@ def _recommended_action(  # ruff:ignore[too-many-return-statements]
             "Run the analysis on reviewed derived data and create a checksum-bound claim package."
         )
     if stage == "evidence_ready":
-        return "Ready for preregistered analysis once real reviewed-source bundles are present."
+        return "Scoped claim package is evidence-ready within its approved boundaries."
     if stage == "prototype_ready":
         return "Run the prototype analysis on reviewed derived data and add reviewer notes."
     return "Complete required dataset, mapping and output linkages."

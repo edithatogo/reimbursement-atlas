@@ -7,7 +7,12 @@ This report is not yet a results paper. It is a structured analysis scaffold lin
 Which reimbursement systems publish data that are most reproducible, machine-readable and policy-complete?
 
 ## Evidence available now
-The current repository can document planned sources, exact source-file gates, parser status, protocol completeness, research-question linkages, source-content validation status, publication safety and dashboard outputs. Synthetic fixtures demonstrate the vertical slice but are not real policy evidence.
+The checksum-bound registry contains 64 source records. Forty-one are marked
+machine-readable, 63 identify historical versions, 43 identify utilisation data,
+and all 64 include a primary URL and licence notes. These are metadata observations,
+not rankings of health-system quality. The bounded package is
+`data/derived/research_claims/rq_source_transparency.json` and remains pending
+accountable review.
 
 ## Minimum evidence required before interpretation
 A release candidate for this question requires: reviewed source snapshots; derived-only parsed records; source-content validation; data-quality pass; data dictionary; source/schema drift report; candidate mappings; human review of policy-facing mappings; sensitivity analyses; and publication-manifest review. Any restricted terminology or confidential price concept must remain local-only or be represented as metadata.

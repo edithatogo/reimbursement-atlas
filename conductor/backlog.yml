@@ -404,7 +404,13 @@ epics:
         labels: ["type:research", "type:data-quality", "phase:release-gate", "status:implemented"]
         status: implemented
       - title: Run five protocolled analyses on reviewed derived inputs and review claim packages
-        labels: ["type:research", "type:analysis", "phase:analysis", "status:blocked"]
+        labels: ["type:research", "type:analysis", "phase:analysis", "status:in-progress"]
+        status: in_progress
+      - title: Generate five deterministic bounded claim-package candidates
+        labels: ["type:research", "type:analysis", "phase:analysis", "status:implemented"]
+        status: implemented
+      - title: Complete accountable checksum-bound review of five claim packages
+        labels: ["type:research", "type:review", "phase:release-gate", "status:blocked"]
         status: blocked
   - id: EVID-017
     title: Evidence readiness, source drift and data dictionary gates
