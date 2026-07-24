@@ -1,17 +1,21 @@
 # Release readiness
 
-## Current release boundary (2026-07-23)
+## Current release boundary (2026-07-24)
 
-The release branch reports `repository_release_ready=true` and
-`evidence_release_ready=true`. The mapping study and refreshed scoped dashboard
-review pass their independent gates. Research-policy claims remain deliberately
-unready because none of the five research questions has a released claim package.
+Merged `main` at `bdd46e716a459dadf3adea976f609a9bfa23c984` reports
+`repository_release_ready=true` and `evidence_release_ready=false`. The 750-case
+mapping study and refreshed scoped dashboard review pass their independent gates.
+Research-policy claims remain deliberately unready (`0/5`) because none of the
+five research questions has a checksum-bound, validated and scoped-approved claim
+package. Readiness scores and fixture demonstrators cannot satisfy that gate.
 
 OSF project `q8cnx` is public and its 11 approved files pass remote SHA-256
 round-trip verification. Registration `gqk4z` has been submitted but OSF still
 reports `pending_registration_approval=true` and `public=false`; therefore the
-canonical snapshot generator and `osf_registration_ready` fail closed. Zenodo and
-DataCite publication remain downstream. No paper or preprint is in the release.
+canonical snapshot generator and `osf_registration_ready` fail closed. The latest
+read-only monitor, workflow run `30052988061`, confirmed the same pending state.
+Zenodo and DataCite publication remain downstream. No paper or preprint is in the
+release or authorized for submission.
 
 ## Current external refresh (2026-07-21)
 

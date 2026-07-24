@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/edithatogo/reimbursement-atlas/data/research_claims/decision.schema.json",
+  "title": "Research claim package decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "research_question_id",
+    "claim_package_path",
+    "claim_package_sha256",
+    "status",
+    "reviewed_derived_inputs",
+    "analysis_validated",
+    "review_record"
+  ],
+  "properties": {
+    "research_question_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claim_package_path": {
+      "type": "string",
+      "pattern": "^data/derived/research_claims/"
+    },
+    "claim_package_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "status": {
+      "enum": [
+        "pending",
+        "approved_within_scope",
+        "rejected"
+      ]
+    },
+    "reviewed_derived_inputs": {
+      "type": "boolean"
+    },
+    "analysis_validated": {
+      "type": "boolean"
+    },
+    "review_record": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

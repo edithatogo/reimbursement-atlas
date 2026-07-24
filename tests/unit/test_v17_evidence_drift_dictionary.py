@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -136,8 +137,9 @@ def test_evidence_readiness_covers_blocked_design_and_ready_paths(tmp_path: Path
     )
 
     rows = {row.research_question_id: row for row in build_evidence_readiness(tmp_path)}
-    assert rows["ready"].readiness_stage == "evidence_ready"
-    assert "Ready for preregistered analysis" in rows["ready"].recommended_action
+    assert rows["ready"].readiness_stage == "prototype_ready"
+    assert rows["ready"].claim_package_status == "missing"
+    assert "checksum-bound claim package" in rows["ready"].recommended_action
     assert rows["design"].readiness_stage == "design"
     assert "Expand the OSF protocol" in rows["design"].recommended_action
 
@@ -148,6 +150,66 @@ def test_evidence_readiness_covers_blocked_design_and_ready_paths(tmp_path: Path
     blocked = {row.research_question_id: row for row in build_evidence_readiness(tmp_path)}
     assert blocked["ready"].readiness_stage == "blocked"
     assert "data-quality" in blocked["ready"].recommended_action
+
+
+def test_evidence_readiness_requires_valid_approved_claim_package(tmp_path: Path) -> None:
+    _write_jsonl(
+        tmp_path / "data/seed/research_questions.jsonl",
+        [{"id": "ready", "track_id": "track"}],
+    )
+    _write_jsonl(
+        tmp_path / "data/derived/protocols/protocol_status.jsonl",
+        [{"research_question_id": "ready", "completeness_score": 0.95}],
+    )
+    _write_jsonl(
+        tmp_path / "data/derived/roadmap_linkages/research_dataset_linkages.jsonl",
+        [
+            {
+                "research_question_id": "ready",
+                "readiness_status": "available",
+                "linked_entity_type": entity_type,
+            }
+            for entity_type in (
+                "source",
+                "source",
+                "dataset_candidate",
+                "dataset_candidate",
+                "mapping_resource",
+                "mapping_resource",
+                "output",
+                "output",
+            )
+        ],
+    )
+    _write_jsonl(tmp_path / "data/derived/data_quality/data_quality_checks.jsonl", [])
+    _write_jsonl(tmp_path / "data/derived/source_validation/source_content_validation.jsonl", [])
+    package = tmp_path / "data/derived/research_claims/ready.json"
+    package.parent.mkdir(parents=True)
+    package.write_text('{"claim":"bounded"}\n', encoding="utf-8")
+    digest = hashlib.sha256(package.read_bytes()).hexdigest()
+    _write_jsonl(
+        tmp_path / "data/research_claims/decisions.jsonl",
+        [
+            {
+                "research_question_id": "ready",
+                "claim_package_path": "data/derived/research_claims/ready.json",
+                "claim_package_sha256": digest,
+                "status": "approved_within_scope",
+                "reviewed_derived_inputs": True,
+                "analysis_validated": True,
+                "review_record": "owner-review-1",
+            }
+        ],
+    )
+
+    row = build_evidence_readiness(tmp_path)[0]
+    assert row.readiness_stage == "evidence_ready"
+    assert row.claim_package_status == "approved"
+
+    package.write_text('{"claim":"changed"}\n', encoding="utf-8")
+    stale = build_evidence_readiness(tmp_path)[0]
+    assert stale.readiness_stage == "prototype_ready"
+    assert stale.claim_package_status == "invalid"
 
 
 def test_evidence_readiness_source_blocker_and_empty_summary(tmp_path: Path) -> None:

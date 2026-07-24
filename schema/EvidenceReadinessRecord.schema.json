@@ -68,6 +68,42 @@
       "title": "Source Validation Blockers",
       "type": "integer"
     },
+    "claim_package_status": {
+      "enum": [
+        "missing",
+        "invalid",
+        "pending",
+        "approved"
+      ],
+      "title": "Claim Package Status",
+      "type": "string"
+    },
+    "claim_package_sha256": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Claim Package Sha256"
+    },
+    "claim_review_record": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Claim Review Record"
+    },
     "readiness_score": {
       "maximum": 1.0,
       "minimum": 0.0,
@@ -104,6 +140,7 @@
     "output_plan_count",
     "data_quality_blockers",
     "source_validation_blockers",
+    "claim_package_status",
     "readiness_score",
     "readiness_stage",
     "recommended_action"

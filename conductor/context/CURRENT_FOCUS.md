@@ -1,11 +1,28 @@
 # Current focus
 
+## 2026-07-24 — Claim-package and OSF confirmation boundary
+
+Merged `main` is `bdd46e716a459dadf3adea976f609a9bfa23c984`. Repository release
+readiness is true; evidence release readiness is false (`0/5`). Mapping validation
+and scoped dashboard review are complete, but the policy demonstrators remain
+explicit parser/rendering fixtures. Evidence readiness now requires one valid,
+checksum-bound, scoped-approved claim package per research question; protocol and
+linkage scores alone cannot promote a claim.
+
+Read-only OSF workflow run `30052988061` reconfirmed registration `gqk4z` as
+immutable but private and pending approval. The next repository-owned work is to
+run each preregistered analysis on reviewed derived inputs, validate its outputs,
+and prepare bounded claim packages for accountable review. The external path is
+OSF activation followed by a refreshed dashboard packet, signed GitHub release,
+and Zenodo/DataCite deposit. Papers and preprints remain excluded.
+
 ## 2026-07-23 — Evidence closure and OSF confirmation boundary
 
 Branch `codex/complete-approved-groups` has completed the rights-cleared 1,500-case
 counterpart frame, 750-case adjudicated mapping study, untouched 150-case holdout
 evaluation and refreshed scoped dashboard review. Repository and evidence release
-readiness are true; research-policy claims remain deliberately unready (`0/5`).
+readiness were reported true on that branch; the current corrected claim-package
+gate keeps evidence readiness false and research-policy claims unready (`0/5`).
 
 OSF project `q8cnx` is public. Workflow run `30010023356` round-trip verified 11
 approved records and submitted immediate-public registration `gqk4z`. OSF currently

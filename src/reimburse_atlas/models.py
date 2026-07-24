@@ -504,6 +504,9 @@ class EvidenceReadinessRecord(FrozenModel):
     output_plan_count: int = Field(ge=0)
     data_quality_blockers: int = Field(ge=0)
     source_validation_blockers: int = Field(ge=0)
+    claim_package_status: Literal["missing", "invalid", "pending", "approved"]
+    claim_package_sha256: NonEmptyStr | None = None
+    claim_review_record: NonEmptyStr | None = None
     readiness_score: float = Field(ge=0.0, le=1.0)
     readiness_stage: Literal["blocked", "design", "prototype_ready", "evidence_ready"]
     recommended_action: NonEmptyStr
