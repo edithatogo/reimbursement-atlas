@@ -72,6 +72,7 @@ jobs:
           pixi run roadmap-linkages
           pixi run data-quality
           pixi run data-dictionary
+          pixi run research-claim-packages
           pixi run evidence-readiness
           pixi run source-drift
           pixi run release-readiness || true

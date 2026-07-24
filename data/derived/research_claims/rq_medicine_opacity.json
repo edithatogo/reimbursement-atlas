@@ -1,0 +1,113 @@
+{
+  "analysis_status": "partial",
+  "claim_approval_status": "pending_accountable_review",
+  "descriptive_results": {
+    "missing_source_count": 1,
+    "required_source_count": 3,
+    "reviewed_source_count": 2
+  },
+  "mapping_validation": {
+    "holdout_case_count": 150,
+    "holdout_fingerprint": "c0d5f6ffc76a7a6e39f1b0d75fc00297a41cf4496842073c6f34234ffb86e115",
+    "input_path": "data/derived/mapping_study/expansion_v9/evaluation_summary.json",
+    "input_sha256": "d37f4d3ca93f60ac628dfb1ed290887fa06a540298cbf5af157561b5ac80696b",
+    "overall_metrics": {
+      "balanced_accuracy": {
+        "estimate": 0.8866666666666667,
+        "interpretation": "Conservative composite bounds; balanced accuracy is not itself a binomial proportion. Exact Clopper-Pearson intervals are reported for each component.",
+        "interval_method": "mean_of_component_clopper_pearson_bounds",
+        "lower_95": 0.8070416611203907,
+        "upper_95": 0.931032216183915
+      },
+      "confusion": {
+        "fn": 0,
+        "fp": 17,
+        "tn": 58,
+        "tp": 75
+      },
+      "negative_predictive_value": {
+        "estimate": 1.0,
+        "lower_95": 0.93837899109608,
+        "n": 58,
+        "upper_95": 1.0
+      },
+      "precision": {
+        "estimate": 0.8152173913043478,
+        "lower_95": 0.720712758560675,
+        "n": 92,
+        "upper_95": 0.8885123336324865
+      },
+      "sensitivity": {
+        "estimate": 1.0,
+        "lower_95": 0.9520049359448577,
+        "n": 75,
+        "upper_95": 1.0
+      },
+      "specificity": {
+        "estimate": 0.7733333333333333,
+        "lower_95": 0.6620783862959236,
+        "n": 75,
+        "upper_95": 0.8620644323678299
+      }
+    },
+    "status": "accepted",
+    "study_cycle": "expansion_v9"
+  },
+  "missing_reviewed_sources": [
+    "nz_pharmac"
+  ],
+  "required_sources": [
+    "au_pbs",
+    "us_cms_asp",
+    "nz_pharmac"
+  ],
+  "research_question_id": "rq_medicine_opacity",
+  "reviewed_source_evidence": {
+    "au_pbs": [
+      {
+        "bundle_path": "data/derived/reviewed_source_bundles/bundle_au_pbs_api_v3_current_month_648b7b12ceb319f1",
+        "source_checksum_sha256": "1bd0e95f100c015f39ee8ef8ab006998a1f63f347b52bcd2aec32c7efb1f9223",
+        "source_version_id": "au_pbs_api_v3_current_month"
+      },
+      {
+        "bundle_path": "data/derived/reviewed_source_bundles/bundle_au_pbs_api_v3_current_month_648b7b12ceb319f1",
+        "source_checksum_sha256": "e2aa5f7cc9a1c642d483b5457e9f1086c650490d6dd47152e82eb54046866733",
+        "source_version_id": "au_pbs_api_v3_current_month"
+      },
+      {
+        "bundle_path": "data/derived/reviewed_source_bundles/bundle_au_pbs_api_v3_current_month_648b7b12ceb319f1",
+        "source_checksum_sha256": "648b7b12160881125fed91925170469f9a44ecc680307cd67cbff2567b93646c",
+        "source_version_id": "au_pbs_api_v3_current_month"
+      }
+    ],
+    "us_cms_asp": [
+      {
+        "bundle_path": "data/derived/reviewed_source_bundles/snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5",
+        "source_checksum_sha256": "c73883dbddb5e5eb8397a2e5fa008e71760e81236c9ee5b5d92f4918daeead2e",
+        "source_version_id": "us_cms_asp_july_2026_payment_limit"
+      }
+    ]
+  },
+  "reviewed_sources_present": [
+    "au_pbs",
+    "us_cms_asp"
+  ],
+  "schema_version": "research-claim-package-v1",
+  "scope": "Reviewed-source availability and bounded descriptive evidence only.",
+  "supported_claims": [
+    "2 of 3 protocol-required sources have checksum-bound reviewed derived bundles."
+  ],
+  "unsupported_claims": [
+    "No causal effect is estimated.",
+    "No cross-jurisdiction price equivalence is inferred.",
+    "No coverage decision is inferred from the presence of a fee or price.",
+    "The full protocol question is not answerable until these reviewed sources are present: nz_pharmac."
+  ],
+  "validation": {
+    "analysis_validated": true,
+    "deterministic": true,
+    "raw_payloads_included": false,
+    "restricted_descriptors_included": false,
+    "reviewed_inputs_only": true
+  }
+}

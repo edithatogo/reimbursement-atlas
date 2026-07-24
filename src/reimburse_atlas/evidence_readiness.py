@@ -162,7 +162,7 @@ def _read_rows(path: Path) -> list[dict[str, Any]]:
     return read_jsonl(path)
 
 
-def _claim_package_state(
+def _claim_package_state(  # ruff:ignore[too-many-return-statements]
     repo: Path, row: dict[str, Any]
 ) -> tuple[Literal["invalid", "pending", "approved"], str | None, str | None]:
     package_path = row.get("claim_package_path")
@@ -179,6 +179,26 @@ def _claim_package_state(
         return "invalid", str(expected_sha256), str(review_record) if review_record else None
     observed = hashlib.sha256(candidate.read_bytes()).hexdigest()
     if observed != expected_sha256:
+        return "invalid", str(expected_sha256), str(review_record) if review_record else None
+    try:
+        package = cast(
+            "dict[str, Any]",
+            json.loads(candidate.read_text(encoding="utf-8")),
+        )
+    except json.JSONDecodeError, OSError:
+        return "invalid", str(expected_sha256), str(review_record) if review_record else None
+    validation = cast("dict[str, Any]", package.get("validation", {}))
+    package_complete = (
+        package.get("research_question_id") == row.get("research_question_id")
+        and package.get("analysis_status") == "complete"
+        and validation.get("deterministic") is True
+        and validation.get("reviewed_inputs_only") is True
+        and validation.get("raw_payloads_included") is False
+        and validation.get("restricted_descriptors_included") is False
+        and validation.get("analysis_validated") is True
+        and package.get("missing_reviewed_sources") == []
+    )
+    if not package_complete:
         return "invalid", str(expected_sha256), str(review_record) if review_record else None
     approved = (
         row.get("status") == "approved_within_scope"

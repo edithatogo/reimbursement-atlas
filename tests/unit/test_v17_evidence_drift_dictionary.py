@@ -185,7 +185,22 @@ def test_evidence_readiness_requires_valid_approved_claim_package(tmp_path: Path
     _write_jsonl(tmp_path / "data/derived/source_validation/source_content_validation.jsonl", [])
     package = tmp_path / "data/derived/research_claims/ready.json"
     package.parent.mkdir(parents=True)
-    package.write_text('{"claim":"bounded"}\n', encoding="utf-8")
+    package.write_text(
+        json.dumps({
+            "research_question_id": "ready",
+            "analysis_status": "complete",
+            "missing_reviewed_sources": [],
+            "validation": {
+                "deterministic": True,
+                "reviewed_inputs_only": True,
+                "raw_payloads_included": False,
+                "restricted_descriptors_included": False,
+                "analysis_validated": True,
+            },
+        })
+        + "\n",
+        encoding="utf-8",
+    )
     digest = hashlib.sha256(package.read_bytes()).hexdigest()
     _write_jsonl(
         tmp_path / "data/research_claims/decisions.jsonl",
@@ -206,7 +221,7 @@ def test_evidence_readiness_requires_valid_approved_claim_package(tmp_path: Path
     assert row.readiness_stage == "evidence_ready"
     assert row.claim_package_status == "approved"
 
-    package.write_text('{"claim":"changed"}\n', encoding="utf-8")
+    package.write_text('{"analysis_status":"partial"}\n', encoding="utf-8")
     stale = build_evidence_readiness(tmp_path)[0]
     assert stale.readiness_stage == "prototype_ready"
     assert stale.claim_package_status == "invalid"

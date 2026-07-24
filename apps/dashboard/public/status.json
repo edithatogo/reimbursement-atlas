@@ -33,6 +33,14 @@
       "summary": "OSF registration is not approved."
     },
     {
+      "category": "dashboard",
+      "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
+      "id": "dashboard_human_review",
+      "next_action": "Complete the commit-bound visual, keyboard, screen-reader and provenance review within the declared scope.",
+      "status": "blocked",
+      "summary": "head=184680362f7975a502d2abf87f93b020f19cc7e7 failed_checks=displayed_data_parity"
+    },
+    {
       "category": "data_governance",
       "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
       "id": "research_evidence",
