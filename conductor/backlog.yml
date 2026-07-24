@@ -400,6 +400,12 @@ epics:
       - title: Add source-specific record-count and schema validators after first real downloads
         labels: ["type:parser", "type:data-quality", "phase:implementation", "status:implemented"]
         status: implemented
+      - title: Require checksum-bound scoped claim packages for evidence readiness
+        labels: ["type:research", "type:data-quality", "phase:release-gate", "status:implemented"]
+        status: implemented
+      - title: Run five protocolled analyses on reviewed derived inputs and review claim packages
+        labels: ["type:research", "type:analysis", "phase:analysis", "status:blocked"]
+        status: blocked
   - id: EVID-017
     title: Evidence readiness, source drift and data dictionary gates
     issues:

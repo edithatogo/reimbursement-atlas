@@ -25,6 +25,11 @@ Readiness stages:
 | `blocked` | A blocking data-quality or source-validation failure exists. |
 | `design` | Protocol/source/mapping/output linkages are insufficient for prototype analysis. |
 | `prototype_ready` | The research question has enough protocol and linkage structure to run on reviewed derived data. |
-| `evidence_ready` | Protocol score, linkages and release gates are strong enough for preregistered policy analysis, once real reviewed-source bundles are present. |
+| `evidence_ready` | The protocol/linkage threshold passes and a current checksum-bound claim package records reviewed-derived inputs, validated analysis and scoped accountable approval. |
+
+Scores alone cannot produce `evidence_ready`. Optional decisions are validated
+against `data/research_claims/decision.schema.json`; missing, malformed, stale,
+pending or rejected decisions cap the question at `prototype_ready`. Fixture
+policy briefs are interface demonstrations and are not claim packages.
 
 The matrix is not a substitute for human review. It is a triage and release-gating artefact that helps decide which policy questions can move from design to prototype analysis.

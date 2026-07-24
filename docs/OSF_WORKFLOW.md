@@ -1,13 +1,11 @@
 # OSF workflow
 
-Release snapshot described by this workflow record is
-`863095fc` (2026-07-22). Regenerate this record after any
-further merge; no OSF monitor evidence is implied for a newer commit.
-The latest merged-main monitor refresh is run `29595536363`. Pinned
-`osf-cli-go v1.0.0` discovery and the component plan passed; provisioning,
-registration, upload and publication were skipped. The private
-`Reimbursement Atlas` project remains a reusable target, but protocol, licence,
-methods and governance approval are still required before mutation.
+The current merged-main baseline is
+`bdd46e716a459dadf3adea976f609a9bfa23c984`. OSF project `q8cnx` is public
+and approved registration `gqk4z` is submitted and immutable. Read-only monitor
+run `30052988061` reports it private and pending OSF approval, so the canonical
+snapshot and registration-readiness gates remain fail-closed. No paper,
+preprint, Zenodo deposit or DataCite release is authorized by this state.
 
 OSF is the planned home for research protocols, detailed reports, appendices and preprint staging. GitHub remains the implementation repository. Hugging Face hosts licence-safe derived datasets and the dashboard.
 
@@ -111,7 +109,7 @@ mutation occurred. The contract task now refuses ambiguous `PATH` lookup and req
 `--binary`, preventing an unrelated older `osf` executable from being mistaken for the pinned
 official CLI.
 
-The latest read-only refresh on `main` (`578760f1647c01f11caaf5e1a7f7bf6d38129dea`) was
+The historical read-only refresh on `main` (`578760f1647c01f11caaf5e1a7f7bf6d38129dea`) was
 workflow run `29517248071`: discovery and the OSF component plan passed, provisioning and
 publication were skipped, and no OSF project, node, registration or file was mutated.
 

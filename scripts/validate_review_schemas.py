@@ -15,6 +15,7 @@ from reimburse_atlas.registry import project_root
 REVIEW_CONTRACTS = (
     ("licence_review", "decision.schema.json", "decisions.jsonl"),
     ("mapping_review", "decision.schema.json", "decisions.jsonl"),
+    ("research_claims", "decision.schema.json", "decisions.jsonl"),
 )
 ROOT_JSONL_REVIEW_CONTRACTS = (
     (

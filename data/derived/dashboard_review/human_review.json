@@ -1,12 +1,12 @@
 {
   "approval_scope": "Approved within the refreshed tested dashboard scope: visual inspection of the 44 commit-bound screenshots; automated keyboard, focus, axe, semantic, responsive-overflow, provenance and prohibited-content checks across the declared browser matrix. This approval is not a universal accessibility or WCAG-conformance claim. An independent manual VoiceOver session was not performed.",
-  "automated_packet_sha256": "1a8f4e32f371a7b000ab2a81494955beb8ea38dd5b330fcc9aa98b9d539b5600",
-  "commit": "950c4b6061dadc48ebf0d729b35b3f7cfab87739",
+  "automated_packet_sha256": "82fe4cfc6abce3b9d212a63e046f7280c25dc081bcb5b2622b18da25e6655238",
+  "commit": "184680362f7975a502d2abf87f93b020f19cc7e7",
   "evidence_artifacts": [
     "data/derived/dashboard_review/automated_review_packet.json",
     "data/derived/dashboard_review/owner_review_packet.json",
-    "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30021368386",
-    "https://github.com/edithatogo/reimbursement-atlas/pull/583"
+    "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30065705666",
+    "https://github.com/edithatogo/reimbursement-atlas/pull/587"
   ],
   "findings": [
     "The refreshed full browser matrix passed 64 of 64 tests across Chromium desktop and mobile, Firefox and WebKit for the strengthened complete-public-payload review contract.",
@@ -15,9 +15,9 @@
     "Every displayed aggregate readiness value and the complete blocker projection matched the regenerated provenance records.",
     "Independent manual VoiceOver testing was not performed and is excluded from this bounded approval."
   ],
-  "owner_packet_sha256": "4c14f3bf86cd23568d9123dc2503459af8c505a66742184a74db4798828e5338",
+  "owner_packet_sha256": "4f8b8babf44930ae6e04e0db6225d68d855824737edddacadf6bd5dc3ab7b571",
   "remediation_or_waiver": "No unresolved automated, visual or provenance finding remains in the refreshed packet. Manual VoiceOver remains an explicitly documented scope limitation rather than a claim of conformance.",
-  "reviewed_at": "2026-07-23T22:49:42Z",
+  "reviewed_at": "2026-07-24T04:36:59Z",
   "reviewer": "edithatogo",
   "schema_version": "dashboard-human-review-v1",
   "scope": {

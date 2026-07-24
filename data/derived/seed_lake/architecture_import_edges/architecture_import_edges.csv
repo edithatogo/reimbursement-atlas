@@ -103,9 +103,9 @@ True,from,11,Layer dependency respects inward/downward architecture.,orchestrati
 True,from,12,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.data_quality,foundation,reimburse_atlas.registry
 True,from,15,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.datalake,foundation,reimburse_atlas.registry
 True,from,13,Layer dependency respects inward/downward architecture.,analysis,reimburse_atlas.demonstrators,foundation,reimburse_atlas.models
-True,from,10,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.evidence_readiness,foundation,reimburse_atlas.io
-True,from,11,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.evidence_readiness,foundation,reimburse_atlas.models
-True,from,12,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.evidence_readiness,foundation,reimburse_atlas.registry
+True,from,11,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.evidence_readiness,foundation,reimburse_atlas.io
+True,from,12,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.evidence_readiness,foundation,reimburse_atlas.models
+True,from,13,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.evidence_readiness,foundation,reimburse_atlas.registry
 True,from,9,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.final_handoff,orchestration,reimburse_atlas.dashboard_review
 True,from,10,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.final_handoff,foundation,reimburse_atlas.io
 True,from,11,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.final_handoff,orchestration,reimburse_atlas.mapping_study_paths

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -28,6 +29,11 @@ def build_evidence_readiness(  # ruff:ignore[too-many-locals]
     source_validation_rows = _read_rows(
         repo / "data" / "derived" / "source_validation" / "source_content_validation.jsonl"
     )
+    claim_decisions = _read_rows(repo / "data" / "research_claims" / "decisions.jsonl")
+    claims_by_question = {
+        str(row.get("research_question_id")): _claim_package_state(repo, row)
+        for row in claim_decisions
+    }
 
     protocol_by_question = {str(row.get("research_question_id")): row for row in protocol_rows}
     linkages_by_question: dict[str, list[dict[str, Any]]] = defaultdict(list)
@@ -64,6 +70,9 @@ def build_evidence_readiness(  # ruff:ignore[too-many-locals]
         protocol_score = float(
             protocol_by_question.get(question_id, {}).get("completeness_score", 0.0)
         )
+        claim_status, claim_sha256, claim_review_record = claims_by_question.get(
+            question_id, ("missing", None, None)
+        )
         dataset_linkage_count = sum(
             1
             for row in linkages
@@ -85,6 +94,7 @@ def build_evidence_readiness(  # ruff:ignore[too-many-locals]
             protocol_score=protocol_score,
             data_quality_blockers=data_quality_blockers,
             source_validation_blockers=source_validation_blockers,
+            claim_package_approved=claim_status == "approved",
             missing_linkages=counts.get("missing", 0),
         )
         readiness.append(
@@ -102,6 +112,9 @@ def build_evidence_readiness(  # ruff:ignore[too-many-locals]
                 output_plan_count=output_plan_count,
                 data_quality_blockers=data_quality_blockers,
                 source_validation_blockers=source_validation_blockers,
+                claim_package_status=claim_status,
+                claim_package_sha256=claim_sha256,
+                claim_review_record=claim_review_record,
                 readiness_score=round(readiness_score, 4),
                 readiness_stage=stage,
                 recommended_action=_recommended_action(
@@ -111,6 +124,7 @@ def build_evidence_readiness(  # ruff:ignore[too-many-locals]
                     blocked_linkages=counts.get("blocked", 0),
                     data_quality_blockers=data_quality_blockers,
                     source_validation_blockers=source_validation_blockers,
+                    claim_package_status=claim_status,
                 ),
             )
         )
@@ -146,6 +160,38 @@ def _read_rows(path: Path) -> list[dict[str, Any]]:
     if not path.exists():
         return []
     return read_jsonl(path)
+
+
+def _claim_package_state(
+    repo: Path, row: dict[str, Any]
+) -> tuple[Literal["invalid", "pending", "approved"], str | None, str | None]:
+    package_path = row.get("claim_package_path")
+    expected_sha256 = row.get("claim_package_sha256")
+    review_record = row.get("review_record")
+    if not all(isinstance(value, str) and value for value in (package_path, expected_sha256)):
+        return "invalid", None, str(review_record) if review_record else None
+    candidate = (repo / str(package_path)).resolve()
+    try:
+        candidate.relative_to(repo.resolve())
+    except ValueError:
+        return "invalid", str(expected_sha256), str(review_record) if review_record else None
+    if not candidate.is_file():
+        return "invalid", str(expected_sha256), str(review_record) if review_record else None
+    observed = hashlib.sha256(candidate.read_bytes()).hexdigest()
+    if observed != expected_sha256:
+        return "invalid", str(expected_sha256), str(review_record) if review_record else None
+    approved = (
+        row.get("status") == "approved_within_scope"
+        and row.get("reviewed_derived_inputs") is True
+        and row.get("analysis_validated") is True
+        and isinstance(review_record, str)
+        and bool(review_record)
+    )
+    return (
+        "approved" if approved else "pending",
+        str(expected_sha256),
+        str(review_record) if review_record else None,
+    )
 
 
 def _readiness_score(
@@ -185,11 +231,12 @@ def _stage_from_score(
     protocol_score: float,
     data_quality_blockers: int,
     source_validation_blockers: int,
+    claim_package_approved: bool,
     missing_linkages: int,
 ) -> Literal["blocked", "design", "prototype_ready", "evidence_ready"]:
     if data_quality_blockers or source_validation_blockers:
         return "blocked"
-    if score >= 0.86 and protocol_score >= 0.9 and missing_linkages == 0:
+    if claim_package_approved and score >= 0.86 and protocol_score >= 0.9 and missing_linkages == 0:
         return "evidence_ready"
     if score >= 0.62 and protocol_score >= 0.65:
         return "prototype_ready"
@@ -204,6 +251,7 @@ def _recommended_action(  # ruff:ignore[too-many-return-statements]
     blocked_linkages: int,
     data_quality_blockers: int,
     source_validation_blockers: int,
+    claim_package_status: Literal["missing", "invalid", "pending", "approved"],
 ) -> str:
     if data_quality_blockers:
         return "Resolve blocking data-quality failures before interpreting results."
@@ -215,6 +263,14 @@ def _recommended_action(  # ruff:ignore[too-many-return-statements]
         return "Resolve missing research-question linkages or remove unsupported outputs."
     if blocked_linkages:
         return "Unblock gated datasets/mappings or document sensitivity exclusions."
+    if claim_package_status == "invalid":
+        return "Repair the missing or checksum-mismatched research claim package."
+    if claim_package_status == "pending":
+        return "Complete scoped accountable review of the checksum-bound claim package."
+    if claim_package_status == "missing":
+        return (
+            "Run the analysis on reviewed derived data and create a checksum-bound claim package."
+        )
     if stage == "evidence_ready":
         return "Ready for preregistered analysis once real reviewed-source bundles are present."
     if stage == "prototype_ready":
