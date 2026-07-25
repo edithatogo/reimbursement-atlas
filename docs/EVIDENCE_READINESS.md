@@ -32,4 +32,17 @@ against `data/research_claims/decision.schema.json`; missing, malformed, stale,
 pending or rejected decisions cap the question at `prototype_ready`. Fixture
 policy briefs are interface demonstrations and are not claim packages.
 
+Generate bounded package candidates before the matrix:
+
+```bash
+pixi run research-claim-packages
+pixi run evidence-readiness
+```
+
+The five JSON packages under `data/derived/research_claims/` bind reviewed
+source bundles, mapping holdout evidence, denominators, exclusions and
+unsupported claims. Generation never grants approval. A partial package records
+the exact missing protocol-required sources and remains ineligible for an
+evidence claim.
+
 The matrix is not a substitute for human review. It is a triage and release-gating artefact that helps decide which policy questions can move from design to prototype analysis.

@@ -7,7 +7,13 @@ This report is not yet a results paper. It is a structured analysis scaffold lin
 How do public systems connect genomic/pathology test coverage, price and eligibility restrictions?
 
 ## Evidence available now
-The current repository can document planned sources, exact source-file gates, parser status, protocol completeness, research-question linkages, source-content validation status, publication safety and dashboard outputs. Synthetic fixtures demonstrate the vertical slice but are not real policy evidence.
+The bounded package `data/derived/research_claims/rq_genomics_coverage_price.json`
+records reviewed MBS evidence and the validated genomics mapping stratum. CMS CLFS,
+CMS MCD and the UK Genomic Test Directory remain absent as reviewed bundles, so no
+cross-system coverage-price conclusion is supported.
+
+Missing jurisdictions are exclusions, not zero observations. Their absence must
+remain visible in every denominator, table, dashboard summary and interpretation.
 
 ## Minimum evidence required before interpretation
 A release candidate for this question requires: reviewed source snapshots; derived-only parsed records; source-content validation; data-quality pass; data dictionary; source/schema drift report; candidate mappings; human review of policy-facing mappings; sensitivity analyses; and publication-manifest review. Any restricted terminology or confidential price concept must remain local-only or be represented as metadata.

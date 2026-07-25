@@ -1,0 +1,28 @@
+{
+  "complete_count": 1,
+  "package_count": 5,
+  "packages": [
+    {
+      "path": "data/derived/research_claims/rq_genomics_coverage_price.json",
+      "sha256": "627ae356c4ecbf9f9a08cab7a0c57f24c1c97a14ce914d90d862c24cf268430f"
+    },
+    {
+      "path": "data/derived/research_claims/rq_cognitive_procedural.json",
+      "sha256": "946a502846b6eca61b49fb5d3d5890c252a83e60c382b8a34f8a86483903a365"
+    },
+    {
+      "path": "data/derived/research_claims/rq_medicine_opacity.json",
+      "sha256": "21cff81286d5555db909301aab249b2a1c0243361e8a3e82ff8cf3b8a1ffa825"
+    },
+    {
+      "path": "data/derived/research_claims/rq_local_national_coverage.json",
+      "sha256": "44d4bd3a54d0b3744877435986641073432fd4e92af86250835381b11c3c4586"
+    },
+    {
+      "path": "data/derived/research_claims/rq_source_transparency.json",
+      "sha256": "fb0c655a3bb924476cdcd83b6177cfb0a993d94ad6b9467d2e084a781bcc20c1"
+    }
+  ],
+  "pending_accountable_review_count": 5,
+  "schema_version": "research-claim-package-summary-v1"
+}

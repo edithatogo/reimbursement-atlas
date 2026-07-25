@@ -1,8 +1,18 @@
 # Current focus
 
+## 2026-07-24 — Bounded research claim packages
+
+Merged `main` is `b2b4cdf0f2488cb2ef2eea83f0e2f47bdd46a1b1`.
+Five deterministic claim-package candidates now bind reviewed source bundles,
+mapping holdout evidence, denominators and unsupported-claim boundaries. The
+source-transparency package is complete within its metadata-only scope. The
+other four packages are partial because protocol-required jurisdictional
+sources remain absent. All five remain `pending_accountable_review`; generation
+does not grant claim approval. Papers and preprints remain excluded.
+
 ## 2026-07-24 — Claim-package and OSF confirmation boundary
 
-Merged `main` is `bdd46e716a459dadf3adea976f609a9bfa23c984`. Repository release
+Merged `main` is `b2b4cdf0f2488cb2ef2eea83f0e2f47bdd46a1b1`. Repository release
 readiness is true; evidence release readiness is false (`0/5`). Mapping validation
 and scoped dashboard review are complete, but the policy demonstrators remain
 explicit parser/rendering fixtures. Evidence readiness now requires one valid,

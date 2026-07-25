@@ -1,0 +1,19 @@
+{
+  "analysis_validated": true,
+  "approval_scope": "Metadata observations only: 64 registered sources, including machine-readability, historical-version, utilisation-data, URL and licence-note counts.",
+  "claim_package_path": "data/derived/research_claims/rq_source_transparency.json",
+  "claim_package_sha256": "fb0c655a3bb924476cdcd83b6177cfb0a993d94ad6b9467d2e084a781bcc20c1",
+  "excluded_claims": [
+    "health-system quality rankings",
+    "causal claims",
+    "price-equivalence claims",
+    "coverage claims",
+    "paper or preprint claims"
+  ],
+  "research_question_id": "rq_source_transparency",
+  "reviewed_at": "2026-07-24T07:20:59Z",
+  "reviewed_derived_inputs": true,
+  "reviewer": "edithatogo",
+  "schema_version": "research-claim-review-v1",
+  "status": "approved_within_scope"
+}

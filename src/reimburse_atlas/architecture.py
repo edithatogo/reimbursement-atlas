@@ -84,6 +84,7 @@ _LAYER_BY_ROOT_MODULE: dict[str, ArchitectureLayer] = {
     "osf_sync": "orchestration",
     "openfda_device_acquisition": "orchestration",
     "research_package": "orchestration",
+    "research_claim_packages": "orchestration",
     "source_downloads": "orchestration",
     "pbs_api_evidence": "orchestration",
     "source_validation": "orchestration",

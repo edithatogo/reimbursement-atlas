@@ -1,0 +1,101 @@
+{
+  "analysis_status": "partial",
+  "claim_approval_status": "pending_accountable_review",
+  "descriptive_results": {
+    "missing_source_count": 2,
+    "required_source_count": 3,
+    "reviewed_source_count": 1
+  },
+  "mapping_validation": {
+    "holdout_case_count": 150,
+    "holdout_fingerprint": "c0d5f6ffc76a7a6e39f1b0d75fc00297a41cf4496842073c6f34234ffb86e115",
+    "input_path": "data/derived/mapping_study/expansion_v9/evaluation_summary.json",
+    "input_sha256": "d37f4d3ca93f60ac628dfb1ed290887fa06a540298cbf5af157561b5ac80696b",
+    "overall_metrics": {
+      "balanced_accuracy": {
+        "estimate": 0.8866666666666667,
+        "interpretation": "Conservative composite bounds; balanced accuracy is not itself a binomial proportion. Exact Clopper-Pearson intervals are reported for each component.",
+        "interval_method": "mean_of_component_clopper_pearson_bounds",
+        "lower_95": 0.8070416611203907,
+        "upper_95": 0.931032216183915
+      },
+      "confusion": {
+        "fn": 0,
+        "fp": 17,
+        "tn": 58,
+        "tp": 75
+      },
+      "negative_predictive_value": {
+        "estimate": 1.0,
+        "lower_95": 0.93837899109608,
+        "n": 58,
+        "upper_95": 1.0
+      },
+      "precision": {
+        "estimate": 0.8152173913043478,
+        "lower_95": 0.720712758560675,
+        "n": 92,
+        "upper_95": 0.8885123336324865
+      },
+      "sensitivity": {
+        "estimate": 1.0,
+        "lower_95": 0.9520049359448577,
+        "n": 75,
+        "upper_95": 1.0
+      },
+      "specificity": {
+        "estimate": 0.7733333333333333,
+        "lower_95": 0.6620783862959236,
+        "n": 75,
+        "upper_95": 0.8620644323678299
+      }
+    },
+    "status": "accepted",
+    "study_cycle": "expansion_v9"
+  },
+  "missing_reviewed_sources": [
+    "uk_nhs_payment_scheme",
+    "us_cms_mcd"
+  ],
+  "required_sources": [
+    "us_cms_mcd",
+    "au_mbs",
+    "uk_nhs_payment_scheme"
+  ],
+  "research_question_id": "rq_local_national_coverage",
+  "reviewed_source_evidence": {
+    "au_mbs": [
+      {
+        "bundle_path": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae",
+        "source_checksum_sha256": "f3c1caae2bce9610a05dff435e27ec40c91e0a7d6b3adb2b8ca89929b62a5b36",
+        "source_version_id": "au_mbs_20260701_txt_pair"
+      },
+      {
+        "bundle_path": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae",
+        "source_checksum_sha256": "1fe830ae80bfcd55f5815029331b0a4e02f5c70232408ce1e8861e3606f3498b",
+        "source_version_id": "au_mbs_20260701_txt_pair"
+      }
+    ]
+  },
+  "reviewed_sources_present": [
+    "au_mbs"
+  ],
+  "schema_version": "research-claim-package-v1",
+  "scope": "Reviewed-source availability and bounded descriptive evidence only.",
+  "supported_claims": [
+    "1 of 3 protocol-required sources have checksum-bound reviewed derived bundles."
+  ],
+  "unsupported_claims": [
+    "No causal effect is estimated.",
+    "No cross-jurisdiction price equivalence is inferred.",
+    "No coverage decision is inferred from the presence of a fee or price.",
+    "The full protocol question is not answerable until these reviewed sources are present: uk_nhs_payment_scheme, us_cms_mcd."
+  ],
+  "validation": {
+    "analysis_validated": true,
+    "deterministic": true,
+    "raw_payloads_included": false,
+    "restricted_descriptors_included": false,
+    "reviewed_inputs_only": true
+  }
+}

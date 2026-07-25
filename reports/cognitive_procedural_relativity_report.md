@@ -7,7 +7,13 @@ This report is not yet a results paper. It is a structured analysis scaffold lin
 How do selected, matched schedule-amount relativities differ between procedural and cognitive care?
 
 ## Evidence available now
-The current repository can document planned sources, exact source-file gates, parser status, protocol completeness, research-question linkages, source-content validation status, publication safety and dashboard outputs. Synthetic fixtures demonstrate the vertical slice but are not real policy evidence.
+The bounded package `data/derived/research_claims/rq_cognitive_procedural.json`
+records reviewed MBS and CMS PFS evidence. A reviewed Ontario OHIP bundle and a
+prespecified clinically reviewed cognitive/procedural basket remain absent, so no
+fee-relativity estimate is reported.
+
+Observed schedule amounts cannot be interpreted as provider income, service value
+or realised payment. Facility and professional components must remain separate.
 
 ## Minimum evidence required before interpretation
 A release candidate for this question requires: reviewed source snapshots; derived-only parsed records; source-content validation; data-quality pass; data dictionary; source/schema drift report; candidate mappings; human review of policy-facing mappings; sensitivity analyses; and publication-manifest review. Any restricted terminology or confidential price concept must remain local-only or be represented as metadata.

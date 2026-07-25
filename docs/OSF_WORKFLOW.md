@@ -1,7 +1,7 @@
 # OSF workflow
 
 The current merged-main baseline is
-`bdd46e716a459dadf3adea976f609a9bfa23c984`. OSF project `q8cnx` is public
+`b2b4cdf0f2488cb2ef2eea83f0e2f47bdd46a1b1`. OSF project `q8cnx` is public
 and approved registration `gqk4z` is submitted and immutable. Read-only monitor
 run `30052988061` reports it private and pending OSF approval, so the canonical
 snapshot and registration-readiness gates remain fail-closed. No paper,
