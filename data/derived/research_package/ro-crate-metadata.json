@@ -1652,20 +1652,20 @@
     {
       "@id": "data/derived/release_readiness/release_gates.jsonl",
       "@type": "File",
-      "contentSize": 9128,
+      "contentSize": 9108,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "91069cb5f9030b9082fde6b9cdb7f0351ba1bb84ca532553213c8fbd302845af"
+      "sha256": "10d240010e95b51f01e3b29c182f6d567ac4fe4e7f87349caacf0833b56fc743"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
       "@type": "File",
-      "contentSize": 5558,
+      "contentSize": 5538,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "8094ed2b3d112ea5603b25db590dfc227a1c45f9e4f2bc5d4a39f6777c524a5c"
+      "sha256": "93d9b43b8c5ef24cf284d0a91afa9d7e930ca9b7e740bd4bf6aa54701e7878ee"
     },
     {
       "@id": "data/derived/v13_validation_run.json",
@@ -1796,20 +1796,20 @@
     {
       "@id": "data/derived/final_handoff/final_handoff_tasks.jsonl",
       "@type": "File",
-      "contentSize": 12291,
+      "contentSize": 12286,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "final_handoff_tasks",
-      "sha256": "f3ffda9edefa63375b3e8d15ee6e92c4bd0d47efb2d7adeb40e9dce29b9710d6"
+      "sha256": "abbfe9ab374fab85c4e86cd629beacb27ea506b5ad47388b99c8957e4ffa73e0"
     },
     {
       "@id": "data/derived/final_handoff/final_handoff_tasks.csv",
       "@type": "File",
-      "contentSize": 8938,
+      "contentSize": 8933,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "final_handoff_tasks",
-      "sha256": "7a8a653601ca00c149a14c680839b51997596c29841a1ed70085132bfe03580a"
+      "sha256": "3cef261265e05b868d7a481e74e7ff80bacb2ce4234f8f40e8022e3e8933fc3b"
     },
     {
       "@id": "data/derived/osf/component_plan.jsonl",
@@ -1962,7 +1962,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "source_drift_report",
-      "sha256": "1a26dae87f8e2efefabaf0276d74d2eff10d039e7ffca5e1f9ea8e144c784138"
+      "sha256": "027b803d4a12868e01d75f1edd883027451f0cef8cc45839df7390ecfbc1a6dd"
     },
     {
       "@id": "data/derived/source_drift/source_drift_report.csv",
@@ -1971,7 +1971,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "source_drift_report",
-      "sha256": "92dfb50e80e22596aee7654e1dfb9c67d850badafd65e01314d7ff0dfaf941f2"
+      "sha256": "347d7e15d025e2456dcc5f26f30ea0c58264556f85a61ceaf5f998bba7a272ea"
     },
     {
       "@id": "data/derived/source_drift/summary.json",
