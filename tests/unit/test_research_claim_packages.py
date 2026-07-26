@@ -15,13 +15,16 @@ def test_claim_packages_are_fail_closed_and_use_reviewed_inputs() -> None:
     packages = build_claim_package_candidates(root)
 
     assert len(packages) == 5
-    assert all(row["claim_approval_status"] == "pending_accountable_review" for row in packages)
     assert all(row["validation"]["raw_payloads_included"] is False for row in packages)
     transparency = next(
         row for row in packages if row["research_question_id"] == "rq_source_transparency"
     )
     assert transparency["analysis_status"] == "complete"
+    assert transparency["claim_approval_status"] == "pending_accountable_review"
     assert transparency["descriptive_results"]["source_count"] > 0
+    partial = [row for row in packages if row["analysis_status"] == "partial"]
+    assert len(partial) == 4
+    assert all(row["claim_approval_status"] == "not_reviewable_source_gap" for row in partial)
 
 
 def test_claim_package_generation_is_deterministic() -> None:
@@ -58,5 +61,7 @@ def test_claim_package_writer_emits_checksum_bound_summary(tmp_path: Path) -> No
     assert len(paths) == 6
     assert summary["package_count"] == 5
     assert summary["complete_count"] == 1
-    assert summary["pending_accountable_review_count"] == 5
+    assert summary["reviewable_count"] == 1
+    assert summary["pending_accountable_review_count"] == 1
+    assert summary["partial_source_gap_count"] == 4
     assert all(len(row["sha256"]) == 64 for row in summary["packages"])

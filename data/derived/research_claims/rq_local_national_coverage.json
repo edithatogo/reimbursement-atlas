@@ -1,6 +1,6 @@
 {
   "analysis_status": "partial",
-  "claim_approval_status": "pending_accountable_review",
+  "claim_approval_status": "not_reviewable_source_gap",
   "descriptive_results": {
     "missing_source_count": 2,
     "required_source_count": 3,

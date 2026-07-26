@@ -73,6 +73,9 @@ def build_claim_package_candidates(root: Path) -> list[dict[str, Any]]:
             missing = sorted(set(required_sources) - set(observed))
 
         status = "complete" if not missing else "partial"
+        approval_status = (
+            "pending_accountable_review" if status == "complete" else "not_reviewable_source_gap"
+        )
         scope = (
             "Metadata transparency of the registered public sources."
             if question_id == "rq_source_transparency"
@@ -82,7 +85,7 @@ def build_claim_package_candidates(root: Path) -> list[dict[str, Any]]:
             "schema_version": "research-claim-package-v1",
             "research_question_id": question_id,
             "analysis_status": status,
-            "claim_approval_status": "pending_accountable_review",
+            "claim_approval_status": approval_status,
             "scope": scope,
             "required_sources": list(required_sources),
             "reviewed_sources_present": observed,
@@ -162,7 +165,19 @@ def write_claim_package_candidates(root: Path) -> list[Path]:
             json.loads(path.read_text(encoding="utf-8"))["analysis_status"] == "complete"
             for path in paths
         ),
-        "pending_accountable_review_count": len(paths),
+        "reviewable_count": sum(
+            json.loads(path.read_text(encoding="utf-8"))["analysis_status"] == "complete"
+            for path in paths
+        ),
+        "pending_accountable_review_count": sum(
+            json.loads(path.read_text(encoding="utf-8"))["claim_approval_status"]
+            == "pending_accountable_review"
+            for path in paths
+        ),
+        "partial_source_gap_count": sum(
+            json.loads(path.read_text(encoding="utf-8"))["analysis_status"] == "partial"
+            for path in paths
+        ),
         "packages": [
             {
                 "path": path.relative_to(root).as_posix(),

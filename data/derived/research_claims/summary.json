@@ -4,25 +4,27 @@
   "packages": [
     {
       "path": "data/derived/research_claims/rq_genomics_coverage_price.json",
-      "sha256": "627ae356c4ecbf9f9a08cab7a0c57f24c1c97a14ce914d90d862c24cf268430f"
+      "sha256": "61a69572f6b6b6ad5c0ef71d19af852fd9268ce137a7e22679ff14855bae455f"
     },
     {
       "path": "data/derived/research_claims/rq_cognitive_procedural.json",
-      "sha256": "946a502846b6eca61b49fb5d3d5890c252a83e60c382b8a34f8a86483903a365"
+      "sha256": "26d6d0f261f1a9ff7ff6ddbfbab6ccef9ad46a90e01ccc3b80609d5907a064aa"
     },
     {
       "path": "data/derived/research_claims/rq_medicine_opacity.json",
-      "sha256": "21cff81286d5555db909301aab249b2a1c0243361e8a3e82ff8cf3b8a1ffa825"
+      "sha256": "517a4b58f01cf5acd871c788223999b5fabd6c6afa02db61877220ffe8b156f6"
     },
     {
       "path": "data/derived/research_claims/rq_local_national_coverage.json",
-      "sha256": "44d4bd3a54d0b3744877435986641073432fd4e92af86250835381b11c3c4586"
+      "sha256": "71c348311a30f8cae4894b10309af10c913b76f301d9023b2ba1af647ac48bec"
     },
     {
       "path": "data/derived/research_claims/rq_source_transparency.json",
       "sha256": "fb0c655a3bb924476cdcd83b6177cfb0a993d94ad6b9467d2e084a781bcc20c1"
     }
   ],
-  "pending_accountable_review_count": 5,
+  "partial_source_gap_count": 4,
+  "pending_accountable_review_count": 1,
+  "reviewable_count": 1,
   "schema_version": "research-claim-package-summary-v1"
 }
