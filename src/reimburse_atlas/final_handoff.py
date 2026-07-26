@@ -22,6 +22,9 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
     repo = root or project_root()
     mapping_cycle = latest_mapping_study_cycle(repo)
     mapping_paths = mapping_study_paths(mapping_cycle)
+    osf_state = _osf_registration_state(repo)
+    osf_registered = _osf_remote_registered(repo)
+    osf_ready = osf_state == "ready"
     return [
         FinalHandoffTaskRecord(
             id="final_source_downloads",
@@ -198,7 +201,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             github_issues=(484, 488, 511),
             task_group="research",
             title="Create OSF protocol/report components and upload preregistration pack",
-            status="ready_local" if _osf_review_approved(repo) else "blocked_review",
+            status="complete" if osf_registered else "blocked_review",
             required_environment=(
                 "Configured OSF personal access token and private project, plus approved "
                 "protocol text."
@@ -210,20 +213,26 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "the sync manifest rows are explicitly approved."
             ),
             recommended_action=(
-                "The private project and token-gated plan are configured; keep upload fail-closed "
-                "until the reviewed preregistration decision is recorded."
+                "The approved repository/data registration is active and public; preserve its "
+                "immutable submitted scope and keep papers and preprints excluded."
+                if osf_registered
+                else "Keep upload fail-closed until the reviewed preregistration decision is "
+                "recorded and OSF confirms the registration."
             ),
             reason_code=(
-                "osf_registration_review_approved"
-                if _osf_review_approved(repo)
+                "osf_registration_active_public"
+                if osf_registered
                 else "osf_registration_review_pending"
             ),
             gate_evidence=(
+                "data/osf_review/registration_decision.json",
                 "data/derived/osf/registration_freeze.json",
+                "data/derived/osf/remote_registration_snapshot.json",
                 "data/derived/osf/osf_publication_manifest.json",
             ),
-            review_record="data/derived/osf/registration_freeze.json",
-            external_state="ready" if _osf_review_approved(repo) else "pending",
+            review_record="data/osf_review/registration_decision.json",
+            external_state="ready" if osf_registered else "pending",
+            last_verified_at=_osf_remote_verified_at(repo),
         ),
         FinalHandoffTaskRecord(
             id="final_osf_registration_drift_check",
@@ -231,11 +240,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             github_issues=(484, 489, 511),
             task_group="research",
             title="Verify OSF registration fingerprint and amendment state",
-            status=(
-                "ready_local"
-                if _osf_review_approved(repo) and _osf_snapshot_available(repo)
-                else "blocked_review"
-            ),
+            status="ready_local" if osf_ready else "blocked_review",
             required_environment=(
                 "Approved protocol freeze, human methods/licence/governance review and an "
                 "exported OSF registration metadata snapshot."
@@ -255,12 +260,19 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             ),
             reason_code=(
                 "osf_registration_snapshot_ready"
-                if _osf_review_approved(repo) and _osf_snapshot_available(repo)
+                if osf_ready
+                else "osf_registration_fingerprint_drift"
+                if osf_state == "drift"
                 else "osf_registration_snapshot_pending"
             ),
-            gate_evidence=("data/derived/osf/registration_freeze.json",),
+            gate_evidence=(
+                "data/osf_review/registration_decision.json",
+                "data/derived/osf/registration_freeze.json",
+                "data/derived/osf/remote_registration_snapshot.json",
+            ),
             review_record="data/derived/osf/registration_freeze.json",
-            external_state="pending",
+            external_state="ready" if osf_registered else "pending",
+            last_verified_at=_osf_remote_verified_at(repo),
         ),
         FinalHandoffTaskRecord(
             id="final_mapping_calibration_review",
@@ -486,21 +498,33 @@ def _publication_ready(repo: Path) -> bool:
     )
 
 
-def _osf_review_approved(repo: Path) -> bool:
-    freeze = _read_json(repo / "data/derived/osf/registration_freeze.json")
-    return (
-        freeze.get("review_approved") is True
-        and freeze.get("source_cutoff_status") == "approved"
-        and freeze.get("source_cutoff") not in {None, "not-frozen"}
-    )
-
-
-def _osf_snapshot_available(repo: Path) -> bool:
+def _osf_registration_state(repo: Path) -> str:
     from reimburse_atlas.osf_registration import check_registration_drift
 
     freeze = _read_json(repo / "data/derived/osf/registration_freeze.json")
     snapshot = _read_json(repo / "data/derived/osf/remote_registration_snapshot.json")
-    return check_registration_drift(freeze, snapshot)["status"] == "ready"
+    return cast("str", check_registration_drift(freeze, snapshot)["status"])
+
+
+def _osf_remote_registered(repo: Path) -> bool:
+    from reimburse_atlas.osf_registration import (
+        check_registration_drift,
+        freeze_from_registration_decision,
+    )
+
+    decision = _read_json(repo / "data/osf_review/registration_decision.json")
+    snapshot = _read_json(repo / "data/derived/osf/remote_registration_snapshot.json")
+    try:
+        submitted_freeze = freeze_from_registration_decision(decision)
+    except ValueError:
+        return False
+    return check_registration_drift(submitted_freeze, snapshot)["status"] == "ready"
+
+
+def _osf_remote_verified_at(repo: Path) -> str | None:
+    snapshot = _read_json(repo / "data/derived/osf/remote_registration_snapshot.json")
+    value = snapshot.get("remote_verified_at")
+    return value if isinstance(value, str) and value else None
 
 
 def _mapping_evaluation_accepted(repo: Path) -> bool:

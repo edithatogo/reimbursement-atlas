@@ -229,6 +229,23 @@ def _osf_registration_gate(repo: Path) -> ReleaseGateRecord:
     remote = _read_json(remote_path) if remote_path.is_file() else None
     result = check_registration_drift(freeze, remote)
     reasons = cast("list[str]", result.get("reasons", []))
+    status = result.get("status")
+    if status == "drift":
+        action = (
+            "The OSF registration is active and public. Reconcile the current protocol, "
+            "manifest and source-cutoff changes against the immutable registered freeze; "
+            "do not overwrite or misdescribe the registered record."
+        )
+    elif remote is None:
+        action = (
+            "Export a canonical snapshot after OSF reports the approved registration as "
+            "active, public and immutable."
+        )
+    else:
+        action = (
+            "Complete the checksum-bound registration review and verify exact protocol, "
+            "manifest and source-cutoff parity."
+        )
     return ReleaseGateRecord(
         id="osf_registration",
         category="release",
@@ -239,10 +256,7 @@ def _osf_registration_gate(repo: Path) -> ReleaseGateRecord:
             f"reasons={','.join(reasons) if reasons else 'none'} "
             f"registration_id={result.get('registration_id') or 'missing'}"
         ),
-        recommended_action=(
-            "Submit the approved checksum-bound registration, export an immutable remote "
-            "snapshot, and verify exact protocol, manifest and source-cutoff parity."
-        ),
+        recommended_action=action,
     )
 
 

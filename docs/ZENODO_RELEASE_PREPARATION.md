@@ -5,9 +5,9 @@ Regenerate the preflight against the exact tagged release; no Zenodo evidence is
 newer commit.
 
 The current merged-main baseline is
-`b2b4cdf0f2488cb2ef2eea83f0e2f47bdd46a1b1`. No Zenodo deposit has been
+`d3d106c25c4cc8a759a6f04edbe7dc93463ce42a`. No Zenodo deposit has been
 authorized. The exact tagged release must regenerate and revalidate the inventory
-after OSF registration and research-evidence gates pass.
+after OSF registration drift and research-evidence gates pass.
 
 The repository contains `.zenodo.json` as a locally validated metadata preparation record. It
 does not create a Zenodo record, reserve a DOI, upload source files or imply archival/publication

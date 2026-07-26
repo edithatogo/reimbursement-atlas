@@ -77,6 +77,7 @@ jobs:
           if [ "$public" = "true" ] && [ "$pending" = "false" ] && [ "$withdrawn" = "false" ]; then
             pixi run osf-registration-snapshot \
               --receipt "$receipt" \
+              --registration-decision data/osf_review/registration_decision.json \
               --output osf-registration-monitor/remote_registration_snapshot.json
             echo "ready=true" >> "$GITHUB_OUTPUT"
             echo "OSF registration is active, immutable and public." >> "$GITHUB_STEP_SUMMARY"

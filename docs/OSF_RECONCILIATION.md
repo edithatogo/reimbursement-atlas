@@ -100,10 +100,18 @@ until human methods, domain, licence and governance review is recorded.
 The OSF project `q8cnx` is public. On 2026-07-23, token-gated GitHub Actions run
 `30010023356` uploaded and round-trip verified 11 approved protocol, report and
 repository records, then submitted immediate-public registration `gqk4z`.
-OSF returned `pending_registration_approval: true`, so the registration remains
-private during its administrator confirmation window. No active snapshot or
-release-readiness claim is generated until OSF confirms it. Papers, preprints,
-raw payloads and restricted descriptors were not uploaded.
+On 2026-07-26, read-only monitor run `30181343265` confirmed the registration is
+public, immutable, not withdrawn, unembargoed and no longer pending approval.
+The canonical remote snapshot is bound to the exact owner-approved submission
+decision, not to later regenerated files.
+
+The current protocol, OSF sync manifest and source cutoff differ from that
+immutable submitted freeze. The registration gate therefore reports
+`registration_fingerprint_drift` rather than “pending registration.” The
+registered record must not be overwritten or described as covering later
+changes. Reconciliation requires an explicit versioned registration strategy
+before Zenodo/DataCite release. Papers, preprints, raw payloads and restricted
+descriptors were not uploaded.
 
 The same plan generates `data/derived/osf/registration_review_packet.md`. This is a
 deterministic, non-mutating review aid containing the freeze digests, protocol/report

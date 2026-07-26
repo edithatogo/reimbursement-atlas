@@ -1,21 +1,24 @@
 # Final handoff checklist
 
-## Current implementation state (2026-07-24)
+## Current implementation state (2026-07-26)
 
 The current merged-main baseline is
-`b2b4cdf0f2488cb2ef2eea83f0e2f47bdd46a1b1`. The release branch has completed the mapping counterpart, blinded
+`d3d106c25c4cc8a759a6f04edbe7dc93463ce42a`. The release branch has completed the mapping counterpart, blinded
 adjudication, untouched holdout and refreshed scoped dashboard-review gates.
-`repository_release_ready=true` and `evidence_release_ready=false`: all five
-research questions remain prototype-only until checksum-bound claim packages pass.
+`repository_release_ready=true` and `evidence_release_ready=false`: the
+source-transparency metadata claim is evidence-ready, while four research
+questions remain prototype-only until checksum-bound claim packages pass.
 
 OSF workflow run
 [`30010023356`](https://github.com/edithatogo/reimbursement-atlas/actions/runs/30010023356)
 round-trip verified 11 approved files and submitted registration
-[`gqk4z`](https://osf.io/gqk4z/). OSF reports the immutable registration as
-`pending_registration_approval` and private, so `osf_registration_ready` remains
-false and no active snapshot is claimed. Zenodo/DataCite release remains downstream
-of OSF confirmation and final signed assets. Papers and preprints remain excluded.
-Read-only monitor run `30052988061` reconfirmed the pending registration state.
+[`gqk4z`](https://osf.io/gqk4z/). Read-only monitor run `30181343265`
+confirms the immutable registration is active and public. Its canonical snapshot
+is preserved against the exact submitted decision. The current protocol,
+manifest and source cutoff differ from that freeze, so `osf_registration_ready`
+remains false on fingerprint drift. Zenodo/DataCite release remains downstream
+of drift reconciliation and final signed assets. Papers and preprints remain
+excluded.
 
 ## Current external refresh (2026-07-21)
 

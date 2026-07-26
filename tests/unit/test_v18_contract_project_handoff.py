@@ -468,8 +468,17 @@ def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) ->
             "review_approved": True,
             "source_cutoff_status": "approved",
             "source_cutoff": "2026-07-19T00:00:00Z",
-            "protocol_digest": "protocol",
-            "analysis_manifest_digest": "manifest",
+            "protocol_digest": "a" * 64,
+            "analysis_manifest_digest": "b" * 64,
+        },
+        "data/osf_review/registration_decision.json": {
+            "schema_version": "osf-registration-decision-v1",
+            "status": "approved_for_registration",
+            "protocol_digest": "a" * 64,
+            "analysis_manifest_digest": "b" * 64,
+            "source_cutoff": "2026-07-19T00:00:00Z",
+            "reviewer": "owner",
+            "reviewed_at": "2026-07-23T12:00:54Z",
         },
         "data/derived/osf/remote_registration_snapshot.json": {
             "schema_version": "osf-registration-snapshot-v1",
@@ -484,8 +493,8 @@ def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) ->
             "embargoed": False,
             "remote_verified_at": "2026-07-23T13:05:00Z",
             "receipt_sha256": "e" * 64,
-            "protocol_digest": "protocol",
-            "analysis_manifest_digest": "manifest",
+            "protocol_digest": "a" * 64,
+            "analysis_manifest_digest": "b" * 64,
             "source_cutoff": "2026-07-19T00:00:00Z",
         },
         "data/derived/mapping_study/evaluation_summary.json": {
@@ -578,11 +587,10 @@ def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) ->
     snapshot = json.loads(snapshot_path.read_text(encoding="utf-8"))
     snapshot["snapshot_sha256"] = registration_snapshot_sha256(snapshot)
     snapshot_path.write_text(json.dumps(snapshot), encoding="utf-8")
-
     rows = {row.id: row for row in build_final_handoff_tasks(tmp_path)}
 
     assert rows["final_hf_dataset_space"].status == "ready_local"
-    assert rows["final_osf_protocol_pack"].status == "ready_local"
+    assert rows["final_osf_protocol_pack"].status == "complete"
     assert rows["final_osf_registration_drift_check"].status == "ready_local"
     assert rows["final_mapping_calibration_review"].status == "complete"
     assert rows["final_historical_source_expansion"].status == "complete"

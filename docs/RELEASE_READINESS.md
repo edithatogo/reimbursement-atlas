@@ -1,21 +1,22 @@
 # Release readiness
 
-## Current release boundary (2026-07-24)
+## Current release boundary (2026-07-26)
 
-Merged `main` at `b2b4cdf0f2488cb2ef2eea83f0e2f47bdd46a1b1` reports
+Merged `main` at `d3d106c25c4cc8a759a6f04edbe7dc93463ce42a` reports
 `repository_release_ready=true` and `evidence_release_ready=false`. The 750-case
 mapping study and refreshed scoped dashboard review pass their independent gates.
-Research-policy claims remain deliberately unready (`0/5`) because none of the
-five research questions has a checksum-bound, validated and scoped-approved claim
-package. Readiness scores and fixture demonstrators cannot satisfy that gate.
+Research-policy claims remain deliberately unready (`1/5` evidence-ready): only
+the source-transparency metadata claim has a checksum-bound, validated and
+scoped-approved package. Readiness scores and fixture demonstrators cannot satisfy
+the other four gates.
 
 OSF project `q8cnx` is public and its 11 approved files pass remote SHA-256
-round-trip verification. Registration `gqk4z` has been submitted but OSF still
-reports `pending_registration_approval=true` and `public=false`; therefore the
-canonical snapshot generator and `osf_registration_ready` fail closed. The latest
-read-only monitor, workflow run `30052988061`, confirmed the same pending state.
-Zenodo and DataCite publication remain downstream. No paper or preprint is in the
-release or authorized for submission.
+round-trip verification. Read-only workflow run `30181343265` confirms registration
+`gqk4z` is active, public and immutable. Its canonical snapshot is bound to the
+exact submitted decision, while the current protocol, manifest and source cutoff
+report fingerprint drift from that immutable freeze. Zenodo and DataCite
+publication remain downstream. No paper or preprint is in the release or
+authorized for submission.
 
 ## Current external refresh (2026-07-21)
 
@@ -24,7 +25,7 @@ and the dataset remains `other`. OSF project `q8cnx` is public, while registrati
 licence, evidence, policy and publication gates remain fail-closed.
 
 Current merged-main baseline:
-`b2b4cdf0f2488cb2ef2eea83f0e2f47bdd46a1b1` (2026-07-24).
+`d3d106c25c4cc8a759a6f04edbe7dc93463ce42a` (2026-07-26).
 Regenerate this document after any further merge and before release review.
 The last merged-main repository release gate summary was 36/36 passing; the current
 branch must rerun the complete matrix before this state can be considered current.
