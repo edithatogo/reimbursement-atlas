@@ -1,16 +1,16 @@
 {
-  "blocked_count": 3,
+  "blocked_count": 2,
   "evidence_release_ready": false,
   "fail_count": 0,
   "gate_count": 40,
   "missing_count": 0,
   "osf_registration_ready": false,
-  "pass_count": 37,
+  "pass_count": 38,
   "policy_claims_ready": false,
   "repository_release_ready": true,
   "required_blocker_count": 0,
   "research_publication_ready": false,
-  "review_pending_count": 3,
+  "review_pending_count": 2,
   "schema_version": "release-readiness-v2",
   "warn_count": 0
 }
