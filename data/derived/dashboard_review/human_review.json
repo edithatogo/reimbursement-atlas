@@ -1,11 +1,11 @@
 {
   "approval_scope": "Approved within the declared routes and browser matrix for visual, automated accessibility, responsive-layout, keyboard, provenance and prohibited-content checks. This approval does not establish universal accessibility-standard compliance and does not confirm an independent manual VoiceOver review.",
-  "automated_packet_sha256": "630261962f218cfca8f39f1180e5457569336e4628e17c3c51cc78546f8f2caa",
-  "commit": "20578984dd713969e90a8ae81d1a7a6b4cf56586",
+  "automated_packet_sha256": "971e8b0be96be9264f38c1a120d80420315caf4bdf9c3b55d54c8a1d63e21895",
+  "commit": "55f23c308cfe343cb04230e88e710b0d4897fc54",
   "evidence_artifacts": [
     "data/derived/dashboard_review/automated_review_packet.json",
     "data/derived/dashboard_review/owner_review_packet.json",
-    "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30182097303",
+    "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30183099509",
     "https://github.com/edithatogo/reimbursement-atlas/pull/591"
   ],
   "findings": [
@@ -13,9 +13,9 @@
     "The 44 commit-bound screenshots and machine-readable packet cover the declared visual, responsive-layout, keyboard, automated accessibility, provenance and prohibited-content checks.",
     "Universal WCAG conformance and independent manual VoiceOver confirmation are outside this approval."
   ],
-  "owner_packet_sha256": "d6279df05544a8f244808e5a9d13a04a6639bb66ef6a9c9889e274f137a11619",
+  "owner_packet_sha256": "fcf39e8f85729a22ee2ce5d6ed41e38c7f6b9f031586c89eb0b08ddc6a202b2c",
   "remediation_or_waiver": "No unresolved finding is recorded within the approved scope. Independent manual VoiceOver review remains explicitly out of scope.",
-  "reviewed_at": "2026-07-26T01:04:00Z",
+  "reviewed_at": "2026-07-26T11:21:52Z",
   "reviewer": "edithatogo",
   "schema_version": "dashboard-human-review-v1",
   "scope": {
