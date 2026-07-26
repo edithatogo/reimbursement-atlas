@@ -14,7 +14,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
@@ -40,7 +40,7 @@ jobs:
       id-token: write
       attestations: write
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
@@ -71,19 +71,19 @@ jobs:
           done
           pixi run release-identity "${args[@]}"
       - name: Attest Python distributions
-        uses: actions/attest@a1948c3f048ba23858d222213b7c278aabede763 # v4
+        uses: actions/attest@f7c74d28b9d84cb8768d0b8ca14a4bac6ef463e6 # v4
         with:
           subject-path: dist/*
       - name: Attest source archive
-        uses: actions/attest@a1948c3f048ba23858d222213b7c278aabede763 # v4
+        uses: actions/attest@f7c74d28b9d84cb8768d0b8ca14a4bac6ef463e6 # v4
         with:
           subject-path: reimbursement-atlas-*.tar.gz
       - name: Attest SBOMs
-        uses: actions/attest@a1948c3f048ba23858d222213b7c278aabede763 # v4
+        uses: actions/attest@f7c74d28b9d84cb8768d0b8ca14a4bac6ef463e6 # v4
         with:
           subject-path: data/derived/sbom/*.json
       - name: Attest release manifest
-        uses: actions/attest@a1948c3f048ba23858d222213b7c278aabede763 # v4
+        uses: actions/attest@f7c74d28b9d84cb8768d0b8ca14a4bac6ef463e6 # v4
         with:
           subject-path: release-manifest.json
       - name: Verify release attestations before upload
@@ -102,7 +102,7 @@ jobs:
               --format json \
               > "data/derived/attestations/$(basename "$artifact").json"
           done
-      - uses: softprops/action-gh-release@718ea10b132b3b2eba29c1007bb80653f286566b # v3
+      - uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # v3
         with:
           files: |
             dist/*
