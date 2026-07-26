@@ -29,8 +29,11 @@ Readiness stages:
 
 Scores alone cannot produce `evidence_ready`. Optional decisions are validated
 against `data/research_claims/decision.schema.json`; missing, malformed, stale,
-pending or rejected decisions cap the question at `prototype_ready`. Fixture
-policy briefs are interface demonstrations and are not claim packages.
+pending or rejected decisions cap the question at `prototype_ready`. A
+`partial` package is a source-acquisition boundary, not a request for human
+approval: it records the exact absent source families and cannot become
+evidence-ready until regenerated from complete reviewed inputs. Fixture policy
+briefs are interface demonstrations and are not claim packages.
 
 Generate bounded package candidates before the matrix:
 

@@ -18,6 +18,11 @@
   and receipt-verification path are implemented; signed final-release assets remain pending until
   upstream OSF registration evidence passes and the tag is published. (Subissue #505)
 - [ ] REL-05: Run final release-readiness and publication boundary review; do not publish papers. (Subissue #507)
+- [x] REL-05A: Replace the stale five-package human-review blocker with evidence-derived
+  classification. Only complete packages are reviewable; partial packages identify exact source
+  gaps and remain ineligible for approval or evidence claims. The source-transparency package is
+  already checksum-approved, leaving four source-acquisition boundaries rather than four human
+  approval requests. (`fdf70b7d`, issue #590)
 - [x] REL-06: Generate a deterministic Zenodo/DataCite draft manifest for software plus permitted
   derived data, with Apache-2.0 applied only to code and source-specific rights retained for data.
   (Issue #532)
