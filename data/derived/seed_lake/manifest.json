@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 40,
-      "sha256": "4c7087796e641fad51ab01edc234f6ef9c23e88d0da71f2ab7272d2f9676d140"
+      "sha256": "3d9bc4645d6a2e872fc324cf23b27e7d6353b2ad63edca6caf5d9a43e1e1120b"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -393,7 +393,7 @@
       "name": "github_project_items",
       "parquet_path": "github_project_items/github_project_items.parquet",
       "rows": 224,
-      "sha256": "6b6f5e9f423e77dfa9a97a7f7d27cc0dc4c9d7c2fb61aba4b01db2f94796f9e1"
+      "sha256": "6cc3331de663fd42c7bdcb52c357e22842dbcbc40c7cac89ed89c7076515499a"
     },
     {
       "csv_path": "final_handoff_tasks/final_handoff_tasks.csv",
@@ -449,7 +449,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "7a52ddd07d56b76355791e97d13c0ab2d4cbffa13569bc61ccefe41d7e03a036"
+      "sha256": "06f1567102d1404cd28e1694f94e8a045c5cf606b849ebb0798fb0e54d606d01"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",

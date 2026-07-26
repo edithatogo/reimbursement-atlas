@@ -21,7 +21,7 @@ publication exclusions before any registration submission.
 - [x] Protocol sections identify all five research questions and their outputs.
 - [x] Source cutoff, manifest digest and licence boundaries are frozen and verified.
 - [x] OSF validation passes and submission has explicit accountable approval.
-- [ ] Repository outputs record the OSF draft/registration state and URL.
+- [x] Repository outputs record the OSF draft/registration state and URL.
 
 ## External gates
 

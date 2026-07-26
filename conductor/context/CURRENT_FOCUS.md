@@ -2,22 +2,24 @@
 
 ## 2026-07-26 — Post-merge repository closure
 
-Merged `main` is `d3d106c25c4cc8a759a6f04edbe7dc93463ce42a`.
+Merged `main` is `03e04c0f25e132f0d4b4c890959dc00049ae112e`.
 Repository release readiness is true with 38 passing gates, no missing or
 failing gates, and no required blockers. The checksum-bound source-transparency
 claim is evidence-ready; the other four claim packages remain partial because
 their protocol-required reviewed counterpart sources are absent. Issue #590
 remains the accountable-review boundary for those four packages.
 
-The dashboard review was complete as `approved_within_scope` for the preceding
+The dashboard review is complete as `approved_within_scope` for the current
 public-data fingerprint. The legacy `MbsXmlFixtureAdapter` is resolved as
 synthetic fixture-only compatibility infrastructure and cannot create
 reviewed-source evidence. A fresh read-only monitor now confirms OSF
-registration `gqk4z` is active, public and immutable. Its submitted freeze is
-preserved separately from the current draft, which has post-registration
-protocol, manifest and source-cutoff drift. Zenodo/DataCite deposition and the
-exact signed release remain blocked pending drift reconciliation, refreshed
-dashboard review and evidence readiness. Papers and preprints remain excluded.
+registration `gqk4z` is active, public and immutable, completing the OSF
+registration track. Its submitted freeze is preserved separately from the
+current draft, which has post-registration protocol, manifest and source-cutoff
+drift and therefore requires a new-version decision before any later
+registration. Zenodo/DataCite deposition and the exact signed release remain
+blocked by the four partial claim packages and their accountable evidence
+review. Papers and preprints remain excluded.
 
 ## 2026-07-24 — Bounded research claim packages
 
