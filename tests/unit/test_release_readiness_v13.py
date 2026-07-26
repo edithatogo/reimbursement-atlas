@@ -4,12 +4,83 @@ import json
 from pathlib import Path
 
 from reimburse_atlas.io import write_csv
+from reimburse_atlas.osf_registration import registration_snapshot_sha256
 from reimburse_atlas.release_readiness import (
     ReleaseGateRecord,
+    _osf_registration_gate,  # ruff:ignore[import-private-name] - focused gate-state regression
     build_release_readiness_report,
     summarise_release_gates,
     write_release_readiness_report,
 )
+
+
+def test_osf_registration_gate_reports_post_registration_drift(tmp_path: Path) -> None:
+    freeze_path = tmp_path / "data/derived/osf/registration_freeze.json"
+    freeze_path.parent.mkdir(parents=True)
+    freeze_path.write_text(
+        json.dumps({
+            "review_approved": False,
+            "protocol_digest": "current",
+            "analysis_manifest_digest": "current",
+            "source_cutoff": "not-frozen",
+        }),
+        encoding="utf-8",
+    )
+    snapshot = {
+        "schema_version": "osf-registration-snapshot-v1",
+        "registration_id": "abc12",
+        "registration_url": "https://osf.io/abc12/",
+        "status": "registered",
+        "submitted_at": "2026-07-23T13:00:00Z",
+        "immutable": True,
+        "public": True,
+        "pending_registration_approval": False,
+        "withdrawn": False,
+        "embargoed": False,
+        "remote_verified_at": "2026-07-26T00:33:20Z",
+        "receipt_sha256": "e" * 64,
+        "protocol_digest": "a" * 64,
+        "analysis_manifest_digest": "b" * 64,
+        "source_cutoff": "2026-07-23T00:00:00Z",
+    }
+    snapshot["snapshot_sha256"] = registration_snapshot_sha256(snapshot)
+    (freeze_path.parent / "remote_registration_snapshot.json").write_text(
+        json.dumps(snapshot),
+        encoding="utf-8",
+    )
+
+    gate = _osf_registration_gate(tmp_path)
+
+    assert gate.status == "blocked"
+    assert "status=drift" in gate.evidence
+    assert "active and public" in gate.recommended_action
+    assert "do not overwrite" in gate.recommended_action
+
+
+def test_osf_registration_gate_distinguishes_missing_and_invalid_snapshots(
+    tmp_path: Path,
+) -> None:
+    freeze_path = tmp_path / "data/derived/osf/registration_freeze.json"
+    freeze_path.parent.mkdir(parents=True)
+    freeze_path.write_text(
+        json.dumps({
+            "review_approved": True,
+            "protocol_digest": "a" * 64,
+            "analysis_manifest_digest": "b" * 64,
+            "source_cutoff": "2026-07-23T00:00:00Z",
+        }),
+        encoding="utf-8",
+    )
+
+    missing = _osf_registration_gate(tmp_path)
+    assert "Export a canonical snapshot" in missing.recommended_action
+
+    (freeze_path.parent / "remote_registration_snapshot.json").write_text(
+        "{}",
+        encoding="utf-8",
+    )
+    invalid = _osf_registration_gate(tmp_path)
+    assert "Complete the checksum-bound registration review" in invalid.recommended_action
 
 
 def test_release_summary_tracks_required_blockers() -> None:

@@ -41,6 +41,13 @@ The tracked bundle records the source checksum, parser contract, transformation
 scope and output checksum. The TXT pair remains useful for historical/full-map
 coverage and is not a substitute for the XML current-release input.
 
+`MbsXmlFixtureAdapter` is a separate synthetic compatibility fixture. It exists
+only for contract tests and demonstrations, emits an explicitly synthetic source
+version and transformation note, and is not registered as a live-source parser.
+It cannot create reviewed-source evidence. This separation prevents a
+fixture-shaped XML document from being mistaken for a checksum-bound provider
+release.
+
 ## MBS TXT pair support
 
 MBS TXT validation uses a paired command because the item-map and descriptor files are separate:

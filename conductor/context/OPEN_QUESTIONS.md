@@ -2,11 +2,15 @@
 
 ## Source and licensing
 
-1. Should the legacy MBS XML adapter remain fixture-only now that XML distribution is discontinued?
-2. Which CMS CLFS public file should be used for first live-source validation?
-3. What exact licence language governs redistribution of generated derived fields for MBS, PBS, CMS, NHS and other first-wave sources?
-4. How much CPT/HCPCS descriptor text can be stored in a public dataset without requiring additional licensing?
-5. Which generated artefacts are safe for Hugging Face publication versus local-only cache?
+1. Which CMS CLFS public file should be used for first live-source validation?
+2. What exact licence language governs redistribution of generated derived fields for MBS, PBS, CMS, NHS and other first-wave sources?
+3. How much CPT/HCPCS descriptor text can be stored in a public dataset without requiring additional licensing?
+4. Which generated artefacts are safe for Hugging Face publication versus local-only cache?
+
+Resolved: the legacy `MbsXmlFixtureAdapter` remains fixture-only compatibility
+infrastructure. It must never be used as reviewed live evidence. Current-release
+XML uses `parse_mbs_xml` through the reviewed-source workflow; historical/full-map
+coverage uses the checksum-bound TXT-pair workflow.
 
 ## Data model
 

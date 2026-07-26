@@ -10,6 +10,7 @@ from typing import cast
 from reimburse_atlas.osf_registration import (
     build_remote_registration_snapshot,
     check_registration_drift,
+    freeze_from_registration_decision,
 )
 
 
@@ -35,13 +36,25 @@ def main() -> None:
         default=Path("data/derived/osf/registration_freeze.json"),
     )
     parser.add_argument(
+        "--registration-decision",
+        type=Path,
+        help=(
+            "Exact approved decision used for the immutable submission. "
+            "When supplied, reconstruct its historical freeze instead of using the current draft."
+        ),
+    )
+    parser.add_argument(
         "--output",
         type=Path,
         default=Path("data/derived/osf/remote_registration_snapshot.json"),
     )
     args = parser.parse_args()
 
-    freeze = _read_object(args.freeze)
+    freeze = (
+        freeze_from_registration_decision(_read_object(args.registration_decision))
+        if args.registration_decision
+        else _read_object(args.freeze)
+    )
     snapshot = build_remote_registration_snapshot(_read_object(args.receipt), freeze)
     result = check_registration_drift(freeze, snapshot)
     if result["status"] != "ready":

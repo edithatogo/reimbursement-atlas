@@ -1,11 +1,13 @@
 # OSF workflow
 
 The current merged-main baseline is
-`b2b4cdf0f2488cb2ef2eea83f0e2f47bdd46a1b1`. OSF project `q8cnx` is public
-and approved registration `gqk4z` is submitted and immutable. Read-only monitor
-run `30052988061` reports it private and pending OSF approval, so the canonical
-snapshot and registration-readiness gates remain fail-closed. No paper,
-preprint, Zenodo deposit or DataCite release is authorized by this state.
+`d3d106c25c4cc8a759a6f04edbe7dc93463ce42a`. OSF project `q8cnx` and
+immutable registration `gqk4z` are public. Read-only monitor run `30181343265`
+confirmed the registration is no longer pending and produced a canonical
+snapshot bound to the exact submitted decision. Registration readiness remains
+fail-closed because the current protocol, manifest and source cutoff differ from
+that immutable freeze. No paper, preprint, Zenodo deposit or DataCite release is
+authorized by this state.
 
 OSF is the planned home for research protocols, detailed reports, appendices and preprint staging. GitHub remains the implementation repository. Hugging Face hosts licence-safe derived datasets and the dashboard.
 

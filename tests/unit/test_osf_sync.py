@@ -11,6 +11,7 @@ from reimburse_atlas.osf_registration import (
     build_registration_review_packet,
     build_remote_registration_snapshot,
     check_registration_drift,
+    freeze_from_registration_decision,
     registration_snapshot_sha256,
 )
 from reimburse_atlas.osf_sync import (
@@ -266,6 +267,64 @@ def test_build_remote_registration_snapshot_binds_receipt_to_freeze() -> None:
 
     assert snapshot["snapshot_sha256"] == registration_snapshot_sha256(snapshot)
     assert check_registration_drift(_freeze(), snapshot)["status"] == "ready"
+
+
+def test_freeze_from_registration_decision_reconstructs_approved_submission() -> None:
+    decision = {
+        "schema_version": "osf-registration-decision-v1",
+        "status": "approved_for_registration",
+        "protocol_digest": "a" * 64,
+        "analysis_manifest_digest": "b" * 64,
+        "source_cutoff": "2026-07-23T00:00:00Z",
+        "reviewer": "owner",
+        "reviewed_at": "2026-07-23T12:00:54Z",
+    }
+
+    freeze = freeze_from_registration_decision(decision)
+
+    assert freeze["review_approved"] is True
+    assert freeze["source_cutoff_status"] == "approved"
+    assert freeze["protocol_digest"] == "a" * 64
+    assert freeze["analysis_manifest_digest"] == "b" * 64
+    assert freeze["network_io"] is False
+    assert freeze["mutation_performed"] is False
+
+
+@pytest.mark.parametrize(
+    ("decision", "message"),
+    [
+        ({}, "invalid OSF registration decision schema"),
+        (
+            {
+                "schema_version": "osf-registration-decision-v1",
+                "status": "blocked",
+            },
+            "not approved",
+        ),
+        (
+            {
+                "schema_version": "osf-registration-decision-v1",
+                "status": "approved_for_registration",
+            },
+            "incomplete",
+        ),
+        (
+            {
+                "schema_version": "osf-registration-decision-v1",
+                "status": "approved_for_registration",
+                "protocol_digest": "bad",
+                "analysis_manifest_digest": "b" * 64,
+                "source_cutoff": "2026-07-23T00:00:00Z",
+            },
+            "invalid protocol_digest",
+        ),
+    ],
+)
+def test_freeze_from_registration_decision_rejects_invalid_records(
+    decision: dict[str, object], message: str
+) -> None:
+    with pytest.raises(ValueError, match=message):
+        freeze_from_registration_decision(decision)
 
 
 @pytest.mark.parametrize(

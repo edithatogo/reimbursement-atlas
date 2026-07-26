@@ -1,0 +1,18 @@
+{
+  "analysis_manifest_digest": "e2d87ba924cbd01b8954d45c66ddd28d88c17ff3746aea1a91de616445230678",
+  "embargoed": false,
+  "immutable": true,
+  "pending_registration_approval": false,
+  "protocol_digest": "d16aced4316d57a5e0e965707769142fc5c7a8c37461257c9884b019f11f2555",
+  "public": true,
+  "receipt_sha256": "8c0d6e334ab6ba38a1bda55f389a861272d715e3e0032973e02a13e461842ced",
+  "registration_id": "gqk4z",
+  "registration_url": "https://osf.io/gqk4z/",
+  "remote_verified_at": "2026-07-26T00:33:20Z",
+  "schema_version": "osf-registration-snapshot-v1",
+  "snapshot_sha256": "6ef9f8353bf27e78a58f6c12c7febf3ce755896df6834ab805360181c9a8c226",
+  "source_cutoff": "2026-07-23T00:00:00Z",
+  "status": "registered",
+  "submitted_at": "2026-07-23T13:12:48.143383",
+  "withdrawn": false
+}

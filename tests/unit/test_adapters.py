@@ -14,14 +14,19 @@ from reimburse_atlas.adapters import (
 
 def test_mbs_xml_fixture_adapter_parses_items(repo_root: Path) -> None:
     """The MBS fixture adapter should return normalised schedule records."""
-    payload = MbsXmlFixtureAdapter().parse_file(
-        repo_root / "tests/fixtures/parsers/mbs_fixture.xml"
-    )
+    adapter = MbsXmlFixtureAdapter()
+    payload = adapter.parse_file(repo_root / "tests/fixtures/parsers/mbs_fixture.xml")
+    assert adapter.name == "mbs_xml_fixture"
     assert len(payload.schedule_items) == 2
     first = payload.schedule_items[0]
     assert first.source_id == "au_mbs"
     assert first.currency == "AUD"
     assert first.payment_amount == 95.60
+    assert first.provenance.source_version.startswith("synthetic_")
+    assert first.provenance.retrieved_at is None
+    assert first.provenance.transformation_notes == (
+        "Parsed from synthetic MBS XML parser-contract fixture."
+    )
 
 
 def test_cms_clfs_fixture_adapter_parses_items(repo_root: Path) -> None:

@@ -83,6 +83,44 @@ def apply_registration_decision(
     return decided
 
 
+def freeze_from_registration_decision(decision: Mapping[str, object]) -> dict[str, object]:
+    """Reconstruct the exact approved freeze used for an immutable submission."""
+    if decision.get("schema_version") != "osf-registration-decision-v1":
+        message = "invalid OSF registration decision schema"
+        raise ValueError(message)
+    if decision.get("status") != "approved_for_registration":
+        message = "OSF registration decision is not approved"
+        raise ValueError(message)
+    required = ("protocol_digest", "analysis_manifest_digest", "source_cutoff")
+    missing = [
+        field
+        for field in required
+        if not isinstance(decision.get(field), str) or not decision.get(field)
+    ]
+    if missing:
+        message = "OSF registration decision is incomplete: " + ",".join(missing)
+        raise ValueError(message)
+    for field in ("protocol_digest", "analysis_manifest_digest"):
+        value = cast("str", decision[field])
+        if _SHA256_RE.fullmatch(value) is None:
+            message = f"OSF registration decision has invalid {field}"
+            raise ValueError(message)
+    return {
+        "schema_version": "osf-registration-freeze-v1",
+        "protocol_digest": decision["protocol_digest"],
+        "analysis_manifest_digest": decision["analysis_manifest_digest"],
+        "source_cutoff": decision["source_cutoff"],
+        "source_cutoff_status": "approved",
+        "review_approved": True,
+        "review_record": "data/osf_review/registration_decision.json",
+        "reviewer": decision.get("reviewer"),
+        "reviewed_at": decision.get("reviewed_at"),
+        "status": "approved_for_registration",
+        "mutation_performed": False,
+        "network_io": False,
+    }
+
+
 def build_registration_freeze(
     *, root: Path, sync_manifest_path: Path, source_cutoff: str = "not-frozen"
 ) -> dict[str, object]:
