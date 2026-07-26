@@ -1510,20 +1510,20 @@
       }
     },
     {
-      "bytes": 171781,
+      "bytes": 171782,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "6b6f5e9f423e77dfa9a97a7f7d27cc0dc4c9d7c2fb61aba4b01db2f94796f9e1",
+      "hash": "6cc3331de663fd42c7bdcb52c357e22842dbcbc40c7cac89ed89c7076515499a",
       "mediatype": "application/json",
       "name": "github-project-items",
       "path": "data/derived/github_project/github_project_items.jsonl",
       "schema": {}
     },
     {
-      "bytes": 129575,
+      "bytes": 129576,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "846614a18f7d013dc527ca4d3fa8053e1f283341fbbacfea5e1a1457db96bf03",
+      "hash": "6686e10a7a3b9ceb8a543e850c94327fe15c607c5f606349ea858abb90aa950d",
       "mediatype": "text/csv",
       "name": "github-project-items",
       "path": "data/derived/github_project/github_project_items.csv",

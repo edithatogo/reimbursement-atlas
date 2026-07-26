@@ -603,8 +603,8 @@ epics:
           - "Source cutoff, protocol digest, analysis manifest and package digests are recorded."
           - "OSF CLI validation passes against the draft or registration."
       - title: Review and submit OSF registration without publishing papers
-        labels: ["type:research", "type:osf", "type:review", "risk:publication", "status:blocked"]
-        status: blocked
+        labels: ["type:research", "type:osf", "type:review", "risk:publication", "status:implemented"]
+        status: implemented
         acceptance:
           - "Accountable reviewer records an explicit registration decision."
           - "Public registration or submission occurs only after explicit approval."

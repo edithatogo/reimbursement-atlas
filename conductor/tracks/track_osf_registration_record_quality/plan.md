@@ -11,13 +11,15 @@
   `e2d87ba924cbd01b8954d45c66ddd28d88c17ff3746aea1a91de616445230678`;
   the source cutoff is `2026-07-23T00:00:00Z`. Papers, preprints, raw payloads and restricted
   descriptors remain excluded. (Subissue #511)
-- [~] OSF-06: Submit the approved immediate-public registration and verify the immutable remote
+- [x] OSF-06: Submit the approved immediate-public registration and verify the immutable remote
   snapshot. GitHub Actions run
   [`30010023356`](https://github.com/edithatogo/reimbursement-atlas/actions/runs/30010023356)
   synchronized and round-trip verified all 11 approved records, then submitted registration
-  [`gqk4z`](https://osf.io/gqk4z/). OSF reports `pending_registration_approval=true`, so the
-  repository correctly withholds an active remote snapshot until administrator confirmation or
-  the documented 48-hour automatic confirmation completes. (Subissue #511)
+  [`gqk4z`](https://osf.io/gqk4z/). Read-only monitor run
+  [`30181343265`](https://github.com/edithatogo/reimbursement-atlas/actions/runs/30181343265)
+  confirmed the registration is active, public and immutable. The canonical remote snapshot
+  preserves the submitted decision while current post-registration fingerprint drift remains a
+  separate, fail-closed new-version decision. (Subissue #511)
 - [x] OSF-06A: Add canonical receipt-to-snapshot generation and cryptographic self-validation.
   Pending, private, mutable, incomplete and fingerprint-drifted receipts fail closed. (Subissue
   #511)
