@@ -96,7 +96,7 @@ jobs:
           test "$(jq -r '.tag' release-manifest.json)" = "$RELEASE_TAG"
           test "$(jq -r '.commit' release-manifest.json)" = "$(git rev-parse HEAD)"
           signer="${GITHUB_REPOSITORY}/.github/workflows/release.yml"
-          for artifact in dist/* reimbursement-atlas-*.tar.gz data/derived/sbom/*.json release-manifest.json; do
+          for artifact in dist/*.whl dist/*.tar.gz reimbursement-atlas-*.tar.gz data/derived/sbom/*.json release-manifest.json; do
             receipt="data/derived/attestations/$(basename "$artifact").json"
             test -s "$receipt"
             digest="$(sha256sum "$artifact" | cut -d' ' -f1)"
@@ -117,7 +117,7 @@ jobs:
           pixi run zenodo-metadata
           pixi run zenodo-draft --release-assets
           args=(--tag "$RELEASE_TAG")
-          for artifact in dist/* reimbursement-atlas-*.tar.gz; do
+          for artifact in dist/*.whl dist/*.tar.gz reimbursement-atlas-*.tar.gz; do
             args+=(--asset "$artifact")
           done
           pixi run release-identity "${args[@]}"
