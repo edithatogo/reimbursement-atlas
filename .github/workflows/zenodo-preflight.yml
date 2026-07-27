@@ -68,9 +68,10 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-          ref: ${{ inputs.release_tag }}
+          ref: ${{ inputs.release_tag || github.sha }}
       - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
       - name: Download and verify exact GitHub release assets
+        if: inputs.mode != 'draft'
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ inputs.release_tag }}
@@ -114,6 +115,7 @@ jobs:
               --deny-self-hosted-runners
           done
       - name: Regenerate deterministic deposition inputs
+        if: inputs.mode != 'draft'
         env:
           RELEASE_TAG: ${{ inputs.release_tag }}
         run: |
@@ -124,6 +126,11 @@ jobs:
             args+=(--asset "$artifact")
           done
           pixi run release-identity "${args[@]}"
+      - name: Regenerate draft inputs
+        if: inputs.mode == 'draft'
+        run: |
+          pixi run zenodo-metadata
+          pixi run zenodo-draft
       - name: Execute explicit Zenodo transition
         env:
           ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
