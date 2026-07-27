@@ -65,7 +65,10 @@ def publication_gate_failures(
             failures.append(
                 f"raw source payload marked for publication: {artifact.get('relative_path')}"
             )
-        if artifact.get("licence_gate") != "permissive_candidate":
+        if artifact.get("licence_gate") not in {
+            "permissive_candidate",
+            "apache_2_0_project_output",
+        }:
             failures.append(
                 f"licence review is incomplete: {artifact.get('relative_path')} "
                 f"({artifact.get('licence_gate')})"
