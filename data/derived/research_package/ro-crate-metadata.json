@@ -2052,7 +2052,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "source_drift_report",
-      "sha256": "373fcba0e660342916bea5e0d961e490125967ff520b3d060769fd90e3489926"
+      "sha256": "8bec3dae5beb665b6fc28ac529dea6b96d008f83db5c6a375bb4b844e18eb53d"
     },
     {
       "@id": "data/derived/source_drift/source_drift_report.csv",
@@ -2061,7 +2061,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "source_drift_report",
-      "sha256": "6e9b5d7a9936675681944c5212d1dc0fac403cf4f1a640f574a7fe2c4a1c5771"
+      "sha256": "abaaf1c0457199026a4086b2de4cef2d6152d34f7091f1e8679d014f35e0e67f"
     },
     {
       "@id": "data/derived/source_drift/summary.json",
