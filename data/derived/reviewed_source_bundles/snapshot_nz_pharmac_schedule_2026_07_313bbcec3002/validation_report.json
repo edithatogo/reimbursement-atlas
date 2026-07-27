@@ -1,0 +1,14 @@
+{
+  "byte_size": 2868831,
+  "cache_scope": "local_raw_only",
+  "checksum_sha256": "313bbcec30028cf84e0554e4a1af940ae24ccba52ef286f8a0749f8f75d39576",
+  "licence_gate": "permissive",
+  "parse_success": true,
+  "raw_file_copied_to_bundle": false,
+  "record_count": 2458,
+  "record_type": "schedule_items",
+  "review_required_before_publication": false,
+  "snapshot_id": "snapshot_nz_pharmac_schedule_2026_07_313bbcec3002",
+  "source_id": "nz_pharmac",
+  "source_version_id": "nz_pharmac_schedule_2026_07"
+}

@@ -32,8 +32,8 @@
       "jsonl_path": "source_versions/source_versions.jsonl",
       "name": "source_versions",
       "parquet_path": "source_versions/source_versions.parquet",
-      "rows": 20,
-      "sha256": "01287377b7da7e400c2657a5a42320a0051c6d2355caae9541afa3d9b6dae5fc"
+      "rows": 25,
+      "sha256": "ea1cc62d9a9d97660f5f17c4b794dad198c8b2067ce6fb7ec37ccfff7136c134"
     },
     {
       "csv_path": "source_files/source_files.csv",
@@ -265,7 +265,7 @@
       "name": "repo_workflow_uses",
       "parquet_path": "repo_workflow_uses/repo_workflow_uses.parquet",
       "rows": 128,
-      "sha256": "6034525179d5b2b5a1519d671a24e5e53990bdfe9b7d8072e1a0667fe0c1aec7"
+      "sha256": "06d85f010d0e3a3a6fc17af3df74fabc145a7e732a54e5113d026f8cdb415ef1"
     },
     {
       "csv_path": "repo_workflow_policy/repo_workflow_policy.csv",
@@ -305,7 +305,7 @@
       "name": "sbom_summary",
       "parquet_path": "sbom_summary/sbom_summary.parquet",
       "rows": 2,
-      "sha256": "1263a963de17cf845af04d151b676d43eb23e00478d627388074297ed7bbf5c1"
+      "sha256": "0b5c1f02504f28263a9cfda3e10d4f5b8356cbd9a61dbf8ef2e6619c1c0cd28c"
     },
     {
       "csv_path": "local_quality_gates/local_quality_gates.csv",
@@ -313,7 +313,7 @@
       "name": "local_quality_gates",
       "parquet_path": "local_quality_gates/local_quality_gates.parquet",
       "rows": 27,
-      "sha256": "9c4181a11353dafaa83e794231d9b31ea06e256a210561fe4b72690ed5bdf5d6"
+      "sha256": "ee6e122e96e0febc1301fa920c97d45b7e12723af1b1f79b6e4cf7f79af47f45"
     },
     {
       "csv_path": "local_quality_gate_specs/local_quality_gate_specs.csv",
@@ -328,8 +328,8 @@
       "jsonl_path": "architecture_import_edges/architecture_import_edges.jsonl",
       "name": "architecture_import_edges",
       "parquet_path": "architecture_import_edges/architecture_import_edges.parquet",
-      "rows": 224,
-      "sha256": "e67ffcbe1d93fdb051e22b905182e7f0b5c613d53a0b2e26fb43efb2754790e2"
+      "rows": 234,
+      "sha256": "f97f197d5250460fbd3e8c436b6c69d5391353c3c574257513a86f59851a3f1f"
     },
     {
       "csv_path": "architecture_layer_policy/architecture_layer_policy.csv",
@@ -337,7 +337,7 @@
       "name": "architecture_layer_policy",
       "parquet_path": "architecture_layer_policy/architecture_layer_policy.parquet",
       "rows": 22,
-      "sha256": "2dd3516a3c3db36534ffbe82f2350fac34fba86e5ab6c8c381c526191c342545"
+      "sha256": "caa627c099eafdece7fec283e56fa74e4087a50445ab03a1f91c8806ea9c901f"
     },
     {
       "csv_path": "architecture_import_cycles/architecture_import_cycles.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 40,
-      "sha256": "3d9bc4645d6a2e872fc324cf23b27e7d6353b2ad63edca6caf5d9a43e1e1120b"
+      "sha256": "8816de09593bf63d945d3e8fb2d8d8ae5577bbd008fe46851c86063b5667a300"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -393,7 +393,7 @@
       "name": "github_project_items",
       "parquet_path": "github_project_items/github_project_items.parquet",
       "rows": 224,
-      "sha256": "6cc3331de663fd42c7bdcb52c357e22842dbcbc40c7cac89ed89c7076515499a"
+      "sha256": "323d8059008d316c5d3a2dc1c011f51853d512d0583f2e3c93ad94dbb7036813"
     },
     {
       "csv_path": "final_handoff_tasks/final_handoff_tasks.csv",
@@ -401,7 +401,7 @@
       "name": "final_handoff_tasks",
       "parquet_path": "final_handoff_tasks/final_handoff_tasks.parquet",
       "rows": 12,
-      "sha256": "8197ae8e563433b940776c3fd13eef93f2bec071ff24bfc2e166b23b8daad3be"
+      "sha256": "a7c1d39e46196055aaa8ed188e76f6a81fe1ec5af12b7fe66de7d44fba66635b"
     },
     {
       "csv_path": "osf_component_plan/osf_component_plan.csv",
@@ -433,7 +433,7 @@
       "name": "data_quality_checks",
       "parquet_path": "data_quality_checks/data_quality_checks.parquet",
       "rows": 41,
-      "sha256": "ff4125eb040a6cb9941d02c08b085d8e79e79fbffb32b4a7751f0f2955d993ae"
+      "sha256": "d65c6e08de37fa65795b640bef4e613e82baeac938052e1480e9d5a51ccae0e3"
     },
     {
       "csv_path": "evidence_readiness/evidence_readiness.csv",
@@ -441,7 +441,7 @@
       "name": "evidence_readiness",
       "parquet_path": "evidence_readiness/evidence_readiness.parquet",
       "rows": 5,
-      "sha256": "19ab35a8cd12e8caa542a33cf269a9a6ef06cc6d2875ef79f000141652cb3c57"
+      "sha256": "1ff1756e803d6abd609976c2f5df9040cd558d87b48fe8df694252b36e794f7f"
     },
     {
       "csv_path": "source_drift_report/source_drift_report.csv",
@@ -449,15 +449,15 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "06f1567102d1404cd28e1694f94e8a045c5cf606b849ebb0798fb0e54d606d01"
+      "sha256": "14e3f17b2cce1b72f786f08d45a04af99b8674a5bccc26926fc3f3ea591d52db"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
       "jsonl_path": "data_dictionary/data_dictionary.jsonl",
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
-      "rows": 222,
-      "sha256": "195e982476f4efcdd31dd3a971a1c61e8262be535bde3fc86fbf8a6b1131d49e"
+      "rows": 247,
+      "sha256": "7ec3c530782d57dbd55e83ecb442950e420b298839a88ff0f6f421eac39e37c4"
     }
   ]
 }

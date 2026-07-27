@@ -1,9 +1,9 @@
 {
   "analysis_manifest_digest": "b98b302f7f101a0660d1eebf322b17d9750f3ccde686afd79fa649bef3c72622",
-  "decision_reason": "registration_decision_drift:protocol_digest,analysis_manifest_digest",
+  "decision_reason": "registration_decision_drift:protocol_digest,analysis_manifest_digest,proposed_source_cutoff",
   "mutation_performed": false,
   "network_io": false,
-  "proposed_source_cutoff": "2026-07-23T00:00:00Z",
+  "proposed_source_cutoff": "2026-07-27T00:00:00+10:00",
   "protocol_digest": "ad4c5fcfb9fdab5bacf40c3e4df8b6bca64fdf88aff902538a97945492439402",
   "registration_id": null,
   "review_approved": false,

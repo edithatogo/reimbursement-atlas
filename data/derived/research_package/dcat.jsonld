@@ -1087,6 +1087,36 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_ca_on_ohip_master_text_2026_06_02_7607f0bbb2c1/ca_on_ohip_master_text_2026_06_02_schedule_items.csv",
+      "dct:format": "csv",
+      "dct:title": "ca_on_ohip_master_text_2026_06_02_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_ca_on_ohip_master_text_2026_06_02_7607f0bbb2c1/ca_on_ohip_master_text_2026_06_02_schedule_items.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "ca_on_ohip_master_text_2026_06_02_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_ca_on_ohip_master_text_2026_06_02_7607f0bbb2c1/source_snapshots.csv",
+      "dct:format": "csv",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_ca_on_ohip_master_text_2026_06_02_7607f0bbb2c1/source_snapshots.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_ca_on_ohip_master_text_2026_06_02_7607f0bbb2c1/validation_report.json",
+      "dct:format": "json",
+      "dct:title": "validation_report"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_hpo_current_20260723_3b6465656953/hpo_current_20260723_schedule_items.csv",
       "dct:format": "csv",
       "dct:title": "hpo_current_20260723_schedule_items"
@@ -1117,6 +1147,36 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_nz_pharmac_schedule_2026_07_313bbcec3002/nz_pharmac_schedule_2026_07_schedule_items.csv",
+      "dct:format": "csv",
+      "dct:title": "nz_pharmac_schedule_2026_07_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_nz_pharmac_schedule_2026_07_313bbcec3002/nz_pharmac_schedule_2026_07_schedule_items.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "nz_pharmac_schedule_2026_07_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_nz_pharmac_schedule_2026_07_313bbcec3002/source_snapshots.csv",
+      "dct:format": "csv",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_nz_pharmac_schedule_2026_07_313bbcec3002/source_snapshots.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_nz_pharmac_schedule_2026_07_313bbcec3002/validation_report.json",
+      "dct:format": "json",
+      "dct:title": "validation_report"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_rxnorm_cpc_20260706_4dda3b83bb67/rxnorm_cpc_20260706_schedule_items.csv",
       "dct:format": "csv",
       "dct:title": "rxnorm_cpc_20260706_schedule_items"
@@ -1142,6 +1202,66 @@
     {
       "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_rxnorm_cpc_20260706_4dda3b83bb67/validation_report.json",
+      "dct:format": "json",
+      "dct:title": "validation_report"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_uk_genomic_test_directory_rare_v9_2bd3a3e75e30/source_snapshots.csv",
+      "dct:format": "csv",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_uk_genomic_test_directory_rare_v9_2bd3a3e75e30/source_snapshots.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_uk_genomic_test_directory_rare_v9_2bd3a3e75e30/uk_genomic_test_directory_rare_v9_coverage_decisions.csv",
+      "dct:format": "csv",
+      "dct:title": "uk_genomic_test_directory_rare_v9_coverage_decisions"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_uk_genomic_test_directory_rare_v9_2bd3a3e75e30/uk_genomic_test_directory_rare_v9_coverage_decisions.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "uk_genomic_test_directory_rare_v9_coverage_decisions"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_uk_genomic_test_directory_rare_v9_2bd3a3e75e30/validation_report.json",
+      "dct:format": "json",
+      "dct:title": "validation_report"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_uk_nhs_payment_scheme_2026_27_annex_a_b227defd1f54/source_snapshots.csv",
+      "dct:format": "csv",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_uk_nhs_payment_scheme_2026_27_annex_a_b227defd1f54/source_snapshots.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_uk_nhs_payment_scheme_2026_27_annex_a_b227defd1f54/uk_nhs_payment_scheme_2026_27_annex_a_schedule_items.csv",
+      "dct:format": "csv",
+      "dct:title": "uk_nhs_payment_scheme_2026_27_annex_a_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_uk_nhs_payment_scheme_2026_27_annex_a_b227defd1f54/uk_nhs_payment_scheme_2026_27_annex_a_schedule_items.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "uk_nhs_payment_scheme_2026_27_annex_a_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_uk_nhs_payment_scheme_2026_27_annex_a_b227defd1f54/validation_report.json",
       "dct:format": "json",
       "dct:title": "validation_report"
     },
@@ -1190,6 +1310,36 @@
     {
       "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_hcpcs_level_ii_2026_07_5591fed257e4/validation_report.json",
+      "dct:format": "json",
+      "dct:title": "validation_report"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_mcd_ncd_2026_07_20_ce40e229ab73/source_snapshots.csv",
+      "dct:format": "csv",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_mcd_ncd_2026_07_20_ce40e229ab73/source_snapshots.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_mcd_ncd_2026_07_20_ce40e229ab73/us_cms_mcd_ncd_2026_07_20_coverage_decisions.csv",
+      "dct:format": "csv",
+      "dct:title": "us_cms_mcd_ncd_2026_07_20_coverage_decisions"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_mcd_ncd_2026_07_20_ce40e229ab73/us_cms_mcd_ncd_2026_07_20_coverage_decisions.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "us_cms_mcd_ncd_2026_07_20_coverage_decisions"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_mcd_ncd_2026_07_20_ce40e229ab73/validation_report.json",
       "dct:format": "json",
       "dct:title": "validation_report"
     },

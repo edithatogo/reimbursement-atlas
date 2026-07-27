@@ -23,7 +23,8 @@ def test_claim_packages_are_fail_closed_and_use_reviewed_inputs() -> None:
     assert transparency["claim_approval_status"] == "pending_accountable_review"
     assert transparency["descriptive_results"]["source_count"] > 0
     partial = [row for row in packages if row["analysis_status"] == "partial"]
-    assert len(partial) == 4
+    assert len(partial) == 1
+    assert partial[0]["missing_reviewed_sources"] == ["us_cms_clfs"]
     assert all(row["claim_approval_status"] == "not_reviewable_source_gap" for row in partial)
 
 

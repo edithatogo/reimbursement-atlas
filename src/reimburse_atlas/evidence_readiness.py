@@ -242,7 +242,7 @@ def _claim_package_state(  # ruff:ignore[too-many-return-statements]
     )
 
 
-def _unreviewed_claim_package_state(
+def _unreviewed_claim_package_state(  # ruff:ignore[too-many-return-statements]
     repo: Path, question_id: str
 ) -> tuple[Literal["missing", "invalid", "partial", "pending"], str | None, None]:
     """Classify generated packages before any accountable decision exists."""

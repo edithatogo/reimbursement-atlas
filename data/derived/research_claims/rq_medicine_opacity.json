@@ -1,10 +1,10 @@
 {
-  "analysis_status": "partial",
-  "claim_approval_status": "not_reviewable_source_gap",
+  "analysis_status": "complete",
+  "claim_approval_status": "pending_accountable_review",
   "descriptive_results": {
-    "missing_source_count": 1,
+    "missing_source_count": 0,
     "required_source_count": 3,
-    "reviewed_source_count": 2
+    "reviewed_source_count": 3
   },
   "mapping_validation": {
     "holdout_case_count": 150,
@@ -53,9 +53,7 @@
     "status": "accepted",
     "study_cycle": "expansion_v9"
   },
-  "missing_reviewed_sources": [
-    "nz_pharmac"
-  ],
+  "missing_reviewed_sources": [],
   "required_sources": [
     "au_pbs",
     "us_cms_asp",
@@ -80,6 +78,13 @@
         "source_version_id": "au_pbs_api_v3_current_month"
       }
     ],
+    "nz_pharmac": [
+      {
+        "bundle_path": "data/derived/reviewed_source_bundles/snapshot_nz_pharmac_schedule_2026_07_313bbcec3002",
+        "source_checksum_sha256": "313bbcec30028cf84e0554e4a1af940ae24ccba52ef286f8a0749f8f75d39576",
+        "source_version_id": "nz_pharmac_schedule_2026_07"
+      }
+    ],
     "us_cms_asp": [
       {
         "bundle_path": "data/derived/reviewed_source_bundles/snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5",
@@ -90,18 +95,18 @@
   },
   "reviewed_sources_present": [
     "au_pbs",
+    "nz_pharmac",
     "us_cms_asp"
   ],
   "schema_version": "research-claim-package-v1",
   "scope": "Reviewed-source availability and bounded descriptive evidence only.",
   "supported_claims": [
-    "2 of 3 protocol-required sources have checksum-bound reviewed derived bundles."
+    "3 of 3 protocol-required sources have checksum-bound reviewed derived bundles."
   ],
   "unsupported_claims": [
     "No causal effect is estimated.",
     "No cross-jurisdiction price equivalence is inferred.",
-    "No coverage decision is inferred from the presence of a fee or price.",
-    "The full protocol question is not answerable until these reviewed sources are present: nz_pharmac."
+    "No coverage decision is inferred from the presence of a fee or price."
   ],
   "validation": {
     "analysis_validated": true,

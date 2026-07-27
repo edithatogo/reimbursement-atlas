@@ -1,0 +1,14 @@
+{
+  "byte_size": 209344,
+  "cache_scope": "local_raw_only",
+  "checksum_sha256": "2bd3a3e75e30d3e8c6b6623824cc8018f65b0e7fc0e24ced15d02beba9b43bf1",
+  "licence_gate": "public_reuse_review",
+  "parse_success": true,
+  "raw_file_copied_to_bundle": false,
+  "record_count": 457,
+  "record_type": "coverage_decisions",
+  "review_required_before_publication": true,
+  "snapshot_id": "snapshot_uk_genomic_test_directory_rare_v9_2bd3a3e75e30",
+  "source_id": "uk_genomic_test_directory",
+  "source_version_id": "uk_genomic_test_directory_rare_v9"
+}

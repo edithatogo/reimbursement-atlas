@@ -2,9 +2,9 @@
   "analysis_status": "partial",
   "claim_approval_status": "not_reviewable_source_gap",
   "descriptive_results": {
-    "missing_source_count": 3,
+    "missing_source_count": 1,
     "required_source_count": 4,
-    "reviewed_source_count": 1
+    "reviewed_source_count": 3
   },
   "mapping_validation": {
     "holdout_case_count": 150,
@@ -54,9 +54,7 @@
     "study_cycle": "expansion_v9"
   },
   "missing_reviewed_sources": [
-    "uk_genomic_test_directory",
-    "us_cms_clfs",
-    "us_cms_mcd"
+    "us_cms_clfs"
   ],
   "required_sources": [
     "au_mbs",
@@ -77,21 +75,37 @@
         "source_checksum_sha256": "1fe830ae80bfcd55f5815029331b0a4e02f5c70232408ce1e8861e3606f3498b",
         "source_version_id": "au_mbs_20260701_txt_pair"
       }
+    ],
+    "uk_genomic_test_directory": [
+      {
+        "bundle_path": "data/derived/reviewed_source_bundles/snapshot_uk_genomic_test_directory_rare_v9_2bd3a3e75e30",
+        "source_checksum_sha256": "2bd3a3e75e30d3e8c6b6623824cc8018f65b0e7fc0e24ced15d02beba9b43bf1",
+        "source_version_id": "uk_genomic_test_directory_rare_v9"
+      }
+    ],
+    "us_cms_mcd": [
+      {
+        "bundle_path": "data/derived/reviewed_source_bundles/snapshot_us_cms_mcd_ncd_2026_07_20_ce40e229ab73",
+        "source_checksum_sha256": "ce40e229ab7306c55e3d397b64071d490d791ad5024034919423db880c57e1c6",
+        "source_version_id": "us_cms_mcd_ncd_2026_07_20"
+      }
     ]
   },
   "reviewed_sources_present": [
-    "au_mbs"
+    "au_mbs",
+    "uk_genomic_test_directory",
+    "us_cms_mcd"
   ],
   "schema_version": "research-claim-package-v1",
   "scope": "Reviewed-source availability and bounded descriptive evidence only.",
   "supported_claims": [
-    "1 of 4 protocol-required sources have checksum-bound reviewed derived bundles."
+    "3 of 4 protocol-required sources have checksum-bound reviewed derived bundles."
   ],
   "unsupported_claims": [
     "No causal effect is estimated.",
     "No cross-jurisdiction price equivalence is inferred.",
     "No coverage decision is inferred from the presence of a fee or price.",
-    "The full protocol question is not answerable until these reviewed sources are present: uk_genomic_test_directory, us_cms_clfs, us_cms_mcd."
+    "The full protocol question is not answerable until these reviewed sources are present: us_cms_clfs."
   ],
   "validation": {
     "analysis_validated": true,

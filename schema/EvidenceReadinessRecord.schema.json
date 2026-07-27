@@ -72,6 +72,7 @@
       "enum": [
         "missing",
         "invalid",
+        "partial",
         "pending",
         "approved"
       ],

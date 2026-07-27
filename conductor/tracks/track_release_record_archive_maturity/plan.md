@@ -23,6 +23,10 @@
   gaps and remain ineligible for approval or evidence claims. The source-transparency package is
   already checksum-approved, leaving four source-acquisition boundaries rather than four human
   approval requests. (`fdf70b7d`, issue #590)
+- [x] REL-05B: Acquire and parse the public PHARMAC XML, NHS genomic-directory workbook, NHS
+  Payment Scheme workbook, Ontario OHIP master text and CMS MCD NCD export through derived-only,
+  checksum-bound bundles. Retain source-specific semantic and redistribution boundaries; CMS CLFS
+  remains an explicit manual AMA-gated source. (Issue #590)
 - [x] REL-06: Generate a deterministic Zenodo/DataCite draft manifest for software plus permitted
   derived data, with Apache-2.0 applied only to code and source-specific rights retained for data.
   (Issue #532)

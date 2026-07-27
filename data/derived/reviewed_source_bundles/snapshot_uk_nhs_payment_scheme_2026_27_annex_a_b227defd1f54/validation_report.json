@@ -1,0 +1,14 @@
+{
+  "byte_size": 1123238,
+  "cache_scope": "local_raw_only",
+  "checksum_sha256": "b227defd1f54b7836558a92d875905f0fa4e7cb27951539d142ad36cc6712d0d",
+  "licence_gate": "public_reuse_review",
+  "parse_success": true,
+  "raw_file_copied_to_bundle": false,
+  "record_count": 81,
+  "record_type": "schedule_items",
+  "review_required_before_publication": true,
+  "snapshot_id": "snapshot_uk_nhs_payment_scheme_2026_27_annex_a_b227defd1f54",
+  "source_id": "uk_nhs_payment_scheme",
+  "source_version_id": "uk_nhs_payment_scheme_2026_27_annex_a"
+}

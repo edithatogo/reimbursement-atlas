@@ -1,0 +1,21 @@
+{
+  "derived_files": [
+    "uk_genomic_test_directory_rare_v9_coverage_decisions.jsonl",
+    "uk_genomic_test_directory_rare_v9_coverage_decisions.csv",
+    "source_snapshots.jsonl",
+    "validation_report.json"
+  ],
+  "licence_gate": "public_reuse_review",
+  "manifest_version": "reviewed-source-bundle-v1",
+  "project": "reimbursement-atlas-conductor",
+  "raw_cache_scope": "local_raw_only",
+  "raw_file_copied": false,
+  "record_count": 457,
+  "snapshot_id": "snapshot_uk_genomic_test_directory_rare_v9_2bd3a3e75e30",
+  "source_id": "uk_genomic_test_directory",
+  "source_version_id": "uk_genomic_test_directory_rare_v9",
+  "warnings": [
+    "Confirm source-specific redistribution terms before publishing derived rows.",
+    "Do not publish raw local_path values if they expose private filesystem locations."
+  ]
+}

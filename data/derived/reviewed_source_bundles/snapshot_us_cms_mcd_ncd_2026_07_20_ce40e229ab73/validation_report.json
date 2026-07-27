@@ -1,0 +1,14 @@
+{
+  "byte_size": 1979845,
+  "cache_scope": "local_raw_only",
+  "checksum_sha256": "ce40e229ab7306c55e3d397b64071d490d791ad5024034919423db880c57e1c6",
+  "licence_gate": "permissive",
+  "parse_success": true,
+  "raw_file_copied_to_bundle": false,
+  "record_count": 357,
+  "record_type": "coverage_decisions",
+  "review_required_before_publication": false,
+  "snapshot_id": "snapshot_us_cms_mcd_ncd_2026_07_20_ce40e229ab73",
+  "source_id": "us_cms_mcd",
+  "source_version_id": "us_cms_mcd_ncd_2026_07_20"
+}
