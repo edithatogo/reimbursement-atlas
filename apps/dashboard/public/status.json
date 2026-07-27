@@ -25,20 +25,20 @@
       "summary": "Research publication remains gated."
     },
     {
-      "category": "data_governance",
+      "category": "dashboard",
       "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
-      "id": "research_evidence",
-      "next_action": "Retain prototype-only status until every research question has reviewed source evidence, validated analysis and accountable claim review.",
+      "id": "dashboard_human_review",
+      "next_action": "Complete the commit-bound visual, keyboard, screen-reader and provenance review within the declared scope.",
       "status": "blocked",
-      "summary": "evidence_ready=4/5"
+      "summary": "head=d18e483a570968c44bc3a6265d4bd3353197e758 failed_checks=displayed_data_parity"
     }
   ],
   "claims_policy": "Do not claim evidence or public-release readiness until reviewed sources, licences, human research review and release gates pass.",
   "evidence": {
     "data_quality": "pass",
-    "evidence_ready_rows": 4,
+    "evidence_ready_rows": 5,
     "evidence_release_ready": false,
-    "prototype_ready_rows": 1,
+    "prototype_ready_rows": 0,
     "readiness_rows": 5,
     "research_publication_ready": false,
     "source_validation": "pass",
