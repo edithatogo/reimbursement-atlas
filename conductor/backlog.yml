@@ -414,9 +414,9 @@ epics:
       - title: Generate five deterministic bounded claim-package candidates
         labels: ["type:research", "type:analysis", "phase:analysis", "status:implemented"]
         status: implemented
-      - title: Complete accountable checksum-bound review of five claim packages
-        labels: ["type:research", "type:review", "phase:release-gate", "status:blocked"]
-        status: blocked
+      - title: Distinguish reviewable claim packages from partial source-gap packages
+        labels: ["type:research", "type:review", "phase:release-gate", "status:implemented"]
+        status: implemented
   - id: EVID-017
     title: Evidence readiness, source drift and data dictionary gates
     issues:

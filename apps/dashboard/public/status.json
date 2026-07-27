@@ -25,28 +25,20 @@
       "summary": "Research publication remains gated."
     },
     {
-      "category": "osf",
-      "evidence_path": "data/derived/protocols/protocol_status.jsonl",
-      "id": "osf_registration",
-      "next_action": "Complete accountable methods, domain, licence and governance review.",
-      "status": "gated",
-      "summary": "OSF registration is not approved."
-    },
-    {
       "category": "data_governance",
       "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
       "id": "research_evidence",
       "next_action": "Retain prototype-only status until every research question has reviewed source evidence, validated analysis and accountable claim review.",
       "status": "blocked",
-      "summary": "evidence_ready=1/5"
+      "summary": "evidence_ready=4/5"
     }
   ],
   "claims_policy": "Do not claim evidence or public-release readiness until reviewed sources, licences, human research review and release gates pass.",
   "evidence": {
     "data_quality": "pass",
-    "evidence_ready_rows": 1,
+    "evidence_ready_rows": 4,
     "evidence_release_ready": false,
-    "prototype_ready_rows": 4,
+    "prototype_ready_rows": 1,
     "readiness_rows": 5,
     "research_publication_ready": false,
     "source_validation": "pass",
@@ -61,7 +53,7 @@
     "source_validation": "data/derived/source_validation/summary.json"
   },
   "licence_review": {
-    "approved_rows": 199,
+    "approved_rows": 224,
     "decision_source": "data/licence_review/decisions.jsonl",
     "pending_rows": 0,
     "queue_source": "data/derived/licence_review/licence_review_queue.jsonl"
@@ -69,7 +61,7 @@
   "project": "reimbursement-atlas",
   "publication": {
     "huggingface_publication": "manual approval and token required",
-    "osf_registration_ready": false,
+    "osf_registration_ready": true,
     "status": "gated",
     "zenodo_doi": "manual release approval required"
   },

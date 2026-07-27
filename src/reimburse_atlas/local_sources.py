@@ -31,10 +31,17 @@ from reimburse_atlas.parsers import (
     parse_pbs_api_csv,
     parse_pbs_csv,
 )
+from reimburse_atlas.parsers.cms_mcd_ncd_csv import parse_cms_mcd_ncd_csv
 from reimburse_atlas.parsers.cms_pfs_csv import parse_cms_pfs_carrier_csv
 from reimburse_atlas.parsers.hpo_json import parse_hpo_json
 from reimburse_atlas.parsers.mbs_txt import MbsTxtParseStats, parse_mbs_txt_pair, parse_stats
+from reimburse_atlas.parsers.nhs_genomic_directory_xlsx import (
+    parse_nhs_genomic_directory_xlsx,
+)
+from reimburse_atlas.parsers.nhs_payment_scheme_xlsx import parse_nhs_payment_scheme_xlsx
+from reimburse_atlas.parsers.ohip_master_text import parse_ohip_master_text
 from reimburse_atlas.parsers.openfda_device_json import parse_openfda_device_classification
+from reimburse_atlas.parsers.pharmac_xml import parse_pharmac_xml
 from reimburse_atlas.parsers.rxnorm_rrf import parse_rxnorm_rrf
 from reimburse_atlas.registry import load_source_versions
 from reimburse_atlas.snapshots import file_sha256, write_snapshot_records
@@ -52,6 +59,10 @@ PARSER_BY_SOURCE_ID: dict[str, Parser] = {
     "hpo": cast("Parser", parse_hpo_json),
     "us_fda_device_classification": cast("Parser", parse_openfda_device_classification),
     "rxnorm": cast("Parser", parse_rxnorm_rrf),
+    "us_cms_mcd": cast("Parser", parse_cms_mcd_ncd_csv),
+    "uk_nhs_payment_scheme": cast("Parser", parse_nhs_payment_scheme_xlsx),
+    "ca_on_ohip": cast("Parser", parse_ohip_master_text),
+    "nz_pharmac": cast("Parser", parse_pharmac_xml),
 }
 
 
@@ -140,7 +151,7 @@ def snapshot_reviewed_local_file(
     )
 
 
-def parse_reviewed_local_file(
+def parse_reviewed_local_file(  # ruff:ignore[too-many-branches]
     *,
     source_version_id: str,
     path: Path,
@@ -171,13 +182,20 @@ def parse_reviewed_local_file(
         "hpo",
         "us_fda_device_classification",
         "rxnorm",
+        "us_cms_mcd",
+        "uk_nhs_payment_scheme",
+        "ca_on_ohip",
+        "nz_pharmac",
+        "uk_genomic_test_directory",
     }:
         versions = {version.id: version for version in load_source_versions()}
         version = versions.get(source_version_id)
         if version is None:
             msg = f"Unknown source version id: {source_version_id}"
             raise KeyError(msg)
-        if source_id == "us_cms_asp":
+        if source_id == "uk_genomic_test_directory":
+            records = parse_nhs_genomic_directory_xlsx(resolved)
+        elif source_id == "us_cms_asp":
             records = parse_cms_asp_csv(
                 resolved,
                 source_version=source_version_id,
@@ -207,12 +225,14 @@ def parse_reviewed_local_file(
                 source_version=source_version_id,
                 retrieved_at=version.retrieved_at,
             )
-        else:
+        elif source_id == "rxnorm":
             records = parse_rxnorm_rrf(
                 resolved,
                 source_version=source_version_id,
                 retrieved_at=version.retrieved_at,
             )
+        else:
+            records = parser(resolved)
     else:
         records = parser(resolved)
     record_type = _record_type(records)

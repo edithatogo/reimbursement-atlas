@@ -1,21 +1,21 @@
 {
   "approval_scope": "Approved within the declared routes and browser matrix for visual, automated accessibility, responsive-layout, keyboard, provenance and prohibited-content checks. This approval does not establish universal accessibility-standard compliance and does not confirm an independent manual VoiceOver review.",
-  "automated_packet_sha256": "2916e6b795a349157374f03f96625be73e07e0caeeeb6f124e2dfb8f79a8a8ff",
-  "commit": "904b0bbd806d1875cad8ac98c4eda1d6fbed3f71",
+  "automated_packet_sha256": "42cbccdc0d7587a8274f37e1600c630e3377c34d848a4d6893240a4b76297c7c",
+  "commit": "d18e483a570968c44bc3a6265d4bd3353197e758",
   "evidence_artifacts": [
     "data/derived/dashboard_review/automated_review_packet.json",
     "data/derived/dashboard_review/owner_review_packet.json",
-    "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30201498973",
-    "https://github.com/edithatogo/reimbursement-atlas/pull/596"
+    "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30230041774",
+    "https://github.com/edithatogo/reimbursement-atlas/pull/597"
   ],
   "findings": [
     "The refreshed full browser matrix passed 64 of 64 tests across Chromium desktop and mobile, Firefox and WebKit.",
     "The 44 commit-bound screenshots and machine-readable packet cover the declared visual, responsive-layout, keyboard, automated accessibility, provenance and prohibited-content checks.",
     "Universal WCAG conformance and independent manual VoiceOver confirmation are outside this approval."
   ],
-  "owner_packet_sha256": "39842c2a19e73f26a96e3e76a9fbf09d4de77a6e63ae9f3b89a99a2af45d10c1",
+  "owner_packet_sha256": "f49aa6730d3f88ee85186fe489da9deeaf9fbfc024405babe7f2953c26032b5e",
   "remediation_or_waiver": "No unresolved finding is recorded within the approved scope. Independent manual VoiceOver review remains explicitly out of scope.",
-  "reviewed_at": "2026-07-26T12:19:55Z",
+  "reviewed_at": "2026-07-27T02:19:54Z",
   "reviewer": "edithatogo",
   "schema_version": "dashboard-human-review-v1",
   "scope": {

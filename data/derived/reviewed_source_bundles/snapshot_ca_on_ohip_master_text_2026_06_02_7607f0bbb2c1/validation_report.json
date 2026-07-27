@@ -1,0 +1,14 @@
+{
+  "byte_size": 579271,
+  "cache_scope": "local_raw_only",
+  "checksum_sha256": "7607f0bbb2c125da2d8ea453dd008737e0bfa6fca8aed4df6312996690022bb2",
+  "licence_gate": "permissive",
+  "parse_success": true,
+  "raw_file_copied_to_bundle": false,
+  "record_count": 7523,
+  "record_type": "schedule_items",
+  "review_required_before_publication": false,
+  "snapshot_id": "snapshot_ca_on_ohip_master_text_2026_06_02_7607f0bbb2c1",
+  "source_id": "ca_on_ohip",
+  "source_version_id": "ca_on_ohip_master_text_2026_06_02"
+}

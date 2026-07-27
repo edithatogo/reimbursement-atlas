@@ -1,0 +1,19 @@
+{
+  "analysis_validated": true,
+  "approval_scope": "Source-completeness observation only: all three required checksum-bound reviewed sources are present.",
+  "claim_package_path": "data/derived/research_claims/rq_local_national_coverage.json",
+  "claim_package_sha256": "1173436f4de00273c24738a321341a2192bb37b3c6fae44c60834d480bc4af83",
+  "excluded_claims": [
+    "causal claims",
+    "price-equivalence claims",
+    "item-level coverage claims",
+    "net-price claims",
+    "paper or preprint claims"
+  ],
+  "research_question_id": "rq_local_national_coverage",
+  "reviewed_at": "2026-07-27T01:24:28Z",
+  "reviewed_derived_inputs": true,
+  "reviewer": "edithatogo",
+  "schema_version": "research-claim-review-v1",
+  "status": "approved_within_scope"
+}

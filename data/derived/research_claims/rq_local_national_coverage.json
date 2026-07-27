@@ -1,10 +1,10 @@
 {
-  "analysis_status": "partial",
+  "analysis_status": "complete",
   "claim_approval_status": "pending_accountable_review",
   "descriptive_results": {
-    "missing_source_count": 2,
+    "missing_source_count": 0,
     "required_source_count": 3,
-    "reviewed_source_count": 1
+    "reviewed_source_count": 3
   },
   "mapping_validation": {
     "holdout_case_count": 150,
@@ -53,10 +53,7 @@
     "status": "accepted",
     "study_cycle": "expansion_v9"
   },
-  "missing_reviewed_sources": [
-    "uk_nhs_payment_scheme",
-    "us_cms_mcd"
-  ],
+  "missing_reviewed_sources": [],
   "required_sources": [
     "us_cms_mcd",
     "au_mbs",
@@ -75,21 +72,36 @@
         "source_checksum_sha256": "1fe830ae80bfcd55f5815029331b0a4e02f5c70232408ce1e8861e3606f3498b",
         "source_version_id": "au_mbs_20260701_txt_pair"
       }
+    ],
+    "uk_nhs_payment_scheme": [
+      {
+        "bundle_path": "data/derived/reviewed_source_bundles/snapshot_uk_nhs_payment_scheme_2026_27_annex_a_b227defd1f54",
+        "source_checksum_sha256": "b227defd1f54b7836558a92d875905f0fa4e7cb27951539d142ad36cc6712d0d",
+        "source_version_id": "uk_nhs_payment_scheme_2026_27_annex_a"
+      }
+    ],
+    "us_cms_mcd": [
+      {
+        "bundle_path": "data/derived/reviewed_source_bundles/snapshot_us_cms_mcd_ncd_2026_07_20_ce40e229ab73",
+        "source_checksum_sha256": "ce40e229ab7306c55e3d397b64071d490d791ad5024034919423db880c57e1c6",
+        "source_version_id": "us_cms_mcd_ncd_2026_07_20"
+      }
     ]
   },
   "reviewed_sources_present": [
-    "au_mbs"
+    "au_mbs",
+    "uk_nhs_payment_scheme",
+    "us_cms_mcd"
   ],
   "schema_version": "research-claim-package-v1",
   "scope": "Reviewed-source availability and bounded descriptive evidence only.",
   "supported_claims": [
-    "1 of 3 protocol-required sources have checksum-bound reviewed derived bundles."
+    "3 of 3 protocol-required sources have checksum-bound reviewed derived bundles."
   ],
   "unsupported_claims": [
     "No causal effect is estimated.",
     "No cross-jurisdiction price equivalence is inferred.",
-    "No coverage decision is inferred from the presence of a fee or price.",
-    "The full protocol question is not answerable until these reviewed sources are present: uk_nhs_payment_scheme, us_cms_mcd."
+    "No coverage decision is inferred from the presence of a fee or price."
   ],
   "validation": {
     "analysis_validated": true,

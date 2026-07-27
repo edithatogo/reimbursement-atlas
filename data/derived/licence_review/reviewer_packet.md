@@ -10,14 +10,14 @@ checksum-bound row-level record.
 
 ## Current batches
 
-- `public_reuse_review` / `public_derived_candidate`: 156 artefacts, 173223707 bytes
-- `public_reuse_review` / `public_metadata_candidate`: 43 artefacts, 615677 bytes
+- `public_reuse_review` / `public_derived_candidate`: 181 artefacts, 189281371 bytes
+- `public_reuse_review` / `public_metadata_candidate`: 43 artefacts, 625770 bytes
 
-Total candidate artefacts: 199; generated queue rows remain `pending` by design.
+Total candidate artefacts: 224; generated queue rows remain `pending` by design.
 
 ## Decision ledger snapshot
 
-The companion checksum-bound ledger currently records **199 approved**
+The companion checksum-bound ledger currently records **224 approved**
 and **0 blocked** decisions. These counts are informational;
 they do not change generated queue rows or authorize publication.
 

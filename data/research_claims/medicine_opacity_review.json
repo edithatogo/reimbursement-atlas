@@ -1,0 +1,19 @@
+{
+  "analysis_validated": true,
+  "approval_scope": "Source-completeness observation only: all three required checksum-bound reviewed sources are present.",
+  "claim_package_path": "data/derived/research_claims/rq_medicine_opacity.json",
+  "claim_package_sha256": "0e3e4a7e78167e463ea5627712bfa1d4ed477634d663a039712aba218f661791",
+  "excluded_claims": [
+    "causal claims",
+    "price-equivalence claims",
+    "item-level coverage claims",
+    "net-price claims",
+    "paper or preprint claims"
+  ],
+  "research_question_id": "rq_medicine_opacity",
+  "reviewed_at": "2026-07-27T01:24:28Z",
+  "reviewed_derived_inputs": true,
+  "reviewer": "edithatogo",
+  "schema_version": "research-claim-review-v1",
+  "status": "approved_within_scope"
+}

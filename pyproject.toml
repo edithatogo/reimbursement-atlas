@@ -33,6 +33,7 @@ dependencies = [
   "structlog>=25.0.0",
   "networkx>=3.5",
   "defusedxml>=0.7.1",
+  "fastexcel>=0.16.0",
 ]
 
 [project.optional-dependencies]

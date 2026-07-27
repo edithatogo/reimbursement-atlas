@@ -71,7 +71,8 @@ def build_evidence_readiness(  # ruff:ignore[too-many-locals]
             protocol_by_question.get(question_id, {}).get("completeness_score", 0.0)
         )
         claim_status, claim_sha256, claim_review_record = claims_by_question.get(
-            question_id, ("missing", None, None)
+            question_id,
+            _unreviewed_claim_package_state(repo, question_id),
         )
         dataset_linkage_count = sum(
             1
@@ -241,6 +242,38 @@ def _claim_package_state(  # ruff:ignore[too-many-return-statements]
     )
 
 
+def _unreviewed_claim_package_state(  # ruff:ignore[too-many-return-statements]
+    repo: Path, question_id: str
+) -> tuple[Literal["missing", "invalid", "partial", "pending"], str | None, None]:
+    """Classify generated packages before any accountable decision exists."""
+    candidate = repo / "data" / "derived" / "research_claims" / f"{question_id}.json"
+    if not candidate.is_file():
+        return "missing", None, None
+    digest = hashlib.sha256(candidate.read_bytes()).hexdigest()
+    try:
+        package = cast("dict[str, Any]", json.loads(candidate.read_text(encoding="utf-8")))
+    except json.JSONDecodeError, OSError:
+        return "invalid", digest, None
+    if package.get("research_question_id") != question_id:
+        return "invalid", digest, None
+    validation = cast("dict[str, Any]", package.get("validation", {}))
+    safe_validated = (
+        validation.get("deterministic") is True
+        and validation.get("reviewed_inputs_only") is True
+        and validation.get("raw_payloads_included") is False
+        and validation.get("restricted_descriptors_included") is False
+        and validation.get("analysis_validated") is True
+    )
+    if not safe_validated:
+        return "invalid", digest, None
+    missing_sources = package.get("missing_reviewed_sources")
+    if package.get("analysis_status") == "partial" and isinstance(missing_sources, list):
+        return "partial", digest, None
+    if package.get("analysis_status") == "complete" and missing_sources == []:
+        return "pending", digest, None
+    return "invalid", digest, None
+
+
 def _readiness_score(
     *,
     protocol_score: float,
@@ -298,7 +331,7 @@ def _recommended_action(  # ruff:ignore[too-many-return-statements]
     blocked_linkages: int,
     data_quality_blockers: int,
     source_validation_blockers: int,
-    claim_package_status: Literal["missing", "invalid", "pending", "approved"],
+    claim_package_status: Literal["missing", "invalid", "partial", "pending", "approved"],
 ) -> str:
     if data_quality_blockers:
         return "Resolve blocking data-quality failures before interpreting results."
@@ -312,6 +345,11 @@ def _recommended_action(  # ruff:ignore[too-many-return-statements]
         return "Unblock gated datasets/mappings or document sensitivity exclusions."
     if claim_package_status == "invalid":
         return "Repair the missing or checksum-mismatched research claim package."
+    if claim_package_status == "partial":
+        return (
+            "Acquire and review the package's missing source families before accountable "
+            "claim review."
+        )
     if claim_package_status == "pending":
         return "Complete scoped accountable review of the checksum-bound claim package."
     if claim_package_status == "missing":
