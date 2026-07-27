@@ -449,7 +449,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "8bec3dae5beb665b6fc28ac529dea6b96d008f83db5c6a375bb4b844e18eb53d"
+      "sha256": "373fcba0e660342916bea5e0d961e490125967ff520b3d060769fd90e3489926"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
