@@ -17,8 +17,8 @@
     "desktop-webkit"
   ],
   "commit_parity": true,
-  "current_head": "d110069f7f8ccc5f1f7ab9b133c887f0cc442a20",
-  "data_fingerprint": "96aa5af4b06e66bbc11db79b7c09261ce2189009c7486a80ff1cac29e20a922b",
+  "current_head": "744bc33b1bd27933ad4bb6193921fa0da7295b92",
+  "data_fingerprint": "f635c1fa0f92e38f441228ff150972a2013bf1fdb727f4f3eadc2642e9e22302",
   "prohibited_content_check": {
     "files_checked": 77,
     "findings": [],
@@ -104,8 +104,8 @@
     },
     {
       "displayed_path": "apps/dashboard/public/status.json#blockers",
-      "displayed_value": "3a3081a6a56bddb00b1f8dbdb29f46f638a39c25076029008fe929d045332295",
-      "expected_value": "3a3081a6a56bddb00b1f8dbdb29f46f638a39c25076029008fe929d045332295",
+      "displayed_value": "fea559077e302316a6440d25463ef022e32ad275920755c9903d141ae0951153",
+      "expected_value": "fea559077e302316a6440d25463ef022e32ad275920755c9903d141ae0951153",
       "id": "complete-blocker-projection",
       "source_field": "blockers",
       "source_path": "scripts/make_public_status_manifest.py",
@@ -114,9 +114,9 @@
   ],
   "provenance_inputs": [
     {
-      "byte_size": 3457,
+      "byte_size": 3476,
       "path": "apps/dashboard/public/status.json",
-      "sha256": "4a7d9be4dee2886059b04a2ef0195a48b90a0b25992b2e5a21b72949754e383d"
+      "sha256": "2a609753660fe9c3e89d9de075d6e90592458aeb3354930896f6cfdaed6cf465"
     },
     {
       "byte_size": 126,
@@ -157,11 +157,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 582530,
+      "byte_size": 614194,
       "file": "embedded",
       "project": "desktop-chromium",
       "route": "/",
-      "sha256": "179cebcc43e8fc38e7d1ec82deb91f86d31c36b0e28b29f4b1f9aef5e25aafbb",
+      "sha256": "45785fc59911589ea835f093c14ea232e986ca71c8205d142788c4c6f673b5fd",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -170,11 +170,11 @@
     {
       "browser": "firefox",
       "browser_version": "151.0",
-      "byte_size": 300431,
+      "byte_size": 301957,
       "file": "embedded",
       "project": "desktop-firefox",
       "route": "/",
-      "sha256": "cb6704838c92075d31d375ed5430478b416bb2746424c5744ec46e31ef6e2b34",
+      "sha256": "fb44c82c42f518e2012402fcfafbc991e31580e1ac2a77e8b123b3a22cea5667",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -183,11 +183,11 @@
     {
       "browser": "webkit",
       "browser_version": "26.5",
-      "byte_size": 374418,
+      "byte_size": 578368,
       "file": "embedded",
       "project": "desktop-webkit",
       "route": "/",
-      "sha256": "835fcced85822f7004eb17c09a183f91e78b4327f74ce58ca2f16f750574e2ff",
+      "sha256": "0a063cbb9646d498ef835e00f9dfd05f7d85bc53d9b29b201c5378e5fac5ed9e",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -196,11 +196,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 451651,
+      "byte_size": 455024,
       "file": "embedded",
       "project": "mobile-chromium",
       "route": "/",
-      "sha256": "a82a8e6297bacca55626bbb0d26abf0c5247122d6f05ffcdd7ec7284ccd20d3d",
+      "sha256": "284963fe7e1fc7ab355f55fd14908319d44e1e161d68782ef859951f11e3ad5f",
       "viewport": {
         "height": 727,
         "width": 393
@@ -729,12 +729,12 @@
   ],
   "source_fingerprint": "5b782f45d198eaba9a7abff537744e45fc2dc7ef279556415d82d96a068c3a94",
   "status": "pending_accountable_review",
-  "tested_commit": "d110069f7f8ccc5f1f7ab9b133c887f0cc442a20",
+  "tested_commit": "744bc33b1bd27933ad4bb6193921fa0da7295b92",
   "workflow": {
-    "artifact_name": "dashboard-browser-review-30266557311",
+    "artifact_name": "dashboard-browser-review-30267590096",
     "run_attempt": "1",
-    "run_id": "30266557311",
+    "run_id": "30267590096",
     "workflow": "Dashboard browser matrix",
-    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30266557311"
+    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30267590096"
   }
 }
