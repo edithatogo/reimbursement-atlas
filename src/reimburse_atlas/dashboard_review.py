@@ -60,6 +60,10 @@ SELF_ATTESTATION_CSV_ROWS = {
         ("source_drift_final_handoff_jsonl_to_final_handoff_csv",),
     ),
 }
+WORKFLOW_USE_RECEIPT_FILES = (
+    Path("apps/dashboard/public/data/workflow_uses.csv"),
+    Path("apps/dashboard/public/data/workflow_uses.jsonl"),
+)
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -133,11 +137,78 @@ def dashboard_data_fingerprint(
                     key, values = SELF_ATTESTATION_CSV_ROWS[path]
                     for value in values:
                         content = normalize_csv_receipt(content, baseline, key=key, value=value)
+        elif self_attestation_commit and path in WORKFLOW_USE_RECEIPT_FILES:
+            baseline = _git_file_at_commit(repo, self_attestation_commit, path)
+            if baseline is not None:
+                content = normalize_workflow_use_lines(content, baseline, path.suffix)
         digest.update(path.as_posix().encode("utf-8"))
         digest.update(b"\0")
         digest.update(content)
         digest.update(b"\0")
     return digest.hexdigest()
+
+
+def normalize_workflow_use_lines(current: bytes, baseline: bytes, suffix: str) -> bytes:
+    """Ignore positional workflow locations while retaining action inventory changes.
+
+    Workflow line numbers are audit-navigation hints, not dashboard content. A comment or
+    formatting-only edit can move every row without altering the declared action/ref policy.
+    Match only stable workflow-use identities and borrow the baseline line number; malformed
+    or structurally changed inputs remain unmodified so the fingerprint fails closed.
+    """
+    if current == baseline:
+        return current
+    current_rows = _load_workflow_use_rows(current, suffix)
+    baseline_rows = _load_workflow_use_rows(baseline, suffix)
+    if current_rows is None or baseline_rows is None:
+        return current
+    identity = ("workflow", "uses", "action", "ref")
+    rows = current_rows + baseline_rows
+    if any("line" not in row or not set(identity).issubset(row) for row in rows):
+        return current
+    baseline_by_identity: dict[tuple[str, ...], list[dict[str, object]]] = {}
+    for row in baseline_rows:
+        key = tuple(str(row[key]) for key in identity)
+        baseline_by_identity.setdefault(key, []).append(row)
+    positions: dict[tuple[str, ...], int] = {}
+    for row in current_rows:
+        key = tuple(str(row[key]) for key in identity)
+        position = positions.get(key, 0)
+        positions[key] = position + 1
+        if (matched_rows := baseline_by_identity.get(key)) and position < len(matched_rows):
+            row["line"] = matched_rows[position]["line"]
+    if suffix == ".csv":
+        return _write_workflow_use_csv(current_rows, current)
+    return _write_workflow_use_jsonl(current_rows)
+
+
+def _load_workflow_use_rows(content: bytes, suffix: str) -> list[dict[str, object]] | None:
+    """Decode a supported workflow-use receipt, returning ``None`` on malformed input."""
+    try:
+        if suffix == ".csv":
+            rows = list(csv.DictReader(io.StringIO(content.decode("utf-8"))))
+            return [dict(row) for row in rows] if rows else None
+        if suffix == ".jsonl":
+            rows = [json.loads(line) for line in content.decode("utf-8").splitlines() if line]
+            return rows if rows and all(isinstance(row, dict) for row in rows) else None
+    except UnicodeDecodeError, json.JSONDecodeError, csv.Error:
+        return None
+    return None
+
+
+def _write_workflow_use_csv(rows: list[dict[str, object]], original: bytes) -> bytes:
+    fieldnames = list(csv.DictReader(io.StringIO(original.decode("utf-8"))).fieldnames or [])
+    if not fieldnames:
+        return original
+    output = io.StringIO(newline="")
+    writer = csv.DictWriter(output, fieldnames=fieldnames, lineterminator="\n")
+    writer.writeheader()
+    writer.writerows(rows)
+    return output.getvalue().encode("utf-8")
+
+
+def _write_workflow_use_jsonl(rows: list[dict[str, object]]) -> bytes:
+    return ("\n".join(json.dumps(row, sort_keys=True) for row in rows) + "\n").encode("utf-8")
 
 
 def _release_gates_without_dashboard_receipt(content: bytes) -> bytes:

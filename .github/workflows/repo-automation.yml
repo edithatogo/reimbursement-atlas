@@ -70,8 +70,6 @@ jobs:
           # Generate the public status projection last, after all checksum-bound
           # artefacts and the authoritative decision ledger have settled.
           pixi run dashboard-status
-          pixi run dashboard-owner-review-packet
-          pixi run dashboard-review-current
           pixi run zenodo-draft
           pixi run zenodo-deposition-plan
       - name: Ensure generated files are committed

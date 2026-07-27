@@ -216,6 +216,7 @@ PROJECT_OWNED_METADATA_PREFIXES = (
     Path("data/derived/data_dictionary"),
     Path("data/derived/final_handoff"),
     Path("data/derived/local_quality_gates"),
+    Path("data/derived/repo_automation"),
     Path("data/derived/release_readiness"),
     Path("data/derived/research_package"),
     Path("data/derived/source_drift"),
