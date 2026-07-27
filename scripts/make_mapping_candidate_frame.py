@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import statistics
@@ -352,6 +353,13 @@ def _normalised_text(row: dict[str, Any]) -> str:
 
 def main() -> None:
     """Write the current real-source mapping candidate frame and summary."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--new-cycle",
+        action="store_true",
+        help="Create a successor cycle when reviewed-source inputs differ from every frozen frame.",
+    )
+    args = parser.parse_args()
     root = project_root()
     rows, summary = build_candidate_frame(root)
     output_dir = OUTPUT_DIR
@@ -369,6 +377,22 @@ def main() -> None:
                 candidate_dir = OUTPUT_DIR / f"expansion_v{cycle}"
                 candidate_frame = root / candidate_dir / "candidate_frame.jsonl"
                 if not candidate_frame.exists():
+                    if not args.new_cycle:
+                        print(
+                            json.dumps(
+                                {
+                                    "status": "candidate_drift_requires_explicit_cycle",
+                                    "candidate_count": len(rows),
+                                    "target_gap": summary["target_gap"],
+                                    "active_output_dir": str(predecessor.parent.relative_to(root)),
+                                    "recommended_command": (
+                                        "python scripts/make_mapping_candidate_frame.py --new-cycle"
+                                    ),
+                                },
+                                indent=2,
+                            )
+                        )
+                        return
                     output_dir = candidate_dir
                     break
                 if candidate_digest == hashlib.sha256(candidate_frame.read_bytes()).digest():

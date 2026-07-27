@@ -438,11 +438,18 @@ def test_final_handoff_records_environment_bound_tasks(tmp_path: Path) -> None:
         for row in rows
     )
     assert not any(row.status == "blocked_secret" for row in rows)
-    assert not any(row.status == "blocked_review" for row in rows)
     dashboard_task = next(row for row in rows if row.id == "final_dashboard_visual_review")
     mapping_task = next(row for row in rows if row.id == "final_mapping_calibration_review")
-    assert dashboard_task.status == "complete"
+    assert (dashboard_task.status, dashboard_task.reason_code) in {
+        ("complete", "dashboard_human_review_approved"),
+        ("blocked_review", "dashboard_human_review_pending"),
+    }
     assert mapping_task.status == "complete"
+    assert all(
+        row.reason_code.endswith(("_pending", "_review_pending"))
+        for row in rows
+        if row.status == "blocked_review"
+    )
     cms_task = next(row for row in rows if row.id == "final_cms_clfs_licence_review")
     assert (cms_task.status, cms_task.reason_code) in {
         ("complete", "checksum_bound_scope_approved"),
