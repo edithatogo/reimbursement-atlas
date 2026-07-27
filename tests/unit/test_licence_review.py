@@ -95,6 +95,17 @@ def test_local_quality_reports_are_project_owned(repo_root: Path) -> None:
     assert {row.licence_gate for row in reports} == {"apache_2_0_project_output"}
 
 
+def test_workflow_inventory_is_project_owned(repo_root: Path) -> None:
+    """Workflow-use records describe repository code, not provider-owned content."""
+    manifest = build_publication_manifest(root=repo_root)
+    records = [
+        row for row in manifest.artifacts if "data/derived/repo_automation/" in row.relative_path
+    ]
+
+    assert records
+    assert {row.licence_gate for row in records} == {"apache_2_0_project_output"}
+
+
 def test_queue_writes_checksum_bound_outputs(tmp_path: Path) -> None:
     """Queue output preserves the candidate checksum and fail-closed summary."""
     paths = write_licence_review_queue(

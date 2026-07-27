@@ -1527,25 +1527,25 @@
       "@id": "data/derived/repo_automation/workflow_uses.jsonl",
       "@type": "File",
       "contentSize": 45661,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "workflow_uses",
-      "sha256": "d7a9360d821645dbb6feb66afe283e21d455b24683389c1f375dac6aea8a0950"
+      "sha256": "ecc4d48b34fc37b2f50a0cb523b0ae73b8b6b5845f64f1ab4064a692edf3dc53"
     },
     {
       "@id": "data/derived/repo_automation/workflow_uses.csv",
       "@type": "File",
       "contentSize": 27449,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "workflow_uses",
-      "sha256": "cdb8c4802c16eea7b9ac55e383b9319efb18421571d35b16e7db5eacc4842489"
+      "sha256": "0cb7c82b74eca3c56b9d93426d0268e9de8e5b0c66c258ec4e9a4cc0fabc2087"
     },
     {
       "@id": "data/derived/repo_automation/workflow_policy.jsonl",
       "@type": "File",
       "contentSize": 35546,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "workflow_policy",
       "sha256": "4788bb74417c0c9293726da52302e260870deca16ddc54824a2639c02f55826a"
@@ -1554,7 +1554,7 @@
       "@id": "data/derived/repo_automation/workflow_policy.csv",
       "@type": "File",
       "contentSize": 24791,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "workflow_policy",
       "sha256": "71bbcc3287d47a0cb33658337b721077fb1e45c83bdc10ae4ddc2dda48f046b7"
@@ -1563,7 +1563,7 @@
       "@id": "data/derived/repo_automation/automation_controls.jsonl",
       "@type": "File",
       "contentSize": 5021,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "automation_controls",
       "sha256": "8bf6b04e4583be06a71cfc8a5d9f4997ac025156d48dba975d8c739f108ca91e"
@@ -1572,7 +1572,7 @@
       "@id": "data/derived/repo_automation/automation_controls.csv",
       "@type": "File",
       "contentSize": 3164,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "automation_controls",
       "sha256": "66130cc81dd15941497cf116dd903d0981c735a1e452fcf6ce81343294ee49f2"
@@ -1581,7 +1581,7 @@
       "@id": "data/derived/repo_automation/action_sha_pin_plan.jsonl",
       "@type": "File",
       "contentSize": 0,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "action_sha_pin_plan",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -1590,7 +1590,7 @@
       "@id": "data/derived/repo_automation/action_sha_pin_plan.csv",
       "@type": "File",
       "contentSize": 6,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "action_sha_pin_plan",
       "sha256": "45fd2f9df187bc411dc80df5c4c4844ac00f4dd69bc69453f1893a5d143433d6"
@@ -1599,7 +1599,7 @@
       "@id": "data/derived/repo_automation/action_pin_resolution.jsonl",
       "@type": "File",
       "contentSize": 34511,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "action_pin_resolution",
       "sha256": "fbfffb11a2520d2057991aa2ca306be79506dce38bf9c6718edc256516778f99"
@@ -1608,7 +1608,7 @@
       "@id": "data/derived/repo_automation/action_pin_resolution.csv",
       "@type": "File",
       "contentSize": 20718,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "action_pin_resolution",
       "sha256": "bb7b549264532a8dd2a9bff56a689afc3db7a9158d02a809e95ba5ee91ed425e"
