@@ -67,7 +67,6 @@ jobs:
           pixi run project-issues
           pixi run github-project-export
           pixi run osf-plan
-          pixi run final-handoff
           pixi run protocol-status
           pixi run roadmap-linkages
           pixi run data-quality
@@ -77,6 +76,7 @@ jobs:
           pixi run source-drift
           pixi run release-readiness || true
           pixi run research-package
+          pixi run final-handoff
           pixi run licence-review-queue
           # Reconcile checksum-bound decisions after queue regeneration so this
           # workflow matches the repository automation canonical sequence.
