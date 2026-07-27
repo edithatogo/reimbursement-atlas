@@ -1,21 +1,21 @@
 {
   "approval_scope": "Approved within the declared routes and browser matrix for visual, automated accessibility, responsive-layout, keyboard, provenance and prohibited-content checks. This approval does not establish universal accessibility-standard compliance and does not confirm an independent manual VoiceOver review.",
-  "automated_packet_sha256": "62274e930802d1c19fbfe4761379f397d04adaed96ba9db0977fc24ce8758c7c",
-  "commit": "3f95d8d3cf1ce62e68eadf2bc6ee95ebc1f1ebdb",
+  "automated_packet_sha256": "2037ffeeca999045732d4ebf848760cfe5818520510d2d800dbda8340a6de665",
+  "commit": "16d4f0b451676458d457d178af85ced1f533b476",
   "evidence_artifacts": [
     "data/derived/dashboard_review/automated_review_packet.json",
     "data/derived/dashboard_review/owner_review_packet.json",
-    "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30257887974",
-    "https://github.com/edithatogo/reimbursement-atlas/pull/604"
+    "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30268368112",
+    "https://github.com/edithatogo/reimbursement-atlas/pull/611"
   ],
   "findings": [
     "The current-main full browser matrix passed 64 of 64 tests across Chromium desktop and mobile, Firefox and WebKit.",
     "The 44 commit-bound screenshots and machine-readable packet cover the declared visual, responsive-layout, keyboard, automated accessibility, provenance and prohibited-content checks.",
     "Universal WCAG conformance and independent manual VoiceOver confirmation are outside this approval."
   ],
-  "owner_packet_sha256": "845d660e8861e853f7a3976dcd4e8065ac4f808fda8ad45d262f13f15ab5a175",
+  "owner_packet_sha256": "8632c3b3c9f00562cd466e8a12bbc75bcad6251f6ef181fe7c35b470267e2f0f",
   "remediation_or_waiver": "No unresolved finding is recorded within the approved scope. Independent manual VoiceOver review remains explicitly out of scope.",
-  "reviewed_at": "2026-07-27T10:35:00Z",
+  "reviewed_at": "2026-07-27T13:20:00Z",
   "reviewer": "edithatogo",
   "schema_version": "dashboard-human-review-v1",
   "scope": {
