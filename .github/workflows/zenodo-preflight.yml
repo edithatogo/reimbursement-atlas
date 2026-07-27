@@ -75,7 +75,7 @@ jobs:
       - name: Install locked Pixi environment
         run: pixi install --locked
       - name: Download and verify exact GitHub release assets
-        if: inputs.mode != 'draft'
+        if: inputs.mode != 'plan'
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ inputs.release_tag }}
@@ -134,7 +134,7 @@ jobs:
         if: inputs.mode == 'draft'
         run: |
           pixi run zenodo-metadata
-          pixi run zenodo-draft
+          pixi run zenodo-draft --release-assets
       - name: Execute explicit Zenodo transition
         env:
           ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
