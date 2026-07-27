@@ -152,8 +152,11 @@ jobs:
 
           rows = [json.loads(line) for line in Path("data/derived/osf/sync_manifest.jsonl").read_text().splitlines()]
           allowed = [row for row in rows if row["publish_allowed"]]
-          if len(allowed) != 11:
-              raise SystemExit(f"expected 11 exact approved OSF rows, found {len(allowed)}")
+          # The current checksum-bound approval covers README plus the five
+          # protocol records. Reports remain separately gated and papers are
+          # permanently excluded from this workflow.
+          if len(allowed) != 6:
+              raise SystemExit(f"expected 6 exact approved OSF rows, found {len(allowed)}")
           prohibited = {"papers", "preprints", "raw_live"}
           for row in allowed:
               if any(part in row["local_path"].lower() for part in prohibited):
@@ -227,7 +230,7 @@ jobs:
             jq -r 'select(.publish_allowed == true) | [.id,.local_path,.sha256] | @tsv' \
               data/derived/osf/sync_manifest.jsonl
           )
-          test "$(wc -l < osf-publication/files.jsonl | tr -d ' ')" = "11"
+          test "$(wc -l < osf-publication/files.jsonl | tr -d ' ')" = "6"
 
           description="Public protocol, provenance and reproducibility record for Reimbursement Atlas. Source acquisition, mapping adjudication and holdout evaluation predated registration. Papers and preprints are excluded."
           jq -cn --arg id "$OSF_PROJECT_ID" --arg description "$description" \
