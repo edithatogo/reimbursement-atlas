@@ -18,7 +18,7 @@ def test_evidence_readiness_marks_only_approved_complete_claim_as_evidence_ready
     statuses = {row.research_question_id: row.claim_package_status for row in rows}
     assert stages["rq_source_transparency"] == "evidence_ready"
     assert statuses["rq_source_transparency"] == "approved"
-    assert set(statuses.values()) == {"approved", "partial"}
+    assert set(statuses.values()) == {"approved", "pending"}
     assert sum(status == "approved" for status in statuses.values()) == 4
     assert set(stages.values()) == {"prototype_ready", "evidence_ready"}
     assert all(row.protocol_score > 0.8 for row in rows)

@@ -22,10 +22,12 @@ def test_claim_packages_are_fail_closed_and_use_reviewed_inputs() -> None:
     assert transparency["analysis_status"] == "complete"
     assert transparency["claim_approval_status"] == "pending_accountable_review"
     assert transparency["descriptive_results"]["source_count"] > 0
-    partial = [row for row in packages if row["analysis_status"] == "partial"]
-    assert len(partial) == 1
-    assert partial[0]["missing_reviewed_sources"] == ["us_cms_clfs"]
-    assert all(row["claim_approval_status"] == "not_reviewable_source_gap" for row in partial)
+    assert all(row["analysis_status"] == "complete" for row in packages)
+    genomics = next(
+        row for row in packages if row["research_question_id"] == "rq_genomics_coverage_price"
+    )
+    assert genomics["missing_reviewed_sources"] == []
+    assert genomics["claim_approval_status"] == "pending_accountable_review"
 
 
 def test_claim_package_generation_is_deterministic() -> None:

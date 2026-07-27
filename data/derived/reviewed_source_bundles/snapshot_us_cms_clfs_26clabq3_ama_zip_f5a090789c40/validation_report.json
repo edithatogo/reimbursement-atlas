@@ -1,0 +1,14 @@
+{
+  "byte_size": 599628,
+  "cache_scope": "public_derived_only",
+  "checksum_sha256": "f5a090789c40fe791b478a735c7cf5399e86726adc788f11829435cb0ca4d7d5",
+  "licence_gate": "restricted_local_only",
+  "parse_success": true,
+  "raw_file_copied_to_bundle": false,
+  "record_count": 2206,
+  "record_type": "schedule_items",
+  "review_required_before_publication": true,
+  "snapshot_id": "snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40",
+  "source_id": "us_cms_clfs",
+  "source_version_id": "us_cms_clfs_26clabq3_ama_zip"
+}
