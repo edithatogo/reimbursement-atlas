@@ -84,13 +84,16 @@ jobs:
             --repo "$GITHUB_REPOSITORY" \
             --dir release-assets
           find release-assets -maxdepth 1 -type f -name '*.whl' -exec cp {} dist/ \;
-          find release-assets -maxdepth 1 -type f -name 'reimburse_atlas-*.tar.gz' \
+          find release-assets -maxdepth 1 -type f -name 'reimbursement_atlas-*.tar.gz' \
             -exec cp {} dist/ \;
           find release-assets -maxdepth 1 -type f -name 'reimbursement-atlas-v*.tar.gz' \
             -exec cp {} . \;
-          find release-assets -maxdepth 1 -type f -name 'cyclonedx-*.json' \
+          find release-assets -maxdepth 1 -type f -name 'cyclonedx-*.json' ! -name '*.json.json' \
             -exec cp {} data/derived/sbom/ \;
-          find release-assets -maxdepth 1 -type f -name '*.json.json' \
+          find release-assets -maxdepth 1 -type f -name '*.json' \
+            ! -name 'release-manifest.json' \
+            ! -name 'cyclonedx-dashboard.json' \
+            ! -name 'cyclonedx-python.json' \
             -exec cp {} data/derived/attestations/ \;
           cp release-assets/release-manifest.json .
           test "$(jq -r '.tag' release-manifest.json)" = "$RELEASE_TAG"
