@@ -329,7 +329,9 @@ def build_publication_manifest(
         checksum = file_sha256(path)
         if gate == "public_reuse_review" and (str(relative_path), checksum) in approved_pairs:
             gate = "permissive_candidate"
-            notes = "Checksum-bound human approval recorded; publish only the reviewed derived fields."
+            notes = (
+                "Checksum-bound human approval recorded; publish only the reviewed derived fields."
+            )
         artifacts.append(
             PublicationArtifact(
                 table_name=relative_path.stem,
