@@ -32,17 +32,21 @@ def test_release_workflow_attests_and_verifies_all_release_subject_classes(
     workflow = (repo_root / ".github" / "workflows" / "release.yml").read_text(encoding="utf-8")
 
     for subject_path in (
-        "dist/*",
+        "dist/*.whl",
+        "dist/*.tar.gz",
         "reimbursement-atlas-*.tar.gz",
         "data/derived/sbom/*.json",
         "release-manifest.json",
     ):
-        assert f"subject-path: {subject_path}" in workflow
-        assert (
-            "for artifact in dist/* reimbursement-atlas-*.tar.gz data/derived/sbom/*.json "
-            "release-manifest.json"
-        ) in workflow
-        assert 'gh attestation verify "$artifact"' in workflow
+        assert subject_path in workflow
+
+    assert "subject-path: dist/*" not in workflow
+    assert "\n            dist/*\n" not in workflow
+    assert (
+        "for artifact in dist/*.whl dist/*.tar.gz reimbursement-atlas-*.tar.gz "
+        "data/derived/sbom/*.json release-manifest.json"
+    ) in workflow
+    assert 'gh attestation verify "$artifact"' in workflow
 
     assert "Verify release attestations before upload" in workflow
     assert "softprops/action-gh-release" in workflow
