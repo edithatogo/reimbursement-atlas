@@ -17,13 +17,14 @@ Total candidate artefacts: 219; generated queue rows remain `pending` by design.
 
 ## Decision ledger snapshot
 
-The companion checksum-bound ledger currently records **219 approved**
-and **0 blocked** decisions. These counts are informational;
+The companion checksum-bound ledger currently records **217 approved**
+and **2 blocked** decisions. These counts are informational;
 they do not change generated queue rows or authorize publication.
 
 ### Blocked rows requiring re-review
 
-- None recorded.
+- `data/derived/source_downloads/download_attempts.csv` — `1a29b6ed6d82dd6bba08911ee9abc498d9501e0eff36a144ae20254f618b4144`
+- `data/derived/source_downloads/download_attempts.jsonl` — `37b4c857125cd7d4dc2a7e998b8d86ca1306a400fd46a93513a89cce287eb0bc`
 
 ## Required decision fields
 
