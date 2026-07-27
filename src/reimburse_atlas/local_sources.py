@@ -156,6 +156,7 @@ def parse_reviewed_local_file(  # ruff:ignore[too-many-branches]
     source_version_id: str,
     path: Path,
     output_dir: Path,
+    retrieved_at: str | None = None,
 ) -> LocalParseResult:
     """Parse a manually downloaded local source file into derived contract rows."""
     source_id = version_source_id(source_version_id)
@@ -177,6 +178,7 @@ def parse_reviewed_local_file(  # ruff:ignore[too-many-branches]
             source_url=version.source_url,
         )
     elif source_id in {
+        "us_cms_clfs",
         "us_cms_asp",
         "us_cms_pfs",
         "hpo",
@@ -193,7 +195,14 @@ def parse_reviewed_local_file(  # ruff:ignore[too-many-branches]
         if version is None:
             msg = f"Unknown source version id: {source_version_id}"
             raise KeyError(msg)
-        if source_id == "uk_genomic_test_directory":
+        if source_id == "us_cms_clfs":
+            records = parse_cms_clfs_csv(
+                resolved,
+                source_version=source_version_id,
+                retrieved_at=retrieved_at or version.retrieved_at,
+                restricted_numeric_only=True,
+            )
+        elif source_id == "uk_genomic_test_directory":
             records = parse_nhs_genomic_directory_xlsx(resolved)
         elif source_id == "us_cms_asp":
             records = parse_cms_asp_csv(
@@ -292,6 +301,7 @@ def build_reviewed_source_bundle(
         source_version_id=source_version_id,
         path=path,
         output_dir=bundle_dir,
+        retrieved_at=snapshot.retrieved_at,
     )
     validation_report_path = _write_validation_report(
         bundle_dir=bundle_dir,

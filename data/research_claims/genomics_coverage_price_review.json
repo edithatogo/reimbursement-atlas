@@ -1,0 +1,19 @@
+{
+  "analysis_validated": true,
+  "approval_scope": "Source-completeness observation only: all four required checksum-bound reviewed sources are present. The CMS CLFS bundle contains 2,206 numeric payment rows with synthetic identifiers and excludes CPT/HCPCS identifiers and all descriptor text.",
+  "claim_package_path": "data/derived/research_claims/rq_genomics_coverage_price.json",
+  "claim_package_sha256": "f591eb782640857d69ab3b68aef8ec2c36ad6c6cc1ac9c6bd978b41d3be792c6",
+  "excluded_claims": [
+    "causal claims",
+    "cross-jurisdiction price-equivalence claims",
+    "item-level coverage claims",
+    "universal reimbursement claims",
+    "paper or preprint claims"
+  ],
+  "research_question_id": "rq_genomics_coverage_price",
+  "reviewed_at": "2026-07-27T03:04:14Z",
+  "reviewed_derived_inputs": true,
+  "reviewer": "edithatogo",
+  "schema_version": "research-claim-review-v1",
+  "status": "approved_within_scope"
+}

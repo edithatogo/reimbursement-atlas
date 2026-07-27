@@ -7,42 +7,18 @@
       "next_action": "Complete remaining executable or credential-gated targets, then rerun source validation and source contracts.",
       "status": "incomplete",
       "summary": "Source acquisition requires follow-up: Run hardened curl/wget source download plan, Review historical MBS/PBS source expansion and licence scope."
-    },
-    {
-      "category": "research_review",
-      "evidence_path": "data/derived/evidence_readiness/summary.json",
-      "id": "evidence_release",
-      "next_action": "Complete source, mapping, methods and research review before making evidence claims.",
-      "status": "blocked_review",
-      "summary": "Evidence release is not approved."
-    },
-    {
-      "category": "publication",
-      "evidence_path": "data/derived/release_readiness/summary.json",
-      "id": "research_publication",
-      "next_action": "Approve the frozen protocols, publication manifest and release decision.",
-      "status": "gated",
-      "summary": "Research publication remains gated."
-    },
-    {
-      "category": "data_governance",
-      "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
-      "id": "research_evidence",
-      "next_action": "Retain prototype-only status until every research question has reviewed source evidence, validated analysis and accountable claim review.",
-      "status": "blocked",
-      "summary": "evidence_ready=4/5"
     }
   ],
   "claims_policy": "Do not claim evidence or public-release readiness until reviewed sources, licences, human research review and release gates pass.",
   "evidence": {
     "data_quality": "pass",
-    "evidence_ready_rows": 4,
-    "evidence_release_ready": false,
-    "prototype_ready_rows": 1,
+    "evidence_ready_rows": 5,
+    "evidence_release_ready": true,
+    "prototype_ready_rows": 0,
     "readiness_rows": 5,
-    "research_publication_ready": false,
+    "research_publication_ready": true,
     "source_validation": "pass",
-    "status": "not_ready"
+    "status": "ready"
   },
   "evidence_paths": {
     "data_quality": "data/derived/data_quality/summary.json",
@@ -53,7 +29,7 @@
     "source_validation": "data/derived/source_validation/summary.json"
   },
   "licence_review": {
-    "approved_rows": 224,
+    "approved_rows": 229,
     "decision_source": "data/licence_review/decisions.jsonl",
     "pending_rows": 0,
     "queue_source": "data/derived/licence_review/licence_review_queue.jsonl"
@@ -62,7 +38,7 @@
   "publication": {
     "huggingface_publication": "manual approval and token required",
     "osf_registration_ready": true,
-    "status": "gated",
+    "status": "ready",
     "zenodo_doi": "manual release approval required"
   },
   "schema_version": "public-status-v1",

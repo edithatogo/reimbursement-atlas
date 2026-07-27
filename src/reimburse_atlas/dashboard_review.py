@@ -49,11 +49,15 @@ PUBLIC_STATUS_FILE = Path("apps/dashboard/public/status.json")
 SELF_ATTESTATION_CSV_ROWS = {
     Path("apps/dashboard/public/data/final_handoff_tasks.csv"): (
         "id",
-        "final_dashboard_visual_review",
+        (
+            "final_dashboard_visual_review",
+            "final_hf_dataset_space",
+            "final_release_candidate",
+        ),
     ),
     Path("apps/dashboard/public/data/source_drift_report.csv"): (
         "id",
-        "source_drift_final_handoff_jsonl_to_final_handoff_csv",
+        ("source_drift_final_handoff_jsonl_to_final_handoff_csv",),
     ),
 }
 
@@ -106,6 +110,18 @@ def dashboard_data_fingerprint(
         content = absolute.read_bytes()
         if path == SELF_ATTESTATION_FILE:
             content = _release_gates_without_dashboard_receipt(content)
+            baseline = (
+                _git_file_at_commit(repo, self_attestation_commit, path)
+                if self_attestation_commit
+                else None
+            )
+            if baseline is not None:
+                content = normalize_csv_receipt(
+                    content,
+                    _release_gates_without_dashboard_receipt(baseline),
+                    key="id",
+                    value="data_dictionary_summary",
+                )
         elif self_attestation_commit and (
             path == PUBLIC_STATUS_FILE or path in SELF_ATTESTATION_CSV_ROWS
         ):
@@ -114,8 +130,9 @@ def dashboard_data_fingerprint(
                 if path == PUBLIC_STATUS_FILE:
                     content = normalize_public_status_dashboard_receipt(content, baseline)
                 else:
-                    key, value = SELF_ATTESTATION_CSV_ROWS[path]
-                    content = normalize_csv_receipt(content, baseline, key=key, value=value)
+                    key, values = SELF_ATTESTATION_CSV_ROWS[path]
+                    for value in values:
+                        content = normalize_csv_receipt(content, baseline, key=key, value=value)
         digest.update(path.as_posix().encode("utf-8"))
         digest.update(b"\0")
         digest.update(content)
@@ -137,8 +154,16 @@ def _release_gates_without_dashboard_receipt(content: bytes) -> bytes:
     return output.getvalue().encode("utf-8")
 
 
-def normalize_public_status_dashboard_receipt(content: bytes, baseline: bytes) -> bytes:
-    """Restore only the dashboard receipt from the reviewed commit."""
+def normalize_public_status_dashboard_receipt(  # ruff:ignore[too-many-locals,too-many-branches]
+    content: bytes,
+    baseline: bytes,
+) -> bytes:
+    """Restore fields derived from the dashboard review itself.
+
+    Release readiness consumes the dashboard review, so its resulting status
+    booleans cannot also invalidate that same review without creating a cycle.
+    Independent evidence counts and provenance fields remain unchanged.
+    """
     try:
         raw_payload = json.loads(content)
         raw_baseline_payload = json.loads(baseline)
@@ -148,31 +173,46 @@ def normalize_public_status_dashboard_receipt(content: bytes, baseline: bytes) -
         return content
     payload = cast("dict[str, Any]", raw_payload)
     baseline_payload = cast("dict[str, Any]", raw_baseline_payload)
+    for section, fields in {
+        "evidence": ("evidence_release_ready", "research_publication_ready", "status"),
+        "publication": ("status",),
+    }.items():
+        current_section = payload.get(section)
+        baseline_section = baseline_payload.get(section)
+        if isinstance(current_section, dict) and isinstance(baseline_section, dict):
+            current_typed = cast("dict[str, Any]", current_section)
+            baseline_typed = cast("dict[str, Any]", baseline_section)
+            for field in fields:
+                if field in baseline_typed:
+                    current_typed[field] = baseline_typed[field]
     blockers = payload.get("blockers")
     baseline_blockers = baseline_payload.get("blockers")
     if not isinstance(blockers, list) or not isinstance(baseline_blockers, list):
         return content
     blocker_rows = cast("list[Any]", blockers)
     baseline_rows = cast("list[Any]", baseline_blockers)
-    baseline_receipt: dict[str, Any] | None = None
+    self_derived_blockers = {
+        "dashboard_human_review",
+        "evidence_release",
+        "research_publication",
+    }
+    baseline_receipts: list[dict[str, Any]] = []
     for row in baseline_rows:
-        if isinstance(row, dict):
-            typed_row = cast("dict[str, Any]", row)
-            if typed_row.get("id") == "dashboard_human_review":
-                baseline_receipt = typed_row
-                break
-    if baseline_receipt is None:
-        return content
+        if not isinstance(row, dict):
+            continue
+        typed_row = cast("dict[str, Any]", row)
+        if typed_row.get("id") in self_derived_blockers:
+            baseline_receipts.append(typed_row)
     normalized_rows: list[Any] = []
     for row in blocker_rows:
-        is_dashboard_receipt = (
-            isinstance(row, dict)
-            and cast("dict[str, Any]", row).get("id") == "dashboard_human_review"
+        is_self_derived_receipt = (
+            isinstance(row, dict) and cast("dict[str, Any]", row).get("id") in self_derived_blockers
         )
-        if not is_dashboard_receipt:
+        if not is_self_derived_receipt:
             normalized_rows.append(row)
-    baseline_index = baseline_rows.index(baseline_receipt)
-    normalized_rows.insert(min(baseline_index, len(normalized_rows)), baseline_receipt)
+    for baseline_receipt in baseline_receipts:
+        baseline_index = baseline_rows.index(baseline_receipt)
+        normalized_rows.insert(min(baseline_index, len(normalized_rows)), baseline_receipt)
     payload["blockers"] = normalized_rows
     return (json.dumps(payload, indent=2, sort_keys=True) + "\n").encode("utf-8")
 

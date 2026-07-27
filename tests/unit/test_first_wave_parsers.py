@@ -52,6 +52,33 @@ def test_parse_cms_clfs_fixture(repo_root: Path) -> None:
     assert records[0].payment_amount == 799.5
 
 
+def test_parse_cms_clfs_live_shape_excludes_restricted_fields(tmp_path: Path) -> None:
+    """Restricted mode should skip CMS preamble and exclude CPT fields."""
+    path = tmp_path / "clfs.csv"
+    path.write_text(
+        "2026 Clinical Diagnostic Laboratory Fee Schedule\n"
+        "CPT codes and descriptions are restricted.\n\n"
+        "YEAR,HCPCS,MOD,EFF_DATE,INDICATOR,RATE,SHORTDESC,LONGDESC\n"
+        "2026,81479,,20260701,60,799.50,Restricted short,Restricted long\n",
+        encoding="utf-8",
+    )
+    records = parse_cms_clfs_csv(
+        path,
+        source_version="us_cms_clfs_26clabq3_ama_zip",
+        retrieved_at="2026-07-27T02:42:00Z",
+        restricted_numeric_only=True,
+    )
+    assert len(records) == 1
+    assert records[0].item_code.startswith("CLFS_DERIVED_")
+    assert records[0].code_system == "CLFS_DERIVED_ROW"
+    assert records[0].item_label == "CLFS numeric payment row"
+    assert records[0].item_description is None
+    assert records[0].payment_amount == 799.5
+    assert records[0].effective_from.isoformat() == "2026-07-01"
+    assert "81479" not in records[0].model_dump_json()
+    assert "Restricted" not in records[0].model_dump_json()
+
+
 def test_parse_nhs_genomic_directory_fixture(repo_root: Path) -> None:
     """NHS genomic directory parser should emit coverage-decision contracts."""
     records = parse_nhs_genomic_directory_csv(

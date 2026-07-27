@@ -98,6 +98,8 @@ def test_main_cycle_guard_is_covered_by_immutable_output_contract() -> None:
     source = Path("scripts/make_mapping_candidate_frame.py").read_text(encoding="utf-8")
     assert 'candidate_dir = OUTPUT_DIR / f"expansion_v{cycle}"' in source
     assert "immutable_predecessor_sha256" in source
+    assert "candidate_drift_requires_explicit_cycle" in source
+    assert "--new-cycle" in source
 
 
 def test_positive_candidates_are_ranked_by_score() -> None:

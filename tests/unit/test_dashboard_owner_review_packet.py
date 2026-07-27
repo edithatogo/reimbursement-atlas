@@ -237,6 +237,42 @@ def test_public_status_normalization_replaces_only_dashboard_receipt() -> None:
     assert normalized["blockers"][1] == current["blockers"][1]
 
 
+def test_public_status_normalization_removes_dashboard_readiness_cycle() -> None:
+    baseline = {
+        "blockers": [{"id": "dashboard_human_review"}],
+        "evidence": {
+            "evidence_ready_rows": 5,
+            "evidence_release_ready": False,
+            "research_publication_ready": False,
+            "status": "not_ready",
+        },
+        "publication": {"status": "gated"},
+    }
+    current = {
+        "blockers": [],
+        "evidence": {
+            "evidence_ready_rows": 5,
+            "evidence_release_ready": True,
+            "research_publication_ready": True,
+            "status": "ready",
+        },
+        "publication": {"status": "ready"},
+    }
+
+    normalized = json.loads(
+        normalize_public_status_dashboard_receipt(
+            json.dumps(current).encode(),
+            json.dumps(baseline).encode(),
+        )
+    )
+
+    assert normalized["evidence"]["evidence_ready_rows"] == 5
+    assert normalized["evidence"]["evidence_release_ready"] is False
+    assert normalized["evidence"]["research_publication_ready"] is False
+    assert normalized["evidence"]["status"] == "not_ready"
+    assert normalized["publication"]["status"] == "gated"
+
+
 def test_csv_normalization_replaces_only_named_self_receipt() -> None:
     baseline = b"id,status\nfinal_dashboard_visual_review,blocked\nosf_registration,blocked\n"
     current = b"id,status\nfinal_dashboard_visual_review,complete\nosf_registration,pass\n"
@@ -250,6 +286,47 @@ def test_csv_normalization_replaces_only_named_self_receipt() -> None:
 
     assert normalized == (
         b"id,status\nfinal_dashboard_visual_review,blocked\nosf_registration,pass\n"
+    )
+
+
+def test_receipt_normalization_fails_closed_for_malformed_inputs() -> None:
+    malformed = b"{invalid"
+    assert normalize_public_status_dashboard_receipt(malformed, b"{}") == malformed
+    non_object = b"[]"
+    assert normalize_public_status_dashboard_receipt(non_object, b"{}") == non_object
+    missing_blockers = b'{"evidence": {}}'
+    assert (
+        normalize_public_status_dashboard_receipt(missing_blockers, b'{"blockers": []}')
+        == missing_blockers
+    )
+    baseline_with_noise = b'{"blockers": [null, {"id": "dashboard_human_review"}]}'
+    normalized = normalize_public_status_dashboard_receipt(
+        b'{"blockers": [null]}',
+        baseline_with_noise,
+    )
+    assert json.loads(normalized)["blockers"] == [
+        None,
+        {"id": "dashboard_human_review"},
+    ]
+
+    mismatched = b"id,status\nreview,pass\n"
+    assert (
+        normalize_csv_receipt(
+            mismatched,
+            b"name,status\nreview,blocked\n",
+            key="id",
+            value="review",
+        )
+        == mismatched
+    )
+    assert (
+        normalize_csv_receipt(
+            mismatched,
+            b"id,status\nother,blocked\n",
+            key="id",
+            value="review",
+        )
+        == mismatched
     )
 
 

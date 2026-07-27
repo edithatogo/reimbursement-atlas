@@ -166,8 +166,8 @@ True,from,10,Layer dependency respects inward/downward architecture.,parsing,rei
 True,from,8,Layer dependency respects inward/downward architecture.,parsing,reimburse_atlas.parsers.base,foundation,reimburse_atlas.contracts
 True,from,12,Layer dependency respects inward/downward architecture.,parsing,reimburse_atlas.parsers.cms_asp_csv,foundation,reimburse_atlas.contracts
 True,from,13,Layer dependency respects inward/downward architecture.,parsing,reimburse_atlas.parsers.cms_asp_csv,foundation,reimburse_atlas.parsers.normalise
-True,from,11,Layer dependency respects inward/downward architecture.,parsing,reimburse_atlas.parsers.cms_clfs_csv,foundation,reimburse_atlas.contracts
-True,from,12,Layer dependency respects inward/downward architecture.,parsing,reimburse_atlas.parsers.cms_clfs_csv,foundation,reimburse_atlas.parsers.normalise
+True,from,14,Layer dependency respects inward/downward architecture.,parsing,reimburse_atlas.parsers.cms_clfs_csv,foundation,reimburse_atlas.contracts
+True,from,15,Layer dependency respects inward/downward architecture.,parsing,reimburse_atlas.parsers.cms_clfs_csv,foundation,reimburse_atlas.parsers.normalise
 True,from,12,Layer dependency respects inward/downward architecture.,parsing,reimburse_atlas.parsers.cms_mcd_ncd_csv,foundation,reimburse_atlas.contracts
 True,from,12,Layer dependency respects inward/downward architecture.,parsing,reimburse_atlas.parsers.cms_pfs_csv,foundation,reimburse_atlas.contracts
 True,from,13,Layer dependency respects inward/downward architecture.,parsing,reimburse_atlas.parsers.cms_pfs_csv,foundation,reimburse_atlas.parsers.normalise

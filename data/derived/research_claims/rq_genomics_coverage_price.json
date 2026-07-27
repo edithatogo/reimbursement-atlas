@@ -1,10 +1,10 @@
 {
-  "analysis_status": "partial",
-  "claim_approval_status": "not_reviewable_source_gap",
+  "analysis_status": "complete",
+  "claim_approval_status": "pending_accountable_review",
   "descriptive_results": {
-    "missing_source_count": 1,
+    "missing_source_count": 0,
     "required_source_count": 4,
-    "reviewed_source_count": 3
+    "reviewed_source_count": 4
   },
   "mapping_validation": {
     "holdout_case_count": 150,
@@ -53,9 +53,7 @@
     "status": "accepted",
     "study_cycle": "expansion_v9"
   },
-  "missing_reviewed_sources": [
-    "us_cms_clfs"
-  ],
+  "missing_reviewed_sources": [],
   "required_sources": [
     "au_mbs",
     "us_cms_clfs",
@@ -83,6 +81,13 @@
         "source_version_id": "uk_genomic_test_directory_rare_v9"
       }
     ],
+    "us_cms_clfs": [
+      {
+        "bundle_path": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40",
+        "source_checksum_sha256": "f5a090789c40fe791b478a735c7cf5399e86726adc788f11829435cb0ca4d7d5",
+        "source_version_id": "us_cms_clfs_26clabq3_ama_zip"
+      }
+    ],
     "us_cms_mcd": [
       {
         "bundle_path": "data/derived/reviewed_source_bundles/snapshot_us_cms_mcd_ncd_2026_07_20_ce40e229ab73",
@@ -94,18 +99,18 @@
   "reviewed_sources_present": [
     "au_mbs",
     "uk_genomic_test_directory",
+    "us_cms_clfs",
     "us_cms_mcd"
   ],
   "schema_version": "research-claim-package-v1",
   "scope": "Reviewed-source availability and bounded descriptive evidence only.",
   "supported_claims": [
-    "3 of 4 protocol-required sources have checksum-bound reviewed derived bundles."
+    "4 of 4 protocol-required sources have checksum-bound reviewed derived bundles."
   ],
   "unsupported_claims": [
     "No causal effect is estimated.",
     "No cross-jurisdiction price equivalence is inferred.",
-    "No coverage decision is inferred from the presence of a fee or price.",
-    "The full protocol question is not answerable until these reviewed sources are present: us_cms_clfs."
+    "No coverage decision is inferred from the presence of a fee or price."
   ],
   "validation": {
     "analysis_validated": true,

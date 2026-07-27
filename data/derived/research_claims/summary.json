@@ -1,10 +1,10 @@
 {
-  "complete_count": 4,
+  "complete_count": 5,
   "package_count": 5,
   "packages": [
     {
       "path": "data/derived/research_claims/rq_genomics_coverage_price.json",
-      "sha256": "21b1c3bfe583b9621d89c76f31f3956e819c642eab8948fa1d3ce05da2edb5e8"
+      "sha256": "f591eb782640857d69ab3b68aef8ec2c36ad6c6cc1ac9c6bd978b41d3be792c6"
     },
     {
       "path": "data/derived/research_claims/rq_cognitive_procedural.json",
@@ -23,8 +23,8 @@
       "sha256": "fb0c655a3bb924476cdcd83b6177cfb0a993d94ad6b9467d2e084a781bcc20c1"
     }
   ],
-  "partial_source_gap_count": 1,
-  "pending_accountable_review_count": 4,
-  "reviewable_count": 4,
+  "partial_source_gap_count": 0,
+  "pending_accountable_review_count": 5,
+  "reviewable_count": 5,
   "schema_version": "research-claim-package-summary-v1"
 }

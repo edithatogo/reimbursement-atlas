@@ -113,6 +113,10 @@
   sealed holdout predictions and one-time evaluation as immutable evidence. Any material source,
   mapping-rule, model or threshold change must create a separately named cycle with a new blinded
   review and untouched holdout; predecessor cycles cannot be overwritten or pooled. (Issue #491)
+- [x] EVID-08: Make deterministic regeneration preserve the accepted active cycle. Candidate
+  input drift is reported as `candidate_drift_requires_explicit_cycle`; only
+  `pixi run mapping-new-cycle` may create a successor cycle, which must then undergo a separate
+  blinded review and untouched holdout evaluation. (Issue #491)
 
 ## Validation
 

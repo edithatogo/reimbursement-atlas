@@ -10,7 +10,15 @@ from reimburse_atlas.dashboard_review import (
     dashboard_data_fingerprint,
     dashboard_source_fingerprint,
 )
-from reimburse_atlas.final_handoff import build_final_handoff_tasks, write_final_handoff_tasks
+from reimburse_atlas.final_handoff import (
+    _action_pinning_complete,  # ruff:ignore[import-private-name]
+    _external_gate_passed,  # ruff:ignore[import-private-name]
+    _mbs_pair_available,  # ruff:ignore[import-private-name]
+    _read_jsonl,  # ruff:ignore[import-private-name]
+    _source_download_status,  # ruff:ignore[import-private-name]
+    build_final_handoff_tasks,
+    write_final_handoff_tasks,
+)
 from reimburse_atlas.github_project import build_github_project_items, write_github_project_items
 from reimburse_atlas.osf_registration import registration_snapshot_sha256
 from reimburse_atlas.registry import load_conductor_tracks, load_source_files
@@ -430,7 +438,18 @@ def test_final_handoff_records_environment_bound_tasks(tmp_path: Path) -> None:
         for row in rows
     )
     assert not any(row.status == "blocked_secret" for row in rows)
-    assert any(row.status == "blocked_review" for row in rows)
+    dashboard_task = next(row for row in rows if row.id == "final_dashboard_visual_review")
+    mapping_task = next(row for row in rows if row.id == "final_mapping_calibration_review")
+    assert (dashboard_task.status, dashboard_task.reason_code) in {
+        ("complete", "dashboard_human_review_approved"),
+        ("blocked_review", "dashboard_human_review_pending"),
+    }
+    assert mapping_task.status == "complete"
+    assert all(
+        row.reason_code.endswith(("_pending", "_review_pending"))
+        for row in rows
+        if row.status == "blocked_review"
+    )
     cms_task = next(row for row in rows if row.id == "final_cms_clfs_licence_review")
     assert (cms_task.status, cms_task.reason_code) in {
         ("complete", "checksum_bound_scope_approved"),
@@ -450,6 +469,72 @@ def test_final_handoff_records_environment_bound_tasks(tmp_path: Path) -> None:
     assert mbs_task.status == "complete"
     paths = write_final_handoff_tasks(rows, output_dir=tmp_path / "handoff")
     assert all(path.exists() for path in paths)
+
+
+def test_final_handoff_helpers_fail_closed_and_classify_acquisition(tmp_path: Path) -> None:
+    jsonl = tmp_path / "rows.jsonl"
+    assert _read_jsonl(jsonl) == []
+    jsonl.write_text('\n{"id": "one"}\n', encoding="utf-8")
+    assert _read_jsonl(jsonl) == [{"id": "one"}]
+    jsonl.write_text("{invalid}\n", encoding="utf-8")
+    assert _read_jsonl(jsonl) == []
+    jsonl.write_text("[]\n", encoding="utf-8")
+    assert _read_jsonl(jsonl) == []
+
+    assert _mbs_pair_available(tmp_path) is False
+    raw = tmp_path / "data/raw_live/au_mbs"
+    raw.mkdir(parents=True)
+    (raw / "20260701_MBSONLINE_IMAP.TXT").write_text("", encoding="utf-8")
+    (raw / "20260701_MBSONLINE_DESC.TXT").write_text("", encoding="utf-8")
+    assert _mbs_pair_available(tmp_path) is True
+
+    assert _action_pinning_complete(tmp_path) is False
+    pin_plan = tmp_path / "data/derived/repo_automation/action_sha_pin_plan.csv"
+    pin_plan.parent.mkdir(parents=True)
+    pin_plan.write_text("workflow,action\n", encoding="utf-8")
+    assert _action_pinning_complete(tmp_path) is True
+
+    downloads = tmp_path / "data/derived/source_downloads"
+    downloads.mkdir(parents=True)
+    (downloads / "download_plans.jsonl").write_text(
+        json.dumps({
+            "source_file_id": "source",
+            "target_path": "data/raw_live/source.csv",
+            "should_execute": True,
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+    attempts = downloads / "download_attempts.jsonl"
+    attempts.write_text(
+        json.dumps({
+            "source_file_id": "source",
+            "target_path": "data/raw_live/source.csv",
+            "status": "downloaded",
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+    assert _source_download_status(tmp_path) == "complete"
+    attempts.write_text(
+        json.dumps({
+            "source_file_id": "other",
+            "target_path": "data/raw_live/other.csv",
+            "status": "downloaded",
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+    assert _source_download_status(tmp_path) == "partial"
+
+    external_gates = tmp_path / "data/derived/external_quality_gates.json"
+    external_gates.write_text("{invalid}\n", encoding="utf-8")
+    assert _external_gate_passed(tmp_path, "hosted") is False
+    external_gates.write_text(
+        json.dumps({"records": [{"id": "hosted", "outcome": "passed"}]}),
+        encoding="utf-8",
+    )
+    assert _external_gate_passed(tmp_path, "hosted") is True
 
 
 def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) -> None:
