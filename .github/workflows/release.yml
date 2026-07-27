@@ -49,7 +49,7 @@ jobs:
       - name: Generate SBOMs
         run: pixi run sbom
       - name: Build package
-        run: uv build
+        run: pixi run build
       - name: Generate archive
         run: |
           archive_name="reimbursement-atlas-${GITHUB_REF_NAME}.tar.gz"
