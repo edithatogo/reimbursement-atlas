@@ -177,6 +177,59 @@ def test_dashboard_data_fingerprint_covers_rendered_csv_files(tmp_path: Path) ->
     assert dashboard_data_fingerprint(tmp_path) != original
 
 
+def test_dashboard_data_fingerprint_ignores_workflow_use_line_movement_at_baseline(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    public = tmp_path / "apps/dashboard/public/data"
+    public.mkdir(parents=True)
+    receipt = public / "workflow_uses.csv"
+    baseline = (
+        "action,line,ref,uses,workflow\n"
+        "actions/checkout,10,aaaaaaaa,actions/checkout@aaaaaaaa,.github/workflows/ci.yml\n"
+    )
+    receipt.write_text(baseline, encoding="utf-8")
+    monkeypatch.setattr(
+        "reimburse_atlas.dashboard_review._git_file_at_commit",
+        lambda _repo, _commit, path: (
+            baseline.encode("utf-8") if path == receipt.relative_to(tmp_path) else None
+        ),
+    )
+    original = dashboard_data_fingerprint(tmp_path, self_attestation_commit="a" * 40)
+
+    receipt.write_text(baseline.replace(",10,", ",20,"), encoding="utf-8")
+
+    assert dashboard_data_fingerprint(tmp_path, self_attestation_commit="a" * 40) == original
+
+    receipt.write_text(baseline.replace("aaaaaaaa", "bbbbbbbb"), encoding="utf-8")
+
+    assert dashboard_data_fingerprint(tmp_path, self_attestation_commit="a" * 40) != original
+
+
+def test_dashboard_data_fingerprint_preserves_duplicate_workflow_use_order(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    public = tmp_path / "apps/dashboard/public/data"
+    public.mkdir(parents=True)
+    receipt = public / "workflow_uses.csv"
+    baseline = (
+        "action,line,ref,uses,workflow\n"
+        "actions/upload-artifact,10,aaaaaaaa,actions/upload-artifact@aaaaaaaa,.github/workflows/ci.yml\n"
+        "actions/upload-artifact,20,aaaaaaaa,actions/upload-artifact@aaaaaaaa,.github/workflows/ci.yml\n"
+    )
+    receipt.write_text(baseline, encoding="utf-8")
+
+    def baseline_file(_repo: Path, _commit: str, path: Path) -> bytes | None:
+        return baseline.encode("utf-8") if path == receipt.relative_to(tmp_path) else None
+
+    monkeypatch.setattr("reimburse_atlas.dashboard_review._git_file_at_commit", baseline_file)
+    original = dashboard_data_fingerprint(tmp_path, self_attestation_commit="a" * 40)
+    receipt.write_text(baseline.replace(",10,", ",30,").replace(",20,", ",40,"), encoding="utf-8")
+
+    assert dashboard_data_fingerprint(tmp_path, self_attestation_commit="a" * 40) == original
+
+
 def test_dashboard_data_fingerprint_ignores_only_its_release_gate_receipt(
     tmp_path: Path,
 ) -> None:
