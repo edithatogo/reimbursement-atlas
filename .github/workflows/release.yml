@@ -60,7 +60,8 @@ jobs:
             --output release-manifest.json \
             --tag "$GITHUB_REF_NAME" \
             --commit "$GITHUB_SHA" \
-            --artifact dist/* \
+            --artifact dist/*.whl \
+            --artifact dist/*.tar.gz \
             --artifact reimbursement-atlas-*.tar.gz \
             --artifact data/derived/sbom/*.json
       - name: Validate release asset identity
@@ -68,14 +69,16 @@ jobs:
           pixi run zenodo-metadata
           pixi run zenodo-draft --release-assets
           args=(--tag "$GITHUB_REF_NAME")
-          for artifact in dist/* reimbursement-atlas-*.tar.gz; do
+          for artifact in dist/*.whl dist/*.tar.gz reimbursement-atlas-*.tar.gz; do
             args+=(--asset "$artifact")
           done
           pixi run release-identity "${args[@]}"
       - name: Attest Python distributions
         uses: actions/attest@f7c74d28b9d84cb8768d0b8ca14a4bac6ef463e6 # v4
         with:
-          subject-path: dist/*
+          subject-path: |
+            dist/*.whl
+            dist/*.tar.gz
       - name: Attest source archive
         uses: actions/attest@f7c74d28b9d84cb8768d0b8ca14a4bac6ef463e6 # v4
         with:
@@ -95,7 +98,7 @@ jobs:
           set -euo pipefail
           signer="${GITHUB_REPOSITORY}/.github/workflows/release.yml"
           mkdir -p data/derived/attestations
-          for artifact in dist/* reimbursement-atlas-*.tar.gz data/derived/sbom/*.json release-manifest.json; do
+          for artifact in dist/*.whl dist/*.tar.gz reimbursement-atlas-*.tar.gz data/derived/sbom/*.json release-manifest.json; do
             gh attestation verify "$artifact" \
               --repo "$GITHUB_REPOSITORY" \
               --signer-workflow "$signer" \
@@ -107,7 +110,8 @@ jobs:
       - uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # v3
         with:
           files: |
-            dist/*
+            dist/*.whl
+            dist/*.tar.gz
             reimbursement-atlas-*.tar.gz
             data/derived/sbom/*.json
             data/derived/attestations/*.json
