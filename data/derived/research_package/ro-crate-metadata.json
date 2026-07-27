@@ -1746,7 +1746,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "54a446c8c3ae27c0ac7bfd37cb0739f1bf5cd09aa8775092dc3c29e93c04a0ac"
+      "sha256": "0d4d74e911033b07c315e9f94f8e46a4d93361c99bf185f142932d31cad74d82"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
@@ -1755,7 +1755,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "194611641179931ee50c98e93fcf6124892ceb07c94ad19f0126319c3a161ac7"
+      "sha256": "a390109de622ae8b0bc3304eb5302832130bd845c37ba34f714600dee4baaddc"
     },
     {
       "@id": "data/derived/v13_validation_run.json",
