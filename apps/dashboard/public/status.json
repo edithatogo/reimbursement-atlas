@@ -25,20 +25,12 @@
       "summary": "Research publication remains gated."
     },
     {
-      "category": "osf",
-      "evidence_path": "data/derived/protocols/protocol_status.jsonl",
-      "id": "osf_registration",
-      "next_action": "Complete accountable methods, domain, licence and governance review.",
-      "status": "gated",
-      "summary": "OSF registration is not approved."
-    },
-    {
       "category": "dashboard",
       "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
       "id": "dashboard_human_review",
       "next_action": "Complete the commit-bound visual, keyboard, screen-reader and provenance review within the declared scope.",
       "status": "blocked",
-      "summary": "head=904b0bbd806d1875cad8ac98c4eda1d6fbed3f71 failed_checks=displayed_data_parity"
+      "summary": "head=19ab678c30d1df8c53adae2c3096c20102d9dabf failed_checks=workflow_attributed,displayed_data_parity"
     },
     {
       "category": "data_governance",
@@ -46,15 +38,15 @@
       "id": "research_evidence",
       "next_action": "Retain prototype-only status until every research question has reviewed source evidence, validated analysis and accountable claim review.",
       "status": "blocked",
-      "summary": "evidence_ready=1/5"
+      "summary": "evidence_ready=4/5"
     }
   ],
   "claims_policy": "Do not claim evidence or public-release readiness until reviewed sources, licences, human research review and release gates pass.",
   "evidence": {
     "data_quality": "pass",
-    "evidence_ready_rows": 1,
+    "evidence_ready_rows": 4,
     "evidence_release_ready": false,
-    "prototype_ready_rows": 4,
+    "prototype_ready_rows": 1,
     "readiness_rows": 5,
     "research_publication_ready": false,
     "source_validation": "pass",
@@ -77,7 +69,7 @@
   "project": "reimbursement-atlas",
   "publication": {
     "huggingface_publication": "manual approval and token required",
-    "osf_registration_ready": false,
+    "osf_registration_ready": true,
     "status": "gated",
     "zenodo_doi": "manual release approval required"
   },

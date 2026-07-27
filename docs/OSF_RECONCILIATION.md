@@ -106,12 +106,14 @@ The canonical remote snapshot is bound to the exact owner-approved submission
 decision, not to later regenerated files.
 
 The current protocol, OSF sync manifest and source cutoff differ from that
-immutable submitted freeze. The registration gate therefore reports
-`registration_fingerprint_drift` rather than “pending registration.” The
-registered record must not be overwritten or described as covering later
-changes. Reconciliation requires an explicit versioned registration strategy
-before Zenodo/DataCite release. Papers, preprints, raw payloads and restricted
-descriptors were not uploaded.
+immutable submitted freeze. The accountable owner approved the exact current
+fingerprints in `data/osf_review/post_registration_evolution.json` as
+transparent post-registration evolution. The gate reports `evolved`, not
+fingerprint parity: the registered record is not overwritten and must not be
+described as covering later protocol, manifest or source-cutoff changes. Any
+future fingerprint change invalidates this disclosure and fails closed until a
+new checksum-bound decision is recorded. Papers, preprints, raw payloads and
+restricted descriptors were not uploaded or authorized.
 
 The same plan generates `data/derived/osf/registration_review_packet.md`. This is a
 deterministic, non-mutating review aid containing the freeze digests, protocol/report

@@ -1,0 +1,18 @@
+{
+  "approval_reference": "Accountable repository-owner approval in Codex task on 2026-07-27.",
+  "current_analysis_manifest_digest": "b98b302f7f101a0660d1eebf322b17d9750f3ccde686afd79fa649bef3c72622",
+  "current_protocol_digest": "ad4c5fcfb9fdab5bacf40c3e4df8b6bca64fdf88aff902538a97945492439402",
+  "current_source_cutoff": "not-frozen",
+  "disclosure": "The current protocol, manifest and source cutoff are transparent post-registration evolution. The immutable registration is not overwritten and does not cover these later changes.",
+  "excluded_representations": [
+    "later protocol changes were preregistered",
+    "later manifest changes were preregistered",
+    "later source-cutoff changes were preregistered",
+    "paper or preprint submission is authorized"
+  ],
+  "registered_snapshot_sha256": "6ef9f8353bf27e78a58f6c12c7febf3ce755896df6834ab805360181c9a8c226",
+  "reviewed_at": "2026-07-27T01:24:28Z",
+  "reviewer": "edithatogo",
+  "schema_version": "osf-post-registration-evolution-v1",
+  "status": "approved_as_post_registration_evolution"
+}

@@ -69,6 +69,11 @@ JSON_REVIEW_CONTRACTS = (
         "schema/OsfRegistrationDecision.schema.json",
         "data/osf_review/registration_decision.json",
     ),
+    (
+        "osf_post_registration_evolution",
+        "schema/OsfPostRegistrationEvolution.schema.json",
+        "data/osf_review/post_registration_evolution.json",
+    ),
 )
 
 

@@ -9,7 +9,7 @@ from collections.abc import Mapping
 from pathlib import Path
 from typing import Literal, cast
 
-RegistrationStatus = Literal["blocked", "drift", "ready"]
+RegistrationStatus = Literal["blocked", "drift", "evolved", "ready"]
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
 
@@ -178,6 +178,37 @@ def check_registration_drift(
         else:
             status = "ready"
     return _result(status, reasons, freeze, remote)
+
+
+def reconcile_post_registration_evolution(
+    result: dict[str, object],
+    freeze: Mapping[str, object],
+    remote: Mapping[str, object] | None,
+    decision: Mapping[str, object] | None,
+) -> dict[str, object]:
+    """Accept exact disclosed drift without treating later work as preregistered."""
+    if result.get("status") != "drift" or remote is None or decision is None:
+        return result
+    expected = {
+        "schema_version": "osf-post-registration-evolution-v1",
+        "status": "approved_as_post_registration_evolution",
+        "registered_snapshot_sha256": remote.get("snapshot_sha256"),
+        "current_protocol_digest": freeze.get("protocol_digest"),
+        "current_analysis_manifest_digest": freeze.get("analysis_manifest_digest"),
+        "current_source_cutoff": freeze.get("source_cutoff"),
+    }
+    if any(decision.get(field) != value for field, value in expected.items()):
+        return result
+    if not isinstance(decision.get("reviewer"), str) or not decision.get("reviewer"):
+        return result
+    if not isinstance(decision.get("reviewed_at"), str) or not decision.get("reviewed_at"):
+        return result
+    reconciled = dict(result)
+    reconciled["status"] = "evolved"
+    reconciled["reasons"] = ["post_registration_evolution_disclosed"]
+    reconciled["later_changes_preregistered"] = False
+    reconciled["evolution_review_record"] = "data/osf_review/post_registration_evolution.json"
+    return reconciled
 
 
 def _result(

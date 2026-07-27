@@ -12,6 +12,7 @@ from reimburse_atlas.osf_registration import (
     build_remote_registration_snapshot,
     check_registration_drift,
     freeze_from_registration_decision,
+    reconcile_post_registration_evolution,
     registration_snapshot_sha256,
 )
 from reimburse_atlas.osf_sync import (
@@ -202,6 +203,46 @@ def test_registration_check_detects_fingerprint_drift() -> None:
     result = check_registration_drift(_freeze(), _remote(protocol_digest="changed"))
     assert result["status"] == "drift"
     assert result["reasons"] == ["registration_fingerprint_drift:protocol_digest"]
+
+
+def test_registration_check_accepts_exact_disclosed_post_registration_evolution() -> None:
+    freeze = _freeze(protocol_digest="c" * 64)
+    remote = _remote()
+    result = check_registration_drift(freeze, remote)
+    decision = {
+        "schema_version": "osf-post-registration-evolution-v1",
+        "status": "approved_as_post_registration_evolution",
+        "registered_snapshot_sha256": remote["snapshot_sha256"],
+        "current_protocol_digest": "c" * 64,
+        "current_analysis_manifest_digest": freeze["analysis_manifest_digest"],
+        "current_source_cutoff": freeze["source_cutoff"],
+        "reviewer": "owner",
+        "reviewed_at": "2026-07-27T01:24:28Z",
+    }
+
+    reconciled = reconcile_post_registration_evolution(result, freeze, remote, decision)
+
+    assert reconciled["status"] == "evolved"
+    assert reconciled["later_changes_preregistered"] is False
+    assert reconciled["reasons"] == ["post_registration_evolution_disclosed"]
+
+
+def test_registration_evolution_decision_fails_closed_after_fingerprint_change() -> None:
+    freeze = _freeze(protocol_digest="c" * 64)
+    remote = _remote()
+    result = check_registration_drift(freeze, remote)
+    decision = {
+        "schema_version": "osf-post-registration-evolution-v1",
+        "status": "approved_as_post_registration_evolution",
+        "registered_snapshot_sha256": remote["snapshot_sha256"],
+        "current_protocol_digest": "d" * 64,
+        "current_analysis_manifest_digest": freeze["analysis_manifest_digest"],
+        "current_source_cutoff": freeze["source_cutoff"],
+        "reviewer": "owner",
+        "reviewed_at": "2026-07-27T01:24:28Z",
+    }
+
+    assert reconcile_post_registration_evolution(result, freeze, remote, decision) == result
 
 
 def test_registration_check_rejects_incomplete_remote_snapshot() -> None:

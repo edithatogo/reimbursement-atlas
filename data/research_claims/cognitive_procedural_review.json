@@ -1,0 +1,19 @@
+{
+  "analysis_validated": true,
+  "approval_scope": "Source-completeness observation only: all three required checksum-bound reviewed sources are present.",
+  "claim_package_path": "data/derived/research_claims/rq_cognitive_procedural.json",
+  "claim_package_sha256": "826b3f0314a9dbf6a65c8707490baa22adbe3e968c9fe982aa45d07bff861b97",
+  "excluded_claims": [
+    "causal claims",
+    "price-equivalence claims",
+    "item-level coverage claims",
+    "net-price claims",
+    "paper or preprint claims"
+  ],
+  "research_question_id": "rq_cognitive_procedural",
+  "reviewed_at": "2026-07-27T01:24:28Z",
+  "reviewed_derived_inputs": true,
+  "reviewer": "edithatogo",
+  "schema_version": "research-claim-review-v1",
+  "status": "approved_within_scope"
+}

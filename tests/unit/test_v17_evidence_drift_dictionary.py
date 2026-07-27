@@ -18,7 +18,8 @@ def test_evidence_readiness_marks_only_approved_complete_claim_as_evidence_ready
     statuses = {row.research_question_id: row.claim_package_status for row in rows}
     assert stages["rq_source_transparency"] == "evidence_ready"
     assert statuses["rq_source_transparency"] == "approved"
-    assert set(statuses.values()) == {"approved", "partial", "pending"}
+    assert set(statuses.values()) == {"approved", "partial"}
+    assert sum(status == "approved" for status in statuses.values()) == 4
     assert set(stages.values()) == {"prototype_ready", "evidence_ready"}
     assert all(row.protocol_score > 0.8 for row in rows)
     assert all(row.data_quality_blockers == 0 for row in rows)
@@ -29,8 +30,8 @@ def test_evidence_readiness_writes_summary(tmp_path: Path) -> None:
     _, _, summary_path = write_evidence_readiness(rows, output_dir=tmp_path)
     summary = json.loads(summary_path.read_text(encoding="utf-8"))
     assert summary["research_question_count"] == len(rows)
-    assert summary["prototype_ready"] == len(rows) - 1
-    assert summary["evidence_ready"] == 1
+    assert summary["evidence_ready"] == len(rows) - 1
+    assert summary["prototype_ready"] == 1
 
 
 def test_source_drift_detects_removed_columns(tmp_path: Path) -> None:

@@ -23,6 +23,10 @@
 - [x] OSF-06A: Add canonical receipt-to-snapshot generation and cryptographic self-validation.
   Pending, private, mutable, incomplete and fingerprint-drifted receipts fail closed. (Subissue
   #511)
+- [x] OSF-07: Reconcile later protocol, manifest and source-cutoff changes using the exact
+  checksum-bound `post_registration_evolution.json` owner decision. The immutable registration
+  remains unchanged and does not cover the later work; any further fingerprint drift fails closed.
+  Papers and preprints remain excluded. (Issues #511, #532)
 
 ## Validation
 

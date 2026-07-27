@@ -240,7 +240,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             github_issues=(484, 489, 511),
             task_group="research",
             title="Verify OSF registration fingerprint and amendment state",
-            status="ready_local" if osf_ready else "blocked_review",
+            status="ready_local" if osf_ready or osf_state == "evolved" else "blocked_review",
             required_environment=(
                 "Approved protocol freeze, human methods/licence/governance review and an "
                 "exported OSF registration metadata snapshot."
@@ -251,15 +251,17 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             ),
             evidence_path="data/derived/osf/registration_freeze.json",
             unblock_condition=(
-                "The reviewed freeze is approved, an active OSF registration snapshot is "
-                "exported, and protocol/manifest fingerprints match without mutation."
+                "The reviewed freeze matches the active registration, or exact later drift is "
+                "checksum-bound to an approved post-registration evolution disclosure."
             ),
             recommended_action=(
-                "Run the check before any upload or amendment; treat drift as a new review "
-                "decision rather than overwriting the registered state."
+                "Preserve the immutable registration and keep later protocol, manifest and "
+                "source-cutoff changes explicitly outside its preregistered scope."
             ),
             reason_code=(
-                "osf_registration_snapshot_ready"
+                "osf_post_registration_evolution_disclosed"
+                if osf_state == "evolved"
+                else "osf_registration_snapshot_ready"
                 if osf_ready
                 else "osf_registration_fingerprint_drift"
                 if osf_state == "drift"
@@ -269,8 +271,13 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "data/osf_review/registration_decision.json",
                 "data/derived/osf/registration_freeze.json",
                 "data/derived/osf/remote_registration_snapshot.json",
+                "data/osf_review/post_registration_evolution.json",
             ),
-            review_record="data/derived/osf/registration_freeze.json",
+            review_record=(
+                "data/osf_review/post_registration_evolution.json"
+                if osf_state == "evolved"
+                else "data/derived/osf/registration_freeze.json"
+            ),
             external_state="ready" if osf_registered else "pending",
             last_verified_at=_osf_remote_verified_at(repo),
         ),
@@ -499,11 +506,23 @@ def _publication_ready(repo: Path) -> bool:
 
 
 def _osf_registration_state(repo: Path) -> str:
-    from reimburse_atlas.osf_registration import check_registration_drift
+    from reimburse_atlas.osf_registration import (
+        check_registration_drift,
+        reconcile_post_registration_evolution,
+    )
 
     freeze = _read_json(repo / "data/derived/osf/registration_freeze.json")
     snapshot = _read_json(repo / "data/derived/osf/remote_registration_snapshot.json")
-    return cast("str", check_registration_drift(freeze, snapshot)["status"])
+    decision = _read_json(repo / "data/osf_review/post_registration_evolution.json")
+    return cast(
+        "str",
+        reconcile_post_registration_evolution(
+            check_registration_drift(freeze, snapshot),
+            freeze,
+            snapshot,
+            decision,
+        )["status"],
+    )
 
 
 def _osf_remote_registered(repo: Path) -> bool:

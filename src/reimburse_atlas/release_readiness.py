@@ -11,7 +11,10 @@ from typing import Any, Literal, cast
 from reimburse_atlas.dashboard_review import dashboard_review_evidence
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.mapping_study_paths import latest_mapping_study_cycle, mapping_study_paths
-from reimburse_atlas.osf_registration import check_registration_drift
+from reimburse_atlas.osf_registration import (
+    check_registration_drift,
+    reconcile_post_registration_evolution,
+)
 from reimburse_atlas.registry import project_root
 
 ReleaseGateStatus = Literal["pass", "warn", "fail", "blocked", "missing"]
@@ -227,10 +230,20 @@ def _osf_registration_gate(repo: Path) -> ReleaseGateRecord:
     freeze = _read_json(repo / "data/derived/osf/registration_freeze.json")
     remote_path = repo / "data/derived/osf/remote_registration_snapshot.json"
     remote = _read_json(remote_path) if remote_path.is_file() else None
-    result = check_registration_drift(freeze, remote)
+    result = reconcile_post_registration_evolution(
+        check_registration_drift(freeze, remote),
+        freeze,
+        remote,
+        _read_json(repo / "data/osf_review/post_registration_evolution.json"),
+    )
     reasons = cast("list[str]", result.get("reasons", []))
     status = result.get("status")
-    if status == "drift":
+    if status == "evolved":
+        action = (
+            "Preserve the immutable registered scope and disclose all later protocol, manifest "
+            "and source-cutoff changes as post-registration evolution."
+        )
+    elif status == "drift":
         action = (
             "The OSF registration is active and public. Reconcile the current protocol, "
             "manifest and source-cutoff changes against the immutable registered freeze; "
@@ -249,7 +262,7 @@ def _osf_registration_gate(repo: Path) -> ReleaseGateRecord:
     return ReleaseGateRecord(
         id="osf_registration",
         category="release",
-        status="pass" if result.get("status") == "ready" else "blocked",
+        status="pass" if result.get("status") in {"ready", "evolved"} else "blocked",
         required=False,
         evidence=(
             f"status={result.get('status', 'blocked')} "
