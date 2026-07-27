@@ -68,7 +68,7 @@
   "schema_version": "public-status-v1",
   "software": {
     "dashboard_build": "tracked_gate",
-    "repository_release_ready": false,
-    "status": "not_ready"
+    "repository_release_ready": true,
+    "status": "ready"
   }
 }
