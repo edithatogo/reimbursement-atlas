@@ -41,6 +41,8 @@ jobs:
         with:
           persist-credentials: false
       - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
+      - name: Install locked Pixi environment
+        run: pixi install --locked
       - name: Validate Zenodo metadata
         run: pixi run zenodo-metadata && pixi run zenodo-draft
       - name: Validate repository readiness
@@ -70,6 +72,8 @@ jobs:
           persist-credentials: false
           ref: ${{ inputs.release_tag || github.sha }}
       - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
+      - name: Install locked Pixi environment
+        run: pixi install --locked
       - name: Download and verify exact GitHub release assets
         if: inputs.mode != 'draft'
         env:
