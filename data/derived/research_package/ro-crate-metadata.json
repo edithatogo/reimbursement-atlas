@@ -1742,20 +1742,20 @@
     {
       "@id": "data/derived/release_readiness/release_gates.jsonl",
       "@type": "File",
-      "contentSize": 9132,
+      "contentSize": 9093,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "dd6fc516cd36282228dacfa407afe52296e7d0ae44cbecb6a4c3c43bcfeaf7ba"
+      "sha256": "adc90b91deeee3448a715b3f6124dd2cbe949a51e91aaea5a85098aabe11a9bb"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
       "@type": "File",
-      "contentSize": 5564,
+      "contentSize": 5523,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "36ca87b28dac55a795875183137d6d1312e932821b94cd6ec91069debe1eb3bb"
+      "sha256": "ea9d5436bb19504775d1dab7b9a054ece54ae6287728b340ecbfbee9d4df3118"
     },
     {
       "@id": "data/derived/v13_validation_run.json",
@@ -1886,20 +1886,20 @@
     {
       "@id": "data/derived/final_handoff/final_handoff_tasks.jsonl",
       "@type": "File",
-      "contentSize": 12607,
+      "contentSize": 12594,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "final_handoff_tasks",
-      "sha256": "7b5cfc952d0c77dcd9090949b7af3cb5806a0dc8063a55445e72ce08d288a3f0"
+      "sha256": "64512e0416a2328aa52cfc3386763955652e9778f05434234bf7df154b663fa1"
     },
     {
       "@id": "data/derived/final_handoff/final_handoff_tasks.csv",
       "@type": "File",
-      "contentSize": 9270,
+      "contentSize": 9257,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "final_handoff_tasks",
-      "sha256": "7a75bc23405df0467763f46ccb7bf6620f6e1bfdb8675b880d7238a7b06e449b"
+      "sha256": "25da9ac35b51398f69828826161cdd84ebda39c63323b8a77fcd2e86b070e3e2"
     },
     {
       "@id": "data/derived/osf/component_plan.jsonl",
