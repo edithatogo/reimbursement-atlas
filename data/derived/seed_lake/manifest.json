@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 40,
-      "sha256": "0d4d74e911033b07c315e9f94f8e46a4d93361c99bf185f142932d31cad74d82"
+      "sha256": "c322244112b294614ad328cc388a2e8df44c49806b6bb73525823ee53cd0199c"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -401,7 +401,7 @@
       "name": "final_handoff_tasks",
       "parquet_path": "final_handoff_tasks/final_handoff_tasks.parquet",
       "rows": 12,
-      "sha256": "64512e0416a2328aa52cfc3386763955652e9778f05434234bf7df154b663fa1"
+      "sha256": "79247678ac18ff037596a2772cca043fd932b99a8ae06f71e9d19540c4d697f2"
     },
     {
       "csv_path": "osf_component_plan/osf_component_plan.csv",
@@ -449,7 +449,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "8bec3dae5beb665b6fc28ac529dea6b96d008f83db5c6a375bb4b844e18eb53d"
+      "sha256": "2d80f3527bc303c9b02f36741665592e18561a27de598c8ceb5b94da7ea1ae8d"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
