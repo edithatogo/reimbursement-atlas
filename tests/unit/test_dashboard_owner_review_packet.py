@@ -289,6 +289,47 @@ def test_csv_normalization_replaces_only_named_self_receipt() -> None:
     )
 
 
+def test_receipt_normalization_fails_closed_for_malformed_inputs() -> None:
+    malformed = b"{invalid"
+    assert normalize_public_status_dashboard_receipt(malformed, b"{}") == malformed
+    non_object = b"[]"
+    assert normalize_public_status_dashboard_receipt(non_object, b"{}") == non_object
+    missing_blockers = b'{"evidence": {}}'
+    assert (
+        normalize_public_status_dashboard_receipt(missing_blockers, b'{"blockers": []}')
+        == missing_blockers
+    )
+    baseline_with_noise = b'{"blockers": [null, {"id": "dashboard_human_review"}]}'
+    normalized = normalize_public_status_dashboard_receipt(
+        b'{"blockers": [null]}',
+        baseline_with_noise,
+    )
+    assert json.loads(normalized)["blockers"] == [
+        None,
+        {"id": "dashboard_human_review"},
+    ]
+
+    mismatched = b"id,status\nreview,pass\n"
+    assert (
+        normalize_csv_receipt(
+            mismatched,
+            b"name,status\nreview,blocked\n",
+            key="id",
+            value="review",
+        )
+        == mismatched
+    )
+    assert (
+        normalize_csv_receipt(
+            mismatched,
+            b"id,status\nother,blocked\n",
+            key="id",
+            value="review",
+        )
+        == mismatched
+    )
+
+
 def test_owner_packet_does_not_hash_its_dependent_release_summary() -> None:
     """Prevent a cryptographic cycle between review evidence and release readiness."""
     assert Path("data/derived/release_readiness/summary.json") not in PROVENANCE_INPUTS

@@ -154,7 +154,7 @@ def _release_gates_without_dashboard_receipt(content: bytes) -> bytes:
     return output.getvalue().encode("utf-8")
 
 
-def normalize_public_status_dashboard_receipt(  # ruff:ignore[too-many-locals]
+def normalize_public_status_dashboard_receipt(  # ruff:ignore[too-many-locals,too-many-branches]
     content: bytes,
     baseline: bytes,
 ) -> bytes:
@@ -196,11 +196,13 @@ def normalize_public_status_dashboard_receipt(  # ruff:ignore[too-many-locals]
         "evidence_release",
         "research_publication",
     }
-    baseline_receipts = [
-        row
-        for row in baseline_rows
-        if isinstance(row, dict) and cast("dict[str, Any]", row).get("id") in self_derived_blockers
-    ]
+    baseline_receipts: list[dict[str, Any]] = []
+    for row in baseline_rows:
+        if not isinstance(row, dict):
+            continue
+        typed_row = cast("dict[str, Any]", row)
+        if typed_row.get("id") in self_derived_blockers:
+            baseline_receipts.append(typed_row)
     normalized_rows: list[Any] = []
     for row in blocker_rows:
         is_self_derived_receipt = (
