@@ -662,6 +662,21 @@
           "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5/validation_report.json"
         },
         {
+          "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/source_snapshots.csv"
+        },
+        {
+          "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/source_snapshots.jsonl"
+        },
+        {
+          "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/us_cms_clfs_26clabq3_ama_zip_schedule_items.csv"
+        },
+        {
+          "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/us_cms_clfs_26clabq3_ama_zip_schedule_items.jsonl"
+        },
+        {
+          "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/validation_report.json"
+        },
+        {
           "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_hcpcs_level_ii_2026_07_5591fed257e4/us_cms_hcpcs_level_ii_2026_07_schedule_items.csv"
         },
         {
@@ -2006,20 +2021,20 @@
     {
       "@id": "data/derived/evidence_readiness/evidence_readiness.jsonl",
       "@type": "File",
-      "contentSize": 3947,
+      "contentSize": 3929,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "evidence_readiness",
-      "sha256": "7c0eaef27ef6ded99cae71c0210ba963b2cae6c86829527e358d763cf9007be4"
+      "sha256": "579a5d7fa043ea1dbc91a9a6704ac2c0a32c4fcd3ec4c521abd535be31d33ee6"
     },
     {
       "@id": "data/derived/evidence_readiness/evidence_readiness.csv",
       "@type": "File",
-      "contentSize": 2028,
+      "contentSize": 2010,
       "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "evidence_readiness",
-      "sha256": "6dd91e0a6ff9f113b41d3aee06931633ed17f4800ac4d51860f0e0af9dab445e"
+      "sha256": "e5150eed598fffd76dff0f37e64d74fc9c132d6ed621c1852477e78778cdf2cb"
     },
     {
       "@id": "data/derived/evidence_readiness/summary.json",
@@ -2060,29 +2075,29 @@
     {
       "@id": "data/derived/data_dictionary/data_dictionary.jsonl",
       "@type": "File",
-      "contentSize": 160376,
+      "contentSize": 164442,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "data_dictionary",
-      "sha256": "5dec90865365691442b160691de77befa03886dcbdeffd33d6d7d4f7de85cdad"
+      "sha256": "287cd673eaec5675194cd906ff3c489a7b7e03c24d7a4aa830c308b4ac917596"
     },
     {
       "@id": "data/derived/data_dictionary/data_dictionary.csv",
       "@type": "File",
-      "contentSize": 126075,
+      "contentSize": 129480,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "data_dictionary",
-      "sha256": "5815cfbcfe426134204866b92d24a8d57d9b485c326c8ec1a251b3d0f0b4b04a"
+      "sha256": "be2bbbc57625e2a8c3cab4adb8cdded2b76ba58e8fff7fb3f4fc34acc6c11773"
     },
     {
       "@id": "data/derived/data_dictionary/summary.json",
       "@type": "File",
-      "contentSize": 123,
+      "contentSize": 124,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "json",
       "name": "summary",
-      "sha256": "8418da58b1e1b03ac39f4d9cc8fc493c6c5412e9cc1c89bbdba75a16f5bdb7cc"
+      "sha256": "52a89f3b7c8aabfde0cdc78ba57961285d99c53ba086d8f276bd0aae618a1c1e"
     },
     {
       "@id": "infra/huggingface/DATASET_CARD.md",
@@ -2668,6 +2683,51 @@
       "encodingFormat": "json",
       "name": "validation_report",
       "sha256": "d9d81a4a87991d93ff7940e7a200ce6eedcc6de614f9542292697c8d19ad4c00"
+    },
+    {
+      "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/source_snapshots.csv",
+      "@type": "File",
+      "contentSize": 619,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "encodingFormat": "csv",
+      "name": "source_snapshots",
+      "sha256": "40afd269503a3c5b8d3212ac855393ace5720dc10ce46775b4c92ebb8e90e8a0"
+    },
+    {
+      "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/source_snapshots.jsonl",
+      "@type": "File",
+      "contentSize": 692,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "encodingFormat": "jsonl",
+      "name": "source_snapshots",
+      "sha256": "f6ae6788cd1870d5adb87dda7791cb550b0bd00c916f7350e06e38919891f1e6"
+    },
+    {
+      "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/us_cms_clfs_26clabq3_ama_zip_schedule_items.csv",
+      "@type": "File",
+      "contentSize": 1363611,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "encodingFormat": "csv",
+      "name": "us_cms_clfs_26clabq3_ama_zip_schedule_items",
+      "sha256": "a6e9c3a1fae33abaf4bf6d613cd015ca62c06631c42fca39edbf8a92b3fee191"
+    },
+    {
+      "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/us_cms_clfs_26clabq3_ama_zip_schedule_items.jsonl",
+      "@type": "File",
+      "contentSize": 2062675,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "encodingFormat": "jsonl",
+      "name": "us_cms_clfs_26clabq3_ama_zip_schedule_items",
+      "sha256": "0ba715f24ded3f5f3fa489eda502a14d65196846375dc25401e24be458af8d2f"
+    },
+    {
+      "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/validation_report.json",
+      "@type": "File",
+      "contentSize": 522,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "encodingFormat": "json",
+      "name": "validation_report",
+      "sha256": "46bc53085b76e0a73bb6cdbec5bf03cc39ab02c94b68f2679672965af50943b3"
     },
     {
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_hcpcs_level_ii_2026_07_5591fed257e4/us_cms_hcpcs_level_ii_2026_07_schedule_items.csv",

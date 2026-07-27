@@ -1297,6 +1297,36 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/source_snapshots.csv",
+      "dct:format": "csv",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/source_snapshots.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "source_snapshots"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/us_cms_clfs_26clabq3_ama_zip_schedule_items.csv",
+      "dct:format": "csv",
+      "dct:title": "us_cms_clfs_26clabq3_ama_zip_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/us_cms_clfs_26clabq3_ama_zip_schedule_items.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "us_cms_clfs_26clabq3_ama_zip_schedule_items"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/validation_report.json",
+      "dct:format": "json",
+      "dct:title": "validation_report"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/reviewed_source_bundles/snapshot_us_cms_hcpcs_level_ii_2026_07_5591fed257e4/us_cms_hcpcs_level_ii_2026_07_schedule_items.csv",
       "dct:format": "csv",
       "dct:title": "us_cms_hcpcs_level_ii_2026_07_schedule_items"

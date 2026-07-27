@@ -20,7 +20,7 @@ CLFS_URL: HttpUrl = cast(
 )
 
 
-def _parse_clfs_date(value: str | None) -> date | None:
+def _parse_clfs_date(value: object | None) -> date | None:
     cleaned = clean_text(value)
     if cleaned is not None and len(cleaned) == 8 and cleaned.isdigit():
         return date(int(cleaned[:4]), int(cleaned[4:6]), int(cleaned[6:]))
@@ -63,9 +63,7 @@ def parse_cms_clfs_csv(  # ruff:ignore[too-many-locals]
                 for key, value in row.items()
                 if key is not None
             }
-            code = clean_text(
-                first_present(normalised, ("hcpcs", "hcpcs_code", "code", "cpt"))
-            )
+            code = clean_text(first_present(normalised, ("hcpcs", "hcpcs_code", "code", "cpt")))
             if code is None:
                 continue
             label = clean_text(
