@@ -152,7 +152,7 @@ jobs:
           if [[ -n "$CONFIRMATION" ]]; then
             args+=(--confirm "$CONFIRMATION")
           fi
-          PYTHONPATH=src python scripts/zenodo_deposition.py "${args[@]}"
+          pixi run python scripts/zenodo_deposition.py "${args[@]}"
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: zenodo-external-state-${{ github.run_id }}
