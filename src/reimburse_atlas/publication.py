@@ -287,6 +287,27 @@ def _scope_for(path: Path) -> tuple[str, str, bool, str]:
     )
 
 
+def _approved_candidate_checksums(root: Path) -> set[tuple[str, str]]:
+    """Return exact path/checksum pairs approved in the human ledger."""
+    ledger = root / "data" / "licence_review" / "decisions.jsonl"
+    if not ledger.is_file():
+        return set()
+    approved: set[tuple[str, str]] = set()
+    for line in ledger.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        try:
+            decision = json.loads(line)
+        except ValueError:
+            continue
+        if decision.get("decision") == "approved":
+            path = decision.get("relative_path")
+            checksum = decision.get("checksum_sha256")
+            if isinstance(path, str) and isinstance(checksum, str):
+                approved.add((path, checksum))
+    return approved
+
+
 def build_publication_manifest(
     paths: tuple[Path, ...] = DEFAULT_PUBLICATION_PATHS,
     root: Path | None = None,
@@ -296,6 +317,7 @@ def build_publication_manifest(
     artifacts: list[PublicationArtifact] = []
     warnings: list[str] = []
     candidate_paths = tuple(dict.fromkeys((*paths, *reviewed_source_bundle_paths(repo_root))))
+    approved_pairs = _approved_candidate_checksums(repo_root)
     for relative_path in candidate_paths:
         path = repo_root / relative_path
         if not path.exists():
@@ -304,6 +326,12 @@ def build_publication_manifest(
         if contains_raw:
             warnings.append(f"Excluded raw/cache path from release manifest: {relative_path}")
             continue
+        checksum = file_sha256(path)
+        if gate == "public_reuse_review" and (str(relative_path), checksum) in approved_pairs:
+            gate = "permissive_candidate"
+            notes = (
+                "Checksum-bound human approval recorded; publish only the reviewed derived fields."
+            )
         artifacts.append(
             PublicationArtifact(
                 table_name=relative_path.stem,
@@ -311,7 +339,7 @@ def build_publication_manifest(
                 file_format=relative_path.suffix.lstrip(".") or "unknown",
                 row_count=count_rows(path),
                 byte_size=path.stat().st_size,
-                checksum_sha256=file_sha256(path),
+                checksum_sha256=checksum,
                 publication_scope=scope,
                 licence_gate=gate,
                 contains_raw_source_payload=contains_raw,

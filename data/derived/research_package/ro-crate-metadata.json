@@ -753,7 +753,7 @@
       "@id": "data/seed/source_registry.jsonl",
       "@type": "File",
       "contentSize": 41622,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_registry",
       "sha256": "ab9505309ce996c0fe5508408705cdb6b860220f3e7cdbafea237608cbfba6a3"
@@ -762,7 +762,7 @@
       "@id": "data/seed/source_registry.csv",
       "@type": "File",
       "contentSize": 24258,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_registry",
       "sha256": "90928c47a4faa82ac32dff6dfd6d99c323cb3cc6e004e76689df0474e9b60a96"
@@ -771,7 +771,7 @@
       "@id": "data/seed/source_versions.jsonl",
       "@type": "File",
       "contentSize": 14383,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_versions",
       "sha256": "ea1cc62d9a9d97660f5f17c4b794dad198c8b2067ce6fb7ec37ccfff7136c134"
@@ -780,7 +780,7 @@
       "@id": "data/seed/source_versions.csv",
       "@type": "File",
       "contentSize": 9676,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_versions",
       "sha256": "b96e0f7d0ea213d041b7030dfaf1c25642774775527354bc0682beeb3fe75147"
@@ -789,7 +789,7 @@
       "@id": "data/seed/source_files.jsonl",
       "@type": "File",
       "contentSize": 10010,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_files",
       "sha256": "81c94b40ed8f7d22495c07cb913958e636a490d3e5319d8e619580e91c47a760"
@@ -798,7 +798,7 @@
       "@id": "data/seed/source_files.csv",
       "@type": "File",
       "contentSize": 7295,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_files",
       "sha256": "751c622aa623438750fe223af540b227dd4107aaa3c850dd81034bc9c83fcc13"
@@ -807,7 +807,7 @@
       "@id": "data/seed/source_status.jsonl",
       "@type": "File",
       "contentSize": 2968,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_status",
       "sha256": "33bf9797d723910566094bd21ee106410a17210529ef99e1dcf381ee47838b9b"
@@ -816,7 +816,7 @@
       "@id": "data/seed/source_status.csv",
       "@type": "File",
       "contentSize": 2406,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_status",
       "sha256": "513965d60f8c441ab7942306c459c35955e84b5e8a83949d3686475f767f2975"
@@ -825,7 +825,7 @@
       "@id": "data/seed/source_snapshots.jsonl",
       "@type": "File",
       "contentSize": 3596,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_snapshots",
       "sha256": "dadb91bc66b8ef327c43be7961b79bcde30ed43b0d46bd771804d1eed0917543"
@@ -834,7 +834,7 @@
       "@id": "data/seed/source_snapshots.csv",
       "@type": "File",
       "contentSize": 2490,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_snapshots",
       "sha256": "9372fe7ac6a7fe47d4bc4088472c69ebd78d509a96625a8096dce64834d0bc61"
@@ -843,7 +843,7 @@
       "@id": "data/seed/analysis_catalogue.jsonl",
       "@type": "File",
       "contentSize": 18846,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "analysis_catalogue",
       "sha256": "7cd5f14f72fe098b37d73d51520aabc7d9ea2bd121f7065abf0cf834129015e0"
@@ -852,7 +852,7 @@
       "@id": "data/seed/analysis_catalogue.csv",
       "@type": "File",
       "contentSize": 15785,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "analysis_catalogue",
       "sha256": "d0e3ae6ae0bc2c8d1b8ab1044bebcee0f294dc61fdf7578b8d356e90a97d7b30"
@@ -861,7 +861,7 @@
       "@id": "data/seed/analysis_recipes.jsonl",
       "@type": "File",
       "contentSize": 2722,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "analysis_recipes",
       "sha256": "9bda00143dcd89e9809e532d06c27f7e2bbb29acd174aa2d5836a85fdf3c076f"
@@ -870,7 +870,7 @@
       "@id": "data/seed/analysis_recipes.csv",
       "@type": "File",
       "contentSize": 2354,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "analysis_recipes",
       "sha256": "e486814a572f60ddced25a7fd6598ec555bacd8ae9a8e263e0ad889b67642364"
@@ -879,7 +879,7 @@
       "@id": "data/seed/ontology_registry.jsonl",
       "@type": "File",
       "contentSize": 3812,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "ontology_registry",
       "sha256": "ac58b141a78549a29f8c1b1342c1e6d2161b2f719b0c5dac946f9522cd5d521e"
@@ -888,7 +888,7 @@
       "@id": "data/seed/ontology_registry.csv",
       "@type": "File",
       "contentSize": 2596,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "ontology_registry",
       "sha256": "ed362e85e90eb077d8875ce4db6ccb0540fbebf1c0287aa94b95235bbc5fc038"
@@ -897,7 +897,7 @@
       "@id": "data/seed/ontology_concepts.jsonl",
       "@type": "File",
       "contentSize": 2019,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "ontology_concepts",
       "sha256": "6b436a2e7ab7732801aa4e32f8d2e5b962d9d1259e9ceaa62bb499cb237d8e77"
@@ -906,7 +906,7 @@
       "@id": "data/seed/ontology_concepts.csv",
       "@type": "File",
       "contentSize": 1301,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "ontology_concepts",
       "sha256": "2d68491c31cf700b223d7f4960dccf3e84874fc1eb9613131addbec8ffbf0b4e"
@@ -915,7 +915,7 @@
       "@id": "data/seed/graph_nodes.csv",
       "@type": "File",
       "contentSize": 40936,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "graph_nodes",
       "sha256": "54cb91e7f3b9cf574f9e21fa938a6e83e370d5c83d088fe3d71492f54aaf2b76"
@@ -924,7 +924,7 @@
       "@id": "data/seed/graph_edges.csv",
       "@type": "File",
       "contentSize": 41200,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "graph_edges",
       "sha256": "9f53a42a05a26c31d06d2cd0e299f1fc3c0a25950c8a873a5be4ec48db061780"
@@ -933,7 +933,7 @@
       "@id": "data/seed/conductor_tracks.jsonl",
       "@type": "File",
       "contentSize": 10926,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "conductor_tracks",
       "sha256": "c73c83c22e95367e2e01ac6ec09b1c25595fbccb76bc0523d5a307b242cc7584"
@@ -942,7 +942,7 @@
       "@id": "data/seed/conductor_tracks.csv",
       "@type": "File",
       "contentSize": 9089,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "conductor_tracks",
       "sha256": "39f8b8d1a00da5d8ad7d527e0412c0eec0c7dd2b721b500ca0bc7c75ce08966a"
@@ -951,7 +951,7 @@
       "@id": "data/seed/roadmap_functions.jsonl",
       "@type": "File",
       "contentSize": 26791,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "roadmap_functions",
       "sha256": "2100a8cfe5c50651ce0ca689045208d2e43534d5bb9081d7b840a5692830b9b8"
@@ -960,7 +960,7 @@
       "@id": "data/seed/roadmap_functions.csv",
       "@type": "File",
       "contentSize": 20436,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "roadmap_functions",
       "sha256": "7e8b6c7c1f8aba69aa0ed54dc40cc01108901da739727fe0a8166bfeeaa0155a"
@@ -969,7 +969,7 @@
       "@id": "data/seed/dataset_candidates.jsonl",
       "@type": "File",
       "contentSize": 6958,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "dataset_candidates",
       "sha256": "7e4ec2e7964ae6e399951a00ad75ed28a625f0e092f946360a5ddbffc04db8db"
@@ -978,7 +978,7 @@
       "@id": "data/seed/dataset_candidates.csv",
       "@type": "File",
       "contentSize": 4345,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "dataset_candidates",
       "sha256": "0f96cb44526b519f72ae5f5eda42747132b8b55320f632fe584064cf1b35800f"
@@ -987,7 +987,7 @@
       "@id": "data/seed/mapping_resources.jsonl",
       "@type": "File",
       "contentSize": 4667,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "mapping_resources",
       "sha256": "2649a6e66e431c111c472749f7daa4e60b1f88a0f4da001c97e4ba25ff078ea1"
@@ -996,7 +996,7 @@
       "@id": "data/seed/mapping_resources.csv",
       "@type": "File",
       "contentSize": 2929,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "mapping_resources",
       "sha256": "c1868c273c5c17c6de01d1179f5d371708fca16066b20ef944c967ca5d1ebcec"
@@ -1005,7 +1005,7 @@
       "@id": "data/seed/research_questions.jsonl",
       "@type": "File",
       "contentSize": 3002,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "research_questions",
       "sha256": "33c3fe815ba6f5e8f8a7d37027f9683a7de2206a20faa6620d70823e0a5b56bf"
@@ -1014,7 +1014,7 @@
       "@id": "data/seed/research_questions.csv",
       "@type": "File",
       "contentSize": 2369,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "research_questions",
       "sha256": "a470bef54b603b7ae5d5624c4bf3684143ff48793c5bae028181fce8bc0a20c9"
@@ -1023,7 +1023,7 @@
       "@id": "data/seed/output_artifact_plans.jsonl",
       "@type": "File",
       "contentSize": 6093,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "output_artifact_plans",
       "sha256": "4ba8aa91315c949447ab5ca8159c4f7e6f69a3e27c9963bc2aba3725965eec79"
@@ -1032,7 +1032,7 @@
       "@id": "data/seed/output_artifact_plans.csv",
       "@type": "File",
       "contentSize": 4006,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "output_artifact_plans",
       "sha256": "8d3f89d2dede8e5017d28bbd24bfcfd03b959006d8dc22b4eae35b0a4da4881b"
@@ -1041,7 +1041,7 @@
       "@id": "data/seed/runtime_targets.jsonl",
       "@type": "File",
       "contentSize": 2370,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "runtime_targets",
       "sha256": "8fe3fd5ac3ba4621469c3e7db7200a11ab56f22c9f93ce239bf3db171ea65a94"
@@ -1050,7 +1050,7 @@
       "@id": "data/seed/runtime_targets.csv",
       "@type": "File",
       "contentSize": 1701,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "runtime_targets",
       "sha256": "3082e703d3b0227d4a6034d8138f29becae054eddf1821ea467069fe6be6a6b1"
@@ -1059,7 +1059,7 @@
       "@id": "data/seed/source_readiness.csv",
       "@type": "File",
       "contentSize": 6946,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_readiness",
       "sha256": "b2ceebc94293de0dfe2a149995493f079cda510fa830fc27bb40e9e97bea67ee"
@@ -1068,7 +1068,7 @@
       "@id": "data/seed/analysis_readiness.csv",
       "@type": "File",
       "contentSize": 2884,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "analysis_readiness",
       "sha256": "8f992fe105da193fe52c2d036227d2d7a4bb95b96865a38f488f989de1f51b61"
@@ -1077,7 +1077,7 @@
       "@id": "data/seed/source_acquisition_plan.csv",
       "@type": "File",
       "contentSize": 11949,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_acquisition_plan",
       "sha256": "93d98a650ba1d1a14927cd1a95312f90aae6ad18cd58d428d36a70c275b6a172"
@@ -1086,7 +1086,7 @@
       "@id": "data/seed/ingestion_readiness.csv",
       "@type": "File",
       "contentSize": 3482,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "ingestion_readiness",
       "sha256": "fa213b005524b684c7512f5c12d2379413a812cd31dc912ad1c51a89e891f6ed"
@@ -1095,7 +1095,7 @@
       "@id": "data/seed/historical_mbs_archive_targets.jsonl",
       "@type": "File",
       "contentSize": 241941,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "historical_mbs_archive_targets",
       "sha256": "9cb97661f46ef416791a7dd5024610195246e4e20b9b0b0138dae76b03775bbf"
@@ -1104,7 +1104,7 @@
       "@id": "data/derived/historical_sources/historical_mbs_archive_targets.jsonl",
       "@type": "File",
       "contentSize": 241941,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "historical_mbs_archive_targets",
       "sha256": "9cb97661f46ef416791a7dd5024610195246e4e20b9b0b0138dae76b03775bbf"
@@ -1113,7 +1113,7 @@
       "@id": "data/derived/historical_sources/historical_mbs_archive_targets.csv",
       "@type": "File",
       "contentSize": 165598,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "historical_mbs_archive_targets",
       "sha256": "1e9079aea17a80a24df2f2c67632dfcccd2d4d9f26db3e7683d0493da00c5d5a"
@@ -1122,7 +1122,7 @@
       "@id": "data/derived/historical_sources/historical_mbs_review_queue.jsonl",
       "@type": "File",
       "contentSize": 214837,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "historical_mbs_review_queue",
       "sha256": "ab4afc8c308d630af1efb23632f17b333b858588dae52d84118f01b5cc12a667"
@@ -1131,7 +1131,7 @@
       "@id": "data/derived/historical_sources/historical_mbs_review_queue.csv",
       "@type": "File",
       "contentSize": 129600,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "historical_mbs_review_queue",
       "sha256": "22dc5ed7b5cb59fef004ecc8029d20e7e68a905a758e93397515253b60af46a3"
@@ -1140,7 +1140,7 @@
       "@id": "data/derived/historical_sources/summary.json",
       "@type": "File",
       "contentSize": 903,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "summary",
       "sha256": "273dcf283520d911fbbb307e45273f57e4dd4fad185cb325aabd5304549e0b32"
@@ -1149,7 +1149,7 @@
       "@id": "data/derived/historical_sources/historical_source_downloads.jsonl",
       "@type": "File",
       "contentSize": 319309,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "historical_source_downloads",
       "sha256": "b9df22ee7d8fb7ec52461cf9d3299fbed0b4bef32d5c24dedfb8a06a9f88b8d0"
@@ -1158,7 +1158,7 @@
       "@id": "data/derived/historical_sources/historical_source_downloads.csv",
       "@type": "File",
       "contentSize": 222086,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "historical_source_downloads",
       "sha256": "e6ba1d3d6b1045d4081e88b9f2e60e36bfc8a9b0f9482458d6038c3af64bc621"
@@ -1167,7 +1167,7 @@
       "@id": "data/derived/historical_sources/historical_source_downloads_summary.json",
       "@type": "File",
       "contentSize": 383,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "historical_source_downloads_summary",
       "sha256": "d893f2073d1fbd85ae1a4b2441f9eaa3a6883b20b561704a707422d7fcd896e5"
@@ -1176,7 +1176,7 @@
       "@id": "data/derived/historical_sources/historical_source_catalog.jsonl",
       "@type": "File",
       "contentSize": 208825,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "historical_source_catalog",
       "sha256": "69c046066d80ea66f83ad5f3a863513e51e6ce9d797012e639c2e9678d5e4f4a"
@@ -1185,7 +1185,7 @@
       "@id": "data/derived/historical_sources/family_archive_v2/historical_source_downloads.jsonl",
       "@type": "File",
       "contentSize": 131141,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "historical_source_downloads",
       "sha256": "27ed28342da7f5f6651bf1f0dd1dda79e5ec6cbfb5ae80aae515fa3fbde6be2a"
@@ -1194,7 +1194,7 @@
       "@id": "data/derived/historical_sources/family_archive_v2/historical_source_downloads.csv",
       "@type": "File",
       "contentSize": 94694,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "historical_source_downloads",
       "sha256": "271011e149f57f113d1f2853335b04046c61a295e41e3ce37cbc8e38930ae662"
@@ -1203,7 +1203,7 @@
       "@id": "data/derived/historical_sources/family_archive_v2/historical_source_downloads_summary.json",
       "@type": "File",
       "contentSize": 404,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "historical_source_downloads_summary",
       "sha256": "cded7bf86a3e300f7b57be69d6dc375214c73ab9f204d097a0c063e5332db233"
@@ -1212,7 +1212,7 @@
       "@id": "data/derived/processes/historical_source_transformation.bpmn",
       "@type": "File",
       "contentSize": 2163,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "bpmn",
       "name": "historical_source_transformation",
       "sha256": "e07e0a03a42f797ebe7974804a1be6e5815bc54ed6ff3e0f445342450d86277c"
@@ -1221,7 +1221,7 @@
       "@id": "data/derived/vertical_slice/schedule_items.jsonl",
       "@type": "File",
       "contentSize": 9354,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "schedule_items",
       "sha256": "4ad44bf64089bc10d634d74745d272581821e224c13ea66da275d9fbd41ae291"
@@ -1230,7 +1230,7 @@
       "@id": "data/derived/vertical_slice/schedule_items.csv",
       "@type": "File",
       "contentSize": 6428,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "schedule_items",
       "sha256": "80d813b781a03b611a096c25b10825b47d8a82a15d6e0563dd963efc655eeae0"
@@ -1239,7 +1239,7 @@
       "@id": "data/derived/vertical_slice/coverage_decisions.jsonl",
       "@type": "File",
       "contentSize": 1685,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "coverage_decisions",
       "sha256": "2a7590aab50382ea6025a29584861041325ddf83e9550a595af4a496d599ffa5"
@@ -1248,7 +1248,7 @@
       "@id": "data/derived/vertical_slice/coverage_decisions.csv",
       "@type": "File",
       "contentSize": 1436,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "coverage_decisions",
       "sha256": "cbd6cd0f31c85f3d73d6f47b760f0dd540009f7c0b16365da6c02ac9b3f96f7f"
@@ -1257,7 +1257,7 @@
       "@id": "data/derived/vertical_slice/crosswalk_candidates.jsonl",
       "@type": "File",
       "contentSize": 1244,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "crosswalk_candidates",
       "sha256": "21d757ca990fb5ee6f93e3c903ed630cd054abb28e644ed3d8b1acaa0025b496"
@@ -1266,7 +1266,7 @@
       "@id": "data/derived/vertical_slice/crosswalk_candidates.csv",
       "@type": "File",
       "contentSize": 711,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "crosswalk_candidates",
       "sha256": "1d4af3eab36a38ada10c7a4167969cdf67102db9f040b7225ed7dcf018c2e9ac"
@@ -1275,7 +1275,7 @@
       "@id": "data/derived/vertical_slice/crosswalk_review_queue.jsonl",
       "@type": "File",
       "contentSize": 1513,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "crosswalk_review_queue",
       "sha256": "1dc135e2e17c523c91c5804f45d73d89631d7a0fc8613bf83414d6f79f5638b9"
@@ -1284,7 +1284,7 @@
       "@id": "data/derived/vertical_slice/crosswalk_review_queue.csv",
       "@type": "File",
       "contentSize": 886,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "crosswalk_review_queue",
       "sha256": "85274aa28423ff20e2442eae67fa55d6f51267345e8d73b800854bd7d40a341c"
@@ -1293,7 +1293,7 @@
       "@id": "data/derived/vertical_slice/policy_signal_matrix.jsonl",
       "@type": "File",
       "contentSize": 1993,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "policy_signal_matrix",
       "sha256": "c9148b2183c278b1803337900aaaef8268ed6bc62011f45a2beb92b8e7541e63"
@@ -1302,7 +1302,7 @@
       "@id": "data/derived/vertical_slice/policy_signal_matrix.csv",
       "@type": "File",
       "contentSize": 593,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "policy_signal_matrix",
       "sha256": "c18f7172c209fc0b4345a67580b88e6273ec2571d4421f09160eaf16fba2ae3c"
@@ -1311,7 +1311,7 @@
       "@id": "data/derived/vertical_slice/mapping_evidence_matrix.jsonl",
       "@type": "File",
       "contentSize": 3720,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "mapping_evidence_matrix",
       "sha256": "86f90cba77a5f0bf448aff67bdeb16395b489ee7a5ee19cbf89b3f9b8099ef80"
@@ -1320,7 +1320,7 @@
       "@id": "data/derived/vertical_slice/mapping_evidence_matrix.csv",
       "@type": "File",
       "contentSize": 2118,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "mapping_evidence_matrix",
       "sha256": "0b2e017e8479ce933afb3fc8e7a629e07a0efa4f00d502cd75bc7a09dec62406"
@@ -1329,7 +1329,7 @@
       "@id": "data/derived/vertical_slice/gold_standard_mappings.jsonl",
       "@type": "File",
       "contentSize": 554,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "gold_standard_mappings",
       "sha256": "2d9a95678b2720a2bd009de7d59d268a7b317cd7a78e51a9ff724cb2ed3bfb0d"
@@ -1338,7 +1338,7 @@
       "@id": "data/derived/vertical_slice/gold_standard_mappings.csv",
       "@type": "File",
       "contentSize": 364,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "gold_standard_mappings",
       "sha256": "78f34bad612325c417e55484ee570475e05dc22870c9620cb363e1c1d37258cd"
@@ -1347,7 +1347,7 @@
       "@id": "data/derived/vertical_slice/negative_controls.jsonl",
       "@type": "File",
       "contentSize": 556,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "negative_controls",
       "sha256": "53423a9519ad05637c0f35ff3a451e5e2986c3ab23e9bdef32d6a26f3133a664"
@@ -1356,7 +1356,7 @@
       "@id": "data/derived/vertical_slice/negative_controls.csv",
       "@type": "File",
       "contentSize": 375,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "negative_controls",
       "sha256": "95e598984dad4a77bfd2a9a4927349113057f87cbe4054bd5ed6d43e709797a8"
@@ -1365,7 +1365,7 @@
       "@id": "data/derived/vertical_slice/mapping_calibration_cases.jsonl",
       "@type": "File",
       "contentSize": 1540,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "mapping_calibration_cases",
       "sha256": "3c63816bec6b6d5c2b95a7e8924bf7f360d6c76654f7af9aa466bf69890a065f"
@@ -1374,7 +1374,7 @@
       "@id": "data/derived/vertical_slice/mapping_calibration_cases.csv",
       "@type": "File",
       "contentSize": 848,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "mapping_calibration_cases",
       "sha256": "a2db3a84f4664147bad4082baf26d5e26bbfac60e4741e1d5be4aff85b3f9a13"
@@ -1383,7 +1383,7 @@
       "@id": "data/derived/vertical_slice/mapping_calibration_summary.jsonl",
       "@type": "File",
       "contentSize": 517,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "mapping_calibration_summary",
       "sha256": "a59f83e52423f3e85a9a36b66a06fbc0626ce277d25390126294b17a27987534"
@@ -1392,7 +1392,7 @@
       "@id": "data/derived/vertical_slice/mapping_calibration_summary.csv",
       "@type": "File",
       "contentSize": 460,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "mapping_calibration_summary",
       "sha256": "aef631d8013e25637382c7a0d781540ed3b04ca6497c3b14152e871708091a23"
@@ -1401,7 +1401,7 @@
       "@id": "data/derived/vertical_slice/mapping_review_status.jsonl",
       "@type": "File",
       "contentSize": 396,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "mapping_review_status",
       "sha256": "4101977b7e94d075a3d2c9cc4d54c027846785422f4b150cb87b4fc187e9f32d"
@@ -1410,7 +1410,7 @@
       "@id": "data/derived/vertical_slice/mapping_review_status.csv",
       "@type": "File",
       "contentSize": 353,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "mapping_review_status",
       "sha256": "d02be9bc3a37a42812f481259f891055b0f0f41fedb350bced8a49d3e14037bc"
@@ -1419,7 +1419,7 @@
       "@id": "data/derived/manual_acquisition_pack/acquisition_steps.jsonl",
       "@type": "File",
       "contentSize": 11166,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "acquisition_steps",
       "sha256": "bc6051876c9d07b933a2d7832b78e73763b1dd3d2c1ef8671c8bdd5d43b46dcd"
@@ -1428,7 +1428,7 @@
       "@id": "data/derived/manual_acquisition_pack/acquisition_steps.csv",
       "@type": "File",
       "contentSize": 8337,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "acquisition_steps",
       "sha256": "2f4a0520326aa1b06f8874b789514590c507cf6da23aff0852c05cd3fe8c3f7c"
@@ -1437,7 +1437,7 @@
       "@id": "data/derived/policy_demonstrators/policy_briefs.jsonl",
       "@type": "File",
       "contentSize": 2614,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "policy_briefs",
       "sha256": "1cbe9e854648efa6014cfee97e9d63494457a56634476fae92753c8dd634ddd5"
@@ -1446,7 +1446,7 @@
       "@id": "data/derived/policy_demonstrators/policy_briefs.csv",
       "@type": "File",
       "contentSize": 2401,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "policy_briefs",
       "sha256": "667144978164209d3c965d6c36b75f850ad1d010541f34b615cfdadb5ff83e59"
@@ -1455,7 +1455,7 @@
       "@id": "data/derived/policy_demonstrators/policy_briefs.md",
       "@type": "File",
       "contentSize": 2242,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "md",
       "name": "policy_briefs",
       "sha256": "614e1b459b729d0b51a924acfa53907a8f32ce188e9010fa307546e61537ff86"
@@ -1464,7 +1464,7 @@
       "@id": "data/derived/policy_demonstrators/summary.json",
       "@type": "File",
       "contentSize": 167,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "summary",
       "sha256": "599c4fa91d399e08255461e37ea8187a67d97f5ff803140291cc846c4b64a7de"
@@ -1473,7 +1473,7 @@
       "@id": "data/derived/external_quality_gates.json",
       "@type": "File",
       "contentSize": 4713,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "external_quality_gates",
       "sha256": "7de378d3df18e0a7e3af98633a58d4dab242f4429dd33148d7107349abb3f000"
@@ -1482,7 +1482,7 @@
       "@id": "data/derived/external_quality_gates.csv",
       "@type": "File",
       "contentSize": 3318,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "external_quality_gates",
       "sha256": "87fd60746e06d10315d03441b5d67110389e015c7265c39e6d74d91e2ed9b6bb"
@@ -1491,7 +1491,7 @@
       "@id": "data/derived/optional_toolchain_installs.json",
       "@type": "File",
       "contentSize": 1459,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "optional_toolchain_installs",
       "sha256": "29237651e9dc8499b1ae57ebaa40fddbb8e42ce361bb7cb978a8deab2510826d"
@@ -1500,7 +1500,7 @@
       "@id": "data/derived/optional_toolchain_installs.csv",
       "@type": "File",
       "contentSize": 866,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "optional_toolchain_installs",
       "sha256": "b2907e30325772e65e63a482f7494302b77cbf396e650bc0c5aa9da891f54234"
@@ -1509,7 +1509,7 @@
       "@id": "data/derived/toolchain/typescript_compatibility.json",
       "@type": "File",
       "contentSize": 389,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "typescript_compatibility",
       "sha256": "91b6fd90b291b643ca71189387f5f491e1ccb19e4ee05fcbdc386c6052b223d3"
@@ -1518,7 +1518,7 @@
       "@id": "data/derived/toolchain/typescript_compatibility.md",
       "@type": "File",
       "contentSize": 345,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "md",
       "name": "typescript_compatibility",
       "sha256": "eaecab282059025d545ca31f26f40abeb890fa10cd7afb029619d4a1ab67c562"
@@ -1617,7 +1617,7 @@
       "@id": "data/derived/sbom/sbom_summary.jsonl",
       "@type": "File",
       "contentSize": 428,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "sbom_summary",
       "sha256": "0b5c1f02504f28263a9cfda3e10d4f5b8356cbd9a61dbf8ef2e6619c1c0cd28c"
@@ -1626,7 +1626,7 @@
       "@id": "data/derived/sbom/sbom_summary.csv",
       "@type": "File",
       "contentSize": 296,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "sbom_summary",
       "sha256": "2a5ca1d2c7f3faff7d02fc9821149410ebe8e598069a174ac2d41930205d34ba"
@@ -1635,7 +1635,7 @@
       "@id": "data/derived/sbom/cyclonedx-python.json",
       "@type": "File",
       "contentSize": 123852,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "cyclonedx-python",
       "sha256": "6859ca4b13c940cc5efea6e5d975d8c1aa8b92006d1a57d292c94ab3ed5d4585"
@@ -1644,7 +1644,7 @@
       "@id": "data/derived/sbom/cyclonedx-dashboard.json",
       "@type": "File",
       "contentSize": 276437,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "cyclonedx-dashboard",
       "sha256": "69ad4d653b815ddf4c162149278766cd6e17e00bb88729fb0a973e1b486d4077"
@@ -1689,7 +1689,7 @@
       "@id": "data/derived/architecture/import_edges.jsonl",
       "@type": "File",
       "contentSize": 64911,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "import_edges",
       "sha256": "687f9deb1358d9f1a148f38ffefeabb85142e87d26f0d02cd6d53ceebe9787f3"
@@ -1698,7 +1698,7 @@
       "@id": "data/derived/architecture/import_edges.csv",
       "@type": "File",
       "contentSize": 34343,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "import_edges",
       "sha256": "2e2eb37207762eef4941ed2399742389aed1d97f4ea1fe0b35498f8898b40fbc"
@@ -1707,7 +1707,7 @@
       "@id": "data/derived/architecture/layer_policy.jsonl",
       "@type": "File",
       "contentSize": 5060,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "layer_policy",
       "sha256": "caa627c099eafdece7fec283e56fa74e4087a50445ab03a1f91c8806ea9c901f"
@@ -1716,7 +1716,7 @@
       "@id": "data/derived/architecture/layer_policy.csv",
       "@type": "File",
       "contentSize": 2583,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "layer_policy",
       "sha256": "17ee2b5fb730b52f9bdfe89a8435eff79f96f8815b12b9051da71d8b9c566679"
@@ -1725,7 +1725,7 @@
       "@id": "data/derived/architecture/import_cycles.jsonl",
       "@type": "File",
       "contentSize": 0,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "import_cycles",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -1734,7 +1734,7 @@
       "@id": "data/derived/architecture/import_cycles.csv",
       "@type": "File",
       "contentSize": 6,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "import_cycles",
       "sha256": "45fd2f9df187bc411dc80df5c4c4844ac00f4dd69bc69453f1893a5d143433d6"
@@ -1761,7 +1761,7 @@
       "@id": "data/derived/v13_validation_run.json",
       "@type": "File",
       "contentSize": 1043,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "v13_validation_run",
       "sha256": "620d8f5ec073734fb58343b4d497b27d4198aa426033b1ce29fada6f0e1d9481"
@@ -1770,7 +1770,7 @@
       "@id": "data/derived/source_downloads/download_plans.jsonl",
       "@type": "File",
       "contentSize": 11931,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "download_plans",
       "sha256": "dc936a08ee4f1346072e520475db003a7419eadd89e7b37ccc0a5ca50a3a5d24"
@@ -1779,7 +1779,7 @@
       "@id": "data/derived/source_downloads/download_plans.csv",
       "@type": "File",
       "contentSize": 9542,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "download_plans",
       "sha256": "3034e0ddad3611abaf040ed787eca6b5d530cdf7d0ceb51a3512222733460e1a"
@@ -1806,7 +1806,7 @@
       "@id": "data/derived/source_downloads/pbs_api_acquisition.jsonl",
       "@type": "File",
       "contentSize": 8023,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "pbs_api_acquisition",
       "sha256": "400bb3cabe5e98f458dfbdea963f886dba50d308192bf1e9d8dc193a54f7482b"
@@ -1815,7 +1815,7 @@
       "@id": "data/derived/source_downloads/pbs_api_acquisition.csv",
       "@type": "File",
       "contentSize": 7087,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "pbs_api_acquisition",
       "sha256": "1f9710f32703deddb208d3dffcbf0111ab4861f9387532792d511757b385d1f9"
@@ -1824,7 +1824,7 @@
       "@id": "data/derived/source_downloads/pbs_api_acquisition_summary.json",
       "@type": "File",
       "contentSize": 179,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "pbs_api_acquisition_summary",
       "sha256": "5a1f6c7a02c9261557a0a485ddd840b55188e433b80b405223a7563f7ab5c52f"
@@ -1833,7 +1833,7 @@
       "@id": "data/derived/source_validation/source_content_validation.jsonl",
       "@type": "File",
       "contentSize": 7070,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_content_validation",
       "sha256": "cf1dfb8c94f484fa77281eda81f3025570a80819ad05fe8a66bf6a33a478aa64"
@@ -1842,7 +1842,7 @@
       "@id": "data/derived/source_validation/source_content_validation.csv",
       "@type": "File",
       "contentSize": 4323,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_content_validation",
       "sha256": "916732e9e6816161ea757cf9187a3107fb527f6020aa4dce87cbf44f6995ec6f"
@@ -1851,7 +1851,7 @@
       "@id": "data/derived/source_contracts/source_contract_validation.jsonl",
       "@type": "File",
       "contentSize": 8542,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_contract_validation",
       "sha256": "471ad53481a4688592b3af7b7dca30690a70f084f8073c469b05146e1c5fa8d8"
@@ -1860,7 +1860,7 @@
       "@id": "data/derived/source_contracts/source_contract_validation.csv",
       "@type": "File",
       "contentSize": 6101,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_contract_validation",
       "sha256": "6436c78fd3d291ae63cb777ba351bf3d14ca873b28467d463eb0e806bb085146"
@@ -1869,7 +1869,7 @@
       "@id": "data/derived/github_project/github_project_items.jsonl",
       "@type": "File",
       "contentSize": 171798,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "github_project_items",
       "sha256": "323d8059008d316c5d3a2dc1c011f51853d512d0583f2e3c93ad94dbb7036813"
@@ -1878,7 +1878,7 @@
       "@id": "data/derived/github_project/github_project_items.csv",
       "@type": "File",
       "contentSize": 129592,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "github_project_items",
       "sha256": "1e6a874324d4ae6b17fd2cc29575ef972e5b87a67440f24f8eac93506a84182b"
@@ -1905,7 +1905,7 @@
       "@id": "data/derived/osf/component_plan.jsonl",
       "@type": "File",
       "contentSize": 5811,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "component_plan",
       "sha256": "41cf60a7c14b5689e633a3d9aff337357c0ed323a72130c40a4685e8b88722e5"
@@ -1914,7 +1914,7 @@
       "@id": "data/derived/osf/component_plan.csv",
       "@type": "File",
       "contentSize": 3628,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "component_plan",
       "sha256": "49003bc65c28d5019562a2242dad73c1b0656ca88ab940f3070efaef38704ddd"
@@ -1923,7 +1923,7 @@
       "@id": "data/derived/osf/osf_publication_manifest.json",
       "@type": "File",
       "contentSize": 318,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "osf_publication_manifest",
       "sha256": "5400adfe291aad79924af70c28a03432f7ede4fd52b5f3e48716f78e83601a60"
@@ -1932,7 +1932,7 @@
       "@id": "data/derived/osf/preprint_checklist.md",
       "@type": "File",
       "contentSize": 2102,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "md",
       "name": "preprint_checklist",
       "sha256": "5820cf920ad5070b4c44e4593eea96b6fd1771df2d9fe6f61a4d4ee51c23bb97"
@@ -1941,7 +1941,7 @@
       "@id": "data/derived/osf/sync_manifest.jsonl",
       "@type": "File",
       "contentSize": 5528,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "sync_manifest",
       "sha256": "b98b302f7f101a0660d1eebf322b17d9750f3ccde686afd79fa649bef3c72622"
@@ -1950,7 +1950,7 @@
       "@id": "data/derived/protocols/protocol_status.jsonl",
       "@type": "File",
       "contentSize": 3108,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "protocol_status",
       "sha256": "b5fbe3d7589e70d9ea7ccbff223e82cdb8a220d6a430bbd998bf261009a7b27b"
@@ -1959,7 +1959,7 @@
       "@id": "data/derived/protocols/protocol_status.csv",
       "@type": "File",
       "contentSize": 1859,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "protocol_status",
       "sha256": "5d1cf9e0debc300d5dd465f7ac974ffc4feaf19e115ee0938f063e278ec0b1ea"
@@ -1968,7 +1968,7 @@
       "@id": "data/derived/protocols/summary.json",
       "@type": "File",
       "contentSize": 129,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "summary",
       "sha256": "66053e1bab589c2084833101c7defa17a1f94b2c41a7f0bd7e1b03e28557b4dc"
@@ -1977,7 +1977,7 @@
       "@id": "data/derived/roadmap_linkages/research_dataset_linkages.jsonl",
       "@type": "File",
       "contentSize": 21809,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "research_dataset_linkages",
       "sha256": "c3a00a04369115ef701d2a488334c729d162764c9409dbbbe914adcb8190d224"
@@ -1986,7 +1986,7 @@
       "@id": "data/derived/roadmap_linkages/research_dataset_linkages.csv",
       "@type": "File",
       "contentSize": 12644,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "research_dataset_linkages",
       "sha256": "7e331be5b7d4c0f80753cffe01fb477cfc9e5f76098be2cc6559f3e3868159c0"
@@ -1995,7 +1995,7 @@
       "@id": "data/derived/data_quality/data_quality_checks.jsonl",
       "@type": "File",
       "contentSize": 15129,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "data_quality_checks",
       "sha256": "d65c6e08de37fa65795b640bef4e613e82baeac938052e1480e9d5a51ccae0e3"
@@ -2004,7 +2004,7 @@
       "@id": "data/derived/data_quality/data_quality_checks.csv",
       "@type": "File",
       "contentSize": 8714,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "data_quality_checks",
       "sha256": "493e3aa755b81ac44949e22f31ba5b26fd38f7adf75011eb584a6e42aa9340a3"
@@ -2013,7 +2013,7 @@
       "@id": "data/derived/data_quality/summary.json",
       "@type": "File",
       "contentSize": 106,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "summary",
       "sha256": "895719b62c45a6fb64f8f3e786a469f0e16122cb7c7e520854a7ba548af12a83"
@@ -2022,7 +2022,7 @@
       "@id": "data/derived/evidence_readiness/evidence_readiness.jsonl",
       "@type": "File",
       "contentSize": 3982,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "evidence_readiness",
       "sha256": "ac44fbb5fc6998bdc047d30a0611303b7d5f49030df6a00cf5f27e7c171c23de"
@@ -2031,7 +2031,7 @@
       "@id": "data/derived/evidence_readiness/evidence_readiness.csv",
       "@type": "File",
       "contentSize": 2065,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "evidence_readiness",
       "sha256": "61c2dd74d33323e3c62a53a205cf588a06dc595e16a083bcc3adfc5e91f271dd"
@@ -2040,7 +2040,7 @@
       "@id": "data/derived/evidence_readiness/summary.json",
       "@type": "File",
       "contentSize": 150,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "summary",
       "sha256": "05264e92d9df287227c2fb9f87980b1d33c71a325cad0cb2df3c20ecc2bb76e7"
@@ -2103,7 +2103,7 @@
       "@id": "infra/huggingface/DATASET_CARD.md",
       "@type": "File",
       "contentSize": 718,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "md",
       "name": "DATASET_CARD",
       "sha256": "4eb977cf482bb0bc038e3291179cec63ad1fd2384b7fdeab4f587806b4c7fe18"
@@ -2112,7 +2112,7 @@
       "@id": "infra/huggingface/CROISSANT.json",
       "@type": "File",
       "contentSize": 956,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "CROISSANT",
       "sha256": "ee8c2276069f52613415c89432f88b47503d59f2dbc23840471a7d6e9937de24"
@@ -2121,7 +2121,7 @@
       "@id": "infra/huggingface/README.md",
       "@type": "File",
       "contentSize": 483,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "md",
       "name": "README",
       "sha256": "7641aa8c0eb3ac7a09e91177571a8d7a1cea57e214cb9b7c3495893c996a7744"
@@ -2130,7 +2130,7 @@
       "@id": "infra/huggingface/SPACE_README.md",
       "@type": "File",
       "contentSize": 454,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "md",
       "name": "SPACE_README",
       "sha256": "fa4629ddb8411ac6258dea8a2c5cddccba84cf408b26b578aa20643bf07af703"
@@ -2139,7 +2139,7 @@
       "@id": "data/derived/mojo/mojo_parity_report.json",
       "@type": "File",
       "contentSize": 892,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "mojo_parity_report",
       "sha256": "c4cef71aba8241095f0eef5f76b500d97ba1beac7e48430b9e4de70437114f2b"
@@ -2148,7 +2148,7 @@
       "@id": "data/derived/mojo/fuzzy_prefilter_benchmark.json",
       "@type": "File",
       "contentSize": 852,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "fuzzy_prefilter_benchmark",
       "sha256": "b9504a401797fbb77ae8460ac4138ad60293a96a05ebeed5b27a48ce77396951"
@@ -2157,7 +2157,7 @@
       "@id": "data/derived/v14_validation_run.json",
       "@type": "File",
       "contentSize": 876,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "v14_validation_run",
       "sha256": "3f1a7468de7430c99ea3b70e3a5bccf32679812d2efa3ee8b4c016581cc4962a"
@@ -2166,7 +2166,7 @@
       "@id": "data/derived/v15_validation_run.json",
       "@type": "File",
       "contentSize": 1795,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "v15_validation_run",
       "sha256": "5be43a4476a0c28dcb45d70d11f3e9300ac9baf90635e4daae8b9e48ba870aca"
@@ -2175,7 +2175,7 @@
       "@id": "data/derived/v16_validation_run.json",
       "@type": "File",
       "contentSize": 2247,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "v16_validation_run",
       "sha256": "fc2a61a691238ed8414fad592e6b82024e6737ef18d8e5146d19292cf82b7202"
@@ -2184,7 +2184,7 @@
       "@id": "data/derived/v17_validation_run.json",
       "@type": "File",
       "contentSize": 2569,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "v17_validation_run",
       "sha256": "4810e161e912676803777b1bc30aa061f430aa724a8f6c4a5bcca41413883285"
@@ -2193,7 +2193,7 @@
       "@id": "data/derived/v18_validation_run.json",
       "@type": "File",
       "contentSize": 2054,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "v18_validation_run",
       "sha256": "b9572f64b8bd517fb24755944a29e88dde7b20aae600c2574aa525feeb1aefcc"
@@ -2202,7 +2202,7 @@
       "@id": "data/derived/reviewed_source_bundles/au_mbs_20260701_xml/au_mbs_20260701_xml_schedule_items.csv",
       "@type": "File",
       "contentSize": 7668633,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "au_mbs_20260701_xml_schedule_items",
       "sha256": "1aba7f863c85449baf0c8c895b8f2a7dbf5c9c6c76c4ffcf15e633b94aaed0af"
@@ -2211,7 +2211,7 @@
       "@id": "data/derived/reviewed_source_bundles/au_mbs_20260701_xml/au_mbs_20260701_xml_schedule_items.jsonl",
       "@type": "File",
       "contentSize": 9578786,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "au_mbs_20260701_xml_schedule_items",
       "sha256": "f4b79bee4036a0cc551a7856408b343d4b6378c96f547936c4ecc713c9809058"
@@ -2220,7 +2220,7 @@
       "@id": "data/derived/reviewed_source_bundles/au_mbs_20260701_xml/source_contract_validation.csv",
       "@type": "File",
       "contentSize": 590,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_contract_validation",
       "sha256": "6d28e8313698142814595ba93412b037fac2e21f5162390428c8fc9520de8623"
@@ -2229,7 +2229,7 @@
       "@id": "data/derived/reviewed_source_bundles/au_mbs_20260701_xml/source_contract_validation.jsonl",
       "@type": "File",
       "contentSize": 627,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_contract_validation",
       "sha256": "f40598d96f1444c0dc96a7bf1d75570fc971aff5a6be5fcbee37ecdb3b83be35"
@@ -2238,7 +2238,7 @@
       "@id": "data/derived/reviewed_source_bundles/au_mbs_20260701_xml/summary.json",
       "@type": "File",
       "contentSize": 123,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "summary",
       "sha256": "8e78f18add230fb4a2aa130f7a461b6ef813efe1a0898b3bd7bb2f0e7dcfb501"
@@ -2247,7 +2247,7 @@
       "@id": "data/derived/reviewed_source_bundles/au_mbs_20260701_xml/validation_report.json",
       "@type": "File",
       "contentSize": 432,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "validation_report",
       "sha256": "d9dbf63c0a4714c9ade25bb862d144169a38a1b0d8807577a745db91ac9abc38"
@@ -2256,7 +2256,7 @@
       "@id": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/au_mbs_20260701_txt_pair_schedule_items.csv",
       "@type": "File",
       "contentSize": 14300018,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "au_mbs_20260701_txt_pair_schedule_items",
       "sha256": "563c4396fd9ba2601ae4673cc549ef2b7dd9a441c58ecb995a9b67eb494fa1e5"
@@ -2265,7 +2265,7 @@
       "@id": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/au_mbs_20260701_txt_pair_schedule_items.jsonl",
       "@type": "File",
       "contentSize": 19115700,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "au_mbs_20260701_txt_pair_schedule_items",
       "sha256": "d9fcfd875dfb97ae4550f53f823b9001e6f885d2f0b84c47705d29de91b8567c"
@@ -2274,7 +2274,7 @@
       "@id": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/source_contract_validation.csv",
       "@type": "File",
       "contentSize": 1547,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_contract_validation",
       "sha256": "f98d671ee80cc9dd6267d6276bf16710b2af79c3764bb575e7516210f89e08ac"
@@ -2283,7 +2283,7 @@
       "@id": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/source_contract_validation.jsonl",
       "@type": "File",
       "contentSize": 1771,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_contract_validation",
       "sha256": "5d873a02fb6d3f6414b0b68d85cf8329fb73f4c26a68136a6a92523d2abfd1e5"
@@ -2292,7 +2292,7 @@
       "@id": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/source_snapshots.csv",
       "@type": "File",
       "contentSize": 1090,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_snapshots",
       "sha256": "289b3e22467be4bd8abf24367a233371f61ee2937a4836e6e4862fb065ab35ab"
@@ -2301,7 +2301,7 @@
       "@id": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/source_snapshots.jsonl",
       "@type": "File",
       "contentSize": 1372,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_snapshots",
       "sha256": "a6d0beffa419f5914d4daca0573da32be1ba5ec871c7363245143a87ba3824de"
@@ -2310,7 +2310,7 @@
       "@id": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/summary.json",
       "@type": "File",
       "contentSize": 123,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "summary",
       "sha256": "25ca37396910e71fa7f588ee45cdc6ea7ac266f57c1f765fe175df316c254a63"
@@ -2319,7 +2319,7 @@
       "@id": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/validation_report.json",
       "@type": "File",
       "contentSize": 937,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "validation_report",
       "sha256": "8ae40dd1a2d37d09c6d28a898305ea71714c32052b7ec6d2770d36efdd350946"
@@ -2328,7 +2328,7 @@
       "@id": "data/derived/reviewed_source_bundles/bundle_au_pbs_api_v3_current_month_648b7b12ceb319f1/au_pbs_api_v3_current_month_schedule_items.csv",
       "@type": "File",
       "contentSize": 3909951,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "au_pbs_api_v3_current_month_schedule_items",
       "sha256": "15e5c7a3c41b545ed90d0d1bf21aa9849bd6eb1bad64cbd2fbc180b3d0333de8"
@@ -2337,7 +2337,7 @@
       "@id": "data/derived/reviewed_source_bundles/bundle_au_pbs_api_v3_current_month_648b7b12ceb319f1/au_pbs_api_v3_current_month_schedule_items.jsonl",
       "@type": "File",
       "contentSize": 6095362,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "au_pbs_api_v3_current_month_schedule_items",
       "sha256": "0c613d97430e441e8eefcca09332800ccac68f177d144e6fb4b11a1c94d83b3a"
@@ -2346,7 +2346,7 @@
       "@id": "data/derived/reviewed_source_bundles/bundle_au_pbs_api_v3_current_month_648b7b12ceb319f1/source_snapshots.csv",
       "@type": "File",
       "contentSize": 1353,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_snapshots",
       "sha256": "db244b96ebaf00a347aea8478b595bd9de156f7c528e8bad005171b705258bf9"
@@ -2355,7 +2355,7 @@
       "@id": "data/derived/reviewed_source_bundles/bundle_au_pbs_api_v3_current_month_648b7b12ceb319f1/source_snapshots.jsonl",
       "@type": "File",
       "contentSize": 1844,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_snapshots",
       "sha256": "3eac52516e4bd51261f5a64a6f2331b9541ba5ad5f3d96b282fc12d54edeba78"
@@ -2364,7 +2364,7 @@
       "@id": "data/derived/reviewed_source_bundles/bundle_au_pbs_api_v3_current_month_648b7b12ceb319f1/validation_report.json",
       "@type": "File",
       "contentSize": 974,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "validation_report",
       "sha256": "e4c603c12043f0f540a1b039c7e7727d2276fa4d8bfda0ee770723fbdce5d253"
@@ -2373,7 +2373,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_ca_on_ohip_master_text_2026_06_02_7607f0bbb2c1/ca_on_ohip_master_text_2026_06_02_schedule_items.csv",
       "@type": "File",
       "contentSize": 4276949,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "ca_on_ohip_master_text_2026_06_02_schedule_items",
       "sha256": "0825e75ebb480d9fd328ed2ecb85487e423147b54ff0e3f8cc7d01737d0008bd"
@@ -2382,7 +2382,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_ca_on_ohip_master_text_2026_06_02_7607f0bbb2c1/ca_on_ohip_master_text_2026_06_02_schedule_items.jsonl",
       "@type": "File",
       "contentSize": 6754060,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "ca_on_ohip_master_text_2026_06_02_schedule_items",
       "sha256": "8ce28d72b5c47806f92a98a63ee7c9f0c6e40103d144d7ca5107bd5c6e3a174f"
@@ -2391,7 +2391,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_ca_on_ohip_master_text_2026_06_02_7607f0bbb2c1/source_snapshots.csv",
       "@type": "File",
       "contentSize": 597,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_snapshots",
       "sha256": "4ec90619d50413412cc7dd40ad745c96abd6dc59d5ee59f9b8587cfbee6e66b4"
@@ -2400,7 +2400,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_ca_on_ohip_master_text_2026_06_02_7607f0bbb2c1/source_snapshots.jsonl",
       "@type": "File",
       "contentSize": 670,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_snapshots",
       "sha256": "4a84e09e4165fa8146359088dfc2cc1cc8bb089e49a2f35fe7ab42b7a7187e55"
@@ -2409,7 +2409,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_ca_on_ohip_master_text_2026_06_02_7607f0bbb2c1/validation_report.json",
       "@type": "File",
       "contentSize": 516,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "validation_report",
       "sha256": "5c3f7e60c09dc4b70bbc6d867c625d4908ccd019a22982d117a89cb6a61f0756"
@@ -2418,7 +2418,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_hpo_current_20260723_3b6465656953/hpo_current_20260723_schedule_items.csv",
       "@type": "File",
       "contentSize": 11812774,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "hpo_current_20260723_schedule_items",
       "sha256": "03c7180bfcc85648f357a8ff55490eca4ac468b2e469107ffa4a3c6c0615a786"
@@ -2427,7 +2427,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_hpo_current_20260723_3b6465656953/hpo_current_20260723_schedule_items.jsonl",
       "@type": "File",
       "contentSize": 18450700,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "hpo_current_20260723_schedule_items",
       "sha256": "62b5797ed86396877650fb69963685ce4c3218a15f87de1ce1d524819373c8df"
@@ -2436,7 +2436,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_hpo_current_20260723_3b6465656953/source_snapshots.csv",
       "@type": "File",
       "contentSize": 546,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_snapshots",
       "sha256": "6610701da8dbf33780eaf220a5b197853740c7583e226454ec000f728a852bb2"
@@ -2445,7 +2445,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_hpo_current_20260723_3b6465656953/source_snapshots.jsonl",
       "@type": "File",
       "contentSize": 619,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_snapshots",
       "sha256": "80f3f471390269b41c65fa37c9e22ac1135c8b4775bedda63579dc36f3391a70"
@@ -2454,7 +2454,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_hpo_current_20260723_3b6465656953/validation_report.json",
       "@type": "File",
       "contentSize": 494,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "validation_report",
       "sha256": "9fcc4c67cb81fd9ef0f6de72b7947773e821ffe9b7949be7a1a55ac55ab4c509"
@@ -2463,7 +2463,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_nz_pharmac_schedule_2026_07_313bbcec3002/nz_pharmac_schedule_2026_07_schedule_items.csv",
       "@type": "File",
       "contentSize": 1395643,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "nz_pharmac_schedule_2026_07_schedule_items",
       "sha256": "dcba149cd26776980c603200c700957b2c223c06c54be6a2a2bb3171509f1722"
@@ -2472,7 +2472,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_nz_pharmac_schedule_2026_07_313bbcec3002/nz_pharmac_schedule_2026_07_schedule_items.jsonl",
       "@type": "File",
       "contentSize": 2207917,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "nz_pharmac_schedule_2026_07_schedule_items",
       "sha256": "3d5a40ca3a0ef5923866e630780a4abe785e3ab4525f0d2f6dc47bd6610b7acb"
@@ -2481,7 +2481,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_nz_pharmac_schedule_2026_07_313bbcec3002/source_snapshots.csv",
       "@type": "File",
       "contentSize": 584,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_snapshots",
       "sha256": "ee91ddf14434d6e5f9cbf79960fc76de02e7abaa61398a9c52c5eb96f47411bc"
@@ -2490,7 +2490,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_nz_pharmac_schedule_2026_07_313bbcec3002/source_snapshots.jsonl",
       "@type": "File",
       "contentSize": 657,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_snapshots",
       "sha256": "ebf60d44c75ec71a142ebd39d3b0ee5a60dff324532105be3702e1df5eae6e76"
@@ -2499,7 +2499,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_nz_pharmac_schedule_2026_07_313bbcec3002/validation_report.json",
       "@type": "File",
       "contentSize": 505,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "validation_report",
       "sha256": "fa88b1b70644579365077b2de2ba81dc38e361d0a057bc644d320b78a2e728b8"
@@ -2508,7 +2508,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_rxnorm_cpc_20260706_4dda3b83bb67/rxnorm_cpc_20260706_schedule_items.csv",
       "@type": "File",
       "contentSize": 17725931,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "rxnorm_cpc_20260706_schedule_items",
       "sha256": "e97159c114f7f1c447f632d390100a0484e5430a275c7851929f8f5059456ea9"
@@ -2517,7 +2517,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_rxnorm_cpc_20260706_4dda3b83bb67/rxnorm_cpc_20260706_schedule_items.jsonl",
       "@type": "File",
       "contentSize": 27822443,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "rxnorm_cpc_20260706_schedule_items",
       "sha256": "29a827543e367d37f1a75ccc86b3b7e971a14b5fecf50ae9622807703ca01bf3"
@@ -2526,7 +2526,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_rxnorm_cpc_20260706_4dda3b83bb67/source_snapshots.csv",
       "@type": "File",
       "contentSize": 572,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_snapshots",
       "sha256": "1b438854aba2a56b6752ce7b307cd0bf528a4f3aeba49ff1a1274cb882a0ad03"
@@ -2535,7 +2535,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_rxnorm_cpc_20260706_4dda3b83bb67/source_snapshots.jsonl",
       "@type": "File",
       "contentSize": 645,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_snapshots",
       "sha256": "0c455f94bdbcd9c8e778be97724d589e68074965d030644d6179fe3e67f64740"
@@ -2544,7 +2544,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_rxnorm_cpc_20260706_4dda3b83bb67/validation_report.json",
       "@type": "File",
       "contentSize": 495,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "validation_report",
       "sha256": "bed2d8df19f3d8ab225659e2117c6ebfd0dc4bec658d59c30b7068889bc663fe"
@@ -2553,7 +2553,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_uk_genomic_test_directory_rare_v9_2bd3a3e75e30/source_snapshots.csv",
       "@type": "File",
       "contentSize": 716,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_snapshots",
       "sha256": "75ffc332f904ab4406e09217ca3bd9da52a7357889102f7fad0dfcc58f858a47"
@@ -2562,7 +2562,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_uk_genomic_test_directory_rare_v9_2bd3a3e75e30/source_snapshots.jsonl",
       "@type": "File",
       "contentSize": 789,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_snapshots",
       "sha256": "3ae395824e3bd8bbcfd3efdc9b56f24fa1bb6ee69f46d66b82c95630a8bbde80"
@@ -2571,7 +2571,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_uk_genomic_test_directory_rare_v9_2bd3a3e75e30/uk_genomic_test_directory_rare_v9_coverage_decisions.csv",
       "@type": "File",
       "contentSize": 325330,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "uk_genomic_test_directory_rare_v9_coverage_decisions",
       "sha256": "966312de544300767fd147c49ece223c18e2826c467b441d6905870985e72a9a"
@@ -2580,7 +2580,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_uk_genomic_test_directory_rare_v9_2bd3a3e75e30/uk_genomic_test_directory_rare_v9_coverage_decisions.jsonl",
       "@type": "File",
       "contentSize": 419298,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "uk_genomic_test_directory_rare_v9_coverage_decisions",
       "sha256": "babe1b6d3b228a6e9dea7c6a96449fe877a3e4e3ca014f71d4dec61bb3c2c3dc"
@@ -2589,7 +2589,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_uk_genomic_test_directory_rare_v9_2bd3a3e75e30/validation_report.json",
       "@type": "File",
       "contentSize": 542,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "validation_report",
       "sha256": "4f8a6024ec3cc62da3d6df393a733af2454e0a2c0a289f9599a6e6734f4d0fc5"
@@ -2598,7 +2598,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_uk_nhs_payment_scheme_2026_27_annex_a_b227defd1f54/source_snapshots.csv",
       "@type": "File",
       "contentSize": 694,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_snapshots",
       "sha256": "2f6d6c2321009f488bba489a49ce314f5251638d25f1945281579db7c79f0781"
@@ -2607,7 +2607,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_uk_nhs_payment_scheme_2026_27_annex_a_b227defd1f54/source_snapshots.jsonl",
       "@type": "File",
       "contentSize": 767,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_snapshots",
       "sha256": "d04e9c955ef80b2844644f559ed31da9ff3b55b28a256084599d65684047170f"
@@ -2616,7 +2616,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_uk_nhs_payment_scheme_2026_27_annex_a_b227defd1f54/uk_nhs_payment_scheme_2026_27_annex_a_schedule_items.csv",
       "@type": "File",
       "contentSize": 52390,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "uk_nhs_payment_scheme_2026_27_annex_a_schedule_items",
       "sha256": "3a2cf67e6df53f745ea55db397469c948b1b292c6ad7279bb8edde510fb9254d"
@@ -2625,7 +2625,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_uk_nhs_payment_scheme_2026_27_annex_a_b227defd1f54/uk_nhs_payment_scheme_2026_27_annex_a_schedule_items.jsonl",
       "@type": "File",
       "contentSize": 78963,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "uk_nhs_payment_scheme_2026_27_annex_a_schedule_items",
       "sha256": "6afe68454b579f9bf088341c3584306690df371c563e8423a519585834f318ae"
@@ -2634,7 +2634,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_uk_nhs_payment_scheme_2026_27_annex_a_b227defd1f54/validation_report.json",
       "@type": "File",
       "contentSize": 542,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "validation_report",
       "sha256": "a8376de66d42f2def5f1feda6b0b7fbc1009b96b40891788bbbfe42e6b30de86"
@@ -2643,7 +2643,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5/source_snapshots.csv",
       "@type": "File",
       "contentSize": 598,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_snapshots",
       "sha256": "304d0cb0a112ec2258cb9ea8bf12ae088fc18adfbf4795fd22f1c0716cd4a8d5"
@@ -2652,7 +2652,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5/source_snapshots.jsonl",
       "@type": "File",
       "contentSize": 671,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_snapshots",
       "sha256": "851e23abaf7d1e088c8a1c74d6f3a5ef8827fa56c392bc64aade53bd3aeaa89d"
@@ -2661,7 +2661,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5/us_cms_asp_july_2026_payment_limit_schedule_items.csv",
       "@type": "File",
       "contentSize": 556380,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "us_cms_asp_july_2026_payment_limit_schedule_items",
       "sha256": "c1ddb5cf262591380df67fd6b8f1cf5e42e22f74d58a02be3706abccbf889b6c"
@@ -2670,7 +2670,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5/us_cms_asp_july_2026_payment_limit_schedule_items.jsonl",
       "@type": "File",
       "contentSize": 840774,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "us_cms_asp_july_2026_payment_limit_schedule_items",
       "sha256": "38aa615f12ff3fc5a35066396f27906c2284b347e4090c3220bef21f229a93c1"
@@ -2679,7 +2679,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_asp_july_2026_payment_limit_c73883dbddb5/validation_report.json",
       "@type": "File",
       "contentSize": 524,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "validation_report",
       "sha256": "d9d81a4a87991d93ff7940e7a200ce6eedcc6de614f9542292697c8d19ad4c00"
@@ -2688,7 +2688,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/source_snapshots.csv",
       "@type": "File",
       "contentSize": 619,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_snapshots",
       "sha256": "40afd269503a3c5b8d3212ac855393ace5720dc10ce46775b4c92ebb8e90e8a0"
@@ -2697,7 +2697,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/source_snapshots.jsonl",
       "@type": "File",
       "contentSize": 692,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_snapshots",
       "sha256": "f6ae6788cd1870d5adb87dda7791cb550b0bd00c916f7350e06e38919891f1e6"
@@ -2706,7 +2706,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/us_cms_clfs_26clabq3_ama_zip_schedule_items.csv",
       "@type": "File",
       "contentSize": 1363611,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "us_cms_clfs_26clabq3_ama_zip_schedule_items",
       "sha256": "a6e9c3a1fae33abaf4bf6d613cd015ca62c06631c42fca39edbf8a92b3fee191"
@@ -2715,7 +2715,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/us_cms_clfs_26clabq3_ama_zip_schedule_items.jsonl",
       "@type": "File",
       "contentSize": 2062675,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "us_cms_clfs_26clabq3_ama_zip_schedule_items",
       "sha256": "0ba715f24ded3f5f3fa489eda502a14d65196846375dc25401e24be458af8d2f"
@@ -2724,7 +2724,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_clfs_26clabq3_ama_zip_f5a090789c40/validation_report.json",
       "@type": "File",
       "contentSize": 522,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "validation_report",
       "sha256": "46bc53085b76e0a73bb6cdbec5bf03cc39ab02c94b68f2679672965af50943b3"
@@ -2733,7 +2733,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_hcpcs_level_ii_2026_07_5591fed257e4/us_cms_hcpcs_level_ii_2026_07_schedule_items.csv",
       "@type": "File",
       "contentSize": 5990926,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "us_cms_hcpcs_level_ii_2026_07_schedule_items",
       "sha256": "048f2ee2506e37a4d98679729f2784dbcb656f094ca2cd92798f610c5b3685df"
@@ -2742,7 +2742,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_hcpcs_level_ii_2026_07_5591fed257e4/us_cms_hcpcs_level_ii_2026_07_schedule_items.jsonl",
       "@type": "File",
       "contentSize": 8880439,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "us_cms_hcpcs_level_ii_2026_07_schedule_items",
       "sha256": "d1dc10fd298e1125641bfd774e7adfa6f6895e903a5074c7af3826c8643e7794"
@@ -2751,7 +2751,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_hcpcs_level_ii_2026_07_5591fed257e4/validation_report.json",
       "@type": "File",
       "contentSize": 886,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "validation_report",
       "sha256": "5f7e0027f11cbb1b4f948bff80866bb4a1d739a7757900adc5a39c6713a874a4"
@@ -2760,7 +2760,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_mcd_ncd_2026_07_20_ce40e229ab73/source_snapshots.csv",
       "@type": "File",
       "contentSize": 577,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_snapshots",
       "sha256": "f73510e603f12f8632d50dee822460cb77852a923f7f1cb8d44b4698daab0cc3"
@@ -2769,7 +2769,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_mcd_ncd_2026_07_20_ce40e229ab73/source_snapshots.jsonl",
       "@type": "File",
       "contentSize": 650,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_snapshots",
       "sha256": "a462f46ccda96cac624012cea5cd965d98f4e0631faff4aa45ded0ea8b89c3e2"
@@ -2778,7 +2778,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_mcd_ncd_2026_07_20_ce40e229ab73/us_cms_mcd_ncd_2026_07_20_coverage_decisions.csv",
       "@type": "File",
       "contentSize": 228836,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "us_cms_mcd_ncd_2026_07_20_coverage_decisions",
       "sha256": "30d3996dc868ba1a0c5a62967bf6e08d0a73a3849c3d5d95e671b0a335103180"
@@ -2787,7 +2787,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_mcd_ncd_2026_07_20_ce40e229ab73/us_cms_mcd_ncd_2026_07_20_coverage_decisions.jsonl",
       "@type": "File",
       "contentSize": 301486,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "us_cms_mcd_ncd_2026_07_20_coverage_decisions",
       "sha256": "22ad94b526c6cecb95da1af7496ddd66b9f995d12154454d4e033791c909064b"
@@ -2796,7 +2796,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_mcd_ncd_2026_07_20_ce40e229ab73/validation_report.json",
       "@type": "File",
       "contentSize": 504,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "validation_report",
       "sha256": "ecec82efedaafce6954c5e8c8f5f9834a7253aab30e80509fe40ca80a145d6a1"
@@ -2805,7 +2805,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_pfs_2026_revision_c_carrier_1ba04e577235/source_snapshots.csv",
       "@type": "File",
       "contentSize": 598,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_snapshots",
       "sha256": "b4d9f79afddeb87b646f22afb3ac323b47739e11c031f40c4f1821a5d278e492"
@@ -2814,7 +2814,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_pfs_2026_revision_c_carrier_1ba04e577235/source_snapshots.jsonl",
       "@type": "File",
       "contentSize": 671,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_snapshots",
       "sha256": "280932f878ee83260ff94f09b66249f8593b5fdb012326f2906e410cf9cc261d"
@@ -2823,7 +2823,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_pfs_2026_revision_c_carrier_1ba04e577235/us_cms_pfs_2026_revision_c_carrier_schedule_items.csv",
       "@type": "File",
       "contentSize": 991175,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "us_cms_pfs_2026_revision_c_carrier_schedule_items",
       "sha256": "796f1b115f7603e1a0afa7f1a9c209d758eec294a5280b66009dc86d62d07486"
@@ -2832,7 +2832,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_pfs_2026_revision_c_carrier_1ba04e577235/us_cms_pfs_2026_revision_c_carrier_schedule_items.jsonl",
       "@type": "File",
       "contentSize": 1505962,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "us_cms_pfs_2026_revision_c_carrier_schedule_items",
       "sha256": "28169b6db59010f1801432f6bb259b652c05cc4cd1fe5ab1a9766cc025bf6dab"
@@ -2841,7 +2841,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_cms_pfs_2026_revision_c_carrier_1ba04e577235/validation_report.json",
       "@type": "File",
       "contentSize": 526,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "validation_report",
       "sha256": "ecfa97cebb9042e9838cc6e0c93b2484378dc3374dc4d032d1b4d366cf30ed79"
@@ -2850,7 +2850,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_complete_d910f107c128/source_snapshots.csv",
       "@type": "File",
       "contentSize": 630,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_snapshots",
       "sha256": "2f98ff1d60e77124dfef2e5d9f4cf883c7885072a8e8cd0c906097065c25380a"
@@ -2859,7 +2859,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_complete_d910f107c128/source_snapshots.jsonl",
       "@type": "File",
       "contentSize": 703,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_snapshots",
       "sha256": "753815055e78e31b02614301cdb0d90ef80f8f7396dc541266040ea11386a606"
@@ -2868,7 +2868,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_complete_d910f107c128/us_fda_device_classification_20260723_complete_schedule_items.csv",
       "@type": "File",
       "contentSize": 5380027,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "us_fda_device_classification_20260723_complete_schedule_items",
       "sha256": "8f2313aacdc797e888fb293da8d0ba8fb37dc6f03209f9f4a2498d52dc5da9df"
@@ -2877,7 +2877,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_complete_d910f107c128/us_fda_device_classification_20260723_complete_schedule_items.jsonl",
       "@type": "File",
       "contentSize": 7719224,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "us_fda_device_classification_20260723_complete_schedule_items",
       "sha256": "fb9fbbee5282c661a13eb1211d195ccaaf70d31dfbc134cfa8bb760a361cd29f"
@@ -2886,7 +2886,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_complete_d910f107c128/validation_report.json",
       "@type": "File",
       "contentSize": 570,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "validation_report",
       "sha256": "5099e25bfb9b3986ef7c12090407be92bbb991f6bd7e033333a8dc2ee2c1c538"
@@ -2895,7 +2895,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_page1_4aa1f75d2a3a/source_snapshots.csv",
       "@type": "File",
       "contentSize": 634,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "source_snapshots",
       "sha256": "147bfb3ab15311d56fd65db102e5d03b0d16e561a324cab3764e52b9c63c1e46"
@@ -2904,7 +2904,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_page1_4aa1f75d2a3a/source_snapshots.jsonl",
       "@type": "File",
       "contentSize": 707,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "source_snapshots",
       "sha256": "cda0f7b56f66a5fa32fd885bfe19e69bdafa9b86d9f5c8a1cf73e115d06054cf"
@@ -2913,7 +2913,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_page1_4aa1f75d2a3a/us_fda_device_classification_20260723_page1_schedule_items.csv",
       "@type": "File",
       "contentSize": 768918,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "csv",
       "name": "us_fda_device_classification_20260723_page1_schedule_items",
       "sha256": "ab3ceabfb59b2a0d74db48326d080e84779b37d5e7032df1dd3553d1713e7a53"
@@ -2922,7 +2922,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_page1_4aa1f75d2a3a/us_fda_device_classification_20260723_page1_schedule_items.jsonl",
       "@type": "File",
       "contentSize": 1098790,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "jsonl",
       "name": "us_fda_device_classification_20260723_page1_schedule_items",
       "sha256": "463392fd741b7d6a9516b6c4cfe1dabd407a8f759b666d598ee9d4106568fa00"
@@ -2931,7 +2931,7 @@
       "@id": "data/derived/reviewed_source_bundles/snapshot_us_fda_device_classification_20260723_page1_4aa1f75d2a3a/validation_report.json",
       "@type": "File",
       "contentSize": 563,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "encodingFormat": "json",
       "name": "validation_report",
       "sha256": "f46ffb413732c6e8f74b4fbcdde5ad199d485f1e6bfb41c137c796568e45c925"
