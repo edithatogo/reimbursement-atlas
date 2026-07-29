@@ -1,0 +1,13 @@
+{
+  "attribution": "Reimbursement Atlas project-owned project export metadata.",
+  "checksum_sha256": "29f8b925125a3b6ded5256bbcb187c9263bc0cbad5af7a358afb0595752bb46c",
+  "decision": "approved",
+  "evidence": "Explicit repository-owner approval; checksum and current queue path verified. Project rows contain governed metadata only.",
+  "redistribution_permission": "Approved for public derived metadata publication within the Reimbursement Atlas publication manifest.",
+  "relative_path": "data/derived/github_project/github_project_items.csv",
+  "restrictions": "Exclude credentials, confidential values, raw source payloads and restricted descriptors.",
+  "review_id": "licence_review_6bbb168b51317fb0",
+  "reviewed_at": "2026-07-29",
+  "reviewer": "repository-owner",
+  "source_terms": "Project-owned metadata; provenance and transformation details are retained in Conductor and project export manifests."
+}

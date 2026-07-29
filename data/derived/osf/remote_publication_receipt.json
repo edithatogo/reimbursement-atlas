@@ -1,0 +1,23 @@
+{
+  "schema_version": "osf-publication-receipt-v1",
+  "project_id": "q8cnx",
+  "project_public": true,
+  "registration_id": "gqk4z",
+  "registration_public": true,
+  "registration_immutable": true,
+  "registration_pending_approval": false,
+  "registration_url": "https://osf.io/gqk4z/",
+  "remote_verified_at": "2026-07-29T01:02:11Z",
+  "uploaded_file_count": 6,
+  "uploaded_files_verified": true,
+  "papers_or_preprints_submitted": false,
+  "source_payloads_or_restricted_descriptors_uploaded": false,
+  "file_receipt_sha256": {
+    "README.md": "aa1c56d3c316014d74f7489c62ed269efc0269ede07b907e670945c2c4d2e7df",
+    "genomics_pathology_protocol.md": "5782be112c3488f79aef2b4eaebcbd7c1ddf9fa56ff3b68295be84ad6fd2282d",
+    "cognitive_procedural_relativity_protocol.md": "f826d961ecce46a9c5c04c06c456567c9fc5a9c89d997283bed8e25c8f33d6f1",
+    "medicine_price_opacity_protocol.md": "876a690d9866e810669258548faec5da71f1995e71a38574fd732236d8ae87cf",
+    "local_vs_national_coverage_protocol.md": "b8cf9d3a1cca949d0c53c12cc87dd039bbef1036493b37df0c5991200bac0d40",
+    "source_transparency_protocol.md": "6143da26ac9f3cc944925723ee4d8a74c7f1892da9820c1fc07e404927f851fe"
+  }
+}
