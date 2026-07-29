@@ -7,6 +7,14 @@
       "next_action": "Complete remaining executable or credential-gated targets, then rerun source validation and source contracts.",
       "status": "incomplete",
       "summary": "Source acquisition requires follow-up: Run hardened curl/wget source download plan, Review historical MBS/PBS source expansion and licence scope."
+    },
+    {
+      "category": "external_publication",
+      "evidence_path": "data/derived/publication/huggingface_remote_receipt.json",
+      "id": "huggingface_publication",
+      "next_action": "Replace HF_TOKEN with a valid write-enabled token and rerun the approved workflow.",
+      "status": "blocked_secret",
+      "summary": "Hugging Face rejected the configured write credential during both pushes."
     }
   ],
   "claims_policy": "Do not claim evidence or public-release readiness until reviewed sources, licences, human research review and release gates pass.",
@@ -36,9 +44,9 @@
   },
   "project": "reimbursement-atlas",
   "publication": {
-    "huggingface_publication": "manual approval and token required",
+    "huggingface_publication": "blocked_secret",
     "osf_registration_ready": true,
-    "status": "ready",
+    "status": "gated",
     "zenodo_doi": "manual release approval required"
   },
   "schema_version": "public-status-v1",

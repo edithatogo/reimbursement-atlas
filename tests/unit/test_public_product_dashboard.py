@@ -97,6 +97,35 @@ def test_public_status_separates_software_evidence_and_publication(tmp_path: Pat
     }
 
 
+def test_public_status_records_huggingface_credential_failure(tmp_path: Path) -> None:
+    """A failed external mutation is not hidden by a green local release candidate."""
+    for relative, payload in {
+        "data/derived/release_readiness/summary.json": {
+            "repository_release_ready": True,
+            "evidence_release_ready": True,
+            "research_publication_ready": True,
+            "osf_registration_ready": True,
+        },
+        "data/derived/evidence_readiness/summary.json": {},
+        "data/derived/data_quality/summary.json": {"blocking_failures": 0},
+        "data/derived/source_validation/summary.json": {"blocking_failures": 0},
+        "data/derived/publication/huggingface_remote_receipt.json": {
+            "status": "blocked_secret",
+            "error_summary": "credential rejected",
+        },
+    }.items():
+        path = tmp_path / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(payload), encoding="utf-8")
+
+    manifest = build_public_status_manifest(tmp_path)
+
+    assert manifest["publication"]["status"] == "gated"
+    assert manifest["publication"]["huggingface_publication"] == "blocked_secret"
+    blocker = next(item for item in manifest["blockers"] if item["id"] == "huggingface_publication")
+    assert blocker["status"] == "blocked_secret"
+
+
 def test_public_status_does_not_duplicate_licence_only_source_review(tmp_path: Path) -> None:
     """Review-only acquisition rows remain governed by the licence blocker."""
     for relative, payload in {

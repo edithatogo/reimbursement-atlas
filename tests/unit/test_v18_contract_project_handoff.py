@@ -437,7 +437,12 @@ def test_final_handoff_records_environment_bound_tasks(tmp_path: Path) -> None:
         and row.status == "blocked_network"
         for row in rows
     )
-    assert not any(row.status == "blocked_secret" for row in rows)
+    hf_task = next(row for row in rows if row.id == "final_hf_dataset_space")
+    assert (hf_task.status, hf_task.reason_code) in {
+        ("ready_local", "publication_candidate_ready"),
+        ("complete", "publication_remote_parity_verified"),
+        ("blocked_secret", "hf_write_credential_rejected"),
+    }
     dashboard_task = next(row for row in rows if row.id == "final_dashboard_visual_review")
     mapping_task = next(row for row in rows if row.id == "final_mapping_calibration_review")
     assert (dashboard_task.status, dashboard_task.reason_code) in {

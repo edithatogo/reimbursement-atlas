@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 40,
-      "sha256": "ccb1c0a206ad2990aafd3b7715a35064e9ae661f117ee438c5f3604894a105ca"
+      "sha256": "558b4573766877e99038fad3ba65b3c6588f307cbc211eb24811d24929d10209"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -400,8 +400,8 @@
       "jsonl_path": "final_handoff_tasks/final_handoff_tasks.jsonl",
       "name": "final_handoff_tasks",
       "parquet_path": "final_handoff_tasks/final_handoff_tasks.parquet",
-      "rows": 12,
-      "sha256": "b0beae89d5e3efa88739ab93a352c6b764b078d18ac525cc7b97fb2112a8c2f2"
+      "rows": 13,
+      "sha256": "6a3295a841dd2bcb6cf349e3d4df11ad594c4e90560e6f682a4d77e8a4009113"
     },
     {
       "csv_path": "osf_component_plan/osf_component_plan.csv",

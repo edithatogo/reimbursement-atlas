@@ -1674,3 +1674,15 @@ publication lane is explicitly tracked. No DOI, OSF mutation, Hugging Face
 publication, paper or preprint submission is inferred from local readiness.
 
 The four executable child issues are #618, #619, #620 and #621.
+## 2026-07-29 - Separate external mutation failures from local release readiness
+
+Decision: Treat repository candidate readiness, OSF registration, Hugging Face publication,
+Zenodo draft creation and DOI publication as independent states. Record the latest Hugging
+Face mutation failure as a redacted, checksum-bound external receipt rather than inferring
+publication from passing candidate gates. Track Zenodo draft creation separately and retain
+the no-paper/no-preprint boundary.
+
+Evidence: Hugging Face workflow `30422589083` at commit `fffd7588df63633da20b8d429552f529206bcb98`
+passed validation but both pushes returned invalid-credential errors; the tracked Zenodo
+preflight reports `blocked_missing_release_assets` and no mutation. No external publication
+or DOI is claimed.
