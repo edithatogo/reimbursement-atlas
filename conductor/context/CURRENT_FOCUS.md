@@ -1615,3 +1615,20 @@ and the 17-gate quick local-quality profile. The read-only Hugging Face destinat
 reports the known Space metadata drift (`mit`/`gradio` versus governed `apache-2.0`/`static`);
 no remote mutation was attempted. OSF upload/registration, Hugging Face publication or metadata
 correction, and all paper/preprint/manuscript publication remain explicitly unauthorised.
+## 2026-07-29 - Approved external publication and archive execution lane
+
+The repository owner approved the remaining release actions. The new
+`track_external_publication_archive_execution` track binds Zenodo draft creation,
+OSF protocol/report synchronization, Hugging Face dataset/Space publication and
+final handoff regeneration to issues #350, #256, #488, #489 and #532.
+
+Repository-owned prerequisites are complete on `main` commit `e4da80a7`: the
+release-readiness matrix is 40/40, the v0.1.0 release assets are staged by the
+Zenodo workflow, and papers, manuscripts and preprints remain excluded. The
+latest draft attempt failed before mutation because the configured
+`ZENODO_TOKEN` secret contains a non-ASCII en-dash; no Zenodo deposition was
+created. OSF and Hugging Face mutations remain credential-gated and must emit
+redacted remote-state receipts when run.
+
+Public child issues #618 (Zenodo), #619 (OSF), #620 (Hugging Face) and #621
+(final handoff) now cross-reference the track and generated project rows.

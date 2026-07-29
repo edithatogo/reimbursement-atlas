@@ -1656,3 +1656,21 @@ to the recorded restrictions.
 Consequence: The medicines family now has 6,945 reviewed PBS left-side codes. Mapping issue #490
 remains blocked on a rights-cleared ATC, RxNorm or CMS ASP counterpart and no mapping or atlas
 performance claim is made.
+## 2026-07-29 - Approved external publication/archive execution
+
+Decision: Treat the remaining Zenodo, OSF and Hugging Face actions as one
+explicit release track. Execute only against frozen, checksum-bound artefacts;
+keep papers and preprints excluded; record every remote result or blocker in a
+redacted receipt; and regenerate the final handoff after external state settles.
+
+Evidence: `main` is clean at `e4da80a7`, all 40 release-readiness gates pass,
+and PR #617 merged the workflow correction that stages exact tagged release
+assets for Zenodo draft mode. Run `30273284122` verified those assets but failed
+before API mutation because the stored `ZENODO_TOKEN` contains a non-ASCII
+en-dash character.
+
+Consequence: The repository-owned implementation is complete and the external
+publication lane is explicitly tracked. No DOI, OSF mutation, Hugging Face
+publication, paper or preprint submission is inferred from local readiness.
+
+The four executable child issues are #618, #619, #620 and #621.
