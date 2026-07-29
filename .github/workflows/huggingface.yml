@@ -106,9 +106,7 @@ jobs:
           EOF
           chmod 700 "$RUNNER_TEMP/hf-askpass"
           GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
-            git fetch --unshallow
-          GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
-            git fetch "https://huggingface.co/datasets/${HF_DATASET_REPO}" main
+            git fetch --unshallow "https://huggingface.co/datasets/${HF_DATASET_REPO}" main
           GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
             git push --force-with-lease="refs/heads/main:$(git rev-parse FETCH_HEAD)" \
             "https://huggingface.co/datasets/${HF_DATASET_REPO}" HEAD:main
@@ -167,9 +165,7 @@ jobs:
           EOF
           chmod 700 "$RUNNER_TEMP/hf-askpass"
           GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
-            git fetch --unshallow
-          GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
-            git fetch "https://huggingface.co/spaces/${HF_SPACE_REPO}" main
+            git fetch --unshallow "https://huggingface.co/spaces/${HF_SPACE_REPO}" main
           GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
             git push --force-with-lease="refs/heads/main:$(git rev-parse FETCH_HEAD)" \
             "https://huggingface.co/spaces/${HF_SPACE_REPO}" HEAD:main
