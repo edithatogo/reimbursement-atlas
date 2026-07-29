@@ -1,0 +1,13 @@
+{
+  "attribution": "Reimbursement Atlas project-owned acquisition metadata; source-provider terms remain recorded in the source registry and provenance manifest.",
+  "checksum_sha256": "1a29b6ed6d82dd6bba08911ee9abc498d9501e0eff36a144ae20254f618b4144",
+  "decision": "approved",
+  "evidence": "Explicit repository-owner approval; checksum and current queue path verified. This is metadata-only and contains no raw source payload.",
+  "redistribution_permission": "Approved for public derived metadata publication within the Reimbursement Atlas publication manifest.",
+  "relative_path": "data/derived/source_downloads/download_attempts.csv",
+  "restrictions": "Exclude raw source payloads, credentials, request headers, confidential values and restricted descriptors.",
+  "review_id": "licence_review_71a864cb4c43a66d",
+  "reviewed_at": "2026-07-29",
+  "reviewer": "repository-owner",
+  "source_terms": "Project-owned metadata; applicable source terms and transformations are retained in the source registry and provenance documentation."
+}

@@ -322,6 +322,7 @@ manual_review,,,,,,,,,mapping_resource:map_who_atc_ddd,,,mapping_resource,WHO AT
 ,,,,,,,,,track:track_data_packaging_standards,,,conductor_track,Research-data packaging standards,,,,,,,implementation,,should,,,,,publication
 ,,,,,,,,,track:track_data_quality_evidence,,,conductor_track,"Data quality, source validation and evidence readiness",,,,,,,hardening,,must,,,,,data_quality
 ,,,,,,,,,track:track_evidence_adjudication_review,,,conductor_track,Evidence adjudication and accountable-review closure,,,,,,,hardening,,must,,,,,evidence
+,,,,,,,,,track:track_external_publication_archive_execution,,,conductor_track,External publication and archive execution,,,,,,,release,,must,,,,,publication
 ,,,,,,,,,track:track_historical_source_archival_reproducibility,,,conductor_track,Historical source archival and academic reproducibility,,,,,,,implementation,,must,,,,,data
 ,,,,,,,,,track:track_live_source_ingestion,,,conductor_track,Evidence-grade live source ingestion,,,,,,,implementation,,must,,,,,data
 ,,,,,,,,,track:track_mapping_workbench,,,conductor_track,Human-in-the-loop mapping workbench,,,,,,,implementation,,must,,,,,mappings

@@ -36,6 +36,7 @@ _EPIC_TRACK_MAP = {
     "SEC-020": "track_ci_cd_supply_chain",
     "HARNESS-021": "track_ci_cd_supply_chain",
     "PUBLIC-022": "track_public_product_citation_dashboard",
+    "RAC-PUBLISH-001": "track_external_publication_archive_execution",
     "HIST-001": "track_historical_source_archival_reproducibility",
     "HIST-002": "track_historical_source_archival_reproducibility",
     "DATASET-CANDIDATES": "track_live_source_ingestion",

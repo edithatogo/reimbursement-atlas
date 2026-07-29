@@ -706,3 +706,39 @@ epics:
           - "The monitor emits a redacted receipt and validates a canonical snapshot only for an active public immutable registration."
           - "One bounded status comment on issue 532 reports the verified state and next release action."
           - "Papers and preprints remain excluded."
+  - id: RAC-PUBLISH-001
+    title: External publication and archive execution
+    phase: release
+    workstream: publication
+    priority: must
+    track_id: track_external_publication_archive_execution
+    issues:
+      - title: Create the approved Zenodo draft from the exact tagged release
+        labels: ["type:publication", "type:release", "type:zenodo", "status:blocked"]
+        status: blocked
+        acceptance:
+          - "The v0.1.0 GitHub release assets, SBOMs, manifest and attestations are downloaded and checksum-verified."
+          - "The Zenodo draft is created only with CREATE_ZENODO_DRAFT and never published by this task."
+          - "The redacted external-state receipt records the deposition identifier and asset parity, or the exact API blocker."
+          - "Papers, manuscripts and preprints are excluded."
+      - title: Synchronize approved OSF protocol and report metadata
+        labels: ["type:publication", "type:osf", "type:research", "status:blocked"]
+        status: blocked
+        acceptance:
+          - "osf-cli-go validates the frozen protocol, manifest and registration drift disclosure."
+          - "Only the approved record/repository metadata is synchronized; no paper or preprint is submitted."
+          - "A redacted receipt records the remote result or exact credential/service blocker."
+      - title: Publish the approved Hugging Face dataset and Space candidate
+        labels: ["type:publication", "type:huggingface", "risk:licence", "status:blocked"]
+        status: blocked
+        acceptance:
+          - "The governed publication manifest, source licences, dataset card and Croissant metadata pass validation."
+          - "The configured destination identity matches the approved candidate."
+          - "Publication occurs only with the configured write credential and produces a remote parity receipt."
+          - "Papers and preprints remain excluded."
+      - title: Preserve final handoff after external publication state settles
+        labels: ["type:release", "type:provenance", "status:pending"]
+        status: pending
+        acceptance:
+          - "Final readiness, public status, Conductor, GitHub issues and Project rows agree on each external state."
+          - "A clean versioned bundle/archive and checksum manifest verify against the final main commit."

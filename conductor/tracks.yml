@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-07-05"
+updated: "2026-07-29"
 tracks:
   - id: track_runtime_mojo_python314
     title: "Mojo-first runtime and Python 3.14 compatibility"
@@ -114,3 +114,19 @@ tracks:
     phase: release
     workstream: publication
     goal: "Bring the repository, OSF record, dashboard and release archive to a coherent citable state without claiming evidence readiness or publishing papers prematurely."
+  - id: track_external_publication_archive_execution
+    title: "External publication and archive execution"
+    priority: must
+    phase: release
+    workstream: publication
+    goal: "Execute the approved OSF, Hugging Face and Zenodo release actions only from frozen, checksum-bound artefacts, record remote state, and permanently exclude papers and preprints."
+    issues:
+      - 350
+      - 256
+      - 488
+      - 489
+      - 532
+      - 618
+      - 619
+      - 620
+      - 621

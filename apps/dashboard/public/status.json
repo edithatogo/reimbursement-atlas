@@ -9,24 +9,40 @@
       "summary": "Source acquisition requires follow-up: Run hardened curl/wget source download plan, Review historical MBS/PBS source expansion and licence scope."
     },
     {
-      "category": "human_review",
-      "evidence_path": "data/derived/licence_review/summary.json",
-      "id": "licence_review",
-      "next_action": "Record accountable reviewer decisions in the checksum-bound queue.",
+      "category": "research_review",
+      "evidence_path": "data/derived/evidence_readiness/summary.json",
+      "id": "evidence_release",
+      "next_action": "Complete source, mapping, methods and research review before making evidence claims.",
       "status": "blocked_review",
-      "summary": "2 publication candidates still require licence review."
+      "summary": "Evidence release is not approved."
+    },
+    {
+      "category": "publication",
+      "evidence_path": "data/derived/release_readiness/summary.json",
+      "id": "research_publication",
+      "next_action": "Approve the frozen protocols, publication manifest and release decision.",
+      "status": "gated",
+      "summary": "Research publication remains gated."
+    },
+    {
+      "category": "dashboard",
+      "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
+      "id": "dashboard_human_review",
+      "next_action": "Complete the commit-bound visual, keyboard, screen-reader and provenance review within the declared scope.",
+      "status": "blocked",
+      "summary": "head=16d4f0b451676458d457d178af85ced1f533b476 failed_checks=displayed_data_parity"
     }
   ],
   "claims_policy": "Do not claim evidence or public-release readiness until reviewed sources, licences, human research review and release gates pass.",
   "evidence": {
     "data_quality": "pass",
     "evidence_ready_rows": 5,
-    "evidence_release_ready": true,
+    "evidence_release_ready": false,
     "prototype_ready_rows": 0,
     "readiness_rows": 5,
-    "research_publication_ready": true,
+    "research_publication_ready": false,
     "source_validation": "pass",
-    "status": "ready"
+    "status": "not_ready"
   },
   "evidence_paths": {
     "data_quality": "data/derived/data_quality/summary.json",
@@ -37,16 +53,16 @@
     "source_validation": "data/derived/source_validation/summary.json"
   },
   "licence_review": {
-    "approved_rows": 217,
+    "approved_rows": 219,
     "decision_source": "data/licence_review/decisions.jsonl",
-    "pending_rows": 2,
+    "pending_rows": 0,
     "queue_source": "data/derived/licence_review/licence_review_queue.jsonl"
   },
   "project": "reimbursement-atlas",
   "publication": {
     "huggingface_publication": "manual approval and token required",
     "osf_registration_ready": true,
-    "status": "ready",
+    "status": "gated",
     "zenodo_doi": "manual release approval required"
   },
   "schema_version": "public-status-v1",
