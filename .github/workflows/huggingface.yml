@@ -87,7 +87,7 @@ jobs:
             clone "https://huggingface.co/datasets/${HF_DATASET_REPO}" hf-dataset
           git -C hf-dataset config http.https://huggingface.co/.extraheader "Authorization: Bearer $HF_TOKEN"
           git -C hf-dataset remote set-url origin "https://huggingface.co/datasets/${HF_DATASET_REPO}"
-          rsync -av --delete infra/huggingface/ hf-dataset/
+          rsync -av --delete --exclude='.git/' infra/huggingface/ hf-dataset/
           mkdir -p hf-dataset/data/seed hf-dataset/data/derived
           rsync -av data/seed/*.csv hf-dataset/data/seed/
           rsync -av data/seed/*.jsonl hf-dataset/data/seed/
@@ -108,6 +108,7 @@ jobs:
           git remote set-url origin "https://huggingface.co/datasets/${HF_DATASET_REPO}"
           GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
             git fetch --unshallow origin main
+          test "$(git rev-parse --is-shallow-repository)" = false
           GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
             git push --force-with-lease="refs/heads/main:$(git rev-parse FETCH_HEAD)" \
             "https://huggingface.co/datasets/${HF_DATASET_REPO}" HEAD:main
@@ -150,7 +151,7 @@ jobs:
             clone "https://huggingface.co/spaces/${HF_SPACE_REPO}" hf-space
           git -C hf-space config http.https://huggingface.co/.extraheader "Authorization: Bearer $HF_TOKEN"
           git -C hf-space remote set-url origin "https://huggingface.co/spaces/${HF_SPACE_REPO}"
-          rsync -av --delete apps/dashboard/dist/ hf-space/
+          rsync -av --delete --exclude='.git/' apps/dashboard/dist/ hf-space/
           cp infra/huggingface/SPACE_README.md hf-space/README.md
           cd hf-space
           git config user.name "github-actions[bot]"
@@ -168,6 +169,7 @@ jobs:
           git remote set-url origin "https://huggingface.co/spaces/${HF_SPACE_REPO}"
           GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
             git fetch --unshallow origin main
+          test "$(git rev-parse --is-shallow-repository)" = false
           GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
             git push --force-with-lease="refs/heads/main:$(git rev-parse FETCH_HEAD)" \
             "https://huggingface.co/spaces/${HF_SPACE_REPO}" HEAD:main
