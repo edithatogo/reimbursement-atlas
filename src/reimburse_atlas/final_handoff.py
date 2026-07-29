@@ -556,7 +556,7 @@ def _huggingface_reason_code(repo: Path) -> str:
     )
 
 
-def _huggingface_external_state(repo: Path) -> str:
+def _huggingface_external_state(repo: Path) -> Literal["pending", "ready", "published"]:
     receipt = _huggingface_receipt(repo)
     if receipt.get("status") == "published":
         return "published"
