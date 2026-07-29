@@ -97,8 +97,16 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -m "Publish reimbursement atlas derived dataset" || exit 0
-          git -c http.extraheader="Authorization: Bearer $HF_TOKEN" \
-            push "https://huggingface.co/datasets/${HF_DATASET_REPO}" HEAD:main
+          cat > "$RUNNER_TEMP/hf-askpass" <<'EOF'
+          #!/bin/sh
+          case "$1" in
+            *Username*) printf '%s\n' "hf" ;;
+            *) printf '%s\n' "$HF_TOKEN" ;;
+          esac
+          EOF
+          chmod 700 "$RUNNER_TEMP/hf-askpass"
+          GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
+            git push "https://huggingface.co/datasets/${HF_DATASET_REPO}" HEAD:main
 
   publish-space:
     needs: validate-publication
@@ -145,5 +153,13 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -m "Deploy reimbursement atlas dashboard" || exit 0
-          git -c http.extraheader="Authorization: Bearer $HF_TOKEN" \
-            push "https://huggingface.co/spaces/${HF_SPACE_REPO}" HEAD:main
+          cat > "$RUNNER_TEMP/hf-askpass" <<'EOF'
+          #!/bin/sh
+          case "$1" in
+            *Username*) printf '%s\n' "hf" ;;
+            *) printf '%s\n' "$HF_TOKEN" ;;
+          esac
+          EOF
+          chmod 700 "$RUNNER_TEMP/hf-askpass"
+          GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
+            git push "https://huggingface.co/spaces/${HF_SPACE_REPO}" HEAD:main
