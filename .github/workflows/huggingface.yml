@@ -105,8 +105,9 @@ jobs:
           esac
           EOF
           chmod 700 "$RUNNER_TEMP/hf-askpass"
+          git remote set-url origin "https://huggingface.co/datasets/${HF_DATASET_REPO}"
           GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
-            git fetch --unshallow "https://huggingface.co/datasets/${HF_DATASET_REPO}" main
+            git fetch --unshallow origin main
           GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
             git push --force-with-lease="refs/heads/main:$(git rev-parse FETCH_HEAD)" \
             "https://huggingface.co/datasets/${HF_DATASET_REPO}" HEAD:main
@@ -164,8 +165,9 @@ jobs:
           esac
           EOF
           chmod 700 "$RUNNER_TEMP/hf-askpass"
+          git remote set-url origin "https://huggingface.co/spaces/${HF_SPACE_REPO}"
           GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
-            git fetch --unshallow "https://huggingface.co/spaces/${HF_SPACE_REPO}" main
+            git fetch --unshallow origin main
           GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
             git push --force-with-lease="refs/heads/main:$(git rev-parse FETCH_HEAD)" \
             "https://huggingface.co/spaces/${HF_SPACE_REPO}" HEAD:main

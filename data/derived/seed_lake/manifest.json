@@ -265,7 +265,7 @@
       "name": "repo_workflow_uses",
       "parquet_path": "repo_workflow_uses/repo_workflow_uses.parquet",
       "rows": 128,
-      "sha256": "cd6e769627ff851d55e86784593817dd6e3364e7a4ec8bd78bcd164ad90a6c9f"
+      "sha256": "135424b30c82c6141df8f2c6b08905f1473a78280355c5e94d2b331a7039114f"
     },
     {
       "csv_path": "repo_workflow_policy/repo_workflow_policy.csv",
