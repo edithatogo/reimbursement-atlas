@@ -70,7 +70,7 @@ for (const route of routes) {
     });
     page.on("pageerror", (error) => pageErrors.push(error.message));
 
-    const response = await page.goto(route, { waitUntil: "networkidle" });
+    const response = await page.goto(route, { waitUntil: "domcontentloaded" });
     expect(response?.status()).toBe(200);
     await expect(page.locator("html[lang]")).toHaveCount(1);
     await expect(page.locator("h1")).toHaveCount(1);
@@ -178,7 +178,7 @@ async function attachReviewContext(
 }
 
 test("supports skip navigation and visible keyboard focus", async ({ page }, testInfo) => {
-  await page.goto("/", { waitUntil: "networkidle" });
+  await page.goto("/", { waitUntil: "domcontentloaded" });
   const skipLink = page.getByRole("link", { name: "Skip to main content" });
   if (testInfo.project.name === "desktop-webkit") {
     // Headless WebKit inherits macOS's optional link-tab preference. Explicit focus
@@ -191,7 +191,7 @@ test("supports skip navigation and visible keyboard focus", async ({ page }, tes
   await skipLink.press("Enter");
   await expect(page.locator("#main-content")).toBeFocused();
 
-  await page.goto("/", { waitUntil: "networkidle" });
+  await page.goto("/", { waitUntil: "domcontentloaded" });
   const graphNav = page.getByRole("navigation", { name: "Dashboard sections" }).getByRole("link", {
     name: "Graph",
   });
@@ -213,7 +213,7 @@ test("supports skip navigation and visible keyboard focus", async ({ page }, tes
 test("keeps the public search control keyboard reachable and announces result counts", async ({
   page,
 }) => {
-  await page.goto("/sources/", { waitUntil: "networkidle" });
+  await page.goto("/sources/", { waitUntil: "domcontentloaded" });
   const firstTable = page.locator('section[data-table-section="true"]').first();
   const filter = firstTable.locator("input[data-table-filter]");
   const rows = firstTable.locator("tr[data-table-row]");
@@ -239,7 +239,7 @@ test("keeps the public search control keyboard reachable and announces result co
 });
 
 test("searches rows beyond the compact initial table view", async ({ page }) => {
-  await page.goto("/sources/", { waitUntil: "networkidle" });
+  await page.goto("/sources/", { waitUntil: "domcontentloaded" });
   const tables = page.locator('section[data-table-section="true"]');
   let targetTable = tables.first();
   const tableCount = await tables.count();
@@ -261,7 +261,7 @@ test("searches rows beyond the compact initial table view", async ({ page }) => 
 });
 
 test("provides a semantic graph alternative in every browser", async ({ page }) => {
-  await page.goto("/", { waitUntil: "networkidle" });
+  await page.goto("/", { waitUntil: "domcontentloaded" });
   const alternative = page.locator("details.graph-alternative");
   await expect(alternative).toBeVisible();
   await alternative.locator("summary").focus();
@@ -292,7 +292,7 @@ test("keeps tables local and page reflow bounded at 200% and 400% equivalents", 
       "/analyses/cognitive_vs_procedural_ratio/",
       "/readiness/",
     ]) {
-      await page.goto(route, { waitUntil: "networkidle" });
+      await page.goto(route, { waitUntil: "domcontentloaded" });
       await expectNoPageLevelHorizontalOverflow(page);
       const tables = page.locator(".table-scroll");
       expect(
