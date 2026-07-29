@@ -102,7 +102,7 @@ def _source_acquisition_blocker(root: Path) -> dict[str, Any] | None:
     }
 
 
-def build_public_status_manifest(root: Path | None = None) -> dict[str, Any]:
+def build_public_status_manifest(root: Path | None = None) -> dict[str, Any]:  # ruff:ignore[too-many-locals]
     """Build separate software, evidence and publication readiness dimensions."""
     repo = root or project_root()
     release = _read_summary(repo, "data/derived/release_readiness/summary.json")
@@ -161,6 +161,23 @@ def build_public_status_manifest(root: Path | None = None) -> dict[str, Any]:
             "next_action": ("Complete accountable methods, domain, licence and governance review."),
             "evidence_path": "data/derived/protocols/protocol_status.jsonl",
         })
+    hf_receipt = _read_summary(repo, "data/derived/publication/huggingface_remote_receipt.json")
+    if hf_receipt.get("status") == "blocked_secret":
+        blockers.append({
+            "id": "huggingface_publication",
+            "category": "external_publication",
+            "status": "blocked_secret",
+            "summary": str(
+                hf_receipt.get(
+                    "error_summary",
+                    "Hugging Face write credential was rejected; no remote mutation was verified.",
+                )
+            ),
+            "next_action": (
+                "Replace HF_TOKEN with a valid write-enabled token and rerun the approved workflow."
+            ),
+            "evidence_path": "data/derived/publication/huggingface_remote_receipt.json",
+        })
     existing_blocker_ids = {str(blocker["id"]) for blocker in blockers}
     for gate in _read_jsonl(repo, "data/derived/release_readiness/release_gates.jsonl"):
         gate_id = str(gate.get("id", ""))
@@ -194,9 +211,16 @@ def build_public_status_manifest(root: Path | None = None) -> dict[str, Any]:
             "prototype_ready_rows": int(evidence.get("prototype_ready", 0)),
         },
         "publication": {
-            "status": "ready" if release.get("research_publication_ready") else "gated",
+            "status": "gated"
+            if hf_receipt.get("status") == "blocked_secret"
+            or not release.get("research_publication_ready")
+            else "ready",
             "osf_registration_ready": bool(release.get("osf_registration_ready")),
-            "huggingface_publication": "manual approval and token required",
+            "huggingface_publication": (
+                "blocked_secret"
+                if hf_receipt.get("status") == "blocked_secret"
+                else "manual approval and token required"
+            ),
             "zenodo_doi": "manual release approval required",
         },
         "licence_review": {

@@ -169,7 +169,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             github_issues=(534,),
             task_group="publication",
             title="Publish gated Hugging Face dataset and Space dry run",
-            status="ready_local" if _publication_ready(repo) else "blocked_review",
+            status=_huggingface_handoff_status(repo),
             required_environment=(
                 "GitHub Actions with configured HF_TOKEN, HF_DATASET_REPO and HF_SPACE_REPO "
                 "targets, plus licence and evidence review."
@@ -184,16 +184,12 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "The dry run has passed; inspect the candidate bundle and publish only after "
                 "the remaining review gates are approved."
             ),
-            reason_code=(
-                "publication_candidate_ready"
-                if _publication_ready(repo)
-                else "publication_review_pending"
-            ),
+            reason_code=_huggingface_reason_code(repo),
             gate_evidence=(
                 "data/derived/release_readiness/summary.json",
                 "data/derived/publication_manifest/summary.json",
             ),
-            external_state="ready" if _publication_ready(repo) else "pending",
+            external_state=_huggingface_external_state(repo),
         ),
         FinalHandoffTaskRecord(
             id="final_osf_protocol_pack",
@@ -414,6 +410,37 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             gate_evidence=("data/derived/release_readiness/summary.json",),
             external_state="ready" if _publication_ready(repo) else "pending",
         ),
+        FinalHandoffTaskRecord(
+            id="final_zenodo_draft",
+            conductor_track="track_external_publication_archive_execution",
+            github_issues=(532, 618, 620),
+            task_group="publication",
+            title="Create the approved Zenodo draft without publishing",
+            status=_zenodo_handoff_status(repo),
+            required_environment=(
+                "GitHub release assets, a valid ASCII ZENODO_TOKEN and the approved draft "
+                "confirmation value."
+            ),
+            command=(
+                "gh workflow run zenodo-preflight.yml -f mode=draft "
+                "-f confirm=CREATE_ZENODO_DRAFT -f release_tag=v0.1.0"
+            ),
+            evidence_path="data/derived/zenodo/external_state.json",
+            unblock_condition=(
+                "The exact tagged release assets are available and Zenodo accepts the "
+                "token-gated draft mutation; publication and DOI minting remain separate."
+            ),
+            recommended_action=(
+                "Replace the malformed ZENODO_TOKEN secret, rerun draft mode, and record "
+                "the returned deposition identifier without publishing it."
+            ),
+            reason_code="zenodo_token_encoding_blocker",
+            gate_evidence=(
+                "data/derived/zenodo/preflight.json",
+                "data/derived/zenodo/external_state.json",
+            ),
+            external_state="pending",
+        ),
     ]
 
 
@@ -503,6 +530,47 @@ def _publication_ready(repo: Path) -> bool:
             "policy_claims_ready",
         )
     )
+
+
+def _huggingface_receipt(repo: Path) -> dict[str, object]:
+    return _read_json(repo / "data/derived/publication/huggingface_remote_receipt.json")
+
+
+def _huggingface_handoff_status(repo: Path) -> HandoffStatus:
+    receipt = _huggingface_receipt(repo)
+    if receipt.get("status") == "published" and receipt.get("remote_parity_verified") is True:
+        return "complete"
+    if receipt.get("status") == "blocked_secret":
+        return "blocked_secret"
+    return "ready_local" if _publication_ready(repo) else "blocked_review"
+
+
+def _huggingface_reason_code(repo: Path) -> str:
+    receipt = _huggingface_receipt(repo)
+    if receipt.get("status") == "published":
+        return "publication_remote_parity_verified"
+    if receipt.get("status") == "blocked_secret":
+        return "hf_write_credential_rejected"
+    return (
+        "publication_candidate_ready" if _publication_ready(repo) else "publication_review_pending"
+    )
+
+
+def _huggingface_external_state(repo: Path) -> Literal["pending", "ready", "published"]:
+    receipt = _huggingface_receipt(repo)
+    if receipt.get("status") == "published":
+        return "published"
+    return "ready" if _publication_ready(repo) else "pending"
+
+
+def _zenodo_handoff_status(repo: Path) -> HandoffStatus:
+    state = _read_json(repo / "data/derived/zenodo/external_state.json")
+    if state.get("status") == "draft_created":
+        return "complete"
+    preflight = _read_json(repo / "data/derived/zenodo/preflight.json")
+    if preflight.get("status") == "blocked_missing_release_assets":
+        return "ready_local"
+    return "blocked_secret"
 
 
 def _osf_registration_state(repo: Path) -> str:

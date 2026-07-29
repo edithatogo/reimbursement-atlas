@@ -10,20 +10,22 @@ checksum-bound row-level record.
 
 ## Current batches
 
-- `permissive_candidate` / `public_derived_candidate`: 176 artefacts, 192519366 bytes
+- `permissive_candidate` / `public_derived_candidate`: 174 artefacts, 192420112 bytes
 - `permissive_candidate` / `public_metadata_candidate`: 43 artefacts, 627747 bytes
+- `public_reuse_review` / `public_derived_candidate`: 2 artefacts, 99254 bytes
 
 Total candidate artefacts: 219; generated queue rows remain `pending` by design.
 
 ## Decision ledger snapshot
 
-The companion checksum-bound ledger currently records **219 approved**
-and **0 blocked** decisions. These counts are informational;
+The companion checksum-bound ledger currently records **217 approved**
+and **2 blocked** decisions. These counts are informational;
 they do not change generated queue rows or authorize publication.
 
 ### Blocked rows requiring re-review
 
-- None recorded.
+- `data/derived/architecture/import_edges.csv` — `691e582bdde7ee8b7130bf389c872a285ac9940d4954ba5066c67cab688170ab`
+- `data/derived/architecture/import_edges.jsonl` — `1216a4cf16bb34aa1ce13ef546671da0b721f0cec55beb8c312d6193749937ca`
 
 ## Required decision fields
 
