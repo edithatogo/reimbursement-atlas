@@ -85,6 +85,8 @@ jobs:
           test -n "$HF_DATASET_REPO"
           git -c http.extraheader="Authorization: Bearer $HF_TOKEN" \
             clone "https://huggingface.co/datasets/${HF_DATASET_REPO}" hf-dataset
+          git -C hf-dataset config http.https://huggingface.co/.extraheader "Authorization: Bearer $HF_TOKEN"
+          mkdir -p hf-dataset/data/seed hf-dataset/data/derived
           rsync -av --delete infra/huggingface/ hf-dataset/
           rsync -av data/seed/*.csv hf-dataset/data/seed/
           rsync -av data/seed/*.jsonl hf-dataset/data/seed/
@@ -132,6 +134,7 @@ jobs:
           test -n "$HF_SPACE_REPO"
           git -c http.extraheader="Authorization: Bearer $HF_TOKEN" \
             clone "https://huggingface.co/spaces/${HF_SPACE_REPO}" hf-space
+          git -C hf-space config http.https://huggingface.co/.extraheader "Authorization: Bearer $HF_TOKEN"
           rsync -av --delete apps/dashboard/dist/ hf-space/
           cp infra/huggingface/SPACE_README.md hf-space/README.md
           cd hf-space
