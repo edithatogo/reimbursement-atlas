@@ -114,9 +114,8 @@ jobs:
               git fetch origin main
           fi
           test "$(git rev-parse --is-shallow-repository)" = false
-          git -c http.extraheader="Authorization: Bearer $HF_TOKEN" \
-            push --force-with-lease="refs/heads/main:$(git rev-parse FETCH_HEAD)" \
-            "https://huggingface.co/datasets/${HF_DATASET_REPO}" HEAD:main
+          git push --force-with-lease="refs/heads/main:$(git rev-parse FETCH_HEAD)" \
+            "https://hf:${HF_TOKEN}@huggingface.co/datasets/${HF_DATASET_REPO}" HEAD:main
 
   publish-space:
     needs: validate-publication
@@ -180,6 +179,5 @@ jobs:
               git fetch origin main
           fi
           test "$(git rev-parse --is-shallow-repository)" = false
-          git -c http.extraheader="Authorization: Bearer $HF_TOKEN" \
-            push --force-with-lease="refs/heads/main:$(git rev-parse FETCH_HEAD)" \
-            "https://huggingface.co/spaces/${HF_SPACE_REPO}" HEAD:main
+          git push --force-with-lease="refs/heads/main:$(git rev-parse FETCH_HEAD)" \
+            "https://hf:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE_REPO}" HEAD:main
