@@ -552,9 +552,7 @@ def _huggingface_reason_code(repo: Path) -> str:
     if receipt.get("status") == "blocked_secret":
         return "hf_write_credential_rejected"
     return (
-        "publication_candidate_ready"
-        if _publication_ready(repo)
-        else "publication_review_pending"
+        "publication_candidate_ready" if _publication_ready(repo) else "publication_review_pending"
     )
 
 
