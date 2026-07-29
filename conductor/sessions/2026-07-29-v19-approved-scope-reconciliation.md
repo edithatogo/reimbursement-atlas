@@ -16,6 +16,10 @@ and preprints remain explicitly excluded.
   mutation because it contained a non-ASCII en-dash; no draft or DOI was created.
 - Historical source inventory and acquisition automation remain metadata/derived-only;
   unreviewed raw payloads remain excluded from tracked files.
+- PR #640 merged as `b8b02b618a86812352ae4a6758b25a144eb443f5`, after the complete
+  hosted matrix passed. Dashboard packets were refreshed for that commit; the
+  accountable review record remains pending because the owner approval is bound to
+  the prior packet hashes.
 
 ## Boundary
 
