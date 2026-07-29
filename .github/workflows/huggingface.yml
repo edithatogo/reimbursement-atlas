@@ -106,8 +106,13 @@ jobs:
           EOF
           chmod 700 "$RUNNER_TEMP/hf-askpass"
           git remote set-url origin "https://huggingface.co/datasets/${HF_DATASET_REPO}"
-          GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
-            git fetch --unshallow origin main
+          if [ "$(git rev-parse --is-shallow-repository)" = true ]; then
+            GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
+              git fetch --unshallow origin main
+          else
+            GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
+              git fetch origin main
+          fi
           test "$(git rev-parse --is-shallow-repository)" = false
           GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
             git push --force-with-lease="refs/heads/main:$(git rev-parse FETCH_HEAD)" \
@@ -167,8 +172,13 @@ jobs:
           EOF
           chmod 700 "$RUNNER_TEMP/hf-askpass"
           git remote set-url origin "https://huggingface.co/spaces/${HF_SPACE_REPO}"
-          GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
-            git fetch --unshallow origin main
+          if [ "$(git rev-parse --is-shallow-repository)" = true ]; then
+            GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
+              git fetch --unshallow origin main
+          else
+            GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
+              git fetch origin main
+          fi
           test "$(git rev-parse --is-shallow-repository)" = false
           GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
             git push --force-with-lease="refs/heads/main:$(git rev-parse FETCH_HEAD)" \
