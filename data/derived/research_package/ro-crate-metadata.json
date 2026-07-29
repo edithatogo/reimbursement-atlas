@@ -1689,19 +1689,19 @@
       "@id": "data/derived/architecture/import_edges.jsonl",
       "@type": "File",
       "contentSize": 64911,
-      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "import_edges",
-      "sha256": "687f9deb1358d9f1a148f38ffefeabb85142e87d26f0d02cd6d53ceebe9787f3"
+      "sha256": "1216a4cf16bb34aa1ce13ef546671da0b721f0cec55beb8c312d6193749937ca"
     },
     {
       "@id": "data/derived/architecture/import_edges.csv",
       "@type": "File",
       "contentSize": 34343,
-      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "import_edges",
-      "sha256": "2e2eb37207762eef4941ed2399742389aed1d97f4ea1fe0b35498f8898b40fbc"
+      "sha256": "691e582bdde7ee8b7130bf389c872a285ac9940d4954ba5066c67cab688170ab"
     },
     {
       "@id": "data/derived/architecture/layer_policy.jsonl",
@@ -1886,20 +1886,20 @@
     {
       "@id": "data/derived/final_handoff/final_handoff_tasks.jsonl",
       "@type": "File",
-      "contentSize": 13692,
+      "contentSize": 13702,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "final_handoff_tasks",
-      "sha256": "6a3295a841dd2bcb6cf349e3d4df11ad594c4e90560e6f682a4d77e8a4009113"
+      "sha256": "271caa0511f2ec48ee8b717fff5123de123d44c14d03c2142c23c6aa5454c065"
     },
     {
       "@id": "data/derived/final_handoff/final_handoff_tasks.csv",
       "@type": "File",
-      "contentSize": 10061,
+      "contentSize": 10071,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "final_handoff_tasks",
-      "sha256": "a2987fd51bfe10b0cfd3ba0e8dadd4edfd5304470f190c3afc0bb3db73cb578d"
+      "sha256": "b2eaa524890ea320a87edeb5ebd389125c87703704488befb617be7def19c26c"
     },
     {
       "@id": "data/derived/osf/component_plan.jsonl",
@@ -2052,7 +2052,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "source_drift_report",
-      "sha256": "71b2364bc36ec511c4b71a627ea84b1de710b81f6b82dcb316275a158b072556"
+      "sha256": "ed933147c6969c507a7fa54f5681c36fe8f86ad7821895fc4788221392b51251"
     },
     {
       "@id": "data/derived/source_drift/source_drift_report.csv",
@@ -2061,7 +2061,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "source_drift_report",
-      "sha256": "c1c6805b8912bf6e17476a377586e6bb2f4e7eba4f9de0e1f5b0f4f31e8eaa95"
+      "sha256": "82ae361d0386fb8df331465e2a128d60157136cff4ff8524892791618da0fcc9"
     },
     {
       "@id": "data/derived/source_drift/summary.json",
@@ -2079,7 +2079,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "data_dictionary",
-      "sha256": "68a46fca8695fb43ef37a56589c9a3b780e3937219e0a0849a2abc7386a9937d"
+      "sha256": "359c2a4263ca9d821fbbb6bc44ca75b3debd68b069863eec858f6b8702584cc8"
     },
     {
       "@id": "data/derived/data_dictionary/data_dictionary.csv",
@@ -2088,7 +2088,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "data_dictionary",
-      "sha256": "5f11b2a48d5ca08feb388232483d267c8ecbb7c11e458d495c5aa0db8324f27b"
+      "sha256": "ee076011d148ec48c4522231d4ab33ea05e11cca72974a10401aa5f05cf17612"
     },
     {
       "@id": "data/derived/data_dictionary/summary.json",
@@ -2097,7 +2097,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "json",
       "name": "summary",
-      "sha256": "d5edcfc5aeadda8149e404f972ffc54147ca64c2bdb0fe507217d0376ac48ef6"
+      "sha256": "0ac87976bb540de8d420b8ee3de273eaa8d68ee94bdb81c4040c37abe0d537d5"
     },
     {
       "@id": "infra/huggingface/DATASET_CARD.md",
