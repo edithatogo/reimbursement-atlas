@@ -1340,20 +1340,20 @@
       }
     },
     {
-      "bytes": 9164,
+      "bytes": 9145,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "fee3a64bf873d9c840cb64d737ae0ea3373b88175bedd28d4b03fbe4a294d1e7",
+      "hash": "69c9651f1fcb87b231dd65cbc8ff30e844c55a70765e815b4d66ffce53834bcd",
       "mediatype": "application/json",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.jsonl",
       "schema": {}
     },
     {
-      "bytes": 5596,
+      "bytes": 5577,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "df762680c37931c545688a440eac1ee694d396b2a0066beeaea3b2508a1ca798",
+      "hash": "3de50c8d30d5ea395d5b74cdaa4514fb3365af0452a49d703f9819cd19638db7",
       "mediatype": "text/csv",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.csv",
