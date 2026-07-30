@@ -1686,3 +1686,13 @@ Evidence: Hugging Face workflow `30422589083` at commit `fffd7588df63633da20b8d4
 passed validation but both pushes returned invalid-credential errors; the tracked Zenodo
 preflight reports `blocked_missing_release_assets` and no mutation. No external publication
 or DOI is claimed.
+
+## 2026-07-29 - Refresh dashboard evidence after merged acquisition receipts
+
+Decision: Re-run the dashboard evidence packet after the live-source receipt merge instead of
+carrying forward the prior commit-bound approval. Keep the new owner record pending until the
+accountable reviewer approves the new hashes; do not infer approval from the prior packet.
+
+Evidence: PR #640 merged as `b8b02b618a86812352ae4a6758b25a144eb443f5`; the refreshed automated
+packet is `fbf578f356280188d1a8139db604e99f823053539f0840240b011635aced4965` and the refreshed
+owner packet is `cfe6888f64536ff7ab31d1a7735cfde3eb5ed500d645f696c0ae7a61e2f29b31`.
