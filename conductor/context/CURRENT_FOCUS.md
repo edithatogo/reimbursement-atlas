@@ -1,5 +1,27 @@
 # Current focus
 
+## 2026-07-31 — Approved-scope reconciliation and external publication boundary
+
+Current `main` is `d118c7e1f6c1e9e9331c69e80ab84302e44f102b` and the worktree is clean.
+The approved dashboard review remains bounded to the declared 11 routes, four-browser
+matrix, 64 automated checks, 44 screenshots, responsive layout, keyboard navigation,
+automated accessibility, provenance and prohibited-content checks. It does not establish
+universal accessibility conformance or independent manual VoiceOver confirmation.
+
+The repository contains all four expected GitHub Actions secret names (`HF_TOKEN`,
+`OSF_TOKEN`, `PBS_API_SUBSCRIPTION_KEY` and `ZENODO_TOKEN`), but secret presence is not
+treated as credential validity. The current release summary reports 39 passing gates and
+one review-pending dashboard head-parity gate; repository release readiness and OSF
+registration readiness are true, while evidence release readiness, policy-claim readiness
+and research-publication readiness remain false.
+
+Chrome account-surface verification on 2026-07-31 found Zenodo's personal-access-token
+creation page available, Hugging Face identity confirmation still required, and no usable
+OSF token/settings surface rendered in the session. No token was read, copied, exposed or
+entered. Zenodo, Hugging Face and OSF mutation workflows remain externally gated; papers
+and preprints remain excluded. The next repository-owned action is to generate a fresh
+dashboard packet whose tested commit equals current `main`, then rerun release readiness.
+
 ## 2026-07-26 — Post-merge repository closure
 
 Merged `main` is `03e04c0f25e132f0d4b4c890959dc00049ae112e`.

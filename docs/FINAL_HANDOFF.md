@@ -1,9 +1,9 @@
 # Final handoff checklist
 
-## Current implementation state (2026-07-26)
+## Current implementation state (2026-07-31)
 
 The current merged-main baseline is
-`03e04c0f25e132f0d4b4c890959dc00049ae112e`. The release branch has completed the mapping counterpart, blinded
+`d118c7e1f6c1e9e9331c69e80ab84302e44f102b`. The release branch has completed the mapping counterpart, blinded
 adjudication, untouched holdout and refreshed scoped dashboard-review gates.
 `repository_release_ready=true` and `evidence_release_ready=false`: the
 source-transparency metadata claim is evidence-ready, while four research
