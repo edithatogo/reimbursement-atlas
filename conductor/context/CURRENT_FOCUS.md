@@ -19,8 +19,10 @@ Chrome account-surface verification on 2026-07-31 found Zenodo's personal-access
 creation page available, Hugging Face identity confirmation still required, and no usable
 OSF token/settings surface rendered in the session. No token was read, copied, exposed or
 entered. Zenodo, Hugging Face and OSF mutation workflows remain externally gated; papers
-and preprints remain excluded. The next repository-owned action is to generate a fresh
-dashboard packet whose tested commit equals current `main`, then rerun release readiness.
+and preprints remain excluded. Fresh dashboard packets are now generated from current
+`main` and pass machine validation, but remain pending accountable review until their new
+hashes are recorded in `human_review.json`; the prior approval is not reused for different
+packet contents.
 
 ## 2026-07-26 — Post-merge repository closure
 
