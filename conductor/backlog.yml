@@ -1,5 +1,5 @@
 version: 2
-updated: "2026-07-17"
+updated: "2026-07-31"
 epics:
   - id: HIST-001
     title: Historical source archival and reproducibility
