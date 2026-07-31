@@ -2,9 +2,16 @@
 
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
-from reimburse_atlas.toolchain import classify_gate_result, run_external_quality_gate
+from reimburse_atlas.toolchain import (
+    ExternalQualityGateRecord,
+    _excerpt,  # ruff:ignore[import-private-name] - boundary truncation regression
+    classify_gate_result,
+    run_external_quality_gate,
+    write_external_quality_gate_records,
+)
 from scripts.make_fuzzy_prefilter_benchmark import build_benchmark
 from scripts.make_mojo_parity_report import build_mojo_parity_report
 from scripts.make_toolchain_report import cli_probe_row
@@ -20,6 +27,11 @@ def test_network_failure_classification_still_wins() -> None:
     stderr = "curl: (6) Could not resolve host: pixi.sh"
 
     assert classify_gate_result(6, "", stderr) == "blocked_network"
+
+
+def test_gate_classification_covers_generic_failure_and_missing_exit_code() -> None:
+    assert classify_gate_result(1, "", "ordinary failure") == "failed"
+    assert classify_gate_result(127, "", "") == "missing_tool"
 
 
 def test_run_external_quality_gate_passes(repo_root: Path) -> None:
@@ -44,6 +56,47 @@ def test_run_external_quality_gate_missing_tool(repo_root: Path) -> None:
 
     assert record.outcome == "missing_tool"
     assert record.return_code is None
+
+
+def test_run_external_quality_gate_times_out(repo_root: Path) -> None:
+    record = run_external_quality_gate(
+        gate_id="timeout_probe",
+        command=(sys.executable, "-c", "import time; time.sleep(1)"),
+        cwd=repo_root,
+        timeout_seconds=0.01,
+    )
+
+    assert record.outcome == "timed_out"
+    assert record.return_code is None
+
+
+def test_external_quality_gate_records_write_json_and_csv(tmp_path: Path) -> None:
+    record = ExternalQualityGateRecord(
+        id="example",
+        command="python --version",
+        cwd=".",
+        outcome="passed",
+        return_code=0,
+        generated_at="1970-01-01T00:00:00+00:00",
+        stdout_excerpt="ok",
+        stderr_excerpt="",
+        notes="pass",
+    )
+    json_path, csv_path = write_external_quality_gate_records(
+        [record],
+        json_path=tmp_path / "nested" / "gates.json",
+        csv_path=tmp_path / "nested" / "gates.csv",
+    )
+
+    assert json_path.exists()
+    assert csv_path.read_text(encoding="utf-8").startswith("id,command,cwd,outcome")
+
+
+def test_excerpt_truncates_long_output() -> None:
+    excerpt = _excerpt("x" * 900)
+
+    assert len(excerpt) == 800
+    assert excerpt.endswith("…")
 
 
 def test_toolchain_cli_probe_redacts_machine_path() -> None:
