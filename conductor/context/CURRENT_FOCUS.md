@@ -2,7 +2,7 @@
 
 ## 2026-07-31 — Approved-scope reconciliation and external publication boundary
 
-Current `main` is `d118c7e1f6c1e9e9331c69e80ab84302e44f102b` and the worktree is clean.
+Current `main` is `d72b57cef9deed7c19d5e40d84725f5650850eef` and the worktree is clean.
 The approved dashboard review remains bounded to the declared 11 routes, four-browser
 matrix, 64 automated checks, 44 screenshots, responsive layout, keyboard navigation,
 automated accessibility, provenance and prohibited-content checks. It does not establish
@@ -10,19 +10,20 @@ universal accessibility conformance or independent manual VoiceOver confirmation
 
 The repository contains all four expected GitHub Actions secret names (`HF_TOKEN`,
 `OSF_TOKEN`, `PBS_API_SUBSCRIPTION_KEY` and `ZENODO_TOKEN`), but secret presence is not
-treated as credential validity. The current release summary reports 39 passing gates and
-one review-pending dashboard head-parity gate; repository release readiness and OSF
-registration readiness are true, while evidence release readiness, policy-claim readiness
-and research-publication readiness remain false.
+treated as credential validity. The current release summary remains fail-closed for
+evidence, policy claims and research publication while repository release and OSF
+registration readiness remain separate gates.
 
 Chrome account-surface verification on 2026-07-31 found Zenodo's personal-access-token
 creation page available, Hugging Face identity confirmation still required, and no usable
 OSF token/settings surface rendered in the session. No token was read, copied, exposed or
 entered. Zenodo, Hugging Face and OSF mutation workflows remain externally gated; papers
-and preprints remain excluded. Fresh dashboard packets are now generated from current
-`main` and pass machine validation, but remain pending accountable review until their new
-hashes are recorded in `human_review.json`; the prior approval is not reused for different
-packet contents.
+and preprints remain excluded. Fresh dashboard packets were generated from merged `main`
+by workflow `30615959106` and pass machine validation. The accountable owner approval is
+bound to automated packet `a93520ee70bc784e1649b2384018c5f36acc5f04dd0ab264713f435a01fcdf64`
+and owner packet `1d6048ce09677ea33f747d115841a0046aa71556e14813242c44b0d97fad9fc4` within
+the declared scope. This does not establish universal accessibility conformance or
+independent manual VoiceOver confirmation.
 
 ## 2026-07-26 — Post-merge repository closure
 
