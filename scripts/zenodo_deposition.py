@@ -316,11 +316,22 @@ def run(  # ruff:ignore[too-many-locals,too-many-branches,too-many-statements]
         if confirmation != "CREATE_ZENODO_DRAFT":
             message = "draft mode requires --confirm CREATE_ZENODO_DRAFT"
             raise ValueError(message)
-        response = _request("POST", f"{api_url}/deposit/depositions", token, {"metadata": metadata})
-        bucket = str(cast("dict[str, Any]", response["links"])["bucket"])
-        for row in files:
-            path = root / str(row["path"])
-            _request("PUT", f"{bucket}/{path.name}", token, content=path.read_bytes())
+        try:
+            response = _request(
+                "POST", f"{api_url}/deposit/depositions", token, {"metadata": metadata}
+            )
+            bucket = str(cast("dict[str, Any]", response["links"])["bucket"])
+            for row in files:
+                path = root / str(row["path"])
+                _request("PUT", f"{bucket}/{path.name}", token, content=path.read_bytes())
+        except ZenodoError as exc:
+            result.update({
+                "status": "blocked_remote_mutation",
+                "reason_code": "zenodo_remote_mutation_rejected",
+                "error": str(exc),
+                "mutation_performed": False,
+            })
+            return result
         result.update({
             "status": "draft_created",
             "mutation_performed": True,
