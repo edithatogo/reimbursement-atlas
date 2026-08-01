@@ -26,8 +26,8 @@ they do not change generated queue rows or authorize publication.
 
 - `data/derived/architecture/import_edges.csv` — `691e582bdde7ee8b7130bf389c872a285ac9940d4954ba5066c67cab688170ab`
 - `data/derived/architecture/import_edges.jsonl` — `1216a4cf16bb34aa1ce13ef546671da0b721f0cec55beb8c312d6193749937ca`
-- `data/derived/source_downloads/download_attempts.csv` — `715b0b40d0bac26a5606af7c323644e5a8b440b2acea3a5db7c72c3c1f90b776`
-- `data/derived/source_downloads/download_attempts.jsonl` — `2a030503709ad0fa1b0f3c5ccc8ddbd798fd7b968487a7ed50e5c108f5754a84`
+- `data/derived/source_downloads/download_attempts.csv` — `132a65d895f0b1f6b2d8b39b522c761fd2a558a913273a39238a72b22d421ada`
+- `data/derived/source_downloads/download_attempts.jsonl` — `712ee26c46ddc0107118e0362c820a3b2ed8d27cf0d0be8f9cba525faa4e3d20`
 
 ## Required decision fields
 
