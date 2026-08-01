@@ -9,7 +9,7 @@
     "table captions"
   ],
   "coverage_complete": true,
-  "data_fingerprint": "ee22acf65943ef8f4fbc8ad29877f89b4bd8daf6e5c098d2ca7c4dbfc9f084aa",
+  "data_fingerprint": "704192bf667ab510b6b9001cc40ffc29e9fd49d017fef602863b42e4cc9f8933",
   "expected_test_count": 64,
   "human_review_required": true,
   "junit": {
@@ -46,11 +46,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 327841,
+      "byte_size": 330281,
       "file": "embedded",
       "project": "desktop-chromium",
       "route": "/",
-      "sha256": "7e50df08d59a2df2d35c8a7f6b8c5c7da79df9e0f5fb129031c907e18dbfad92",
+      "sha256": "b0573c0aed3f23343664c1ea3e27af21cd142b95c1bc3dbb259272e9800219dc",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -59,11 +59,11 @@
     {
       "browser": "firefox",
       "browser_version": "151.0",
-      "byte_size": 322310,
+      "byte_size": 324028,
       "file": "embedded",
       "project": "desktop-firefox",
       "route": "/",
-      "sha256": "25701291f3171bf486bfec26a75c3029f93834e780df7b64ad388634242ec2c7",
+      "sha256": "b82b143e45865bb2d61fad1ee1bedc1c4626ce72855d8814432fb47e858b112d",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -72,11 +72,11 @@
     {
       "browser": "webkit",
       "browser_version": "26.5",
-      "byte_size": 398772,
+      "byte_size": 400456,
       "file": "embedded",
       "project": "desktop-webkit",
       "route": "/",
-      "sha256": "d6fd284f13d4c942c99bb2e4f6648465041c3f76e43b37a47eded35c127fe56d",
+      "sha256": "453fcdf5547f8e2be67a9fdac836101b37d56f48900616148772f365beb4a7b6",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -85,11 +85,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 310759,
+      "byte_size": 312502,
       "file": "embedded",
       "project": "mobile-chromium",
       "route": "/",
-      "sha256": "bcb5ab8eca6b0ca8ba090347ffd79ed1a58f75d259f716a844e2c8a34f5f006e",
+      "sha256": "94ab07fda154948a15f7e4318081a2455cf786f4db468c32c76601609e0fc319",
       "viewport": {
         "height": 727,
         "width": 393
@@ -619,7 +619,7 @@
   "source_fingerprint": "58792f9b06ae24e21e10acbdb52707365acffa766406c42a57f472ce453339c4",
   "status": "pass",
   "test_count": 64,
-  "tested_commit": "31a9f76c2c4ec16504fe579510545e1895348ebc",
+  "tested_commit": "02999b8e0c2f7c8f80506b7035b6040d1fa4d14a",
   "workflow": {
     "artifact_name": null,
     "run_attempt": null,
