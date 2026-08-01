@@ -9,7 +9,7 @@
     "table captions"
   ],
   "coverage_complete": true,
-  "data_fingerprint": "e04cfce704bb3c55fdc827776f50b3f355aeb815a4a5cc5ad9bd55bf209ffe15",
+  "data_fingerprint": "7b99000553507390e4c4fb531f3c81785c49883fd56516247ce23f6d52738185",
   "expected_test_count": 64,
   "human_review_required": true,
   "junit": {
@@ -619,7 +619,7 @@
   "source_fingerprint": "58792f9b06ae24e21e10acbdb52707365acffa766406c42a57f472ce453339c4",
   "status": "pass",
   "test_count": 64,
-  "tested_commit": "03f5d487e75430de35c74a5ec0c7cce0fcc6852b",
+  "tested_commit": "2ccc2d4f3e072fdd19657413ddd7fa6be4b789ce",
   "workflow": {
     "artifact_name": null,
     "run_attempt": null,

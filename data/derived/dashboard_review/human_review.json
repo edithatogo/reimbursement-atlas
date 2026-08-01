@@ -1,7 +1,7 @@
 {
   "approval_scope": "Approved within the declared routes and browser matrix for visual, automated accessibility, responsive-layout, keyboard, provenance and prohibited-content checks. This approval does not establish universal accessibility-standard compliance and does not confirm an independent manual VoiceOver review.",
-  "automated_packet_sha256": "d21314e565440db1f23a06d1e7ccf55f952733f97fbe8b174a082c726eb355b6",
-  "commit": "03f5d487e75430de35c74a5ec0c7cce0fcc6852b",
+  "automated_packet_sha256": "6c0b73fea6d913a11630a0d66bc272e00ca1adea670a06a49463a69482c5191d",
+  "commit": "2ccc2d4f3e072fdd19657413ddd7fa6be4b789ce",
   "evidence_artifacts": [
     "data/derived/dashboard_review/automated_review_packet.json",
     "data/derived/dashboard_review/owner_review_packet.json",
@@ -12,7 +12,7 @@
     "The 44 commit-bound screenshots and machine-readable packet cover the declared visual, responsive-layout, keyboard, automated accessibility, provenance and prohibited-content checks.",
     "Universal WCAG conformance and independent manual VoiceOver confirmation are outside this approval."
   ],
-  "owner_packet_sha256": "5094b167d0290e7b6eac5eabf404c7e597e8422f7476d60b0b2b9d4e94fae80f",
+  "owner_packet_sha256": "ff964f928322d84890fd635f71ccc09f9c11d139c61deda55efff59068377a82",
   "remediation_or_waiver": "No unresolved finding is recorded within the approved scope. Independent manual VoiceOver review remains explicitly out of scope.",
   "reviewed_at": "2026-08-01T00:00:00Z",
   "reviewer": "edithatogo",

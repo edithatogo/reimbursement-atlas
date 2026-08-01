@@ -17,8 +17,8 @@
     "desktop-webkit"
   ],
   "commit_parity": true,
-  "current_head": "03f5d487e75430de35c74a5ec0c7cce0fcc6852b",
-  "data_fingerprint": "e04cfce704bb3c55fdc827776f50b3f355aeb815a4a5cc5ad9bd55bf209ffe15",
+  "current_head": "2ccc2d4f3e072fdd19657413ddd7fa6be4b789ce",
+  "data_fingerprint": "7b99000553507390e4c4fb531f3c81785c49883fd56516247ce23f6d52738185",
   "prohibited_content_check": {
     "files_checked": 77,
     "findings": [],
@@ -104,8 +104,8 @@
     },
     {
       "displayed_path": "apps/dashboard/public/status.json#blockers",
-      "displayed_value": "8c6e8242dcd351d14b79098fbfa8db2f7579955dd3d68e2c923fb83f63438ea1",
-      "expected_value": "8c6e8242dcd351d14b79098fbfa8db2f7579955dd3d68e2c923fb83f63438ea1",
+      "displayed_value": "2b41a6b37f1e9ffba899c3ff8bb11f8cdbe2747350c5049cfd3a8ef55ca30311",
+      "expected_value": "2b41a6b37f1e9ffba899c3ff8bb11f8cdbe2747350c5049cfd3a8ef55ca30311",
       "id": "complete-blocker-projection",
       "source_field": "blockers",
       "source_path": "scripts/make_public_status_manifest.py",
@@ -114,9 +114,9 @@
   ],
   "provenance_inputs": [
     {
-      "byte_size": 3848,
+      "byte_size": 3846,
       "path": "apps/dashboard/public/status.json",
-      "sha256": "486492ab48c729c03e4ad2762a6b5b57cb51ec227ececf66bec25fe340144ed7"
+      "sha256": "c67447d9cdda261054d723b0876b87698f15f034e5ea49d06aea990ceca3a2e2"
     },
     {
       "byte_size": 126,
@@ -729,7 +729,7 @@
   ],
   "source_fingerprint": "58792f9b06ae24e21e10acbdb52707365acffa766406c42a57f472ce453339c4",
   "status": "pending_accountable_review",
-  "tested_commit": "03f5d487e75430de35c74a5ec0c7cce0fcc6852b",
+  "tested_commit": "2ccc2d4f3e072fdd19657413ddd7fa6be4b789ce",
   "workflow": {
     "artifact_name": null,
     "run_attempt": null,
