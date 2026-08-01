@@ -1,11 +1,16 @@
-# Conductor Project Index
+# Project Context
 
-## Context
-- [Product](./product.md)
-- [Product guidelines](./product-guidelines.md)
-- [Technology](./tech-stack.md)
+## Definition
+- [Product Definition](./product.md)
+- [Product Guidelines](./product-guidelines.md)
+- [Tech Stack](./tech-stack.md)
+
+## Workflow
 - [Workflow](./workflow.md)
+- [VCS Workflow](./vcs.md)
+- [Code Style Guides](./code_styleguides/)
 
 ## Management
-- [Tracks](./tracks.md)
-
+- [Tracks Registry](./tracks.md)
+- [Tracks Directory](./tracks/)
+- [Archive Directory](./archive/)

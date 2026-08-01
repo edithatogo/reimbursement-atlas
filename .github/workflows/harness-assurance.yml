@@ -100,5 +100,20 @@ jobs:
           pixi run dashboard-status
           pixi run zenodo-draft
           pixi run zenodo-deposition-plan
+      - name: Capture generated parity diagnostics
+        if: always()
+        run: |
+          git diff --binary > generated-parity.diff || true
+          pixi info > generated-pixi-info.txt || true
+          pixi run python --version > generated-python-version.txt 2>&1 || true
+      - name: Upload generated parity diagnostics
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: generated-parity-diagnostics
+          path: |
+            generated-parity.diff
+            generated-pixi-info.txt
+            generated-python-version.txt
       - name: Require a clean deterministic regeneration
         run: git diff --exit-code

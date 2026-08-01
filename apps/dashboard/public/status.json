@@ -46,7 +46,7 @@
       "id": "dashboard_human_review",
       "next_action": "Complete the commit-bound visual, keyboard, screen-reader and provenance review within the declared scope.",
       "status": "blocked",
-      "summary": "head=2ccc2d4f3e072fdd19657413ddd7fa6be4b789ce failed_checks=workflow_attributed"
+      "summary": "head=2ccc2d4f3e072fdd19657413ddd7fa6be4b789ce failed_checks=workflow_attributed,displayed_data_parity"
     }
   ],
   "claims_policy": "Do not claim evidence or public-release readiness until reviewed sources, licences, human research review and release gates pass.",
