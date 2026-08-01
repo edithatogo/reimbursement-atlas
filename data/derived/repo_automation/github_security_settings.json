@@ -1,0 +1,16 @@
+{
+  "advanced_controls_ready": false,
+  "controls": {
+    "secret_scanning": "enabled",
+    "secret_scanning_non_provider_patterns": "disabled",
+    "secret_scanning_push_protection": "enabled",
+    "secret_scanning_validity_checks": "disabled"
+  },
+  "core_controls_ready": true,
+  "mutation_performed": false,
+  "network_io": true,
+  "next_action": "Enable the two account/plan-bound controls, then rerun this monitor.",
+  "repository": "edithatogo/reimbursement-atlas",
+  "schema_version": "github-security-settings-v1",
+  "status": "blocked_account"
+}
