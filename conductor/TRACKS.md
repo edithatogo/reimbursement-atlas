@@ -10,7 +10,7 @@
   *Link: [./tracks/track_release_record_archive_maturity/index.md](./tracks/track_release_record_archive_maturity/index.md)*
 - [x] **Track: Source provenance, licensing and historical release reproducibility**
   *Link: [./tracks/track_source_provenance_licence_release/index.md](./tracks/track_source_provenance_licence_release/index.md)*
-- [~] **Track: CI/CD and supply-chain hardening**
-  *Link: [./tracks/track_ci_cd_supply_chain/index.md](./tracks/track_ci_cd_supply_chain/index.md)*
+- [x] **Track: CI/CD and supply-chain hardening**
+  *Link: [./archive/track_ci_cd_supply_chain/index.md](./archive/track_ci_cd_supply_chain/index.md)*
 - [~] **Track: Research database registry readiness**
   *Link: [./tracks/research_database_registry_readiness_20260721/index.md](./tracks/research_database_registry_readiness_20260721/index.md)*
