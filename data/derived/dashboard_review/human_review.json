@@ -1,20 +1,27 @@
 {
   "approval_scope": "Approved within the declared routes and browser matrix for visual, automated accessibility, responsive-layout, keyboard, provenance and prohibited-content checks. This approval does not establish universal accessibility-standard compliance and does not confirm an independent manual VoiceOver review.",
-  "automated_packet_sha256": "6c0b73fea6d913a11630a0d66bc272e00ca1adea670a06a49463a69482c5191d",
-  "commit": "2ccc2d4f3e072fdd19657413ddd7fa6be4b789ce",
+  "automated_packet_sha256": "dd40bae110d2720b18c5304363c963a0541a968753f9db0783e6d21f043202f6",
+  "commit": "02999b8e0c2f7c8f80506b7035b6040d1fa4d14a",
   "evidence_artifacts": [
     "data/derived/dashboard_review/automated_review_packet.json",
     "data/derived/dashboard_review/owner_review_packet.json",
-    "Pending hosted dashboard workflow attribution for the approved current-head packet."
+    "Hosted dashboard workflow run 30692660140."
   ],
   "findings": [
     "The current-main full browser matrix passed 64 of 64 tests across Chromium desktop and mobile, Firefox and WebKit.",
     "The 44 commit-bound screenshots and machine-readable packet cover the declared visual, responsive-layout, keyboard, automated accessibility, provenance and prohibited-content checks.",
     "Universal WCAG conformance and independent manual VoiceOver confirmation are outside this approval."
   ],
-  "owner_packet_sha256": "ff964f928322d84890fd635f71ccc09f9c11d139c61deda55efff59068377a82",
+  "owner_packet_sha256": "d75f1876ee746a196e2fbb3290f585e2be2da99a884a6b14eb3ba7743c476423",
+  "workflow": {
+    "artifact_name": "dashboard-browser-matrix-30692660140",
+    "run_attempt": "1",
+    "run_id": "30692660140",
+    "workflow": "Dashboard browser matrix",
+    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30692660140"
+  },
   "remediation_or_waiver": "No unresolved finding is recorded within the approved scope. Independent manual VoiceOver review remains explicitly out of scope.",
-  "reviewed_at": "2026-08-01T00:00:00Z",
+  "reviewed_at": "2026-08-01T09:30:00Z",
   "reviewer": "edithatogo",
   "schema_version": "dashboard-human-review-v1",
   "scope": {

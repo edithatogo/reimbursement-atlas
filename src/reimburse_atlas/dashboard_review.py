@@ -378,6 +378,13 @@ def dashboard_review_evidence(repo: Path) -> dict[str, object]:
     )
     workflow = automated.get("workflow")
     workflow_data = cast("dict[str, Any]", workflow) if isinstance(workflow, dict) else {}
+    if not workflow_data or not all(
+        bool(workflow_data.get(field))
+        for field in ("workflow", "run_id", "run_attempt", "artifact_name", "workflow_url")
+    ):
+        reviewed_workflow = human.get("workflow")
+        if isinstance(reviewed_workflow, dict):
+            workflow_data = cast("dict[str, Any]", reviewed_workflow)
     raw_assertions = owner.get("provenance_assertions")
     assertions = (
         cast("list[dict[str, Any]]", raw_assertions) if isinstance(raw_assertions, list) else []
