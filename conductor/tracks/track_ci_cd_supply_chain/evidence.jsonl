@@ -1,0 +1,5 @@
+{"schema_version":"1.0","event":"workflow_policy","at":"2026-08-01T12:45:00Z","task":"SEC-01","status":"pass","evidence":["data/derived/repo_automation/workflow_policy.json","data/derived/repo_automation/action_sha_pin_plan.json"]}
+{"schema_version":"1.0","event":"provenance","at":"2026-08-01T12:45:00Z","task":"SEC-02","status":"pass","evidence":["scripts/make_sbom.py","scripts/make_release_manifest.py","tests/unit/test_release_attestation.py"]}
+{"schema_version":"1.0","event":"security_contracts","at":"2026-08-01T12:45:00Z","task":"SEC-03","status":"pass","evidence":["tests/unit/test_branch_protection.py","tests/unit/test_workflow_policy.py",".github/workflows/workflow-security.yml"]}
+{"schema_version":"1.0","event":"determinism","at":"2026-08-01T12:45:00Z","task":"SEC-04","status":"pass","evidence":["deterministic regeneration and focused supply-chain tests"]}
+{"schema_version":"1.0","event":"external_gate","at":"2026-08-01T12:45:00Z","task":"hosted_checks","status":"pending","reason":"hosted branch protection and account-level security state are external"}
