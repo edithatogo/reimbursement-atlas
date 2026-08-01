@@ -1,0 +1,5 @@
+{"schema_version":"1.0","event":"validation","at":"2026-08-01T12:05:00Z","task":"HF-01","status":"pass","evidence":["check_huggingface_bundle.py","check_huggingface_publication_gates.py"]}
+{"schema_version":"1.0","event":"readback","at":"2026-08-01T12:05:00Z","task":"HF-02","status":"pass","evidence":["data/derived/publication/huggingface_destination_report.json"]}
+{"schema_version":"1.0","event":"publication","at":"2026-08-01T12:05:00Z","task":"HF-03","status":"pass","evidence":["dataset_commit:a2b3682b1fd4dc5910a154c15abdc6e9c4199442","space_commit:2a82c05"]}
+{"schema_version":"1.0","event":"readback","at":"2026-08-01T12:05:00Z","task":"HF-04","status":"pass","evidence":["dataset_license:other","space_license:apache-2.0","space_sdk:static"]}
+{"schema_version":"1.0","event":"gate","at":"2026-08-01T12:05:00Z","task":"HF-05","status":"pending","reason":"final_handoff_waits_for_external_archive_state"}

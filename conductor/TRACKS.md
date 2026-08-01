@@ -1,5 +1,7 @@
 # Project Tracks
 
+- [~] **Track: Hugging Face dataset and Spaces publication**
+  *Link: [./tracks/track_publication_hf_spaces/index.md](./tracks/track_publication_hf_spaces/index.md)*
 - [x] **Track: Evidence adjudication and accountable-review closure**
   *Link: [./tracks/track_evidence_adjudication_review/index.md](./tracks/track_evidence_adjudication_review/index.md)*
 - [x] **Track: OSF registration record quality and protocol freeze**
