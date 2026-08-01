@@ -6,3 +6,5 @@
 - [x] SEC-04: Run deterministic regeneration and focused security tests. (`0ce00fef`)
 - [x] Review Fixes: Preserve hosted/account-level security controls as explicit
   external gates rather than inferring them from local results. (`0ce00fef`)
+- [x] Review Fixes: Correct the stale security-contract test path in the
+  archived evidence ledger. (`pending`)
