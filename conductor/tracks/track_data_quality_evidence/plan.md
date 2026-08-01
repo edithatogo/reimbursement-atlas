@@ -7,4 +7,4 @@
 - [x] DQ-04: Run focused data-quality, schema and release-gate tests.
 - [x] Review Fixes: Preserve source/licence/research blockers instead of
   inferring evidence readiness from computational success.
-- [ ] DQ-05: Clear remaining real-source, licence and accountable-review gates.
+- [x] DQ-05: Clear remaining real-source, licence and accountable-review gates.
