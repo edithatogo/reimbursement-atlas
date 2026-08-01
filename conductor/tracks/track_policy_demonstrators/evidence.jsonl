@@ -3,3 +3,4 @@
 {"schema_version":"1.0","event":"claim_boundary","at":"2026-08-01T13:05:00Z","task":"DEMO-03","status":"pass","evidence":["docs/ANALYSIS_RECIPES.md","docs/SOURCE_PROVENANCE_AND_TRANSFORMATIONS.md","data/derived/research_claims/summary.json"]}
 {"schema_version":"1.0","event":"projection","at":"2026-08-01T13:05:00Z","task":"DEMO-04","status":"pass","evidence":["data/derived/github_project/github_project_items.csv",".github/generated-issues"]}
 {"schema_version":"1.0","event":"review_boundary","at":"2026-08-01T13:05:00Z","task":"Review Fixes","status":"pass","reason":"descriptive outputs remain separate from evidence readiness and publication approval"}
+{"schema_version":"1.0","event":"gate","at":"2026-08-01T13:06:00Z","task":"POL-04..POL-06","status":"blocked","reason":"reviewed-source analyses, immutable claim packages and scoped accountable review remain incomplete"}
