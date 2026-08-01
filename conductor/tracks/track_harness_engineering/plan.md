@@ -1,11 +1,12 @@
 # Implementation plan
 
-- [x] HAR-01: Validate separate property, integration and end-to-end CI lanes.
-- [x] HAR-02: Validate interpreter-bound test task invocation.
-- [x] HAR-03: Validate deterministic generated-output regeneration.
-- [x] HAR-04: Validate bounded mutation testing controls.
+- [x] HAR-01: Validate separate property, integration and end-to-end CI lanes
+  (`31a9f76`).
+- [x] HAR-02: Validate interpreter-bound test task invocation (`46207a3`).
+- [x] HAR-03: Validate deterministic generated-output regeneration (`31a9f76`).
+- [x] HAR-04: Validate bounded mutation testing controls (`88ff093`).
 - [x] Review Fixes: Preserve the TypeScript 7/Astro peer incompatibility as an
-  explicit blocked canary, not an unsafe dependency upgrade.
+  explicit blocked canary, not an unsafe dependency upgrade (`64d0664`).
 - [ ] HAR-05: Adopt TypeScript 7 only after the Astro checker peer contract and
   full dashboard/browser gates pass.
 
