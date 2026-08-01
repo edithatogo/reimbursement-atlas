@@ -1,0 +1,18 @@
+{
+  "track_id": "track_live_source_ingestion",
+  "type": "feature",
+  "status": "in_progress",
+  "created_at": "2026-08-01T11:55:00Z",
+  "updated_at": "2026-08-01T11:55:00Z",
+  "description": "Acquire and validate official live sources while preserving raw-data, licence and review boundaries.",
+  "evidence_schema": "1.0",
+  "gates": [
+    {"id": "acquisition_receipts", "kind": "repository", "status": "pass", "evidence": "11 redacted attempts recorded; 3 payloads downloaded and 8 targets explicitly skipped."},
+    {"id": "source_validation", "kind": "repository", "status": "pass", "evidence": "data/derived/source_validation/summary.json reports 3 pass, 8 skipped, 0 failures."},
+    {"id": "source_contracts", "kind": "repository", "status": "pass", "evidence": "data/derived/source_contracts/summary.json reports 3 pass, 8 skipped, 0 failures."},
+    {"id": "raw_payload_policy", "kind": "repository", "status": "pass", "evidence": "Public-data policy check passes; raw payloads remain ignored."},
+    {"id": "mbs_licence_review", "kind": "human_review", "status": "blocked", "evidence": "MBS derived bundle remains public_reuse_review."},
+    {"id": "counterpart_licence_review", "kind": "source_rights", "status": "blocked", "evidence": "CMS CLFS, ASP and PFS targets remain licence-gated or descriptor-restricted."},
+    {"id": "pbs_api_credential", "kind": "credential", "status": "blocked", "evidence": "PBS_API_SUBSCRIPTION_KEY is not available for refresh."}
+  ]
+}

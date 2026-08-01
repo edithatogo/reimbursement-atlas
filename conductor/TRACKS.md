@@ -1,5 +1,7 @@
 # Project Tracks
 
+- [~] **Track: Evidence-grade live-source ingestion**
+  *Link: [./tracks/track_live_source_ingestion/index.md](./tracks/track_live_source_ingestion/index.md)*
 - [x] **Track: Evidence adjudication and accountable-review closure**
   *Link: [./tracks/track_evidence_adjudication_review/index.md](./tracks/track_evidence_adjudication_review/index.md)*
 - [x] **Track: OSF registration record quality and protocol freeze**
