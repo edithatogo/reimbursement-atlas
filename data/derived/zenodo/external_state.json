@@ -1,7 +1,7 @@
 {
   "api_url": "https://zenodo.org/api",
   "error": "Zenodo API returned HTTP 403 for POST https://zenodo.org/api/deposit/depositions",
-  "mode": "draft",
+  "mode": "plan",
   "mutation_performed": false,
   "paper_or_preprint_included": false,
   "publication_gate": {

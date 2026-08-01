@@ -283,7 +283,7 @@ def _write_evidence(root: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
-def run(  # ruff:ignore[too-many-locals,too-many-branches,too-many-statements]
+def run(  # ruff:ignore[too-many-locals,too-many-branches,too-many-statements,too-many-return-statements]
     root: Path,
     *,
     mode: str,
@@ -304,6 +304,16 @@ def run(  # ruff:ignore[too-many-locals,too-many-branches,too-many-statements]
         "paper_or_preprint_included": False,
     }
     if mode == "plan":
+        prior_path = root / EVIDENCE
+        if prior_path.is_file():
+            prior = cast("dict[str, Any]", json.loads(prior_path.read_text(encoding="utf-8")))
+            if prior.get("status") == "blocked_remote_mutation":
+                result.update({
+                    "status": prior["status"],
+                    "reason_code": prior.get("reason_code"),
+                    "error": prior.get("error"),
+                })
+                return result
         result["status"] = "ready_for_draft" if gate["status"] == "ready" else "blocked"
         return result
     if mode in {"draft", "reserve", "publish"}:
