@@ -8,6 +8,8 @@
   *Link: [./tracks/track_public_product_citation_dashboard/index.md](./tracks/track_public_product_citation_dashboard/index.md)*
 - [~] **Track: Citation, archive and public record maturity**
   *Link: [./tracks/track_release_record_archive_maturity/index.md](./tracks/track_release_record_archive_maturity/index.md)*
+- [~] **Track: Research-data packaging standards**
+  *Link: [./tracks/track_data_packaging_standards/index.md](./tracks/track_data_packaging_standards/index.md)*
 - [x] **Track: Source provenance, licensing and historical release reproducibility**
   *Link: [./tracks/track_source_provenance_licence_release/index.md](./tracks/track_source_provenance_licence_release/index.md)*
 - [~] **Track: Research database registry readiness**

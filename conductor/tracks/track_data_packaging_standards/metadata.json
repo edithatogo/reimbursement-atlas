@@ -1,0 +1,35 @@
+{
+  "track_id": "track_data_packaging_standards",
+  "type": "feature",
+  "status": "in_progress",
+  "created_at": "2026-08-01T12:15:00Z",
+  "updated_at": "2026-08-01T12:15:00Z",
+  "description": "Generate and validate reproducible research-data packaging descriptors for permitted derived outputs.",
+  "evidence_schema": "1.0",
+  "gates": [
+    {
+      "id": "descriptor_generation",
+      "kind": "repository",
+      "status": "pass",
+      "evidence": "scripts/make_research_package.py generated datapackage.json, ro-crate-metadata.json and dcat.jsonld."
+    },
+    {
+      "id": "descriptor_validation",
+      "kind": "repository",
+      "status": "pass",
+      "evidence": "Focused packaging contract tests passed; permitted relative paths and licence boundaries validated."
+    },
+    {
+      "id": "deterministic_regeneration",
+      "kind": "repository",
+      "status": "pass",
+      "evidence": "Repeated generation produced no tracked diff."
+    },
+    {
+      "id": "zenodo_doi",
+      "kind": "external_mutation",
+      "status": "not_applicable",
+      "evidence": "Zenodo DOI creation is outside this packaging track and remains governed by the release/archive track."
+    }
+  ]
+}

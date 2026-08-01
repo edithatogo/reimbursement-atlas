@@ -1,0 +1,5 @@
+{"schema_version":"1.0","event":"generation","at":"2026-08-01T12:15:00Z","task":"PKG-01","status":"pass","evidence":["data/derived/research_package/datapackage.json","data/derived/research_package/ro-crate-metadata.json","data/derived/research_package/dcat.jsonld"]}
+{"schema_version":"1.0","event":"validation","at":"2026-08-01T12:15:00Z","task":"PKG-02","status":"pass","evidence":["tests/unit/test_v14_roadmap_downloads_osf.py","tests/unit/test_publication_v5.py"]}
+{"schema_version":"1.0","event":"determinism","at":"2026-08-01T12:15:00Z","task":"PKG-03","status":"pass","evidence":["repeat generation produced no tracked diff"]}
+{"schema_version":"1.0","event":"projection","at":"2026-08-01T12:15:00Z","task":"PKG-04","status":"pass","evidence":[".github/generated-issues/084-add-frictionless-data-package-generator.md",".github/generated-issues/085-add-ro-crate-metadata-generator.md",".github/generated-issues/086-add-dcat-json-ld-export.md"]}
+{"schema_version":"1.0","event":"review_fix","at":"2026-08-01T12:15:00Z","task":"Review Fixes","status":"pass","evidence":["Zenodo DOI creation remains outside packaging scope","papers and preprints excluded"]}
