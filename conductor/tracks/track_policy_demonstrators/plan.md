@@ -21,6 +21,9 @@ The current five packages regenerate deterministically and remain
 before closing POL-05, then regenerate POL-06. See
 `docs/POLICY_DEMONSTRATOR_BLOCKER_PLAN.md`.
 
+The repository refresh is green, but it does not satisfy the full POL-04
+reviewed-source analysis acceptance criterion.
+
 ## Acceptance boundary
 
 The track remains open while any question is below `evidence_ready`. A high
