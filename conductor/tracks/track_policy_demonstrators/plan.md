@@ -14,6 +14,13 @@
 - [ ] POL-06: Regenerate evidence, dashboard and release artefacts after all
   five current packages pass.
 
+## Blocker sequence
+
+The current five packages regenerate deterministically and remain
+`pending_accountable_review`. Apply the scoped checksum-bound review decision
+before closing POL-05, then regenerate POL-06. See
+`docs/POLICY_DEMONSTRATOR_BLOCKER_PLAN.md`.
+
 ## Acceptance boundary
 
 The track remains open while any question is below `evidence_ready`. A high
