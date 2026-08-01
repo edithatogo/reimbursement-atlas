@@ -1,0 +1,4 @@
+{"schema_version":"1.0","event":"monitor","at":"2026-08-01T13:45:00Z","task":"SEC-A-01","status":"pass","evidence":["scripts/check_github_security_settings.py","tests/unit/test_github_security_settings.py",".github/workflows/github-security-settings.yml"]}
+{"schema_version":"1.0","event":"controls","at":"2026-08-01T13:45:00Z","task":"SEC-A-02","status":"pass","evidence":["tests/unit/test_branch_protection.py","tests/unit/test_action_pins_v12.py",".github/workflows/security-assurance.yml"]}
+{"schema_version":"1.0","event":"projection","at":"2026-08-01T13:45:00Z","task":"SEC-A-03","status":"pass","evidence":[".github/generated-issues/157-enable-github-non-provider-secret-pattern-scanning-and-validity-checks.md","data/derived/github_project/github_project_items.csv"]}
+{"schema_version":"1.0","event":"gate","at":"2026-08-01T13:45:00Z","task":"SEC-A-04","status":"blocked","reason":"account-level GitHub security settings are unavailable or permission-limited"}

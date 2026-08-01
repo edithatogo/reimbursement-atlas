@@ -10,5 +10,7 @@
   *Link: [./tracks/track_release_record_archive_maturity/index.md](./tracks/track_release_record_archive_maturity/index.md)*
 - [x] **Track: Source provenance, licensing and historical release reproducibility**
   *Link: [./tracks/track_source_provenance_licence_release/index.md](./tracks/track_source_provenance_licence_release/index.md)*
+- [~] **Track: Continuous security assurance and branch enforcement**
+  *Link: [./tracks/track_continuous_security_assurance/index.md](./tracks/track_continuous_security_assurance/index.md)*
 - [~] **Track: Research database registry readiness**
   *Link: [./tracks/research_database_registry_readiness_20260721/index.md](./tracks/research_database_registry_readiness_20260721/index.md)*
