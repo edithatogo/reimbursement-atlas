@@ -5,7 +5,7 @@ Regenerate the preflight against the exact tagged release; no Zenodo evidence is
 newer commit.
 
 The current merged-main baseline is
-`d72b57cef9deed7c19d5e40d84725f5650850eef`. No Zenodo deposit has been
+`8a1577e802c54db81620d99f10cf7d0ce3ddaf4d`. No Zenodo deposit has been
 authorized. The exact tagged release must regenerate and revalidate the inventory
 after OSF registration drift and research-evidence gates pass.
 
