@@ -17,8 +17,8 @@
     "desktop-webkit"
   ],
   "commit_parity": true,
-  "current_head": "d72b57cef9deed7c19d5e40d84725f5650850eef",
-  "data_fingerprint": "dc523d604988418e7b27253bb0f9802e73bd1bfde6965911c847b4871e710cd4",
+  "current_head": "2ccc2d4f3e072fdd19657413ddd7fa6be4b789ce",
+  "data_fingerprint": "7b99000553507390e4c4fb531f3c81785c49883fd56516247ce23f6d52738185",
   "prohibited_content_check": {
     "files_checked": 77,
     "findings": [],
@@ -104,8 +104,8 @@
     },
     {
       "displayed_path": "apps/dashboard/public/status.json#blockers",
-      "displayed_value": "40518e9c2598a91dfaabcd7e1e1ed3e15ae38101fc8d947d0098c63deeb5e40c",
-      "expected_value": "40518e9c2598a91dfaabcd7e1e1ed3e15ae38101fc8d947d0098c63deeb5e40c",
+      "displayed_value": "2b41a6b37f1e9ffba899c3ff8bb11f8cdbe2747350c5049cfd3a8ef55ca30311",
+      "expected_value": "2b41a6b37f1e9ffba899c3ff8bb11f8cdbe2747350c5049cfd3a8ef55ca30311",
       "id": "complete-blocker-projection",
       "source_field": "blockers",
       "source_path": "scripts/make_public_status_manifest.py",
@@ -114,9 +114,9 @@
   ],
   "provenance_inputs": [
     {
-      "byte_size": 3887,
+      "byte_size": 3846,
       "path": "apps/dashboard/public/status.json",
-      "sha256": "3a8a18a732c0b1e4c1bb8d12ddf3357f072cc90103ae55db31bedd7539aeb2bc"
+      "sha256": "c67447d9cdda261054d723b0876b87698f15f034e5ea49d06aea990ceca3a2e2"
     },
     {
       "byte_size": 126,
@@ -729,12 +729,12 @@
   ],
   "source_fingerprint": "58792f9b06ae24e21e10acbdb52707365acffa766406c42a57f472ce453339c4",
   "status": "pending_accountable_review",
-  "tested_commit": "d72b57cef9deed7c19d5e40d84725f5650850eef",
+  "tested_commit": "2ccc2d4f3e072fdd19657413ddd7fa6be4b789ce",
   "workflow": {
-    "artifact_name": "dashboard-browser-review-30615959106",
-    "run_attempt": "1",
-    "run_id": "30615959106",
-    "workflow": "Dashboard browser matrix",
-    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30615959106"
+    "artifact_name": null,
+    "run_attempt": null,
+    "run_id": null,
+    "workflow": null,
+    "workflow_url": null
   }
 }
