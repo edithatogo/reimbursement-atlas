@@ -284,7 +284,7 @@ epics:
         labels: ["type:dashboard", "type:analysis", "status:implemented"]
         status: implemented
       - title: Reconcile Hugging Face destination metadata with governed publication candidate
-        labels: ["type:publication", "type:repo-automation", "risk:licence", "phase:release-gate", "status:blocked"]
+        labels: ["type:publication", "type:repo-automation", "risk:licence", "phase:release-gate", "status:implemented"]
         status: implemented
         acceptance:
           - "Read-only verification records the configured dataset and Space identities and current card metadata."
@@ -729,7 +729,7 @@ epics:
           - "Only the approved record/repository metadata is synchronized; no paper or preprint is submitted."
           - "A redacted receipt records the remote result or exact credential/service blocker."
       - title: Publish the approved Hugging Face dataset and Space candidate
-        labels: ["type:publication", "type:huggingface", "risk:licence", "status:blocked"]
+        labels: ["type:publication", "type:huggingface", "risk:licence", "status:implemented"]
         status: implemented
         acceptance:
           - "The governed publication manifest, source licences, dataset card and Croissant metadata pass validation."
