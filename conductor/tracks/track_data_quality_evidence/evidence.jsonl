@@ -1,0 +1,5 @@
+{"schema_version":"1.0","event":"source_validation","at":"2026-08-01T13:25:00Z","task":"DQ-01","status":"pass","evidence":["data/derived/source_validation","data/derived/source_contracts"]}
+{"schema_version":"1.0","event":"quality_refresh","at":"2026-08-01T13:25:00Z","task":"DQ-02","status":"pass","evidence":["data/derived/data_quality/summary.json","data/derived/evidence_readiness/summary.json"]}
+{"schema_version":"1.0","event":"research_linkage","at":"2026-08-01T13:25:00Z","task":"DQ-03","status":"pass","evidence":["data/derived/research_claims/summary.json","data/derived/protocols/protocol_status.jsonl"]}
+{"schema_version":"1.0","event":"validation","at":"2026-08-01T13:25:00Z","task":"DQ-04","status":"pass","evidence":["tests/unit/test_v17_evidence_drift_dictionary.py","tests/unit/test_review_schemas.py"]}
+{"schema_version":"1.0","event":"gate","at":"2026-08-01T13:25:00Z","task":"DQ-05","status":"blocked","reason":"real-source sufficiency, licence review and accountable research review remain external or incomplete"}
