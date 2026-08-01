@@ -3,3 +3,4 @@
 {"schema_version":"1.0","event":"determinism","at":"2026-08-01T12:15:00Z","task":"PKG-03","status":"pass","evidence":["repeat generation produced no tracked diff"]}
 {"schema_version":"1.0","event":"projection","at":"2026-08-01T12:15:00Z","task":"PKG-04","status":"pass","evidence":[".github/generated-issues/084-add-frictionless-data-package-generator.md",".github/generated-issues/085-add-ro-crate-metadata-generator.md",".github/generated-issues/086-add-dcat-json-ld-export.md"]}
 {"schema_version":"1.0","event":"review_fix","at":"2026-08-01T12:15:00Z","task":"Review Fixes","status":"pass","evidence":["Zenodo DOI creation remains outside packaging scope","papers and preprints excluded"]}
+{"schema_version":"1.0","event":"commit","at":"2026-08-01T12:19:00Z","task":"PKG-01..PKG-04","status":"pass","commit":"512e1867","evidence":["docs/RESEARCH_DATA_PACKAGING.md"]}
