@@ -366,6 +366,19 @@ def resolve_repo_head(repo: Path) -> str | None:
     return None
 
 
+def _workflow_metadata(automated: dict[str, Any], human: dict[str, Any]) -> dict[str, Any]:
+    """Return complete hosted-run metadata, preferring machine evidence."""
+    workflow = automated.get("workflow")
+    workflow_data = cast("dict[str, Any]", workflow) if isinstance(workflow, dict) else {}
+    if workflow_data and all(
+        bool(workflow_data.get(field))
+        for field in ("workflow", "run_id", "run_attempt", "artifact_name", "workflow_url")
+    ):
+        return workflow_data
+    reviewed_workflow = human.get("workflow")
+    return cast("dict[str, Any]", reviewed_workflow) if isinstance(reviewed_workflow, dict) else {}
+
+
 def dashboard_review_evidence(repo: Path) -> dict[str, object]:
     """Return named dashboard gate checks for diagnostics and readiness."""
     automated_path = repo / AUTOMATED_PATH
@@ -376,8 +389,7 @@ def dashboard_review_evidence(repo: Path) -> dict[str, object]:
     evidence_head = (
         human.get("commit") or owner.get("tested_commit") or automated.get("tested_commit")
     )
-    workflow = automated.get("workflow")
-    workflow_data = cast("dict[str, Any]", workflow) if isinstance(workflow, dict) else {}
+    workflow_data = _workflow_metadata(automated, human)
     raw_assertions = owner.get("provenance_assertions")
     assertions = (
         cast("list[dict[str, Any]]", raw_assertions) if isinstance(raw_assertions, list) else []

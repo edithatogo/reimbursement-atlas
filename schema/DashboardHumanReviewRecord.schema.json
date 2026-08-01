@@ -12,6 +12,18 @@
     "reviewed_at": {"type": ["string", "null"], "format": "date-time"},
     "automated_packet_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
     "owner_packet_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workflow", "run_id", "run_attempt", "artifact_name", "workflow_url"],
+      "properties": {
+        "workflow": {"type": "string", "minLength": 1},
+        "run_id": {"type": "string", "pattern": "^[0-9]+$"},
+        "run_attempt": {"type": "string", "pattern": "^[0-9]+$"},
+        "artifact_name": {"type": "string", "minLength": 1},
+        "workflow_url": {"type": "string", "format": "uri", "pattern": "^https://github\\.com/"}
+      }
+    },
     "scope": {
       "type": "object",
       "additionalProperties": false,
