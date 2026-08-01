@@ -7,4 +7,4 @@
 - [x] Review Fixes: Preserve hosted/account-level security controls as explicit
   external gates rather than inferring them from local results. (`0ce00fef`)
 - [x] Review Fixes: Correct the stale security-contract test path in the
-  archived evidence ledger. (`pending`)
+  archived evidence ledger. (`74fb7bbd`)
