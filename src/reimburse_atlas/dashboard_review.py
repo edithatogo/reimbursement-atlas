@@ -369,11 +369,12 @@ def resolve_repo_head(repo: Path) -> str | None:
 def _workflow_metadata(automated: dict[str, Any], human: dict[str, Any]) -> dict[str, Any]:
     """Return complete hosted-run metadata, preferring machine evidence."""
     workflow = automated.get("workflow")
-    if isinstance(workflow, dict) and all(
-        bool(workflow.get(field))
+    workflow_data = cast("dict[str, Any]", workflow) if isinstance(workflow, dict) else {}
+    if workflow_data and all(
+        bool(workflow_data.get(field))
         for field in ("workflow", "run_id", "run_attempt", "artifact_name", "workflow_url")
     ):
-        return cast("dict[str, Any]", workflow)
+        return workflow_data
     reviewed_workflow = human.get("workflow")
     return cast("dict[str, Any]", reviewed_workflow) if isinstance(reviewed_workflow, dict) else {}
 
