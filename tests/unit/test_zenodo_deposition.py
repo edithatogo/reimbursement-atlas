@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import json
+import urllib.request
 from pathlib import Path
+from typing import Self
 
 import pytest
 
@@ -29,6 +31,52 @@ def test_api_url_rejects_token_exfiltration_targets(url: str) -> None:
 )
 def test_api_url_accepts_official_endpoints(url: str) -> None:
     assert validate_api_url(url).endswith("/api")
+
+
+@pytest.mark.parametrize(
+    "asset_name",
+    [
+        "release-manifest.json",
+        "cyclonedx-python.json",
+        "reimbursement_atlas-0.1.1-py3-none-any.whl.json",
+        "reimbursement_atlas-0.1.1-py3-none-any.whl",
+        "reimbursement-atlas-v0.1.1.tar.gz",
+    ],
+)
+def test_release_asset_request_declares_octet_stream(
+    monkeypatch: pytest.MonkeyPatch,
+    asset_name: str,
+) -> None:
+    captured: urllib.request.Request | None = None
+
+    class Response:
+        def __enter__(self) -> Self:
+            return self
+
+        def __exit__(self, *_args: object) -> None:
+            return None
+
+        @staticmethod
+        def read() -> bytes:
+            return b"{}"
+
+    def fake_urlopen(request: urllib.request.Request, *, timeout: int) -> Response:
+        nonlocal captured
+        captured = request
+        assert timeout == 120
+        return Response()
+
+    monkeypatch.setattr(urllib.request, "urlopen", fake_urlopen)
+
+    zenodo_deposition._request(  # ruff:ignore[private-member-access]
+        "PUT",
+        f"https://zenodo.org/api/files/bucket/{asset_name}",
+        "token",
+        content=b"{}",
+    )
+
+    assert captured is not None
+    assert captured.get_header("Content-type") == "application/octet-stream"
 
 
 @pytest.mark.parametrize(

@@ -40,6 +40,8 @@ def _request(
     headers = {"Authorization": f"Bearer {token}"}
     if payload is not None:
         headers["Content-Type"] = "application/json"
+    elif content is not None:
+        headers["Content-Type"] = "application/octet-stream"
     request = urllib.request.Request(  # ruff:ignore[suspicious-url-open-usage]
         url, data=data, headers=headers, method=method
     )
