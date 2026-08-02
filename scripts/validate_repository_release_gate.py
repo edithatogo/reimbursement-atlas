@@ -12,7 +12,8 @@ def main() -> None:
     root = project_root()
     summary_path = root / "data/derived/release_readiness/summary.json"
     if not summary_path.is_file():
-        raise SystemExit(f"missing release-readiness summary: {summary_path}")
+        message = f"missing release-readiness summary: {summary_path}"
+        raise SystemExit(message)
     summary = json.loads(summary_path.read_text(encoding="utf-8"))
     result = {
         "status": "ready" if summary.get("repository_release_ready") is True else "blocked",
@@ -26,7 +27,8 @@ def main() -> None:
     }
     print(json.dumps(result, indent=2, sort_keys=True))
     if result["status"] != "ready":
-        raise SystemExit("repository software release gate is not ready")
+        message = "repository software release gate is not ready"
+        raise SystemExit(message)
 
 
 if __name__ == "__main__":

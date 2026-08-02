@@ -62,7 +62,7 @@ jobs:
         run: pixi run build
       - name: Generate archive
         run: |
-            archive_name="reimbursement-atlas-${{ inputs.release_tag || github.ref_name }}.tar.gz"
+          archive_name="reimbursement-atlas-${{ inputs.release_tag || github.ref_name }}.tar.gz"
           git archive --format=tar.gz --output="$archive_name" HEAD
       - name: Generate deterministic release manifest
         run: |
