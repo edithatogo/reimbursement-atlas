@@ -66,7 +66,8 @@ def test_zenodo_workflow_consumes_exact_attested_github_release(repo_root: Path)
     assert 'gh release download "$RELEASE_TAG"' in workflow
     assert "for artifact in dist/* reimbursement-atlas-*.tar.gz" not in workflow
     assert "for artifact in dist/*.whl dist/*.tar.gz reimbursement-atlas-*.tar.gz" in workflow
-    assert 'test "$(jq -r \'.commit\' release-manifest.json)" = "$(git rev-parse HEAD)"' in workflow
+    assert 'TAG_COMMIT="$(git rev-list -n 1 "$RELEASE_TAG")"' in workflow
+    assert 'test "$(jq -r \'.commit\' release-manifest.json)" = "$TAG_COMMIT"' in workflow
     assert ".verificationResult.statement.subject[]" in workflow
     assert '--source-ref "refs/heads/main"' in workflow
     assert "pixi run zenodo-draft --release-assets" in workflow

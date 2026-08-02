@@ -1530,7 +1530,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "workflow_uses",
-      "sha256": "530c85b572250886e16a0c130335fb00576582deb08de2a7420e41250e080b9b"
+      "sha256": "67bd3afa5a544f93db33df366d3fabe5be10bfecf0fadce38f89db2005b57282"
     },
     {
       "@id": "data/derived/repo_automation/workflow_uses.csv",
@@ -1539,7 +1539,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "workflow_uses",
-      "sha256": "f138ca3edcf957b36e22594a72d529a2d2e3ec3ae33a34ec5d1d37b12d08833f"
+      "sha256": "3cf7fa9c65a2626d43dfef065f9ff332199bd5707ff90777e88e49244dc2016f"
     },
     {
       "@id": "data/derived/repo_automation/workflow_policy.jsonl",
