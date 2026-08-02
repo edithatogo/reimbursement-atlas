@@ -53,6 +53,7 @@ def test_release_workflow_attests_and_verifies_all_release_subject_classes(
     assert "Verify release attestations before upload" in workflow
     assert "softprops/action-gh-release" in workflow
     assert "tag_name: ${{ env.RELEASE_TAG }}" in workflow
+    assert '--commit "$(git rev-parse HEAD)"' in workflow
     assert "pixi run zenodo-draft --release-assets" in workflow
     assert "--format json" in workflow
     assert "data/derived/attestations/*.json" in workflow
