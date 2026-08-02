@@ -312,8 +312,8 @@
       "jsonl_path": "local_quality_gates/local_quality_gates.jsonl",
       "name": "local_quality_gates",
       "parquet_path": "local_quality_gates/local_quality_gates.parquet",
-      "rows": 16,
-      "sha256": "0ff56249b8b14427725e97d31616d82066259c20bcd2a8d676429f878d68c551"
+      "rows": 27,
+      "sha256": "9c4181a11353dafaa83e794231d9b31ea06e256a210561fe4b72690ed5bdf5d6"
     },
     {
       "csv_path": "local_quality_gate_specs/local_quality_gate_specs.csv",
