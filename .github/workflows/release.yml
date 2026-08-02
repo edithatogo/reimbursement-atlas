@@ -73,7 +73,7 @@ jobs:
           python scripts/make_release_manifest.py \
             --output release-manifest.json \
             --tag "$RELEASE_TAG" \
-            --commit "$GITHUB_SHA" \
+            --commit "$(git rev-parse HEAD)" \
             --artifact dist/*.whl \
             --artifact dist/*.tar.gz \
             --artifact reimbursement-atlas-*.tar.gz \
