@@ -180,16 +180,43 @@ def _remote_file_parity(
     for filename, local in expected.items():
         remote = observed.get(filename)
         if remote is None:
-            mismatches.append({"filename": filename, "reason": "missing_remote_file"})
+            mismatches.append({
+                "filename": filename,
+                "reason": "missing_remote_file",
+                "expected_size": str(local["byte_size"]),
+                "expected_checksum": f"sha256:{local['sha256']}",
+            })
             continue
-        if int(remote.get("size", remote.get("filesize", -1))) != int(local["byte_size"]):
-            mismatches.append({"filename": filename, "reason": "byte_size_mismatch"})
+        remote_size = int(remote.get("size", remote.get("filesize", -1)))
+        if remote_size != int(local["byte_size"]):
+            mismatches.append({
+                "filename": filename,
+                "reason": "byte_size_mismatch",
+                "expected_size": str(local["byte_size"]),
+                "observed_size": str(remote_size),
+            })
         checksum = str(remote.get("checksum", ""))
-        accepted = {f"md5:{local['md5']}", f"sha256:{local['sha256']}"}
+        accepted = {
+            local["md5"],
+            local["sha256"],
+            f"md5:{local['md5']}",
+            f"sha256:{local['sha256']}",
+        }
         if checksum not in accepted:
-            mismatches.append({"filename": filename, "reason": "checksum_mismatch"})
+            mismatches.append({
+                "filename": filename,
+                "reason": "checksum_mismatch",
+                "expected_checksum": ",".join(sorted(accepted)),
+                "observed_checksum": checksum or "missing",
+            })
     for filename in sorted(set(observed) - set(expected)):
-        mismatches.append({"filename": filename, "reason": "unexpected_remote_file"})
+        remote = observed[filename]
+        mismatches.append({
+            "filename": filename,
+            "reason": "unexpected_remote_file",
+            "observed_size": str(remote.get("size", remote.get("filesize", -1))),
+            "observed_checksum": str(remote.get("checksum", "")) or "missing",
+        })
     return {
         "status": "pass" if not mismatches else "fail",
         "expected_file_count": len(expected),
@@ -224,13 +251,51 @@ def _remote_metadata_parity(local: dict[str, Any], remote: dict[str, Any]) -> di
         "version",
         "related_identifiers",
     )
-    mismatches = [
-        field
+
+    def comparable(field: str, value: object) -> object:
+        value = _normalise_metadata_value(value)
+        if field == "license" and isinstance(value, str):
+            return value.lower().replace("-", "").replace(".", "")
+        if field == "creators" and isinstance(value, list):
+            creators = cast("list[object]", value)
+            return [
+                {
+                    key: item_value
+                    for key, item_value in cast("dict[str, object]", creator).items()
+                    if item_value is not None
+                }
+                if isinstance(creator, dict)
+                else creator
+                for creator in creators
+            ]
+        if field == "related_identifiers" and isinstance(value, list):
+            identifiers = cast("list[object]", value)
+            return [
+                {
+                    key: item_value
+                    for key, item_value in cast("dict[str, object]", identifier).items()
+                    if key != "scheme"
+                }
+                if isinstance(identifier, dict)
+                else identifier
+                for identifier in identifiers
+            ]
+        return value
+
+    mismatch_details = [
+        {
+            "field": field,
+            "expected": comparable(field, local.get(field)),
+            "observed": comparable(field, remote.get(field)),
+        }
         for field in fields
-        if _normalise_metadata_value(local.get(field))
-        != _normalise_metadata_value(remote.get(field))
+        if comparable(field, local.get(field)) != comparable(field, remote.get(field))
     ]
-    return {"status": "pass" if not mismatches else "fail", "mismatched_fields": mismatches}
+    return {
+        "status": "pass" if not mismatch_details else "fail",
+        "mismatched_fields": [str(item["field"]) for item in mismatch_details],
+        "mismatch_details": mismatch_details,
+    }
 
 
 def _value_at(value: dict[str, Any], path: str) -> object:
@@ -282,12 +347,42 @@ def _require_remote_draft_parity(
     remote_metadata = cast("dict[str, Any]", response.get("metadata", {}))
     metadata_parity = _remote_metadata_parity(metadata, remote_metadata)
     if file_parity["status"] != "pass" or metadata_parity["status"] != "pass":
-        message = "Zenodo draft file or metadata parity failed"
-        raise ValueError(message)
+        raise ValueError(_parity_failure_message("draft", file_parity, metadata_parity))
     if require_reserved_doi and not remote_metadata.get("prereserve_doi"):
         message = "Zenodo publication requires a reserved version DOI"
         raise ValueError(message)
     return file_parity, metadata_parity
+
+
+def _parity_failure_message(
+    operation: str,
+    file_parity: dict[str, Any],
+    metadata_parity: dict[str, object],
+) -> str:
+    """Describe remote parity failures without reducing them to one generic error."""
+    details: list[str] = []
+    mismatches = cast("list[dict[str, str]]", file_parity.get("mismatches", []))
+    checksum_files = sorted({
+        row["filename"] for row in mismatches if row.get("reason") == "checksum_mismatch"
+    })
+    file_other = sorted({
+        row["filename"] for row in mismatches if row.get("reason") != "checksum_mismatch"
+    })
+    mismatched_fields = cast("list[object]", metadata_parity.get("mismatched_fields", []))
+    metadata_fields = sorted(str(field) for field in mismatched_fields)
+    if checksum_files:
+        details.append(f"checksum mismatch for files: {', '.join(checksum_files)}")
+    if file_other:
+        details.append(f"file parity mismatch for files: {', '.join(file_other)}")
+    if metadata_fields:
+        details.append(f"metadata mismatch in fields: {', '.join(metadata_fields)}")
+    if mismatches:
+        details.append(f"mismatch_details={json.dumps(mismatches, sort_keys=True)}")
+    metadata_details = cast("list[dict[str, object]]", metadata_parity.get("mismatch_details", []))
+    if metadata_details:
+        details.append(f"metadata_details={json.dumps(metadata_details, sort_keys=True)}")
+    suffix = "; ".join(details) if details else "no mismatch details were returned"
+    return f"Zenodo {operation} parity failed: {suffix}"
 
 
 def _write_evidence(root: Path, payload: dict[str, Any]) -> None:
@@ -422,8 +517,7 @@ def run(  # ruff:ignore[too-many-locals,too-many-branches,too-many-statements,to
         metadata, cast("dict[str, Any]", response.get("metadata", {}))
     )
     if parity["status"] != "pass" or metadata_parity["status"] != "pass":
-        message = "Zenodo remote verification parity failed"
-        raise ValueError(message)
+        raise ValueError(_parity_failure_message("remote verification", parity, metadata_parity))
     result.update({
         "status": "verified",
         "deposition_id": deposition_id,

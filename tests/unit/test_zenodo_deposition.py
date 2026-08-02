@@ -212,6 +212,10 @@ def test_remote_file_parity_checks_names_sizes_and_checksums() -> None:
         local,
         [{"key": "package.whl", "size": 3, "checksum": f"md5:{'b' * 32}"}],
     )
+    bare_md5_passing = zenodo_deposition._remote_file_parity(  # ruff:ignore[private-member-access]
+        local,
+        [{"key": "package.whl", "size": 3, "checksum": "b" * 32}],
+    )
     failing = zenodo_deposition._remote_file_parity(  # ruff:ignore[private-member-access]
         local,
         [
@@ -221,6 +225,7 @@ def test_remote_file_parity_checks_names_sizes_and_checksums() -> None:
     )
 
     assert passing["status"] == "pass"
+    assert bare_md5_passing["status"] == "pass"
     assert failing["status"] == "fail"
     assert {row["reason"] for row in failing["mismatches"]} == {
         "byte_size_mismatch",
@@ -245,11 +250,54 @@ def test_remote_metadata_parity_checks_publication_critical_fields() -> None:
     remote = {**local, "keywords": list(reversed(local["keywords"]))}
 
     passing = zenodo_deposition._remote_metadata_parity(local, remote)  # ruff:ignore[private-member-access]
+    remote["license"] = "apache2.0"
+    remote["creators"] = [{**local["creators"][0], "affiliation": None}]
+    remote["related_identifiers"] = [{**local["related_identifiers"][0], "scheme": "url"}]
+    equivalent = zenodo_deposition._remote_metadata_parity(  # ruff:ignore[private-member-access]
+        local, remote
+    )
     remote["version"] = "0.2.0"
     failing = zenodo_deposition._remote_metadata_parity(local, remote)  # ruff:ignore[private-member-access]
 
     assert passing["status"] == "pass"
-    assert failing == {"status": "fail", "mismatched_fields": ["version"]}
+    assert equivalent["status"] == "pass"
+    assert failing == {
+        "status": "fail",
+        "mismatched_fields": ["version"],
+        "mismatch_details": [{"field": "version", "expected": "0.1.0", "observed": "0.2.0"}],
+    }
+
+
+def test_parity_failure_message_distinguishes_checksums_and_metadata() -> None:
+    message = zenodo_deposition._parity_failure_message(  # ruff:ignore[private-member-access]
+        "remote verification",
+        {
+            "status": "fail",
+            "mismatches": [
+                {"filename": "package.whl", "reason": "checksum_mismatch"},
+                {"filename": "manifest.json", "reason": "byte_size_mismatch"},
+            ],
+        },
+        {"status": "fail", "mismatched_fields": ["version", "license"]},
+    )
+
+    assert message == (
+        "Zenodo remote verification parity failed: checksum mismatch for files: package.whl; "
+        "file parity mismatch for files: manifest.json; "
+        "metadata mismatch in fields: license, version; "
+        'mismatch_details=[{"filename": "package.whl", "reason": "checksum_mismatch"}, '
+        '{"filename": "manifest.json", "reason": "byte_size_mismatch"}]'
+    )
+
+
+def test_parity_failure_message_identifies_metadata_only_failure() -> None:
+    message = zenodo_deposition._parity_failure_message(  # ruff:ignore[private-member-access]
+        "draft",
+        {"status": "pass", "mismatches": []},
+        {"status": "fail", "mismatched_fields": ["description"]},
+    )
+
+    assert message == "Zenodo draft parity failed: metadata mismatch in fields: description"
 
 
 def test_publish_requires_remote_parity_and_reserved_doi() -> None:
