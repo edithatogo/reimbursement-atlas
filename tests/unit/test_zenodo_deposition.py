@@ -33,11 +33,7 @@ def test_api_url_accepts_official_endpoints(url: str) -> None:
 
 @pytest.mark.parametrize(
     ("mode", "confirmation", "deposition_id"),
-    [
-        ("draft", "CREATE_ZENODO_DRAFT", None),
-        ("reserve", "RESERVE_ZENODO_DOI", "123"),
-        ("publish", "PUBLISH_ZENODO_RECORD", "123"),
-    ],
+    [("reserve", "RESERVE_ZENODO_DOI", "123"), ("publish", "PUBLISH_ZENODO_RECORD", "123")],
 )
 def test_mutating_modes_make_no_http_request_when_archive_gate_is_false(
     tmp_path: Path,
@@ -78,6 +74,38 @@ def test_mutating_modes_make_no_http_request_when_archive_gate_is_false(
         )
 
     assert called is False
+
+
+def test_draft_requires_repository_release_gate_but_not_evidence_gate(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A private draft can stage a released inventory before evidence publication."""
+    summary = tmp_path / "data/derived/release_readiness/summary.json"
+    summary.parent.mkdir(parents=True)
+    summary.write_text(
+        json.dumps({"repository_release_ready": True, "evidence_release_ready": False}),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(zenodo_deposition, "_load_inputs", lambda _root: ({}, []))
+    calls: list[str] = []
+
+    def request(method: str, *_args: object, **_kwargs: object) -> dict[str, object]:
+        calls.append(method)
+        return {"id": 123, "links": {"bucket": "https://zenodo.org/api/files/123"}}
+
+    monkeypatch.setattr(zenodo_deposition, "_request", request)
+    credential = tmp_path.as_posix()
+    result = run(
+        tmp_path,
+        mode="draft",
+        api_url="https://zenodo.org/api",
+        token=credential,
+        deposition_id=None,
+        confirmation="CREATE_ZENODO_DRAFT",
+    )
+    assert result["status"] == "draft_created"
+    assert calls == ["POST"]
 
 
 def test_plan_is_non_mutating_and_does_not_require_inputs_or_token(tmp_path: Path) -> None:
