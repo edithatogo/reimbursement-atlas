@@ -130,3 +130,17 @@ tracks:
       - 619
       - 620
       - 621
+  - id: track_release_gate_reconciliation_closeout
+    title: "Release gate reconciliation and external dependency closeout"
+    priority: must
+    phase: release
+    workstream: governance
+    goal: "Reconcile current dashboard evidence, evidence readiness and external publication state in dependency order, then close only the gates supported by current checksum-bound evidence."
+    spec: "conductor/tracks/track_release_gate_reconciliation_closeout/spec.md"
+    plan: "conductor/tracks/track_release_gate_reconciliation_closeout/plan.md"
+    issues:
+      - 490
+      - 491
+      - 493
+      - 532
+      - 534

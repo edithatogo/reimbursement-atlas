@@ -1675,3 +1675,18 @@ redacted remote-state receipts when run.
 
 Public child issues #618 (Zenodo), #619 (OSF), #620 (Hugging Face) and #621
 (final handoff) now cross-reference the track and generated project rows.
+# 2026-08-03 - Release gate reconciliation closeout
+
+Current `main` is `81c28d8809c6fe47cf8e3aa2eecc4da1dec244b1` and the worktree is
+clean. The new `track_release_gate_reconciliation_closeout` makes the remaining
+dependency sequence explicit: refresh current-head dashboard evidence and obtain
+scoped accountable approval; acquire rights-cleared mapping counterparts before
+blinded adjudication; regenerate evidence and release readiness; then validate
+Hugging Face and OSF only when their upstream gates pass. Zenodo deposition
+`21759294` is already published and must only be verified, not mutated.
+
+The current repository-owned blocker is `dashboard_human_review`: the checked
+dashboard packet is bound to `7f75e76c` and fails `displayed_data_parity`. Evidence
+release readiness therefore remains false. Issue #490 precedes #491, and both are
+upstream of evidence release and Hugging Face publication. Papers and preprints
+remain excluded.

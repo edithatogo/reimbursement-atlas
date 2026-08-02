@@ -742,3 +742,51 @@ epics:
         acceptance:
           - "Final readiness, public status, Conductor, GitHub issues and Project rows agree on each external state."
           - "A clean versioned bundle/archive and checksum manifest verify against the final main commit."
+  - id: RAC-GATE-001
+    title: Release gate reconciliation and external dependency closeout
+    phase: release
+    workstream: governance
+    priority: must
+    track_id: track_release_gate_reconciliation_closeout
+    issues:
+      - title: Refresh current-head dashboard evidence and obtain scoped owner approval
+        labels: ["type:dashboard", "type:accessibility", "type:provenance", "type:review", "status:blocked"]
+        status: blocked
+        acceptance:
+          - "The automated packet is generated against the current main commit."
+          - "Displayed values and provenance checks pass without restricted raw content."
+          - "The accountable owner approves the exact packet hashes within the declared route/browser/provenance scope."
+          - "Universal WCAG conformance and independent VoiceOver claims remain excluded."
+        dependencies: [493]
+      - title: Acquire rights-cleared mapping counterpart data before holdout evaluation
+        labels: ["type:mapping", "type:data-source", "type:licence", "type:statistics", "status:blocked"]
+        status: blocked
+        acceptance:
+          - "ATC/RxNorm/CMS ASP and other required counterpart records have source, version, licence and checksum evidence."
+          - "The candidate frame is real-source derived, deduplicated and frozen before review."
+          - "No fixtures are used to satisfy quotas."
+        dependencies: [490]
+      - title: Run blinded adjudication and untouched holdout evaluation
+        labels: ["type:mapping", "type:statistics", "type:review", "status:blocked"]
+        status: blocked
+        acceptance:
+          - "Two isolated reviews and accountable adjudication are complete."
+          - "Development and holdout sets are disjoint and checksum-bound."
+          - "Exact confidence intervals and family-level metrics are reported."
+        dependencies: [490, 491]
+      - title: Keep Hugging Face publication fail-closed until evidence gates pass
+        labels: ["type:huggingface", "type:publication", "type:licence", "status:blocked"]
+        status: blocked
+        acceptance:
+          - "Metadata, Croissant, dataset card, licence and identity parity checks pass."
+          - "Publication remains dry-run only while evidence or policy-claim readiness is false."
+          - "No token is stored in the repository."
+        dependencies: [490, 491, 493, 534]
+      - title: Preserve and verify published Zenodo record without further mutation
+        labels: ["type:zenodo", "type:release", "type:provenance", "status:implemented"]
+        status: implemented
+        acceptance:
+          - "Deposition 21759294 remains published with 12/12 file and metadata parity."
+          - "No DOI is reserved or published again."
+          - "Papers and preprints remain excluded."
+        dependencies: [532]
