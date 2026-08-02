@@ -4,7 +4,7 @@ build-backend = "uv_build"
 
 [project]
 name = "reimbursement-atlas"
-version = "0.1.0"
+version = "0.1.1"
 description = "Bleeding-edge comparative reimbursement atlas for CMS, MBS/PBS and global public billing schedules."
 readme = "README.md"
 requires-python = ">=3.14"

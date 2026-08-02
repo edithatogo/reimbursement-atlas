@@ -4016,7 +4016,7 @@
     "component": {
       "name": "reimbursement-atlas-python",
       "type": "application",
-      "version": "0.1.0"
+      "version": "0.1.1"
     },
     "properties": [
       {
@@ -4039,7 +4039,7 @@
       ]
     }
   },
-  "serialNumber": "urn:uuid:01e7d660-2d9c-5999-b6e5-167f67d71d0b",
+  "serialNumber": "urn:uuid:def1a54f-bd50-5c80-969a-fc64ae8750dd",
   "specVersion": "1.6",
   "version": 1
 }

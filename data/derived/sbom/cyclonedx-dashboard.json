@@ -10612,7 +10612,7 @@
     "component": {
       "name": "reimbursement-atlas-dashboard",
       "type": "application",
-      "version": "0.1.0"
+      "version": "0.1.1"
     },
     "properties": [
       {
@@ -10635,7 +10635,7 @@
       ]
     }
   },
-  "serialNumber": "urn:uuid:12d1891c-9bc8-5949-b908-92d73b029ed1",
+  "serialNumber": "urn:uuid:7be20613-f722-532c-ac3b-d62aa80406bd",
   "specVersion": "1.6",
   "version": 1
 }
