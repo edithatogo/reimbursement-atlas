@@ -17,6 +17,8 @@
   machine-readable attestation receipts. The v2 inventory contract and exact-tag release download
   and receipt-verification path are implemented; signed final-release assets remain pending until
   upstream OSF registration evidence passes and the tag is published. (Subissue #505)
+- [x] REL-04A: Document the exact-tag release, attestation, archive-inventory and Zenodo/DataCite
+  handoff sequence without performing external publication (`f0fa990d`, `RELEASE_RECORD_ARCHIVE_RUNBOOK.md`).
 - [ ] REL-05: Run final release-readiness and publication boundary review; do not publish papers. (Subissue #507)
 - [x] REL-05A: Replace the stale five-package human-review blocker with evidence-derived
   classification. Only complete packages are reviewable; partial packages identify exact source
