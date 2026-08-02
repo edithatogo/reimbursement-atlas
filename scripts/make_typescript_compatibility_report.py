@@ -65,20 +65,36 @@ def build_report(  # ruff:ignore[too-many-locals] - fields mirror the compatibil
     view: NpmView = npm_view or default_view
 
     peer_value, peer_error = view(f"@astrojs/check@{checker_version}", "peerDependencies")
+    latest_checker_value, latest_checker_error = view("@astrojs/check", "version")
+    latest_checker_version = str(latest_checker_value or "")
+    latest_peer_value, latest_peer_error = view("@astrojs/check", "peerDependencies")
     peer_dependencies = (
         cast("dict[str, object]", peer_value) if isinstance(peer_value, dict) else {}
     )
     peer_range = str(peer_dependencies.get("typescript", ""))
+    latest_peer_dependencies = (
+        cast("dict[str, object]", latest_peer_value)
+        if isinstance(latest_peer_value, dict)
+        else {}
+    )
+    latest_peer_range = str(latest_peer_dependencies.get("typescript", ""))
     candidate_value, candidate_error = view("typescript@7", "version")
     candidate_typescript = (
         ", ".join(str(item) for item in cast("list[object]", candidate_value))
         if isinstance(candidate_value, list)
         else str(candidate_value or "")
     )
-    errors = [error for error in (peer_error, candidate_error) if error]
+    errors = [
+        error
+        for error in (peer_error, latest_checker_error, latest_peer_error, candidate_error)
+        if error
+    ]
     if errors:
         status = "blocked_network" if "timed out" not in " ".join(errors) else "unknown"
-    elif _peer_supports_typescript7(peer_range) and candidate_typescript:
+    elif (
+        candidate_typescript
+        and (_peer_supports_typescript7(peer_range) or _peer_supports_typescript7(latest_peer_range))
+    ):
         status = "upgrade_available"
     else:
         status = "blocked_peer"
@@ -91,6 +107,8 @@ def build_report(  # ruff:ignore[too-many-locals] - fields mirror the compatibil
         "checker": "@astrojs/check",
         "checker_version": checker_version,
         "checker_peer_typescript": peer_range,
+        "latest_checker_version": latest_checker_version,
+        "latest_checker_peer_typescript": latest_peer_range,
         "upgrade_recommended": status == "upgrade_available",
         "errors": errors,
         "network_io": True,
@@ -108,6 +126,8 @@ def _markdown(report: dict[str, Any]) -> str:
         f"- TypeScript 7 candidate: `{report['candidate_typescript7'] or 'unavailable'}`",
         f"- Checker: `{report['checker']}@{report['checker_version']}`",
         f"- Checker peer range: `{report['checker_peer_typescript'] or 'unavailable'}`",
+        f"- Latest checker: `{report['checker']}@{report['latest_checker_version'] or 'unavailable'}`",
+        f"- Latest checker peer range: `{report['latest_checker_peer_typescript'] or 'unavailable'}`",
         "- This report performs metadata lookups only; it never changes package files.",
         "",
     ]

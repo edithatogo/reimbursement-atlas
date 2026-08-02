@@ -42,6 +42,24 @@ def test_typescript7_canary_identifies_reviewable_upgrade(tmp_path: Path) -> Non
     assert report["upgrade_recommended"] is True
 
 
+def test_typescript7_canary_checks_latest_checker_peer_range(tmp_path: Path) -> None:
+    _package(tmp_path)
+
+    def view(spec: str, field: str) -> tuple[object, str | None]:
+        if spec == "@astrojs/check" and field == "version":
+            return "0.9.10", None
+        if spec == "@astrojs/check" and field == "peerDependencies":
+            return {"typescript": "^6.0.0 || ^7.0.0"}, None
+        if field == "peerDependencies":
+            return {"typescript": "^5.0.0 || ^6.0.0"}, None
+        return "7.0.2", None
+
+    report = build_report(tmp_path, npm_view=view)
+    assert report["status"] == "upgrade_available"
+    assert report["latest_checker_version"] == "0.9.10"
+    assert report["latest_checker_peer_typescript"] == "^6.0.0 || ^7.0.0"
+
+
 def test_typescript7_canary_redacts_lookup_errors_to_summaries(tmp_path: Path) -> None:
     _package(tmp_path)
 
@@ -51,4 +69,9 @@ def test_typescript7_canary_redacts_lookup_errors_to_summaries(tmp_path: Path) -
     report = build_report(tmp_path, npm_view=view)
     assert report["status"] == "blocked_network"
     assert report["mutation_performed"] is False
-    assert report["errors"] == ["registry unavailable", "registry unavailable"]
+    assert report["errors"] == [
+        "registry unavailable",
+        "registry unavailable",
+        "registry unavailable",
+        "registry unavailable",
+    ]
