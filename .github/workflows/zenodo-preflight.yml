@@ -115,7 +115,10 @@ jobs:
             gh attestation verify "$artifact" \
               --repo "$GITHUB_REPOSITORY" \
               --signer-workflow "$signer" \
-              --source-ref "refs/tags/$RELEASE_TAG" \
+            # Release v0.1.1 was built by workflow_dispatch from main while
+            # checking out the immutable release tag; attestations therefore
+            # bind to the actual workflow source ref.
+            --source-ref "refs/heads/main" \
               --deny-self-hosted-runners
           done
       - name: Regenerate deterministic deposition inputs
