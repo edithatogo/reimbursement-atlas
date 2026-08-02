@@ -7,3 +7,4 @@ Parent issue: [#530](https://github.com/edithatogo/reimbursement-atlas/issues/53
 - [Specification](./spec.md)
 - [Implementation plan](./plan.md)
 - [Metadata](./metadata.json)
+- [Evidence ledger](./evidence.jsonl)
