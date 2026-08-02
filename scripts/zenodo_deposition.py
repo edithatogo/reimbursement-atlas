@@ -330,7 +330,7 @@ def run(  # ruff:ignore[too-many-locals,too-many-branches,too-many-statements,to
                 result.update({
                     key: value
                     for key, value in prior.items()
-                    if key not in {"mode", "api_url", "publication_gate"}
+                    if key not in {"api_url", "publication_gate"}
                 })
                 return result
         result["status"] = "ready_for_draft" if gate["status"] == "ready" else "blocked"

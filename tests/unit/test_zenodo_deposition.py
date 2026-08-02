@@ -153,6 +153,7 @@ def test_draft_requires_repository_release_gate_but_not_evidence_gate(
         confirmation="CREATE_ZENODO_DRAFT",
     )
     assert result["status"] == "draft_created"
+    assert result["mode"] == "draft"
     assert calls == ["POST"]
 
 
