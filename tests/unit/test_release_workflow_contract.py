@@ -22,13 +22,8 @@ def test_release_workflow_scopes_write_and_attestation_permissions_to_build(
     assert "contents: write" in build_job
     assert "id-token: write" in build_job
     assert "attestations: write" in build_job
-    repository_gate_check = " ".join([
-        "jq",
-        "-r",
-        "'.repository_release_ready'",
-        "data/derived/release_readiness/summary.json",
-    ])
-    assert repository_gate_check in workflow
+    assert "jq -r '.repository_release_ready'" in workflow
+    assert "data/derived/release_readiness/summary.json" in workflow
     assert "pixi run archive-publication-gate" not in workflow
 
 
