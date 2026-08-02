@@ -257,18 +257,28 @@ def _remote_metadata_parity(local: dict[str, Any], remote: dict[str, Any]) -> di
         if field == "license" and isinstance(value, str):
             return value.lower().replace("-", "").replace(".", "")
         if field == "creators" and isinstance(value, list):
+            creators = cast("list[object]", value)
             return [
-                {key: item_value for key, item_value in creator.items() if item_value is not None}
+                {
+                    key: item_value
+                    for key, item_value in cast("dict[str, object]", creator).items()
+                    if item_value is not None
+                }
                 if isinstance(creator, dict)
                 else creator
-                for creator in value
+                for creator in creators
             ]
         if field == "related_identifiers" and isinstance(value, list):
+            identifiers = cast("list[object]", value)
             return [
-                {key: item_value for key, item_value in identifier.items() if key != "scheme"}
+                {
+                    key: item_value
+                    for key, item_value in cast("dict[str, object]", identifier).items()
+                    if key != "scheme"
+                }
                 if isinstance(identifier, dict)
                 else identifier
-                for identifier in value
+                for identifier in identifiers
             ]
         return value
 
@@ -358,7 +368,8 @@ def _parity_failure_message(
     file_other = sorted({
         row["filename"] for row in mismatches if row.get("reason") != "checksum_mismatch"
     })
-    metadata_fields = sorted(str(field) for field in metadata_parity.get("mismatched_fields", []))
+    mismatched_fields = cast("list[object]", metadata_parity.get("mismatched_fields", []))
+    metadata_fields = sorted(str(field) for field in mismatched_fields)
     if checksum_files:
         details.append(f"checksum mismatch for files: {', '.join(checksum_files)}")
     if file_other:
