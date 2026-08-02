@@ -112,13 +112,13 @@ jobs:
               'any(.[]; any(.verificationResult.statement.subject[];
                 .name == $name and .digest.sha256 == $digest))' \
               "$receipt" >/dev/null
-            gh attestation verify "$artifact" \
-              --repo "$GITHUB_REPOSITORY" \
-              --signer-workflow "$signer" \
             # Release v0.1.1 was built by workflow_dispatch from main while
             # checking out the immutable release tag; attestations therefore
             # bind to the actual workflow source ref.
-            --source-ref "refs/heads/main" \
+            gh attestation verify "$artifact" \
+              --repo "$GITHUB_REPOSITORY" \
+              --signer-workflow "$signer" \
+              --source-ref "refs/heads/main" \
               --deny-self-hosted-runners
           done
       - name: Regenerate deterministic deposition inputs
