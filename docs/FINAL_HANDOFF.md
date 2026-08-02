@@ -3,7 +3,7 @@
 ## Current implementation state (2026-07-31)
 
 The current merged-main baseline is
-`8a1577e802c54db81620d99f10cf7d0ce3ddaf4d`. The release branch has completed the mapping counterpart, blinded
+`81c28d8809c6fe47cf8e3aa2eecc4da1dec244b1`. The release branch has completed the mapping counterpart, blinded
 adjudication, untouched holdout and refreshed scoped dashboard-review gates.
 `repository_release_ready=true` and `evidence_release_ready=false`: the
 source-transparency metadata claim is evidence-ready, while four research
