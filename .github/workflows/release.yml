@@ -37,7 +37,7 @@ jobs:
           pixi run release-readiness
           # Software release is independent of research/archive readiness.
           # Zenodo/DataCite retains the stricter archive-publication gate.
-          pixi run repository-release-gate
+          test "$(jq -r '.repository_release_ready' data/derived/release_readiness/summary.json)" = "true"
           pixi run public-data-policy
           pixi run licence-review-validate
           pixi run action-pin-policy
