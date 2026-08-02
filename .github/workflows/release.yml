@@ -17,6 +17,8 @@ permissions:
 jobs:
   preflight:
     runs-on: ubuntu-latest
+    env:
+      RELEASE_TAG: ${{ inputs.release_tag || github.ref_name }}
     permissions:
       contents: read
     steps:
@@ -41,11 +43,13 @@ jobs:
           pixi run action-pin-policy
           pixi run zenodo-metadata
           pixi run zenodo-draft
-          pixi run release-identity --tag "${{ inputs.release_tag || github.ref_name }}"
+          pixi run release-identity --tag "$RELEASE_TAG"
 
   build:
     needs: preflight
     runs-on: ubuntu-latest
+    env:
+      RELEASE_TAG: ${{ inputs.release_tag || github.ref_name }}
     permissions:
       contents: write
       id-token: write
@@ -62,13 +66,13 @@ jobs:
         run: pixi run build
       - name: Generate archive
         run: |
-          archive_name="reimbursement-atlas-${{ inputs.release_tag || github.ref_name }}.tar.gz"
+          archive_name="reimbursement-atlas-${RELEASE_TAG}.tar.gz"
           git archive --format=tar.gz --output="$archive_name" HEAD
       - name: Generate deterministic release manifest
         run: |
           python scripts/make_release_manifest.py \
             --output release-manifest.json \
-            --tag "${{ inputs.release_tag || github.ref_name }}" \
+            --tag "$RELEASE_TAG" \
             --commit "$GITHUB_SHA" \
             --artifact dist/*.whl \
             --artifact dist/*.tar.gz \
@@ -78,7 +82,7 @@ jobs:
         run: |
           pixi run zenodo-metadata
           pixi run zenodo-draft --release-assets
-          args=(--tag "${{ inputs.release_tag || github.ref_name }}")
+          args=(--tag "$RELEASE_TAG")
           for artifact in dist/*.whl dist/*.tar.gz reimbursement-atlas-*.tar.gz; do
             args+=(--asset "$artifact")
           done
