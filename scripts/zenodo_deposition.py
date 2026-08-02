@@ -153,6 +153,17 @@ def _require_archive_gate(gate: dict[str, Any], mode: str) -> None:
         raise ValueError(message)
 
 
+def _require_repository_release_gate(root: Path, mode: str) -> None:
+    """Allow a private draft only after the software release gate passes."""
+    message = f"{mode} requires the repository release gate"
+    summary_path = root / "data/derived/release_readiness/summary.json"
+    if not summary_path.is_file():
+        raise ValueError(message)
+    summary = cast("dict[str, Any]", json.loads(summary_path.read_text(encoding="utf-8")))
+    if summary.get("repository_release_ready") is not True:
+        raise ValueError(message)
+
+
 def _remote_file_parity(
     local_files: list[dict[str, Any]], remote_files: list[dict[str, Any]]
 ) -> dict[str, Any]:
@@ -316,7 +327,9 @@ def run(  # ruff:ignore[too-many-locals,too-many-branches,too-many-statements,to
                 return result
         result["status"] = "ready_for_draft" if gate["status"] == "ready" else "blocked"
         return result
-    if mode in {"draft", "reserve", "publish"}:
+    if mode == "draft":
+        _require_repository_release_gate(root, mode)
+    elif mode in {"reserve", "publish"}:
         _require_archive_gate(gate, mode)
     if not token:
         message = "ZENODO_TOKEN is required for mutating or remote verification modes"
