@@ -7,6 +7,8 @@
 - [x] HAR-04: Validate bounded mutation testing controls (`88ff093`).
 - [x] Review Fixes: Preserve the TypeScript 7/Astro peer incompatibility as an
   explicit blocked canary, not an unsafe dependency upgrade (`64d0664`).
+- [x] Review Fixes: Correct the Pixi test evidence path and validate every
+  referenced evidence file (`e0439d5`).
 - [ ] HAR-05: Adopt TypeScript 7 only after the Astro checker peer contract and
   full dashboard/browser gates pass.
 
