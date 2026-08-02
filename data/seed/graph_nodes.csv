@@ -330,6 +330,7 @@ manual_review,,,,,,,,,mapping_resource:map_who_atc_ddd,,,mapping_resource,WHO AT
 ,,,,,,,,,track:track_policy_demonstrators,,,conductor_track,First policy demonstrators,,,,,,,analysis,,must,,,,,analytics
 ,,,,,,,,,track:track_public_product_citation_dashboard,,,conductor_track,"Public product, citation and dashboard maturity",,,,,,,implementation,,must,,,,,dashboard
 ,,,,,,,,,track:track_publication_hf_spaces,,,conductor_track,Hugging Face dataset and Spaces publication,,,,,,,implementation,,must,,,,,publication
+,,,,,,,,,track:track_release_gate_reconciliation_closeout,,,conductor_track,Release gate reconciliation and external dependency closeout,,,,,,,release,,must,,,,,governance
 ,,,,,,,,,track:track_release_record_archive_maturity,,,conductor_track,"Citation, archive and public record maturity",,,,,,,release,,must,,,,,publication
 ,,,,,,,,,track:track_research_protocols_osf,,,conductor_track,OSF research protocol and report workflow,,,,,,,design,,must,,,,,research
 ,,,,,,,,,track:track_runtime_mojo_python314,,,conductor_track,Mojo-first runtime and Python 3.14 compatibility,,,,,,,hardening,,must,,,,,runtime
