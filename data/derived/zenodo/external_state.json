@@ -1,8 +1,9 @@
 {
   "api_url": "https://zenodo.org/api",
-  "error": "Zenodo API returned HTTP 403 for POST https://zenodo.org/api/deposit/depositions",
-  "mode": "plan",
-  "mutation_performed": false,
+  "deposition_id": "21759294",
+  "draft_url": "https://zenodo.org/deposit/21759294",
+  "mode": "draft",
+  "mutation_performed": true,
   "paper_or_preprint_included": false,
   "publication_gate": {
     "evidence": "data/derived/release_readiness/summary.json",
@@ -17,7 +18,10 @@
       "repository_release_ready": true
     }
   },
-  "reason_code": "zenodo_remote_mutation_rejected",
+  "release_commit": "97dcfcc60a7e6b17a7b8f988cfb7169702b4d6dd",
+  "release_tag": "v0.1.1",
   "schema_version": "zenodo-external-state-v1",
-  "status": "blocked_remote_mutation"
+  "status": "draft_created",
+  "uploaded_file_count": 12,
+  "workflow_run_id": 30748308530
 }

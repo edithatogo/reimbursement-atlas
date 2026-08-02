@@ -153,6 +153,7 @@ def test_draft_requires_repository_release_gate_but_not_evidence_gate(
         confirmation="CREATE_ZENODO_DRAFT",
     )
     assert result["status"] == "draft_created"
+    assert result["mode"] == "draft"
     assert calls == ["POST"]
 
 
@@ -168,6 +169,33 @@ def test_plan_is_non_mutating_and_does_not_require_inputs_or_token(tmp_path: Pat
 
     assert result["status"] == "blocked"
     assert result["mutation_performed"] is False
+
+
+def test_plan_preserves_terminal_external_receipt(tmp_path: Path) -> None:
+    evidence = tmp_path / "data/derived/zenodo/external_state.json"
+    evidence.parent.mkdir(parents=True)
+    evidence.write_text(
+        json.dumps({
+            "status": "draft_created",
+            "deposition_id": "21759294",
+            "mutation_performed": True,
+            "uploaded_file_count": 12,
+        }),
+        encoding="utf-8",
+    )
+
+    result = run(
+        tmp_path,
+        mode="plan",
+        api_url="https://zenodo.org/api",
+        token=None,
+        deposition_id=None,
+        confirmation=None,
+    )
+
+    assert result["status"] == "draft_created"
+    assert result["deposition_id"] == "21759294"
+    assert result["mutation_performed"] is True
 
 
 def test_remote_file_parity_checks_names_sizes_and_checksums() -> None:
