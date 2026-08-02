@@ -1,0 +1,15 @@
+{
+  "track_id": "track_harness_engineering",
+  "type": "feature",
+  "status": "in_progress",
+  "created_at": "2026-08-01T14:05:00Z",
+  "updated_at": "2026-08-01T14:20:00Z",
+  "description": "Validate layered harnesses, bounded mutation and deterministic regeneration.",
+  "evidence_schema": "1.0",
+  "gates": [
+    {"id":"layered_harness","kind":"repository","status":"pass","evidence":"Harness workflow defines separate property, integration and e2e lanes."},
+    {"id":"deterministic_regeneration","kind":"repository","status":"pass","evidence":"Deterministic regeneration contract is present and locally testable."},
+    {"id":"bounded_mutation","kind":"repository","status":"pass","evidence":"Mutation workflow and bounded runner contracts pass."},
+    {"id":"typescript7_canary","kind":"external_compatibility","status":"blocked","reason_code":"checker_peer_excludes_typescript7","evidence":"@astrojs/check@0.9.9 declares ^5.0.0 || ^6.0.0; the read-only canary observed TypeScript 7.0.2 without mutating package files.","contingency":"Re-run the scheduled canary; only open an upgrade PR when the peer range admits TypeScript 7."}
+  ]
+}
