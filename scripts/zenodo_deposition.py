@@ -180,16 +180,38 @@ def _remote_file_parity(
     for filename, local in expected.items():
         remote = observed.get(filename)
         if remote is None:
-            mismatches.append({"filename": filename, "reason": "missing_remote_file"})
+            mismatches.append({
+                "filename": filename,
+                "reason": "missing_remote_file",
+                "expected_size": str(local["byte_size"]),
+                "expected_checksum": f"sha256:{local['sha256']}",
+            })
             continue
-        if int(remote.get("size", remote.get("filesize", -1))) != int(local["byte_size"]):
-            mismatches.append({"filename": filename, "reason": "byte_size_mismatch"})
+        remote_size = int(remote.get("size", remote.get("filesize", -1)))
+        if remote_size != int(local["byte_size"]):
+            mismatches.append({
+                "filename": filename,
+                "reason": "byte_size_mismatch",
+                "expected_size": str(local["byte_size"]),
+                "observed_size": str(remote_size),
+            })
         checksum = str(remote.get("checksum", ""))
         accepted = {f"md5:{local['md5']}", f"sha256:{local['sha256']}"}
         if checksum not in accepted:
-            mismatches.append({"filename": filename, "reason": "checksum_mismatch"})
+            mismatches.append({
+                "filename": filename,
+                "reason": "checksum_mismatch",
+                "expected_checksum": ",".join(sorted(accepted)),
+                "observed_checksum": checksum or "missing",
+            })
     for filename in sorted(set(observed) - set(expected)):
-        mismatches.append({"filename": filename, "reason": "unexpected_remote_file"})
+        remote = observed[filename]
+        mismatches.append({
+            "filename": filename,
+            "reason": "unexpected_remote_file",
+            "observed_size": str(remote.get("size", remote.get("filesize", -1))),
+            "observed_checksum": str(remote.get("checksum", "")) or "missing",
+        })
     return {
         "status": "pass" if not mismatches else "fail",
         "expected_file_count": len(expected),
