@@ -320,11 +320,17 @@ def run(  # ruff:ignore[too-many-locals,too-many-branches,too-many-statements,to
         prior_path = root / EVIDENCE
         if prior_path.is_file():
             prior = cast("dict[str, Any]", json.loads(prior_path.read_text(encoding="utf-8")))
-            if prior.get("status") == "blocked_remote_mutation":
+            if prior.get("status") in {
+                "draft_created",
+                "doi_reserved",
+                "published",
+                "verified",
+                "verified_public",
+            }:
                 result.update({
-                    "status": prior["status"],
-                    "reason_code": prior.get("reason_code"),
-                    "error": prior.get("error"),
+                    key: value
+                    for key, value in prior.items()
+                    if key not in {"mode", "api_url", "publication_gate"}
                 })
                 return result
         result["status"] = "ready_for_draft" if gate["status"] == "ready" else "blocked"
