@@ -250,10 +250,17 @@ def test_remote_metadata_parity_checks_publication_critical_fields() -> None:
     remote = {**local, "keywords": list(reversed(local["keywords"]))}
 
     passing = zenodo_deposition._remote_metadata_parity(local, remote)  # ruff:ignore[private-member-access]
+    remote["license"] = "apache2.0"
+    remote["creators"] = [{**local["creators"][0], "affiliation": None}]
+    remote["related_identifiers"] = [{**local["related_identifiers"][0], "scheme": "url"}]
+    equivalent = zenodo_deposition._remote_metadata_parity(  # ruff:ignore[private-member-access]
+        local, remote
+    )
     remote["version"] = "0.2.0"
     failing = zenodo_deposition._remote_metadata_parity(local, remote)  # ruff:ignore[private-member-access]
 
     assert passing["status"] == "pass"
+    assert equivalent["status"] == "pass"
     assert failing == {
         "status": "fail",
         "mismatched_fields": ["version"],

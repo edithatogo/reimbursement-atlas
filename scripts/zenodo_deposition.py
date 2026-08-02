@@ -251,15 +251,35 @@ def _remote_metadata_parity(local: dict[str, Any], remote: dict[str, Any]) -> di
         "version",
         "related_identifiers",
     )
+
+    def comparable(field: str, value: object) -> object:
+        value = _normalise_metadata_value(value)
+        if field == "license" and isinstance(value, str):
+            return value.lower().replace("-", "").replace(".", "")
+        if field == "creators" and isinstance(value, list):
+            return [
+                {key: item_value for key, item_value in creator.items() if item_value is not None}
+                if isinstance(creator, dict)
+                else creator
+                for creator in value
+            ]
+        if field == "related_identifiers" and isinstance(value, list):
+            return [
+                {key: item_value for key, item_value in identifier.items() if key != "scheme"}
+                if isinstance(identifier, dict)
+                else identifier
+                for identifier in value
+            ]
+        return value
+
     mismatch_details = [
         {
             "field": field,
-            "expected": _normalise_metadata_value(local.get(field)),
-            "observed": _normalise_metadata_value(remote.get(field)),
+            "expected": comparable(field, local.get(field)),
+            "observed": comparable(field, remote.get(field)),
         }
         for field in fields
-        if _normalise_metadata_value(local.get(field))
-        != _normalise_metadata_value(remote.get(field))
+        if comparable(field, local.get(field)) != comparable(field, remote.get(field))
     ]
     return {
         "status": "pass" if not mismatch_details else "fail",
