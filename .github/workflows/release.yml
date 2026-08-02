@@ -26,7 +26,9 @@ jobs:
         run: |
           set -euo pipefail
           pixi run release-readiness
-          pixi run archive-publication-gate
+          # Software release is independent of research/archive readiness.
+          # Zenodo/DataCite retains the stricter archive-publication gate.
+          pixi run repository-release-gate
           pixi run public-data-policy
           pixi run licence-review-validate
           pixi run action-pin-policy
