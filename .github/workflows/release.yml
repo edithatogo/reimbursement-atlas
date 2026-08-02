@@ -4,6 +4,12 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Existing immutable tag to release"
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -16,6 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ inputs.release_tag != '' && format('refs/tags/{0}', inputs.release_tag) || github.ref }}
           fetch-depth: 0
           persist-credentials: false
         # Commit-bound review receipts require ancestry validation.
@@ -34,7 +41,7 @@ jobs:
           pixi run action-pin-policy
           pixi run zenodo-metadata
           pixi run zenodo-draft
-          pixi run release-identity --tag "$GITHUB_REF_NAME"
+          pixi run release-identity --tag "${{ inputs.release_tag || github.ref_name }}"
 
   build:
     needs: preflight
@@ -46,6 +53,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ inputs.release_tag != '' && format('refs/tags/{0}', inputs.release_tag) || github.ref }}
           persist-credentials: false
       - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
       - name: Generate SBOMs
@@ -54,13 +62,13 @@ jobs:
         run: pixi run build
       - name: Generate archive
         run: |
-          archive_name="reimbursement-atlas-${GITHUB_REF_NAME}.tar.gz"
+            archive_name="reimbursement-atlas-${{ inputs.release_tag || github.ref_name }}.tar.gz"
           git archive --format=tar.gz --output="$archive_name" HEAD
       - name: Generate deterministic release manifest
         run: |
           python scripts/make_release_manifest.py \
             --output release-manifest.json \
-            --tag "$GITHUB_REF_NAME" \
+            --tag "${{ inputs.release_tag || github.ref_name }}" \
             --commit "$GITHUB_SHA" \
             --artifact dist/*.whl \
             --artifact dist/*.tar.gz \
@@ -70,7 +78,7 @@ jobs:
         run: |
           pixi run zenodo-metadata
           pixi run zenodo-draft --release-assets
-          args=(--tag "$GITHUB_REF_NAME")
+          args=(--tag "${{ inputs.release_tag || github.ref_name }}")
           for artifact in dist/*.whl dist/*.tar.gz reimbursement-atlas-*.tar.gz; do
             args+=(--asset "$artifact")
           done
