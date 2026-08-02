@@ -252,6 +252,36 @@ def test_remote_metadata_parity_checks_publication_critical_fields() -> None:
     assert failing == {"status": "fail", "mismatched_fields": ["version"]}
 
 
+def test_parity_failure_message_distinguishes_checksums_and_metadata() -> None:
+    message = zenodo_deposition._parity_failure_message(  # ruff:ignore[private-member-access]
+        "remote verification",
+        {
+            "status": "fail",
+            "mismatches": [
+                {"filename": "package.whl", "reason": "checksum_mismatch"},
+                {"filename": "manifest.json", "reason": "byte_size_mismatch"},
+            ],
+        },
+        {"status": "fail", "mismatched_fields": ["version", "license"]},
+    )
+
+    assert message == (
+        "Zenodo remote verification parity failed: checksum mismatch for files: package.whl; "
+        "file parity mismatch for files: manifest.json; "
+        "metadata mismatch in fields: license, version"
+    )
+
+
+def test_parity_failure_message_identifies_metadata_only_failure() -> None:
+    message = zenodo_deposition._parity_failure_message(  # ruff:ignore[private-member-access]
+        "draft",
+        {"status": "pass", "mismatches": []},
+        {"status": "fail", "mismatched_fields": ["description"]},
+    )
+
+    assert message == "Zenodo draft parity failed: metadata mismatch in fields: description"
+
+
 def test_publish_requires_remote_parity_and_reserved_doi() -> None:
     metadata = {
         "title": "Atlas",

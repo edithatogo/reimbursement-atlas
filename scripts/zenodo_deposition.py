@@ -282,12 +282,36 @@ def _require_remote_draft_parity(
     remote_metadata = cast("dict[str, Any]", response.get("metadata", {}))
     metadata_parity = _remote_metadata_parity(metadata, remote_metadata)
     if file_parity["status"] != "pass" or metadata_parity["status"] != "pass":
-        message = "Zenodo draft file or metadata parity failed"
-        raise ValueError(message)
+        raise ValueError(_parity_failure_message("draft", file_parity, metadata_parity))
     if require_reserved_doi and not remote_metadata.get("prereserve_doi"):
         message = "Zenodo publication requires a reserved version DOI"
         raise ValueError(message)
     return file_parity, metadata_parity
+
+
+def _parity_failure_message(
+    operation: str,
+    file_parity: dict[str, Any],
+    metadata_parity: dict[str, object],
+) -> str:
+    """Describe remote parity failures without reducing them to one generic error."""
+    details: list[str] = []
+    mismatches = cast("list[dict[str, str]]", file_parity.get("mismatches", []))
+    checksum_files = sorted({
+        row["filename"] for row in mismatches if row.get("reason") == "checksum_mismatch"
+    })
+    file_other = sorted({
+        row["filename"] for row in mismatches if row.get("reason") != "checksum_mismatch"
+    })
+    metadata_fields = sorted(str(field) for field in metadata_parity.get("mismatched_fields", []))
+    if checksum_files:
+        details.append(f"checksum mismatch for files: {', '.join(checksum_files)}")
+    if file_other:
+        details.append(f"file parity mismatch for files: {', '.join(file_other)}")
+    if metadata_fields:
+        details.append(f"metadata mismatch in fields: {', '.join(metadata_fields)}")
+    suffix = "; ".join(details) if details else "no mismatch details were returned"
+    return f"Zenodo {operation} parity failed: {suffix}"
 
 
 def _write_evidence(root: Path, payload: dict[str, Any]) -> None:
@@ -422,8 +446,7 @@ def run(  # ruff:ignore[too-many-locals,too-many-branches,too-many-statements,to
         metadata, cast("dict[str, Any]", response.get("metadata", {}))
     )
     if parity["status"] != "pass" or metadata_parity["status"] != "pass":
-        message = "Zenodo remote verification parity failed"
-        raise ValueError(message)
+        raise ValueError(_parity_failure_message("remote verification", parity, metadata_parity))
     result.update({
         "status": "verified",
         "deposition_id": deposition_id,
