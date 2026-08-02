@@ -23,7 +23,8 @@
 - [ ] Archive this track only after all automatable work is complete and every remaining external gate is explicit.
 - [x] Review fix: declare the evidence ledger schema in track metadata.
 
-The remaining Phase 2 rows are intentionally open: licensing metadata, DOI
-deposition, FAIRsharing eligibility, and Hugging Face publication require
-external account, rights, or publication decisions. The repository-side
+The remaining Phase 2 row is externally incomplete even though Issue #532 may
+be administratively closed: signed release assets, DOI deposition and DOI
+resolution still require authoritative external evidence. FAIRsharing remains
+deferred by the searchable-service maturity assessment. The repository-side
 contract is complete and fail-closed; no external registry mutation is implied.
