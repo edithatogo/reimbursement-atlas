@@ -196,7 +196,12 @@ def _remote_file_parity(
                 "observed_size": str(remote_size),
             })
         checksum = str(remote.get("checksum", ""))
-        accepted = {f"md5:{local['md5']}", f"sha256:{local['sha256']}"}
+        accepted = {
+            local["md5"],
+            local["sha256"],
+            f"md5:{local['md5']}",
+            f"sha256:{local['sha256']}",
+        }
         if checksum not in accepted:
             mismatches.append({
                 "filename": filename,

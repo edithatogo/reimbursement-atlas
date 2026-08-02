@@ -212,6 +212,10 @@ def test_remote_file_parity_checks_names_sizes_and_checksums() -> None:
         local,
         [{"key": "package.whl", "size": 3, "checksum": f"md5:{'b' * 32}"}],
     )
+    bare_md5_passing = zenodo_deposition._remote_file_parity(  # ruff:ignore[private-member-access]
+        local,
+        [{"key": "package.whl", "size": 3, "checksum": "b" * 32}],
+    )
     failing = zenodo_deposition._remote_file_parity(  # ruff:ignore[private-member-access]
         local,
         [
@@ -221,6 +225,7 @@ def test_remote_file_parity_checks_names_sizes_and_checksums() -> None:
     )
 
     assert passing["status"] == "pass"
+    assert bare_md5_passing["status"] == "pass"
     assert failing["status"] == "fail"
     assert {row["reason"] for row in failing["mismatches"]} == {
         "byte_size_mismatch",
