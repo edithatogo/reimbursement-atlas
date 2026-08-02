@@ -254,7 +254,11 @@ def test_remote_metadata_parity_checks_publication_critical_fields() -> None:
     failing = zenodo_deposition._remote_metadata_parity(local, remote)  # ruff:ignore[private-member-access]
 
     assert passing["status"] == "pass"
-    assert failing == {"status": "fail", "mismatched_fields": ["version"]}
+    assert failing == {
+        "status": "fail",
+        "mismatched_fields": ["version"],
+        "mismatch_details": [{"field": "version", "expected": "0.1.0", "observed": "0.2.0"}],
+    }
 
 
 def test_parity_failure_message_distinguishes_checksums_and_metadata() -> None:

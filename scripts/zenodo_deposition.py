@@ -251,13 +251,21 @@ def _remote_metadata_parity(local: dict[str, Any], remote: dict[str, Any]) -> di
         "version",
         "related_identifiers",
     )
-    mismatches = [
-        field
+    mismatch_details = [
+        {
+            "field": field,
+            "expected": _normalise_metadata_value(local.get(field)),
+            "observed": _normalise_metadata_value(remote.get(field)),
+        }
         for field in fields
         if _normalise_metadata_value(local.get(field))
         != _normalise_metadata_value(remote.get(field))
     ]
-    return {"status": "pass" if not mismatches else "fail", "mismatched_fields": mismatches}
+    return {
+        "status": "pass" if not mismatch_details else "fail",
+        "mismatched_fields": [str(item["field"]) for item in mismatch_details],
+        "mismatch_details": mismatch_details,
+    }
 
 
 def _value_at(value: dict[str, Any], path: str) -> object:
@@ -339,6 +347,9 @@ def _parity_failure_message(
         details.append(f"metadata mismatch in fields: {', '.join(metadata_fields)}")
     if mismatches:
         details.append(f"mismatch_details={json.dumps(mismatches, sort_keys=True)}")
+    metadata_details = cast("list[dict[str, object]]", metadata_parity.get("mismatch_details", []))
+    if metadata_details:
+        details.append(f"metadata_details={json.dumps(metadata_details, sort_keys=True)}")
     suffix = "; ".join(details) if details else "no mismatch details were returned"
     return f"Zenodo {operation} parity failed: {suffix}"
 
