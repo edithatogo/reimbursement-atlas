@@ -1,25 +1,38 @@
 {
   "api_url": "https://zenodo.org/api",
   "deposition_id": "21759294",
-  "draft_url": "https://zenodo.org/deposit/21759294",
-  "mode": "draft",
+  "doi": "10.5281/zenodo.21759294",
+  "mode": "publish",
   "mutation_performed": true,
   "paper_or_preprint_included": false,
   "publication_gate": {
     "evidence": "data/derived/release_readiness/summary.json",
-    "missing_or_false": [],
-    "reason_code": "archive_publication_gates_pass",
-    "status": "ready",
+    "missing_or_false": [
+      "evidence_release_ready"
+    ],
+    "reason_code": "archive_upstream_gates_pending",
+    "status": "blocked",
     "summary": {
-      "evidence_release_ready": true,
+      "evidence_release_ready": false,
       "osf_registration_ready": true,
       "repository_release_ready": true
     }
   },
+  "record_url": null,
   "release_commit": "97dcfcc60a7e6b17a7b8f988cfb7169702b4d6dd",
   "release_tag": "v0.1.1",
+  "remote_file_parity": {
+    "expected_file_count": 12,
+    "mismatches": [],
+    "remote_file_count": 12,
+    "status": "pass"
+  },
+  "remote_metadata_parity": {
+    "mismatch_details": [],
+    "mismatched_fields": [],
+    "status": "pass"
+  },
   "schema_version": "zenodo-external-state-v1",
-  "status": "draft_created",
-  "uploaded_file_count": 12,
-  "workflow_run_id": 30748308530
+  "status": "published",
+  "workflow_run_id": 30752347429
 }
