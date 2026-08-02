@@ -1526,20 +1526,20 @@
     {
       "@id": "data/derived/repo_automation/workflow_uses.jsonl",
       "@type": "File",
-      "contentSize": 46398,
+      "contentSize": 46400,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "workflow_uses",
-      "sha256": "12a18d1327adeec815a693fcb933b124e70069e401d7d98d435605b80dd0f98f"
+      "sha256": "4577e80e1e6f317cb09e4c07f200643293558c6a02a2357954753f86b6179856"
     },
     {
       "@id": "data/derived/repo_automation/workflow_uses.csv",
       "@type": "File",
-      "contentSize": 27900,
+      "contentSize": 27902,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "workflow_uses",
-      "sha256": "2ac807fded6e1dbf32157545eb63a878e012122352be3f45bd51451173415bc7"
+      "sha256": "8cc01b936c64315fa23190001b74e914dbb4e78ae23a8037e12178fced40e070"
     },
     {
       "@id": "data/derived/repo_automation/workflow_policy.jsonl",

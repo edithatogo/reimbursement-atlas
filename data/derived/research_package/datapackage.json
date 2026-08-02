@@ -1045,20 +1045,20 @@
       "schema": {}
     },
     {
-      "bytes": 46398,
+      "bytes": 46400,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "12a18d1327adeec815a693fcb933b124e70069e401d7d98d435605b80dd0f98f",
+      "hash": "4577e80e1e6f317cb09e4c07f200643293558c6a02a2357954753f86b6179856",
       "mediatype": "application/json",
       "name": "workflow-uses",
       "path": "data/derived/repo_automation/workflow_uses.jsonl",
       "schema": {}
     },
     {
-      "bytes": 27900,
+      "bytes": 27902,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "2ac807fded6e1dbf32157545eb63a878e012122352be3f45bd51451173415bc7",
+      "hash": "8cc01b936c64315fa23190001b74e914dbb4e78ae23a8037e12178fced40e070",
       "mediatype": "text/csv",
       "name": "workflow-uses",
       "path": "data/derived/repo_automation/workflow_uses.csv",
