@@ -332,6 +332,8 @@ def _parity_failure_message(
         details.append(f"file parity mismatch for files: {', '.join(file_other)}")
     if metadata_fields:
         details.append(f"metadata mismatch in fields: {', '.join(metadata_fields)}")
+    if mismatches:
+        details.append(f"mismatch_details={json.dumps(mismatches, sort_keys=True)}")
     suffix = "; ".join(details) if details else "no mismatch details were returned"
     return f"Zenodo {operation} parity failed: {suffix}"
 

@@ -268,7 +268,9 @@ def test_parity_failure_message_distinguishes_checksums_and_metadata() -> None:
     assert message == (
         "Zenodo remote verification parity failed: checksum mismatch for files: package.whl; "
         "file parity mismatch for files: manifest.json; "
-        "metadata mismatch in fields: license, version"
+        "metadata mismatch in fields: license, version; "
+        'mismatch_details=[{"filename": "package.whl", "reason": "checksum_mismatch"}, '
+        '{"filename": "manifest.json", "reason": "byte_size_mismatch"}]'
     )
 
 
