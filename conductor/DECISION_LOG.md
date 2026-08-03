@@ -1720,3 +1720,14 @@ Consequence: This does not authorize causal, coverage, price-equivalence,
 universal reimbursement, paper or preprint claims. The #491 gate remains
 blocked until the real source frame, reviewer separation, adjudication ledger,
 holdout fingerprint and statistical outputs validate.
+
+## 2026-08-03 - Approved conditional Hugging Face publication
+
+Decision: The accountable repository owner approves publication of the current
+checksum-bound, evidence-ready derived dataset and dashboard metadata to the
+configured Hugging Face dataset and Space repositories, provided all release,
+licence, source-policy, research-protocol and data-quality gates pass.
+
+Consequence: Raw restricted payloads, causal or price-equivalence claims, DOI
+changes, papers and preprints remain excluded. This approval does not dispatch
+publication while `evidence_release_ready=false`.
