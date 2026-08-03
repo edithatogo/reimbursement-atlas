@@ -790,3 +790,19 @@ epics:
           - "No DOI is reserved or published again."
           - "Papers and preprints remain excluded."
         dependencies: [532]
+      - title: Apply the canonical remaining-blocker decision matrix and dependency sequence
+        labels: ["type:release", "type:governance", "phase:release-gate", "status:in_progress"]
+        status: in_progress
+        acceptance:
+          - "Dashboard, mapping, adjudication, Hugging Face and local-main options are recorded with trade-offs, recommendations and contingencies."
+          - "The dependency order is explicit and linked to evidence-derived gate transitions."
+          - "Publication remains fail-closed while evidence_release_ready is false."
+        dependencies: [490, 491, 493, 532, 534]
+      - title: Reconcile local main after protected merge without losing the pre-squash recovery commit
+        labels: ["type:repo-automation", "type:release", "status:in_progress"]
+        status: in_progress
+        acceptance:
+          - "Any pre-squash local commit is retained on a named recovery ref before local main alignment."
+          - "Local main exactly matches origin/main after verification."
+          - "No destructive reset or unreviewed deletion is used."
+        dependencies: [688]

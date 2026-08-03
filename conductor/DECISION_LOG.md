@@ -1696,3 +1696,38 @@ accountable reviewer approves the new hashes; do not infer approval from the pri
 Evidence: PR #640 merged as `b8b02b618a86812352ae4a6758b25a144eb443f5`; the refreshed automated
 packet is `fbf578f356280188d1a8139db604e99f823053539f0840240b011635aced4965` and the refreshed
 owner packet is `cfe6888f64536ff7ab31d1a7735cfde3eb5ed500d645f696c0ae7a61e2f29b31`.
+
+## 2026-08-03 - Approved rights-cleared mapping scope for #490
+
+Decision: The accountable repository owner approves the proposed rights-cleared
+derived-field scope for mapping counterparts in #490, subject to source-specific
+licence terms, checksum-bound provenance, exclusion of restricted descriptors
+and raw payloads, and fail-closed publication when any source family remains
+insufficient.
+
+Consequence: This records scope approval only. It does not assert that the
+counterpart bundles, source licences, checksums, quotas or #491 evaluation are
+complete. Those gates remain independently evidence-derived.
+
+## 2026-08-03 - Approved blinded adjudication and holdout protocol for #491
+
+Decision: The accountable repository owner approves two isolated review passes,
+deterministic disagreement adjudication, owner accountability, a 600-case
+development set, a 150-case untouched holdout, development-only threshold
+tuning, one-time holdout evaluation and checksum-bound methods/results.
+
+Consequence: This does not authorize causal, coverage, price-equivalence,
+universal reimbursement, paper or preprint claims. The #491 gate remains
+blocked until the real source frame, reviewer separation, adjudication ledger,
+holdout fingerprint and statistical outputs validate.
+
+## 2026-08-03 - Approved conditional Hugging Face publication
+
+Decision: The accountable repository owner approves publication of the current
+checksum-bound, evidence-ready derived dataset and dashboard metadata to the
+configured Hugging Face dataset and Space repositories, provided all release,
+licence, source-policy, research-protocol and data-quality gates pass.
+
+Consequence: Raw restricted payloads, causal or price-equivalence claims, DOI
+changes, papers and preprints remain excluded. This approval does not dispatch
+publication while `evidence_release_ready=false`.

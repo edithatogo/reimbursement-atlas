@@ -12,7 +12,7 @@ checksum-bound row-level record.
 
 - `permissive_candidate` / `public_derived_candidate`: 164 artefacts, 191669208 bytes
 - `permissive_candidate` / `public_metadata_candidate`: 39 artefacts, 523619 bytes
-- `public_reuse_review` / `public_derived_candidate`: 12 artefacts, 858734 bytes
+- `public_reuse_review` / `public_derived_candidate`: 12 artefacts, 861858 bytes
 - `public_reuse_review` / `public_metadata_candidate`: 4 artefacts, 106459 bytes
 
 Total candidate artefacts: 219; generated queue rows remain `pending` by design.
@@ -29,8 +29,8 @@ they do not change generated queue rows or authorize publication.
 - `data/derived/architecture/import_edges.jsonl` — `1216a4cf16bb34aa1ce13ef546671da0b721f0cec55beb8c312d6193749937ca`
 - `data/derived/data_quality/data_quality_checks.csv` — `02330e9d0689d7d837736ae2d2eb61fb28fd13cc01b66da971503243a9f784cc`
 - `data/derived/data_quality/data_quality_checks.jsonl` — `22cf81321d32c252a00daede3e2895f399013f11099a3d480c275200192936aa`
-- `data/derived/github_project/github_project_items.csv` — `a080a1e9de259a18fbbfe3656af497f68eecaf5ab099f51a49e25ee6547170bd`
-- `data/derived/github_project/github_project_items.jsonl` — `acf41092fc95b363bd7423c83c582a552c4a6ed32f7d77112005d6a6d6da5a5a`
+- `data/derived/github_project/github_project_items.csv` — `5db2dbd330c1db3b9ada7a413dcadc2bf28f1f7c7cac0ff8fe97370238d34850`
+- `data/derived/github_project/github_project_items.jsonl` — `7407ed67e14e0ccc7a0388aad0f89c83a9996fd95af0fc02ab51adf103d06633`
 - `data/derived/sbom/cyclonedx-dashboard.json` — `a502851cdf62459b33153bc03842b845484138661a5b74a9df1e6aec13e90429`
 - `data/derived/sbom/cyclonedx-python.json` — `9ebc9578a9062d571db55d1abe5d1038e0256176c1510d24a427f918f74de645`
 - `data/derived/sbom/sbom_summary.csv` — `0077ee2c4971840b95f6bd45d08abf2ba879ce443a52d677e83b946af5c2687c`
