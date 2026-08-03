@@ -1696,3 +1696,15 @@ accountable reviewer approves the new hashes; do not infer approval from the pri
 Evidence: PR #640 merged as `b8b02b618a86812352ae4a6758b25a144eb443f5`; the refreshed automated
 packet is `fbf578f356280188d1a8139db604e99f823053539f0840240b011635aced4965` and the refreshed
 owner packet is `cfe6888f64536ff7ab31d1a7735cfde3eb5ed500d645f696c0ae7a61e2f29b31`.
+
+## 2026-08-03 - Approved rights-cleared mapping scope for #490
+
+Decision: The accountable repository owner approves the proposed rights-cleared
+derived-field scope for mapping counterparts in #490, subject to source-specific
+licence terms, checksum-bound provenance, exclusion of restricted descriptors
+and raw payloads, and fail-closed publication when any source family remains
+insufficient.
+
+Consequence: This records scope approval only. It does not assert that the
+counterpart bundles, source licences, checksums, quotas or #491 evaluation are
+complete. Those gates remain independently evidence-derived.
