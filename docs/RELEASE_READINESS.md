@@ -2,7 +2,7 @@
 
 ## Current release boundary (2026-07-31)
 
-Merged `main` at `8a1577e802c54db81620d99f10cf7d0ce3ddaf4d` reports
+Merged `main` at `81c28d8809c6fe47cf8e3aa2eecc4da1dec244b1` reports
 `repository_release_ready=true` and `evidence_release_ready=false`. The 750-case
 mapping study and refreshed scoped dashboard review pass their independent gates.
 Research-policy claims remain deliberately unready (`1/5` evidence-ready): only
@@ -25,7 +25,7 @@ and the dataset remains `other`. OSF project `q8cnx` is public, while registrati
 licence, evidence, policy and publication gates remain fail-closed.
 
 Current merged-main baseline:
-`8a1577e802c54db81620d99f10cf7d0ce3ddaf4d` (2026-08-01).
+`81c28d8809c6fe47cf8e3aa2eecc4da1dec244b1` (2026-08-02).
 Regenerate this document after any further merge and before release review.
 The last merged-main repository release gate summary was 36/36 passing; the current
 branch must rerun the complete matrix before this state can be considered current.

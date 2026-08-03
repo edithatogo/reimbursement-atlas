@@ -11,7 +11,7 @@ cleanup.
 The active handoff directory retains:
 
 - the current canonical handoff for commit `7a69b328f1cd3736c8379d40081495e43812ca3d`;
-- the immediately preceding rollback handoff for commit `8a1577e802c54db81620d99f10cf7d0ce3ddaf4d`;
+- the immediately preceding rollback handoff for commit `81c28d8809c6fe47cf8e3aa2eecc4da1dec244b1`;
 - each payload's manifest and SHA-256 sidecar.
 
 The directory is intentionally separate from the Git worktree. The repository

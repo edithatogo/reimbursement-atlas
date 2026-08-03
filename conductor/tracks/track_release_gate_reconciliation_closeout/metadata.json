@@ -1,0 +1,41 @@
+{
+  "track_id": "track_release_gate_reconciliation_closeout",
+  "type": "governance",
+  "status": "in_progress",
+  "created_at": "2026-08-03T00:00:00Z",
+  "updated_at": "2026-08-03T00:00:00Z",
+  "description": "Close current repository-owned release gates and preserve explicit external blockers for mapping, dashboard review, OSF and Hugging Face publication.",
+  "evidence_schema": "1.0",
+  "gates": [
+    {
+      "id": "current_dashboard_evidence",
+      "kind": "human_review",
+      "status": "blocked",
+      "evidence": "The current validator reports displayed_data_parity=false for tested commit 7f75e76c; no fresh owner approval may be inferred from an older packet."
+    },
+    {
+      "id": "mapping_counterparts",
+      "kind": "external_data",
+      "status": "blocked",
+      "evidence": "PBS has records but the required rights-cleared counterpart frame remains incomplete; issue #490 precedes blinded evaluation in #491."
+    },
+    {
+      "id": "zenodo_archive",
+      "kind": "external",
+      "status": "pass",
+      "evidence": "Zenodo deposition 21759294 is published and the recorded 12-file and metadata parity checks pass."
+    },
+    {
+      "id": "huggingface_publication",
+      "kind": "external_publication",
+      "status": "blocked",
+      "evidence": "Publication remains fail-closed until evidence, research-publication and policy-claim readiness gates pass; see issue #534."
+    },
+    {
+      "id": "papers_preprints",
+      "kind": "policy",
+      "status": "pass",
+      "evidence": "Papers and preprints remain excluded from every publication manifest and workflow."
+    }
+  ]
+}

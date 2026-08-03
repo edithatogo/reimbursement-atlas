@@ -914,38 +914,38 @@
     {
       "@id": "data/seed/graph_nodes.csv",
       "@type": "File",
-      "contentSize": 41093,
-      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
+      "contentSize": 41265,
+      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "graph_nodes",
-      "sha256": "0e69c3af3194f46a3b34e42c48abd91802061cc8b8beb059775329aeb85c7505"
+      "sha256": "eebfc143e01dee0f4e8dd50090c7952cf661972d8887d8eec3f66cff82865297"
     },
     {
       "@id": "data/seed/graph_edges.csv",
       "@type": "File",
-      "contentSize": 41517,
-      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
+      "contentSize": 41851,
+      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "graph_edges",
-      "sha256": "e48d83ceff4d14598264d4d24b3609a15001e4377b8fe158c11a1bc056321424"
+      "sha256": "601e4347b42a58dd1c95d7830fdbd9f8f64b7d5bb3bfafbca1d584360e5baad4"
     },
     {
       "@id": "data/seed/conductor_tracks.jsonl",
       "@type": "File",
-      "contentSize": 11742,
-      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
+      "contentSize": 12717,
+      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "conductor_tracks",
-      "sha256": "e283587ebe2eb354eb9915163e5128a050461e218df83de0de0b5bce779179ea"
+      "sha256": "1ea3f3b14cb7852a0faa1d0c3fedec9f191a7a28df9b8dfaea8356e104fbf82d"
     },
     {
       "@id": "data/seed/conductor_tracks.csv",
       "@type": "File",
-      "contentSize": 9776,
-      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
+      "contentSize": 10626,
+      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "conductor_tracks",
-      "sha256": "12a36257c6e92f7207e0483425d1fa0123280bf620b897441fa1b52acec6803a"
+      "sha256": "6bae8df869f33dd60c8e0b24ff6f3aa472bb625718848b809560659f38b3541b"
     },
     {
       "@id": "data/seed/roadmap_functions.jsonl",
@@ -1742,20 +1742,20 @@
     {
       "@id": "data/derived/release_readiness/release_gates.jsonl",
       "@type": "File",
-      "contentSize": 9113,
+      "contentSize": 9114,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "bdaac5ae00e9b972fcc31bab8a53f8b2f5134012ab6cbbc73e3d6f5d826bf586"
+      "sha256": "c5b3e97393e530539ada7f987e89fbbf34aa9893d0e5d66c81af065d275ce7f2"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
       "@type": "File",
-      "contentSize": 5543,
+      "contentSize": 5544,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "8e83bbcfeb12b42d4ad5b7fa69a659eaa808b60c90039f4872c565c90e0c4d57"
+      "sha256": "2948b3cc971bc1a42cea2fa10c5c88c796446205cb27a50e1af38ae4c629ef6a"
     },
     {
       "@id": "data/derived/v13_validation_run.json",
@@ -1868,20 +1868,20 @@
     {
       "@id": "data/derived/github_project/github_project_items.jsonl",
       "@type": "File",
-      "contentSize": 175608,
-      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
+      "contentSize": 180462,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "github_project_items",
-      "sha256": "ba78076aaa99c4608bd850611a2f603d5e880a9cc303e40f04c324ea313e3d17"
+      "sha256": "acf41092fc95b363bd7423c83c582a552c4a6ed32f7d77112005d6a6d6da5a5a"
     },
     {
       "@id": "data/derived/github_project/github_project_items.csv",
       "@type": "File",
-      "contentSize": 132453,
-      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
+      "contentSize": 136175,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "github_project_items",
-      "sha256": "e09eeba2bfab12a60f9dcb551bdaf4d87308eacbf064b84a2355953025d7b358"
+      "sha256": "a080a1e9de259a18fbbfe3656af497f68eecaf5ab099f51a49e25ee6547170bd"
     },
     {
       "@id": "data/derived/final_handoff/final_handoff_tasks.jsonl",
@@ -1995,19 +1995,19 @@
       "@id": "data/derived/data_quality/data_quality_checks.jsonl",
       "@type": "File",
       "contentSize": 15129,
-      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "data_quality_checks",
-      "sha256": "c1032c2b26c32409466dda586c96e4a80d33e56437720b3a0011c850c16b796d"
+      "sha256": "22cf81321d32c252a00daede3e2895f399013f11099a3d480c275200192936aa"
     },
     {
       "@id": "data/derived/data_quality/data_quality_checks.csv",
       "@type": "File",
       "contentSize": 8714,
-      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "data_quality_checks",
-      "sha256": "7be4983cefc9fa6704ddae79955ce10955a513aa187888e4bbcd3afac8f35950"
+      "sha256": "02330e9d0689d7d837736ae2d2eb61fb28fd13cc01b66da971503243a9f784cc"
     },
     {
       "@id": "data/derived/data_quality/summary.json",
@@ -2052,7 +2052,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "source_drift_report",
-      "sha256": "ed933147c6969c507a7fa54f5681c36fe8f86ad7821895fc4788221392b51251"
+      "sha256": "f92401437564e8d24dbbed31419b7d92362eababc10a6e48c19fabac44e54a81"
     },
     {
       "@id": "data/derived/source_drift/source_drift_report.csv",
@@ -2061,7 +2061,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "source_drift_report",
-      "sha256": "82ae361d0386fb8df331465e2a128d60157136cff4ff8524892791618da0fcc9"
+      "sha256": "e3e8fb7ed602ee1eb76eed1c96fa49736bbeb08f165ed3a5884f1a4d29a84ea3"
     },
     {
       "@id": "data/derived/source_drift/summary.json",
@@ -2079,7 +2079,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "data_dictionary",
-      "sha256": "eb2e40bf1489e6e3328d8f21ef15ce723a0601f0b2669ad976aefa1a054acf39"
+      "sha256": "f6d1004daa3c50ea6b5d44aad99cbce17de684ae743fbbdf49d34715f02b056f"
     },
     {
       "@id": "data/derived/data_dictionary/data_dictionary.csv",
@@ -2088,7 +2088,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "data_dictionary",
-      "sha256": "7feb437482fe6256fe64b72d6850746baac8e768abb24bec0b77f71f827a54b1"
+      "sha256": "0a976006856a23fd320458923f46f979e2d2db804ef01461174758cf25b291cf"
     },
     {
       "@id": "data/derived/data_dictionary/summary.json",
@@ -2097,7 +2097,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "json",
       "name": "summary",
-      "sha256": "3c9a804b4d4925cb2dac13bf5808c8b3b71664dde5a3ee10c379106470ff0046"
+      "sha256": "aad9713456c22a831a4a3d69fad7a3aa2962ab06207d4e249998e1e8bf506cde"
     },
     {
       "@id": "infra/huggingface/DATASET_CARD.md",
