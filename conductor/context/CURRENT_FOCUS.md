@@ -45,7 +45,7 @@ independent manual VoiceOver confirmation.
 
 ## 2026-07-26 — Post-merge repository closure
 
-Merged `main` is `03e04c0f25e132f0d4b4c890959dc00049ae112e`.
+Merged `main` is `81c28d8809c6fe47cf8e3aa2eecc4da1dec244b1`.
 Repository release readiness is true with 38 passing gates, no missing or
 failing gates, and no required blockers. The checksum-bound source-transparency
 claim is evidence-ready; the other four claim packages remain partial because
