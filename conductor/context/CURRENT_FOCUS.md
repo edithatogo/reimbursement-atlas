@@ -2,7 +2,7 @@
 
 ## 2026-08-01 - Acquisition and publication boundary
 
-Current `main` is `8a1577e802c54db81620d99f10cf7d0ce3ddaf4d` and the worktree is clean
+Current `main` is `053d5ea2` and the worktree is clean
 after PR #649 merged. The recommended blocker-closure pass ran the hardened download
 plan and recorded 11 redacted attempts. Three MBS XML/TXT payloads were downloaded to
 ignored local raw storage; the PBS API documentation was already locally cached. Eight
@@ -20,7 +20,7 @@ source contracts, data quality and final handoff outputs are the evidence for th
 
 ## 2026-07-31 - Approved-scope reconciliation and external publication boundary
 
-Current `main` is `8a1577e802c54db81620d99f10cf7d0ce3ddaf4d` and the worktree is clean.
+Current `main` is `053d5ea2` and the worktree is clean.
 The approved dashboard review remains bounded to the declared 11 routes, four-browser
 matrix, 64 automated checks, 44 screenshots, responsive layout, keyboard navigation,
 automated accessibility, provenance and prohibited-content checks. It does not establish
