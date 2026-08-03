@@ -1708,3 +1708,15 @@ insufficient.
 Consequence: This records scope approval only. It does not assert that the
 counterpart bundles, source licences, checksums, quotas or #491 evaluation are
 complete. Those gates remain independently evidence-derived.
+
+## 2026-08-03 - Approved blinded adjudication and holdout protocol for #491
+
+Decision: The accountable repository owner approves two isolated review passes,
+deterministic disagreement adjudication, owner accountability, a 600-case
+development set, a 150-case untouched holdout, development-only threshold
+tuning, one-time holdout evaluation and checksum-bound methods/results.
+
+Consequence: This does not authorize causal, coverage, price-equivalence,
+universal reimbursement, paper or preprint claims. The #491 gate remains
+blocked until the real source frame, reviewer separation, adjudication ledger,
+holdout fingerprint and statistical outputs validate.
