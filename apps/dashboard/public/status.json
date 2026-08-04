@@ -14,7 +14,7 @@
       "id": "licence_review",
       "next_action": "Record accountable reviewer decisions in the checksum-bound queue.",
       "status": "blocked_review",
-      "summary": "16 publication candidates still require licence review."
+      "summary": "13 publication candidates still require licence review."
     },
     {
       "category": "research_review",
@@ -46,7 +46,7 @@
       "id": "dashboard_human_review",
       "next_action": "Complete the commit-bound visual, keyboard, screen-reader and provenance review within the declared scope.",
       "status": "blocked",
-      "summary": "head=7f75e76ccdaf8fd854219eb265d73becc11721b8 failed_checks=displayed_data_parity"
+      "summary": "head=e8eb3c4471d03883695b6e79929fd65a4b3cd2f0 failed_checks=head_parity,displayed_data_parity"
     }
   ],
   "claims_policy": "Do not claim evidence or public-release readiness until reviewed sources, licences, human research review and release gates pass.",
@@ -69,9 +69,9 @@
     "source_validation": "data/derived/source_validation/summary.json"
   },
   "licence_review": {
-    "approved_rows": 203,
+    "approved_rows": 206,
     "decision_source": "data/licence_review/decisions.jsonl",
-    "pending_rows": 16,
+    "pending_rows": 13,
     "queue_source": "data/derived/licence_review/licence_review_queue.jsonl"
   },
   "project": "reimbursement-atlas",

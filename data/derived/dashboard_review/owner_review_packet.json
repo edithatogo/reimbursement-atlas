@@ -17,8 +17,8 @@
     "desktop-webkit"
   ],
   "commit_parity": true,
-  "current_head": "7f75e76ccdaf8fd854219eb265d73becc11721b8",
-  "data_fingerprint": "ca146f78b4a0036becb7b41006c216644a93e3fd4e2ac96f973045b339cc95a2",
+  "current_head": "e8eb3c4471d03883695b6e79929fd65a4b3cd2f0",
+  "data_fingerprint": "b03b0209d7728eb100e20db74c7562677388147ec1911caf882a6d05111a3ad4",
   "prohibited_content_check": {
     "files_checked": 77,
     "findings": [],
@@ -104,8 +104,8 @@
     },
     {
       "displayed_path": "apps/dashboard/public/status.json#blockers",
-      "displayed_value": "55181f3556e4978d70e5ea54bc22f482f0936720e2857307d7e4fac5d5c1e6be",
-      "expected_value": "55181f3556e4978d70e5ea54bc22f482f0936720e2857307d7e4fac5d5c1e6be",
+      "displayed_value": "609faf701ee682613692bc1ab1c8dfceb94b9477f3437f315a203170d4bd35b0",
+      "expected_value": "609faf701ee682613692bc1ab1c8dfceb94b9477f3437f315a203170d4bd35b0",
       "id": "complete-blocker-projection",
       "source_field": "blockers",
       "source_path": "scripts/make_public_status_manifest.py",
@@ -114,9 +114,9 @@
   ],
   "provenance_inputs": [
     {
-      "byte_size": 3860,
+      "byte_size": 3850,
       "path": "apps/dashboard/public/status.json",
-      "sha256": "a7e0565a3a2a453c4b5a6db316c2545dc942febe615b944cf3a2096c86d58608"
+      "sha256": "e5354cc42196c31b9c69443c91cd52f23679edbff33d63be71f9e6a69915d112"
     },
     {
       "byte_size": 126,
@@ -157,11 +157,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 330281,
+      "byte_size": 326298,
       "file": "embedded",
       "project": "desktop-chromium",
       "route": "/",
-      "sha256": "b0573c0aed3f23343664c1ea3e27af21cd142b95c1bc3dbb259272e9800219dc",
+      "sha256": "c4f326374e3f90c32493a66e2908c0085defaabdc9d627bf00f159234448eee4",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -170,11 +170,11 @@
     {
       "browser": "firefox",
       "browser_version": "151.0",
-      "byte_size": 324028,
+      "byte_size": 320971,
       "file": "embedded",
       "project": "desktop-firefox",
       "route": "/",
-      "sha256": "b82b143e45865bb2d61fad1ee1bedc1c4626ce72855d8814432fb47e858b112d",
+      "sha256": "b3840cbe4b31654f9777e55cc08833a32e49696419cbbf9d1ae708e0786b9264",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -183,11 +183,11 @@
     {
       "browser": "webkit",
       "browser_version": "26.5",
-      "byte_size": 400456,
+      "byte_size": 397273,
       "file": "embedded",
       "project": "desktop-webkit",
       "route": "/",
-      "sha256": "453fcdf5547f8e2be67a9fdac836101b37d56f48900616148772f365beb4a7b6",
+      "sha256": "1d178ac8262079a71ef2dec3437c8e4cbc3f94d3198f3eed6b349b1518566158",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -196,11 +196,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 312502,
+      "byte_size": 307414,
       "file": "embedded",
       "project": "mobile-chromium",
       "route": "/",
-      "sha256": "94ab07fda154948a15f7e4318081a2455cf786f4db468c32c76601609e0fc319",
+      "sha256": "5a41f11920294c86d59c4a64314a4694dfc13c8be7a6797fae9b342f1724f3bd",
       "viewport": {
         "height": 727,
         "width": 393
@@ -313,11 +313,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 1361889,
+      "byte_size": 1361711,
       "file": "embedded",
       "project": "desktop-chromium",
       "route": "/automation/",
-      "sha256": "8229ee57fd63529562c3bb1a371d38a3daccc987f93876f0b828248a74e61eac",
+      "sha256": "6e72fb3cc7ee20c5059f7bcf3bc5a78d7f000ff5637f9dca1b36ac694c5b91a0",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -326,11 +326,11 @@
     {
       "browser": "firefox",
       "browser_version": "151.0",
-      "byte_size": 1435796,
+      "byte_size": 1435512,
       "file": "embedded",
       "project": "desktop-firefox",
       "route": "/automation/",
-      "sha256": "7984d1858c46eaee27f765039442babeed0d489d521ffd6bc6a8c9bb16a257cb",
+      "sha256": "75865b72d6cc15669167c446e9382b1c53860dac55d76ff8b30e35b77d47cf87",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -339,11 +339,11 @@
     {
       "browser": "webkit",
       "browser_version": "26.5",
-      "byte_size": 1623318,
+      "byte_size": 1622795,
       "file": "embedded",
       "project": "desktop-webkit",
       "route": "/automation/",
-      "sha256": "7b4a69216ac5cebe1f55addc577a3b4531a402356225651af3af63ef8c54f258",
+      "sha256": "81c59dbf7701688107990bdd5536760916d100da643905ad1bc64df4dfa44aed",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -352,11 +352,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 792443,
+      "byte_size": 792571,
       "file": "embedded",
       "project": "mobile-chromium",
       "route": "/automation/",
-      "sha256": "90a2473c91e3d993c70099b4da175e399ec3a2381d41a37cd92f797f0503a7c5",
+      "sha256": "6f62fdb3ee20d4df39f36dd1c7eabc9182adaf4a2bfa9b3a2adad5f9bc3b7e02",
       "viewport": {
         "height": 727,
         "width": 393
@@ -521,11 +521,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 1251206,
+      "byte_size": 1259283,
       "file": "embedded",
       "project": "desktop-chromium",
       "route": "/readiness/",
-      "sha256": "f2ae5e17830699d94fd98090bbda2a43b3ba0b25c50033ac9f709d7a4200c104",
+      "sha256": "115681b31f072e383816821e32ce9f74e0b674d8ac41f03550b8edd616d96532",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -534,11 +534,11 @@
     {
       "browser": "firefox",
       "browser_version": "151.0",
-      "byte_size": 1326577,
+      "byte_size": 1335880,
       "file": "embedded",
       "project": "desktop-firefox",
       "route": "/readiness/",
-      "sha256": "a9bc17d09f83b83df4ee05622e484397b68a60e5405edeef4f66c67c442a721f",
+      "sha256": "51cd8b0b8a0e9f062eb5a2ac5667eff1564795b17b37da6727568d1d954bae75",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -547,11 +547,11 @@
     {
       "browser": "webkit",
       "browser_version": "26.5",
-      "byte_size": 1504754,
+      "byte_size": 1514712,
       "file": "embedded",
       "project": "desktop-webkit",
       "route": "/readiness/",
-      "sha256": "baa0c943d39b24115cd1819c36d96e60c4424cecc978b0b390c471685fc9cb84",
+      "sha256": "6a843a1ed538ab4a4eacb751dddeb3eace1ed89ca4faec49f06dcbcf4d1cdafb",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -560,11 +560,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 822761,
+      "byte_size": 826598,
       "file": "embedded",
       "project": "mobile-chromium",
       "route": "/readiness/",
-      "sha256": "38459bc7c2c9024909988c2c9b8d30b0b0d83570cdcca9fad14ea77da5148288",
+      "sha256": "30e054793e5d59a3c95eb3cd905b76071deb8643c42f5f185fb37233b88d8b4d",
       "viewport": {
         "height": 727,
         "width": 393
@@ -573,11 +573,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 1142595,
+      "byte_size": 1142517,
       "file": "embedded",
       "project": "desktop-chromium",
       "route": "/roadmap/",
-      "sha256": "32cf77e86cabab89cc80bfbde574ab97bbef493d8dbd5ce99d4b4b1dc59f4db1",
+      "sha256": "6e6b558e7333352c4bce8ca0c33fbc4f95d1da53793a17513e319ba66fb50148",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -586,11 +586,11 @@
     {
       "browser": "firefox",
       "browser_version": "151.0",
-      "byte_size": 1212790,
+      "byte_size": 1212740,
       "file": "embedded",
       "project": "desktop-firefox",
       "route": "/roadmap/",
-      "sha256": "ba5377217921f3ec4ac560e19644c66a8bc59a4811303ed5bf34a34de90baeed",
+      "sha256": "d653fd66262f345572c14ba3e269e70e3dfe681ed1bbba9b570c144c095ca980",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -599,11 +599,11 @@
     {
       "browser": "webkit",
       "browser_version": "26.5",
-      "byte_size": 1364556,
+      "byte_size": 1364508,
       "file": "embedded",
       "project": "desktop-webkit",
       "route": "/roadmap/",
-      "sha256": "29f45c22a1c067e29a32a36c21b0a7a18e89da1b4562aaeb8e7fc76fcae66aff",
+      "sha256": "7931abe155088117aee94b78ee61f93ba44eb7479f0f382ea0479ac20b5a6735",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -612,11 +612,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 641812,
+      "byte_size": 641752,
       "file": "embedded",
       "project": "mobile-chromium",
       "route": "/roadmap/",
-      "sha256": "534222172ac134b2f734f3fecbcb6c0db6609c9143c7c7b86e27bac139472e51",
+      "sha256": "085a66e088b1006e90e47f7f61d9c08aab1567723c40da9707e32aa987d5aeec",
       "viewport": {
         "height": 727,
         "width": 393
@@ -729,7 +729,7 @@
   ],
   "source_fingerprint": "fc411e32b263685fa86a24705ee173d9953d9eb8f1b879d6c9651b6b56bc3e71",
   "status": "pending_accountable_review",
-  "tested_commit": "7f75e76ccdaf8fd854219eb265d73becc11721b8",
+  "tested_commit": "e8eb3c4471d03883695b6e79929fd65a4b3cd2f0",
   "workflow": {
     "artifact_name": null,
     "run_attempt": null,
