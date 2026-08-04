@@ -19,8 +19,8 @@ Total candidate artefacts: 219; generated queue rows remain `pending` by design.
 
 ## Decision ledger snapshot
 
-The companion checksum-bound ledger currently records **207 approved**
-and **12 blocked** decisions. These counts are informational;
+The companion checksum-bound ledger currently records **206 approved**
+and **13 blocked** decisions. These counts are informational;
 they do not change generated queue rows or authorize publication.
 
 ### Blocked rows requiring re-review
@@ -31,6 +31,7 @@ they do not change generated queue rows or authorize publication.
 - `data/derived/data_quality/data_quality_checks.jsonl` — `22cf81321d32c252a00daede3e2895f399013f11099a3d480c275200192936aa`
 - `data/derived/github_project/github_project_items.csv` — `5db2dbd330c1db3b9ada7a413dcadc2bf28f1f7c7cac0ff8fe97370238d34850`
 - `data/derived/github_project/github_project_items.jsonl` — `7407ed67e14e0ccc7a0388aad0f89c83a9996fd95af0fc02ab51adf103d06633`
+- `data/derived/historical_sources/historical_source_catalog.jsonl` — `a8beb02aeca5c9054732f95e6bb1c4eb509c02186bfb3020cd1233303f8dee02`
 - `data/derived/source_downloads/download_attempts.csv` — `132a65d895f0b1f6b2d8b39b522c761fd2a558a913273a39238a72b22d421ada`
 - `data/derived/source_downloads/download_attempts.jsonl` — `712ee26c46ddc0107118e0362c820a3b2ed8d27cf0d0be8f9cba525faa4e3d20`
 - `data/seed/conductor_tracks.csv` — `6bae8df869f33dd60c8e0b24ff6f3aa472bb625718848b809560659f38b3541b`
