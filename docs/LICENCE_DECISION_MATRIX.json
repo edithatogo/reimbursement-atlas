@@ -101,7 +101,7 @@
         "us_cms_pfs",
         "us_cms_asp"
       ],
-      "source_record_count": 309,
+      "source_record_count": 311,
       "status": "pending_human_review",
       "title": "US CMS CLFS, PFS and ASP",
       "transformation_reference": "docs/SOURCE_PROVENANCE_AND_TRANSFORMATIONS.md#current-source-transformations; data/derived/processes/historical_source_transformation.bpmn"
@@ -166,7 +166,7 @@
   "source_catalogue_counts": {
     "au_pbs": 1,
     "uk_genomic_test_directory": 6,
-    "us_cms_asp": 250,
+    "us_cms_asp": 252,
     "us_cms_clfs": 10,
     "us_cms_pfs": 49
   },

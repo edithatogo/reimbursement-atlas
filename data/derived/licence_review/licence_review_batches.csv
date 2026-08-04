@@ -1,5 +1,5 @@
 approved_count,artifact_count,blocked_count,licence_gate,pending_count,publication_scope,raw_payload_count,review_action,total_byte_size
-164,164,0,permissive_candidate,0,public_derived_candidate,0,Human review required before publication consideration,191669208
+167,167,0,permissive_candidate,0,public_derived_candidate,0,Human review required before publication consideration,191861396
 39,39,0,permissive_candidate,0,public_metadata_candidate,0,Human review required before publication consideration,523619
-0,12,12,public_reuse_review,0,public_derived_candidate,0,Human review required before publication consideration,861858
+0,9,8,public_reuse_review,1,public_derived_candidate,0,Human review required before publication consideration,671030
 0,4,4,public_reuse_review,0,public_metadata_candidate,0,Human review required before publication consideration,106459
