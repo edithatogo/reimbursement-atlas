@@ -1,5 +1,5 @@
 [build-system]
-requires = ["uv_build>=0.11.28,<0.12"]
+requires = ["uv_build>=0.12.3,<0.13"]
 build-backend = "uv_build"
 
 [project]
@@ -19,13 +19,13 @@ classifiers = [
   "Typing :: Typed",
 ]
 dependencies = [
-  "polars>=1.35.0",
+  "polars>=1.43.2",
   "pyarrow>=25.0.0",
-  "duckdb>=1.4.0",
-  "lancedb>=0.25.0",
+  "duckdb>=1.5.5",
+  "lancedb>=0.36.0",
   "pydantic>=2.12.0",
-  "pydantic-settings>=2.12.0",
-  "typer>=0.20.0",
+  "pydantic-settings>=2.15.0",
+  "typer>=0.27.1",
   "rich>=14.0.0",
   "orjson>=3.11.0",
   "httpx>=0.28.0",
@@ -38,33 +38,33 @@ dependencies = [
 
 [project.optional-dependencies]
 api = [
-  "fastapi>=0.139.0",
-  "uvicorn[standard]>=0.51.0",
+  "fastapi>=0.141.1",
+  "uvicorn[standard]>=0.52.1",
 ]
 mcp = [
-  "mcp>=1.28,<2",
+  "mcp>=2.0.0,<3",
 ]
 dev = [
   "basedpyright>=1.35.0",
-  "ruff==0.15.22",
+  "ruff==0.16.2",
   "pytest>=9.0.0",
   "pytest-cov>=7.0.0",
   "pytest-xdist>=3.8.0",
   "pytest-randomly>=4.0.0",
-  "hypothesis>=6.156.6",
-  "mutmut>=3.3.0",
+  "hypothesis>=6.165.2",
+  "mutmut>=3.7.0",
   "scalene>=1.5.0",
   "bandit[toml]>=1.9.4",
   "pip-audit>=2.9.0",
-  "filelock>=3.29.7",
-  "pre-commit>=4.3.0",
+  "filelock>=3.32.2",
+  "pre-commit>=4.6.1",
   "interrogate>=1.7.0",
   "jsonschema>=4.26.0",
-  "mkdocs-material>=9.6.0",
+  "mkdocs-material>=9.7.7",
 ]
 test-goblin = [
-  "hypothesis>=6.156.6",
-  "mutmut>=3.3.0",
+  "hypothesis>=6.165.2",
+  "mutmut>=3.7.0",
   "pytest-randomly>=4.0.0",
 ]
 
