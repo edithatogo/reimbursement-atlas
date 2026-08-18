@@ -1,6 +1,6 @@
 {
   "approval_scope": "Approved within the declared routes and browser matrix for visual, automated accessibility, responsive-layout, keyboard, provenance, displayed-data-parity and prohibited-content checks. This approval does not establish universal accessibility conformance and does not confirm an independent manual VoiceOver review. It does not authorize causal, coverage, price-equivalence, DOI, archive-publication, paper or preprint claims.",
-  "automated_packet_sha256": "3d2ce327d8862762acf290ac87544d6b9a04ff0245b8dcc4d218dda3a1d3e376",
+  "automated_packet_sha256": "ccc0124f0c678e91cb0d4c34c552cf40e002927fd34d65be20d83319af0bce7c",
   "commit": "e8eb3c4471d03883695b6e79929fd65a4b3cd2f0",
   "evidence_artifacts": [
     "data/derived/dashboard_review/automated_review_packet.json",
@@ -11,16 +11,16 @@
     "The 44 commit-bound screenshots and machine-readable packet cover the declared visual, responsive-layout, keyboard, automated accessibility, provenance, displayed-data-parity and prohibited-content checks.",
     "Universal accessibility conformance and independent manual VoiceOver confirmation are outside this approval."
   ],
-  "owner_packet_sha256": "f7d46f317441ade04cc2e912cfb36ce20601250ad4cad69325d31ed6819898da",
+  "owner_packet_sha256": "d516f45a1e77f1c7a984c63fb10f61048106f0287e7ff5fb7461173a7411819a",
   "workflow": {
     "workflow": "Dashboard browser matrix",
-    "run_id": "30817780881",
+    "run_id": "30919751990",
     "run_attempt": "1",
-    "artifact_name": "dashboard-browser-review-30817780881",
-    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30817780881"
+    "artifact_name": "dashboard-browser-review-30919751990",
+    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30919751990"
   },
   "remediation_or_waiver": "No unresolved finding is recorded within the approved scope. Independent manual VoiceOver review remains explicitly out of scope.",
-  "reviewed_at": "2026-08-04T00:00:00Z",
+  "reviewed_at": "2026-08-18T00:00:00Z",
   "reviewer": "edithatogo",
   "schema_version": "dashboard-human-review-v1",
   "scope": {
@@ -53,5 +53,6 @@
       "/sources/au_mbs/"
     ]
   },
-  "status": "approved_within_scope"
+  "status": "approved_within_scope",
+  "commit": "212101ea967c15d3052743908a80de1abc32830d"
 }
