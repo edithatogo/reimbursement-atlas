@@ -1617,19 +1617,19 @@
       "@id": "data/derived/sbom/sbom_summary.jsonl",
       "@type": "File",
       "contentSize": 428,
-      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "jsonl",
       "name": "sbom_summary",
-      "sha256": "ba9c4ee8c7d9502c57eb62b29757375ca12b238bbc58b2b1511e0b842ab46b01"
+      "sha256": "c53d48541c7770c451c07d0ff776b95628eaccb14b91db34462dfadeea470e5c"
     },
     {
       "@id": "data/derived/sbom/sbom_summary.csv",
       "@type": "File",
       "contentSize": 296,
-      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "csv",
       "name": "sbom_summary",
-      "sha256": "35624603695c8f1f642d9bfcca49f350c746c637b1ac30756894b582e321a02b"
+      "sha256": "05c14cfb762fa2f981bb12aaf6f7b2b8b6fb5367536e9507dfcd039489a3fea5"
     },
     {
       "@id": "data/derived/sbom/cyclonedx-python.json",
@@ -1643,11 +1643,11 @@
     {
       "@id": "data/derived/sbom/cyclonedx-dashboard.json",
       "@type": "File",
-      "contentSize": 276437,
-      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
+      "contentSize": 278906,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
       "encodingFormat": "json",
       "name": "cyclonedx-dashboard",
-      "sha256": "ed2fce01e1fd1d1efc6aae448c844402af29f28d68c33bbb17f0d38f66c9a8cc"
+      "sha256": "fa8672c0cf141b5f590b57c044d0315df5d84f789254af33d113a4765ffc879c"
     },
     {
       "@id": "data/derived/local_quality_gates/local_quality_gates.jsonl",
@@ -1742,20 +1742,20 @@
     {
       "@id": "data/derived/release_readiness/release_gates.jsonl",
       "@type": "File",
-      "contentSize": 9126,
+      "contentSize": 9104,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "8661eb902fbe6c697aa16932949844cb3d8e387fe556ca667274cbd6e353cc44"
+      "sha256": "76948b5acf87e7c0183cfbdb54023b44bf0f2bdff448ad4b77d4c0096241d6e8"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
       "@type": "File",
-      "contentSize": 5558,
+      "contentSize": 5534,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "7875a36571eab9bbbf8a852fa8f6edcbd27d48107139b7b9a481bb22f3cc2943"
+      "sha256": "c9c14f6443d4205c8822a0eb8479777983961abce7e8106f52b3b681b193840d"
     },
     {
       "@id": "data/derived/v13_validation_run.json",

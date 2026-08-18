@@ -1171,9 +1171,9 @@
     },
     {
       "bytes": 428,
-      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "ba9c4ee8c7d9502c57eb62b29757375ca12b238bbc58b2b1511e0b842ab46b01",
+      "hash": "c53d48541c7770c451c07d0ff776b95628eaccb14b91db34462dfadeea470e5c",
       "mediatype": "application/json",
       "name": "sbom-summary",
       "path": "data/derived/sbom/sbom_summary.jsonl",
@@ -1181,9 +1181,9 @@
     },
     {
       "bytes": 296,
-      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "35624603695c8f1f642d9bfcca49f350c746c637b1ac30756894b582e321a02b",
+      "hash": "05c14cfb762fa2f981bb12aaf6f7b2b8b6fb5367536e9507dfcd039489a3fea5",
       "mediatype": "text/csv",
       "name": "sbom-summary",
       "path": "data/derived/sbom/sbom_summary.csv",
@@ -1205,10 +1205,10 @@
       "schema": {}
     },
     {
-      "bytes": 276437,
-      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
+      "bytes": 278906,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "json",
-      "hash": "ed2fce01e1fd1d1efc6aae448c844402af29f28d68c33bbb17f0d38f66c9a8cc",
+      "hash": "fa8672c0cf141b5f590b57c044d0315df5d84f789254af33d113a4765ffc879c",
       "mediatype": "application/json",
       "name": "cyclonedx-dashboard",
       "path": "data/derived/sbom/cyclonedx-dashboard.json",
@@ -1340,20 +1340,20 @@
       }
     },
     {
-      "bytes": 9126,
+      "bytes": 9104,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "8661eb902fbe6c697aa16932949844cb3d8e387fe556ca667274cbd6e353cc44",
+      "hash": "76948b5acf87e7c0183cfbdb54023b44bf0f2bdff448ad4b77d4c0096241d6e8",
       "mediatype": "application/json",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.jsonl",
       "schema": {}
     },
     {
-      "bytes": 5558,
+      "bytes": 5534,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "7875a36571eab9bbbf8a852fa8f6edcbd27d48107139b7b9a481bb22f3cc2943",
+      "hash": "c9c14f6443d4205c8822a0eb8479777983961abce7e8106f52b3b681b193840d",
       "mediatype": "text/csv",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.csv",
