@@ -1,0 +1,7 @@
+{"schema_version":"1.0","event":"validation","at":"2026-08-01T11:55:00Z","task":"ING-01","status":"pass","evidence":["data/derived/source_downloads/download_attempts.jsonl"]}
+{"schema_version":"1.0","event":"validation","at":"2026-08-01T11:55:00Z","task":"ING-02","status":"pass","evidence":["data/derived/source_validation/summary.json","data/derived/source_contracts/summary.json"]}
+{"schema_version":"1.0","event":"validation","at":"2026-08-01T11:55:00Z","task":"ING-03","status":"pass","evidence":["data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/validation_report.json"]}
+{"schema_version":"1.0","event":"validation","at":"2026-08-01T11:55:00Z","task":"ING-04","status":"pass","evidence":["24 focused tests passed","scripts/check_public_data_policy.py passed"]}
+{"schema_version":"1.0","event":"gate","at":"2026-08-01T11:55:00Z","task":"ING-05","status":"blocked","reason":"mbs_public_reuse_review"}
+{"schema_version":"1.0","event":"gate","at":"2026-08-01T11:55:00Z","task":"ING-06","status":"blocked","reason":"counterpart_licence_or_descriptor_restriction"}
+{"schema_version":"1.0","event":"gate","at":"2026-08-01T11:55:00Z","task":"ING-07","status":"blocked","reason":"pbs_api_credential_missing"}

@@ -1,5 +1,9 @@
 # Project Tracks
 
+- [~] **Track: Evidence-grade live-source ingestion**
+  *Link: [./tracks/track_live_source_ingestion/index.md](./tracks/track_live_source_ingestion/index.md)*
+- [~] **Track: Hugging Face dataset and Spaces publication**
+  *Link: [./tracks/track_publication_hf_spaces/index.md](./tracks/track_publication_hf_spaces/index.md)*
 - [x] **Track: Evidence adjudication and accountable-review closure**
   *Link: [./tracks/track_evidence_adjudication_review/index.md](./tracks/track_evidence_adjudication_review/index.md)*
 - [x] **Track: OSF registration record quality and protocol freeze**
@@ -8,6 +12,18 @@
   *Link: [./tracks/track_public_product_citation_dashboard/index.md](./tracks/track_public_product_citation_dashboard/index.md)*
 - [~] **Track: Citation, archive and public record maturity**
   *Link: [./tracks/track_release_record_archive_maturity/index.md](./tracks/track_release_record_archive_maturity/index.md)*
+- [x] **Track: Research-data packaging standards**
+  *Link: [./archive/track_data_packaging_standards/index.md](./archive/track_data_packaging_standards/index.md)*
+- [~] **Track: Human-in-the-loop mapping workbench**
+  *Link: [./tracks/track_mapping_workbench/index.md](./tracks/track_mapping_workbench/index.md)*
+- [x] **Track: CI/CD and supply-chain hardening**
+  *Link: [./archive/track_ci_cd_supply_chain/index.md](./archive/track_ci_cd_supply_chain/index.md)*
+- [~] **Track: Policy demonstrators**
+  *Link: [./tracks/track_policy_demonstrators/index.md](./tracks/track_policy_demonstrators/index.md)*
+- [x] **Track: Data quality evidence gates**
+  *Link: [./archive/track_data_quality_evidence/index.md](./archive/track_data_quality_evidence/index.md)*
+- [~] **Track: Continuous security assurance**
+-  *Link: [./tracks/track_continuous_security_assurance/index.md](./tracks/track_continuous_security_assurance/index.md)
 - [x] **Track: Source provenance, licensing and historical release reproducibility**
   *Link: [./tracks/track_source_provenance_licence_release/index.md](./tracks/track_source_provenance_licence_release/index.md)*
 - [x] **Track: Layered harness engineering and deterministic regeneration**

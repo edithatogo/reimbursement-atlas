@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pytest
+
 from scripts.make_mapping_threshold_predictions import build_threshold_predictions
 
 
@@ -142,3 +144,15 @@ def test_private_cycle_recomputes_scores_from_checksum_bound_local_evidence(
     assert model["evidence_packet_privacy"] == "ignored_local_restricted"
     assert len(model["evidence_packet_sha256"]) == 64
     assert len(predictions) == 2
+
+
+def test_blinded_tracked_packet_fails_closed_without_local_enrichment(tmp_path: Path) -> None:
+    cycle = "expansion_v9"
+    _fixture(tmp_path, ("positive", "negative"), cycle)
+    tracked = tmp_path / f"data/derived/mapping_study/{cycle}/blind_review_packets"
+    _write_jsonl(
+        tracked / "reviewer_a_cases.jsonl",
+        [{"case_id": f"map_{value:020x}"} for value in range(6)],
+    )
+    with pytest.raises(ValueError, match="permitted local evidence packet"):
+        build_threshold_predictions(tmp_path, cycle)
