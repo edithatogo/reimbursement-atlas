@@ -1,0 +1,16 @@
+{
+  "track_id": "track_publication_hf_spaces",
+  "type": "feature",
+  "status": "in_progress",
+  "created_at": "2026-08-01T12:05:00Z",
+  "updated_at": "2026-08-01T12:07:54Z",
+  "description": "Publish governed derived data and the static dashboard to Hugging Face with remote parity evidence.",
+  "evidence_schema": "1.0",
+  "gates": [
+    {"id": "candidate_bundle", "kind": "repository", "status": "pass", "evidence": "check_huggingface_bundle.py passed."},
+    {"id": "publication_gates", "kind": "repository", "status": "pass", "evidence": "check_huggingface_publication_gates.py passed."},
+    {"id": "destination_metadata", "kind": "external_readback", "status": "pass", "evidence": "Dataset license=other and Space license=apache-2.0, sdk=static."},
+    {"id": "remote_publication", "kind": "external_mutation", "status": "pass", "evidence": "Dataset commit a2b3682b1fd4dc5910a154c15abdc6e9c4199442; Space commit 2a82c05."},
+    {"id": "final_handoff", "kind": "repository", "status": "pending", "evidence": "Regenerate after all external publication/archive states settle."}
+  ]
+}

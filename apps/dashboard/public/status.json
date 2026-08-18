@@ -14,7 +14,7 @@
       "id": "licence_review",
       "next_action": "Record accountable reviewer decisions in the checksum-bound queue.",
       "status": "blocked_review",
-      "summary": "16 publication candidates still require licence review."
+      "summary": "18 publication candidates still require licence review."
     },
     {
       "category": "research_review",
@@ -31,14 +31,6 @@
       "next_action": "Approve the frozen protocols, publication manifest and release decision.",
       "status": "gated",
       "summary": "Research publication remains gated."
-    },
-    {
-      "category": "external_publication",
-      "evidence_path": "data/derived/publication/huggingface_remote_receipt.json",
-      "id": "huggingface_publication",
-      "next_action": "Replace HF_TOKEN with a valid write-enabled token and rerun the approved workflow.",
-      "status": "blocked_secret",
-      "summary": "Hugging Face rejected the configured write credential during both pushes."
     },
     {
       "category": "dashboard",
@@ -69,14 +61,14 @@
     "source_validation": "data/derived/source_validation/summary.json"
   },
   "licence_review": {
-    "approved_rows": 203,
+    "approved_rows": 201,
     "decision_source": "data/licence_review/decisions.jsonl",
-    "pending_rows": 16,
+    "pending_rows": 18,
     "queue_source": "data/derived/licence_review/licence_review_queue.jsonl"
   },
   "project": "reimbursement-atlas",
   "publication": {
-    "huggingface_publication": "blocked_secret",
+    "huggingface_publication": "manual approval and token required",
     "osf_registration_ready": true,
     "status": "gated",
     "zenodo_doi": "manual release approval required"
