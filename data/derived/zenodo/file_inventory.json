@@ -1,14 +1,127 @@
 {
-  "files": [],
-  "missing_roles": [
-    "attestation_receipt",
-    "dashboard_sbom",
-    "python_sbom",
-    "release_manifest",
-    "sdist",
-    "source_archive",
-    "wheel"
+  "files": [
+    {
+      "byte_size": 276437,
+      "filename": "cyclonedx-dashboard.json",
+      "md5": "6151e8bddae797dcaebddf44c03c7917",
+      "path": "data/derived/attestations/cyclonedx-dashboard.json",
+      "role": "attestation_receipt",
+      "sha256": "a502851cdf62459b33153bc03842b845484138661a5b74a9df1e6aec13e90429"
+    },
+    {
+      "byte_size": 42867,
+      "filename": "cyclonedx-dashboard.json.json",
+      "md5": "c9f784876141c69c8613a5b9133816a6",
+      "path": "data/derived/attestations/cyclonedx-dashboard.json.json",
+      "role": "attestation_receipt",
+      "sha256": "d7582d1b0c9ed6919b94ff8fe46652248659f2672b4b8e9aec566c1d71da36f7"
+    },
+    {
+      "byte_size": 123852,
+      "filename": "cyclonedx-python.json",
+      "md5": "de74dbf4a4e5cf009135f765bb727d13",
+      "path": "data/derived/attestations/cyclonedx-python.json",
+      "role": "attestation_receipt",
+      "sha256": "9ebc9578a9062d571db55d1abe5d1038e0256176c1510d24a427f918f74de645"
+    },
+    {
+      "byte_size": 42867,
+      "filename": "cyclonedx-python.json.json",
+      "md5": "c9f784876141c69c8613a5b9133816a6",
+      "path": "data/derived/attestations/cyclonedx-python.json.json",
+      "role": "attestation_receipt",
+      "sha256": "d7582d1b0c9ed6919b94ff8fe46652248659f2672b4b8e9aec566c1d71da36f7"
+    },
+    {
+      "byte_size": 42388,
+      "filename": "reimbursement-atlas-v0.1.1.tar.gz.json",
+      "md5": "39feb817318552ca9a0f4cbfb386d22e",
+      "path": "data/derived/attestations/reimbursement-atlas-v0.1.1.tar.gz.json",
+      "role": "attestation_receipt",
+      "sha256": "47e7743e40bf099bfecb2eaad8a0a0a5a06b455c7187e2077b774e68e76cb32b"
+    },
+    {
+      "byte_size": 43564,
+      "filename": "reimbursement_atlas-0.1.1-py3-none-any.whl.json",
+      "md5": "033f0bae571ccc8e6a87d32849d9e1a1",
+      "path": "data/derived/attestations/reimbursement_atlas-0.1.1-py3-none-any.whl.json",
+      "role": "attestation_receipt",
+      "sha256": "3004a8cfbd6ca85375dba210695df651e14d9595d05499c0b0039b493160e125"
+    },
+    {
+      "byte_size": 43564,
+      "filename": "reimbursement_atlas-0.1.1.tar.gz.json",
+      "md5": "033f0bae571ccc8e6a87d32849d9e1a1",
+      "path": "data/derived/attestations/reimbursement_atlas-0.1.1.tar.gz.json",
+      "role": "attestation_receipt",
+      "sha256": "3004a8cfbd6ca85375dba210695df651e14d9595d05499c0b0039b493160e125"
+    },
+    {
+      "byte_size": 1154,
+      "filename": "release-manifest.json",
+      "md5": "023b35c02e107376d48b8384f55965b9",
+      "path": "data/derived/attestations/release-manifest.json",
+      "role": "attestation_receipt",
+      "sha256": "26bd4b2c38316ec6b4655b6db1933505ec427389a2512a282fe58233cdca8d56"
+    },
+    {
+      "byte_size": 14160,
+      "filename": "release-manifest.json.json",
+      "md5": "96d40495142a77971c0a46eea7e5b553",
+      "path": "data/derived/attestations/release-manifest.json.json",
+      "role": "attestation_receipt",
+      "sha256": "654c1b4c1f2cffe6399424fbc60dcf83de8a090b0a955de39ba603314aaad1c1"
+    },
+    {
+      "byte_size": 278906,
+      "filename": "cyclonedx-dashboard.json",
+      "md5": "cb258916a0b6d2d655afa412cd2e1e63",
+      "path": "data/derived/sbom/cyclonedx-dashboard.json",
+      "role": "dashboard_sbom",
+      "sha256": "fa8672c0cf141b5f590b57c044d0315df5d84f789254af33d113a4765ffc879c"
+    },
+    {
+      "byte_size": 123852,
+      "filename": "cyclonedx-python.json",
+      "md5": "b7fa1c0cc0647376444afeeac685dc40",
+      "path": "data/derived/sbom/cyclonedx-python.json",
+      "role": "python_sbom",
+      "sha256": "10f578fa81dbb26838eefc5676564a9bf6c2068bcbdedfd3b9b142aedbac9840"
+    },
+    {
+      "byte_size": 1154,
+      "filename": "release-manifest.json",
+      "md5": "4c318ab614d270c3e03aac4b161af5d0",
+      "path": "release-manifest.json",
+      "role": "release_manifest",
+      "sha256": "df36864b113892178cdc1448880be5d084429b432850d32146300462725b9be9"
+    },
+    {
+      "byte_size": 173985,
+      "filename": "reimbursement_atlas-0.1.1.tar.gz",
+      "md5": "b8711eda393d34922c58467a914d28bc",
+      "path": "dist/reimbursement_atlas-0.1.1.tar.gz",
+      "role": "sdist",
+      "sha256": "368d3249a8be33262b97c575ffed25fde1e17b3205a8b23a326d74b65bd7990f"
+    },
+    {
+      "byte_size": 17983958,
+      "filename": "reimbursement-atlas-v0.1.1.tar.gz",
+      "md5": "a1d9e5a321fa53609680d892dc478caf",
+      "path": "reimbursement-atlas-v0.1.1.tar.gz",
+      "role": "source_archive",
+      "sha256": "782fe7b79442b9aad6a892153b30127770225b9fa0cc22945d83143ab912f36d"
+    },
+    {
+      "byte_size": 221693,
+      "filename": "reimbursement_atlas-0.1.1-py3-none-any.whl",
+      "md5": "e4ab5c3e4b3a8ae8888c8f44efdabcfe",
+      "path": "dist/reimbursement_atlas-0.1.1-py3-none-any.whl",
+      "role": "wheel",
+      "sha256": "95b78395b35bbb41838825781e79caa863102197af8efd5f964d12cf61fb5855"
+    }
   ],
+  "missing_roles": [],
   "paper_or_preprint_included": false,
   "required_roles": [
     "attestation_receipt",
@@ -20,5 +133,5 @@
     "wheel"
   ],
   "schema_version": "zenodo-release-asset-inventory-v2",
-  "status": "blocked_missing_release_assets"
+  "status": "frozen"
 }

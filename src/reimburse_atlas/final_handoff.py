@@ -434,7 +434,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "Replace the malformed ZENODO_TOKEN secret, rerun draft mode, and record "
                 "the returned deposition identifier without publishing it."
             ),
-            reason_code="zenodo_token_encoding_blocker",
+            reason_code=_zenodo_handoff_reason_code(repo),
             gate_evidence=(
                 "data/derived/zenodo/preflight.json",
                 "data/derived/zenodo/external_state.json",
@@ -565,12 +565,37 @@ def _huggingface_external_state(repo: Path) -> Literal["pending", "ready", "publ
 
 def _zenodo_handoff_status(repo: Path) -> HandoffStatus:
     state = _read_json(repo / "data/derived/zenodo/external_state.json")
-    if state.get("status") == "draft_created":
+    if state.get("status") in {
+        "draft_created",
+        "doi_reserved",
+        "published",
+        "verified",
+        "verified_public",
+    }:
         return "complete"
     preflight = _read_json(repo / "data/derived/zenodo/preflight.json")
     if preflight.get("status") == "blocked_missing_release_assets":
         return "ready_local"
     return "blocked_secret"
+
+
+def _zenodo_handoff_reason_code(repo: Path) -> str:
+    state = _read_json(repo / "data/derived/zenodo/external_state.json")
+    if state.get("status") in {
+        "draft_created",
+        "doi_reserved",
+        "verified",
+        "verified_public",
+    }:
+        return "publication_remote_parity_verified"
+    if state.get("status") == "published":
+        return "publication_record_published"
+    if state.get("status") == "blocked_secret":
+        return "zenodo_write_credential_rejected"
+    preflight = _read_json(repo / "data/derived/zenodo/preflight.json")
+    if preflight.get("status") == "blocked_missing_release_assets":
+        return "zenodo_release_assets_pending"
+    return "zenodo_token_encoding_blocker"
 
 
 def _osf_registration_state(repo: Path) -> str:

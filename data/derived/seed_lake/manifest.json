@@ -321,7 +321,7 @@
       "name": "local_quality_gate_specs",
       "parquet_path": "local_quality_gate_specs/local_quality_gate_specs.parquet",
       "rows": 30,
-      "sha256": "f1e985d1cacbacce24d30d26e88d7b287f89e2bf453b3ff345532abdaafff72e"
+      "sha256": "45feddf20b73af808c2b8cd062c71a616fd5cfc6fa0cea37f7c7cbd9768c4c9d"
     },
     {
       "csv_path": "architecture_import_edges/architecture_import_edges.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 40,
-      "sha256": "0e7aca39da7099fba59544f55a0c10e73690d745b6e5e19414c9dcd2c23d6fff"
+      "sha256": "f7334dcc14d9bca67c49dc835eecbc0b19226ccfaf6afdd765b56e665fcc2e18"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -369,7 +369,7 @@
       "name": "source_download_attempts",
       "parquet_path": "source_download_attempts/source_download_attempts.parquet",
       "rows": 11,
-      "sha256": "7d46470bdcdc885475dcef66875dd787c951f2245b1191d9f303a3968463c928"
+      "sha256": "23b400a6e264f3b3fe71de41a5fd3d27051bdb1c91d090c15abf1b071130c0d2"
     },
     {
       "csv_path": "source_content_validation/source_content_validation.csv",
@@ -401,7 +401,7 @@
       "name": "final_handoff_tasks",
       "parquet_path": "final_handoff_tasks/final_handoff_tasks.parquet",
       "rows": 13,
-      "sha256": "5328b65b6459e2194d2fd4c7ce3ce396bc73dfba8274da4503ead2a5b8c4f629"
+      "sha256": "4fe1f24dbf5d7ab760cfca0115a38e0d36890ae80928910633cebcc65d5d1ecc"
     },
     {
       "csv_path": "osf_component_plan/osf_component_plan.csv",
@@ -449,7 +449,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "37eec5365a3ee04300e78feb00edecd9616b9c86f202efb35089fc538bd65593"
+      "sha256": "88b71a670032256343dbe1db763061283b87628aa178617c3b312edebf850490"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",

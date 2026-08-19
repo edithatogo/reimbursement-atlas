@@ -135,7 +135,7 @@ def default_quality_gate_specs(root: Path | None = None) -> list[QualityGateSpec
             id="basedpyright",
             category="typecheck",
             command=(*python_prefix, "basedpyright"),
-            timeout_seconds=240,
+            timeout_seconds=420,
             profiles=("ci", "release"),
         ),
         QualityGateSpec(

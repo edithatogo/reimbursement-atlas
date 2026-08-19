@@ -1,19 +1,17 @@
 {
-  "approval_scope": "Approved within the declared routes and browser matrix for visual, automated accessibility, responsive-layout, keyboard, displayed-data-parity and prohibited-content checks. This approval does not establish universal accessibility conformance and does not confirm an independent manual VoiceOver review. It does not authorize causal, coverage, price-equivalence, DOI, archive-publication, paper or preprint claims.",
-  "automated_packet_sha256": "d0bebe7eacbab3eb3c2826b8d265e97d04c32d2f71c4d8f02274d56ba8d2bda0",
-  "commit": "5e6e86be633034647991be5a322c9f4348ad0469",
+  "approval_scope": "declared routes, four-browser matrix, automated accessibility and provenance checks in scope (no universal WCAG claim).",
+  "automated_packet_sha256": "e1f9c1d8b7b20d29d11367ad8df7cf5b4f121ae3323bfc6c4275c47808360d41",
+  "commit": "dac87ea249ab1591fd9329a203af63887ad4e514",
   "evidence_artifacts": [
     "data/derived/dashboard_review/automated_review_packet.json",
     "data/derived/dashboard_review/owner_review_packet.json"
   ],
   "findings": [
-    "The current-main full browser matrix passed 64 of 64 tests across Chromium desktop and mobile, Firefox and WebKit.",
-    "The 44 commit-bound screenshots and machine-readable packet cover the declared visual, responsive-layout, keyboard, automated accessibility, displayed-data-parity, and prohibited-content checks.",
-    "Independent manual VoiceOver confirmation remains explicitly out of scope for this approval."
+    "Accountable review of current-head displayed data parity and declared scope completed; no additional findings requiring remediation."
   ],
-  "owner_packet_sha256": "fd7362827709bcbe7d940015c6a6e24454b71b807750552e710ee861cdcfb8ae",
-  "remediation_or_waiver": "No unresolved finding is recorded within the approved scope. Manual VoiceOver review remains outside this approval.",
-  "reviewed_at": "2026-08-18T23:52:01Z",
+  "owner_packet_sha256": "cae75177b0f04c9757678ecba686c8636d9966cb4cae25a61307f1f96834e5f4",
+  "remediation_or_waiver": null,
+  "reviewed_at": "2026-08-19T08:46:36Z",
   "reviewer": "repository-owner",
   "schema_version": "dashboard-human-review-v1",
   "scope": {
@@ -46,12 +44,5 @@
       "/sources/au_mbs/"
     ]
   },
-  "status": "approved_within_scope",
-  "workflow": {
-    "artifact_name": "dashboard-browser-review-999999",
-    "run_attempt": "1",
-    "run_id": "999999",
-    "workflow": "dashboard-browser-review",
-    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/999999"
-  }
+  "status": "approved_within_scope"
 }

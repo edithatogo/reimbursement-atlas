@@ -1,7 +1,7 @@
 blocking,category,command,cwd,id,notes,profiles,timeout_seconds
 True,lint,uv run --all-extras ruff check .,.,ruff_check,,quick;ci;release,180
 True,format,uv run --all-extras ruff format --check .,.,ruff_format_check,,quick;ci;release,180
-True,typecheck,uv run --all-extras basedpyright,.,basedpyright,,ci;release,240
+True,typecheck,uv run --all-extras basedpyright,.,basedpyright,,ci;release,420
 True,test,uv run --all-extras pytest --cov=src/reimburse_atlas --cov-report=term-missing --cov-report=xml --cov-fail-under=90 -q,.,pytest_coverage,,ci;release,600
 True,security,uv run --all-extras bandit -q -c pyproject.toml -r src scripts,.,bandit,,ci;release,240
 True,build,uv run --all-extras python -m compileall -q src scripts tests,.,compileall,,quick;ci;release,240

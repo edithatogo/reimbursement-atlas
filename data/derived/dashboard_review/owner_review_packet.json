@@ -17,8 +17,8 @@
     "desktop-webkit"
   ],
   "commit_parity": true,
-  "current_head": "5e6e86be633034647991be5a322c9f4348ad0469",
-  "data_fingerprint": "bfe5d8321aec075e11f1b3bde8f6e06d31915dda84891118c77e419624bd531f",
+  "current_head": "dac87ea249ab1591fd9329a203af63887ad4e514",
+  "data_fingerprint": "b349bd2d603ff1f817ebaf1d7d99760e31d61ccf3f00bbfa103b7c5fdebefdcd",
   "prohibited_content_check": {
     "files_checked": 77,
     "findings": [],
@@ -104,8 +104,8 @@
     },
     {
       "displayed_path": "apps/dashboard/public/status.json#blockers",
-      "displayed_value": "8368cb2a958ad509f7171adb6166dd57016c2ef15d4126426a5dd36e59d0174b",
-      "expected_value": "8368cb2a958ad509f7171adb6166dd57016c2ef15d4126426a5dd36e59d0174b",
+      "displayed_value": "6bc8e3294e49bea39f5782cca7ef34990a00c99d686792d166c0a8bc2f5b8853",
+      "expected_value": "6bc8e3294e49bea39f5782cca7ef34990a00c99d686792d166c0a8bc2f5b8853",
       "id": "complete-blocker-projection",
       "source_field": "blockers",
       "source_path": "scripts/make_public_status_manifest.py",
@@ -116,7 +116,7 @@
     {
       "byte_size": 3114,
       "path": "apps/dashboard/public/status.json",
-      "sha256": "f6732223a6be12d9a327c2e4c57d2abe0782ef77fa4ac4ace641e2ce25a91307"
+      "sha256": "741a69b3fb7c5376623e78a3d07c3e367d5be9679d421d40273ee12b05d8a284"
     },
     {
       "byte_size": 126,
@@ -129,9 +129,9 @@
       "sha256": "05264e92d9df287227c2fb9f87980b1d33c71a325cad0cb2df3c20ecc2bb76e7"
     },
     {
-      "byte_size": 140677,
+      "byte_size": 140678,
       "path": "data/derived/publication_manifest.json",
-      "sha256": "105f66fe0829e290ecefb8cf99bf665ac47a3981e681af53b393895eee3ab690"
+      "sha256": "31a0ffe4f53cde702af261a00243192572996d639ff5b2d74cf0efc922b07cc7"
     }
   ],
   "record_schema": "schema/DashboardHumanReviewRecord.schema.json",
@@ -729,12 +729,12 @@
   ],
   "source_fingerprint": "bd82c5bb82dbd77fd428b36df57939ef4d07a40e0fb59cde64ceff8797e392d3",
   "status": "pending_accountable_review",
-  "tested_commit": "5e6e86be633034647991be5a322c9f4348ad0469",
+  "tested_commit": "dac87ea249ab1591fd9329a203af63887ad4e514",
   "workflow": {
-    "artifact_name": "dashboard-browser-review-999999",
-    "run_attempt": "1",
-    "run_id": "999999",
-    "workflow": "dashboard-browser-review",
-    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/999999"
+    "artifact_name": null,
+    "run_attempt": null,
+    "run_id": null,
+    "workflow": null,
+    "workflow_url": null
   }
 }

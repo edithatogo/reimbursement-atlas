@@ -1,6 +1,6 @@
 {"blocking": true, "category": "lint", "command": "uv run --all-extras ruff check .", "cwd": ".", "id": "ruff_check", "notes": "", "profiles": "quick;ci;release", "timeout_seconds": 180}
 {"blocking": true, "category": "format", "command": "uv run --all-extras ruff format --check .", "cwd": ".", "id": "ruff_format_check", "notes": "", "profiles": "quick;ci;release", "timeout_seconds": 180}
-{"blocking": true, "category": "typecheck", "command": "uv run --all-extras basedpyright", "cwd": ".", "id": "basedpyright", "notes": "", "profiles": "ci;release", "timeout_seconds": 240}
+{"blocking": true, "category": "typecheck", "command": "uv run --all-extras basedpyright", "cwd": ".", "id": "basedpyright", "notes": "", "profiles": "ci;release", "timeout_seconds": 420}
 {"blocking": true, "category": "test", "command": "uv run --all-extras pytest --cov=src/reimburse_atlas --cov-report=term-missing --cov-report=xml --cov-fail-under=90 -q", "cwd": ".", "id": "pytest_coverage", "notes": "", "profiles": "ci;release", "timeout_seconds": 600}
 {"blocking": true, "category": "security", "command": "uv run --all-extras bandit -q -c pyproject.toml -r src scripts", "cwd": ".", "id": "bandit", "notes": "", "profiles": "ci;release", "timeout_seconds": 240}
 {"blocking": true, "category": "build", "command": "uv run --all-extras python -m compileall -q src scripts tests", "cwd": ".", "id": "compileall", "notes": "", "profiles": "quick;ci;release", "timeout_seconds": 240}

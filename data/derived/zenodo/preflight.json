@@ -17,5 +17,5 @@
     "release_readiness"
   ],
   "schema_version": "zenodo-deposition-preflight-v2",
-  "status": "blocked_missing_release_assets"
+  "status": "ready_for_draft_deposit"
 }
