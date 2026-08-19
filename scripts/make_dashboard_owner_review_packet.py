@@ -173,7 +173,11 @@ def build_packet(root: Path) -> dict[str, Any]:
     automated = _read_json(root / AUTOMATED)
     current_head = resolve_head(root)
     source_fingerprint = dashboard_source_fingerprint(root)
-    data_fingerprint = dashboard_data_fingerprint(root)
+    tested_commit = str(automated.get("tested_commit") or current_head)
+    data_fingerprint = dashboard_data_fingerprint(
+        root,
+        self_attestation_commit=tested_commit,
+    )
     provenance = [
         {
             "path": path.as_posix(),

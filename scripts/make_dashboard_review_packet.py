@@ -325,7 +325,10 @@ def main() -> None:
         root / args.report_dir,
         resolve_head(root),
         source_fingerprint=dashboard_source_fingerprint(root),
-        data_fingerprint=dashboard_data_fingerprint(root),
+        data_fingerprint=dashboard_data_fingerprint(
+            root,
+            self_attestation_commit=resolve_head(root),
+        ),
     )
     output = root / args.output
     output.parent.mkdir(parents=True, exist_ok=True)
