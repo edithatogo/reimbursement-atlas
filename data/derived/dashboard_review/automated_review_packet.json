@@ -9,7 +9,7 @@
     "table captions"
   ],
   "coverage_complete": true,
-  "data_fingerprint": "702791780053ac426a53217b414ca1a85e73b2bd42b1b8fd9034759f489aae9c",
+  "data_fingerprint": "433fc4bb663888a25949ab7a2695420cb29e6559bd249fd5e9654ac3581a0774",
   "expected_test_count": 64,
   "human_review_required": true,
   "junit": {
@@ -46,11 +46,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 293964,
+      "byte_size": 293149,
       "file": "embedded",
       "project": "desktop-chromium",
       "route": "/",
-      "sha256": "4bc9eb5f5d5066af6e554263d1723723cd0ca324bbfc148989a0dab6bcbcedc1",
+      "sha256": "6103b72e85dadb114c3348802f8bad68134f84d0133205e23c747467d1903803",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -85,11 +85,11 @@
     {
       "browser": "chromium",
       "browser_version": "149.0.7827.55",
-      "byte_size": 271395,
+      "byte_size": 272095,
       "file": "embedded",
       "project": "mobile-chromium",
       "route": "/",
-      "sha256": "498c3f7f7a57151ab72683cdbd7711d9762efbd561cbae5a4cd705b32437d37b",
+      "sha256": "3963447a16e461a158636c44a7bc73a04b0d97fe2b889290afb808168d5bdc33",
       "viewport": {
         "height": 727,
         "width": 393
@@ -619,12 +619,12 @@
   "source_fingerprint": "bd82c5bb82dbd77fd428b36df57939ef4d07a40e0fb59cde64ceff8797e392d3",
   "status": "pass",
   "test_count": 64,
-  "tested_commit": "74017cd1100eec023277045f1cc72b1d87bdeee8",
+  "tested_commit": "ae2716e08e70868627a0552ec0e463984cee2cb8",
   "workflow": {
-    "artifact_name": "dashboard-browser-review-32361598590",
+    "artifact_name": "dashboard-browser-review-32362468499",
     "run_attempt": "1",
-    "run_id": "32361598590",
+    "run_id": "32362468499",
     "workflow": "Dashboard browser matrix",
-    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/32361598590"
+    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/32362468499"
   }
 }

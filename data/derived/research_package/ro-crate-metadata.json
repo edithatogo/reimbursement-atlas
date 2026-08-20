@@ -1727,20 +1727,20 @@
     {
       "@id": "data/derived/release_readiness/release_gates.jsonl",
       "@type": "File",
-      "contentSize": 8762,
+      "contentSize": 8742,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "325a5027ee8c51b3beab1482aa36a6dc1f8f5fb72c564584230bcf514652d957"
+      "sha256": "d68b9214a8ab2d9c9665dfd700a381177856bfc7061209f5a86c081e1d4b78c7"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
       "@type": "File",
-      "contentSize": 5281,
+      "contentSize": 5261,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "d1f8e80bd049c21f74a1287c799b2fbdad7b78bf31c699204b01398b8bd99f6e"
+      "sha256": "c07ae93a05ee46dff54c04ffa10bcd608bca5639eddeaa7940efa30035a732a4"
     },
     {
       "@id": "data/derived/v13_validation_run.json",
@@ -1871,20 +1871,20 @@
     {
       "@id": "data/derived/final_handoff/final_handoff_tasks.jsonl",
       "@type": "File",
-      "contentSize": 11162,
+      "contentSize": 11153,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "final_handoff_tasks",
-      "sha256": "d69b7428cec0e08b0dc6fd00d83f66648e52b36ff74bed57da23fba8163f584f"
+      "sha256": "6eab1b8620801250ca45f167526423e0b8617dface30eeace41af2a1180ae538"
     },
     {
       "@id": "data/derived/final_handoff/final_handoff_tasks.csv",
       "@type": "File",
-      "contentSize": 8099,
+      "contentSize": 8090,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "final_handoff_tasks",
-      "sha256": "c23b062ac3c2040714898ad855afbc0bb32f1cc36bc95ade526309e2dbe05087"
+      "sha256": "5aa676a6fb9bc05b2e75c5aa5c99882f4ad271c77c06b95fee85ad6da4baae14"
     },
     {
       "@id": "data/derived/protocols/protocol_status.jsonl",

@@ -1340,20 +1340,20 @@
       }
     },
     {
-      "bytes": 8762,
+      "bytes": 8742,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "325a5027ee8c51b3beab1482aa36a6dc1f8f5fb72c564584230bcf514652d957",
+      "hash": "d68b9214a8ab2d9c9665dfd700a381177856bfc7061209f5a86c081e1d4b78c7",
       "mediatype": "application/json",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.jsonl",
       "schema": {}
     },
     {
-      "bytes": 5281,
+      "bytes": 5261,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "d1f8e80bd049c21f74a1287c799b2fbdad7b78bf31c699204b01398b8bd99f6e",
+      "hash": "c07ae93a05ee46dff54c04ffa10bcd608bca5639eddeaa7940efa30035a732a4",
       "mediatype": "text/csv",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.csv",
@@ -1535,20 +1535,20 @@
       }
     },
     {
-      "bytes": 11162,
+      "bytes": 11153,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "d69b7428cec0e08b0dc6fd00d83f66648e52b36ff74bed57da23fba8163f584f",
+      "hash": "6eab1b8620801250ca45f167526423e0b8617dface30eeace41af2a1180ae538",
       "mediatype": "application/json",
       "name": "final-handoff-tasks",
       "path": "data/derived/final_handoff/final_handoff_tasks.jsonl",
       "schema": {}
     },
     {
-      "bytes": 8099,
+      "bytes": 8090,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "c23b062ac3c2040714898ad855afbc0bb32f1cc36bc95ade526309e2dbe05087",
+      "hash": "5aa676a6fb9bc05b2e75c5aa5c99882f4ad271c77c06b95fee85ad6da4baae14",
       "mediatype": "text/csv",
       "name": "final-handoff-tasks",
       "path": "data/derived/final_handoff/final_handoff_tasks.csv",
