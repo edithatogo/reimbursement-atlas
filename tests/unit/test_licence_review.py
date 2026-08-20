@@ -114,6 +114,7 @@ def test_repository_control_reports_are_project_owned(repo_root: Path) -> None:
         for row in manifest.artifacts
         if row.relative_path.startswith((
             "data/derived/architecture/",
+            "data/derived/data_quality/",
             "data/derived/github_project/",
             "data/derived/sbom/",
         ))
@@ -123,6 +124,19 @@ def test_repository_control_reports_are_project_owned(repo_root: Path) -> None:
     assert {row.licence_gate for row in records} == {"apache_2_0_project_output"}
     assert {row.approval_requirement for row in records} == {"automatic_policy"}
     assert {row.approval_reason_code for row in records} == {"project_owned_apache_2_0"}
+
+
+def test_generated_graph_seeds_are_project_owned(repo_root: Path) -> None:
+    """Conductor graph regeneration must not trigger provider-rights prompts."""
+    manifest = build_publication_manifest(root=repo_root)
+    records = [
+        row
+        for row in manifest.artifacts
+        if row.relative_path in {"data/seed/graph_edges.csv", "data/seed/graph_nodes.csv"}
+    ]
+
+    assert len(records) == 2
+    assert {row.approval_requirement for row in records} == {"automatic_policy"}
 
 
 def test_source_derived_candidate_still_requires_accountable_review() -> None:

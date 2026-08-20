@@ -218,6 +218,7 @@ DEFAULT_PUBLICATION_PATHS = (
 PROJECT_OWNED_METADATA_PREFIXES = (
     Path("data/derived/architecture"),
     Path("data/derived/data_dictionary"),
+    Path("data/derived/data_quality"),
     Path("data/derived/final_handoff"),
     Path("data/derived/github_project"),
     Path("data/derived/local_quality_gates"),
@@ -229,6 +230,8 @@ PROJECT_OWNED_METADATA_PREFIXES = (
 )
 PROJECT_OWNED_METADATA_PATHS = {
     Path("data/derived/osf/sync_manifest.jsonl"),
+    Path("data/seed/graph_edges.csv"),
+    Path("data/seed/graph_nodes.csv"),
     Path("data/seed/conductor_tracks.csv"),
     Path("data/seed/conductor_tracks.jsonl"),
 }
