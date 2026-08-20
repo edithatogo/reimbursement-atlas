@@ -1637,20 +1637,20 @@
     {
       "@id": "data/derived/local_quality_gates/local_quality_gates.jsonl",
       "@type": "File",
-      "contentSize": 6316,
+      "contentSize": 9756,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "local_quality_gates",
-      "sha256": "211899ede8dc854280910434477475375e1d63427ad3946939c35e9ae3d58b1c"
+      "sha256": "4d74ce0daf44df2d4bb78b4ba447527a10b0a096d8df545d7e8bccddd581d41d"
     },
     {
       "@id": "data/derived/local_quality_gates/local_quality_gates.csv",
       "@type": "File",
-      "contentSize": 3291,
+      "contentSize": 4881,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "local_quality_gates",
-      "sha256": "e86bbc8e54712190178845d78acd7e3b552c40f609c23b38f4502b32b6b69bcc"
+      "sha256": "2aecf8f4b216f10b544591409f2b4fd65c73c2031d6e77bea9675e67efc927ea"
     },
     {
       "@id": "data/derived/local_quality_gates/local_quality_gate_specs.jsonl",
@@ -1673,20 +1673,20 @@
     {
       "@id": "data/derived/architecture/import_edges.jsonl",
       "@type": "File",
-      "contentSize": 64911,
+      "contentSize": 64032,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "import_edges",
-      "sha256": "6d699a2744a0418e77c5a0360709786503ecd2748a793d690ed4caadf73473a4"
+      "sha256": "67d3ad87ff10211f0e9b9caa00c37081e3ee272ca354923617357cd3a41471b8"
     },
     {
       "@id": "data/derived/architecture/import_edges.csv",
       "@type": "File",
-      "contentSize": 34343,
+      "contentSize": 33857,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "import_edges",
-      "sha256": "9156afb95256906486a905034b8ce8323020c454dbccf94dff5563271d764083"
+      "sha256": "de9d645f9ed73df89ed4adbd24fb382aea7a28b92a2b4912768a30c5419bb695"
     },
     {
       "@id": "data/derived/architecture/layer_policy.jsonl",
@@ -1695,7 +1695,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "layer_policy",
-      "sha256": "caa627c099eafdece7fec283e56fa74e4087a50445ab03a1f91c8806ea9c901f"
+      "sha256": "5f6b594ee05006a4456b4d6bdd557d413e0e2ec6f85cfabd8353f8863b7fa246"
     },
     {
       "@id": "data/derived/architecture/layer_policy.csv",
@@ -1704,7 +1704,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "layer_policy",
-      "sha256": "17ee2b5fb730b52f9bdfe89a8435eff79f96f8815b12b9051da71d8b9c566679"
+      "sha256": "0d386d4267d48525d8c45a49defb5a870f7d2840f651ead8a18d91a6b7d1da15"
     },
     {
       "@id": "data/derived/architecture/import_cycles.jsonl",
@@ -1727,20 +1727,20 @@
     {
       "@id": "data/derived/release_readiness/release_gates.jsonl",
       "@type": "File",
-      "contentSize": 9075,
+      "contentSize": 8762,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "283dc10afe3e4723458d5c32f8dfa741723086c7d6014633d9481d9130ef6bf6"
+      "sha256": "325a5027ee8c51b3beab1482aa36a6dc1f8f5fb72c564584230bcf514652d957"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
       "@type": "File",
-      "contentSize": 5594,
+      "contentSize": 5281,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "3250c47885372453a1dad9ddd3aa6009aa361c2578187bd4c500af30a859a2ee"
+      "sha256": "d1f8e80bd049c21f74a1287c799b2fbdad7b78bf31c699204b01398b8bd99f6e"
     },
     {
       "@id": "data/derived/v13_validation_run.json",
@@ -2019,7 +2019,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "data_dictionary",
-      "sha256": "5c8ebd4c0f9ffc5d45933a49002b333cb9f760f7d56acb83dffbff335021debc"
+      "sha256": "915bca038554cb57b7ba784c0e9bc5a56377b3c8cbc3f19e02c2dbe0469ba470"
     },
     {
       "@id": "data/derived/data_dictionary/data_dictionary.csv",
@@ -2028,7 +2028,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "data_dictionary",
-      "sha256": "dd1d37f097a7a099c4217284a3b34f1a6f4b56a8f63438b9538c363eee9fa450"
+      "sha256": "e71f0009f5219f9621c5df4f2b0f7a1314e23697b3b1d911489e32bedecc44f1"
     },
     {
       "@id": "data/derived/data_dictionary/summary.json",
@@ -2037,7 +2037,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "json",
       "name": "summary",
-      "sha256": "be300ee75d0c09468054e0b3c9dc0af13752ef194b553203f4721ec50313ff1d"
+      "sha256": "a2639d7cd1f8cea8f404b5115817f6c6b7da35dde09d81e472145ba648569f46"
     },
     {
       "@id": "infra/huggingface/DATASET_CARD.md",
