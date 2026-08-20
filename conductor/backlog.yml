@@ -9,8 +9,8 @@ epics:
     track_id: track_osf_deprecation_20260820
     issues:
       - title: Remove OSF registration from active readiness and publication gates
-        labels: ["type:research", "type:automation", "status:in_progress"]
-        status: in_progress
+        labels: ["type:research", "type:automation", "status:implemented"]
+        status: implemented
         github_issue: 711
         acceptance:
           - "Release, Hugging Face, Zenodo, dashboard and handoff contracts do not depend on OSF."

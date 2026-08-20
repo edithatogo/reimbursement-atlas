@@ -6,4 +6,4 @@
 - [x] OSFD-04: Retire OSF mutation and registration-monitor workflows and default QA tasks.
 - [x] OSFD-05: Add regression tests for OSF-independent gates and preserved historical evidence.
 - [x] OSFD-06: Regenerate governed outputs and run focused and full validation.
-- [ ] OSFD-07: Review, merge through protected CI, synchronize issue #711 and archive this track.
+- [x] OSFD-07: Review, merge through protected CI, synchronize issue #711 and archive this track.
