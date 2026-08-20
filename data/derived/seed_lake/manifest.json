@@ -265,7 +265,7 @@
       "name": "repo_workflow_uses",
       "parquet_path": "repo_workflow_uses/repo_workflow_uses.parquet",
       "rows": 113,
-      "sha256": "5a6d298363385e6c1797e61512187533b801f98026c6773267625bdc0872e4cd"
+      "sha256": "ac346248b7bd4c7b68de19a693572dd3fd28a32ece0602dce838ec6192a5cd4c"
     },
     {
       "csv_path": "repo_workflow_policy/repo_workflow_policy.csv",
@@ -297,7 +297,7 @@
       "name": "repo_action_pin_resolution",
       "parquet_path": "repo_action_pin_resolution/repo_action_pin_resolution.parquet",
       "rows": 113,
-      "sha256": "f2e6703d9da09937a754fb3644e6fef479da099381b4990702c4e5cb1364b1b6"
+      "sha256": "8d9c92368a2567d1a6c53fa583af2ba19bad1c24afeceb21878cdd70a873c596"
     },
     {
       "csv_path": "sbom_summary/sbom_summary.csv",
