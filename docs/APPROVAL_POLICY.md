@@ -10,7 +10,7 @@ Every gate uses the lowest-friction tier that still fails closed for its risk.
 | Automatic policy | No accountable prompt. Deterministic checks and repository policy decide. | Apache-2.0 project code, architecture reports, SBOMs, quality reports and release-control metadata. |
 | Standing scoped approval | Reuse a prior bounded approval while its immutable scope and machine evidence remain valid. | Dashboard visual/accessibility approval when the reviewed UI fingerprint, routes and browser matrix are unchanged and the current automated, provenance and prohibited-content checks pass. |
 | Accountable review | One grouped decision for a material risk boundary. | A new source-rights or derived-field scope, a research or policy claim, a material dashboard UI/scope change, or a protocol interpretation. |
-| Explicit external mutation | A separately authorized high-impact action. | Publishing or changing an OSF, Hugging Face, Zenodo, DOI, release or registration record. |
+| Explicit external mutation | A separately authorized high-impact action. | Publishing or changing a Hugging Face, Zenodo, DOI, release or registration record. OSF is retained as historical evidence only. |
 
 ## Reapproval triggers
 
@@ -33,7 +33,8 @@ The current dashboard validator may carry a prior `approved_within_scope` record
 
 1. Git history contains the exact reviewed automated and owner packets.
 2. Both historical packet SHA-256 values match the accountable record.
-3. Historical and current dashboard source fingerprints match.
+3. Historical and current dashboard source fingerprints match. Only exact, code-declared,
+   regression-tested low-risk copy migrations may normalize to the reviewed fingerprint.
 4. Historical and current route and browser-project matrices match the declared contract.
 5. The current 64-test browser matrix, displayed-data parity, provenance assertions and
    prohibited-content checks pass.

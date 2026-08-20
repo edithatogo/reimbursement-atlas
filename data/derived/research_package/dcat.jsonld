@@ -775,36 +775,6 @@
     },
     {
       "@type": "dcat:Distribution",
-      "dcat:downloadURL": "data/derived/osf/component_plan.jsonl",
-      "dct:format": "jsonl",
-      "dct:title": "component_plan"
-    },
-    {
-      "@type": "dcat:Distribution",
-      "dcat:downloadURL": "data/derived/osf/component_plan.csv",
-      "dct:format": "csv",
-      "dct:title": "component_plan"
-    },
-    {
-      "@type": "dcat:Distribution",
-      "dcat:downloadURL": "data/derived/osf/osf_publication_manifest.json",
-      "dct:format": "json",
-      "dct:title": "osf_publication_manifest"
-    },
-    {
-      "@type": "dcat:Distribution",
-      "dcat:downloadURL": "data/derived/osf/preprint_checklist.md",
-      "dct:format": "md",
-      "dct:title": "preprint_checklist"
-    },
-    {
-      "@type": "dcat:Distribution",
-      "dcat:downloadURL": "data/derived/osf/sync_manifest.jsonl",
-      "dct:format": "jsonl",
-      "dct:title": "sync_manifest"
-    },
-    {
-      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/protocols/protocol_status.jsonl",
       "dct:format": "jsonl",
       "dct:title": "protocol_status"

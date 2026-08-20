@@ -10,15 +10,15 @@ checksum-bound row-level record.
 
 ## Current batches
 
-- `permissive_candidate` / `public_derived_candidate`: 160 artefacts, 191676484 bytes
-- `permissive_candidate` / `public_metadata_candidate`: 39 artefacts, 523619 bytes
+- `permissive_candidate` / `public_derived_candidate`: 151 artefacts, 191625076 bytes
+- `permissive_candidate` / `public_metadata_candidate`: 35 artefacts, 466293 bytes
 
-Total candidate artefacts: 199. Neutral generated row markers are not approval
+Total candidate artefacts: 186. Neutral generated row markers are not approval
 requests; the batch and summary `pending_count` values identify required decisions.
 
 ## Decision ledger snapshot
 
-The companion checksum-bound ledger currently records **199 approved**
+The companion checksum-bound ledger currently records **186 approved**
 and **0 blocked** decisions. These counts are informational;
 they do not change generated queue rows or authorize publication.
 

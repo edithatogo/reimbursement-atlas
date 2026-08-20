@@ -350,7 +350,7 @@ class RuntimeTargetRecord(FrozenModel):
 
 
 class ProtocolStatusRecord(FrozenModel):
-    """Generated protocol/report completeness status for an OSF-aligned question."""
+    """Generated protocol/report completeness status for a research question."""
 
     id: SourceId
     research_question_id: SourceId
@@ -364,7 +364,7 @@ class ProtocolStatusRecord(FrozenModel):
     protocol_word_count: int = Field(ge=0)
     report_word_count: int = Field(ge=0)
     completeness_score: float = Field(ge=0.0, le=1.0)
-    osf_ready: bool
+    protocol_ready: bool
     recommended_next_step: NonEmptyStr
 
     @field_validator("missing_sections", mode="before")

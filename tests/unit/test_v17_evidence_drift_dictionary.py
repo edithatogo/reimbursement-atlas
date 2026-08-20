@@ -148,7 +148,7 @@ def test_evidence_readiness_covers_blocked_design_and_ready_paths(tmp_path: Path
     assert rows["ready"].claim_package_status == "missing"
     assert "checksum-bound claim package" in rows["ready"].recommended_action
     assert rows["design"].readiness_stage == "design"
-    assert "Expand the OSF protocol" in rows["design"].recommended_action
+    assert "Expand the research protocol" in rows["design"].recommended_action
 
     _write_jsonl(
         tmp_path / "data/derived/data_quality/data_quality_checks.jsonl",

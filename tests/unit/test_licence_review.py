@@ -160,17 +160,26 @@ def test_conductor_track_seed_is_project_owned(repo_root: Path) -> None:
     assert {row.approval_requirement for row in records} == {"automatic_policy"}
 
 
-def test_osf_sync_inventory_is_project_owned(repo_root: Path) -> None:
-    """A file inventory does not grant or require an OSF publication decision."""
+def test_project_authored_research_governance_is_project_owned(repo_root: Path) -> None:
+    """Protocol status and planning metadata must not create rights-review churn."""
     manifest = build_publication_manifest(root=repo_root)
-    record = next(
-        row
-        for row in manifest.artifacts
-        if row.relative_path == "data/derived/osf/sync_manifest.jsonl"
+    prefixes = (
+        "data/derived/protocols/",
+        "data/derived/roadmap_linkages/",
+        "data/seed/output_artifact_plans.",
+        "data/seed/roadmap_functions.",
     )
+    records = [row for row in manifest.artifacts if row.relative_path.startswith(prefixes)]
 
-    assert record.approval_requirement == "automatic_policy"
-    assert record.reapproval_trigger == "ownership_or_path_classification_change"
+    assert len(records) == 9
+    assert {row.licence_gate for row in records} == {"apache_2_0_project_output"}
+    assert {row.approval_requirement for row in records} == {"automatic_policy"}
+
+
+def test_deprecated_osf_outputs_are_not_publication_candidates(repo_root: Path) -> None:
+    """Historical OSF evidence remains tracked but cannot enter publication scope."""
+    manifest = build_publication_manifest(root=repo_root)
+    assert not any(row.relative_path.startswith("data/derived/osf/") for row in manifest.artifacts)
 
 
 def test_queue_writes_checksum_bound_outputs(tmp_path: Path) -> None:

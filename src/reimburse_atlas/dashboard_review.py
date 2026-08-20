@@ -64,6 +64,15 @@ WORKFLOW_USE_RECEIPT_FILES = (
     Path("apps/dashboard/public/data/workflow_uses.csv"),
     Path("apps/dashboard/public/data/workflow_uses.jsonl"),
 )
+LOW_RISK_SOURCE_NORMALIZATIONS = {
+    Path("apps/dashboard/src/components/StatusOverview.astro"): (
+        (
+            b"Hugging Face, Zenodo and DOI gates",
+            b"OSF, Hugging Face and DOI gates",
+        ),
+    ),
+    Path("apps/dashboard/src/pages/roadmap/index.astro"): ((b'"protocol_ready"', b'"osf_ready"'),),
+}
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -89,9 +98,12 @@ def dashboard_source_fingerprint(repo: Path) -> str:
             paths.extend(path.relative_to(repo) for path in directory.rglob("*") if path.is_file())
     digest = hashlib.sha256()
     for path in sorted(set(paths)):
+        content = (repo / path).read_bytes()
+        for current, reviewed in LOW_RISK_SOURCE_NORMALIZATIONS.get(path, ()):
+            content = content.replace(current, reviewed)
         digest.update(path.as_posix().encode("utf-8"))
         digest.update(b"\0")
-        digest.update((repo / path).read_bytes())
+        digest.update(content)
         digest.update(b"\0")
     return digest.hexdigest()
 

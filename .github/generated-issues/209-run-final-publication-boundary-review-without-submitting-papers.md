@@ -13,7 +13,7 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 ## Acceptance criteria
 
 - [ ] Zenodo and DataCite payloads, file inventory, checksums, SBOM and attestations validate against the frozen release.
-- [ ] Mapping, dashboard, OSF registration, licence and release-readiness gates independently pass before deposition.
+- [ ] Mapping, dashboard, licence and release-readiness gates independently pass before deposition.
 - [ ] The version DOI resolves and remote checksums are verified after publication.
 - [ ] Papers, manuscripts and preprints are excluded.
 - [ ] The signed GitHub release precedes Zenodo deposition, and every deposited asset is verified against its exact-tag attestation.

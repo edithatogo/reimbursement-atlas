@@ -152,15 +152,6 @@ def build_public_status_manifest(root: Path | None = None) -> dict[str, Any]:  #
             ),
             "evidence_path": "data/derived/release_readiness/summary.json",
         })
-    if not bool(release.get("osf_registration_ready")):
-        blockers.append({
-            "id": "osf_registration",
-            "category": "osf",
-            "status": "gated",
-            "summary": "OSF registration is not approved.",
-            "next_action": ("Complete accountable methods, domain, licence and governance review."),
-            "evidence_path": "data/derived/protocols/protocol_status.jsonl",
-        })
     hf_receipt = _read_summary(repo, "data/derived/publication/huggingface_remote_receipt.json")
     if hf_receipt.get("status") == "blocked_secret":
         blockers.append({
@@ -215,7 +206,6 @@ def build_public_status_manifest(root: Path | None = None) -> dict[str, Any]:  #
             if hf_receipt.get("status") == "blocked_secret"
             or not release.get("research_publication_ready")
             else "ready",
-            "osf_registration_ready": bool(release.get("osf_registration_ready")),
             "huggingface_publication": (
                 "blocked_secret"
                 if hf_receipt.get("status") == "blocked_secret"

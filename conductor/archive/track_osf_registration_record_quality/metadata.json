@@ -3,8 +3,8 @@
   "type": "feature",
   "status": "completed",
   "created_at": "2026-07-20T00:00:00Z",
-  "updated_at": "2026-07-26T11:31:34Z",
-  "description": "Complete and freeze the OSF Preregistration record without publishing papers.",
+  "updated_at": "2026-08-20T10:13:16Z",
+  "description": "Historical completed OSF registration record retained after OSF was deprecated as an active destination.",
   "evidence_schema": "1.0",
   "gates": [
     {"id": "osf_credentials", "kind": "external", "status": "pass", "evidence": "Pinned osf-cli-go v1.0.0 authenticated in Chrome-assisted workflow."},

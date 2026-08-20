@@ -96,7 +96,6 @@ def test_mutating_modes_make_no_http_request_when_archive_gate_is_false(
         json.dumps({
             "repository_release_ready": True,
             "evidence_release_ready": False,
-            "osf_registration_ready": True,
             "research_publication_ready": True,
         }),
         encoding="utf-8",

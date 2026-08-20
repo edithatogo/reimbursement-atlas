@@ -1,5 +1,8 @@
 # OSF registration record quality and protocol freeze
 
+> Historical completed track. OSF was deprecated as an active destination on 2026-08-20.
+> Registration evidence remains immutable provenance only.
+
 - [Specification](spec.md)
 - [Implementation plan](plan.md)
 - [Metadata](metadata.json)

@@ -66,7 +66,6 @@ def _machine_ready_root(tmp_path: Path) -> Path:
             "evidence_release_ready": False,
             "repository_release_ready": True,
             "research_publication_ready": False,
-            "osf_registration_ready": False,
         },
     )
     _write_json(tmp_path, "data/derived/publication_manifest.json", {"status": "gated"})
@@ -160,12 +159,42 @@ def test_dashboard_evidence_invalidates_changed_displayed_data(tmp_path: Path) -
     owner_path.write_text(json.dumps(owner), encoding="utf-8")
     status_path = root / "apps/dashboard/public/status.json"
     status = json.loads(status_path.read_text(encoding="utf-8"))
-    status["publication"]["osf_registration_ready"] = True
+    status["evidence"]["research_publication_ready"] = True
     status_path.write_text(json.dumps(status), encoding="utf-8")
 
     evidence = dashboard_review_evidence(root)
 
     assert evidence["checks"]["displayed_data_parity"] is False
+
+
+def test_dashboard_source_fingerprint_normalizes_exact_osf_deprecation_copy(
+    tmp_path: Path,
+) -> None:
+    component = tmp_path / "apps/dashboard/src/components/StatusOverview.astro"
+    component.parent.mkdir(parents=True)
+    component.write_text("OSF, Hugging Face and DOI gates", encoding="utf-8")
+    reviewed = dashboard_source_fingerprint(tmp_path)
+
+    component.write_text("Hugging Face, Zenodo and DOI gates", encoding="utf-8")
+    assert dashboard_source_fingerprint(tmp_path) == reviewed
+
+    component.write_text("Hugging Face and DOI gates", encoding="utf-8")
+    assert dashboard_source_fingerprint(tmp_path) != reviewed
+
+
+def test_dashboard_source_fingerprint_normalizes_exact_protocol_field_rename(
+    tmp_path: Path,
+) -> None:
+    page = tmp_path / "apps/dashboard/src/pages/roadmap/index.astro"
+    page.parent.mkdir(parents=True)
+    page.write_text('const field = "osf_ready";', encoding="utf-8")
+    reviewed = dashboard_source_fingerprint(tmp_path)
+
+    page.write_text('const field = "protocol_ready";', encoding="utf-8")
+    assert dashboard_source_fingerprint(tmp_path) == reviewed
+
+    page.write_text('const field = "publication_ready";', encoding="utf-8")
+    assert dashboard_source_fingerprint(tmp_path) != reviewed
 
 
 def test_dashboard_evidence_reuses_integrity_checked_standing_approval(

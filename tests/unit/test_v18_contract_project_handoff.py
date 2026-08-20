@@ -170,8 +170,8 @@ def test_generated_roadmap_issue_preserves_implementation_status() -> None:
     assert "Status: `implemented`" in render_issue(issue)
 
 
-def test_generated_output_plan_preserves_status_and_external_gate() -> None:
-    """Output drafts must expose both local state and promotion boundaries."""
+def test_generated_output_plan_preserves_implemented_status_and_external_gate() -> None:
+    """Historical local outputs stay implemented without implying publication."""
     from scripts.create_github_project_items import generated_track_issues
 
     issues = generated_track_issues(ROOT)
@@ -179,11 +179,11 @@ def test_generated_output_plan_preserves_status_and_external_gate() -> None:
         item for item in issues if item.title == "Implement output plan: out_osf_protocol_pack"
     )
     rendered = render_issue(issue)
-    assert issue.status == "drafted"
-    assert "status:drafted" in issue.labels
-    assert "Status: `drafted`" in rendered
-    assert "human or external approval" in rendered
-    assert "- [ ]" in rendered
+    assert issue.status == "implemented"
+    assert "status:implemented" in issue.labels
+    assert "Status: `implemented`" in rendered
+    assert "human or external publication gate" in rendered
+    assert "- [x]" in rendered
 
 
 def test_public_product_output_plans_reflect_local_implementation() -> None:
@@ -681,8 +681,8 @@ def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) ->
     rows = {row.id: row for row in build_final_handoff_tasks(tmp_path)}
 
     assert rows["final_hf_dataset_space"].status == "ready_local"
-    assert rows["final_osf_protocol_pack"].status == "complete"
-    assert rows["final_osf_registration_drift_check"].status == "ready_local"
+    assert "final_osf_protocol_pack" not in rows
+    assert "final_osf_registration_drift_check" not in rows
     assert rows["final_mapping_calibration_review"].status == "complete"
     assert rows["final_historical_source_expansion"].status == "complete"
     assert rows["final_dashboard_visual_review"].status == "complete"

@@ -2,9 +2,9 @@
 
 Epic: `OUTPUTS` — Publication and deployment outputs
 
-Labels: type:publication, target:osf, status:drafted
+Labels: type:publication, target:local, status:implemented
 
-Status: `drafted`
+Status: `implemented`
 
 ## Background
 
@@ -16,4 +16,4 @@ This issue was generated from `conductor/backlog.yml`. Refine the acceptance cri
 - [x] Licence and data-governance boundaries are explicit; an output plan does not grant publication or redistribution approval.
 - [x] Repository validation and regeneration commands are defined by the linked publication, package, dashboard or release gates.
 - [x] Conductor, generated issue and GitHub Project linkage is regenerated from the same source record.
-- [ ] The listed release gate and any required human or external approval are complete before promotion.
+- [x] The repository-owned implementation is present; any separate human or external publication gate remains fail-closed.

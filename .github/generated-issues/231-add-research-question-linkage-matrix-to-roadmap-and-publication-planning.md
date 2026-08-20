@@ -1,8 +1,8 @@
-# Generate protocol-status gate for OSF research outputs
+# Add research-question linkage matrix to roadmap and publication planning
 
-Epic: `TRACK_RESEARCH_PROTOCOLS_OSF` — OSF research protocol and report workflow
+Epic: `TRACK_DATA_QUALITY_EVIDENCE` — Data quality, source validation and evidence readiness
 
-Labels: type:roadmap-function, priority:must, interface:data_pipeline, status:implemented
+Labels: type:roadmap-function, priority:should, interface:data_pipeline, status:implemented
 
 Status: `implemented`
 

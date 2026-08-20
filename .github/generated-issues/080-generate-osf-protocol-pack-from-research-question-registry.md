@@ -1,6 +1,6 @@
 # Generate OSF protocol pack from research question registry
 
-Epic: `TRACK_RESEARCH_PROTOCOLS_OSF` — OSF research protocol and report workflow
+Epic: `TRACK_RESEARCH_PROTOCOLS_OSF` — Research protocol and report workflow
 
 Labels: type:roadmap-function, priority:must, interface:data_pipeline, status:implemented
 

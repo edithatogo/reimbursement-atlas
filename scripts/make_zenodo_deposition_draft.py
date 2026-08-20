@@ -211,7 +211,6 @@ def build_draft(
         "required_upstream_gates": [
             "mapping_study_human_review",
             "dashboard_human_review",
-            "osf_registration",
             "release_readiness",
         ],
     }

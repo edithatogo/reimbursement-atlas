@@ -3,19 +3,15 @@
 ## Current release boundary (2026-08-20)
 
 Merged `main` at `de1ababd89f128068d46f2aa6e7c20b7a1b677e1` reports
-`repository_release_ready=true` and `evidence_release_ready=true`; all 40 release
+`repository_release_ready=true` and `evidence_release_ready=true`; all release
 gates pass. The current-head dashboard packet is approved only within its declared
 visual, automated accessibility, responsive, keyboard, provenance, displayed-data
 parity and prohibited-content scope. This does not authorize unsupported causal,
 coverage or price-equivalence claims.
 
-OSF project `q8cnx` is public and its 11 approved files pass remote SHA-256
-round-trip verification. Read-only workflow run `30181343265` confirms registration
-`gqk4z` is active, public and immutable. Its canonical snapshot is bound to the
-exact submitted decision, while the current protocol, manifest and source cutoff
-report fingerprint drift from that immutable freeze. Zenodo and DataCite
-publication remain downstream. No paper or preprint is in the release or
-authorized for submission.
+OSF is deprecated as an active destination. Project `q8cnx`, registration `gqk4z` and their
+checksum-bound receipts remain historical provenance, but their state no longer affects this
+matrix. Zenodo, DataCite, Hugging Face, papers and preprints retain independent controls.
 
 ## Current external refresh (2026-07-21)
 
@@ -83,8 +79,6 @@ Remaining blockers are external or require accountable human judgement:
 - MBS and historical-source content/domain review remains required before public
   derived-data publication; the owner-approved licence scope is recorded separately.
 - CMS CLFS/PFS/ASP fields require source-content and field-scope review.
-- OSF registration requires an approved protocol freeze and write-authorized
-  credentials; repository configuration alone does not authorize publication.
 - Hugging Face publication requires the configured `HF_TOKEN` and target repository variables,
   but publication remains disabled until review gates pass.
 
