@@ -117,7 +117,7 @@ def _implementation_unchanged_since(repo: Path, reviewed_commit: str, tested_com
         "apps/dashboard/playwright.config.ts",
         "apps/dashboard/tsconfig.json",
     ]
-    result = subprocess.run(
+    result = subprocess.run(  # nosec B603 - validated SHAs, fixed argv, and no shell.
         command,
         cwd=repo,
         capture_output=True,
