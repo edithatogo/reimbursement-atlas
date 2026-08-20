@@ -251,6 +251,7 @@ def test_dashboard_evidence_reuses_integrity_checked_standing_approval(
     evidence = dashboard_review_evidence(root)
 
     assert evidence["approval_mode"] == "standing_scoped"
+    assert evidence["checks"]["displayed_data_parity"] is True
     assert evidence["checks"]["human_scoped_approval"] is True
     assert evidence["checks"]["packet_hash_parity"] is True
 
