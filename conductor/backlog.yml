@@ -9,8 +9,8 @@ epics:
     track_id: track_approval_friction_reduction_20260820
     issues:
       - title: Minimise approval spam with risk-tiered standing approvals
-        labels: ["type:automation", "type:review", "type:governance", "status:in_progress"]
-        status: in_progress
+        labels: ["type:automation", "type:review", "type:governance", "status:implemented"]
+        status: implemented
         acceptance:
           - "Deterministic Apache-2.0 project outputs do not enter source-rights review."
           - "Standing dashboard approval requires immutable historical packet integrity and unchanged UI/scope."
