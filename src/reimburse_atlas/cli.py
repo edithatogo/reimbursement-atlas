@@ -258,14 +258,14 @@ def protocol_status(
         typer.Option(help="Directory for generated protocol status artefacts."),
     ] = (project_root() / "data" / "derived" / "protocols"),
 ) -> None:
-    """Generate OSF-aligned protocol/report completeness status records."""
+    """Generate destination-neutral protocol/report completeness status records."""
     rows = build_protocol_status(load_research_questions())
     paths = write_protocol_status(rows, output_dir=output_dir)
     console.print_json(
         json.dumps(
             {
                 "protocols": len(rows),
-                "osf_ready": sum(1 for row in rows if row.osf_ready),
+                "protocol_ready": sum(1 for row in rows if row.protocol_ready),
                 "average_completeness": round(
                     sum(row.completeness_score for row in rows) / len(rows), 4
                 )

@@ -2,7 +2,7 @@
 
 Epic: `OUTPUTS` — Publication and deployment outputs
 
-Labels: type:publication, target:osf, status:drafted
+Labels: type:publication, target:local, status:drafted
 
 Status: `drafted`
 

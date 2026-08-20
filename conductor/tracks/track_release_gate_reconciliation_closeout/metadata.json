@@ -10,8 +10,8 @@
     {
       "id": "current_dashboard_evidence",
       "kind": "human_review",
-      "status": "blocked",
-      "evidence": "The current validator reports displayed_data_parity=false for tested commit 7f75e76c; no fresh owner approval may be inferred from an older packet."
+      "status": "pass",
+      "evidence": "Current-head packets pass exact head, hash, workflow, provenance, displayed-data parity and prohibited-content checks. Accountable owner approved automated packet d310cda64b91a914c563f00f8963130cc0091aa6b7cbcbcf39e355cb0e7dc31f and owner packet 241cc97130fe6686df34a9ab1e24b998b2d9b8c1e2a785b61c295855b2ac8eb6 for commit de1ababd89f128068d46f2aa6e7c20b7a1b677e1 from workflow run 32337480195."
     },
     {
       "id": "mapping_counterparts",

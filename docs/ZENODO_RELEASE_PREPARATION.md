@@ -5,9 +5,10 @@ Regenerate the preflight against the exact tagged release; no Zenodo evidence is
 newer commit.
 
 The current merged-main baseline is
-`81c28d8809c6fe47cf8e3aa2eecc4da1dec244b1`. Zenodo deposition `21759294` is
-authorized. The exact tagged release must regenerate and revalidate the inventory
-after OSF registration drift and research-evidence gates pass.
+`de1ababd89f128068d46f2aa6e7c20b7a1b677e1`. Zenodo deposition `21759294` remains
+recorded as external state. This repository update performs no DOI reservation or
+archive-publication mutation; any future mutation must use the independent
+archive-publication gate and exact tagged-release inventory.
 
 The repository contains `.zenodo.json` as a locally validated metadata preparation record. It
 does not create a Zenodo record, reserve a DOI, upload source files or imply archival/publication
@@ -23,7 +24,7 @@ Before deposition, an accountable maintainer must confirm:
 
 1. reviewed-source and source-contract gates are complete;
 2. the software and every derived artefact have the correct licence treatment;
-3. OSF protocol and research review are approved;
+3. protocol completeness and research review are approved;
 4. the exact tagged release, SBOMs, checksums and GitHub attestations are frozen; and
 5. the Zenodo target, creators, description and related identifiers are correct.
 
@@ -86,12 +87,12 @@ publish action. The generated `external_state.json` is redacted and never contai
 
 The current repository remains in `plan` state. The workflow must not create a draft, reserve or
 publish a DOI
-until mapping adjudication, the one-time holdout, scoped dashboard review, OSF registration,
+until mapping adjudication, the one-time holdout, scoped dashboard review,
 licensing and release-readiness independently pass.
 
 The tagged GitHub release workflow also performs a separate read-only governance preflight before
 building or attesting assets. It does not approve research publication or Zenodo deposition; it
-only prevents release automation from bypassing repository, evidence, OSF registration, policy,
+only prevents release automation from bypassing repository, evidence, policy,
 licence-queue and action-integrity gates. The preflight invokes the same fail-closed
 `archive-publication-gate` predicate used by Zenodo mutation modes; regenerating a readiness report
 that still contains blocked gates is not sufficient.

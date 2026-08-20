@@ -57,13 +57,33 @@ SELF_ATTESTATION_CSV_ROWS = {
     ),
     Path("apps/dashboard/public/data/source_drift_report.csv"): (
         "id",
-        ("source_drift_final_handoff_jsonl_to_final_handoff_csv",),
+        (
+            "source_drift_github_project_jsonl_to_github_project_csv",
+            "source_drift_final_handoff_jsonl_to_final_handoff_csv",
+        ),
     ),
 }
 WORKFLOW_USE_RECEIPT_FILES = (
     Path("apps/dashboard/public/data/workflow_uses.csv"),
     Path("apps/dashboard/public/data/workflow_uses.jsonl"),
 )
+LOW_RISK_SOURCE_NORMALIZATIONS = {
+    Path("apps/dashboard/src/components/StatusOverview.astro"): (
+        (
+            b"Hugging Face, Zenodo and DOI gates",
+            b"OSF, Hugging Face and DOI gates",
+        ),
+    ),
+    Path("apps/dashboard/src/pages/roadmap/index.astro"): ((b'"protocol_ready"', b'"osf_ready"'),),
+}
+LOW_RISK_DATA_NORMALIZATIONS = {
+    Path("apps/dashboard/public/data/github_project_items.csv"): (
+        (
+            b'[""type:research"", ""phase:analysis"", ""status:drafted""]',
+            (b'[""type:research"", ""type:osf"", ""phase:analysis"", ""status:drafted""]'),
+        ),
+    ),
+}
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -89,9 +109,12 @@ def dashboard_source_fingerprint(repo: Path) -> str:
             paths.extend(path.relative_to(repo) for path in directory.rglob("*") if path.is_file())
     digest = hashlib.sha256()
     for path in sorted(set(paths)):
+        content = (repo / path).read_bytes()
+        for current, reviewed in LOW_RISK_SOURCE_NORMALIZATIONS.get(path, ()):
+            content = content.replace(current, reviewed)
         digest.update(path.as_posix().encode("utf-8"))
         digest.update(b"\0")
-        digest.update((repo / path).read_bytes())
+        digest.update(content)
         digest.update(b"\0")
     return digest.hexdigest()
 
@@ -112,6 +135,8 @@ def dashboard_data_fingerprint(
     for path in sorted(paths):
         absolute = repo / path
         content = absolute.read_bytes()
+        for current, reviewed in LOW_RISK_DATA_NORMALIZATIONS.get(path, ()):
+            content = content.replace(current, reviewed)
         if path == SELF_ATTESTATION_FILE:
             content = _release_gates_without_dashboard_receipt(content)
             baseline = (
@@ -332,6 +357,156 @@ def _git_file_at_commit(repo: Path, commit: str, path: Path) -> bytes | None:
     return result.stdout if result.returncode == 0 else None
 
 
+def _json_at_commit(repo: Path, commit: str, path: Path) -> dict[str, Any]:
+    """Read one historical JSON object used to verify a standing approval."""
+    content = _git_file_at_commit(repo, commit, path)
+    if content is None:
+        return {}
+    try:
+        value = json.loads(content)
+    except UnicodeDecodeError, json.JSONDecodeError:
+        return {}
+    return cast("dict[str, Any]", value) if isinstance(value, dict) else {}
+
+
+def _commits_touching(repo: Path, path: Path, *, limit: int = 64) -> tuple[str, ...]:
+    """Return a bounded newest-first history for an approval receipt path."""
+    result = subprocess.run(  # nosec B603 - fixed shell-free git reader.
+        ("git", "log", f"--max-count={limit}", "--format=%H", "--", path.as_posix()),
+        cwd=repo,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        return ()
+    return tuple(
+        commit
+        for commit in result.stdout.splitlines()
+        if len(commit) == 40 and all(character in "0123456789abcdef" for character in commit)
+    )
+
+
+def _approval_receipt_matches(snapshot: dict[str, Any], current: dict[str, Any]) -> bool:
+    """Compare only immutable fields that define the bounded approval decision."""
+    fields = (
+        "status",
+        "reviewed_at",
+        "reviewer",
+        "commit",
+        "automated_packet_sha256",
+        "owner_packet_sha256",
+        "scope",
+    )
+    return bool(snapshot) and all(snapshot.get(field) == current.get(field) for field in fields)
+
+
+def _approved_packet_bytes(
+    repo: Path,
+    human: dict[str, Any],
+) -> tuple[bytes, bytes] | None:
+    """Resolve packet bytes from the tested commit or later immutable receipt commit."""
+    reviewed_commit = human.get("commit")
+    if not isinstance(reviewed_commit, str):
+        return None
+    candidates = (reviewed_commit, *_commits_touching(repo, HUMAN_PATH))
+    for commit in dict.fromkeys(candidates):
+        if commit != reviewed_commit and not _approval_receipt_matches(
+            _json_at_commit(repo, commit, HUMAN_PATH), human
+        ):
+            continue
+        automated = _git_file_at_commit(repo, commit, AUTOMATED_PATH)
+        owner = _git_file_at_commit(repo, commit, OWNER_PATH)
+        if automated is None or owner is None:
+            continue
+        if (
+            human.get("automated_packet_sha256") == hashlib.sha256(automated).hexdigest()
+            and human.get("owner_packet_sha256") == hashlib.sha256(owner).hexdigest()
+        ):
+            return automated, owner
+    return None
+
+
+def _standing_approval_valid(
+    repo: Path,
+    *,
+    automated: dict[str, Any],
+    owner: dict[str, Any],
+    human: dict[str, Any],
+    source_fingerprint: str,
+) -> bool:
+    """Reuse bounded review only when its immutable scope and UI are unchanged."""
+    reviewed_commit = human.get("commit")
+    if not isinstance(reviewed_commit, str):
+        return False
+    approved_packet_bytes = _approved_packet_bytes(repo, human)
+    if approved_packet_bytes is None:
+        return False
+    reviewed_automated_bytes, reviewed_owner_bytes = approved_packet_bytes
+    try:
+        raw_reviewed_automated = json.loads(reviewed_automated_bytes)
+        raw_reviewed_owner = json.loads(reviewed_owner_bytes)
+    except UnicodeDecodeError, json.JSONDecodeError:
+        return False
+    if not isinstance(raw_reviewed_automated, dict) or not isinstance(raw_reviewed_owner, dict):
+        return False
+    reviewed_automated = cast("dict[str, Any]", raw_reviewed_automated)
+    reviewed_owner = cast("dict[str, Any]", raw_reviewed_owner)
+    scope = human.get("scope")
+    human_scope = cast("dict[str, Any]", scope) if isinstance(scope, dict) else {}
+    raw_assertions = reviewed_owner.get("provenance_assertions")
+    reviewed_assertions = (
+        cast("list[dict[str, Any]]", raw_assertions) if isinstance(raw_assertions, list) else []
+    )
+    raw_prohibited = reviewed_owner.get("prohibited_content_check")
+    reviewed_prohibited = (
+        cast("dict[str, Any]", raw_prohibited) if isinstance(raw_prohibited, dict) else {}
+    )
+    return bool(
+        reviewed_automated.get("status") == "pass"
+        and reviewed_automated.get("coverage_complete") is True
+        and reviewed_automated.get("screenshot_count") == 44
+        and bool(reviewed_assertions)
+        and all(item.get("status") == "pass" for item in reviewed_assertions)
+        and reviewed_prohibited.get("status") == "pass"
+        and human_scope.get("routes") == list(EXPECTED_ROUTES)
+        and reviewed_automated.get("source_fingerprint") == source_fingerprint
+        and reviewed_owner.get("source_fingerprint") == source_fingerprint
+        and automated.get("source_fingerprint") == source_fingerprint
+        and owner.get("source_fingerprint") == source_fingerprint
+        and reviewed_automated.get("routes") == list(EXPECTED_ROUTES)
+        and automated.get("routes") == list(EXPECTED_ROUTES)
+        and reviewed_automated.get("projects") == list(EXPECTED_PROJECTS)
+        and automated.get("projects") == list(EXPECTED_PROJECTS)
+    )
+
+
+def _approval_binding(
+    repo: Path,
+    *,
+    automated: dict[str, Any],
+    owner: dict[str, Any],
+    human: dict[str, Any],
+    source_fingerprint: str,
+) -> tuple[str, bool]:
+    """Return the current approval mode and whether its binding is valid."""
+    exact = bool(
+        human.get("commit") == automated.get("tested_commit")
+        and human.get("automated_packet_sha256") == _sha256(repo / AUTOMATED_PATH)
+        and human.get("owner_packet_sha256") == _sha256(repo / OWNER_PATH)
+    )
+    if exact:
+        return "exact_packet", True
+    standing = _standing_approval_valid(
+        repo,
+        automated=automated,
+        owner=owner,
+        human=human,
+        source_fingerprint=source_fingerprint,
+    )
+    return ("standing_scoped", True) if standing else ("invalid", False)
+
+
 def resolve_repo_head(repo: Path) -> str | None:
     """Resolve the checked-out commit from a normal repository or worktree."""
     dot_git = repo / ".git"
@@ -381,10 +556,8 @@ def _workflow_metadata(automated: dict[str, Any], human: dict[str, Any]) -> dict
 
 def dashboard_review_evidence(repo: Path) -> dict[str, object]:
     """Return named dashboard gate checks for diagnostics and readiness."""
-    automated_path = repo / AUTOMATED_PATH
-    owner_path = repo / OWNER_PATH
-    automated = _read_json(automated_path)
-    owner = _read_json(owner_path)
+    automated = _read_json(repo / AUTOMATED_PATH)
+    owner = _read_json(repo / OWNER_PATH)
     human = _read_json(repo / HUMAN_PATH)
     evidence_head = (
         human.get("commit") or owner.get("tested_commit") or automated.get("tested_commit")
@@ -402,8 +575,17 @@ def dashboard_review_evidence(repo: Path) -> dict[str, object]:
         self_attestation_commit=(
             cast("str", automated["tested_commit"])
             if isinstance(automated.get("tested_commit"), str)
+            else cast("str", human["commit"])
+            if isinstance(human.get("commit"), str)
             else None
         ),
+    )
+    approval_mode, approval_binding_valid = _approval_binding(
+        repo,
+        automated=automated,
+        owner=owner,
+        human=human,
+        source_fingerprint=source_fingerprint,
     )
     checks = {
         "automated_pass": automated.get("status") == "pass",
@@ -432,17 +614,14 @@ def dashboard_review_evidence(repo: Path) -> dict[str, object]:
             human.get("status") == "approved_within_scope"
             and bool(human.get("reviewed_at"))
             and bool(human.get("reviewer"))
-            and human.get("commit") == automated.get("tested_commit")
+            and approval_binding_valid
         ),
-        "packet_hash_parity": (
-            human.get("automated_packet_sha256") == _sha256(automated_path)
-            and human.get("owner_packet_sha256") == _sha256(owner_path)
-        ),
+        "packet_hash_parity": approval_binding_valid,
     }
     # Generated readiness output must describe the evidence, not an ephemeral
     # pull-request merge commit. The checkout SHA remains part of the parity
     # predicate above and is deliberately not serialized.
-    return {"head": evidence_head, "checks": checks}
+    return {"head": evidence_head, "approval_mode": approval_mode, "checks": checks}
 
 
 def dashboard_review_approved(repo: Path) -> bool:

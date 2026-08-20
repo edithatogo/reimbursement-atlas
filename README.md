@@ -34,6 +34,12 @@ Software and project-owned documentation are licensed under Apache-2.0. Underlyi
 retain their own provider licences and are not relicensed by this repository; CMS/AMA terms apply
 to CMS CLFS/PFS material. Raw live-source payloads remain local and ignored.
 
+Approval prompts follow the risk-tiered policy in
+[`docs/APPROVAL_POLICY.md`](docs/APPROVAL_POLICY.md): deterministic project-owned outputs are
+machine-classified, unchanged dashboard review scope can reuse an integrity-checked standing
+approval, and accountable approval is reserved for material rights, claims, interface-scope or
+external-publication changes.
+
 Public dashboard: [GitHub Pages](https://edithatogo.github.io/reimbursement-atlas/) or run
 `pixi run dashboard-build` locally. GitHub Pages and Hugging Face
 publication workflows are manual and token/approval-gated.
@@ -389,12 +395,12 @@ PYTHONPATH=src reimbursement-atlas release-readiness --allow-blockers
 
 Architecture checks scan internal `reimburse_atlas` imports, enforce the `foundation -> parsing -> analysis -> orchestration -> interface` boundary model and report import cycles. Release readiness consolidates local quality gates, external quality-gate classification, workflow policy, SBOMs, dashboard build, public-data policy and publication manifests.
 
-Current status: local quality, architecture, public-data, workflow-policy, SBOM and action-pinning checks pass. The software repository is release-ready. Evidence publication, OSF registration, Hugging Face publication, Zenodo DOI creation and policy claims remain fail-closed pending source/licence review, protocol approval and accountable human sign-off.
+Current status: local quality, architecture, public-data, workflow-policy, SBOM and action-pinning checks pass. The software repository is release-ready. OSF is deprecated as an active destination; its immutable historical registration evidence is retained but is not a release gate. Evidence publication, Hugging Face publication, Zenodo DOI changes and policy claims remain independently fail-closed.
 
 Zenodo metadata preparation is validated locally with `pixi run zenodo-metadata`; this does not
 create a Zenodo record or DOI. See [`docs/ZENODO_RELEASE_PREPARATION.md`](docs/ZENODO_RELEASE_PREPARATION.md).
 
-## v14 roadmap, OSF, Hugging Face, Mojo and acquisition layer
+## v14 roadmap, historical OSF integration, Hugging Face, Mojo and acquisition layer
 
 The v14 pass records the expanded roadmap as executable repo artefacts rather than prose. New seed registries now cover Conductor tracks, roadmap functions, dataset candidates, mapping resources, research questions, output artefact plans and runtime targets. The generated GitHub issue backlog expands those records into 94 issue drafts so that unfinished functions, datasets, outputs and quality tracks can be moved into GitHub Issues/Projects when the remote repository is available.
 
@@ -412,7 +418,7 @@ PYTHONPATH=src reimbursement-atlas source-download-plan --attempt --method curl
 
 The current acquisition evidence records a real July 2026 MBS TXT pair in ignored local storage and an acquired-but-unreviewed PBS API extract. MBS publication remains licence/research-review gated, while PBS acquisition requires the approved `PBS_API_SUBSCRIPTION_KEY`; the public PBS API retains a rolling thirteen-month window rather than a complete historical archive. See [`docs/HISTORICAL_PBS_ARCHIVE.md`](docs/HISTORICAL_PBS_ARCHIVE.md) for the boundary. Historical DNS-blocked attempts remain preserved in `data/derived/source_downloads/download_attempts.*` and are not treated as evidence that sources are unavailable.
 
-OSF is now part of the research workflow. The repo generates an OSF component plan, protocol/report scaffolds, and a token-gated workflow for future OSF publication. Hugging Face publication is also explicit: the workflow now has separate gated jobs for publishing the derived dataset and deploying the Astro dashboard to a Hugging Face Space.
+The historical v14 implementation generated an OSF component plan and token-gated workflow. OSF is now deprecated as an active destination; those local artefacts are retained only as provenance and no enabled workflow publishes or monitors OSF. Hugging Face publication remains explicit, with separate gated jobs for the derived dataset and Astro dashboard Space.
 
 Research packaging now emits Frictionless-style `datapackage.json`, RO-Crate metadata and DCAT JSON-LD under `data/derived/research_package/`.
 
@@ -432,7 +438,7 @@ PYTHONPATH=src python scripts/make_research_package.py
 The v15 pass adds two further implementation gates before live-source ingestion expands:
 
 - **Hardened source downloads**: generated `curl`/`wget` commands now use shell quoting, retries, resume support, HTTP header sidecars and ETag sidecars, while refusing to execute metadata-only, landing-page or licence-gated records.
-- **Protocol status gate**: `reimbursement-atlas protocol-status` checks every registered research question against its protocol/report files and writes OSF-readiness evidence to `data/derived/protocols/`.
+- **Protocol status gate**: `reimbursement-atlas protocol-status` checks every registered research question against its protocol/report files and writes destination-neutral review-readiness evidence to `data/derived/protocols/`.
 
 The dashboard now exposes protocol status and executable download-plan metadata. Generated GitHub issue drafts include the new download-hardening, protocol-completeness, checksum-pinning and source-validator work items.
 

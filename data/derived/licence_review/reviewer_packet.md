@@ -10,37 +10,21 @@ checksum-bound row-level record.
 
 ## Current batches
 
-- `permissive_candidate` / `public_derived_candidate`: 164 artefacts, 191584235 bytes
-- `permissive_candidate` / `public_metadata_candidate`: 39 artefacts, 523619 bytes
-- `public_reuse_review` / `public_derived_candidate`: 12 artefacts, 950660 bytes
-- `public_reuse_review` / `public_metadata_candidate`: 4 artefacts, 106459 bytes
+- `permissive_candidate` / `public_derived_candidate`: 151 artefacts, 191625076 bytes
+- `permissive_candidate` / `public_metadata_candidate`: 35 artefacts, 466293 bytes
 
-Total candidate artefacts: 219; generated queue rows remain `pending` by design.
+Total candidate artefacts: 186. Neutral generated row markers are not approval
+requests; the batch and summary `pending_count` values identify required decisions.
 
 ## Decision ledger snapshot
 
-The companion checksum-bound ledger currently records **203 approved**
-and **16 blocked** decisions. These counts are informational;
+The companion checksum-bound ledger currently records **186 approved**
+and **0 blocked** decisions. These counts are informational;
 they do not change generated queue rows or authorize publication.
 
 ### Blocked rows requiring re-review
 
-- `data/derived/architecture/import_edges.csv` — `691e582bdde7ee8b7130bf389c872a285ac9940d4954ba5066c67cab688170ab`
-- `data/derived/architecture/import_edges.jsonl` — `1216a4cf16bb34aa1ce13ef546671da0b721f0cec55beb8c312d6193749937ca`
-- `data/derived/data_quality/data_quality_checks.csv` — `02330e9d0689d7d837736ae2d2eb61fb28fd13cc01b66da971503243a9f784cc`
-- `data/derived/data_quality/data_quality_checks.jsonl` — `22cf81321d32c252a00daede3e2895f399013f11099a3d480c275200192936aa`
-- `data/derived/github_project/github_project_items.csv` — `5db2dbd330c1db3b9ada7a413dcadc2bf28f1f7c7cac0ff8fe97370238d34850`
-- `data/derived/github_project/github_project_items.jsonl` — `7407ed67e14e0ccc7a0388aad0f89c83a9996fd95af0fc02ab51adf103d06633`
-- `data/derived/historical_sources/historical_source_catalog.jsonl` — `a8beb02aeca5c9054732f95e6bb1c4eb509c02186bfb3020cd1233303f8dee02`
-- `data/derived/sbom/cyclonedx-dashboard.json` — `fa8672c0cf141b5f590b57c044d0315df5d84f789254af33d113a4765ffc879c`
-- `data/derived/sbom/sbom_summary.csv` — `05c14cfb762fa2f981bb12aaf6f7b2b8b6fb5367536e9507dfcd039489a3fea5`
-- `data/derived/sbom/sbom_summary.jsonl` — `c53d48541c7770c451c07d0ff776b95628eaccb14b91db34462dfadeea470e5c`
-- `data/derived/source_downloads/download_attempts.csv` — `132a65d895f0b1f6b2d8b39b522c761fd2a558a913273a39238a72b22d421ada`
-- `data/derived/source_downloads/download_attempts.jsonl` — `712ee26c46ddc0107118e0362c820a3b2ed8d27cf0d0be8f9cba525faa4e3d20`
-- `data/seed/conductor_tracks.csv` — `6bae8df869f33dd60c8e0b24ff6f3aa472bb625718848b809560659f38b3541b`
-- `data/seed/conductor_tracks.jsonl` — `1ea3f3b14cb7852a0faa1d0c3fedec9f191a7a28df9b8dfaea8356e104fbf82d`
-- `data/seed/graph_edges.csv` — `601e4347b42a58dd1c95d7830fdbd9f8f64b7d5bb3bfafbca1d584360e5baad4`
-- `data/seed/graph_nodes.csv` — `eebfc143e01dee0f4e8dd50090c7952cf661972d8887d8eec3f66cff82865297`
+- None recorded.
 
 ## Required decision fields
 

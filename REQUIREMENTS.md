@@ -138,7 +138,7 @@ Build a bleeding-edge, reproducible comparative reimbursement atlas that maps pu
 ### Must
 
 - Source acquisition commands must be shell-quoted, retryable, resumable and licence-gated.
-- Protocol/report completeness must be generated before OSF publication is treated as ready.
+- Protocol/report completeness must be generated before any research publication is treated as ready.
 - GitHub issue drafts must include source-validation, checksum-pinning and protocol-review tasks.
 
 ### Should

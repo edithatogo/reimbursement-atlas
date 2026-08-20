@@ -338,7 +338,7 @@ def _recommended_action(  # ruff:ignore[too-many-return-statements]
     if source_validation_blockers:
         return "Resolve failing source-content validation records before analysis."
     if protocol_score < 0.65:
-        return "Expand the OSF protocol before source-specific analysis."
+        return "Expand the research protocol before source-specific analysis."
     if missing_linkages:
         return "Resolve missing research-question linkages or remove unsupported outputs."
     if blocked_linkages:

@@ -106,6 +106,82 @@ def test_workflow_inventory_is_project_owned(repo_root: Path) -> None:
     assert {row.licence_gate for row in records} == {"apache_2_0_project_output"}
 
 
+def test_repository_control_reports_are_project_owned(repo_root: Path) -> None:
+    """Repository control evidence must not create source-rights approval churn."""
+    manifest = build_publication_manifest(root=repo_root)
+    records = [
+        row
+        for row in manifest.artifacts
+        if row.relative_path.startswith((
+            "data/derived/architecture/",
+            "data/derived/data_quality/",
+            "data/derived/github_project/",
+            "data/derived/sbom/",
+        ))
+    ]
+
+    assert records
+    assert {row.licence_gate for row in records} == {"apache_2_0_project_output"}
+    assert {row.approval_requirement for row in records} == {"automatic_policy"}
+    assert {row.approval_reason_code for row in records} == {"project_owned_apache_2_0"}
+
+
+def test_generated_graph_seeds_are_project_owned(repo_root: Path) -> None:
+    """Conductor graph regeneration must not trigger provider-rights prompts."""
+    manifest = build_publication_manifest(root=repo_root)
+    records = [
+        row
+        for row in manifest.artifacts
+        if row.relative_path in {"data/seed/graph_edges.csv", "data/seed/graph_nodes.csv"}
+    ]
+
+    assert len(records) == 2
+    assert {row.approval_requirement for row in records} == {"automatic_policy"}
+
+
+def test_source_derived_candidate_still_requires_accountable_review() -> None:
+    """Approval reduction must not weaken source-specific rights review."""
+    artifact = _manifest().artifacts[0]
+
+    assert artifact.approval_requirement == "accountable_review"
+    assert artifact.reapproval_trigger == "artifact_checksum_or_rights_scope_change"
+
+
+def test_conductor_track_seed_is_project_owned(repo_root: Path) -> None:
+    """Governance-track additions must not create provider-rights approval prompts."""
+    manifest = build_publication_manifest(root=repo_root)
+    records = [
+        row
+        for row in manifest.artifacts
+        if row.relative_path.startswith("data/seed/conductor_tracks.")
+    ]
+
+    assert len(records) == 2
+    assert {row.approval_requirement for row in records} == {"automatic_policy"}
+
+
+def test_project_authored_research_governance_is_project_owned(repo_root: Path) -> None:
+    """Protocol status and planning metadata must not create rights-review churn."""
+    manifest = build_publication_manifest(root=repo_root)
+    prefixes = (
+        "data/derived/protocols/",
+        "data/derived/roadmap_linkages/",
+        "data/seed/output_artifact_plans.",
+        "data/seed/roadmap_functions.",
+    )
+    records = [row for row in manifest.artifacts if row.relative_path.startswith(prefixes)]
+
+    assert len(records) == 9
+    assert {row.licence_gate for row in records} == {"apache_2_0_project_output"}
+    assert {row.approval_requirement for row in records} == {"automatic_policy"}
+
+
+def test_deprecated_osf_outputs_are_not_publication_candidates(repo_root: Path) -> None:
+    """Historical OSF evidence remains tracked but cannot enter publication scope."""
+    manifest = build_publication_manifest(root=repo_root)
+    assert not any(row.relative_path.startswith("data/derived/osf/") for row in manifest.artifacts)
+
+
 def test_queue_writes_checksum_bound_outputs(tmp_path: Path) -> None:
     """Queue output preserves the candidate checksum and fail-closed summary."""
     paths = write_licence_review_queue(
@@ -153,7 +229,7 @@ def test_reviewer_packet_reports_companion_ledger_without_mutating_queue(
     assert "1 approved" in packet
     assert "1 blocked" in packet
     assert "`blocked.csv`" in packet
-    assert "`pending` by design" in packet
+    assert "batch and summary `pending_count` values identify required decisions" in packet
 
 
 def test_summary_reports_effective_checksum_matched_decisions(tmp_path: Path) -> None:
@@ -180,10 +256,11 @@ def test_summary_reports_effective_checksum_matched_decisions(tmp_path: Path) ->
     )
     summary = json.loads(paths[3].read_text(encoding="utf-8"))
 
-    assert summary["queue_pending_count"] == 1
     assert summary["pending_count"] == 0
+    assert summary["queue_pending_count"] == 0
     assert summary["approved_count"] == 1
     assert summary["all_approved"] is True
+    assert "No new approval required" in paths[2].read_text(encoding="utf-8")
 
 
 def test_data_dictionary_marks_queue_internal(repo_root: Path) -> None:

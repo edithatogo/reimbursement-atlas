@@ -4,7 +4,7 @@ from reimburse_atlas.models import ResearchQuestionRecord
 from reimburse_atlas.protocols import build_protocol_status
 
 
-def test_complete_drafted_protocol_is_osf_ready_for_registration_review(tmp_path: Path) -> None:
+def test_complete_drafted_protocol_is_ready_for_research_review(tmp_path: Path) -> None:
     required = (
         "background",
         "research question",
@@ -13,7 +13,7 @@ def test_complete_drafted_protocol_is_osf_ready_for_registration_review(tmp_path
         "analysis plan",
         "bias",
         "outputs",
-        "osf",
+        "governance and review",
         "estimands and outcomes",
         "source versions and analysis window",
         "missing data and denominator rules",
@@ -44,4 +44,4 @@ def test_complete_drafted_protocol_is_osf_ready_for_registration_review(tmp_path
 
     rows = build_protocol_status([question], root=tmp_path)
 
-    assert rows[0].osf_ready is True
+    assert rows[0].protocol_ready is True

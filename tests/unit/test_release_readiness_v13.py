@@ -4,137 +4,12 @@ import json
 from pathlib import Path
 
 from reimburse_atlas.io import write_csv
-from reimburse_atlas.osf_registration import registration_snapshot_sha256
 from reimburse_atlas.release_readiness import (
     ReleaseGateRecord,
-    _osf_registration_gate,  # ruff:ignore[import-private-name] - focused gate-state regression
     build_release_readiness_report,
     summarise_release_gates,
     write_release_readiness_report,
 )
-
-
-def test_osf_registration_gate_reports_post_registration_drift(tmp_path: Path) -> None:
-    freeze_path = tmp_path / "data/derived/osf/registration_freeze.json"
-    freeze_path.parent.mkdir(parents=True)
-    freeze_path.write_text(
-        json.dumps({
-            "review_approved": False,
-            "protocol_digest": "current",
-            "analysis_manifest_digest": "current",
-            "source_cutoff": "not-frozen",
-        }),
-        encoding="utf-8",
-    )
-    snapshot = {
-        "schema_version": "osf-registration-snapshot-v1",
-        "registration_id": "abc12",
-        "registration_url": "https://osf.io/abc12/",
-        "status": "registered",
-        "submitted_at": "2026-07-23T13:00:00Z",
-        "immutable": True,
-        "public": True,
-        "pending_registration_approval": False,
-        "withdrawn": False,
-        "embargoed": False,
-        "remote_verified_at": "2026-07-26T00:33:20Z",
-        "receipt_sha256": "e" * 64,
-        "protocol_digest": "a" * 64,
-        "analysis_manifest_digest": "b" * 64,
-        "source_cutoff": "2026-07-23T00:00:00Z",
-    }
-    snapshot["snapshot_sha256"] = registration_snapshot_sha256(snapshot)
-    (freeze_path.parent / "remote_registration_snapshot.json").write_text(
-        json.dumps(snapshot),
-        encoding="utf-8",
-    )
-
-    gate = _osf_registration_gate(tmp_path)
-
-    assert gate.status == "blocked"
-    assert "status=drift" in gate.evidence
-    assert "active and public" in gate.recommended_action
-    assert "do not overwrite" in gate.recommended_action
-
-
-def test_osf_registration_gate_accepts_exact_disclosed_evolution(tmp_path: Path) -> None:
-    freeze_path = tmp_path / "data/derived/osf/registration_freeze.json"
-    freeze_path.parent.mkdir(parents=True)
-    freeze = {
-        "review_approved": False,
-        "protocol_digest": "c" * 64,
-        "analysis_manifest_digest": "d" * 64,
-        "source_cutoff": "not-frozen",
-    }
-    freeze_path.write_text(json.dumps(freeze), encoding="utf-8")
-    snapshot = {
-        "schema_version": "osf-registration-snapshot-v1",
-        "registration_id": "abc12",
-        "registration_url": "https://osf.io/abc12/",
-        "status": "registered",
-        "submitted_at": "2026-07-23T13:00:00Z",
-        "immutable": True,
-        "public": True,
-        "pending_registration_approval": False,
-        "withdrawn": False,
-        "embargoed": False,
-        "remote_verified_at": "2026-07-26T00:33:20Z",
-        "receipt_sha256": "e" * 64,
-        "protocol_digest": "a" * 64,
-        "analysis_manifest_digest": "b" * 64,
-        "source_cutoff": "2026-07-23T00:00:00Z",
-    }
-    snapshot["snapshot_sha256"] = registration_snapshot_sha256(snapshot)
-    (freeze_path.parent / "remote_registration_snapshot.json").write_text(
-        json.dumps(snapshot), encoding="utf-8"
-    )
-    review_path = tmp_path / "data/osf_review/post_registration_evolution.json"
-    review_path.parent.mkdir(parents=True)
-    review_path.write_text(
-        json.dumps({
-            "schema_version": "osf-post-registration-evolution-v1",
-            "status": "approved_as_post_registration_evolution",
-            "registered_snapshot_sha256": snapshot["snapshot_sha256"],
-            "current_protocol_digest": freeze["protocol_digest"],
-            "current_analysis_manifest_digest": freeze["analysis_manifest_digest"],
-            "current_source_cutoff": freeze["source_cutoff"],
-            "reviewer": "owner",
-            "reviewed_at": "2026-07-27T01:24:28Z",
-        }),
-        encoding="utf-8",
-    )
-
-    gate = _osf_registration_gate(tmp_path)
-
-    assert gate.status == "pass"
-    assert "status=evolved" in gate.evidence
-    assert "post-registration evolution" in gate.recommended_action
-
-
-def test_osf_registration_gate_distinguishes_missing_and_invalid_snapshots(
-    tmp_path: Path,
-) -> None:
-    freeze_path = tmp_path / "data/derived/osf/registration_freeze.json"
-    freeze_path.parent.mkdir(parents=True)
-    freeze_path.write_text(
-        json.dumps({
-            "review_approved": True,
-            "protocol_digest": "a" * 64,
-            "analysis_manifest_digest": "b" * 64,
-            "source_cutoff": "2026-07-23T00:00:00Z",
-        }),
-        encoding="utf-8",
-    )
-
-    missing = _osf_registration_gate(tmp_path)
-    assert "Export a canonical snapshot" in missing.recommended_action
-
-    (freeze_path.parent / "remote_registration_snapshot.json").write_text(
-        "{}",
-        encoding="utf-8",
-    )
-    invalid = _osf_registration_gate(tmp_path)
-    assert "Complete the checksum-bound registration review" in invalid.recommended_action
 
 
 def test_release_summary_tracks_required_blockers() -> None:
@@ -169,6 +44,37 @@ def test_release_summary_tracks_required_blockers() -> None:
     assert summary.required_blocker_count == 1
     assert summary.review_pending_count == 0
     assert summary.repository_release_ready is False
+
+
+def test_release_readiness_empty_repository_fails_closed_without_osf_gate(
+    tmp_path: Path,
+) -> None:
+    """Every evidence-producing subsystem must be explicit when its receipt is absent."""
+    report = build_release_readiness_report(tmp_path)
+    by_id = {gate.id: gate for gate in report.gates}
+    expected_missing = {
+        "local_quality_profile",
+        "data_dictionary_summary",
+        "evidence_readiness_summary",
+        "source_drift_summary",
+        "data_quality_summary",
+        "source_content_validation_summary",
+        "source_contract_validation_summary",
+        "github_project_export_summary",
+        "final_handoff_summary",
+        "workflow_policy_matrix",
+        "sbom_generation",
+        "architecture_boundaries",
+        "publication_manifest",
+        "licence_review_queue",
+    }
+
+    assert expected_missing <= {
+        gate_id for gate_id, gate in by_id.items() if gate.status == "missing"
+    }
+    assert "osf_registration" not in by_id
+    assert report.summary.repository_release_ready is False
+    assert report.summary.evidence_release_ready is False
 
 
 def test_evidence_release_requires_completed_research_evidence() -> None:
@@ -335,8 +241,9 @@ def test_release_readiness_report_reads_generated_evidence(tmp_path: Path) -> No
 
     report = build_release_readiness_report(tmp_path)
     assert report.summary.required_blocker_count == 0
-    assert report.summary.review_pending_count == 4
+    assert report.summary.review_pending_count == 3
     assert report.summary.repository_release_ready is True
-    assert report.summary.osf_registration_ready is False
+    assert report.summary.research_publication_ready is False
+    assert not hasattr(report.summary, "osf_registration_ready")
     paths = write_release_readiness_report(report, output_dir=tmp_path / "release")
     assert all(path.exists() for path in paths)

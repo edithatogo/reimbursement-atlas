@@ -1,6 +1,37 @@
 version: 2
 updated: "2026-07-31"
 epics:
+  - id: OSF-DEPRECATION-001
+    title: Retire OSF as an active destination
+    phase: hardening
+    workstream: research
+    priority: must
+    track_id: track_osf_deprecation_20260820
+    issues:
+      - title: Remove OSF registration from active readiness and publication gates
+        labels: ["type:research", "type:automation", "status:implemented"]
+        status: implemented
+        github_issue: 711
+        acceptance:
+          - "Release, Hugging Face, Zenodo, dashboard and handoff contracts do not depend on OSF."
+          - "OSF mutation and monitor workflows are retired."
+          - "Registration gqk4z remains immutable historical provenance."
+          - "Rights, evidence, claims and external publication remain independently gated."
+  - id: APR-001
+    title: Risk-tiered approval friction reduction
+    phase: hardening
+    workstream: governance
+    priority: must
+    track_id: track_approval_friction_reduction_20260820
+    issues:
+      - title: Minimise approval spam with risk-tiered standing approvals
+        labels: ["type:automation", "type:review", "type:governance", "status:implemented"]
+        status: implemented
+        acceptance:
+          - "Deterministic Apache-2.0 project outputs do not enter source-rights review."
+          - "Standing dashboard approval requires immutable historical packet integrity and unchanged UI/scope."
+          - "Material rights, claims, UI scope and external mutations remain explicitly gated."
+        dependencies: [708]
   - id: HIST-001
     title: Historical source archival and reproducibility
     phase: implementation
@@ -284,8 +315,8 @@ epics:
         labels: ["type:dashboard", "type:analysis", "status:implemented"]
         status: implemented
       - title: Reconcile Hugging Face destination metadata with governed publication candidate
-        labels: ["type:publication", "type:repo-automation", "risk:licence", "phase:release-gate", "status:blocked"]
-        status: blocked
+        labels: ["type:publication", "type:repo-automation", "risk:licence", "phase:release-gate", "status:implemented"]
+        status: implemented
         acceptance:
           - "Read-only verification records the configured dataset and Space identities and current card metadata."
           - "Candidate dataset and static Space bundles pass local publication and public-data policy gates."
@@ -694,7 +725,7 @@ epics:
         status: blocked
         acceptance:
           - "Zenodo and DataCite payloads, file inventory, checksums, SBOM and attestations validate against the frozen release."
-          - "Mapping, dashboard, OSF registration, licence and release-readiness gates independently pass before deposition."
+          - "Mapping, dashboard, licence and release-readiness gates independently pass before deposition."
           - "The version DOI resolves and remote checksums are verified after publication."
           - "Papers, manuscripts and preprints are excluded."
           - "The signed GitHub release precedes Zenodo deposition, and every deposited asset is verified against its exact-tag attestation."
@@ -721,16 +752,16 @@ epics:
           - "The Zenodo draft is created only with CREATE_ZENODO_DRAFT and never published by this task."
           - "The redacted external-state receipt records the deposition identifier and asset parity, or the exact API blocker."
           - "Papers, manuscripts and preprints are excluded."
-      - title: Synchronize approved OSF protocol and report metadata
-        labels: ["type:publication", "type:osf", "type:research", "status:blocked"]
-        status: blocked
+      - title: Retire OSF synchronization and preserve historical receipts
+        labels: ["type:publication", "type:research", "status:implemented"]
+        status: implemented
         acceptance:
-          - "osf-cli-go validates the frozen protocol, manifest and registration drift disclosure."
-          - "Only the approved record/repository metadata is synchronized; no paper or preprint is submitted."
-          - "A redacted receipt records the remote result or exact credential/service blocker."
+          - "Credentialed OSF publication and monitor workflows are removed."
+          - "Registration gqk4z and its exact decisions, receipts and drift disclosure remain tracked."
+          - "No active release, dashboard, Hugging Face, Zenodo or handoff gate depends on OSF."
       - title: Publish the approved Hugging Face dataset and Space candidate
-        labels: ["type:publication", "type:huggingface", "risk:licence", "status:blocked"]
-        status: blocked
+        labels: ["type:publication", "type:huggingface", "risk:licence", "status:implemented"]
+        status: implemented
         acceptance:
           - "The governed publication manifest, source licences, dataset card and Croissant metadata pass validation."
           - "The configured destination identity matches the approved candidate."

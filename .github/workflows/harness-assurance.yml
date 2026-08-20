@@ -32,7 +32,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
+      - uses: prefix-dev/setup-pixi@f00437f565399d418b0acc85936d12c1fb668347 # v0.10.1
       - name: Run bounded harness
         run: pixi run "$HARNESS"
 
@@ -46,7 +46,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
+      - uses: prefix-dev/setup-pixi@f00437f565399d418b0acc85936d12c1fb668347 # v0.10.1
       - name: Regenerate deterministic evidence surfaces
         run: |
           set -euo pipefail
@@ -66,7 +66,6 @@ jobs:
           pixi run local-quality
           pixi run project-issues
           pixi run github-project-export
-          pixi run osf-plan
           pixi run protocol-status
           pixi run roadmap-linkages
           pixi run data-quality

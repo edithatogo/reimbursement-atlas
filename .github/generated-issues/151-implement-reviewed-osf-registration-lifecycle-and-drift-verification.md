@@ -1,6 +1,6 @@
 # Implement reviewed OSF registration lifecycle and drift verification
 
-Epic: `TRACK_RESEARCH_PROTOCOLS_OSF` — OSF research protocol and report workflow
+Epic: `TRACK_RESEARCH_PROTOCOLS_OSF` — Research protocol and report workflow
 
 Labels: type:roadmap-function, priority:must, interface:cli, status:implemented
 

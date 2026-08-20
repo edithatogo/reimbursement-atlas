@@ -1,27 +1,18 @@
 {
-  "approval_scope": "Approved within the declared routes and browser matrix for visual, automated accessibility, responsive-layout, keyboard, provenance, displayed-data-parity and prohibited-content checks. This approval does not establish universal accessibility conformance and does not confirm an independent manual VoiceOver review. It does not authorize causal, coverage, price-equivalence, DOI, archive-publication, paper or preprint claims.",
-  "automated_packet_sha256": "ccc0124f0c678e91cb0d4c34c552cf40e002927fd34d65be20d83319af0bce7c",
-  "commit": "e8eb3c4471d03883695b6e79929fd65a4b3cd2f0",
+  "approval_scope": "declared routes, four-browser matrix, automated accessibility, responsive layout, keyboard navigation, provenance, displayed-data parity and prohibited-content checks in scope (no universal accessibility claim).",
+  "automated_packet_sha256": "d310cda64b91a914c563f00f8963130cc0091aa6b7cbcbcf39e355cb0e7dc31f",
+  "commit": "de1ababd89f128068d46f2aa6e7c20b7a1b677e1",
   "evidence_artifacts": [
     "data/derived/dashboard_review/automated_review_packet.json",
     "data/derived/dashboard_review/owner_review_packet.json"
   ],
   "findings": [
-    "The current-main full browser matrix passed 64 of 64 tests across Chromium desktop and mobile, Firefox and WebKit.",
-    "The 44 commit-bound screenshots and machine-readable packet cover the declared visual, responsive-layout, keyboard, automated accessibility, provenance, displayed-data-parity and prohibited-content checks.",
-    "Universal accessibility conformance and independent manual VoiceOver confirmation are outside this approval."
+    "Accountable review of current-head displayed data parity and declared scope completed; no additional findings requiring remediation."
   ],
-  "owner_packet_sha256": "d516f45a1e77f1c7a984c63fb10f61048106f0287e7ff5fb7461173a7411819a",
-  "workflow": {
-    "workflow": "Dashboard browser matrix",
-    "run_id": "30919751990",
-    "run_attempt": "1",
-    "artifact_name": "dashboard-browser-review-30919751990",
-    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/30919751990"
-  },
-  "remediation_or_waiver": "No unresolved finding is recorded within the approved scope. Independent manual VoiceOver review remains explicitly out of scope.",
-  "reviewed_at": "2026-08-18T00:00:00Z",
-  "reviewer": "edithatogo",
+  "owner_packet_sha256": "241cc97130fe6686df34a9ab1e24b998b2d9b8c1e2a785b61c295855b2ac8eb6",
+  "remediation_or_waiver": null,
+  "reviewed_at": "2026-08-20T06:15:56Z",
+  "reviewer": "repository-owner",
   "schema_version": "dashboard-human-review-v1",
   "scope": {
     "assistive_technology": [
@@ -53,6 +44,5 @@
       "/sources/au_mbs/"
     ]
   },
-  "status": "approved_within_scope",
-  "commit": "212101ea967c15d3052743908a80de1abc32830d"
+  "status": "approved_within_scope"
 }

@@ -12,19 +12,18 @@ def _summary(root: Path, **values: bool) -> None:
     path.write_text(json.dumps(values), encoding="utf-8")
 
 
-def test_archive_gate_requires_each_independent_readiness_flag(tmp_path: Path) -> None:
+def test_archive_gate_requires_repository_and_evidence_readiness(tmp_path: Path) -> None:
     _summary(
         tmp_path,
         repository_release_ready=True,
-        evidence_release_ready=True,
-        osf_registration_ready=False,
+        evidence_release_ready=False,
         research_publication_ready=True,
     )
 
     gate = archive_publication_gate(tmp_path)
 
     assert gate["status"] == "blocked"
-    assert gate["missing_or_false"] == ["osf_registration_ready"]
+    assert gate["missing_or_false"] == ["evidence_release_ready"]
 
 
 def test_archive_gate_does_not_require_manuscript_publication_readiness(tmp_path: Path) -> None:
@@ -32,7 +31,6 @@ def test_archive_gate_does_not_require_manuscript_publication_readiness(tmp_path
         tmp_path,
         repository_release_ready=True,
         evidence_release_ready=True,
-        osf_registration_ready=True,
         research_publication_ready=False,
     )
 

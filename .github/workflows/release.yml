@@ -28,7 +28,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
         # Commit-bound review receipts require ancestry validation.
-      - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
+      - uses: prefix-dev/setup-pixi@f00437f565399d418b0acc85936d12c1fb668347 # v0.10.1
       - name: Require release governance gates
         env:
           PYTHONPATH: src
@@ -59,7 +59,7 @@ jobs:
         with:
           ref: ${{ inputs.release_tag != '' && format('refs/tags/{0}', inputs.release_tag) || github.ref }}
           persist-credentials: false
-      - uses: prefix-dev/setup-pixi@a09b6247153796b190642a2b53fac4241043cf6f # v0.10.0
+      - uses: prefix-dev/setup-pixi@f00437f565399d418b0acc85936d12c1fb668347 # v0.10.1
       - name: Generate SBOMs
         run: pixi run sbom
       - name: Build package
@@ -88,21 +88,21 @@ jobs:
           done
           pixi run release-identity "${args[@]}"
       - name: Attest Python distributions
-        uses: actions/attest@f7c74d28b9d84cb8768d0b8ca14a4bac6ef463e6 # v4
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4
         with:
           subject-path: |
             dist/*.whl
             dist/*.tar.gz
       - name: Attest source archive
-        uses: actions/attest@f7c74d28b9d84cb8768d0b8ca14a4bac6ef463e6 # v4
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4
         with:
           subject-path: reimbursement-atlas-*.tar.gz
       - name: Attest SBOMs
-        uses: actions/attest@f7c74d28b9d84cb8768d0b8ca14a4bac6ef463e6 # v4
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4
         with:
           subject-path: data/derived/sbom/*.json
       - name: Attest release manifest
-        uses: actions/attest@f7c74d28b9d84cb8768d0b8ca14a4bac6ef463e6 # v4
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4
         with:
           subject-path: release-manifest.json
       - name: Verify release attestations before upload

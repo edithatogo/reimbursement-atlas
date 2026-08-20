@@ -139,7 +139,6 @@ def generated_track_issues(
                 title=f"Complete protocol and report: {row.get('id')}",
                 labels=[
                     "type:research",
-                    "type:osf",
                     "phase:analysis",
                     f"status:{row.get('preregistration_status', 'planned')}",
                 ],
@@ -201,7 +200,7 @@ def render_issue(issue: IssueDraft) -> str:  # ruff:ignore[too-many-branches, to
             "- [x] Licence, source and publication boundaries remain fail-closed in the protocol "
             "and release-readiness artefacts.\n"
             "- [ ] An accountable human completes the protocol review checklist and approves any "
-            "preregistration or OSF registration.\n"
+            "protocol governance or research publication.\n"
             "- [ ] Reviewed source bundles and evidence-quality decisions support the research "
             "claim before publication."
         )

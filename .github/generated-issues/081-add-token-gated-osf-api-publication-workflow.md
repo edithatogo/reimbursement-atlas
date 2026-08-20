@@ -1,6 +1,6 @@
 # Add token-gated OSF API publication workflow
 
-Epic: `TRACK_RESEARCH_PROTOCOLS_OSF` — OSF research protocol and report workflow
+Epic: `TRACK_RESEARCH_PROTOCOLS_OSF` — Research protocol and report workflow
 
 Labels: type:roadmap-function, priority:should, interface:github_action, status:implemented
 
