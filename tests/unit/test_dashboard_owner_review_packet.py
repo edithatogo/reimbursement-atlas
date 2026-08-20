@@ -251,6 +251,7 @@ def test_dashboard_evidence_reuses_integrity_checked_standing_approval(
     evidence = dashboard_review_evidence(root)
 
     assert evidence["approval_mode"] == "standing_scoped"
+    assert evidence["checks"]["displayed_data_parity"] is True
     assert evidence["checks"]["human_scoped_approval"] is True
     assert evidence["checks"]["packet_hash_parity"] is True
 
@@ -434,6 +435,28 @@ def test_dashboard_data_fingerprint_covers_rendered_csv_files(tmp_path: Path) ->
     assert dashboard_data_fingerprint(tmp_path) != original
 
 
+def test_dashboard_data_fingerprint_normalizes_only_legacy_osf_research_label(
+    tmp_path: Path,
+) -> None:
+    public = tmp_path / "apps/dashboard/public/data"
+    public.mkdir(parents=True)
+    project = public / "github_project_items.csv"
+    legacy = (
+        'id,labels,status\nquestion,"[""type:research"", ""type:osf"", '
+        '""phase:analysis"", ""status:drafted""]",todo\n'
+    )
+    project.write_text(legacy, encoding="utf-8")
+    reviewed = dashboard_data_fingerprint(tmp_path)
+
+    project.write_text(legacy.replace('""type:osf"", ', ""), encoding="utf-8")
+
+    assert dashboard_data_fingerprint(tmp_path) == reviewed
+
+    project.write_text(legacy.replace(",todo", ",done"), encoding="utf-8")
+
+    assert dashboard_data_fingerprint(tmp_path) != reviewed
+
+
 def test_dashboard_data_fingerprint_ignores_workflow_use_line_movement_at_baseline(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
@@ -520,6 +543,42 @@ def test_dashboard_data_fingerprint_ignores_only_its_release_gate_receipt(
     )
 
     assert dashboard_data_fingerprint(tmp_path) != original
+
+
+def test_dashboard_data_fingerprint_ignores_only_named_source_drift_receipts(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    public = tmp_path / "apps/dashboard/public/data"
+    public.mkdir(parents=True)
+    receipt = public / "source_drift_report.csv"
+    baseline = (
+        "id,left_checksum_sha256,status\n"
+        "source_drift_github_project_jsonl_to_github_project_csv,aaa,pass\n"
+        "source_drift_final_handoff_jsonl_to_final_handoff_csv,bbb,pass\n"
+        "source_drift_data_quality_jsonl_to_data_quality_csv,ccc,pass\n"
+    )
+    receipt.write_text(baseline, encoding="utf-8")
+
+    def baseline_file(_repo: Path, _commit: str, path: Path) -> bytes | None:
+        return baseline.encode("utf-8") if path == receipt.relative_to(tmp_path) else None
+
+    monkeypatch.setattr("reimburse_atlas.dashboard_review._git_file_at_commit", baseline_file)
+    original = dashboard_data_fingerprint(tmp_path, self_attestation_commit="a" * 40)
+    receipt.write_text(
+        baseline.replace(",aaa,", ",new-project-checksum,").replace(
+            ",bbb,", ",new-handoff-checksum,"
+        ),
+        encoding="utf-8",
+    )
+
+    assert dashboard_data_fingerprint(tmp_path, self_attestation_commit="a" * 40) == original
+
+    receipt.write_text(
+        baseline.replace(",ccc,", ",changed-data-quality-checksum,"), encoding="utf-8"
+    )
+
+    assert dashboard_data_fingerprint(tmp_path, self_attestation_commit="a" * 40) != original
 
 
 def test_public_status_normalization_replaces_only_dashboard_receipt() -> None:

@@ -2,9 +2,9 @@
 
 Epic: `OSF-DEPRECATION-001` — Retire OSF as an active destination
 
-Labels: type:research, type:automation, status:in_progress
+Labels: type:research, type:automation, status:implemented
 
-Status: `in_progress`
+Status: `implemented`
 
 ## Background
 
@@ -12,7 +12,7 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] Release, Hugging Face, Zenodo, dashboard and handoff contracts do not depend on OSF.
-- [ ] OSF mutation and monitor workflows are retired.
-- [ ] Registration gqk4z remains immutable historical provenance.
-- [ ] Rights, evidence, claims and external publication remain independently gated.
+- [x] Release, Hugging Face, Zenodo, dashboard and handoff contracts do not depend on OSF.
+- [x] OSF mutation and monitor workflows are retired.
+- [x] Registration gqk4z remains immutable historical provenance.
+- [x] Rights, evidence, claims and external publication remain independently gated.

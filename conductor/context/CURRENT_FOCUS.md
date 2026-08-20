@@ -1,13 +1,22 @@
 # Current focus
 
+## 2026-08-20 - Live issue reconciliation after OSF deprecation
+
+Generated research issues and GitHub Project rows are being made destination-neutral. Completed
+or obsolete OSF-only issues will be closed after protected merge; active protocol, analysis,
+report and local manuscript-scaffold issues remain open until their substantive acceptance
+criteria pass. Historical OSF receipts remain preserved, and no paper or preprint submission is
+authorized. Exact removal of the legacy `type:osf` Project label is treated as a low-risk
+metadata normalization; material dashboard changes still invalidate scoped approval.
+
 ## 2026-08-20 - OSF destination deprecation
 
-Track `track_osf_deprecation_20260820` and issue #711 retire OSF as an active registration and
-publication destination. Registration `gqk4z`, its checksum-bound decisions, receipts and
-post-registration evolution disclosure remain immutable historical provenance, but OSF no longer
-controls repository, evidence, Hugging Face, Zenodo, dashboard or handoff readiness. Source
-rights, research evidence, policy claims and external publication remain independent fail-closed
-boundaries.
+Track `track_osf_deprecation_20260820` completed through PR #712 and is archived. OSF is no
+longer an active registration or publication destination. Registration `gqk4z`, its
+checksum-bound decisions, receipts and post-registration evolution disclosure remain immutable
+historical provenance, but OSF no longer controls repository, evidence, Hugging Face, Zenodo,
+dashboard or handoff readiness. Source rights, research evidence, policy claims and external
+publication remain independent fail-closed boundaries.
 
 ## 2026-08-20 - Risk-tiered approval friction reduction
 

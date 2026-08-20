@@ -139,7 +139,6 @@ def generated_track_issues(
                 title=f"Complete protocol and report: {row.get('id')}",
                 labels=[
                     "type:research",
-                    "type:osf",
                     "phase:analysis",
                     f"status:{row.get('preregistration_status', 'planned')}",
                 ],

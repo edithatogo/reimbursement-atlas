@@ -1,9 +1,9 @@
 {
   "track_id": "track_osf_deprecation_20260820",
   "type": "refactor",
-  "status": "in_progress",
+  "status": "completed",
   "created_at": "2026-08-20T10:13:16Z",
-  "updated_at": "2026-08-20T10:45:47Z",
+  "updated_at": "2026-08-20T11:06:58Z",
   "description": "Retire OSF as an active destination while preserving immutable historical registration evidence.",
   "evidence_schema": "1.0",
   "gates": [
@@ -16,8 +16,8 @@
     {
       "id": "hosted_validation",
       "kind": "hosted_ci",
-      "status": "pending",
-      "evidence": "Protected checks must pass before merge."
+      "status": "pass",
+      "evidence": "PR #712 merged as 2183c25e after every protected check passed; browser matrix run 32361598590 passed 64 tests across four projects and supplied 44 screenshots."
     }
   ]
 }

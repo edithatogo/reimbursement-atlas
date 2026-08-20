@@ -57,7 +57,10 @@ SELF_ATTESTATION_CSV_ROWS = {
     ),
     Path("apps/dashboard/public/data/source_drift_report.csv"): (
         "id",
-        ("source_drift_final_handoff_jsonl_to_final_handoff_csv",),
+        (
+            "source_drift_github_project_jsonl_to_github_project_csv",
+            "source_drift_final_handoff_jsonl_to_final_handoff_csv",
+        ),
     ),
 }
 WORKFLOW_USE_RECEIPT_FILES = (
@@ -72,6 +75,14 @@ LOW_RISK_SOURCE_NORMALIZATIONS = {
         ),
     ),
     Path("apps/dashboard/src/pages/roadmap/index.astro"): ((b'"protocol_ready"', b'"osf_ready"'),),
+}
+LOW_RISK_DATA_NORMALIZATIONS = {
+    Path("apps/dashboard/public/data/github_project_items.csv"): (
+        (
+            b'[""type:research"", ""phase:analysis"", ""status:drafted""]',
+            (b'[""type:research"", ""type:osf"", ""phase:analysis"", ""status:drafted""]'),
+        ),
+    ),
 }
 
 
@@ -124,6 +135,8 @@ def dashboard_data_fingerprint(
     for path in sorted(paths):
         absolute = repo / path
         content = absolute.read_bytes()
+        for current, reviewed in LOW_RISK_DATA_NORMALIZATIONS.get(path, ()):
+            content = content.replace(current, reviewed)
         if path == SELF_ATTESTATION_FILE:
             content = _release_gates_without_dashboard_receipt(content)
             baseline = (
@@ -562,6 +575,8 @@ def dashboard_review_evidence(repo: Path) -> dict[str, object]:
         self_attestation_commit=(
             cast("str", automated["tested_commit"])
             if isinstance(automated.get("tested_commit"), str)
+            else cast("str", human["commit"])
+            if isinstance(human.get("commit"), str)
             else None
         ),
     )

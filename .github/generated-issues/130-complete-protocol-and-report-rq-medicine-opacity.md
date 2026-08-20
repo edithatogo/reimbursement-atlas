@@ -2,7 +2,7 @@
 
 Epic: `RESEARCH-QUESTIONS` — Protocolled policy research questions
 
-Labels: type:research, type:osf, phase:analysis, status:drafted
+Labels: type:research, phase:analysis, status:drafted
 
 Status: `drafted`
 
