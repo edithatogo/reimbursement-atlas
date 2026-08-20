@@ -1,14 +1,13 @@
 # Release readiness
 
-## Current release boundary (2026-07-31)
+## Current release boundary (2026-08-20)
 
-Merged `main` at `81c28d8809c6fe47cf8e3aa2eecc4da1dec244b1` reports
-`repository_release_ready=true` and `evidence_release_ready=false`. The 750-case
-mapping study and refreshed scoped dashboard review pass their independent gates.
-Research-policy claims remain deliberately unready (`1/5` evidence-ready): only
-the source-transparency metadata claim has a checksum-bound, validated and
-scoped-approved package. Readiness scores and fixture demonstrators cannot satisfy
-the other four gates.
+Merged `main` at `de1ababd89f128068d46f2aa6e7c20b7a1b677e1` reports
+`repository_release_ready=true` and `evidence_release_ready=true`; all 40 release
+gates pass. The current-head dashboard packet is approved only within its declared
+visual, automated accessibility, responsive, keyboard, provenance, displayed-data
+parity and prohibited-content scope. This does not authorize unsupported causal,
+coverage or price-equivalence claims.
 
 OSF project `q8cnx` is public and its 11 approved files pass remote SHA-256
 round-trip verification. Read-only workflow run `30181343265` confirms registration
@@ -25,7 +24,7 @@ and the dataset remains `other`. OSF project `q8cnx` is public, while registrati
 licence, evidence, policy and publication gates remain fail-closed.
 
 Current merged-main baseline:
-`81c28d8809c6fe47cf8e3aa2eecc4da1dec244b1` (2026-08-02).
+`de1ababd89f128068d46f2aa6e7c20b7a1b677e1` (2026-08-20).
 Regenerate this document after any further merge and before release review.
 The last merged-main repository release gate summary was 36/36 passing; the current
 branch must rerun the complete matrix before this state can be considered current.
