@@ -573,10 +573,10 @@ def dashboard_review_evidence(repo: Path) -> dict[str, object]:
     data_fingerprint = dashboard_data_fingerprint(
         repo,
         self_attestation_commit=(
-            cast("str", human["commit"])
-            if isinstance(human.get("commit"), str)
-            else cast("str", automated["tested_commit"])
+            cast("str", automated["tested_commit"])
             if isinstance(automated.get("tested_commit"), str)
+            else cast("str", human["commit"])
+            if isinstance(human.get("commit"), str)
             else None
         ),
     )
