@@ -1,7 +1,7 @@
 {
-  "approval_scope": "declared routes, four-browser matrix, automated accessibility and provenance checks in scope (no universal WCAG claim).",
-  "automated_packet_sha256": "e1f9c1d8b7b20d29d11367ad8df7cf5b4f121ae3323bfc6c4275c47808360d41",
-  "commit": "dac87ea249ab1591fd9329a203af63887ad4e514",
+  "approval_scope": "declared routes, four-browser matrix, automated accessibility, responsive layout, keyboard navigation, provenance, displayed-data parity and prohibited-content checks in scope (no universal accessibility claim).",
+  "automated_packet_sha256": "d310cda64b91a914c563f00f8963130cc0091aa6b7cbcbcf39e355cb0e7dc31f",
+  "commit": "de1ababd89f128068d46f2aa6e7c20b7a1b677e1",
   "evidence_artifacts": [
     "data/derived/dashboard_review/automated_review_packet.json",
     "data/derived/dashboard_review/owner_review_packet.json"
@@ -9,9 +9,9 @@
   "findings": [
     "Accountable review of current-head displayed data parity and declared scope completed; no additional findings requiring remediation."
   ],
-  "owner_packet_sha256": "cae75177b0f04c9757678ecba686c8636d9966cb4cae25a61307f1f96834e5f4",
+  "owner_packet_sha256": "241cc97130fe6686df34a9ab1e24b998b2d9b8c1e2a785b61c295855b2ac8eb6",
   "remediation_or_waiver": null,
-  "reviewed_at": "2026-08-19T08:46:36Z",
+  "reviewed_at": "2026-08-20T06:15:56Z",
   "reviewer": "repository-owner",
   "schema_version": "dashboard-human-review-v1",
   "scope": {

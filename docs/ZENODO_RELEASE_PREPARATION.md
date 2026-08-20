@@ -5,9 +5,10 @@ Regenerate the preflight against the exact tagged release; no Zenodo evidence is
 newer commit.
 
 The current merged-main baseline is
-`81c28d8809c6fe47cf8e3aa2eecc4da1dec244b1`. Zenodo deposition `21759294` is
-authorized. The exact tagged release must regenerate and revalidate the inventory
-after OSF registration drift and research-evidence gates pass.
+`de1ababd89f128068d46f2aa6e7c20b7a1b677e1`. Zenodo deposition `21759294` remains
+recorded as external state. This repository update performs no DOI reservation or
+archive-publication mutation; any future mutation must use the independent
+archive-publication gate and exact tagged-release inventory.
 
 The repository contains `.zenodo.json` as a locally validated metadata preparation record. It
 does not create a Zenodo record, reserve a DOI, upload source files or imply archival/publication
