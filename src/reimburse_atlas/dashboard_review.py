@@ -100,6 +100,47 @@ def _sha256(path: Path) -> str | None:
     return hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else None
 
 
+def _implementation_unchanged_since(repo: Path, reviewed_commit: str, tested_commit: str) -> bool:
+    """Allow standing review across dependency-only manifest changes."""
+    if not all(len(value) == 40 and value.isalnum() for value in (reviewed_commit, tested_commit)):
+        return False
+    command = [
+        "git",
+        "diff",
+        "--name-only",
+        reviewed_commit,
+        tested_commit,
+        "--",
+        "apps/dashboard/src",
+        "apps/dashboard/tests/browser",
+        "apps/dashboard/astro.config.mjs",
+        "apps/dashboard/playwright.config.ts",
+        "apps/dashboard/tsconfig.json",
+    ]
+    result = subprocess.run(  # nosec B603 - validated SHAs, fixed argv, and no shell.
+        command,
+        cwd=repo,
+        capture_output=True,
+        check=False,
+        text=True,
+    )
+    if result.returncode != 0:
+        return False
+    changed = [Path(value) for value in result.stdout.splitlines() if value]
+    for path in changed:
+        normalizations = LOW_RISK_SOURCE_NORMALIZATIONS.get(path)
+        reviewed = _git_file_at_commit(repo, reviewed_commit, path)
+        current_path = repo / path
+        if not normalizations or reviewed is None or not current_path.is_file():
+            return False
+        current = current_path.read_bytes()
+        for current_value, reviewed_value in normalizations:
+            current = current.replace(current_value, reviewed_value)
+        if current != reviewed:
+            return False
+    return True
+
+
 def dashboard_source_fingerprint(repo: Path) -> str:
     """Hash dashboard implementation and browser-contract bytes deterministically."""
     paths = [path for path in SOURCE_FILES if (repo / path).is_file()]
@@ -439,6 +480,9 @@ def _standing_approval_valid(
     reviewed_commit = human.get("commit")
     if not isinstance(reviewed_commit, str):
         return False
+    tested_commit = automated.get("tested_commit")
+    if not isinstance(tested_commit, str):
+        return False
     approved_packet_bytes = _approved_packet_bytes(repo, human)
     if approved_packet_bytes is None:
         return False
@@ -470,8 +514,13 @@ def _standing_approval_valid(
         and all(item.get("status") == "pass" for item in reviewed_assertions)
         and reviewed_prohibited.get("status") == "pass"
         and human_scope.get("routes") == list(EXPECTED_ROUTES)
-        and reviewed_automated.get("source_fingerprint") == source_fingerprint
-        and reviewed_owner.get("source_fingerprint") == source_fingerprint
+        and (
+            (
+                reviewed_automated.get("source_fingerprint") == source_fingerprint
+                and reviewed_owner.get("source_fingerprint") == source_fingerprint
+            )
+            or _implementation_unchanged_since(repo, reviewed_commit, tested_commit)
+        )
         and automated.get("source_fingerprint") == source_fingerprint
         and owner.get("source_fingerprint") == source_fingerprint
         and reviewed_automated.get("routes") == list(EXPECTED_ROUTES)

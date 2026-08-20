@@ -1,3 +1,3 @@
 bom_format,component_count,ecosystem,name,sha256,spec_version
 CycloneDX,134,python,reimbursement-atlas-python,bc2105e903ef16b77aa5fb7cc182570df73c2ce5d09330c16f4f510151507b1d,1.6
-CycloneDX,544,npm,reimbursement-atlas-dashboard,854cda5827a4185e46af2bff4e02ce8a9331125c1c79049ffda2afe156c3f1ca,1.6
+CycloneDX,545,npm,reimbursement-atlas-dashboard,abfe6a2338d1eb5b4dfc3c6c01c5852c6685c34a08da40db78184c6b4c97d3d5,1.6

@@ -305,7 +305,7 @@
       "name": "sbom_summary",
       "parquet_path": "sbom_summary/sbom_summary.parquet",
       "rows": 2,
-      "sha256": "89e29b69e9b812a17cb00492ff7eb8235affa66faf32dc132d1bffd135732755"
+      "sha256": "28ffd80ba48ae5428b50c53620d351ffb3f22a0a8c2c373421580fcee3f1564d"
     },
     {
       "csv_path": "local_quality_gates/local_quality_gates.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 39,
-      "sha256": "d68b9214a8ab2d9c9665dfd700a381177856bfc7061209f5a86c081e1d4b78c7"
+      "sha256": "24f50d5c40ba84bdd1bf96591769107fb6e63f123cc07a6bf0557460e2200bf9"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",

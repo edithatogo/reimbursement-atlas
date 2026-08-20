@@ -1605,7 +1605,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "sbom_summary",
-      "sha256": "89e29b69e9b812a17cb00492ff7eb8235affa66faf32dc132d1bffd135732755"
+      "sha256": "28ffd80ba48ae5428b50c53620d351ffb3f22a0a8c2c373421580fcee3f1564d"
     },
     {
       "@id": "data/derived/sbom/sbom_summary.csv",
@@ -1614,7 +1614,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "sbom_summary",
-      "sha256": "7528f6e2922c5a8f70f9757482b353a2cb785c01a82138eb3443f3797f852b9f"
+      "sha256": "9a9d18ee15b2b6db9187402a7d5851aeee60942e228c68300ecb49e589728657"
     },
     {
       "@id": "data/derived/sbom/cyclonedx-python.json",
@@ -1628,11 +1628,11 @@
     {
       "@id": "data/derived/sbom/cyclonedx-dashboard.json",
       "@type": "File",
-      "contentSize": 278906,
+      "contentSize": 279517,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "json",
       "name": "cyclonedx-dashboard",
-      "sha256": "fa8672c0cf141b5f590b57c044d0315df5d84f789254af33d113a4765ffc879c"
+      "sha256": "c9a2a5ddb712d6584e4ceee206d707f79ff7aa928236d00c94cd38d89042df40"
     },
     {
       "@id": "data/derived/local_quality_gates/local_quality_gates.jsonl",
@@ -1731,7 +1731,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "d68b9214a8ab2d9c9665dfd700a381177856bfc7061209f5a86c081e1d4b78c7"
+      "sha256": "24f50d5c40ba84bdd1bf96591769107fb6e63f123cc07a6bf0557460e2200bf9"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
@@ -1740,7 +1740,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "c07ae93a05ee46dff54c04ffa10bcd608bca5639eddeaa7940efa30035a732a4"
+      "sha256": "8bd74d9a05f8a1b48fbf462c76cc02012224123b7a0c5a1b2c716064b143e7da"
     },
     {
       "@id": "data/derived/v13_validation_run.json",
