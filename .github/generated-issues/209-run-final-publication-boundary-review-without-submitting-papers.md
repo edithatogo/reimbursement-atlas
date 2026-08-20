@@ -2,9 +2,9 @@
 
 Epic: `RAC-RELEASE-001` — Citation, archive and public record maturity
 
-Labels: type:release, type:review, risk:publication, status:blocked
+Labels: type:release, type:review, risk:publication, status:implemented
 
-Status: `blocked`
+Status: `implemented`
 
 ## Background
 
@@ -12,8 +12,8 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] Zenodo and DataCite payloads, file inventory, checksums, SBOM and attestations validate against the frozen release.
-- [ ] Mapping, dashboard, licence and release-readiness gates independently pass before deposition.
-- [ ] The version DOI resolves and remote checksums are verified after publication.
-- [ ] Papers, manuscripts and preprints are excluded.
-- [ ] The signed GitHub release precedes Zenodo deposition, and every deposited asset is verified against its exact-tag attestation.
+- [x] Zenodo and DataCite payloads, file inventory, checksums, SBOM and attestations validate against the frozen release.
+- [x] Mapping, dashboard, licence and release-readiness gates independently pass before deposition.
+- [x] The version DOI resolves and remote checksums are verified after publication.
+- [x] Papers, manuscripts and preprints are excluded.
+- [x] The signed GitHub release precedes Zenodo deposition, and every deposited asset is verified against its exact-tag attestation.

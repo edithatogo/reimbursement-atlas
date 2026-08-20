@@ -1,0 +1,17 @@
+{
+  "track_id": "track_policy_demonstrators",
+  "type": "feature",
+  "status": "completed",
+  "created_at": "2026-08-01T13:05:00Z",
+  "updated_at": "2026-08-20T23:17:21Z",
+  "description": "Produce bounded descriptive policy demonstrators with reproducible outputs and explicit claim limitations.",
+  "evidence_schema": "1.0",
+  "gates": [
+    {"id":"demonstrator_outputs","kind":"repository","status":"pass","evidence":"Three policy briefs and machine-readable summaries are generated."},
+    {"id":"input_contracts","kind":"repository","status":"pass","evidence":"Fixture-backed parser and demonstrator tests pass."},
+    {"id":"claim_boundaries","kind":"repository","status":"pass","evidence":"Claim packages and reports retain descriptive limitations and checksum-bound scoped decisions."},
+    {"id":"protocolled_analysis","kind":"repository","status":"pass","evidence":"Evidence readiness records all five research questions as evidence_ready."},
+    {"id":"claim_review","kind":"human_review","status":"pass","evidence":"All five immutable claim packages have checksum-bound scoped accountable decisions."},
+    {"id":"publication","kind":"external_mutation","status":"not_applicable","evidence":"This track does not submit papers or preprints."}
+  ]
+}

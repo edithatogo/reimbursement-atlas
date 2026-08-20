@@ -1,0 +1,41 @@
+{
+  "track_id": "track_release_gate_reconciliation_closeout",
+  "type": "governance",
+  "status": "completed",
+  "created_at": "2026-08-03T00:00:00Z",
+  "updated_at": "2026-08-20T23:17:21Z",
+  "description": "Close current repository-owned release gates and preserve explicit external blockers for mapping, dashboard review, OSF and Hugging Face publication.",
+  "evidence_schema": "1.0",
+  "gates": [
+    {
+      "id": "current_dashboard_evidence",
+      "kind": "human_review",
+      "status": "pass",
+      "evidence": "Current-head packets pass exact head, hash, workflow, provenance, displayed-data parity and prohibited-content checks. Accountable owner approved automated packet d310cda64b91a914c563f00f8963130cc0091aa6b7cbcbcf39e355cb0e7dc31f and owner packet 241cc97130fe6686df34a9ab1e24b998b2d9b8c1e2a785b61c295855b2ac8eb6 for commit de1ababd89f128068d46f2aa6e7c20b7a1b677e1 from workflow run 32337480195."
+    },
+    {
+      "id": "mapping_counterparts",
+      "kind": "external_data",
+      "status": "pass",
+      "evidence": "Rights-cleared counterpart bundles support the frozen expansion v9 frame and accepted holdout evaluation."
+    },
+    {
+      "id": "zenodo_archive",
+      "kind": "external",
+      "status": "pass",
+      "evidence": "Zenodo deposition 21759294 is published and the recorded 12-file and metadata parity checks pass."
+    },
+    {
+      "id": "huggingface_publication",
+      "kind": "external_publication",
+      "status": "pass",
+      "evidence": "Dataset and Space are published and remote identity, metadata and commit parity are verified."
+    },
+    {
+      "id": "papers_preprints",
+      "kind": "policy",
+      "status": "pass",
+      "evidence": "Papers and preprints remain excluded from every publication manifest and workflow."
+    }
+  ]
+}

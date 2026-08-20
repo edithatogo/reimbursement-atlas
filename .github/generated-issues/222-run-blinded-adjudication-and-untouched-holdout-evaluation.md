@@ -2,9 +2,9 @@
 
 Epic: `RAC-GATE-001` — Release gate reconciliation and external dependency closeout
 
-Labels: type:mapping, type:statistics, type:review, status:blocked
+Labels: type:mapping, type:statistics, type:review, status:implemented
 
-Status: `blocked`
+Status: `implemented`
 
 ## Background
 
@@ -12,6 +12,6 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] Two isolated reviews and accountable adjudication are complete.
-- [ ] Development and holdout sets are disjoint and checksum-bound.
-- [ ] Exact confidence intervals and family-level metrics are reported.
+- [x] Two isolated reviews and accountable adjudication are complete.
+- [x] Development and holdout sets are disjoint and checksum-bound.
+- [x] Exact confidence intervals and family-level metrics are reported.

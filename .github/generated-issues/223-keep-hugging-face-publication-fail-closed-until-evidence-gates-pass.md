@@ -2,9 +2,9 @@
 
 Epic: `RAC-GATE-001` — Release gate reconciliation and external dependency closeout
 
-Labels: type:huggingface, type:publication, type:licence, status:blocked
+Labels: type:huggingface, type:publication, type:licence, status:implemented
 
-Status: `blocked`
+Status: `implemented`
 
 ## Background
 
@@ -12,6 +12,6 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] Metadata, Croissant, dataset card, licence and identity parity checks pass.
-- [ ] Publication remains dry-run only while evidence or policy-claim readiness is false.
-- [ ] No token is stored in the repository.
+- [x] Metadata, Croissant, dataset card, licence and identity parity checks pass.
+- [x] Publication remains dry-run only while evidence or policy-claim readiness is false.
+- [x] No token is stored in the repository.

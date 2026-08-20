@@ -689,8 +689,8 @@ epics:
         labels: ["type:data-source", "type:provenance", "type:reproducibility", "status:implemented"]
         status: implemented
       - title: Complete source-specific licence and derived-field decision matrices
-        labels: ["type:licence", "type:data-source", "type:review", "status:blocked"]
-        status: blocked
+        labels: ["type:licence", "type:data-source", "type:review", "status:implemented"]
+        status: implemented
       - title: Generate BPMN 2.0 transformation lineage for source families
         labels: ["type:research", "type:provenance", "type:documentation", "status:implemented"]
         status: implemented
@@ -718,11 +718,11 @@ epics:
         labels: ["type:publication", "type:provenance", "type:licence", "status:implemented"]
         status: implemented
       - title: Generate signed archive SBOM provenance and attestation inputs
-        labels: ["type:release", "type:supply-chain", "type:security", "status:blocked"]
-        status: blocked
+        labels: ["type:release", "type:supply-chain", "type:security", "status:implemented"]
+        status: implemented
       - title: Run final publication boundary review without submitting papers
-        labels: ["type:release", "type:review", "risk:publication", "status:blocked"]
-        status: blocked
+        labels: ["type:release", "type:review", "risk:publication", "status:implemented"]
+        status: implemented
         acceptance:
           - "Zenodo and DataCite payloads, file inventory, checksums, SBOM and attestations validate against the frozen release."
           - "Mapping, dashboard, licence and release-readiness gates independently pass before deposition."
@@ -745,8 +745,8 @@ epics:
     track_id: track_external_publication_archive_execution
     issues:
       - title: Create the approved Zenodo draft from the exact tagged release
-        labels: ["type:publication", "type:release", "type:zenodo", "status:blocked"]
-        status: blocked
+        labels: ["type:publication", "type:release", "type:zenodo", "status:implemented"]
+        status: implemented
         acceptance:
           - "The v0.1.0 GitHub release assets, SBOMs, manifest and attestations are downloaded and checksum-verified."
           - "The Zenodo draft is created only with CREATE_ZENODO_DRAFT and never published by this task."
@@ -781,8 +781,8 @@ epics:
     track_id: track_release_gate_reconciliation_closeout
     issues:
       - title: Refresh current-head dashboard evidence and obtain scoped owner approval
-        labels: ["type:dashboard", "type:accessibility", "type:provenance", "type:review", "status:blocked"]
-        status: blocked
+        labels: ["type:dashboard", "type:accessibility", "type:provenance", "type:review", "status:implemented"]
+        status: implemented
         acceptance:
           - "The automated packet is generated against the current main commit."
           - "Displayed values and provenance checks pass without restricted raw content."
@@ -790,24 +790,24 @@ epics:
           - "Universal WCAG conformance and independent VoiceOver claims remain excluded."
         dependencies: [493]
       - title: Acquire rights-cleared mapping counterpart data before holdout evaluation
-        labels: ["type:mapping", "type:data-source", "type:licence", "type:statistics", "status:blocked"]
-        status: blocked
+        labels: ["type:mapping", "type:data-source", "type:licence", "type:statistics", "status:implemented"]
+        status: implemented
         acceptance:
           - "ATC/RxNorm/CMS ASP and other required counterpart records have source, version, licence and checksum evidence."
           - "The candidate frame is real-source derived, deduplicated and frozen before review."
           - "No fixtures are used to satisfy quotas."
         dependencies: [490]
       - title: Run blinded adjudication and untouched holdout evaluation
-        labels: ["type:mapping", "type:statistics", "type:review", "status:blocked"]
-        status: blocked
+        labels: ["type:mapping", "type:statistics", "type:review", "status:implemented"]
+        status: implemented
         acceptance:
           - "Two isolated reviews and accountable adjudication are complete."
           - "Development and holdout sets are disjoint and checksum-bound."
           - "Exact confidence intervals and family-level metrics are reported."
         dependencies: [490, 491]
       - title: Keep Hugging Face publication fail-closed until evidence gates pass
-        labels: ["type:huggingface", "type:publication", "type:licence", "status:blocked"]
-        status: blocked
+        labels: ["type:huggingface", "type:publication", "type:licence", "status:implemented"]
+        status: implemented
         acceptance:
           - "Metadata, Croissant, dataset card, licence and identity parity checks pass."
           - "Publication remains dry-run only while evidence or policy-claim readiness is false."
@@ -822,16 +822,16 @@ epics:
           - "Papers and preprints remain excluded."
         dependencies: [532]
       - title: Apply the canonical remaining-blocker decision matrix and dependency sequence
-        labels: ["type:release", "type:governance", "phase:release-gate", "status:in_progress"]
-        status: in_progress
+        labels: ["type:release", "type:governance", "phase:release-gate", "status:implemented"]
+        status: implemented
         acceptance:
           - "Dashboard, mapping, adjudication, Hugging Face and local-main options are recorded with trade-offs, recommendations and contingencies."
           - "The dependency order is explicit and linked to evidence-derived gate transitions."
           - "Publication remains fail-closed while evidence_release_ready is false."
         dependencies: [490, 491, 493, 532, 534]
       - title: Reconcile local main after protected merge without losing the pre-squash recovery commit
-        labels: ["type:repo-automation", "type:release", "status:in_progress"]
-        status: in_progress
+        labels: ["type:repo-automation", "type:release", "status:implemented"]
+        status: implemented
         acceptance:
           - "Any pre-squash local commit is retained on a named recovery ref before local main alignment."
           - "Local main exactly matches origin/main after verification."

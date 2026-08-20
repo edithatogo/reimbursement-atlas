@@ -2,9 +2,9 @@
 
 Epic: `RAC-GATE-001` — Release gate reconciliation and external dependency closeout
 
-Labels: type:dashboard, type:accessibility, type:provenance, type:review, status:blocked
+Labels: type:dashboard, type:accessibility, type:provenance, type:review, status:implemented
 
-Status: `blocked`
+Status: `implemented`
 
 ## Background
 
@@ -12,7 +12,7 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] The automated packet is generated against the current main commit.
-- [ ] Displayed values and provenance checks pass without restricted raw content.
-- [ ] The accountable owner approves the exact packet hashes within the declared route/browser/provenance scope.
-- [ ] Universal WCAG conformance and independent VoiceOver claims remain excluded.
+- [x] The automated packet is generated against the current main commit.
+- [x] Displayed values and provenance checks pass without restricted raw content.
+- [x] The accountable owner approves the exact packet hashes within the declared route/browser/provenance scope.
+- [x] Universal WCAG conformance and independent VoiceOver claims remain excluded.
