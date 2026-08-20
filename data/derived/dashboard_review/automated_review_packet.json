@@ -9,7 +9,7 @@
     "table captions"
   ],
   "coverage_complete": true,
-  "data_fingerprint": "b349bd2d603ff1f817ebaf1d7d99760e31d61ccf3f00bbfa103b7c5fdebefdcd",
+  "data_fingerprint": "97dd3fc6d3be28bc6c25a5b654bb378610969d13ca12106ae3f762c24c663398",
   "expected_test_count": 64,
   "human_review_required": true,
   "junit": {
@@ -619,12 +619,12 @@
   "source_fingerprint": "bd82c5bb82dbd77fd428b36df57939ef4d07a40e0fb59cde64ceff8797e392d3",
   "status": "pass",
   "test_count": 64,
-  "tested_commit": "dac87ea249ab1591fd9329a203af63887ad4e514",
+  "tested_commit": "76ae28ea27ff8b063c8b44faa4d83fa3dc5600b1",
   "workflow": {
-    "artifact_name": "dashboard-browser-review-9999999999",
-    "run_attempt": "1",
-    "run_id": "9999999999",
-    "workflow": "dashboard-review",
-    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/9999999999"
+    "artifact_name": null,
+    "run_attempt": null,
+    "run_id": null,
+    "workflow": null,
+    "workflow_url": null
   }
 }

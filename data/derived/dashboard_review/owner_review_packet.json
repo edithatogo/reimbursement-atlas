@@ -17,8 +17,8 @@
     "desktop-webkit"
   ],
   "commit_parity": true,
-  "current_head": "dac87ea249ab1591fd9329a203af63887ad4e514",
-  "data_fingerprint": "b349bd2d603ff1f817ebaf1d7d99760e31d61ccf3f00bbfa103b7c5fdebefdcd",
+  "current_head": "76ae28ea27ff8b063c8b44faa4d83fa3dc5600b1",
+  "data_fingerprint": "97dd3fc6d3be28bc6c25a5b654bb378610969d13ca12106ae3f762c24c663398",
   "prohibited_content_check": {
     "files_checked": 77,
     "findings": [],
@@ -104,8 +104,8 @@
     },
     {
       "displayed_path": "apps/dashboard/public/status.json#blockers",
-      "displayed_value": "6bc8e3294e49bea39f5782cca7ef34990a00c99d686792d166c0a8bc2f5b8853",
-      "expected_value": "6bc8e3294e49bea39f5782cca7ef34990a00c99d686792d166c0a8bc2f5b8853",
+      "displayed_value": "2275781210331f31997be483a775725eb5cb14cb933a87496f4021448f8b69b8",
+      "expected_value": "2275781210331f31997be483a775725eb5cb14cb933a87496f4021448f8b69b8",
       "id": "complete-blocker-projection",
       "source_field": "blockers",
       "source_path": "scripts/make_public_status_manifest.py",
@@ -114,9 +114,9 @@
   ],
   "provenance_inputs": [
     {
-      "byte_size": 3114,
+      "byte_size": 3496,
       "path": "apps/dashboard/public/status.json",
-      "sha256": "741a69b3fb7c5376623e78a3d07c3e367d5be9679d421d40273ee12b05d8a284"
+      "sha256": "c3ba9b38c75eac94f39c3bd29b4a665f8d6d5a554b9b68e2aef72c2a0658983d"
     },
     {
       "byte_size": 126,
@@ -129,9 +129,9 @@
       "sha256": "05264e92d9df287227c2fb9f87980b1d33c71a325cad0cb2df3c20ecc2bb76e7"
     },
     {
-      "byte_size": 140678,
+      "byte_size": 140680,
       "path": "data/derived/publication_manifest.json",
-      "sha256": "31a0ffe4f53cde702af261a00243192572996d639ff5b2d74cf0efc922b07cc7"
+      "sha256": "ec8bf1b02a82b85da68011ef0af6279adf733ffb2ffb0398e0008d4f3f7c2369"
     }
   ],
   "record_schema": "schema/DashboardHumanReviewRecord.schema.json",
@@ -729,7 +729,7 @@
   ],
   "source_fingerprint": "bd82c5bb82dbd77fd428b36df57939ef4d07a40e0fb59cde64ceff8797e392d3",
   "status": "pending_accountable_review",
-  "tested_commit": "dac87ea249ab1591fd9329a203af63887ad4e514",
+  "tested_commit": "76ae28ea27ff8b063c8b44faa4d83fa3dc5600b1",
   "workflow": {
     "artifact_name": null,
     "run_attempt": null,
