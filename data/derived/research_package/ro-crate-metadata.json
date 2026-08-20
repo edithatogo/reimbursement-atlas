@@ -1605,7 +1605,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "sbom_summary",
-      "sha256": "c53d48541c7770c451c07d0ff776b95628eaccb14b91db34462dfadeea470e5c"
+      "sha256": "89e29b69e9b812a17cb00492ff7eb8235affa66faf32dc132d1bffd135732755"
     },
     {
       "@id": "data/derived/sbom/sbom_summary.csv",
@@ -1614,16 +1614,16 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "sbom_summary",
-      "sha256": "05c14cfb762fa2f981bb12aaf6f7b2b8b6fb5367536e9507dfcd039489a3fea5"
+      "sha256": "7528f6e2922c5a8f70f9757482b353a2cb785c01a82138eb3443f3797f852b9f"
     },
     {
       "@id": "data/derived/sbom/cyclonedx-python.json",
       "@type": "File",
-      "contentSize": 123852,
+      "contentSize": 124393,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "json",
       "name": "cyclonedx-python",
-      "sha256": "10f578fa81dbb26838eefc5676564a9bf6c2068bcbdedfd3b9b142aedbac9840"
+      "sha256": "4a95410d2baaa869be60539ef9a7de3af61309ea7ca4c07413fc88411b98af4e"
     },
     {
       "@id": "data/derived/sbom/cyclonedx-dashboard.json",
