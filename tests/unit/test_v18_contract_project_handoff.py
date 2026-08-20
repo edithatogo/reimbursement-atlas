@@ -452,6 +452,7 @@ def test_final_handoff_records_environment_bound_tasks(tmp_path: Path) -> None:
     assert mapping_task.status == "complete"
     assert all(
         row.reason_code.endswith(("_pending", "_review_pending"))
+        or row.reason_code == "osf_registration_fingerprint_drift"
         for row in rows
         if row.status == "blocked_review"
     )

@@ -34,6 +34,12 @@ Software and project-owned documentation are licensed under Apache-2.0. Underlyi
 retain their own provider licences and are not relicensed by this repository; CMS/AMA terms apply
 to CMS CLFS/PFS material. Raw live-source payloads remain local and ignored.
 
+Approval prompts follow the risk-tiered policy in
+[`docs/APPROVAL_POLICY.md`](docs/APPROVAL_POLICY.md): deterministic project-owned outputs are
+machine-classified, unchanged dashboard review scope can reuse an integrity-checked standing
+approval, and accountable approval is reserved for material rights, claims, interface-scope or
+external-publication changes.
+
 Public dashboard: [GitHub Pages](https://edithatogo.github.io/reimbursement-atlas/) or run
 `pixi run dashboard-build` locally. GitHub Pages and Hugging Face
 publication workflows are manual and token/approval-gated.
