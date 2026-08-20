@@ -7,8 +7,8 @@ tracks:
     phase: hardening
     workstream: governance
     goal: "Reserve accountable approval for high-risk changes while automatically validating deterministic project outputs and unchanged bounded dashboard scope."
-    spec: "conductor/tracks/track_approval_friction_reduction_20260820/spec.md"
-    plan: "conductor/tracks/track_approval_friction_reduction_20260820/plan.md"
+    spec: "conductor/archive/track_approval_friction_reduction_20260820/spec.md"
+    plan: "conductor/archive/track_approval_friction_reduction_20260820/plan.md"
     issues:
       - 708
   - id: track_runtime_mojo_python314

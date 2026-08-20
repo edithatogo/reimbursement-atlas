@@ -12,4 +12,5 @@
 - [x] APR-06: Regenerate governed outputs and run targeted and full repository gates. Local
   validation passed with 558 tests, two optional skips, 90.10% coverage, deterministic byte
   parity, clean type/lint/security checks and successful Python/dashboard builds.
-- [~] APR-07: Review, merge through protected CI, synchronize issue #708 and archive this track.
+- [x] APR-07: Review, merge through protected CI, synchronize issue #708 and archive this track.
+  PR #709 merged at `7e8d239132d6c3b2122b7d7062e6028fac9536c6`; issue #708 is closed.

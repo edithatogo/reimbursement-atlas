@@ -1,9 +1,9 @@
 {
   "track_id": "track_approval_friction_reduction_20260820",
   "type": "chore",
-  "status": "in_progress",
+  "status": "completed",
   "created_at": "2026-08-20T00:00:00Z",
-  "updated_at": "2026-08-20T07:44:34Z",
+  "updated_at": "2026-08-20T08:50:32Z",
   "description": "Minimise approval spam with risk-tiered automatic, standing and accountable gates.",
   "evidence_schema": "1.0",
   "gates": [
