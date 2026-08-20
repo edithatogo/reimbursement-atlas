@@ -52,7 +52,6 @@ def _readiness(root: Path) -> dict[str, bool]:
     keys = (
         "repository_release_ready",
         "research_publication_ready",
-        "osf_registration_ready",
         "evidence_release_ready",
         "policy_claims_ready",
     )

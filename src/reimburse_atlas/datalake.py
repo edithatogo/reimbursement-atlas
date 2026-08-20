@@ -289,7 +289,6 @@ def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:  
         / "derived"
         / "final_handoff"
         / "final_handoff_tasks.jsonl",
-        "osf_component_plan": root / "data" / "derived" / "osf" / "component_plan.jsonl",
         "protocol_status": root / "data" / "derived" / "protocols" / "protocol_status.jsonl",
         "research_dataset_linkages": root
         / "data"

@@ -42,6 +42,7 @@ def _request(
         headers["Content-Type"] = "application/json"
     elif content is not None:
         headers["Content-Type"] = "application/octet-stream"
+        headers["Content-Length"] = str(len(content))
     request = urllib.request.Request(  # ruff:ignore[suspicious-url-open-usage]
         url, data=data, headers=headers, method=method
     )

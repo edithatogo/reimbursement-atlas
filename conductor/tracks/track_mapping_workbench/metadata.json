@@ -1,0 +1,15 @@
+{
+  "track_id": "track_mapping_workbench",
+  "type": "feature",
+  "status": "in_progress",
+  "created_at": "2026-08-01T12:30:00Z",
+  "updated_at": "2026-08-01T12:30:00Z",
+  "description": "Operate a checksum-bound blinded mapping review and holdout evaluation workflow.",
+  "evidence_schema": "1.0",
+  "gates": [
+    {"id":"candidate_frame","kind":"repository","status":"pass","evidence":"Active expansion_v9 candidate frame contains 1,500 cases and source-bound derived evidence."},
+    {"id":"blinded_review","kind":"repository","status":"pass","evidence":"Role-isolated reviewer packets and ledger validators pass."},
+    {"id":"holdout_evaluation","kind":"repository","status":"pass","evidence":"Deterministic split, threshold and exact-interval evaluation artefacts are generated."},
+    {"id":"accountable_adjudication","kind":"human_review","status":"blocked","evidence":"Active ledger records accountable_adjudication_complete=false; no approval is inferred."}
+  ]
+}

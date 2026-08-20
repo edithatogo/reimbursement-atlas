@@ -1,11 +1,14 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
 import pytest
 
 from reimburse_atlas.dashboard_review import (
+    _json_at_commit,  # ruff:ignore[import-private-name] - fail-closed helper branches need direct coverage.
+    _standing_approval_valid,  # ruff:ignore[import-private-name] - see above.
     dashboard_data_fingerprint,
     dashboard_review_evidence,
     dashboard_source_fingerprint,
@@ -63,7 +66,6 @@ def _machine_ready_root(tmp_path: Path) -> Path:
             "evidence_release_ready": False,
             "repository_release_ready": True,
             "research_publication_ready": False,
-            "osf_registration_ready": False,
         },
     )
     _write_json(tmp_path, "data/derived/publication_manifest.json", {"status": "gated"})
@@ -157,12 +159,267 @@ def test_dashboard_evidence_invalidates_changed_displayed_data(tmp_path: Path) -
     owner_path.write_text(json.dumps(owner), encoding="utf-8")
     status_path = root / "apps/dashboard/public/status.json"
     status = json.loads(status_path.read_text(encoding="utf-8"))
-    status["publication"]["osf_registration_ready"] = True
+    status["evidence"]["research_publication_ready"] = True
     status_path.write_text(json.dumps(status), encoding="utf-8")
 
     evidence = dashboard_review_evidence(root)
 
     assert evidence["checks"]["displayed_data_parity"] is False
+
+
+def test_dashboard_source_fingerprint_normalizes_exact_osf_deprecation_copy(
+    tmp_path: Path,
+) -> None:
+    component = tmp_path / "apps/dashboard/src/components/StatusOverview.astro"
+    component.parent.mkdir(parents=True)
+    component.write_text("OSF, Hugging Face and DOI gates", encoding="utf-8")
+    reviewed = dashboard_source_fingerprint(tmp_path)
+
+    component.write_text("Hugging Face, Zenodo and DOI gates", encoding="utf-8")
+    assert dashboard_source_fingerprint(tmp_path) == reviewed
+
+    component.write_text("Hugging Face and DOI gates", encoding="utf-8")
+    assert dashboard_source_fingerprint(tmp_path) != reviewed
+
+
+def test_dashboard_source_fingerprint_normalizes_exact_protocol_field_rename(
+    tmp_path: Path,
+) -> None:
+    page = tmp_path / "apps/dashboard/src/pages/roadmap/index.astro"
+    page.parent.mkdir(parents=True)
+    page.write_text('const field = "osf_ready";', encoding="utf-8")
+    reviewed = dashboard_source_fingerprint(tmp_path)
+
+    page.write_text('const field = "protocol_ready";', encoding="utf-8")
+    assert dashboard_source_fingerprint(tmp_path) == reviewed
+
+    page.write_text('const field = "publication_ready";', encoding="utf-8")
+    assert dashboard_source_fingerprint(tmp_path) != reviewed
+
+
+def test_dashboard_evidence_reuses_integrity_checked_standing_approval(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Routine data refreshes do not require another bounded visual approval."""
+    root = _machine_ready_root(tmp_path)
+    current_automated_path = root / "data/derived/dashboard_review/automated_review_packet.json"
+    current_automated = json.loads(current_automated_path.read_text(encoding="utf-8"))
+    current_owner = build_packet(root)
+    owner_path = root / "data/derived/dashboard_review/owner_review_packet.json"
+    owner_path.write_text(json.dumps(current_owner), encoding="utf-8")
+
+    reviewed_commit = "b" * 40
+    reviewed_automated = dict(current_automated)
+    reviewed_automated["tested_commit"] = reviewed_commit
+    reviewed_automated["data_fingerprint"] = "1" * 64
+    reviewed_automated["screenshot_count"] = 44
+    reviewed_owner = dict(current_owner)
+    reviewed_owner["tested_commit"] = reviewed_commit
+    reviewed_owner["current_head"] = reviewed_commit
+    reviewed_owner["data_fingerprint"] = "1" * 64
+    historical = {
+        "data/derived/dashboard_review/automated_review_packet.json": json.dumps(
+            reviewed_automated
+        ).encode(),
+        "data/derived/dashboard_review/owner_review_packet.json": json.dumps(
+            reviewed_owner
+        ).encode(),
+    }
+    human = {
+        "status": "approved_within_scope",
+        "reviewed_at": "2026-08-20T00:00:00Z",
+        "reviewer": "repository-owner",
+        "commit": reviewed_commit,
+        "automated_packet_sha256": hashlib.sha256(
+            historical["data/derived/dashboard_review/automated_review_packet.json"]
+        ).hexdigest(),
+        "owner_packet_sha256": hashlib.sha256(
+            historical["data/derived/dashboard_review/owner_review_packet.json"]
+        ).hexdigest(),
+        "scope": {"routes": list(ROUTES)},
+    }
+    _write_json(root, "data/derived/dashboard_review/human_review.json", human)
+
+    def historical_file(_repo: Path, commit: str, path: Path) -> bytes | None:
+        if commit != reviewed_commit:
+            return None
+        return historical.get(path.as_posix())
+
+    monkeypatch.setattr("reimburse_atlas.dashboard_review._git_file_at_commit", historical_file)
+
+    evidence = dashboard_review_evidence(root)
+
+    assert evidence["approval_mode"] == "standing_scoped"
+    assert evidence["checks"]["human_scoped_approval"] is True
+    assert evidence["checks"]["packet_hash_parity"] is True
+
+
+def test_dashboard_standing_approval_resolves_later_receipt_commit(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The approval receipt may be committed after its browser-tested commit."""
+    root = _machine_ready_root(tmp_path)
+    automated_path = root / "data/derived/dashboard_review/automated_review_packet.json"
+    automated = json.loads(automated_path.read_text(encoding="utf-8"))
+    owner = build_packet(root)
+    owner_path = root / "data/derived/dashboard_review/owner_review_packet.json"
+    owner_path.write_text(json.dumps(owner), encoding="utf-8")
+    tested_commit = "b" * 40
+    receipt_commit = "c" * 40
+    reviewed_automated = dict(automated)
+    reviewed_automated["tested_commit"] = tested_commit
+    reviewed_automated["screenshot_count"] = 44
+    reviewed_owner = dict(owner)
+    reviewed_owner["tested_commit"] = tested_commit
+    reviewed_owner["current_head"] = tested_commit
+    reviewed_automated_bytes = json.dumps(reviewed_automated).encode()
+    reviewed_owner_bytes = json.dumps(reviewed_owner).encode()
+    human = {
+        "status": "approved_within_scope",
+        "reviewed_at": "2026-08-20T00:00:00Z",
+        "reviewer": "repository-owner",
+        "commit": tested_commit,
+        "automated_packet_sha256": hashlib.sha256(reviewed_automated_bytes).hexdigest(),
+        "owner_packet_sha256": hashlib.sha256(reviewed_owner_bytes).hexdigest(),
+        "scope": {"routes": list(ROUTES)},
+    }
+    _write_json(root, "data/derived/dashboard_review/human_review.json", human)
+    historical = {
+        (receipt_commit, "data/derived/dashboard_review/automated_review_packet.json"): (
+            reviewed_automated_bytes
+        ),
+        (receipt_commit, "data/derived/dashboard_review/owner_review_packet.json"): (
+            reviewed_owner_bytes
+        ),
+        (receipt_commit, "data/derived/dashboard_review/human_review.json"): json.dumps(
+            human
+        ).encode(),
+    }
+
+    monkeypatch.setattr(
+        "reimburse_atlas.dashboard_review._git_file_at_commit",
+        lambda _repo, commit, path: historical.get((commit, path.as_posix())),
+    )
+    monkeypatch.setattr(
+        "reimburse_atlas.dashboard_review._commits_touching",
+        lambda _repo, _path: (receipt_commit,),
+    )
+
+    evidence = dashboard_review_evidence(root)
+
+    assert evidence["approval_mode"] == "standing_scoped"
+    assert evidence["checks"]["human_scoped_approval"] is True
+
+
+def test_dashboard_standing_approval_fails_after_ui_fingerprint_change(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A material dashboard change still requires accountable review."""
+    root = _machine_ready_root(tmp_path)
+    automated_path = root / "data/derived/dashboard_review/automated_review_packet.json"
+    automated = json.loads(automated_path.read_text(encoding="utf-8"))
+    owner = build_packet(root)
+    owner_path = root / "data/derived/dashboard_review/owner_review_packet.json"
+    owner_path.write_text(json.dumps(owner), encoding="utf-8")
+    reviewed_commit = "b" * 40
+    reviewed_automated = dict(automated)
+    reviewed_automated["tested_commit"] = reviewed_commit
+    reviewed_automated["source_fingerprint"] = "2" * 64
+    reviewed_owner = dict(owner)
+    reviewed_owner["tested_commit"] = reviewed_commit
+    reviewed_owner["source_fingerprint"] = "2" * 64
+    historical = {
+        "data/derived/dashboard_review/automated_review_packet.json": json.dumps(
+            reviewed_automated
+        ).encode(),
+        "data/derived/dashboard_review/owner_review_packet.json": json.dumps(
+            reviewed_owner
+        ).encode(),
+    }
+    _write_json(
+        root,
+        "data/derived/dashboard_review/human_review.json",
+        {
+            "status": "approved_within_scope",
+            "reviewed_at": "2026-08-20T00:00:00Z",
+            "reviewer": "repository-owner",
+            "commit": reviewed_commit,
+            "automated_packet_sha256": hashlib.sha256(
+                historical["data/derived/dashboard_review/automated_review_packet.json"]
+            ).hexdigest(),
+            "owner_packet_sha256": hashlib.sha256(
+                historical["data/derived/dashboard_review/owner_review_packet.json"]
+            ).hexdigest(),
+        },
+    )
+
+    def historical_file(_repo: Path, commit: str, path: Path) -> bytes | None:
+        if commit != reviewed_commit:
+            return None
+        return historical.get(path.as_posix())
+
+    monkeypatch.setattr("reimburse_atlas.dashboard_review._git_file_at_commit", historical_file)
+
+    evidence = dashboard_review_evidence(root)
+
+    assert evidence["approval_mode"] == "invalid"
+    assert evidence["checks"]["human_scoped_approval"] is False
+
+
+@pytest.mark.parametrize("content", [None, b"not-json", b"[]"])
+def test_historical_packet_reader_fails_closed(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    content: bytes | None,
+) -> None:
+    monkeypatch.setattr(
+        "reimburse_atlas.dashboard_review._git_file_at_commit",
+        lambda _repo, _commit, _path: content,
+    )
+
+    assert _json_at_commit(tmp_path, "a" * 40, Path("packet.json")) == {}
+
+
+@pytest.mark.parametrize(
+    ("human", "historical"),
+    [
+        ({}, {}),
+        ({"commit": "a" * 40}, {}),
+        (
+            {"commit": "a" * 40, "automated_packet_sha256": "0" * 64},
+            {"automated_review_packet.json": b"{}", "owner_review_packet.json": b"{}"},
+        ),
+        (
+            {
+                "commit": "a" * 40,
+                "automated_packet_sha256": hashlib.sha256(b"{}").hexdigest(),
+                "owner_packet_sha256": "0" * 64,
+            },
+            {"automated_review_packet.json": b"{}", "owner_review_packet.json": b"{}"},
+        ),
+    ],
+)
+def test_standing_approval_rejects_incomplete_historical_binding(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    human: dict[str, str],
+    historical: dict[str, bytes],
+) -> None:
+    monkeypatch.setattr(
+        "reimburse_atlas.dashboard_review._git_file_at_commit",
+        lambda _repo, _commit, path: historical.get(path.name),
+    )
+
+    assert not _standing_approval_valid(
+        tmp_path,
+        automated={},
+        owner={},
+        human=human,
+        source_fingerprint="1" * 64,
+    )
 
 
 def test_dashboard_data_fingerprint_covers_rendered_csv_files(tmp_path: Path) -> None:
@@ -175,6 +432,28 @@ def test_dashboard_data_fingerprint_covers_rendered_csv_files(tmp_path: Path) ->
     dataset.write_text("source,status\nMBS,blocked\n", encoding="utf-8")
 
     assert dashboard_data_fingerprint(tmp_path) != original
+
+
+def test_dashboard_data_fingerprint_normalizes_only_legacy_osf_research_label(
+    tmp_path: Path,
+) -> None:
+    public = tmp_path / "apps/dashboard/public/data"
+    public.mkdir(parents=True)
+    project = public / "github_project_items.csv"
+    legacy = (
+        'id,labels,status\nquestion,"[""type:research"", ""type:osf"", '
+        '""phase:analysis"", ""status:drafted""]",todo\n'
+    )
+    project.write_text(legacy, encoding="utf-8")
+    reviewed = dashboard_data_fingerprint(tmp_path)
+
+    project.write_text(legacy.replace('""type:osf"", ', ""), encoding="utf-8")
+
+    assert dashboard_data_fingerprint(tmp_path) == reviewed
+
+    project.write_text(legacy.replace(",todo", ",done"), encoding="utf-8")
+
+    assert dashboard_data_fingerprint(tmp_path) != reviewed
 
 
 def test_dashboard_data_fingerprint_ignores_workflow_use_line_movement_at_baseline(
@@ -263,6 +542,42 @@ def test_dashboard_data_fingerprint_ignores_only_its_release_gate_receipt(
     )
 
     assert dashboard_data_fingerprint(tmp_path) != original
+
+
+def test_dashboard_data_fingerprint_ignores_only_named_source_drift_receipts(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    public = tmp_path / "apps/dashboard/public/data"
+    public.mkdir(parents=True)
+    receipt = public / "source_drift_report.csv"
+    baseline = (
+        "id,left_checksum_sha256,status\n"
+        "source_drift_github_project_jsonl_to_github_project_csv,aaa,pass\n"
+        "source_drift_final_handoff_jsonl_to_final_handoff_csv,bbb,pass\n"
+        "source_drift_data_quality_jsonl_to_data_quality_csv,ccc,pass\n"
+    )
+    receipt.write_text(baseline, encoding="utf-8")
+
+    def baseline_file(_repo: Path, _commit: str, path: Path) -> bytes | None:
+        return baseline.encode("utf-8") if path == receipt.relative_to(tmp_path) else None
+
+    monkeypatch.setattr("reimburse_atlas.dashboard_review._git_file_at_commit", baseline_file)
+    original = dashboard_data_fingerprint(tmp_path, self_attestation_commit="a" * 40)
+    receipt.write_text(
+        baseline.replace(",aaa,", ",new-project-checksum,").replace(
+            ",bbb,", ",new-handoff-checksum,"
+        ),
+        encoding="utf-8",
+    )
+
+    assert dashboard_data_fingerprint(tmp_path, self_attestation_commit="a" * 40) == original
+
+    receipt.write_text(
+        baseline.replace(",ccc,", ",changed-data-quality-checksum,"), encoding="utf-8"
+    )
+
+    assert dashboard_data_fingerprint(tmp_path, self_attestation_commit="a" * 40) != original
 
 
 def test_public_status_normalization_replaces_only_dashboard_receipt() -> None:

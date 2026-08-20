@@ -22,9 +22,6 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
     repo = root or project_root()
     mapping_cycle = latest_mapping_study_cycle(repo)
     mapping_paths = mapping_study_paths(mapping_cycle)
-    osf_state = _osf_registration_state(repo)
-    osf_registered = _osf_remote_registered(repo)
-    osf_ready = osf_state == "ready"
     return [
         FinalHandoffTaskRecord(
             id="final_source_downloads",
@@ -192,92 +189,6 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             external_state=_huggingface_external_state(repo),
         ),
         FinalHandoffTaskRecord(
-            id="final_osf_protocol_pack",
-            conductor_track="track_osf_registration_record_quality",
-            github_issues=(484, 488, 511),
-            task_group="research",
-            title="Create OSF protocol/report components and upload preregistration pack",
-            status="complete" if osf_registered else "blocked_review",
-            required_environment=(
-                "Configured OSF personal access token and private project, plus approved "
-                "protocol text."
-            ),
-            command="gh workflow run osf.yml",
-            evidence_path="data/derived/osf/osf_publication_manifest.json",
-            unblock_condition=(
-                "Protocols, licence, methods and governance decisions are human-reviewed and "
-                "the sync manifest rows are explicitly approved."
-            ),
-            recommended_action=(
-                "The approved repository/data registration is active and public; preserve its "
-                "immutable submitted scope and keep papers and preprints excluded."
-                if osf_registered
-                else "Keep upload fail-closed until the reviewed preregistration decision is "
-                "recorded and OSF confirms the registration."
-            ),
-            reason_code=(
-                "osf_registration_active_public"
-                if osf_registered
-                else "osf_registration_review_pending"
-            ),
-            gate_evidence=(
-                "data/osf_review/registration_decision.json",
-                "data/derived/osf/registration_freeze.json",
-                "data/derived/osf/remote_registration_snapshot.json",
-                "data/derived/osf/osf_publication_manifest.json",
-            ),
-            review_record="data/osf_review/registration_decision.json",
-            external_state="ready" if osf_registered else "pending",
-            last_verified_at=_osf_remote_verified_at(repo),
-        ),
-        FinalHandoffTaskRecord(
-            id="final_osf_registration_drift_check",
-            conductor_track="track_osf_registration_record_quality",
-            github_issues=(484, 489, 511),
-            task_group="research",
-            title="Verify OSF registration fingerprint and amendment state",
-            status="ready_local" if osf_ready or osf_state == "evolved" else "blocked_review",
-            required_environment=(
-                "Approved protocol freeze, human methods/licence/governance review and an "
-                "exported OSF registration metadata snapshot."
-            ),
-            command=(
-                "PYTHONPATH=src reimbursement-atlas osf-registration-check "
-                '--remote-state-path "$OSF_REGISTRATION_SNAPSHOT"'
-            ),
-            evidence_path="data/derived/osf/registration_freeze.json",
-            unblock_condition=(
-                "The reviewed freeze matches the active registration, or exact later drift is "
-                "checksum-bound to an approved post-registration evolution disclosure."
-            ),
-            recommended_action=(
-                "Preserve the immutable registration and keep later protocol, manifest and "
-                "source-cutoff changes explicitly outside its preregistered scope."
-            ),
-            reason_code=(
-                "osf_post_registration_evolution_disclosed"
-                if osf_state == "evolved"
-                else "osf_registration_snapshot_ready"
-                if osf_ready
-                else "osf_registration_fingerprint_drift"
-                if osf_state == "drift"
-                else "osf_registration_snapshot_pending"
-            ),
-            gate_evidence=(
-                "data/osf_review/registration_decision.json",
-                "data/derived/osf/registration_freeze.json",
-                "data/derived/osf/remote_registration_snapshot.json",
-                "data/osf_review/post_registration_evolution.json",
-            ),
-            review_record=(
-                "data/osf_review/post_registration_evolution.json"
-                if osf_state == "evolved"
-                else "data/derived/osf/registration_freeze.json"
-            ),
-            external_state="ready" if osf_registered else "pending",
-            last_verified_at=_osf_remote_verified_at(repo),
-        ),
-        FinalHandoffTaskRecord(
             id="final_mapping_calibration_review",
             conductor_track="track_evidence_adjudication_review",
             github_issues=(490, 491),
@@ -400,7 +311,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "Research, evidence and policy-claim readiness remain separate fail-closed gates."
             ),
             recommended_action=(
-                "Only then cut a signed, attested public release and archive to Zenodo/OSF."
+                "Only then cut a signed, attested public release and archive to Zenodo."
             ),
             reason_code=(
                 "external_release_candidate_ready"
@@ -434,7 +345,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "Replace the malformed ZENODO_TOKEN secret, rerun draft mode, and record "
                 "the returned deposition identifier without publishing it."
             ),
-            reason_code="zenodo_token_encoding_blocker",
+            reason_code=_zenodo_handoff_reason_code(repo),
             gate_evidence=(
                 "data/derived/zenodo/preflight.json",
                 "data/derived/zenodo/external_state.json",
@@ -565,7 +476,13 @@ def _huggingface_external_state(repo: Path) -> Literal["pending", "ready", "publ
 
 def _zenodo_handoff_status(repo: Path) -> HandoffStatus:
     state = _read_json(repo / "data/derived/zenodo/external_state.json")
-    if state.get("status") == "draft_created":
+    if state.get("status") in {
+        "draft_created",
+        "doi_reserved",
+        "published",
+        "verified",
+        "verified_public",
+    }:
         return "complete"
     preflight = _read_json(repo / "data/derived/zenodo/preflight.json")
     if preflight.get("status") == "blocked_missing_release_assets":
@@ -573,45 +490,23 @@ def _zenodo_handoff_status(repo: Path) -> HandoffStatus:
     return "blocked_secret"
 
 
-def _osf_registration_state(repo: Path) -> str:
-    from reimburse_atlas.osf_registration import (
-        check_registration_drift,
-        reconcile_post_registration_evolution,
-    )
-
-    freeze = _read_json(repo / "data/derived/osf/registration_freeze.json")
-    snapshot = _read_json(repo / "data/derived/osf/remote_registration_snapshot.json")
-    decision = _read_json(repo / "data/osf_review/post_registration_evolution.json")
-    return cast(
-        "str",
-        reconcile_post_registration_evolution(
-            check_registration_drift(freeze, snapshot),
-            freeze,
-            snapshot,
-            decision,
-        )["status"],
-    )
-
-
-def _osf_remote_registered(repo: Path) -> bool:
-    from reimburse_atlas.osf_registration import (
-        check_registration_drift,
-        freeze_from_registration_decision,
-    )
-
-    decision = _read_json(repo / "data/osf_review/registration_decision.json")
-    snapshot = _read_json(repo / "data/derived/osf/remote_registration_snapshot.json")
-    try:
-        submitted_freeze = freeze_from_registration_decision(decision)
-    except ValueError:
-        return False
-    return check_registration_drift(submitted_freeze, snapshot)["status"] == "ready"
-
-
-def _osf_remote_verified_at(repo: Path) -> str | None:
-    snapshot = _read_json(repo / "data/derived/osf/remote_registration_snapshot.json")
-    value = snapshot.get("remote_verified_at")
-    return value if isinstance(value, str) and value else None
+def _zenodo_handoff_reason_code(repo: Path) -> str:
+    state = _read_json(repo / "data/derived/zenodo/external_state.json")
+    if state.get("status") in {
+        "draft_created",
+        "doi_reserved",
+        "verified",
+        "verified_public",
+    }:
+        return "publication_remote_parity_verified"
+    if state.get("status") == "published":
+        return "publication_record_published"
+    if state.get("status") == "blocked_secret":
+        return "zenodo_write_credential_rejected"
+    preflight = _read_json(repo / "data/derived/zenodo/preflight.json")
+    if preflight.get("status") == "blocked_missing_release_assets":
+        return "zenodo_release_assets_pending"
+    return "zenodo_token_encoding_blocker"
 
 
 def _mapping_evaluation_accepted(repo: Path) -> bool:

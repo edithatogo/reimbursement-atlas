@@ -25,7 +25,7 @@ def build_research_linkages(
     mapping_resources: list[MappingResourceRecord],
     output_plans: list[OutputArtifactPlanRecord],
 ) -> list[ResearchLinkageRecord]:
-    """Build linkage rows for roadmap, OSF and GitHub Project planning."""
+    """Build linkage rows for roadmap, publication and GitHub Project planning."""
     source_by_id = {record.id: record for record in sources}
     dataset_by_id = {record.id: record for record in dataset_candidates}
     output_by_track = _group_by_track(output_plans)
@@ -114,7 +114,7 @@ def build_research_linkages(
                     "planned_output",
                     "available" if output.status in {"implemented", "published"} else "planned",
                     (
-                        "Keep output plan aligned with release gates and OSF/Hugging Face "
+                        "Keep output plan aligned with release gates and Hugging Face/Zenodo "
                         "publication rules."
                     ),
                 )

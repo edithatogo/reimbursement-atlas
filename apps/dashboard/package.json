@@ -12,9 +12,10 @@
   },
   "dependencies": {
     "@astrojs/check": "0.9.9",
-    "@astrojs/react": "6.0.1",
+    "@astrojs/react": "6.0.3",
     "@cosmograph/react": "2.3.3",
-    "astro": "7.1.1",
+    "astro": "7.2.3",
+    "js-yaml-orig": "npm:js-yaml@5.3.0",
     "papaparse": "5.5.4",
     "react": "19.2.7",
     "react-dom": "19.2.7",
@@ -26,6 +27,15 @@
     "@types/papaparse": "^5.5.2"
   },
   "overrides": {
-    "fast-uri": "3.1.5"
+    "fast-uri": "3.1.5",
+    "dompurify": "3.4.13",
+    "@astrojs/internal-helpers": {
+      "js-yaml": "file:vendor/js-yaml-compat"
+    },
+    "@astrojs/markdown-satteri": {
+      "js-yaml": "file:vendor/js-yaml-compat"
+    },
+    "js-yaml": "file:vendor/js-yaml-compat",
+    "nanoid": "3.3.18"
   }
 }

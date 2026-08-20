@@ -1,22 +1,17 @@
 # Release readiness
 
-## Current release boundary (2026-07-31)
+## Current release boundary (2026-08-20)
 
-Merged `main` at `81c28d8809c6fe47cf8e3aa2eecc4da1dec244b1` reports
-`repository_release_ready=true` and `evidence_release_ready=false`. The 750-case
-mapping study and refreshed scoped dashboard review pass their independent gates.
-Research-policy claims remain deliberately unready (`1/5` evidence-ready): only
-the source-transparency metadata claim has a checksum-bound, validated and
-scoped-approved package. Readiness scores and fixture demonstrators cannot satisfy
-the other four gates.
+Merged `main` at `de1ababd89f128068d46f2aa6e7c20b7a1b677e1` reports
+`repository_release_ready=true` and `evidence_release_ready=true`; all release
+gates pass. The current-head dashboard packet is approved only within its declared
+visual, automated accessibility, responsive, keyboard, provenance, displayed-data
+parity and prohibited-content scope. This does not authorize unsupported causal,
+coverage or price-equivalence claims.
 
-OSF project `q8cnx` is public and its 11 approved files pass remote SHA-256
-round-trip verification. Read-only workflow run `30181343265` confirms registration
-`gqk4z` is active, public and immutable. Its canonical snapshot is bound to the
-exact submitted decision, while the current protocol, manifest and source cutoff
-report fingerprint drift from that immutable freeze. Zenodo and DataCite
-publication remain downstream. No paper or preprint is in the release or
-authorized for submission.
+OSF is deprecated as an active destination. Project `q8cnx`, registration `gqk4z` and their
+checksum-bound receipts remain historical provenance, but their state no longer affects this
+matrix. Zenodo, DataCite, Hugging Face, papers and preprints retain independent controls.
 
 ## Current external refresh (2026-07-21)
 
@@ -25,7 +20,7 @@ and the dataset remains `other`. OSF project `q8cnx` is public, while registrati
 licence, evidence, policy and publication gates remain fail-closed.
 
 Current merged-main baseline:
-`81c28d8809c6fe47cf8e3aa2eecc4da1dec244b1` (2026-08-02).
+`de1ababd89f128068d46f2aa6e7c20b7a1b677e1` (2026-08-20).
 Regenerate this document after any further merge and before release review.
 The last merged-main repository release gate summary was 36/36 passing; the current
 branch must rerun the complete matrix before this state can be considered current.
@@ -84,8 +79,6 @@ Remaining blockers are external or require accountable human judgement:
 - MBS and historical-source content/domain review remains required before public
   derived-data publication; the owner-approved licence scope is recorded separately.
 - CMS CLFS/PFS/ASP fields require source-content and field-scope review.
-- OSF registration requires an approved protocol freeze and write-authorized
-  credentials; repository configuration alone does not authorize publication.
 - Hugging Face publication requires the configured `HF_TOKEN` and target repository variables,
   but publication remains disabled until review gates pass.
 

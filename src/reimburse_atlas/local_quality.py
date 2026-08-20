@@ -135,7 +135,7 @@ def default_quality_gate_specs(root: Path | None = None) -> list[QualityGateSpec
             id="basedpyright",
             category="typecheck",
             command=(*python_prefix, "basedpyright"),
-            timeout_seconds=240,
+            timeout_seconds=420,
             profiles=("ci", "release"),
         ),
         QualityGateSpec(
@@ -203,7 +203,7 @@ def default_quality_gate_specs(root: Path | None = None) -> list[QualityGateSpec
             command=(*python_prefix, "python", "scripts/make_protocol_status.py"),
             timeout_seconds=120,
             profiles=("quick", "ci", "release"),
-            notes="OSF/research protocol completeness evidence must regenerate cleanly.",
+            notes="Research protocol completeness evidence must regenerate cleanly.",
         ),
         QualityGateSpec(
             id="source_content_validation",

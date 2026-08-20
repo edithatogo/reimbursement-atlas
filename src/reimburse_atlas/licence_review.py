@@ -137,16 +137,22 @@ def write_licence_review_queue(  # ruff:ignore[too-many-locals]
             if row.licence_gate == licence_gate and row.publication_scope == publication_scope
         ]
         batch_statuses = [effective_decisions.get(row.review_id, "pending") for row in batch_rows]
+        pending_count = batch_statuses.count("pending")
+        blocked_count = batch_statuses.count("blocked")
         batches.append({
             "licence_gate": licence_gate,
             "publication_scope": publication_scope,
             "artifact_count": len(batch_rows),
-            "pending_count": batch_statuses.count("pending"),
+            "pending_count": pending_count,
             "approved_count": batch_statuses.count("approved"),
-            "blocked_count": batch_statuses.count("blocked"),
+            "blocked_count": blocked_count,
             "total_byte_size": sum(row.byte_size for row in batch_rows),
             "raw_payload_count": sum(row.contains_raw_source_payload for row in batch_rows),
-            "review_action": "Human review required before publication consideration",
+            "review_action": (
+                "Accountable review required before publication consideration"
+                if pending_count or blocked_count
+                else "No new approval required for current checksums"
+            ),
         })
     batch_path = write_csv(batches, output_dir / "licence_review_batches.csv")
     effective_statuses = [effective_decisions.get(row.review_id, "pending") for row in rows]
@@ -154,7 +160,7 @@ def write_licence_review_queue(  # ruff:ignore[too-many-locals]
         "schema_version": "licence-review-queue-v1",
         "artifact_count": len(rows),
         "review_required_count": sum(row.licence_gate != "permissive_candidate" for row in rows),
-        "queue_pending_count": sum(row.review_status == "pending" for row in rows),
+        "queue_pending_count": effective_statuses.count("pending"),
         "pending_count": effective_statuses.count("pending"),
         "approved_count": effective_statuses.count("approved"),
         "blocked_count": effective_statuses.count("blocked"),
@@ -167,10 +173,11 @@ def write_licence_review_queue(  # ruff:ignore[too-many-locals]
     readme_path.write_text(
         """# Licence review queue
 
-This generated queue is a review aid, not an approval record. Every row remains
-`pending` when regenerated. A human reviewer must record the decision, source terms,
-attribution, redistribution permission, restrictions and evidence in
-`docs/REVIEW_DECISIONS.md` before any publication gate can change.
+This generated queue is a review aid, not an approval record. Its row-level
+`review_status` field remains neutral when regenerated; effective current-checksum
+decisions are reported in the summary and batch files. Only rows with an effective
+`pending` or `blocked` state require accountable action under
+`docs/APPROVAL_POLICY.md` and `docs/REVIEW_DECISIONS.md`.
 
 The checksums bind review to the exact candidate artefacts. Do not edit this generated
 queue to simulate approval, and do not publish it as evidence that review occurred.
@@ -201,7 +208,8 @@ checksum-bound row-level record.
         + (batch_lines or "- No candidate artefacts are present.")
         + f"""
 
-Total candidate artefacts: {len(rows)}; generated queue rows remain `pending` by design.
+Total candidate artefacts: {len(rows)}. Neutral generated row markers are not approval
+requests; the batch and summary `pending_count` values identify required decisions.
 
 ## Decision ledger snapshot
 

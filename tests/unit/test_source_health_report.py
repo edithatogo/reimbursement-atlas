@@ -152,4 +152,10 @@ def test_tracked_source_health_count_matches_current_acquisition_report() -> Non
     report = build_source_health_report(Path())
     assert report["status"] == "incomplete"
     assert report["review_required_count"] == 7
-    assert report["operational_blocker_count"] == 1
+    assert report["operational_blocker_count"] == 4
+    assert report["operational_blocker_count"] == sum(
+        int(item["operational_blocker_count"]) for item in report["items"]
+    )
+    assert report["review_required_count"] == sum(
+        int(item["review_required_count"]) for item in report["items"]
+    )

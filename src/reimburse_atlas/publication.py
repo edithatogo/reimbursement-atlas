@@ -26,6 +26,9 @@ class PublicationArtifact:
     licence_gate: str
     contains_raw_source_payload: bool
     notes: str
+    approval_requirement: str = "accountable_review"
+    approval_reason_code: str = "source_rights_review"
+    reapproval_trigger: str = "artifact_checksum_or_rights_scope_change"
 
 
 @dataclass(frozen=True)
@@ -174,11 +177,6 @@ DEFAULT_PUBLICATION_PATHS = (
     Path("data/derived/github_project/github_project_items.csv"),
     Path("data/derived/final_handoff/final_handoff_tasks.jsonl"),
     Path("data/derived/final_handoff/final_handoff_tasks.csv"),
-    Path("data/derived/osf/component_plan.jsonl"),
-    Path("data/derived/osf/component_plan.csv"),
-    Path("data/derived/osf/osf_publication_manifest.json"),
-    Path("data/derived/osf/preprint_checklist.md"),
-    Path("data/derived/osf/sync_manifest.jsonl"),
     Path("data/derived/protocols/protocol_status.jsonl"),
     Path("data/derived/protocols/protocol_status.csv"),
     Path("data/derived/protocols/summary.json"),
@@ -213,14 +211,30 @@ DEFAULT_PUBLICATION_PATHS = (
 )
 
 PROJECT_OWNED_METADATA_PREFIXES = (
+    Path("data/derived/architecture"),
     Path("data/derived/data_dictionary"),
+    Path("data/derived/data_quality"),
     Path("data/derived/final_handoff"),
+    Path("data/derived/github_project"),
     Path("data/derived/local_quality_gates"),
+    Path("data/derived/protocols"),
     Path("data/derived/repo_automation"),
     Path("data/derived/release_readiness"),
     Path("data/derived/research_package"),
+    Path("data/derived/roadmap_linkages"),
+    Path("data/derived/sbom"),
     Path("data/derived/source_drift"),
 )
+PROJECT_OWNED_METADATA_PATHS = {
+    Path("data/seed/graph_edges.csv"),
+    Path("data/seed/graph_nodes.csv"),
+    Path("data/seed/conductor_tracks.csv"),
+    Path("data/seed/conductor_tracks.jsonl"),
+    Path("data/seed/output_artifact_plans.csv"),
+    Path("data/seed/output_artifact_plans.jsonl"),
+    Path("data/seed/roadmap_functions.csv"),
+    Path("data/seed/roadmap_functions.jsonl"),
+}
 
 
 def file_sha256(path: Path) -> str:
@@ -265,7 +279,9 @@ def _scope_for(path: Path) -> tuple[str, str, bool, str]:
             True,
             "Raw/cache path detected; do not publish.",
         )
-    if any(path.is_relative_to(prefix) for prefix in PROJECT_OWNED_METADATA_PREFIXES):
+    if path in PROJECT_OWNED_METADATA_PATHS or any(
+        path.is_relative_to(prefix) for prefix in PROJECT_OWNED_METADATA_PREFIXES
+    ):
         return (
             "project_owned_metadata",
             "apache_2_0_project_output",
@@ -332,6 +348,18 @@ def build_publication_manifest(
             notes = (
                 "Checksum-bound human approval recorded; publish only the reviewed derived fields."
             )
+        if gate == "apache_2_0_project_output":
+            approval_requirement = "automatic_policy"
+            approval_reason_code = "project_owned_apache_2_0"
+            reapproval_trigger = "ownership_or_path_classification_change"
+        elif gate == "permissive_candidate":
+            approval_requirement = "none_current_checksum"
+            approval_reason_code = "checksum_approval_recorded"
+            reapproval_trigger = "artifact_checksum_or_rights_scope_change"
+        else:
+            approval_requirement = "accountable_review"
+            approval_reason_code = "source_rights_review"
+            reapproval_trigger = "artifact_checksum_or_rights_scope_change"
         artifacts.append(
             PublicationArtifact(
                 table_name=relative_path.stem,
@@ -344,6 +372,9 @@ def build_publication_manifest(
                 licence_gate=gate,
                 contains_raw_source_payload=contains_raw,
                 notes=notes,
+                approval_requirement=approval_requirement,
+                approval_reason_code=approval_reason_code,
+                reapproval_trigger=reapproval_trigger,
             )
         )
     return PublicationManifest(
