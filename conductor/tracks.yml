@@ -1,6 +1,16 @@
 version: 1
 updated: "2026-07-31"
 tracks:
+  - id: track_osf_deprecation_20260820
+    title: "OSF destination deprecation"
+    priority: must
+    phase: hardening
+    workstream: research
+    goal: "Retire OSF as an active registration/publication dependency while preserving immutable historical evidence."
+    spec: "conductor/tracks/track_osf_deprecation_20260820/spec.md"
+    plan: "conductor/tracks/track_osf_deprecation_20260820/plan.md"
+    issues:
+      - 711
   - id: track_approval_friction_reduction_20260820
     title: "Risk-tiered approval friction reduction"
     priority: must

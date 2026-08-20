@@ -1,6 +1,22 @@
 version: 2
 updated: "2026-07-31"
 epics:
+  - id: OSF-DEPRECATION-001
+    title: Retire OSF as an active destination
+    phase: hardening
+    workstream: research
+    priority: must
+    track_id: track_osf_deprecation_20260820
+    issues:
+      - title: Remove OSF registration from active readiness and publication gates
+        labels: ["type:research", "type:automation", "status:in_progress"]
+        status: in_progress
+        github_issue: 711
+        acceptance:
+          - "Release, Hugging Face, Zenodo, dashboard and handoff contracts do not depend on OSF."
+          - "OSF mutation and monitor workflows are retired."
+          - "Registration gqk4z remains immutable historical provenance."
+          - "Rights, evidence, claims and external publication remain independently gated."
   - id: APR-001
     title: Risk-tiered approval friction reduction
     phase: hardening

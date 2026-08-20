@@ -1,0 +1,23 @@
+{
+  "track_id": "track_osf_deprecation_20260820",
+  "type": "refactor",
+  "status": "in_progress",
+  "created_at": "2026-08-20T10:13:16Z",
+  "updated_at": "2026-08-20T10:13:16Z",
+  "description": "Retire OSF as an active destination while preserving immutable historical registration evidence.",
+  "evidence_schema": "1.0",
+  "gates": [
+    {
+      "id": "historical_evidence_preservation",
+      "kind": "repository",
+      "status": "pending",
+      "evidence": "Registration gqk4z receipts, decisions and post-registration evolution disclosure must remain tracked."
+    },
+    {
+      "id": "hosted_validation",
+      "kind": "hosted_ci",
+      "status": "pending",
+      "evidence": "Protected checks must pass before merge."
+    }
+  ]
+}
