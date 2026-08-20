@@ -1,5 +1,19 @@
 # Decision log
 
+## 2026-08-20: Reconcile live issue metadata after OSF deprecation
+
+Decision: remove active OSF labels and destination-specific wording from generated research
+issues. Close only completed or obsolete OSF destination work; retain unfinished protocol,
+analysis, report and local manuscript-scaffold work under destination-neutral governance.
+Historical OSF registration evidence remains immutable provenance, and papers or preprints
+remain excluded from submission.
+
+Rationale: retiring OSF as an active dependency must not close substantive research work or
+erase historical receipts. Removing the exact legacy `type:osf` label from otherwise unchanged
+GitHub Project rows is a low-risk metadata normalization and does not invalidate the scoped
+dashboard review. Any material title, status, content, route, source or displayed-data change
+continues to fail closed and require fresh evidence under the risk-tiered approval policy.
+
 ## 2026-07-19: Owner approval of non-paper recommendations
 
 Decision: approve the recommended non-paper scope: derived-only source processing within
