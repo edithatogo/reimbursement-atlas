@@ -16,6 +16,7 @@ _PRIORITY_ORDER = ("must", "should", "could", "wont")
 # Legacy backlog epics predate the current track IDs. Keep their Project rows
 # linked to the owning track instead of leaving them as unassigned backlog work.
 _EPIC_TRACK_MAP = {
+    "APR-001": "track_approval_friction_reduction_20260820",
     "SRC-001": "track_live_source_ingestion",
     "PARSE-001": "track_live_source_ingestion",
     "MAP-001": "track_mapping_workbench",

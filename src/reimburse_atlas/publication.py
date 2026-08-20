@@ -26,6 +26,9 @@ class PublicationArtifact:
     licence_gate: str
     contains_raw_source_payload: bool
     notes: str
+    approval_requirement: str = "accountable_review"
+    approval_reason_code: str = "source_rights_review"
+    reapproval_trigger: str = "artifact_checksum_or_rights_scope_change"
 
 
 @dataclass(frozen=True)
@@ -213,14 +216,25 @@ DEFAULT_PUBLICATION_PATHS = (
 )
 
 PROJECT_OWNED_METADATA_PREFIXES = (
+    Path("data/derived/architecture"),
     Path("data/derived/data_dictionary"),
+    Path("data/derived/data_quality"),
     Path("data/derived/final_handoff"),
+    Path("data/derived/github_project"),
     Path("data/derived/local_quality_gates"),
     Path("data/derived/repo_automation"),
     Path("data/derived/release_readiness"),
     Path("data/derived/research_package"),
+    Path("data/derived/sbom"),
     Path("data/derived/source_drift"),
 )
+PROJECT_OWNED_METADATA_PATHS = {
+    Path("data/derived/osf/sync_manifest.jsonl"),
+    Path("data/seed/graph_edges.csv"),
+    Path("data/seed/graph_nodes.csv"),
+    Path("data/seed/conductor_tracks.csv"),
+    Path("data/seed/conductor_tracks.jsonl"),
+}
 
 
 def file_sha256(path: Path) -> str:
@@ -265,7 +279,9 @@ def _scope_for(path: Path) -> tuple[str, str, bool, str]:
             True,
             "Raw/cache path detected; do not publish.",
         )
-    if any(path.is_relative_to(prefix) for prefix in PROJECT_OWNED_METADATA_PREFIXES):
+    if path in PROJECT_OWNED_METADATA_PATHS or any(
+        path.is_relative_to(prefix) for prefix in PROJECT_OWNED_METADATA_PREFIXES
+    ):
         return (
             "project_owned_metadata",
             "apache_2_0_project_output",
@@ -332,6 +348,18 @@ def build_publication_manifest(
             notes = (
                 "Checksum-bound human approval recorded; publish only the reviewed derived fields."
             )
+        if gate == "apache_2_0_project_output":
+            approval_requirement = "automatic_policy"
+            approval_reason_code = "project_owned_apache_2_0"
+            reapproval_trigger = "ownership_or_path_classification_change"
+        elif gate == "permissive_candidate":
+            approval_requirement = "none_current_checksum"
+            approval_reason_code = "checksum_approval_recorded"
+            reapproval_trigger = "artifact_checksum_or_rights_scope_change"
+        else:
+            approval_requirement = "accountable_review"
+            approval_reason_code = "source_rights_review"
+            reapproval_trigger = "artifact_checksum_or_rights_scope_change"
         artifacts.append(
             PublicationArtifact(
                 table_name=relative_path.stem,
@@ -344,6 +372,9 @@ def build_publication_manifest(
                 licence_gate=gate,
                 contains_raw_source_payload=contains_raw,
                 notes=notes,
+                approval_requirement=approval_requirement,
+                approval_reason_code=approval_reason_code,
+                reapproval_trigger=reapproval_trigger,
             )
         )
     return PublicationManifest(

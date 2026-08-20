@@ -1,11 +1,14 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
 import pytest
 
 from reimburse_atlas.dashboard_review import (
+    _json_at_commit,  # ruff:ignore[import-private-name] - fail-closed helper branches need direct coverage.
+    _standing_approval_valid,  # ruff:ignore[import-private-name] - see above.
     dashboard_data_fingerprint,
     dashboard_review_evidence,
     dashboard_source_fingerprint,
@@ -163,6 +166,231 @@ def test_dashboard_evidence_invalidates_changed_displayed_data(tmp_path: Path) -
     evidence = dashboard_review_evidence(root)
 
     assert evidence["checks"]["displayed_data_parity"] is False
+
+
+def test_dashboard_evidence_reuses_integrity_checked_standing_approval(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Routine data refreshes do not require another bounded visual approval."""
+    root = _machine_ready_root(tmp_path)
+    current_automated_path = root / "data/derived/dashboard_review/automated_review_packet.json"
+    current_automated = json.loads(current_automated_path.read_text(encoding="utf-8"))
+    current_owner = build_packet(root)
+    owner_path = root / "data/derived/dashboard_review/owner_review_packet.json"
+    owner_path.write_text(json.dumps(current_owner), encoding="utf-8")
+
+    reviewed_commit = "b" * 40
+    reviewed_automated = dict(current_automated)
+    reviewed_automated["tested_commit"] = reviewed_commit
+    reviewed_automated["data_fingerprint"] = "1" * 64
+    reviewed_automated["screenshot_count"] = 44
+    reviewed_owner = dict(current_owner)
+    reviewed_owner["tested_commit"] = reviewed_commit
+    reviewed_owner["current_head"] = reviewed_commit
+    reviewed_owner["data_fingerprint"] = "1" * 64
+    historical = {
+        "data/derived/dashboard_review/automated_review_packet.json": json.dumps(
+            reviewed_automated
+        ).encode(),
+        "data/derived/dashboard_review/owner_review_packet.json": json.dumps(
+            reviewed_owner
+        ).encode(),
+    }
+    human = {
+        "status": "approved_within_scope",
+        "reviewed_at": "2026-08-20T00:00:00Z",
+        "reviewer": "repository-owner",
+        "commit": reviewed_commit,
+        "automated_packet_sha256": hashlib.sha256(
+            historical["data/derived/dashboard_review/automated_review_packet.json"]
+        ).hexdigest(),
+        "owner_packet_sha256": hashlib.sha256(
+            historical["data/derived/dashboard_review/owner_review_packet.json"]
+        ).hexdigest(),
+        "scope": {"routes": list(ROUTES)},
+    }
+    _write_json(root, "data/derived/dashboard_review/human_review.json", human)
+
+    def historical_file(_repo: Path, commit: str, path: Path) -> bytes | None:
+        if commit != reviewed_commit:
+            return None
+        return historical.get(path.as_posix())
+
+    monkeypatch.setattr("reimburse_atlas.dashboard_review._git_file_at_commit", historical_file)
+
+    evidence = dashboard_review_evidence(root)
+
+    assert evidence["approval_mode"] == "standing_scoped"
+    assert evidence["checks"]["human_scoped_approval"] is True
+    assert evidence["checks"]["packet_hash_parity"] is True
+
+
+def test_dashboard_standing_approval_resolves_later_receipt_commit(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The approval receipt may be committed after its browser-tested commit."""
+    root = _machine_ready_root(tmp_path)
+    automated_path = root / "data/derived/dashboard_review/automated_review_packet.json"
+    automated = json.loads(automated_path.read_text(encoding="utf-8"))
+    owner = build_packet(root)
+    owner_path = root / "data/derived/dashboard_review/owner_review_packet.json"
+    owner_path.write_text(json.dumps(owner), encoding="utf-8")
+    tested_commit = "b" * 40
+    receipt_commit = "c" * 40
+    reviewed_automated = dict(automated)
+    reviewed_automated["tested_commit"] = tested_commit
+    reviewed_automated["screenshot_count"] = 44
+    reviewed_owner = dict(owner)
+    reviewed_owner["tested_commit"] = tested_commit
+    reviewed_owner["current_head"] = tested_commit
+    reviewed_automated_bytes = json.dumps(reviewed_automated).encode()
+    reviewed_owner_bytes = json.dumps(reviewed_owner).encode()
+    human = {
+        "status": "approved_within_scope",
+        "reviewed_at": "2026-08-20T00:00:00Z",
+        "reviewer": "repository-owner",
+        "commit": tested_commit,
+        "automated_packet_sha256": hashlib.sha256(reviewed_automated_bytes).hexdigest(),
+        "owner_packet_sha256": hashlib.sha256(reviewed_owner_bytes).hexdigest(),
+        "scope": {"routes": list(ROUTES)},
+    }
+    _write_json(root, "data/derived/dashboard_review/human_review.json", human)
+    historical = {
+        (receipt_commit, "data/derived/dashboard_review/automated_review_packet.json"): (
+            reviewed_automated_bytes
+        ),
+        (receipt_commit, "data/derived/dashboard_review/owner_review_packet.json"): (
+            reviewed_owner_bytes
+        ),
+        (receipt_commit, "data/derived/dashboard_review/human_review.json"): json.dumps(
+            human
+        ).encode(),
+    }
+
+    monkeypatch.setattr(
+        "reimburse_atlas.dashboard_review._git_file_at_commit",
+        lambda _repo, commit, path: historical.get((commit, path.as_posix())),
+    )
+    monkeypatch.setattr(
+        "reimburse_atlas.dashboard_review._commits_touching",
+        lambda _repo, _path: (receipt_commit,),
+    )
+
+    evidence = dashboard_review_evidence(root)
+
+    assert evidence["approval_mode"] == "standing_scoped"
+    assert evidence["checks"]["human_scoped_approval"] is True
+
+
+def test_dashboard_standing_approval_fails_after_ui_fingerprint_change(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A material dashboard change still requires accountable review."""
+    root = _machine_ready_root(tmp_path)
+    automated_path = root / "data/derived/dashboard_review/automated_review_packet.json"
+    automated = json.loads(automated_path.read_text(encoding="utf-8"))
+    owner = build_packet(root)
+    owner_path = root / "data/derived/dashboard_review/owner_review_packet.json"
+    owner_path.write_text(json.dumps(owner), encoding="utf-8")
+    reviewed_commit = "b" * 40
+    reviewed_automated = dict(automated)
+    reviewed_automated["tested_commit"] = reviewed_commit
+    reviewed_automated["source_fingerprint"] = "2" * 64
+    reviewed_owner = dict(owner)
+    reviewed_owner["tested_commit"] = reviewed_commit
+    reviewed_owner["source_fingerprint"] = "2" * 64
+    historical = {
+        "data/derived/dashboard_review/automated_review_packet.json": json.dumps(
+            reviewed_automated
+        ).encode(),
+        "data/derived/dashboard_review/owner_review_packet.json": json.dumps(
+            reviewed_owner
+        ).encode(),
+    }
+    _write_json(
+        root,
+        "data/derived/dashboard_review/human_review.json",
+        {
+            "status": "approved_within_scope",
+            "reviewed_at": "2026-08-20T00:00:00Z",
+            "reviewer": "repository-owner",
+            "commit": reviewed_commit,
+            "automated_packet_sha256": hashlib.sha256(
+                historical["data/derived/dashboard_review/automated_review_packet.json"]
+            ).hexdigest(),
+            "owner_packet_sha256": hashlib.sha256(
+                historical["data/derived/dashboard_review/owner_review_packet.json"]
+            ).hexdigest(),
+        },
+    )
+
+    def historical_file(_repo: Path, commit: str, path: Path) -> bytes | None:
+        if commit != reviewed_commit:
+            return None
+        return historical.get(path.as_posix())
+
+    monkeypatch.setattr("reimburse_atlas.dashboard_review._git_file_at_commit", historical_file)
+
+    evidence = dashboard_review_evidence(root)
+
+    assert evidence["approval_mode"] == "invalid"
+    assert evidence["checks"]["human_scoped_approval"] is False
+
+
+@pytest.mark.parametrize("content", [None, b"not-json", b"[]"])
+def test_historical_packet_reader_fails_closed(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    content: bytes | None,
+) -> None:
+    monkeypatch.setattr(
+        "reimburse_atlas.dashboard_review._git_file_at_commit",
+        lambda _repo, _commit, _path: content,
+    )
+
+    assert _json_at_commit(tmp_path, "a" * 40, Path("packet.json")) == {}
+
+
+@pytest.mark.parametrize(
+    ("human", "historical"),
+    [
+        ({}, {}),
+        ({"commit": "a" * 40}, {}),
+        (
+            {"commit": "a" * 40, "automated_packet_sha256": "0" * 64},
+            {"automated_review_packet.json": b"{}", "owner_review_packet.json": b"{}"},
+        ),
+        (
+            {
+                "commit": "a" * 40,
+                "automated_packet_sha256": hashlib.sha256(b"{}").hexdigest(),
+                "owner_packet_sha256": "0" * 64,
+            },
+            {"automated_review_packet.json": b"{}", "owner_review_packet.json": b"{}"},
+        ),
+    ],
+)
+def test_standing_approval_rejects_incomplete_historical_binding(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    human: dict[str, str],
+    historical: dict[str, bytes],
+) -> None:
+    monkeypatch.setattr(
+        "reimburse_atlas.dashboard_review._git_file_at_commit",
+        lambda _repo, _commit, path: historical.get(path.name),
+    )
+
+    assert not _standing_approval_valid(
+        tmp_path,
+        automated={},
+        owner={},
+        human=human,
+        source_fingerprint="1" * 64,
+    )
 
 
 def test_dashboard_data_fingerprint_covers_rendered_csv_files(tmp_path: Path) -> None:

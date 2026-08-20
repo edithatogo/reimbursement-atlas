@@ -1,6 +1,16 @@
 version: 1
 updated: "2026-07-31"
 tracks:
+  - id: track_approval_friction_reduction_20260820
+    title: "Risk-tiered approval friction reduction"
+    priority: must
+    phase: hardening
+    workstream: governance
+    goal: "Reserve accountable approval for high-risk changes while automatically validating deterministic project outputs and unchanged bounded dashboard scope."
+    spec: "conductor/tracks/track_approval_friction_reduction_20260820/spec.md"
+    plan: "conductor/tracks/track_approval_friction_reduction_20260820/plan.md"
+    issues:
+      - 708
   - id: track_runtime_mojo_python314
     title: "Mojo-first runtime and Python 3.14 compatibility"
     priority: must

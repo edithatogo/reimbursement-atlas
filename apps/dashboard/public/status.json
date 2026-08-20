@@ -9,12 +9,20 @@
       "summary": "Source acquisition requires follow-up: Run hardened curl/wget source download plan, Review historical MBS/PBS source expansion and licence scope."
     },
     {
-      "category": "human_review",
-      "evidence_path": "data/derived/licence_review/summary.json",
-      "id": "licence_review",
-      "next_action": "Record accountable reviewer decisions in the checksum-bound queue.",
-      "status": "blocked_review",
-      "summary": "2 publication candidates still require licence review."
+      "category": "publication",
+      "evidence_path": "data/derived/release_readiness/summary.json",
+      "id": "research_publication",
+      "next_action": "Approve the frozen protocols, publication manifest and release decision.",
+      "status": "gated",
+      "summary": "Research publication remains gated."
+    },
+    {
+      "category": "osf",
+      "evidence_path": "data/derived/protocols/protocol_status.jsonl",
+      "id": "osf_registration",
+      "next_action": "Complete accountable methods, domain, licence and governance review.",
+      "status": "gated",
+      "summary": "OSF registration is not approved."
     }
   ],
   "claims_policy": "Do not claim evidence or public-release readiness until reviewed sources, licences, human research review and release gates pass.",
@@ -24,7 +32,7 @@
     "evidence_release_ready": true,
     "prototype_ready_rows": 0,
     "readiness_rows": 5,
-    "research_publication_ready": true,
+    "research_publication_ready": false,
     "source_validation": "pass",
     "status": "ready"
   },
@@ -37,16 +45,16 @@
     "source_validation": "data/derived/source_validation/summary.json"
   },
   "licence_review": {
-    "approved_rows": 217,
+    "approved_rows": 199,
     "decision_source": "data/licence_review/decisions.jsonl",
-    "pending_rows": 2,
+    "pending_rows": 0,
     "queue_source": "data/derived/licence_review/licence_review_queue.jsonl"
   },
   "project": "reimbursement-atlas",
   "publication": {
     "huggingface_publication": "manual approval and token required",
-    "osf_registration_ready": true,
-    "status": "ready",
+    "osf_registration_ready": false,
+    "status": "gated",
     "zenodo_doi": "manual release approval required"
   },
   "schema_version": "public-status-v1",

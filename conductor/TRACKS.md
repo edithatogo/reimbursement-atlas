@@ -1,5 +1,7 @@
 # Project Tracks
 
+- [~] **Track: Risk-tiered approval friction reduction**
+  *Link: [./tracks/track_approval_friction_reduction_20260820/index.md](./tracks/track_approval_friction_reduction_20260820/index.md)*
 - [~] **Track: Evidence-grade live-source ingestion**
   *Link: [./tracks/track_live_source_ingestion/index.md](./tracks/track_live_source_ingestion/index.md)*
 - [~] **Track: Hugging Face dataset and Spaces publication**

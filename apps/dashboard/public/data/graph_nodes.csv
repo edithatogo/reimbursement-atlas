@@ -318,6 +318,7 @@ manual_review,,,,,,,,,mapping_resource:map_who_atc_ddd,,,mapping_resource,WHO AT
 ,,,,,,,,,table:source_registry,,,table,source_registry,,,,,,,,,,,,,,
 ,,,,,,,,,table:source_status,,,table,source_status,,,,,,,,,,,,,,
 ,,,,,,,,,table:source_transparency_index,,,table,source_transparency_index,,,,,,,,,,,,,,
+,,,,,,,,,track:track_approval_friction_reduction_20260820,,,conductor_track,Risk-tiered approval friction reduction,,,,,,,hardening,,must,,,,,governance
 ,,,,,,,,,track:track_ci_cd_supply_chain,,,conductor_track,CI/CD and supply-chain hardening,,,,,,,hardening,,must,,,,,automation
 ,,,,,,,,,track:track_data_packaging_standards,,,conductor_track,Research-data packaging standards,,,,,,,implementation,,should,,,,,publication
 ,,,,,,,,,track:track_data_quality_evidence,,,conductor_track,"Data quality, source validation and evidence readiness",,,,,,,hardening,,must,,,,,data_quality
