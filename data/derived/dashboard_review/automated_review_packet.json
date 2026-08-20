@@ -9,7 +9,7 @@
     "table captions"
   ],
   "coverage_complete": true,
-  "data_fingerprint": "f6d920c807d5f5de86a4262663ee61a5bbbfefc79abc9677ad2f0bbd5a14b346",
+  "data_fingerprint": "604c7c6c4905bf74e25497ee622c90ebb0e698886ffd300bae03b1400050b9d8",
   "expected_test_count": 64,
   "human_review_required": true,
   "junit": {
@@ -619,7 +619,7 @@
   "source_fingerprint": "ab918e181b619fd9450f7ca124176f2855d380d594e55c96b5346bdedcba0128",
   "status": "pass",
   "test_count": 64,
-  "tested_commit": "15f05261b0e2a1e4d2c8b3b4dd4bba22933f8691",
+  "tested_commit": "692e1349992bfd77b7d9684cdeb55c0ba2f80134",
   "workflow": {
     "artifact_name": "dashboard-browser-review-32425867696",
     "run_attempt": "1",
