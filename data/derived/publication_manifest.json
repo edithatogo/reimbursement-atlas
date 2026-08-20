@@ -1322,8 +1322,8 @@
       "table_name": "import_cycles"
     },
     {
-      "byte_size": 9152,
-      "checksum_sha256": "80ee43705a168d75ae4554acb5b24f6f7028794cef386914f46cfc296ba00d5b",
+      "byte_size": 9093,
+      "checksum_sha256": "9124876f4bca6d76c95a8d84236fa1c481565ceb05e67a30ddce760f7d75e4af",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "apache_2_0_project_output",
@@ -1334,8 +1334,8 @@
       "table_name": "release_gates"
     },
     {
-      "byte_size": 5584,
-      "checksum_sha256": "967543c4a8bb32976f6358b193b708e60344f04fdca154044da238b39954df99",
+      "byte_size": 5523,
+      "checksum_sha256": "d446a92057ccf98de697acb4442940385e83bb394a195fd72ce8d2e4f78c8e9b",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "apache_2_0_project_output",
@@ -1514,8 +1514,8 @@
       "table_name": "github_project_items"
     },
     {
-      "byte_size": 13700,
-      "checksum_sha256": "7ddc253ae8ba691a575e58ea4b997a31b028bbbcfd980eb3d4e82d1bb45a9094",
+      "byte_size": 13691,
+      "checksum_sha256": "cf5257d1c846a44b677d698d5456b4558449f0e2705b672f6e04a67e04d3c20d",
       "contains_raw_source_payload": false,
       "file_format": "jsonl",
       "licence_gate": "apache_2_0_project_output",
@@ -1526,8 +1526,8 @@
       "table_name": "final_handoff_tasks"
     },
     {
-      "byte_size": 10069,
-      "checksum_sha256": "bd64d4cbf75b3ce5742a431119819fa1ac944e9d0d42d33f87a4e751bde0aea2",
+      "byte_size": 10060,
+      "checksum_sha256": "34e6a47b00d9675e1cd61a88cd2d2570a9ab629dd0b7b5936bfb0af82de8df12",
       "contains_raw_source_payload": false,
       "file_format": "csv",
       "licence_gate": "apache_2_0_project_output",
@@ -1851,7 +1851,7 @@
     },
     {
       "byte_size": 109942,
-      "checksum_sha256": "66562a932754edbda18f1e2994470be3ea4c9eec748c3d02d14a803722484a77",
+      "checksum_sha256": "0e4cf9f2bcf2f44efb91c132af749a2efea8975c7618b3293fea818bd49baa04",
       "contains_raw_source_payload": false,
       "file_format": "json",
       "licence_gate": "apache_2_0_project_output",
@@ -1863,7 +1863,7 @@
     },
     {
       "byte_size": 128075,
-      "checksum_sha256": "ecbba49899e6fbbec6c73ffc9a135569885ca7bc16eb7f0693c06762fac0192f",
+      "checksum_sha256": "2f032fa0f8fa3b1c1998a8008eede348dc68690451eaf3b15d74551b2528947b",
       "contains_raw_source_payload": false,
       "file_format": "json",
       "licence_gate": "apache_2_0_project_output",

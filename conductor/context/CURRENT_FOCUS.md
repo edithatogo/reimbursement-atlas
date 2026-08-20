@@ -1690,3 +1690,21 @@ dashboard packet is bound to `7f75e76c` and fails `displayed_data_parity`. Evide
 release readiness therefore remains false. Issue #490 precedes #491, and both are
 upstream of evidence release and Hugging Face publication. Papers and preprints
 remain excluded.
+
+## 2026-08-20 - Current-head dashboard approval and release-gate reconciliation
+
+PR #706 was merged to protected `main` at `de1ababd89f128068d46f2aa6e7c20b7a1b677e1`.
+The hosted dashboard browser matrix (run `32337480195`) passed all 64 tests across the
+declared 11 routes and four browser/device projects, retaining 44 screenshots. The
+accountable repository owner approved the exact current-head packets within scope:
+automated SHA-256 `d310cda64b91a914c563f00f8963130cc0091aa6b7cbcbcf39e355cb0e7dc31f` and
+owner SHA-256 `241cc97130fe6686df34a9ab1e24b998b2d9b8c1e2a785b61c295855b2ac8eb6`.
+The approval is limited to the declared visual, automated accessibility, responsive,
+keyboard, provenance, displayed-data parity and prohibited-content checks; it is not a
+universal accessibility claim or independent manual VoiceOver confirmation.
+
+The dashboard release gate is now complete and the regenerated release-readiness matrix
+is 40/40 with repository and evidence release readiness true. The Conductor track remains
+in progress because rights-cleared counterpart acquisition and blinded mapping evaluation
+remain upstream external/data gates, while Hugging Face, OSF and archive mutation remain
+separately controlled publication actions. Papers and preprints remain excluded.
