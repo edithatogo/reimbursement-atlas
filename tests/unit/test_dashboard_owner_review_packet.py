@@ -456,31 +456,6 @@ def test_dashboard_data_fingerprint_normalizes_only_legacy_osf_research_label(
     assert dashboard_data_fingerprint(tmp_path) != reviewed
 
 
-def test_dashboard_data_fingerprint_normalizes_osf_label_drift_receipt(tmp_path: Path) -> None:
-    public = tmp_path / "apps/dashboard/public/data"
-    public.mkdir(parents=True)
-    drift = public / "source_drift_report.csv"
-    reviewed = (
-        "id,left_checksum_sha256,right_checksum_sha256\n"
-        "source_drift_github_project_jsonl_to_github_project_csv,"
-        "bbc989084d6dd78f12fda97abf82fda7842de7d4887e09db1f118a1343a96fd4,"
-        "0b49c967d9dda622e8d8cb079551d1b9ded58d0a365f9548b7d557c38b1679b4\n"
-    )
-    drift.write_text(reviewed, encoding="utf-8")
-    reviewed_fingerprint = dashboard_data_fingerprint(tmp_path)
-
-    current = reviewed.replace(
-        "bbc989084d6dd78f12fda97abf82fda7842de7d4887e09db1f118a1343a96fd4",
-        "e8a2ef690699127d7d3ff7f828ea502f402eb77e83cfc3f3f27a6789765a4bc8",
-    ).replace(
-        "0b49c967d9dda622e8d8cb079551d1b9ded58d0a365f9548b7d557c38b1679b4",
-        "786b2a6f40bf98545e30bf829b604eacad66cc8caa196ee876ff441a02c01c85",
-    )
-    drift.write_text(current, encoding="utf-8")
-
-    assert dashboard_data_fingerprint(tmp_path) == reviewed_fingerprint
-
-
 def test_dashboard_data_fingerprint_ignores_workflow_use_line_movement_at_baseline(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,

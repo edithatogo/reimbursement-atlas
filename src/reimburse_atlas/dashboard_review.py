@@ -83,16 +83,6 @@ LOW_RISK_DATA_NORMALIZATIONS = {
             (b'[""type:research"", ""type:osf"", ""phase:analysis"", ""status:drafted""]'),
         ),
     ),
-    Path("apps/dashboard/public/data/source_drift_report.csv"): (
-        (
-            b"e8a2ef690699127d7d3ff7f828ea502f402eb77e83cfc3f3f27a6789765a4bc8",
-            b"bbc989084d6dd78f12fda97abf82fda7842de7d4887e09db1f118a1343a96fd4",
-        ),
-        (
-            b"786b2a6f40bf98545e30bf829b604eacad66cc8caa196ee876ff441a02c01c85",
-            b"0b49c967d9dda622e8d8cb079551d1b9ded58d0a365f9548b7d557c38b1679b4",
-        ),
-    ),
 }
 
 
@@ -583,7 +573,9 @@ def dashboard_review_evidence(repo: Path) -> dict[str, object]:
     data_fingerprint = dashboard_data_fingerprint(
         repo,
         self_attestation_commit=(
-            cast("str", automated["tested_commit"])
+            cast("str", human["commit"])
+            if isinstance(human.get("commit"), str)
+            else cast("str", automated["tested_commit"])
             if isinstance(automated.get("tested_commit"), str)
             else None
         ),

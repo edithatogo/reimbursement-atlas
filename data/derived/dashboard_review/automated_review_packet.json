@@ -9,7 +9,7 @@
     "table captions"
   ],
   "coverage_complete": true,
-  "data_fingerprint": "433fc4bb663888a25949ab7a2695420cb29e6559bd249fd5e9654ac3581a0774",
+  "data_fingerprint": "144dab4d84b0be8887d72e87ec6c5b4c8f37427e6c4d335a5415ec949af0d499",
   "expected_test_count": 64,
   "human_review_required": true,
   "junit": {
