@@ -57,7 +57,10 @@ SELF_ATTESTATION_CSV_ROWS = {
     ),
     Path("apps/dashboard/public/data/source_drift_report.csv"): (
         "id",
-        ("source_drift_final_handoff_jsonl_to_final_handoff_csv",),
+        (
+            "source_drift_github_project_jsonl_to_github_project_csv",
+            "source_drift_final_handoff_jsonl_to_final_handoff_csv",
+        ),
     ),
 }
 WORKFLOW_USE_RECEIPT_FILES = (
