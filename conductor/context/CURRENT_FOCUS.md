@@ -1,5 +1,16 @@
 # Current focus
 
+## 2026-08-20 - Risk-tiered approval friction reduction
+
+The current approval baseline remains the scoped dashboard evidence for commit
+`de1ababd89f128068d46f2aa6e7c20b7a1b677e1`. Track
+`track_approval_friction_reduction_20260820` implements a risk-tiered policy so deterministic
+Apache-2.0 project outputs and unchanged scoped dashboard evidence do not generate repeated
+accountable-review requests. Source-derived rights decisions remain checksum-bound, material
+dashboard implementation or scope changes fail closed, and publication, DOI, registration,
+release, paper and preprint mutations remain separately gated. Issue #708 and PR #709 are the
+GitHub-side implementation ledger.
+
 ## 2026-08-01 - Acquisition and publication boundary
 
 Current `main` is `053d5ea2` and the worktree is clean
