@@ -1,6 +1,16 @@
 version: 1
 updated: "2026-07-31"
 tracks:
+  - id: track_osf_deprecation_20260820
+    title: "OSF destination deprecation"
+    priority: must
+    phase: hardening
+    workstream: research
+    goal: "Retire OSF as an active registration/publication dependency while preserving immutable historical evidence."
+    spec: "conductor/tracks/track_osf_deprecation_20260820/spec.md"
+    plan: "conductor/tracks/track_osf_deprecation_20260820/plan.md"
+    issues:
+      - 711
   - id: track_approval_friction_reduction_20260820
     title: "Risk-tiered approval friction reduction"
     priority: must
@@ -24,11 +34,11 @@ tracks:
     workstream: data
     goal: "Download or API-fetch public sources using curl/wget/API clients, snapshot them locally, and publish derived-only validated records."
   - id: track_research_protocols_osf
-    title: "OSF research protocol and report workflow"
+    title: "Research protocol and report workflow"
     priority: must
     phase: design
     workstream: research
-    goal: "Treat each policy question as a protocolled research output with OSF components, reports, appendices and preprint pathways."
+    goal: "Treat each policy question as a protocolled, reviewable research output with destination-neutral reports and appendices."
   - id: track_publication_hf_spaces
     title: "Hugging Face dataset and Spaces publication"
     priority: must
@@ -101,11 +111,13 @@ tracks:
     goal: "Discover and locally archive public historical PBS, CMS PFS/ASP and NHS genomic targets while preserving explicit metadata-only and licence-gated boundaries."
     issue: "Generated from the multi-family historical source catalog and public-only acquisition workstream."
   - id: track_osf_registration_record_quality
-    title: "OSF registration record quality and protocol freeze"
-    priority: must
+    title: "Historical OSF registration evidence"
+    priority: could
     phase: research
     workstream: research
-    goal: "Complete the OSF Preregistration metadata and protocol freeze to produce a citable, reproducible and reviewable research record without publishing papers."
+    goal: "Preserve the completed immutable OSF registration and drift disclosure as historical provenance after destination deprecation."
+    spec: "conductor/archive/track_osf_registration_record_quality/spec.md"
+    plan: "conductor/archive/track_osf_registration_record_quality/plan.md"
   - id: track_evidence_adjudication_review
     title: "Evidence adjudication and accountable-review closure"
     priority: must
@@ -123,13 +135,13 @@ tracks:
     priority: must
     phase: release
     workstream: publication
-    goal: "Bring the repository, OSF record, dashboard and release archive to a coherent citable state without claiming evidence readiness or publishing papers prematurely."
+    goal: "Bring the repository, dashboard and release archive to a coherent citable state without claiming evidence readiness or publishing papers prematurely."
   - id: track_external_publication_archive_execution
     title: "External publication and archive execution"
     priority: must
     phase: release
     workstream: publication
-    goal: "Execute the approved OSF, Hugging Face and Zenodo release actions only from frozen, checksum-bound artefacts, record remote state, and permanently exclude papers and preprints."
+    goal: "Execute approved Hugging Face and Zenodo release actions only from frozen, checksum-bound artefacts, record remote state, and permanently exclude papers and preprints."
     issues:
       - 350
       - 256

@@ -111,8 +111,6 @@ True,from,10,Layer dependency respects inward/downward architecture.,orchestrati
 True,from,11,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.final_handoff,orchestration,reimburse_atlas.mapping_study_paths
 True,from,12,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.final_handoff,foundation,reimburse_atlas.models
 True,from,13,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.final_handoff,foundation,reimburse_atlas.registry
-True,from,602,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.final_handoff,orchestration,reimburse_atlas.osf_registration
-True,from,622,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.final_handoff,orchestration,reimburse_atlas.osf_registration
 True,from,10,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.github_project,foundation,reimburse_atlas.io
 True,from,11,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.github_project,foundation,reimburse_atlas.models
 True,from,12,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.github_project,foundation,reimburse_atlas.registry
@@ -202,8 +200,7 @@ True,from,32,Layer dependency respects inward/downward architecture.,foundation,
 True,from,11,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.release_readiness,orchestration,reimburse_atlas.dashboard_review
 True,from,12,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.release_readiness,foundation,reimburse_atlas.io
 True,from,13,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.release_readiness,orchestration,reimburse_atlas.mapping_study_paths
-True,from,14,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.release_readiness,orchestration,reimburse_atlas.osf_registration
-True,from,18,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.release_readiness,foundation,reimburse_atlas.registry
+True,from,14,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.release_readiness,foundation,reimburse_atlas.registry
 True,from,10,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.research_claim_packages,foundation,reimburse_atlas.validation
 True,from,10,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.research_package,orchestration,reimburse_atlas.publication
 True,from,8,Layer dependency respects inward/downward architecture.,analysis,reimburse_atlas.review_queue,foundation,reimburse_atlas.contracts

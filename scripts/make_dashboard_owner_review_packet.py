@@ -84,12 +84,6 @@ def _provenance_assertions(root: Path) -> list[dict[str, object]]:
             Path("data/derived/release_readiness/summary.json"),
             "research_publication_ready",
         ),
-        (
-            "osf-registration-readiness",
-            "publication.osf_registration_ready",
-            Path("data/derived/release_readiness/summary.json"),
-            "osf_registration_ready",
-        ),
     )
     assertions: list[dict[str, object]] = []
     for identifier, displayed_path, source_path, source_field in checks:

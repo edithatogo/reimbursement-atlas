@@ -18,7 +18,7 @@ pixi run zenodo-draft
 ```
 
 The archive publication gate must report `ready` before a signed release is
-created. A missing OSF registration, source-rights decision, mapping review or
+created. A missing source-rights decision, mapping review or
 release-readiness flag stops the sequence.
 
 ## Tagged release sequence
@@ -41,10 +41,9 @@ receipts. No raw source payloads, secrets, papers or preprints may be included.
 
 After the exact GitHub release assets exist, the token-gated workflow may be
 run in order: plan, draft, reserve DOI, verify remote filename/size/SHA-256
-parity, and only then publish. OSF must be active and public before any
-mutation. The concept DOI is added to `CITATION.cff` in a subsequent commit;
+parity, and only then publish. The concept DOI is added to `CITATION.cff` in a subsequent commit;
 the frozen version release is never rebuilt.
 
-If credentials, OSF state, Zenodo state, rights review or DOI resolution are
+If credentials, Zenodo state, rights review or DOI resolution are
 unavailable, record the redacted receipt and leave the gate pending. Do not
 retry a rejected remote mutation blindly.

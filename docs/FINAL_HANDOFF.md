@@ -9,16 +9,10 @@ Rights-cleared counterpart acquisition and dependent mapping evaluation remain
 separately tracked data gates; no unsupported claim is inferred from release
 readiness.
 
-OSF workflow run
-[`30010023356`](https://github.com/edithatogo/reimbursement-atlas/actions/runs/30010023356)
-round-trip verified 11 approved files and submitted registration
-[`gqk4z`](https://osf.io/gqk4z/). Read-only monitor run `30181343265`
-confirms the immutable registration is active and public. Its canonical snapshot
-is preserved against the exact submitted decision. The current protocol,
-manifest and source cutoff differ from that freeze, so `osf_registration_ready`
-remains false on fingerprint drift. Zenodo/DataCite release remains downstream
-of drift reconciliation and final signed assets. Papers and preprints remain
-excluded.
+OSF is deprecated as an active destination. Registration
+[`gqk4z`](https://osf.io/gqk4z/), its 11-file checksum receipt and drift disclosure remain
+immutable historical evidence, but OSF state is no longer a handoff or release dependency.
+Zenodo/DataCite, Hugging Face, papers and preprints retain independent controls.
 
 ## Current external refresh (2026-07-21)
 

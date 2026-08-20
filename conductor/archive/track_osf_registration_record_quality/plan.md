@@ -27,6 +27,8 @@
   checksum-bound `post_registration_evolution.json` owner decision. The immutable registration
   remains unchanged and does not cover the later work; any further fingerprint drift fails closed.
   Papers and preprints remain excluded. (Issues #511, #532)
+- [x] OSF-08: Preserve this completed track as historical evidence after OSF destination
+  deprecation. Remove OSF from active readiness and publication dependencies under issue #711.
 
 ## Validation
 

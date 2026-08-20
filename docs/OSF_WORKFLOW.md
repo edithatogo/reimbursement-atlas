@@ -1,5 +1,12 @@
 # OSF workflow
 
+> **Deprecated 2026-08-20.** OSF is no longer an active project destination or readiness gate.
+> Credentialed publication and registration-monitor workflows have been retired. This document
+> and the tracked OSF artefacts are preserved as a historical implementation and provenance
+> record only. See [`OSF_DEPRECATION.md`](OSF_DEPRECATION.md).
+
+## Historical state
+
 The current merged-main baseline is
 `de1ababd89f128068d46f2aa6e7c20b7a1b677e1`. OSF project `q8cnx` and
 immutable registration `gqk4z` are public. Read-only monitor run `30181343265`
@@ -9,7 +16,7 @@ fail-closed because the current protocol, manifest and source cutoff differ from
 that immutable freeze. No paper, preprint, Zenodo deposit or DataCite release is
 authorized by this state.
 
-OSF is the planned home for research protocols, detailed reports, appendices and preprint staging. GitHub remains the implementation repository. Hugging Face hosts licence-safe derived datasets and the dashboard.
+OSF was the planned home for research protocols, detailed reports, appendices and preprint staging. GitHub is the implementation repository. Hugging Face hosts licence-safe derived datasets and the dashboard.
 
 Historical monitor snapshots below are retained for auditability. They are not current
 repository state; use this header and `data/derived/protocols/summary.json` as the source of

@@ -24,7 +24,7 @@ Before deposition, an accountable maintainer must confirm:
 
 1. reviewed-source and source-contract gates are complete;
 2. the software and every derived artefact have the correct licence treatment;
-3. OSF protocol and research review are approved;
+3. protocol completeness and research review are approved;
 4. the exact tagged release, SBOMs, checksums and GitHub attestations are frozen; and
 5. the Zenodo target, creators, description and related identifiers are correct.
 
@@ -87,12 +87,12 @@ publish action. The generated `external_state.json` is redacted and never contai
 
 The current repository remains in `plan` state. The workflow must not create a draft, reserve or
 publish a DOI
-until mapping adjudication, the one-time holdout, scoped dashboard review, OSF registration,
+until mapping adjudication, the one-time holdout, scoped dashboard review,
 licensing and release-readiness independently pass.
 
 The tagged GitHub release workflow also performs a separate read-only governance preflight before
 building or attesting assets. It does not approve research publication or Zenodo deposition; it
-only prevents release automation from bypassing repository, evidence, OSF registration, policy,
+only prevents release automation from bypassing repository, evidence, policy,
 licence-queue and action-integrity gates. The preflight invokes the same fail-closed
 `archive-publication-gate` predicate used by Zenodo mutation modes; regenerating a readiness report
 that still contains blocked gates is not sufficient.

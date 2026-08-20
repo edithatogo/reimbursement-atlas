@@ -447,7 +447,7 @@ def test_registration_review_packet_is_explicitly_unapproved(tmp_path) -> None: 
     )
     protocols = tmp_path / "protocols.jsonl"
     protocols.write_text(
-        json.dumps({"osf_ready": True}) + "\n",
+        json.dumps({"protocol_ready": True}) + "\n",
         encoding="utf-8",
     )
     manifest = tmp_path / "manifest.jsonl"
@@ -484,7 +484,7 @@ def test_registration_review_packet_records_scoped_approval(tmp_path) -> None:
         encoding="utf-8",
     )
     protocols = tmp_path / "protocols.jsonl"
-    protocols.write_text(json.dumps({"osf_ready": True}) + "\n", encoding="utf-8")
+    protocols.write_text(json.dumps({"protocol_ready": True}) + "\n", encoding="utf-8")
     manifest = tmp_path / "manifest.jsonl"
     manifest.write_text(json.dumps({"publish_allowed": True}) + "\n", encoding="utf-8")
 

@@ -9,7 +9,6 @@ from typing import Any, cast
 REQUIRED_READY_FLAGS = (
     "repository_release_ready",
     "evidence_release_ready",
-    "osf_registration_ready",
 )
 
 

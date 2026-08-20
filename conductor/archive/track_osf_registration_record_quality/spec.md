@@ -1,5 +1,8 @@
 # Specification
 
+> Historical specification. OSF is no longer an active destination or gate. The requirements
+> below describe the immutable registration work completed before deprecation.
+
 ## Overview
 
 Complete the OSF registration created from the public Reimbursement Atlas project.

@@ -35,8 +35,8 @@ def publication_gate_failures(
             failures.append(f"release readiness flag is not true: {key}")
 
     protocol = _read_json(repo, "data/derived/protocols/summary.json")
-    if int(protocol.get("osf_ready_count", 0)) < int(protocol.get("protocol_count", 0)):
-        failures.append("not every protocol is OSF-ready")
+    if int(protocol.get("protocol_ready_count", 0)) < int(protocol.get("protocol_count", 0)):
+        failures.append("not every protocol is review-ready")
 
     contracts = _read_json(repo, "data/derived/source_contracts/summary.json")
     if any(int(contracts.get(key, 0)) for key in ("fail", "missing", "blocking_failures")):

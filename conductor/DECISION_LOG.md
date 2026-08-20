@@ -1731,3 +1731,17 @@ licence, source-policy, research-protocol and data-quality gates pass.
 Consequence: Raw restricted payloads, causal or price-equivalence claims, DOI
 changes, papers and preprints remain excluded. This approval does not dispatch
 publication while `evidence_release_ready=false`.
+
+## 2026-08-20 - Deprecate OSF as an active project destination
+
+Decision: Remove OSF registration, synchronization and monitoring from active release,
+archive, Hugging Face, dashboard and handoff contracts. Use destination-neutral protocol
+readiness and exclude the historical OSF component plan from current seed-lake exports.
+
+Evidence: Repository-owner direction, issue #711 and Conductor track
+`track_osf_deprecation_20260820`. Registration `gqk4z`, remote snapshots, review records and
+post-registration drift evidence remain immutable historical provenance.
+
+Consequence: No enabled workflow authenticates to, mutates or monitors OSF, and no current
+readiness result depends on OSF. This does not delete or alter the remote registration, weaken
+source-rights or evidence gates, or change Zenodo, DOI, Hugging Face, paper or preprint controls.

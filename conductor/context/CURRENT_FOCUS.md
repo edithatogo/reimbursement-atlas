@@ -1,5 +1,14 @@
 # Current focus
 
+## 2026-08-20 - OSF destination deprecation
+
+Track `track_osf_deprecation_20260820` and issue #711 retire OSF as an active registration and
+publication destination. Registration `gqk4z`, its checksum-bound decisions, receipts and
+post-registration evolution disclosure remain immutable historical provenance, but OSF no longer
+controls repository, evidence, Hugging Face, Zenodo, dashboard or handoff readiness. Source
+rights, research evidence, policy claims and external publication remain independent fail-closed
+boundaries.
+
 ## 2026-08-20 - Risk-tiered approval friction reduction
 
 The current approval baseline remains the scoped dashboard evidence for commit
