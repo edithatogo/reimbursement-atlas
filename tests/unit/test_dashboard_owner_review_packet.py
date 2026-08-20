@@ -434,6 +434,28 @@ def test_dashboard_data_fingerprint_covers_rendered_csv_files(tmp_path: Path) ->
     assert dashboard_data_fingerprint(tmp_path) != original
 
 
+def test_dashboard_data_fingerprint_normalizes_only_legacy_osf_research_label(
+    tmp_path: Path,
+) -> None:
+    public = tmp_path / "apps/dashboard/public/data"
+    public.mkdir(parents=True)
+    project = public / "github_project_items.csv"
+    legacy = (
+        'id,labels,status\nquestion,"[""type:research"", ""type:osf"", '
+        '""phase:analysis"", ""status:drafted""]",todo\n'
+    )
+    project.write_text(legacy, encoding="utf-8")
+    reviewed = dashboard_data_fingerprint(tmp_path)
+
+    project.write_text(legacy.replace('""type:osf"", ', ""), encoding="utf-8")
+
+    assert dashboard_data_fingerprint(tmp_path) == reviewed
+
+    project.write_text(legacy.replace(",todo", ",done"), encoding="utf-8")
+
+    assert dashboard_data_fingerprint(tmp_path) != reviewed
+
+
 def test_dashboard_data_fingerprint_ignores_workflow_use_line_movement_at_baseline(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,

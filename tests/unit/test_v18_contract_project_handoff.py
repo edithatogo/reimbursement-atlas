@@ -252,6 +252,7 @@ def test_research_question_issue_exposes_local_scaffolds_and_review_gate() -> No
     rendered = render_issue(issue)
     assert issue.status == "drafted"
     assert "status:drafted" in issue.labels
+    assert "type:osf" not in issue.labels
     assert issue.protocol_path == "protocols/genomics_pathology_protocol.md"
     assert issue.report_path == "reports/genomics_pathology_report.md"
     assert "`protocols/genomics_pathology_protocol.md`" in rendered

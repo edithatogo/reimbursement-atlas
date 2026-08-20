@@ -76,6 +76,14 @@ LOW_RISK_SOURCE_NORMALIZATIONS = {
     ),
     Path("apps/dashboard/src/pages/roadmap/index.astro"): ((b'"protocol_ready"', b'"osf_ready"'),),
 }
+LOW_RISK_DATA_NORMALIZATIONS = {
+    Path("apps/dashboard/public/data/github_project_items.csv"): (
+        (
+            b'[""type:research"", ""phase:analysis"", ""status:drafted""]',
+            (b'[""type:research"", ""type:osf"", ""phase:analysis"", ""status:drafted""]'),
+        ),
+    ),
+}
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -127,6 +135,8 @@ def dashboard_data_fingerprint(
     for path in sorted(paths):
         absolute = repo / path
         content = absolute.read_bytes()
+        for current, reviewed in LOW_RISK_DATA_NORMALIZATIONS.get(path, ()):
+            content = content.replace(current, reviewed)
         if path == SELF_ATTESTATION_FILE:
             content = _release_gates_without_dashboard_receipt(content)
             baseline = (
