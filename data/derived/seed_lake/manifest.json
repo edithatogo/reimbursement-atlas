@@ -305,7 +305,7 @@
       "name": "sbom_summary",
       "parquet_path": "sbom_summary/sbom_summary.parquet",
       "rows": 2,
-      "sha256": "89e29b69e9b812a17cb00492ff7eb8235affa66faf32dc132d1bffd135732755"
+      "sha256": "28ffd80ba48ae5428b50c53620d351ffb3f22a0a8c2c373421580fcee3f1564d"
     },
     {
       "csv_path": "local_quality_gates/local_quality_gates.csv",
