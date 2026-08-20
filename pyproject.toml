@@ -42,7 +42,7 @@ api = [
   "uvicorn[standard]>=0.52.1",
 ]
 mcp = [
-  "mcp>=2.0.0,<3",
+  "mcp>=1.28,<2",
 ]
 dev = [
   "basedpyright>=1.35.0",
@@ -83,18 +83,20 @@ platforms = ["osx-arm64", "linux-64", "linux-aarch64"]
 python = ">=3.14"
 setuptools = ">=83.0.0"
 uv = ">=0.11.0"
-ruff = "==0.15.22"
+ruff = "==0.16.2"
 basedpyright = ">=1.35.0"
 pytest = ">=9.0.0"
 pytest-cov = ">=7.0.0"
-hypothesis = ">=6.156.6"
+hypothesis = ">=6.165.2"
 bandit = ">=1.8.0"
 pip-audit = ">=2.9.0"
-filelock = ">=3.29.7"
-polars = ">=1.35.0"
+filelock = ">=3.32.2"
+polars = ">=1.43.2"
 pyarrow = ">=25.0.0"
-duckdb = ">=1.4.0"
+duckdb = ">=1.5.5"
 jsonschema = ">=4.26.0"
+typer = ">=0.27.1"
+pydantic-settings = ">=2.15.0"
 
 [tool.pixi.feature.mojo.dependencies]
 max = "*"
@@ -103,10 +105,8 @@ max = "*"
 nodejs = ">=24.0.0"
 
 [tool.pixi.feature.api.dependencies]
-fastapi = ">=0.139.0"
-
-[tool.pixi.feature.api.pypi-dependencies]
-uvicorn = { version = ">=0.51.0", extras = ["standard"] }
+fastapi = ">=0.141.1"
+uvicorn = ">=0.52.1"
 
 [tool.pixi.feature.mcp.pypi-dependencies]
 mcp = ">=1.28,<2"
