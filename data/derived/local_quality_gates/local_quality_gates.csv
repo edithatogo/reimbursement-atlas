@@ -8,7 +8,7 @@ True,build,uv run --all-extras python -m compileall -q src scripts tests,.,0.0,1
 True,data,uv run --all-extras python scripts/validate_seed_sync.py,.,0.0,1970-01-01T00:00:00+00:00,seed_sync,Gate passed in the active runtime.,0,passed,,
 True,data,uv run --all-extras python scripts/check_public_data_policy.py,.,0.0,1970-01-01T00:00:00+00:00,public_data_policy,Gate passed in the active runtime.,0,passed,,
 True,data,uv run --all-extras python -m reimburse_atlas.cli validate,.,0.0,1970-01-01T00:00:00+00:00,cli_validate,Gate passed in the active runtime.,0,passed,,
-True,data,uv run --all-extras python scripts/make_protocol_status.py,.,0.0,1970-01-01T00:00:00+00:00,protocol_status,OSF/research protocol completeness evidence must regenerate cleanly.,0,passed,,
+True,data,uv run --all-extras python scripts/make_protocol_status.py,.,0.0,1970-01-01T00:00:00+00:00,protocol_status,Research protocol completeness evidence must regenerate cleanly.,0,passed,,
 True,data,uv run --all-extras python scripts/make_source_validation.py,.,0.0,1970-01-01T00:00:00+00:00,source_content_validation,Downloaded source files must be validated or explicitly skipped by licence gates.,0,passed,,
 True,data,uv run --all-extras python scripts/make_source_contracts.py,.,0.0,1970-01-01T00:00:00+00:00,source_contracts,Source-specific contracts must regenerate before reviewed-source bundles.,0,passed,,
 True,supply_chain,uv run --all-extras python scripts/make_github_project_export.py,.,0.0,1970-01-01T00:00:00+00:00,github_project_export,Generated GitHub Project import rows must stay in sync with issue drafts.,0,passed,,

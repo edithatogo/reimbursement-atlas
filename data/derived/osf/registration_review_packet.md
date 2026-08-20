@@ -7,15 +7,15 @@ No network IO or remote mutation is performed by its generation.
 
 - Freeze schema: `osf-registration-freeze-v1`
 - Protocol digest: `ad4c5fcfb9fdab5bacf40c3e4df8b6bca64fdf88aff902538a97945492439402`
-- Analysis manifest digest: `b98b302f7f101a0660d1eebf322b17d9750f3ccde686afd79fa649bef3c72622`
+- Analysis manifest digest: `1355afa0264ab3353fe485e5c88c5e4f889c178cfa82d6d871deb1f94a6f84c8`
 - Source cutoff: `not-frozen`
 - Existing approval flag: `False`
 
 ## Completeness
 
 - Protocols/reports OSF-ready: `5/5`
-- Manifest rows explicitly publishable: `6/15`
-- Manifest rows still blocked: `9`
+- Manifest rows explicitly publishable: `5/15`
+- Manifest rows still blocked: `10`
 
 ## OSF metadata contract
 

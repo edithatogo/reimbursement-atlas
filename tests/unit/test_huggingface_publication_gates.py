@@ -112,7 +112,9 @@ def test_publication_gates_fail_closed_for_review_candidate(tmp_path: Path) -> N
         },
     )
     _write(
-        tmp_path, "data/derived/protocols/summary.json", {"protocol_count": 1, "osf_ready_count": 0}
+        tmp_path,
+        "data/derived/protocols/summary.json",
+        {"protocol_count": 1, "protocol_ready_count": 0},
     )
     _write(tmp_path, "data/derived/source_contracts/summary.json", {"fail": 0, "missing": 1})
     _write(tmp_path, "data/derived/data_quality/summary.json", {"fail": 0, "missing": 0})
@@ -126,7 +128,7 @@ def test_publication_gates_fail_closed_for_review_candidate(tmp_path: Path) -> N
 
     assert failures
     assert any("licence review" in failure for failure in failures)
-    assert any("OSF-ready" in failure for failure in failures)
+    assert any("review-ready" in failure for failure in failures)
 
 
 def test_publication_gates_pass_for_explicitly_approved_manifest(tmp_path: Path) -> None:
@@ -141,7 +143,9 @@ def test_publication_gates_pass_for_explicitly_approved_manifest(tmp_path: Path)
         },
     )
     _write(
-        tmp_path, "data/derived/protocols/summary.json", {"protocol_count": 1, "osf_ready_count": 1}
+        tmp_path,
+        "data/derived/protocols/summary.json",
+        {"protocol_count": 1, "protocol_ready_count": 1},
     )
     _write(tmp_path, "data/derived/source_contracts/summary.json", {"fail": 0, "missing": 0})
     _write(tmp_path, "data/derived/data_quality/summary.json", {"fail": 0, "missing": 0})

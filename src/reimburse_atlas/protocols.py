@@ -1,4 +1,4 @@
-"""Protocol and report completeness checks for OSF-aligned research questions."""
+"""Destination-neutral protocol and report completeness checks."""
 
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ REQUIRED_PROTOCOL_SECTIONS = (
     "analysis plan",
     "bias",
     "outputs",
-    "osf",
+    "governance and review",
 )
 
 REQUIRED_SCIENTIFIC_SECTIONS = (
@@ -54,6 +54,9 @@ def _section_present(required: str, headings: set[str], text: str) -> bool:
     """Return whether a required section appears in headings or body text."""
     if any(required in heading for heading in headings):
         return True
+    if required == "governance and review" and "osf" in text.lower():
+        # Existing frozen protocols used an OSF heading for this governance material.
+        return True
     return required in text.lower()
 
 
@@ -87,7 +90,7 @@ def build_protocol_status(
             + 0.15 * min(report_word_count / 800, 1.0)
             + 0.10 * (1.0 if question.preregistration_status in {"drafted", "registered"} else 0.0)
         )
-        osf_ready = (
+        protocol_ready = (
             protocol_path.exists()
             and report_path.exists()
             and not missing
@@ -99,14 +102,14 @@ def build_protocol_status(
         elif missing:
             next_step = f"Complete missing protocol sections: {', '.join(missing)}."
         elif protocol_word_count < 1200:
-            next_step = "Expand protocol detail before OSF preregistration."
+            next_step = "Expand protocol detail before research review."
         elif question.preregistration_status != "registered":
             next_step = (
                 "Obtain signed independent methods, domain, licence and governance review; "
                 "then register the frozen protocol and analysis manifest."
             )
         else:
-            next_step = "Ready for OSF component upload and preregistration review."
+            next_step = "Protocol is complete and ready for governed research use."
         rows.append(
             ProtocolStatusRecord(
                 id=f"protocol_status_{question.id}",
@@ -121,7 +124,7 @@ def build_protocol_status(
                 protocol_word_count=protocol_word_count,
                 report_word_count=report_word_count,
                 completeness_score=round(score, 4),
-                osf_ready=osf_ready,
+                protocol_ready=protocol_ready,
                 recommended_next_step=next_step,
             )
         )
@@ -130,10 +133,10 @@ def build_protocol_status(
 
 def protocol_summary(rows: list[ProtocolStatusRecord]) -> dict[str, object]:
     """Summarise generated protocol status records."""
-    ready = sum(1 for row in rows if row.osf_ready)
+    ready = sum(1 for row in rows if row.protocol_ready)
     return {
         "protocol_count": len(rows),
-        "osf_ready_count": ready,
+        "protocol_ready_count": ready,
         "average_completeness_score": round(
             sum(row.completeness_score for row in rows) / len(rows), 4
         )

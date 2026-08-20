@@ -28,6 +28,12 @@ def _jsonl(path: Path) -> list[dict[str, Any]]:
 
 
 def _case_score(case: dict[str, Any]) -> float:
+    if "left" not in case or "right" not in case:
+        message = (
+            "threshold tuning requires a permitted local evidence packet with left/right fields; "
+            "blinded tracked packets intentionally expose only codes and relation metadata"
+        )
+        raise ValueError(message)
     left = cast("dict[str, Any]", case["left"])
     right = cast("dict[str, Any]", case["right"])
     left_text = " ".join(str(left.get(key, "")) for key in ("label", "description", "domain"))

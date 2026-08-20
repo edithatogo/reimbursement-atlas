@@ -2,7 +2,7 @@
 
 Epic: `RESEARCH-QUESTIONS` — Protocolled policy research questions
 
-Labels: type:research, type:osf, phase:analysis, status:drafted
+Labels: type:research, phase:analysis, status:drafted
 
 Status: `drafted`
 
@@ -16,5 +16,5 @@ This issue was generated from `conductor/backlog.yml`. Refine the acceptance cri
 - [x] The report scaffold is present at `reports/local_vs_national_coverage_report.md` and its expected outputs and dataset linkages are recorded.
 - [x] `pixi run protocol-status`, `pixi run evidence-readiness` and the research-package generation gates provide deterministic local validation.
 - [x] Licence, source and publication boundaries remain fail-closed in the protocol and release-readiness artefacts.
-- [ ] An accountable human completes the protocol review checklist and approves any preregistration or OSF registration.
+- [ ] An accountable human completes the protocol review checklist and approves any protocol governance or research publication.
 - [ ] Reviewed source bundles and evidence-quality decisions support the research claim before publication.

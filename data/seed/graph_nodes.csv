@@ -208,9 +208,9 @@ manual_review,,,,,,,,,mapping_resource:map_who_atc_ddd,,,mapping_resource,WHO AT
 ,,,,,,,,,output:out_hf_dataset,,,output_plan,infra/huggingface/DATASET_CARD.md,,,,,dataset,,,,,,implemented,huggingface_dataset,,
 ,,,,,,,,,output:out_hf_space,,,output_plan,apps/dashboard/dist,,,,,dashboard,,,,,,implemented,huggingface_space,,
 ,,,,,,,,,output:out_mcp,,,output_plan,src/reimburse_atlas/mcp_server.py,,,,,mcp,,,,,,implemented,github,,
-,,,,,,,,,output:out_osf_protocol_pack,,,output_plan,protocols/,,,,,protocol,,,,,,drafted,osf,,
-,,,,,,,,,output:out_osf_reports,,,output_plan,reports/,,,,,report,,,,,,drafted,osf,,
-,,,,,,,,,output:out_preprint_methods,,,output_plan,papers/reimbursement_atlas_methods.md,,,,,preprint,,,,,,drafted,osf,,
+,,,,,,,,,output:out_osf_protocol_pack,,,output_plan,protocols/,,,,,protocol,,,,,,implemented,local,,
+,,,,,,,,,output:out_osf_reports,,,output_plan,reports/,,,,,report,,,,,,implemented,local,,
+,,,,,,,,,output:out_preprint_methods,,,output_plan,papers/reimbursement_atlas_methods.md,,,,,preprint,,,,,,drafted,local,,
 ,,,,,,,,,output:out_protocol_status,,,output_plan,data/derived/protocols/protocol_status.csv,,,,,report,,,,,,implemented,github,,
 ,,,,,,,,,output:out_public_dashboard,,,output_plan,apps/dashboard/dist,,,,,dashboard,,,,,,implemented,github,,
 ,,,,,,,,,output:out_public_data_dictionary,,,output_plan,data/derived/data_dictionary/data_dictionary.csv,,,,,dataset,,,,,,implemented,huggingface_dataset,,
@@ -318,6 +318,7 @@ manual_review,,,,,,,,,mapping_resource:map_who_atc_ddd,,,mapping_resource,WHO AT
 ,,,,,,,,,table:source_registry,,,table,source_registry,,,,,,,,,,,,,,
 ,,,,,,,,,table:source_status,,,table,source_status,,,,,,,,,,,,,,
 ,,,,,,,,,table:source_transparency_index,,,table,source_transparency_index,,,,,,,,,,,,,,
+,,,,,,,,,track:track_approval_friction_reduction_20260820,,,conductor_track,Risk-tiered approval friction reduction,,,,,,,hardening,,must,,,,,governance
 ,,,,,,,,,track:track_ci_cd_supply_chain,,,conductor_track,CI/CD and supply-chain hardening,,,,,,,hardening,,must,,,,,automation
 ,,,,,,,,,track:track_data_packaging_standards,,,conductor_track,Research-data packaging standards,,,,,,,implementation,,should,,,,,publication
 ,,,,,,,,,track:track_data_quality_evidence,,,conductor_track,"Data quality, source validation and evidence readiness",,,,,,,hardening,,must,,,,,data_quality
@@ -326,13 +327,14 @@ manual_review,,,,,,,,,mapping_resource:map_who_atc_ddd,,,mapping_resource,WHO AT
 ,,,,,,,,,track:track_historical_source_archival_reproducibility,,,conductor_track,Historical source archival and academic reproducibility,,,,,,,implementation,,must,,,,,data
 ,,,,,,,,,track:track_live_source_ingestion,,,conductor_track,Evidence-grade live source ingestion,,,,,,,implementation,,must,,,,,data
 ,,,,,,,,,track:track_mapping_workbench,,,conductor_track,Human-in-the-loop mapping workbench,,,,,,,implementation,,must,,,,,mappings
-,,,,,,,,,track:track_osf_registration_record_quality,,,conductor_track,OSF registration record quality and protocol freeze,,,,,,,research,,must,,,,,research
+,,,,,,,,,track:track_osf_deprecation_20260820,,,conductor_track,OSF destination deprecation,,,,,,,hardening,,must,,,,,governance
+,,,,,,,,,track:track_osf_registration_record_quality,,,conductor_track,Historical OSF registration evidence,,,,,,,research,,could,,,,,research
 ,,,,,,,,,track:track_policy_demonstrators,,,conductor_track,First policy demonstrators,,,,,,,analysis,,must,,,,,analytics
 ,,,,,,,,,track:track_public_product_citation_dashboard,,,conductor_track,"Public product, citation and dashboard maturity",,,,,,,implementation,,must,,,,,dashboard
 ,,,,,,,,,track:track_publication_hf_spaces,,,conductor_track,Hugging Face dataset and Spaces publication,,,,,,,implementation,,must,,,,,publication
 ,,,,,,,,,track:track_release_gate_reconciliation_closeout,,,conductor_track,Release gate reconciliation and external dependency closeout,,,,,,,release,,must,,,,,governance
 ,,,,,,,,,track:track_release_record_archive_maturity,,,conductor_track,"Citation, archive and public record maturity",,,,,,,release,,must,,,,,publication
-,,,,,,,,,track:track_research_protocols_osf,,,conductor_track,OSF research protocol and report workflow,,,,,,,design,,must,,,,,research
+,,,,,,,,,track:track_research_protocols_osf,,,conductor_track,Research protocol and report workflow,,,,,,,design,,must,,,,,research
 ,,,,,,,,,track:track_runtime_mojo_python314,,,conductor_track,Mojo-first runtime and Python 3.14 compatibility,,,,,,,hardening,,must,,,,,runtime
 ,,,,,,,,,track:track_source_provenance_licence_release,,,conductor_track,"Source provenance, licensing and historical release reproducibility",,,,,,,implementation,,must,,,,,data
 ,,,,,,,,HTML index,version:au_mbs_1989_2010_previous_downloads_page,,,source_version,MBS 1989 to 2010 previous downloads page,,,,,,planned,,,,,,,,

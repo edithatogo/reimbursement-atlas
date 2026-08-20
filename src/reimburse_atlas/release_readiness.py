@@ -11,10 +11,6 @@ from typing import Any, Literal, cast
 from reimburse_atlas.dashboard_review import dashboard_review_evidence
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.mapping_study_paths import latest_mapping_study_cycle, mapping_study_paths
-from reimburse_atlas.osf_registration import (
-    check_registration_drift,
-    reconcile_post_registration_evolution,
-)
 from reimburse_atlas.registry import project_root
 
 ReleaseGateStatus = Literal["pass", "warn", "fail", "blocked", "missing"]
@@ -61,7 +57,6 @@ class ReleaseReadinessSummary:
     review_pending_count: int
     repository_release_ready: bool
     research_publication_ready: bool
-    osf_registration_ready: bool
     evidence_release_ready: bool
     policy_claims_ready: bool
 
@@ -120,7 +115,6 @@ def build_release_readiness_report(root: Path | None = None) -> ReleaseReadiness
         _licence_review_queue_gate(repo),
         _mapping_study_gate(repo),
         _dashboard_human_review_gate(repo),
-        _osf_registration_gate(repo),
         _research_evidence_gate(repo),
     ]
     summary = summarise_release_gates(gates)
@@ -145,10 +139,9 @@ def summarise_release_gates(gates: list[ReleaseGateRecord]) -> ReleaseReadinessS
             "research_evidence",
         )
     )
-    osf_ready = gate_status.get("osf_registration") == "pass"
     research_evidence_ready = gate_status.get("research_evidence") == "pass"
     return ReleaseReadinessSummary(
-        schema_version="release-readiness-v2",
+        schema_version="release-readiness-v3",
         gate_count=len(gates),
         pass_count=counts["pass"],
         warn_count=counts["warn"],
@@ -160,8 +153,7 @@ def summarise_release_gates(gates: list[ReleaseGateRecord]) -> ReleaseReadinessS
             1 for gate in gates if not gate.required and gate.status == "blocked"
         ),
         repository_release_ready=repository_ready,
-        research_publication_ready=evidence_ready and osf_ready and research_evidence_ready,
-        osf_registration_ready=osf_ready,
+        research_publication_ready=evidence_ready and research_evidence_ready,
         evidence_release_ready=evidence_ready,
         policy_claims_ready=evidence_ready,
     )
@@ -223,53 +215,6 @@ def _dashboard_human_review_gate(repo: Path) -> ReleaseGateRecord:
             "Complete the commit-bound visual, keyboard, screen-reader and provenance review "
             "within the declared scope."
         ),
-    )
-
-
-def _osf_registration_gate(repo: Path) -> ReleaseGateRecord:
-    freeze = _read_json(repo / "data/derived/osf/registration_freeze.json")
-    remote_path = repo / "data/derived/osf/remote_registration_snapshot.json"
-    remote = _read_json(remote_path) if remote_path.is_file() else None
-    result = reconcile_post_registration_evolution(
-        check_registration_drift(freeze, remote),
-        freeze,
-        remote,
-        _read_json(repo / "data/osf_review/post_registration_evolution.json"),
-    )
-    reasons = cast("list[str]", result.get("reasons", []))
-    status = result.get("status")
-    if status == "evolved":
-        action = (
-            "Preserve the immutable registered scope and disclose all later protocol, manifest "
-            "and source-cutoff changes as post-registration evolution."
-        )
-    elif status == "drift":
-        action = (
-            "The OSF registration is active and public. Reconcile the current protocol, "
-            "manifest and source-cutoff changes against the immutable registered freeze; "
-            "do not overwrite or misdescribe the registered record."
-        )
-    elif remote is None:
-        action = (
-            "Export a canonical snapshot after OSF reports the approved registration as "
-            "active, public and immutable."
-        )
-    else:
-        action = (
-            "Complete the checksum-bound registration review and verify exact protocol, "
-            "manifest and source-cutoff parity."
-        )
-    return ReleaseGateRecord(
-        id="osf_registration",
-        category="release",
-        status="pass" if result.get("status") in {"ready", "evolved"} else "blocked",
-        required=False,
-        evidence=(
-            f"status={result.get('status', 'blocked')} "
-            f"reasons={','.join(reasons) if reasons else 'none'} "
-            f"registration_id={result.get('registration_id') or 'missing'}"
-        ),
-        recommended_action=action,
     )
 
 

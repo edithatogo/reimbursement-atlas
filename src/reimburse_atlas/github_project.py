@@ -16,6 +16,7 @@ _PRIORITY_ORDER = ("must", "should", "could", "wont")
 # Legacy backlog epics predate the current track IDs. Keep their Project rows
 # linked to the owning track instead of leaving them as unassigned backlog work.
 _EPIC_TRACK_MAP = {
+    "APR-001": "track_approval_friction_reduction_20260820",
     "SRC-001": "track_live_source_ingestion",
     "PARSE-001": "track_live_source_ingestion",
     "MAP-001": "track_mapping_workbench",
@@ -29,6 +30,7 @@ _EPIC_TRACK_MAP = {
     "ONT-001": "track_mapping_workbench",
     "REL-001": "track_ci_cd_supply_chain",
     "OSF-002": "track_research_protocols_osf",
+    "OSF-DEPRECATION-001": "track_osf_deprecation_20260820",
     "DQ-001": "track_data_quality_evidence",
     "EVID-017": "track_data_quality_evidence",
     "HANDOFF-018": "track_data_quality_evidence",
@@ -38,6 +40,7 @@ _EPIC_TRACK_MAP = {
     "PUBLIC-022": "track_public_product_citation_dashboard",
     "RAC-PUBLISH-001": "track_external_publication_archive_execution",
     "RAC-GATE-001": "track_release_gate_reconciliation_closeout",
+    "RAC-OSF-001": "track_osf_registration_record_quality",
     "HIST-001": "track_historical_source_archival_reproducibility",
     "HIST-002": "track_historical_source_archival_reproducibility",
     "DATASET-CANDIDATES": "track_live_source_ingestion",
@@ -216,8 +219,8 @@ def _project_view(workstream: str) -> str:
         "sources": "Sources & ingestion",
         "data-source": "Sources & ingestion",
         "parser": "Sources & ingestion",
-        "research": "Research & OSF",
-        "osf": "Research & OSF",
+        "research": "Research & protocols",
+        "osf": "Research & protocols",
         "analysis": "Policy analyses",
         "analytics": "Policy analyses",
         "mapping": "Mappings & ontologies",

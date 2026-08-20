@@ -405,7 +405,7 @@ def build_registration_review_packet(
     protocol_rows = _read_jsonl(protocol_status_path)
     manifest_rows = _read_jsonl(sync_manifest_path)
     protocol_count = len(protocol_rows)
-    complete_protocols = sum(row.get("osf_ready") is True for row in protocol_rows)
+    complete_protocols = sum(row.get("protocol_ready") is True for row in protocol_rows)
     allowed_rows = sum(row.get("publish_allowed") is True for row in manifest_rows)
     blocked_rows = len(manifest_rows) - allowed_rows
     approved = (

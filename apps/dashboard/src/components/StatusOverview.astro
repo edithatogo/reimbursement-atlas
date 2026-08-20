@@ -21,7 +21,7 @@ const status = JSON.parse(
 const cards = [
   ["Software", status.software.status, "Repository quality and build gates"],
   ["Evidence", status.evidence.status, "Reviewed-source and research gates"],
-  ["Publication", status.publication.status, "OSF, Hugging Face and DOI gates"],
+  ["Publication", status.publication.status, "Hugging Face, Zenodo and DOI gates"],
 ];
 const baseUrl = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL

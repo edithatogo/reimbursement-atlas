@@ -1,6 +1,6 @@
 {
   "additionalProperties": false,
-  "description": "Generated protocol/report completeness status for an OSF-aligned question.",
+  "description": "Generated protocol/report completeness status for a research question.",
   "properties": {
     "id": {
       "pattern": "^[a-z0-9_]+$",
@@ -64,8 +64,8 @@
       "title": "Completeness Score",
       "type": "number"
     },
-    "osf_ready": {
-      "title": "Osf Ready",
+    "protocol_ready": {
+      "title": "Protocol Ready",
       "type": "boolean"
     },
     "recommended_next_step": {
@@ -86,7 +86,7 @@
     "protocol_word_count",
     "report_word_count",
     "completeness_score",
-    "osf_ready",
+    "protocol_ready",
     "recommended_next_step"
   ],
   "title": "ProtocolStatusRecord",

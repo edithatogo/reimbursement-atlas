@@ -1,0 +1,29 @@
+{
+  "track_id": "track_approval_friction_reduction_20260820",
+  "type": "chore",
+  "status": "completed",
+  "created_at": "2026-08-20T00:00:00Z",
+  "updated_at": "2026-08-20T08:50:32Z",
+  "description": "Minimise approval spam with risk-tiered automatic, standing and accountable gates.",
+  "evidence_schema": "1.0",
+  "gates": [
+    {
+      "id": "repository_validation",
+      "kind": "repository",
+      "status": "satisfied",
+      "evidence": "558 tests passed with two optional skips and 90.10% coverage; lint, types, Bandit, builds, policy, schemas and deterministic regeneration passed."
+    },
+    {
+      "id": "hosted_dashboard_evidence",
+      "kind": "hosted_ci",
+      "status": "satisfied",
+      "evidence": "GitHub Actions run 32348924730 passed 64 tests and retained 44 screenshots at commit 5e4cb94ff479453222f9f326fed911f3d221e8e5; the integrity-checked standing scoped approval passes all current predicates."
+    },
+    {
+      "id": "external_mutation_boundary",
+      "kind": "policy",
+      "status": "satisfied",
+      "evidence": "No publication, registration, DOI or release mutation is authorized by this track."
+    }
+  ]
+}

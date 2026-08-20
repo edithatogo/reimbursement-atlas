@@ -1,0 +1,34 @@
+{
+  "commit": "b6c8de443ba5c7fc873533eaff1c63ea78fdf6e8",
+  "repository": "https://github.com/edithatogo/reimbursement-atlas",
+  "schema_version": "release-manifest-v1",
+  "subjects": [
+    {
+      "path": "data/derived/sbom/cyclonedx-dashboard.json",
+      "sha256": "a502851cdf62459b33153bc03842b845484138661a5b74a9df1e6aec13e90429",
+      "size": 276437
+    },
+    {
+      "path": "data/derived/sbom/cyclonedx-python.json",
+      "sha256": "9ebc9578a9062d571db55d1abe5d1038e0256176c1510d24a427f918f74de645",
+      "size": 123852
+    },
+    {
+      "path": "dist/reimbursement_atlas-0.1.1-py3-none-any.whl",
+      "sha256": "95b78395b35bbb41838825781e79caa863102197af8efd5f964d12cf61fb5855",
+      "size": 221693
+    },
+    {
+      "path": "dist/reimbursement_atlas-0.1.1.tar.gz",
+      "sha256": "368d3249a8be33262b97c575ffed25fde1e17b3205a8b23a326d74b65bd7990f",
+      "size": 173985
+    },
+    {
+      "path": "reimbursement-atlas-v0.1.1.tar.gz",
+      "sha256": "782fe7b79442b9aad6a892153b30127770225b9fa0cc22945d83143ab912f36d",
+      "size": 17983958
+    }
+  ],
+  "tag": "v0.1.1",
+  "zenodo_deposition": "disabled_pending_publication_approval"
+}

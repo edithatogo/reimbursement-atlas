@@ -84,12 +84,6 @@ def _provenance_assertions(root: Path) -> list[dict[str, object]]:
             Path("data/derived/release_readiness/summary.json"),
             "research_publication_ready",
         ),
-        (
-            "osf-registration-readiness",
-            "publication.osf_registration_ready",
-            Path("data/derived/release_readiness/summary.json"),
-            "osf_registration_ready",
-        ),
     )
     assertions: list[dict[str, object]] = []
     for identifier, displayed_path, source_path, source_field in checks:
@@ -173,7 +167,11 @@ def build_packet(root: Path) -> dict[str, Any]:
     automated = _read_json(root / AUTOMATED)
     current_head = resolve_head(root)
     source_fingerprint = dashboard_source_fingerprint(root)
-    data_fingerprint = dashboard_data_fingerprint(root)
+    tested_commit = str(automated.get("tested_commit") or current_head)
+    data_fingerprint = dashboard_data_fingerprint(
+        root,
+        self_attestation_commit=tested_commit,
+    )
     provenance = [
         {
             "path": path.as_posix(),
