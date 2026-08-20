@@ -1,7 +1,7 @@
 # Project Tracks
 
-- [~] **Track: OSF destination deprecation**
-  *Link: [./tracks/track_osf_deprecation_20260820/index.md](./tracks/track_osf_deprecation_20260820/index.md)*
+- [x] **Track: OSF destination deprecation**
+  *Link: [./archive/track_osf_deprecation_20260820/index.md](./archive/track_osf_deprecation_20260820/index.md)*
 - [x] **Track: Risk-tiered approval friction reduction**
   *Link: [./archive/track_approval_friction_reduction_20260820/index.md](./archive/track_approval_friction_reduction_20260820/index.md)*
 - [~] **Track: Evidence-grade live-source ingestion**

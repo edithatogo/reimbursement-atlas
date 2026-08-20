@@ -7,8 +7,8 @@ tracks:
     phase: hardening
     workstream: research
     goal: "Retire OSF as an active registration/publication dependency while preserving immutable historical evidence."
-    spec: "conductor/tracks/track_osf_deprecation_20260820/spec.md"
-    plan: "conductor/tracks/track_osf_deprecation_20260820/plan.md"
+    spec: "conductor/archive/track_osf_deprecation_20260820/spec.md"
+    plan: "conductor/archive/track_osf_deprecation_20260820/plan.md"
     issues:
       - 711
   - id: track_approval_friction_reduction_20260820

@@ -1857,7 +1857,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "github_project_items",
-      "sha256": "bbc989084d6dd78f12fda97abf82fda7842de7d4887e09db1f118a1343a96fd4"
+      "sha256": "dd6ae59ecbf22c4c71bbeeb803a13a4b16f3dc52a042bfbbd2f836f0c8749d8e"
     },
     {
       "@id": "data/derived/github_project/github_project_items.csv",
@@ -1866,7 +1866,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "github_project_items",
-      "sha256": "0b49c967d9dda622e8d8cb079551d1b9ded58d0a365f9548b7d557c38b1679b4"
+      "sha256": "e40dd9238617859fde4b92273d3e1323a338c8f1cd188b686f2fc60480dec86f"
     },
     {
       "@id": "data/derived/final_handoff/final_handoff_tasks.jsonl",
