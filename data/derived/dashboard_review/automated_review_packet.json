@@ -9,7 +9,7 @@
     "table captions"
   ],
   "coverage_complete": true,
-  "data_fingerprint": "f6df7cd537546afc1188b24389a696d9d2ae42a9a8eb246c8056b920f01393c9",
+  "data_fingerprint": "f6d920c807d5f5de86a4262663ee61a5bbbfefc79abc9677ad2f0bbd5a14b346",
   "expected_test_count": 64,
   "human_review_required": true,
   "junit": {
@@ -45,12 +45,12 @@
   "screenshots": [
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
+      "browser_version": "151.0.7922.34",
       "byte_size": 245910,
       "file": "embedded",
       "project": "desktop-chromium",
       "route": "/",
-      "sha256": "9329aea9bbca4cf7e24695d03d95c1bde0b6f62478b50cef52bfb2cd76dbfff1",
+      "sha256": "7fa524c9156fc5e58f78884e03f00de69550c09519557cd48d1015a068c98257",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -58,7 +58,7 @@
     },
     {
       "browser": "firefox",
-      "browser_version": "151.0",
+      "browser_version": "153.0",
       "byte_size": 229020,
       "file": "embedded",
       "project": "desktop-firefox",
@@ -72,11 +72,11 @@
     {
       "browser": "webkit",
       "browser_version": "26.5",
-      "byte_size": 294531,
+      "byte_size": 295227,
       "file": "embedded",
       "project": "desktop-webkit",
       "route": "/",
-      "sha256": "a6ffda79f8ca4c73aac1cd4155b2cf22b1bfc2accb03be685767899b6ad44b10",
+      "sha256": "6e9404ef4f97b7f803f99a578d72ff190b44a8b949b9f292abcaa8d5f366b6c9",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -84,12 +84,12 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
-      "byte_size": 217416,
+      "browser_version": "151.0.7922.34",
+      "byte_size": 218142,
       "file": "embedded",
       "project": "mobile-chromium",
       "route": "/",
-      "sha256": "d68f7a882fc122576906baebfe75f7c72d3d83096f44c45c9b86009c075aa043",
+      "sha256": "feae8f5f25413accd5402c61e916e8f5bbb2a9d78b5ef36bfb663e1fa323ba72",
       "viewport": {
         "height": 727,
         "width": 393
@@ -97,7 +97,7 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
+      "browser_version": "151.0.7922.34",
       "byte_size": 403769,
       "file": "embedded",
       "project": "desktop-chromium",
@@ -110,7 +110,7 @@
     },
     {
       "browser": "firefox",
-      "browser_version": "151.0",
+      "browser_version": "153.0",
       "byte_size": 414286,
       "file": "embedded",
       "project": "desktop-firefox",
@@ -136,7 +136,7 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
+      "browser_version": "151.0.7922.34",
       "byte_size": 309644,
       "file": "embedded",
       "project": "mobile-chromium",
@@ -149,7 +149,7 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
+      "browser_version": "151.0.7922.34",
       "byte_size": 208466,
       "file": "embedded",
       "project": "desktop-chromium",
@@ -162,7 +162,7 @@
     },
     {
       "browser": "firefox",
-      "browser_version": "151.0",
+      "browser_version": "153.0",
       "byte_size": 189895,
       "file": "embedded",
       "project": "desktop-firefox",
@@ -188,7 +188,7 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
+      "browser_version": "151.0.7922.34",
       "byte_size": 148321,
       "file": "embedded",
       "project": "mobile-chromium",
@@ -201,12 +201,12 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
-      "byte_size": 1380825,
+      "browser_version": "151.0.7922.34",
+      "byte_size": 1381058,
       "file": "embedded",
       "project": "desktop-chromium",
       "route": "/automation/",
-      "sha256": "d76d3aba17cc4b57630b79b319180c65b2b92735859486fa39470474ef467f31",
+      "sha256": "63ed74700eec8a196aecf6303700f0ffeea49d71e930e0a42852598dd8076221",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -214,12 +214,12 @@
     },
     {
       "browser": "firefox",
-      "browser_version": "151.0",
-      "byte_size": 1456152,
+      "browser_version": "153.0",
+      "byte_size": 1455741,
       "file": "embedded",
       "project": "desktop-firefox",
       "route": "/automation/",
-      "sha256": "69675a861b12d2a9d22bb04d9f29ba11a7a5693506cdc1d781becfc031d2e2dd",
+      "sha256": "36468f8d6fd249dad326a3e608d39fa06e8873cdd402ed924d53fa90ec808743",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -228,11 +228,11 @@
     {
       "browser": "webkit",
       "browser_version": "26.5",
-      "byte_size": 1642746,
+      "byte_size": 1643021,
       "file": "embedded",
       "project": "desktop-webkit",
       "route": "/automation/",
-      "sha256": "0b80f35ba322d1b5fbb90e6dadac2ab7dc1f3ae6272c94921f62fcf10e6db66d",
+      "sha256": "84f7247094f56d68e9d5665be6fcf8833aa806e7cd9c90085c6808703f49b7b2",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -240,12 +240,12 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
-      "byte_size": 793613,
+      "browser_version": "151.0.7922.34",
+      "byte_size": 793619,
       "file": "embedded",
       "project": "mobile-chromium",
       "route": "/automation/",
-      "sha256": "b79cf83f6b312d3687f20f444267119d6b8fc2192d205f2a899603a0f95bd64c",
+      "sha256": "2448a6bffc721dfb7822ea0a2d57e035dd0356d3939465a2cf0d3b684754a838",
       "viewport": {
         "height": 727,
         "width": 393
@@ -253,7 +253,7 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
+      "browser_version": "151.0.7922.34",
       "byte_size": 533761,
       "file": "embedded",
       "project": "desktop-chromium",
@@ -266,7 +266,7 @@
     },
     {
       "browser": "firefox",
-      "browser_version": "151.0",
+      "browser_version": "153.0",
       "byte_size": 546205,
       "file": "embedded",
       "project": "desktop-firefox",
@@ -292,7 +292,7 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
+      "browser_version": "151.0.7922.34",
       "byte_size": 391896,
       "file": "embedded",
       "project": "mobile-chromium",
@@ -305,7 +305,7 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
+      "browser_version": "151.0.7922.34",
       "byte_size": 197367,
       "file": "embedded",
       "project": "desktop-chromium",
@@ -318,7 +318,7 @@
     },
     {
       "browser": "firefox",
-      "browser_version": "151.0",
+      "browser_version": "153.0",
       "byte_size": 173517,
       "file": "embedded",
       "project": "desktop-firefox",
@@ -344,7 +344,7 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
+      "browser_version": "151.0.7922.34",
       "byte_size": 134982,
       "file": "embedded",
       "project": "mobile-chromium",
@@ -357,7 +357,7 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
+      "browser_version": "151.0.7922.34",
       "byte_size": 314194,
       "file": "embedded",
       "project": "desktop-chromium",
@@ -370,7 +370,7 @@
     },
     {
       "browser": "firefox",
-      "browser_version": "151.0",
+      "browser_version": "153.0",
       "byte_size": 301191,
       "file": "embedded",
       "project": "desktop-firefox",
@@ -396,7 +396,7 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
+      "browser_version": "151.0.7922.34",
       "byte_size": 210483,
       "file": "embedded",
       "project": "mobile-chromium",
@@ -409,7 +409,7 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
+      "browser_version": "151.0.7922.34",
       "byte_size": 1247365,
       "file": "embedded",
       "project": "desktop-chromium",
@@ -422,7 +422,7 @@
     },
     {
       "browser": "firefox",
-      "browser_version": "151.0",
+      "browser_version": "153.0",
       "byte_size": 1323642,
       "file": "embedded",
       "project": "desktop-firefox",
@@ -448,7 +448,7 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
+      "browser_version": "151.0.7922.34",
       "byte_size": 824713,
       "file": "embedded",
       "project": "mobile-chromium",
@@ -461,7 +461,7 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
+      "browser_version": "151.0.7922.34",
       "byte_size": 1188595,
       "file": "embedded",
       "project": "desktop-chromium",
@@ -474,7 +474,7 @@
     },
     {
       "browser": "firefox",
-      "browser_version": "151.0",
+      "browser_version": "153.0",
       "byte_size": 1260072,
       "file": "embedded",
       "project": "desktop-firefox",
@@ -500,7 +500,7 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
+      "browser_version": "151.0.7922.34",
       "byte_size": 642702,
       "file": "embedded",
       "project": "mobile-chromium",
@@ -513,7 +513,7 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
+      "browser_version": "151.0.7922.34",
       "byte_size": 1261257,
       "file": "embedded",
       "project": "desktop-chromium",
@@ -526,7 +526,7 @@
     },
     {
       "browser": "firefox",
-      "browser_version": "151.0",
+      "browser_version": "153.0",
       "byte_size": 1363020,
       "file": "embedded",
       "project": "desktop-firefox",
@@ -552,7 +552,7 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
+      "browser_version": "151.0.7922.34",
       "byte_size": 649478,
       "file": "embedded",
       "project": "mobile-chromium",
@@ -565,7 +565,7 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
+      "browser_version": "151.0.7922.34",
       "byte_size": 190013,
       "file": "embedded",
       "project": "desktop-chromium",
@@ -578,7 +578,7 @@
     },
     {
       "browser": "firefox",
-      "browser_version": "151.0",
+      "browser_version": "153.0",
       "byte_size": 169435,
       "file": "embedded",
       "project": "desktop-firefox",
@@ -604,7 +604,7 @@
     },
     {
       "browser": "chromium",
-      "browser_version": "149.0.7827.55",
+      "browser_version": "151.0.7922.34",
       "byte_size": 142949,
       "file": "embedded",
       "project": "mobile-chromium",
@@ -616,15 +616,15 @@
       }
     }
   ],
-  "source_fingerprint": "bd82c5bb82dbd77fd428b36df57939ef4d07a40e0fb59cde64ceff8797e392d3",
+  "source_fingerprint": "ab918e181b619fd9450f7ca124176f2855d380d594e55c96b5346bdedcba0128",
   "status": "pass",
   "test_count": 64,
-  "tested_commit": "e0f375e919561769771aee1c1cdb87ed66cbfc74",
+  "tested_commit": "15f05261b0e2a1e4d2c8b3b4dd4bba22933f8691",
   "workflow": {
-    "artifact_name": "dashboard-browser-review-32424549037",
+    "artifact_name": "dashboard-browser-review-32425867696",
     "run_attempt": "1",
-    "run_id": "32424549037",
+    "run_id": "32425867696",
     "workflow": "Dashboard browser matrix",
-    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/32424549037"
+    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/32425867696"
   }
 }
