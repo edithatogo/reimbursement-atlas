@@ -344,6 +344,64 @@ def _json_at_commit(repo: Path, commit: str, path: Path) -> dict[str, Any]:
     return cast("dict[str, Any]", value) if isinstance(value, dict) else {}
 
 
+def _commits_touching(repo: Path, path: Path, *, limit: int = 64) -> tuple[str, ...]:
+    """Return a bounded newest-first history for an approval receipt path."""
+    result = subprocess.run(  # nosec B603 - fixed shell-free git reader.
+        ("git", "log", f"--max-count={limit}", "--format=%H", "--", path.as_posix()),
+        cwd=repo,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        return ()
+    return tuple(
+        commit
+        for commit in result.stdout.splitlines()
+        if len(commit) == 40 and all(character in "0123456789abcdef" for character in commit)
+    )
+
+
+def _approval_receipt_matches(snapshot: dict[str, Any], current: dict[str, Any]) -> bool:
+    """Compare only immutable fields that define the bounded approval decision."""
+    fields = (
+        "status",
+        "reviewed_at",
+        "reviewer",
+        "commit",
+        "automated_packet_sha256",
+        "owner_packet_sha256",
+        "scope",
+    )
+    return bool(snapshot) and all(snapshot.get(field) == current.get(field) for field in fields)
+
+
+def _approved_packet_bytes(
+    repo: Path,
+    human: dict[str, Any],
+) -> tuple[bytes, bytes] | None:
+    """Resolve packet bytes from the tested commit or later immutable receipt commit."""
+    reviewed_commit = human.get("commit")
+    if not isinstance(reviewed_commit, str):
+        return None
+    candidates = (reviewed_commit, *_commits_touching(repo, HUMAN_PATH))
+    for commit in dict.fromkeys(candidates):
+        if commit != reviewed_commit and not _approval_receipt_matches(
+            _json_at_commit(repo, commit, HUMAN_PATH), human
+        ):
+            continue
+        automated = _git_file_at_commit(repo, commit, AUTOMATED_PATH)
+        owner = _git_file_at_commit(repo, commit, OWNER_PATH)
+        if automated is None or owner is None:
+            continue
+        if (
+            human.get("automated_packet_sha256") == hashlib.sha256(automated).hexdigest()
+            and human.get("owner_packet_sha256") == hashlib.sha256(owner).hexdigest()
+        ):
+            return automated, owner
+    return None
+
+
 def _standing_approval_valid(
     repo: Path,
     *,
@@ -356,16 +414,19 @@ def _standing_approval_valid(
     reviewed_commit = human.get("commit")
     if not isinstance(reviewed_commit, str):
         return False
-    reviewed_automated_bytes = _git_file_at_commit(repo, reviewed_commit, AUTOMATED_PATH)
-    reviewed_owner_bytes = _git_file_at_commit(repo, reviewed_commit, OWNER_PATH)
-    if reviewed_automated_bytes is None or reviewed_owner_bytes is None:
+    approved_packet_bytes = _approved_packet_bytes(repo, human)
+    if approved_packet_bytes is None:
         return False
-    if human.get("automated_packet_sha256") != hashlib.sha256(reviewed_automated_bytes).hexdigest():
+    reviewed_automated_bytes, reviewed_owner_bytes = approved_packet_bytes
+    try:
+        raw_reviewed_automated = json.loads(reviewed_automated_bytes)
+        raw_reviewed_owner = json.loads(reviewed_owner_bytes)
+    except UnicodeDecodeError, json.JSONDecodeError:
         return False
-    if human.get("owner_packet_sha256") != hashlib.sha256(reviewed_owner_bytes).hexdigest():
+    if not isinstance(raw_reviewed_automated, dict) or not isinstance(raw_reviewed_owner, dict):
         return False
-    reviewed_automated = _json_at_commit(repo, reviewed_commit, AUTOMATED_PATH)
-    reviewed_owner = _json_at_commit(repo, reviewed_commit, OWNER_PATH)
+    reviewed_automated = cast("dict[str, Any]", raw_reviewed_automated)
+    reviewed_owner = cast("dict[str, Any]", raw_reviewed_owner)
     scope = human.get("scope")
     human_scope = cast("dict[str, Any]", scope) if isinstance(scope, dict) else {}
     raw_assertions = reviewed_owner.get("provenance_assertions")

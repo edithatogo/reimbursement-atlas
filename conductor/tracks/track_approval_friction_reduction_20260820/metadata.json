@@ -16,8 +16,8 @@
     {
       "id": "hosted_dashboard_evidence",
       "kind": "hosted_ci",
-      "status": "pending",
-      "evidence": "The protected PR must produce a fresh browser packet. Standing approval may carry forward only if UI fingerprint and scope remain unchanged."
+      "status": "satisfied",
+      "evidence": "GitHub Actions run 32348924730 passed 64 tests and retained 44 screenshots at commit 5e4cb94ff479453222f9f326fed911f3d221e8e5; the integrity-checked standing scoped approval passes all current predicates."
     },
     {
       "id": "external_mutation_boundary",

@@ -22,7 +22,7 @@ research and publication boundaries.
 - [x] Dashboard data-only regeneration can use an integrity-checked standing scoped approval.
 - [x] Dashboard UI or review-scope changes invalidate standing approval.
 - [x] Targeted, deterministic-generation and repository quality gates pass.
-- [ ] GitHub issue #708 and generated Conductor/GitHub Project state are synchronized.
+- [x] GitHub issue #708 and generated Conductor/GitHub Project state are synchronized.
 
 ## External gates
 
