@@ -27,7 +27,7 @@
 - [x] **Track: Data quality evidence gates**
   *Link: [./archive/track_data_quality_evidence/index.md](./archive/track_data_quality_evidence/index.md)*
 - [~] **Track: Continuous security assurance**
-  *Link: [./tracks/track_continuous_security_assurance/index.md](./tracks/track_continuous_security_assurance/index.md)*
+  *Link: [./archive/track_continuous_security_assurance/index.md](./archive/track_continuous_security_assurance/index.md)*
 - [x] **Track: Source provenance, licensing and historical release reproducibility**
   *Link: [./archive/track_source_provenance_licence_release/index.md](./archive/track_source_provenance_licence_release/index.md)*
 - [x] **Track: Layered harness engineering and deterministic regeneration**
