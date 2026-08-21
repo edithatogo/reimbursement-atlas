@@ -83,12 +83,12 @@ Raw files should remain under `data/raw_live/`, which is ignored by git.
 - Raw handling: `metadata_only`
 - Suggested local path: `data/raw_live/au_pbs/pbs_v3_schedules.json`
 
-### step_009: PBS API CSV files download page
+### step_009: PBS API guidance and CSV fallback discovery
 
 - Source file id: `au_pbs_api_csv_download_page`
-- URL: https://www.pbs.gov.au/info/browse/download
+- URL: https://data.pbs.gov.au/api/pbs-api.html
 - Raw handling: `metadata_only`
-- Suggested local path: `data/raw_live/au_pbs/PBS API CSV files ZIP (discover from page)`
+- Suggested local path: `data/raw_live/au_pbs/PBS API guidance (metadata only)`
 
 ### step_010: CMS ASP July 2026 payment-limit files page
 

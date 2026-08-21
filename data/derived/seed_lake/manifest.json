@@ -9,7 +9,7 @@
       "name": "source_registry",
       "parquet_path": "source_registry/source_registry.parquet",
       "rows": 64,
-      "sha256": "85b3c9b84481704208da5c1ed2afbc354902176c013c5fdc9bbf173e9fb68c10"
+      "sha256": "445d0c6296f197fc0110d2f8d2ca934e8fc36c40a63d31a452866292965474a2"
     },
     {
       "csv_path": "analysis_catalogue/analysis_catalogue.csv",
@@ -41,7 +41,7 @@
       "name": "source_files",
       "parquet_path": "source_files/source_files.parquet",
       "rows": 11,
-      "sha256": "81c94b40ed8f7d22495c07cb913958e636a490d3e5319d8e619580e91c47a760"
+      "sha256": "bd09a2ea9257fbe07ba99c328749dd4b2bf8189cf2a265016a6b68f34f9780b9"
     },
     {
       "csv_path": "source_snapshots/source_snapshots.csv",
@@ -361,7 +361,7 @@
       "name": "source_download_plans",
       "parquet_path": "source_download_plans/source_download_plans.parquet",
       "rows": 11,
-      "sha256": "dc936a08ee4f1346072e520475db003a7419eadd89e7b37ccc0a5ca50a3a5d24"
+      "sha256": "c3123c44ee2400edfb00b36b8ded6126345c7384bd4edb887247e0bd2c6bb99f"
     },
     {
       "csv_path": "source_download_attempts/source_download_attempts.csv",
