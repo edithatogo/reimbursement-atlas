@@ -706,6 +706,17 @@ def test_pbs_contract_passes_fixture() -> None:
     assert "pbs_item_code" in result.observed_columns
 
 
+def test_pbs_sources_use_current_authoritative_guidance() -> None:
+    api_record = _source_file("au_pbs_api_v3_documentation")
+    fallback_record = _source_file("au_pbs_api_csv_download_page")
+
+    assert str(api_record.source_url) == "https://data-api.health.gov.au/pbs/api/v3/schedules"
+    assert api_record.auth_env_var == "PBS_API_SUBSCRIPTION_KEY"
+    assert str(fallback_record.source_url) == "https://data.pbs.gov.au/api/pbs-api.html"
+    assert fallback_record.acquisition_mode == "landing_page_review"
+    assert "legacy PBS Downloads route returned HTTP 404" in fallback_record.current_observation
+
+
 def test_contract_detects_html_download(tmp_path: Path) -> None:
     record = _source_file("au_mbs_20260701_imap_txt")
     path = tmp_path / "20260701_MBSONLINE_IMAP.TXT"

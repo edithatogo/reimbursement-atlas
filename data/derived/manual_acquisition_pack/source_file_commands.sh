@@ -51,8 +51,8 @@ mkdir -p data/raw_live/au_pbs
 # Snapshot: # Metadata-only record; review the landing page or endpoint before downloading.
 # Parse: # No parser runs for metadata-only landing/API records.
 
-# step_009: PBS API CSV files download page
-# URL: https://www.pbs.gov.au/info/browse/download
+# step_009: PBS API guidance and CSV fallback discovery
+# URL: https://data.pbs.gov.au/api/pbs-api.html
 mkdir -p data/raw_live/au_pbs
 # Snapshot: # Metadata-only record; review the landing page or endpoint before downloading.
 # Parse: # No parser runs for metadata-only landing/API records.

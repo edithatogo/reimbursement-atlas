@@ -20,7 +20,7 @@
     },
     {
       "path": "data/derived/research_claims/rq_source_transparency.json",
-      "sha256": "fb0c655a3bb924476cdcd83b6177cfb0a993d94ad6b9467d2e084a781bcc20c1"
+      "sha256": "bdcea6fa2b9c2ba84f9f15dd5a2a306a9ffef8c8ca5eeeea92242163099ed5a2"
     }
   ],
   "partial_source_gap_count": 0,

@@ -186,7 +186,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/packageurl-python-0.17.6-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/packaging-26.2-pyhc364b38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pbr-7.0.3-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.1.2-pyh145f28c_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.2.1-pyh145f28c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-api-0.0.34-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-audit-2.10.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-requirements-parser-32.0.1-pyhd8ed1ab_1.conda
@@ -402,7 +402,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/packageurl-python-0.17.6-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/packaging-26.2-pyhc364b38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pbr-7.0.3-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.1.2-pyh145f28c_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.2.1-pyh145f28c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-api-0.0.34-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-audit-2.10.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-requirements-parser-32.0.1-pyhd8ed1ab_1.conda
@@ -506,7 +506,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/packageurl-python-0.17.6-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/packaging-26.2-pyhc364b38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pbr-7.0.3-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.1.2-pyh145f28c_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.2.1-pyh145f28c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-api-0.0.34-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-audit-2.10.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-requirements-parser-32.0.1-pyhd8ed1ab_1.conda
@@ -821,7 +821,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/packageurl-python-0.17.6-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/packaging-26.2-pyhc364b38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pbr-7.0.3-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.1.2-pyh145f28c_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.2.1-pyh145f28c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-api-0.0.34-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-audit-2.10.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-requirements-parser-32.0.1-pyhd8ed1ab_1.conda
@@ -1017,7 +1017,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/packageurl-python-0.17.6-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/packaging-26.2-pyhc364b38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pbr-7.0.3-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.1.2-pyh145f28c_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.2.1-pyh145f28c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-api-0.0.34-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-audit-2.10.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-requirements-parser-32.0.1-pyhd8ed1ab_1.conda
@@ -1107,7 +1107,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/packageurl-python-0.17.6-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/packaging-26.2-pyhc364b38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pbr-7.0.3-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.1.2-pyh145f28c_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.2.1-pyh145f28c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-api-0.0.34-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-audit-2.10.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-requirements-parser-32.0.1-pyhd8ed1ab_1.conda
@@ -1410,7 +1410,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/packageurl-python-0.17.6-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/packaging-26.2-pyhc364b38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pbr-7.0.3-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.1.2-pyh145f28c_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.2.1-pyh145f28c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-api-0.0.34-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-audit-2.10.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-requirements-parser-32.0.1-pyhd8ed1ab_1.conda
@@ -1606,7 +1606,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/packageurl-python-0.17.6-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/packaging-26.2-pyhc364b38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pbr-7.0.3-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.1.2-pyh145f28c_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.2.1-pyh145f28c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-api-0.0.34-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-audit-2.10.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-requirements-parser-32.0.1-pyhd8ed1ab_1.conda
@@ -1696,7 +1696,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/packageurl-python-0.17.6-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/packaging-26.2-pyhc364b38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pbr-7.0.3-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.1.2-pyh145f28c_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.2.1-pyh145f28c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-api-0.0.34-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-audit-2.10.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-requirements-parser-32.0.1-pyhd8ed1ab_1.conda
@@ -2000,7 +2000,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/packageurl-python-0.17.6-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/packaging-26.2-pyhc364b38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pbr-7.0.3-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.1.2-pyh145f28c_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.2.1-pyh145f28c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-api-0.0.34-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-audit-2.10.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-requirements-parser-32.0.1-pyhd8ed1ab_1.conda
@@ -2207,7 +2207,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/packageurl-python-0.17.6-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/packaging-26.2-pyhc364b38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pbr-7.0.3-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.1.2-pyh145f28c_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.2.1-pyh145f28c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-api-0.0.34-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-audit-2.10.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-requirements-parser-32.0.1-pyhd8ed1ab_1.conda
@@ -2308,7 +2308,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/packageurl-python-0.17.6-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/packaging-26.2-pyhc364b38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pbr-7.0.3-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.1.2-pyh145f28c_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.2.1-pyh145f28c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-api-0.0.34-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-audit-2.10.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-requirements-parser-32.0.1-pyhd8ed1ab_1.conda
@@ -2624,7 +2624,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/packageurl-python-0.17.6-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/packaging-26.2-pyhc364b38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pbr-7.0.3-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.1.2-pyh145f28c_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.2.1-pyh145f28c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-api-0.0.34-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-audit-2.10.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-requirements-parser-32.0.1-pyhd8ed1ab_1.conda
@@ -2828,7 +2828,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/packageurl-python-0.17.6-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/packaging-26.2-pyhc364b38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pbr-7.0.3-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.1.2-pyh145f28c_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.2.1-pyh145f28c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-api-0.0.34-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-audit-2.10.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-requirements-parser-32.0.1-pyhd8ed1ab_1.conda
@@ -2924,7 +2924,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/packageurl-python-0.17.6-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/packaging-26.2-pyhc364b38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pbr-7.0.3-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.1.2-pyh145f28c_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.2.1-pyh145f28c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-api-0.0.34-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-audit-2.10.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-requirements-parser-32.0.1-pyhd8ed1ab_1.conda
@@ -7541,9 +7541,9 @@ packages:
   run_exports: {}
   size: 85207
   timestamp: 1762194733167
-- conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.1.2-pyh145f28c_0.conda
-  sha256: 9e673d3c6003f416df11670a14b026a04e3a45ebec55357987e15b860f138f2a
-  md5: 733cc07ed34162ac50b936464b163366
+- conda: https://conda.anaconda.org/conda-forge/noarch/pip-26.2.1-pyh145f28c_0.conda
+  sha256: 0f7021cfb3ff454c91a5e28e1f5060906a52c6d1cde3f879a7d03ac33c28b1c3
+  md5: 573cb3ed111004230ed3de650653cd4d
   depends:
   - python >=3.13.0a0
   license: MIT
@@ -7551,8 +7551,8 @@ packages:
   purls:
   - pkg:pypi/pip?source=hash-mapping
   run_exports: {}
-  size: 1202377
-  timestamp: 1780262809860
+  size: 1198163
+  timestamp: 1785914482439
 - conda: https://conda.anaconda.org/conda-forge/noarch/pip-api-0.0.34-pyhd8ed1ab_0.conda
   sha256: 2d0a1dc9695eb260400496c038e8a467d37d2fd04ecf9ec2e205a921d5adfa45
   md5: 8ea39496190b1a0f92f049685f97e8c7
