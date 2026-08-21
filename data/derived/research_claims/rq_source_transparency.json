@@ -4,7 +4,7 @@
   "descriptive_results": {
     "historical_versions_count": 63,
     "input_path": "data/seed/source_registry.jsonl",
-    "input_sha256": "ab9505309ce996c0fe5508408705cdb6b860220f3e7cdbafea237608cbfba6a3",
+    "input_sha256": "4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8",
     "licence_notes_count": 64,
     "machine_readable_count": 41,
     "primary_url_count": 64,

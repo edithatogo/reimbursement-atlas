@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 39,
-      "sha256": "1e5f528641faac8cf67ddb3a73179e49ae84713729cf5ef15c941a6745ce50eb"
+      "sha256": "7f1af7eb4039cd846269c01481c575a571650fa6bdd4a68f315c84ded6bd103a"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -377,7 +377,7 @@
       "name": "source_content_validation",
       "parquet_path": "source_content_validation/source_content_validation.parquet",
       "rows": 11,
-      "sha256": "cf1dfb8c94f484fa77281eda81f3025570a80819ad05fe8a66bf6a33a478aa64"
+      "sha256": "0f39bea55f814cda5ec5ace227383aa499aefea128db12d6cc46b841e3c64adf"
     },
     {
       "csv_path": "source_contract_validation/source_contract_validation.csv",
@@ -385,7 +385,7 @@
       "name": "source_contract_validation",
       "parquet_path": "source_contract_validation/source_contract_validation.parquet",
       "rows": 11,
-      "sha256": "471ad53481a4688592b3af7b7dca30690a70f084f8073c469b05146e1c5fa8d8"
+      "sha256": "15206941622d0cbb34aee92d50b7b0ce1901342122c33f07134f646687aba894"
     },
     {
       "csv_path": "github_project_items/github_project_items.csv",
@@ -433,7 +433,7 @@
       "name": "evidence_readiness",
       "parquet_path": "evidence_readiness/evidence_readiness.parquet",
       "rows": 5,
-      "sha256": "ac44fbb5fc6998bdc047d30a0611303b7d5f49030df6a00cf5f27e7c171c23de"
+      "sha256": "63b8c50c0261cd6902924ddbb06a97111f6c1d5b17ec4c2bfcd52df723d27a85"
     },
     {
       "csv_path": "source_drift_report/source_drift_report.csv",
@@ -441,7 +441,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "1a0a4cdec1ae99c5601c6cf2fe754e7193111055ce39cae80a2ea33b66d2fa27"
+      "sha256": "b480a3f3e4390a22bb534691dcfe658287cc49100e2eeb54ba8d335d3f40413e"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",

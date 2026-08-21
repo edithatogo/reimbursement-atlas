@@ -10,8 +10,8 @@ checksum-bound row-level record.
 
 ## Current batches
 
-- `permissive_candidate` / `public_derived_candidate`: 151 artefacts, 191625076 bytes
-- `permissive_candidate` / `public_metadata_candidate`: 35 artefacts, 466293 bytes
+- `permissive_candidate` / `public_derived_candidate`: 151 artefacts, 191625062 bytes
+- `permissive_candidate` / `public_metadata_candidate`: 35 artefacts, 467075 bytes
 
 Total candidate artefacts: 186. Neutral generated row markers are not approval
 requests; the batch and summary `pending_count` values identify required decisions.
