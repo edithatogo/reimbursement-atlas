@@ -480,6 +480,15 @@ def _approved_packet_bytes(
     return None
 
 
+def _self_attestation_commit(repo: Path, human: dict[str, Any]) -> str | None:
+    """Prefer a reachable receipt commit, falling back to the reviewed commit."""
+    snapshot = _approved_packet_bytes(repo, human)
+    if snapshot is not None:
+        return snapshot[0]
+    reviewed_commit = human.get("commit")
+    return reviewed_commit if isinstance(reviewed_commit, str) else None
+
+
 def _standing_approval_valid(
     repo: Path,
     *,
@@ -633,13 +642,7 @@ def dashboard_review_evidence(repo: Path) -> dict[str, object]:
     source_fingerprint = dashboard_source_fingerprint(repo)
     data_fingerprint = dashboard_data_fingerprint(
         repo,
-        self_attestation_commit=(
-            _approved_packet_bytes(repo, human)[0]
-            if _approved_packet_bytes(repo, human) is not None
-            else cast("str", human["commit"])
-            if isinstance(human.get("commit"), str)
-            else None
-        ),
+        self_attestation_commit=_self_attestation_commit(repo, human),
     )
     approval_mode, approval_binding_valid = _approval_binding(
         repo,
