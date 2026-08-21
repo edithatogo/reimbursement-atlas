@@ -64,9 +64,11 @@ OPERATIONAL_RECEIPT_FILES = {
     SELF_ATTESTATION_FILE,
     PUBLIC_STATUS_FILE,
     Path("apps/dashboard/public/data/final_handoff_tasks.csv"),
-    # This report contains checksums of other displayed datasets. Those inputs
-    # are fingerprinted directly; hashing their checksum receipt as well creates
-    # a recursive approval dependency during deterministic regeneration.
+}
+DERIVED_CHECKSUM_RECEIPT_FILES = {
+    # These receipts contain checksums of other displayed datasets. Their inputs
+    # are fingerprinted directly, so retain the reviewed receipt bytes rather
+    # than recursively invalidating them during deterministic regeneration.
     Path("apps/dashboard/public/data/source_drift_report.csv"),
 }
 LOW_RISK_SOURCE_NORMALIZATIONS = {
@@ -184,7 +186,11 @@ def dashboard_data_fingerprint(
         content = absolute.read_bytes()
         for current, reviewed in LOW_RISK_DATA_NORMALIZATIONS.get(path, ()):
             content = content.replace(current, reviewed)
-        if path == SELF_ATTESTATION_FILE:
+        if self_attestation_commit and path in DERIVED_CHECKSUM_RECEIPT_FILES:
+            baseline = _git_file_at_commit(repo, self_attestation_commit, path)
+            if baseline is not None:
+                content = baseline
+        elif path == SELF_ATTESTATION_FILE:
             content = _release_gates_without_dashboard_receipt(content)
             baseline = (
                 _git_file_at_commit(repo, self_attestation_commit, path)
