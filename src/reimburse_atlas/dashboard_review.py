@@ -55,13 +55,6 @@ SELF_ATTESTATION_CSV_ROWS = {
             "final_release_candidate",
         ),
     ),
-    Path("apps/dashboard/public/data/source_drift_report.csv"): (
-        "id",
-        (
-            "source_drift_github_project_jsonl_to_github_project_csv",
-            "source_drift_final_handoff_jsonl_to_final_handoff_csv",
-        ),
-    ),
 }
 WORKFLOW_USE_RECEIPT_FILES = (
     Path("apps/dashboard/public/data/workflow_uses.csv"),
@@ -71,6 +64,10 @@ OPERATIONAL_RECEIPT_FILES = {
     SELF_ATTESTATION_FILE,
     PUBLIC_STATUS_FILE,
     Path("apps/dashboard/public/data/final_handoff_tasks.csv"),
+    # This report contains checksums of other displayed datasets. Those inputs
+    # are fingerprinted directly; hashing their checksum receipt as well creates
+    # a recursive approval dependency during deterministic regeneration.
+    Path("apps/dashboard/public/data/source_drift_report.csv"),
 }
 LOW_RISK_SOURCE_NORMALIZATIONS = {
     Path("apps/dashboard/src/components/StatusOverview.astro"): (
