@@ -17,8 +17,8 @@
     "desktop-webkit"
   ],
   "commit_parity": true,
-  "current_head": "58ae69b71a5122d939af276980858baafbaa452b",
-  "data_fingerprint": "2a13911c66931c7553ecb3684314ada158e2822a858978deab5569bbc81bc22c",
+  "current_head": "3ae013a0b8f94d4519a767f7ae01744944adabf1",
+  "data_fingerprint": "6b9100346b14b7cbed3338c23d52d76e65f921fbb3afcb79b7e8a5c4ed21a3f5",
   "prohibited_content_check": {
     "files_checked": 77,
     "findings": [],
@@ -95,8 +95,8 @@
     },
     {
       "displayed_path": "apps/dashboard/public/status.json#blockers",
-      "displayed_value": "8d774c30c6bb27db496ed1ffed4d935b180e3477d735a6399c6cbf7b5e3e9ef9",
-      "expected_value": "8d774c30c6bb27db496ed1ffed4d935b180e3477d735a6399c6cbf7b5e3e9ef9",
+      "displayed_value": "c1ce0d89c0bbb235689be07786ef9f33da7309801335da6672213f3cdfa8f8c9",
+      "expected_value": "c1ce0d89c0bbb235689be07786ef9f33da7309801335da6672213f3cdfa8f8c9",
       "id": "complete-blocker-projection",
       "source_field": "blockers",
       "source_path": "scripts/make_public_status_manifest.py",
@@ -105,9 +105,9 @@
   ],
   "provenance_inputs": [
     {
-      "byte_size": 3078,
+      "byte_size": 3083,
       "path": "apps/dashboard/public/status.json",
-      "sha256": "93a3e3e367072d5ec321075662b568aa855fa65b8c4e0751f36f8346cd7f00e4"
+      "sha256": "cdf431062086cf43bcb663c11fa68295f3c248e63511c5baf4b2e75e68385857"
     },
     {
       "byte_size": 126,
@@ -720,12 +720,12 @@
   ],
   "source_fingerprint": "ab918e181b619fd9450f7ca124176f2855d380d594e55c96b5346bdedcba0128",
   "status": "pending_accountable_review",
-  "tested_commit": "58ae69b71a5122d939af276980858baafbaa452b",
+  "tested_commit": "3ae013a0b8f94d4519a767f7ae01744944adabf1",
   "workflow": {
-    "artifact_name": "dashboard-browser-review-32498623020",
+    "artifact_name": "dashboard-browser-review-32499436199",
     "run_attempt": "1",
-    "run_id": "32498623020",
+    "run_id": "32499436199",
     "workflow": "Dashboard browser matrix",
-    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/32498623020"
+    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/32499436199"
   }
 }

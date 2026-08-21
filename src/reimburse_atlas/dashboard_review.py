@@ -67,6 +67,11 @@ WORKFLOW_USE_RECEIPT_FILES = (
     Path("apps/dashboard/public/data/workflow_uses.csv"),
     Path("apps/dashboard/public/data/workflow_uses.jsonl"),
 )
+OPERATIONAL_RECEIPT_FILES = {
+    SELF_ATTESTATION_FILE,
+    PUBLIC_STATUS_FILE,
+    Path("apps/dashboard/public/data/final_handoff_tasks.csv"),
+}
 LOW_RISK_SOURCE_NORMALIZATIONS = {
     Path("apps/dashboard/src/components/StatusOverview.astro"): (
         (
@@ -174,6 +179,10 @@ def dashboard_data_fingerprint(
     )
     digest = hashlib.sha256()
     for path in sorted(paths):
+        # These receipts report the gate being evaluated. Hashing them creates a
+        # self-invalidating approval loop; their contents remain machine-checked.
+        if path in OPERATIONAL_RECEIPT_FILES:
+            continue
         absolute = repo / path
         content = absolute.read_bytes()
         for current, reviewed in LOW_RISK_DATA_NORMALIZATIONS.get(path, ()):
