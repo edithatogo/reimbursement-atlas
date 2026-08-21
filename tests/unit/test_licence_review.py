@@ -126,6 +126,21 @@ def test_repository_control_reports_are_project_owned(repo_root: Path) -> None:
     assert {row.approval_reason_code for row in records} == {"project_owned_apache_2_0"}
 
 
+def test_evidence_readiness_reports_are_project_owned(repo_root: Path) -> None:
+    """Readiness receipts describe gates and do not inherit source-payload rights."""
+    manifest = build_publication_manifest(root=repo_root)
+    records = [
+        row
+        for row in manifest.artifacts
+        if row.relative_path.startswith("data/derived/evidence_readiness/")
+    ]
+
+    assert records
+    assert {row.publication_scope for row in records} == {"project_owned_metadata"}
+    assert {row.licence_gate for row in records} == {"apache_2_0_project_output"}
+    assert {row.approval_requirement for row in records} == {"automatic_policy"}
+
+
 def test_generated_graph_seeds_are_project_owned(repo_root: Path) -> None:
     """Conductor graph regeneration must not trigger provider-rights prompts."""
     manifest = build_publication_manifest(root=repo_root)

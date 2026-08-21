@@ -43,9 +43,9 @@ jobs:
         env:
           PYTHONPATH: .:src
         run: |
-          uv run --no-project --with pydantic==2.13.4 --with defusedxml==0.7.1 \
+          uv run --python 3.14 --no-project --with pydantic==2.13.4 --with defusedxml==0.7.1 \
             python scripts/make_dashboard_review_packet.py
-          uv run --no-project --with pydantic==2.13.4 --with defusedxml==0.7.1 \
+          uv run --python 3.14 --no-project --with pydantic==2.13.4 --with defusedxml==0.7.1 \
             python scripts/make_dashboard_owner_review_packet.py --refresh
       - name: Upload browser review evidence
         if: always()
