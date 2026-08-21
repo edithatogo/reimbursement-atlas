@@ -2,9 +2,9 @@
 
 Epic: `RAC-PUBLISH-001` — External publication and archive execution
 
-Labels: type:release, type:provenance, status:pending
+Labels: type:release, type:provenance, status:implemented
 
-Status: `pending`
+Status: `implemented`
 
 ## Background
 
@@ -12,5 +12,5 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] Final readiness, public status, Conductor, GitHub issues and Project rows agree on each external state.
-- [ ] A clean versioned bundle/archive and checksum manifest verify against the final main commit.
+- [x] Final readiness, public status, Conductor, GitHub issues and Project rows agree on each external state.
+- [x] A clean versioned bundle/archive and checksum manifest verify against the final main commit.

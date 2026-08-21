@@ -6,9 +6,9 @@
 - [x] ING-03: Parse the real July 2026 MBS TXT pair into a derived-only bundle
   with checksums and redacted source snapshots. (LIVE-001)
 - [x] ING-04: Run focused parser, source and public-data policy tests. (LIVE-001)
-- [ ] ING-05: Complete source-specific MBS reuse/licence and accountable content
+- [x] ING-05: Complete source-specific MBS reuse/licence and accountable content
   review before promoting the bundle beyond `public_reuse_review`. (LIVE-001)
-- [ ] ING-06: Validate CMS CLFS, ASP and PFS against permitted reviewed payloads
+- [x] ING-06: Validate CMS CLFS, ASP and PFS against permitted reviewed payloads
   without redistributing CPT/HCPCS-restricted descriptors. (LIVE-001)
 - [ ] ING-07: Refresh and validate the PBS API CSV parser with a credentialed,
   reviewed monthly extract. (LIVE-001)

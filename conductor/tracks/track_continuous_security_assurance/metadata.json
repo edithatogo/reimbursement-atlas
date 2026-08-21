@@ -3,12 +3,12 @@
   "type": "feature",
   "status": "in_progress",
   "created_at": "2026-08-01T13:45:00Z",
-  "updated_at": "2026-08-01T13:55:00Z",
+  "updated_at": "2026-08-21T01:10:00Z",
   "description": "Continuously monitor security settings and enforce repository security contracts.",
   "evidence_schema": "1.0",
   "gates": [
     {"id":"security_monitor","kind":"repository","status":"pass","evidence":"Read-only monitor and blocked-state contract tests pass."},
     {"id":"compensating_controls","kind":"repository","status":"pass","evidence":"Secret-history, workflow, action-pin and branch-protection contracts pass."},
-    {"id":"account_security","kind":"external_observation","status":"blocked","evidence":"Account-level security-analysis settings require sufficient GitHub API permissions and owner/name context."}
+    {"id":"account_security","kind":"external_observation","status":"blocked_account","evidence":"Owner-authenticated API readback confirms secret scanning and push protection enabled. Non-provider patterns and validity checks remain disabled after an authenticated enable request; the scheduled GITHUB_TOKEN cannot read these fields."}
   ]
 }
