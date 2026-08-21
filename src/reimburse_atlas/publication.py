@@ -214,6 +214,7 @@ PROJECT_OWNED_METADATA_PREFIXES = (
     Path("data/derived/architecture"),
     Path("data/derived/data_dictionary"),
     Path("data/derived/data_quality"),
+    Path("data/derived/evidence_readiness"),
     Path("data/derived/final_handoff"),
     Path("data/derived/github_project"),
     Path("data/derived/local_quality_gates"),

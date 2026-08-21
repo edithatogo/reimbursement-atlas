@@ -56,3 +56,8 @@ Routine implementation, regeneration, CI, issue synchronization and read-only ve
 without approval prompts. When accountable input is genuinely required, the system presents one
 grouped packet containing all current high-risk decisions, exact hashes, recommendation, rationale
 and exclusions. Superseded or already satisfied packet requests must not be repeated.
+
+The dashboard browser workflow emits both checksum-bound review packets with its screenshots.
+Agents must ingest those hosted packets and apply standing scoped approval before requesting a new
+owner decision. A new prompt is warranted only when the reapproval triggers above remain after that
+automated reconciliation.
