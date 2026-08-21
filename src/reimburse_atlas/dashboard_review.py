@@ -457,8 +457,8 @@ def _approval_receipt_matches(snapshot: dict[str, Any], current: dict[str, Any])
 def _approved_packet_bytes(
     repo: Path,
     human: dict[str, Any],
-) -> tuple[bytes, bytes] | None:
-    """Resolve packet bytes from the tested commit or later immutable receipt commit."""
+) -> tuple[str, bytes, bytes] | None:
+    """Resolve a reachable receipt commit and its integrity-matched packet bytes."""
     reviewed_commit = human.get("commit")
     if not isinstance(reviewed_commit, str):
         return None
@@ -476,7 +476,7 @@ def _approved_packet_bytes(
             human.get("automated_packet_sha256") == hashlib.sha256(automated).hexdigest()
             and human.get("owner_packet_sha256") == hashlib.sha256(owner).hexdigest()
         ):
-            return automated, owner
+            return commit, automated, owner
     return None
 
 
@@ -498,7 +498,7 @@ def _standing_approval_valid(
     approved_packet_bytes = _approved_packet_bytes(repo, human)
     if approved_packet_bytes is None:
         return False
-    reviewed_automated_bytes, reviewed_owner_bytes = approved_packet_bytes
+    reviewed_automated_bytes, reviewed_owner_bytes = approved_packet_bytes[1:]
     try:
         raw_reviewed_automated = json.loads(reviewed_automated_bytes)
         raw_reviewed_owner = json.loads(reviewed_owner_bytes)
@@ -634,8 +634,8 @@ def dashboard_review_evidence(repo: Path) -> dict[str, object]:
     data_fingerprint = dashboard_data_fingerprint(
         repo,
         self_attestation_commit=(
-            cast("str", automated["tested_commit"])
-            if isinstance(automated.get("tested_commit"), str)
+            _approved_packet_bytes(repo, human)[0]
+            if _approved_packet_bytes(repo, human) is not None
             else cast("str", human["commit"])
             if isinstance(human.get("commit"), str)
             else None
