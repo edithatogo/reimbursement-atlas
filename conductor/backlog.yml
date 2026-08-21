@@ -768,8 +768,8 @@ epics:
           - "Publication occurs only with the configured write credential and produces a remote parity receipt."
           - "Papers and preprints remain excluded."
       - title: Preserve final handoff after external publication state settles
-        labels: ["type:release", "type:provenance", "status:pending"]
-        status: pending
+        labels: ["type:release", "type:provenance", "status:implemented"]
+        status: implemented
         acceptance:
           - "Final readiness, public status, Conductor, GitHub issues and Project rows agree on each external state."
           - "A clean versioned bundle/archive and checksum manifest verify against the final main commit."
