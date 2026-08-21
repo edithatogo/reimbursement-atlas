@@ -164,7 +164,7 @@ def dashboard_source_fingerprint(repo: Path) -> str:
     return digest.hexdigest()
 
 
-def dashboard_data_fingerprint(
+def dashboard_data_fingerprint(  # ruff:ignore[too-many-branches]
     repo: Path,
     *,
     self_attestation_commit: str | None = None,
