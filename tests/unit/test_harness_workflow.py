@@ -17,5 +17,7 @@ def test_harness_reconciles_release_receipts_after_dashboard_inputs_settle() -> 
         "pixi run zenodo-deposition-plan",
     ]
 
-    indented_block = "\n".join(f"          {command}" for command in final_pass)
+    indented_block = "\n".join(f"            {command}" for command in final_pass)
+    assert "          for reconciliation_pass in 1 2; do\n" in workflow
     assert workflow.count(indented_block) == 1
+    assert "          done\n" in workflow
