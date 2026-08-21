@@ -1340,20 +1340,20 @@
       }
     },
     {
-      "bytes": 8806,
+      "bytes": 8742,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "752422647f8b09c5befdde8a1b066ab5a80c1601393cfe4e9832a1da6cc3b62b",
+      "hash": "310c14e1bf3316b6dd2506d589e121d38c2c0ad1494b0d582a62623fa18507b9",
       "mediatype": "application/json",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.jsonl",
       "schema": {}
     },
     {
-      "bytes": 5327,
+      "bytes": 5261,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "c4d6131849848a3264fac39b2245010e3008f1363c6dddbe6fc8d3bd4cc79a34",
+      "hash": "e963d615fd37db3c1158f7407167f651e135a11765b07695bc3ebe639a897688",
       "mediatype": "text/csv",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.csv",
@@ -1655,20 +1655,20 @@
       "schema": {}
     },
     {
-      "bytes": 3977,
-      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
+      "bytes": 3982,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "jsonl",
-      "hash": "63b8c50c0261cd6902924ddbb06a97111f6c1d5b17ec4c2bfcd52df723d27a85",
+      "hash": "aa512c25cdec688f2ec5eda1c41dbc6544d2b4c122a527db0aba4ceabd1f510d",
       "mediatype": "application/json",
       "name": "evidence-readiness",
       "path": "data/derived/evidence_readiness/evidence_readiness.jsonl",
       "schema": {}
     },
     {
-      "bytes": 2060,
-      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
+      "bytes": 2065,
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "csv",
-      "hash": "0c6296989aa00f6f9957794757c01f9eb8ff7cdf2f8ccb72bbe1f0d897673460",
+      "hash": "7900c11d0d1e3855429e2a9c7fc321d49a484d5a506c12b4932584f7f23043bf",
       "mediatype": "text/csv",
       "name": "evidence-readiness",
       "path": "data/derived/evidence_readiness/evidence_readiness.csv",
@@ -1681,9 +1681,9 @@
     },
     {
       "bytes": 150,
-      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
+      "description": "Derived artefact; review source-specific licence notes before external publication.",
       "format": "json",
-      "hash": "e37956e6c2076963cb3ccc3260500e828117bc69ef39f42e3129ee620846b8f3",
+      "hash": "05264e92d9df287227c2fb9f87980b1d33c71a325cad0cb2df3c20ecc2bb76e7",
       "mediatype": "application/json",
       "name": "summary",
       "path": "data/derived/evidence_readiness/summary.json",

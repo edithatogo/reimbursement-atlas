@@ -1,7 +1,7 @@
 {
   "approval_scope": "declared routes, four-browser matrix, automated accessibility, responsive layout, keyboard navigation, provenance, displayed-data parity and prohibited-content checks in scope (no universal accessibility claim).",
-  "automated_packet_sha256": "d310cda64b91a914c563f00f8963130cc0091aa6b7cbcbcf39e355cb0e7dc31f",
-  "commit": "de1ababd89f128068d46f2aa6e7c20b7a1b677e1",
+  "automated_packet_sha256": "42db97ee6347689a7072407b55cec93d8e08764dd5fb0085122cfc7c26a6e2c8",
+  "commit": "4a6328ab3b4a809d7b05bd46ad929e47c5646dd8",
   "evidence_artifacts": [
     "data/derived/dashboard_review/automated_review_packet.json",
     "data/derived/dashboard_review/owner_review_packet.json"
@@ -9,9 +9,9 @@
   "findings": [
     "Accountable review of current-head displayed data parity and declared scope completed; no additional findings requiring remediation."
   ],
-  "owner_packet_sha256": "241cc97130fe6686df34a9ab1e24b998b2d9b8c1e2a785b61c295855b2ac8eb6",
+  "owner_packet_sha256": "adf07c969c71a09af0225efd004f4c5b8c650b77ae3f61e8c83beb0d2391a9ae",
   "remediation_or_waiver": null,
-  "reviewed_at": "2026-08-20T06:15:56Z",
+  "reviewed_at": "2026-08-21T14:59:36Z",
   "reviewer": "repository-owner",
   "schema_version": "dashboard-human-review-v1",
   "scope": {
