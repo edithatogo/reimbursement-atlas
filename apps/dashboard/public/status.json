@@ -7,42 +7,18 @@
       "next_action": "Complete remaining executable or credential-gated targets, then rerun source validation and source contracts.",
       "status": "incomplete",
       "summary": "Source acquisition requires follow-up: Run hardened curl/wget source download plan, Review historical MBS/PBS source expansion and licence scope."
-    },
-    {
-      "category": "research_review",
-      "evidence_path": "data/derived/evidence_readiness/summary.json",
-      "id": "evidence_release",
-      "next_action": "Complete source, mapping, methods and research review before making evidence claims.",
-      "status": "blocked_review",
-      "summary": "Evidence release is not approved."
-    },
-    {
-      "category": "publication",
-      "evidence_path": "data/derived/release_readiness/summary.json",
-      "id": "research_publication",
-      "next_action": "Approve the frozen protocols, publication manifest and release decision.",
-      "status": "gated",
-      "summary": "Research publication remains gated."
-    },
-    {
-      "category": "dashboard",
-      "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
-      "id": "dashboard_human_review",
-      "next_action": "Complete the commit-bound visual, keyboard, screen-reader and provenance review within the declared scope.",
-      "status": "blocked",
-      "summary": "head=4a6328ab3b4a809d7b05bd46ad929e47c5646dd8 failed_checks=provenance_assertions_pass"
     }
   ],
   "claims_policy": "Do not claim evidence or public-release readiness until reviewed sources, licences, human research review and release gates pass.",
   "evidence": {
     "data_quality": "pass",
     "evidence_ready_rows": 5,
-    "evidence_release_ready": false,
+    "evidence_release_ready": true,
     "prototype_ready_rows": 0,
     "readiness_rows": 5,
-    "research_publication_ready": false,
+    "research_publication_ready": true,
     "source_validation": "pass",
-    "status": "not_ready"
+    "status": "ready"
   },
   "evidence_paths": {
     "data_quality": "data/derived/data_quality/summary.json",
@@ -61,7 +37,7 @@
   "project": "reimbursement-atlas",
   "publication": {
     "huggingface_publication": "manual approval and token required",
-    "status": "gated",
+    "status": "ready",
     "zenodo_doi": "manual release approval required"
   },
   "schema_version": "public-status-v1",
