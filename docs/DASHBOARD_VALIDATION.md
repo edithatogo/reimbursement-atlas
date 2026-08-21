@@ -132,7 +132,7 @@ The accountable review record contract is [`schema/DashboardHumanReviewRecord.sc
 
 When a completed record is placed at `data/derived/dashboard_review/human_review.json`, the `review-schemas` Pixi task validates it automatically. An absent record remains an explicit pending human-review state rather than a failed software gate.
 
-The latest automated browser run is summarized in `data/derived/dashboard_review/automated_review_packet.json`. It binds the tested commit to 44 retained route screenshots from 11 routes across four browser/device projects. Screenshot binaries remain in the Playwright or GitHub Actions artifact; the committed packet retains their SHA-256 digests. This packet is an input to, not a substitute for, the accountable human review record.
+The latest automated browser run is summarized in `data/derived/dashboard_review/automated_review_packet.json`. It binds the tested commit to 44 retained route screenshots from 11 routes across four browser/device projects. The workflow artifact includes the screenshots plus the automated and owner packets, allowing routine same-scope refreshes to reuse standing approval without another prompt. This packet is an input to, not a substitute for, the accountable human review record.
 
 Run `pixi run dashboard-owner-review-packet` to produce the bounded
 `data/derived/dashboard_review/owner_review_packet.json`. It consolidates all 11 tested routes,
