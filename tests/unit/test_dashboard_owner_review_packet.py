@@ -153,14 +153,14 @@ def test_dashboard_evidence_serializes_stable_evidence_commit(tmp_path: Path) ->
 
 def test_dashboard_evidence_invalidates_changed_displayed_data(tmp_path: Path) -> None:
     root = _machine_ready_root(tmp_path)
+    displayed = root / "apps/dashboard/public/data/source_registry.csv"
+    displayed.parent.mkdir(parents=True, exist_ok=True)
+    displayed.write_text("id,status\na,ready\n", encoding="utf-8")
     owner = build_packet(root)
     owner_path = root / "data/derived/dashboard_review/owner_review_packet.json"
     owner_path.parent.mkdir(parents=True, exist_ok=True)
     owner_path.write_text(json.dumps(owner), encoding="utf-8")
-    status_path = root / "apps/dashboard/public/status.json"
-    status = json.loads(status_path.read_text(encoding="utf-8"))
-    status["evidence"]["research_publication_ready"] = True
-    status_path.write_text(json.dumps(status), encoding="utf-8")
+    displayed.write_text("id,status\na,changed\n", encoding="utf-8")
 
     evidence = dashboard_review_evidence(root)
 
@@ -534,15 +534,21 @@ def test_dashboard_data_fingerprint_ignores_only_its_release_gate_receipt(
 
     assert dashboard_data_fingerprint(tmp_path) == original
 
-    gates.write_text(
-        "category,evidence,id,recommended_action,required,status\n"
-        "dashboard,head=bbb failed_checks=none,"
-        "dashboard_human_review,Review,False,pass\n"
-        "release,registration=public,osf_registration,Wait,False,pass\n",
-        encoding="utf-8",
-    )
 
-    assert dashboard_data_fingerprint(tmp_path) != original
+def test_dashboard_data_fingerprint_ignores_operational_gate_receipts(tmp_path: Path) -> None:
+    public = tmp_path / "apps/dashboard/public"
+    data = public / "data"
+    data.mkdir(parents=True)
+    (data / "final_handoff_tasks.csv").write_text("id,status\na,blocked\n", encoding="utf-8")
+    (data / "release_gates.csv").write_text("id,status\na,blocked\n", encoding="utf-8")
+    (public / "status.json").write_text('{"release_ready":false}\n', encoding="utf-8")
+    original = dashboard_data_fingerprint(tmp_path)
+
+    (data / "final_handoff_tasks.csv").write_text("id,status\na,complete\n", encoding="utf-8")
+    (data / "release_gates.csv").write_text("id,status\na,pass\n", encoding="utf-8")
+    (public / "status.json").write_text('{"release_ready":true}\n', encoding="utf-8")
+
+    assert dashboard_data_fingerprint(tmp_path) == original
 
 
 def test_dashboard_data_fingerprint_ignores_only_named_source_drift_receipts(
