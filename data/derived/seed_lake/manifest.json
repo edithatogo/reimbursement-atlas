@@ -441,7 +441,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "0578ccf395b9856841d8b979ed8bd52cbc2669b6365421e71e22917981796ecb"
+      "sha256": "8cc20a5256e12634c71d3cba52b1c5f520809882677e6ff6e10c8455dcf67546"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
