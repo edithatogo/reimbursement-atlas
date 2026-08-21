@@ -12,3 +12,9 @@ The owner-authenticated API confirms secret scanning and push protection are
 enabled. GitHub leaves non-provider patterns and validity checks disabled for
 this repository after an authenticated enable request; this remains an
 account-level capability blocker rather than an unresolved observation.
+
+## Closeout
+
+- [x] Archive the track after all repository-owned controls pass and preserve
+  the account-capability limitation as monitored external state rather than an
+  unbounded implementation task.
