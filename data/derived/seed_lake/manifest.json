@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 39,
-      "sha256": "24f50d5c40ba84bdd1bf96591769107fb6e63f123cc07a6bf0557460e2200bf9"
+      "sha256": "1e5f528641faac8cf67ddb3a73179e49ae84713729cf5ef15c941a6745ce50eb"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -393,7 +393,7 @@
       "name": "github_project_items",
       "parquet_path": "github_project_items/github_project_items.parquet",
       "rows": 243,
-      "sha256": "e8a2ef690699127d7d3ff7f828ea502f402eb77e83cfc3f3f27a6789765a4bc8"
+      "sha256": "04b1cb5e660f5e8e7d61cdcbcc56bbfc7227fcfbe5770c3082a62bda38ffe7bc"
     },
     {
       "csv_path": "final_handoff_tasks/final_handoff_tasks.csv",
@@ -401,7 +401,7 @@
       "name": "final_handoff_tasks",
       "parquet_path": "final_handoff_tasks/final_handoff_tasks.parquet",
       "rows": 11,
-      "sha256": "6eab1b8620801250ca45f167526423e0b8617dface30eeace41af2a1180ae538"
+      "sha256": "d69b7428cec0e08b0dc6fd00d83f66648e52b36ff74bed57da23fba8163f584f"
     },
     {
       "csv_path": "protocol_status/protocol_status.csv",
@@ -441,7 +441,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "957d6a17be613deb82e8f2d94eaa29fda0f9a0f3baee1ed14409e271d6ee6286"
+      "sha256": "8cc20a5256e12634c71d3cba52b1c5f520809882677e6ff6e10c8455dcf67546"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",

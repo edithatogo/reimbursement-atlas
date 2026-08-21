@@ -2,9 +2,9 @@
 
 Epic: `RAC-GATE-001` — Release gate reconciliation and external dependency closeout
 
-Labels: type:repo-automation, type:release, status:in_progress
+Labels: type:repo-automation, type:release, status:implemented
 
-Status: `in_progress`
+Status: `implemented`
 
 ## Background
 
@@ -12,6 +12,6 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] Any pre-squash local commit is retained on a named recovery ref before local main alignment.
-- [ ] Local main exactly matches origin/main after verification.
-- [ ] No destructive reset or unreviewed deletion is used.
+- [x] Any pre-squash local commit is retained on a named recovery ref before local main alignment.
+- [x] Local main exactly matches origin/main after verification.
+- [x] No destructive reset or unreviewed deletion is used.

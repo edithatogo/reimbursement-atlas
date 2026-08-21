@@ -1727,20 +1727,20 @@
     {
       "@id": "data/derived/release_readiness/release_gates.jsonl",
       "@type": "File",
-      "contentSize": 8742,
+      "contentSize": 8803,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "24f50d5c40ba84bdd1bf96591769107fb6e63f123cc07a6bf0557460e2200bf9"
+      "sha256": "1e5f528641faac8cf67ddb3a73179e49ae84713729cf5ef15c941a6745ce50eb"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
       "@type": "File",
-      "contentSize": 5261,
+      "contentSize": 5324,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "8bd74d9a05f8a1b48fbf462c76cc02012224123b7a0c5a1b2c716064b143e7da"
+      "sha256": "12c96dd07db166ef111689206bf7f03a7d7f153798f3b0156e514bd26bfa358a"
     },
     {
       "@id": "data/derived/v13_validation_run.json",
@@ -1853,38 +1853,38 @@
     {
       "@id": "data/derived/github_project/github_project_items.jsonl",
       "@type": "File",
-      "contentSize": 186672,
+      "contentSize": 186679,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "github_project_items",
-      "sha256": "e8a2ef690699127d7d3ff7f828ea502f402eb77e83cfc3f3f27a6789765a4bc8"
+      "sha256": "04b1cb5e660f5e8e7d61cdcbcc56bbfc7227fcfbe5770c3082a62bda38ffe7bc"
     },
     {
       "@id": "data/derived/github_project/github_project_items.csv",
       "@type": "File",
-      "contentSize": 140855,
+      "contentSize": 140862,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "github_project_items",
-      "sha256": "786b2a6f40bf98545e30bf829b604eacad66cc8caa196ee876ff441a02c01c85"
+      "sha256": "74192e2bf4990a379b6c7431ec4b4f625984dee0d8d6765f9ca11ec2d1882328"
     },
     {
       "@id": "data/derived/final_handoff/final_handoff_tasks.jsonl",
       "@type": "File",
-      "contentSize": 11153,
+      "contentSize": 11162,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "final_handoff_tasks",
-      "sha256": "6eab1b8620801250ca45f167526423e0b8617dface30eeace41af2a1180ae538"
+      "sha256": "d69b7428cec0e08b0dc6fd00d83f66648e52b36ff74bed57da23fba8163f584f"
     },
     {
       "@id": "data/derived/final_handoff/final_handoff_tasks.csv",
       "@type": "File",
-      "contentSize": 8090,
+      "contentSize": 8099,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "final_handoff_tasks",
-      "sha256": "5aa676a6fb9bc05b2e75c5aa5c99882f4ad271c77c06b95fee85ad6da4baae14"
+      "sha256": "c23b062ac3c2040714898ad855afbc0bb32f1cc36bc95ade526309e2dbe05087"
     },
     {
       "@id": "data/derived/protocols/protocol_status.jsonl",
@@ -1992,7 +1992,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "source_drift_report",
-      "sha256": "957d6a17be613deb82e8f2d94eaa29fda0f9a0f3baee1ed14409e271d6ee6286"
+      "sha256": "8cc20a5256e12634c71d3cba52b1c5f520809882677e6ff6e10c8455dcf67546"
     },
     {
       "@id": "data/derived/source_drift/source_drift_report.csv",
@@ -2001,7 +2001,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "source_drift_report",
-      "sha256": "92c0cffa4c61f85323d98fa0d4fc80f1038c788228de84a27c382711a24c398c"
+      "sha256": "926795d2f100a888e7a80d5318b303d4d6354090cd04a2f0244f3a03211dbd8a"
     },
     {
       "@id": "data/derived/source_drift/summary.json",
