@@ -551,7 +551,7 @@ def test_dashboard_data_fingerprint_ignores_operational_gate_receipts(tmp_path: 
     assert dashboard_data_fingerprint(tmp_path) == original
 
 
-def test_dashboard_data_fingerprint_ignores_only_named_source_drift_receipts(
+def test_dashboard_data_fingerprint_ignores_derived_source_drift_receipt(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -566,23 +566,25 @@ def test_dashboard_data_fingerprint_ignores_only_named_source_drift_receipts(
     )
     receipt.write_text(baseline, encoding="utf-8")
 
+    underlying = public / "source_content_validation.csv"
+    underlying.write_text("id,status\nsource,pass\n", encoding="utf-8")
+
     def baseline_file(_repo: Path, _commit: str, path: Path) -> bytes | None:
         return baseline.encode("utf-8") if path == receipt.relative_to(tmp_path) else None
 
     monkeypatch.setattr("reimburse_atlas.dashboard_review._git_file_at_commit", baseline_file)
     original = dashboard_data_fingerprint(tmp_path, self_attestation_commit="a" * 40)
     receipt.write_text(
-        baseline.replace(",aaa,", ",new-project-checksum,").replace(
-            ",bbb,", ",new-handoff-checksum,"
-        ),
+        baseline
+        .replace(",aaa,", ",new-project-checksum,")
+        .replace(",bbb,", ",new-handoff-checksum,")
+        .replace(",ccc,", ",changed-data-quality-checksum,"),
         encoding="utf-8",
     )
 
     assert dashboard_data_fingerprint(tmp_path, self_attestation_commit="a" * 40) == original
 
-    receipt.write_text(
-        baseline.replace(",ccc,", ",changed-data-quality-checksum,"), encoding="utf-8"
-    )
+    underlying.write_text("id,status\nsource,blocked\n", encoding="utf-8")
 
     assert dashboard_data_fingerprint(tmp_path, self_attestation_commit="a" * 40) != original
 

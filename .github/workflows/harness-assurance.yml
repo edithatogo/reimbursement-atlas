@@ -99,6 +99,22 @@ jobs:
           pixi run dashboard-status
           pixi run zenodo-draft
           pixi run zenodo-deposition-plan
+          # Release readiness reads dashboard evidence while dashboard data also
+          # renders release receipts. Reconcile once after every displayed input
+          # has settled so the clean-tree assertion observes the fixed point,
+          # rather than a valid but transient intermediate state.
+          for reconciliation_pass in 1 2; do
+            echo "release receipt reconciliation pass ${reconciliation_pass}/2"
+            pixi run release-readiness
+            pixi run final-handoff
+            pixi run source-drift
+            pixi run research-package
+            pixi run seed-lake
+            pixi run dashboard-seed
+            pixi run dashboard-status
+            pixi run zenodo-draft
+            pixi run zenodo-deposition-plan
+          done
       - name: Capture generated parity diagnostics
         if: always()
         run: |

@@ -55,13 +55,6 @@ SELF_ATTESTATION_CSV_ROWS = {
             "final_release_candidate",
         ),
     ),
-    Path("apps/dashboard/public/data/source_drift_report.csv"): (
-        "id",
-        (
-            "source_drift_github_project_jsonl_to_github_project_csv",
-            "source_drift_final_handoff_jsonl_to_final_handoff_csv",
-        ),
-    ),
 }
 WORKFLOW_USE_RECEIPT_FILES = (
     Path("apps/dashboard/public/data/workflow_uses.csv"),
@@ -71,6 +64,12 @@ OPERATIONAL_RECEIPT_FILES = {
     SELF_ATTESTATION_FILE,
     PUBLIC_STATUS_FILE,
     Path("apps/dashboard/public/data/final_handoff_tasks.csv"),
+}
+DERIVED_CHECKSUM_RECEIPT_FILES = {
+    # These receipts contain checksums of other displayed datasets. Their inputs
+    # are fingerprinted directly, so retain the reviewed receipt bytes rather
+    # than recursively invalidating them during deterministic regeneration.
+    Path("apps/dashboard/public/data/source_drift_report.csv"),
 }
 LOW_RISK_SOURCE_NORMALIZATIONS = {
     Path("apps/dashboard/src/components/StatusOverview.astro"): (
@@ -165,7 +164,7 @@ def dashboard_source_fingerprint(repo: Path) -> str:
     return digest.hexdigest()
 
 
-def dashboard_data_fingerprint(
+def dashboard_data_fingerprint(  # ruff:ignore[too-many-branches]
     repo: Path,
     *,
     self_attestation_commit: str | None = None,
@@ -187,7 +186,11 @@ def dashboard_data_fingerprint(
         content = absolute.read_bytes()
         for current, reviewed in LOW_RISK_DATA_NORMALIZATIONS.get(path, ()):
             content = content.replace(current, reviewed)
-        if path == SELF_ATTESTATION_FILE:
+        if self_attestation_commit and path in DERIVED_CHECKSUM_RECEIPT_FILES:
+            baseline = _git_file_at_commit(repo, self_attestation_commit, path)
+            if baseline is not None:
+                content = baseline
+        elif path == SELF_ATTESTATION_FILE:
             content = _release_gates_without_dashboard_receipt(content)
             baseline = (
                 _git_file_at_commit(repo, self_attestation_commit, path)
@@ -454,8 +457,8 @@ def _approval_receipt_matches(snapshot: dict[str, Any], current: dict[str, Any])
 def _approved_packet_bytes(
     repo: Path,
     human: dict[str, Any],
-) -> tuple[bytes, bytes] | None:
-    """Resolve packet bytes from the tested commit or later immutable receipt commit."""
+) -> tuple[str, bytes, bytes] | None:
+    """Resolve a reachable receipt commit and its integrity-matched packet bytes."""
     reviewed_commit = human.get("commit")
     if not isinstance(reviewed_commit, str):
         return None
@@ -473,8 +476,17 @@ def _approved_packet_bytes(
             human.get("automated_packet_sha256") == hashlib.sha256(automated).hexdigest()
             and human.get("owner_packet_sha256") == hashlib.sha256(owner).hexdigest()
         ):
-            return automated, owner
+            return commit, automated, owner
     return None
+
+
+def _self_attestation_commit(repo: Path, human: dict[str, Any]) -> str | None:
+    """Prefer a reachable receipt commit, falling back to the reviewed commit."""
+    snapshot = _approved_packet_bytes(repo, human)
+    if snapshot is not None:
+        return snapshot[0]
+    reviewed_commit = human.get("commit")
+    return reviewed_commit if isinstance(reviewed_commit, str) else None
 
 
 def _standing_approval_valid(
@@ -495,7 +507,7 @@ def _standing_approval_valid(
     approved_packet_bytes = _approved_packet_bytes(repo, human)
     if approved_packet_bytes is None:
         return False
-    reviewed_automated_bytes, reviewed_owner_bytes = approved_packet_bytes
+    reviewed_automated_bytes, reviewed_owner_bytes = approved_packet_bytes[1:]
     try:
         raw_reviewed_automated = json.loads(reviewed_automated_bytes)
         raw_reviewed_owner = json.loads(reviewed_owner_bytes)
@@ -630,13 +642,7 @@ def dashboard_review_evidence(repo: Path) -> dict[str, object]:
     source_fingerprint = dashboard_source_fingerprint(repo)
     data_fingerprint = dashboard_data_fingerprint(
         repo,
-        self_attestation_commit=(
-            cast("str", automated["tested_commit"])
-            if isinstance(automated.get("tested_commit"), str)
-            else cast("str", human["commit"])
-            if isinstance(human.get("commit"), str)
-            else None
-        ),
+        self_attestation_commit=_self_attestation_commit(repo, human),
     )
     approval_mode, approval_binding_valid = _approval_binding(
         repo,
