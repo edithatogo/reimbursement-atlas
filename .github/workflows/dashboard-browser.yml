@@ -26,7 +26,7 @@ jobs:
           node-version: 24
           cache: npm
           cache-dependency-path: apps/dashboard/package-lock.json
-      - uses: astral-sh/setup-uv@ae62891fec2bb8e7d6c99fc78c9fec3a63790f8d # v7.2.1
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v7.2.1
       - name: Install dashboard dependencies
         working-directory: apps/dashboard
         run: npm ci
