@@ -42,11 +42,11 @@ api = [
   "uvicorn[standard]>=0.52.1",
 ]
 mcp = [
-  "mcp>=1.28,<2",
+  "mcp>=1.28,<3",
 ]
 dev = [
   "basedpyright>=1.35.0",
-  "ruff==0.16.2",
+  "ruff==0.16.3",
   "pytest>=9.0.0",
   "pytest-cov>=7.0.0",
   "pytest-xdist>=3.8.0",
