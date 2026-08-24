@@ -36,5 +36,5 @@ def test_mutation_workspace_copies_test_runtime_dependencies() -> None:
     config = tomllib.loads((project_root() / "pyproject.toml").read_text(encoding="utf-8"))
     mutation = config["tool"]["mutmut"]
     assert mutation["source_paths"] == ["src/reimburse_atlas"]
-    assert mutation["also_copy"] == ["data/seed", "scripts"]
+    assert mutation["also_copy"] == [".github", "data/seed", "scripts"]
     assert "mutate_only_covered_lines" not in mutation

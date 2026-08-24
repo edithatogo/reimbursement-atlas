@@ -373,7 +373,7 @@ fail_under = 90
 source_paths = ["src/reimburse_atlas"]
 pytest_add_cli_args = ["-q"]
 pytest_add_cli_args_test_selection = ["tests/unit"]
-also_copy = ["data/seed", "scripts"]
+also_copy = [".github", "data/seed", "scripts"]
 timeout_multiplier = 10.0
 timeout_constant = 1.0
 
