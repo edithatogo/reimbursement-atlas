@@ -1,6 +1,23 @@
 version: 2
 updated: "2026-07-31"
 epics:
+  - id: MCP2-001
+    title: MCP 2 typed API migration
+    phase: hardening
+    workstream: runtime
+    priority: should
+    track_id: track_mcp2_typed_migration_20260824
+    issues:
+      - title: Migrate the MCP adapter to the MCP 2 public API without weakening typing
+        labels: ["type:runtime", "type:refactor", "type:mcp", "status:blocked"]
+        status: blocked
+        github_issue: 731
+        acceptance:
+          - "MCP 2 replaces every removed mcp.server.fastmcp dependency with supported public APIs."
+          - "BasedPyright remains at zero errors without suppressions or relaxed settings."
+          - "MCP behavior, Python 3.14, security and deterministic-generation gates pass."
+        blockers:
+          - "The current adapter requires a deliberate MCP 2 API and typing migration; a dependency-only update produces 16 type errors."
   - id: OSF-DEPRECATION-001
     title: Retire OSF as an active destination
     phase: hardening

@@ -1,0 +1,18 @@
+{
+  "created_at": "2026-08-24T12:20:00Z",
+  "description": "Migrate the typed MCP adapter to the MCP Python SDK 2.x public API without weakening quality gates.",
+  "evidence_schema": "1.0",
+  "github_issues": [731],
+  "gates": [
+    {
+      "evidence": "MCP 2.0 removes mcp.server.fastmcp and currently produces 16 BasedPyright errors.",
+      "id": "mcp2_public_api_and_typing",
+      "kind": "upstream_compatibility",
+      "status": "pending"
+    }
+  ],
+  "status": "new",
+  "track_id": "track_mcp2_typed_migration_20260824",
+  "type": "refactor",
+  "updated_at": "2026-08-24T12:20:00Z"
+}
