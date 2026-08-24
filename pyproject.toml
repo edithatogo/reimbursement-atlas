@@ -98,6 +98,9 @@ jsonschema = ">=4.26.0"
 typer = ">=0.27.1"
 pydantic-settings = ">=2.15.0"
 
+[tool.pixi.feature.mutation.pypi-dependencies]
+mutmut = ">=3.7.0"
+
 [tool.pixi.feature.mojo.dependencies]
 max = "*"
 
@@ -117,6 +120,7 @@ mojo = { features = ["mojo"], solve-group = "default" }
 dashboard = { features = ["dashboard"], solve-group = "default" }
 api = { features = ["api"], solve-group = "default" }
 mcp = { features = ["mcp"], solve-group = "default" }
+mutation = { features = ["mutation"], solve-group = "default" }
 
 [tool.pixi.tasks]
 format = "ruff format . && ruff check . --fix"
