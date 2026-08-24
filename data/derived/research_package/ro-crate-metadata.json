@@ -1727,20 +1727,20 @@
     {
       "@id": "data/derived/release_readiness/release_gates.jsonl",
       "@type": "File",
-      "contentSize": 8742,
+      "contentSize": 8762,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "release_gates",
-      "sha256": "534f2d53526265740da53068cbc99828d535bcc8178c9b7860eaa4d9d97ce31e"
+      "sha256": "c3b153bb23af3ea24bca4b46e8ecdd8908c13c4bababe6db71adfa4cdb12a63b"
     },
     {
       "@id": "data/derived/release_readiness/release_gates.csv",
       "@type": "File",
-      "contentSize": 5261,
+      "contentSize": 5281,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "release_gates",
-      "sha256": "39b94fa79a0c0396dfc82271771d1f1b3a5f375f79a22ce092fbef64ff8db5ab"
+      "sha256": "660d9989ab748eaf55e881299468089c36cb65758bdb7c33b836287ce8e33579"
     },
     {
       "@id": "data/derived/v13_validation_run.json",
