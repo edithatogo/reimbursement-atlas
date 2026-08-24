@@ -10,7 +10,7 @@ from scripts.run_bounded_mutation import MUTMUT_COMMAND, run_bounded
 
 def test_mutmut_command_uses_current_configuration_contract() -> None:
     """Mutmut 3 reads source and worker settings from ``pyproject.toml``."""
-    assert MUTMUT_COMMAND == ("mutmut", "run")
+    assert MUTMUT_COMMAND == ("mutmut", "run", "--max-children", "2")
 
 
 def test_run_bounded_returns_child_status() -> None:
