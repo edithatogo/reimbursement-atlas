@@ -109,17 +109,17 @@
       "version": "1.9.4"
     },
     {
-      "bom-ref": "pkg:pypi/basedpyright@1.39.9",
+      "bom-ref": "pkg:pypi/basedpyright@1.39.10",
       "hashes": [
         {
           "alg": "SHA256",
-          "content": "6b0837b9eba972c71895167ab9b127e6afdbc17abc92312e3f8d15ca82a5611c"
+          "content": "cbd75d83c0be841329bcfef2d2f1182f152a6d975b8eb199e75cf5b8e9a3de78"
         }
       ],
       "name": "basedpyright",
-      "purl": "pkg:pypi/basedpyright@1.39.9",
+      "purl": "pkg:pypi/basedpyright@1.39.10",
       "type": "library",
-      "version": "1.39.9"
+      "version": "1.39.10"
     },
     {
       "bom-ref": "pkg:pypi/boolean-py@5.0",
@@ -933,17 +933,17 @@
       "version": "0.20.2"
     },
     {
-      "bom-ref": "pkg:pypi/filelock@3.32.2",
+      "bom-ref": "pkg:pypi/filelock@3.32.3",
       "hashes": [
         {
           "alg": "SHA256",
-          "content": "87dd94cf281e586d135fa51132b8e3d9a598b316e90377a288663c9321036c82"
+          "content": "7f0ca4bcc0e181c60dbbd8aa9ab5b120ebb99e4e064e83636340056f833a1f09"
         }
       ],
       "name": "filelock",
-      "purl": "pkg:pypi/filelock@3.32.2",
+      "purl": "pkg:pypi/filelock@3.32.3",
       "type": "library",
-      "version": "3.32.2"
+      "version": "3.32.3"
     },
     {
       "bom-ref": "pkg:pypi/ghp-import@2.1.0",
@@ -1076,125 +1076,201 @@
       "version": "0.4.3"
     },
     {
-      "bom-ref": "pkg:pypi/hypothesis@6.165.2",
+      "bom-ref": "pkg:pypi/hypothesis@6.165.9",
       "hashes": [
         {
           "alg": "SHA256",
-          "content": "33a7303566e660664f3f02ea1df85f7b966cd6723165c696996cfd8630913b3a"
+          "content": "01a2a4106fa90396ffa1c402968a8bd25af056e1fdf7974a369c4057cc4035f1"
         },
         {
           "alg": "SHA256",
-          "content": "06d8fe4c82a935f67e610c99848360f5caeb04f547c7d7a830a5c74fb96f053a"
+          "content": "7812f1ce9e2bfc0958f2a96975f16a1e1f2400f9d8b7043723ff5811647fe0f6"
         },
         {
           "alg": "SHA256",
-          "content": "de2e3f6a6f75c876be481138c6c0802ebe10deef9f13ce1cdd6e0ed21d8e1e28"
+          "content": "e547823eca16eab9c9569f292e5ce8f95d8a59f1d67e504e97a841d17eb0b562"
         },
         {
           "alg": "SHA256",
-          "content": "21668cb5a8a694d45ff4c43f20a8fc577a47467b5102c680a43638b027136368"
+          "content": "e50c687c0e86bb5898f36b845ab84439f44ef2369f0f9bbcbf6aa6860640324d"
         },
         {
           "alg": "SHA256",
-          "content": "eea4ab5cfdd6c6a23a60777559ea06c34868234fff6542ff6125c0250429348e"
+          "content": "f82aed6f0631b5073bd87789aa56609e7c83bd762384fd24c84f3435816b2569"
         },
         {
           "alg": "SHA256",
-          "content": "0a6add02d9b3b73b59f4d69f5b15abbc07113cd335cc140815cec2877e6b496c"
+          "content": "488b88b6856e430763a7ac5a5fc6e20a798766dca8df8f94576de2281ee60afd"
         },
         {
           "alg": "SHA256",
-          "content": "11013896b6a2ed497079558cb9f89e8b3b564f8859782b38f72cfc1dbeca66ad"
+          "content": "22dd9e264f2a79a1b63a5fae13351e3cf0088f584fb05bb0e23f21b8fba9df7c"
         },
         {
           "alg": "SHA256",
-          "content": "4ceabc69a95e761f381663c6452537fde12a2a6e0275e095b6822c0e0f3b1364"
+          "content": "431ab894062666c93157234f9949a4db3549fbf3c220777abae3482e1b43f9bc"
         },
         {
           "alg": "SHA256",
-          "content": "11e1ce261765ffa6acbaf540358426519ca4a5e46b825cf39b429c77c1895689"
+          "content": "c7edcc3dcec42b413c900f8e660f3741c21f0055c53bde21d728f72a21713247"
         },
         {
           "alg": "SHA256",
-          "content": "b0250099b2e55d72872319918aacc501110a182938a3d56bcae4a999bee5db08"
+          "content": "0d4a613404ba216b6f698ce9df6f9c22d04d8e8a571c42525e83905cf1b1cd10"
         },
         {
           "alg": "SHA256",
-          "content": "96d02928d1a0b7d59e39fd8ada75f0b7d0377ff29f91c94109f92fc2dab9af74"
+          "content": "658c33d8a54cead6081f73fcc4e2c0fbe43d251d3f4170630748d8e5dcbd542f"
         },
         {
           "alg": "SHA256",
-          "content": "0f2044093c8244d73893e755a7fa53154b7eca57b37e1427d9b0d9948f6c2b3e"
+          "content": "7d3297fe95a253cea81b48e581e456105016ebe782d823dfb57ec09c3854301f"
         },
         {
           "alg": "SHA256",
-          "content": "2aa30716066e5ee7750e56b8f90cefaf4ed28c12b4b1d66cef40014fd3f95196"
+          "content": "a9a1e17200a2b369a38c19c2184efbc041a40b784675ba72ac6800d8c1260a54"
         },
         {
           "alg": "SHA256",
-          "content": "66be9b848bdcb29132b18de6f574b89b392024c7de442acb393edaa1540cb548"
+          "content": "5d40a92c6d025725da7827431a71b7657ce2e3923ff8f1773d6b15d717f77ea0"
         },
         {
           "alg": "SHA256",
-          "content": "e51742efe8466cf89e26cb94843db8854bd0673a6d80da7e3d1ff6bd9dc006db"
+          "content": "59f29ef2965caf1ae367ee0598ac0d293551b95744a5d49888737a3b3d9dd944"
         },
         {
           "alg": "SHA256",
-          "content": "c648ee54cd734261e1615d80c2ebbd679d6dfbba6ef5aa672354c6ca62b6f446"
+          "content": "f52fd4f1b95f614c3fec53840d603f0a3b19e68eaa91c8d609222999c3ee5506"
         },
         {
           "alg": "SHA256",
-          "content": "032292cbffc0743b2fe4337a30c21ea9703a70a0021d39bf0c3e68bce7baab18"
+          "content": "c3432a48e5895cba6b36c3e5abb915163d5169dc755685b4cd4720b710d77e3c"
         },
         {
           "alg": "SHA256",
-          "content": "5dc64171b06472f0b6c2e54bdc25687987e560e15133cf52f55d9ef4c747ebe1"
+          "content": "70fe20939f63eb661227fd2b05193eba1e5ea6e547a2fbe158839f2acc519f4f"
         },
         {
           "alg": "SHA256",
-          "content": "8e5a823ba918641af8177c121f122964d471db2ab1d07c1fe229c77b3a5ab7e8"
+          "content": "20b177ef8aae2a2817a2223d103353d120118e686a152bcd01832a27ddc9388e"
         },
         {
           "alg": "SHA256",
-          "content": "70966ab7dbe0ea9644eaed8324e037f05ac6a8141646b977da9e77813dac6ed7"
+          "content": "5d755b56098801a28a419172e57beb536b8c32929e7a37bb5ef12f2c00abd284"
         },
         {
           "alg": "SHA256",
-          "content": "a5b913acd896f4f80597dd38966cd13984a1cfd45512498e8cf054aa7c92ffb9"
+          "content": "d49496271282bf424ddd728108f49b92e1d32066a3d0ba18990d5b01c40c3175"
         },
         {
           "alg": "SHA256",
-          "content": "6fa46589088966083ce653f908560cdd3330274cfafaaa65d1fb29b5f6681644"
+          "content": "be54673f76785ff954b511745d4a7a18c7d7fe1d893cb81a8917cd28878fbd55"
         },
         {
           "alg": "SHA256",
-          "content": "6b5b922603879b4788447583928eb1cf2e1aafb9ce27f3a7234b7a4557d089a8"
+          "content": "af42ad4c24b69d4482e4813e148f458fc090911c0cf9055225c62fbd1f0b102e"
         },
         {
           "alg": "SHA256",
-          "content": "8ab3a6b5bb3302f7dcd65b07dcdc0ca353c8c151567dffeda826977e765caaf9"
+          "content": "9bc2d40dd2a71ba3971b902d31c8b1b0c40d3d465591fd71bb8ce6f541add530"
         },
         {
           "alg": "SHA256",
-          "content": "09f1c626023b68968d2cc5fe1e31548109f4406d81a2c3017b3de9fdd3a02e7d"
+          "content": "d0fb16358e29f3090a9ab529e84df52923ddcd8505785c019bf48cdcd45e094a"
         },
         {
           "alg": "SHA256",
-          "content": "5c95808ab851498513192268e25f40bccd1c3719384c91535bbec3eedea39760"
+          "content": "ed61ad45184997f97c3baf255f34aaaf4edff63f1a61aad87919034b4ab9f64e"
         },
         {
           "alg": "SHA256",
-          "content": "4a1c8bec789f21dc10620ce99e15fcd4f7737b9b4cfa571cdd93e01a17b7b06b"
+          "content": "f96f36c3d3677f22ff990d7aab4235576a8429e72dab5382c45bf489630972f5"
         },
         {
           "alg": "SHA256",
-          "content": "458c891dfc00133bc4ce2e6c9716838f80f2fd96caf306f5eef42ad02aa4d972"
+          "content": "d69ab6500e47d7c21310360d1ee5cb6441660a10408e856d3738f07536732ed8"
+        },
+        {
+          "alg": "SHA256",
+          "content": "cc98fa897f48127fdf2e7d1b2428f839656cd52a6344095e501371d222b9c19d"
+        },
+        {
+          "alg": "SHA256",
+          "content": "a8b2d7415b1f7ceec6e689c992b919af41e339eafb35d6367a3abbb5b6db9753"
+        },
+        {
+          "alg": "SHA256",
+          "content": "1000afaf05be59c88c13b458fd74d123e3361ca3d14fe127814a1231cb9cb7df"
+        },
+        {
+          "alg": "SHA256",
+          "content": "5f6b4ae650480368e2477e8f875cdbfe8533a7b2e09f049fe206c48b20174622"
+        },
+        {
+          "alg": "SHA256",
+          "content": "1aaba05b943345d2a448b8c1c795bb191adf842b450bfc7207bdd1bf139a9b58"
+        },
+        {
+          "alg": "SHA256",
+          "content": "306c1efc0f01f3d5c29c45996e055437971337aa24b6c6735b0514cfb5df60ce"
+        },
+        {
+          "alg": "SHA256",
+          "content": "1551df11534d192616dc1b4539b6e526c4704d08b22d2ffb6ea3479ce6b87d94"
+        },
+        {
+          "alg": "SHA256",
+          "content": "afd99a069df90c73c15d53e275d11a782fd5f17f5423002868ce9d2438ab567f"
+        },
+        {
+          "alg": "SHA256",
+          "content": "d8c3e8c45ca5e2e4f519021836e5d86fb2229915c3f92fb50db7bb7364dfb2c1"
+        },
+        {
+          "alg": "SHA256",
+          "content": "676a3bd04261b7bdd35374a3f4dabd82025fcead110a067a76328799f394a4d0"
+        },
+        {
+          "alg": "SHA256",
+          "content": "a7f51c2297d116c2c025643762269eed0767589b6fc858d8de69d9f80cf33a23"
+        },
+        {
+          "alg": "SHA256",
+          "content": "e500b97f899e375e47b407a48f3450cb1dd44bca757529c0490cb4533d878b30"
+        },
+        {
+          "alg": "SHA256",
+          "content": "8401f55aba2d51f20b02c42e9e08b7eff2018639bdb1af16a4c279ba7e129c81"
+        },
+        {
+          "alg": "SHA256",
+          "content": "34a4591db1dcf6aa544b4f884520ff0f1bc02ac3d11c76f78c73535b6b672272"
+        },
+        {
+          "alg": "SHA256",
+          "content": "0bd589a011b3d0c4b98d78f467e5a5a6b96bf5be5d15b39ef47e65c225e8d790"
+        },
+        {
+          "alg": "SHA256",
+          "content": "84a93a152ffaf92fa6b3f94d366f4c866e26f3f1b643fcc6da4ee2ddfa038aa9"
+        },
+        {
+          "alg": "SHA256",
+          "content": "4a2081699e0b16b35c7b34cf0ff01997e8fc6038b520b9f29c106764158c411a"
+        },
+        {
+          "alg": "SHA256",
+          "content": "e1d9492193b52087df4d264edd77618869d447b5c7f6a022c7bb11b88d577cb8"
+        },
+        {
+          "alg": "SHA256",
+          "content": "f67414675f2263948e5a5977b636b5cb1cc5f33b82a9be34f8a6b9a8293d4707"
         }
       ],
       "name": "hypothesis",
-      "purl": "pkg:pypi/hypothesis@6.165.2",
+      "purl": "pkg:pypi/hypothesis@6.165.9",
       "type": "library",
-      "version": "6.165.2"
+      "version": "6.165.9"
     },
     {
       "bom-ref": "pkg:pypi/identify@2.6.19",
@@ -1314,29 +1390,29 @@
       "version": "0.9.0"
     },
     {
-      "bom-ref": "pkg:pypi/lancedb@0.36.0",
+      "bom-ref": "pkg:pypi/lancedb@0.37.1",
       "hashes": [
         {
           "alg": "SHA256",
-          "content": "20c382a7c4e86386d4c26ef35068db8871b6c9f43ec5c581391f926f5346ed2b"
+          "content": "c15c46f23cf6959c79fb93cdba2c76536cf784d3134386662da03dc6ccac3c26"
         },
         {
           "alg": "SHA256",
-          "content": "ac434374c49e4a642190855fb3940591637efd4af4487c67ee28bd534abf2d6e"
+          "content": "35d872d920cbfdc3771fbcd33f2c63bff6ff7203d6d2ba8fe4330e98eb859d12"
         },
         {
           "alg": "SHA256",
-          "content": "e20bb817346a7db30212c7f67f623ee21d096a1f52cfe6c8dfc4c911b515480e"
+          "content": "86597f4dbc51a33a07341550dc77d21a1ddd1f7539266eda5bb64c4f3bd11cca"
         },
         {
           "alg": "SHA256",
-          "content": "5e2b5e42f34329c07cd1a9b0cb341609602dd5fe29b088c7537c84662444d52c"
+          "content": "488eca15361dfc34439500c9e2607c4fb2b8bf190fa1003bd54b1d6eb40e0316"
         }
       ],
       "name": "lancedb",
-      "purl": "pkg:pypi/lancedb@0.36.0",
+      "purl": "pkg:pypi/lancedb@0.37.1",
       "type": "library",
-      "version": "0.36.0"
+      "version": "0.37.1"
     },
     {
       "bom-ref": "pkg:pypi/libcst@1.8.6",
@@ -1948,73 +2024,101 @@
       "version": "13.610.43"
     },
     {
-      "bom-ref": "pkg:pypi/orjson@3.11.9",
+      "bom-ref": "pkg:pypi/orjson@3.12.0",
       "hashes": [
         {
           "alg": "SHA256",
-          "content": "b6ef1979adc4bc243523f1a2ba91418030a8e29b0a99cbe7e0e2d6807d4dce6e"
+          "content": "9e6fee342a48760e854d743e7a81534d8e2925a6f46e09f750cf56b50fd1de5d"
         },
         {
           "alg": "SHA256",
-          "content": "f36b7f32c7c0db4a719f1fc5824db4a9c6f8bd1a354debb91faf26ebf3a4c71e"
+          "content": "8c3bb86dd10f39b3fbf434b7d5dc7cac77d6fc8ac572ae30a10731ede2c4b647"
         },
         {
           "alg": "SHA256",
-          "content": "08f4d8ebb44925c794e535b2bebc507cebf32209df81de22ae285fb0d8d66de0"
+          "content": "2bb3ce43203936072dd8b4917b01d3aecfc02329bfb42510cb7cfb24708adc9c"
         },
         {
           "alg": "SHA256",
-          "content": "6cc7923789694fd58f001cbcac7e47abc13af4d560ebbfcf3b41a8b1a0748124"
+          "content": "6a2a79c89984dc719817d388c8709e0efc2a2795a934eaa746b4882eb6045adc"
         },
         {
           "alg": "SHA256",
-          "content": "ea5c46eb2d3af39e806b986f4b09d5c2706a1f5afde3cbf7544ce6616127173c"
+          "content": "f06dd838d1e07d9b1de0932ec0485ec92c4d5f5d1ad4817a656268c3e88be1e1"
         },
         {
           "alg": "SHA256",
-          "content": "f5d89a2ed90731df3be64bab0aa44f78bff39fdc9d71c291f4a8023aa46425b7"
+          "content": "c6b11be792c3d2c6a4be2af4ebf97a68d0bf5f580aca6e86a418a354f6cc846a"
         },
         {
           "alg": "SHA256",
-          "content": "25e4aed0312d292c09f61af25bba34e0b2c88546041472b09088c39a4d828af1"
+          "content": "477ecaf6b9f88f873341b91fcc736119ca81b5e002a9f7f308ff5b4f2ce2a70e"
         },
         {
           "alg": "SHA256",
-          "content": "aaea64f3f467d22e70eeed68bdccb3bc4f83f650446c4a03c59f2cba28a108db"
+          "content": "f3c0683136acdc29afdf88a5bc2f7d3d0e34087788d1d63c0144b805a87a196f"
         },
         {
           "alg": "SHA256",
-          "content": "a028425d1b440c5d92a6be1e1a020739dfe67ea87d96c6dbe828c1b30041728b"
+          "content": "d39f3f5c3927e2dc0913fe5bbc1a2f6b1b9d1bba1de6358340d0ad0d0c00ca92"
         },
         {
           "alg": "SHA256",
-          "content": "5b192c6cf397e4455b11523c5cf2b18ed084c1bbd61b6c0926344d2129481972"
+          "content": "0b1ac5bf6609b2716c7954011c5fef6254922df029f45d032ee4ebf5d363cbed"
         },
         {
           "alg": "SHA256",
-          "content": "ea407d4ccf5891d667d045fecae97a7a1e5e87b3b97f97ae1803c2e741130be0"
+          "content": "50fae885cb073eac7556353ff3df93312b0d5137b0a5056b2bb63f97ed9a93c7"
         },
         {
           "alg": "SHA256",
-          "content": "5f63aaf97afd9f6dec5b1a68e1b8da12bfccb4cb9a9a65c3e0b6c847849e7586"
+          "content": "01efac2074fffb4cb1ea3fab7861e9d0f2a26913854a972f5ac760525dbdaf6e"
         },
         {
           "alg": "SHA256",
-          "content": "e30ab17845bb9fa54ccf67fa4f9f5282652d54faa6d17452f47d0f369d038673"
+          "content": "ed4ca42bd55955aa34deedcfdfd0e0c31abf51143aae158ae2bc3520b626e517"
         },
         {
           "alg": "SHA256",
-          "content": "32ef5f4283a3be81913947d19608eacb7c6608026851123790cd9cc8982af34b"
+          "content": "40f92192227505acca4e2533ce565f8e6b9535f7d0d09b0968452f18b7376b38"
         },
         {
           "alg": "SHA256",
-          "content": "eebdbdeef0094e4f5aefa20dcd4eb2368ab5e7a3b4edea27f1e7b2892e009cf9"
+          "content": "33efefcf5d88eaf400b47e2eba02f91f319bb9951be61ca500b7d536d3f2079d"
+        },
+        {
+          "alg": "SHA256",
+          "content": "8e386b0bc0ddd7cd2056f884b5a0af33592bd01ac66a7ca4b42a65a7e7774a13"
+        },
+        {
+          "alg": "SHA256",
+          "content": "58c58e1de0006ffb580368d6793c36c7b0b021db066479cf281bf5061e732328"
+        },
+        {
+          "alg": "SHA256",
+          "content": "08231552159be266a7269555bd9f7c016aee7d9ad6dab06eb58796c5ccb7101c"
+        },
+        {
+          "alg": "SHA256",
+          "content": "a15f9a891bce5f5cc5d210e3ad8614d4d1b489a56448c099d6d2a7168b2d954a"
+        },
+        {
+          "alg": "SHA256",
+          "content": "03091c8a64db4be38746597ceea68f33c238e27acd9bfe99fb59420224ae7a55"
+        },
+        {
+          "alg": "SHA256",
+          "content": "2b7bcefb9f40fa242fa6b06377232c048e655747790829609168c01162f60578"
+        },
+        {
+          "alg": "SHA256",
+          "content": "859fc4196855890150bb08e649b30d2c93b249b3e3edd0d3bb2231abf8aa8adc"
         }
       ],
       "name": "orjson",
-      "purl": "pkg:pypi/orjson@3.11.9",
+      "purl": "pkg:pypi/orjson@3.12.0",
       "type": "library",
-      "version": "3.11.9"
+      "version": "3.12.0"
     },
     {
       "bom-ref": "pkg:pypi/packageurl-python@0.17.6",
@@ -2201,17 +2305,17 @@
       "version": "1.43.2"
     },
     {
-      "bom-ref": "pkg:pypi/pre-commit@4.6.1",
+      "bom-ref": "pkg:pypi/pre-commit@4.6.2",
       "hashes": [
         {
           "alg": "SHA256",
-          "content": "0e3b2942510d1fb34eec167a3ec57331bf8442122f1153a9fb8b58f5c49b2717"
+          "content": "e2dde9a75d3bce11bd3831c26d134df00a2803c1d818be6a0383c3dcda25dc4e"
         }
       ],
       "name": "pre-commit",
-      "purl": "pkg:pypi/pre-commit@4.6.1",
+      "purl": "pkg:pypi/pre-commit@4.6.2",
       "type": "library",
-      "version": "4.6.1"
+      "version": "4.6.2"
     },
     {
       "bom-ref": "pkg:pypi/psutil@7.2.2",
@@ -2305,69 +2409,69 @@
       "version": "2.1.0"
     },
     {
-      "bom-ref": "pkg:pypi/pyarrow@25.0.0",
+      "bom-ref": "pkg:pypi/pyarrow@25.0.1",
       "hashes": [
         {
           "alg": "SHA256",
-          "content": "72132b9a8a0a1840197794d4dea26080069b6b0981c116bc078762dc9691b21b"
+          "content": "bf0b672390cdcb640d7288f96b826d71ff4e9abb254a86c89890baf51a29cee6"
         },
         {
           "alg": "SHA256",
-          "content": "e009ef945e498dca2f050ea10d2e9764cb44017254826fc4574fdb8d2530173b"
+          "content": "38a9a4b4b9613380e200641891495a56c3d5a98a092db4a870af9975e220471d"
         },
         {
           "alg": "SHA256",
-          "content": "f57a39dbcb416345401c2e77a4373669b45fd111a1768e6cf267a7a0607ff0ec"
+          "content": "0b726ad7e7b669be982b0c71c07fe4b037d654354130da79a7902a669e93a66b"
         },
         {
           "alg": "SHA256",
-          "content": "447df764beb07c544f0178a5f6b70ef44b9ecf382b3cdfad4c2d7867353c3887"
+          "content": "9171748cdf796972d85a4b60157c279913e242992e350c90c7450182a9838b2a"
         },
         {
           "alg": "SHA256",
-          "content": "ac5dfeee59f9ceb4d45ba76e83b026c38c24334135bb329d8274baa49cec3c62"
+          "content": "b7a296aac7a71fa0886c08e155ddb6c636a50013f801f6178daafa0f9e726188"
         },
         {
           "alg": "SHA256",
-          "content": "f0f100dacf2c0f400601664a79d1a907ced4740514bb2b00917341038e2ce76f"
+          "content": "0fe7c8b6c03969b49c8c66182e4a18e3819ab92d07cfab5d8370c531b9369ef0"
         },
         {
           "alg": "SHA256",
-          "content": "2e093efbecb5317372f819228fa4b4e6157eee48d3f0a7b0303705ebf81a7104"
+          "content": "f729cfdbd36fd99d543b67a914d2de044c84ebe45be8b34902b299b608c15c8f"
         },
         {
           "alg": "SHA256",
-          "content": "26be35b80780d2d21f4bae3d568b1666337c3a89722cc1794c956a77017cb24e"
+          "content": "59a2de54c0cbd954da861eee4d1d330f8e909c45b53455baef696380f2c55033"
         },
         {
           "alg": "SHA256",
-          "content": "6f4812bfbf11ca7d8faf59eb8fff8bf4dd25ce3a38b62baa010cc17a0926d1b2"
+          "content": "35935cd5de130aa5cf4dea052a63e6bf2e17006c35c3a468194242b9b2bf5956"
         },
         {
           "alg": "SHA256",
-          "content": "b8af8ceedf0c9c160fd2b63440f2d205b9404db85866c1217bfea601de7cfb50"
+          "content": "f3831aaa25c67a99f99dc8b05873cb9d64560390372e2aa197ce9dd4a3f06a44"
         },
         {
           "alg": "SHA256",
-          "content": "c70a5fd9a82bd1a702fd482bdc62d38dcb672fb2b449b1d7c0d7d1f4be7b7bfe"
+          "content": "6a1fdfc6659b6b19022f2e50627fb5cf7156a66c46bf4299379955cbe742382a"
         },
         {
           "alg": "SHA256",
-          "content": "0490a7f8b38ffe11cc26526b50c65d111cb54ddac3717cec781806793f1244dc"
+          "content": "169d3429d5be7c752125890620f75a60776d38b0035eddae939651640822332e"
         },
         {
           "alg": "SHA256",
-          "content": "e83916bbcf380866b4e14255850b33323ff678dc9758411d0409cdd2523880b0"
+          "content": "119297a6dc197e45d9c6d4415f7814a67ffa36c180d26f68c154c58067ae782d"
         },
         {
           "alg": "SHA256",
-          "content": "13240f0d3dc5932ccd0bfa90cd76d835680b9d94a7661c635df4b703d40ce849"
+          "content": "4288f27577352d608ca08553b0865e4a9b3aa14820c5d95b53337218d609835b"
         }
       ],
       "name": "pyarrow",
-      "purl": "pkg:pypi/pyarrow@25.0.0",
+      "purl": "pkg:pypi/pyarrow@25.0.1",
       "type": "library",
-      "version": "25.0.0"
+      "version": "25.0.1"
     },
     {
       "bom-ref": "pkg:pypi/pycparser@3.0",
@@ -3101,81 +3205,81 @@
       "version": "2026.6.3"
     },
     {
-      "bom-ref": "pkg:pypi/ruff@0.16.2",
+      "bom-ref": "pkg:pypi/ruff@0.16.3",
       "hashes": [
         {
           "alg": "SHA256",
-          "content": "3c8de4cf2181f01d57946d87d777aa52916976fc09942aed89938fab5e013318"
+          "content": "0c5710e247a58a4521e66e124ba9a74655b414f61ba3a2e9e3811e11098f48f7"
         },
         {
           "alg": "SHA256",
-          "content": "9a48cc05c6fbc811ca81b5d7ba95375affea6582d1b8024e455e41afbbf55344"
+          "content": "fe155130631a2471fd2e14a7a664a4dfbd7194b8229c3d7b2a40b21178639081"
         },
         {
           "alg": "SHA256",
-          "content": "a2c0d14fcbb26c91f0f867a6dc9bd71bbc30b1b6151829c884f23faeab2e5700"
+          "content": "e2ed719e14aa64d895c2ee922594a90a43c861a93f0575a95ff8c47cdbd13eb9"
         },
         {
           "alg": "SHA256",
-          "content": "335c621622c4650330be50842561c6586ac6971bb8ab5407fe34dcc9efb16bbe"
+          "content": "9e0b1da805eb043654645d74d5de1e5ce2edc686e40790d2b86f56d71cc06a84"
         },
         {
           "alg": "SHA256",
-          "content": "20e66910f2c37cc753f9ef6580c914a621b80c4fa3549d3e3521e29d0f5bfc3f"
+          "content": "a37bdea0bbe21780f590bf437d6412c8c4e1b6cd010f91a65c2c40c5e5f5f870"
         },
         {
           "alg": "SHA256",
-          "content": "c7e36fbfba65510548156902bcf1350a979a958ce0347ce0f90d73894036b39f"
+          "content": "09571e6d1288ed9be475207a3ac04ada404f1cd898104be0f6ab8d7df438575b"
         },
         {
           "alg": "SHA256",
-          "content": "f0eab35f80df8f134aae5d1630e751901321d317cc8e50dc39e36fa3ed34cd12"
+          "content": "2c18c5a101eb540010638cc1ff3c84944d3adb3df62b8d98ca8f22ba484d3413"
         },
         {
           "alg": "SHA256",
-          "content": "40ea8c0594feb894e89c8c61ab9c103d38b0ea72dfde6c594107147ca31b1140"
+          "content": "8457c44f15033c85ddbb77b15d451df9e24e4bd03b628396dd3610cedc3b8f82"
         },
         {
           "alg": "SHA256",
-          "content": "ab3d62dde0b19facdd632008cc4827fc28ada7736c6bd35ab6f1050f0bfed53f"
+          "content": "294b95c4ae0cda9388525c2047778aa758d6b8d4bb876fd4e9eaa3ebc92343eb"
         },
         {
           "alg": "SHA256",
-          "content": "e43e1f5b8388da9eca1b9e88328d47a5cec794633ccf6f7484ac2dd15eee92c0"
+          "content": "3d0c7c40c87c2a820509c31ba007968da6e1306468c067b2d82fbfdbcd0e8474"
         },
         {
           "alg": "SHA256",
-          "content": "c24788a980581e1d7ea3a0cbe4344c4fbeb0a6a9b1f4713aa46bb104f8294690"
+          "content": "9f738c0fdfa8eed0b2ce7fb27ee7258208a92a68d7949e62aa15164bc7b389da"
         },
         {
           "alg": "SHA256",
-          "content": "81806b08329130005dd4a8a8394a0c9da8c6f4cafb16ba438d2a2ee6a18bedf1"
+          "content": "fb785f0be25abe69d320415cd4f833b59e17ba7613d9ba6a958023b6bceb0a50"
         },
         {
           "alg": "SHA256",
-          "content": "4ce4e02bad779bef557f541a1b31f20d6abeae1cc05ed1b1ac019d4ffd1044c8"
+          "content": "c5536e3acfbf9563085aa2be7b13c629c3077e902afc5b941ac44024dbb9f506"
         },
         {
           "alg": "SHA256",
-          "content": "e0422abdf70070255fc4073ce9dfc814cc03db577013761ddd09bc1e4a9a4fbd"
+          "content": "a2d85c02f9b8e165d85e6779184d38c4132de12603dab59c51c28e22584f9e4d"
         },
         {
           "alg": "SHA256",
-          "content": "bf3a63d78fb39f4bf5ac8ae52051c5520505301abe19ba4e204c453b3f09bb0b"
+          "content": "388cdf2166642bd9b13d52b5932d3170f34f8abed7e8d9a855f1d84b83645a0a"
         },
         {
           "alg": "SHA256",
-          "content": "bcabe2f6d0fc7819f1431793005af4e4de7371927d037345bf941252b195b9fa"
+          "content": "e80a7d69ca2a6d1c4d352ec91458cdca6e56c83cdbcabd93e4abe1e53591d948"
         },
         {
           "alg": "SHA256",
-          "content": "d614e95cedf38a2053fd351c55b103ba30d017d61688fdbfd40ee0412852a99f"
+          "content": "b8ca152da82c1acc1fa8d5874b15951935f0eef46f10e6954c83859011b6178a"
         }
       ],
       "name": "ruff",
-      "purl": "pkg:pypi/ruff@0.16.2",
+      "purl": "pkg:pypi/ruff@0.16.3",
       "type": "library",
-      "version": "0.16.2"
+      "version": "0.16.3"
     },
     {
       "bom-ref": "pkg:pypi/scalene@2.3.0",
