@@ -10,7 +10,7 @@ import sys
 from collections.abc import Sequence
 
 DEFAULT_TIMEOUT_SECONDS = 80 * 60
-MUTMUT_COMMAND = ("mutmut", "run")
+MUTMUT_COMMAND = ("mutmut", "run", "--max-children", "2")
 
 
 def run_bounded(command: Sequence[str], timeout_seconds: int) -> int:
