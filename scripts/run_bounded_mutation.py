@@ -10,6 +10,7 @@ import sys
 from collections.abc import Sequence
 
 DEFAULT_TIMEOUT_SECONDS = 80 * 60
+MUTMUT_COMMAND = ("mutmut", "run")
 
 
 def run_bounded(command: Sequence[str], timeout_seconds: int) -> int:
@@ -52,10 +53,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parser.parse_args(argv)
     if args.timeout_seconds <= 0:
         parser.error("--timeout-seconds must be positive")
-    return run_bounded(
-        ("mutmut", "run", "--paths-to-mutate", "src/reimburse_atlas", "--max-children", "2"),
-        args.timeout_seconds,
-    )
+    return run_bounded(MUTMUT_COMMAND, args.timeout_seconds)
 
 
 if __name__ == "__main__":
