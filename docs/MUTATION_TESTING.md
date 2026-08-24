@@ -4,12 +4,12 @@ Mutation testing is configured through `mutmut`, but it is intentionally a night
 
 ## Current configuration
 
-`pyproject.toml` points mutmut at `src/reimburse_atlas` and uses the unit-test subset for mutation runs. Pytest now has `pythonpath = ["src"]`, which makes mutmut import mutated source code rather than an installed wheel/site-package copy.
+`pyproject.toml` points mutmut at `src/reimburse_atlas` and uses the unit-test subset for mutation runs. Pytest has `pythonpath = ["src"]`, which makes mutmut import mutated source code rather than an installed wheel/site-package copy. The isolated workspace copies the tracked repository contracts and fixtures consumed by unit tests, including `.github`, `apps`, `conductor`, `data`, `docs`, `schema`, and `scripts`. Ignored raw payloads and dependency caches are not copied. Coverage-only mutation is deliberately disabled: a fresh scheduled runner has no persisted coverage map, and source generation must not depend on stale local state.
 
 ## Local command
 
 ```bash
-pixi run mutation
+pixi run --environment mutation mutation
 ```
 
 The repository-owned runner uses an 80-minute default budget, starts mutmut in
