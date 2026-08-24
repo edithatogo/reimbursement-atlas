@@ -18,6 +18,11 @@ updates:
     groups:
       dashboard-dependencies:
         patterns: ["*"]
+    ignore:
+      # The scheduled compatibility canary opens the upgrade path once Astro's
+      # checker peer contract explicitly admits TypeScript 7.
+      - dependency-name: "typescript"
+        versions: [">=7"]
   - package-ecosystem: "uv"
     directory: "/"
     schedule:
