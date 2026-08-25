@@ -211,6 +211,6 @@ tracks:
     phase: hardening
     workstream: governance
     goal: "Derive medallion and release evidence readiness from one complete fail-closed gate model."
-    spec: "conductor/tracks/canonical_evidence_readiness_20260826/spec.md"
-    plan: "conductor/tracks/canonical_evidence_readiness_20260826/plan.md"
+    spec: "conductor/archive/canonical_evidence_readiness_20260826/spec.md"
+    plan: "conductor/archive/canonical_evidence_readiness_20260826/plan.md"
     issues: [736]

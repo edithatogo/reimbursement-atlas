@@ -44,5 +44,5 @@
   *Link: [./archive/medallion_silver_gold_promotion_20260825/index.md](./archive/medallion_silver_gold_promotion_20260825/index.md)*
 - [x] **Track: Platinum product projection alignment**
   *Link: [./archive/medallion_platinum_projection_20260825/index.md](./archive/medallion_platinum_projection_20260825/index.md)*
-- [~] **Track: Canonical evidence-release readiness semantics**
-  *Link: [./tracks/canonical_evidence_readiness_20260826/index.md](./tracks/canonical_evidence_readiness_20260826/index.md)*
+- [x] **Track: Canonical evidence-release readiness semantics**
+  *Link: [./archive/canonical_evidence_readiness_20260826/index.md](./archive/canonical_evidence_readiness_20260826/index.md)*

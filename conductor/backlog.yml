@@ -897,8 +897,8 @@ epics:
     track_id: canonical_evidence_readiness_20260826
     issues:
       - title: Use one canonical evidence-release readiness model
-        labels: ["type:data-quality", "type:governance", "status:in-progress"]
-        status: in_progress
+        labels: ["type:data-quality", "type:governance", "status:implemented"]
+        status: implemented
         github_issue: 736
         acceptance:
           - "Medallion and release summaries use the same complete gate result."
