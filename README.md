@@ -85,7 +85,7 @@ The atlas is designed to answer questions like:
 
 ## Current seed and generated assets
 
-- `data/seed/source_registry.*`: 60 public or partly public schedule/source families.
+- `data/seed/source_registry.*`: 64 public or partly public schedule/source families.
 - `data/seed/analysis_catalogue.*`: 25 policy-relevant analyses.
 - `data/seed/ontology_registry.*`: ontology/licensing/mapping strategy.
 - `data/seed/ontology_concepts.*` and `ontology_mapping_templates.*`: synthetic local-only terminology workflow seeds.
@@ -102,6 +102,9 @@ The atlas is designed to answer questions like:
 - `data/derived/reviewed_source_bundles/*`: checksum-bound, derived-only live-source candidates;
   raw payloads remain in ignored local storage.
 - `data/derived/seed_lake/*`: local JSONL/CSV lake materialisation and manifest.
+- `data/derived/medallion/*`: deterministic B0/B1/B2 evidence, Silver/Gold/Platinum
+  artifact identities, and explicit fail-closed promotion decisions. See
+  `docs/contracts/MEDALLION_ARCHITECTURE_CONTRACT.md`.
 - `data/derived/publication_manifest.json`: candidate public/Hugging Face dataset publication manifest.
 - `data/derived/toolchain_report.*`: local installed-toolchain availability report.
 - `data/derived/v6_validation_run.json` and `v7_validation_run.json`: local validation-run summaries.

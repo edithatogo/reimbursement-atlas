@@ -279,6 +279,31 @@ def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:  
         / "derived"
         / "source_contracts"
         / "source_contract_validation.jsonl",
+        "bronze_source_index": root
+        / "data"
+        / "derived"
+        / "medallion"
+        / "bronze_source_index.jsonl",
+        "bronze_acquisition_ledger": root
+        / "data"
+        / "derived"
+        / "medallion"
+        / "bronze_acquisition_ledger.jsonl",
+        "bronze_evidence": root
+        / "data"
+        / "derived"
+        / "medallion"
+        / "bronze_evidence.jsonl",
+        "medallion_artifacts": root
+        / "data"
+        / "derived"
+        / "medallion"
+        / "medallion_artifacts.jsonl",
+        "medallion_promotion_decisions": root
+        / "data"
+        / "derived"
+        / "medallion"
+        / "promotion_decisions.jsonl",
         "github_project_items": root
         / "data"
         / "derived"

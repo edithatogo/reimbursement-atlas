@@ -98,6 +98,7 @@ def build_release_readiness_report(root: Path | None = None) -> ReleaseReadiness
         _source_drift_gate(repo),
         _source_validation_gate(repo),
         _source_contract_gate(repo),
+        _medallion_contract_gate(repo),
         _github_project_gate(repo),
         _final_handoff_gate(repo),
         _local_gate_status(repo, "uv_build", "release", required=True),
@@ -483,6 +484,38 @@ def _source_contract_gate(repo: Path) -> ReleaseGateRecord:
             f"contracts={summary.get('contract_count', 0)} missing={missing} failures={failures}"
         ),
         recommended_action="Download sources and rerun contract validation before real parsing.",
+    )
+
+
+def _medallion_contract_gate(repo: Path) -> ReleaseGateRecord:
+    summary = _read_json(repo / "data" / "derived" / "medallion" / "summary.json")
+    if not summary:
+        return ReleaseGateRecord(
+            id="medallion_contract_projection",
+            category="architecture",
+            status="missing",
+            required=True,
+            evidence="Medallion contract projection missing.",
+            recommended_action="Run scripts/make_medallion_projection.py.",
+        )
+    ready = summary.get("medallion_contract_ready") is True
+    return ReleaseGateRecord(
+        id="medallion_contract_projection",
+        category="architecture",
+        status="pass" if ready else "fail",
+        required=True,
+        evidence=(
+            f"bronze_b0={summary.get('bronze_b0_count', 0)} "
+            f"bronze_b1={summary.get('bronze_b1_count', 0)} "
+            f"bronze_b2={summary.get('bronze_b2_count', 0)} "
+            f"silver={summary.get('silver_count', 0)} "
+            f"gold={summary.get('gold_count', 0)} "
+            f"platinum={summary.get('platinum_count', 0)}"
+        ),
+        recommended_action=(
+            "Resolve contract validation failures; blocked promotions remain explicit "
+            "evidence states."
+        ),
     )
 
 

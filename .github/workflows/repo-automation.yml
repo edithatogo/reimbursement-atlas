@@ -33,6 +33,7 @@ jobs:
           pixi run architecture-report
           pixi run source-validation
           pixi run source-contracts
+          pixi run medallion-projection
           pixi run historical-sources
           pixi run local-quality
           pixi run project-issues
