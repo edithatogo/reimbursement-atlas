@@ -10,8 +10,8 @@
       "status": "not_authorized_by_track"
     }
   ],
-  "status": "new",
+  "status": "in_progress",
   "track_id": "medallion_platinum_projection_20260825",
   "type": "feature",
-  "updated_at": "2026-08-25T09:54:36Z"
+  "updated_at": "2026-08-25T10:02:00Z"
 }
