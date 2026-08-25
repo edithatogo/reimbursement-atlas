@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-08-25T09:54:36Z",
+  "description": "Align source indexing and acquisition evidence with the shared B0/B1/B2 medallion contract.",
+  "evidence_schema": "1.0",
+  "gates": [],
+  "status": "new",
+  "track_id": "medallion_bronze_evidence_20260825",
+  "type": "feature",
+  "updated_at": "2026-08-25T09:54:36Z"
+}

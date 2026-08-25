@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-08-25T09:54:36Z",
+  "description": "Make public product promotion an explicit Gold-to-Platinum projection with independent release gates.",
+  "evidence_schema": "1.0",
+  "gates": [
+    {
+      "evidence": "Remote publication remains outside repository implementation.",
+      "id": "external_publication",
+      "kind": "external_mutation",
+      "status": "not_authorized_by_track"
+    }
+  ],
+  "status": "new",
+  "track_id": "medallion_platinum_projection_20260825",
+  "type": "feature",
+  "updated_at": "2026-08-25T09:54:36Z"
+}
