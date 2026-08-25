@@ -854,24 +854,35 @@ epics:
           - "Local main exactly matches origin/main after verification."
           - "No destructive reset or unreviewed deletion is used."
         dependencies: [688]
-  - id: MEDALLION-001
-    title: Shared medallion architecture alignment
+  - id: MEDALLION-BRONZE-001
+    title: Medallion Bronze evidence alignment
     phase: implementation
     workstream: data
     priority: must
-    track_ids:
-      - medallion_bronze_evidence_20260825
-      - medallion_silver_gold_promotion_20260825
-      - medallion_platinum_projection_20260825
+    track_id: medallion_bronze_evidence_20260825
     issues:
       - title: Implement B0 B1 B2 evidence identities and immutable receipts
-        labels: ["type:data", "type:provenance", "status:planned"]
-        status: planned
+        labels: ["type:data", "type:provenance", "status:implemented"]
+        status: implemented
+  - id: MEDALLION-GOLD-001
+    title: Medallion Silver and Gold promotion
+    phase: implementation
+    workstream: research
+    priority: must
+    track_id: medallion_silver_gold_promotion_20260825
+    issues:
       - title: Enforce Silver to Gold evidence promotion contracts
-        labels: ["type:mapping", "type:data-quality", "status:planned"]
-        status: planned
+        labels: ["type:mapping", "type:data-quality", "status:implemented"]
+        status: implemented
         dependencies: ["Implement B0 B1 B2 evidence identities and immutable receipts"]
+  - id: MEDALLION-PLATINUM-001
+    title: Medallion Platinum product projection
+    phase: implementation
+    workstream: product
+    priority: must
+    track_id: medallion_platinum_projection_20260825
+    issues:
       - title: Enforce Gold to Platinum public product promotion
-        labels: ["type:publication", "type:dashboard", "status:planned"]
-        status: planned
+        labels: ["type:publication", "type:dashboard", "status:implemented"]
+        status: implemented
         dependencies: ["Enforce Silver to Gold evidence promotion contracts"]

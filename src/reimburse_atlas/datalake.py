@@ -289,11 +289,7 @@ def materialise_seed_lake(output_dir: Path | None = None) -> SeedLakeManifest:  
         / "derived"
         / "medallion"
         / "bronze_acquisition_ledger.jsonl",
-        "bronze_evidence": root
-        / "data"
-        / "derived"
-        / "medallion"
-        / "bronze_evidence.jsonl",
+        "bronze_evidence": root / "data" / "derived" / "medallion" / "bronze_evidence.jsonl",
         "medallion_artifacts": root
         / "data"
         / "derived"
