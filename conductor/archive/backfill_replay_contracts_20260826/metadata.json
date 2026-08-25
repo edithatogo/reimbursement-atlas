@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-08-26T08:00:00Z",
+  "description": "Immutable historical snapshots and deterministic partition replay.",
+  "evidence_schema": "1.0",
+  "gates": [],
+  "status": "completed",
+  "track_id": "backfill_replay_contracts_20260826",
+  "type": "architecture",
+  "updated_at": "2026-08-26T08:00:00Z"
+}

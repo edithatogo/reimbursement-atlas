@@ -1,0 +1,85 @@
+{
+  "additionalProperties": false,
+  "description": "Normative replay behavior for one source family.",
+  "properties": {
+    "contract_id": {
+      "minLength": 1,
+      "title": "Contract Id",
+      "type": "string"
+    },
+    "source_id": {
+      "minLength": 1,
+      "title": "Source Id",
+      "type": "string"
+    },
+    "partition_identity": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Partition Identity",
+      "type": "array"
+    },
+    "snapshot_identity": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Snapshot Identity",
+      "type": "array"
+    },
+    "idempotency_rule": {
+      "const": "partition_and_snapshot_sha256",
+      "title": "Idempotency Rule",
+      "type": "string"
+    },
+    "late_arrival_rule": {
+      "const": "append_then_replay_partition",
+      "title": "Late Arrival Rule",
+      "type": "string"
+    },
+    "correction_rule": {
+      "const": "new_snapshot_never_overwrite",
+      "title": "Correction Rule",
+      "type": "string"
+    },
+    "supersession_rule": {
+      "const": "explicit_acyclic_predecessor",
+      "title": "Supersession Rule",
+      "type": "string"
+    },
+    "replay_order": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Replay Order",
+      "type": "array"
+    },
+    "deterministic_output_rule": {
+      "const": "canonical_json_sha256",
+      "title": "Deterministic Output Rule",
+      "type": "string"
+    },
+    "missing_payload_rule": {
+      "const": "metadata_only_fail_closed",
+      "title": "Missing Payload Rule",
+      "type": "string"
+    }
+  },
+  "required": [
+    "contract_id",
+    "source_id",
+    "partition_identity",
+    "snapshot_identity",
+    "idempotency_rule",
+    "late_arrival_rule",
+    "correction_rule",
+    "supersession_rule",
+    "replay_order",
+    "deterministic_output_rule",
+    "missing_payload_rule"
+  ],
+  "title": "BackfillReplayContract",
+  "type": "object"
+}

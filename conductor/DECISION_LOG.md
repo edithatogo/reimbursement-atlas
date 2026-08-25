@@ -1759,3 +1759,16 @@ post-registration drift evidence remain immutable historical provenance.
 Consequence: No enabled workflow authenticates to, mutates or monitors OSF, and no current
 readiness result depends on OSF. This does not delete or alter the remote registration, weaken
 source-rights or evidence gates, or change Zenodo, DOI, Hugging Face, paper or preprint controls.
+
+## 2026-08-26 - Immutable historical snapshots and deterministic replay
+
+Decision: Treat historical backfill partitions and acquired snapshots as distinct identities.
+Repeated observations are idempotent. Changed bytes create immutable correction snapshots with
+explicit predecessor edges; late arrivals replay only the affected partition in canonical order.
+
+Evidence: Medallion v3 backfill/replay schema, generated historical snapshot ledger and replay
+plan, downloader predecessor-preservation tests, and Conductor track
+`backfill_replay_contracts_20260826`.
+
+Consequence: Existing MBS receipts can be replayed deterministically without rewriting prior
+bytes. PBS and other records without payload checksums remain metadata-only and fail closed.

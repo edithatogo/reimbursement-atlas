@@ -52,6 +52,8 @@ def download_payload(
     if destination.exists() and not force:
         return "cached", "Existing local cache retained; use --force to replace it."
     destination.parent.mkdir(parents=True, exist_ok=True)
+    incoming = destination.with_name(f".{destination.name}.incoming")
+    incoming.unlink(missing_ok=True)
     command = [
         "curl",
         "--fail",
@@ -72,15 +74,30 @@ def download_payload(
         "--max-time",
         str(max_time_seconds),
         "--output",
-        str(destination),
+        str(incoming),
         url,
     ]
     try:
         subprocess.run(command, check=True, capture_output=True, text=True)  # nosec B603
     except (OSError, subprocess.CalledProcessError) as exc:
-        destination.unlink(missing_ok=True)
+        incoming.unlink(missing_ok=True)
         detail = getattr(exc, "stderr", "") or str(exc)
         return "download_failed", detail.strip()[-500:]
+    if destination.exists():
+        existing_sha = _sha256(destination)
+        incoming_sha = _sha256(incoming)
+        if existing_sha == incoming_sha:
+            incoming.unlink()
+            return "cached", "Retrieved bytes match the immutable cached snapshot."
+        snapshot_dir = destination.parent / ".snapshots" / destination.stem
+        snapshot_dir.mkdir(parents=True, exist_ok=True)
+        predecessor = snapshot_dir / f"{existing_sha}{destination.suffix.lower()}"
+        if predecessor.exists() and _sha256(predecessor) != existing_sha:
+            incoming.unlink(missing_ok=True)
+            return "download_failed", "Immutable predecessor checksum collision."
+        if not predecessor.exists():
+            Path(destination).replace(predecessor)
+    Path(incoming).replace(destination)
     return "downloaded", "Retrieved into ignored local cache."
 
 

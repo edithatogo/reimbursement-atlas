@@ -295,6 +295,30 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/historical_sources/backfill_replay/contracts.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "contracts"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/historical_sources/backfill_replay/snapshot_ledger.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "snapshot_ledger"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/historical_sources/backfill_replay/replay_plan.json",
+      "dct:format": "json",
+      "dct:title": "replay_plan"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/historical_sources/backfill_replay/summary.json",
+      "dct:format": "json",
+      "dct:title": "summary"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/historical_sources/family_archive_v2/historical_source_downloads.jsonl",
       "dct:format": "jsonl",
       "dct:title": "historical_source_downloads"

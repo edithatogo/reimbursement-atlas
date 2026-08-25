@@ -1745,6 +1745,7 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
     """Export JSON schemas for registries and derived contracts."""
     from reimburse_atlas.adapters import SourceAcquisitionPlan
     from reimburse_atlas.analysis.mapping_evidence import MappingEvidenceRecord
+    from reimburse_atlas.backfill_replay import BackfillReplayContract, HistoricalSnapshotRecord
     from reimburse_atlas.contracts import (
         CoverageDecisionRecord,
         CrosswalkCandidate,
@@ -1837,6 +1838,8 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         MedallionPromotionDecision,
         PlatinumReleaseContract,
         FieldLineageRecord,
+        BackfillReplayContract,
+        HistoricalSnapshotRecord,
     )
     for model in models:
         path = output_dir / f"{model.__name__}.schema.json"

@@ -265,7 +265,7 @@
       "name": "repo_workflow_uses",
       "parquet_path": "repo_workflow_uses/repo_workflow_uses.parquet",
       "rows": 114,
-      "sha256": "14140f029ea4be45cdb463c107dc34691fff07e4800c59c89315568fa8e01760"
+      "sha256": "af16453936f910c094565c607c0f16d40534866efbea252f6c82d4bc7635f716"
     },
     {
       "csv_path": "repo_workflow_policy/repo_workflow_policy.csv",
@@ -328,8 +328,8 @@
       "jsonl_path": "architecture_import_edges/architecture_import_edges.jsonl",
       "name": "architecture_import_edges",
       "parquet_path": "architecture_import_edges/architecture_import_edges.parquet",
-      "rows": 238,
-      "sha256": "072584e2724bdac252e2755c79973766399be02f65d76489b966357ab3fc27a6"
+      "rows": 240,
+      "sha256": "49367b85c00f39dba4ff4efa3fef32099b94bdf19a7981b2e830e68218c56454"
     },
     {
       "csv_path": "architecture_layer_policy/architecture_layer_policy.csv",
@@ -337,7 +337,7 @@
       "name": "architecture_layer_policy",
       "parquet_path": "architecture_layer_policy/architecture_layer_policy.parquet",
       "rows": 22,
-      "sha256": "c45cd1e4f9e399f2cdf6525872549861cea4ab06f513b271bf277be49b8ad1d5"
+      "sha256": "899b11752a07788728532a6893b7a40c85e250221d2c5e511aea77c931ada6a4"
     },
     {
       "csv_path": "architecture_import_cycles/architecture_import_cycles.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 40,
-      "sha256": "281ad5974e505db938fb2da7a336f51fe4f8c1a8c538c3427ff592a24b85497d"
+      "sha256": "875bddcbb86c83ca22ec4f3e5055d941f6a08aa1d5951856519af1f92aa4e190"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -417,7 +417,7 @@
       "name": "medallion_artifacts",
       "parquet_path": "medallion_artifacts/medallion_artifacts.parquet",
       "rows": 22,
-      "sha256": "58614a5626569bf835da48768bbcba32954aee1ebbc06fca2c3ddcec16abee45"
+      "sha256": "0c0587f72abcfdb634bf11e8583d59c2f67d7b4631eef714279b3acab74c5308"
     },
     {
       "csv_path": "medallion_promotion_decisions/medallion_promotion_decisions.csv",
@@ -488,8 +488,8 @@
       "jsonl_path": "data_dictionary/data_dictionary.jsonl",
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
-      "rows": 258,
-      "sha256": "2f0cbc9febe6ccc62c89c305c85bb25f06819ea25be75f8cb8a4e14fb806dfc9"
+      "rows": 262,
+      "sha256": "5f0cf51c6d0b07a4a7269c3313485f8f53b868451cdd44561cac4116d4ee1b70"
     }
   ]
 }

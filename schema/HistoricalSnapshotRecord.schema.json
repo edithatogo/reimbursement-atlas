@@ -1,0 +1,128 @@
+{
+  "additionalProperties": false,
+  "description": "One immutable historical observation within a logical partition.",
+  "properties": {
+    "snapshot_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "source_id": {
+      "minLength": 1,
+      "title": "Source Id",
+      "type": "string"
+    },
+    "source_version_id": {
+      "minLength": 1,
+      "title": "Source Version Id",
+      "type": "string"
+    },
+    "partition_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Partition Id",
+      "type": "string"
+    },
+    "partition_value": {
+      "minLength": 1,
+      "title": "Partition Value",
+      "type": "string"
+    },
+    "logical_asset_id": {
+      "minLength": 1,
+      "title": "Logical Asset Id",
+      "type": "string"
+    },
+    "source_url": {
+      "minLength": 1,
+      "title": "Source Url",
+      "type": "string"
+    },
+    "archive_period": {
+      "minLength": 1,
+      "title": "Archive Period",
+      "type": "string"
+    },
+    "observation_status": {
+      "enum": [
+        "acquired",
+        "failed",
+        "metadata_only"
+      ],
+      "title": "Observation Status",
+      "type": "string"
+    },
+    "payload_sha256": {
+      "anyOf": [
+        {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Payload Sha256"
+    },
+    "metadata_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Metadata Sha256",
+      "type": "string"
+    },
+    "idempotency_key": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Idempotency Key",
+      "type": "string"
+    },
+    "correction_sequence": {
+      "minimum": 0,
+      "title": "Correction Sequence",
+      "type": "integer"
+    },
+    "supersedes_snapshot_id": {
+      "anyOf": [
+        {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Supersedes Snapshot Id"
+    },
+    "late_arriving": {
+      "title": "Late Arriving",
+      "type": "boolean"
+    },
+    "replay_eligible": {
+      "title": "Replay Eligible",
+      "type": "boolean"
+    },
+    "rights_state": {
+      "minLength": 1,
+      "title": "Rights State",
+      "type": "string"
+    }
+  },
+  "required": [
+    "snapshot_id",
+    "source_id",
+    "source_version_id",
+    "partition_id",
+    "partition_value",
+    "logical_asset_id",
+    "source_url",
+    "archive_period",
+    "observation_status",
+    "metadata_sha256",
+    "idempotency_key",
+    "correction_sequence",
+    "late_arriving",
+    "replay_eligible",
+    "rights_state"
+  ],
+  "title": "HistoricalSnapshotRecord",
+  "type": "object"
+}

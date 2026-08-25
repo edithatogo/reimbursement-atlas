@@ -54,3 +54,5 @@
   *Link: [./archive/cross_repository_medallion_conformance_20260826/index.md](./archive/cross_repository_medallion_conformance_20260826/index.md)*
 - [x] **Track: Field-level lineage and standards export**
   *Link: [./archive/field_level_lineage_20260826/index.md](./archive/field_level_lineage_20260826/index.md)*
+- [x] **Track: Historical backfill and deterministic replay contracts**
+  *Link: [./archive/backfill_replay_contracts_20260826/index.md](./archive/backfill_replay_contracts_20260826/index.md)*
