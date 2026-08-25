@@ -1,0 +1,125 @@
+{
+  "additionalProperties": false,
+  "description": "Checksum-bound contract for one bounded public product promotion.",
+  "properties": {
+    "schema_version": {
+      "const": "platinum-release-contract-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "contract_id": {
+      "minLength": 1,
+      "title": "Contract Id",
+      "type": "string"
+    },
+    "product_id": {
+      "minLength": 1,
+      "title": "Product Id",
+      "type": "string"
+    },
+    "product_path": {
+      "minLength": 1,
+      "title": "Product Path",
+      "type": "string"
+    },
+    "product_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Product Sha256",
+      "type": "string"
+    },
+    "public_route": {
+      "minLength": 1,
+      "title": "Public Route",
+      "type": "string"
+    },
+    "gold_artifact_id": {
+      "minLength": 1,
+      "title": "Gold Artifact Id",
+      "type": "string"
+    },
+    "source_registry_path": {
+      "minLength": 1,
+      "title": "Source Registry Path",
+      "type": "string"
+    },
+    "source_registry_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Source Registry Sha256",
+      "type": "string"
+    },
+    "claim_package_path": {
+      "minLength": 1,
+      "title": "Claim Package Path",
+      "type": "string"
+    },
+    "claim_package_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Claim Package Sha256",
+      "type": "string"
+    },
+    "claim_review_path": {
+      "minLength": 1,
+      "title": "Claim Review Path",
+      "type": "string"
+    },
+    "claim_review_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Claim Review Sha256",
+      "type": "string"
+    },
+    "approval_scope": {
+      "minLength": 1,
+      "title": "Approval Scope",
+      "type": "string"
+    },
+    "required_gate_ids": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Required Gate Ids",
+      "type": "array"
+    },
+    "prohibited_claims": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Prohibited Claims",
+      "type": "array"
+    },
+    "rights_state": {
+      "enum": [
+        "permissive",
+        "public_reuse_review",
+        "restricted_local_only",
+        "metadata_only"
+      ],
+      "title": "Rights State",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "contract_id",
+    "product_id",
+    "product_path",
+    "product_sha256",
+    "public_route",
+    "gold_artifact_id",
+    "source_registry_path",
+    "source_registry_sha256",
+    "claim_package_path",
+    "claim_package_sha256",
+    "claim_review_path",
+    "claim_review_sha256",
+    "approval_scope",
+    "required_gate_ids",
+    "prohibited_claims",
+    "rights_state"
+  ],
+  "title": "PlatinumReleaseContract",
+  "type": "object"
+}

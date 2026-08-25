@@ -96,8 +96,8 @@
       "jsonl_path": "conductor_tracks/conductor_tracks.jsonl",
       "name": "conductor_tracks",
       "parquet_path": "conductor_tracks/conductor_tracks.parquet",
-      "rows": 25,
-      "sha256": "44981044d47b2da816f2e5e6305d7f573ed1e40fdc9b0bfeef7e90cd152ac10a"
+      "rows": 26,
+      "sha256": "ada05246aad45ca623e0c4fc111d97b5cf5eae78923391267c016357bffe0425"
     },
     {
       "csv_path": "roadmap_functions/roadmap_functions.csv",
@@ -329,7 +329,7 @@
       "name": "architecture_import_edges",
       "parquet_path": "architecture_import_edges/architecture_import_edges.parquet",
       "rows": 236,
-      "sha256": "5a13ac1c18d4c2434dc052718d3460144177e8a1f48263f3f71b8169f55010de"
+      "sha256": "fd67768dee2a98da3deb951d7646599d642da747ed4c2e7f0beb074a608c16b2"
     },
     {
       "csv_path": "architecture_layer_policy/architecture_layer_policy.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 40,
-      "sha256": "b6828b76b40a4d45ea08642f6848199e0120c6756e6d2a8c11f3df3f6d5463ba"
+      "sha256": "ea476ed8bb19ec38b8036864b383af74510043b30d9d141c56fde8c919b58ab9"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -416,24 +416,24 @@
       "jsonl_path": "medallion_artifacts/medallion_artifacts.jsonl",
       "name": "medallion_artifacts",
       "parquet_path": "medallion_artifacts/medallion_artifacts.parquet",
-      "rows": 20,
-      "sha256": "1fd726a7eb7fcf35e95d2b0e1034d76d1940de8c5604248719f25992c8f0db14"
+      "rows": 22,
+      "sha256": "94be32eac7da2f5e8730dc111c8c694d067e971249d53d169e969ffa5d4ba802"
     },
     {
       "csv_path": "medallion_promotion_decisions/medallion_promotion_decisions.csv",
       "jsonl_path": "medallion_promotion_decisions/medallion_promotion_decisions.jsonl",
       "name": "medallion_promotion_decisions",
       "parquet_path": "medallion_promotion_decisions/medallion_promotion_decisions.parquet",
-      "rows": 439,
-      "sha256": "54f17c90f25241c243f81ccc13725570455de06efd91a61dae217b1a15752648"
+      "rows": 440,
+      "sha256": "ce6d7a25ae29277c097012b2a6c9472df3fef618d49f7714c71c5dec4e3af540"
     },
     {
       "csv_path": "github_project_items/github_project_items.csv",
       "jsonl_path": "github_project_items/github_project_items.jsonl",
       "name": "github_project_items",
       "parquet_path": "github_project_items/github_project_items.parquet",
-      "rows": 255,
-      "sha256": "44ee2e9b088c581463d44b2e6c728040008a5d48b89f9630549ff19fd1ffdc51"
+      "rows": 257,
+      "sha256": "acd253c9011c751b702b9b11a4f533e62a5a2eddfbf252165a96efb090881975"
     },
     {
       "csv_path": "final_handoff_tasks/final_handoff_tasks.csv",
@@ -465,7 +465,7 @@
       "name": "data_quality_checks",
       "parquet_path": "data_quality_checks/data_quality_checks.parquet",
       "rows": 43,
-      "sha256": "2be78eaeddc1c71dc336acdc04e476fc5363c758c3f8b65624695c98fc2b9db9"
+      "sha256": "474b4c7233a09214dd391319774a64baff58d4276eb61503100a19abd858e42d"
     },
     {
       "csv_path": "evidence_readiness/evidence_readiness.csv",
@@ -481,7 +481,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "74865020af9d0ace05786886335ad27de1ca96ed151818aa8ea169e4123f8097"
+      "sha256": "59a753851beb7b3691e3bd23dd4469060fb587a652952ac7ac7e4942c139b474"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
@@ -489,7 +489,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 258,
-      "sha256": "c50d5bba31c5d3066dfec2bd84826d8f90311f042ec444723fed028352ce0013"
+      "sha256": "95bf2efa4361af962f93cc91e43b01db49831bbd3a91a65038326a4791ba9282"
     }
   ]
 }

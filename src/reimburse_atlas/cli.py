@@ -1760,6 +1760,7 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         BronzeSourceIndexRecord,
         MedallionArtifactRecord,
         MedallionPromotionDecision,
+        PlatinumReleaseContract,
     )
     from reimburse_atlas.models import (
         AnalysisRecipeRecord,
@@ -1833,6 +1834,7 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         BronzeEvidenceRecord,
         MedallionArtifactRecord,
         MedallionPromotionDecision,
+        PlatinumReleaseContract,
     )
     for model in models:
         path = output_dir / f"{model.__name__}.schema.json"

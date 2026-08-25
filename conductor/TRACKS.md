@@ -48,3 +48,5 @@
   *Link: [./archive/canonical_evidence_readiness_20260826/index.md](./archive/canonical_evidence_readiness_20260826/index.md)*
 - [x] **Track: Bronze acquisition coverage expansion**
   *Link: [./archive/bronze_acquisition_coverage_20260826/index.md](./archive/bronze_acquisition_coverage_20260826/index.md)*
+- [~] **Track: Bounded source-transparency Platinum promotion**
+  *Link: [./tracks/bounded_platinum_source_transparency_20260826/index.md](./tracks/bounded_platinum_source_transparency_20260826/index.md)*

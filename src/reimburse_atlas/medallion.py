@@ -125,6 +125,49 @@ class MedallionArtifactRecord(FrozenModel):
         return self
 
 
+class PlatinumReleaseContract(FrozenModel):
+    """Checksum-bound contract for one bounded public product promotion."""
+
+    schema_version: Literal["platinum-release-contract-v1"]
+    contract_id: NonEmptyStr
+    product_id: NonEmptyStr
+    product_path: NonEmptyStr
+    product_sha256: Sha256
+    public_route: NonEmptyStr
+    gold_artifact_id: NonEmptyStr
+    source_registry_path: NonEmptyStr
+    source_registry_sha256: Sha256
+    claim_package_path: NonEmptyStr
+    claim_package_sha256: Sha256
+    claim_review_path: NonEmptyStr
+    claim_review_sha256: Sha256
+    approval_scope: NonEmptyStr
+    required_gate_ids: tuple[NonEmptyStr, ...] = Field(min_length=1)
+    prohibited_claims: tuple[NonEmptyStr, ...] = Field(min_length=1)
+    rights_state: RightsState
+
+    @model_validator(mode="after")
+    def reject_unsafe_contract_paths(self) -> PlatinumReleaseContract:
+        """Limit contract inputs to safe repository-relative paths."""
+        for value in (
+            self.product_path,
+            self.source_registry_path,
+            self.claim_package_path,
+            self.claim_review_path,
+        ):
+            path = value.replace("\\", "/")
+            if path.startswith("/") or ".." in path.split("/"):
+                message = "release contract paths must be repository-relative"
+                raise ValueError(message)
+            if any(part in {"raw", "raw_live", "local", "cache"} for part in path.split("/")):
+                message = "release contract paths cannot reference raw or local caches"
+                raise ValueError(message)
+        if not self.public_route.startswith("/"):
+            message = "public_route must be an absolute dashboard route"
+            raise ValueError(message)
+        return self
+
+
 class MedallionPromotionDecision(FrozenModel):
     """Explicit, evidence-bound decision for one permitted layer transition."""
 
