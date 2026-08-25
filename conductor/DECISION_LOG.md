@@ -1772,3 +1772,18 @@ plan, downloader predecessor-preservation tests, and Conductor track
 
 Consequence: Existing MBS receipts can be replayed deterministically without rewriting prior
 bytes. PBS and other records without payload checksums remain metadata-only and fail closed.
+
+## 2026-08-26 - Isolate external governance controls from repository release readiness
+
+Decision: Normalize TypeScript/Astro compatibility and GitHub account-level advanced secret
+controls into one deterministic external-governance report. Project every record into release
+readiness as non-required, while retaining blocked status and stable reason codes.
+
+Evidence: The current canaries report `@astrojs/check@0.9.10` excludes TypeScript 7 and GitHub
+reports non-provider pattern scanning and validity checks disabled. Provider secret scanning and
+push protection remain enabled. The canonical summary reports three external blockers and zero
+repository-release blockers.
+
+Consequence: Monitoring remains read-only and external limitations remain visible, but they do not
+increment `required_blocker_count` or make `repository_release_ready` false. Adoption or account
+enablement still requires the relevant upstream capability and normal reviewable workflows.

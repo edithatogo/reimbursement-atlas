@@ -13,5 +13,7 @@ def test_typescript_compatibility_workflow_is_read_only_until_upgrade_is_availab
     assert "contents: read" in workflow
     assert "issues: write" in workflow
     assert "typescript-compatibility" in workflow
+    assert "governance-monitoring" in workflow
+    assert "data/derived/governance_monitoring/" in workflow
     assert "upgrade_available" in workflow
     assert "npm ci" not in workflow

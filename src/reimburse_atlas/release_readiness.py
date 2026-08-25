@@ -108,6 +108,7 @@ def build_release_readiness_report(root: Path | None = None) -> ReleaseReadiness
         _external_gate_status(repo, "zizmor_workflow_security", "supply_chain", required=False),
         _external_gate_status(repo, "pixi_available", "toolchain", required=False),
         _external_gate_status(repo, "mojo_available_uv_tool", "toolchain", required=False),
+        *governance_monitor_gates(repo),
         _workflow_policy_gate(repo),
         _action_pin_gate(repo),
         _sbom_gate(repo),
@@ -331,6 +332,49 @@ def _external_gate_status(
         evidence=f"external_quality outcome={outcome} return_code={record.get('return_code')}",
         recommended_action=_recommendation_for_status(status, gate_id),
     )
+
+
+def governance_monitor_gates(repo: Path) -> list[ReleaseGateRecord]:
+    """Project external governance controls without allowing them to block a release."""
+    path = repo / "data/derived/governance_monitoring/external_controls.jsonl"
+    if not path.exists():
+        return [
+            ReleaseGateRecord(
+                id="external_governance_monitoring",
+                category="toolchain",
+                status="missing",
+                required=False,
+                evidence="Canonical external governance monitor evidence is absent.",
+                recommended_action="Run `pixi run governance-monitoring`.",
+            )
+        ]
+    records: list[ReleaseGateRecord] = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        row = cast("dict[str, Any]", json.loads(line))
+        observed_status = str(row.get("status", "blocked_external"))
+        status: ReleaseGateStatus = "blocked"
+        if observed_status == "pass":
+            status = cast("ReleaseGateStatus", observed_status)
+        elif observed_status == "action_available":
+            status = "warn"
+        records.append(
+            ReleaseGateRecord(
+                id=str(row.get("id", "unknown_external_control")),
+                category=(
+                    "security" if row.get("scope") == "external_account_capability" else "toolchain"
+                ),
+                status=status,
+                required=False,
+                evidence=(
+                    f"reason_code={row.get('reason_code', 'missing')} "
+                    f"observed={row.get('observed_value', 'unknown')}"
+                ),
+                recommended_action=str(row.get("recommended_action", "Review external state.")),
+            )
+        )
+    return records
 
 
 def _data_dictionary_gate(repo: Path) -> ReleaseGateRecord:

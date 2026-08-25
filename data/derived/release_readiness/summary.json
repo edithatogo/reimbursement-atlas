@@ -1,15 +1,15 @@
 {
-  "blocked_count": 1,
+  "blocked_count": 4,
   "evidence_release_ready": false,
   "fail_count": 0,
-  "gate_count": 40,
+  "gate_count": 43,
   "missing_count": 0,
   "pass_count": 39,
   "policy_claims_ready": false,
   "repository_release_ready": true,
   "required_blocker_count": 0,
   "research_publication_ready": false,
-  "review_pending_count": 1,
+  "review_pending_count": 4,
   "schema_version": "release-readiness-v3",
   "warn_count": 0
 }

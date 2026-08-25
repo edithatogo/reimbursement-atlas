@@ -321,6 +321,7 @@ manual_review,,,,,,,,,mapping_resource:map_who_atc_ddd,,,mapping_resource,WHO AT
 ,,,,,,,,,track:bounded_platinum_source_transparency_20260826,,,conductor_track,Bounded source-transparency Platinum promotion,,,,,,,implementation,,must,,,,,product
 ,,,,,,,,,track:bronze_acquisition_coverage_20260826,,,conductor_track,Bronze acquisition coverage expansion,,,,,,,implementation,,must,,,,,data
 ,,,,,,,,,track:canonical_evidence_readiness_20260826,,,conductor_track,Canonical evidence-release readiness semantics,,,,,,,hardening,,must,,,,,governance
+,,,,,,,,,track:external_governance_monitoring_20260826,,,conductor_track,External compatibility and governance monitoring,,,,,,,hardening,,must,,,,,governance
 ,,,,,,,,,track:medallion_bronze_evidence_20260825,,,conductor_track,Medallion Bronze evidence alignment,,,,,,,hardening,,must,,,,,data
 ,,,,,,,,,track:medallion_platinum_projection_20260825,,,conductor_track,Medallion Platinum product projection,,,,,,,hardening,,must,,,,,product
 ,,,,,,,,,track:medallion_silver_gold_promotion_20260825,,,conductor_track,Medallion Silver and Gold promotion,,,,,,,hardening,,must,,,,,research

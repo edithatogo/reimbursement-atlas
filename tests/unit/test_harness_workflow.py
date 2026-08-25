@@ -23,3 +23,4 @@ def test_harness_reconciles_release_receipts_after_dashboard_inputs_settle() -> 
     assert "          for reconciliation_pass in 1 2; do\n" in workflow
     assert workflow.count(indented_block) == 1
     assert "          done\n" in workflow
+    assert "          pixi run governance-monitoring\n" in workflow

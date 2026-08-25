@@ -1,6 +1,16 @@
 version: 1
 updated: "2026-07-31"
 tracks:
+  - id: external_governance_monitoring_20260826
+    title: "External compatibility and governance monitoring"
+    priority: should
+    phase: hardening
+    workstream: runtime
+    goal: "Monitor TypeScript/Astro and account-level GitHub security compatibility without making external capability limits repository release blockers."
+    spec: "conductor/archive/external_governance_monitoring_20260826/spec.md"
+    plan: "conductor/archive/external_governance_monitoring_20260826/plan.md"
+    issues:
+      - 747
   - id: track_mcp2_typed_migration_20260824
     title: "MCP 2 typed API migration"
     priority: should

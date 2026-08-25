@@ -1,5 +1,8 @@
 # Project Tracks
 
+- [x] **Track: External compatibility and governance monitoring**
+  *Link: [./archive/external_governance_monitoring_20260826/index.md](./archive/external_governance_monitoring_20260826/index.md)*
+
 - [x] **Track: OSF destination deprecation**
   *Link: [./archive/track_osf_deprecation_20260820/index.md](./archive/track_osf_deprecation_20260820/index.md)*
 - [x] **Track: Risk-tiered approval friction reduction**

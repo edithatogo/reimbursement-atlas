@@ -98,6 +98,11 @@ mutation permission.
 - The scheduled monitor accepts an optional `GH_SECURITY_SETTINGS_TOKEN` Actions secret for
   authoritative settings readback. It must be a fine-grained, read-only token scoped only to this
   repository with `administration:read`; the workflow never writes settings or exposes the token.
+- `data/derived/governance_monitoring/` normalizes the GitHub account controls and the TypeScript
+  7/Astro canary into stable external-control records. These controls remain visible as blocked or
+  action-available advisory gates, but are always `required: false` for repository release
+  readiness. Account-plan limitations and upstream peer incompatibility cannot make otherwise
+  validated repository code unreleasable.
 - CodeQL for Python and JavaScript/TypeScript.
 - The required `zizmor` context is bound to the passing repository-owned GitHub Actions workflow
   (`app_id 15368`). On 2026-07-16, repository-admin GraphQL remediation changed the binding

@@ -30,11 +30,15 @@ jobs:
           # An optional fine-grained token may provide administration:read only.
           GH_TOKEN: ${{ secrets.GH_SECURITY_SETTINGS_TOKEN || github.token }}
         run: uv run --all-extras python scripts/check_github_security_settings.py --repo "$GITHUB_REPOSITORY"
+      - name: Normalize external governance evidence
+        run: uv run --all-extras python scripts/make_governance_monitor_report.py
       - name: Upload redacted settings evidence
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: github-security-settings-${{ github.run_id }}
-          path: data/derived/repo_automation/github_security_settings.json
+          path: |
+            data/derived/repo_automation/github_security_settings.json
+            data/derived/governance_monitoring/
           if-no-files-found: error
           retention-days: 30
       - name: Keep issue 191 synchronized with live state

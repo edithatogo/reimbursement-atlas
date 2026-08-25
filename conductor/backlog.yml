@@ -1,6 +1,22 @@
 version: 2
 updated: "2026-07-31"
 epics:
+  - id: GOVMON-001
+    title: External compatibility and governance monitoring
+    phase: hardening
+    workstream: runtime
+    priority: should
+    track_id: external_governance_monitoring_20260826
+    issues:
+      - title: Unify TypeScript and GitHub account-security governance monitors
+        labels: ["type:automation", "type:security", "type:runtime", "status:implemented"]
+        status: implemented
+        github_issue: 747
+        acceptance:
+          - "Scheduled TypeScript 7 and GitHub account-security monitors continue without mutation."
+          - "Unavailable external controls have stable blocked reason codes and evidence."
+          - "External controls are visible but never required for repository release readiness."
+        blockers: []
   - id: MCP2-001
     title: MCP 2 typed API migration
     phase: hardening

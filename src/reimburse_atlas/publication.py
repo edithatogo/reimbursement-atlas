@@ -139,6 +139,9 @@ DEFAULT_PUBLICATION_PATHS = (
     Path("data/derived/optional_toolchain_installs.csv"),
     Path("data/derived/toolchain/typescript_compatibility.json"),
     Path("data/derived/toolchain/typescript_compatibility.md"),
+    Path("data/derived/governance_monitoring/external_controls.jsonl"),
+    Path("data/derived/governance_monitoring/external_controls.csv"),
+    Path("data/derived/governance_monitoring/summary.json"),
     Path("data/derived/repo_automation/workflow_uses.jsonl"),
     Path("data/derived/repo_automation/workflow_uses.csv"),
     Path("data/derived/repo_automation/workflow_policy.jsonl"),
@@ -232,6 +235,7 @@ PROJECT_OWNED_METADATA_PREFIXES = (
     Path("data/derived/evidence_readiness"),
     Path("data/derived/final_handoff"),
     Path("data/derived/github_project"),
+    Path("data/derived/governance_monitoring"),
     Path("data/derived/historical_sources/backfill_replay"),
     Path("data/derived/local_quality_gates"),
     Path("data/derived/medallion"),
@@ -242,6 +246,7 @@ PROJECT_OWNED_METADATA_PREFIXES = (
     Path("data/derived/roadmap_linkages"),
     Path("data/derived/sbom"),
     Path("data/derived/source_drift"),
+    Path("data/derived/toolchain"),
 )
 PROJECT_OWNED_METADATA_PATHS = {
     Path("data/seed/graph_edges.csv"),
