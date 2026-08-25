@@ -205,3 +205,12 @@ tracks:
     spec: "conductor/archive/medallion_platinum_projection_20260825/spec.md"
     plan: "conductor/archive/medallion_platinum_projection_20260825/plan.md"
     issues: [734]
+  - id: canonical_evidence_readiness_20260826
+    title: "Canonical evidence-release readiness semantics"
+    priority: must
+    phase: hardening
+    workstream: governance
+    goal: "Derive medallion and release evidence readiness from one complete fail-closed gate model."
+    spec: "conductor/tracks/canonical_evidence_readiness_20260826/spec.md"
+    plan: "conductor/tracks/canonical_evidence_readiness_20260826/plan.md"
+    issues: [736]
