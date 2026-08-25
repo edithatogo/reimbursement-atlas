@@ -8,11 +8,11 @@
       "evidence": "MCP 2.0 removes mcp.server.fastmcp and currently produces 16 BasedPyright errors.",
       "id": "mcp2_public_api_and_typing",
       "kind": "upstream_compatibility",
-      "status": "pending"
+      "status": "passed"
     }
   ],
-  "status": "new",
+  "status": "in_progress",
   "track_id": "track_mcp2_typed_migration_20260824",
   "type": "refactor",
-  "updated_at": "2026-08-24T12:20:00Z"
+  "updated_at": "2026-08-26T00:00:00Z"
 }
