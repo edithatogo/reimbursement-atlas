@@ -318,6 +318,7 @@ manual_review,,,,,,,,,mapping_resource:map_who_atc_ddd,,,mapping_resource,WHO AT
 ,,,,,,,,,table:source_registry,,,table,source_registry,,,,,,,,,,,,,,
 ,,,,,,,,,table:source_status,,,table,source_status,,,,,,,,,,,,,,
 ,,,,,,,,,table:source_transparency_index,,,table,source_transparency_index,,,,,,,,,,,,,,
+,,,,,,,,,track:bronze_acquisition_coverage_20260826,,,conductor_track,Bronze acquisition coverage expansion,,,,,,,implementation,,must,,,,,data
 ,,,,,,,,,track:canonical_evidence_readiness_20260826,,,conductor_track,Canonical evidence-release readiness semantics,,,,,,,hardening,,must,,,,,governance
 ,,,,,,,,,track:medallion_bronze_evidence_20260825,,,conductor_track,Medallion Bronze evidence alignment,,,,,,,hardening,,must,,,,,data
 ,,,,,,,,,track:medallion_platinum_projection_20260825,,,conductor_track,Medallion Platinum product projection,,,,,,,hardening,,must,,,,,product

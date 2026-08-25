@@ -51,7 +51,7 @@ epics:
         dependencies: [708]
   - id: HIST-001
     title: Historical source archival and reproducibility
-    phase: implementation
+    phase: implemented
     workstream: sources
     priority: must
     issues:
@@ -905,3 +905,20 @@ epics:
           - "Partial evidence counts cannot promote Platinum products."
           - "Current-run medallion evidence is evaluated without a generated-file cycle."
           - "Regression, deterministic-generation and hosted checks pass."
+  - id: BRONZE-COVERAGE-001
+    title: Bronze acquisition coverage expansion
+    phase: implementation
+    workstream: data
+    priority: must
+    track_id: bronze_acquisition_coverage_20260826
+    issues:
+      - title: Expand Bronze acquisition and immutable evidence coverage
+        labels: ["type:data-source", "type:provenance", "status:implemented"]
+        status: implemented
+        github_issue: 738
+        acceptance:
+          - "Reachable historical payloads are restored through the hardened downloader."
+          - "B1 retains acquired and failed attempts without raw paths."
+          - "B2 contains only deduplicated checksum-bound evidence identities."
+          - "Rights-review state remains distinct from acquisition and fixity."
+          - "Automated and hosted gates pass."
