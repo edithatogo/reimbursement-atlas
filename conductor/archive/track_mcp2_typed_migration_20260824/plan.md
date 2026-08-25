@@ -7,3 +7,7 @@
 - [x] Regenerate lockfile-derived SBOM, licence, readiness, package, dashboard, and handoff artifacts.
 - [x] Run deterministic regeneration and automated review.
 - [x] Prepare the validated migration for the protected workflow and archive only after every acceptance criterion passes.
+
+## Review Fixes
+
+- [x] Guard the optional integration shard on `mcp.server`, not the repository's `mcp/` namespace directory. (`cf2586b5`)
