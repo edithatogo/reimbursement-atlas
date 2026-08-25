@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-08-26T06:00:00Z",
+  "description": "Versioned JSON Schema conformance vocabulary shared across the three medallion repositories.",
+  "evidence_schema": "1.0",
+  "gates": [],
+  "status": "completed",
+  "track_id": "cross_repository_medallion_conformance_20260826",
+  "type": "architecture",
+  "updated_at": "2026-08-26T06:00:00Z"
+}
