@@ -10,6 +10,7 @@ def test_harness_reconciles_release_receipts_after_dashboard_inputs_settle() -> 
         "pixi run final-handoff",
         "pixi run source-drift",
         "pixi run field-lineage",
+        "pixi run backfill-replay",
         "pixi run research-package",
         "pixi run seed-lake",
         "pixi run dashboard-seed",

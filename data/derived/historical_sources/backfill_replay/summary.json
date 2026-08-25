@@ -1,0 +1,25 @@
+{
+  "contract_count": 6,
+  "correction_count": 0,
+  "late_arrival_count": 0,
+  "partition_count": 661,
+  "publication_effect": "none",
+  "raw_payload_policy": "ignored_local_immutable_snapshots_only",
+  "replay_eligible_count": 340,
+  "replay_plan_sha256": "375c9a74656cffca6d8a21405066e7f0f34d851224f4f219963a44f9865267fe",
+  "schema_version": "historical-backfill-replay-summary-v1",
+  "snapshot_count": 661,
+  "source_ids": [
+    "au_mbs",
+    "au_pbs",
+    "uk_genomic_test_directory",
+    "us_cms_asp",
+    "us_cms_clfs",
+    "us_cms_pfs"
+  ],
+  "status_counts": {
+    "acquired": 340,
+    "failed": 3,
+    "metadata_only": 318
+  }
+}

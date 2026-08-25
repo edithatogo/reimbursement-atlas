@@ -51,4 +51,5 @@ jobs:
           pixi run release-readiness || true
           pixi run seed-lake
           pixi run field-lineage
+          pixi run backfill-replay
           pixi run research-package

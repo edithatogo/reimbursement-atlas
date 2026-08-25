@@ -56,3 +56,32 @@ def test_download_rejects_untrusted_host_before_network(
 
     assert status == "blocked_untrusted_host"
     assert called is False
+
+
+def test_force_preserves_changed_predecessor_snapshot(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    """A correction creates a new snapshot and never overwrites prior bytes."""
+    destination = tmp_path / "archive.csv"
+    destination.write_bytes(b"first")
+
+    def fake_run(command: list[str], **_: object) -> subprocess.CompletedProcess[str]:
+        Path(command[command.index("--output") + 1]).write_bytes(b"corrected")
+        return subprocess.CompletedProcess(command, 0, "", "")
+
+    monkeypatch.setattr(download_historical_sources.subprocess, "run", fake_run)
+    status, _ = download_historical_sources.download_payload(
+        "https://www.mbsonline.gov.au/archive.csv",
+        destination,
+        force=True,
+        max_time_seconds=45,
+    )
+
+    predecessor = (
+        tmp_path
+        / ".snapshots/archive"
+        / "a7937b64b8caa58f03721bb6bacf5c78cb235febe0e70b1b84cd99541461a08e.csv"
+    )
+    assert status == "downloaded"
+    assert destination.read_bytes() == b"corrected"
+    assert predecessor.read_bytes() == b"first"

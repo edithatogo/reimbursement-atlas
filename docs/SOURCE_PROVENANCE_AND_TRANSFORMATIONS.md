@@ -61,6 +61,28 @@ The first operational slice covers all 17 fields transformed from
 `scripts/sync_seed_csvs.py`. Further transformations must add records before
 their outputs can claim field-level reproducibility.
 
+### Historical backfill and replay
+
+`contracts/medallion/v3/backfill-replay.schema.json` defines the normative
+backfill contract. A logical partition is identified by source, archive period,
+and logical asset. An immutable snapshot is identified separately by partition,
+payload checksum, and metadata checksum. Re-observing the same identity is
+idempotent; changed bytes append a new snapshot and an explicit acyclic
+`supersedes_snapshot_id` edge rather than overwriting the predecessor.
+
+Late-arriving snapshots replay only their affected partition in canonical
+`partition_id`, `correction_sequence`, `snapshot_id` order. Replay plans are
+content-addressed from canonical JSON. Missing or failed payloads remain
+metadata-only, are excluded from replay, and cannot support evidence claims.
+The downloader preserves replaced local bytes under the ignored `.snapshots/`
+cache. The committed ledger contains checksums and relative metadata only.
+
+Run `pixi run backfill-replay` to regenerate contracts, the immutable snapshot
+ledger, deterministic replay plan, and summary under
+`data/derived/historical_sources/backfill_replay/`. The current projection
+includes MBS payload receipts and the metadata-only PBS historical catalogue;
+it does not claim that PBS historical payloads have been acquired.
+
 ### Local CPT enrichment reproduction
 
 Place the official CMS archive at

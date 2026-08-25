@@ -95,6 +95,10 @@ DEFAULT_PUBLICATION_PATHS = (
     Path("data/derived/historical_sources/historical_source_downloads.csv"),
     Path("data/derived/historical_sources/historical_source_downloads_summary.json"),
     Path("data/derived/historical_sources/historical_source_catalog.jsonl"),
+    Path("data/derived/historical_sources/backfill_replay/contracts.jsonl"),
+    Path("data/derived/historical_sources/backfill_replay/snapshot_ledger.jsonl"),
+    Path("data/derived/historical_sources/backfill_replay/replay_plan.json"),
+    Path("data/derived/historical_sources/backfill_replay/summary.json"),
     Path("data/derived/historical_sources/family_archive_v2/historical_source_downloads.jsonl"),
     Path("data/derived/historical_sources/family_archive_v2/historical_source_downloads.csv"),
     Path(
@@ -228,6 +232,7 @@ PROJECT_OWNED_METADATA_PREFIXES = (
     Path("data/derived/evidence_readiness"),
     Path("data/derived/final_handoff"),
     Path("data/derived/github_project"),
+    Path("data/derived/historical_sources/backfill_replay"),
     Path("data/derived/local_quality_gates"),
     Path("data/derived/medallion"),
     Path("data/derived/protocols"),

@@ -41,6 +41,7 @@ _LAYER_BY_ROOT_MODULE: dict[str, ArchitectureLayer] = {
     "models": "foundation",
     "medallion": "foundation",
     "field_lineage": "foundation",
+    "backfill_replay": "foundation",
     "contracts": "foundation",
     "io": "foundation",
     "registry": "foundation",

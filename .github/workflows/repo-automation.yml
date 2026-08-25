@@ -35,6 +35,7 @@ jobs:
           pixi run source-contracts
           pixi run medallion-projection
           pixi run historical-sources
+          pixi run backfill-replay
           pixi run local-quality
           pixi run project-issues
           pixi run github-project-export

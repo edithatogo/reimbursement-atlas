@@ -140,7 +140,7 @@ pip-audit = "bash scripts/run_pip_audit.sh"
 build = "uv build"
 mutation = "PYTHONPATH=src python scripts/run_bounded_mutation.py"
 profile = "scalene src/reimburse_atlas/cli.py -- --help"
-qa = { depends-on = ["format-check", "lint", "typecheck", "seed-sync-check", "public-data-policy", "repo-automation", "sbom", "architecture-report", "source-download-plan", "pbs-acquisition-evidence", "source-validation", "source-contracts", "source-url-licence-checklist", "historical-sources", "github-project-export", "final-handoff", "protocol-status", "roadmap-linkages", "data-quality", "data-dictionary", "research-claim-packages", "evidence-readiness", "source-drift", "release-readiness", "licence-review-queue", "licence-review-validate", "licence-decision-matrix", "review-schemas", "local-parser-contracts", "mapping-power-calculation", "mapping-candidate-frame", "mapping-review-pack-plan", "field-lineage", "research-package", "coverage", "smoke"] }
+qa = { depends-on = ["format-check", "lint", "typecheck", "seed-sync-check", "public-data-policy", "repo-automation", "sbom", "architecture-report", "source-download-plan", "pbs-acquisition-evidence", "source-validation", "source-contracts", "source-url-licence-checklist", "historical-sources", "backfill-replay", "github-project-export", "final-handoff", "protocol-status", "roadmap-linkages", "data-quality", "data-dictionary", "research-claim-packages", "evidence-readiness", "source-drift", "release-readiness", "licence-review-queue", "licence-review-validate", "licence-decision-matrix", "review-schemas", "local-parser-contracts", "mapping-power-calculation", "mapping-candidate-frame", "mapping-review-pack-plan", "field-lineage", "research-package", "coverage", "smoke"] }
 schema-export = "PYTHONPATH=src python scripts/export_json_schema.py"
 medallion-projection = "PYTHONPATH=src python scripts/make_medallion_projection.py"
 zenodo-metadata = "PYTHONPATH=src python scripts/validate_zenodo_metadata.py"
@@ -194,6 +194,7 @@ source-url-licence-checklist = "PYTHONPATH=src python scripts/make_source_url_li
 source-health-report = "PYTHONPATH=src python scripts/make_source_health_report.py"
 typescript-compatibility = "PYTHONPATH=src python scripts/make_typescript_compatibility_report.py"
 historical-sources = "PYTHONPATH=src python scripts/make_historical_source_index.py"
+backfill-replay = "PYTHONPATH=src python scripts/make_backfill_replay_contracts.py"
 historical-acquisition = "PYTHONPATH=src python scripts/download_historical_sources.py"
 historical-catalog = "PYTHONPATH=src python scripts/discover_historical_source_catalog.py"
 github-project-export = "PYTHONPATH=src python scripts/make_github_project_export.py"
