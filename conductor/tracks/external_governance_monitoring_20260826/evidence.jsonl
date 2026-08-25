@@ -1,0 +1,1 @@
+{"schema_version":"1.0","event":"track_started","at":"2026-08-25T18:00:00Z","status":"in_progress","evidence":["existing weekly TypeScript compatibility canary","existing weekly GitHub security settings monitor"],"boundary":"external controls must remain visible but non-blocking for repository release"}
