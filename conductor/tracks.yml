@@ -1,6 +1,16 @@
 version: 1
 updated: "2026-07-31"
 tracks:
+  - id: backlog_state_reconciliation_20260826
+    title: "Backlog state reconciliation"
+    priority: must
+    phase: hardening
+    workstream: governance
+    goal: "Reconcile stale parser, source-review and analysis backlog states against current evidence and live GitHub issues."
+    spec: "conductor/archive/backlog_state_reconciliation_20260826/spec.md"
+    plan: "conductor/archive/backlog_state_reconciliation_20260826/plan.md"
+    issues:
+      - 749
   - id: external_governance_monitoring_20260826
     title: "External compatibility and governance monitoring"
     priority: should
@@ -53,6 +63,8 @@ tracks:
     phase: implementation
     workstream: data
     goal: "Download or API-fetch public sources using curl/wget/API clients, snapshot them locally, and publish derived-only validated records."
+    issues:
+      - 750
   - id: track_research_protocols_osf
     title: "Research protocol and report workflow"
     priority: must

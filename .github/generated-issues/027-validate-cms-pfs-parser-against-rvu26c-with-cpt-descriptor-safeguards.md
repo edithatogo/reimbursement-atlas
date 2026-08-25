@@ -2,17 +2,15 @@
 
 Epic: `LIVE-001` — Reviewed live-source validation
 
-Labels: type:parser, risk:licence, phase:1-slice, status:blocked
+Labels: type:parser, risk:licence, phase:1-slice, status:implemented
 
-Status: `blocked`
+Status: `implemented`
 
 ## Background
 
-This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria before opening it in GitHub.
+This issue was generated from `conductor/backlog.yml`; the criteria below are the track-specific acceptance contract.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] A reviewed 2026 PFS carrier bundle parses successfully into 1,635 derived records.
+- [x] CPT descriptor safeguards and local-only raw payload boundaries remain enforced.

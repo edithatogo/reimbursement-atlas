@@ -1,5 +1,8 @@
 # Project Tracks
 
+- [x] **Track: Backlog state reconciliation**
+  *Link: [./archive/backlog_state_reconciliation_20260826/index.md](./archive/backlog_state_reconciliation_20260826/index.md)*
+
 - [x] **Track: External compatibility and governance monitoring**
   *Link: [./archive/external_governance_monitoring_20260826/index.md](./archive/external_governance_monitoring_20260826/index.md)*
 

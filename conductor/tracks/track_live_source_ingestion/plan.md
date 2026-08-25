@@ -17,3 +17,5 @@
 
 - [x] REV-01: Add the missing track-local specification, plan, metadata and
   evidence ledger required by the Conductor review contract.
+- [x] REV-02: Reconcile completed MBS, PBS, CLFS, ASP and PFS parser/source
+  reviews against current bundle, validation and licence evidence. (Issue #749)
