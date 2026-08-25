@@ -46,6 +46,7 @@ jobs:
           pixi run research-claim-packages
           pixi run evidence-readiness
           pixi run source-drift
+          pixi run governance-monitoring
           pixi run release-readiness || true
           pixi run field-lineage
           pixi run research-package

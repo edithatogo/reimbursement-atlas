@@ -13,6 +13,8 @@ def test_security_settings_workflow_is_readback_only() -> None:
     assert "GH_TOKEN: ${{ secrets.GH_SECURITY_SETTINGS_TOKEN || github.token }}" in workflow
     assert "administration:read" in workflow
     assert "check_github_security_settings.py" in workflow
+    assert "make_governance_monitor_report.py" in workflow
+    assert "data/derived/governance_monitoring/" in workflow
     assert "gh issue edit 191" in workflow
     assert "gh api --method PATCH" not in workflow
     assert "actions/upload-artifact@" in workflow

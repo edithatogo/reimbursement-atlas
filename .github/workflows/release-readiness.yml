@@ -36,6 +36,8 @@ jobs:
           uv run --all-extras python scripts/make_final_handoff.py
       - name: Architecture report
         run: uv run --all-extras python scripts/make_architecture_report.py
+      - name: Normalize external governance evidence
+        run: uv run --all-extras python scripts/make_governance_monitor_report.py
       - name: Release readiness matrix
         run: uv run --all-extras python scripts/make_release_readiness.py || true
       - name: Upload release-readiness evidence
@@ -47,6 +49,7 @@ jobs:
             data/derived/local_quality_gates/
             data/derived/external_quality_gates.*
             data/derived/architecture/
+            data/derived/governance_monitoring/
             data/derived/release_readiness/
             data/derived/source_contracts/
             data/derived/github_project/
