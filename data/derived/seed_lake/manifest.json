@@ -313,7 +313,7 @@
       "name": "local_quality_gates",
       "parquet_path": "local_quality_gates/local_quality_gates.parquet",
       "rows": 27,
-      "sha256": "16e05dab7c59c701a0faddc22eb299361c34bb9fbf2421c6e1b2334acc80c876"
+      "sha256": "4d74ce0daf44df2d4bb78b4ba447527a10b0a096d8df545d7e8bccddd581d41d"
     },
     {
       "csv_path": "local_quality_gate_specs/local_quality_gate_specs.csv",
@@ -329,7 +329,7 @@
       "name": "architecture_import_edges",
       "parquet_path": "architecture_import_edges/architecture_import_edges.parquet",
       "rows": 238,
-      "sha256": "defa61298237b68b3cc2e0325a8b1d6cc2bfc74fa0477c8d2950e8d02fe4fed7"
+      "sha256": "072584e2724bdac252e2755c79973766399be02f65d76489b966357ab3fc27a6"
     },
     {
       "csv_path": "architecture_layer_policy/architecture_layer_policy.csv",
@@ -337,7 +337,7 @@
       "name": "architecture_layer_policy",
       "parquet_path": "architecture_layer_policy/architecture_layer_policy.parquet",
       "rows": 22,
-      "sha256": "e039aba45330dc4b8a2025b52bcd22c75c3006e11098511c36be974e35bae0c9"
+      "sha256": "c45cd1e4f9e399f2cdf6525872549861cea4ab06f513b271bf277be49b8ad1d5"
     },
     {
       "csv_path": "architecture_import_cycles/architecture_import_cycles.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 40,
-      "sha256": "c0b030d23640507a0f8ee89ca364d68a6e053d6fff22f64a5ca03af8ca71ddf1"
+      "sha256": "281ad5974e505db938fb2da7a336f51fe4f8c1a8c538c3427ff592a24b85497d"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -417,7 +417,7 @@
       "name": "medallion_artifacts",
       "parquet_path": "medallion_artifacts/medallion_artifacts.parquet",
       "rows": 22,
-      "sha256": "94be32eac7da2f5e8730dc111c8c694d067e971249d53d169e969ffa5d4ba802"
+      "sha256": "58614a5626569bf835da48768bbcba32954aee1ebbc06fca2c3ddcec16abee45"
     },
     {
       "csv_path": "medallion_promotion_decisions/medallion_promotion_decisions.csv",
@@ -489,7 +489,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 258,
-      "sha256": "9bc8a0604c3b176bc0c8868e63aa7d5f1f63a297b13f28cf6306e09c17a2e343"
+      "sha256": "2f0cbc9febe6ccc62c89c305c85bb25f06819ea25be75f8cb8a4e14fb806dfc9"
     }
   ]
 }

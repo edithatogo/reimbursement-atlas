@@ -8,14 +8,13 @@
   "publication_gate": {
     "evidence": "data/derived/release_readiness/summary.json",
     "missing_or_false": [
-      "repository_release_ready",
       "evidence_release_ready"
     ],
     "reason_code": "archive_upstream_gates_pending",
     "status": "blocked",
     "summary": {
       "evidence_release_ready": false,
-      "repository_release_ready": false
+      "repository_release_ready": true
     }
   },
   "record_url": null,
