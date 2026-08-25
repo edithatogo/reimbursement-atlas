@@ -58,7 +58,7 @@ pixi run -e api api-dev
 
 ## MCP
 
-The MCP surface should remain read-only until provenance and licence gates are mature. The initial tool manifest is in `mcp/tools.seed.json`, and `src/reimburse_atlas/mcp_server.py` provides a lazy optional server factory for the same read-only concepts.
+The MCP surface remains read-only. The initial tool manifest is in `mcp/tools.seed.json`, and `src/reimburse_atlas/mcp_server.py` provides a lazy optional MCP Python SDK 2 server factory for the same read-only concepts. The adapter uses the supported, typed `mcp.server.MCPServer` API and intentionally has no MCP 1 compatibility shim.
 
 Planned MCP tools:
 
@@ -83,3 +83,5 @@ pixi run -e mcp mcp-dev
 ```
 
 No MCP tool should fetch live schedules, access restricted ontologies, or publish raw files until those operations are behind explicit user-supplied credentials and licence gates.
+
+The supported SDK range is `mcp>=2.1.1,<3`. Any future major upgrade must preserve zero-error BasedPyright validation and the MCP integration tests; removed APIs must not be restored through permanent compatibility shims.

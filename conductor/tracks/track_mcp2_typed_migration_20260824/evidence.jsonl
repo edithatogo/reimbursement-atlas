@@ -1,1 +1,0 @@
-{"evidence_id":"mcp2-baseline-20260824","kind":"compatibility_boundary","observed_at":"2026-08-24T12:20:00Z","status":"pending","summary":"MCP 2.0 removes mcp.server.fastmcp and the unchanged adapter produces 16 type-checking errors; MCP remains constrained to 1.x until a typed migration passes all gates."}

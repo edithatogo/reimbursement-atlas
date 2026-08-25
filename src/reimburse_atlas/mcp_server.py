@@ -7,7 +7,10 @@ SDK. Install the `mcp` extra before creating or running the server.
 
 from __future__ import annotations
 
-from typing import Any
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from mcp.server import MCPServer
 
 from reimburse_atlas.analysis import analysis_readiness_rows, source_readiness_rows
 from reimburse_atlas.ingest import build_first_wave_ingestion_plan
@@ -19,15 +22,15 @@ from reimburse_atlas.registry import (
 )
 
 
-def create_mcp_server() -> Any:
+def create_mcp_server() -> MCPServer[Any]:
     """Create a read-only MCP server exposing registry and planning resources."""
     try:
-        from mcp.server.fastmcp import FastMCP
+        from mcp.server import MCPServer
     except ModuleNotFoundError as exc:  # pragma: no cover - optional dependency
         msg = "Install the MCP extra before running the atlas MCP server."
         raise RuntimeError(msg) from exc
 
-    server = FastMCP("reimbursement-atlas")
+    server = MCPServer("reimbursement-atlas")
 
     @server.tool()
     def list_sources() -> list[dict[str, Any]]:

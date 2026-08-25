@@ -42,7 +42,7 @@ api = [
   "uvicorn[standard]>=0.52.1",
 ]
 mcp = [
-  "mcp>=1.28,<2",
+  "mcp>=2.1.1,<3",
 ]
 dev = [
   "basedpyright>=1.35.0",
@@ -112,7 +112,7 @@ fastapi = ">=0.141.1"
 uvicorn = ">=0.52.1"
 
 [tool.pixi.feature.mcp.pypi-dependencies]
-mcp = ">=1.28,<2"
+mcp = ">=2.1.1,<3"
 
 [tool.pixi.environments]
 default = { features = [], solve-group = "default" }

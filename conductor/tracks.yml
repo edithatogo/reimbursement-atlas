@@ -7,8 +7,8 @@ tracks:
     phase: hardening
     workstream: runtime
     goal: "Migrate the optional MCP server to MCP Python SDK 2.x without weakening typing, behavior contracts, security, or deterministic evidence gates."
-    spec: "conductor/tracks/track_mcp2_typed_migration_20260824/spec.md"
-    plan: "conductor/tracks/track_mcp2_typed_migration_20260824/plan.md"
+    spec: "conductor/archive/track_mcp2_typed_migration_20260824/spec.md"
+    plan: "conductor/archive/track_mcp2_typed_migration_20260824/plan.md"
     issues:
       - 731
   - id: track_osf_deprecation_20260820
