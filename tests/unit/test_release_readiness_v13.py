@@ -122,6 +122,7 @@ def test_release_readiness_report_reads_generated_evidence(tmp_path: Path) -> No
     (tmp_path / "data/derived/data_quality").mkdir(parents=True)
     (tmp_path / "data/derived/source_validation").mkdir(parents=True)
     (tmp_path / "data/derived/source_contracts").mkdir(parents=True)
+    (tmp_path / "data/derived/medallion").mkdir(parents=True)
     (tmp_path / "data/derived/github_project").mkdir(parents=True)
     (tmp_path / "data/derived/final_handoff").mkdir(parents=True)
     (tmp_path / "data/derived/data_dictionary").mkdir(parents=True)
@@ -223,6 +224,18 @@ def test_release_readiness_report_reads_generated_evidence(tmp_path: Path) -> No
     )
     (tmp_path / "data/derived/source_contracts/summary.json").write_text(
         json.dumps({"contract_count": 2, "missing": 0, "blocking_failures": 0}),
+        encoding="utf-8",
+    )
+    (tmp_path / "data/derived/medallion/summary.json").write_text(
+        json.dumps({
+            "medallion_contract_ready": True,
+            "bronze_b0_count": 2,
+            "bronze_b1_count": 2,
+            "bronze_b2_count": 2,
+            "silver_count": 2,
+            "gold_count": 1,
+            "platinum_count": 1,
+        }),
         encoding="utf-8",
     )
     (tmp_path / "data/derived/github_project/summary.json").write_text(

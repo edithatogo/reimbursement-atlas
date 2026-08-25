@@ -38,3 +38,9 @@
   *Link: [./archive/track_release_gate_reconciliation_closeout/index.md](./archive/track_release_gate_reconciliation_closeout/index.md)*
 - [ ] **Track: MCP 2 typed API migration**
   *Link: [./tracks/track_mcp2_typed_migration_20260824/index.md](./tracks/track_mcp2_typed_migration_20260824/index.md)*
+- [x] **Track: Bronze evidence alignment**
+  *Link: [./archive/medallion_bronze_evidence_20260825/index.md](./archive/medallion_bronze_evidence_20260825/index.md)*
+- [x] **Track: Silver and Gold promotion alignment**
+  *Link: [./archive/medallion_silver_gold_promotion_20260825/index.md](./archive/medallion_silver_gold_promotion_20260825/index.md)*
+- [x] **Track: Platinum product projection alignment**
+  *Link: [./archive/medallion_platinum_projection_20260825/index.md](./archive/medallion_platinum_projection_20260825/index.md)*

@@ -14,6 +14,8 @@ from reimburse_atlas.architecture import (
 
 def test_layer_for_module_known_and_unknown() -> None:
     assert layer_for_module("reimburse_atlas.models") == "foundation"
+    assert layer_for_module("reimburse_atlas.medallion") == "foundation"
+    assert layer_for_module("reimburse_atlas.medallion_projection") == "orchestration"
     assert layer_for_module("reimburse_atlas.archive_publication") == "orchestration"
     assert layer_for_module("reimburse_atlas.mapping_study_paths") == "orchestration"
     assert layer_for_module("reimburse_atlas.cli") == "interface"

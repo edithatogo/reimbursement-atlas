@@ -178,3 +178,30 @@ tracks:
       - 493
       - 532
       - 534
+  - id: medallion_bronze_evidence_20260825
+    title: "Bronze evidence alignment"
+    priority: must
+    phase: implementation
+    workstream: data
+    goal: "Implement source-index, acquisition-ledger and immutable-evidence B0/B1/B2 boundaries."
+    spec: "conductor/archive/medallion_bronze_evidence_20260825/spec.md"
+    plan: "conductor/archive/medallion_bronze_evidence_20260825/plan.md"
+    issues: [732]
+  - id: medallion_silver_gold_promotion_20260825
+    title: "Silver and Gold promotion alignment"
+    priority: must
+    phase: implementation
+    workstream: evidence
+    goal: "Promote source-faithful records and adjudicated mappings through explicit checksum-bound gates."
+    spec: "conductor/archive/medallion_silver_gold_promotion_20260825/spec.md"
+    plan: "conductor/archive/medallion_silver_gold_promotion_20260825/plan.md"
+    issues: [733]
+  - id: medallion_platinum_projection_20260825
+    title: "Platinum product projection alignment"
+    priority: must
+    phase: implementation
+    workstream: publication
+    goal: "Require Gold inputs and independent release gates for dashboards, APIs, datasets and archives."
+    spec: "conductor/archive/medallion_platinum_projection_20260825/spec.md"
+    plan: "conductor/archive/medallion_platinum_projection_20260825/plan.md"
+    issues: [734]

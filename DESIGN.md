@@ -13,11 +13,11 @@
 
 ```mermaid
 flowchart TD
-    A[Public source registry] --> B[Ingestion adapters]
-    B --> C[Raw landing zone]
-    C --> D[Polars validation]
-    D --> E[Arrow/Parquet snapshots]
-    E --> F[DuckDB analytical marts]
+    A[B0 source index] --> B[B1 acquisition ledger]
+    B --> C[B2 immutable evidence or reference]
+    C --> D[Silver source-faithful records]
+    D --> E[Gold adjudicated evidence]
+    E --> F[Platinum products]
     E --> G[LanceDB semantic index]
     H[Ontology adapters] --> I[Mapping workbench]
     F --> I
@@ -206,13 +206,18 @@ flowchart LR
 
 | Layer | Default | Purpose |
 |---|---|---|
-| Raw landing | local ignored `data/raw/` and `data/raw_live/` | User-supplied and live-downloaded source files. |
-| Seed | tracked `data/seed/` | Permissive registry and graph design data. |
-| Processed | local ignored `data/processed/` | Arrow/Parquet snapshots from parsers. |
-| Analytical | DuckDB | Joins, marts, reproducible analyses. |
-| Semantic | LanceDB | Embeddings of descriptors, restrictions and coverage text when allowed. |
-| Public dataset | Hugging Face datasets | Only permissive derived/metadata data. |
-| Dashboard | Hugging Face Spaces | Public seed and analysis outputs. |
+| Bronze B0 | tracked source index | Declared source identity; never implies acquisition or coverage. |
+| Bronze B1 | append-only acquisition receipts | Attempts, outcomes, time, rights, admission and payload identity. |
+| Bronze B2 | ignored immutable bytes or tracked rights-constrained references | Fixity-bound source evidence; raw bytes remain local unless redistribution is permitted. |
+| Silver | tracked reviewed derived bundles | Source-faithful parsed records with schema, provenance and rights evidence. |
+| Gold | tracked adjudicated analytical evidence | Cross-source mappings and measures that passed explicit methods gates. |
+| Platinum | dashboard, API, package and release projections | Products promoted from Gold through independent release gates. |
+
+DuckDB, Parquet, Arrow, LanceDB, Hugging Face, Zenodo and dashboard files are
+storage or distribution projections, not evidentiary truth. The normative
+contracts and promotion rules are in
+`docs/contracts/MEDALLION_ARCHITECTURE_CONTRACT.md`; deterministic current-state
+projections are generated under `data/derived/medallion/`.
 
 ## First-wave implementation slices
 

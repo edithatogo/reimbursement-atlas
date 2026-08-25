@@ -1,0 +1,82 @@
+{
+  "additionalProperties": false,
+  "description": "B0 source identity; indexing never implies acquisition or coverage.",
+  "properties": {
+    "source_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source Id",
+      "type": "string"
+    },
+    "source_version_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source Version Id",
+      "type": "string"
+    },
+    "authoritative_locator": {
+      "format": "uri",
+      "maxLength": 2083,
+      "minLength": 1,
+      "title": "Authoritative Locator",
+      "type": "string"
+    },
+    "expected_media_types": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Expected Media Types",
+      "type": "array"
+    },
+    "rights_state": {
+      "enum": [
+        "permissive",
+        "public_reuse_review",
+        "restricted_local_only",
+        "metadata_only"
+      ],
+      "title": "Rights State",
+      "type": "string"
+    },
+    "credential_state": {
+      "enum": [
+        "none",
+        "required",
+        "unknown"
+      ],
+      "title": "Credential State",
+      "type": "string"
+    },
+    "indexed_at": {
+      "minLength": 1,
+      "title": "Indexed At",
+      "type": "string"
+    },
+    "acquisition_status": {
+      "enum": [
+        "not_attempted",
+        "attempted",
+        "acquired",
+        "unavailable"
+      ],
+      "title": "Acquisition Status",
+      "type": "string"
+    },
+    "notes": {
+      "minLength": 1,
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "source_id",
+    "source_version_id",
+    "authoritative_locator",
+    "rights_state",
+    "credential_state",
+    "indexed_at",
+    "acquisition_status",
+    "notes"
+  ],
+  "title": "BronzeSourceIndexRecord",
+  "type": "object"
+}

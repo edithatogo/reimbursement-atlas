@@ -1,0 +1,162 @@
+{
+  "additionalProperties": false,
+  "description": "B1 append-only acquisition event and admission metadata.",
+  "properties": {
+    "event_id": {
+      "minLength": 1,
+      "title": "Event Id",
+      "type": "string"
+    },
+    "acquisition_id": {
+      "minLength": 1,
+      "title": "Acquisition Id",
+      "type": "string"
+    },
+    "source_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source Id",
+      "type": "string"
+    },
+    "source_version_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source Version Id",
+      "type": "string"
+    },
+    "source_locator": {
+      "format": "uri",
+      "maxLength": 2083,
+      "minLength": 1,
+      "title": "Source Locator",
+      "type": "string"
+    },
+    "retrieved_at": {
+      "minLength": 1,
+      "title": "Retrieved At",
+      "type": "string"
+    },
+    "source_published_at": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Source Published At"
+    },
+    "payload_sha256": {
+      "anyOf": [
+        {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Payload Sha256"
+    },
+    "byte_size": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Byte Size"
+    },
+    "media_type": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Media Type"
+    },
+    "outcome": {
+      "enum": [
+        "acquired",
+        "metadata_observed",
+        "blocked",
+        "failed"
+      ],
+      "title": "Outcome",
+      "type": "string"
+    },
+    "rights_state": {
+      "enum": [
+        "permissive",
+        "public_reuse_review",
+        "restricted_local_only",
+        "metadata_only"
+      ],
+      "title": "Rights State",
+      "type": "string"
+    },
+    "admission_state": {
+      "enum": [
+        "pending",
+        "admitted",
+        "quarantined",
+        "rejected"
+      ],
+      "title": "Admission State",
+      "type": "string"
+    },
+    "evidence_disposition": {
+      "enum": [
+        "retained_bytes",
+        "rights_constrained_reference",
+        "none"
+      ],
+      "title": "Evidence Disposition",
+      "type": "string"
+    },
+    "predecessor_event_sha256": {
+      "anyOf": [
+        {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Predecessor Event Sha256"
+    },
+    "notes": {
+      "minLength": 1,
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "event_id",
+    "acquisition_id",
+    "source_id",
+    "source_version_id",
+    "source_locator",
+    "retrieved_at",
+    "outcome",
+    "rights_state",
+    "admission_state",
+    "evidence_disposition",
+    "notes"
+  ],
+  "title": "BronzeAcquisitionReceipt",
+  "type": "object"
+}

@@ -235,10 +235,10 @@
       }
     },
     {
-      "bytes": 41680,
+      "bytes": 42104,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "074a030e2a1cd3737746864c6c834859d68528b56c6f370e92faab0e8e5effbc",
+      "hash": "bc14d608ada11a12b942fe4324b6a9b6fac56df6368a082f618520988f4f02ab",
       "mediatype": "text/csv",
       "name": "graph-nodes",
       "path": "data/seed/graph_nodes.csv",
@@ -250,10 +250,10 @@
       }
     },
     {
-      "bytes": 42328,
+      "bytes": 43122,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "96a1c51195c8b1120ee55266f05bd9c1eff02466ef029e6a7f3934bab455fcac",
+      "hash": "9c323c21298571bf6aaa9acd2bdb8735efac1467dfeec4e578cc739ea48981bf",
       "mediatype": "text/csv",
       "name": "graph-edges",
       "path": "data/seed/graph_edges.csv",
@@ -265,20 +265,20 @@
       }
     },
     {
-      "bytes": 14617,
+      "bytes": 16677,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "e5120667e50c08cd03575e3cd7083edcd08e1afaaf99fbcd63046c16f2b0c932",
+      "hash": "ff123de3726febe4a55e416c6a689494c64a717fc5e3ec890922eca1809a8979",
       "mediatype": "application/json",
       "name": "conductor-tracks",
       "path": "data/seed/conductor_tracks.jsonl",
       "schema": {}
     },
     {
-      "bytes": 12123,
+      "bytes": 13794,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "09f1591cf6c27a24d75c6e4075dea3da04eb44a6efc4aac3dcf70acc79eea0c0",
+      "hash": "ee1d0d39661ea85c6bf0eb8b2941143e3b0b8eade71bd8b73893e0af1b2f7efc",
       "mediatype": "text/csv",
       "name": "conductor-tracks",
       "path": "data/seed/conductor_tracks.csv",
@@ -1048,7 +1048,7 @@
       "bytes": 40794,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "e2ba1a6b57a40e7b8b33fbf9b114c94ec0508f54b98671d8e3c43bca7008a8da",
+      "hash": "2f4d05c5a793b4f9282bca4d89753222579b045ac84815ef83bf83f8836fb41d",
       "mediatype": "application/json",
       "name": "workflow-uses",
       "path": "data/derived/repo_automation/workflow_uses.jsonl",
@@ -1058,7 +1058,7 @@
       "bytes": 24584,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "ab83e57e0f11222411e14e4f0499755b191cf9c4b54dab3bd2e0cf6906251040",
+      "hash": "d3ba243e13c06b0a2a399f51249645dcf50e7b70b8b7379bc09c82272615dd38",
       "mediatype": "text/csv",
       "name": "workflow-uses",
       "path": "data/derived/repo_automation/workflow_uses.csv",
@@ -1265,20 +1265,20 @@
       }
     },
     {
-      "bytes": 64032,
+      "bytes": 65146,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "67d3ad87ff10211f0e9b9caa00c37081e3ee272ca354923617357cd3a41471b8",
+      "hash": "01853c87d070b65e46bd70094e5cc857f254d2c44c907efa2678e2f4260e05c2",
       "mediatype": "application/json",
       "name": "import-edges",
       "path": "data/derived/architecture/import_edges.jsonl",
       "schema": {}
     },
     {
-      "bytes": 33857,
+      "bytes": 34447,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "de9d645f9ed73df89ed4adbd24fb382aea7a28b92a2b4912768a30c5419bb695",
+      "hash": "81b700a591e6c840fa36c7c0796f0bf1cb8761c3900c29be86bf49f42083a2ba",
       "mediatype": "text/csv",
       "name": "import-edges",
       "path": "data/derived/architecture/import_edges.csv",
@@ -1293,7 +1293,7 @@
       "bytes": 5060,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "5f6b594ee05006a4456b4d6bdd557d413e0e2ec6f85cfabd8353f8863b7fa246",
+      "hash": "63c70ca35b5ab6628a0e315bb370673c6124bc25fb6913f57394f9191df04053",
       "mediatype": "application/json",
       "name": "layer-policy",
       "path": "data/derived/architecture/layer_policy.jsonl",
@@ -1303,7 +1303,7 @@
       "bytes": 2583,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "0d386d4267d48525d8c45a49defb5a870f7d2840f651ead8a18d91a6b7d1da15",
+      "hash": "c09efc3e978334feeeaf2d52fce2f385df201e5dbb909bb8d621b47ededbaf0a",
       "mediatype": "text/csv",
       "name": "layer-policy",
       "path": "data/derived/architecture/layer_policy.csv",
@@ -1340,20 +1340,155 @@
       }
     },
     {
-      "bytes": 8815,
+      "bytes": 27279,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "e567803478719e0ceba6de1cd5d98475574486362356e3a0faec54a5c335421c",
+      "hash": "cbff291361a1711f5be53170c952b1e05e03406143f8838ff33bbb786edf9922",
+      "mediatype": "application/json",
+      "name": "bronze-source-index",
+      "path": "data/derived/medallion/bronze_source_index.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 15676,
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
+      "format": "csv",
+      "hash": "a2a8846d29f01969b599c6597d323a23375051e3da10fb7138d3e17aa29914e9",
+      "mediatype": "text/csv",
+      "name": "bronze-source-index",
+      "path": "data/derived/medallion/bronze_source_index.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 8681,
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
+      "format": "jsonl",
+      "hash": "404240dda70bc2bd1cebcc5a71cb88c69518b387f39e20937460edffa294f4e4",
+      "mediatype": "application/json",
+      "name": "bronze-acquisition-ledger",
+      "path": "data/derived/medallion/bronze_acquisition_ledger.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 5294,
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
+      "format": "csv",
+      "hash": "e9321e191e784e8d328b9020fa2b120a9bcaf208e0d061b7a2befa09e84b0dd1",
+      "mediatype": "text/csv",
+      "name": "bronze-acquisition-ledger",
+      "path": "data/derived/medallion/bronze_acquisition_ledger.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 2596,
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
+      "format": "jsonl",
+      "hash": "f04388211f711355e6dee33f86898eed6c7f458fb03f2b1770943fe96e8e967f",
+      "mediatype": "application/json",
+      "name": "bronze-evidence",
+      "path": "data/derived/medallion/bronze_evidence.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 2053,
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
+      "format": "csv",
+      "hash": "f0a07c25b3e88744a71d3b941b5002a4f1af84439c350388cc37834d265b1c91",
+      "mediatype": "text/csv",
+      "name": "bronze-evidence",
+      "path": "data/derived/medallion/bronze_evidence.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 16481,
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
+      "format": "jsonl",
+      "hash": "bd7bbd83ffab9c5ca60cd54efc0a6f61945efb4467962e331d7cf03a1e099641",
+      "mediatype": "application/json",
+      "name": "medallion-artifacts",
+      "path": "data/derived/medallion/medallion_artifacts.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 12945,
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
+      "format": "csv",
+      "hash": "a5fa6c5032bbb9bfc0fd49a93096b3e8d06eafb8e2fb237889f79b4230cba04f",
+      "mediatype": "text/csv",
+      "name": "medallion-artifacts",
+      "path": "data/derived/medallion/medallion_artifacts.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 41174,
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
+      "format": "jsonl",
+      "hash": "29655902aa01bdcae368db191fcc39006535072b1c4aa122121c1313818c850a",
+      "mediatype": "application/json",
+      "name": "promotion-decisions",
+      "path": "data/derived/medallion/promotion_decisions.jsonl",
+      "schema": {}
+    },
+    {
+      "bytes": 27205,
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
+      "format": "csv",
+      "hash": "92104e77dc097cdb877db24c8588702b6f3a88ed798a298124ac685e2349755d",
+      "mediatype": "text/csv",
+      "name": "promotion-decisions",
+      "path": "data/derived/medallion/promotion_decisions.csv",
+      "schema": {
+        "fields": [],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 382,
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
+      "format": "json",
+      "hash": "47ce86c113e3cdb638157ef85eee48673e22bf1061b697c0609d6986d84b6dce",
+      "mediatype": "application/json",
+      "name": "summary",
+      "path": "data/derived/medallion/summary.json",
+      "schema": {}
+    },
+    {
+      "bytes": 9115,
+      "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
+      "format": "jsonl",
+      "hash": "9d5f8ee6b587c95e94659d3edb838a261af6ff7218ebadb579690b1beefec3dd",
       "mediatype": "application/json",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.jsonl",
       "schema": {}
     },
     {
-      "bytes": 5336,
+      "bytes": 5545,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "6463e3f80297bdd3369724185c5163220d76bdad0f18db2898b954ad48b6eb87",
+      "hash": "6a83faa67f5ad232f09175c2fb027006a93d73bc04e06a8d6ebc3276142dfccd",
       "mediatype": "text/csv",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.csv",
@@ -1510,20 +1645,20 @@
       }
     },
     {
-      "bytes": 188041,
+      "bytes": 192090,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "8940c966e2cf9b5c5fb94c6aeb6a7e436f7408e0b2dfc4f9fb886107ec91c34b",
+      "hash": "d633be7d31724d85936d32e52f79f92db3a020bfb533615d55bb46a1ad63ae15",
       "mediatype": "application/json",
       "name": "github-project-items",
       "path": "data/derived/github_project/github_project_items.jsonl",
       "schema": {}
     },
     {
-      "bytes": 141844,
+      "bytes": 144747,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "3d91c09d30367a4c38bebddd876a3922950522dd08b3d4b871f1da74ca5674c4",
+      "hash": "b1bb045d7fd940fa8561ecf04bde6bed8ac5517840bcf090f956ba0c8d25df44",
       "mediatype": "text/csv",
       "name": "github-project-items",
       "path": "data/derived/github_project/github_project_items.csv",
@@ -1620,20 +1755,20 @@
       }
     },
     {
-      "bytes": 15129,
+      "bytes": 15832,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "a49dfd0355a27c5d83a3b4ea8e69d6d6aa1a922043acd9835394e72fb5b30845",
+      "hash": "5bfc152058621adb196d1cdcca66638fba3b36c73c5f4cb7eefab27d9e82ff7c",
       "mediatype": "application/json",
       "name": "data-quality-checks",
       "path": "data/derived/data_quality/data_quality_checks.jsonl",
       "schema": {}
     },
     {
-      "bytes": 8714,
+      "bytes": 9099,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "ca71cc241b78de3f09d6102de329ffb0d891475ad3bb3ff13aaf8c82bc806d07",
+      "hash": "cac82278dc2d58e50dd1545822dcbc0bbe2c67446b1b3278dcf9517aa46d722f",
       "mediatype": "text/csv",
       "name": "data-quality-checks",
       "path": "data/derived/data_quality/data_quality_checks.csv",
@@ -1648,7 +1783,7 @@
       "bytes": 106,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "json",
-      "hash": "895719b62c45a6fb64f8f3e786a469f0e16122cb7c7e520854a7ba548af12a83",
+      "hash": "64dbcd62d550a3403d16e2c9c62944d965ab5b26952400c5274eea1504af34bf",
       "mediatype": "application/json",
       "name": "summary",
       "path": "data/derived/data_quality/summary.json",
@@ -1693,7 +1828,7 @@
       "bytes": 6102,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "bfbb56364e2a9a86b8ce0b4d1e7e0750a1e37d11bb0175f72ca98822e2d38995",
+      "hash": "385ba0faf89f36004d3e4050c51509ac5e4569b64fc0f1d1b18997df90fe327b",
       "mediatype": "application/json",
       "name": "source-drift-report",
       "path": "data/derived/source_drift/source_drift_report.jsonl",
@@ -1703,7 +1838,7 @@
       "bytes": 3687,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "dd94eebb7f2e8e5064ec7abff0d4493f06c01bb033a111c803541989866d9caa",
+      "hash": "3e2830a07a05d83842c0585d81ac2b5542e267ce194c0fc7e570445491c782f8",
       "mediatype": "text/csv",
       "name": "source-drift-report",
       "path": "data/derived/source_drift/source_drift_report.csv",
@@ -1725,20 +1860,20 @@
       "schema": {}
     },
     {
-      "bytes": 161944,
+      "bytes": 168840,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "6f91729990f07a74c637611517a6b12323a9f9c2dca924a26c3f45bd85bb93c2",
+      "hash": "d4f4b9bb9d48845f810a7270dd99306a647fbc99c444bc454bdeee5b6daa15cc",
       "mediatype": "application/json",
       "name": "data-dictionary",
       "path": "data/derived/data_dictionary/data_dictionary.jsonl",
       "schema": {}
     },
     {
-      "bytes": 127729,
+      "bytes": 133116,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "f0d097c75e30197beea98394fd61f443305cc94d78af4af9267a62986f1257e0",
+      "hash": "27ecc93a0203c685707ee794d8cbcd51c125dd6c48fa1a3216272bcd9d9975eb",
       "mediatype": "text/csv",
       "name": "data-dictionary",
       "path": "data/derived/data_dictionary/data_dictionary.csv",
@@ -1750,10 +1885,10 @@
       }
     },
     {
-      "bytes": 123,
+      "bytes": 124,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "json",
-      "hash": "36a78ffa78ec4551ad8772f821839bc45cf5a86dda1905634b01ee3d292e7176",
+      "hash": "0c153ae7c7eb833169a1f8456d1bf87e56e47c68d0c310eb4325831a5c3e02bc",
       "mediatype": "application/json",
       "name": "summary",
       "path": "data/derived/data_dictionary/summary.json",

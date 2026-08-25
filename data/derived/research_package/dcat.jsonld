@@ -667,6 +667,72 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/medallion/bronze_source_index.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "bronze_source_index"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/medallion/bronze_source_index.csv",
+      "dct:format": "csv",
+      "dct:title": "bronze_source_index"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/medallion/bronze_acquisition_ledger.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "bronze_acquisition_ledger"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/medallion/bronze_acquisition_ledger.csv",
+      "dct:format": "csv",
+      "dct:title": "bronze_acquisition_ledger"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/medallion/bronze_evidence.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "bronze_evidence"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/medallion/bronze_evidence.csv",
+      "dct:format": "csv",
+      "dct:title": "bronze_evidence"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/medallion/medallion_artifacts.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "medallion_artifacts"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/medallion/medallion_artifacts.csv",
+      "dct:format": "csv",
+      "dct:title": "medallion_artifacts"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/medallion/promotion_decisions.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "promotion_decisions"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/medallion/promotion_decisions.csv",
+      "dct:format": "csv",
+      "dct:title": "promotion_decisions"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/medallion/summary.json",
+      "dct:format": "json",
+      "dct:title": "summary"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/release_readiness/release_gates.jsonl",
       "dct:format": "jsonl",
       "dct:title": "release_gates"
