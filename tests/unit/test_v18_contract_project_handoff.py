@@ -114,6 +114,10 @@ def test_github_project_export_covers_generated_issues(tmp_path: Path) -> None:
     assert any(row.item_type == "issue" for row in rows)
     assert any(row.project_view == "Sources & ingestion" for row in rows)
     assert all(row.track_id is not None for row in rows if row.item_type == "issue")
+    canonical = next(
+        row for row in rows if row.title == "Use one canonical evidence-release readiness model"
+    )
+    assert canonical.track_id == "canonical_evidence_readiness_20260826"
     paths = write_github_project_items(rows, output_dir=tmp_path / "project")
     assert all(path.exists() for path in paths)
 
