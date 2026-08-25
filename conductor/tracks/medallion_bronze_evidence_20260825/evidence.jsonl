@@ -1,2 +1,0 @@
-{"artifact":"data/derived/medallion/summary.json","commit":"f415d7f8","kind":"implementation","notes":"64 B0 source identities, 11 B1 acquisition events and 3 checksum-bound B2 references generated deterministically; raw paths omitted.","status":"pass"}
-{"artifact":"data/derived/local_quality_gates/summary.json","commit":"f415d7f8","kind":"validation","notes":"All 27 CI-profile local quality gates passed under Python 3.14.","status":"pass"}

@@ -7,11 +7,11 @@
       "evidence": "Existing checksum-bound licence and expansion_v9 mapping decisions remain authoritative inputs.",
       "id": "existing_accountable_decisions",
       "kind": "review_evidence",
-      "status": "recorded"
+      "status": "satisfied"
     }
   ],
-  "status": "in_progress",
+  "status": "completed",
   "track_id": "medallion_silver_gold_promotion_20260825",
   "type": "feature",
-  "updated_at": "2026-08-25T10:02:00Z"
+  "updated_at": "2026-08-25T10:35:40Z"
 }
