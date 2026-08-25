@@ -8,7 +8,7 @@ import pytest
 
 from reimburse_atlas.mcp_server import create_mcp_server
 
-mcp = pytest.importorskip("mcp", reason="MCP optional dependency is not installed")
+pytest.importorskip("mcp.server", reason="MCP optional dependency is not installed")
 
 
 @pytest.mark.anyio
