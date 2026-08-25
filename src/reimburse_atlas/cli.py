@@ -1753,6 +1753,7 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         ScheduleItemRecord,
         SourceSnapshotRecord,
     )
+    from reimburse_atlas.field_lineage import FieldLineageRecord
     from reimburse_atlas.ingest import IngestionTaskRecord
     from reimburse_atlas.medallion import (
         BronzeAcquisitionReceipt,
@@ -1835,6 +1836,7 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         MedallionArtifactRecord,
         MedallionPromotionDecision,
         PlatinumReleaseContract,
+        FieldLineageRecord,
     )
     for model in models:
         path = output_dir / f"{model.__name__}.schema.json"

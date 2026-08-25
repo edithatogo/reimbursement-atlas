@@ -1,0 +1,370 @@
+{
+  "@context": {
+    "prov": "http://www.w3.org/ns/prov#",
+    "reimburse": "https://edithatogo.github.io/reimbursement-atlas/ns#"
+  },
+  "@graph": [
+    {
+      "@id": "urn:reimburse-atlas:transformation:sync_seed_csvs:source_registry_jsonl_to_csv:v1",
+      "@type": "prov:Activity",
+      "prov:value": "sha256:618ab4cd1444c826e6aa07bee5eeb5c557829833997f6039072423758abd8405"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:access_tier",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.jsonl",
+      "prov:value": "access_tier",
+      "reimburse:sha256": "4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3:access_tier",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.csv",
+      "prov:value": "access_tier",
+      "prov:wasDerivedFrom": {
+        "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:access_tier"
+      },
+      "prov:wasGeneratedBy": {
+        "@id": "urn:reimburse-atlas:transformation:sync_seed_csvs:source_registry_jsonl_to_csv:v1"
+      },
+      "reimburse:rightsDecision": "source_registry_metadata_scope",
+      "reimburse:sha256": "cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:data_owner",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.jsonl",
+      "prov:value": "data_owner",
+      "reimburse:sha256": "4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3:data_owner",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.csv",
+      "prov:value": "data_owner",
+      "prov:wasDerivedFrom": {
+        "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:data_owner"
+      },
+      "prov:wasGeneratedBy": {
+        "@id": "urn:reimburse-atlas:transformation:sync_seed_csvs:source_registry_jsonl_to_csv:v1"
+      },
+      "reimburse:rightsDecision": "source_registry_metadata_scope",
+      "reimburse:sha256": "cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:domain",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.jsonl",
+      "prov:value": "domain",
+      "reimburse:sha256": "4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3:domain",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.csv",
+      "prov:value": "domain",
+      "prov:wasDerivedFrom": {
+        "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:domain"
+      },
+      "prov:wasGeneratedBy": {
+        "@id": "urn:reimburse-atlas:transformation:sync_seed_csvs:source_registry_jsonl_to_csv:v1"
+      },
+      "reimburse:rightsDecision": "source_registry_metadata_scope",
+      "reimburse:sha256": "cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:format",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.jsonl",
+      "prov:value": "format",
+      "reimburse:sha256": "4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3:format",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.csv",
+      "prov:value": "format",
+      "prov:wasDerivedFrom": {
+        "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:format"
+      },
+      "prov:wasGeneratedBy": {
+        "@id": "urn:reimburse-atlas:transformation:sync_seed_csvs:source_registry_jsonl_to_csv:v1"
+      },
+      "reimburse:rightsDecision": "source_registry_metadata_scope",
+      "reimburse:sha256": "cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:historical_versions",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.jsonl",
+      "prov:value": "historical_versions",
+      "reimburse:sha256": "4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3:historical_versions",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.csv",
+      "prov:value": "historical_versions",
+      "prov:wasDerivedFrom": {
+        "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:historical_versions"
+      },
+      "prov:wasGeneratedBy": {
+        "@id": "urn:reimburse-atlas:transformation:sync_seed_csvs:source_registry_jsonl_to_csv:v1"
+      },
+      "reimburse:rightsDecision": "source_registry_metadata_scope",
+      "reimburse:sha256": "cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:id",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.jsonl",
+      "prov:value": "id",
+      "reimburse:sha256": "4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3:id",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.csv",
+      "prov:value": "id",
+      "prov:wasDerivedFrom": {
+        "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:id"
+      },
+      "prov:wasGeneratedBy": {
+        "@id": "urn:reimburse-atlas:transformation:sync_seed_csvs:source_registry_jsonl_to_csv:v1"
+      },
+      "reimburse:rightsDecision": "source_registry_metadata_scope",
+      "reimburse:sha256": "cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:jurisdiction",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.jsonl",
+      "prov:value": "jurisdiction",
+      "reimburse:sha256": "4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3:jurisdiction",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.csv",
+      "prov:value": "jurisdiction",
+      "prov:wasDerivedFrom": {
+        "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:jurisdiction"
+      },
+      "prov:wasGeneratedBy": {
+        "@id": "urn:reimburse-atlas:transformation:sync_seed_csvs:source_registry_jsonl_to_csv:v1"
+      },
+      "reimburse:rightsDecision": "source_registry_metadata_scope",
+      "reimburse:sha256": "cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:licence_notes",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.jsonl",
+      "prov:value": "licence_notes",
+      "reimburse:sha256": "4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3:licence_notes",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.csv",
+      "prov:value": "licence_notes",
+      "prov:wasDerivedFrom": {
+        "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:licence_notes"
+      },
+      "prov:wasGeneratedBy": {
+        "@id": "urn:reimburse-atlas:transformation:sync_seed_csvs:source_registry_jsonl_to_csv:v1"
+      },
+      "reimburse:rightsDecision": "source_registry_metadata_scope",
+      "reimburse:sha256": "cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:machine_readable",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.jsonl",
+      "prov:value": "machine_readable",
+      "reimburse:sha256": "4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3:machine_readable",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.csv",
+      "prov:value": "machine_readable",
+      "prov:wasDerivedFrom": {
+        "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:machine_readable"
+      },
+      "prov:wasGeneratedBy": {
+        "@id": "urn:reimburse-atlas:transformation:sync_seed_csvs:source_registry_jsonl_to_csv:v1"
+      },
+      "reimburse:rightsDecision": "source_registry_metadata_scope",
+      "reimburse:sha256": "cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:notes",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.jsonl",
+      "prov:value": "notes",
+      "reimburse:sha256": "4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3:notes",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.csv",
+      "prov:value": "notes",
+      "prov:wasDerivedFrom": {
+        "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:notes"
+      },
+      "prov:wasGeneratedBy": {
+        "@id": "urn:reimburse-atlas:transformation:sync_seed_csvs:source_registry_jsonl_to_csv:v1"
+      },
+      "reimburse:rightsDecision": "source_registry_metadata_scope",
+      "reimburse:sha256": "cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:primary_url",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.jsonl",
+      "prov:value": "primary_url",
+      "reimburse:sha256": "4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3:primary_url",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.csv",
+      "prov:value": "primary_url",
+      "prov:wasDerivedFrom": {
+        "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:primary_url"
+      },
+      "prov:wasGeneratedBy": {
+        "@id": "urn:reimburse-atlas:transformation:sync_seed_csvs:source_registry_jsonl_to_csv:v1"
+      },
+      "reimburse:rightsDecision": "source_registry_metadata_scope",
+      "reimburse:sha256": "cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:refresh_cadence",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.jsonl",
+      "prov:value": "refresh_cadence",
+      "reimburse:sha256": "4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3:refresh_cadence",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.csv",
+      "prov:value": "refresh_cadence",
+      "prov:wasDerivedFrom": {
+        "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:refresh_cadence"
+      },
+      "prov:wasGeneratedBy": {
+        "@id": "urn:reimburse-atlas:transformation:sync_seed_csvs:source_registry_jsonl_to_csv:v1"
+      },
+      "reimburse:rightsDecision": "source_registry_metadata_scope",
+      "reimburse:sha256": "cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:reliability",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.jsonl",
+      "prov:value": "reliability",
+      "reimburse:sha256": "4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3:reliability",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.csv",
+      "prov:value": "reliability",
+      "prov:wasDerivedFrom": {
+        "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:reliability"
+      },
+      "prov:wasGeneratedBy": {
+        "@id": "urn:reimburse-atlas:transformation:sync_seed_csvs:source_registry_jsonl_to_csv:v1"
+      },
+      "reimburse:rightsDecision": "source_registry_metadata_scope",
+      "reimburse:sha256": "cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:schedule",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.jsonl",
+      "prov:value": "schedule",
+      "reimburse:sha256": "4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3:schedule",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.csv",
+      "prov:value": "schedule",
+      "prov:wasDerivedFrom": {
+        "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:schedule"
+      },
+      "prov:wasGeneratedBy": {
+        "@id": "urn:reimburse-atlas:transformation:sync_seed_csvs:source_registry_jsonl_to_csv:v1"
+      },
+      "reimburse:rightsDecision": "source_registry_metadata_scope",
+      "reimburse:sha256": "cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:system",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.jsonl",
+      "prov:value": "system",
+      "reimburse:sha256": "4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3:system",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.csv",
+      "prov:value": "system",
+      "prov:wasDerivedFrom": {
+        "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:system"
+      },
+      "prov:wasGeneratedBy": {
+        "@id": "urn:reimburse-atlas:transformation:sync_seed_csvs:source_registry_jsonl_to_csv:v1"
+      },
+      "reimburse:rightsDecision": "source_registry_metadata_scope",
+      "reimburse:sha256": "cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:tags",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.jsonl",
+      "prov:value": "tags",
+      "reimburse:sha256": "4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3:tags",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.csv",
+      "prov:value": "tags",
+      "prov:wasDerivedFrom": {
+        "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:tags"
+      },
+      "prov:wasGeneratedBy": {
+        "@id": "urn:reimburse-atlas:transformation:sync_seed_csvs:source_registry_jsonl_to_csv:v1"
+      },
+      "reimburse:rightsDecision": "source_registry_metadata_scope",
+      "reimburse:sha256": "cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:utilisation_data",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.jsonl",
+      "prov:value": "utilisation_data",
+      "reimburse:sha256": "4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8"
+    },
+    {
+      "@id": "urn:reimburse-atlas:field:cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3:utilisation_data",
+      "@type": "prov:Entity",
+      "prov:atLocation": "data/seed/source_registry.csv",
+      "prov:value": "utilisation_data",
+      "prov:wasDerivedFrom": {
+        "@id": "urn:reimburse-atlas:field:4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8:utilisation_data"
+      },
+      "prov:wasGeneratedBy": {
+        "@id": "urn:reimburse-atlas:transformation:sync_seed_csvs:source_registry_jsonl_to_csv:v1"
+      },
+      "reimburse:rightsDecision": "source_registry_metadata_scope",
+      "reimburse:sha256": "cce859d01499dba3cd2338bc17b87028274489ce5f22064ef12fb735546b7df3"
+    }
+  ]
+}

@@ -40,6 +40,7 @@ _LAYER_ORDER: dict[ArchitectureLayer, int] = {
 _LAYER_BY_ROOT_MODULE: dict[str, ArchitectureLayer] = {
     "models": "foundation",
     "medallion": "foundation",
+    "field_lineage": "foundation",
     "contracts": "foundation",
     "io": "foundation",
     "registry": "foundation",
