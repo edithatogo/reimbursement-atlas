@@ -1,0 +1,9 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Schema-validated deterministic checksum ledgers contain no credential fields"
+paths = [
+  '''^contracts/medallion/v3/fixtures/''',
+  '''^data/derived/historical_sources/backfill_replay/''',
+]

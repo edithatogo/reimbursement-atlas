@@ -47,7 +47,7 @@ jobs:
           install --mode 0755 gitleaks "${RUNNER_TEMP}/gitleaks"
       - name: Scan complete Git history
         run: |
-          "${RUNNER_TEMP}/gitleaks" git --redact --no-banner --exit-code 1
+          "${RUNNER_TEMP}/gitleaks" git --config .gitleaks.toml --redact --no-banner --exit-code 1
 
   reproducible-build:
     runs-on: ubuntu-latest
