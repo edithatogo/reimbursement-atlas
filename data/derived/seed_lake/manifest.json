@@ -96,8 +96,8 @@
       "jsonl_path": "conductor_tracks/conductor_tracks.jsonl",
       "name": "conductor_tracks",
       "parquet_path": "conductor_tracks/conductor_tracks.parquet",
-      "rows": 23,
-      "sha256": "ff123de3726febe4a55e416c6a689494c64a717fc5e3ec890922eca1809a8979"
+      "rows": 24,
+      "sha256": "0ad4ac01d3cfa85a6caa895ac0c54237be408e43b64600ca2bdc2e1d8e46727a"
     },
     {
       "csv_path": "roadmap_functions/roadmap_functions.csv",
@@ -328,8 +328,8 @@
       "jsonl_path": "architecture_import_edges/architecture_import_edges.jsonl",
       "name": "architecture_import_edges",
       "parquet_path": "architecture_import_edges/architecture_import_edges.parquet",
-      "rows": 235,
-      "sha256": "01853c87d070b65e46bd70094e5cc857f254d2c44c907efa2678e2f4260e05c2"
+      "rows": 236,
+      "sha256": "d83e91b5afe8ebc801790ead6c552efd78074a548f3f31b3b96811501c7a2897"
     },
     {
       "csv_path": "architecture_layer_policy/architecture_layer_policy.csv",
@@ -337,7 +337,7 @@
       "name": "architecture_layer_policy",
       "parquet_path": "architecture_layer_policy/architecture_layer_policy.parquet",
       "rows": 22,
-      "sha256": "63c70ca35b5ab6628a0e315bb370673c6124bc25fb6913f57394f9191df04053"
+      "sha256": "af8743ac63b728eb253989574fc328e7c01c0e6ddd3c7fced85226b3618835f4"
     },
     {
       "csv_path": "architecture_import_cycles/architecture_import_cycles.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 40,
-      "sha256": "9d5f8ee6b587c95e94659d3edb838a261af6ff7218ebadb579690b1beefec3dd"
+      "sha256": "310a59726ddefcf1c263bd318b16f6c3db0c33ed7e8cc028a43682ae5a5df115"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -417,7 +417,7 @@
       "name": "medallion_artifacts",
       "parquet_path": "medallion_artifacts/medallion_artifacts.parquet",
       "rows": 20,
-      "sha256": "bd7bbd83ffab9c5ca60cd54efc0a6f61945efb4467962e331d7cf03a1e099641"
+      "sha256": "1fd726a7eb7fcf35e95d2b0e1034d76d1940de8c5604248719f25992c8f0db14"
     },
     {
       "csv_path": "medallion_promotion_decisions/medallion_promotion_decisions.csv",
@@ -425,15 +425,15 @@
       "name": "medallion_promotion_decisions",
       "parquet_path": "medallion_promotion_decisions/medallion_promotion_decisions.parquet",
       "rows": 79,
-      "sha256": "29655902aa01bdcae368db191fcc39006535072b1c4aa122121c1313818c850a"
+      "sha256": "2e83df91fb2647cbee52d18395afb125a815b7f0167d7ab6663c1a492f2f6cfd"
     },
     {
       "csv_path": "github_project_items/github_project_items.csv",
       "jsonl_path": "github_project_items/github_project_items.jsonl",
       "name": "github_project_items",
       "parquet_path": "github_project_items/github_project_items.parquet",
-      "rows": 251,
-      "sha256": "d633be7d31724d85936d32e52f79f92db3a020bfb533615d55bb46a1ad63ae15"
+      "rows": 253,
+      "sha256": "11f2465f115af06bbef5474ca3f4184e4c4b6f2244fa2f750a11fa51f9aa24cf"
     },
     {
       "csv_path": "final_handoff_tasks/final_handoff_tasks.csv",
@@ -465,7 +465,7 @@
       "name": "data_quality_checks",
       "parquet_path": "data_quality_checks/data_quality_checks.parquet",
       "rows": 43,
-      "sha256": "5bfc152058621adb196d1cdcca66638fba3b36c73c5f4cb7eefab27d9e82ff7c"
+      "sha256": "1914cd30d37160c4d40361d949bf201d844de5b4e92f0d1d5a084fe4229743a5"
     },
     {
       "csv_path": "evidence_readiness/evidence_readiness.csv",
@@ -481,7 +481,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "385ba0faf89f36004d3e4050c51509ac5e4569b64fc0f1d1b18997df90fe327b"
+      "sha256": "f6d47b8a9eac5d3855463efa3952a7c2d40cbd16ee712b14069ed0c78771980e"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
@@ -489,7 +489,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 258,
-      "sha256": "d4f4b9bb9d48845f810a7270dd99306a647fbc99c444bc454bdeee5b6daa15cc"
+      "sha256": "319f1041ef63fb208615fb38ea003954f02369141136142963f0b6640d8ffcdc"
     }
   ]
 }

@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-08-26T00:00:00Z",
+  "description": "Unify medallion and release evidence readiness under the complete canonical gate matrix.",
+  "evidence_schema": "1.0",
+  "gates": [],
+  "status": "completed",
+  "track_id": "canonical_evidence_readiness_20260826",
+  "type": "bugfix",
+  "updated_at": "2026-08-26T00:30:00Z"
+}

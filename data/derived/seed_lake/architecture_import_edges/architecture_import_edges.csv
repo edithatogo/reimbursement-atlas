@@ -154,6 +154,7 @@ True,from,14,Layer dependency respects inward/downward architecture.,interface,r
 True,from,9,Layer dependency respects inward/downward architecture.,foundation,reimburse_atlas.medallion,foundation,reimburse_atlas.models
 True,from,14,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.medallion_projection,foundation,reimburse_atlas.medallion
 True,from,22,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.medallion_projection,foundation,reimburse_atlas.registry
+True,from,453,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.medallion_projection,orchestration,reimburse_atlas.release_readiness
 True,from,10,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.osf,foundation,reimburse_atlas.io
 True,from,11,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.osf,foundation,reimburse_atlas.models
 True,from,12,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.osf,foundation,reimburse_atlas.registry

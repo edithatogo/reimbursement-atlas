@@ -87,16 +87,6 @@ def _approved_checksums(root: Path) -> set[tuple[str, str]]:
     }
 
 
-def _evidence_release_ready(root: Path) -> bool:
-    summary = _read_json(root / "data/derived/evidence_readiness/summary.json")
-    question_count = int(summary.get("research_question_count", 0))
-    return (
-        question_count > 0
-        and int(summary.get("evidence_ready", 0)) == question_count
-        and int(summary.get("blocked", 0)) == 0
-    )
-
-
 def _build_bronze_source_index(
     sources: list[dict[str, Any]],
     files: list[dict[str, Any]],
@@ -285,7 +275,10 @@ def build_gold_artifacts(
 
 
 def build_platinum_artifacts(
-    root: Path, gold: list[MedallionArtifactRecord]
+    root: Path,
+    gold: list[MedallionArtifactRecord],
+    *,
+    evidence_release_ready: bool,
 ) -> list[MedallionArtifactRecord]:
     """Inventory product surfaces as Platinum candidates without publication."""
     if not gold:
@@ -296,7 +289,6 @@ def build_platinum_artifacts(
         Path(".zenodo.json"),
     )
     records: list[MedallionArtifactRecord] = []
-    evidence_ready = _evidence_release_ready(root)
     for relative_path in product_paths:
         path = root / relative_path
         if not path.is_file():
@@ -314,7 +306,7 @@ def build_platinum_artifacts(
                 input_sha256=tuple(row.sha256 for row in gold),
                 generated_at=GENERATED_AT,
                 rights_state="permissive",
-                promotion_status="candidate" if evidence_ready else "blocked",
+                promotion_status=("candidate" if evidence_release_ready else "blocked"),
                 notes=(
                     "Product projection only; destination state is not source truth or "
                     "publication authority."
@@ -458,13 +450,41 @@ def _write_rows(path: Path, rows: list[dict[str, Any]]) -> None:
 
 def materialise_medallion_projection(root: Path | None = None) -> MedallionProjectionSummary:
     """Generate all medallion evidence and return its summary."""
+    from reimburse_atlas.release_readiness import build_release_readiness_report
+
     repo = root or project_root()
     output = repo / "data/derived/medallion"
     b0, b1, b2 = build_bronze_projections(repo)
     silver = build_silver_artifacts(repo)
     gold = build_gold_artifacts(repo, silver)
-    platinum = build_platinum_artifacts(repo, gold)
-    evidence_ready = _evidence_release_ready(repo)
+    medallion_ready = bool(b0 and b1 and b2 and silver and gold)
+
+    # Materialise a fail-closed projection first so the canonical release model can
+    # evaluate the medallion gate from current-run evidence rather than stale files.
+    platinum = build_platinum_artifacts(repo, gold, evidence_release_ready=False)
+    provisional = MedallionProjectionSummary(
+        schema_version="medallion-projection-v2",
+        bronze_b0_count=len(b0),
+        bronze_b1_count=len(b1),
+        bronze_b2_count=len(b2),
+        silver_count=len(silver),
+        silver_approved_count=sum(
+            row.promotion_status == "approved_within_scope" for row in silver
+        ),
+        gold_count=len(gold),
+        gold_approved_count=sum(row.promotion_status == "approved_within_scope" for row in gold),
+        platinum_count=len(platinum),
+        platinum_approved_count=0,
+        blocked_promotion_count=0,
+        medallion_contract_ready=medallion_ready,
+        evidence_release_ready=False,
+    )
+    output.mkdir(parents=True, exist_ok=True)
+    (output / "summary.json").write_text(
+        json.dumps(asdict(provisional), indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    evidence_ready = build_release_readiness_report(repo).summary.evidence_release_ready
+    platinum = build_platinum_artifacts(repo, gold, evidence_release_ready=evidence_ready)
     decisions = build_promotion_decisions(
         b0, b1, b2, silver, gold, platinum, evidence_release_ready=evidence_ready
     )
@@ -478,7 +498,7 @@ def materialise_medallion_projection(root: Path | None = None) -> MedallionProje
     for name, records in collections.items():
         _write_rows(output / name, [record.model_dump(mode="json") for record in records])
     summary = MedallionProjectionSummary(
-        schema_version="medallion-projection-v1",
+        schema_version="medallion-projection-v2",
         bronze_b0_count=len(b0),
         bronze_b1_count=len(b1),
         bronze_b2_count=len(b2),
@@ -493,7 +513,7 @@ def materialise_medallion_projection(root: Path | None = None) -> MedallionProje
             row.promotion_status == "approved_within_scope" for row in platinum
         ),
         blocked_promotion_count=sum(row.status == "blocked" for row in decisions),
-        medallion_contract_ready=bool(b0 and b1 and b2 and silver and gold),
+        medallion_contract_ready=medallion_ready,
         evidence_release_ready=evidence_ready,
     )
     (output / "summary.json").write_text(

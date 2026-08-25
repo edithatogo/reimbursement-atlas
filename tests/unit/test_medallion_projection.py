@@ -8,6 +8,7 @@ from collections.abc import Mapping
 from pathlib import Path
 
 from reimburse_atlas.medallion_projection import materialise_medallion_projection
+from reimburse_atlas.release_readiness import build_release_readiness_report
 
 
 def _write_jsonl(path: Path, rows: list[Mapping[str, object]]) -> None:
@@ -99,3 +100,18 @@ def test_projection_omits_raw_paths(tmp_path: Path) -> None:
     materialise_medallion_projection(root)
     for path in (root / "data/derived/medallion").glob("*.jsonl"):
         assert "raw_live" not in path.read_text(encoding="utf-8")
+
+
+def test_projection_uses_canonical_release_readiness(tmp_path: Path) -> None:
+    """A partial evidence summary cannot contradict the complete gate matrix."""
+    root = _fixture_root(tmp_path)
+    (root / "data/derived/evidence_readiness/summary.json").write_text(
+        json.dumps({"research_question_count": 1, "evidence_ready": 1, "blocked": 0}),
+        encoding="utf-8",
+    )
+
+    medallion = materialise_medallion_projection(root)
+    release = build_release_readiness_report(root)
+
+    assert medallion.evidence_release_ready is False
+    assert medallion.evidence_release_ready == release.summary.evidence_release_ready

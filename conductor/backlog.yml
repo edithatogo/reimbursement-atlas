@@ -889,3 +889,19 @@ epics:
         status: implemented
         github_issue: 734
         dependencies: ["Enforce Silver to Gold evidence promotion contracts"]
+  - id: READINESS-CANONICAL-001
+    title: Canonical evidence-release readiness semantics
+    phase: hardening
+    workstream: governance
+    priority: must
+    track_id: canonical_evidence_readiness_20260826
+    issues:
+      - title: Use one canonical evidence-release readiness model
+        labels: ["type:data-quality", "type:governance", "status:implemented"]
+        status: implemented
+        github_issue: 736
+        acceptance:
+          - "Medallion and release summaries use the same complete gate result."
+          - "Partial evidence counts cannot promote Platinum products."
+          - "Current-run medallion evidence is evaluated without a generated-file cycle."
+          - "Regression, deterministic-generation and hosted checks pass."

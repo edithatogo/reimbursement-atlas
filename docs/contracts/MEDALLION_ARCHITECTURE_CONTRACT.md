@@ -49,6 +49,10 @@ Permitted transitions are:
 4. Silver to Gold after mapping, quality, evidence, and accountable review gates.
 5. Gold to Platinum after release, public-data, licence, evidence, and product gates.
 
+Global `evidence_release_ready` is derived only from the canonical release-readiness
+gate matrix. Layer projections must not infer it independently from a subset of
+evidence or research-question counts.
+
 Layer skipping is prohibited. A blocked or rejected promotion is retained as
 evidence and cannot be inferred as approval from a downstream artifact's
 existence.
