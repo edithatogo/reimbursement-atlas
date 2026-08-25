@@ -50,3 +50,5 @@
   *Link: [./archive/bronze_acquisition_coverage_20260826/index.md](./archive/bronze_acquisition_coverage_20260826/index.md)*
 - [x] **Track: Bounded source-transparency Platinum promotion**
   *Link: [./archive/bounded_platinum_source_transparency_20260826/index.md](./archive/bounded_platinum_source_transparency_20260826/index.md)*
+- [x] **Track: Cross-repository medallion contract conformance**
+  *Link: [./archive/cross_repository_medallion_conformance_20260826/index.md](./archive/cross_repository_medallion_conformance_20260826/index.md)*
