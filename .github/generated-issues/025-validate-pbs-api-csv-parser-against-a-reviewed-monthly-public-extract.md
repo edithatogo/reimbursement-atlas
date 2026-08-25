@@ -2,16 +2,15 @@
 
 Epic: `LIVE-001` — Reviewed live-source validation
 
-Labels: type:parser, phase:1-slice, type:medicines, status:blocked
+Labels: type:parser, phase:1-slice, type:medicines, status:implemented
 
-Status: `blocked`
+Status: `implemented`
 
 ## Background
 
-This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria before opening it in GitHub.
+This issue was generated from `conductor/backlog.yml`; the criteria below are the track-specific acceptance contract.
 
 ## Acceptance criteria
 
-- [x] PBS API CSV parser and July 2026 local acquisition evidence exist.
-- [ ] A human reviews the monthly extract fields, terms and effective-date join.
-- [ ] The reviewed extract checksum and permitted derived fields are recorded.
+- [x] The reviewed monthly PBS extract parses successfully into 6,945 deduplicated derived records.
+- [x] The current derived fields and checksums have licence decisions; credentialed API parity remains a separate track gate.

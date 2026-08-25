@@ -1,0 +1,18 @@
+{
+  "created_at": "2026-08-26T00:00:00Z",
+  "description": "Reconcile stale backlog and GitHub issue states against current governed evidence.",
+  "evidence_schema": "1.0",
+  "github_issues": [749],
+  "gates": [
+    {
+      "id": "pbs_current_api_parity",
+      "kind": "credential",
+      "status": "blocked",
+      "evidence": "Credentialed current PBS API parity remains unavailable; reviewed monthly parser validation is complete."
+    }
+  ],
+  "status": "completed",
+  "track_id": "backlog_state_reconciliation_20260826",
+  "type": "chore",
+  "updated_at": "2026-08-26T00:00:00Z"
+}

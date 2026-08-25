@@ -2,17 +2,15 @@
 
 Epic: `DQ-001` — Data quality and evidence readiness gates
 
-Labels: type:research, type:analysis, phase:analysis, status:in-progress
+Labels: type:research, type:analysis, phase:analysis, status:implemented
 
-Status: `in_progress`
+Status: `implemented`
 
 ## Background
 
-This issue was generated from `conductor/backlog.yml`. Refine the acceptance criteria before opening it in GitHub.
+This issue was generated from `conductor/backlog.yml`; the criteria below are the track-specific acceptance contract.
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] All five bounded claim packages remain checksum-bound, approved and evidence-ready within their declared scope.
+- [x] Implementation is limited to the bounded analyses and reviewed claim packages; full reports, papers and preprints remain separate open work.

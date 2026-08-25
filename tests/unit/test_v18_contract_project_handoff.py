@@ -281,7 +281,7 @@ def test_implemented_roadmap_issue_does_not_render_placeholder_checklist() -> No
 
 
 def test_project_status_preserves_implemented_licence_gated_controls() -> None:
-    """A licence-risk label must not hide a completed local control."""
+    """A licence-risk or source-review label must not hide completed bounded work."""
     from reimburse_atlas.github_project import build_github_project_items
     from reimburse_atlas.registry import load_conductor_tracks
 
@@ -292,12 +292,12 @@ def test_project_status_preserves_implemented_licence_gated_controls() -> None:
         if row.title == "Add URL/licence verification checklist for first-wave sources"
     )
     assert checklist.status == "done"
-    blocked = next(
+    reviewed_pbs = next(
         row
         for row in rows
         if row.title == "Validate PBS API CSV parser against a reviewed monthly public extract"
     )
-    assert blocked.status == "blocked"
+    assert reviewed_pbs.status == "done"
 
 
 def test_project_sync_reads_issue_rows_and_project_numbers(tmp_path: Path) -> None:

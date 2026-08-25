@@ -1,6 +1,23 @@
 version: 2
 updated: "2026-07-31"
 epics:
+  - id: BACKLOG-REC-001
+    title: Backlog state reconciliation
+    phase: hardening
+    workstream: governance
+    priority: must
+    track_id: backlog_state_reconciliation_20260826
+    issues:
+      - title: Reconcile stale parser and evidence backlog states
+        labels: ["type:repo-automation", "type:data-quality", "status:implemented"]
+        status: implemented
+        github_issue: 749
+        acceptance:
+          - "Completed parser and source-review items derive implemented status from checksum-bound reviewed bundles and current licence decisions."
+          - "Credentialed current-source parity remains distinct from completed bounded parser validation."
+          - "Completed bounded analyses and approved claim packages are not represented as completed full reports, papers or preprints."
+          - "Generated issue and Project states match Conductor and live GitHub state."
+        blockers: []
   - id: GOVMON-001
     title: External compatibility and governance monitoring
     phase: hardening
@@ -266,23 +283,54 @@ epics:
         labels: ["type:parser", "risk:licence", "phase:1-slice", "status:implemented"]
         status: implemented
       - title: Review first real July 2026 MBS TXT pair bundle outputs
-        labels: ["type:data-source", "needs-clinical-review", "phase:1-slice", "status:blocked"]
-        status: blocked
+        labels: ["type:data-source", "needs-clinical-review", "phase:1-slice", "status:implemented"]
+        status: implemented
+        github_issue: 23
+        acceptance:
+          - "The real July 2026 MBS TXT-pair bundle parses with zero blocking validation failures."
+          - "Checksum-bound licence decisions cover the current derived bundle while raw payloads and broader claims remain excluded."
       - title: Validate CMS CLFS parser against one public file without CPT descriptor redistribution
-        labels: ["type:parser", "risk:licence", "phase:1-slice", "status:blocked"]
-        status: blocked
+        labels: ["type:parser", "risk:licence", "phase:1-slice", "status:implemented"]
+        status: implemented
+        github_issue: 24
+        acceptance:
+          - "A reviewed CLFS bundle parses successfully and records immutable source provenance."
+          - "Derived output excludes CPT/HCPCS identifiers and descriptor text under the restricted-local-only contract."
       - title: Validate PBS API CSV parser against a reviewed monthly public extract
-        labels: ["type:parser", "phase:1-slice", "type:medicines", "status:blocked"]
+        labels: ["type:parser", "phase:1-slice", "type:medicines", "status:implemented"]
+        status: implemented
+        github_issue: 25
+        acceptance:
+          - "The reviewed monthly PBS extract parses successfully into 6,945 deduplicated derived records."
+          - "The current derived fields and checksums have licence decisions; credentialed API parity remains a separate track gate."
+      - title: Refresh credentialed current PBS API parity
+        labels: ["type:data-source", "type:parser", "phase:implementation", "status:blocked"]
         status: blocked
+        github_issue: 750
+        acceptance:
+          - "Acquire a current monthly PBS API extract into ignored local storage using the hardened acquisition layer."
+          - "Validate schema, effective-date semantics, deduplication and permitted derived fields against the reviewed monthly bundle."
+          - "Record redacted acquisition receipts and immutable checksums without publishing raw payloads."
+        blockers:
+          - reason_code: pbs_api_credential_missing
+            evidence: "The current schedules endpoint returned HTTP 401 without PBS_API_SUBSCRIPTION_KEY and no official direct-download fallback was verified."
       - title: Record redacted PBS API multi-endpoint acquisition evidence
         labels: ["type:data-quality", "type:provenance", "type:parser", "phase:hardening", "status:implemented"]
         status: implemented
       - title: Validate CMS ASP parser against July 2026 payment-limit files
-        labels: ["type:parser", "phase:1-slice", "type:medicines", "status:blocked"]
-        status: blocked
+        labels: ["type:parser", "phase:1-slice", "type:medicines", "status:implemented"]
+        status: implemented
+        github_issue: 26
+        acceptance:
+          - "The July 2026 ASP reviewed bundle parses successfully into 890 derived payment-limit records."
+          - "Raw payloads remain local and payment-limit values are not represented as net prices."
       - title: Validate CMS PFS parser against RVU26C with CPT descriptor safeguards
-        labels: ["type:parser", "risk:licence", "phase:1-slice", "status:blocked"]
-        status: blocked
+        labels: ["type:parser", "risk:licence", "phase:1-slice", "status:implemented"]
+        status: implemented
+        github_issue: 27
+        acceptance:
+          - "A reviewed 2026 PFS carrier bundle parses successfully into 1,635 derived records."
+          - "CPT descriptor safeguards and local-only raw payload boundaries remain enforced."
       - title: Add public data policy check to CI for raw cache safeguards
         labels: ["type:security", "risk:licence", "phase:1-slice", "status:implemented"]
         status: implemented
@@ -475,8 +523,11 @@ epics:
         labels: ["type:research", "type:data-quality", "phase:release-gate", "status:implemented"]
         status: implemented
       - title: Run five protocolled analyses on reviewed derived inputs and review claim packages
-        labels: ["type:research", "type:analysis", "phase:analysis", "status:in-progress"]
-        status: in_progress
+        labels: ["type:research", "type:analysis", "phase:analysis", "status:implemented"]
+        status: implemented
+        acceptance:
+          - "All five bounded claim packages remain checksum-bound, approved and evidence-ready within their declared scope."
+          - "Implementation is limited to the bounded analyses and reviewed claim packages; full reports, papers and preprints remain separate open work."
       - title: Generate five deterministic bounded claim-package candidates
         labels: ["type:research", "type:analysis", "phase:analysis", "status:implemented"]
         status: implemented
