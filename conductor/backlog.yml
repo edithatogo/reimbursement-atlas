@@ -9,8 +9,9 @@ epics:
     track_id: external_governance_monitoring_20260826
     issues:
       - title: Unify TypeScript and GitHub account-security governance monitors
-        labels: ["type:automation", "type:security", "type:runtime", "status:in-progress"]
-        status: in-progress
+        labels: ["type:automation", "type:security", "type:runtime", "status:implemented"]
+        status: implemented
+        github_issue: 747
         acceptance:
           - "Scheduled TypeScript 7 and GitHub account-security monitors continue without mutation."
           - "Unavailable external controls have stable blocked reason codes and evidence."

@@ -203,6 +203,22 @@ def test_project_authored_research_governance_is_project_owned(repo_root: Path) 
     assert {row.approval_requirement for row in records} == {"automatic_policy"}
 
 
+def test_project_authored_external_monitors_do_not_require_rights_review(
+    repo_root: Path,
+) -> None:
+    """Compatibility and governance receipts are Apache-2.0 operational metadata."""
+    manifest = build_publication_manifest(root=repo_root)
+    prefixes = (
+        "data/derived/governance_monitoring/",
+        "data/derived/toolchain/",
+    )
+    records = [row for row in manifest.artifacts if row.relative_path.startswith(prefixes)]
+
+    assert len(records) == 5
+    assert {row.licence_gate for row in records} == {"apache_2_0_project_output"}
+    assert {row.approval_requirement for row in records} == {"automatic_policy"}
+
+
 def test_deprecated_osf_outputs_are_not_publication_candidates(repo_root: Path) -> None:
     """Historical OSF evidence remains tracked but cannot enter publication scope."""
     manifest = build_publication_manifest(root=repo_root)

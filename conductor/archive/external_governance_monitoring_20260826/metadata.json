@@ -1,8 +1,8 @@
 {
-  "created_at": "2026-08-25T18:00:00Z",
+  "created_at": "2026-08-26T00:00:00Z",
   "description": "Unify compatibility and account-security monitors while isolating external controls from repository release readiness.",
   "evidence_schema": "1.0",
-  "github_issues": [],
+  "github_issues": [747],
   "gates": [
     {
       "evidence": "Astro checker peer metadata controls TypeScript 7 adoption.",
@@ -17,8 +17,8 @@
       "status": "blocked"
     }
   ],
-  "status": "in_progress",
+  "status": "completed",
   "track_id": "external_governance_monitoring_20260826",
   "type": "chore",
-  "updated_at": "2026-08-25T18:00:00Z"
+  "updated_at": "2026-08-26T00:00:00Z"
 }

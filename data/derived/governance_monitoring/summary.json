@@ -1,0 +1,8 @@
+{
+  "action_available_count": 0,
+  "control_count": 3,
+  "external_blocker_count": 3,
+  "pass_count": 0,
+  "repository_release_blocker_count": 0,
+  "schema_version": "external-governance-monitor-v1"
+}
