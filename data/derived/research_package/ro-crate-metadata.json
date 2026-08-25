@@ -950,20 +950,20 @@
     {
       "@id": "data/seed/conductor_tracks.jsonl",
       "@type": "File",
-      "contentSize": 18123,
+      "contentSize": 18121,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "conductor_tracks",
-      "sha256": "d5446d0f6afa413a7d02d86f7c9ff52d3159acb5ced33c49b3e3c7b3d87ea28b"
+      "sha256": "44981044d47b2da816f2e5e6305d7f573ed1e40fdc9b0bfeef7e90cd152ac10a"
     },
     {
       "@id": "data/seed/conductor_tracks.csv",
       "@type": "File",
-      "contentSize": 14976,
+      "contentSize": 14974,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "conductor_tracks",
-      "sha256": "7f09f021039af8262596125809756e1862691f3292de9b544ef1983f6e4f90ce"
+      "sha256": "c64b99f5b03c3bdfccef9e8349e605374498e2bb610a31be7f23cc16f689748d"
     },
     {
       "@id": "data/seed/roadmap_functions.jsonl",
@@ -1989,7 +1989,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "github_project_items",
-      "sha256": "8f64e0917d56e4ac8c432478413e77214900ed3f1215fcd5ca07767c1d662a8b"
+      "sha256": "44ee2e9b088c581463d44b2e6c728040008a5d48b89f9630549ff19fd1ffdc51"
     },
     {
       "@id": "data/derived/github_project/github_project_items.csv",
@@ -1998,7 +1998,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "github_project_items",
-      "sha256": "d7d7794ceacb082afced98bf706ec18346ad575be262936cb85bc6baf1042342"
+      "sha256": "683a6de5dce57c601a0430b7678bc672155262a846701b0f525a868c8f3f57b6"
     },
     {
       "@id": "data/derived/final_handoff/final_handoff_tasks.jsonl",

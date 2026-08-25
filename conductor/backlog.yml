@@ -51,7 +51,7 @@ epics:
         dependencies: [708]
   - id: HIST-001
     title: Historical source archival and reproducibility
-    phase: implementation
+    phase: implemented
     workstream: sources
     priority: must
     issues:
@@ -913,8 +913,8 @@ epics:
     track_id: bronze_acquisition_coverage_20260826
     issues:
       - title: Expand Bronze acquisition and immutable evidence coverage
-        labels: ["type:data-source", "type:provenance", "status:in-progress"]
-        status: in_progress
+        labels: ["type:data-source", "type:provenance", "status:implemented"]
+        status: implemented
         github_issue: 738
         acceptance:
           - "Reachable historical payloads are restored through the hardened downloader."

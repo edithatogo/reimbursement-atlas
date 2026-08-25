@@ -46,5 +46,5 @@
   *Link: [./archive/medallion_platinum_projection_20260825/index.md](./archive/medallion_platinum_projection_20260825/index.md)*
 - [x] **Track: Canonical evidence-release readiness semantics**
   *Link: [./archive/canonical_evidence_readiness_20260826/index.md](./archive/canonical_evidence_readiness_20260826/index.md)*
-- [~] **Track: Bronze acquisition coverage expansion**
-  *Link: [./tracks/bronze_acquisition_coverage_20260826/index.md](./tracks/bronze_acquisition_coverage_20260826/index.md)*
+- [x] **Track: Bronze acquisition coverage expansion**
+  *Link: [./archive/bronze_acquisition_coverage_20260826/index.md](./archive/bronze_acquisition_coverage_20260826/index.md)*

@@ -2,9 +2,9 @@
 
 Epic: `BRONZE-COVERAGE-001` — Bronze acquisition coverage expansion
 
-Labels: type:data-source, type:provenance, status:in-progress
+Labels: type:data-source, type:provenance, status:implemented
 
-Status: `in_progress`
+Status: `implemented`
 
 ## Background
 
@@ -12,8 +12,8 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] Reachable historical payloads are restored through the hardened downloader.
-- [ ] B1 retains acquired and failed attempts without raw paths.
-- [ ] B2 contains only deduplicated checksum-bound evidence identities.
-- [ ] Rights-review state remains distinct from acquisition and fixity.
-- [ ] Automated and hosted gates pass.
+- [x] Reachable historical payloads are restored through the hardened downloader.
+- [x] B1 retains acquired and failed attempts without raw paths.
+- [x] B2 contains only deduplicated checksum-bound evidence identities.
+- [x] Rights-review state remains distinct from acquisition and fixity.
+- [x] Automated and hosted gates pass.

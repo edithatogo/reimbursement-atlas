@@ -220,6 +220,6 @@ tracks:
     phase: implementation
     workstream: data
     goal: "Expand B1 and B2 from real checksum-bound historical and reviewed-source receipts without conflating B0 catalogue entries with acquisitions."
-    spec: "conductor/tracks/bronze_acquisition_coverage_20260826/spec.md"
-    plan: "conductor/tracks/bronze_acquisition_coverage_20260826/plan.md"
+    spec: "conductor/archive/bronze_acquisition_coverage_20260826/spec.md"
+    plan: "conductor/archive/bronze_acquisition_coverage_20260826/plan.md"
     issues: [738]
