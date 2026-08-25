@@ -63,9 +63,14 @@ def _fixture_root(tmp_path: Path) -> Path:
         encoding="utf-8",
     )
     _write_jsonl(tmp_path / "data/licence_review/decisions.jsonl", [])
-    product = tmp_path / "apps/dashboard/public/status.json"
-    product.parent.mkdir(parents=True, exist_ok=True)
-    product.write_text("{}\n", encoding="utf-8")
+    products = (
+        tmp_path / "pyproject.toml",
+        tmp_path / "apps/dashboard/package-lock.json",
+        tmp_path / ".zenodo.json",
+    )
+    for product in products:
+        product.parent.mkdir(parents=True, exist_ok=True)
+        product.write_text("{}\n", encoding="utf-8")
     return tmp_path
 
 

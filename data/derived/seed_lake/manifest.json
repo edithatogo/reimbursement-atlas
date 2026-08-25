@@ -417,7 +417,7 @@
       "name": "medallion_artifacts",
       "parquet_path": "medallion_artifacts/medallion_artifacts.parquet",
       "rows": 20,
-      "sha256": "9ff060e248759ae25355d262c04821d8b497fc08f5b36170ea9326fb601afc04"
+      "sha256": "bd7bbd83ffab9c5ca60cd54efc0a6f61945efb4467962e331d7cf03a1e099641"
     },
     {
       "csv_path": "medallion_promotion_decisions/medallion_promotion_decisions.csv",
@@ -425,7 +425,7 @@
       "name": "medallion_promotion_decisions",
       "parquet_path": "medallion_promotion_decisions/medallion_promotion_decisions.parquet",
       "rows": 79,
-      "sha256": "8e76799f4871b55592cbaaa5e4f52dea60241ecd6a7b25dce8ea8734bd1bd5ad"
+      "sha256": "29655902aa01bdcae368db191fcc39006535072b1c4aa122121c1313818c850a"
     },
     {
       "csv_path": "github_project_items/github_project_items.csv",

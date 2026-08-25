@@ -291,10 +291,9 @@ def build_platinum_artifacts(
     if not gold:
         return []
     product_paths = (
-        Path("apps/dashboard/public/status.json"),
-        Path("data/derived/publication_manifest.json"),
-        Path("data/derived/research_package/datapackage.json"),
-        Path("data/derived/zenodo/deposition.json"),
+        Path("pyproject.toml"),
+        Path("apps/dashboard/package-lock.json"),
+        Path(".zenodo.json"),
     )
     records: list[MedallionArtifactRecord] = []
     evidence_ready = _evidence_release_ready(root)
