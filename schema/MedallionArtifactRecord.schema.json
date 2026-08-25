@@ -1,0 +1,97 @@
+{
+  "additionalProperties": false,
+  "description": "Checksum-bound Silver, Gold, or Platinum artifact identity.",
+  "properties": {
+    "artifact_id": {
+      "minLength": 1,
+      "title": "Artifact Id",
+      "type": "string"
+    },
+    "layer": {
+      "enum": [
+        "silver",
+        "gold",
+        "platinum"
+      ],
+      "title": "Layer",
+      "type": "string"
+    },
+    "relative_path": {
+      "minLength": 1,
+      "title": "Relative Path",
+      "type": "string"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Sha256",
+      "type": "string"
+    },
+    "contract_id": {
+      "minLength": 1,
+      "title": "Contract Id",
+      "type": "string"
+    },
+    "input_artifact_ids": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Input Artifact Ids",
+      "type": "array"
+    },
+    "input_sha256": {
+      "items": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Input Sha256",
+      "type": "array"
+    },
+    "generated_at": {
+      "minLength": 1,
+      "title": "Generated At",
+      "type": "string"
+    },
+    "rights_state": {
+      "enum": [
+        "permissive",
+        "public_reuse_review",
+        "restricted_local_only",
+        "metadata_only"
+      ],
+      "title": "Rights State",
+      "type": "string"
+    },
+    "promotion_status": {
+      "enum": [
+        "candidate",
+        "approved_within_scope",
+        "blocked"
+      ],
+      "title": "Promotion Status",
+      "type": "string"
+    },
+    "notes": {
+      "minLength": 1,
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "artifact_id",
+    "layer",
+    "relative_path",
+    "sha256",
+    "contract_id",
+    "input_artifact_ids",
+    "input_sha256",
+    "generated_at",
+    "rights_state",
+    "promotion_status",
+    "notes"
+  ],
+  "title": "MedallionArtifactRecord",
+  "type": "object"
+}

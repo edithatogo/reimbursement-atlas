@@ -1754,6 +1754,13 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         SourceSnapshotRecord,
     )
     from reimburse_atlas.ingest import IngestionTaskRecord
+    from reimburse_atlas.medallion import (
+        BronzeAcquisitionReceipt,
+        BronzeEvidenceRecord,
+        BronzeSourceIndexRecord,
+        MedallionArtifactRecord,
+        MedallionPromotionDecision,
+    )
     from reimburse_atlas.models import (
         AnalysisRecipeRecord,
         AnalysisRecord,
@@ -1821,6 +1828,11 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
         SourceAcquisitionPlan,
         OntologyConceptRecord,
         OntologyMappingTemplate,
+        BronzeSourceIndexRecord,
+        BronzeAcquisitionReceipt,
+        BronzeEvidenceRecord,
+        MedallionArtifactRecord,
+        MedallionPromotionDecision,
     )
     for model in models:
         path = output_dir / f"{model.__name__}.schema.json"

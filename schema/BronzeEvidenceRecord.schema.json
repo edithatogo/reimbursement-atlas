@@ -1,0 +1,92 @@
+{
+  "additionalProperties": false,
+  "description": "B2 immutable bytes or a rights-constrained immutable reference.",
+  "properties": {
+    "evidence_id": {
+      "minLength": 1,
+      "title": "Evidence Id",
+      "type": "string"
+    },
+    "acquisition_id": {
+      "minLength": 1,
+      "title": "Acquisition Id",
+      "type": "string"
+    },
+    "source_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source Id",
+      "type": "string"
+    },
+    "source_version_id": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Source Version Id",
+      "type": "string"
+    },
+    "evidence_kind": {
+      "enum": [
+        "immutable_bytes",
+        "rights_constrained_reference"
+      ],
+      "title": "Evidence Kind",
+      "type": "string"
+    },
+    "payload_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Payload Sha256",
+      "type": "string"
+    },
+    "byte_size": {
+      "minimum": 0,
+      "title": "Byte Size",
+      "type": "integer"
+    },
+    "immutable_locator": {
+      "minLength": 1,
+      "title": "Immutable Locator",
+      "type": "string"
+    },
+    "source_locator": {
+      "format": "uri",
+      "maxLength": 2083,
+      "minLength": 1,
+      "title": "Source Locator",
+      "type": "string"
+    },
+    "rights_state": {
+      "enum": [
+        "permissive",
+        "public_reuse_review",
+        "restricted_local_only",
+        "metadata_only"
+      ],
+      "title": "Rights State",
+      "type": "string"
+    },
+    "fixity_verified_at": {
+      "minLength": 1,
+      "title": "Fixity Verified At",
+      "type": "string"
+    },
+    "notes": {
+      "minLength": 1,
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "evidence_id",
+    "acquisition_id",
+    "source_id",
+    "source_version_id",
+    "evidence_kind",
+    "payload_sha256",
+    "byte_size",
+    "immutable_locator",
+    "source_locator",
+    "rights_state",
+    "fixity_verified_at",
+    "notes"
+  ],
+  "title": "BronzeEvidenceRecord",
+  "type": "object"
+}

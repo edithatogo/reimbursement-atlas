@@ -1,0 +1,108 @@
+{
+  "additionalProperties": false,
+  "description": "Explicit, evidence-bound decision for one permitted layer transition.",
+  "properties": {
+    "decision_id": {
+      "minLength": 1,
+      "title": "Decision Id",
+      "type": "string"
+    },
+    "subject_id": {
+      "minLength": 1,
+      "title": "Subject Id",
+      "type": "string"
+    },
+    "from_layer": {
+      "enum": [
+        "bronze_b0",
+        "bronze_b1",
+        "bronze_b2",
+        "silver",
+        "gold",
+        "platinum"
+      ],
+      "title": "From Layer",
+      "type": "string"
+    },
+    "to_layer": {
+      "enum": [
+        "bronze_b0",
+        "bronze_b1",
+        "bronze_b2",
+        "silver",
+        "gold",
+        "platinum"
+      ],
+      "title": "To Layer",
+      "type": "string"
+    },
+    "input_sha256": {
+      "items": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Input Sha256",
+      "type": "array"
+    },
+    "required_gate_ids": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Required Gate Ids",
+      "type": "array"
+    },
+    "passed_gate_ids": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Passed Gate Ids",
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "approved",
+        "blocked",
+        "rejected"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "decided_at": {
+      "minLength": 1,
+      "title": "Decided At",
+      "type": "string"
+    },
+    "reason_codes": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Reason Codes",
+      "type": "array"
+    },
+    "scope_notes": {
+      "minLength": 1,
+      "title": "Scope Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "decision_id",
+    "subject_id",
+    "from_layer",
+    "to_layer",
+    "input_sha256",
+    "required_gate_ids",
+    "status",
+    "decided_at",
+    "reason_codes",
+    "scope_notes"
+  ],
+  "title": "MedallionPromotionDecision",
+  "type": "object"
+}
