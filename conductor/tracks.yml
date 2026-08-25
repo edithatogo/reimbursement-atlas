@@ -214,3 +214,12 @@ tracks:
     spec: "conductor/archive/canonical_evidence_readiness_20260826/spec.md"
     plan: "conductor/archive/canonical_evidence_readiness_20260826/plan.md"
     issues: [736]
+  - id: bronze_acquisition_coverage_20260826
+    title: "Bronze acquisition coverage expansion"
+    priority: must
+    phase: implementation
+    workstream: data
+    goal: "Expand B1 and B2 from real checksum-bound historical and reviewed-source receipts without conflating B0 catalogue entries with acquisitions."
+    spec: "conductor/tracks/bronze_acquisition_coverage_20260826/spec.md"
+    plan: "conductor/tracks/bronze_acquisition_coverage_20260826/plan.md"
+    issues: [738]

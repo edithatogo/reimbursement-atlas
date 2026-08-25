@@ -7,7 +7,10 @@ import json
 from collections.abc import Mapping
 from pathlib import Path
 
-from reimburse_atlas.medallion_projection import materialise_medallion_projection
+from reimburse_atlas.medallion_projection import (
+    build_bronze_projections,
+    materialise_medallion_projection,
+)
 from reimburse_atlas.release_readiness import build_release_readiness_report
 
 
@@ -115,3 +118,69 @@ def test_projection_uses_canonical_release_readiness(tmp_path: Path) -> None:
 
     assert medallion.evidence_release_ready is False
     assert medallion.evidence_release_ready == release.summary.evidence_release_ready
+
+
+def test_bronze_projection_admits_real_receipts_without_raw_paths(tmp_path: Path) -> None:
+    """Reviewed and historical receipts expand B1/B2 without exposing local caches."""
+    root = _fixture_root(tmp_path)
+    _write_jsonl(
+        root / "data/derived/reviewed_source_bundles/reviewed/source_snapshots.jsonl",
+        [
+            {
+                "id": "reviewed_snapshot",
+                "source_id": "source",
+                "source_version_id": "source_reviewed",
+                "source_url": "https://example.gov/reviewed.csv",
+                "retrieved_at": "2026-08-01T00:00:00Z",
+                "checksum_sha256": "b" * 64,
+                "byte_size": 20,
+                "content_type": "text/csv",
+                "licence_gate": "permissive",
+                "local_path": "/private/raw/reviewed.csv",
+            }
+        ],
+    )
+    _write_jsonl(
+        root / "data/derived/historical_sources/historical_source_downloads.jsonl",
+        [
+            {
+                "id": "historical_acquired",
+                "source_id": "source",
+                "source_version_id": "source_2025",
+                "source_url": "https://example.gov/2025.csv",
+                "status": "downloaded",
+                "checksum_sha256": "c" * 64,
+                "byte_size": 30,
+                "file_kind": "csv",
+                "licence_gate": "public_reuse_review",
+                "review_status": "pending_human_review",
+                "cache_path": "data/raw_live/historical/source.csv",
+            },
+            {
+                "id": "historical_failed",
+                "source_id": "source",
+                "source_version_id": "source_2024",
+                "source_url": "https://example.gov/2024.csv",
+                "status": "download_failed",
+                "checksum_sha256": None,
+                "byte_size": None,
+                "file_kind": "csv",
+                "licence_gate": "public_reuse_review",
+                "review_status": "pending_human_review",
+                "cache_path": "data/raw_live/historical/missing.csv",
+            },
+        ],
+    )
+    summary = root / "data/derived/historical_sources/historical_source_downloads_summary.json"
+    summary.write_text(json.dumps({"generated_at": "2026-08-02T00:00:00Z"}), encoding="utf-8")
+
+    b0, b1, b2 = build_bronze_projections(root)
+
+    assert len(b1) == 4
+    assert len(b2) == 3
+    assert sum(row.outcome == "acquired" for row in b1) == 3
+    assert sum(row.outcome == "failed" for row in b1) == 1
+    assert b0[0].acquisition_status == "acquired"
+    payload = json.dumps([row.model_dump(mode="json") for row in [*b1, *b2]])
+    assert "raw_live" not in payload
+    assert "/private/" not in payload

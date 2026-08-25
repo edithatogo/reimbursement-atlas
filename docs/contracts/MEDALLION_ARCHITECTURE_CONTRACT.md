@@ -33,6 +33,11 @@ identity and are not automatically assigned a medallion layer by their format.
 
 - Raw bytes remain outside Git under ignored storage such as `data/raw_live/`.
 - The ignored path is a cache, not evidentiary identity.
+- B1 may be reconstructed from source-file validation, reviewed snapshot, and
+  historical acquisition receipts; each lane must retain its own event identity.
+- B2 admission requires a 64-character SHA-256 and byte size. Identical payloads
+  are represented once by checksum even when multiple acquisition events observed them.
+- Failed or unavailable retrievals remain B1 events and never create B2 evidence.
 - Restricted bytes use a rights-constrained B2 reference in shareable evidence.
 - Restricted descriptors, secrets, local absolute paths, and raw payloads never
   enter Silver, Gold, Platinum, public packages, or generated dashboards.

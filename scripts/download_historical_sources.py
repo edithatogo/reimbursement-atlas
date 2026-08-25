@@ -42,7 +42,10 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def _download(url: str, destination: Path, *, force: bool) -> tuple[str, str]:
+def download_payload(
+    url: str, destination: Path, *, force: bool, max_time_seconds: int
+) -> tuple[str, str]:
+    """Download one allowlisted payload within an explicit transfer bound."""
     parsed = urlparse(url)
     if parsed.scheme != "https" or parsed.netloc not in OFFICIAL_HOSTS:
         return "blocked_untrusted_host", "URL is not an HTTPS URL on an allowed official host."
@@ -63,11 +66,11 @@ def _download(url: str, destination: Path, *, force: bool) -> tuple[str, str]:
         "--retry-delay",
         "2",
         "--retry-max-time",
-        "45",
+        str(max(45, max_time_seconds)),
         "--connect-timeout",
         "20",
         "--max-time",
-        "45",
+        str(max_time_seconds),
         "--output",
         str(destination),
         url,
@@ -121,14 +124,24 @@ def write_manifest(rows: list[dict[str, object]], output_dir: Path) -> None:
 
 
 def process_target(
-    target: dict[str, str], *, raw_dir: Path, force: bool, dry_run: bool
+    target: dict[str, str],
+    *,
+    raw_dir: Path,
+    force: bool,
+    dry_run: bool,
+    max_time_seconds: int,
 ) -> dict[str, object]:
     """Retrieve one target and return its deterministic evidence row."""
     destination = raw_dir / _safe_filename(target)
     status, detail = (
         ("planned", "Dry run; no network request made.")
         if dry_run
-        else _download(target["file_url"], destination, force=force)
+        else download_payload(
+            target["file_url"],
+            destination,
+            force=force,
+            max_time_seconds=max_time_seconds,
+        )
     )
     row: dict[str, object] = {
         "id": target["id"],
@@ -169,6 +182,12 @@ def main() -> None:
     parser.add_argument("--force", action="store_true", help="Replace existing local payloads.")
     parser.add_argument("--dry-run", action="store_true", help="Write a planned manifest only.")
     parser.add_argument("--workers", type=int, default=4, help="Concurrent downloads (default: 4).")
+    parser.add_argument(
+        "--max-time-seconds",
+        type=int,
+        default=45,
+        help="Bound each transfer duration in seconds (default: 45).",
+    )
     parser.add_argument(
         "--retry-failed",
         action="store_true",
@@ -220,6 +239,7 @@ def main() -> None:
                 raw_dir=args.raw_dir,
                 force=args.force,
                 dry_run=args.dry_run,
+                max_time_seconds=max(1, args.max_time_seconds),
             ): target
             for target in targets
         }

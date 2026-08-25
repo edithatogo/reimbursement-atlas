@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-08-26T01:00:00Z",
+  "description": "Expand Bronze acquisition and immutable evidence coverage from real checksum-bound receipts.",
+  "evidence_schema": "1.0",
+  "gates": [],
+  "status": "in_progress",
+  "track_id": "bronze_acquisition_coverage_20260826",
+  "type": "feature",
+  "updated_at": "2026-08-26T01:00:00Z"
+}

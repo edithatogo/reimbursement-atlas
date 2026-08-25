@@ -87,6 +87,22 @@ def _approved_checksums(root: Path) -> set[tuple[str, str]]:
     }
 
 
+def _reviewed_snapshot_rows(root: Path) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    bundle_root = root / "data/derived/reviewed_source_bundles"
+    for path in sorted(bundle_root.glob("*/source_snapshots.jsonl")):
+        rows.extend(_read_jsonl(path))
+    return rows
+
+
+def _historical_acquisition_rows(root: Path) -> tuple[list[dict[str, Any]], str]:
+    output = root / "data/derived/historical_sources"
+    rows = _read_jsonl(output / "historical_source_downloads.jsonl")
+    summary_path = output / "historical_source_downloads_summary.json"
+    summary = _read_json(summary_path) if summary_path.is_file() else {}
+    return rows, str(summary.get("generated_at", GENERATED_AT))
+
+
 def _build_bronze_source_index(
     sources: list[dict[str, Any]],
     files: list[dict[str, Any]],
@@ -124,7 +140,7 @@ def _build_bronze_source_index(
     return records
 
 
-def build_bronze_projections(
+def build_bronze_projections(  # ruff: ignore[too-many-locals] - coordinates three typed receipt lanes
     root: Path,
 ) -> tuple[
     list[BronzeSourceIndexRecord],
@@ -143,6 +159,40 @@ def build_bronze_projections(
     b0 = _build_bronze_source_index(sources, files, validations)
     b1: list[BronzeAcquisitionReceipt] = []
     b2: list[BronzeEvidenceRecord] = []
+    b2_checksums: set[str] = set()
+
+    def append_evidence(
+        *,
+        acquisition_id: str,
+        source_id: str,
+        source_version_id: str,
+        source_url: str,
+        checksum: str,
+        byte_size: int,
+        rights: RightsState,
+        verified_at: str,
+        notes: str,
+    ) -> None:
+        if checksum in b2_checksums:
+            return
+        b2_checksums.add(checksum)
+        b2.append(
+            BronzeEvidenceRecord(
+                evidence_id=f"evidence:sha256:{checksum}",
+                acquisition_id=acquisition_id,
+                source_id=source_id,
+                source_version_id=source_version_id,
+                evidence_kind="rights_constrained_reference",
+                payload_sha256=checksum,
+                byte_size=byte_size,
+                immutable_locator=f"sha256:{checksum}",
+                source_locator=HttpUrl(source_url),
+                rights_state=rights,
+                fixity_verified_at=verified_at,
+                notes=notes,
+            )
+        )
+
     for source_file in sorted(files, key=lambda row: str(row["id"])):
         validation = validations.get(str(source_file["id"]))
         checksum = str(validation.get("checksum_sha256")) if validation else None
@@ -174,22 +224,148 @@ def build_bronze_projections(
         b1.append(receipt)
         if valid_checksum:
             assert validation is not None
-            b2.append(
-                BronzeEvidenceRecord(
-                    evidence_id=f"evidence:sha256:{valid_checksum}",
-                    acquisition_id=acquisition_id,
-                    source_id=str(source_file["source_id"]),
-                    source_version_id=str(source_file["source_version_id"]),
-                    evidence_kind="rights_constrained_reference",
-                    payload_sha256=valid_checksum,
-                    byte_size=int(validation.get("byte_size", 0)),
-                    immutable_locator=f"sha256:{valid_checksum}",
-                    source_locator=HttpUrl(str(source_file["source_url"])),
-                    rights_state=rights,
-                    fixity_verified_at=GENERATED_AT,
-                    notes="B2 reference preserves identity without publishing local raw bytes.",
-                )
+            append_evidence(
+                acquisition_id=acquisition_id,
+                source_id=str(source_file["source_id"]),
+                source_version_id=str(source_file["source_version_id"]),
+                source_url=str(source_file["source_url"]),
+                checksum=valid_checksum,
+                byte_size=int(validation.get("byte_size", 0)),
+                rights=rights,
+                verified_at=GENERATED_AT,
+                notes="B2 reference preserves identity without publishing local raw bytes.",
             )
+
+    for snapshot in sorted(_reviewed_snapshot_rows(root), key=lambda row: str(row["id"])):
+        checksum = str(snapshot.get("checksum_sha256", ""))
+        valid_checksum = checksum if len(checksum) == 64 else None
+        event_source = {
+            key: snapshot.get(key)
+            for key in (
+                "id",
+                "source_id",
+                "source_version_id",
+                "source_url",
+                "retrieved_at",
+                "checksum_sha256",
+                "byte_size",
+                "content_type",
+                "licence_gate",
+            )
+        }
+        event_digest = _row_sha256(event_source)
+        acquisition_id = f"sha256:{valid_checksum or event_digest}"
+        rights = _rights_state(snapshot.get("licence_gate"))
+        b1.append(
+            BronzeAcquisitionReceipt(
+                event_id=f"event:{event_digest}",
+                acquisition_id=acquisition_id,
+                source_id=str(snapshot["source_id"]),
+                source_version_id=str(snapshot["source_version_id"]),
+                source_locator=HttpUrl(str(snapshot["source_url"])),
+                retrieved_at=str(snapshot.get("retrieved_at", GENERATED_AT)),
+                payload_sha256=valid_checksum,
+                byte_size=int(snapshot["byte_size"]) if valid_checksum else None,
+                media_type=str(snapshot.get("content_type", "application/octet-stream")),
+                outcome="acquired" if valid_checksum else "failed",
+                rights_state=rights,
+                admission_state="admitted" if valid_checksum else "rejected",
+                evidence_disposition=("rights_constrained_reference" if valid_checksum else "none"),
+                notes=(
+                    "B1 event projected from a reviewed source-bundle snapshot; local raw "
+                    "path omitted."
+                ),
+            )
+        )
+        if valid_checksum:
+            append_evidence(
+                acquisition_id=acquisition_id,
+                source_id=str(snapshot["source_id"]),
+                source_version_id=str(snapshot["source_version_id"]),
+                source_url=str(snapshot["source_url"]),
+                checksum=valid_checksum,
+                byte_size=int(snapshot["byte_size"]),
+                rights=rights,
+                verified_at=str(snapshot.get("retrieved_at", GENERATED_AT)),
+                notes=(
+                    "B2 reviewed-snapshot reference preserves fixity and rights state "
+                    "without redistributing source bytes."
+                ),
+            )
+
+    historical_rows, historical_verified_at = _historical_acquisition_rows(root)
+    for historical in sorted(historical_rows, key=lambda row: str(row["id"])):
+        checksum = str(historical.get("checksum_sha256") or "")
+        acquired = historical.get("status") in {"downloaded", "cached"} and len(checksum) == 64
+        valid_checksum = checksum if acquired else None
+        event_source = {
+            key: historical.get(key)
+            for key in (
+                "id",
+                "source_id",
+                "source_version_id",
+                "source_url",
+                "status",
+                "checksum_sha256",
+                "byte_size",
+                "file_kind",
+                "licence_gate",
+                "review_status",
+            )
+        }
+        event_digest = _row_sha256(event_source)
+        acquisition_id = f"sha256:{valid_checksum or event_digest}"
+        rights = _rights_state(historical.get("licence_gate"))
+        b1.append(
+            BronzeAcquisitionReceipt(
+                event_id=f"event:{event_digest}",
+                acquisition_id=acquisition_id,
+                source_id=str(historical["source_id"]),
+                source_version_id=str(historical["source_version_id"]),
+                source_locator=HttpUrl(str(historical["source_url"])),
+                retrieved_at=historical_verified_at,
+                payload_sha256=valid_checksum,
+                byte_size=int(historical["byte_size"]) if valid_checksum else None,
+                media_type=str(historical.get("file_kind", "application/octet-stream")),
+                outcome="acquired" if valid_checksum else "failed",
+                rights_state=rights,
+                admission_state="admitted" if valid_checksum else "rejected",
+                evidence_disposition=("rights_constrained_reference" if valid_checksum else "none"),
+                notes=(
+                    "B1 historical acquisition receipt; ignored cache path and transfer "
+                    "diagnostics omitted."
+                ),
+            )
+        )
+        if valid_checksum:
+            append_evidence(
+                acquisition_id=acquisition_id,
+                source_id=str(historical["source_id"]),
+                source_version_id=str(historical["source_version_id"]),
+                source_url=str(historical["source_url"]),
+                checksum=valid_checksum,
+                byte_size=int(historical["byte_size"]),
+                rights=rights,
+                verified_at=historical_verified_at,
+                notes=(
+                    "B2 historical checksum reference records current-run fixity; source "
+                    "bytes remain ignored and local."
+                ),
+            )
+
+    acquired_sources = {row.source_id for row in b1 if row.outcome == "acquired"}
+    b0 = [
+        row.model_copy(
+            update={
+                "acquisition_status": "acquired"
+                if row.source_id in acquired_sources
+                else row.acquisition_status
+            }
+        )
+        for row in b0
+    ]
+    b1.sort(key=lambda row: row.event_id)
+    b2.sort(key=lambda row: row.evidence_id)
     return b0, b1, b2
 
 
@@ -463,7 +639,7 @@ def materialise_medallion_projection(root: Path | None = None) -> MedallionProje
     # evaluate the medallion gate from current-run evidence rather than stale files.
     platinum = build_platinum_artifacts(repo, gold, evidence_release_ready=False)
     provisional = MedallionProjectionSummary(
-        schema_version="medallion-projection-v2",
+        schema_version="medallion-projection-v3",
         bronze_b0_count=len(b0),
         bronze_b1_count=len(b1),
         bronze_b2_count=len(b2),
@@ -498,7 +674,7 @@ def materialise_medallion_projection(root: Path | None = None) -> MedallionProje
     for name, records in collections.items():
         _write_rows(output / name, [record.model_dump(mode="json") for record in records])
     summary = MedallionProjectionSummary(
-        schema_version="medallion-projection-v2",
+        schema_version="medallion-projection-v3",
         bronze_b0_count=len(b0),
         bronze_b1_count=len(b1),
         bronze_b2_count=len(b2),
