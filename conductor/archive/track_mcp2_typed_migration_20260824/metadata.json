@@ -5,14 +5,14 @@
   "github_issues": [731],
   "gates": [
     {
-      "evidence": "MCP 2.0 removes mcp.server.fastmcp and currently produces 16 BasedPyright errors.",
+      "evidence": "MCP Python SDK 2.1.1 provides the supported typed mcp.server.MCPServer replacement; strict BasedPyright and behavior tests pass.",
       "id": "mcp2_public_api_and_typing",
       "kind": "upstream_compatibility",
       "status": "passed"
     }
   ],
-  "status": "in_progress",
+  "status": "completed",
   "track_id": "track_mcp2_typed_migration_20260824",
   "type": "refactor",
-  "updated_at": "2026-08-26T00:00:00Z"
+  "updated_at": "2026-08-25T17:32:55Z"
 }

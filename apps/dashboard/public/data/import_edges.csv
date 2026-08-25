@@ -152,9 +152,9 @@ True,from,44,Layer dependency respects inward/downward architecture.,parsing,rei
 True,from,45,Layer dependency respects inward/downward architecture.,parsing,reimburse_atlas.local_sources,parsing,reimburse_atlas.parsers.rxnorm_rrf
 True,from,46,Layer dependency respects inward/downward architecture.,parsing,reimburse_atlas.local_sources,foundation,reimburse_atlas.registry
 True,from,47,Layer dependency respects inward/downward architecture.,parsing,reimburse_atlas.local_sources,parsing,reimburse_atlas.snapshots
-True,from,12,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.mcp_server,analysis,reimburse_atlas.analysis
-True,from,13,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.mcp_server,orchestration,reimburse_atlas.ingest
-True,from,14,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.mcp_server,foundation,reimburse_atlas.registry
+True,from,15,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.mcp_server,analysis,reimburse_atlas.analysis
+True,from,16,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.mcp_server,orchestration,reimburse_atlas.ingest
+True,from,17,Layer dependency respects inward/downward architecture.,interface,reimburse_atlas.mcp_server,foundation,reimburse_atlas.registry
 True,from,9,Layer dependency respects inward/downward architecture.,foundation,reimburse_atlas.medallion,foundation,reimburse_atlas.models
 True,from,14,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.medallion_projection,foundation,reimburse_atlas.medallion
 True,from,23,Layer dependency respects inward/downward architecture.,orchestration,reimburse_atlas.medallion_projection,foundation,reimburse_atlas.registry
