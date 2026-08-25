@@ -17,6 +17,7 @@ from reimburse_atlas.medallion import (
     BronzeSourceIndexRecord,
     MedallionArtifactRecord,
     MedallionPromotionDecision,
+    PlatinumReleaseContract,
     RightsState,
 )
 from reimburse_atlas.registry import project_root
@@ -413,41 +414,157 @@ def build_silver_artifacts(root: Path) -> list[MedallionArtifactRecord]:
                 ),
             )
         )
+    registry_path = root / "data/seed/source_registry.jsonl"
+    if registry_path.is_file():
+        registry_digest = _sha256(registry_path)
+        records.append(
+            MedallionArtifactRecord(
+                artifact_id="silver:source-registry",
+                layer="silver",
+                relative_path=registry_path.relative_to(root).as_posix(),
+                sha256=registry_digest,
+                contract_id="silver-source-registry-v1",
+                input_artifact_ids=("source_registry",),
+                input_sha256=(registry_digest,),
+                generated_at=GENERATED_AT,
+                rights_state="permissive",
+                promotion_status="approved_within_scope",
+                notes=(
+                    "Source-faithful typed registry metadata; approval does not establish "
+                    "acquisition, coverage or source quality."
+                ),
+            )
+        )
     return records
 
 
 def build_gold_artifacts(
     root: Path, silver: list[MedallionArtifactRecord]
 ) -> list[MedallionArtifactRecord]:
-    """Build the Gold candidate from the sealed mapping evaluation."""
+    """Build bounded Gold analytical artifacts from approved Silver inputs."""
     path = root / "data/derived/mapping_study/expansion_v9/evaluation_summary.json"
-    if not path.is_file() or not silver:
-        return []
-    evaluation = _read_json(path)
-    digest = _sha256(path)
-    accepted = evaluation.get("status") == "accepted" and evaluation.get("evaluated_once") is True
-    silver_approved = all(row.promotion_status == "approved_within_scope" for row in silver)
-    relative = path.relative_to(root).as_posix()
-    return [
-        MedallionArtifactRecord(
-            artifact_id="gold:mapping-study-expansion-v9",
-            layer="gold",
-            relative_path=relative,
-            sha256=digest,
-            contract_id="gold-adjudicated-mapping-v1",
-            input_artifact_ids=tuple(row.artifact_id for row in silver),
-            input_sha256=tuple(row.sha256 for row in silver),
-            generated_at=GENERATED_AT,
-            rights_state="permissive" if silver_approved else "public_reuse_review",
-            promotion_status="approved_within_scope"
-            if accepted and silver_approved
-            else "candidate",
-            notes=(
-                "Sealed one-time holdout evidence; scope does not imply causal or "
-                "price equivalence."
-            ),
+    records: list[MedallionArtifactRecord] = []
+    mapping_inputs = [row for row in silver if row.contract_id == "silver-source-faithful-v1"]
+    if path.is_file() and mapping_inputs:
+        evaluation = _read_json(path)
+        digest = _sha256(path)
+        accepted = (
+            evaluation.get("status") == "accepted" and evaluation.get("evaluated_once") is True
         )
-    ]
+        silver_approved = all(
+            row.promotion_status == "approved_within_scope" for row in mapping_inputs
+        )
+        records.append(
+            MedallionArtifactRecord(
+                artifact_id="gold:mapping-study-expansion-v9",
+                layer="gold",
+                relative_path=path.relative_to(root).as_posix(),
+                sha256=digest,
+                contract_id="gold-adjudicated-mapping-v1",
+                input_artifact_ids=tuple(row.artifact_id for row in mapping_inputs),
+                input_sha256=tuple(row.sha256 for row in mapping_inputs),
+                generated_at=GENERATED_AT,
+                rights_state="permissive" if silver_approved else "public_reuse_review",
+                promotion_status=(
+                    "approved_within_scope" if accepted and silver_approved else "candidate"
+                ),
+                notes=(
+                    "Sealed one-time holdout evidence; scope does not imply causal or "
+                    "price equivalence."
+                ),
+            )
+        )
+
+    registry = next((row for row in silver if row.artifact_id == "silver:source-registry"), None)
+    claim_path = root / "data/derived/research_claims/rq_source_transparency.json"
+    review_path = root / "data/research_claims/source_transparency_review.json"
+    if registry is not None and claim_path.is_file() and review_path.is_file():
+        claim_digest = _sha256(claim_path)
+        claim = _read_json(claim_path)
+        review = _read_json(review_path)
+        current_review = (
+            review.get("status") == "approved_within_scope"
+            and review.get("claim_package_sha256") == claim_digest
+            and review.get("claim_package_path") == claim_path.relative_to(root).as_posix()
+            and review.get("reviewed_derived_inputs") is True
+            and review.get("analysis_validated") is True
+            and claim.get("descriptive_results", {}).get("input_sha256") == registry.sha256
+        )
+        records.append(
+            MedallionArtifactRecord(
+                artifact_id="gold:source-transparency-claim-package",
+                layer="gold",
+                relative_path=claim_path.relative_to(root).as_posix(),
+                sha256=claim_digest,
+                contract_id="gold-source-transparency-metadata-v1",
+                input_artifact_ids=(registry.artifact_id,),
+                input_sha256=(registry.sha256,),
+                generated_at=GENERATED_AT,
+                rights_state="permissive",
+                promotion_status=("approved_within_scope" if current_review else "candidate"),
+                notes=(
+                    "Accountably reviewed metadata observations only; no quality ranking, "
+                    "causal, price-equivalence or coverage claim."
+                ),
+            )
+        )
+    return records
+
+
+def _load_platinum_contract(root: Path) -> PlatinumReleaseContract | None:
+    path = root / "data/product_release/contracts/source_transparency_dashboard.json"
+    if not path.is_file():
+        return None
+    return PlatinumReleaseContract.model_validate(_read_json(path))
+
+
+def _path_matches(root: Path, relative_path: str, expected_sha256: str) -> bool:
+    path = root / relative_path
+    return path.is_file() and _sha256(path) == expected_sha256
+
+
+def _public_data_policy_passed(root: Path) -> bool:
+    return any(
+        row.get("id") == "public_data_policy"
+        and row.get("status") == "passed"
+        and row.get("return_code") == 0
+        for row in _read_jsonl(root / "data/derived/local_quality_gates/local_quality_gates.jsonl")
+    )
+
+
+def _bounded_platinum_gates(
+    root: Path,
+    gold: list[MedallionArtifactRecord],
+    *,
+    repository_release_ready: bool,
+) -> tuple[PlatinumReleaseContract | None, tuple[str, ...]]:
+    contract = _load_platinum_contract(root)
+    if contract is None:
+        return None, ()
+    gold_input = next((row for row in gold if row.artifact_id == contract.gold_artifact_id), None)
+    passed: list[str] = []
+    if gold_input is not None and gold_input.promotion_status == "approved_within_scope":
+        passed.append("gold_input_approved")
+    if repository_release_ready:
+        passed.append("repository_release_ready")
+    if _public_data_policy_passed(root):
+        passed.append("public_data_policy_passed")
+    if contract.rights_state == "permissive":
+        passed.append("product_rights_approved")
+    review_current = all((
+        _path_matches(root, contract.product_path, contract.product_sha256),
+        _path_matches(root, contract.source_registry_path, contract.source_registry_sha256),
+        _path_matches(root, contract.claim_package_path, contract.claim_package_sha256),
+        _path_matches(root, contract.claim_review_path, contract.claim_review_sha256),
+    ))
+    if review_current:
+        review = _read_json(root / contract.claim_review_path)
+        if (
+            review.get("status") == "approved_within_scope"
+            and review.get("claim_package_sha256") == contract.claim_package_sha256
+        ):
+            passed.append("scoped_claim_review_current")
+    return contract, tuple(passed)
 
 
 def build_platinum_artifacts(
@@ -455,14 +572,18 @@ def build_platinum_artifacts(
     gold: list[MedallionArtifactRecord],
     *,
     evidence_release_ready: bool,
+    repository_release_ready: bool = False,
 ) -> list[MedallionArtifactRecord]:
-    """Inventory product surfaces as Platinum candidates without publication."""
+    """Build Platinum products while keeping bounded and global gates distinct."""
     if not gold:
         return []
     product_paths = (
         Path("pyproject.toml"),
-        Path("apps/dashboard/package-lock.json"),
+        Path("apps/dashboard/src/pages/sources/index.astro"),
         Path(".zenodo.json"),
+    )
+    contract, bounded_passed = _bounded_platinum_gates(
+        root, gold, repository_release_ready=repository_release_ready
     )
     records: list[MedallionArtifactRecord] = []
     for relative_path in product_paths:
@@ -471,21 +592,42 @@ def build_platinum_artifacts(
             continue
         relative = relative_path.as_posix()
         digest = _sha256(path)
+        bounded = contract is not None and relative == contract.product_path
+        bounded_approved = (
+            bounded
+            and contract is not None
+            and set(contract.required_gate_ids) <= set(bounded_passed)
+        )
+        product_gold = (
+            [row for row in gold if row.artifact_id == contract.gold_artifact_id]
+            if bounded and contract is not None
+            else gold
+        )
         records.append(
             MedallionArtifactRecord(
                 artifact_id=f"platinum:{relative.replace('/', ':')}",
                 layer="platinum",
                 relative_path=relative,
                 sha256=digest,
-                contract_id="platinum-public-product-v1",
-                input_artifact_ids=tuple(row.artifact_id for row in gold),
-                input_sha256=tuple(row.sha256 for row in gold),
+                contract_id=(
+                    contract.contract_id if bounded and contract else "platinum-public-product-v1"
+                ),
+                input_artifact_ids=tuple(row.artifact_id for row in product_gold),
+                input_sha256=tuple(row.sha256 for row in product_gold),
                 generated_at=GENERATED_AT,
                 rights_state="permissive",
-                promotion_status=("candidate" if evidence_release_ready else "blocked"),
+                promotion_status=(
+                    "approved_within_scope"
+                    if bounded_approved
+                    else ("candidate" if evidence_release_ready else "blocked")
+                ),
                 notes=(
-                    "Product projection only; destination state is not source truth or "
-                    "publication authority."
+                    contract.approval_scope
+                    if bounded and contract
+                    else (
+                        "Product projection only; destination state is not source truth "
+                        "or publication authority."
+                    )
                 ),
             )
         )
@@ -493,6 +635,7 @@ def build_platinum_artifacts(
 
 
 def build_promotion_decisions(
+    root: Path,
     b0: list[BronzeSourceIndexRecord],
     b1: list[BronzeAcquisitionReceipt],
     b2: list[BronzeEvidenceRecord],
@@ -501,6 +644,7 @@ def build_promotion_decisions(
     platinum: list[MedallionArtifactRecord],
     *,
     evidence_release_ready: bool,
+    repository_release_ready: bool,
 ) -> list[MedallionPromotionDecision]:
     """Build explicit transition decisions from observed gate evidence."""
     decisions: list[MedallionPromotionDecision] = []
@@ -544,41 +688,62 @@ def build_promotion_decisions(
                 scope_notes="Approval records identity only and does not authorize redistribution.",
             )
         )
-    silver_passed = all(row.promotion_status == "approved_within_scope" for row in silver)
-    if gold:
+    silver_by_id = {row.artifact_id: row for row in silver}
+    for gold_artifact in gold:
+        gold_inputs = [silver_by_id[item] for item in gold_artifact.input_artifact_ids]
+        silver_passed = all(row.promotion_status == "approved_within_scope" for row in gold_inputs)
+        source_transparency = gold_artifact.contract_id == "gold-source-transparency-metadata-v1"
+        required_gates = (
+            ("source_registry_silver_approved", "scoped_claim_review_current")
+            if source_transparency
+            else ("silver_inputs_approved", "mapping_evaluation_sealed")
+        )
+        passed_gold_gates = (
+            required_gates
+            if (silver_passed and gold_artifact.promotion_status == "approved_within_scope")
+            else required_gates[:1]
+        )
         decisions.append(
             MedallionPromotionDecision(
-                decision_id="promotion:silver-gold:expansion-v9",
-                subject_id=gold[0].artifact_id,
+                decision_id=f"promotion:silver-gold:{hashlib.sha256(gold_artifact.artifact_id.encode()).hexdigest()[:16]}",
+                subject_id=gold_artifact.artifact_id,
                 from_layer="silver",
                 to_layer="gold",
-                input_sha256=tuple(row.sha256 for row in silver),
-                required_gate_ids=("silver_inputs_approved", "mapping_evaluation_sealed"),
-                passed_gate_ids=(
-                    ("silver_inputs_approved", "mapping_evaluation_sealed")
-                    if silver_passed and gold[0].promotion_status == "approved_within_scope"
-                    else ("mapping_evaluation_sealed",)
-                ),
+                input_sha256=tuple(row.sha256 for row in gold_inputs),
+                required_gate_ids=required_gates,
+                passed_gate_ids=passed_gold_gates,
                 status=(
                     "approved"
-                    if silver_passed and gold[0].promotion_status == "approved_within_scope"
+                    if silver_passed and gold_artifact.promotion_status == "approved_within_scope"
                     else "blocked"
                 ),
                 decided_at=GENERATED_AT,
                 reason_codes=(
-                    "sealed_mapping_evidence"
-                    if silver_passed and gold[0].promotion_status == "approved_within_scope"
+                    "scoped_source_transparency_evidence"
+                    if source_transparency
+                    and silver_passed
+                    and gold_artifact.promotion_status == "approved_within_scope"
+                    else "sealed_mapping_evidence"
+                    if silver_passed and gold_artifact.promotion_status == "approved_within_scope"
                     else "silver_or_licence_gate_pending",
                 ),
-                scope_notes="Gold scope is bounded to the sealed study and its documented metrics.",
+                scope_notes=(
+                    "Gold scope is bounded to reviewed source-registry metadata observations."
+                    if source_transparency
+                    else "Gold scope is bounded to the sealed study and its documented metrics."
+                ),
             )
         )
     for product in platinum:
-        passed = False
-        passed_gates = ["gold_input_present"]
-        if evidence_release_ready:
+        contract, bounded_passed = _bounded_platinum_gates(
+            root, gold, repository_release_ready=repository_release_ready
+        )
+        bounded = contract is not None and product.contract_id == contract.contract_id
+        passed = bounded and product.promotion_status == "approved_within_scope"
+        passed_gates = list(bounded_passed) if bounded else ["gold_input_present"]
+        if not bounded and evidence_release_ready:
             passed_gates.append("evidence_release_ready")
-        if product.rights_state == "permissive":
+        if not bounded and product.rights_state == "permissive":
             passed_gates.append("product_rights_approved")
         decisions.append(
             MedallionPromotionDecision(
@@ -586,21 +751,34 @@ def build_promotion_decisions(
                 subject_id=product.artifact_id,
                 from_layer="gold",
                 to_layer="platinum",
-                input_sha256=tuple(row.sha256 for row in gold),
+                input_sha256=product.input_sha256,
                 required_gate_ids=(
-                    "gold_input_present",
-                    "evidence_release_ready",
-                    "product_rights_approved",
+                    contract.required_gate_ids
+                    if bounded and contract is not None
+                    else (
+                        "gold_input_present",
+                        "evidence_release_ready",
+                        "product_rights_approved",
+                    )
                 ),
                 passed_gate_ids=tuple(passed_gates),
                 status="approved" if passed else "blocked",
                 decided_at=GENERATED_AT,
                 reason_codes=(
-                    "external_product_release_gate_separate"
+                    "bounded_source_transparency_release_contract_satisfied"
+                    if passed
+                    else "external_product_release_gate_separate"
                     if product.promotion_status == "candidate"
                     else "platinum_upstream_gates_pending",
                 ),
-                scope_notes="External mutation and publication authority remain separate.",
+                scope_notes=(
+                    (
+                        f"{contract.approval_scope} Prohibited: "
+                        f"{', '.join(contract.prohibited_claims)}."
+                    )
+                    if bounded and contract is not None
+                    else "External mutation and publication authority remain separate."
+                ),
             )
         )
     return decisions
@@ -637,7 +815,9 @@ def materialise_medallion_projection(root: Path | None = None) -> MedallionProje
 
     # Materialise a fail-closed projection first so the canonical release model can
     # evaluate the medallion gate from current-run evidence rather than stale files.
-    platinum = build_platinum_artifacts(repo, gold, evidence_release_ready=False)
+    platinum = build_platinum_artifacts(
+        repo, gold, evidence_release_ready=False, repository_release_ready=False
+    )
     provisional = MedallionProjectionSummary(
         schema_version="medallion-projection-v3",
         bronze_b0_count=len(b0),
@@ -659,10 +839,24 @@ def materialise_medallion_projection(root: Path | None = None) -> MedallionProje
     (output / "summary.json").write_text(
         json.dumps(asdict(provisional), indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
-    evidence_ready = build_release_readiness_report(repo).summary.evidence_release_ready
-    platinum = build_platinum_artifacts(repo, gold, evidence_release_ready=evidence_ready)
+    release_summary = build_release_readiness_report(repo).summary
+    evidence_ready = release_summary.evidence_release_ready
+    platinum = build_platinum_artifacts(
+        repo,
+        gold,
+        evidence_release_ready=evidence_ready,
+        repository_release_ready=release_summary.repository_release_ready,
+    )
     decisions = build_promotion_decisions(
-        b0, b1, b2, silver, gold, platinum, evidence_release_ready=evidence_ready
+        repo,
+        b0,
+        b1,
+        b2,
+        silver,
+        gold,
+        platinum,
+        evidence_release_ready=evidence_ready,
+        repository_release_ready=release_summary.repository_release_ready,
     )
     collections = {
         "bronze_source_index": b0,

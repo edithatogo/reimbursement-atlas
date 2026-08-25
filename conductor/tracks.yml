@@ -223,3 +223,12 @@ tracks:
     spec: "conductor/archive/bronze_acquisition_coverage_20260826/spec.md"
     plan: "conductor/archive/bronze_acquisition_coverage_20260826/plan.md"
     issues: [738]
+  - id: bounded_platinum_source_transparency_20260826
+    title: "Bounded source-transparency Platinum promotion"
+    priority: must
+    phase: implementation
+    workstream: product
+    goal: "Promote one low-risk metadata-only dashboard through explicit checksum-bound Gold-to-Platinum gates without changing global evidence readiness."
+    spec: "conductor/archive/bounded_platinum_source_transparency_20260826/spec.md"
+    plan: "conductor/archive/bounded_platinum_source_transparency_20260826/plan.md"
+    issues: [740]

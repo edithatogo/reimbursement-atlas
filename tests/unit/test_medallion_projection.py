@@ -9,6 +9,10 @@ from pathlib import Path
 
 from reimburse_atlas.medallion_projection import (
     build_bronze_projections,
+    build_gold_artifacts,
+    build_platinum_artifacts,
+    build_promotion_decisions,
+    build_silver_artifacts,
     materialise_medallion_projection,
 )
 from reimburse_atlas.release_readiness import build_release_readiness_report
@@ -69,7 +73,7 @@ def _fixture_root(tmp_path: Path) -> Path:
     _write_jsonl(tmp_path / "data/licence_review/decisions.jsonl", [])
     products = (
         tmp_path / "pyproject.toml",
-        tmp_path / "apps/dashboard/package-lock.json",
+        tmp_path / "apps/dashboard/src/pages/sources/index.astro",
         tmp_path / ".zenodo.json",
     )
     for product in products:
@@ -118,6 +122,110 @@ def test_projection_uses_canonical_release_readiness(tmp_path: Path) -> None:
 
     assert medallion.evidence_release_ready is False
     assert medallion.evidence_release_ready == release.summary.evidence_release_ready
+
+
+def test_source_transparency_has_one_bounded_platinum_promotion(  # ruff: ignore[too-many-locals]
+    tmp_path: Path,
+) -> None:
+    """A current scoped contract promotes one product without global readiness."""
+    root = _fixture_root(tmp_path)
+    registry = root / "data/seed/source_registry.jsonl"
+    registry_sha = hashlib.sha256(registry.read_bytes()).hexdigest()
+    claim = root / "data/derived/research_claims/rq_source_transparency.json"
+    claim.parent.mkdir(parents=True, exist_ok=True)
+    claim.write_text(
+        json.dumps({"descriptive_results": {"input_sha256": registry_sha}}) + "\n",
+        encoding="utf-8",
+    )
+    claim_sha = hashlib.sha256(claim.read_bytes()).hexdigest()
+    review = root / "data/research_claims/source_transparency_review.json"
+    review.parent.mkdir(parents=True, exist_ok=True)
+    review.write_text(
+        json.dumps({
+            "status": "approved_within_scope",
+            "claim_package_path": claim.relative_to(root).as_posix(),
+            "claim_package_sha256": claim_sha,
+            "reviewed_derived_inputs": True,
+            "analysis_validated": True,
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+    review_sha = hashlib.sha256(review.read_bytes()).hexdigest()
+    product = root / "apps/dashboard/src/pages/sources/index.astro"
+    product_sha = hashlib.sha256(product.read_bytes()).hexdigest()
+    contract = root / "data/product_release/contracts/source_transparency_dashboard.json"
+    contract.parent.mkdir(parents=True, exist_ok=True)
+    contract.write_text(
+        json.dumps({
+            "schema_version": "platinum-release-contract-v1",
+            "contract_id": "platinum-source-transparency-dashboard-v1",
+            "product_id": "source-transparency-dashboard",
+            "product_path": product.relative_to(root).as_posix(),
+            "product_sha256": product_sha,
+            "public_route": "/sources",
+            "gold_artifact_id": "gold:source-transparency-claim-package",
+            "source_registry_path": registry.relative_to(root).as_posix(),
+            "source_registry_sha256": registry_sha,
+            "claim_package_path": claim.relative_to(root).as_posix(),
+            "claim_package_sha256": claim_sha,
+            "claim_review_path": review.relative_to(root).as_posix(),
+            "claim_review_sha256": review_sha,
+            "approval_scope": "Metadata observations only.",
+            "required_gate_ids": [
+                "gold_input_approved",
+                "repository_release_ready",
+                "public_data_policy_passed",
+                "product_rights_approved",
+                "scoped_claim_review_current",
+            ],
+            "prohibited_claims": ["causal claims", "papers or preprints"],
+            "rights_state": "permissive",
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+    _write_jsonl(
+        root / "data/derived/local_quality_gates/local_quality_gates.jsonl",
+        [{"id": "public_data_policy", "status": "passed", "return_code": 0}],
+    )
+
+    b0, b1, b2 = build_bronze_projections(root)
+    silver = build_silver_artifacts(root)
+    gold = build_gold_artifacts(root, silver)
+    platinum = build_platinum_artifacts(
+        root,
+        gold,
+        evidence_release_ready=False,
+        repository_release_ready=True,
+    )
+    decisions = build_promotion_decisions(
+        root,
+        b0,
+        b1,
+        b2,
+        silver,
+        gold,
+        platinum,
+        evidence_release_ready=False,
+        repository_release_ready=True,
+    )
+
+    assert sum(row.promotion_status == "approved_within_scope" for row in platinum) == 1
+    approved = next(row for row in platinum if row.promotion_status == "approved_within_scope")
+    assert approved.relative_path == product.relative_to(root).as_posix()
+    promotion = next(row for row in decisions if row.subject_id == approved.artifact_id)
+    assert promotion.status == "approved"
+    assert promotion.required_gate_ids == promotion.passed_gate_ids
+
+    product.write_text("changed\n", encoding="utf-8")
+    stale = build_platinum_artifacts(
+        root,
+        gold,
+        evidence_release_ready=False,
+        repository_release_ready=True,
+    )
+    assert all(row.promotion_status != "approved_within_scope" for row in stale)
 
 
 def test_bronze_projection_admits_real_receipts_without_raw_paths(tmp_path: Path) -> None:

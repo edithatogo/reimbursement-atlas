@@ -1,15 +1,15 @@
 {
-  "blocked_promotion_count": 71,
+  "blocked_promotion_count": 70,
   "bronze_b0_count": 64,
   "bronze_b1_count": 371,
   "bronze_b2_count": 352,
   "evidence_release_ready": false,
-  "gold_approved_count": 1,
-  "gold_count": 1,
+  "gold_approved_count": 2,
+  "gold_count": 2,
   "medallion_contract_ready": true,
-  "platinum_approved_count": 0,
+  "platinum_approved_count": 1,
   "platinum_count": 3,
   "schema_version": "medallion-projection-v3",
-  "silver_approved_count": 16,
-  "silver_count": 16
+  "silver_approved_count": 17,
+  "silver_count": 17
 }

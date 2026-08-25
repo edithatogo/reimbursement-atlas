@@ -1,0 +1,33 @@
+{
+  "schema_version": "platinum-release-contract-v1",
+  "contract_id": "platinum-source-transparency-dashboard-v1",
+  "product_id": "source-transparency-dashboard",
+  "product_path": "apps/dashboard/src/pages/sources/index.astro",
+  "product_sha256": "8a9e9d6d8cdeac5a53fa0040eaeeaa62977742cb54fb219273f041958ce0da53",
+  "public_route": "/sources",
+  "gold_artifact_id": "gold:source-transparency-claim-package",
+  "source_registry_path": "data/seed/source_registry.jsonl",
+  "source_registry_sha256": "4ee107f5f451d2e7149f534c8a2ba5b7a6ce22ec32d54fd13048561512c63ab8",
+  "claim_package_path": "data/derived/research_claims/rq_source_transparency.json",
+  "claim_package_sha256": "bdcea6fa2b9c2ba84f9f15dd5a2a306a9ffef8c8ca5eeeea92242163099ed5a2",
+  "claim_review_path": "data/research_claims/source_transparency_review.json",
+  "claim_review_sha256": "cca0656ce37c2da4fcde1e45afead01e5bb08d947ba1eb4724b7a9e574ff7e0e",
+  "approval_scope": "Metadata observations only: registered-source counts and declared machine-readability, historical-version, utilisation-data, URL and licence-note fields.",
+  "required_gate_ids": [
+    "gold_input_approved",
+    "repository_release_ready",
+    "public_data_policy_passed",
+    "product_rights_approved",
+    "scoped_claim_review_current"
+  ],
+  "prohibited_claims": [
+    "health-system quality rankings",
+    "causal conclusions",
+    "cross-jurisdiction price equivalence",
+    "item-level coverage or universal reimbursement",
+    "universal accessibility conformance",
+    "DOI reservation or archive publication",
+    "papers or preprints"
+  ],
+  "rights_state": "permissive"
+}

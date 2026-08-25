@@ -54,6 +54,12 @@ Permitted transitions are:
 4. Silver to Gold after mapping, quality, evidence, and accountable review gates.
 5. Gold to Platinum after release, public-data, licence, evidence, and product gates.
 
+A bounded Platinum contract may satisfy the evidence gate with a current,
+checksum-bound Gold artifact and its scoped accountable review rather than the
+global evidence-release gate. Such a promotion must pin the product, Gold input,
+review, rights state, permitted scope, and prohibited claims; it must not change
+global evidence, policy, research-publication, DOI, or archive readiness.
+
 Global `evidence_release_ready` is derived only from the canonical release-readiness
 gate matrix. Layer projections must not infer it independently from a subset of
 evidence or research-question counts.

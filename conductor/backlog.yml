@@ -76,7 +76,7 @@ epics:
           - "Documentation explains why BPMN 2.0 is used instead of the obsolete BPML terminology."
   - id: HIST-002
     title: Historical source family catalog and public-only archival
-    phase: implementation
+    phase: implemented
     workstream: sources
     priority: must
     issues:
@@ -921,4 +921,21 @@ epics:
           - "B1 retains acquired and failed attempts without raw paths."
           - "B2 contains only deduplicated checksum-bound evidence identities."
           - "Rights-review state remains distinct from acquisition and fixity."
+          - "Automated and hosted gates pass."
+  - id: BOUNDED-PLATINUM-001
+    title: Bounded source-transparency Platinum promotion
+    phase: implementation
+    workstream: product
+    priority: must
+    track_id: bounded_platinum_source_transparency_20260826
+    issues:
+      - title: Promote source-transparency dashboard through bounded Gold-to-Platinum contract
+        labels: ["type:dashboard", "type:governance", "status:implemented"]
+        status: implemented
+        github_issue: 740
+        dependencies: ["Enforce Gold to Platinum public product promotion"]
+        acceptance:
+          - "Exactly one bounded Platinum product is approved within scope."
+          - "Every product input and review is checksum-bound."
+          - "Global evidence and publication readiness remain unchanged."
           - "Automated and hosted gates pass."
