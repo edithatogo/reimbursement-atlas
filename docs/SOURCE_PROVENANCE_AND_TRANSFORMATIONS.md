@@ -42,6 +42,25 @@ reproduction package must cite the repository commit, source-version identifiers
 parser/transform version and generated output checksum. The software is Apache-2.0; underlying
 source data retain their provider-specific terms.
 
+## Field-level lineage
+
+`pixi run field-lineage` generates the checksum-bound field transformation
+ledger in `data/derived/field_lineage/`. Each edge records the source dataset
+and field, stable transformation identifier, output dataset and field,
+content-addressed transformation-code version, input/output SHA-256 digests,
+and governing rights-decision identifier.
+
+The native JSONL ledger is authoritative. Deterministic projections are also
+provided as W3C PROV-O JSON-LD, RO-Crate 1.2 JSON-LD `CreateAction`
+relationships, and OpenLineage 2.0.2 events with a column-lineage dataset
+facet. These projections improve interoperability but do not supersede source
+payloads, acquisition receipts, rights decisions, or the native ledger.
+
+The first operational slice covers all 17 fields transformed from
+`data/seed/source_registry.jsonl` to its CSV mirror by
+`scripts/sync_seed_csvs.py`. Further transformations must add records before
+their outputs can claim field-level reproducibility.
+
 ### Local CPT enrichment reproduction
 
 Place the official CMS archive at

@@ -1,0 +1,333 @@
+{
+  "@context": [
+    "https://w3id.org/ro/crate/1.2/context",
+    {
+      "prov": "http://www.w3.org/ns/prov#"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "about": {
+        "@id": "./"
+      },
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.2"
+      }
+    },
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "hasPart": [
+        {
+          "@id": "#lineage-e48bac4d8e576dc0a8a1f33a4d643eb695b63f06c39aa67dc8c98ae64ee992f2"
+        },
+        {
+          "@id": "#lineage-9a5ff4957e9f005c314fe882b41d048a1a4111f1997d6db27e1aebcf14f8e76e"
+        },
+        {
+          "@id": "#lineage-53a4af44cf2ec61ffe413d03120f96ca7c3c7ff970354868aeab281a0f356aca"
+        },
+        {
+          "@id": "#lineage-4f9e60d30f8372c2f2debfb2719b7a63c6f86e1c7a462a11b5fcaf053fced48f"
+        },
+        {
+          "@id": "#lineage-f574ceae1f5b6840ea9938adcff256f28525e333a4a36aa5c5df6847290ed58b"
+        },
+        {
+          "@id": "#lineage-be0802fec5dd0f3d7f5777d9f694de5d352d8d741924d0e89b3493a2c55ba2f4"
+        },
+        {
+          "@id": "#lineage-2ddc231f6884074c873eedd5d6bb67b0ad5cacf5cba9303c8e9a6da0d546c5e4"
+        },
+        {
+          "@id": "#lineage-15d9fbbe6857d4ccb17f608a463bcf4cadc0bfafd1d3da0fd22baf986f09a9aa"
+        },
+        {
+          "@id": "#lineage-6c3ed4cdc9e399fd5dff06c4eaac4f8784e529d157275b29f989472c06f904b4"
+        },
+        {
+          "@id": "#lineage-3376432b5a84bc3440b03fb6596c80a3d87bf54889f48ef978a264051118f4d1"
+        },
+        {
+          "@id": "#lineage-500c35a58330a625c82d5a6b37e8d492410d8f467a90f94f5a71d8f6ee85cd0f"
+        },
+        {
+          "@id": "#lineage-467d1a494eedb3bd3e223be77ebdb27c91e30e407f0e154d29d701bfef0d38bf"
+        },
+        {
+          "@id": "#lineage-df440ed082d7036daa9420505c9df480288889bd98123b9769bec7f183e25fae"
+        },
+        {
+          "@id": "#lineage-92d00059f907ed9b045a83576ad86be1c4f6aa72daad1a90338ad23a102aa0b7"
+        },
+        {
+          "@id": "#lineage-36bc29aca9ace41a557e624823be858964271b339d454a3154e4d4713f795f4f"
+        },
+        {
+          "@id": "#lineage-c3bb9177b160b43ba195c39747df9172b480780ddfa85320fecfc619c30c9855"
+        },
+        {
+          "@id": "#lineage-30e0d2fd43a2da96452d9d5b43b1c272865f727772d0a650bc7c8d983c1c06d2"
+        }
+      ],
+      "name": "Reimbursement Atlas field lineage"
+    },
+    {
+      "@id": "#lineage-e48bac4d8e576dc0a8a1f33a4d643eb695b63f06c39aa67dc8c98ae64ee992f2",
+      "@type": "CreateAction",
+      "instrument": "sha256:618ab4cd1444c826e6aa07bee5eeb5c557829833997f6039072423758abd8405",
+      "name": "sync_seed_csvs:source_registry_jsonl_to_csv:v1",
+      "object": {
+        "@id": "data/seed/source_registry.jsonl#access_tier"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "data/seed/source_registry.jsonl#access_tier"
+      },
+      "result": {
+        "@id": "data/seed/source_registry.csv#access_tier"
+      }
+    },
+    {
+      "@id": "#lineage-9a5ff4957e9f005c314fe882b41d048a1a4111f1997d6db27e1aebcf14f8e76e",
+      "@type": "CreateAction",
+      "instrument": "sha256:618ab4cd1444c826e6aa07bee5eeb5c557829833997f6039072423758abd8405",
+      "name": "sync_seed_csvs:source_registry_jsonl_to_csv:v1",
+      "object": {
+        "@id": "data/seed/source_registry.jsonl#data_owner"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "data/seed/source_registry.jsonl#data_owner"
+      },
+      "result": {
+        "@id": "data/seed/source_registry.csv#data_owner"
+      }
+    },
+    {
+      "@id": "#lineage-53a4af44cf2ec61ffe413d03120f96ca7c3c7ff970354868aeab281a0f356aca",
+      "@type": "CreateAction",
+      "instrument": "sha256:618ab4cd1444c826e6aa07bee5eeb5c557829833997f6039072423758abd8405",
+      "name": "sync_seed_csvs:source_registry_jsonl_to_csv:v1",
+      "object": {
+        "@id": "data/seed/source_registry.jsonl#domain"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "data/seed/source_registry.jsonl#domain"
+      },
+      "result": {
+        "@id": "data/seed/source_registry.csv#domain"
+      }
+    },
+    {
+      "@id": "#lineage-4f9e60d30f8372c2f2debfb2719b7a63c6f86e1c7a462a11b5fcaf053fced48f",
+      "@type": "CreateAction",
+      "instrument": "sha256:618ab4cd1444c826e6aa07bee5eeb5c557829833997f6039072423758abd8405",
+      "name": "sync_seed_csvs:source_registry_jsonl_to_csv:v1",
+      "object": {
+        "@id": "data/seed/source_registry.jsonl#format"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "data/seed/source_registry.jsonl#format"
+      },
+      "result": {
+        "@id": "data/seed/source_registry.csv#format"
+      }
+    },
+    {
+      "@id": "#lineage-f574ceae1f5b6840ea9938adcff256f28525e333a4a36aa5c5df6847290ed58b",
+      "@type": "CreateAction",
+      "instrument": "sha256:618ab4cd1444c826e6aa07bee5eeb5c557829833997f6039072423758abd8405",
+      "name": "sync_seed_csvs:source_registry_jsonl_to_csv:v1",
+      "object": {
+        "@id": "data/seed/source_registry.jsonl#historical_versions"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "data/seed/source_registry.jsonl#historical_versions"
+      },
+      "result": {
+        "@id": "data/seed/source_registry.csv#historical_versions"
+      }
+    },
+    {
+      "@id": "#lineage-be0802fec5dd0f3d7f5777d9f694de5d352d8d741924d0e89b3493a2c55ba2f4",
+      "@type": "CreateAction",
+      "instrument": "sha256:618ab4cd1444c826e6aa07bee5eeb5c557829833997f6039072423758abd8405",
+      "name": "sync_seed_csvs:source_registry_jsonl_to_csv:v1",
+      "object": {
+        "@id": "data/seed/source_registry.jsonl#id"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "data/seed/source_registry.jsonl#id"
+      },
+      "result": {
+        "@id": "data/seed/source_registry.csv#id"
+      }
+    },
+    {
+      "@id": "#lineage-2ddc231f6884074c873eedd5d6bb67b0ad5cacf5cba9303c8e9a6da0d546c5e4",
+      "@type": "CreateAction",
+      "instrument": "sha256:618ab4cd1444c826e6aa07bee5eeb5c557829833997f6039072423758abd8405",
+      "name": "sync_seed_csvs:source_registry_jsonl_to_csv:v1",
+      "object": {
+        "@id": "data/seed/source_registry.jsonl#jurisdiction"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "data/seed/source_registry.jsonl#jurisdiction"
+      },
+      "result": {
+        "@id": "data/seed/source_registry.csv#jurisdiction"
+      }
+    },
+    {
+      "@id": "#lineage-15d9fbbe6857d4ccb17f608a463bcf4cadc0bfafd1d3da0fd22baf986f09a9aa",
+      "@type": "CreateAction",
+      "instrument": "sha256:618ab4cd1444c826e6aa07bee5eeb5c557829833997f6039072423758abd8405",
+      "name": "sync_seed_csvs:source_registry_jsonl_to_csv:v1",
+      "object": {
+        "@id": "data/seed/source_registry.jsonl#licence_notes"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "data/seed/source_registry.jsonl#licence_notes"
+      },
+      "result": {
+        "@id": "data/seed/source_registry.csv#licence_notes"
+      }
+    },
+    {
+      "@id": "#lineage-6c3ed4cdc9e399fd5dff06c4eaac4f8784e529d157275b29f989472c06f904b4",
+      "@type": "CreateAction",
+      "instrument": "sha256:618ab4cd1444c826e6aa07bee5eeb5c557829833997f6039072423758abd8405",
+      "name": "sync_seed_csvs:source_registry_jsonl_to_csv:v1",
+      "object": {
+        "@id": "data/seed/source_registry.jsonl#machine_readable"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "data/seed/source_registry.jsonl#machine_readable"
+      },
+      "result": {
+        "@id": "data/seed/source_registry.csv#machine_readable"
+      }
+    },
+    {
+      "@id": "#lineage-3376432b5a84bc3440b03fb6596c80a3d87bf54889f48ef978a264051118f4d1",
+      "@type": "CreateAction",
+      "instrument": "sha256:618ab4cd1444c826e6aa07bee5eeb5c557829833997f6039072423758abd8405",
+      "name": "sync_seed_csvs:source_registry_jsonl_to_csv:v1",
+      "object": {
+        "@id": "data/seed/source_registry.jsonl#notes"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "data/seed/source_registry.jsonl#notes"
+      },
+      "result": {
+        "@id": "data/seed/source_registry.csv#notes"
+      }
+    },
+    {
+      "@id": "#lineage-500c35a58330a625c82d5a6b37e8d492410d8f467a90f94f5a71d8f6ee85cd0f",
+      "@type": "CreateAction",
+      "instrument": "sha256:618ab4cd1444c826e6aa07bee5eeb5c557829833997f6039072423758abd8405",
+      "name": "sync_seed_csvs:source_registry_jsonl_to_csv:v1",
+      "object": {
+        "@id": "data/seed/source_registry.jsonl#primary_url"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "data/seed/source_registry.jsonl#primary_url"
+      },
+      "result": {
+        "@id": "data/seed/source_registry.csv#primary_url"
+      }
+    },
+    {
+      "@id": "#lineage-467d1a494eedb3bd3e223be77ebdb27c91e30e407f0e154d29d701bfef0d38bf",
+      "@type": "CreateAction",
+      "instrument": "sha256:618ab4cd1444c826e6aa07bee5eeb5c557829833997f6039072423758abd8405",
+      "name": "sync_seed_csvs:source_registry_jsonl_to_csv:v1",
+      "object": {
+        "@id": "data/seed/source_registry.jsonl#refresh_cadence"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "data/seed/source_registry.jsonl#refresh_cadence"
+      },
+      "result": {
+        "@id": "data/seed/source_registry.csv#refresh_cadence"
+      }
+    },
+    {
+      "@id": "#lineage-df440ed082d7036daa9420505c9df480288889bd98123b9769bec7f183e25fae",
+      "@type": "CreateAction",
+      "instrument": "sha256:618ab4cd1444c826e6aa07bee5eeb5c557829833997f6039072423758abd8405",
+      "name": "sync_seed_csvs:source_registry_jsonl_to_csv:v1",
+      "object": {
+        "@id": "data/seed/source_registry.jsonl#reliability"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "data/seed/source_registry.jsonl#reliability"
+      },
+      "result": {
+        "@id": "data/seed/source_registry.csv#reliability"
+      }
+    },
+    {
+      "@id": "#lineage-92d00059f907ed9b045a83576ad86be1c4f6aa72daad1a90338ad23a102aa0b7",
+      "@type": "CreateAction",
+      "instrument": "sha256:618ab4cd1444c826e6aa07bee5eeb5c557829833997f6039072423758abd8405",
+      "name": "sync_seed_csvs:source_registry_jsonl_to_csv:v1",
+      "object": {
+        "@id": "data/seed/source_registry.jsonl#schedule"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "data/seed/source_registry.jsonl#schedule"
+      },
+      "result": {
+        "@id": "data/seed/source_registry.csv#schedule"
+      }
+    },
+    {
+      "@id": "#lineage-36bc29aca9ace41a557e624823be858964271b339d454a3154e4d4713f795f4f",
+      "@type": "CreateAction",
+      "instrument": "sha256:618ab4cd1444c826e6aa07bee5eeb5c557829833997f6039072423758abd8405",
+      "name": "sync_seed_csvs:source_registry_jsonl_to_csv:v1",
+      "object": {
+        "@id": "data/seed/source_registry.jsonl#system"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "data/seed/source_registry.jsonl#system"
+      },
+      "result": {
+        "@id": "data/seed/source_registry.csv#system"
+      }
+    },
+    {
+      "@id": "#lineage-c3bb9177b160b43ba195c39747df9172b480780ddfa85320fecfc619c30c9855",
+      "@type": "CreateAction",
+      "instrument": "sha256:618ab4cd1444c826e6aa07bee5eeb5c557829833997f6039072423758abd8405",
+      "name": "sync_seed_csvs:source_registry_jsonl_to_csv:v1",
+      "object": {
+        "@id": "data/seed/source_registry.jsonl#tags"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "data/seed/source_registry.jsonl#tags"
+      },
+      "result": {
+        "@id": "data/seed/source_registry.csv#tags"
+      }
+    },
+    {
+      "@id": "#lineage-30e0d2fd43a2da96452d9d5b43b1c272865f727772d0a650bc7c8d983c1c06d2",
+      "@type": "CreateAction",
+      "instrument": "sha256:618ab4cd1444c826e6aa07bee5eeb5c557829833997f6039072423758abd8405",
+      "name": "sync_seed_csvs:source_registry_jsonl_to_csv:v1",
+      "object": {
+        "@id": "data/seed/source_registry.jsonl#utilisation_data"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "data/seed/source_registry.jsonl#utilisation_data"
+      },
+      "result": {
+        "@id": "data/seed/source_registry.csv#utilisation_data"
+      }
+    }
+  ]
+}

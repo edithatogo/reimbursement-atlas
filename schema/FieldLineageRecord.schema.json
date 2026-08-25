@@ -1,0 +1,70 @@
+{
+  "additionalProperties": false,
+  "description": "One source-field to output-field transformation edge.",
+  "properties": {
+    "record_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Record Id",
+      "type": "string"
+    },
+    "source_dataset": {
+      "minLength": 1,
+      "title": "Source Dataset",
+      "type": "string"
+    },
+    "source_field": {
+      "minLength": 1,
+      "title": "Source Field",
+      "type": "string"
+    },
+    "transformation_id": {
+      "minLength": 1,
+      "title": "Transformation Id",
+      "type": "string"
+    },
+    "output_dataset": {
+      "minLength": 1,
+      "title": "Output Dataset",
+      "type": "string"
+    },
+    "output_field": {
+      "minLength": 1,
+      "title": "Output Field",
+      "type": "string"
+    },
+    "code_version": {
+      "minLength": 1,
+      "title": "Code Version",
+      "type": "string"
+    },
+    "input_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Input Sha256",
+      "type": "string"
+    },
+    "output_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Output Sha256",
+      "type": "string"
+    },
+    "rights_decision_id": {
+      "minLength": 1,
+      "title": "Rights Decision Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "record_id",
+    "source_dataset",
+    "source_field",
+    "transformation_id",
+    "output_dataset",
+    "output_field",
+    "code_version",
+    "input_sha256",
+    "output_sha256",
+    "rights_decision_id"
+  ],
+  "title": "FieldLineageRecord",
+  "type": "object"
+}
