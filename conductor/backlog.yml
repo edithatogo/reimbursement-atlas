@@ -76,7 +76,7 @@ epics:
           - "Documentation explains why BPMN 2.0 is used instead of the obsolete BPML terminology."
   - id: HIST-002
     title: Historical source family catalog and public-only archival
-    phase: implementation
+    phase: implemented
     workstream: sources
     priority: must
     issues:
@@ -930,8 +930,8 @@ epics:
     track_id: bounded_platinum_source_transparency_20260826
     issues:
       - title: Promote source-transparency dashboard through bounded Gold-to-Platinum contract
-        labels: ["type:dashboard", "type:governance", "status:in-progress"]
-        status: in_progress
+        labels: ["type:dashboard", "type:governance", "status:implemented"]
+        status: implemented
         github_issue: 740
         dependencies: ["Enforce Gold to Platinum public product promotion"]
         acceptance:

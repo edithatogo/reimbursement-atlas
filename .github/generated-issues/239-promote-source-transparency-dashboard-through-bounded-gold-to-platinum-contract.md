@@ -2,9 +2,9 @@
 
 Epic: `BOUNDED-PLATINUM-001` — Bounded source-transparency Platinum promotion
 
-Labels: type:dashboard, type:governance, status:in-progress
+Labels: type:dashboard, type:governance, status:implemented
 
-Status: `in_progress`
+Status: `implemented`
 
 ## Background
 
@@ -12,7 +12,7 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] Exactly one bounded Platinum product is approved within scope.
-- [ ] Every product input and review is checksum-bound.
-- [ ] Global evidence and publication readiness remain unchanged.
-- [ ] Automated and hosted gates pass.
+- [x] Exactly one bounded Platinum product is approved within scope.
+- [x] Every product input and review is checksum-bound.
+- [x] Global evidence and publication readiness remain unchanged.
+- [x] Automated and hosted gates pass.

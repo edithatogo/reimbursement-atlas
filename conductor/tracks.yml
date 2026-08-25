@@ -229,6 +229,6 @@ tracks:
     phase: implementation
     workstream: product
     goal: "Promote one low-risk metadata-only dashboard through explicit checksum-bound Gold-to-Platinum gates without changing global evidence readiness."
-    spec: "conductor/tracks/bounded_platinum_source_transparency_20260826/spec.md"
-    plan: "conductor/tracks/bounded_platinum_source_transparency_20260826/plan.md"
+    spec: "conductor/archive/bounded_platinum_source_transparency_20260826/spec.md"
+    plan: "conductor/archive/bounded_platinum_source_transparency_20260826/plan.md"
     issues: [740]
