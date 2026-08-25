@@ -82,6 +82,18 @@ def test_research_package_descriptors_are_project_owned(repo_root: Path) -> None
     assert {row.licence_gate for row in descriptors} == {"apache_2_0_project_output"}
 
 
+def test_medallion_control_outputs_are_project_owned(repo_root: Path) -> None:
+    """Layer-control metadata must not trigger provider-rights approval spam."""
+    manifest = build_publication_manifest(root=repo_root)
+    records = [
+        row for row in manifest.artifacts if row.relative_path.startswith("data/derived/medallion/")
+    ]
+
+    assert len(records) == 11
+    assert {row.licence_gate for row in records} == {"apache_2_0_project_output"}
+    assert {row.approval_requirement for row in records} == {"automatic_policy"}
+
+
 def test_local_quality_reports_are_project_owned(repo_root: Path) -> None:
     """Environment-specific harness reports must not require provider-rights review."""
     manifest = build_publication_manifest(root=repo_root)

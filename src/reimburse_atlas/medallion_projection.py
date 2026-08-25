@@ -259,8 +259,8 @@ def build_gold_artifacts(
         return []
     evaluation = _read_json(path)
     digest = _sha256(path)
-    approved = _approved_checksums(root)
     accepted = evaluation.get("status") == "accepted" and evaluation.get("evaluated_once") is True
+    silver_approved = all(row.promotion_status == "approved_within_scope" for row in silver)
     relative = path.relative_to(root).as_posix()
     return [
         MedallionArtifactRecord(
@@ -272,12 +272,10 @@ def build_gold_artifacts(
             input_artifact_ids=tuple(row.artifact_id for row in silver),
             input_sha256=tuple(row.sha256 for row in silver),
             generated_at=GENERATED_AT,
-            rights_state="public_reuse_review",
-            promotion_status=(
-                "approved_within_scope"
-                if accepted and (relative, digest) in approved
-                else "candidate"
-            ),
+            rights_state="permissive" if silver_approved else "public_reuse_review",
+            promotion_status="approved_within_scope"
+            if accepted and silver_approved
+            else "candidate",
             notes=(
                 "Sealed one-time holdout evidence; scope does not imply causal or "
                 "price equivalence."
@@ -292,7 +290,6 @@ def build_platinum_artifacts(
     """Inventory product surfaces as Platinum candidates without publication."""
     if not gold:
         return []
-    approved = _approved_checksums(root)
     product_paths = (
         Path("apps/dashboard/public/status.json"),
         Path("data/derived/publication_manifest.json"),
@@ -307,7 +304,6 @@ def build_platinum_artifacts(
             continue
         relative = relative_path.as_posix()
         digest = _sha256(path)
-        rights_approved = (relative, digest) in approved
         records.append(
             MedallionArtifactRecord(
                 artifact_id=f"platinum:{relative.replace('/', ':')}",
@@ -318,10 +314,8 @@ def build_platinum_artifacts(
                 input_artifact_ids=tuple(row.artifact_id for row in gold),
                 input_sha256=tuple(row.sha256 for row in gold),
                 generated_at=GENERATED_AT,
-                rights_state="permissive" if rights_approved else "public_reuse_review",
-                promotion_status=(
-                    "approved_within_scope" if evidence_ready and rights_approved else "blocked"
-                ),
+                rights_state="permissive",
+                promotion_status="candidate" if evidence_ready else "blocked",
                 notes=(
                     "Product projection only; destination state is not source truth or "
                     "publication authority."
@@ -413,11 +407,11 @@ def build_promotion_decisions(
             )
         )
     for product in platinum:
-        passed = evidence_release_ready and product.promotion_status == "approved_within_scope"
+        passed = False
         passed_gates = ["gold_input_present"]
         if evidence_release_ready:
             passed_gates.append("evidence_release_ready")
-        if product.promotion_status == "approved_within_scope":
+        if product.rights_state == "permissive":
             passed_gates.append("product_rights_approved")
         decisions.append(
             MedallionPromotionDecision(
@@ -434,7 +428,11 @@ def build_promotion_decisions(
                 passed_gate_ids=tuple(passed_gates),
                 status="approved" if passed else "blocked",
                 decided_at=GENERATED_AT,
-                reason_codes=("platinum_ready" if passed else "platinum_upstream_gates_pending",),
+                reason_codes=(
+                    "external_product_release_gate_separate"
+                    if product.promotion_status == "candidate"
+                    else "platinum_upstream_gates_pending",
+                ),
                 scope_notes="External mutation and publication authority remain separate.",
             )
         )
