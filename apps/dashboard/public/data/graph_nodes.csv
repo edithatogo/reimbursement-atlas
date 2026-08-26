@@ -34,7 +34,7 @@ landing_page,,,,,,,,,dataset:ds_aihw_health_expenditure,,,dataset_candidate,AIHW
 curl_download,,,,,,,,,dataset:ds_brazil_sigtap,,,dataset_candidate,SUS SIGTAP,public_reuse_review,,,,,,,,should,,,,,
 landing_page,,,,,,,,,dataset:ds_chile_fonasa_arancel,,,dataset_candidate,FONASA arancel and PAD,public_reuse_review,,,,,,,,could,,,,,
 api,,,,,,,,,dataset:ds_colombia_cups,,,dataset_candidate,CUPS procedure codes,public_reuse_review,,,,,,,,could,,,,,
-api,,,,,,,,,dataset:ds_ihme_gbd,,,dataset_candidate,IHME Global Burden of Disease,public_reuse_review,,,,,,,,could,,,,,
+landing_page,,,,,,,,,dataset:ds_ihme_gbd,,,dataset_candidate,IHME Global Burden of Disease,public_reuse_review,,,,,,,,could,,,,,
 landing_page,,,,,,,,,dataset:ds_korea_hira,,,dataset_candidate,HIRA/NHI fee and claims resources,public_reuse_review,,,,,,,,should,,,,,
 api,,,,,,,,,dataset:ds_oecd_health_statistics,,,dataset_candidate,OECD Health Statistics,public_reuse_review,,,,,,,,must,,,,,
 landing_page,,,,,,,,,dataset:ds_singapore_moh_benchmarks,,,dataset_candidate,MOH fee benchmarks and subsidy lists,public_reuse_review,,,,,,,,should,,,,,

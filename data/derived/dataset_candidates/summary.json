@@ -1,0 +1,9 @@
+{
+  "acquired_count": 0,
+  "candidate_count": 15,
+  "metadata_onboarded_count": 15,
+  "schema_version": "dataset-candidate-assessment-v1",
+  "scope": "metadata_and_governance_only",
+  "source_registered_count": 7,
+  "validated_parser_count": 0
+}

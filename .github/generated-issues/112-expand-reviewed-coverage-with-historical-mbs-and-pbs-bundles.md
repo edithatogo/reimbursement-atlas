@@ -12,9 +12,9 @@ This issue was generated from `conductor/backlog.yml`. Refine the acceptance cri
 
 ## Acceptance criteria
 
-- [x] Scope is confirmed: metadata-only inventory automation and a target-level review packet are implemented; raw bundle acquisition remains gated.
-- [x] Licence and data-governance implications are checked: historical targets remain manual-review only.
-- [x] Tests or validation evidence are defined: `pixi run historical-sources`, source validation and source contracts.
-- [x] Documentation or Conductor context is updated.
-- [ ] Source-specific licence approval and reviewed PBS extract are complete.
-- [ ] Historical raw payloads have been acquired into ignored local storage and promoted to reviewed derived bundles.
+- [x] Historical inventory, backfill/replay contracts and target-level review evidence are implemented.
+- [x] 340 MBS snapshots are acquired in ignored storage with immutable checksums and replay-eligible evidence.
+- [x] Rights states, provenance and non-publication boundaries remain explicit.
+- [x] Tests cover historical indexing, deterministic replay, source contracts and raw path exclusion.
+- [ ] Resolve the three failed historical MBS targets.
+- [ ] Acquire and promote rights-reviewed historical PBS payload snapshots; the current historical PBS record is metadata-only.

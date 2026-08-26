@@ -65,6 +65,7 @@ jobs:
           pixi run medallion-projection
           pixi run historical-sources
           pixi run local-quality
+          pixi run dataset-candidate-assessments
           pixi run project-issues
           pixi run github-project-export
           pixi run protocol-status

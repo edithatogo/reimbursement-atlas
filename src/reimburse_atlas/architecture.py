@@ -74,6 +74,7 @@ _LAYER_BY_ROOT_MODULE: dict[str, ArchitectureLayer] = {
     "automation": "orchestration",
     "datalake": "orchestration",
     "dashboard_review": "orchestration",
+    "dataset_candidate_assessment": "orchestration",
     "ingest": "orchestration",
     "ingestion": "orchestration",
     "local_quality": "orchestration",

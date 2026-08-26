@@ -1,5 +1,17 @@
 # Decision log
 
+## 2026-08-26: Reconcile every open GitHub issue by evidence scope
+
+- Close #21 because the current MBS XML parser has real-source, checksum,
+  contract, row-count, provenance and bounded licence evidence.
+- Close #94-#108 as metadata-onboarding issues only. Their generated assessments
+  explicitly retain `not_acquired` and planned parser states.
+- Keep #255 open for genuine historical PBS breadth and three failed MBS targets.
+- Keep #362 open as a monitored upstream TypeScript/Astro dependency that is not
+  required for repository release.
+- Never infer acquisition, redistribution rights, evidence readiness or
+  publication authority from a dataset-candidate record.
+
 ## 2026-08-26: Separate bounded evidence completion from manuscript publication
 
 Decision: derive bounded evidence readiness from mapping, licence and approved research evidence,

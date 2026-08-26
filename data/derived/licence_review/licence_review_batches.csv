@@ -1,4 +1,4 @@
 approved_count,artifact_count,blocked_count,licence_gate,pending_count,publication_scope,raw_payload_count,review_action,total_byte_size
 143,143,0,permissive_candidate,0,public_derived_candidate,0,No new approval required for current checksums,191076363
-35,35,0,permissive_candidate,0,public_metadata_candidate,0,No new approval required for current checksums,467075
+35,35,0,permissive_candidate,0,public_metadata_candidate,0,No new approval required for current checksums,467331
 0,3,3,public_reuse_review,0,public_derived_candidate,0,Accountable review required before publication consideration,529164
