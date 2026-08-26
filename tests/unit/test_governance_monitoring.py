@@ -92,6 +92,6 @@ def test_external_governance_gates_do_not_block_repository_release(tmp_path: Pat
     summary = summarise_release_gates(gates)
 
     assert len(gates) == 3
-    assert all(gate.status == "blocked" and not gate.required for gate in gates)
+    assert all(gate.status == "warn" and not gate.required for gate in gates)
     assert summary.required_blocker_count == 0
     assert summary.repository_release_ready is True

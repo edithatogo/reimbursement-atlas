@@ -1787,3 +1787,17 @@ repository-release blockers.
 Consequence: Monitoring remains read-only and external limitations remain visible, but they do not
 increment `required_blocker_count` or make `repository_release_ready` false. Adoption or account
 enablement still requires the relevant upstream capability and normal reviewable workflows.
+## 2026-08-26 - Classify TypeScript 7 as a monitored external dependency
+
+Decision: Keep TypeScript 7 adoption pending until the supported Astro checker peer contract
+admits 7.x, but project that external incompatibility into release readiness as a non-required
+warning rather than a repository release blocker.
+
+Rationale: The repository cannot repair upstream peer metadata safely. The scheduled read-only
+canary provides auditable evidence and will identify when a normal upgrade PR becomes actionable.
+Forcing the dependency tree or weakening checker coverage would reduce reproducibility without
+improving repository readiness.
+
+Evidence: `data/derived/toolchain/typescript_compatibility.json`,
+`data/derived/governance_monitoring/external_controls.jsonl`, issue #362, and regression tests in
+`tests/unit/test_governance_monitoring.py`.

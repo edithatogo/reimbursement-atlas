@@ -170,7 +170,7 @@ def render_issue(issue: IssueDraft) -> str:  # ruff:ignore[too-many-branches, to
     labels = ", ".join(issue.labels) if issue.labels else "none"
     parent = f"Parent issue: {issue.parent_issue}\n\n" if issue.parent_issue else ""
     if issue.acceptance:
-        marker = "x" if issue.status == "implemented" else " "
+        marker = "x" if issue.status in {"implemented", "monitored"} else " "
         acceptance = "\n".join(f"- [{marker}] {criterion}" for criterion in issue.acceptance)
     elif issue.title == HF_DRIFT_MONITOR_TITLE:
         acceptance = (

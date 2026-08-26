@@ -33,30 +33,6 @@
       "summary": "Research publication remains gated."
     },
     {
-      "category": "toolchain",
-      "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
-      "id": "typescript7_astro_compatibility",
-      "next_action": "Continue the read-only canary until the checker peer range admits 7.x.",
-      "status": "blocked",
-      "summary": "reason_code=checker_peer_excludes_typescript7 observed=checker=@astrojs/check@0.9.10 peer=^5.0.0 || ^6.0.0 candidate=7.0.2"
-    },
-    {
-      "category": "security",
-      "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
-      "id": "github_account_secret_scanning_non_provider_patterns",
-      "next_action": "Enable the account/plan capability when GitHub makes it available.",
-      "status": "blocked",
-      "summary": "reason_code=github_account_capability_unavailable observed=disabled"
-    },
-    {
-      "category": "security",
-      "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
-      "id": "github_account_secret_scanning_validity_checks",
-      "next_action": "Enable the account/plan capability when GitHub makes it available.",
-      "status": "blocked",
-      "summary": "reason_code=github_account_capability_unavailable observed=disabled"
-    },
-    {
       "category": "dashboard",
       "evidence_path": "data/derived/release_readiness/release_gates.jsonl",
       "id": "dashboard_human_review",
