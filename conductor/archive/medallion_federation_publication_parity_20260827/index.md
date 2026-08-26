@@ -1,6 +1,6 @@
 # Medallion federation and publication parity
 
-Status: in progress
+Status: archived
 
 - [Specification](spec.md)
 - [Plan](plan.md)

@@ -8,4 +8,4 @@
 - [x] Add scheduled live cross-repository drift monitoring.
 - [x] Regenerate publication, package, dashboard, readiness, Project, and handoff outputs.
 - [x] Run local full gates and automated review.
-- [ ] Merge through protected hosted checks and archive the track.
+- [x] Merge through protected hosted checks and archive the track.
