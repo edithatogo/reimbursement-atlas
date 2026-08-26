@@ -1,12 +1,12 @@
 {
   "track_id": "track_live_source_ingestion",
   "type": "feature",
-  "status": "in_progress",
+  "status": "completed",
   "created_at": "2026-08-01T11:55:00Z",
-  "updated_at": "2026-08-26T09:12:34Z",
+  "updated_at": "2026-08-26T11:15:00Z",
   "description": "Acquire and validate official live sources while preserving raw-data, licence and review boundaries.",
   "evidence_schema": "1.0",
-  "github_issues": [750],
+  "github_issues": [750, 759],
   "gates": [
     {"id": "acquisition_receipts", "kind": "repository", "status": "pass", "evidence": "11 redacted attempts recorded; 3 payloads downloaded and 8 targets explicitly skipped."},
     {"id": "source_validation", "kind": "repository", "status": "pass", "evidence": "data/derived/source_validation/summary.json reports 3 pass, 8 skipped, 0 failures."},

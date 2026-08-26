@@ -333,7 +333,7 @@ manual_review,,,,,,,,,mapping_resource:map_who_atc_ddd,,,mapping_resource,WHO AT
 ,,,,,,,,,track:track_evidence_adjudication_review,,,conductor_track,Evidence adjudication and accountable-review closure,,,,,,,hardening,,must,,,,,evidence
 ,,,,,,,,,track:track_external_publication_archive_execution,,,conductor_track,External publication and archive execution,,,,,,,release,,must,,,,,publication
 ,,,,,,,,,track:track_historical_source_archival_reproducibility,,,conductor_track,Historical source archival and academic reproducibility,,,,,,,implementation,,must,,,,,data
-,,,,,,,,,track:track_live_source_ingestion,,,conductor_track,Evidence-grade live source ingestion,,,,,,,implementation,,must,,,,,data
+,,,,,,,,,track:track_live_source_ingestion,,,conductor_track,Evidence-grade live source ingestion,,,,,,,archived,,must,,,,,data
 ,,,,,,,,,track:track_mapping_workbench,,,conductor_track,Human-in-the-loop mapping workbench,,,,,,,implementation,,must,,,,,mappings
 ,,,,,,,,,track:track_mcp2_typed_migration_20260824,,,conductor_track,MCP 2 typed API migration,,,,,,,hardening,,should,,,,,runtime
 ,,,,,,,,,track:track_osf_deprecation_20260820,,,conductor_track,OSF destination deprecation,,,,,,,hardening,,must,,,,,governance

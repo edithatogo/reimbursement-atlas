@@ -97,7 +97,7 @@
       "name": "conductor_tracks",
       "parquet_path": "conductor_tracks/conductor_tracks.parquet",
       "rows": 28,
-      "sha256": "b6aa7d828c4d0c6eaa5df00e9a15e5c361f6fadc46e16daf033c8fb1cfaf1f95"
+      "sha256": "af7d3f6d9e7e47a79fca8becf07c9cf21f9d7c6e21404cd401cba35154512cfa"
     },
     {
       "csv_path": "roadmap_functions/roadmap_functions.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 43,
-      "sha256": "94db0742c25a5f933b7214a310712ae3911327b98b3a3b09965f87386209cd58"
+      "sha256": "e73a4d7f14f2fe67c0e449dac8139b23925e7d9fa0769004d642ccdb5bad31db"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -432,8 +432,8 @@
       "jsonl_path": "github_project_items/github_project_items.jsonl",
       "name": "github_project_items",
       "parquet_path": "github_project_items/github_project_items.parquet",
-      "rows": 262,
-      "sha256": "2924fbec5e2373d42068a99b533267cf389b57c7388d6d52ea5edc46362426ef"
+      "rows": 263,
+      "sha256": "7cf797d6b58fef6534b3ba10a60133ce39b5a70d0ad574e9b6aebd98f1e5785d"
     },
     {
       "csv_path": "final_handoff_tasks/final_handoff_tasks.csv",
@@ -481,7 +481,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "bd58a8dffdd4ddc15ff38c486033d6fee3e3f7d5f2c8b95125dd026602a966cc"
+      "sha256": "3d307fe39a667fed5bdfe7a7520210ef5d6bae1e14b7dfd7b0d87c31ca99c893"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
@@ -489,7 +489,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 265,
-      "sha256": "621d4e0452345e2b3a368d6af6b11c7d3273ef2405961563de28a793511a9a06"
+      "sha256": "08d72e1fb7d81b330e32ee51ae50a352eabcb6486f42a14ffe629707db639886"
     }
   ]
 }

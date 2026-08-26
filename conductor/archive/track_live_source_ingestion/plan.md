@@ -19,3 +19,5 @@
   evidence ledger required by the Conductor review contract.
 - [x] REV-02: Reconcile completed MBS, PBS, CLFS, ASP and PFS parser/source
   reviews against current bundle, validation and licence evidence. (Issue #749)
+- [x] REV-03: Reconcile registry, metadata, seed projections and archive paths
+  after all bounded track gates passed. (Issue #759)

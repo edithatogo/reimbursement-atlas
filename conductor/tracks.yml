@@ -78,11 +78,14 @@ tracks:
   - id: track_live_source_ingestion
     title: "Evidence-grade live source ingestion"
     priority: must
-    phase: implementation
+    phase: archived
     workstream: data
     goal: "Download or API-fetch public sources using curl/wget/API clients, snapshot them locally, and publish derived-only validated records."
+    spec: "conductor/archive/track_live_source_ingestion/spec.md"
+    plan: "conductor/archive/track_live_source_ingestion/plan.md"
     issues:
       - 750
+      - 759
   - id: track_research_protocols_osf
     title: "Research protocol and report workflow"
     priority: must
@@ -129,11 +132,14 @@ tracks:
   - id: track_continuous_security_assurance
     title: "Continuous security assurance and branch enforcement"
     priority: must
-    phase: hardening
+    phase: archived
     workstream: security
     goal: "Continuously block workflow vulnerabilities, committed-secret history, unsafe dependency changes and non-reproducible release artefacts."
     spec: "conductor/archive/track_continuous_security_assurance/spec.md"
     plan: "conductor/archive/track_continuous_security_assurance/plan.md"
+    issues:
+      - 137
+      - 759
   - id: track_harness_engineering
     title: "Layered harness engineering and deterministic regeneration"
     priority: must
