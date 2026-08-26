@@ -36,7 +36,8 @@ def parse_amount(value: object | None) -> float | None:
         return None
     text = text.replace("$", "").replace(",", "")
     try:
-        return float(Decimal(text))
+        amount = Decimal(text)
+        return float(amount) if amount.is_finite() else None
     except InvalidOperation:
         return None
     except ValueError:
