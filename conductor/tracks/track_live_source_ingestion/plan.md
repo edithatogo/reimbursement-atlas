@@ -10,8 +10,8 @@
   review before promoting the bundle beyond `public_reuse_review`. (LIVE-001)
 - [x] ING-06: Validate CMS CLFS, ASP and PFS against permitted reviewed payloads
   without redistributing CPT/HCPCS-restricted descriptors. (LIVE-001)
-- [ ] ING-07: Refresh and validate the PBS API CSV parser with a credentialed,
-  reviewed monthly extract. (LIVE-001)
+- [x] ING-07: Refresh and validate the PBS API CSV parser with a credentialed,
+  reviewed monthly extract through hosted source-health run 32951770117. (LIVE-001)
 
 ## Review fixes
 

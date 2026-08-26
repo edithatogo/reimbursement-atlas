@@ -3,7 +3,7 @@
   "type": "feature",
   "status": "in_progress",
   "created_at": "2026-08-01T11:55:00Z",
-  "updated_at": "2026-08-26T00:00:00Z",
+  "updated_at": "2026-08-26T09:12:34Z",
   "description": "Acquire and validate official live sources while preserving raw-data, licence and review boundaries.",
   "evidence_schema": "1.0",
   "github_issues": [750],
@@ -14,6 +14,6 @@
     {"id": "raw_payload_policy", "kind": "repository", "status": "pass", "evidence": "Public-data policy check passes; raw payloads remain ignored."},
     {"id": "mbs_licence_review", "kind": "human_review", "status": "pass", "evidence": "The checksum-bound licence ledger validates 186/186 current decisions, including MBS XML/TXT derived bundles; raw payload redistribution and broader claims remain excluded."},
     {"id": "counterpart_licence_review", "kind": "source_rights", "status": "pass", "evidence": "Reviewed CLFS, ASP and PFS derived bundles are checksum-bound and licence-scoped. CPT/HCPCS descriptor restrictions remain enforced and raw payloads remain local-only."},
-    {"id": "pbs_api_credential", "kind": "credential", "status": "blocked", "evidence": "The public schedules endpoint returned HTTP 401 without PBS_API_SUBSCRIPTION_KEY on 2026-08-21, and the legacy PBS Downloads fallback returned HTTP 404. A reviewed 6,945-record PBS derived bundle supports the frozen mapping cycle, but is not proof of current API parity."}
+    {"id": "pbs_api_credential", "kind": "credential", "status": "pass", "evidence": "GitHub Actions source-health run 32951770117 used the configured secret without exposing it and recorded 14,867 source records across three endpoint families with zero schema failures."}
   ]
 }

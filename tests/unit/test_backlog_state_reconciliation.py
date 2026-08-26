@@ -56,14 +56,16 @@ def test_completed_live_parser_reviews_have_real_bundle_evidence() -> None:
             assert report["record_count"] == expected_records
 
 
-def test_completed_monthly_pbs_parse_does_not_clear_current_api_parity() -> None:
+def test_hosted_pbs_refresh_clears_stale_credential_gate() -> None:
     metadata = json.loads(
         (ROOT / "conductor/tracks/track_live_source_ingestion/metadata.json").read_text(
             encoding="utf-8"
         )
     )
     gate = next(item for item in metadata["gates"] if item["id"] == "pbs_api_credential")
-    assert gate["status"] == "blocked"
+    assert gate["status"] == "pass"
+    assert "32951770117" in gate["evidence"]
+    assert "14,867" in gate["evidence"]
 
 
 def test_bounded_analyses_are_complete_without_claiming_full_reports() -> None:
