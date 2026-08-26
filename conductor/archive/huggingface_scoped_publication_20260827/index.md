@@ -1,6 +1,6 @@
 # Hugging Face scoped publication
 
-Status: in progress
+Status: completed
 
 - [Specification](spec.md)
 - [Plan](plan.md)

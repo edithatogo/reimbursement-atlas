@@ -1,7 +1,7 @@
 # Project Tracks
 
-- [~] **Track: Hugging Face scoped publication**
-  *Link: [./tracks/huggingface_scoped_publication_20260827/index.md](./tracks/huggingface_scoped_publication_20260827/index.md)*
+- [x] **Track: Hugging Face scoped publication**
+  *Link: [./archive/huggingface_scoped_publication_20260827/index.md](./archive/huggingface_scoped_publication_20260827/index.md)*
 
 - [x] **Track: Medallion federation and publication parity**
   *Link: [./archive/medallion_federation_publication_parity_20260827/index.md](./archive/medallion_federation_publication_parity_20260827/index.md)*
