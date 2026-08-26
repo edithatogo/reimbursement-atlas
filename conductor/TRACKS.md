@@ -1,5 +1,8 @@
 # Project Tracks
 
+- [x] **Track: Parallel CI and bounded test execution**
+  *Link: [./archive/parallel_ci_tests_20260826/index.md](./archive/parallel_ci_tests_20260826/index.md)*
+
 - [x] **Track: Bounded parser fuzzing**
   *Link: [./archive/parser_fuzzing_20260826/index.md](./archive/parser_fuzzing_20260826/index.md)*
 

@@ -1632,7 +1632,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "workflow_uses",
-      "sha256": "8b38274ef9e64817d840bbf7dc0fe4defb19d943c6bf8d3513ab26f6442dde55"
+      "sha256": "cd66db51f279cab031881c7ecd9cd44db9978a483998580b4d239f087d33994f"
     },
     {
       "@id": "data/derived/repo_automation/workflow_uses.csv",
@@ -1641,7 +1641,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "workflow_uses",
-      "sha256": "12999ccae0bec1cdcf84cac73bb4fa533fc61469deddd148c4f15a9c4b0c925d"
+      "sha256": "b6145d6a9ce60343b8a1e2fd2c7da6894aa42ead23d15f09ee69625e4d04f84b"
     },
     {
       "@id": "data/derived/repo_automation/workflow_policy.jsonl",
@@ -1902,7 +1902,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "medallion_artifacts",
-      "sha256": "6f716e90aad5867c8971b59e3f96f3c13128e91e103e602fcd7098a9db1c59c9"
+      "sha256": "4df298a0eacab9fecd6f058e8aa2a41724e4b55e58fa17e91809023c20fe6100"
     },
     {
       "@id": "data/derived/medallion/medallion_artifacts.csv",
@@ -1911,7 +1911,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "medallion_artifacts",
-      "sha256": "2d3ed74d5c7df93780a59ddb189741157b7899348b476091eb313c602575ea33"
+      "sha256": "e71048622abae4fccb6dcb12973d1dc00b93c5eaa509c2ef13ee6c821110640c"
     },
     {
       "@id": "data/derived/medallion/promotion_decisions.jsonl",

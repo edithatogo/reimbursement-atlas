@@ -265,7 +265,7 @@
       "name": "repo_workflow_uses",
       "parquet_path": "repo_workflow_uses/repo_workflow_uses.parquet",
       "rows": 116,
-      "sha256": "8b38274ef9e64817d840bbf7dc0fe4defb19d943c6bf8d3513ab26f6442dde55"
+      "sha256": "cd66db51f279cab031881c7ecd9cd44db9978a483998580b4d239f087d33994f"
     },
     {
       "csv_path": "repo_workflow_policy/repo_workflow_policy.csv",
@@ -417,7 +417,7 @@
       "name": "medallion_artifacts",
       "parquet_path": "medallion_artifacts/medallion_artifacts.parquet",
       "rows": 22,
-      "sha256": "6f716e90aad5867c8971b59e3f96f3c13128e91e103e602fcd7098a9db1c59c9"
+      "sha256": "4df298a0eacab9fecd6f058e8aa2a41724e4b55e58fa17e91809023c20fe6100"
     },
     {
       "csv_path": "medallion_promotion_decisions/medallion_promotion_decisions.csv",

@@ -1,6 +1,15 @@
 version: 1
 updated: "2026-07-31"
 tracks:
+  - id: parallel_ci_tests_20260826
+    title: "Parallel CI and bounded test execution"
+    priority: must
+    phase: archived
+    workstream: harness
+    goal: "Reduce CI latency through bounded parallel tests, superseded-run cancellation, and non-duplicative browser gates without weakening coverage or evidence contracts."
+    spec: "conductor/archive/parallel_ci_tests_20260826/spec.md"
+    plan: "conductor/archive/parallel_ci_tests_20260826/plan.md"
+    issues: [757]
   - id: parser_fuzzing_20260826
     title: "Bounded parser fuzzing"
     priority: must

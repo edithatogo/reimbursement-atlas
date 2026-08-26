@@ -48,7 +48,9 @@ jobs:
         run: uv run --all-extras python scripts/check_dashboard_routes.py
       - name: Browser smoke gate
         working-directory: apps/dashboard
-        run: npm run test:browser
+        # The required dashboard-browser workflow runs the complete four-project
+        # matrix. Deployment only needs a fast Chromium route smoke check.
+        run: npm run test:browser -- --project=desktop-chromium
       - name: Upload dashboard review evidence
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1

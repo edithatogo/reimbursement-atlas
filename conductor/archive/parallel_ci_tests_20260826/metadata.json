@@ -1,0 +1,1 @@
+{"track_id":"parallel_ci_tests_20260826","status":"completed","github_issues":[757],"gates":[{"id":"bounded_parallel_coverage","status":"pass","evidence":"pyproject.toml"},{"id":"superseded_run_cancellation","status":"pass","evidence":"tests/unit/test_ci_parallelism_contract.py"},{"id":"hosted_ci","status":"pending_hosted","evidence":"GitHub pull request checks"}]}
