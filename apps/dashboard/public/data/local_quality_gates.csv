@@ -26,3 +26,5 @@ True,build,uv build,.,0.0,1970-01-01T00:00:00+00:00,uv_build,Gate passed in the 
 True,dashboard,npm ci,apps/dashboard,0.0,1970-01-01T00:00:00+00:00,npm_ci_dashboard,Gate passed in the active runtime.,0,passed,,
 True,security,npm audit --omit=dev --audit-level=moderate,apps/dashboard,0.0,1970-01-01T00:00:00+00:00,npm_audit_dashboard,Gate passed in the active runtime.,0,passed,,
 True,dashboard,npm run build,apps/dashboard,0.0,1970-01-01T00:00:00+00:00,dashboard_build,Gate passed in the active runtime.,0,passed,,
+False,security,uv run --all-extras pip-audit --strict,.,0.0,1970-01-01T00:00:00+00:00,pip_audit_strict,Network-backed advisory lookup may be blocked in sandboxes.,1,failed,ERROR:pip_audit._cli:reimbursement-atlas: Dependency not found on PyPI and could not be audited: reimbursement-atlas (0.1.1),
+False,supply_chain,uv tool run zizmor --min-severity medium .github,.,0.0,1970-01-01T00:00:00+00:00,zizmor_workflow_security,Advisory until action SHA pinning is complete.,0,passed,,

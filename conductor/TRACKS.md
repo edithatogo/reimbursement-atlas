@@ -16,8 +16,8 @@
   *Link: [./archive/track_osf_deprecation_20260820/index.md](./archive/track_osf_deprecation_20260820/index.md)*
 - [x] **Track: Risk-tiered approval friction reduction**
   *Link: [./archive/track_approval_friction_reduction_20260820/index.md](./archive/track_approval_friction_reduction_20260820/index.md)*
-- [~] **Track: Evidence-grade live-source ingestion**
-  *Link: [./tracks/track_live_source_ingestion/index.md](./tracks/track_live_source_ingestion/index.md)*
+- [x] **Track: Evidence-grade live-source ingestion**
+  *Link: [./archive/track_live_source_ingestion/index.md](./archive/track_live_source_ingestion/index.md)*
 - [x] **Track: Hugging Face dataset and Spaces publication**
   *Link: [./archive/track_publication_hf_spaces/index.md](./archive/track_publication_hf_spaces/index.md)*
 - [x] **Track: Evidence adjudication and accountable-review closure**
@@ -38,7 +38,7 @@
   *Link: [./archive/track_policy_demonstrators/index.md](./archive/track_policy_demonstrators/index.md)*
 - [x] **Track: Data quality evidence gates**
   *Link: [./archive/track_data_quality_evidence/index.md](./archive/track_data_quality_evidence/index.md)*
-- [~] **Track: Continuous security assurance**
+- [x] **Track: Continuous security assurance**
   *Link: [./archive/track_continuous_security_assurance/index.md](./archive/track_continuous_security_assurance/index.md)*
 - [x] **Track: Source provenance, licensing and historical release reproducibility**
   *Link: [./archive/track_source_provenance_licence_release/index.md](./archive/track_source_provenance_licence_release/index.md)*

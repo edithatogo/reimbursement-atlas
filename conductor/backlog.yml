@@ -18,6 +18,15 @@ epics:
           - "Completed bounded analyses and approved claim packages are not represented as completed full reports, papers or preprints."
           - "Generated issue and Project states match Conductor and live GitHub state."
         blockers: []
+      - title: Reconcile completed Conductor track archive states
+        labels: ["type:repo-automation", "type:governance", "status:implemented"]
+        status: implemented
+        github_issue: 759
+        acceptance:
+          - "Completed live-source and continuous-security tracks have archived registry phases, completed metadata and archive paths."
+          - "Historical coverage and optional account capabilities remain separately visible without leaving completed implementation tracks partial."
+          - "Generated seed, Project, dashboard, readiness and handoff projections agree."
+        blockers: []
   - id: GOVMON-001
     title: External compatibility and governance monitoring
     phase: hardening

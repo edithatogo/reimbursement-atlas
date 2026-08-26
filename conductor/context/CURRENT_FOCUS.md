@@ -447,7 +447,8 @@ while `HF_TOKEN` and OSF project configuration remain intentionally token/review
 The current public product is software-release ready, but evidence publication and
 policy claims remain fail-closed until licence review, human mapping/research review,
 OSF registration and Hugging Face publication gates are satisfied.
-Historical MBS/PBS coverage remains owned by `track_live_source_ingestion`; release DOI
+Historical MBS/PBS coverage remains separately tracked by issue #255 and
+`track_historical_source_archival_reproducibility`; release DOI
 work remains owned by `track_data_packaging_standards`; documentation freshness remains
 owned by `track_ci_cd_supply_chain`.
 The historical MBS metadata inventory is now implemented: 343 official targets across 32

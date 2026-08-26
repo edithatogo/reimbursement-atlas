@@ -18,3 +18,6 @@ account-level capability blocker rather than an unresolved observation.
 - [x] Archive the track after all repository-owned controls pass and preserve
   the account-capability limitation as monitored external state rather than an
   unbounded implementation task.
+- [x] Reconcile the completed archive marker, registry phase and metadata while
+  preserving optional account controls as non-required external observations.
+  (Issue #759)

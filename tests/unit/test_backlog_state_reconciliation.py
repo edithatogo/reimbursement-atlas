@@ -58,7 +58,7 @@ def test_completed_live_parser_reviews_have_real_bundle_evidence() -> None:
 
 def test_hosted_pbs_refresh_clears_stale_credential_gate() -> None:
     metadata = json.loads(
-        (ROOT / "conductor/tracks/track_live_source_ingestion/metadata.json").read_text(
+        (ROOT / "conductor/archive/track_live_source_ingestion/metadata.json").read_text(
             encoding="utf-8"
         )
     )
@@ -66,6 +66,26 @@ def test_hosted_pbs_refresh_clears_stale_credential_gate() -> None:
     assert gate["status"] == "pass"
     assert "32951770117" in gate["evidence"]
     assert "14,867" in gate["evidence"]
+
+
+def test_completed_tracks_are_archived_consistently() -> None:
+    registry = yaml.safe_load((ROOT / "conductor/tracks.yml").read_text(encoding="utf-8"))
+    tracks = {item["id"]: item for item in registry["tracks"]}
+
+    for track_id in (
+        "track_live_source_ingestion",
+        "track_continuous_security_assurance",
+    ):
+        track = tracks[track_id]
+        metadata = json.loads(
+            ROOT.joinpath("conductor/archive", track_id, "metadata.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        assert track["phase"] == "archived"
+        assert metadata["status"] == "completed"
+        assert track["spec"].startswith("conductor/archive/")
+        assert track["plan"].startswith("conductor/archive/")
 
 
 def test_bounded_analyses_are_complete_without_claiming_full_reports() -> None:
