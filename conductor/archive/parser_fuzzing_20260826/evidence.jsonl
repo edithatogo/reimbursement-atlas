@@ -1,0 +1,1 @@
+{"schema_version":"1.0","event":"implementation","status":"pass","issue":755,"targets":["PBS CSV untrusted cells","PBS schedules JSON shapes"],"max_examples_per_target":400,"raw_payloads_persisted":false}

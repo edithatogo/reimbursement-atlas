@@ -264,16 +264,16 @@
       "jsonl_path": "repo_workflow_uses/repo_workflow_uses.jsonl",
       "name": "repo_workflow_uses",
       "parquet_path": "repo_workflow_uses/repo_workflow_uses.parquet",
-      "rows": 114,
-      "sha256": "f998970b780f5c6cec56e370a339717f18eb2aea5b03a0e359d0e5c24513e88b"
+      "rows": 116,
+      "sha256": "8b38274ef9e64817d840bbf7dc0fe4defb19d943c6bf8d3513ab26f6442dde55"
     },
     {
       "csv_path": "repo_workflow_policy/repo_workflow_policy.csv",
       "jsonl_path": "repo_workflow_policy/repo_workflow_policy.jsonl",
       "name": "repo_workflow_policy",
       "parquet_path": "repo_workflow_policy/repo_workflow_policy.parquet",
-      "rows": 96,
-      "sha256": "a7bb7a1d03b0b171a814831c6a89a43bbe826da037ead1b6a350ca09da84f258"
+      "rows": 100,
+      "sha256": "c21c22352545a64e23e14dba335fbf5ff1b31ade49051f9c7fd6cfbf5dda2cd0"
     },
     {
       "csv_path": "repo_automation_controls/repo_automation_controls.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 43,
-      "sha256": "2f37b9e5d4ebb1ebea6ff087a20d7c9e4c6d93a17c8b2f856b2403208032e8de"
+      "sha256": "94db0742c25a5f933b7214a310712ae3911327b98b3a3b09965f87386209cd58"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -417,7 +417,7 @@
       "name": "medallion_artifacts",
       "parquet_path": "medallion_artifacts/medallion_artifacts.parquet",
       "rows": 22,
-      "sha256": "235c70f4d999c0af5694fdde0f277dc80f4218552bc2fd28453916e115ef1984"
+      "sha256": "6f716e90aad5867c8971b59e3f96f3c13128e91e103e602fcd7098a9db1c59c9"
     },
     {
       "csv_path": "medallion_promotion_decisions/medallion_promotion_decisions.csv",
@@ -489,7 +489,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 265,
-      "sha256": "772f1dae24c8d3c0f84727139bf51dd514e555dce5e02fed41118bb9ee59968c"
+      "sha256": "621d4e0452345e2b3a368d6af6b11c7d3273ef2405961563de28a793511a9a06"
     }
   ]
 }

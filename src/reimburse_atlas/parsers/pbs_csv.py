@@ -30,7 +30,11 @@ def parse_pbs_csv(path: Path) -> list[ScheduleItemRecord]:
 
 def parse_pbs_api_csv(path: Path, schedules_path: Path) -> list[ScheduleItemRecord]:
     """Parse a live PBS items CSV using effective dates from a schedules JSON response."""
-    payload = cast("dict[str, object]", json.loads(schedules_path.read_text(encoding="utf-8")))
+    decoded = json.loads(schedules_path.read_text(encoding="utf-8"))
+    if not isinstance(decoded, dict):
+        msg = "PBS schedules response must be a JSON object"
+        raise TypeError(msg)
+    payload = cast("dict[str, object]", decoded)
     raw_rows = payload.get("data", [])
     if not isinstance(raw_rows, list):
         msg = "PBS schedules response must contain a data list"

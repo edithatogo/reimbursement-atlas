@@ -1,6 +1,15 @@
 version: 1
 updated: "2026-07-31"
 tracks:
+  - id: parser_fuzzing_20260826
+    title: "Bounded parser fuzzing"
+    priority: must
+    phase: hardening
+    workstream: quality
+    goal: "Fuzz untrusted parser boundaries with reproducible minimized failures and no raw-payload retention."
+    spec: "conductor/archive/parser_fuzzing_20260826/spec.md"
+    plan: "conductor/archive/parser_fuzzing_20260826/plan.md"
+    issues: [755]
   - id: backlog_state_reconciliation_20260826
     title: "Backlog state reconciliation"
     priority: must

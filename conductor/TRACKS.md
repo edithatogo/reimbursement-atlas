@@ -1,5 +1,8 @@
 # Project Tracks
 
+- [x] **Track: Bounded parser fuzzing**
+  *Link: [./archive/parser_fuzzing_20260826/index.md](./archive/parser_fuzzing_20260826/index.md)*
+
 - [x] **Track: Backlog state reconciliation**
   *Link: [./archive/backlog_state_reconciliation_20260826/index.md](./archive/backlog_state_reconciliation_20260826/index.md)*
 
