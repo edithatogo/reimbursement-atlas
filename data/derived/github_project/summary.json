@@ -1,6 +1,6 @@
 {
   "blocked_count": 1,
-  "issue_count": 235,
+  "issue_count": 236,
   "milestones": [
     "M0 project setup",
     "M1 evidence-grade source slice",
@@ -9,7 +9,7 @@
     "M4 expansion roadmap"
   ],
   "must_count": 97,
-  "project_item_count": 263,
+  "project_item_count": 264,
   "track_count": 28,
   "views": [
     "CI/CD & security",
