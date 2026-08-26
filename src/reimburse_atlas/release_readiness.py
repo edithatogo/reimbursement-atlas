@@ -354,11 +354,9 @@ def governance_monitor_gates(repo: Path) -> list[ReleaseGateRecord]:
             continue
         row = cast("dict[str, Any]", json.loads(line))
         observed_status = str(row.get("status", "blocked_external"))
-        status: ReleaseGateStatus = "blocked"
+        status: ReleaseGateStatus = "warn"
         if observed_status == "pass":
             status = cast("ReleaseGateStatus", observed_status)
-        elif observed_status == "action_available":
-            status = "warn"
         records.append(
             ReleaseGateRecord(
                 id=str(row.get("id", "unknown_external_control")),

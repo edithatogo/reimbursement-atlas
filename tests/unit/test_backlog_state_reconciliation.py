@@ -110,5 +110,17 @@ def test_external_monitoring_items_preserve_true_platform_state() -> None:
     )
     assert (
         issues["Reassess TypeScript 7 after Astro checker peer support is available"]["status"]
-        == "blocked"
+        == "monitored"
     )
+
+
+def test_monitored_external_dependency_has_completed_monitoring_contract() -> None:
+    draft = (
+        ROOT
+        / ".github/generated-issues"
+        / "175-reassess-typescript-7-after-astro-checker-peer-support-is-available.md"
+    ).read_text(encoding="utf-8")
+
+    assert "Status: `monitored`" in draft
+    assert "- [ ]" not in draft
+    assert "never a repository release blocker" in draft

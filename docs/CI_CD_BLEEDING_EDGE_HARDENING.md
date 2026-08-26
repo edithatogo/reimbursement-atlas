@@ -90,6 +90,10 @@ legacy peer override would weaken reproducible CI. The follow-up is tracked in t
 TypeScript 7 remains a separate compatibility backlog item and should be re-tested after the
 checker publishes TypeScript 7 support.
 
+This is a monitored upstream dependency, not a repository release blocker. Canonical governance
+evidence retains the `blocked_external` observation, while release readiness projects it as a
+non-required warning until the checker peer range admits TypeScript 7.
+
 The scheduled `typescript-compatibility.yml` canary now checks that boundary without mutating
 `package.json` or the lockfile. It records the checker peer range and TypeScript 7 channel in
 `data/derived/toolchain/typescript_compatibility.*`; an upgrade issue is opened or updated only
