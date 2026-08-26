@@ -1,0 +1,3 @@
+{"schema_version":"1.0","event":"track_initialized","status":"pass","issue":767,"external_publication_authorized":false,"shared_runtime_dependency":false}
+{"schema_version":"1.0","event":"repository_validation","status":"pass","local_quality_gates":"27/27","coverage_percent":90.05,"live_contract_checks":"15/15","repository_release_ready":true,"evidence_release_ready":true,"policy_claims_ready":false}
+{"schema_version":"1.0","event":"licence_policy_reconciliation","status":"pass","project_owned_automatic_policy_count":5,"remaining_historical_source_blockers":3,"new_owner_approvals_required":0}

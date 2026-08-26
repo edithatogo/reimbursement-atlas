@@ -94,6 +94,20 @@ def test_medallion_control_outputs_are_project_owned(repo_root: Path) -> None:
     assert {row.approval_requirement for row in records} == {"automatic_policy"}
 
 
+def test_federation_and_huggingface_metadata_are_project_owned(repo_root: Path) -> None:
+    """Project-authored federation and deployment metadata avoid source-rights review."""
+    manifest = build_publication_manifest(root=repo_root)
+    records = [
+        row
+        for row in manifest.artifacts
+        if row.relative_path.startswith(("contracts/medallion/", "infra/huggingface/"))
+    ]
+
+    assert records
+    assert {row.licence_gate for row in records} == {"apache_2_0_project_output"}
+    assert {row.approval_requirement for row in records} == {"automatic_policy"}
+
+
 def test_local_quality_reports_are_project_owned(repo_root: Path) -> None:
     """Environment-specific harness reports must not require provider-rights review."""
     manifest = build_publication_manifest(root=repo_root)

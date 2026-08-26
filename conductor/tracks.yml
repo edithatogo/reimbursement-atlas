@@ -1,6 +1,15 @@
 version: 1
 updated: "2026-07-31"
 tracks:
+  - id: medallion_federation_publication_parity_20260827
+    title: "Medallion federation and Hugging Face publication parity"
+    priority: must
+    phase: hardening
+    workstream: data
+    goal: "Keep sibling medallion contracts hash-locked and publish layer-separated, rights-aware Hugging Face products without a shared runtime dependency."
+    spec: "conductor/tracks/medallion_federation_publication_parity_20260827/spec.md"
+    plan: "conductor/tracks/medallion_federation_publication_parity_20260827/plan.md"
+    issues: [767]
   - id: bounded_test_acceleration_20260826
     title: "Bounded local test acceleration profiles"
     priority: should

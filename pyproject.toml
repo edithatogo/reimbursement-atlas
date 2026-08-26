@@ -154,6 +154,8 @@ profile = "scalene src/reimburse_atlas/cli.py -- --help"
 qa = { depends-on = ["format-check", "lint", "typecheck", "seed-sync-check", "public-data-policy", "repo-automation", "sbom", "architecture-report", "source-download-plan", "pbs-acquisition-evidence", "source-validation", "source-contracts", "source-url-licence-checklist", "historical-sources", "backfill-replay", "governance-monitoring", "github-project-export", "final-handoff", "protocol-status", "roadmap-linkages", "data-quality", "data-dictionary", "research-claim-packages", "evidence-readiness", "source-drift", "release-readiness", "licence-review-queue", "licence-review-validate", "licence-decision-matrix", "review-schemas", "local-parser-contracts", "mapping-power-calculation", "mapping-candidate-frame", "mapping-review-pack-plan", "field-lineage", "research-package", "coverage", "smoke"] }
 schema-export = "PYTHONPATH=src python scripts/export_json_schema.py"
 medallion-projection = "PYTHONPATH=src python scripts/make_medallion_projection.py"
+medallion-federation = "PYTHONPATH=src python scripts/make_medallion_federation.py"
+medallion-federation-live = "PYTHONPATH=src python scripts/check_medallion_federation.py"
 zenodo-metadata = "PYTHONPATH=src python scripts/validate_zenodo_metadata.py"
 zenodo-draft = "PYTHONPATH=src python scripts/make_zenodo_deposition_draft.py"
 zenodo-deposition-plan = "PYTHONPATH=src python scripts/zenodo_deposition.py --mode plan"

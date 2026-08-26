@@ -264,16 +264,16 @@
       "jsonl_path": "repo_workflow_uses/repo_workflow_uses.jsonl",
       "name": "repo_workflow_uses",
       "parquet_path": "repo_workflow_uses/repo_workflow_uses.parquet",
-      "rows": 116,
-      "sha256": "eac9e7d127ebb11dc469fcd83f15c6503837952bd47a503cbc810aee20eea542"
+      "rows": 119,
+      "sha256": "729964ed8ca2fa955cbbc099007ba300f1869564e56ed98cbcea4323eb908fb8"
     },
     {
       "csv_path": "repo_workflow_policy/repo_workflow_policy.csv",
       "jsonl_path": "repo_workflow_policy/repo_workflow_policy.jsonl",
       "name": "repo_workflow_policy",
       "parquet_path": "repo_workflow_policy/repo_workflow_policy.parquet",
-      "rows": 100,
-      "sha256": "c21c22352545a64e23e14dba335fbf5ff1b31ade49051f9c7fd6cfbf5dda2cd0"
+      "rows": 104,
+      "sha256": "f712aa1e20d4e1a9ffa77cf72a3f72df1a34ac98b7d8b19135331f1fe33a6340"
     },
     {
       "csv_path": "repo_automation_controls/repo_automation_controls.csv",
@@ -328,8 +328,8 @@
       "jsonl_path": "architecture_import_edges/architecture_import_edges.jsonl",
       "name": "architecture_import_edges",
       "parquet_path": "architecture_import_edges/architecture_import_edges.parquet",
-      "rows": 243,
-      "sha256": "731eebb2b57b03fbfc04f4ded0a0971fabf217112a08b2f359c129b708fe94b0"
+      "rows": 244,
+      "sha256": "fc82390e509bedd19f567c7334539411465cf8708b25329dbce6857975fc5301"
     },
     {
       "csv_path": "architecture_layer_policy/architecture_layer_policy.csv",
@@ -337,7 +337,7 @@
       "name": "architecture_layer_policy",
       "parquet_path": "architecture_layer_policy/architecture_layer_policy.parquet",
       "rows": 22,
-      "sha256": "3c1e3c6ef706ff7133262e9359115a3d214276eb1e3f15a3eedbb5e75c2d5871"
+      "sha256": "b3e7513058be42b70d276ceb321e436bb3fdb0b9d32a74a44d2ac4c3a4bb46a9"
     },
     {
       "csv_path": "architecture_import_cycles/architecture_import_cycles.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 45,
-      "sha256": "1f23da8077e40ac633e08884ba00089d79a453aebd78760561647f5c541efa5d"
+      "sha256": "d65e6f781c8687891ee41540a72d07cfabf6355a9ebea4a64f7959c1a22286df"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -417,7 +417,7 @@
       "name": "medallion_artifacts",
       "parquet_path": "medallion_artifacts/medallion_artifacts.parquet",
       "rows": 22,
-      "sha256": "db03806cf7bc5d2748a12621846e1b861beffbc321edd118d37262456867c58f"
+      "sha256": "7876bc4de7443df9547fdfaafa50036a3fcaea629cc84349c1d78c792bd19cba"
     },
     {
       "csv_path": "medallion_promotion_decisions/medallion_promotion_decisions.csv",
@@ -488,8 +488,8 @@
       "jsonl_path": "data_dictionary/data_dictionary.jsonl",
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
-      "rows": 265,
-      "sha256": "0c2cdeba0f87bdeea45a0818a4e9ab3e658ecb164fc8fdcff3da68cee012b3a6"
+      "rows": 269,
+      "sha256": "2c6b834e6214d88249f3692b3e9a7305668e1a08dde36323a7cd67f8722425f2"
     }
   ]
 }

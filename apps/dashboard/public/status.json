@@ -53,7 +53,7 @@
     "source_validation": "data/derived/source_validation/summary.json"
   },
   "licence_review": {
-    "approved_rows": 178,
+    "approved_rows": 174,
     "decision_source": "data/licence_review/decisions.jsonl",
     "pending_rows": 3,
     "queue_source": "data/derived/licence_review/licence_review_queue.jsonl"

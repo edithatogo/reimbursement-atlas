@@ -63,6 +63,7 @@ jobs:
           pixi run source-validation
           pixi run source-contracts
           pixi run medallion-projection
+          pixi run medallion-federation
           pixi run historical-sources
           pixi run local-quality
           pixi run dataset-candidate-assessments

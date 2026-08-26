@@ -1,0 +1,75 @@
+{
+  "canonical_repository": "edithatogo/reimbursement-atlas",
+  "destinations": [
+    {
+      "identifier": "edithatogo/reimbursement-atlas",
+      "role": "derived_distribution",
+      "service": "huggingface_dataset",
+      "status": "published"
+    },
+    {
+      "identifier": "edithatogo/reimbursement-atlas",
+      "role": "platinum_dashboard",
+      "service": "huggingface_space",
+      "status": "published"
+    },
+    {
+      "identifier": "21759294",
+      "role": "immutable_release_archive",
+      "service": "zenodo",
+      "status": "not_recorded"
+    }
+  ],
+  "generated_at": "1970-01-01T00:00:00Z",
+  "layer_semantics": {
+    "acquisition_b1": "append_only_acquisition_events",
+    "catalogue_b0": "catalogue_only_not_acquisition",
+    "evidence_b2": "immutable_bytes_or_rights_constrained_reference",
+    "gold": "reviewed_cross_source_evidence",
+    "platinum": "explicitly_promoted_public_product",
+    "silver": "source_faithful_typed_records"
+  },
+  "publication_authority": "external_token_gated_workflow",
+  "raw_payloads_included": false,
+  "repositories": [
+    {
+      "conformance": "conformant",
+      "contract_versions": [
+        "v1",
+        "v2",
+        "v3"
+      ],
+      "repository": "edithatogo/reimbursement-atlas",
+      "role": "control_plane"
+    },
+    {
+      "conformance": "conformant",
+      "contract_versions": [
+        "v1",
+        "v2",
+        "v3"
+      ],
+      "repository": "edithatogo/global-medicines-atlas",
+      "role": "control_plane"
+    },
+    {
+      "conformance": "conformant",
+      "contract_versions": [
+        "v1",
+        "v2",
+        "v3"
+      ],
+      "repository": "edithatogo/archive-govt-nz",
+      "role": "control_plane"
+    },
+    {
+      "conformance": "adapter_required",
+      "contract_versions": [],
+      "reason_code": "bronze_b0_b1_semantics_conflict_with_shared_b0_b1_b2",
+      "repository": "edithatogo/global-family-justice-data",
+      "role": "federated_control_plane"
+    }
+  ],
+  "rights_boundary": "derived_and_public_metadata_only",
+  "schema_version": "medallion-federation-manifest-v1"
+}

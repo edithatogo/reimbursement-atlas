@@ -775,6 +775,30 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/medallion_federation/contract_manifest.json",
+      "dct:format": "json",
+      "dct:title": "contract_manifest"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/medallion_federation/federation_manifest.json",
+      "dct:format": "json",
+      "dct:title": "federation_manifest"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/medallion_federation/huggingface_configs.json",
+      "dct:format": "json",
+      "dct:title": "huggingface_configs"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "contracts/medallion/manifest.json",
+      "dct:format": "json",
+      "dct:title": "manifest"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/release_readiness/release_gates.jsonl",
       "dct:format": "jsonl",
       "dct:title": "release_gates"

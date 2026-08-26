@@ -1,0 +1,40 @@
+{
+  "authority_model": "decentralized_hash_locked",
+  "authority_transition_status": "not_yet_hosted",
+  "contract_versions": [
+    "v1",
+    "v2",
+    "v3"
+  ],
+  "files": [
+    {
+      "path": "contracts/medallion/v1/medallion-conformance.schema.json",
+      "sha256": "4c1ee81b026c64cf8f962d602cd64441a4a023c132346349c8b27dab0981f10e",
+      "version": "v1"
+    },
+    {
+      "path": "contracts/medallion/v1/fixtures/valid.json",
+      "sha256": "b7860189edd1568fcb719b6b5e15a5ab3180800070a126b634e94c1c8c17a079",
+      "version": "v1"
+    },
+    {
+      "path": "contracts/medallion/v1/fixtures/invalid-missing-gate.json",
+      "sha256": "0f8f646301dcd642a19d01c6d8b39d7b8ddc77538fec4c63f4ba06e9a3cab4a5",
+      "version": "v1"
+    },
+    {
+      "path": "contracts/medallion/v2/field-lineage.schema.json",
+      "sha256": "bf31ee62a3566a8fde512748b79f644e0fab760f60924e4eb9d510d3c1ef6f8a",
+      "version": "v2"
+    },
+    {
+      "path": "contracts/medallion/v3/backfill-replay.schema.json",
+      "sha256": "5d0f472b124701ef66dcc1a5c39670826b8e95e5faf576cc394a3cd22df9419c",
+      "version": "v3"
+    }
+  ],
+  "generated_at": "1970-01-01T00:00:00Z",
+  "proposed_distribution_authority": "edithatogo/repository-standards",
+  "runtime_dependency": null,
+  "schema_version": "medallion-contract-manifest-v1"
+}
