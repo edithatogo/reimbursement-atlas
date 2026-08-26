@@ -1,0 +1,16 @@
+{
+  "created_at": "2026-08-26T10:30:00Z",
+  "description": "Separate completed ingestion capability from partial source coverage and promotion.",
+  "evidence_schema": "1.0",
+  "gates": [
+    {
+      "id": "hosted_checks",
+      "status": "pass",
+      "evidence": "PR #761 exact-head run 32967641857 and associated required checks"
+    }
+  ],
+  "status": "completed",
+  "track_id": "source_acquisition_status_reconciliation_20260826",
+  "type": "bugfix",
+  "updated_at": "2026-08-26T12:15:00Z"
+}

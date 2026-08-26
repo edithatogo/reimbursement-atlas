@@ -27,8 +27,10 @@ On 2026-07-17, the hardened `curl` attempt revalidated both July 2026 MBS TXT
 files and the PBS v3 schedules response into ignored local raw storage. Six other
 targets remain intentionally skipped behind source/licence review. The PBS API
 runtime key was read from the official catalogue for this invocation only; it was
-not persisted, logged or committed. The current local source-health result is
-`review_required` with zero operational blockers and six licence-review targets.
+not persisted, logged or committed. The source-health contract reports ingestion implementation
+separately from breadth and promotion. It must not reopen an implementation-outage issue when
+executable ingestion is complete but historical coverage, availability, or licence review remains
+partial.
 The authoritative current status is generated in
 `data/derived/source_health/acquisition_status.json`.
 

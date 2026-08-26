@@ -326,6 +326,7 @@ manual_review,,,,,,,,,mapping_resource:map_who_atc_ddd,,,mapping_resource,WHO AT
 ,,,,,,,,,track:medallion_bronze_evidence_20260825,,,conductor_track,Medallion Bronze evidence alignment,,,,,,,hardening,,must,,,,,data
 ,,,,,,,,,track:medallion_platinum_projection_20260825,,,conductor_track,Medallion Platinum product projection,,,,,,,hardening,,must,,,,,product
 ,,,,,,,,,track:medallion_silver_gold_promotion_20260825,,,conductor_track,Medallion Silver and Gold promotion,,,,,,,hardening,,must,,,,,research
+,,,,,,,,,track:source_acquisition_status_reconciliation_20260826,,,conductor_track,Source acquisition status reconciliation,,,,,,,hardening,,must,,,,,data
 ,,,,,,,,,track:track_approval_friction_reduction_20260820,,,conductor_track,Risk-tiered approval friction reduction,,,,,,,hardening,,must,,,,,governance
 ,,,,,,,,,track:track_ci_cd_supply_chain,,,conductor_track,CI/CD and supply-chain hardening,,,,,,,hardening,,must,,,,,automation
 ,,,,,,,,,track:track_data_packaging_standards,,,conductor_track,Research-data packaging standards,,,,,,,implementation,,should,,,,,publication

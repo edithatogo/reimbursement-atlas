@@ -27,4 +27,5 @@ def test_source_health_issue_permissions_are_job_scoped(repo_root: Path) -> None
     assert "evidence_generation_attempted" in source_health_job
     assert 'status" = "incomplete"' in source_health_job
     assert 'status" = "unknown"' in source_health_job
-    assert "remaining rows are licence-review gates" in source_health_job
+    assert 'implementation_status" != "complete"' in source_health_job
+    assert "Remaining work concerns acquisition breadth" in source_health_job
