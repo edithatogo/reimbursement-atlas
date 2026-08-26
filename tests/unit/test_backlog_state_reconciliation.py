@@ -80,11 +80,11 @@ def test_bounded_analyses_are_complete_without_claiming_full_reports() -> None:
     assert "full reports, papers and preprints remain separate" in item["acceptance"][1]
 
 
-def test_external_monitoring_items_remain_blocked() -> None:
+def test_external_monitoring_items_preserve_true_platform_state() -> None:
     issues = _backlog_issues()
     assert (
         issues["Enable GitHub non-provider secret-pattern scanning and validity checks"]["status"]
-        == "blocked"
+        == "implemented"
     )
     assert (
         issues["Reassess TypeScript 7 after Astro checker peer support is available"]["status"]

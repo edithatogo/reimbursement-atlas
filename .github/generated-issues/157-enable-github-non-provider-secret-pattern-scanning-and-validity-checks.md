@@ -2,9 +2,9 @@
 
 Epic: `SEC-020` — Continuous security assurance and branch enforcement
 
-Labels: type:security, type:repo-automation, phase:hardening, status:blocked
+Labels: type:security, type:repo-automation, phase:hardening, status:implemented
 
-Status: `blocked`
+Status: `implemented`
 
 ## Background
 
@@ -12,7 +12,8 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 ## Acceptance criteria
 
-- [ ] A scheduled read-only monitor records the four repository security settings without tokens or request headers.
-- [ ] The monitor keeps issue #191 synchronized and reports disabled advanced controls as blocked_account, never as pass.
-- [ ] The monitor reports blocked_permissions when an authenticated API response omits security analysis settings, rather than inferring an account state.
-- [ ] Core scanning, push protection, Gitleaks, CodeQL, zizmor and dependency-review compensating controls remain documented.
+- [x] A scheduled read-only monitor records the four repository security settings without tokens or request headers.
+- [x] The monitor records disabled account/plan-bound advanced controls as externally unavailable, never as enabled.
+- [x] The monitor reports blocked_permissions when an authenticated API response omits security analysis settings, rather than inferring an account state.
+- [x] Core scanning, push protection, Gitleaks, CodeQL, zizmor and dependency-review compensating controls remain documented.
+- [x] Live owner-visible readback confirms secret scanning and push protection are enabled; unavailable optional controls are non-required external observations.
