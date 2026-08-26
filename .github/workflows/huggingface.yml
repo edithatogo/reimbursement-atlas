@@ -88,6 +88,7 @@ jobs:
         run: |
           test -n "$HF_TOKEN"
           test -n "$HF_DATASET_REPO"
+          export HF_USERNAME="${HF_DATASET_REPO%%/*}"
           git -c http.extraheader="Authorization: Bearer $HF_TOKEN" \
             clone "https://huggingface.co/datasets/${HF_DATASET_REPO}" hf-dataset
           git -C hf-dataset config http.https://huggingface.co/.extraheader "Authorization: Bearer $HF_TOKEN"
@@ -110,7 +111,7 @@ jobs:
           cat > "$RUNNER_TEMP/hf-askpass" <<'EOF'
           #!/bin/sh
           case "$1" in
-            *Username*) printf '%s\n' "__token__" ;;
+            *Username*) printf '%s\n' "$HF_USERNAME" ;;
             *) printf '%s\n' "$HF_TOKEN" ;;
           esac
           EOF
@@ -162,6 +163,7 @@ jobs:
         run: |
           test -n "$HF_TOKEN"
           test -n "$HF_SPACE_REPO"
+          export HF_USERNAME="${HF_SPACE_REPO%%/*}"
           git -c http.extraheader="Authorization: Bearer $HF_TOKEN" \
             clone "https://huggingface.co/spaces/${HF_SPACE_REPO}" hf-space
           git -C hf-space config http.https://huggingface.co/.extraheader "Authorization: Bearer $HF_TOKEN"
@@ -176,7 +178,7 @@ jobs:
           cat > "$RUNNER_TEMP/hf-askpass" <<'EOF'
           #!/bin/sh
           case "$1" in
-            *Username*) printf '%s\n' "__token__" ;;
+            *Username*) printf '%s\n' "$HF_USERNAME" ;;
             *) printf '%s\n' "$HF_TOKEN" ;;
           esac
           EOF
