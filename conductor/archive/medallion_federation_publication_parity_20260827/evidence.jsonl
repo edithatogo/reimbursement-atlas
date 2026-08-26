@@ -1,3 +1,4 @@
 {"schema_version":"1.0","event":"track_initialized","status":"pass","issue":767,"external_publication_authorized":false,"shared_runtime_dependency":false}
 {"schema_version":"1.0","event":"repository_validation","status":"pass","local_quality_gates":"27/27","coverage_percent":90.05,"live_contract_checks":"15/15","repository_release_ready":true,"evidence_release_ready":true,"policy_claims_ready":false}
 {"schema_version":"1.0","event":"licence_policy_reconciliation","status":"pass","project_owned_automatic_policy_count":5,"remaining_historical_source_blockers":3,"new_owner_approvals_required":0}
+{"schema_version":"1.0","event":"protected_merge","status":"pass","pull_request":768,"exact_head":"1194ba96010279ffac232449b5a6cb7f044fd0f9","merge_commit":"5bd28446ed7486e91bee2b4fcbfaf7a9670bf227","hosted_checks":"all_passed","issue":767,"issue_state":"closed"}
