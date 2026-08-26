@@ -10,6 +10,7 @@ def test_huggingface_push_uses_supported_token_auth_without_secret_url() -> None
     assert workflow.count('export HF_USERNAME="${HF_') == 2
     assert workflow.count("*Username*) printf '%s\\n' \"$HF_USERNAME\" ;;") == 2
     assert "https://hf:${HF_TOKEN}@huggingface.co" not in workflow
+    assert "config http.https://huggingface.co/.extraheader" not in workflow
     assert workflow.count('GIT_ASKPASS="$RUNNER_TEMP/hf-askpass"') >= 4
 
 
