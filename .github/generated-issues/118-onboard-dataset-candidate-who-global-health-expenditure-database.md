@@ -2,9 +2,9 @@
 
 Epic: `DATASET-CANDIDATES` — Additional dataset and country onboarding
 
-Labels: type:data-source, priority:must, phase:future, status:planned
+Labels: type:data-source, priority:must, phase:future, status:implemented
 
-Status: `planned`
+Status: `implemented`
 
 ## Background
 
@@ -12,7 +12,8 @@ This issue was generated from `conductor/backlog.yml`. Refine the acceptance cri
 
 ## Acceptance criteria
 
-- [ ] Scope is confirmed.
-- [ ] Licence and data-governance implications are checked.
-- [ ] Tests or validation evidence are defined.
-- [ ] Documentation or Conductor context is updated.
+- [x] Candidate scope and authoritative source URL are recorded.
+- [x] Access mode, source-registry linkage and licence-review state are explicit.
+- [x] Deterministic candidate-assessment evidence and regression tests are present.
+- [x] Conductor and generated GitHub Project artefacts are synchronized.
+- [x] Closure is bounded to metadata onboarding; acquisition, parser validation, redistribution rights and evidence readiness are not implied.

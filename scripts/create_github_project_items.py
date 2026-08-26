@@ -116,7 +116,16 @@ def generated_track_issues(
                 status=str(row.get("status", "planned")),
             )
         )
+    candidate_assessments = {
+        str(row.get("candidate_id")): row
+        for row in _read_jsonl(
+            root / "data/derived/dataset_candidates/dataset_candidate_assessments.jsonl"
+        )
+    }
     for row in _read_jsonl(seed_dir / "dataset_candidates.jsonl"):
+        assessment = candidate_assessments.get(str(row.get("id")), {})
+        metadata_complete = assessment.get("issue_disposition") == "close_metadata_onboarding"
+        issue_status = "implemented" if metadata_complete else "planned"
         issues.append(
             IssueDraft(
                 epic_id="DATASET-CANDIDATES",
@@ -126,9 +135,9 @@ def generated_track_issues(
                     "type:data-source",
                     f"priority:{row.get('priority', 'unknown')}",
                     "phase:future",
-                    f"status:{row.get('parser_status', 'planned')}",
+                    f"status:{issue_status}",
                 ],
-                status=str(row.get("parser_status", "planned")),
+                status=issue_status,
             )
         )
     evidence = {
@@ -300,6 +309,15 @@ def render_issue(issue: IssueDraft) -> str:  # ruff:ignore[too-many-branches, to
             "blockers and dashboard source-health evidence.\n"
             "- [x] Dashboard status and source-health CSV projections regenerate deterministically."
         )
+    elif issue.epic_id == "DATASET-CANDIDATES" and issue.status == "implemented":
+        acceptance = (
+            "- [x] Candidate scope and authoritative source URL are recorded.\n"
+            "- [x] Access mode, source-registry linkage and licence-review state are explicit.\n"
+            "- [x] Deterministic candidate-assessment evidence and regression tests are present.\n"
+            "- [x] Conductor and generated GitHub Project artefacts are synchronized.\n"
+            "- [x] Closure is bounded to metadata onboarding; acquisition, parser validation, "
+            "redistribution rights and evidence readiness are not implied."
+        )
     elif issue.status in {"implemented", "done"}:
         acceptance = (
             "- [x] Scope is implemented in repository code, generated artefacts, documentation "
@@ -313,17 +331,16 @@ def render_issue(issue: IssueDraft) -> str:  # ruff:ignore[too-many-branches, to
         )
     elif issue.title == "Expand reviewed coverage with historical MBS and PBS bundles":
         acceptance = (
-            "- [x] Scope is confirmed: metadata-only inventory automation and a target-level "
-            "review packet are implemented; raw bundle acquisition remains gated.\n"
-            "- [x] Licence and data-governance implications are checked: historical targets remain "
-            "manual-review only.\n"
-            "- [x] Tests or validation evidence are defined: `pixi run historical-sources`, source "
-            "validation and source contracts.\n"
-            "- [x] Documentation or Conductor context is updated.\n"
-            "- [ ] Source-specific licence approval and reviewed PBS extract are complete.\n"
-            "- [ ] Historical raw payloads have been acquired into ignored local storage and "
-            "promoted "
-            "to reviewed derived bundles."
+            "- [x] Historical inventory, backfill/replay contracts and target-level review "
+            "evidence are implemented.\n"
+            "- [x] 340 MBS snapshots are acquired in ignored storage with immutable checksums and "
+            "replay-eligible evidence.\n"
+            "- [x] Rights states, provenance and non-publication boundaries remain explicit.\n"
+            "- [x] Tests cover historical indexing, deterministic replay, source contracts and raw "
+            "path exclusion.\n"
+            "- [ ] Resolve the three failed historical MBS targets.\n"
+            "- [ ] Acquire and promote rights-reviewed historical PBS payload snapshots; the "
+            "current historical PBS record is metadata-only."
         )
     elif issue.title == "Add URL/licence verification checklist for first-wave sources":
         acceptance = (

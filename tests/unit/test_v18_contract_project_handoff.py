@@ -122,15 +122,15 @@ def test_github_project_export_covers_generated_issues(tmp_path: Path) -> None:
     assert all(path.exists() for path in paths)
 
 
-def test_dataset_candidates_are_explicitly_planned() -> None:
+def test_dataset_candidate_metadata_onboarding_is_explicitly_implemented() -> None:
     from scripts.create_github_project_items import generated_track_issues
 
     candidates = [
         issue for issue in generated_track_issues(ROOT) if issue.epic_id == "DATASET-CANDIDATES"
     ]
     assert candidates
-    assert all(issue.status == "planned" for issue in candidates)
-    assert all("status:planned" in issue.labels for issue in candidates)
+    assert all(issue.status == "implemented" for issue in candidates)
+    assert all("status:implemented" in issue.labels for issue in candidates)
 
 
 def test_generated_issue_renders_parent_subissue_link() -> None:
