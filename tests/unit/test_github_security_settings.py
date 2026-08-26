@@ -5,8 +5,8 @@ from __future__ import annotations
 from scripts.check_github_security_settings import SECURITY_KEYS, build_report
 
 
-def test_build_report_distinguishes_account_blocker() -> None:
-    """Core controls can pass while unavailable advanced settings stay blocked."""
+def test_build_report_distinguishes_external_capability() -> None:
+    """Core controls can pass while unavailable advanced settings stay observable."""
     report = build_report(
         repo="edithatogo/reimbursement-atlas",
         payload={
@@ -18,10 +18,11 @@ def test_build_report_distinguishes_account_blocker() -> None:
             }
         },
     )
-    assert report["status"] == "blocked_account"
+    assert report["status"] == "external_capability_unavailable"
     assert report["core_controls_ready"] is True
     assert report["advanced_controls_ready"] is False
     assert report["mutation_performed"] is False
+    assert "No repository action remains" in report["next_action"]
 
 
 def test_build_report_passes_only_when_all_controls_are_enabled() -> None:

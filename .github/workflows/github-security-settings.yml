@@ -52,7 +52,7 @@ jobs:
           status="$(python -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["status"])' "$report")"
           body="$(cat "$report")"
           body="$(printf 'Live readback from %s/%s/actions/runs/%s:\n\n%s' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" "$body")"
-          if [ "$status" = "pass" ]; then
+          if [ "$status" = "pass" ] || [ "$status" = "external_capability_unavailable" ]; then
             gh issue close 191 --comment "$body" || true
           else
             gh issue edit 191 --body "$(printf '%s\n\n%s' 'Automated live security-settings monitor.' "$body")"

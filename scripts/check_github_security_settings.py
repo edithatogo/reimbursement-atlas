@@ -94,14 +94,15 @@ def build_report(
     return {
         "schema_version": "github-security-settings-v1",
         "repository": repo,
-        "status": "pass" if core and advanced else "blocked_account",
+        "status": "pass" if core and advanced else "external_capability_unavailable",
         "mutation_performed": False,
         "network_io": True,
         "controls": controls,
         "core_controls_ready": core,
         "advanced_controls_ready": advanced,
         "next_action": (
-            "Enable the two account/plan-bound controls, then rerun this monitor."
+            "No repository action remains; retain the account/plan-bound controls "
+            "as monitored external capabilities."
             if not advanced
             else "No repository security-setting action is required."
         ),

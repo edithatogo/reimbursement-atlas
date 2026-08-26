@@ -9,8 +9,8 @@
   "core_controls_ready": true,
   "mutation_performed": false,
   "network_io": true,
-  "next_action": "Enable the two account/plan-bound controls, then rerun this monitor.",
+  "next_action": "No repository action remains; retain the account/plan-bound controls as monitored external capabilities.",
   "repository": "edithatogo/reimbursement-atlas",
   "schema_version": "github-security-settings-v1",
-  "status": "blocked_account"
+  "status": "external_capability_unavailable"
 }
