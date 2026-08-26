@@ -172,3 +172,77 @@ def test_publication_gates_pass_for_explicitly_approved_manifest(tmp_path: Path)
     )
 
     assert publication_gate_failures(tmp_path) == []
+
+
+def test_metadata_publication_does_not_infer_research_or_policy_readiness(tmp_path: Path) -> None:
+    _write(
+        tmp_path,
+        "data/derived/release_readiness/summary.json",
+        {
+            "repository_release_ready": True,
+            "research_publication_ready": False,
+            "evidence_release_ready": True,
+            "policy_claims_ready": False,
+        },
+    )
+    _write(
+        tmp_path,
+        "data/derived/protocols/summary.json",
+        {"protocol_count": 1, "protocol_ready_count": 1},
+    )
+    _write(tmp_path, "data/derived/source_contracts/summary.json", {"fail": 0, "missing": 0})
+    _write(tmp_path, "data/derived/data_quality/summary.json", {"fail": 0, "missing": 0})
+    _write(
+        tmp_path,
+        "data/derived/publication_manifest.json",
+        {
+            "artifacts": [
+                {
+                    "relative_path": "data/seed/source_registry.jsonl",
+                    "licence_gate": "permissive_candidate",
+                    "contains_raw_source_payload": False,
+                },
+                {
+                    "relative_path": "data/derived/historical_sources/restricted.jsonl",
+                    "licence_gate": "public_reuse_review",
+                    "contains_raw_source_payload": False,
+                },
+            ]
+        },
+    )
+
+    assert publication_gate_failures(tmp_path, scope="metadata") == []
+    research_failures = publication_gate_failures(tmp_path, scope="research")
+    assert any("research_publication_ready" in failure for failure in research_failures)
+    assert any("policy_claims_ready" in failure for failure in research_failures)
+
+
+def test_metadata_publication_rejects_unapproved_staged_artifact(tmp_path: Path) -> None:
+    _write(
+        tmp_path,
+        "data/derived/release_readiness/summary.json",
+        {"repository_release_ready": True, "evidence_release_ready": True},
+    )
+    _write(
+        tmp_path,
+        "data/derived/protocols/summary.json",
+        {"protocol_count": 0, "protocol_ready_count": 0},
+    )
+    _write(tmp_path, "data/derived/source_contracts/summary.json", {"fail": 0, "missing": 0})
+    _write(tmp_path, "data/derived/data_quality/summary.json", {"fail": 0, "missing": 0})
+    _write(
+        tmp_path,
+        "data/derived/publication_manifest.json",
+        {
+            "artifacts": [
+                {
+                    "relative_path": "data/seed/source_registry.jsonl",
+                    "licence_gate": "public_reuse_review",
+                    "contains_raw_source_payload": False,
+                }
+            ]
+        },
+    )
+
+    failures = publication_gate_failures(tmp_path, scope="metadata")
+    assert any("licence review is incomplete" in failure for failure in failures)

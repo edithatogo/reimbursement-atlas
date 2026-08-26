@@ -1,6 +1,15 @@
 version: 1
 updated: "2026-07-31"
 tracks:
+  - id: huggingface_scoped_publication_20260827
+    title: "Hugging Face scoped publication"
+    priority: must
+    phase: hardening
+    workstream: publication
+    goal: "Refresh Hugging Face through bounded metadata gates without implying research or policy readiness."
+    spec: "conductor/tracks/huggingface_scoped_publication_20260827/spec.md"
+    plan: "conductor/tracks/huggingface_scoped_publication_20260827/plan.md"
+    issues: [770]
   - id: medallion_federation_publication_parity_20260827
     title: "Medallion federation and Hugging Face publication parity"
     priority: must

@@ -2,11 +2,23 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
-from typing import Any, cast
+from typing import Any, Literal, cast
 
 from reimburse_atlas.registry import project_root
+
+PublicationScope = Literal["metadata", "research"]
+HF_STAGED_PREFIXES = (
+    "data/seed/",
+    "data/derived/medallion/",
+    "data/derived/field_lineage/",
+    "data/derived/medallion_federation/",
+    "infra/huggingface/",
+    "contracts/medallion/",
+)
+HF_STAGED_PATHS = {"data/derived/publication_manifest.json"}
 
 
 def _read_json(root: Path, relative: str) -> dict[str, Any]:
@@ -18,19 +30,18 @@ def _read_json(root: Path, relative: str) -> dict[str, Any]:
     return cast("dict[str, Any]", value) if isinstance(value, dict) else {}
 
 
-def publication_gate_failures(
+def publication_gate_failures(  # ruff:ignore[too-many-branches] - fail closed explicitly
     root: Path | None = None,
+    scope: PublicationScope = "research",
 ) -> list[str]:
     """Return every licence, research or release gate blocking HF mutation."""
     repo = root or project_root()
     failures: list[str] = []
     release = _read_json(repo, "data/derived/release_readiness/summary.json")
-    for key in (
-        "repository_release_ready",
-        "research_publication_ready",
-        "evidence_release_ready",
-        "policy_claims_ready",
-    ):
+    required_flags = ["repository_release_ready", "evidence_release_ready"]
+    if scope == "research":
+        required_flags.extend(("research_publication_ready", "policy_claims_ready"))
+    for key in required_flags:
         if release.get(key) is not True:
             failures.append(f"release readiness flag is not true: {key}")
 
@@ -61,11 +72,17 @@ def publication_gate_failures(
     if not artifacts:
         failures.append("publication manifest has no artefacts")
     for artifact in artifacts:
+        relative_path = str(artifact.get("relative_path", ""))
         if artifact.get("contains_raw_source_payload") is True:
             failures.append(
                 f"raw source payload marked for publication: {artifact.get('relative_path')}"
             )
-        if artifact.get("licence_gate") not in {
+        is_staged = (
+            scope == "research"
+            or relative_path in HF_STAGED_PATHS
+            or relative_path.startswith(HF_STAGED_PREFIXES)
+        )
+        if is_staged and artifact.get("licence_gate") not in {
             "permissive_candidate",
             "apache_2_0_project_output",
         }:
@@ -78,13 +95,16 @@ def publication_gate_failures(
 
 def main() -> None:
     """Exit non-zero when any publication mutation gate is unresolved."""
-    failures = publication_gate_failures()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--scope", choices=("metadata", "research"), default="research")
+    args = parser.parse_args()
+    failures = publication_gate_failures(scope=cast("PublicationScope", args.scope))
     if failures:
         print("Hugging Face publication blocked; no remote mutation permitted:")
         for failure in failures:
             print(f"- {failure}")
         raise SystemExit(1)
-    print("Hugging Face publication gates passed; remote mutation is permitted.")
+    print(f"Hugging Face {args.scope} publication gates passed; remote mutation is permitted.")
 
 
 if __name__ == "__main__":
