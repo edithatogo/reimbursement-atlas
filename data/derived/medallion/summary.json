@@ -3,7 +3,7 @@
   "bronze_b0_count": 64,
   "bronze_b1_count": 371,
   "bronze_b2_count": 352,
-  "evidence_release_ready": false,
+  "evidence_release_ready": true,
   "gold_approved_count": 2,
   "gold_count": 2,
   "medallion_contract_ready": true,

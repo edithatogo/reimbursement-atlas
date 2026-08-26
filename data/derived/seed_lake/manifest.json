@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 45,
-      "sha256": "58da012d2498ce757dbd87cae7e39d1e15ac879385602a1c2c6345fa56d80a42"
+      "sha256": "e705ad42d2688bf028b0f22e5f78dbd6c0f0c0fcb7c2d5eadc49b073f7fbfaea"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -417,7 +417,7 @@
       "name": "medallion_artifacts",
       "parquet_path": "medallion_artifacts/medallion_artifacts.parquet",
       "rows": 22,
-      "sha256": "4df298a0eacab9fecd6f058e8aa2a41724e4b55e58fa17e91809023c20fe6100"
+      "sha256": "14e4a765284056f5513df1fde1428d6f42214a7972396d49182628112ee50590"
     },
     {
       "csv_path": "medallion_promotion_decisions/medallion_promotion_decisions.csv",
@@ -425,7 +425,7 @@
       "name": "medallion_promotion_decisions",
       "parquet_path": "medallion_promotion_decisions/medallion_promotion_decisions.parquet",
       "rows": 440,
-      "sha256": "ce6d7a25ae29277c097012b2a6c9472df3fef618d49f7714c71c5dec4e3af540"
+      "sha256": "9a537ffa6a4dbdbbea11d90034d5d12a1ae1ee300853fbf587a6b40717480e50"
     },
     {
       "csv_path": "github_project_items/github_project_items.csv",
@@ -489,7 +489,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 265,
-      "sha256": "e1e5e7c0435ffff01275dd597110ded695e671ebb34abd1f71c6f7d2e7b3be5c"
+      "sha256": "855955d9c60e075512d414cadd9d0a7b651bf1db7b2d52c6461020a863117fc7"
     }
   ]
 }
