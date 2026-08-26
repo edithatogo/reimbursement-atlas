@@ -417,7 +417,7 @@
       "name": "medallion_artifacts",
       "parquet_path": "medallion_artifacts/medallion_artifacts.parquet",
       "rows": 22,
-      "sha256": "4e09e0feaa0318c9cca5798593c6f4e5262bd2f0dc2c0fbab10993f03d4ecfa5"
+      "sha256": "db03806cf7bc5d2748a12621846e1b861beffbc321edd118d37262456867c58f"
     },
     {
       "csv_path": "medallion_promotion_decisions/medallion_promotion_decisions.csv",
