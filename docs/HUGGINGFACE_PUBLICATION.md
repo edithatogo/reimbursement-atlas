@@ -126,7 +126,11 @@ Before either publication job can mutate a remote repository, the workflow runs
 `scripts/check_huggingface_bundle.py`. It verifies the Space metadata, dashboard status contract,
 publication manifest and forbidden raw/secret/local-path markers. A passing bundle check does not
 grant permission to publish or imply evidence readiness. The mutation jobs also run
-`scripts/check_huggingface_publication_gates.py`, which fails closed unless release readiness,
+`scripts/check_huggingface_publication_gates.py`, which supports a bounded `metadata` scope for
+the staged medallion dataset and dashboard and a stricter `research` scope. Metadata publication
+still fails closed on repository and evidence readiness, protocol status, source contracts, data
+quality, raw-payload policy, and staged-artifact rights; it does not imply policy-claim or
+manuscript readiness. The research scope fails closed unless release readiness,
 protocol status, source contracts, data quality, licence gates and policy/evidence flags all pass.
 
 No raw restricted schedules, CPT descriptors, local ontology dumps or confidential prices should be published to Hugging Face.
