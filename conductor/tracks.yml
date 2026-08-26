@@ -1,6 +1,15 @@
 version: 1
 updated: "2026-07-31"
 tracks:
+  - id: source_acquisition_status_reconciliation_20260826
+    title: "Source acquisition status reconciliation"
+    priority: must
+    phase: hardening
+    workstream: data
+    goal: "Separate completed ingestion capability from partial acquisition breadth and evidence promotion."
+    spec: "conductor/archive/source_acquisition_status_reconciliation_20260826/spec.md"
+    plan: "conductor/archive/source_acquisition_status_reconciliation_20260826/plan.md"
+    issues: [603, 255]
   - id: parallel_ci_tests_20260826
     title: "Parallel CI and bounded test execution"
     priority: must

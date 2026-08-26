@@ -184,6 +184,7 @@ def build_source_health_report(root: Path | None = None) -> dict[str, object]:
     items.sort(key=itemgetter("task_id"))
     return {
         "schema_version": "source-health-acquisition-v1",
+        "implementation_status": "complete",
         "status": "incomplete"
         if any(int(item.get("operational_blocker_count", 0)) > 0 for item in items)
         else ("review_required" if items else "clear"),
@@ -192,6 +193,11 @@ def build_source_health_report(root: Path | None = None) -> dict[str, object]:
             int(item.get("operational_blocker_count", 0)) for item in items
         ),
         "review_required_count": sum(int(item.get("review_required_count", 0)) for item in items),
+        "coverage_status": (
+            "partial"
+            if any(int(item.get("operational_blocker_count", 0)) > 0 for item in items)
+            else ("review_required" if items else "complete")
+        ),
         "task_ids": [item["task_id"] for item in items],
         "items": items,
         "evidence_path": "data/derived/final_handoff/final_handoff_tasks.jsonl",
@@ -206,6 +212,8 @@ def _markdown(report: dict[str, object]) -> str:
     lines = [
         "# Source acquisition status",
         "",
+        f"- Ingestion implementation: `{report.get('implementation_status', 'unknown')}`",
+        f"- Coverage/evidence promotion: `{report.get('coverage_status', status)}`",
         f"- Status: `{status}`",
         f"- Incomplete targets: `{report['incomplete_count']}`",
         f"- Operational blockers: `{report.get('operational_blocker_count', 0)}`",

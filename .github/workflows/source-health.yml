@@ -180,18 +180,20 @@ jobs:
           report_path="data/derived/source_health/acquisition_status.json"
           body_path="data/derived/source_health/acquisition_status.md"
           status="unknown"
+          implementation_status="unknown"
           if [ -f "$report_path" ]; then
             status="$(python -c 'import json, sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["status"])' "$report_path")"
+            implementation_status="$(python -c 'import json, sys; print(json.load(open(sys.argv[1], encoding="utf-8")).get("implementation_status", "unknown"))' "$report_path")"
           fi
           body="$(cat "$body_path" 2>/dev/null || echo 'Source acquisition status report was not generated.')"
           body="$(printf '%s\n\nRun: %s' "$body" "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}")"
           number="$(gh issue list --state open --search "${title} in:title" --json number,title --jq ".[] | select(.title == \"${title}\") | .number" | head -n 1)"
-          if [ "$status" = "incomplete" ] || [ "$status" = "unknown" ]; then
+          if [ "$implementation_status" != "complete" ] && { [ "$status" = "incomplete" ] || [ "$status" = "unknown" ]; }; then
             if [ -n "$number" ]; then
               gh issue edit "$number" --body "$body"
             else
               gh issue create --title "$title" --body "$body" --label "type:data-quality"
             fi
           elif [ -n "$number" ]; then
-            gh issue close "$number" --comment "Executable source acquisition is complete; remaining rows are licence-review gates. See the generated source-health report in run ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}."
+            gh issue close "$number" --comment "Executable source ingestion is complete. Remaining work concerns acquisition breadth, failed historical targets, or evidence/licence promotion and is tracked separately. See the generated source-health report in run ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}."
           fi

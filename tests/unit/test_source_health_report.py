@@ -44,6 +44,8 @@ def test_source_health_report_selects_only_incomplete_acquisition_tasks(tmp_path
     )
     report = build_source_health_report(tmp_path)
     assert report["status"] == "incomplete"
+    assert report["implementation_status"] == "complete"
+    assert report["coverage_status"] == "partial"
     assert report["task_ids"] == ["source_partial", "source_secret"]
     assert report["network_io"] is False
     assert report["mutation_performed"] is False
@@ -100,6 +102,8 @@ def test_source_health_report_is_clear_when_acquisition_is_complete(tmp_path: Pa
     report = build_source_health_report(tmp_path)
     paths = write_source_health_report(report, tmp_path / "report")
     assert report["status"] == "clear"
+    assert report["implementation_status"] == "complete"
+    assert report["coverage_status"] == "complete"
     assert all(path.exists() for path in paths)
     assert "No source-ingestion tasks" in paths[1].read_text(encoding="utf-8")
 
@@ -133,6 +137,8 @@ def test_source_health_report_separates_licence_review_from_operational_blockers
 
     report = build_source_health_report(tmp_path)
     assert report["status"] == "review_required"
+    assert report["implementation_status"] == "complete"
+    assert report["coverage_status"] == "review_required"
     assert report["operational_blocker_count"] == 0
     assert report["review_required_count"] == 1
     item = report["items"][0]
