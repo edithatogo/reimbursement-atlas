@@ -537,7 +537,7 @@ epics:
         status: implemented
         acceptance:
           - "All five bounded claim packages remain checksum-bound, approved and evidence-ready within their declared scope."
-          - "Implementation is limited to the bounded analyses and reviewed claim packages; full reports, papers and preprints remain separate open work."
+          - "Five deterministic bounded evidence reports are complete; papers, manuscripts and preprints remain intentionally excluded."
       - title: Generate five deterministic bounded claim-package candidates
         labels: ["type:research", "type:analysis", "phase:analysis", "status:implemented"]
         status: implemented

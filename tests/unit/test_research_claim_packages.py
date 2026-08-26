@@ -37,6 +37,16 @@ def test_claim_package_generation_is_deterministic() -> None:
     assert first == second
 
 
+def test_repository_claim_summary_recognises_checksum_bound_approvals() -> None:
+    root = Path(__file__).resolve().parents[2]
+    summary = json.loads(
+        (root / "data/derived/research_claims/summary.json").read_text(encoding="utf-8")
+    )
+
+    assert summary["approved_within_scope_count"] == 5
+    assert summary["pending_accountable_review_count"] == 0
+
+
 def test_claim_package_writer_emits_checksum_bound_summary(tmp_path: Path) -> None:
     root = Path(__file__).resolve().parents[2]
     for relative in (

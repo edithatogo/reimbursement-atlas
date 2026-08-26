@@ -13,4 +13,4 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 ## Acceptance criteria
 
 - [x] All five bounded claim packages remain checksum-bound, approved and evidence-ready within their declared scope.
-- [x] Implementation is limited to the bounded analyses and reviewed claim packages; full reports, papers and preprints remain separate open work.
+- [x] Five deterministic bounded evidence reports are complete; papers, manuscripts and preprints remain intentionally excluded.

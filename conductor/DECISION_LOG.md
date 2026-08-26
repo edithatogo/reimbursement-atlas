@@ -1,5 +1,18 @@
 # Decision log
 
+## 2026-08-26: Separate bounded evidence completion from manuscript publication
+
+Decision: derive bounded evidence readiness from mapping, licence and approved research evidence,
+independently of the commit-bound dashboard review. Generate five bounded evidence reports from
+checksum-bound approved packages. Retain policy-claim readiness as false because current approvals
+are descriptive/source-completeness only, and retain research publication as an explicit
+non-required warning because papers and preprints are excluded.
+
+Rationale: dashboard review governs a display surface, not the validity of independently reviewed
+claim packages. Conversely, evidence readiness does not authorize manuscript submission. Keeping
+these states separate prevents stale dashboard packets from revoking evidence decisions and stops
+repository readiness from being mistaken for publication authority.
+
 ## 2026-08-20: Reconcile live issue metadata after OSF deprecation
 
 Decision: remove active OSF labels and destination-specific wording from generated research

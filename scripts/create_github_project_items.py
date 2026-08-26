@@ -131,7 +131,21 @@ def generated_track_issues(
                 status=str(row.get("parser_status", "planned")),
             )
         )
+    evidence = {
+        str(row.get("research_question_id")): row
+        for row in _read_jsonl(root / "data/derived/evidence_readiness/evidence_readiness.jsonl")
+    }
     for row in _read_jsonl(seed_dir / "research_questions.jsonl"):
+        question_id = str(row.get("id"))
+        evidence_row = evidence.get(question_id, {})
+        report_complete = (
+            evidence_row.get("readiness_stage") == "evidence_ready"
+            and evidence_row.get("claim_package_status") == "approved"
+            and (root / str(row.get("report_path", ""))).is_file()
+        )
+        issue_status = (
+            "implemented" if report_complete else str(row.get("preregistration_status", "planned"))
+        )
         issues.append(
             IssueDraft(
                 epic_id="RESEARCH-QUESTIONS",
@@ -140,9 +154,9 @@ def generated_track_issues(
                 labels=[
                     "type:research",
                     "phase:analysis",
-                    f"status:{row.get('preregistration_status', 'planned')}",
+                    f"status:{issue_status}",
                 ],
-                status=str(row.get("preregistration_status", "planned")),
+                status=issue_status,
                 protocol_path=str(row.get("protocol_path", "")) or None,
                 report_path=str(row.get("report_path", "")) or None,
                 preregistration_status=str(row.get("preregistration_status", "planned")),
@@ -199,10 +213,19 @@ def render_issue(issue: IssueDraft) -> str:  # ruff:ignore[too-many-branches, to
             "research-package generation gates provide deterministic local validation.\n"
             "- [x] Licence, source and publication boundaries remain fail-closed in the protocol "
             "and release-readiness artefacts.\n"
-            "- [ ] An accountable human completes the protocol review checklist and approves any "
-            "protocol governance or research publication.\n"
-            "- [ ] Reviewed source bundles and evidence-quality decisions support the research "
-            "claim before publication."
+            "- [x] The checksum-bound claim package has an accountable scoped approval and the "
+            "bounded report reproduces only supported descriptive claims.\n"
+            "- [x] Papers, preprints, causal claims and broad research-publication approval remain "
+            "explicitly outside this completed bounded-report scope."
+        )
+    elif issue.title == "Implement output plan: out_preprint_methods":
+        acceptance = (
+            "- [x] The local methods scaffold is retained as non-submitted provenance.\n"
+            "- [x] The output registry records `publication_excluded` as its release gate.\n"
+            "- [x] No workflow treats repository, evidence or policy-claim readiness as paper or "
+            "preprint submission authority.\n"
+            "- [x] The issue can close without submitting, publishing or reserving an identifier "
+            "for a manuscript."
         )
     elif issue.epic_id == "OUTPUTS":
         acceptance = (

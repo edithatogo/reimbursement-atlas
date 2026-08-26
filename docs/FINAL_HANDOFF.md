@@ -129,9 +129,11 @@ OSF CLI v1 verification and the downloadable archive are complete.
 Public evidence-release readiness still requires the remaining credential and human
 review gates.
 
-Current release posture: the repository is ready for local software release and the
-public dashboard is live, while `research_publication_ready`, `evidence_release_ready`
-and `policy_claims_ready` remain fail-closed.
+Current release posture: the repository and bounded evidence packages are ready within their
+declared constraints. `policy_claims_ready` remains false because current approvals do not grant
+broad policy interpretation, and `research_publication_ready` remains false because paper and
+preprint submission is intentionally excluded. Dashboard approval remains commit-bound and
+independent from the evidence-package decisions.
 
 Historical monitor snapshots below are retained for auditability. They are not the current
 release state; use the current merged-main block above and the generated readiness outputs as
