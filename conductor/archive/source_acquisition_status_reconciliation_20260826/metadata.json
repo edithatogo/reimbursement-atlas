@@ -5,12 +5,12 @@
   "gates": [
     {
       "id": "hosted_checks",
-      "status": "pending_hosted",
-      "evidence": "Protected pull request checks"
+      "status": "pass",
+      "evidence": "PR #761 exact-head run 32967641857 and associated required checks"
     }
   ],
-  "status": "completed_pending_hosted",
+  "status": "completed",
   "track_id": "source_acquisition_status_reconciliation_20260826",
   "type": "bugfix",
-  "updated_at": "2026-08-26T10:30:00Z"
+  "updated_at": "2026-08-26T12:15:00Z"
 }
