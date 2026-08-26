@@ -112,6 +112,50 @@ def test_evidence_release_requires_completed_research_evidence() -> None:
     assert summary.research_publication_ready is False
 
 
+def test_dashboard_review_does_not_block_bounded_evidence_release() -> None:
+    gates = [
+        ReleaseGateRecord(
+            id=identifier,
+            category="data_governance",
+            status="pass",
+            required=False,
+            evidence="approved",
+            recommended_action="none",
+        )
+        for identifier in (
+            "mapping_study_human_review",
+            "licence_review_queue",
+            "research_evidence",
+        )
+    ]
+    gates.extend([
+        ReleaseGateRecord(
+            id="dashboard_human_review",
+            category="dashboard",
+            status="blocked",
+            required=False,
+            evidence="stale commit-bound packet",
+            recommended_action="refresh dashboard review",
+        ),
+        ReleaseGateRecord(
+            id="research_publication_scope",
+            category="data_governance",
+            status="warn",
+            required=False,
+            evidence="paper_preprint_submission=excluded",
+            recommended_action="retain exclusion",
+        ),
+    ])
+
+    summary = summarise_release_gates(gates)
+
+    assert summary.repository_release_ready is True
+    assert summary.evidence_release_ready is True
+    assert summary.policy_claims_ready is False
+    assert summary.research_publication_ready is False
+    assert summary.review_pending_count == 1
+
+
 def test_release_readiness_report_reads_generated_evidence(tmp_path: Path) -> None:
     (tmp_path / "data/derived/local_quality_gates").mkdir(parents=True)
     external_gate_path = tmp_path / "data/derived/external_quality_gates.json"

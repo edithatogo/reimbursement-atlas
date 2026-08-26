@@ -1,8 +1,8 @@
 {
   "blocked_count": 1,
-  "evidence_release_ready": false,
+  "evidence_release_ready": true,
   "fail_count": 0,
-  "gate_count": 43,
+  "gate_count": 45,
   "missing_count": 0,
   "pass_count": 39,
   "policy_claims_ready": false,
@@ -11,5 +11,5 @@
   "research_publication_ready": false,
   "review_pending_count": 1,
   "schema_version": "release-readiness-v3",
-  "warn_count": 3
+  "warn_count": 5
 }

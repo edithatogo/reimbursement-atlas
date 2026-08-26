@@ -1,5 +1,15 @@
 # Release readiness
 
+## Research and evidence scope (2026-08-26)
+
+Canonical readiness now separates repository release, bounded evidence, dashboard review and
+manuscript publication. Five checksum-bound claim packages and their deterministic bounded reports
+are approved within scope, so `evidence_release_ready=true`. `policy_claims_ready=false` remains
+deliberate because the approvals cover bounded descriptive and source-completeness claims rather
+than broad policy conclusions. `research_publication_ready=false` remains deliberate because paper
+and preprint submission is excluded. A stale commit-bound dashboard review is a dashboard-only
+review gate and does not revoke the independently reviewed evidence packages.
+
 ## Current release boundary (2026-08-20)
 
 Merged `main` at `de1ababd89f128068d46f2aa6e7c20b7a1b677e1` reports

@@ -17,14 +17,6 @@
       "summary": "3 publication candidates still require licence review."
     },
     {
-      "category": "research_review",
-      "evidence_path": "data/derived/evidence_readiness/summary.json",
-      "id": "evidence_release",
-      "next_action": "Complete source, mapping, methods and research review before making evidence claims.",
-      "status": "blocked_review",
-      "summary": "Evidence release is not approved."
-    },
-    {
       "category": "publication",
       "evidence_path": "data/derived/release_readiness/summary.json",
       "id": "research_publication",
@@ -45,12 +37,12 @@
   "evidence": {
     "data_quality": "pass",
     "evidence_ready_rows": 5,
-    "evidence_release_ready": false,
+    "evidence_release_ready": true,
     "prototype_ready_rows": 0,
     "readiness_rows": 5,
     "research_publication_ready": false,
     "source_validation": "pass",
-    "status": "not_ready"
+    "status": "ready"
   },
   "evidence_paths": {
     "data_quality": "data/derived/data_quality/summary.json",

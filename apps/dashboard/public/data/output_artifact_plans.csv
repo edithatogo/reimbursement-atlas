@@ -3,7 +3,7 @@ out_hf_dataset,Licence-safe derived data only; no raw restricted descriptors.,da
 out_hf_space,Static Astro dashboard for public exploration.,dashboard,apps/dashboard/dist,dashboard_build_and_public_data_policy_pass,implemented,huggingface_space,track_publication_hf_spaces
 out_osf_protocol_pack,Legacy identifier for destination-neutral detailed research protocols.,protocol,protocols/,human_protocol_review,implemented,local,track_research_protocols_osf
 out_osf_reports,Legacy identifier for destination-neutral question-specific reports.,report,reports/,analysis_protocol_complete,implemented,local,track_research_protocols_osf
-out_preprint_methods,Methods/design paper scaffold; submission remains excluded and review-gated.,preprint,papers/reimbursement_atlas_methods.md,derived_data_available,drafted,local,track_research_protocols_osf
+out_preprint_methods,Local methods scaffold retained as non-submitted provenance; paper and preprint submission are intentionally excluded.,preprint,papers/reimbursement_atlas_methods.md,publication_excluded,implemented,local,track_research_protocols_osf
 out_ro_crate,Research object metadata for release candidate.,archive,data/derived/research_package/ro-crate-metadata.json,metadata_validates,implemented,github,track_data_packaging_standards
 out_frictionless,Frictionless tabular package metadata.,archive,data/derived/research_package/datapackage.json,schema_resources_valid,implemented,github,track_data_packaging_standards
 out_zenodo,Locally validated Zenodo metadata and non-depositing preflight; DOI creation remains gated.,archive,.zenodo.json,release_readiness_passes,implemented,zenodo,track_data_packaging_standards

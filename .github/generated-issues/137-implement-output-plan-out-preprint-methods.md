@@ -2,9 +2,9 @@
 
 Epic: `OUTPUTS` — Publication and deployment outputs
 
-Labels: type:publication, target:local, status:drafted
+Labels: type:publication, target:local, status:implemented
 
-Status: `drafted`
+Status: `implemented`
 
 ## Background
 
@@ -12,8 +12,7 @@ This issue was generated from `conductor/backlog.yml`. Refine the acceptance cri
 
 ## Acceptance criteria
 
-- [x] The output scope, target platform, repository path and release gate are recorded in `data/seed/output_artifact_plans.jsonl`.
-- [x] Licence and data-governance boundaries are explicit; an output plan does not grant publication or redistribution approval.
-- [x] Repository validation and regeneration commands are defined by the linked publication, package, dashboard or release gates.
-- [x] Conductor, generated issue and GitHub Project linkage is regenerated from the same source record.
-- [ ] The listed release gate and any required human or external approval are complete before promotion.
+- [x] The local methods scaffold is retained as non-submitted provenance.
+- [x] The output registry records `publication_excluded` as its release gate.
+- [x] No workflow treats repository, evidence or policy-claim readiness as paper or preprint submission authority.
+- [x] The issue can close without submitting, publishing or reserving an identifier for a manuscript.

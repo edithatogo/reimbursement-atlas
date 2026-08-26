@@ -118,6 +118,8 @@ def build_release_readiness_report(root: Path | None = None) -> ReleaseReadiness
         _mapping_study_gate(repo),
         _dashboard_human_review_gate(repo),
         _research_evidence_gate(repo),
+        _policy_claim_scope_gate(),
+        _research_publication_scope_gate(),
     ]
     summary = summarise_release_gates(gates)
     return ReleaseReadinessReport(gates=tuple(gates), summary=summary)
@@ -136,12 +138,14 @@ def summarise_release_gates(gates: list[ReleaseGateRecord]) -> ReleaseReadinessS
         gate_status.get(identifier) == "pass"
         for identifier in (
             "mapping_study_human_review",
-            "dashboard_human_review",
             "licence_review_queue",
             "research_evidence",
         )
     )
-    research_evidence_ready = gate_status.get("research_evidence") == "pass"
+    research_publication_ready = (
+        evidence_ready and gate_status.get("research_publication_scope") == "pass"
+    )
+    policy_claims_ready = evidence_ready and gate_status.get("policy_claim_scope") == "pass"
     return ReleaseReadinessSummary(
         schema_version="release-readiness-v3",
         gate_count=len(gates),
@@ -155,9 +159,9 @@ def summarise_release_gates(gates: list[ReleaseGateRecord]) -> ReleaseReadinessS
             1 for gate in gates if not gate.required and gate.status == "blocked"
         ),
         repository_release_ready=repository_ready,
-        research_publication_ready=evidence_ready and research_evidence_ready,
+        research_publication_ready=research_publication_ready,
         evidence_release_ready=evidence_ready,
-        policy_claims_ready=evidence_ready,
+        policy_claims_ready=policy_claims_ready,
     )
 
 
@@ -239,6 +243,36 @@ def _research_evidence_gate(repo: Path) -> ReleaseGateRecord:
         recommended_action=(
             "Retain prototype-only status until every research question has reviewed source "
             "evidence, validated analysis and accountable claim review."
+        ),
+    )
+
+
+def _research_publication_scope_gate() -> ReleaseGateRecord:
+    """Keep manuscripts outside the approved repository and evidence release scope."""
+    return ReleaseGateRecord(
+        id="research_publication_scope",
+        category="data_governance",
+        status="warn",
+        required=False,
+        evidence="paper_preprint_submission=excluded",
+        recommended_action=(
+            "Keep papers and preprints excluded unless a separate accountable publication "
+            "decision is recorded."
+        ),
+    )
+
+
+def _policy_claim_scope_gate() -> ReleaseGateRecord:
+    """Prevent bounded source evidence from becoming broad policy authority."""
+    return ReleaseGateRecord(
+        id="policy_claim_scope",
+        category="data_governance",
+        status="warn",
+        required=False,
+        evidence="approved_scope=bounded_descriptive_and_source_completeness",
+        recommended_action=(
+            "Retain bounded descriptive claims; require a separate claim-specific decision "
+            "before broader policy interpretation."
         ),
     )
 

@@ -1,25 +1,71 @@
-# Report scaffold: cognitive/procedural fee relativities
+# Bounded evidence report: rq_cognitive_procedural
 
-## Current status
-This report is not yet a results paper. It is a structured analysis scaffold linked to the OSF protocol, Conductor tracks, source-download plan, data-quality checks, evidence-readiness rows and GitHub issue backlog. No policy conclusion should be drawn until real reviewed-source bundles are generated and the mapping review workflow is complete.
+## Status and scope
+
+This is a deterministic bounded evidence report, not a paper or preprint. The checksum-bound claim package is `approved_within_scope`. No manuscript submission or broad research-publication approval is implied.
 
 ## Research question
-How do selected, matched schedule-amount relativities differ between procedural and cognitive care?
 
-## Evidence available now
-The bounded package `data/derived/research_claims/rq_cognitive_procedural.json`
-records reviewed MBS and CMS PFS evidence. A reviewed Ontario OHIP bundle and a
-prespecified clinically reviewed cognitive/procedural basket remain absent, so no
-fee-relativity estimate is reported.
+Do public fee schedules structurally reward procedures over cognitive specialist work?
 
-Observed schedule amounts cannot be interpreted as provider income, service value
-or realised payment. Facility and professional components must remain separate.
+## Evidence binding
 
-## Minimum evidence required before interpretation
-A release candidate for this question requires: reviewed source snapshots; derived-only parsed records; source-content validation; data-quality pass; data dictionary; source/schema drift report; candidate mappings; human review of policy-facing mappings; sensitivity analyses; and publication-manifest review. Any restricted terminology or confidential price concept must remain local-only or be represented as metadata.
+- Claim package: `data/derived/research_claims/rq_cognitive_procedural.json`
+- Claim package SHA-256: `826b3f0314a9dbf6a65c8707490baa22adbe3e968c9fe982aa45d07bff861b97`
+- Analysis status: `complete`
+- Required reviewed sources: `3`
+- Missing reviewed sources: `0`
 
-## Planned results sections
-The results report should include source inventory, inclusion flow, mapping review summary, main policy metrics, sensitivity analyses, limitations, reproducibility statement, OSF/Hugging Face/Zenodo artefact links and a plain-language policy interpretation.
+## Prespecified methods
 
-## Reviewer checklist
-Reviewers should confirm that the unit of comparison is valid, source licence gates are respected, raw descriptors are not leaked, patient-cost claims are supported, coverage and payment are not conflated, and uncertainty is visible in every policy-facing table.
+- basket construction
+- PPP sensitivity
+- fee concept classification
+
+The methods remain bounded to deterministic descriptive transformations of reviewed derived inputs. They do not estimate treatment effects, infer hidden prices, equate unlike payment concepts, or convert schedule inclusion into a coverage conclusion.
+
+## Source scope
+
+- `au_mbs`
+- `us_cms_pfs`
+- `ca_on_ohip`
+
+Each source is represented through its reviewed derived bundle, version and checksum. Missing observations are exclusions rather than zero values. Raw payloads, restricted descriptors and confidential commercial terms are not included in this report.
+
+## Descriptive results
+
+- `missing_source_count`: `0`
+- `required_source_count`: `3`
+- `reviewed_source_count`: `3`
+
+## Supported claims
+
+- 3 of 3 protocol-required sources have checksum-bound reviewed derived bundles.
+
+## Excluded interpretations
+
+- No causal effect is estimated.
+- No cross-jurisdiction price equivalence is inferred.
+- No coverage decision is inferred from the presence of a fee or price.
+- No paper, preprint, causal, universal reimbursement, or unsupported policy claim is authorized.
+
+## Planned non-manuscript outputs
+
+- relativity index
+- methods appendix
+
+These output names describe bounded repository artefacts only. They do not authorize external submission, peer-reviewed publication, system rankings, clinical recommendations or policy decisions.
+
+## Audit checklist
+
+- Confirm the claim-package path and SHA-256 before using any result.
+- Confirm all required sources remain checksum-bound and approved within scope.
+- Preserve source-specific licence, attribution and excluded-field rules.
+- Keep denominators, missingness and jurisdictional differences explicit.
+- Do not generalize beyond the supported claims listed above.
+- Treat any changed input or package checksum as a new review state.
+
+## Reproducibility
+
+Regenerate with `pixi run research-claim-packages`. Inputs are reviewed derived bundles; raw payloads and restricted descriptors are excluded.
+The generation step is deterministic and performs no network mutation. Review decisions remain external checksum-bound records, so regeneration can recognize an existing approval without embedding or manufacturing approval inside the claim package itself.

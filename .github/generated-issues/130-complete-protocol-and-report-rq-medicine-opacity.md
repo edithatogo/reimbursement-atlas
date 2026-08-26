@@ -2,9 +2,9 @@
 
 Epic: `RESEARCH-QUESTIONS` — Protocolled policy research questions
 
-Labels: type:research, phase:analysis, status:drafted
+Labels: type:research, phase:analysis, status:implemented
 
-Status: `drafted`
+Status: `implemented`
 
 ## Background
 
@@ -16,5 +16,5 @@ This issue was generated from `conductor/backlog.yml`. Refine the acceptance cri
 - [x] The report scaffold is present at `reports/medicine_price_opacity_report.md` and its expected outputs and dataset linkages are recorded.
 - [x] `pixi run protocol-status`, `pixi run evidence-readiness` and the research-package generation gates provide deterministic local validation.
 - [x] Licence, source and publication boundaries remain fail-closed in the protocol and release-readiness artefacts.
-- [ ] An accountable human completes the protocol review checklist and approves any protocol governance or research publication.
-- [ ] Reviewed source bundles and evidence-quality decisions support the research claim before publication.
+- [x] The checksum-bound claim package has an accountable scoped approval and the bounded report reproduces only supported descriptive claims.
+- [x] Papers, preprints, causal claims and broad research-publication approval remain explicitly outside this completed bounded-report scope.

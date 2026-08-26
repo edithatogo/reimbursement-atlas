@@ -88,7 +88,7 @@ def test_completed_tracks_are_archived_consistently() -> None:
         assert track["plan"].startswith("conductor/archive/")
 
 
-def test_bounded_analyses_are_complete_without_claiming_full_reports() -> None:
+def test_bounded_analyses_are_complete_without_claiming_papers() -> None:
     issues = _backlog_issues()
     item = issues[
         "Run five protocolled analyses on reviewed derived inputs and review claim packages"
@@ -98,8 +98,11 @@ def test_bounded_analyses_are_complete_without_claiming_full_reports() -> None:
     )
 
     assert summary["complete_count"] == 5
+    assert summary["approved_within_scope_count"] == 5
+    assert summary["pending_accountable_review_count"] == 0
     assert item["status"] == "implemented"
-    assert "full reports, papers and preprints remain separate" in item["acceptance"][1]
+    assert "bounded evidence reports are complete" in item["acceptance"][1]
+    assert "preprints remain intentionally excluded" in item["acceptance"][1]
 
 
 def test_external_monitoring_items_preserve_true_platform_state() -> None:
