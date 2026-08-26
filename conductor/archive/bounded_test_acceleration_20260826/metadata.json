@@ -1,0 +1,1 @@
+{"track_id":"bounded_test_acceleration_20260826","status":"completed","github_issues":[764],"gates":[{"id":"local_profiles","status":"pass","evidence":"pyproject.toml"},{"id":"promotion_boundary","status":"pass","evidence":"tests/unit/test_ci_parallelism_contract.py"},{"id":"hosted_ci","status":"pending_hosted","evidence":"GitHub pull request checks"}]}

@@ -1,5 +1,8 @@
 # Project Tracks
 
+- [x] **Track: Bounded local test acceleration profiles**
+  *Link: [./archive/bounded_test_acceleration_20260826/index.md](./archive/bounded_test_acceleration_20260826/index.md)*
+
 - [x] **Track: Source acquisition status reconciliation**
   *Link: [./archive/source_acquisition_status_reconciliation_20260826/index.md](./archive/source_acquisition_status_reconciliation_20260826/index.md)*
 

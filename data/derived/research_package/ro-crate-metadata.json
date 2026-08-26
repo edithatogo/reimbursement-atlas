@@ -1902,7 +1902,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "medallion_artifacts",
-      "sha256": "4e09e0feaa0318c9cca5798593c6f4e5262bd2f0dc2c0fbab10993f03d4ecfa5"
+      "sha256": "db03806cf7bc5d2748a12621846e1b861beffbc321edd118d37262456867c58f"
     },
     {
       "@id": "data/derived/medallion/medallion_artifacts.csv",
@@ -1911,7 +1911,7 @@
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "medallion_artifacts",
-      "sha256": "eb259aac5c43fe9bf5466cc8709b91f03bcb1316d81288e1c8937bacb514a19d"
+      "sha256": "6f283cd7bd34dbaf2681dfd2ffd34903515561e1c547517c01975f549617fc0a"
     },
     {
       "@id": "data/derived/medallion/promotion_decisions.jsonl",
