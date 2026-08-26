@@ -80,6 +80,7 @@ _LAYER_BY_ROOT_MODULE: dict[str, ArchitectureLayer] = {
     "local_quality": "orchestration",
     "mapping_study_paths": "orchestration",
     "medallion_projection": "orchestration",
+    "medallion_federation": "orchestration",
     "publication": "orchestration",
     "protocols": "orchestration",
     "release_readiness": "orchestration",

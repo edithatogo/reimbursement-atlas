@@ -71,8 +71,14 @@ existence.
 ## Authoritative implementation
 
 - Typed contracts: `src/reimburse_atlas/medallion.py`
+- Hash-locked contract manifest: `contracts/medallion/manifest.json`
+- Cross-repository status: `data/derived/medallion_federation/federation_manifest.json`
+- Hugging Face layer configurations: `data/derived/medallion_federation/huggingface_configs.json`
 - Exported JSON Schemas: `schema/*Medallion*.schema.json` and `schema/Bronze*.schema.json`
 - Validation tests: `tests/unit/test_medallion_contracts.py`
 
-The contract is compatible in meaning with the sibling repositories, but each
-repository retains its source-specific rights, admission, and publication gates.
+Reimbursement Atlas, Global Medicines Atlas, and Archive Govt NZ currently use
+byte-identical shared contract fixtures. Scheduled CI verifies those bytes
+without introducing a shared runtime dependency. A sibling with different layer
+semantics is classified `adapter_required`, never silently treated as conformant.
+Each repository retains its source-specific rights, admission, and publication gates.

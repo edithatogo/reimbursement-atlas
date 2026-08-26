@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import shutil
 from pathlib import Path
@@ -51,6 +52,7 @@ def test_claim_package_writer_emits_checksum_bound_summary(tmp_path: Path) -> No
     root = Path(__file__).resolve().parents[2]
     for relative in (
         "data/seed/source_registry.jsonl",
+        "data/seed/research_questions.jsonl",
         "data/derived/mapping_study/expansion_v9/evaluation_summary.json",
     ):
         target = tmp_path / relative
@@ -78,3 +80,39 @@ def test_claim_package_writer_emits_checksum_bound_summary(tmp_path: Path) -> No
     assert summary["pending_accountable_review_count"] == 1
     assert summary["partial_source_gap_count"] == 4
     assert all(len(row["sha256"]) == 64 for row in summary["packages"])
+    reports = sorted((tmp_path / "reports").glob("*.md"))
+    assert len(reports) == 5
+    assert all("not a paper or preprint" in path.read_text(encoding="utf-8") for path in reports)
+
+    package = paths[0]
+    package_relative = package.relative_to(tmp_path).as_posix()
+    digest = hashlib.sha256(package.read_bytes()).hexdigest()
+    review_relative = "data/research_claims/reviews/approved.json"
+    review = tmp_path / review_relative
+    review.parent.mkdir(parents=True, exist_ok=True)
+    review.write_text(
+        json.dumps({
+            "status": "approved_within_scope",
+            "claim_package_path": package_relative,
+            "claim_package_sha256": digest,
+        }),
+        encoding="utf-8",
+    )
+    decisions = tmp_path / "data/research_claims/decisions.jsonl"
+    decisions.parent.mkdir(parents=True, exist_ok=True)
+    decisions.write_text(
+        json.dumps({
+            "status": "approved_within_scope",
+            "reviewed_derived_inputs": True,
+            "analysis_validated": True,
+            "claim_package_path": package_relative,
+            "claim_package_sha256": digest,
+            "review_record": review_relative,
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+
+    refreshed = write_claim_package_candidates(tmp_path)
+    refreshed_summary = json.loads(refreshed[-1].read_text(encoding="utf-8"))
+    assert refreshed_summary["approved_within_scope_count"] == 1

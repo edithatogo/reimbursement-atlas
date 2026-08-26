@@ -1,0 +1,46 @@
+{
+  "configs": [
+    {
+      "config_name": "catalogue_b0",
+      "data_files": "data/medallion/catalogue_b0/data.jsonl",
+      "source_path": "data/derived/medallion/bronze_source_index.jsonl"
+    },
+    {
+      "config_name": "acquisition_b1",
+      "data_files": "data/medallion/acquisition_b1/data.jsonl",
+      "source_path": "data/derived/medallion/bronze_acquisition_ledger.jsonl"
+    },
+    {
+      "config_name": "evidence_b2",
+      "data_files": "data/medallion/evidence_b2/data.jsonl",
+      "source_path": "data/derived/medallion/bronze_evidence.jsonl"
+    },
+    {
+      "config_name": "silver",
+      "data_files": "data/medallion/silver/data.jsonl",
+      "source_path": "data/derived/medallion/medallion_artifacts.jsonl"
+    },
+    {
+      "config_name": "gold",
+      "data_files": "data/medallion/gold/data.jsonl",
+      "source_path": "data/derived/medallion/medallion_artifacts.jsonl"
+    },
+    {
+      "config_name": "platinum",
+      "data_files": "data/medallion/platinum/data.jsonl",
+      "source_path": "data/derived/medallion/medallion_artifacts.jsonl"
+    },
+    {
+      "config_name": "lineage",
+      "data_files": "data/medallion/lineage/data.jsonl",
+      "source_path": "data/derived/field_lineage/field_lineage.jsonl"
+    },
+    {
+      "config_name": "promotion_decisions",
+      "data_files": "data/medallion/promotion_decisions/data.jsonl",
+      "source_path": "data/derived/medallion/promotion_decisions.jsonl"
+    }
+  ],
+  "generated_at": "1970-01-01T00:00:00Z",
+  "schema_version": "huggingface-medallion-configs-v1"
+}

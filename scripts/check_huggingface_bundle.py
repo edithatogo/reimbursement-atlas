@@ -12,6 +12,10 @@ REQUIRED_FILES = (
     "infra/huggingface/CROISSANT.json",
     "infra/huggingface/README.md",
     "infra/huggingface/SPACE_README.md",
+    "contracts/medallion/manifest.json",
+    "data/derived/medallion_federation/contract_manifest.json",
+    "data/derived/medallion_federation/federation_manifest.json",
+    "data/derived/medallion_federation/huggingface_configs.json",
     "data/derived/publication_manifest.json",
     "apps/dashboard/dist/index.html",
     "apps/dashboard/dist/status.json",
@@ -23,6 +27,9 @@ DATASET_CARD_MARKERS = (
     "source-specific licensing",
     "does not grant apache-2.0 rights",
     "publish only manifest rows with confirmed redistribution permission",
+    "catalogue_b0",
+    "evidence_b2",
+    "platinum",
 )
 
 

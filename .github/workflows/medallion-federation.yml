@@ -1,0 +1,40 @@
+name: Medallion federation conformance
+
+on:
+  pull_request:
+    paths:
+      - "contracts/medallion/**"
+      - "src/reimburse_atlas/medallion_federation.py"
+      - "scripts/check_medallion_federation.py"
+      - ".github/workflows/medallion-federation.yml"
+  schedule:
+    - cron: "17 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: medallion-federation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  live-contract-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+      - name: Check public sibling contract bytes
+        run: |
+          uv sync --all-extras
+          uv run python scripts/check_medallion_federation.py \
+            --output medallion-live-conformance.json
+      - name: Upload conformance evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: medallion-live-conformance
+          path: medallion-live-conformance.json

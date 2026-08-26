@@ -177,6 +177,10 @@ DEFAULT_PUBLICATION_PATHS = (
     Path("data/derived/medallion/promotion_decisions.jsonl"),
     Path("data/derived/medallion/promotion_decisions.csv"),
     Path("data/derived/medallion/summary.json"),
+    Path("data/derived/medallion_federation/contract_manifest.json"),
+    Path("data/derived/medallion_federation/federation_manifest.json"),
+    Path("data/derived/medallion_federation/huggingface_configs.json"),
+    Path("contracts/medallion/manifest.json"),
     Path("data/derived/release_readiness/release_gates.jsonl"),
     Path("data/derived/release_readiness/release_gates.csv"),
     Path("data/derived/v13_validation_run.json"),
@@ -229,6 +233,7 @@ DEFAULT_PUBLICATION_PATHS = (
 )
 
 PROJECT_OWNED_METADATA_PREFIXES = (
+    Path("contracts/medallion"),
     Path("data/derived/architecture"),
     Path("data/derived/data_dictionary"),
     Path("data/derived/data_quality"),
@@ -239,6 +244,7 @@ PROJECT_OWNED_METADATA_PREFIXES = (
     Path("data/derived/historical_sources/backfill_replay"),
     Path("data/derived/local_quality_gates"),
     Path("data/derived/medallion"),
+    Path("data/derived/medallion_federation"),
     Path("data/derived/protocols"),
     Path("data/derived/repo_automation"),
     Path("data/derived/release_readiness"),
@@ -247,6 +253,7 @@ PROJECT_OWNED_METADATA_PREFIXES = (
     Path("data/derived/sbom"),
     Path("data/derived/source_drift"),
     Path("data/derived/toolchain"),
+    Path("infra/huggingface"),
 )
 PROJECT_OWNED_METADATA_PATHS = {
     Path("data/seed/graph_edges.csv"),

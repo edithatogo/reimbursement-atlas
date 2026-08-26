@@ -1826,3 +1826,19 @@ improving repository readiness.
 Evidence: `data/derived/toolchain/typescript_compatibility.json`,
 `data/derived/governance_monitoring/external_controls.jsonl`, issue #362, and regression tests in
 `tests/unit/test_governance_monitoring.py`.
+
+## 2026-08-27 - Federate medallion contracts by immutable schema bytes
+
+Decision: Keep the shared medallion vocabulary decentralized and hash-locked. Verify sibling
+repositories against a versioned manifest in scheduled CI, classify incompatible vocabularies as
+`adapter_required`, and avoid a shared runtime package until repository-standards governance is
+hosted and independently versioned.
+
+Rationale: Reimbursement Atlas, Global Medicines Atlas, and Archive Govt NZ already share
+byte-identical contracts. Hash parity preserves interoperability without coupling release cycles.
+Global Family Justice Data uses different B0/B1 meanings and therefore requires an explicit
+adapter instead of a false conformance claim.
+
+Consequence: Hugging Face publication is staged as rights-filtered, layer-separated configurations
+and includes contract and federation manifests. Remote publication remains independently gated;
+raw payloads and restricted descriptors are excluded.

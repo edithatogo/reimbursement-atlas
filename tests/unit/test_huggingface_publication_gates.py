@@ -32,6 +32,13 @@ def _write_bundle_files(root: Path, *, dataset_card: str) -> None:
     )
     (root / "data/derived").mkdir(parents=True, exist_ok=True)
     (root / "data/derived/publication_manifest.json").write_text("{}", encoding="utf-8")
+    for relative in (
+        "contracts/medallion/manifest.json",
+        "data/derived/medallion_federation/contract_manifest.json",
+        "data/derived/medallion_federation/federation_manifest.json",
+        "data/derived/medallion_federation/huggingface_configs.json",
+    ):
+        _write(root, relative, {})
     (root / "apps/dashboard/dist/index.html").write_text("<html></html>", encoding="utf-8")
     (root / "apps/dashboard/dist/status.json").write_text("{}", encoding="utf-8")
 
@@ -53,6 +60,7 @@ def test_huggingface_bundle_accepts_governed_dataset_card(tmp_path: Path) -> Non
             "Source-specific licensing applies.\n"
             "This does not grant Apache-2.0 rights to underlying data.\n"
             "Publish only manifest rows with confirmed redistribution permission.\n"
+            "Configurations: catalogue_b0, evidence_b2, platinum.\n"
         ),
     )
 

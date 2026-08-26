@@ -1,5 +1,8 @@
 # Project Tracks
 
+- [~] **Track: Medallion federation and publication parity**
+  *Link: [./tracks/medallion_federation_publication_parity_20260827/index.md](./tracks/medallion_federation_publication_parity_20260827/index.md)*
+
 - [x] **Track: Bounded local test acceleration profiles**
   *Link: [./archive/bounded_test_acceleration_20260826/index.md](./archive/bounded_test_acceleration_20260826/index.md)*
 
