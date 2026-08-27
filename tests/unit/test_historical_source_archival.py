@@ -12,7 +12,12 @@ def test_historical_download_manifest_is_complete_and_relative(repo_root: Path) 
     path = repo_root / "data/derived/historical_sources/historical_source_downloads.jsonl"
     rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
     assert len(rows) == 343
-    assert {row["status"] for row in rows} <= {"cached", "downloaded", "download_failed"}
+    assert {row["status"] for row in rows} <= {
+        "cached",
+        "downloaded",
+        "download_failed",
+        "upstream_unavailable",
+    }
     assert all(not str(row["cache_path"]).startswith("/") for row in rows)
     assert all(
         len(row["checksum_sha256"]) == 64
