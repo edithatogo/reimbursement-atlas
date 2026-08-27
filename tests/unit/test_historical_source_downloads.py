@@ -58,6 +58,28 @@ def test_download_rejects_untrusted_host_before_network(
     assert called is False
 
 
+def test_download_records_official_404_as_upstream_unavailable(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    """A removed official snapshot is terminal evidence, not a transport outage."""
+
+    def fake_run(command: list[str], **_: object) -> subprocess.CompletedProcess[str]:
+        raise subprocess.CalledProcessError(
+            22, command, stderr="curl: (22) The requested URL returned error: 404"
+        )
+
+    monkeypatch.setattr(download_historical_sources.subprocess, "run", fake_run)
+    status, detail = download_historical_sources.download_payload(
+        "https://www.mbsonline.gov.au/removed.txt",
+        tmp_path / "removed.txt",
+        force=False,
+        max_time_seconds=45,
+    )
+
+    assert status == "upstream_unavailable"
+    assert "404" in detail
+
+
 def test_force_preserves_changed_predecessor_snapshot(
     monkeypatch: pytest.MonkeyPatch, tmp_path: Path
 ) -> None:

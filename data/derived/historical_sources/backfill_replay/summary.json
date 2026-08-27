@@ -5,8 +5,8 @@
   "partition_count": 661,
   "publication_effect": "none",
   "raw_payload_policy": "ignored_local_immutable_snapshots_only",
-  "replay_eligible_count": 340,
-  "replay_plan_sha256": "375c9a74656cffca6d8a21405066e7f0f34d851224f4f219963a44f9865267fe",
+  "replay_eligible_count": 341,
+  "replay_plan_sha256": "b30a17faf5a593e98a558d0ccf5ee27c9033047af0755f1db4dc7d548c2ac48c",
   "schema_version": "historical-backfill-replay-summary-v1",
   "snapshot_count": 661,
   "source_ids": [
@@ -18,8 +18,7 @@
     "us_cms_pfs"
   ],
   "status_counts": {
-    "acquired": 340,
-    "failed": 3,
-    "metadata_only": 318
+    "acquired": 341,
+    "metadata_only": 320
   }
 }

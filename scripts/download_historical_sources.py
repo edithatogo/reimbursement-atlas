@@ -42,6 +42,17 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _download_error(exc: OSError | subprocess.CalledProcessError) -> tuple[str, str]:
+    """Classify a bounded curl failure without discarding its diagnostic."""
+    detail = getattr(exc, "stderr", "") or str(exc)
+    status = (
+        "upstream_unavailable"
+        if isinstance(exc, subprocess.CalledProcessError) and "error: 404" in detail.lower()
+        else "download_failed"
+    )
+    return status, detail.strip()[-500:]
+
+
 def download_payload(
     url: str, destination: Path, *, force: bool, max_time_seconds: int
 ) -> tuple[str, str]:
@@ -81,8 +92,7 @@ def download_payload(
         subprocess.run(command, check=True, capture_output=True, text=True)  # nosec B603
     except (OSError, subprocess.CalledProcessError) as exc:
         incoming.unlink(missing_ok=True)
-        detail = getattr(exc, "stderr", "") or str(exc)
-        return "download_failed", detail.strip()[-500:]
+        return _download_error(exc)
     if destination.exists():
         existing_sha = _sha256(destination)
         incoming_sha = _sha256(incoming)

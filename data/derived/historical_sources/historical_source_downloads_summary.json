@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-25T14:44:19.015313+00:00",
+  "generated_at": "2026-08-27T08:02:43.936236+00:00",
   "licence_policy": "download_does_not_grant_redistribution_rights",
   "raw_cache_policy": "ignored_local_only",
   "schema_version": "historical-source-downloads-v1",
   "status_counts": {
-    "download_failed": 3,
-    "downloaded": 340
+    "downloaded": 341,
+    "upstream_unavailable": 2
   },
   "target_count": 343,
   "transformation_process": "data/derived/processes/historical_source_transformation.bpmn"

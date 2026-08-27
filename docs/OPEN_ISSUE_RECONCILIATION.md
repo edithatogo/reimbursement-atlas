@@ -44,7 +44,7 @@ rights and provenance evidence before any promotion claim.
 
 | Issue | Current state | Closure condition |
 |---|---|---|
-| #255 | Partial breadth: 340 historical MBS snapshots are acquired and replay-eligible; three MBS targets failed; the historical PBS catalogue remains metadata-only. | Resolve the three acquisition failures and create rights-reviewed historical PBS payload snapshots and derived bundles. |
+| #255 | Partial breadth: 341 historical MBS snapshots are acquired and replay-eligible; two removed official TXT targets are recorded as `upstream_unavailable`; the historical PBS catalogue remains metadata-only. | Create rights-reviewed historical PBS payload snapshots and derived bundles if an official archive with suitable terms becomes available. Do not substitute the rolling API for historical completeness. |
 | #362 | Monitored external compatibility dependency, not a release blocker. | Upgrade only when the Astro checker peer range supports TypeScript 7 and all package, build and browser gates pass. |
 
 No paper, preprint, broad evidence, source-completeness or redistribution claim is

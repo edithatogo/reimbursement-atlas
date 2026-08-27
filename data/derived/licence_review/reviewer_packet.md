@@ -10,24 +10,30 @@ checksum-bound row-level record.
 
 ## Current batches
 
-- `permissive_candidate` / `public_derived_candidate`: 143 artefacts, 191076363 bytes
-- `permissive_candidate` / `public_metadata_candidate`: 31 artefacts, 464720 bytes
-- `public_reuse_review` / `public_derived_candidate`: 3 artefacts, 529164 bytes
+- `permissive_candidate` / `public_derived_candidate`: 139 artefacts, 190324387 bytes
+- `permissive_candidate` / `public_metadata_candidate`: 30 artefacts, 222779 bytes
+- `public_reuse_review` / `public_derived_candidate`: 7 artefacts, 1281441 bytes
+- `public_reuse_review` / `public_metadata_candidate`: 1 artefacts, 241971 bytes
 
 Total candidate artefacts: 177. Neutral generated row markers are not approval
 requests; the batch and summary `pending_count` values identify required decisions.
 
 ## Decision ledger snapshot
 
-The companion checksum-bound ledger currently records **174 approved**
-and **3 blocked** decisions. These counts are informational;
+The companion checksum-bound ledger currently records **169 approved**
+and **8 blocked** decisions. These counts are informational;
 they do not change generated queue rows or authorize publication.
 
 ### Blocked rows requiring re-review
 
-- `data/derived/historical_sources/historical_source_downloads.csv` — `7b029ea5de8cd3225b28e0f6d24d72e9a0266a790439c4c00eb2199217f7dd77`
-- `data/derived/historical_sources/historical_source_downloads.jsonl` — `156be14bfc06bd3a4568cbbdde582adadb9fa3ecf390435b44416c0688515348`
-- `data/derived/historical_sources/historical_source_downloads_summary.json` — `39441549b326cae50de52340fb8225a7a1673a7cdaa043b4704813d2cb6262d2`
+- `data/derived/historical_sources/historical_mbs_archive_targets.csv` — `e6b8e47d1c2620e0fe056c6b1c46b48fe33c61051fb8e6cbff43a9d657776faf`
+- `data/derived/historical_sources/historical_mbs_archive_targets.jsonl` — `a348e253ba87f94d30786392adba6055f69eb75d87aca2cc2598a1f0798ce9d7`
+- `data/derived/historical_sources/historical_mbs_review_queue.csv` — `d5764e13463d937e7f2538d2b2819ac12d3ec80a6b6e79a4aba5d0fae5401744`
+- `data/derived/historical_sources/historical_mbs_review_queue.jsonl` — `65ef648f4a10f4e12613ed924350aeec79d724bedd74e547f19da9c64edb5df6`
+- `data/derived/historical_sources/historical_source_downloads.csv` — `a3eadc505c7a89d4df018e5234c62d70e3dc3c4cc248a5664c141f65d6646326`
+- `data/derived/historical_sources/historical_source_downloads.jsonl` — `8ae141cf09f298669a8421583063a0b0d3ea1bcafb245d1d03288cc7a107df8f`
+- `data/derived/historical_sources/historical_source_downloads_summary.json` — `e2958d31e6343e4d7fa939967031d983b8a5e5109a64e52d099c9fd2ef9936db`
+- `data/seed/historical_mbs_archive_targets.jsonl` — `a348e253ba87f94d30786392adba6055f69eb75d87aca2cc2598a1f0798ce9d7`
 
 ## Required decision fields
 

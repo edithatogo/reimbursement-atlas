@@ -6,7 +6,10 @@
   contract, row-count, provenance and bounded licence evidence.
 - Close #94-#108 as metadata-onboarding issues only. Their generated assessments
   explicitly retain `not_acquired` and planned parser states.
-- Keep #255 open for genuine historical PBS breadth and three failed MBS targets.
+- Keep #255 open for genuine historical PBS breadth. One malformed official MBS
+  attachment URL was corrected and acquired; the two remaining July 2026 TXT
+  targets are explicitly `upstream_unavailable` after confirmed official HTTP
+  404 responses and are not retryable transport failures.
 - Keep #362 open as a monitored upstream TypeScript/Astro dependency that is not
   required for repository release.
 - Never infer acquisition, redistribution rights, evidence readiness or
