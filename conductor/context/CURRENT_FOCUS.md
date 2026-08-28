@@ -1,5 +1,14 @@
 # Current focus
 
+## 2026-08-29 - Historical PBS publication archive
+
+The official PBS Publications Archive yielded 1,049 deterministic PDF targets from 1951-03-01
+through 2026-07-01. Bounded acquisition placed 938 signature-validated PDFs (4,658,177,952 bytes)
+in ignored local storage with checksum-bound tracked receipts; 110 targets timed out and one
+official URL returned HTTP 403. This is 89.4185% publication-PDF coverage, not structured API
+history, field-level parity, redistribution permission or research evidence. Issue #255 remains
+the coverage and evidence-promotion ledger until protected merge and hosted validation complete.
+
 ## 2026-08-20 - Live issue reconciliation after OSF deprecation
 
 Generated research issues and GitHub Project rows are being made destination-neutral. Completed

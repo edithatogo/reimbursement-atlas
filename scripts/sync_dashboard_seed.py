@@ -23,6 +23,8 @@ FILES = [
     Path("data/derived/historical_sources/historical_mbs_review_queue.csv"),
     Path("data/derived/historical_sources/historical_source_downloads.csv"),
     Path("data/derived/historical_sources/family_archive_v2/historical_source_downloads.csv"),
+    Path("data/derived/historical_sources/pbs_archive_v1/historical_pbs_archive_targets.csv"),
+    Path("data/derived/historical_sources/pbs_archive_v1/historical_source_downloads.csv"),
     Path("data/seed/source_snapshots.csv"),
     Path("data/seed/source_status.csv"),
     Path("data/seed/analysis_recipes.csv"),
@@ -111,11 +113,11 @@ def main() -> None:
         source = root / relative_path
         if not source.exists():
             continue
-        target_name = (
-            "historical_family_source_downloads.csv"
-            if "family_archive_v2" in relative_path.parts
-            else source.name
-        )
+        target_name = source.name
+        if "family_archive_v2" in relative_path.parts:
+            target_name = "historical_family_source_downloads.csv"
+        elif "pbs_archive_v1" in relative_path.parts:
+            target_name = f"historical_pbs_{source.name}"
         target = output_dir / target_name
         if source.suffix.lower() == ".csv":
             target.write_text(

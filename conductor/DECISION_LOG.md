@@ -1845,3 +1845,15 @@ adapter instead of a false conformance claim.
 Consequence: Hugging Face publication is staged as rights-filtered, layer-separated configurations
 and includes contract and federation manifests. Remote publication remains independently gated;
 raw payloads and restricted descriptors are excluded.
+
+## 2026-08-29 - Preserve the PBS publication archive without claiming API parity
+
+Decision: inventory all official PBS Schedule publication PDFs, acquire them into ignored local
+storage under bounded hardened transfers, and commit only deterministic target metadata,
+checksums and receipts. The resulting 938/1,049 verified PDFs are publication snapshots, not a
+complete structured historical PBS dataset. The 110 timeouts and one HTTP 403 remain explicit
+coverage gaps under issue #255; download does not grant redistribution rights.
+
+Rationale: the official downloadable archive materially improves historical citation and
+reproducibility, while separating it from the rolling structured API prevents a false field-level
+or completeness claim.

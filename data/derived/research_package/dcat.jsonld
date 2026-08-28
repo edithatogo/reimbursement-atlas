@@ -337,6 +337,48 @@
     },
     {
       "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/seed/historical_pbs_archive_targets.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "historical_pbs_archive_targets"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/historical_sources/pbs_archive_v1/historical_pbs_archive_targets.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "historical_pbs_archive_targets"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/historical_sources/pbs_archive_v1/historical_pbs_archive_targets.csv",
+      "dct:format": "csv",
+      "dct:title": "historical_pbs_archive_targets"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/historical_sources/pbs_archive_v1/targets_summary.json",
+      "dct:format": "json",
+      "dct:title": "targets_summary"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/historical_sources/pbs_archive_v1/historical_source_downloads.jsonl",
+      "dct:format": "jsonl",
+      "dct:title": "historical_source_downloads"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/historical_sources/pbs_archive_v1/historical_source_downloads.csv",
+      "dct:format": "csv",
+      "dct:title": "historical_source_downloads"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dcat:downloadURL": "data/derived/historical_sources/pbs_archive_v1/historical_source_downloads_summary.json",
+      "dct:format": "json",
+      "dct:title": "historical_source_downloads_summary"
+    },
+    {
+      "@type": "dcat:Distribution",
       "dcat:downloadURL": "data/derived/processes/historical_source_transformation.bpmn",
       "dct:format": "bpmn",
       "dct:title": "historical_source_transformation"

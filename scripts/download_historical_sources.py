@@ -19,7 +19,13 @@ from urllib.parse import urlparse
 
 from reimburse_atlas.registry import project_root
 
-OFFICIAL_HOSTS = {"www.mbsonline.gov.au", "www.cms.gov", "www.england.nhs.uk", "data.pbs.gov.au"}
+OFFICIAL_HOSTS = {
+    "www.mbsonline.gov.au",
+    "www.cms.gov",
+    "www.england.nhs.uk",
+    "data.pbs.gov.au",
+    "www.pbs.gov.au",
+}
 DEFAULT_SEED = Path("data/seed/historical_mbs_archive_targets.jsonl")
 DEFAULT_RAW = Path("data/raw_live/historical_sources")
 DEFAULT_OUTPUT = Path("data/derived/historical_sources")
@@ -42,6 +48,11 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _row_byte_size(row: dict[str, object]) -> int:
+    value = row.get("byte_size")
+    return value if isinstance(value, int) else 0
+
+
 def _download_error(exc: OSError | subprocess.CalledProcessError) -> tuple[str, str]:
     """Classify a bounded curl failure without discarding its diagnostic."""
     detail = getattr(exc, "stderr", "") or str(exc)
@@ -53,7 +64,19 @@ def _download_error(exc: OSError | subprocess.CalledProcessError) -> tuple[str, 
     return status, detail.strip()[-500:]
 
 
-def download_payload(
+def _valid_payload_magic(path: Path) -> bool:
+    """Reject common HTML error bodies masquerading as archive payloads."""
+    suffixes = {suffix.lower() for suffix in path.suffixes}
+    with path.open("rb") as handle:
+        prefix = handle.read(8)
+    if ".pdf" in suffixes:
+        return prefix.startswith(b"%PDF-")
+    if ".zip" in suffixes:
+        return prefix.startswith((b"PK\x03\x04", b"PK\x05\x06", b"PK\x07\x08"))
+    return True
+
+
+def download_payload(  # ruff:ignore[too-many-return-statements] - fail-closed transfer states
     url: str, destination: Path, *, force: bool, max_time_seconds: int
 ) -> tuple[str, str]:
     """Download one allowlisted payload within an explicit transfer bound."""
@@ -93,6 +116,9 @@ def download_payload(
     except (OSError, subprocess.CalledProcessError) as exc:
         incoming.unlink(missing_ok=True)
         return _download_error(exc)
+    if not _valid_payload_magic(incoming):
+        incoming.unlink(missing_ok=True)
+        return "invalid_content", "Retrieved bytes do not match the expected file signature."
     if destination.exists():
         existing_sha = _sha256(destination)
         incoming_sha = _sha256(incoming)
@@ -129,6 +155,8 @@ def write_manifest(rows: list[dict[str, object]], output_dir: Path) -> None:
     for row in rows:
         status = str(row["status"])
         counts[status] = counts.get(status, 0) + 1
+    verified_rows = [row for row in rows if row["status"] in {"downloaded", "cached"}]
+    verified_bytes = sum(_row_byte_size(row) for row in verified_rows)
     (output_dir / "historical_source_downloads_summary.json").write_text(
         json.dumps(
             {
@@ -136,6 +164,11 @@ def write_manifest(rows: list[dict[str, object]], output_dir: Path) -> None:
                 "generated_at": datetime.now(tz=UTC).isoformat(),
                 "target_count": len(rows),
                 "status_counts": counts,
+                "verified_payload_count": len(verified_rows),
+                "verified_payload_bytes": verified_bytes,
+                "verified_target_fraction": (
+                    round(len(verified_rows) / len(rows), 6) if rows else 0.0
+                ),
                 "raw_cache_policy": "ignored_local_only",
                 "licence_policy": "download_does_not_grant_redistribution_rights",
                 "transformation_process": (

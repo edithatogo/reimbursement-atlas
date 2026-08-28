@@ -1,0 +1,11 @@
+{
+  "payload_format": "official_publication_pdf",
+  "period_end": "2026-07-01",
+  "period_start": "1951-03-01",
+  "publication_effect": "none",
+  "raw_cache_policy": "ignored_local_only",
+  "schema_version": "historical-pbs-archive-targets-v1",
+  "structured_api_equivalence": false,
+  "target_count": 1049,
+  "unknown_period_count": 4
+}

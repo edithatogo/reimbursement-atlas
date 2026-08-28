@@ -22,6 +22,9 @@ def main() -> None:
     root = project_root()
     derived = root / "data/derived/historical_sources"
     rows = _read_jsonl(derived / "historical_source_downloads.jsonl")
+    pbs_downloads = derived / "pbs_archive_v1/historical_source_downloads.jsonl"
+    if pbs_downloads.is_file():
+        rows.extend(_read_jsonl(pbs_downloads))
     catalogue = _read_jsonl(derived / "historical_source_catalog.jsonl")
     known = {(str(row["source_id"]), str(row["source_version_id"])) for row in rows}
     rows.extend(
