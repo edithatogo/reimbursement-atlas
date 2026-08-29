@@ -2,13 +2,13 @@
   "contract_count": 6,
   "correction_count": 0,
   "late_arrival_count": 0,
-  "partition_count": 1710,
+  "partition_count": 2365,
   "publication_effect": "none",
   "raw_payload_policy": "ignored_local_immutable_snapshots_only",
-  "replay_eligible_count": 1389,
-  "replay_plan_sha256": "51f1689aac8eddaa8aac2af986e49235c3171d1b46dbf454fe5da491166d5825",
+  "replay_eligible_count": 2044,
+  "replay_plan_sha256": "674904745da1e3a89d101bc9ebf93e2695d40d1e55f4420920851abac205cc2a",
   "schema_version": "historical-backfill-replay-summary-v1",
-  "snapshot_count": 1710,
+  "snapshot_count": 2365,
   "source_ids": [
     "au_mbs",
     "au_pbs",
@@ -18,7 +18,7 @@
     "us_cms_pfs"
   ],
   "status_counts": {
-    "acquired": 1389,
+    "acquired": 2044,
     "failed": 1,
     "metadata_only": 320
   }

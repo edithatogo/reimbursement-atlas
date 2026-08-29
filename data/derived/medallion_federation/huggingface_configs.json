@@ -39,6 +39,26 @@
       "config_name": "promotion_decisions",
       "data_files": "data/medallion/promotion_decisions/data.jsonl",
       "source_path": "data/derived/medallion/promotion_decisions.jsonl"
+    },
+    {
+      "config_name": "pbs_pdf_provenance",
+      "data_files": "data/medallion/pbs_pdf_provenance/data.jsonl",
+      "source_path": "data/derived/publication/pbs_provenance/pbs_pdf_provenance.jsonl"
+    },
+    {
+      "config_name": "pbs_structured_provenance",
+      "data_files": "data/medallion/pbs_structured_provenance/data.jsonl",
+      "source_path": "data/derived/publication/pbs_provenance/pbs_structured_provenance.jsonl"
+    },
+    {
+      "config_name": "pbs_archive_verification",
+      "data_files": "data/medallion/pbs_archive_verification/data.jsonl",
+      "source_path": "data/derived/publication/pbs_provenance/pbs_archive_verification.jsonl"
+    },
+    {
+      "config_name": "pbs_archive_variants",
+      "data_files": "data/medallion/pbs_archive_variants/data.jsonl",
+      "source_path": "data/derived/publication/pbs_provenance/pbs_archive_variants.jsonl"
     }
   ],
   "generated_at": "1970-01-01T00:00:00Z",

@@ -1,0 +1,11 @@
+{
+  "claim_boundary": "A differing archive digest establishes a historical byte variant, not which variant is substantively correct and not permission to redistribute either payload.",
+  "publication_effect": "none",
+  "raw_cache_policy": "ignored_local_only",
+  "schema_version": "pbs-internet-archive-variant-receipts-v1",
+  "status_counts": {
+    "cached": 4,
+    "downloaded": 1
+  },
+  "variant_count": 5
+}

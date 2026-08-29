@@ -25,6 +25,15 @@ FILES = [
     Path("data/derived/historical_sources/family_archive_v2/historical_source_downloads.csv"),
     Path("data/derived/historical_sources/pbs_archive_v1/historical_pbs_archive_targets.csv"),
     Path("data/derived/historical_sources/pbs_archive_v1/historical_source_downloads.csv"),
+    Path(
+        "data/derived/historical_sources/pbs_structured_archive_v1/historical_source_downloads.csv"
+    ),
+    Path(
+        "data/derived/historical_sources/pbs_archive_verification_v1/pbs_archive_verification.csv"
+    ),
+    Path("data/derived/publication/pbs_provenance/pbs_pdf_provenance.csv"),
+    Path("data/derived/publication/pbs_provenance/pbs_structured_provenance.csv"),
+    Path("data/derived/publication/pbs_provenance/pbs_archive_variants.csv"),
     Path("data/seed/source_snapshots.csv"),
     Path("data/seed/source_status.csv"),
     Path("data/seed/analysis_recipes.csv"),
@@ -118,6 +127,12 @@ def main() -> None:
             target_name = "historical_family_source_downloads.csv"
         elif "pbs_archive_v1" in relative_path.parts:
             target_name = f"historical_pbs_{source.name}"
+        elif "pbs_structured_archive_v1" in relative_path.parts:
+            target_name = f"historical_pbs_structured_{source.name}"
+        elif "pbs_archive_verification_v1" in relative_path.parts:
+            target_name = f"historical_pbs_verification_{source.name}"
+        elif "pbs_provenance" in relative_path.parts:
+            target_name = f"public_{source.name}"
         target = output_dir / target_name
         if source.suffix.lower() == ".csv":
             target.write_text(

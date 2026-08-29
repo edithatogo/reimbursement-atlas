@@ -94,6 +94,24 @@ CONTRACTS: dict[str, SourceContract] = {
         acceptable_marker_sets=(("pbs", "drug", "schedule"), ("pbs", "drug", "effective")),
         skip_reason="Documentation/API endpoint record; validate a reviewed CSV or JSON extract instead.",  # ruff:ignore[line-too-long]
     ),
+    "au_pbs_api_csv_download_page": SourceContract(
+        name="PBS API guidance and archive catalogue contract",
+        expected_columns=(),
+        required_markers=("au_pbs",),
+        skip_reason=(
+            "Guidance/catalogue metadata record; validate each acquired historical package "
+            "against its version-specific contract."
+        ),
+    ),
+    "au_pbs_historical_structured_archive": SourceContract(
+        name="PBS historical structured archive inventory contract",
+        expected_columns=(),
+        required_markers=("au_pbs",),
+        skip_reason=(
+            "Aggregate archive-inventory record; validate package signatures and members from "
+            "the checksum-bound acquisition receipts."
+        ),
+    ),
     "au_mbs_2010_2019_downloads_page": SourceContract(
         name="MBS 2010-2019 archive landing-page contract",
         expected_columns=(),

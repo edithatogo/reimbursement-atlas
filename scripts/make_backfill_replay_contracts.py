@@ -25,6 +25,11 @@ def main() -> None:
     pbs_downloads = derived / "pbs_archive_v1/historical_source_downloads.jsonl"
     if pbs_downloads.is_file():
         rows.extend(_read_jsonl(pbs_downloads))
+    pbs_structured_downloads = (
+        derived / "pbs_structured_archive_v1/historical_source_downloads.jsonl"
+    )
+    if pbs_structured_downloads.is_file():
+        rows.extend(_read_jsonl(pbs_structured_downloads))
     catalogue = _read_jsonl(derived / "historical_source_catalog.jsonl")
     known = {(str(row["source_id"]), str(row["source_version_id"])) for row in rows}
     rows.extend(

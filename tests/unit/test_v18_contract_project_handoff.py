@@ -719,7 +719,8 @@ def test_pbs_sources_use_current_authoritative_guidance() -> None:
     assert api_record.auth_env_var == "PBS_API_SUBSCRIPTION_KEY"
     assert str(fallback_record.source_url) == "https://data.pbs.gov.au/api/pbs-api.html"
     assert fallback_record.acquisition_mode == "landing_page_review"
-    assert "legacy PBS Downloads route returned HTTP 404" in fallback_record.current_observation
+    assert "official Publications Archive" in fallback_record.current_observation
+    assert "structured-extract packages" in fallback_record.current_observation
 
 
 def test_contract_detects_html_download(tmp_path: Path) -> None:

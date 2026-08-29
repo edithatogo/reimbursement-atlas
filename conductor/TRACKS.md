@@ -1,5 +1,8 @@
 # Project Tracks
 
+- [~] **Track: PBS archive verification and rights-safe publication**
+  *Link: [./tracks/pbs_archive_verification_publication_20260829/index.md](./tracks/pbs_archive_verification_publication_20260829/index.md)*
+
 - [x] **Track: Historical PBS publication archive**
   *Link: [./archive/historical_pbs_publication_archive_20260827/index.md](./archive/historical_pbs_publication_archive_20260827/index.md)*
 

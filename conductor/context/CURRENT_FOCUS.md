@@ -1748,3 +1748,20 @@ is 40/40 with repository and evidence release readiness true. The Conductor trac
 in progress because rights-cleared counterpart acquisition and blinded mapping evaluation
 remain upstream external/data gates, while Hugging Face, OSF and archive mutation remain
 separately controlled publication actions. Papers and preprints remain excluded.
+
+## 2026-08-29 - PBS archive verification and structured-package acquisition
+
+The active `pbs_archive_verification_publication_20260829` track has completed its
+repository-owned implementation. The ignored local archive now contains 1,048 of 1,049
+signature-validated historical PDFs and all 655 conservatively discovered official
+machine-readable packages from April 2007 through July 2026. Internet Archive CDX evidence
+provides 690 exact digest matches after transport-neutral HTTP/HTTPS identity matching; five
+differing archived variants were acquired through byte-preserving replay and independently matched
+to their CDX SHA-1 digests.
+
+The public product contains provenance, source URLs, checksums, periods, rights states and
+transformation metadata only. It contains no raw PBS payloads. The December 1987 source bytes
+remain unavailable from both the publisher endpoint and exact Internet Archive lookup, and PBS
+copyright terms do not grant bulk public redistribution. Those are external source/rights gates,
+not failed repository implementation. All 27 local quality gates pass; protected hosted checks,
+merge and issue #255 reconciliation remain before track archival.

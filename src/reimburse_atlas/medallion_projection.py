@@ -100,9 +100,18 @@ def _historical_acquisition_rows(root: Path) -> tuple[list[dict[str, Any]], str]
     output = root / "data/derived/historical_sources"
     rows = _read_jsonl(output / "historical_source_downloads.jsonl")
     rows.extend(_read_jsonl(output / "pbs_archive_v1/historical_source_downloads.jsonl"))
-    summary_path = output / "historical_source_downloads_summary.json"
-    summary = _read_json(summary_path) if summary_path.is_file() else {}
-    return rows, str(summary.get("generated_at", GENERATED_AT))
+    rows.extend(_read_jsonl(output / "pbs_structured_archive_v1/historical_source_downloads.jsonl"))
+    summary_paths = (
+        output / "historical_source_downloads_summary.json",
+        output / "pbs_archive_v1/historical_source_downloads_summary.json",
+        output / "pbs_structured_archive_v1/historical_source_downloads_summary.json",
+    )
+    generated_values = [
+        str(_read_json(path).get("generated_at", GENERATED_AT))
+        for path in summary_paths
+        if path.is_file()
+    ]
+    return rows, max(generated_values, default=GENERATED_AT)
 
 
 def _build_bronze_source_index(

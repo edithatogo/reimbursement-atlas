@@ -29,6 +29,7 @@ CONFORMANT_REPOSITORIES: Final = (
 PUBLICATION_PREFIXES: Final = (
     Path("data/derived/medallion"),
     Path("data/derived/field_lineage"),
+    Path("data/derived/publication/pbs_provenance"),
 )
 CONFIG_INPUTS: dict[str, Path] = {
     "catalogue_b0": Path("data/derived/medallion/bronze_source_index.jsonl"),
@@ -39,6 +40,16 @@ CONFIG_INPUTS: dict[str, Path] = {
     "platinum": Path("data/derived/medallion/medallion_artifacts.jsonl"),
     "lineage": Path("data/derived/field_lineage/field_lineage.jsonl"),
     "promotion_decisions": Path("data/derived/medallion/promotion_decisions.jsonl"),
+    "pbs_pdf_provenance": Path("data/derived/publication/pbs_provenance/pbs_pdf_provenance.jsonl"),
+    "pbs_structured_provenance": Path(
+        "data/derived/publication/pbs_provenance/pbs_structured_provenance.jsonl"
+    ),
+    "pbs_archive_verification": Path(
+        "data/derived/publication/pbs_provenance/pbs_archive_verification.jsonl"
+    ),
+    "pbs_archive_variants": Path(
+        "data/derived/publication/pbs_provenance/pbs_archive_variants.jsonl"
+    ),
 }
 
 

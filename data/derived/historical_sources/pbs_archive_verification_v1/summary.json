@@ -1,0 +1,16 @@
+{
+  "claim_boundary": "Archive metadata and indexed text verify publication identity only. Exact source-byte verification requires a matching digest; local acquisition does not grant redistribution rights.",
+  "copyright_url": "https://www.pbs.gov.au/info/general/copyright",
+  "december_1987_source_byte_status": "no_archive_capture",
+  "internet_archive_capture_count": 1033,
+  "observed_at": "2026-08-29T03:43:01.133988+00:00",
+  "public_product_scope": "checksums_provenance_archive_observations_and_permitted_metadata",
+  "raw_publication_status": "blocked_pending_explicit_permission",
+  "schema_version": "pbs-archive-verification-v1",
+  "target_count": 1049,
+  "verification_status_counts": {
+    "digest_mismatch": 5,
+    "exact_digest_match": 690,
+    "no_archive_capture": 354
+  }
+}
