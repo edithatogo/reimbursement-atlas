@@ -1857,3 +1857,14 @@ coverage gaps under issue #255; download does not grant redistribution rights.
 Rationale: the official downloadable archive materially improves historical citation and
 reproducibility, while separating it from the rolling structured API prevents a false field-level
 or completeness claim.
+
+## 2026-08-29 - Retry failed PBS publication transfers without widening claims
+
+Decision: retry only the 111 failed official PBS publication targets with bounded transfers and
+retain payload-signature validation. The retry recovered all 110 timeout failures, producing
+1,048/1,049 verified PDFs (6,246,978,558 bytes). The December 1987 URL remains an explicit HTTP
+403 publisher dependency.
+
+Rationale: downloadable official files improve historical preservation and citation coverage, but
+do not establish structured API history, field-level parity, redistribution permission, research
+evidence or policy-claim readiness.
