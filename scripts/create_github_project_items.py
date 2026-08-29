@@ -329,18 +329,24 @@ def render_issue(issue: IssueDraft) -> str:  # ruff:ignore[too-many-branches, to
             "- [x] Conductor backlog, generated issue draft and GitHub Project linkage are "
             "regenerated from the current source records."
         )
-    elif issue.title == "Expand reviewed coverage with historical MBS and PBS bundles":
+    elif issue.title == (
+        "Complete residual historical MBS/PBS acquisition breadth and evidence promotion"
+    ):
         acceptance = (
             "- [x] Historical inventory, backfill/replay contracts and target-level review "
             "evidence are implemented.\n"
-            "- [x] 340 MBS snapshots are acquired in ignored storage with immutable checksums and "
-            "replay-eligible evidence.\n"
+            "- [x] 341 of 343 MBS targets are acquired; two confirmed official HTTP 404 targets "
+            "remain `upstream_unavailable`.\n"
+            "- [x] 938 of 1,049 official PBS publication PDFs are signature-validated in ignored "
+            "storage with SHA-256 receipts.\n"
             "- [x] Rights states, provenance and non-publication boundaries remain explicit.\n"
             "- [x] Tests cover historical indexing, deterministic replay, source contracts and raw "
             "path exclusion.\n"
-            "- [ ] Resolve the three failed historical MBS targets.\n"
-            "- [ ] Acquire and promote rights-reviewed historical PBS payload snapshots; the "
-            "current historical PBS record is metadata-only."
+            "- [ ] Retry 110 bounded PBS timeouts and reconcile one official HTTP 403.\n"
+            "- [ ] Identify a rights-cleared structured historical source if field-level PBS API "
+            "parity is required; publication PDFs do not provide structured parity.\n"
+            "- [ ] Promote only independently licence-reviewed permitted metadata or derived "
+            "fields."
         )
     elif issue.title == "Add URL/licence verification checklist for first-wave sources":
         acceptance = (

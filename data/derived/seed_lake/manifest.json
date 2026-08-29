@@ -105,7 +105,7 @@
       "name": "roadmap_functions",
       "parquet_path": "roadmap_functions/roadmap_functions.parquet",
       "rows": 45,
-      "sha256": "7ac83941b9b4a1522a5b720d6f0ac9defcb086b5ac1db0962e014df10f6cc01c"
+      "sha256": "475b82edfd1a2b1e5205d45fc86d07b9d60f9891c96cc70b03910a9b88e31237"
     },
     {
       "csv_path": "dataset_candidates/dataset_candidates.csv",
@@ -433,7 +433,7 @@
       "name": "github_project_items",
       "parquet_path": "github_project_items/github_project_items.parquet",
       "rows": 265,
-      "sha256": "fb444bf4ae46d9cc7900ddf938161c02e742f125a65c0b5c4242764304bf924b"
+      "sha256": "a2eabd889e2c5c429df064e10e7438b115e2c51821e59fab426018f3af00d784"
     },
     {
       "csv_path": "final_handoff_tasks/final_handoff_tasks.csv",
@@ -481,7 +481,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "4d7eb0156d8acee6d9f166cff4b2ab9e8654a72c633e88e5669e1dded7012022"
+      "sha256": "5af9c6d416ec1ba9022050a3d41cd3864127552795b20afa6461e8af9fd305aa"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
