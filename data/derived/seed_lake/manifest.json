@@ -441,7 +441,7 @@
       "name": "final_handoff_tasks",
       "parquet_path": "final_handoff_tasks/final_handoff_tasks.parquet",
       "rows": 11,
-      "sha256": "58c193d6695f7d9cc87ad6e9d7562d54078e8f9b0bdf2c641cf48836e33e7539"
+      "sha256": "ecaf15060066fef886583718addd238efed45d5c17705ae087b96e1ca505e334"
     },
     {
       "csv_path": "protocol_status/protocol_status.csv",

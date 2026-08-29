@@ -44,7 +44,7 @@ rights and provenance evidence before any promotion claim.
 
 | Issue | Current state | Closure condition |
 |---|---|---|
-| #255 | Partial breadth: 341 historical MBS snapshots are acquired and replay-eligible; two removed official TXT targets are recorded as `upstream_unavailable`; the historical PBS catalogue remains metadata-only. | Create rights-reviewed historical PBS payload snapshots and derived bundles if an official archive with suitable terms becomes available. Do not substitute the rolling API for historical completeness. |
+| #255 | Acquired breadth: 341 historical MBS snapshots are replay-eligible, two removed official TXT targets are `upstream_unavailable`, 1,048/1,049 PBS PDFs and all 655 discovered post-2007 structured packages are signature-validated in ignored storage, and governed provenance is published. | Obtain the missing December 1987 bytes from the publisher or an authorised byte-preserving source; obtain written permission or an open licence before raw PBS redistribution; investigate pre-2007 machine-readable releases only if broader structured parity is required. |
 | #362 | Monitored external compatibility dependency, not a release blocker. | Upgrade only when the Astro checker peer range supports TypeScript 7 and all package, build and browser gates pass. |
 
 No paper, preprint, broad evidence, source-completeness or redistribution claim is

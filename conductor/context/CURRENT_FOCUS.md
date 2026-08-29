@@ -1776,5 +1776,6 @@ explicit governed configurations and removed the legacy remote `data/seed` tree,
 GitHub Actions run `33237003418` published and remotely verified 12 allow-listed dataset
 configurations, including all four PBS provenance configurations. The remote dataset contains
 no raw PBS payloads and no legacy seed tree. The track is archived because all repository-owned
-acceptance criteria are complete. Issue #255 remains open only for the externally controlled
-December 1987 source bytes and written permission or an open licence for raw redistribution.
+acceptance criteria are complete. Issue #255 remains open for the externally controlled December
+1987 source bytes, written permission or an open licence for raw redistribution, and optional
+pre-2007 machine-readable discovery if broader structured parity is required.

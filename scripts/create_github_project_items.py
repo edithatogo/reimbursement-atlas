@@ -352,8 +352,9 @@ def render_issue(issue: IssueDraft) -> str:  # ruff:ignore[too-many-branches, to
             "if broader structured parity is required.\n"
             "- [ ] Obtain explicit permission before redistributing raw PBS payloads; public "
             "download availability does not grant republication rights.\n"
-            "- [ ] Promote only independently licence-reviewed permitted metadata or derived "
-            "fields."
+            "- [x] Promote only independently licence-reviewed permitted metadata or derived "
+            "fields; GitHub Actions run 33237003418 published the governed Hugging Face "
+            "configurations without raw payloads or the legacy seed tree."
         )
     elif issue.title == "Add URL/licence verification checklist for first-wave sources":
         acceptance = (
