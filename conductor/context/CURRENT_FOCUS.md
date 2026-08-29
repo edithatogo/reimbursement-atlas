@@ -3,12 +3,12 @@
 ## 2026-08-29 - Historical PBS publication archive
 
 The official PBS Publications Archive yielded 1,049 deterministic PDF targets from 1951-03-01
-through 2026-07-01. Bounded acquisition placed 938 signature-validated PDFs (4,658,177,952 bytes)
-in ignored local storage with checksum-bound tracked receipts; 110 targets timed out and one
-official URL returned HTTP 403. This is 89.4185% publication-PDF coverage, not structured API
-history, field-level parity, redistribution permission or research evidence. PR #780 passed its
-hosted checks and merged through protection. Issue #255 remains open only for the 111 unresolved
-publication targets, structured historical breadth and independently gated evidence promotion.
+through 2026-07-01. A bounded retry pass recovered all 110 timeout failures, bringing the ignored
+local cache to 1,048 signature-validated PDFs (6,246,978,558 bytes); the December 1987 official
+URL still returns HTTP 403. This is 99.9047% publication-PDF coverage, not structured API history,
+field-level parity, redistribution permission or research evidence. PR #780 passed its hosted
+checks and merged through protection. Issue #255 remains open for the publisher-dependent target,
+structured historical breadth and independently gated evidence promotion.
 
 ## 2026-08-20 - Live issue reconciliation after OSF deprecation
 
