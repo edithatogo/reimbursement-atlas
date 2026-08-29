@@ -5,7 +5,7 @@ Regenerate the preflight against the exact tagged release; no Zenodo evidence is
 newer commit.
 
 The current merged-main baseline is
-`de1ababd89f128068d46f2aa6e7c20b7a1b677e1`. Zenodo deposition `21759294` remains
+`dd7c7592d07e12fcdbba8c5ca12db5b3d091a0d6`. Zenodo deposition `21759294` remains
 recorded as external state. This repository update performs no DOI reservation or
 archive-publication mutation; any future mutation must use the independent
 archive-publication gate and exact tagged-release inventory.

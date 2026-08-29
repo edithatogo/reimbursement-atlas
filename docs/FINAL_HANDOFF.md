@@ -1,10 +1,10 @@
 # Final handoff checklist
 
-## Current implementation state (2026-08-20)
+## Current implementation state (2026-08-29)
 
 The current merged-main baseline is
-`de1ababd89f128068d46f2aa6e7c20b7a1b677e1`. The repository and evidence release
-gates are complete at 40/40, including the current-head scoped dashboard review.
+`dd7c7592d07e12fcdbba8c5ca12db5b3d091a0d6`. Repository and evidence release
+readiness are true with no required blocker, including the scoped dashboard review.
 Rights-cleared counterpart acquisition and dependent mapping evaluation remain
 separately tracked data gates; no unsupported claim is inferred from release
 readiness.
