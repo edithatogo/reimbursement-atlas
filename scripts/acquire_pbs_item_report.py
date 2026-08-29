@@ -19,6 +19,16 @@ PACKAGE_ID = "14b536d4-eb6a-485d-bf87-2e6e77ddbac1"
 PACKAGE_API = f"https://data.gov.au/data/api/3/action/package_show?id={PACKAGE_ID}"
 MAGDA_RECORD = f"https://dev.magda.io/dataset/ds-dga-{PACKAGE_ID}/details?q="
 EXPECTED_LICENCE = "Creative Commons Attribution 3.0 Australia"
+EXPECTED_CSV_COLUMNS = {
+    "Benefits ($)",
+    "Item_number",
+    "Month",
+    "Patient_Category",
+    "Scheme",
+    "Services",
+    "State",
+    "Year",
+}
 RAW_DIR = project_root() / "data/raw_live/au_pbs_item_report"
 OUTPUT_DIR = project_root() / "data/derived/historical_sources/pbs_item_report_v1"
 
@@ -114,29 +124,65 @@ def normalize_package(payload: dict[str, Any]) -> tuple[dict[str, Any], list[Res
     return summary, resources
 
 
-def acquire(resources: list[ResourceRow]) -> list[ReceiptRow]:
+def _previous_receipts(path: Path) -> dict[str, dict[str, object]]:
+    if not path.is_file():
+        return {}
+    rows: dict[str, dict[str, object]] = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        value: object = json.loads(line)
+        if isinstance(value, dict):
+            row = cast("dict[str, object]", value)
+            resource_id = row.get("id")
+            if isinstance(resource_id, str):
+                rows[resource_id] = row
+    return rows
+
+
+def _catalogue_metadata_matches(resource: ResourceRow, previous: dict[str, object] | None) -> bool:
+    if previous is None:
+        return False
+    keys = ("format", "id", "last_modified", "name", "source_url")
+    return all(previous.get(key) == resource[key] for key in keys)
+
+
+def _signature_valid(path: Path, suffix: str) -> bool:
+    if suffix in {".zip", ".xlsx"}:
+        return zipfile.is_zipfile(path)
+    if suffix != ".csv":
+        return False
+    try:
+        with path.open(encoding="utf-8-sig", newline="") as handle:
+            header = next(csv.reader(handle))
+    except OSError, UnicodeDecodeError, StopIteration, csv.Error:
+        return False
+    return set(header) == EXPECTED_CSV_COLUMNS
+
+
+def acquire(
+    resources: list[ResourceRow],
+    *,
+    raw_dir: Path = RAW_DIR,
+    previous_receipts_path: Path = OUTPUT_DIR / "resources.jsonl",
+) -> list[ReceiptRow]:
     """Download resources to ignored storage and return path-free receipts."""
-    RAW_DIR.mkdir(parents=True, exist_ok=True)
+    raw_dir.mkdir(parents=True, exist_ok=True)
+    previous = _previous_receipts(previous_receipts_path)
     receipts: list[ReceiptRow] = []
     for resource in resources:
         suffix = Path(urlparse(resource["source_url"]).path).suffix.lower() or ".bin"
-        path = RAW_DIR / f"{resource['id']}{suffix}"
+        path = raw_dir / f"{resource['id']}{suffix}"
         status = "cached"
-        if not path.is_file() or path.stat().st_size == 0:
+        cache_matches = _catalogue_metadata_matches(resource, previous.get(resource["id"]))
+        existed = path.is_file() and path.stat().st_size > 0
+        if not path.is_file() or path.stat().st_size == 0 or not cache_matches:
             data = _read_url(resource["source_url"])
             path.write_bytes(data)
-            status = "downloaded"
+            status = "refreshed" if existed else "downloaded"
         digest_builder = hashlib.sha256()
         with path.open("rb") as handle:
             for chunk in iter(lambda: handle.read(1024 * 1024), b""):
                 digest_builder.update(chunk)
-        with path.open("rb") as handle:
-            prefix = handle.read(4096)
-        signature_valid = (
-            zipfile.is_zipfile(path)
-            if suffix in {".zip", ".xlsx"}
-            else bool(prefix) and b"\x00" not in prefix
-        )
+        signature_valid = _signature_valid(path, suffix)
         if not signature_valid:
             message = f"Invalid {resource['format']} signature for {resource['id']}"
             raise ItemReportAcquisitionError(message)
