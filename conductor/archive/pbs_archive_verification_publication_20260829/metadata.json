@@ -16,8 +16,8 @@
       "evidence": "Official URL returns HTTP 403 with variant=3 and HTTP 404 without it; Internet Archive availability and exact CDX queries returned no capture."
     }
   ],
-  "status": "in_progress",
+  "status": "archived",
   "track_id": "pbs_archive_verification_publication_20260829",
   "type": "feature",
-  "updated_at": "2026-08-29T06:30:00Z"
+  "updated_at": "2026-08-29T07:50:00Z"
 }

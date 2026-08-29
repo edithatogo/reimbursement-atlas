@@ -8,7 +8,7 @@
 ## Historical state
 
 The current merged-main baseline is
-`de1ababd89f128068d46f2aa6e7c20b7a1b677e1`. OSF project `q8cnx` and
+`dd7c7592d07e12fcdbba8c5ca12db5b3d091a0d6`. OSF project `q8cnx` and
 immutable registration `gqk4z` are public. Read-only monitor run `30181343265`
 confirmed the registration is no longer pending and produced a canonical
 snapshot bound to the exact submitted decision. Registration readiness remains

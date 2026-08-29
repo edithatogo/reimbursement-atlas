@@ -10,11 +10,11 @@ than broad policy conclusions. `research_publication_ready=false` remains delibe
 and preprint submission is excluded. A stale commit-bound dashboard review is a dashboard-only
 review gate and does not revoke the independently reviewed evidence packages.
 
-## Current release boundary (2026-08-20)
+## Current release boundary (2026-08-29)
 
-Merged `main` at `de1ababd89f128068d46f2aa6e7c20b7a1b677e1` reports
+Merged `main` at `dd7c7592d07e12fcdbba8c5ca12db5b3d091a0d6` reports
 `repository_release_ready=true` and `evidence_release_ready=true`; all release
-gates pass. The current-head dashboard packet is approved only within its declared
+requirements have no required blocker. The dashboard packet is approved only within its declared
 visual, automated accessibility, responsive, keyboard, provenance, displayed-data
 parity and prohibited-content scope. This does not authorize unsupported causal,
 coverage or price-equivalence claims.
@@ -30,7 +30,7 @@ and the dataset remains `other`. OSF project `q8cnx` is public, while registrati
 licence, evidence, policy and publication gates remain fail-closed.
 
 Current merged-main baseline:
-`de1ababd89f128068d46f2aa6e7c20b7a1b677e1` (2026-08-20).
+`dd7c7592d07e12fcdbba8c5ca12db5b3d091a0d6` (2026-08-29).
 Regenerate this document after any further merge and before release review.
 The last merged-main repository release gate summary was 36/36 passing; the current
 branch must rerun the complete matrix before this state can be considered current.

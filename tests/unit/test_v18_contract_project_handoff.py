@@ -691,6 +691,16 @@ def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) ->
     assert "final_osf_registration_drift_check" not in rows
     assert rows["final_mapping_calibration_review"].status == "complete"
     assert rows["final_historical_source_expansion"].status == "complete"
+    assert "1,048 PBS PDFs" in rows["final_historical_source_expansion"].recommended_action
+    assert (
+        "655 structured PBS packages"
+        in rows["final_historical_source_expansion"].recommended_action
+    )
+    assert (
+        "missing acquisition of the verified corpus"
+        in rows["final_historical_source_expansion"].recommended_action
+    )
+    assert "December 1987" in rows["final_historical_source_expansion"].unblock_condition
     assert rows["final_dashboard_visual_review"].status == "complete"
     assert rows["final_release_candidate"].status == "ready_local"
 

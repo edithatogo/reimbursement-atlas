@@ -23,4 +23,4 @@ This issue was generated from `conductor/backlog.yml`. Refine the acceptance cri
 - [ ] Reconcile the remaining December 1987 official HTTP 403 with the publisher.
 - [ ] Identify pre-2007 machine-readable sources and version-specific field contracts if broader structured parity is required.
 - [ ] Obtain explicit permission before redistributing raw PBS payloads; public download availability does not grant republication rights.
-- [ ] Promote only independently licence-reviewed permitted metadata or derived fields.
+- [x] Promote only independently licence-reviewed permitted metadata or derived fields; GitHub Actions run 33237003418 published the governed Hugging Face configurations without raw payloads or the legacy seed tree.

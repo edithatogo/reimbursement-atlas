@@ -441,7 +441,7 @@
       "name": "final_handoff_tasks",
       "parquet_path": "final_handoff_tasks/final_handoff_tasks.parquet",
       "rows": 11,
-      "sha256": "58c193d6695f7d9cc87ad6e9d7562d54078e8f9b0bdf2c641cf48836e33e7539"
+      "sha256": "ecaf15060066fef886583718addd238efed45d5c17705ae087b96e1ca505e334"
     },
     {
       "csv_path": "protocol_status/protocol_status.csv",
@@ -481,7 +481,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "c0a0432af73e4019d55b0e0b72a4ba3a3bb6a42761db1bbc63af6c2681fecd7e"
+      "sha256": "2aa515ec4577122c46aa1926ad85824bbccdfdc55f02119dc680048a4e58e67b"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",

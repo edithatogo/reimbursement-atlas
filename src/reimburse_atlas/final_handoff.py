@@ -232,8 +232,9 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             title="Review historical MBS/PBS source expansion and licence scope",
             status="complete" if _historical_review_complete(repo) else "partial",
             required_environment=(
-                "Human source/licence review plus network access to historical MBS and "
-                "PBS releases."
+                "Publisher action for the missing December 1987 bytes and written raw-"
+                "redistribution permission; source discovery for optional pre-2007 structured "
+                "parity."
             ),
             command=(
                 "pixi run historical-sources && pixi run source-download-plan && "
@@ -241,20 +242,26 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             ),
             evidence_path="data/derived/historical_sources/summary.json",
             unblock_condition=(
-                "Acquire and validate the approved historical release payloads into ignored raw "
-                "storage; the metadata inventory and source-specific reuse policy are complete."
+                "Obtain and validate the December 1987 bytes, and obtain written permission or "
+                "an applicable open licence before redistributing raw PBS payloads."
             ),
             recommended_action=(
-                "Continue derived-only processing under the approved source-specific licences. "
-                "The inventory covers 343 targets across 32 pages; missing payloads remain an "
-                "acquisition gap and must not be inferred as temporal evidence."
+                "Preserve the verified 341 MBS snapshots, 1,048 PBS PDFs and 655 structured PBS "
+                "packages in ignored storage; publish only governed provenance and permitted "
+                "derived fields. Treat December 1987 and optional pre-2007 structured parity as "
+                "external source gaps, not as missing acquisition of the verified corpus."
             ),
             reason_code=(
                 "historical_source_review_complete"
                 if _historical_review_complete(repo)
                 else "historical_source_acquisition_partial"
             ),
-            gate_evidence=("data/derived/historical_sources/summary.json",),
+            gate_evidence=(
+                "data/derived/historical_sources/summary.json",
+                "data/derived/historical_sources/pbs_publication_archive_v1/acquisition_summary.json",
+                "data/derived/historical_sources/pbs_structured_archive_v1/acquisition_summary.json",
+                "data/derived/historical_sources/pbs_archive_verification_v1/summary.json",
+            ),
             external_state="not_applicable",
         ),
         FinalHandoffTaskRecord(
