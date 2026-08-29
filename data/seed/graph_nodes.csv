@@ -112,7 +112,7 @@ api,,,,,,,,,dataset:ds_world_bank_wdi_health,,,dataset_candidate,World Bank WDI 
 ,,,,,,,,,function:func_gold_standard_mappings,data_pipeline,,roadmap_function,gold-standard mapping set,,,,,,,,,must,,implemented,,,
 ,,,,,,,,,function:func_hf_dataset_publish,github_action,,roadmap_function,Hugging Face dataset publish,,,,,,,,,must,,implemented,,,
 ,,,,,,,,,function:func_hf_space_deploy,github_action,,roadmap_function,Hugging Face Space deploy,,,,,,,,,must,,implemented,,,
-,,,,,,,,,function:func_historical_mbs_pbs_bundles,data_pipeline,,roadmap_function,historical source coverage expansion,,,,,,,,,must,,planned,,,
+,,,,,,,,,function:func_historical_mbs_pbs_bundles,data_pipeline,,roadmap_function,historical source coverage expansion,,,,,,,,,must,,blocked,,,
 ,,,,,,,,,function:func_mapping_review_ui,dashboard,,roadmap_function,mapping review UI,,,,,,,,,must,,implemented,,,
 ,,,,,,,,,function:func_medicine_opacity_index,data_pipeline,,roadmap_function,medicine price-opacity index,,,,,,,,,should,,implemented,,,
 ,,,,,,,,,function:func_mojo_fuzzy_prefilter,mojo_kernel,,roadmap_function,fuzzy prefilter kernel,,,,,,,,,should,,prototype,,,

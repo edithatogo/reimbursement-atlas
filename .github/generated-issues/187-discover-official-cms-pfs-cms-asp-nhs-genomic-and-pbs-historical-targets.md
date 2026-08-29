@@ -14,4 +14,4 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 
 - [x] Catalog discovery is deterministic, HTTPS-only and records the official archive page and direct URL.
 - [x] Duplicate filenames remain distinct through URL-stable target identifiers.
-- [x] PBS metadata-only and AMA-gated targets remain explicit rather than being silently omitted.
+- [x] PBS publication PDFs, structured-API limitations and AMA-gated targets remain distinct rather than being silently omitted.
