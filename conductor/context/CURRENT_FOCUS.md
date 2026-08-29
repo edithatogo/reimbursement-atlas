@@ -1,5 +1,9 @@
 # Current focus
 
+The common authoritative release snapshot for current-state documentation is
+`dd7c7592d07e12fcdbba8c5ca12db5b3d091a0d6`. Later entries below retain older
+commit-bound review evidence as historical provenance, not as the current release head.
+
 ## 2026-08-29 - Historical PBS publication archive
 
 The official PBS Publications Archive yielded 1,049 deterministic PDF targets from 1951-03-01
