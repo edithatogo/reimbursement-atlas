@@ -277,3 +277,11 @@ def test_metadata_publication_does_not_stage_whole_seed_tree(tmp_path: Path) -> 
     )
 
     assert publication_gate_failures(tmp_path, scope="metadata") == []
+
+
+def test_huggingface_workflow_removes_legacy_seed_tree() -> None:
+    """A cloned destination cannot retain files from the retired broad publication path."""
+    workflow = Path(".github/workflows/huggingface.yml").read_text(encoding="utf-8")
+
+    assert "rm -rf hf-dataset/data/seed" in workflow
+    assert "rsync -av data/seed/" not in workflow
