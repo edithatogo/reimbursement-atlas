@@ -4,7 +4,8 @@
   "raw_cache_policy": "ignored_local_only",
   "schema_version": "pbs-internet-archive-variant-receipts-v1",
   "status_counts": {
-    "cached": 4
+    "cached": 4,
+    "downloaded": 1
   },
-  "variant_count": 4
+  "variant_count": 5
 }

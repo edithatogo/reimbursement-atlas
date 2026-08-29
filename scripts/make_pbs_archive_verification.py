@@ -41,6 +41,12 @@ def canonical_url(value: str) -> str:
     return urlunparse((parsed.scheme.lower(), parsed.netloc.lower(), parsed.path, "", "", ""))
 
 
+def archive_identity_url(value: str) -> str:
+    """Normalize transport-only scheme differences for archive identity joins."""
+    parsed = urlparse(canonical_url(value))
+    return urlunparse(("https", parsed.netloc, parsed.path, "", "", ""))
+
+
 def _sha1_base32(path: Path) -> str:
     digest = hashlib.sha1(usedforsecurity=False)
     with path.open("rb") as handle:
@@ -118,7 +124,7 @@ def build_verification_rows(  # ruff:ignore[too-many-locals] - explicit evidence
     previous_by_id = {str(row["id"]): row for row in previous_rows or []}
     captures_by_url: dict[str, list[dict[str, str]]] = defaultdict(list)
     for capture in captures:
-        captures_by_url[canonical_url(capture["original"])].append(capture)
+        captures_by_url[archive_identity_url(capture["original"])].append(capture)
 
     rows: list[dict[str, Any]] = []
     root = project_root()
@@ -127,7 +133,8 @@ def build_verification_rows(  # ruff:ignore[too-many-locals] - explicit evidence
         receipt = receipt_by_id.get(identifier, {})
         source_url = canonical_url(str(target["file_url"]))
         matching_captures = sorted(
-            captures_by_url.get(source_url, []), key=itemgetter("timestamp", "digest")
+            captures_by_url.get(archive_identity_url(source_url), []),
+            key=itemgetter("timestamp", "digest"),
         )
         sha256 = receipt.get("checksum_sha256")
         sha1_base32: str | None = None

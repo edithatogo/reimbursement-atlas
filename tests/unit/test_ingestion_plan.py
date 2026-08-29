@@ -18,3 +18,11 @@ def test_build_first_wave_ingestion_plan() -> None:
         task.network_policy in {"manual_download", "live_fetch_allowed"} for task in live_tasks
     )
     assert all(task.priority >= 1 for task in tasks)
+
+
+def test_aggregate_pbs_archive_is_not_an_executable_ingestion_task() -> None:
+    """A heterogeneous package inventory must not be routed through one CSV parser."""
+    tasks = build_first_wave_ingestion_plan(load_source_registry(), load_source_versions())
+    assert all(
+        task.source_version_id != "au_pbs_historical_structured_archive_2007_2026" for task in tasks
+    )

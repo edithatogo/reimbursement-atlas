@@ -55,6 +55,8 @@ FIRST_WAVE_PARSERS: dict[str, tuple[str, OutputContract, int]] = {
     "uk_genomic_test_directory": ("parse_nhs_genomic_directory_csv", "CoverageDecisionRecord", 1),
 }
 
+AGGREGATE_INVENTORY_VERSION_IDS = {"au_pbs_historical_structured_archive_2007_2026"}
+
 
 def licence_gate_for(source: SourceRecord) -> LicenceGate:
     """Derive the conservative licence gate from source metadata."""
@@ -84,7 +86,11 @@ def build_first_wave_ingestion_plan(
     tasks: list[IngestionTaskRecord] = []
     for version in versions:
         source = sources_by_id.get(version.source_id)
-        if source is None or source.id not in FIRST_WAVE_PARSERS:
+        if (
+            source is None
+            or source.id not in FIRST_WAVE_PARSERS
+            or version.id in AGGREGATE_INVENTORY_VERSION_IDS
+        ):
             continue
         parser_name, output_contract, priority = FIRST_WAVE_PARSERS[source.id]
         if source.id == "au_mbs" and "txt" in version.format.lower():

@@ -30,6 +30,12 @@ def canonical_url(value: str) -> str:
     return urlunparse((parsed.scheme.lower(), parsed.netloc.lower(), parsed.path, "", "", ""))
 
 
+def archive_identity_url(value: str) -> str:
+    """Normalize HTTP and HTTPS captures to one source identity."""
+    parsed = urlparse(canonical_url(value))
+    return urlunparse(("https", parsed.netloc, parsed.path, "", "", ""))
+
+
 def replay_url(timestamp: str, original: str) -> str:
     """Return a byte-preserving Wayback replay URL."""
     return f"https://web.archive.org/web/{timestamp}id_/{canonical_url(original)}"
@@ -100,14 +106,14 @@ def plan_variants(
 ) -> list[dict[str, Any]]:
     """Plan only captures whose digest differs from the current official bytes."""
     mismatches = {
-        canonical_url(str(row["source_url"])): row
+        archive_identity_url(str(row["source_url"])): row
         for row in verification_rows
         if row.get("verification_status") == "digest_mismatch"
     }
     planned: list[dict[str, Any]] = []
     for capture in captures:
-        source_url = canonical_url(str(capture["original"]))
-        verification = mismatches.get(source_url)
+        capture_url = canonical_url(str(capture["original"]))
+        verification = mismatches.get(archive_identity_url(capture_url))
         if verification is None:
             continue
         timestamp = str(capture["timestamp"])
@@ -115,8 +121,8 @@ def plan_variants(
         planned.append({
             "id": f"{verification['id']}_{timestamp}_{digest}",
             "source_id": verification["id"],
-            "official_source_url": source_url,
-            "archive_replay_url": replay_url(timestamp, source_url),
+            "official_source_url": canonical_url(str(verification["source_url"])),
+            "archive_replay_url": replay_url(timestamp, capture_url),
             "archive_timestamp": timestamp,
             "archive_checksum_sha1_base32": digest,
             "raw_redistribution_status": "blocked_pending_explicit_permission",

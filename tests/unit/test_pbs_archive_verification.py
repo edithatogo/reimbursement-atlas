@@ -48,6 +48,37 @@ def test_exact_archive_digest_match_requires_identical_local_bytes(tmp_path: Pat
     assert row["archive_capture_count"] == 1
 
 
+def test_http_capture_matches_https_target_identity(tmp_path: Path) -> None:
+    """Internet Archive transport scheme differences do not change source identity."""
+    payload = b"%PDF-1.7 transport-neutral"
+    cached = tmp_path / "source.pdf"
+    cached.write_bytes(payload)
+    target = {
+        "id": "pbs-one",
+        "file_url": "https://www.pbs.gov.au/archive/source.pdf?variant=3",
+        "source_version_id": "pbs_one",
+    }
+    receipt = {
+        "id": "pbs-one",
+        "cache_path": str(cached),
+        "checksum_sha256": hashlib.sha256(payload).hexdigest(),
+        "status": "cached",
+    }
+    capture = {
+        "digest": _ia_digest(payload),
+        "length": str(len(payload)),
+        "mimetype": "application/pdf",
+        "original": "http://www.pbs.gov.au/archive/source.pdf",
+        "statuscode": "200",
+        "timestamp": "20260101000000",
+    }
+
+    row = verification.build_verification_rows([target], [receipt], [capture])[0]
+
+    assert row["verification_status"] == "exact_digest_match"
+    assert row["archive_capture_count"] == 1
+
+
 def test_indexed_or_catalogued_source_without_bytes_is_not_checksum_verified() -> None:
     target = {
         "id": "pbs-missing",

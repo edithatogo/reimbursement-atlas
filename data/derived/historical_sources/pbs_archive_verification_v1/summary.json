@@ -9,8 +9,8 @@
   "schema_version": "pbs-archive-verification-v1",
   "target_count": 1049,
   "verification_status_counts": {
-    "digest_mismatch": 4,
-    "exact_digest_match": 298,
-    "no_archive_capture": 747
+    "digest_mismatch": 5,
+    "exact_digest_match": 690,
+    "no_archive_capture": 354
   }
 }

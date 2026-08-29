@@ -55,9 +55,10 @@ through 2026-07-01: 467 XML ZIPs, 103 structured-extract ZIPs, 66 text/ASCII ZIP
 broad structured-package preservation, but `structured_api_equivalence` remains false because
 formats and field contracts change across periods.
 
-The Internet Archive CDX observation contains 1,033 distinct captured PDF digests. Of the local
-targets, 298 exactly match an archived SHA-1 digest. Four current official files differ from an
-older archived capture; all four archived variants were retrieved into ignored storage and match
+The Internet Archive CDX observation contains 1,033 distinct captured PDF digests. Matching source
+identity across HTTP and HTTPS transport variants, 690 local targets exactly match an archived
+SHA-1 digest. Five current official files differ from an older archived capture; all five archived
+variants were retrieved into ignored storage and match
 their CDX digests. The December 1987 RPBS URL has no Internet Archive capture. Search indexing
 exposes text from that publication and the official archive lists its identity, but neither
 observation verifies the missing source bytes.

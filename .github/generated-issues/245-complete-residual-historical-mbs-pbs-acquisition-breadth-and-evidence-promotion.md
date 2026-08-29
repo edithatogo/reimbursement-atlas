@@ -16,7 +16,7 @@ This issue was generated from `conductor/backlog.yml`. Refine the acceptance cri
 - [x] 341 of 343 MBS targets are acquired; two confirmed official HTTP 404 targets remain `upstream_unavailable`.
 - [x] 1,048 of 1,049 official PBS publication PDFs are signature-validated in ignored storage with SHA-256 receipts.
 - [x] All 655 discovered machine-readable PBS packages from 2007 onward are signature-validated with SHA-256 receipts.
-- [x] Internet Archive CDX comparison establishes 298 exact PDF digest matches and four checksum-verified historical byte variants.
+- [x] Internet Archive CDX comparison establishes 690 exact PDF digest matches and five checksum-verified historical byte variants after transport-neutral matching.
 - [x] Rights states, provenance and non-publication boundaries remain explicit.
 - [x] Tests cover historical indexing, deterministic replay, source contracts and raw path exclusion.
 - [x] Recover all 110 bounded PBS timeout failures through a low-concurrency retry.

@@ -81,6 +81,29 @@ def test_only_digest_mismatches_are_planned() -> None:
     assert planned[0]["raw_redistribution_status"] == "blocked_pending_explicit_permission"
 
 
+def test_http_capture_is_planned_for_https_mismatch() -> None:
+    verification_rows = [
+        {
+            "id": "one",
+            "source_url": "https://www.pbs.gov.au/a.pdf",
+            "verification_status": "digest_mismatch",
+        }
+    ]
+    captures = [
+        {
+            "original": "http://www.pbs.gov.au/a.pdf",
+            "timestamp": "20260101000000",
+            "digest": "ABC",
+        }
+    ]
+
+    planned = variants.plan_variants(verification_rows, captures)
+
+    assert len(planned) == 1
+    assert planned[0]["official_source_url"] == "https://www.pbs.gov.au/a.pdf"
+    assert "/http://www.pbs.gov.au/a.pdf" in planned[0]["archive_replay_url"]
+
+
 def test_sha1_base32_matches_internet_archive_digest_encoding(tmp_path: Path) -> None:
     payload = b"%PDF-1.7 archived variant"
     path = tmp_path / "variant.pdf"
