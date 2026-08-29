@@ -4,11 +4,11 @@ tracks:
   - id: historical_pbs_publication_archive_20260827
     title: "Historical PBS publication archive"
     priority: must
-    phase: implementation
+    phase: archived
     workstream: data
     goal: "Preserve official historical PBS publication PDFs with checksum-bound receipts while keeping publication snapshots distinct from structured API history."
-    spec: "conductor/tracks/historical_pbs_publication_archive_20260827/spec.md"
-    plan: "conductor/tracks/historical_pbs_publication_archive_20260827/plan.md"
+    spec: "conductor/archive/historical_pbs_publication_archive_20260827/spec.md"
+    plan: "conductor/archive/historical_pbs_publication_archive_20260827/plan.md"
     issues: [255]
   - id: huggingface_scoped_publication_20260827
     title: "Hugging Face scoped publication"

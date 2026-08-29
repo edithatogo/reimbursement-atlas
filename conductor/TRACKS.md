@@ -1,5 +1,8 @@
 # Project Tracks
 
+- [x] **Track: Historical PBS publication archive**
+  *Link: [./archive/historical_pbs_publication_archive_20260827/index.md](./archive/historical_pbs_publication_archive_20260827/index.md)*
+
 - [x] **Track: Hugging Face scoped publication**
   *Link: [./archive/huggingface_scoped_publication_20260827/index.md](./archive/huggingface_scoped_publication_20260827/index.md)*
 

@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-08-27T19:00:00Z",
+  "description": "Preserve official PBS publication PDFs with bounded checksum receipts without claiming structured historical API parity.",
+  "evidence_schema": "1.0",
+  "gates": [
+    {
+      "id": "local_quality",
+      "status": "pass",
+      "evidence": "27/27 local CI-profile gates passed"
+    },
+    {
+      "id": "hosted_checks",
+      "status": "pass",
+      "evidence": "PR #780 exact-head workflows 33221996622-33221996681"
+    }
+  ],
+  "status": "completed",
+  "track_id": "historical_pbs_publication_archive_20260827",
+  "type": "feature",
+  "updated_at": "2026-08-29T00:01:51Z"
+}

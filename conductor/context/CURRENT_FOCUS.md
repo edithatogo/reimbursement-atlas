@@ -6,8 +6,9 @@ The official PBS Publications Archive yielded 1,049 deterministic PDF targets fr
 through 2026-07-01. Bounded acquisition placed 938 signature-validated PDFs (4,658,177,952 bytes)
 in ignored local storage with checksum-bound tracked receipts; 110 targets timed out and one
 official URL returned HTTP 403. This is 89.4185% publication-PDF coverage, not structured API
-history, field-level parity, redistribution permission or research evidence. Issue #255 remains
-the coverage and evidence-promotion ledger until protected merge and hosted validation complete.
+history, field-level parity, redistribution permission or research evidence. PR #780 passed its
+hosted checks and merged through protection. Issue #255 remains open only for the 111 unresolved
+publication targets, structured historical breadth and independently gated evidence promotion.
 
 ## 2026-08-20 - Live issue reconciliation after OSF deprecation
 
