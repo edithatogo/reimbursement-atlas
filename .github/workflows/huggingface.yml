@@ -95,9 +95,10 @@ jobs:
           rsync -av infra/huggingface/ hf-dataset/
           cp infra/huggingface/DATASET_CARD.md hf-dataset/README.md
           cp LICENSE hf-dataset/LICENSE
-          mkdir -p hf-dataset/data/seed hf-dataset/data/derived
-          rsync -av data/seed/*.csv hf-dataset/data/seed/
-          rsync -av data/seed/*.jsonl hf-dataset/data/seed/
+          # Remove files published by the retired whole-seed workflow before
+          # staging only the current allow-listed configurations.
+          rm -rf hf-dataset/data/seed
+          mkdir -p hf-dataset/data/derived
           rsync -av data/derived/publication_manifest.json hf-dataset/data/derived/
           uv run python scripts/stage_huggingface_medallion.py hf-dataset
           cp data/derived/medallion_federation/federation_manifest.json hf-dataset/
