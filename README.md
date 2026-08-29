@@ -105,6 +105,11 @@ The atlas is designed to answer questions like:
 - `data/derived/medallion/*`: deterministic B0/B1/B2 evidence, Silver/Gold/Platinum
   artifact identities, and explicit fail-closed promotion decisions. See
   `docs/contracts/MEDALLION_ARCHITECTURE_CONTRACT.md`.
+- `data/derived/publication/pbs_provenance/*`: public, rights-safe PBS publication and structured
+  package URLs, checksums, archive verification and variant metadata. The ignored local corpus is
+  1,048/1,049 publication PDFs plus 655/655 machine-readable packages; raw PBS files are not
+  redistributed because the source terms do not currently grant that permission. See
+  `docs/HISTORICAL_PBS_ARCHIVE.md`.
 - `data/derived/publication_manifest.json`: candidate public/Hugging Face dataset publication manifest.
 - `data/derived/toolchain_report.*`: local installed-toolchain availability report.
 - `data/derived/v6_validation_run.json` and `v7_validation_run.json`: local validation-run summaries.

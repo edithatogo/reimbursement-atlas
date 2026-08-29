@@ -1,0 +1,13 @@
+{
+  "claim_boundary": "This product publishes source URLs, checksums, archive observations and provenance. It does not publish raw PBS payloads, grant redistribution rights, establish complete structured history or authorize research and policy claims.",
+  "internet_archive_exact_match_count": 298,
+  "internet_archive_variant_count": 4,
+  "pdf_target_count": 1049,
+  "pdf_verified_count": 1048,
+  "raw_payload_count": 0,
+  "raw_publication_status": "blocked_pending_explicit_permission",
+  "rights_source": "https://www.pbs.gov.au/info/general/copyright",
+  "schema_version": "pbs-public-provenance-v1",
+  "structured_target_count": 655,
+  "structured_verified_count": 655
+}

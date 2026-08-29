@@ -58,7 +58,7 @@ def test_huggingface_stage_is_layer_separated_and_allow_listed(
 ) -> None:
     summary = stage_huggingface_medallion(repo_root, tmp_path)
 
-    assert summary["config_count"] == 8
+    assert summary["config_count"] == len(CONFIG_INPUTS)
     assert {row["config_name"] for row in summary["configs"]} == set(CONFIG_INPUTS)
     assert (tmp_path / "medallion_manifest.json").exists()
     for config in CONFIG_INPUTS:

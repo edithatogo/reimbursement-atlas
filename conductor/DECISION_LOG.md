@@ -1868,3 +1868,18 @@ retain payload-signature validation. The retry recovered all 110 timeout failure
 Rationale: downloadable official files improve historical preservation and citation coverage, but
 do not establish structured API history, field-level parity, redistribution permission, research
 evidence or policy-claim readiness.
+
+## 2026-08-29 - Publish PBS provenance, not unlicensed source bytes
+
+Decision: acquire all 655 conservatively identified official structured historical packages into
+ignored local storage and publish a checksum-bound provenance projection alongside the PDF archive
+receipts. Do not republish the raw PDFs, ZIPs, XML, CSV or text packages unless the Department of
+Health, Disability and Ageing supplies explicit written redistribution permission or applies an
+appropriate open licence.
+
+Rationale: repository-owner approval cannot grant rights held by the source publisher. The PBS
+copyright notice permits limited personal/reference uses but reserves broader rights. Public URLs,
+periods, checksums, archive observations, format classifications and transformation metadata give
+third parties reproducible acquisition and verification evidence without making a false licence or
+completeness claim. A prepared permission request also asks the publisher to repair or supply the
+missing December 1987 bytes.

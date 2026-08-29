@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-08-29T03:55:54.177450+00:00",
+  "licence_policy": "download_does_not_grant_redistribution_rights",
+  "raw_cache_policy": "ignored_local_only",
+  "schema_version": "historical-source-downloads-v1",
+  "status_counts": {
+    "cached": 655
+  },
+  "target_count": 655,
+  "transformation_process": "data/derived/processes/historical_source_transformation.bpmn",
+  "verified_payload_bytes": 2905582497,
+  "verified_payload_count": 655,
+  "verified_target_fraction": 1.0
+}

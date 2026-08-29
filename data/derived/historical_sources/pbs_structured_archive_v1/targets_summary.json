@@ -1,0 +1,17 @@
+{
+  "format_counts": {
+    "csv": 3,
+    "csv_zip": 16,
+    "structured_extract_zip": 103,
+    "text_zip": 66,
+    "xml_zip": 467
+  },
+  "licence_policy": "download_does_not_grant_redistribution_rights",
+  "period_end": "2026-07-01",
+  "period_start": "2007-04-01",
+  "publication_effect": "none",
+  "raw_cache_policy": "ignored_local_only",
+  "schema_version": "historical-pbs-structured-targets-v1",
+  "structured_api_equivalence": false,
+  "target_count": 655
+}
