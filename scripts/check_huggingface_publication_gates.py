@@ -11,10 +11,10 @@ from reimburse_atlas.registry import project_root
 
 PublicationScope = Literal["metadata", "research"]
 HF_STAGED_PREFIXES = (
-    "data/seed/",
     "data/derived/medallion/",
     "data/derived/field_lineage/",
     "data/derived/medallion_federation/",
+    "data/derived/publication/pbs_provenance/",
     "infra/huggingface/",
     "contracts/medallion/",
 )

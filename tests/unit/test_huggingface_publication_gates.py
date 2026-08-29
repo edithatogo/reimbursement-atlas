@@ -236,7 +236,7 @@ def test_metadata_publication_rejects_unapproved_staged_artifact(tmp_path: Path)
         {
             "artifacts": [
                 {
-                    "relative_path": "data/seed/source_registry.jsonl",
+                    "relative_path": "data/derived/medallion/bronze_source_index.jsonl",
                     "licence_gate": "public_reuse_review",
                     "contains_raw_source_payload": False,
                 }
@@ -246,3 +246,34 @@ def test_metadata_publication_rejects_unapproved_staged_artifact(tmp_path: Path)
 
     failures = publication_gate_failures(tmp_path, scope="metadata")
     assert any("licence review is incomplete" in failure for failure in failures)
+
+
+def test_metadata_publication_does_not_stage_whole_seed_tree(tmp_path: Path) -> None:
+    """Non-public seed records are irrelevant when the workflow stages explicit configs only."""
+    _write(
+        tmp_path,
+        "data/derived/release_readiness/summary.json",
+        {"repository_release_ready": True, "evidence_release_ready": True},
+    )
+    _write(
+        tmp_path,
+        "data/derived/protocols/summary.json",
+        {"protocol_count": 0, "protocol_ready_count": 0},
+    )
+    _write(tmp_path, "data/derived/source_contracts/summary.json", {"fail": 0, "missing": 0})
+    _write(tmp_path, "data/derived/data_quality/summary.json", {"fail": 0, "missing": 0})
+    _write(
+        tmp_path,
+        "data/derived/publication_manifest.json",
+        {
+            "artifacts": [
+                {
+                    "relative_path": "data/seed/source_versions.jsonl",
+                    "licence_gate": "public_reuse_review",
+                    "contains_raw_source_payload": False,
+                }
+            ]
+        },
+    )
+
+    assert publication_gate_failures(tmp_path, scope="metadata") == []
