@@ -4,11 +4,11 @@ tracks:
   - id: pbs_archive_verification_publication_20260829
     title: "PBS archive verification and rights-safe publication"
     priority: must
-    phase: active
+    phase: archived
     workstream: data
     goal: "Verify historical PBS files against independent archives, discover structured downloads and publish lawful provenance without false completeness or redistribution claims."
-    spec: "conductor/tracks/pbs_archive_verification_publication_20260829/spec.md"
-    plan: "conductor/tracks/pbs_archive_verification_publication_20260829/plan.md"
+    spec: "conductor/archive/pbs_archive_verification_publication_20260829/spec.md"
+    plan: "conductor/archive/pbs_archive_verification_publication_20260829/plan.md"
     issues: [255]
   - id: historical_pbs_publication_archive_20260827
     title: "Historical PBS publication archive"

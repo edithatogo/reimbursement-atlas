@@ -1765,3 +1765,16 @@ remain unavailable from both the publisher endpoint and exact Internet Archive l
 copyright terms do not grant bulk public redistribution. Those are external source/rights gates,
 not failed repository implementation. All 27 local quality gates pass; protected hosted checks,
 merge and issue #255 reconciliation remain before track archival.
+
+## 2026-08-29 - PBS archive verification closeout
+
+PR #784 merged to protected `main` as `083be8aa4ff0f8d8e6df5c5d8242f7783be149de`
+after exact-head hosted checks passed. PR #785 then narrowed Hugging Face publication to
+explicit governed configurations and removed the legacy remote `data/seed` tree, merging as
+`dd7c7592d07e12fcdbba8c5ca12db5b3d091a0d6` after all hosted checks passed.
+
+GitHub Actions run `33237003418` published and remotely verified 12 allow-listed dataset
+configurations, including all four PBS provenance configurations. The remote dataset contains
+no raw PBS payloads and no legacy seed tree. The track is archived because all repository-owned
+acceptance criteria are complete. Issue #255 remains open only for the externally controlled
+December 1987 source bytes and written permission or an open licence for raw redistribution.
