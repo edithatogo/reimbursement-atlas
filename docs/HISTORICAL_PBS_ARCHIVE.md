@@ -42,6 +42,13 @@ preservation from 1951 onward. Only permitted metadata, checksums and transforma
 records can be promoted; any raw redistribution, structured historical reconstruction or derived
 research use remains independently gated.
 
+It also maintains a separate utilisation lane. The Services Australia PBS Item Report indexed by
+data.gov.au and Magda contains aggregate services and benefits paid by PBS/RPBS item and
+state/territory. Its eight CSV, XLSX and ZIP resources cover historical 1992-2014 files plus
+2015 and 2016 YTD releases under Creative Commons Attribution 3.0 Australia. These observations
+can complement schedule publications, but they are processed-claims utilisation evidence, not
+schedule prices, prescribing dates, supply dates, net prices or complete medicine coverage.
+
 ## Current bounded acquisition
 
 The 2026-08-29 acquisition inventory contains 1,049 official publication PDF targets covering

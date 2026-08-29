@@ -1779,3 +1779,17 @@ no raw PBS payloads and no legacy seed tree. The track is archived because all r
 acceptance criteria are complete. Issue #255 remains open for the externally controlled December
 1987 source bytes, written permission or an open licence for raw redistribution, and optional
 pre-2007 machine-readable discovery if broader structured parity is required.
+
+## 2026-08-29 - PBS lifecycle and utilisation evidence
+
+The official December 2025 PBS notice confirms that the public API was released on 1 December
+2024, updates monthly, retains monthly API-table CSV downloads, and replaces XML/text distribution
+from 1 May 2026. The archive landing page and 2007 page were already deterministic PDF and
+structured-package discovery inputs.
+
+The supplied Magda record identifies a separate Services Australia PBS Item Report. Its
+authoritative data.gov.au CKAN package contains eight CC BY 3.0 AU CSV, XLSX and ZIP resources
+covering 1992-2016 YTD. All eight resources, totalling 743,099,064 bytes, are signature-validated
+in ignored storage with path-free SHA-256 receipts. This is aggregate processed-claims services
+and benefits-paid evidence; it is not schedule pricing, prescribing/supply timing, confidential
+net pricing or complete medicine utilisation.

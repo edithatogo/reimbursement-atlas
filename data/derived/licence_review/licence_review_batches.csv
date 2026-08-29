@@ -1,5 +1,5 @@
 approved_count,artifact_count,blocked_count,licence_gate,pending_count,publication_scope,raw_payload_count,review_action,total_byte_size
-135,135,0,permissive_candidate,0,public_derived_candidate,0,No new approval required for current checksums,190298293
-24,24,0,permissive_candidate,0,public_metadata_candidate,0,No new approval required for current checksums,165426
-0,17,17,public_reuse_review,0,public_derived_candidate,0,Accountable review required before publication consideration,4132959
-0,8,8,public_reuse_review,0,public_metadata_candidate,0,Accountable review required before publication consideration,999869
+139,139,0,permissive_candidate,0,public_derived_candidate,0,No new approval required for current checksums,190329407
+30,30,0,permissive_candidate,0,public_metadata_candidate,0,No new approval required for current checksums,231553
+0,13,13,public_reuse_review,0,public_derived_candidate,0,Accountable review required before publication consideration,4104362
+0,2,2,public_reuse_review,0,public_metadata_candidate,0,Accountable review required before publication consideration,938312

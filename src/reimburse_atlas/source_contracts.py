@@ -112,6 +112,15 @@ CONTRACTS: dict[str, SourceContract] = {
             "the checksum-bound acquisition receipts."
         ),
     ),
+    "au_services_australia_pbs_item_report": SourceContract(
+        name="Services Australia PBS Item Report receipt-inventory contract",
+        expected_columns=(),
+        required_markers=("pbs",),
+        skip_reason=(
+            "Aggregate resource-inventory record; validate each CSV, XLSX or ZIP signature and "
+            "checksum through the governed PBS Item Report acquisition receipts."
+        ),
+    ),
     "au_mbs_2010_2019_downloads_page": SourceContract(
         name="MBS 2010-2019 archive landing-page contract",
         expected_columns=(),

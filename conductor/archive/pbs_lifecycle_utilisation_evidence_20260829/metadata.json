@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-08-29T08:30:00Z",
+  "description": "PBS distribution lifecycle and Services Australia aggregate item-report evidence.",
+  "evidence_schema": "1.0",
+  "gates": [],
+  "status": "archived",
+  "track_id": "pbs_lifecycle_utilisation_evidence_20260829",
+  "type": "feature",
+  "updated_at": "2026-08-29T08:30:00Z"
+}

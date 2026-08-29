@@ -25,3 +25,4 @@ uk_nhs_payment_scheme,planned source-specific adapter,2,licence_gate;parser_not_
 ca_on_ohip,planned source-specific adapter,2,licence_gate;parser_not_implemented,implement parser contract and tiny fixture
 us_cms_mcd,planned source-specific adapter,2,licence_gate;parser_not_implemented,implement parser contract and tiny fixture
 au_pbs,PbsFixtureAdapter -> future live PBS API/CSV adapter,1,licence_gate,promote fixture parser to live-source prototype
+au_aihw_mbs_pbs_stats,planned source-specific adapter,2,licence_gate;parser_not_implemented,implement parser contract and tiny fixture
