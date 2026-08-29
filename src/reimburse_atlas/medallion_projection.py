@@ -99,6 +99,7 @@ def _reviewed_snapshot_rows(root: Path) -> list[dict[str, Any]]:
 def _historical_acquisition_rows(root: Path) -> tuple[list[dict[str, Any]], str]:
     output = root / "data/derived/historical_sources"
     rows = _read_jsonl(output / "historical_source_downloads.jsonl")
+    rows.extend(_read_jsonl(output / "pbs_archive_v1/historical_source_downloads.jsonl"))
     summary_path = output / "historical_source_downloads_summary.json"
     summary = _read_json(summary_path) if summary_path.is_file() else {}
     return rows, str(summary.get("generated_at", GENERATED_AT))

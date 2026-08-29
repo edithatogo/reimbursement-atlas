@@ -212,6 +212,8 @@ historical-sources = "PYTHONPATH=src python scripts/make_historical_source_index
 backfill-replay = "PYTHONPATH=src python scripts/make_backfill_replay_contracts.py"
 historical-acquisition = "PYTHONPATH=src python scripts/download_historical_sources.py"
 historical-catalog = "PYTHONPATH=src python scripts/discover_historical_source_catalog.py"
+historical-pbs-catalog = "PYTHONPATH=src python scripts/discover_historical_pbs_archive.py"
+historical-pbs-acquisition = "PYTHONPATH=src python scripts/download_historical_sources.py --seed data/seed/historical_pbs_archive_targets.jsonl --raw-dir data/raw_live/historical_sources/pbs_archive --output-dir data/derived/historical_sources/pbs_archive_v1 --workers 6 --max-time-seconds 180"
 github-project-export = "PYTHONPATH=src python scripts/make_github_project_export.py"
 github-project-sync = "PYTHONPATH=src python scripts/sync_github_project.py"
 final-handoff = "PYTHONPATH=src python scripts/make_final_handoff.py"

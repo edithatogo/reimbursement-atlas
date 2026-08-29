@@ -329,7 +329,7 @@
       "name": "architecture_import_edges",
       "parquet_path": "architecture_import_edges/architecture_import_edges.parquet",
       "rows": 244,
-      "sha256": "fc82390e509bedd19f567c7334539411465cf8708b25329dbce6857975fc5301"
+      "sha256": "b276bc5dae84ddad8b787c7054b3795174982401584347771e157de388f1217e"
     },
     {
       "csv_path": "architecture_layer_policy/architecture_layer_policy.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 45,
-      "sha256": "fb01a5911f149da336b7769b5dd36e6ea15280d864e490613916f95f456df809"
+      "sha256": "9ce3adf187df23aa474d03c5c64d640f9ade8a5c4b455a22f88beacda604def2"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -400,16 +400,16 @@
       "jsonl_path": "bronze_acquisition_ledger/bronze_acquisition_ledger.jsonl",
       "name": "bronze_acquisition_ledger",
       "parquet_path": "bronze_acquisition_ledger/bronze_acquisition_ledger.parquet",
-      "rows": 371,
-      "sha256": "e18b14214743800ac7a90dd82501be1840803dc1c2d470a5b47d408a7fa4bbbc"
+      "rows": 1420,
+      "sha256": "5dd49f1b65093e13804a9160263fa5ce0c2847d8a3c5d42d0e064b617bac7b6a"
     },
     {
       "csv_path": "bronze_evidence/bronze_evidence.csv",
       "jsonl_path": "bronze_evidence/bronze_evidence.jsonl",
       "name": "bronze_evidence",
       "parquet_path": "bronze_evidence/bronze_evidence.parquet",
-      "rows": 353,
-      "sha256": "f9273783a47eb4fa8a1c72676b2a6957a8b639ce161b5a2580842b1aa94de242"
+      "rows": 1291,
+      "sha256": "8cc8adca01484cda9f07a38069d21872825a67b7d90fd7ee16f408f49be2c545"
     },
     {
       "csv_path": "medallion_artifacts/medallion_artifacts.csv",
@@ -417,15 +417,15 @@
       "name": "medallion_artifacts",
       "parquet_path": "medallion_artifacts/medallion_artifacts.parquet",
       "rows": 22,
-      "sha256": "7876bc4de7443df9547fdfaafa50036a3fcaea629cc84349c1d78c792bd19cba"
+      "sha256": "b8988f66b88e89f195801a011b094c9bc4291080db193dcee20bb391bd8eb312"
     },
     {
       "csv_path": "medallion_promotion_decisions/medallion_promotion_decisions.csv",
       "jsonl_path": "medallion_promotion_decisions/medallion_promotion_decisions.jsonl",
       "name": "medallion_promotion_decisions",
       "parquet_path": "medallion_promotion_decisions/medallion_promotion_decisions.parquet",
-      "rows": 440,
-      "sha256": "640a3f76694cd09da2bcd2c0972a0ab6fc6b2739227fac6a08a39263eedae594"
+      "rows": 1489,
+      "sha256": "88750909167547856b1db09dcb5ab5c6b5ccb3875d124b6b017fc0436db05020"
     },
     {
       "csv_path": "github_project_items/github_project_items.csv",
@@ -488,8 +488,8 @@
       "jsonl_path": "data_dictionary/data_dictionary.jsonl",
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
-      "rows": 269,
-      "sha256": "e11ea4b95936822ae5a99aceca35e057f1623109b2c48cf2250202fde1bb742b"
+      "rows": 276,
+      "sha256": "20bdb43282e2c096e1c61093aa0ca27a7cd0b4942f53b10c5f8d74db3104ca06"
     }
   ]
 }
