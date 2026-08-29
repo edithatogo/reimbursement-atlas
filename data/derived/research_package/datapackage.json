@@ -36,7 +36,7 @@
     },
     {
       "bytes": 16078,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "format": "jsonl",
       "hash": "117f104510926153f931ee55e8451bb2760d62460d4b1b283c18fba843ad5b9d",
       "mediatype": "application/json",
@@ -46,7 +46,7 @@
     },
     {
       "bytes": 11041,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "format": "csv",
       "hash": "c24ed59f2e98bccd436aab4e0694bdb3a673083be2c5735a08f543b3bf848804",
       "mediatype": "text/csv",
@@ -61,7 +61,7 @@
     },
     {
       "bytes": 12540,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "format": "jsonl",
       "hash": "03741a5cea5ebe6d8822a4aa1c3017fc9576c666a4b2d9c0c21b856b0ad213f7",
       "mediatype": "application/json",
@@ -71,7 +71,7 @@
     },
     {
       "bytes": 9372,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "format": "csv",
       "hash": "7cb3559bc60e237449fcb863e27533d1df258ed8c8f6e96e05a9889359341854",
       "mediatype": "text/csv",
@@ -471,7 +471,7 @@
     },
     {
       "bytes": 13356,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "format": "csv",
       "hash": "5ca2ff64fb083ef0dc77cf7c8c0ce669c7f1d88df74b3c99efb514c275cc0ad7",
       "mediatype": "text/csv",
@@ -486,7 +486,7 @@
     },
     {
       "bytes": 3740,
-      "description": "Metadata/seed artefact; review source URLs and licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "format": "csv",
       "hash": "c960a3cd4a344c3e500a23ce4e20eee2edcc629f10228221d8ec08f8490586f9",
       "mediatype": "text/csv",
@@ -1673,7 +1673,7 @@
       "bytes": 10643,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "82fa9438e158ba0706e16c30fb30d3cc5eb49b2cd93575068bdb823d37f8cf0c",
+      "hash": "462d30b40a41a42310807708358f4ed95cde7c48c97a348a9b5e1e344bb80217",
       "mediatype": "application/json",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.jsonl",
@@ -1683,7 +1683,7 @@
       "bytes": 6618,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "c6999badf809f746406c33c0ded38526631d5f786af102ca4cc8f0e13d35915d",
+      "hash": "e346427d5a09628f5a9ccf5261d47c56741371837dba2b3816de10ce977104e0",
       "mediatype": "text/csv",
       "name": "release-gates",
       "path": "data/derived/release_readiness/release_gates.csv",
@@ -1791,7 +1791,7 @@
     },
     {
       "bytes": 8346,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "format": "jsonl",
       "hash": "15354a7332ff51344438731ef2d4763a60e94a63f1736eceb91555d5ff88e0ee",
       "mediatype": "application/json",
@@ -1801,7 +1801,7 @@
     },
     {
       "bytes": 5071,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "format": "csv",
       "hash": "b2b250c41966f77bec3ccb1bc5d283a6921ed9397028018c5e8f2eaa950a27eb",
       "mediatype": "text/csv",
@@ -1816,7 +1816,7 @@
     },
     {
       "bytes": 10327,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "format": "jsonl",
       "hash": "b2dc5986bc89b0add69440b1774a5439a94ab86b9ea46ca3f336d15db19053e6",
       "mediatype": "application/json",
@@ -1826,7 +1826,7 @@
     },
     {
       "bytes": 7370,
-      "description": "Derived artefact; review source-specific licence notes before external publication.",
+      "description": "Checksum-bound human approval recorded; publish only the reviewed derived fields.",
       "format": "csv",
       "hash": "5feb23d65a011b0d3ebb1d15b3b968d0e6ca70e56bcf2a5950932f4a6e239785",
       "mediatype": "text/csv",
