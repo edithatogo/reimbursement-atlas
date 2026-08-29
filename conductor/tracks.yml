@@ -1,6 +1,15 @@
 version: 1
 updated: "2026-07-31"
 tracks:
+  - id: pbs_lifecycle_utilisation_evidence_20260829
+    title: "PBS lifecycle and utilisation evidence"
+    priority: must
+    phase: archived
+    workstream: data
+    goal: "Bind the PBS format-transition notice and Services Australia item-report catalogue to distinct, reproducible acquisition and interpretation contracts."
+    spec: "conductor/archive/pbs_lifecycle_utilisation_evidence_20260829/spec.md"
+    plan: "conductor/archive/pbs_lifecycle_utilisation_evidence_20260829/plan.md"
+    issues: [107, 255]
   - id: pbs_archive_verification_publication_20260829
     title: "PBS archive verification and rights-safe publication"
     priority: must

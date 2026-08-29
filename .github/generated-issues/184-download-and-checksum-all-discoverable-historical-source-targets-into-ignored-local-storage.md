@@ -15,3 +15,4 @@ This issue was generated from `conductor/backlog.yml`; the criteria below are th
 - [x] Acquisition is HTTPS-only, retrying, resumable and allowlisted to official hosts.
 - [x] Raw payloads remain ignored and every target has a relative cache path, byte count and SHA-256.
 - [x] Failures and cached files remain explicit in a generated manifest.
+- [x] The eight CC BY 3.0 AU Services Australia PBS Item Report resources have path-free, checksum-bound receipts and remain distinct from Schedule and pricing evidence.

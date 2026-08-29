@@ -53,6 +53,12 @@ The OpenAPI export is documentation metadata only. The current public-user key i
 the catalogue and may rotate; copy it at runtime rather than storing it in the repository. It
 must never be committed, printed, embedded in generated download plans, or written to provenance.
 
+The Department's 11 December 2025 lifecycle notice is also authoritative: the API was released
+on 1 December 2024, is updated on the first day of each month, and replaces XML and text
+distribution from 1 May 2026. Monthly API-table CSV files remain the credential-free current-data
+alternative. Historical XML, text, CSV and extract packages remain preservation snapshots and
+must not be represented as the post-transition current interface.
+
 ## Effective-date join and safe acquisition sequence
 
 The `/items` and `/fees` extracts carry `schedule_code`; the effective date is authoritative in

@@ -10,18 +10,18 @@ checksum-bound row-level record.
 
 ## Current batches
 
-- `permissive_candidate` / `public_derived_candidate`: 135 artefacts, 190298293 bytes
-- `permissive_candidate` / `public_metadata_candidate`: 24 artefacts, 165426 bytes
-- `public_reuse_review` / `public_derived_candidate`: 17 artefacts, 4132959 bytes
-- `public_reuse_review` / `public_metadata_candidate`: 8 artefacts, 999869 bytes
+- `permissive_candidate` / `public_derived_candidate`: 139 artefacts, 190329407 bytes
+- `permissive_candidate` / `public_metadata_candidate`: 30 artefacts, 231553 bytes
+- `public_reuse_review` / `public_derived_candidate`: 13 artefacts, 4104362 bytes
+- `public_reuse_review` / `public_metadata_candidate`: 2 artefacts, 938312 bytes
 
 Total candidate artefacts: 184. Neutral generated row markers are not approval
 requests; the batch and summary `pending_count` values identify required decisions.
 
 ## Decision ledger snapshot
 
-The companion checksum-bound ledger currently records **159 approved**
-and **25 blocked** decisions. These counts are informational;
+The companion checksum-bound ledger currently records **169 approved**
+and **15 blocked** decisions. These counts are informational;
 they do not change generated queue rows or authorize publication.
 
 ### Blocked rows requiring re-review
@@ -39,18 +39,8 @@ they do not change generated queue rows or authorize publication.
 - `data/derived/historical_sources/pbs_archive_v1/historical_source_downloads.jsonl` — `aff99a68d7f7af7e7d2766b80599f75365c06f8c7620f317cf4b15104473772e`
 - `data/derived/historical_sources/pbs_archive_v1/historical_source_downloads_summary.json` — `5ff1749d943045f4e7aac911f6355e18382dc6c2e29af141f0f74c470d8349d3`
 - `data/derived/historical_sources/pbs_archive_v1/targets_summary.json` — `f93bc4623376c7fd74ceb12d4f8f6df1a86976a646fb37ac25fd81162fc3df45`
-- `data/derived/source_contracts/source_contract_validation.csv` — `93436031f21a626771078353dbfd90390d8f3e3e7281b082da15528542d9f34e`
-- `data/derived/source_contracts/source_contract_validation.jsonl` — `576cd9e50605426c0ed50ee5f91535315ed61a2d90adb5284a1fd31249d7f163`
-- `data/derived/source_validation/source_content_validation.csv` — `1c8a707de4b06957ec5137dad99193322f72002359454e8dd375738fc5526588`
-- `data/derived/source_validation/source_content_validation.jsonl` — `af62160f8c46aafbdcadc0a6f1180d90002a468ffe288ac9a383200b1010778e`
 - `data/seed/historical_mbs_archive_targets.jsonl` — `a348e253ba87f94d30786392adba6055f69eb75d87aca2cc2598a1f0798ce9d7`
 - `data/seed/historical_pbs_archive_targets.jsonl` — `acba22bc74529fa24cc39e3eaa39671c2822873c526d7c05fca3f25eb07641e0`
-- `data/seed/ingestion_readiness.csv` — `bdba5bab3d5ed4673fb48ff4e4fd1010bb2dc6360f8874f0fbd8bfe3fcec893f`
-- `data/seed/source_acquisition_plan.csv` — `4d9168740eca26a4b50312b1c634f765f97a194042aef5e9884128d9c5c3a785`
-- `data/seed/source_files.csv` — `47cf35fb6436e976fc93af1c8529429a07c65a19920393bcbe0bfa1fe5da6cbd`
-- `data/seed/source_files.jsonl` — `a59ae016ac740167baef7740c778d7dbab9e22fd9863843f85f626d01d48bcb2`
-- `data/seed/source_versions.csv` — `8e938bce1c3040f4472bfb1f2968fb613b9b45cac3f5d63aacb1c031341dca93`
-- `data/seed/source_versions.jsonl` — `eb46d27d17f4b79d315df9a3e8adf24f390bca642c0645de26a4028746440950`
 
 ## Required decision fields
 

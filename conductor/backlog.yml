@@ -106,6 +106,7 @@ epics:
           - "Acquisition is HTTPS-only, retrying, resumable and allowlisted to official hosts."
           - "Raw payloads remain ignored and every target has a relative cache path, byte count and SHA-256."
           - "Failures and cached files remain explicit in a generated manifest."
+          - "The eight CC BY 3.0 AU Services Australia PBS Item Report resources have path-free, checksum-bound receipts and remain distinct from Schedule and pricing evidence."
       - title: Add academic provenance, citation and licence metadata for every historical target
         labels: ["type:data-source", "type:licence", "type:publication", "risk:licence", "status:implemented"]
         status: implemented

@@ -1,5 +1,8 @@
 # Project Tracks
 
+- [x] **Track: PBS lifecycle and utilisation evidence**
+  *Link: [./archive/pbs_lifecycle_utilisation_evidence_20260829/index.md](./archive/pbs_lifecycle_utilisation_evidence_20260829/index.md)*
+
 - [x] **Track: PBS archive verification and rights-safe publication**
   *Link: [./archive/pbs_archive_verification_publication_20260829/index.md](./archive/pbs_archive_verification_publication_20260829/index.md)*
 

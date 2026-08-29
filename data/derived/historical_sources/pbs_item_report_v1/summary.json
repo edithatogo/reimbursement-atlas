@@ -1,0 +1,17 @@
+{
+  "catalogue_record": "https://dev.magda.io/dataset/ds-dga-14b536d4-eb6a-485d-bf87-2e6e77ddbac1/details?q=",
+  "coverage_note": "Annual/YTD aggregate PBS and RPBS item services and benefits paid; not schedule pricing.",
+  "data_gov_package_api": "https://data.gov.au/data/api/3/action/package_show?id=14b536d4-eb6a-485d-bf87-2e6e77ddbac1",
+  "dataset_id": "14b536d4-eb6a-485d-bf87-2e6e77ddbac1",
+  "formats": [
+    "CSV",
+    "ZIP",
+    "excel (.xlsx)"
+  ],
+  "licence": "Creative Commons Attribution 3.0 Australia",
+  "metadata_modified": "2023-08-10T00:58:09.311786",
+  "resource_count": 8,
+  "schema_version": "pbs-item-report-catalogue-v1",
+  "temporal_coverage": "1992-2016 YTD",
+  "title": "Pharmaceutical Benefits Scheme (PBS) - Item Report"
+}

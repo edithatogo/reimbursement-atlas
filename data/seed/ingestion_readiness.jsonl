@@ -24,3 +24,4 @@
 {"blocker_count": 2, "blockers": "licence_gate;parser_not_implemented", "parser_name": "planned source-specific adapter", "recommended_next_action": "implement parser contract and tiny fixture", "source_id": "ca_on_ohip"}
 {"blocker_count": 2, "blockers": "licence_gate;parser_not_implemented", "parser_name": "planned source-specific adapter", "recommended_next_action": "implement parser contract and tiny fixture", "source_id": "us_cms_mcd"}
 {"blocker_count": 1, "blockers": "licence_gate", "parser_name": "PbsFixtureAdapter -> future live PBS API/CSV adapter", "recommended_next_action": "promote fixture parser to live-source prototype", "source_id": "au_pbs"}
+{"blocker_count": 2, "blockers": "licence_gate;parser_not_implemented", "parser_name": "planned source-specific adapter", "recommended_next_action": "implement parser contract and tiny fixture", "source_id": "au_aihw_mbs_pbs_stats"}
