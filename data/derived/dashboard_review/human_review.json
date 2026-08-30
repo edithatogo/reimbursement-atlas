@@ -20,10 +20,10 @@
       "Playwright keyboard and semantic accessibility assertions"
     ],
     "browsers": [
-      "Chromium 149.0.7827.55 desktop",
-      "Chromium 149.0.7827.55 mobile",
-      "Firefox 151.0 desktop",
-      "WebKit 26.5 desktop"
+      "desktop-chromium",
+      "mobile-chromium",
+      "desktop-firefox",
+      "desktop-webkit"
     ],
     "operating_systems": [
       "GitHub Actions ubuntu-latest hosted runner"
