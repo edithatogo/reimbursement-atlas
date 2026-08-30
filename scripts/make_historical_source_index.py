@@ -12,6 +12,7 @@ from pathlib import Path
 from urllib.parse import unquote, urljoin, urlparse
 from urllib.request import urlopen
 
+from reimburse_atlas.historical_source_reconciliation import build_reconciliation
 from reimburse_atlas.registry import project_root
 
 MBS_INDEX_URLS = (
@@ -229,6 +230,10 @@ def main() -> None:
             if line.strip()
         ]
     write_rows(rows, seed_path=args.seed, output_dir=args.output_dir)
+    (args.output_dir / "mbs_identity_reconciliation.json").write_text(
+        json.dumps(build_reconciliation(project_root(), rows), indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     print(json.dumps({"target_count": len(rows), "output_dir": str(args.output_dir)}))
 
 

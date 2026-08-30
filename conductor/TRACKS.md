@@ -1,5 +1,8 @@
 # Project Tracks
 
+- [x] **Track: Historical source boundary revalidation**
+  *Link: [./archive/historical_source_boundary_revalidation_20260830/index.md](./archive/historical_source_boundary_revalidation_20260830/index.md)*
+
 - [x] **Track: Standing low-risk authorization**
   *Link: [./archive/standing_low_risk_authorization_20260830/index.md](./archive/standing_low_risk_authorization_20260830/index.md)*
 

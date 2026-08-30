@@ -26,7 +26,7 @@ Do not create duplicate publications or evaluate an accepted holdout again.
    merely because old handoff prose says to do so. New release publication must
    satisfy its own current gates and existing authorization scope.
 5. Under #255, use bounded publisher/archive retries and source discovery for
-   December 1987 PBS and optional pre-2007 structured history. Verify signatures,
+   December 1987 PBS and December 2006-March 2007 XML/schema history. Verify signatures,
    checksums, source versions and provenance. Retain raw bytes only in ignored
    storage; report missing sources as gaps, not negative research evidence.
 6. Recheck the existing #362 TypeScript/Astro compatibility canary. Upgrade only
@@ -42,13 +42,12 @@ A bounded official-URL retry on 2026-08-30 still returned HTTP 403 for the
 December 1987 RPBS PDF. No source bytes were acquired or published by that check.
 The prepared publisher request is in `docs/PBS_RAW_REDISTRIBUTION_PERMISSION.md`.
 
-Read-only run 33296198213 stopped at local inventory validation before the remote
-API call. Issue #792 tracks the fix: select the canonical `<subject>.json`
-attestation for each released subject, exclude legacy basename aliases, and
-retain all completeness/checksum gates. The failed attempt does not establish
-credential rejection or remote corruption; the prior published receipt remains
-historical evidence. Rerun `mode=verify`, deposition `21759294`, tag `v0.1.1`
-after the fix merges. Never substitute `draft` or `publish` for verification.
+Read-only run 33296198213 originally stopped at local inventory validation before
+the remote API call. PRs #793/#794 fixed canonical attestation selection and DOI
+content handling. Run 33301360240 subsequently verified the existing public
+deposition `21759294` for `v0.1.1`: all 12 file checksums, metadata, DOI and
+DataCite checks passed without mutation. Issues #791/#792 are closed. Do not
+repeat draft creation or publication because an older failed receipt remains.
 
 - Failed machine checks: fix and retry within a bounded diagnostic loop; record
   reproducible failures without weakening gates or asking for routine approval.

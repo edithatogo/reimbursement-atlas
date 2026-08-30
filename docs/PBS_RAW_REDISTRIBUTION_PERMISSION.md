@@ -29,6 +29,25 @@ currently listed at
 `https://www.pbs.gov.au/publication/schedule/1951-2002/1987-12-01-RPBS-Schedule.PDF?variant=3`,
 which returns HTTP 403.
 
+## Missing early structured releases
+
+The [2026-08-30 revalidation](HISTORICAL_SOURCE_BOUNDARIES.md) narrows the
+machine-readable gap: official legacy documentation describes G2B XML from
+December 2006, but discovered downloads start in April 2007. Add this to the
+same publisher request rather than requesting another owner approval:
+
+> Please also provide the December 2006 and January-March 2007 G2B XML schedule
+> releases, if retained, together with the schema/DTD, XSL stylesheets, version
+> identifiers and amendment history applicable to each release. The legacy
+> schema-archive link currently returns 404. Please distinguish release-specific
+> schema versions from later retrospective descriptions, and confirm whether
+> any releases or accompanying schemas were never publicly distributed or are
+> no longer retained. A catalogue or preservation reference would also help.
+
+This remains an unsent request. Do not infer permission or source availability
+from preparing it. Publication destinations and permitted acts must still be
+confirmed by the responding authority.
+
 ## Required receipt
 
 Before raw publication, record:
