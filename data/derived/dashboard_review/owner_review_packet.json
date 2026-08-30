@@ -17,8 +17,8 @@
     "desktop-webkit"
   ],
   "commit_parity": true,
-  "current_head": "18b5a8d9b14991b189fb06458f4680ecfede507e",
-  "data_fingerprint": "f9979d814030fc0605adc297bb7564e9e163ede62562b3381fa489fcb9ec8207",
+  "current_head": "16a5eb69a67c24e537655fff399849acf37d42d3",
+  "data_fingerprint": "98315ee39dce8a6f99a067d6e165c5d5392ef5b5c9fe937bbbc887779050be1c",
   "prohibited_content_check": {
     "files_checked": 89,
     "findings": [],
@@ -148,11 +148,11 @@
     {
       "browser": "chromium",
       "browser_version": "151.0.7922.34",
-      "byte_size": 258655,
+      "byte_size": 259495,
       "file": "embedded",
       "project": "desktop-chromium",
       "route": "/",
-      "sha256": "dce32a188b418cf304e41adaee47777d25615f9f3d9af89c29b210addf767676",
+      "sha256": "67c0d0b7216576c8a73f101e5cd97935c259a6db19191442e242e286981d47bc",
       "viewport": {
         "height": 720,
         "width": 1280
@@ -720,12 +720,12 @@
   ],
   "source_fingerprint": "e4f6ec285b72c656fe9fdf454e9ec0c0adddfba097e296694c9dc8cf98a76363",
   "status": "pending_standing_scope_validation",
-  "tested_commit": "18b5a8d9b14991b189fb06458f4680ecfede507e",
+  "tested_commit": "16a5eb69a67c24e537655fff399849acf37d42d3",
   "workflow": {
-    "artifact_name": "dashboard-browser-review-33298320584",
+    "artifact_name": "dashboard-browser-review-33300248087",
     "run_attempt": "1",
-    "run_id": "33298320584",
+    "run_id": "33300248087",
     "workflow": "Dashboard browser matrix",
-    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/33298320584"
+    "workflow_url": "https://github.com/edithatogo/reimbursement-atlas/actions/runs/33300248087"
   }
 }
