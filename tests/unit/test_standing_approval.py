@@ -6,6 +6,11 @@ from pathlib import Path
 
 import pytest
 
+from reimburse_atlas.dashboard_review import (
+    EXPECTED_PROJECTS,
+    EXPECTED_ROUTES,
+    dashboard_renewal_delegated,
+)
 from reimburse_atlas.final_handoff import build_final_handoff_tasks
 from reimburse_atlas.publication import build_publication_manifest
 from reimburse_atlas.standing_approval import metadata_scope_valid, standing_policy
@@ -109,3 +114,48 @@ def test_delegated_machine_failure_is_not_an_owner_review_request(
     row = next(row for row in rows if row.id == "final_dashboard_visual_review")
     assert row.status == "partial"
     assert row.reason_code == "dashboard_automated_evidence_refresh_required"
+
+
+@pytest.mark.parametrize(
+    "case", ["valid", "routes", "projects", "malformed", "non_object", "missing"]
+)
+def test_dashboard_delegation_preserves_scope(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    case: str,
+) -> None:
+    human = {
+        "status": "approved_within_scope",
+        "scope": {"routes": list(EXPECTED_ROUTES)},
+        "automated_packet_sha256": "a" * 64,
+        "owner_packet_sha256": "b" * 64,
+    }
+    human_path = tmp_path / "data/derived/dashboard_review/human_review.json"
+    human_path.parent.mkdir(parents=True)
+    human_path.write_text(json.dumps(human))
+    policy_path = tmp_path / "data/licence_review/standing_scope.json"
+    policy_path.parent.mkdir(parents=True)
+    policy_path.write_text(
+        json.dumps({
+            "schema_version": "standing-approval-v1",
+            "dashboard": {
+                "renew_with_passing_automation": True,
+                "automated_packet_sha256": "a" * 64,
+                "owner_packet_sha256": "b" * 64,
+            },
+        })
+    )
+    reviewed = json.dumps({
+        "routes": [] if case == "routes" else list(EXPECTED_ROUTES),
+        "projects": [] if case == "projects" else list(EXPECTED_PROJECTS),
+    }).encode()
+    if case == "malformed":
+        reviewed = b"invalid"
+    elif case == "non_object":
+        reviewed = b"[]"
+
+    def snapshot(_repo: Path, _human: dict[str, object]) -> tuple[str, bytes, bytes] | None:
+        return None if case == "missing" else ("c" * 40, reviewed, b"{}")
+
+    monkeypatch.setattr("reimburse_atlas.dashboard_review._approved_packet_bytes", snapshot)
+    assert dashboard_renewal_delegated(tmp_path) is (case == "valid")

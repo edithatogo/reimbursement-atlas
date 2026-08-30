@@ -567,10 +567,24 @@ def _standing_approval_valid(
 def dashboard_renewal_delegated(repo: Path) -> bool:
     """Distinguish a standing grant from successful current machine validation."""
     human = _read_json(repo / HUMAN_PATH)
+    snapshot = _approved_packet_bytes(repo, human)
+    if snapshot is None:
+        return False
+    try:
+        raw_reviewed = json.loads(snapshot[1])
+    except ValueError:
+        return False
+    if not isinstance(raw_reviewed, dict):
+        return False
+    reviewed = cast("dict[str, Any]", raw_reviewed)
+    scope = human.get("scope")
+    human_scope = cast("dict[str, Any]", scope) if isinstance(scope, dict) else {}
     return bool(
         human.get("status") == "approved_within_scope"
         and _delegated_renewal(repo, human)
-        and _approved_packet_bytes(repo, human) is not None
+        and human_scope.get("routes") == list(EXPECTED_ROUTES)
+        and reviewed.get("routes") == list(EXPECTED_ROUTES)
+        and reviewed.get("projects") == list(EXPECTED_PROJECTS)
     )
 
 
