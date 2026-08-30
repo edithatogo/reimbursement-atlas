@@ -1,6 +1,15 @@
 version: 1
 updated: "2026-08-30"
 tracks:
+  - id: historical_source_boundary_revalidation_20260830
+    title: "Historical source boundary revalidation"
+    priority: must
+    phase: in_progress
+    workstream: data
+    goal: "Revalidate remaining source endpoints and document the precise publisher-dependent historical XML and PDF gaps without overstating acquisition."
+    spec: "conductor/tracks/historical_source_boundary_revalidation_20260830/spec.md"
+    plan: "conductor/tracks/historical_source_boundary_revalidation_20260830/plan.md"
+    issues: [255]
   - id: standing_low_risk_authorization_20260830
     title: "Standing low-risk authorization"
     priority: must
