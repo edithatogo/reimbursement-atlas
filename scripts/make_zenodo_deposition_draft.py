@@ -57,7 +57,14 @@ def build_release_asset_inventory(root: Path) -> dict[str, Any]:
     missing_roles: list[str] = []
     for role, patterns in RELEASE_ASSET_PATTERNS.items():
         matches = _matches(root, patterns)
-        if not matches:
+        if role == "attestation_receipt":
+            # Only canonical receipts for this inventory's subjects belong to
+            # the deposit; legacy aliases can collide with subject filenames.
+            expected = {f"{row['filename']}.json" for row in rows}
+            matches = [path for path in matches if path.name in expected]
+            if {path.name for path in matches} != expected:
+                missing_roles.append(role)
+        if not matches and role not in missing_roles:
             missing_roles.append(role)
         for relative in matches:
             path = root / relative

@@ -36,6 +36,8 @@ def test_zenodo_draft_separates_software_and_data_rights() -> None:
 
 def test_release_inventory_requires_every_release_and_provenance_role(tmp_path: Path) -> None:
     for role, patterns in RELEASE_ASSET_PATTERNS.items():
+        if role == "attestation_receipt":
+            continue
         relative = {
             "wheel": Path("dist/package.whl"),
             "sdist": Path("dist/package.tar.gz"),
@@ -49,6 +51,13 @@ def test_release_inventory_requires_every_release_and_provenance_role(tmp_path: 
         path = tmp_path / relative
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(role.encode())
+        receipt = tmp_path / "data/derived/attestations" / f"{path.name}.json"
+        receipt.parent.mkdir(parents=True, exist_ok=True)
+        receipt.write_bytes(b"verification receipt fixture")
+
+    # Historical aliases must not duplicate actual subject names in the deposit.
+    alias = tmp_path / "data/derived/attestations/cyclonedx-python.json"
+    alias.write_bytes(b"legacy verification receipt fixture")
 
     inventory = build_release_asset_inventory(tmp_path)
 
@@ -56,6 +65,10 @@ def test_release_inventory_requires_every_release_and_provenance_role(tmp_path: 
     assert inventory["missing_roles"] == []
     assert {row["role"] for row in inventory["files"]} == set(RELEASE_ASSET_PATTERNS)
     assert all(len(row["sha256"]) == 64 and len(row["md5"]) == 32 for row in inventory["files"])
+    assert len(inventory["files"]) == 12
+    assert len({row["filename"] for row in inventory["files"]}) == 12
+    (tmp_path / "data/derived/attestations/package.whl.json").unlink()
+    assert build_release_asset_inventory(tmp_path)["missing_roles"] == ["attestation_receipt"]
 
 
 def test_draft_requires_explicit_release_asset_discovery() -> None:

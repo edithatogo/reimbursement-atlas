@@ -3,6 +3,13 @@
   "type": "chore",
   "status": "completed",
   "delivery_gate": "Required hosted checks and protected merge of PR #790",
+  "operational_followup": {
+    "issue": 791,
+    "status": "implemented",
+    "delivery_gate": "Protected PR linked from #791; read-only verification tracked on #792",
+    "evidence_run": 33295830383,
+    "queue": "docs/AUTONOMOUS_CONTINUATION.md"
+  },
   "created_at": "2026-08-30T00:00:00Z",
   "updated_at": "2026-08-30T00:00:00Z",
   "description": "Owner-delegated metadata and dashboard renewal without routine approval prompts."

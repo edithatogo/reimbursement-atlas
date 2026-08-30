@@ -16,6 +16,8 @@ epics:
           - "Approved metadata renews within exact field/source/rights scope without owner prompts."
           - "Passing dashboard reruns renew within approved route/browser scope without a new human review."
           - "New rights, claims and restricted-content boundaries remain fail closed."
+          - "Operational follow-up #791 renews hosted evidence and documents continuous execution."
+          - "Verification follow-up #792 requires canonical attestation receipts without duplicate publication."
         blockers: []
   - id: BACKLOG-REC-001
     title: Backlog state reconciliation

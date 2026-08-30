@@ -622,10 +622,51 @@ def test_dashboard_data_fingerprint_ignores_derived_source_drift_receipt(
     )
 
     assert dashboard_data_fingerprint(tmp_path, self_attestation_commit="a" * 40) == original
+    # Fresh hosted packets and old approvals use the same fingerprint without
+    # historical Git objects; the underlying source data still fails closed.
+    assert dashboard_data_fingerprint(tmp_path) == original
 
     underlying.write_text("id,status\nsource,blocked\n", encoding="utf-8")
 
     assert dashboard_data_fingerprint(tmp_path, self_attestation_commit="a" * 40) != original
+
+
+@pytest.mark.parametrize(
+    ("filename", "header", "row"),
+    [
+        (
+            "medallion_artifacts.csv",
+            "layer,promotion_status,rights_state,sha256",
+            "platinum,blocked,permissive,aaa",
+        ),
+        (
+            "promotion_decisions.csv",
+            "to_layer,status,passed_gate_ids,reason_codes,input_sha256",
+            "platinum,blocked,[],[],aaa",
+        ),
+    ],
+)
+def test_platinum_gate_receipts_do_not_invalidate_their_own_evidence(
+    tmp_path: Path,
+    filename: str,
+    header: str,
+    row: str,
+) -> None:
+    public = tmp_path / "apps/dashboard/public/data"
+    public.mkdir(parents=True)
+    path = public / filename
+    path.write_text(f"{header}\n{row}\n")
+    original = dashboard_data_fingerprint(tmp_path)
+    path.write_text(f"{header}\n{row.replace('blocked', 'approved')}\n")
+    assert dashboard_data_fingerprint(tmp_path) == original
+    path.write_text(f"{header}\n{row.replace('aaa', 'bbb')}\n")
+    assert dashboard_data_fingerprint(tmp_path) != original
+    path.write_text(f"{header}\n{row.replace('platinum', 'gold')}\n")
+    gold = dashboard_data_fingerprint(tmp_path)
+    path.write_text(f"{header}\n{row.replace('platinum', 'gold').replace('blocked', 'approved')}\n")
+    assert dashboard_data_fingerprint(tmp_path) != gold
+    path.write_text(f"{header}\n{row.replace('blocked', 'unreviewed payload text')}\n")
+    assert dashboard_data_fingerprint(tmp_path) != original
 
 
 def test_public_status_normalization_replaces_only_dashboard_receipt() -> None:
