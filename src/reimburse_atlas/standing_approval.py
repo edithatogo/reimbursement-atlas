@@ -5,6 +5,7 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, cast
 
@@ -26,13 +27,12 @@ def standing_policy(root: Path) -> dict[str, Any]:
     return value
 
 
-def _rows(path: Path) -> list[Any]:
-    raw = path.read_text(encoding="utf-8")
-    if path.suffix == ".csv":
+def _rows(raw: str, suffix: str) -> list[Any]:
+    if suffix == ".csv":
         return list(csv.DictReader(raw.splitlines()))
-    if path.suffix == ".jsonl":
+    if suffix == ".jsonl":
         return [json.loads(line) for line in raw.splitlines() if line.strip()]
-    return [json.loads(raw)] if path.suffix == ".json" else []
+    return [json.loads(raw)] if suffix == ".json" else []
 
 
 def _safe_shape(row: dict[str, Any]) -> bool:
@@ -63,33 +63,17 @@ def _valid_risk_values(values: dict[str, Any]) -> bool:
     )
 
 
-def metadata_scope_valid(root: Path, relative_path: str) -> bool:
-    """Allow checksum churn only for enumerated fields, source families and rights."""
-    policy = standing_policy(root)
-    metadata = _object(policy.get("metadata"))
-    scope = _object(metadata.get(relative_path))
-    rights = _object(policy.get("rights_files"))
-    if not scope or not rights:
-        return False
-    path = root / relative_path
-    if path.is_symlink() or not path.resolve().is_relative_to(root.resolve()):
-        return False
+@lru_cache(maxsize=64)
+def _content_valid(raw: str, suffix: str, scope_json: str) -> bool:
+    """Cache only exact content/contract bytes, never timestamps or path identities."""
     try:
-        rights_valid = all(
-            hashlib.sha256((root / name).read_bytes()).hexdigest() == checksum
-            for name, checksum in rights.items()
-        )
-        rows = _rows(path)
-    except OSError, ValueError, csv.Error:
+        rows = _rows(raw, suffix)
+        scope = _object(json.loads(scope_json))
+    except ValueError, csv.Error:
         return False
     fields = scope.get("fields", [])
     risk_values = _object(scope.get("risk_values"))
-    if (
-        not rights_valid
-        or not rows
-        or not isinstance(fields, list)
-        or not _valid_risk_values(risk_values)
-    ):
+    if not rows or not isinstance(fields, list) or not _valid_risk_values(risk_values):
         return False
     return all(
         bool(_object(row))
@@ -101,3 +85,25 @@ def metadata_scope_valid(root: Path, relative_path: str) -> bool:
         )
         for row in rows
     )
+
+
+def metadata_scope_valid(root: Path, relative_path: str) -> bool:
+    """Allow checksum churn only for enumerated fields, source families and rights."""
+    policy = standing_policy(root)
+    scope = _object(_object(policy.get("metadata")).get(relative_path))
+    rights = _object(policy.get("rights_files"))
+    path = root / relative_path
+    if not scope or not rights or path.is_symlink():
+        return False
+    if not path.resolve().is_relative_to(root.resolve()):
+        return False
+    try:
+        rights_valid = all(
+            hashlib.sha256((root / name).read_bytes()).hexdigest() == checksum
+            for name, checksum in rights.items()
+        )
+        return rights_valid and _content_valid(
+            path.read_text(encoding="utf-8"), path.suffix, json.dumps(scope, sort_keys=True)
+        )
+    except OSError, ValueError:
+        return False
