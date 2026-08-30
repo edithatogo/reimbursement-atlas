@@ -8,6 +8,7 @@ import pytest
 
 from reimburse_atlas.publication import build_publication_manifest
 from reimburse_atlas.standing_approval import metadata_scope_valid, standing_policy
+from scripts.reconcile_licence_decisions import reconcile
 
 
 @pytest.mark.parametrize("suffix", [".json", ".jsonl", ".csv"])
@@ -50,7 +51,21 @@ def test_metadata_renewal_and_boundaries(tmp_path: Path, suffix: str) -> None:
         })
         + "\n"
     )
+    queue = tmp_path / "data/derived/licence_review/licence_review_queue.jsonl"
+    queue.parent.mkdir(parents=True)
+    queue.write_text(
+        json.dumps({
+            "relative_path": str(path),
+            "checksum_sha256": hashlib.sha256((tmp_path / path).read_bytes()).hexdigest(),
+            "review_id": "test_receipt",
+        })
+        + "\n"
+    )
+    assert reconcile(tmp_path) == 1
+    assert reconcile(tmp_path) == 0
     rights.write_text("Rights changed")
+    assert reconcile(tmp_path) == 1
+    assert json.loads(ledger.read_text())["decision"] == "blocked"
     artifact = build_publication_manifest((path,), root=tmp_path).artifacts[0]
     assert artifact.licence_gate == "public_reuse_review"
     rights.write_text("Permitted metadata only.")

@@ -54,6 +54,15 @@ def _safe_shape(row: dict[str, Any]) -> bool:
     return True
 
 
+def _valid_risk_values(values: dict[str, Any]) -> bool:
+    return bool(values) and all(
+        isinstance(allowed, list)
+        and bool(cast("list[Any]", allowed))
+        and all(isinstance(item, str) for item in cast("list[Any]", allowed))
+        for allowed in values.values()
+    )
+
+
 def metadata_scope_valid(root: Path, relative_path: str) -> bool:
     """Allow checksum churn only for enumerated fields, source families and rights."""
     policy = standing_policy(root)
@@ -75,7 +84,12 @@ def metadata_scope_valid(root: Path, relative_path: str) -> bool:
         return False
     fields = scope.get("fields", [])
     risk_values = _object(scope.get("risk_values"))
-    if not rights_valid or not rows or not isinstance(fields, list) or "risk_values" not in scope:
+    if (
+        not rights_valid
+        or not rows
+        or not isinstance(fields, list)
+        or not _valid_risk_values(risk_values)
+    ):
         return False
     return all(
         bool(_object(row))
