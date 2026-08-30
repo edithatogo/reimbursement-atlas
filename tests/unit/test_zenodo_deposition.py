@@ -11,6 +11,50 @@ from scripts import zenodo_deposition
 from scripts.zenodo_deposition import run, validate_api_url
 
 
+@pytest.mark.parametrize("resolve_only", [True, False])
+def test_public_doi_html_is_not_registry_json(
+    monkeypatch: pytest.MonkeyPatch,
+    resolve_only: bool,
+) -> None:
+    class Response:
+        def __enter__(self) -> Self:
+            return self
+
+        def __exit__(self, *_args: object) -> None:
+            return None
+
+        @staticmethod
+        def read() -> bytes:
+            assert not resolve_only
+            return b"<!doctype html><title>Published record</title>"
+
+        @staticmethod
+        def geturl() -> str:
+            return "https://zenodo.org/records/21759294"
+
+    def fake_urlopen(request: urllib.request.Request, *, timeout: int) -> Response:
+        assert timeout == 120
+        assert request.get_header("Authorization") is None
+        assert request.get_header("Accept") == (
+            "text/html" if resolve_only else "application/vnd.api+json"
+        )
+        return Response()
+
+    monkeypatch.setattr(urllib.request, "urlopen", fake_urlopen)
+    if resolve_only:
+        payload, url = zenodo_deposition._public_json(  # ruff:ignore[private-member-access]
+            "https://doi.org/10.5281/zenodo.21759294",
+            resolve_only=True,
+        )
+        assert payload == {}
+        assert url == "https://zenodo.org/records/21759294"
+    else:
+        with pytest.raises(json.JSONDecodeError):
+            zenodo_deposition._public_json(  # ruff:ignore[private-member-access]
+                "https://api.datacite.org/dois/10.5281/zenodo.21759294"
+            )
+
+
 @pytest.mark.parametrize(
     "url",
     [

@@ -61,16 +61,18 @@ def _request(
     return cast("dict[str, Any]", json.loads(body)) if body else {}
 
 
-def _public_json(url: str) -> tuple[dict[str, Any], str]:
-    """Read a credential-free DOI/registry endpoint and return its final URL."""
+def _public_json(url: str, *, resolve_only: bool = False) -> tuple[dict[str, Any], str]:
+    """Resolve DOI HTML separately from strict credential-free registry JSON."""
     request = urllib.request.Request(  # ruff:ignore[suspicious-url-open-usage]
-        url, headers={"Accept": "application/vnd.api+json"}, method="GET"
+        url,
+        headers={"Accept": "text/html" if resolve_only else "application/vnd.api+json"},
+        method="GET",
     )
     try:
         with urllib.request.urlopen(  # nosec B310  # ruff:ignore[suspicious-url-open-usage]
             request, timeout=120
         ) as response:
-            body = response.read()
+            body = b"" if resolve_only else response.read()
             final_url = response.geturl()
     except (urllib.error.HTTPError, urllib.error.URLError) as exc:
         message = "public DOI or DataCite verification failed"
@@ -535,7 +537,7 @@ def run(  # ruff:ignore[too-many-locals,too-many-branches,too-many-statements,to
             message = "Zenodo returned an invalid DOI"
             raise ValueError(message)
         quoted_doi = urllib.parse.quote(doi, safe="/")
-        _, resolved_url = _public_json(f"https://doi.org/{quoted_doi}")
+        _, resolved_url = _public_json(f"https://doi.org/{quoted_doi}", resolve_only=True)
         datacite, _ = _public_json(f"{DATACITE_API}/{quoted_doi}")
         datacite_parity = _datacite_parity(metadata, datacite)
         if datacite_parity["status"] != "pass":
