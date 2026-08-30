@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess  # nosec B404 - fixed git reader; repository path is controlled.
 from pathlib import Path
 from typing import Literal, cast
@@ -480,8 +481,11 @@ def _current_commit(repo: Path) -> str | None:
         head = head_path.read_text(encoding="utf-8").strip()
         if len(head) == 40 and all(character in "0123456789abcdef" for character in head.lower()):
             return head
+    git = shutil.which("git")
+    if git is None:
+        return None
     result = subprocess.run(  # nosec B603 - fixed argv and controlled cwd.
-        ["git", "rev-parse", "HEAD"],
+        [git, "rev-parse", "HEAD"],
         cwd=repo,
         capture_output=True,
         check=False,
