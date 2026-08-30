@@ -19,4 +19,14 @@ the public-data policy, Python 3.14, coverage, type, security and dashboard buil
 gates are included. Track links/metadata validate. Issue/Project, dictionary and
 roadmap projections were regenerated. Hosted protected checks remain required
 for the final archive commit before merge. The implementation head `f7cc057b`
-passed all 24 hosted checks with no review findings; no runtime code changed.
+passed all 24 hosted checks before the subsequent review fixes below.
+
+## Review fixes
+
+- [x] Distinguish failed locators from previously acquired TXT identities using
+  checksum-bound snapshot reconciliation; preserve original transfer receipts.
+- [x] Project the December 2006-March 2007 XML/schema gap into generated issues.
+- [x] Validate reconciliation regressions and regenerate projections: all 27
+  native local-quality gates pass; eight targeted reconciliation/projection
+  tests pass. The initial architecture assignment failure was fixed, not waived.
+- [ ] Pass exact-head hosted checks before protected merge.

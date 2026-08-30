@@ -9,7 +9,10 @@ documentation narrows the structured-history gap to December 2006-March 2007,
 with release-specific schemas still required. Both alternative MBS TXT URLs
 also returned 404. The grouped publisher request is prepared, not sent, and
 raw redistribution permission is still absent. See
-`docs/HISTORICAL_SOURCE_BOUNDARIES.md`; acquisition totals are unchanged.
+`docs/HISTORICAL_SOURCE_BOUNDARIES.md`. MBS identity reconciliation distinguishes
+341 direct historical receipts plus two already-reviewed TXT snapshots from
+the two failed locators: all 343 identities have acquisition evidence, without
+asserting current raw-cache availability or additional redistribution rights.
 
 ## 2026-08-30 - Standing evidence renewal and continuous execution
 

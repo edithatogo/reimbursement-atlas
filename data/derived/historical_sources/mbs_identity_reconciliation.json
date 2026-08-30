@@ -1,0 +1,37 @@
+{
+  "acquisition_evidenced_target_count": 343,
+  "current_raw_availability": "not_asserted",
+  "direct_download_receipt_count": 341,
+  "locator_failures_preserved": true,
+  "publication_effect": "none",
+  "reconciled_targets": [
+    {
+      "byte_size": 8580935,
+      "checksum_sha256": "1fe830ae80bfcd55f5815029331b0a4e02f5c70232408ce1e8861e3606f3498b",
+      "current_raw_availability": "not_asserted",
+      "snapshot_id": "snapshot_au_mbs_20260701_txt_pair_descriptor_1fe830ae80bf",
+      "snapshot_manifest": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/source_snapshots.jsonl",
+      "snapshot_manifest_sha256": "5af492ce7e9d8abf458c6f4554ee49ee41e8cb1d93f8cb58985fec0dc7bfb193",
+      "source_file_id": "au_mbs_20260701_desc_txt",
+      "source_version_id": "au_mbs_20260701_txt_pair",
+      "status": "acquisition_previously_evidenced",
+      "target_id": "au_mbs_historical_0004"
+    },
+    {
+      "byte_size": 5827871,
+      "checksum_sha256": "f3c1caae2bce9610a05dff435e27ec40c91e0a7d6b3adb2b8ca89929b62a5b36",
+      "current_raw_availability": "not_asserted",
+      "snapshot_id": "snapshot_au_mbs_20260701_txt_pair_item_map_f3c1caae2bce",
+      "snapshot_manifest": "data/derived/reviewed_source_bundles/bundle_au_mbs_20260701_txt_pair_f3c1caae1fe830ae/source_snapshots.jsonl",
+      "snapshot_manifest_sha256": "5af492ce7e9d8abf458c6f4554ee49ee41e8cb1d93f8cb58985fec0dc7bfb193",
+      "source_file_id": "au_mbs_20260701_imap_txt",
+      "source_version_id": "au_mbs_20260701_txt_pair",
+      "status": "acquisition_previously_evidenced",
+      "target_id": "au_mbs_historical_0005"
+    }
+  ],
+  "reviewed_snapshot_alias_count": 2,
+  "schema_version": "historical-source-identity-reconciliation-v1",
+  "target_count": 343,
+  "unresolved_target_ids": []
+}

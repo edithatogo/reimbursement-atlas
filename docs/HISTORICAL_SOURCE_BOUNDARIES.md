@@ -9,10 +9,14 @@ The two historical URL failures refer to `20260701_MBSONLINE_DESC.TXT` and
 `20260701_MBSONLINE_IMAP.TXT`. The corresponding official URLs in the live-source
 registry use a different Domino view identifier from the historical inventory.
 A bounded retry against those independently recorded alternatives also returned
-HTTP 404 for both files; no URL substitution or acquisition-count increment was
-made. Existing reviewed derived TXT-pair records and the locally cached MBS XML
-are separate evidence, not recovered copies of these missing TXT payloads.
-Historical URL acquisition therefore remains 341 of 343 targets.
+HTTP 404 for both files. These are locator failures, not missing acquisition
+evidence: both exact TXT identities already have validated checksum-bound source
+snapshots in the reviewed TXT-pair bundle. The generated
+`data/derived/historical_sources/mbs_identity_reconciliation.json` reconciles
+source identity, version, byte size and checksum without changing HTTP receipts.
+There are 341 direct historical download receipts and two reviewed snapshot
+aliases: 343 target identities with acquisition evidence. Current raw-cache
+availability is not asserted, and no new bytes or redistribution rights arise.
 
 ## December 1987 RPBS
 

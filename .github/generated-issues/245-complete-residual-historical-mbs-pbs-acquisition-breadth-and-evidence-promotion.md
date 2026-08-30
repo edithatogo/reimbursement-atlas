@@ -13,7 +13,7 @@ This issue was generated from `conductor/backlog.yml`. Refine the acceptance cri
 ## Acceptance criteria
 
 - [x] Historical inventory, backfill/replay contracts and target-level review evidence are implemented.
-- [x] 341 of 343 MBS targets are acquired; two confirmed official HTTP 404 targets remain `upstream_unavailable`.
+- [x] Reconcile historical MBS locator failures against checksum-bound reviewed TXT snapshots in `data/derived/historical_sources/mbs_identity_reconciliation.json`; preserve HTTP failure receipts and do not assert current raw-cache availability.
 - [x] 1,048 of 1,049 official PBS publication PDFs are signature-validated in ignored storage with SHA-256 receipts.
 - [x] All 655 discovered machine-readable PBS packages from 2007 onward are signature-validated with SHA-256 receipts.
 - [x] All eight Services Australia PBS Item Report resources are signature-validated with path-free SHA-256 receipts under CC BY 3.0 AU; the 1992-2016 YTD aggregate utilisation lane is kept distinct from Schedule and pricing data.
@@ -22,6 +22,6 @@ This issue was generated from `conductor/backlog.yml`. Refine the acceptance cri
 - [x] Tests cover historical indexing, deterministic replay, source contracts and raw path exclusion.
 - [x] Recover all 110 bounded PBS timeout failures through a low-concurrency retry.
 - [ ] Reconcile the remaining December 1987 official HTTP 403 with the publisher.
-- [ ] Identify pre-2007 machine-readable sources and version-specific field contracts if broader structured parity is required.
+- [ ] Recover December 2006-March 2007 XML payloads and release-specific schema/DTD/XSL, amendment and version metadata; do not infer field parity.
 - [ ] Obtain explicit permission before redistributing raw PBS payloads; public download availability does not grant republication rights.
 - [x] Promote only independently licence-reviewed permitted metadata or derived fields; GitHub Actions run 33237003418 published the governed Hugging Face configurations without raw payloads or the legacy seed tree.
