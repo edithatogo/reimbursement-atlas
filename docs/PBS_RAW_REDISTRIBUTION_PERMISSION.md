@@ -1,6 +1,32 @@
-# PBS Raw Redistribution Permission Request
+# PBS Raw Redistribution Permission
 
-## Current position
+## Active decision (2026-08-31)
+
+The accountable owner stated: "I have permission for raw pbs redistribution",
+then directed the project to record and apply it without requiring them to supply
+or apply terms. Raw PBS redistribution is allowed on this owner attestation.
+No further per-file or checksum approval is required.
+
+The machine-readable record is `data/licence_review/pbs_raw_permission.json`.
+Its basis is `owner_attestation`, not a publisher document independently verified
+by the project. No grantor identity, open licence, expiry or new terms are invented.
+This decision supersedes the permission request below, which is retained as history
+and must not be sent as a new permission request or treated as an owner blocker.
+
+Scope includes raw PBS schedule PDFs, machine-readable schedule packages,
+historical editions and source-identified archive variants, not MBS, CMS or other
+sources. Preserve original bytes, copyright notices, attribution, disclaimers,
+edition identity, retrieval provenance and checksums. Code remains Apache-2.0;
+PBS payloads are not relicensed under Apache-2.0.
+
+Generators now report `allowed_owner_attested_permission` independently from
+acquisition and publication. They remain metadata-only: external raw archive
+transfer requires a manifest and checksum readback before claiming publication.
+Raw payloads remain outside the software Git repository. Missing December 1987
+RPBS bytes and early XML/schema recovery remain source gaps, not approval gaps.
+Papers and preprints remain excluded.
+
+## Historical position before the owner attestation
 
 The project has locally preserved 1,048 of 1,049 official historical PBS publication PDFs and all
 655 discovered machine-readable historical packages. The files remain ignored and unpublished.
@@ -8,7 +34,7 @@ The PBS copyright page permits limited personal/reference reproduction and other
 rights, so public availability on the source website is not treated as permission to redistribute
 the corpus.
 
-## Recommended request
+## Superseded permission request (not sent)
 
 Send the following to the Department of Health, Disability and Ageing copyright or PBS publication
 contact through an official channel:
@@ -48,7 +74,7 @@ This remains an unsent request. Do not infer permission or source availability
 from preparing it. Publication destinations and permitted acts must still be
 confirmed by the responding authority.
 
-## Required receipt
+## Superseded receipt proposal (not required from the owner)
 
 Before raw publication, record:
 
@@ -59,5 +85,6 @@ Before raw publication, record:
 - a checksum or immutable reference to the permission record;
 - a source-specific licence identifier distinct from Apache-2.0.
 
-Absent that receipt, the public product remains limited to URLs, checksums, provenance,
-Internet Archive observations and permitted derived metadata.
+The owner attestation above replaces this proposed receipt requirement. The project
+does not require the owner to supply a document or record terms before allowing PBS
+raw redistribution. The missing-source recovery request remains useful and unsent.

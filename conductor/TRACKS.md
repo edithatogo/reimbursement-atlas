@@ -1,5 +1,8 @@
 # Project Tracks
 
+- [ ] **Track: PBS owner-attested raw redistribution**
+  *Link: [./tracks/pbs_raw_permission_20260831/index.md](./tracks/pbs_raw_permission_20260831/index.md)*
+
 - [x] **Track: Historical source boundary revalidation**
   *Link: [./archive/historical_source_boundary_revalidation_20260830/index.md](./archive/historical_source_boundary_revalidation_20260830/index.md)*
 

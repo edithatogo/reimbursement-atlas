@@ -8,10 +8,40 @@ from dataclasses import asdict, dataclass
 from operator import itemgetter
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlsplit
 
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.publication import PublicationManifest, build_publication_manifest
 from reimburse_atlas.registry import project_root
+
+
+def pbs_raw_redistribution_status(source_url: str, *, root: Path | None = None) -> str:
+    """Apply PBS owner-attested permission without implying acquisition or publication."""
+    parsed = urlsplit(source_url)
+    if (
+        parsed.scheme not in {"http", "https"}
+        or parsed.hostname
+        not in {"pbs.gov.au", "www.pbs.gov.au", "m.pbs.gov.au", "data.pbs.gov.au"}
+        or parsed.username is not None
+        or parsed.password is not None
+    ):
+        return "outside_pbs_permission_scope"
+    path = (root or project_root()) / "data/licence_review/pbs_raw_permission.json"
+    try:
+        record = json.loads(path.read_text(encoding="utf-8"))
+    except OSError, ValueError:
+        return "blocked_pending_explicit_permission"
+    if not isinstance(record, dict) or any(
+        record.get(key) != value
+        for key, value in {
+            "source_id": "au_pbs",
+            "permission_basis": "owner_attestation",
+            "decision": "allow_raw_redistribution",
+            "per_file_owner_approval_required": False,
+        }.items()
+    ):
+        return "blocked_pending_explicit_permission"
+    return "allowed_owner_attested_permission"
 
 
 @dataclass(frozen=True)

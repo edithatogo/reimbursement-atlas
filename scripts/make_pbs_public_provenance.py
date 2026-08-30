@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 from typing import Any
 
+from reimburse_atlas.licence_review import pbs_raw_redistribution_status
 from reimburse_atlas.registry import project_root
 
 ROOT = project_root()
@@ -44,7 +45,7 @@ def project_rows(
             "source_byte_verified": bool(checksum),
             "licence_gate": target["licence_gate"],
             "rights_source": PBS_COPYRIGHT_URL,
-            "raw_redistribution_status": "blocked_pending_explicit_permission",
+            "raw_redistribution_status": pbs_raw_redistribution_status(str(target["file_url"])),
             "raw_payload_included": False,
             "transformation": "metadata_and_checksum_projection_only",
         })
@@ -90,6 +91,12 @@ def main() -> None:
     )
     write_jsonl_csv(pdf_rows, OUTPUT / "pbs_pdf_provenance")
     write_jsonl_csv(structured_rows, OUTPUT / "pbs_structured_provenance")
+    for row in verification_rows:
+        row["raw_redistribution_status"] = pbs_raw_redistribution_status(str(row["source_url"]))
+    for row in variant_rows:
+        row["raw_redistribution_status"] = pbs_raw_redistribution_status(
+            str(row["official_source_url"])
+        )
     write_jsonl_csv(verification_rows, OUTPUT / "pbs_archive_verification")
     write_jsonl_csv(variant_rows, OUTPUT / "pbs_archive_variants")
     summary = {
@@ -103,7 +110,9 @@ def main() -> None:
         ),
         "internet_archive_variant_count": len(variant_rows),
         "raw_payload_count": 0,
-        "raw_publication_status": "blocked_pending_explicit_permission",
+        "raw_publication_status": "not_published_by_this_metadata_product",
+        "raw_redistribution_status": pbs_raw_redistribution_status(PBS_COPYRIGHT_URL),
+        "permission_record": "data/licence_review/pbs_raw_permission.json",
         "rights_source": PBS_COPYRIGHT_URL,
         "claim_boundary": (
             "This product publishes source URLs, checksums, archive observations and provenance. "
