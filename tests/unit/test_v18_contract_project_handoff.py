@@ -714,8 +714,8 @@ def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) ->
     assert rows["final_release_candidate"].status == "complete"
     assert rows["final_release_candidate"].external_state == "published"
     assert rows["final_zenodo_draft"].external_state == "published"
-    assert "mode=plan" in rows["final_zenodo_draft"].command
-    assert "do not create another draft" in rows["final_zenodo_draft"].recommended_action
+    assert rows["final_zenodo_draft"].command.endswith("--help")
+    assert "Recover the existing deposition ID" in rows["final_zenodo_draft"].recommended_action
 
 
 def test_published_huggingface_handoff_does_not_request_republication(tmp_path: Path) -> None:
@@ -726,7 +726,7 @@ def test_published_huggingface_handoff_does_not_request_republication(tmp_path: 
     )
     rows = {row.id: row for row in build_final_handoff_tasks(tmp_path)}
     assert rows["final_hf_dataset_space"].status == "complete"
-    assert rows["final_hf_dataset_space"].command == "gh workflow view huggingface.yml"
+    assert rows["final_hf_dataset_space"].command == "gh workflow run huggingface-destination.yml"
     assert "do not republish" in rows["final_hf_dataset_space"].recommended_action
 
 

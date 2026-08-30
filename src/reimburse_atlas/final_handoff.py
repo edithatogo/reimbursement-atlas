@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 import shutil
 import subprocess  # nosec B404 - fixed git reader; repository path is controlled.
 from pathlib import Path
@@ -25,6 +26,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
     repo = root or project_root()
     mapping_cycle = latest_mapping_study_cycle(repo)
     mapping_paths = mapping_study_paths(mapping_cycle)
+    zenodo_verify_command = _zenodo_verify_command(repo)
     return [
         FinalHandoffTaskRecord(
             id="final_source_downloads",
@@ -175,7 +177,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "targets, plus licence and evidence review."
             ),
             command=(
-                "gh workflow view huggingface.yml"
+                "gh workflow run huggingface-destination.yml"
                 if _huggingface_external_state(repo) == "published"
                 else "gh workflow run huggingface.yml"
             ),
@@ -185,7 +187,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "approved."
             ),
             recommended_action=(
-                "Preserve the published receipt and verify remote parity read-only; "
+                "Preserve the published receipt and verify destination metadata read-only; "
                 "do not republish unchanged artifacts."
                 if _huggingface_external_state(repo) == "published"
                 else "The dry run has passed; inspect the candidate bundle and publish only after "
@@ -366,7 +368,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "confirmation value."
             ),
             command=(
-                "gh workflow run zenodo-preflight.yml -f mode=plan"
+                (zenodo_verify_command or "python scripts/zenodo_deposition.py --help")
                 if _zenodo_handoff_status(repo) == "complete"
                 else "gh workflow run zenodo-preflight.yml -f mode=draft "
                 "-f confirm=CREATE_ZENODO_DRAFT -f release_tag=v0.1.0"
@@ -377,7 +379,10 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "token-gated draft mutation; publication and DOI minting remain separate."
             ),
             recommended_action=(
-                "Preserve the existing deposition and verify its metadata and checksums "
+                "Recover the existing deposition ID and release tag from release receipts "
+                "before read-only verification; do not create another deposition."
+                if _zenodo_handoff_status(repo) == "complete" and zenodo_verify_command is None
+                else "Preserve the existing deposition and verify its metadata and checksums "
                 "read-only; do not create another draft or repeat publication."
                 if _zenodo_handoff_status(repo) == "complete"
                 else "Inspect current preflight evidence, remedy only the reported failure, "
@@ -553,6 +558,24 @@ def _huggingface_external_state(repo: Path) -> Literal["pending", "ready", "publ
     if receipt.get("status") == "published":
         return "published"
     return "ready" if _publication_ready(repo) else "pending"
+
+
+def _zenodo_verify_command(repo: Path) -> str | None:
+    """Dispatch verification only for a constrained, recorded release identity."""
+    state = _read_json(repo / "data/derived/zenodo/external_state.json")
+    deposition_id = state.get("deposition_id")
+    release_tag = state.get("release_tag")
+    if (
+        not isinstance(deposition_id, str)
+        or re.fullmatch(r"[0-9]+", deposition_id) is None
+        or not isinstance(release_tag, str)
+        or re.fullmatch(r"v[0-9]+\.[0-9]+\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?", release_tag) is None
+    ):
+        return None
+    return (
+        "gh workflow run zenodo-preflight.yml -f mode=verify "
+        f"-f deposition_id={deposition_id} -f release_tag={release_tag}"
+    )
 
 
 def _zenodo_handoff_status(repo: Path) -> HandoffStatus:

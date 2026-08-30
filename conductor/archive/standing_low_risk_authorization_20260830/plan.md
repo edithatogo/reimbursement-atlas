@@ -24,6 +24,13 @@ Delivery remains the protected PR linked from #791. Post-merge read-only Zenodo
 verification and its actual outcome are tracked separately on #792; local tests
 do not claim remote verification. Neither external gate needs a new owner approval.
 
+Review fixes for PR #793: completed Hugging Face tasks dispatch the actual
+destination-metadata workflow. Completed Zenodo tasks dispatch `mode=verify` with
+the recorded deposition ID and release tag; missing or malformed identity yields
+an explicit recovery instruction, never an invented target or publication call.
+Regression tests cover valid release identities, missing metadata and shell-like
+tag content. Local planning is not represented as remote verification.
+
 Validation follow-up: the first local quality pass found a long line and an
 oversized test function; both were corrected. Its sequential coverage process
 was superseded after the additional Zenodo fix and terminated, not counted as
