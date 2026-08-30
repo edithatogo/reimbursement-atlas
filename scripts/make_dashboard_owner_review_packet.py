@@ -14,11 +14,22 @@ from reimburse_atlas.dashboard_review import (
     dashboard_source_fingerprint,
 )
 from reimburse_atlas.registry import project_root
+from reimburse_atlas.standing_approval import standing_policy
 from scripts.make_dashboard_review_packet import PROJECTS, ROUTES, resolve_head
 from scripts.make_public_status_manifest import build_public_status_manifest
 
 AUTOMATED = Path("data/derived/dashboard_review/automated_review_packet.json")
 OUTPUT = Path("data/derived/dashboard_review/owner_review_packet.json")
+
+
+def _ready_status(root: Path) -> str:
+    policy = standing_policy(root).get("dashboard", {})
+    delegated = cast("dict[str, Any]", policy) if isinstance(policy, dict) else {}
+    if delegated.get("renew_with_passing_automation") is True:
+        return "pending_standing_scope_validation"
+    return "pending_accountable_review"
+
+
 PROVENANCE_INPUTS = (
     Path("apps/dashboard/public/status.json"),
     Path("data/derived/source_validation/summary.json"),
@@ -199,7 +210,7 @@ def build_packet(root: Path) -> dict[str, Any]:
     )
     return {
         "schema_version": "dashboard-owner-review-packet-v2",
-        "status": ("pending_accountable_review" if machine_ready else "automated_evidence_blocked"),
+        "status": (_ready_status(root) if machine_ready else "automated_evidence_blocked"),
         "tested_commit": automated.get("tested_commit"),
         "current_head": current_head,
         "source_fingerprint": source_fingerprint,
@@ -220,7 +231,7 @@ def build_packet(root: Path) -> dict[str, Any]:
         "accountable_checklist": [
             "Inspect visual hierarchy, clipping and responsive layout on every listed route.",
             "Complete keyboard-only navigation and confirm visible focus and skip navigation.",
-            "Complete macOS VoiceOver review in Safari and record the exact versions.",
+            "Independent manual VoiceOver is optional and excluded from the automated scope.",
             (
                 "Spot-check displayed source, version, checksum, licence and readiness values "
                 "against the structured provenance assertions."

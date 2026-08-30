@@ -96,6 +96,15 @@ def test_owner_packet_is_machine_ready_but_does_not_imply_human_approval(
     assert all(row["status"] == "pass" for row in packet["provenance_assertions"])
     assert packet["prohibited_content_check"]["status"] == "pass"
     assert "approved_within_scope" in packet["accountable_checklist"][-1]
+    _write_json(
+        tmp_path,
+        "data/licence_review/standing_scope.json",
+        {
+            "schema_version": "standing-approval-v1",
+            "dashboard": {"renew_with_passing_automation": True},
+        },
+    )
+    assert build_packet(tmp_path)["status"] == "pending_standing_scope_validation"
 
 
 def test_owner_packet_blocks_prohibited_public_content(
@@ -123,7 +132,11 @@ def test_owner_packet_blocks_prohibited_public_content(
 def test_current_owner_packet_is_ready_for_bounded_accountable_review() -> None:
     packet = build_packet(Path.cwd())
 
-    assert packet["status"] in {"pending_accountable_review", "automated_evidence_blocked"}
+    assert packet["status"] in {
+        "pending_accountable_review",
+        "pending_standing_scope_validation",
+        "automated_evidence_blocked",
+    }
     assert packet["routes"] == list(ROUTES)
     assert packet["screenshot_count"] == 44
     assert packet["automated_test_count"] == 64

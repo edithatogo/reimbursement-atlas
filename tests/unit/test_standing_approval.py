@@ -6,6 +6,7 @@ from pathlib import Path
 
 import pytest
 
+from reimburse_atlas.final_handoff import build_final_handoff_tasks
 from reimburse_atlas.publication import build_publication_manifest
 from reimburse_atlas.standing_approval import metadata_scope_valid, standing_policy
 from scripts.reconcile_licence_decisions import reconcile
@@ -90,3 +91,21 @@ def test_invalid_policy_grants_nothing(tmp_path: Path, value: object) -> None:
     path.parent.mkdir(parents=True)
     path.write_text(json.dumps(value))
     assert standing_policy(tmp_path) == {}
+
+
+def test_delegated_machine_failure_is_not_an_owner_review_request(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    def not_ready(_root: Path) -> bool:
+        return False
+
+    def delegated(_root: Path) -> bool:
+        return True
+
+    monkeypatch.setattr("reimburse_atlas.final_handoff._dashboard_review_approved", not_ready)
+    monkeypatch.setattr("reimburse_atlas.final_handoff.dashboard_renewal_delegated", delegated)
+    rows = build_final_handoff_tasks(tmp_path)
+    row = next(row for row in rows if row.id == "final_dashboard_visual_review")
+    assert row.status == "partial"
+    assert row.reason_code == "dashboard_automated_evidence_refresh_required"

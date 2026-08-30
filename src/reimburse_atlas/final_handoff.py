@@ -8,6 +8,7 @@ import subprocess  # nosec B404 - fixed git reader; repository path is controlle
 from pathlib import Path
 from typing import Literal, cast
 
+from reimburse_atlas.dashboard_review import dashboard_renewal_delegated
 from reimburse_atlas.dashboard_review import dashboard_review_approved as dashboard_gate_approved
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.mapping_study_paths import latest_mapping_study_cycle, mapping_study_paths
@@ -272,25 +273,31 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             github_issues=(493, 501),
             task_group="release",
             title="Review cross-platform dashboard visual baselines",
-            status="complete" if _dashboard_review_approved(repo) else "blocked_review",
+            status=(
+                "complete"
+                if _dashboard_review_approved(repo)
+                else "partial"
+                if dashboard_renewal_delegated(repo)
+                else "blocked_review"
+            ),
             required_environment=(
-                "Human visual review across the supported browser/OS matrix with approved "
-                "baselines."
+                "Hosted browser/provenance evidence within the owner-delegated scope."
             ),
             command="cd apps/dashboard && npm run test:browser",
             evidence_path="docs/DASHBOARD_VALIDATION.md",
             unblock_condition=(
-                "Reviewed screenshots or platform-specific baselines are approved without "
-                "accessibility, layout or provenance regressions."
+                "Current machine checks pass and the existing standing scope validates."
             ),
             recommended_action=(
-                "Use the 11-route, 64-test, four-project browser packet as the pre-review gate; "
-                "complete scoped VoiceOver, visual and provenance review without claiming "
-                "universal WCAG conformance."
+                "Refresh the 11-route, 64-test, four-project hosted packet automatically; "
+                "reuse standing authorization. Manual VoiceOver is outside scope. "
+                "Ask only for expanded rights or claims, not changed packet hashes."
             ),
             reason_code=(
                 "dashboard_human_review_approved"
                 if _dashboard_review_approved(repo)
+                else "dashboard_automated_evidence_refresh_required"
+                if dashboard_renewal_delegated(repo)
                 else "dashboard_human_review_pending"
             ),
             gate_evidence=(

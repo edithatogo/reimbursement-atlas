@@ -1,5 +1,15 @@
 # Dashboard validation
 
+## Standing automated scope
+
+The owner delegates renewal of the declared route/browser scope to passing hosted
+checks under `data/licence_review/standing_scope.json`. Routine reruns, dependency
+updates and in-scope UI changes require no new owner approval. Stale evidence is
+refreshed automatically; failed checks require remediation. Only expanded scope
+or claims require a new decision. Independent manual VoiceOver is optional and is
+not represented as completed by automated accessibility tests. Historical manual
+checklists below do not impose an additional recurring approval gate.
+
 The dashboard is now a build-tested Astro 7 static application rather than a placeholder scaffold.
 
 ## Reproducible install

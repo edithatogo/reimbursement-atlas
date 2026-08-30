@@ -564,6 +564,16 @@ def _standing_approval_valid(
     )
 
 
+def dashboard_renewal_delegated(repo: Path) -> bool:
+    """Distinguish a standing grant from successful current machine validation."""
+    human = _read_json(repo / HUMAN_PATH)
+    return bool(
+        human.get("status") == "approved_within_scope"
+        and _delegated_renewal(repo, human)
+        and _approved_packet_bytes(repo, human) is not None
+    )
+
+
 def _approval_binding(
     repo: Path,
     *,
