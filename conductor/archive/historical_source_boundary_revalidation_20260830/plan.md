@@ -31,4 +31,6 @@ passed all 24 hosted checks before the subsequent review fixes below.
   tests pass. The initial architecture assignment failure was fixed, not waived.
 - [x] Require source, filename and URL equality for direct receipts so reused
   target IDs cannot establish acquisition evidence for a different source file.
-- [ ] Pass exact-head hosted checks before protected merge.
+- [x] Pass exact-head hosted checks before protected merge: all 24 checks on
+  `6ba660f1cdad4e150f47b006971c9f471df2d229`; PR #795 merged as
+  `f82c47b82346d1fa4927d0dcdc8983aadf2f346c`. Merged and tested trees match.

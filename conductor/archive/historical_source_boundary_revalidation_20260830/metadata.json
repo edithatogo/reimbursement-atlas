@@ -3,18 +3,21 @@
   "status": "archived",
   "type": "chore",
   "created_at": "2026-08-30T08:38:33Z",
-  "updated_at": "2026-08-30T08:52:58Z",
+  "updated_at": "2026-08-30T09:44:12Z",
   "pull_request": 795,
   "review_fixes": {
     "local_quality_passed": 27,
     "targeted_tests_passed": 12,
-    "hosted_delivery": "required_before_merge",
+    "hosted_delivery": "merged_and_verified",
+    "hosted_checks_passed": 24,
+    "tested_commit": "6ba660f1cdad4e150f47b006971c9f471df2d229",
+    "merged_commit": "f82c47b82346d1fa4927d0dcdc8983aadf2f346c",
     "acquisition_identity_report": "data/derived/historical_sources/mbs_identity_reconciliation.json"
   },
   "validation": {
     "local_quality_passed": 27,
     "hosted_checks_passed": 24,
-    "tested_commit": "f7cc057b",
+    "tested_commit": "6ba660f1cdad4e150f47b006971c9f471df2d229",
     "publication_performed": false
   },
   "github_issues": [255],

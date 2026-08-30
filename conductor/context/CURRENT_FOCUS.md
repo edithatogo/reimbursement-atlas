@@ -1,5 +1,19 @@
 # Current focus
 
+## 2026-08-30 - Protected delivery and external-only continuation
+
+PR #795 merged as `f82c47b8` after all 24 exact-head hosted checks passed;
+all 27 native local-quality gates and 12 targeted identity/projection tests pass.
+The tested and merged trees match, local main was synchronized, and the verified
+feature branch was removed. Issue #255 now reflects the canonical generated
+source boundaries rather than treating two failed MBS locators as missing bytes.
+
+The network-backed TypeScript canary still reports `blocked_peer` for TypeScript
+7.0.2 and Astro checker 0.9.10; no dependency mutation occurred. Issue #362 stays
+open for upstream support, independently of repository release readiness.
+Remaining source/rights gates are explicit below. Do not request new routine
+checksum approvals or repeat already verified external publications.
+
 ## 2026-08-30 - Historical source boundary revalidation
 
 Track `historical_source_boundary_revalidation_20260830` records bounded issue
