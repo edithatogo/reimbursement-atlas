@@ -59,3 +59,7 @@ All 27 local quality gates passed with four workers after this fix. The broad
 regenerator also launched a duplicate serial quality run; that redundant run was
 terminated, not counted as passing, and regeneration resumed after the already
 completed quality step. Hosted checks still validate the final exact tree.
+Platinum promotion statuses also depend on dashboard readiness. Normalize only
+known machine-generated status/gate/reason values for Platinum rows, retaining
+all source identities, checksums, rights, required gates and scope text. Unknown
+payload text and non-Platinum status changes still invalidate the fingerprint.

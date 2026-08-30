@@ -186,6 +186,7 @@ def dashboard_data_fingerprint(
             continue
         absolute = repo / path
         content = absolute.read_bytes()
+        content = _without_platinum_gate_receipts(path, content)
         for current, reviewed in LOW_RISK_DATA_NORMALIZATIONS.get(path, ()):
             content = content.replace(current, reviewed)
         if path == SELF_ATTESTATION_FILE:
@@ -222,6 +223,75 @@ def dashboard_data_fingerprint(
         digest.update(content)
         digest.update(b"\0")
     return digest.hexdigest()
+
+
+def _without_platinum_gate_receipts(path: Path, content: bytes) -> bytes:
+    """Break readiness feedback without dropping product identity, rights or scope."""
+    contracts = {
+        Path("apps/dashboard/public/data/medallion_artifacts.csv"): (
+            "layer",
+            ("promotion_status",),
+        ),
+        Path("apps/dashboard/public/data/promotion_decisions.csv"): (
+            "to_layer",
+            ("status", "passed_gate_ids", "reason_codes"),
+        ),
+    }
+    if path not in contracts:
+        return content
+    layer_key, receipt_fields = contracts[path]
+    try:
+        reader = csv.DictReader(io.StringIO(content.decode("utf-8")))
+        fields = reader.fieldnames
+        rows = list(reader)
+    except UnicodeDecodeError, csv.Error:
+        return content
+    if not fields or len(set(fields)) != len(fields):
+        return content
+    if not {layer_key, *receipt_fields}.issubset(fields) or any(
+        None in row or None in row.values() for row in rows
+    ):
+        return content
+    for row in rows:
+        if row[layer_key] == "platinum":
+            for field in receipt_fields:
+                if _known_platinum_gate_value(field, row[field]):
+                    row[field] = "machine_checked_readiness_receipt"
+    output = io.StringIO(newline="")
+    writer = csv.DictWriter(output, fieldnames=fields, lineterminator="\n")
+    writer.writeheader()
+    writer.writerows(rows)
+    return output.getvalue().encode("utf-8")
+
+
+def _known_platinum_gate_value(field: str, value: str) -> bool:
+    """Do not normalize arbitrary payload text hidden in a status field."""
+    if field in {"status", "promotion_status"}:
+        return value in {"approved", "approved_within_scope", "blocked", "candidate"}
+    allowed = {
+        "passed_gate_ids": {
+            "gold_input_present",
+            "gold_input_approved",
+            "evidence_release_ready",
+            "repository_release_ready",
+            "public_data_policy_passed",
+            "product_rights_approved",
+            "scoped_claim_review_current",
+        },
+        "reason_codes": {
+            "external_product_release_gate_separate",
+            "platinum_upstream_gates_pending",
+            "bounded_source_transparency_release_contract_satisfied",
+        },
+    }
+    try:
+        values = json.loads(value)
+    except json.JSONDecodeError:
+        return False
+    return isinstance(values, list) and all(
+        isinstance(item, str) and item in allowed.get(field, set())
+        for item in cast("list[object]", values)
+    )
 
 
 def normalize_workflow_use_lines(current: bytes, baseline: bytes, suffix: str) -> bytes:
