@@ -7,7 +7,7 @@ import json
 from dataclasses import asdict, dataclass
 from operator import itemgetter
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 from urllib.parse import urlsplit
 
 from reimburse_atlas.io import write_csv, write_jsonl
@@ -31,8 +31,11 @@ def pbs_raw_redistribution_status(source_url: str, *, root: Path | None = None) 
         record = json.loads(path.read_text(encoding="utf-8"))
     except OSError, ValueError:
         return "blocked_pending_explicit_permission"
-    if not isinstance(record, dict) or any(
-        record.get(key) != value
+    if not isinstance(record, dict):
+        return "blocked_pending_explicit_permission"
+    permission = cast(dict[str, object], record)
+    if any(
+        permission.get(key) != value
         for key, value in {
             "source_id": "au_pbs",
             "permission_basis": "owner_attestation",
