@@ -52,6 +52,16 @@ def test_duplicate_json_keys_cannot_hide_content() -> None:
     )
 
 
+@pytest.mark.parametrize("values", ["not-a-list", [1]])
+def test_malformed_string_contract_fails_closed(values: object) -> None:
+    scope = json.dumps({
+        "fields": ["source_id"],
+        "risk_values": {"source_id": ['"pbs"']},
+        "string_sha256": {"notes": values},
+    })
+    assert not metadata_content_valid('{"source_id":"pbs"}', ".json", scope)
+
+
 @pytest.mark.parametrize("timestamp", ["2026-08-30T00:00:00Z", "2026-02-30T00:00:00Z"])
 def test_typed_renewal_and_status_names(timestamp: str) -> None:
     row = {

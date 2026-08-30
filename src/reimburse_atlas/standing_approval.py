@@ -82,11 +82,12 @@ def _valid_risk_values(values: dict[str, Any]) -> bool:
     )
 
 
-def _strings_valid(row: dict[str, Any], scope: dict[str, Any]) -> bool:
+def _strings_valid(
+    row: dict[str, Any], approved: dict[str, set[str]], risk_values: dict[str, Any]
+) -> bool:
     """Renew typed counters/digests; other strings must match approved field values."""
-    approved = _object(scope.get("string_sha256"))
     for key, value in row.items():
-        if key in _object(scope.get("risk_values")):
+        if key in risk_values:
             continue
         values = cast("list[Any]", value) if isinstance(value, list) else [value]
         if isinstance(value, dict):
@@ -109,7 +110,7 @@ def _strings_valid(row: dict[str, Any], scope: dict[str, Any]) -> bool:
                     return False
                 continue
             digest = hashlib.sha256(item.encode("utf-8")).hexdigest()
-            if digest not in approved.get(key, []):
+            if digest not in approved.get(key, set()):
                 return False
     return True
 
@@ -124,12 +125,20 @@ def metadata_content_valid(raw: str, suffix: str, scope_json: str) -> bool:
         return False
     fields = scope.get("fields", [])
     risk_values = _object(scope.get("risk_values"))
+    string_values = _object(scope.get("string_sha256"))
+    if any(
+        not isinstance(values, list)
+        or not all(isinstance(item, str) for item in cast("list[Any]", values))
+        for values in string_values.values()
+    ):
+        return False
+    approved = {key: set(cast("list[str]", values)) for key, values in string_values.items()}
     if not rows or not isinstance(fields, list) or not _valid_risk_values(risk_values):
         return False
     return all(
         bool(_object(row))
         and _safe_shape(_object(row))
-        and _strings_valid(_object(row), scope)
+        and _strings_valid(_object(row), approved, risk_values)
         and set(_object(row)) == set(cast("list[str]", fields))
         and all(
             json.dumps(_object(row).get(key), sort_keys=True) in allowed
