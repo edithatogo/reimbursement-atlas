@@ -63,3 +63,11 @@ Platinum promotion statuses also depend on dashboard readiness. Normalize only
 known machine-generated status/gate/reason values for Platinum rows, retaining
 all source identities, checksums, rights, required gates and scope text. Unknown
 payload text and non-Platinum status changes still invalidate the fingerprint.
+
+Issue #792 post-merge verification run 33300908624 passed inventory loading,
+remote file checksums and Zenodo metadata parity, then exposed a DOI resolver
+bug: the HTML landing page was parsed as JSON. Resolve DOI redirects without
+reading JSON, while keeping DataCite JSON parsing strict. Regression tests
+verify credential-free requests, HTML DOI resolution and rejection of HTML at
+the registry JSON endpoint. Retry read-only verification after protected merge;
+the historical publication receipt is preserved and no publication is repeated.
