@@ -2,8 +2,8 @@
   "track_id": "historical_source_boundary_revalidation_20260830",
   "status": "in_progress",
   "type": "chore",
-  "created_at": "2026-08-30T09:00:00Z",
-  "updated_at": "2026-08-30T09:00:00Z",
+  "created_at": "2026-08-30T08:38:33Z",
+  "updated_at": "2026-08-30T08:38:33Z",
   "github_issues": [255],
   "gates": [
     {
