@@ -1,4 +1,4 @@
-"""Invalidate checksum-bound approvals whose candidate artefacts changed."""
+"""Reconcile exact approvals and owner-delegated operational metadata renewal."""
 
 from __future__ import annotations
 
@@ -7,6 +7,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from reimburse_atlas.registry import project_root
+from reimburse_atlas.standing_approval import metadata_scope_valid
 
 
 def reconcile(root: Path | None = None) -> int:
@@ -26,6 +27,7 @@ def reconcile(root: Path | None = None) -> int:
     output: list[str] = []
     for line in decisions_path.read_text(encoding="utf-8").splitlines():
         decision = json.loads(line)
+        original = dict(decision)
         current = queue.get(decision.get("relative_path"))
         if current is None:
             # The active ledger contains only artefacts that require source-rights
@@ -42,7 +44,22 @@ def reconcile(root: Path | None = None) -> int:
             decision["redistribution_permission"] = (
                 "Not approved for publication until the new checksum is reviewed."
             )
-            changed += 1
+        if current and metadata_scope_valid(repo, str(decision["relative_path"])):
+            decision["decision"] = "approved"
+            decision["reviewer"] = "standing-scope-policy"
+            decision["evidence"] = (
+                "Automatic renewal under owner-authorized data/licence_review/standing_scope.json; "
+                "field set, source families and rights evidence unchanged. Not a new human review."
+            )
+            decision["redistribution_permission"] = (
+                "Operational metadata only under standing scope; "
+                "no raw payloads or restricted descriptors."
+            )
+        elif decision.get("reviewer") == "standing-scope-policy":
+            decision["decision"] = "blocked"
+            decision["evidence"] = "Standing scope no longer valid; material scope review required."
+            decision["redistribution_permission"] = "Blocked pending material scope review."
+        changed += int(decision != original)
         decisions[str(decision["relative_path"])] = decision
 
     # Keep the human ledger total with the generated queue. New candidates must
@@ -92,4 +109,4 @@ def reconcile(root: Path | None = None) -> int:
 
 
 if __name__ == "__main__":
-    print(f"Invalidated {reconcile()} stale checksum-bound licence decisions")
+    print(f"Reconciled {reconcile()} licence decisions under exact or standing scope")

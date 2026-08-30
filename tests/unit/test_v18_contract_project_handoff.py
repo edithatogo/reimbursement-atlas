@@ -454,6 +454,7 @@ def test_final_handoff_records_environment_bound_tasks(tmp_path: Path) -> None:
     assert (dashboard_task.status, dashboard_task.reason_code) in {
         ("complete", "dashboard_human_review_approved"),
         ("blocked_review", "dashboard_human_review_pending"),
+        ("partial", "dashboard_automated_evidence_refresh_required"),
     }
     assert mapping_task.status == "complete"
     assert all(

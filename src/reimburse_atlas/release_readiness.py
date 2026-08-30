@@ -8,7 +8,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Literal, cast
 
-from reimburse_atlas.dashboard_review import dashboard_review_evidence
+from reimburse_atlas.dashboard_review import dashboard_renewal_delegated, dashboard_review_evidence
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.mapping_study_paths import latest_mapping_study_cycle, mapping_study_paths
 from reimburse_atlas.registry import project_root
@@ -214,12 +214,12 @@ def _dashboard_human_review_gate(repo: Path) -> ReleaseGateRecord:
     return ReleaseGateRecord(
         id="dashboard_human_review",
         category="dashboard",
-        status="pass" if approved else "blocked",
+        status="pass" if approved else ("fail" if dashboard_renewal_delegated(repo) else "blocked"),
         required=False,
         evidence=(f"head={evidence['head'] or 'missing'} failed_checks={failed}"),
         recommended_action=(
-            "Complete the commit-bound visual, keyboard, screen-reader and provenance review "
-            "within the declared scope."
+            "Refresh hosted browser/provenance evidence and validate the existing standing scope. "
+            "Fix failed machine checks; request owner input only for a genuinely expanded scope."
         ),
     )
 

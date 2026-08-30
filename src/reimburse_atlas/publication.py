@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from reimburse_atlas.registry import project_root
+from reimburse_atlas.standing_approval import metadata_scope_valid
 
 
 @dataclass(frozen=True)
@@ -357,6 +358,10 @@ def _approved_candidate_checksums(root: Path) -> set[tuple[str, str]]:
             path = decision.get("relative_path")
             checksum = decision.get("checksum_sha256")
             if isinstance(path, str) and isinstance(checksum, str):
+                if decision.get("reviewer") == "standing-scope-policy" and not metadata_scope_valid(
+                    root, path
+                ):
+                    continue
                 approved.add((path, checksum))
     return approved
 
@@ -380,6 +385,15 @@ def build_publication_manifest(
             warnings.append(f"Excluded raw/cache path from release manifest: {relative_path}")
             continue
         checksum = file_sha256(path)
+        standing_metadata = gate == "public_reuse_review" and metadata_scope_valid(
+            repo_root, str(relative_path)
+        )
+        if standing_metadata:
+            gate = "permissive_candidate"
+            notes = (
+                "Owner-delegated metadata renewal; "
+                "source rights and raw-content exclusions unchanged."
+            )
         if gate == "public_reuse_review" and (str(relative_path), checksum) in approved_pairs:
             gate = "permissive_candidate"
             notes = (
@@ -389,6 +403,10 @@ def build_publication_manifest(
             approval_requirement = "automatic_policy"
             approval_reason_code = "project_owned_apache_2_0"
             reapproval_trigger = "ownership_or_path_classification_change"
+        elif standing_metadata:
+            approval_requirement = "automatic_policy"
+            approval_reason_code = "standing_metadata_scope"
+            reapproval_trigger = "source_rights_or_field_scope_change"
         elif gate == "permissive_candidate":
             approval_requirement = "none_current_checksum"
             approval_reason_code = "checksum_approval_recorded"

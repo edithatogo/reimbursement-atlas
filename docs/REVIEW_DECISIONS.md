@@ -1,5 +1,14 @@
 # Review Decisions
 
+## Current standing delegation (2026-08-30)
+
+The owner-approved `data/licence_review/standing_scope.json` and
+`docs/APPROVAL_POLICY.md` supersede recurring checksum/dashboard approval wording
+in the historical decisions below. In-scope metadata regenerations and passing
+dashboard reruns renew automatically, without a new human review. Only material
+rights/field/source/claim expansions or separately unauthorized external mutations
+need a grouped decision. Do not present historical pending counts as current state.
+
 ## Owner approval scope (2026-07-19)
 
 The repository owner approves the non-paper recommendations: derived-only source
@@ -11,8 +20,8 @@ redistribution, unsupported evidence or policy claims, or bypass the technical
 OSF/Hugging Face credential, snapshot, destination and release gates.
 
 This checklist is the human/external boundary for the current release candidate.
-The repository owner has approved the current checksum-bound licence scope; future
-checksum changes must still fail closed and require new explicit approval.
+The original approval was checksum-bound. Current renewal is governed by the
+standing delegation above; candidates outside that contract remain fail closed.
 
 | Decision | Current state | Evidence | Unblock action |
 | --- | --- | --- | --- |

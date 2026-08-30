@@ -1,17 +1,17 @@
 {
   "approval_scope": "declared routes, four-browser matrix, automated accessibility, responsive layout, keyboard navigation, provenance, displayed-data parity and prohibited-content checks in scope (no universal accessibility claim).",
-  "automated_packet_sha256": "42db97ee6347689a7072407b55cec93d8e08764dd5fb0085122cfc7c26a6e2c8",
-  "commit": "4a6328ab3b4a809d7b05bd46ad929e47c5646dd8",
+  "automated_packet_sha256": "55a2faada41dd1d51577b6a8fb762f95fc6f929204d3ef009b4a70486fd8571d",
+  "commit": "cd41e79a23caf91847430602a772770eb253df72",
   "evidence_artifacts": [
     "data/derived/dashboard_review/automated_review_packet.json",
     "data/derived/dashboard_review/owner_review_packet.json"
   ],
   "findings": [
-    "Accountable review of current-head displayed data parity and declared scope completed; no additional findings requiring remediation."
+    "Owner approved the declared automated scope; independent manual VoiceOver and universal accessibility conformance are excluded. Subsequent in-scope passing reruns are delegated to automation."
   ],
-  "owner_packet_sha256": "adf07c969c71a09af0225efd004f4c5b8c650b77ae3f61e8c83beb0d2391a9ae",
+  "owner_packet_sha256": "01f021cfc41f2aee595c3e199bd88d8df8632cf488f7db0f04f4f5b1004e70dc",
   "remediation_or_waiver": null,
-  "reviewed_at": "2026-08-21T14:59:36Z",
+  "reviewed_at": "2026-08-30T00:00:00Z",
   "reviewer": "repository-owner",
   "schema_version": "dashboard-human-review-v1",
   "scope": {
@@ -20,10 +20,10 @@
       "Playwright keyboard and semantic accessibility assertions"
     ],
     "browsers": [
-      "Chromium 149.0.7827.55 desktop",
-      "Chromium 149.0.7827.55 mobile",
-      "Firefox 151.0 desktop",
-      "WebKit 26.5 desktop"
+      "desktop-chromium",
+      "mobile-chromium",
+      "desktop-firefox",
+      "desktop-webkit"
     ],
     "operating_systems": [
       "GitHub Actions ubuntu-latest hosted runner"

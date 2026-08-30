@@ -25,6 +25,13 @@ reviewer, are the protected-branch merge gate.
 
 ## Boundaries
 
+- Do not request approval for checksum churn or in-scope passing dashboard reruns.
+  Apply `data/licence_review/standing_scope.json` and `docs/APPROVAL_POLICY.md`.
+  Refresh stale hosted packets automatically; fix failed checks rather than asking
+  the owner to approve them. Ask only for a genuinely expanded rights/claim scope
+  or an external mutation not already authorized. Never label automated renewal
+  as a new human review.
+
 - Never commit credentials, raw restricted data, local absolute paths, or
   restricted descriptors.
 - Do not claim missing source coverage as negative evidence.

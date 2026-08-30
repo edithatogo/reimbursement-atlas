@@ -10,6 +10,8 @@ import subprocess  # nosec B404 - fixed git reader; commit and path are constrai
 from pathlib import Path
 from typing import Any, cast
 
+from reimburse_atlas.standing_approval import standing_policy
+
 AUTOMATED_PATH = Path("data/derived/dashboard_review/automated_review_packet.json")
 OWNER_PATH = Path("data/derived/dashboard_review/owner_review_packet.json")
 HUMAN_PATH = Path("data/derived/dashboard_review/human_review.json")
@@ -489,6 +491,16 @@ def _self_attestation_commit(repo: Path, human: dict[str, Any]) -> str | None:
     return reviewed_commit if isinstance(reviewed_commit, str) else None
 
 
+def _delegated_renewal(repo: Path, human: dict[str, Any]) -> bool:
+    raw = standing_policy(repo).get("dashboard", {})
+    delegated = cast("dict[str, Any]", raw) if isinstance(raw, dict) else {}
+    return bool(
+        delegated.get("renew_with_passing_automation") is True
+        and delegated.get("automated_packet_sha256") == human.get("automated_packet_sha256")
+        and delegated.get("owner_packet_sha256") == human.get("owner_packet_sha256")
+    )
+
+
 def _standing_approval_valid(
     repo: Path,
     *,
@@ -541,6 +553,7 @@ def _standing_approval_valid(
                 and reviewed_owner.get("source_fingerprint") == source_fingerprint
             )
             or _implementation_unchanged_since(repo, reviewed_commit, tested_commit)
+            or _delegated_renewal(repo, human)
         )
         and automated.get("source_fingerprint") == source_fingerprint
         and owner.get("source_fingerprint") == source_fingerprint
@@ -548,6 +561,30 @@ def _standing_approval_valid(
         and automated.get("routes") == list(EXPECTED_ROUTES)
         and reviewed_automated.get("projects") == list(EXPECTED_PROJECTS)
         and automated.get("projects") == list(EXPECTED_PROJECTS)
+    )
+
+
+def dashboard_renewal_delegated(repo: Path) -> bool:
+    """Distinguish a standing grant from successful current machine validation."""
+    human = _read_json(repo / HUMAN_PATH)
+    snapshot = _approved_packet_bytes(repo, human)
+    if snapshot is None:
+        return False
+    try:
+        raw_reviewed = json.loads(snapshot[1])
+    except ValueError:
+        return False
+    if not isinstance(raw_reviewed, dict):
+        return False
+    reviewed = cast("dict[str, Any]", raw_reviewed)
+    scope = human.get("scope")
+    human_scope = cast("dict[str, Any]", scope) if isinstance(scope, dict) else {}
+    return bool(
+        human.get("status") == "approved_within_scope"
+        and _delegated_renewal(repo, human)
+        and human_scope.get("routes") == list(EXPECTED_ROUTES)
+        and reviewed.get("routes") == list(EXPECTED_ROUTES)
+        and reviewed.get("projects") == list(EXPECTED_PROJECTS)
     )
 
 

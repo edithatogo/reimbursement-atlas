@@ -1,5 +1,8 @@
 # Project Tracks
 
+- [x] **Track: Standing low-risk authorization**
+  *Link: [./archive/standing_low_risk_authorization_20260830/index.md](./archive/standing_low_risk_authorization_20260830/index.md)*
+
 - [x] **Track: PBS lifecycle and utilisation evidence**
   *Link: [./archive/pbs_lifecycle_utilisation_evidence_20260829/index.md](./archive/pbs_lifecycle_utilisation_evidence_20260829/index.md)*
 
