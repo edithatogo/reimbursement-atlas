@@ -377,7 +377,7 @@
       "name": "source_content_validation",
       "parquet_path": "source_content_validation/source_content_validation.parquet",
       "rows": 13,
-      "sha256": "b9371a67d6a7f9fad06b3432f6e87ad7b878d4b126d048a02d35e6d05d99e6ab"
+      "sha256": "7ca644f2b4ebece108d094279ccaa26aadd89a575937e410ed52b855f6626ac7"
     },
     {
       "csv_path": "source_contract_validation/source_contract_validation.csv",
@@ -401,7 +401,7 @@
       "name": "bronze_acquisition_ledger",
       "parquet_path": "bronze_acquisition_ledger/bronze_acquisition_ledger.parquet",
       "rows": 2077,
-      "sha256": "ec9958e16d0ecb36de1ab5d80e4568694d9e3481f70c8a9da64b6e732bf51de3"
+      "sha256": "faad75d6c7f0af7afd4590b8a990d6d29217906563c4eae6c0d8d241001ff1eb"
     },
     {
       "csv_path": "bronze_evidence/bronze_evidence.csv",
@@ -409,7 +409,7 @@
       "name": "bronze_evidence",
       "parquet_path": "bronze_evidence/bronze_evidence.parquet",
       "rows": 2058,
-      "sha256": "19aa024b2301746a5174cbaa0fcfa71a567f6af4bfce31a8729fb7abffe7cd01"
+      "sha256": "4b9afbee0fa63a12f204672277bd84d560ecfe244073f36e276fb68d121e0457"
     },
     {
       "csv_path": "medallion_artifacts/medallion_artifacts.csv",
@@ -425,7 +425,7 @@
       "name": "medallion_promotion_decisions",
       "parquet_path": "medallion_promotion_decisions/medallion_promotion_decisions.parquet",
       "rows": 2146,
-      "sha256": "ec359709bd841eca9a549d9ce067359de9280f9b47a680b5c90c3cdfaad22f81"
+      "sha256": "1e63b10fe151acfc8ea60df787c5628327092695a5e7e14a95b1841c323f6c48"
     },
     {
       "csv_path": "github_project_items/github_project_items.csv",
@@ -441,7 +441,7 @@
       "name": "final_handoff_tasks",
       "parquet_path": "final_handoff_tasks/final_handoff_tasks.parquet",
       "rows": 11,
-      "sha256": "2873b38f14aff3a7745a6b4af5c04cc8bb40ae332033a7274d0157325a299530"
+      "sha256": "a62f752ed329880c641940c1958dfd984f19ca64caa9af7c287f1edf5cbfe99a"
     },
     {
       "csv_path": "protocol_status/protocol_status.csv",
@@ -481,7 +481,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "24300a380a609fa91e8e6775bd721994ffff081c2f8af388b6b52ac7a430dd32"
+      "sha256": "af303b12d85e83e8da584fb46286c8fae4e450219bcab3ac9a6a91e66e77fbcc"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",

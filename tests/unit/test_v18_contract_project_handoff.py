@@ -706,7 +706,7 @@ def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) ->
 
     (tmp_path / "data/derived/zenodo").mkdir(parents=True, exist_ok=True)
     (tmp_path / "data/derived/zenodo/external_state.json").write_text(
-        json.dumps({"status": "published"}), encoding="utf-8"
+        json.dumps({"status": "published", "release_commit": commit}), encoding="utf-8"
     )
     rows = {row.id: row for row in build_final_handoff_tasks(tmp_path)}
     assert rows["final_release_candidate"].status == "complete"

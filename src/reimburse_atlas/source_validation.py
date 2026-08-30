@@ -272,7 +272,7 @@ def _receipt_inventory_evidence(
         "au_pbs_historical_structured_archive": (
             receipt_root / "pbs_structured_archive_v1" / "historical_source_downloads.jsonl",
             {"cached", "downloaded"},
-            False,
+            True,
         ),
         "au_services_australia_pbs_item_report": (
             receipt_root / "pbs_item_report_v1" / "resources.jsonl",

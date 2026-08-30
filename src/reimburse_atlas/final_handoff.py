@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import subprocess  # nosec B404 - fixed git reader; repository path is controlled.
 from pathlib import Path
 from typing import Literal, cast
 
@@ -465,9 +466,29 @@ def _release_candidate_status(repo: Path) -> HandoffStatus:
     if summary.get("repository_release_ready") is not True:
         return "blocked_review"
     zenodo = _read_json(repo / "data/derived/zenodo/external_state.json")
-    if zenodo.get("status") in {"published", "verified", "verified_public"}:
+    if zenodo.get("status") in {"published", "verified", "verified_public"} and zenodo.get(
+        "release_commit"
+    ) == _current_commit(repo):
         return "complete"
     return "ready_local"
+
+
+def _current_commit(repo: Path) -> str | None:
+    """Resolve the current commit without accepting a stale archive receipt."""
+    head_path = repo / ".git" / "HEAD"
+    if head_path.is_file():
+        head = head_path.read_text(encoding="utf-8").strip()
+        if len(head) == 40 and all(character in "0123456789abcdef" for character in head.lower()):
+            return head
+    result = subprocess.run(  # nosec B603 - fixed argv and controlled cwd.
+        ["git", "rev-parse", "HEAD"],
+        cwd=repo,
+        capture_output=True,
+        check=False,
+        text=True,
+    )
+    commit = result.stdout.strip()
+    return commit if result.returncode == 0 and len(commit) == 40 else None
 
 
 def _huggingface_receipt(repo: Path) -> dict[str, object]:

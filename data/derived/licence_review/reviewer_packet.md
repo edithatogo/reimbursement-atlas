@@ -41,8 +41,8 @@ they do not change generated queue rows or authorize publication.
 - `data/derived/historical_sources/pbs_archive_v1/targets_summary.json` — `f93bc4623376c7fd74ceb12d4f8f6df1a86976a646fb37ac25fd81162fc3df45`
 - `data/derived/source_downloads/download_plans.csv` — `dfbf82a474da0e6ec3fec9b28a9de97bd31f5806904b9743d7202361462ececf`
 - `data/derived/source_downloads/download_plans.jsonl` — `faad224660889d09484f5b2d6bfc2e36901bbb6813f7e19ae1aaaf2407e16e8b`
-- `data/derived/source_validation/source_content_validation.csv` — `50c6f39a30cd51f8cc97bcc5f4047074a1f4a2847967589753f7bd53741d53c7`
-- `data/derived/source_validation/source_content_validation.jsonl` — `b9371a67d6a7f9fad06b3432f6e87ad7b878d4b126d048a02d35e6d05d99e6ab`
+- `data/derived/source_validation/source_content_validation.csv` — `ebf7c8a0cb01943b42ba6cc9fe2645bc3f6267abb1c239a1879577137140182a`
+- `data/derived/source_validation/source_content_validation.jsonl` — `7ca644f2b4ebece108d094279ccaa26aadd89a575937e410ed52b855f6626ac7`
 - `data/seed/historical_mbs_archive_targets.jsonl` — `a348e253ba87f94d30786392adba6055f69eb75d87aca2cc2598a1f0798ce9d7`
 - `data/seed/historical_pbs_archive_targets.jsonl` — `acba22bc74529fa24cc39e3eaa39671c2822873c526d7c05fca3f25eb07641e0`
 
