@@ -1994,47 +1994,47 @@
     {
       "@id": "data/derived/medallion/medallion_artifacts.jsonl",
       "@type": "File",
-      "contentSize": 18087,
+      "contentSize": 18069,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "medallion_artifacts",
-      "sha256": "09760e2efece4d4585ee4948255396cd9f9bac2f3697a42a8f8fcc32011c2611"
+      "sha256": "2d7b0b1cd3507f51d1da6c4d072c2ac2c54573c24abc6de83303881cf89af6cc"
     },
     {
       "@id": "data/derived/medallion/medallion_artifacts.csv",
       "@type": "File",
-      "contentSize": 14191,
+      "contentSize": 14173,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "medallion_artifacts",
-      "sha256": "74a48d809955dcf206f2e2e7a77a6aecc10f55b25b4bc6ae7a834b478da68d93"
+      "sha256": "62fa68ec8b9c634872f0ff9fe39ff0cec191d3585e9636fbfc46523bc6697a94"
     },
     {
       "@id": "data/derived/medallion/promotion_decisions.jsonl",
       "@type": "File",
-      "contentSize": 1321765,
+      "contentSize": 1321618,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "promotion_decisions",
-      "sha256": "1e63b10fe151acfc8ea60df787c5628327092695a5e7e14a95b1841c323f6c48"
+      "sha256": "b36bc9d2099add6c49120a55b96f8ab0a2f2c43be427d13969350af74b8c470b"
     },
     {
       "@id": "data/derived/medallion/promotion_decisions.csv",
       "@type": "File",
-      "contentSize": 952284,
+      "contentSize": 952129,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "promotion_decisions",
-      "sha256": "557fd668d6564e31d52d5f880c859e5078fee64c909a91511179fa014f136c28"
+      "sha256": "4b195be86c6a394e2d08cfbea9862c41054fefb9282d2421d26908b3f1df40fc"
     },
     {
       "@id": "data/derived/medallion/summary.json",
       "@type": "File",
-      "contentSize": 387,
+      "contentSize": 388,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "json",
       "name": "summary",
-      "sha256": "1efd37bbdfca94156c24d38d50feb4359a356a2ef6faa79a75980dbabd0cc20d"
+      "sha256": "4d753146d75087594c597ed3085fbb9eb65347c928ff75706c20720c6520f0b9"
     },
     {
       "@id": "data/derived/medallion_federation/contract_manifest.json",

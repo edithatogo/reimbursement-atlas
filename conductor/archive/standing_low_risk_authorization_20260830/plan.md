@@ -48,3 +48,14 @@ to field-specific hashes from the exact 19 approved artifacts. Counters and
 SHA-256 fields can renew without approving arbitrary text. Reject duplicate CSV
 headers and JSON keys before parsing can discard hidden content. Regression
 tests cover hidden fields, local paths, credentials and unapproved payload text.
+
+Operational renewal exposed a circular source-drift checksum receipt: hosted
+packets used the current receipt while validation borrowed the historical human
+snapshot. Exclude this derived checksum-of-checksums consistently; underlying
+public datasets remain fingerprinted and source-drift gates remain enforced.
+Regression coverage verifies shallow/history-independent renewal and rejection
+of changed underlying source content. No new accountable approval is required.
+All 27 local quality gates passed with four workers after this fix. The broad
+regenerator also launched a duplicate serial quality run; that redundant run was
+terminated, not counted as passing, and regeneration resumed after the already
+completed quality step. Hosted checks still validate the final exact tree.

@@ -69,8 +69,8 @@ OPERATIONAL_RECEIPT_FILES = {
 }
 DERIVED_CHECKSUM_RECEIPT_FILES = {
     # These receipts contain checksums of other displayed datasets. Their inputs
-    # are fingerprinted directly, so retain the reviewed receipt bytes rather
-    # than recursively invalidating them during deterministic regeneration.
+    # are fingerprinted directly. Exclude the recursive receipt independently
+    # of Git history so hosted and local validation share the same baseline.
     Path("apps/dashboard/public/data/source_drift_report.csv"),
 }
 LOW_RISK_SOURCE_NORMALIZATIONS = {
@@ -166,7 +166,7 @@ def dashboard_source_fingerprint(repo: Path) -> str:
     return digest.hexdigest()
 
 
-def dashboard_data_fingerprint(  # ruff:ignore[too-many-branches]
+def dashboard_data_fingerprint(
     repo: Path,
     *,
     self_attestation_commit: str | None = None,
@@ -182,17 +182,13 @@ def dashboard_data_fingerprint(  # ruff:ignore[too-many-branches]
     for path in sorted(paths):
         # These receipts report the gate being evaluated. Hashing them creates a
         # self-invalidating approval loop; their contents remain machine-checked.
-        if path in OPERATIONAL_RECEIPT_FILES:
+        if path in OPERATIONAL_RECEIPT_FILES or path in DERIVED_CHECKSUM_RECEIPT_FILES:
             continue
         absolute = repo / path
         content = absolute.read_bytes()
         for current, reviewed in LOW_RISK_DATA_NORMALIZATIONS.get(path, ()):
             content = content.replace(current, reviewed)
-        if self_attestation_commit and path in DERIVED_CHECKSUM_RECEIPT_FILES:
-            baseline = _git_file_at_commit(repo, self_attestation_commit, path)
-            if baseline is not None:
-                content = baseline
-        elif path == SELF_ATTESTATION_FILE:
+        if path == SELF_ATTESTATION_FILE:
             content = _release_gates_without_dashboard_receipt(content)
             baseline = (
                 _git_file_at_commit(repo, self_attestation_commit, path)

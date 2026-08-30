@@ -622,6 +622,9 @@ def test_dashboard_data_fingerprint_ignores_derived_source_drift_receipt(
     )
 
     assert dashboard_data_fingerprint(tmp_path, self_attestation_commit="a" * 40) == original
+    # Fresh hosted packets and old approvals use the same fingerprint without
+    # historical Git objects; the underlying source data still fails closed.
+    assert dashboard_data_fingerprint(tmp_path) == original
 
     underlying.write_text("id,status\nsource,blocked\n", encoding="utf-8")
 
