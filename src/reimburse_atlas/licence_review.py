@@ -17,7 +17,10 @@ from reimburse_atlas.registry import project_root
 
 def pbs_raw_redistribution_status(source_url: str, *, root: Path | None = None) -> str:
     """Apply PBS owner-attested permission without implying acquisition or publication."""
-    parsed = urlsplit(source_url)
+    try:
+        parsed = urlsplit(source_url)
+    except ValueError:
+        return "outside_pbs_permission_scope"
     if (
         parsed.scheme not in {"http", "https"}
         or parsed.hostname
@@ -33,7 +36,7 @@ def pbs_raw_redistribution_status(source_url: str, *, root: Path | None = None) 
         return "blocked_pending_explicit_permission"
     if not isinstance(record, dict):
         return "blocked_pending_explicit_permission"
-    permission = cast(dict[str, object], record)
+    permission = cast("dict[str, object]", record)
     if any(
         permission.get(key) != value
         for key, value in {

@@ -23,6 +23,7 @@ def test_owner_attestation_allows_pbs_without_per_file_approval(host: str) -> No
         "https://www.pbs.gov.au@evil.example/file.pdf",
         "file:///data/raw_live/file.pdf",
         "https://user:secret@www.pbs.gov.au/file.pdf",
+        "https://[malformed/file.pdf",
     ],
 )
 def test_permission_does_not_clear_other_sources_or_credentials(url: str) -> None:
