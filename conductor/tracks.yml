@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-07-31"
+updated: "2026-08-30"
 tracks:
   - id: pbs_lifecycle_utilisation_evidence_20260829
     title: "PBS lifecycle and utilisation evidence"
@@ -58,7 +58,7 @@ tracks:
   - id: source_acquisition_status_reconciliation_20260826
     title: "Source acquisition status reconciliation"
     priority: must
-    phase: hardening
+    phase: archived
     workstream: data
     goal: "Separate completed ingestion capability from partial acquisition breadth and evidence promotion."
     spec: "conductor/archive/source_acquisition_status_reconciliation_20260826/spec.md"

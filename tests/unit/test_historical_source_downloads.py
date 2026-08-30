@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import subprocess
+import zipfile
 from pathlib import Path
 
 import pytest
@@ -100,6 +101,49 @@ def test_download_rejects_html_body_for_pdf(
     )
     assert status == "invalid_content"
     assert not destination.exists()
+
+
+def test_download_rejects_invalid_cached_pdf_without_network(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    """A corrupt cached payload cannot produce a verified receipt."""
+    destination = tmp_path / "archive.pdf"
+    destination.write_bytes(b"<html>cached error</html>")
+    called = False
+
+    def unexpected_run(*_: object, **__: object) -> subprocess.CompletedProcess[str]:
+        nonlocal called
+        called = True
+        return subprocess.CompletedProcess([], 0, "", "")
+
+    monkeypatch.setattr(download_historical_sources.subprocess, "run", unexpected_run)
+    status, detail = download_historical_sources.download_payload(
+        "https://www.pbs.gov.au/archive.pdf",
+        destination,
+        force=False,
+        max_time_seconds=45,
+    )
+
+    assert status == "invalid_content"
+    assert "Cached bytes" in detail
+    assert called is False
+
+
+def test_cached_zip_validation_accepts_official_preamble(tmp_path: Path) -> None:
+    """ZIP central-directory validation permits official self-extracting preambles."""
+    archive = tmp_path / "archive.zip"
+    with zipfile.ZipFile(archive, "w") as handle:
+        handle.writestr("schedule.txt", "validated")
+    archive.write_bytes(b"PK00" + archive.read_bytes())
+
+    status, _ = download_historical_sources.download_payload(
+        "https://www.pbs.gov.au/archive.zip",
+        archive,
+        force=False,
+        max_time_seconds=45,
+    )
+
+    assert status == "cached"
 
 
 def test_force_preserves_changed_predecessor_snapshot(

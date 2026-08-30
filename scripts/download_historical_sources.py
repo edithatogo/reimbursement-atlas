@@ -12,6 +12,7 @@ import csv
 import hashlib
 import json
 import subprocess  # nosec B404 - fixed curl argv; URL is HTTPS and host allowlisted
+import zipfile
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import UTC, datetime
 from pathlib import Path
@@ -72,7 +73,7 @@ def _valid_payload_magic(path: Path) -> bool:
     if ".pdf" in suffixes:
         return prefix.startswith(b"%PDF-")
     if ".zip" in suffixes:
-        return prefix.startswith((b"PK\x03\x04", b"PK\x05\x06", b"PK\x07\x08"))
+        return zipfile.is_zipfile(path)
     return True
 
 
@@ -84,6 +85,8 @@ def download_payload(  # ruff:ignore[too-many-return-statements] - fail-closed t
     if parsed.scheme != "https" or parsed.netloc not in OFFICIAL_HOSTS:
         return "blocked_untrusted_host", "URL is not an HTTPS URL on an allowed official host."
     if destination.exists() and not force:
+        if not _valid_payload_magic(destination):
+            return "invalid_content", "Cached bytes do not match the expected file signature."
         return "cached", "Existing local cache retained; use --force to replace it."
     destination.parent.mkdir(parents=True, exist_ok=True)
     incoming = destination.with_name(f".{destination.name}.incoming")
@@ -226,9 +229,11 @@ def process_target(
     if destination.exists() and status in {"downloaded", "cached"}:
         row["byte_size"] = destination.stat().st_size
         row["checksum_sha256"] = _sha256(destination)
+        row["signature_valid"] = _valid_payload_magic(destination)
     else:
         row["byte_size"] = None
         row["checksum_sha256"] = None
+        row["signature_valid"] = False
     return row
 
 

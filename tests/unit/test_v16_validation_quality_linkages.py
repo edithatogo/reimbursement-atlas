@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 from reimburse_atlas.data_quality import build_data_quality_checks
@@ -42,6 +43,65 @@ def test_source_content_validation_accepts_local_txt_fixture(tmp_path: Path) -> 
     assert rows[0].observed_record_count == 2
     assert rows[0].checksum_sha256 is not None
     assert rows[0].local_target_ref == f"local_raw_only:{record.source_id}/{target.name}"
+
+
+def test_source_content_validation_accepts_complete_receipt_inventory(tmp_path: Path) -> None:
+    """Aggregate source records pass only with complete checksum-bound receipts."""
+    record = next(
+        row for row in load_source_files() if row.id == "au_services_australia_pbs_item_report"
+    )
+    inventory = tmp_path / "receipts" / "pbs_item_report_v1" / "resources.jsonl"
+    inventory.parent.mkdir(parents=True)
+    receipt = {
+        "byte_size": 10,
+        "checksum_sha256": "a" * 64,
+        "signature_valid": True,
+        "status": "cached_validated",
+    }
+    inventory.write_text(
+        "".join(json.dumps({**receipt, "id": str(index)}) + "\n" for index in range(8)),
+        encoding="utf-8",
+    )
+
+    [row] = build_source_content_validations(
+        [record],
+        raw_dir=tmp_path / "raw",
+        reviewed_bundle_dir=tmp_path / "bundles",
+        receipt_root=tmp_path / "receipts",
+    )
+
+    assert row.validation_status == "pass"
+    assert row.observed_record_count == 8
+    assert row.byte_size == 80
+    assert row.local_target_ref.startswith("receipt_inventory:")
+
+
+def test_source_content_validation_rejects_incomplete_receipt_inventory(tmp_path: Path) -> None:
+    """A partial aggregate inventory cannot satisfy the acquisition contract."""
+    record = next(
+        row for row in load_source_files() if row.id == "au_services_australia_pbs_item_report"
+    )
+    inventory = tmp_path / "receipts" / "pbs_item_report_v1" / "resources.jsonl"
+    inventory.parent.mkdir(parents=True)
+    inventory.write_text(
+        json.dumps({
+            "byte_size": 10,
+            "checksum_sha256": "a" * 64,
+            "signature_valid": True,
+            "status": "cached_validated",
+        })
+        + "\n",
+        encoding="utf-8",
+    )
+
+    [row] = build_source_content_validations(
+        [record],
+        raw_dir=tmp_path / "raw",
+        reviewed_bundle_dir=tmp_path / "bundles",
+        receipt_root=tmp_path / "receipts",
+    )
+
+    assert row.validation_status == "missing"
 
 
 def test_data_quality_checks_have_no_blocking_failures_after_generation() -> None:

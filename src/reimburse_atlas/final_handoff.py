@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import shutil
+import subprocess  # nosec B404 - fixed git reader; repository path is controlled.
 from pathlib import Path
 from typing import Literal, cast
 
@@ -87,7 +89,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             github_issues=(24, 492, 496),
             task_group="source_ingestion",
             title="Review CMS CLFS AMA-gated file and derived-field policy",
-            status="complete" if _licence_review_complete(repo) else "blocked_review",
+            status="complete" if _cms_clfs_review_complete(repo) else "blocked_review",
             required_environment=(
                 "Human review of AMA/CPT licence implications before parsing or publishing fields."
             ),
@@ -101,7 +103,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             ),
             reason_code=(
                 "checksum_bound_scope_approved"
-                if _licence_review_complete(repo)
+                if _cms_clfs_review_complete(repo)
                 else "source_scope_review_pending"
             ),
             gate_evidence=(
@@ -304,7 +306,7 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             github_issues=(487, 507),
             task_group="release",
             title="Generate final release-readiness report and public archive",
-            status="ready_local" if _publication_ready(repo) else "blocked_review",
+            status=_release_candidate_status(repo),
             required_environment=(
                 "Network-enabled runner after source/security/publication gates complete."
             ),
@@ -321,12 +323,20 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "Only then cut a signed, attested public release and archive to Zenodo."
             ),
             reason_code=(
-                "external_release_candidate_ready"
-                if _publication_ready(repo)
-                else "external_release_review_pending"
+                "archive_release_published"
+                if _release_candidate_status(repo) == "complete"
+                else "repository_release_candidate_ready"
+                if _release_candidate_status(repo) == "ready_local"
+                else "repository_release_review_pending"
             ),
             gate_evidence=("data/derived/release_readiness/summary.json",),
-            external_state="ready" if _publication_ready(repo) else "pending",
+            external_state=(
+                "published"
+                if _release_candidate_status(repo) == "complete"
+                else "ready"
+                if _release_candidate_status(repo) == "ready_local"
+                else "pending"
+            ),
         ),
         FinalHandoffTaskRecord(
             id="final_zenodo_draft",
@@ -404,18 +414,19 @@ def _mbs_pair_available(repo: Path) -> bool:
     )
 
 
-def _licence_review_complete(repo: Path) -> bool:
-    """Return true when every current checksum-bound queue row is approved."""
+def _cms_clfs_review_complete(repo: Path) -> bool:
+    """Require current approvals only for CMS CLFS-derived publication artefacts."""
     queue = _read_jsonl(repo / "data/derived/licence_review/licence_review_queue.jsonl")
     decisions = _read_jsonl(repo / "data/licence_review/decisions.jsonl")
+    required = {
+        (row.get("review_id"), row.get("relative_path"), row.get("checksum_sha256"))
+        for row in queue
+        if "cms_clfs" in str(row.get("relative_path", "")).lower()
+    }
     approved = {
         (row.get("review_id"), row.get("relative_path"), row.get("checksum_sha256"))
         for row in decisions
         if row.get("decision") == "approved"
-    }
-    required = {
-        (row.get("review_id"), row.get("relative_path"), row.get("checksum_sha256"))
-        for row in queue
     }
     return bool(required) and required <= approved
 
@@ -448,6 +459,40 @@ def _publication_ready(repo: Path) -> bool:
             "policy_claims_ready",
         )
     )
+
+
+def _release_candidate_status(repo: Path) -> HandoffStatus:
+    """Classify software/archive release separately from research publication."""
+    summary = _read_json(repo / "data/derived/release_readiness/summary.json")
+    if summary.get("repository_release_ready") is not True:
+        return "blocked_review"
+    zenodo = _read_json(repo / "data/derived/zenodo/external_state.json")
+    if zenodo.get("status") in {"published", "verified", "verified_public"} and zenodo.get(
+        "release_commit"
+    ) == _current_commit(repo):
+        return "complete"
+    return "ready_local"
+
+
+def _current_commit(repo: Path) -> str | None:
+    """Resolve the current commit without accepting a stale archive receipt."""
+    head_path = repo / ".git" / "HEAD"
+    if head_path.is_file():
+        head = head_path.read_text(encoding="utf-8").strip()
+        if len(head) == 40 and all(character in "0123456789abcdef" for character in head.lower()):
+            return head
+    git = shutil.which("git")
+    if git is None:
+        return None
+    result = subprocess.run(  # nosec B603 - fixed argv and controlled cwd.
+        [git, "rev-parse", "HEAD"],
+        cwd=repo,
+        capture_output=True,
+        check=False,
+        text=True,
+    )
+    commit = result.stdout.strip()
+    return commit if result.returncode == 0 and len(commit) == 40 else None
 
 
 def _huggingface_receipt(repo: Path) -> dict[str, object]:

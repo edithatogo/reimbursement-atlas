@@ -31,13 +31,17 @@ def build_source_content_validations(
     *,
     raw_dir: Path | None = None,
     reviewed_bundle_dir: Path | None = None,
+    receipt_root: Path | None = None,
 ) -> list[SourceContentValidationRecord]:
     """Validate locally downloaded source files without committing raw payloads."""
     explicit_reviewed_bundle = reviewed_bundle_dir is not None
     base = raw_dir or project_root() / "data" / "raw_live"
     bundles = reviewed_bundle_dir or project_root() / "data" / "derived" / "reviewed_source_bundles"
+    receipts = receipt_root or project_root() / "data" / "derived" / "historical_sources"
     prefer_reviewed_bundle = raw_dir is None or explicit_reviewed_bundle
-    return [_validate_one(record, base, bundles, prefer_reviewed_bundle) for record in records]
+    return [
+        _validate_one(record, base, bundles, receipts, prefer_reviewed_bundle) for record in records
+    ]
 
 
 def write_source_content_validations(
@@ -68,6 +72,7 @@ def _validate_one(  # ruff:ignore[too-many-branches]
     record: SourceFileRecord,
     raw_dir: Path,
     reviewed_bundle_dir: Path,
+    receipt_root: Path,
     prefer_reviewed_bundle: bool,
 ) -> SourceContentValidationRecord:
     target = safe_local_target(record, raw_dir)
@@ -86,6 +91,8 @@ def _validate_one(  # ruff:ignore[too-many-branches]
     reviewed = (
         _reviewed_bundle_evidence(record, reviewed_bundle_dir) if prefer_reviewed_bundle else None
     )
+    if reviewed is None and prefer_reviewed_bundle:
+        reviewed = _receipt_inventory_evidence(record, receipt_root)
     if reviewed is not None:
         target_ref, observed_count, bundle_size, bundle_checksum = reviewed
         return _record(
@@ -95,7 +102,7 @@ def _validate_one(  # ruff:ignore[too-many-branches]
             observed_record_count=observed_count,
             byte_size=bundle_size,
             checksum_sha256=bundle_checksum,
-            issues=("validated through reviewed derived bundle",),
+            issues=("validated through tracked derived acquisition evidence",),
             recommended_action=(
                 "Retain raw payloads only in ignored local storage and complete human "
                 "licence review before publication."
@@ -254,6 +261,69 @@ def _reviewed_bundle_evidence(
             str(snapshot.get("checksum_sha256")),
         )
     return None
+
+
+def _receipt_inventory_evidence(
+    record: SourceFileRecord,
+    receipt_root: Path,
+) -> tuple[str, int, int, str] | None:
+    """Validate aggregate acquisition records from immutable receipt inventories."""
+    inventory_specs = {
+        "au_pbs_historical_structured_archive": (
+            receipt_root / "pbs_structured_archive_v1" / "historical_source_downloads.jsonl",
+            {"cached", "downloaded"},
+            True,
+        ),
+        "au_services_australia_pbs_item_report": (
+            receipt_root / "pbs_item_report_v1" / "resources.jsonl",
+            {"cached_validated", "downloaded_validated"},
+            True,
+        ),
+    }
+    spec = inventory_specs.get(record.id)
+    if spec is None:
+        return None
+    inventory_path, allowed_statuses, require_signature = spec
+    rows = _read_jsonl(inventory_path)
+    if not rows or record.expected_record_count != len(rows):
+        return None
+    for row in rows:
+        if not _valid_receipt_row(row, allowed_statuses, require_signature):
+            return None
+    try:
+        inventory_ref = inventory_path.relative_to(receipt_root.parent.parent)
+    except ValueError:
+        inventory_ref = Path("historical_sources") / inventory_path.name
+    return (
+        f"receipt_inventory:{inventory_ref.as_posix()}",
+        len(rows),
+        sum(_receipt_byte_size(row) for row in rows),
+        _sha256(inventory_path),
+    )
+
+
+def _valid_receipt_row(
+    row: dict[str, object],
+    allowed_statuses: set[str],
+    require_signature: bool,
+) -> bool:
+    checksum = row.get("checksum_sha256")
+    checksum_valid = (
+        isinstance(checksum, str)
+        and len(checksum) == 64
+        and all(character in "0123456789abcdef" for character in checksum.lower())
+    )
+    byte_size = row.get("byte_size")
+    size_valid = isinstance(byte_size, int) and byte_size > 0
+    signature_valid = not require_signature or row.get("signature_valid") is True
+    return (
+        row.get("status") in allowed_statuses and checksum_valid and size_valid and signature_valid
+    )
+
+
+def _receipt_byte_size(row: dict[str, object]) -> int:
+    value = row.get("byte_size")
+    return value if isinstance(value, int) else 0
 
 
 def _read_jsonl(path: Path) -> list[dict[str, object]]:

@@ -10,9 +10,9 @@ checksum-bound row-level record.
 
 ## Current batches
 
-- `permissive_candidate` / `public_derived_candidate`: 139 artefacts, 190329407 bytes
+- `permissive_candidate` / `public_derived_candidate`: 135 artefacts, 190294683 bytes
 - `permissive_candidate` / `public_metadata_candidate`: 30 artefacts, 231553 bytes
-- `public_reuse_review` / `public_derived_candidate`: 13 artefacts, 4104362 bytes
+- `public_reuse_review` / `public_derived_candidate`: 17 artefacts, 4144158 bytes
 - `public_reuse_review` / `public_metadata_candidate`: 2 artefacts, 938312 bytes
 
 Total candidate artefacts: 184. Neutral generated row markers are not approval
@@ -20,8 +20,8 @@ requests; the batch and summary `pending_count` values identify required decisio
 
 ## Decision ledger snapshot
 
-The companion checksum-bound ledger currently records **169 approved**
-and **15 blocked** decisions. These counts are informational;
+The companion checksum-bound ledger currently records **165 approved**
+and **19 blocked** decisions. These counts are informational;
 they do not change generated queue rows or authorize publication.
 
 ### Blocked rows requiring re-review
@@ -39,6 +39,10 @@ they do not change generated queue rows or authorize publication.
 - `data/derived/historical_sources/pbs_archive_v1/historical_source_downloads.jsonl` — `aff99a68d7f7af7e7d2766b80599f75365c06f8c7620f317cf4b15104473772e`
 - `data/derived/historical_sources/pbs_archive_v1/historical_source_downloads_summary.json` — `5ff1749d943045f4e7aac911f6355e18382dc6c2e29af141f0f74c470d8349d3`
 - `data/derived/historical_sources/pbs_archive_v1/targets_summary.json` — `f93bc4623376c7fd74ceb12d4f8f6df1a86976a646fb37ac25fd81162fc3df45`
+- `data/derived/source_downloads/download_plans.csv` — `dfbf82a474da0e6ec3fec9b28a9de97bd31f5806904b9743d7202361462ececf`
+- `data/derived/source_downloads/download_plans.jsonl` — `faad224660889d09484f5b2d6bfc2e36901bbb6813f7e19ae1aaaf2407e16e8b`
+- `data/derived/source_validation/source_content_validation.csv` — `ebf7c8a0cb01943b42ba6cc9fe2645bc3f6267abb1c239a1879577137140182a`
+- `data/derived/source_validation/source_content_validation.jsonl` — `7ca644f2b4ebece108d094279ccaa26aadd89a575937e410ed52b855f6626ac7`
 - `data/seed/historical_mbs_archive_targets.jsonl` — `a348e253ba87f94d30786392adba6055f69eb75d87aca2cc2598a1f0798ce9d7`
 - `data/seed/historical_pbs_archive_targets.jsonl` — `acba22bc74529fa24cc39e3eaa39671c2822873c526d7c05fca3f25eb07641e0`
 
