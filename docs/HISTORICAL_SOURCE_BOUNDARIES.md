@@ -3,6 +3,17 @@
 Bounded revalidation on 2026-08-30 for issue #255. These are observations, not
 source acquisition, licence clearance or proof that unpublished files never existed.
 
+## MBS July 2026 TXT endpoints
+
+The two historical URL failures refer to `20260701_MBSONLINE_DESC.TXT` and
+`20260701_MBSONLINE_IMAP.TXT`. The corresponding official URLs in the live-source
+registry use a different Domino view identifier from the historical inventory.
+A bounded retry against those independently recorded alternatives also returned
+HTTP 404 for both files; no URL substitution or acquisition-count increment was
+made. Existing reviewed derived TXT-pair records and the locally cached MBS XML
+are separate evidence, not recovered copies of these missing TXT payloads.
+Historical URL acquisition therefore remains 341 of 343 targets.
+
 ## December 1987 RPBS
 
 The repository's bounded downloader returned HTTP 404 for the official
