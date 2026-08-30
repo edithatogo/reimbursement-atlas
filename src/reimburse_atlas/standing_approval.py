@@ -5,6 +5,8 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+import re
+from datetime import datetime
 from functools import lru_cache
 from pathlib import Path
 from typing import Any, cast
@@ -29,10 +31,27 @@ def standing_policy(root: Path) -> dict[str, Any]:
 
 def _rows(raw: str, suffix: str) -> list[Any]:
     if suffix == ".csv":
-        return list(csv.DictReader(raw.splitlines()))
+        reader = csv.DictReader(raw.splitlines())
+        headers = reader.fieldnames or []
+        if len(headers) != len(set(headers)):
+            message = "Duplicate CSV headers"
+            raise ValueError(message)
+        return list(reader)
     if suffix == ".jsonl":
-        return [json.loads(line) for line in raw.splitlines() if line.strip()]
-    return [json.loads(raw)] if suffix == ".json" else []
+        return [
+            json.loads(line, object_pairs_hook=_unique_object)
+            for line in raw.splitlines()
+            if line.strip()
+        ]
+    return [json.loads(raw, object_pairs_hook=_unique_object)] if suffix == ".json" else []
+
+
+def _unique_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    result = dict(pairs)
+    if len(result) != len(pairs):
+        message = "Duplicate JSON keys"
+        raise ValueError(message)
+    return result
 
 
 def _safe_shape(row: dict[str, Any]) -> bool:
@@ -63,8 +82,40 @@ def _valid_risk_values(values: dict[str, Any]) -> bool:
     )
 
 
+def _strings_valid(row: dict[str, Any], scope: dict[str, Any]) -> bool:
+    """Renew typed counters/digests; other strings must match approved field values."""
+    approved = _object(scope.get("string_sha256"))
+    for key, value in row.items():
+        if key in _object(scope.get("risk_values")):
+            continue
+        values = cast("list[Any]", value) if isinstance(value, list) else [value]
+        if isinstance(value, dict):
+            values = list(cast("dict[str, Any]", value))
+        for item in values:
+            if not isinstance(item, str):
+                continue
+            if (key == "count" or key.endswith(("_count", "_bytes"))) and re.fullmatch(
+                r"[0-9]+", item
+            ):
+                continue
+            if "sha256" in key and re.fullmatch(r"[0-9a-f]{64}", item):
+                continue
+            if key.endswith("_at") and re.fullmatch(
+                r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})", item
+            ):
+                try:
+                    _ = datetime.fromisoformat(item)
+                except ValueError:
+                    return False
+                continue
+            digest = hashlib.sha256(item.encode("utf-8")).hexdigest()
+            if digest not in approved.get(key, []):
+                return False
+    return True
+
+
 @lru_cache(maxsize=64)
-def _content_valid(raw: str, suffix: str, scope_json: str) -> bool:
+def metadata_content_valid(raw: str, suffix: str, scope_json: str) -> bool:
     """Cache only exact content/contract bytes, never timestamps or path identities."""
     try:
         rows = _rows(raw, suffix)
@@ -78,6 +129,7 @@ def _content_valid(raw: str, suffix: str, scope_json: str) -> bool:
     return all(
         bool(_object(row))
         and _safe_shape(_object(row))
+        and _strings_valid(_object(row), scope)
         and set(_object(row)) == set(cast("list[str]", fields))
         and all(
             json.dumps(_object(row).get(key), sort_keys=True) in allowed
@@ -102,7 +154,7 @@ def metadata_scope_valid(root: Path, relative_path: str) -> bool:
             hashlib.sha256((root / name).read_bytes()).hexdigest() == checksum
             for name, checksum in rights.items()
         )
-        return rights_valid and _content_valid(
+        return rights_valid and metadata_content_valid(
             path.read_text(encoding="utf-8"), path.suffix, json.dumps(scope, sort_keys=True)
         )
     except OSError, ValueError:

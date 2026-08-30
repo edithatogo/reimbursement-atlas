@@ -14,3 +14,9 @@ bus error. An intermediate type-check failure was corrected, and its superseded
 coverage run was terminated. Both gates were rerun through the native gate runner
 and passed; the canonical report now records all 27 latest successful results.
 No interrupted or failed attempt was treated as a pass.
+
+Hosted review follow-up: bind content-bearing strings (and status-counter names)
+to field-specific hashes from the exact 19 approved artifacts. Counters and
+SHA-256 fields can renew without approving arbitrary text. Reject duplicate CSV
+headers and JSON keys before parsing can discard hidden content. Regression
+tests cover hidden fields, local paths, credentials and unapproved payload text.

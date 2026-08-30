@@ -13,8 +13,67 @@ from reimburse_atlas.dashboard_review import (
 )
 from reimburse_atlas.final_handoff import build_final_handoff_tasks
 from reimburse_atlas.publication import build_publication_manifest
-from reimburse_atlas.standing_approval import metadata_scope_valid, standing_policy
+from reimburse_atlas.standing_approval import (
+    metadata_content_valid,
+    metadata_scope_valid,
+    standing_policy,
+)
 from scripts.reconcile_licence_decisions import reconcile
+
+
+@pytest.mark.parametrize(
+    "value", ["/Users/private/data", "token=secret", "restricted descriptor", "raw payload"]
+)
+def test_unapproved_free_text_cannot_renew(value: str) -> None:
+    scope = json.dumps({
+        "fields": ["source_id", "notes"],
+        "risk_values": {"source_id": ['"pbs"']},
+        "string_sha256": {"notes": [hashlib.sha256(b"Approved metadata").hexdigest()]},
+    })
+    assert metadata_content_valid(
+        json.dumps({"source_id": "pbs", "notes": "Approved metadata"}), ".json", scope
+    )
+    assert not metadata_content_valid(
+        json.dumps({"source_id": "pbs", "notes": value}), ".json", scope
+    )
+
+
+def test_duplicate_csv_headers_cannot_hide_content() -> None:
+    scope = json.dumps({"fields": ["source_id", "count"], "risk_values": {"source_id": ['"pbs"']}})
+    assert not metadata_content_valid(
+        "source_id,source_id,count\nrestricted,pbs,1\n", ".csv", scope
+    )
+
+
+def test_duplicate_json_keys_cannot_hide_content() -> None:
+    scope = json.dumps({"fields": ["source_id", "count"], "risk_values": {"source_id": ['"pbs"']}})
+    assert not metadata_content_valid(
+        '{"source_id":"restricted","source_id":"pbs","count":1}', ".json", scope
+    )
+
+
+@pytest.mark.parametrize("timestamp", ["2026-08-30T00:00:00Z", "2026-02-30T00:00:00Z"])
+def test_typed_renewal_and_status_names(timestamp: str) -> None:
+    row = {
+        "source_id": "pbs",
+        "checksum_sha256": "a" * 64,
+        "generated_at": timestamp,
+        "status_counts": {"downloaded": 3},
+        "notes": ["Approved metadata"],
+    }
+    scope = json.dumps({
+        "fields": list(row),
+        "risk_values": {"source_id": ['"pbs"']},
+        "string_sha256": {
+            "status_counts": [hashlib.sha256(b"downloaded").hexdigest()],
+            "notes": [hashlib.sha256(b"Approved metadata").hexdigest()],
+        },
+    })
+    assert metadata_content_valid(json.dumps(row), ".json", scope) == timestamp.startswith(
+        "2026-08"
+    )
+    row["status_counts"] = {"restricted descriptor": 3}
+    assert not metadata_content_valid(json.dumps(row), ".json", scope)
 
 
 @pytest.mark.parametrize("suffix", [".json", ".jsonl", ".csv"])
