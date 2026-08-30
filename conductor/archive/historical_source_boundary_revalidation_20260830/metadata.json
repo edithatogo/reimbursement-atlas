@@ -7,7 +7,7 @@
   "pull_request": 795,
   "review_fixes": {
     "local_quality_passed": 27,
-    "targeted_tests_passed": 8,
+    "targeted_tests_passed": 12,
     "hosted_delivery": "required_before_merge",
     "acquisition_identity_report": "data/derived/historical_sources/mbs_identity_reconciliation.json"
   },

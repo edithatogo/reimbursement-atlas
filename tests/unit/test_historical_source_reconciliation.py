@@ -113,3 +113,25 @@ def test_issue_projection_preserves_precise_source_gap() -> None:
     assert "schema/DTD/XSL" in text
     assert "mbs_identity_reconciliation.json" in text
     assert "341 of 343 MBS targets are acquired" not in text
+
+
+@pytest.mark.parametrize("changed", [None, "file_name", "source_id", "file_url"])
+def test_direct_receipt_requires_full_identity(tmp_path: Path, changed: str | None) -> None:
+    target = {
+        "id": "direct",
+        "source_id": "au_mbs",
+        "file_name": "a.csv",
+        "file_url": "https://www.mbsonline.gov.au/a.csv",
+    }
+    receipt = dict(
+        target,
+        status="downloaded",
+        source_url=target["file_url"],
+        checksum_sha256="a" * 64,
+        byte_size=42,
+    )
+    if changed:
+        target[changed] = "changed"
+    _write(tmp_path, "data/derived/historical_sources/historical_source_downloads.jsonl", [receipt])
+    result = build_reconciliation(tmp_path, [target])
+    assert result["direct_download_receipt_count"] == (0 if changed else 1)

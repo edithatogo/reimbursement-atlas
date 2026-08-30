@@ -27,6 +27,8 @@ passed all 24 hosted checks before the subsequent review fixes below.
   checksum-bound snapshot reconciliation; preserve original transfer receipts.
 - [x] Project the December 2006-March 2007 XML/schema gap into generated issues.
 - [x] Validate reconciliation regressions and regenerate projections: all 27
-  native local-quality gates pass; eight targeted reconciliation/projection
+  native local-quality gates pass; twelve targeted reconciliation/projection
   tests pass. The initial architecture assignment failure was fixed, not waived.
+- [x] Require source, filename and URL equality for direct receipts so reused
+  target IDs cannot establish acquisition evidence for a different source file.
 - [ ] Pass exact-head hosted checks before protected merge.

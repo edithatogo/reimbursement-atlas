@@ -96,11 +96,18 @@ def build_reconciliation(root: Path, targets: list[dict[str, Any]]) -> dict[str,
     if len(set(ids)) != len(ids):
         message = "Duplicate historical target identities"
         raise ValueError(message)
+    by_id = {row["id"]: row for row in targets}
     downloaded = {
         row["id"]
         for row in _rows(root / "data/derived/historical_sources/historical_source_downloads.jsonl")
         if row.get("status") in {"downloaded", "cached"} and _has_checksum(row)
-    } & set(ids)
+        if row.get("id") in by_id
+        and row.get("source_id") == by_id[row["id"]].get("source_id")
+        and row.get("file_name") == by_id[row["id"]].get("file_name")
+        and row.get("source_url") == by_id[row["id"]].get("file_url")
+        and isinstance(row.get("source_url"), str)
+        and bool(row["source_url"])
+    }
     aliases = [
         match
         for target in targets
