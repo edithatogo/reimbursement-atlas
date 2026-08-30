@@ -314,9 +314,11 @@ def test_dashboard_standing_approval_resolves_later_receipt_commit(
     assert evidence["checks"]["human_scoped_approval"] is True
 
 
+@pytest.mark.parametrize("delegated", [False, True])
 def test_dashboard_standing_approval_fails_after_ui_fingerprint_change(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
+    delegated: bool,
 ) -> None:
     """A material dashboard change still requires accountable review."""
     root = _machine_ready_root(tmp_path)
@@ -329,6 +331,7 @@ def test_dashboard_standing_approval_fails_after_ui_fingerprint_change(
     reviewed_automated = dict(automated)
     reviewed_automated["tested_commit"] = reviewed_commit
     reviewed_automated["source_fingerprint"] = "2" * 64
+    reviewed_automated["screenshot_count"] = 44
     reviewed_owner = dict(owner)
     reviewed_owner["tested_commit"] = reviewed_commit
     reviewed_owner["source_fingerprint"] = "2" * 64
@@ -368,6 +371,29 @@ def test_dashboard_standing_approval_fails_after_ui_fingerprint_change(
 
     assert evidence["approval_mode"] == "invalid"
     assert evidence["checks"]["human_scoped_approval"] is False
+    if delegated:
+        human_path = root / "data/derived/dashboard_review/human_review.json"
+        human = json.loads(human_path.read_text())
+        human["scope"] = {"routes": list(ROUTES)}
+        human_path.write_text(json.dumps(human))
+        _write_json(
+            root,
+            "data/licence_review/standing_scope.json",
+            {
+                "schema_version": "standing-approval-v1",
+                "dashboard": {
+                    "renew_with_passing_automation": True,
+                    "automated_packet_sha256": human["automated_packet_sha256"],
+                    "owner_packet_sha256": human["owner_packet_sha256"],
+                },
+            },
+        )
+        evidence = dashboard_review_evidence(root)
+        assert evidence["approval_mode"] == "standing_scoped"
+        assert evidence["checks"]["human_scoped_approval"] is True
+        automated["status"] = "fail"
+        automated_path.write_text(json.dumps(automated))
+        assert dashboard_review_evidence(root)["checks"]["automated_pass"] is False
 
 
 @pytest.mark.parametrize("content", [None, b"not-json", b"[]"])

@@ -1,0 +1,89 @@
+"""Owner-delegated renewal of bounded operational metadata, never source rights."""
+
+from __future__ import annotations
+
+import csv
+import hashlib
+import json
+from pathlib import Path
+from typing import Any, cast
+
+POLICY_PATH = Path("data/licence_review/standing_scope.json")
+
+
+def _object(value: object) -> dict[str, Any]:
+    return cast("dict[str, Any]", value) if isinstance(value, dict) else {}
+
+
+def standing_policy(root: Path) -> dict[str, Any]:
+    """Read an explicit policy; absent or malformed configuration grants nothing."""
+    try:
+        value = _object(json.loads((root / POLICY_PATH).read_text(encoding="utf-8")))
+    except OSError, ValueError:
+        return {}
+    if value.get("schema_version") != "standing-approval-v1":
+        return {}
+    return value
+
+
+def _rows(path: Path) -> list[Any]:
+    raw = path.read_text(encoding="utf-8")
+    if path.suffix == ".csv":
+        return list(csv.DictReader(raw.splitlines()))
+    if path.suffix == ".jsonl":
+        return [json.loads(line) for line in raw.splitlines() if line.strip()]
+    return [json.loads(raw)] if path.suffix == ".json" else []
+
+
+def _safe_shape(row: dict[str, Any]) -> bool:
+    """Receipts contain scalar metadata, scalar lists or numeric status counters."""
+    for key, value in row.items():
+        if isinstance(value, dict):
+            if key != "status_counts" or not all(
+                type(item) is int and item >= 0 for item in cast("dict[str, Any]", value).values()
+            ):
+                return False
+        elif isinstance(value, list):
+            if not all(
+                isinstance(item, (str, int, float, bool, type(None)))
+                for item in cast("list[Any]", value)
+            ):
+                return False
+        elif not isinstance(value, (str, int, float, bool, type(None))):
+            return False
+    return True
+
+
+def metadata_scope_valid(root: Path, relative_path: str) -> bool:
+    """Allow checksum churn only for enumerated fields, source families and rights."""
+    policy = standing_policy(root)
+    metadata = _object(policy.get("metadata"))
+    scope = _object(metadata.get(relative_path))
+    rights = _object(policy.get("rights_files"))
+    if not scope or not rights:
+        return False
+    path = root / relative_path
+    if path.is_symlink() or not path.resolve().is_relative_to(root.resolve()):
+        return False
+    try:
+        rights_valid = all(
+            hashlib.sha256((root / name).read_bytes()).hexdigest() == checksum
+            for name, checksum in rights.items()
+        )
+        rows = _rows(path)
+    except OSError, ValueError, csv.Error:
+        return False
+    fields = scope.get("fields", [])
+    risk_values = _object(scope.get("risk_values"))
+    if not rights_valid or not rows or not isinstance(fields, list) or "risk_values" not in scope:
+        return False
+    return all(
+        bool(_object(row))
+        and _safe_shape(_object(row))
+        and set(_object(row)) == set(cast("list[str]", fields))
+        and all(
+            json.dumps(_object(row).get(key), sort_keys=True) in allowed
+            for key, allowed in risk_values.items()
+        )
+        for row in rows
+    )

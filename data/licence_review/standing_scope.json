@@ -1,0 +1,598 @@
+{
+  "schema_version": "standing-approval-v1",
+  "reviewer": "repository-owner",
+  "approval_reference": "Owner instruction: stop routine approval requests; scoped approval of cd41e79a and run 33289906841.",
+  "reviewer_packet_sha256": "0d97be06138f5315c400bb30be87ac79443945832e5defad3d58bd7aa7ebb90a",
+  "dashboard": {
+    "renew_with_passing_automation": true,
+    "automated_packet_sha256": "55a2faada41dd1d51577b6a8fb762f95fc6f929204d3ef009b4a70486fd8571d",
+    "owner_packet_sha256": "01f021cfc41f2aee595c3e199bd88d8df8632cf488f7db0f04f4f5b1004e70dc"
+  },
+  "rights_files": {
+    "docs/SOURCE_LICENCE_EVIDENCE.md": "fb2b06d1d08d597b1f4be3bbfe60af97b4a7dd1a4d9b9039185255d2bb110530",
+    "docs/LICENCE_DECISION_MATRIX.md": "ec9761c1d0fa3bdc64a40b853beee26518eae4e46e255d13dd375482e45655e5"
+  },
+  "metadata": {
+    "data/derived/historical_sources/historical_mbs_archive_targets.csv": {
+      "fields": [
+        "archive_page",
+        "archive_page_id",
+        "archive_period",
+        "download_policy",
+        "file_kind",
+        "file_name",
+        "file_url",
+        "id",
+        "licence_gate",
+        "notes",
+        "source_id",
+        "source_version_id",
+        "status"
+      ],
+      "approved_sha256": "e6b8e47d1c2620e0fe056c6b1c46b48fe33c61051fb8e6cbff43a9d657776faf",
+      "risk_values": {
+        "licence_gate": [
+          "\"public_reuse_review\""
+        ],
+        "source_id": [
+          "\"au_mbs\""
+        ],
+        "download_policy": [
+          "\"manual_review_only\""
+        ]
+      }
+    },
+    "data/derived/historical_sources/historical_mbs_archive_targets.jsonl": {
+      "fields": [
+        "archive_page",
+        "archive_page_id",
+        "archive_period",
+        "download_policy",
+        "file_kind",
+        "file_name",
+        "file_url",
+        "id",
+        "licence_gate",
+        "notes",
+        "source_id",
+        "source_version_id",
+        "status"
+      ],
+      "approved_sha256": "a348e253ba87f94d30786392adba6055f69eb75d87aca2cc2598a1f0798ce9d7",
+      "risk_values": {
+        "licence_gate": [
+          "\"public_reuse_review\""
+        ],
+        "source_id": [
+          "\"au_mbs\""
+        ],
+        "download_policy": [
+          "\"manual_review_only\""
+        ]
+      }
+    },
+    "data/derived/historical_sources/historical_mbs_review_queue.csv": {
+      "fields": [
+        "archive_page",
+        "archive_period",
+        "decision_evidence",
+        "download_policy",
+        "file_kind",
+        "file_url",
+        "id",
+        "licence_gate",
+        "permitted_derived_fields",
+        "review_notes",
+        "review_status",
+        "reviewed_at",
+        "reviewer"
+      ],
+      "approved_sha256": "d5764e13463d937e7f2538d2b2819ac12d3ec80a6b6e79a4aba5d0fae5401744",
+      "risk_values": {
+        "licence_gate": [
+          "\"public_reuse_review\""
+        ],
+        "permitted_derived_fields": [
+          "\"\""
+        ],
+        "download_policy": [
+          "\"manual_review_only\""
+        ]
+      }
+    },
+    "data/derived/historical_sources/historical_mbs_review_queue.jsonl": {
+      "fields": [
+        "archive_page",
+        "archive_period",
+        "decision_evidence",
+        "download_policy",
+        "file_kind",
+        "file_url",
+        "id",
+        "licence_gate",
+        "permitted_derived_fields",
+        "review_notes",
+        "review_status",
+        "reviewed_at",
+        "reviewer"
+      ],
+      "approved_sha256": "65ef648f4a10f4e12613ed924350aeec79d724bedd74e547f19da9c64edb5df6",
+      "risk_values": {
+        "licence_gate": [
+          "\"public_reuse_review\""
+        ],
+        "permitted_derived_fields": [
+          "\"\""
+        ],
+        "download_policy": [
+          "\"manual_review_only\""
+        ]
+      }
+    },
+    "data/derived/historical_sources/historical_source_downloads.csv": {
+      "fields": [
+        "archive_page",
+        "byte_size",
+        "cache_path",
+        "checksum_sha256",
+        "citation_key",
+        "detail",
+        "file_kind",
+        "file_name",
+        "id",
+        "licence_gate",
+        "review_status",
+        "source_id",
+        "source_url",
+        "source_version_id",
+        "status",
+        "transformation_process"
+      ],
+      "approved_sha256": "a3eadc505c7a89d4df018e5234c62d70e3dc3c4cc248a5664c141f65d6646326",
+      "risk_values": {
+        "licence_gate": [
+          "\"public_reuse_review\""
+        ],
+        "source_id": [
+          "\"au_mbs\""
+        ]
+      }
+    },
+    "data/derived/historical_sources/historical_source_downloads.jsonl": {
+      "fields": [
+        "archive_page",
+        "byte_size",
+        "cache_path",
+        "checksum_sha256",
+        "citation_key",
+        "detail",
+        "file_kind",
+        "file_name",
+        "id",
+        "licence_gate",
+        "review_status",
+        "source_id",
+        "source_url",
+        "source_version_id",
+        "status",
+        "transformation_process"
+      ],
+      "approved_sha256": "8ae141cf09f298669a8421583063a0b0d3ea1bcafb245d1d03288cc7a107df8f",
+      "risk_values": {
+        "licence_gate": [
+          "\"public_reuse_review\""
+        ],
+        "source_id": [
+          "\"au_mbs\""
+        ]
+      }
+    },
+    "data/derived/historical_sources/historical_source_downloads_summary.json": {
+      "fields": [
+        "generated_at",
+        "licence_policy",
+        "raw_cache_policy",
+        "schema_version",
+        "status_counts",
+        "target_count",
+        "transformation_process"
+      ],
+      "approved_sha256": "e2958d31e6343e4d7fa939967031d983b8a5e5109a64e52d099c9fd2ef9936db",
+      "risk_values": {
+        "raw_cache_policy": [
+          "\"ignored_local_only\""
+        ],
+        "licence_policy": [
+          "\"download_does_not_grant_redistribution_rights\""
+        ]
+      }
+    },
+    "data/derived/historical_sources/pbs_archive_v1/historical_pbs_archive_targets.csv": {
+      "fields": [
+        "archive_page",
+        "archive_period",
+        "download_policy",
+        "file_kind",
+        "file_name",
+        "file_url",
+        "id",
+        "licence_gate",
+        "notes",
+        "source_id",
+        "source_version_id",
+        "status"
+      ],
+      "approved_sha256": "bdbd4eceb4f50ef3b58a89476807f6c3f6aafaaf4637e41f8f323156ad128e90",
+      "risk_values": {
+        "licence_gate": [
+          "\"public_reuse_review\""
+        ],
+        "source_id": [
+          "\"au_pbs\""
+        ],
+        "download_policy": [
+          "\"download_for_local_review\""
+        ]
+      }
+    },
+    "data/derived/historical_sources/pbs_archive_v1/historical_pbs_archive_targets.jsonl": {
+      "fields": [
+        "archive_page",
+        "archive_period",
+        "download_policy",
+        "file_kind",
+        "file_name",
+        "file_url",
+        "id",
+        "licence_gate",
+        "notes",
+        "source_id",
+        "source_version_id",
+        "status"
+      ],
+      "approved_sha256": "acba22bc74529fa24cc39e3eaa39671c2822873c526d7c05fca3f25eb07641e0",
+      "risk_values": {
+        "licence_gate": [
+          "\"public_reuse_review\""
+        ],
+        "source_id": [
+          "\"au_pbs\""
+        ],
+        "download_policy": [
+          "\"download_for_local_review\""
+        ]
+      }
+    },
+    "data/derived/historical_sources/pbs_archive_v1/historical_source_downloads.csv": {
+      "fields": [
+        "archive_page",
+        "byte_size",
+        "cache_path",
+        "checksum_sha256",
+        "citation_key",
+        "detail",
+        "file_kind",
+        "file_name",
+        "id",
+        "licence_gate",
+        "review_status",
+        "source_id",
+        "source_url",
+        "source_version_id",
+        "status",
+        "transformation_process"
+      ],
+      "approved_sha256": "1200728c1f513e8835c6ceaabc76edb1d31dccd099a11c0786b12bf5ca4355e9",
+      "risk_values": {
+        "licence_gate": [
+          "\"public_reuse_review\""
+        ],
+        "source_id": [
+          "\"au_pbs\""
+        ]
+      }
+    },
+    "data/derived/historical_sources/pbs_archive_v1/historical_source_downloads.jsonl": {
+      "fields": [
+        "archive_page",
+        "byte_size",
+        "cache_path",
+        "checksum_sha256",
+        "citation_key",
+        "detail",
+        "file_kind",
+        "file_name",
+        "id",
+        "licence_gate",
+        "review_status",
+        "source_id",
+        "source_url",
+        "source_version_id",
+        "status",
+        "transformation_process"
+      ],
+      "approved_sha256": "aff99a68d7f7af7e7d2766b80599f75365c06f8c7620f317cf4b15104473772e",
+      "risk_values": {
+        "licence_gate": [
+          "\"public_reuse_review\""
+        ],
+        "source_id": [
+          "\"au_pbs\""
+        ]
+      }
+    },
+    "data/derived/historical_sources/pbs_archive_v1/historical_source_downloads_summary.json": {
+      "fields": [
+        "generated_at",
+        "licence_policy",
+        "raw_cache_policy",
+        "schema_version",
+        "status_counts",
+        "target_count",
+        "transformation_process",
+        "verified_payload_bytes",
+        "verified_payload_count",
+        "verified_target_fraction"
+      ],
+      "approved_sha256": "5ff1749d943045f4e7aac911f6355e18382dc6c2e29af141f0f74c470d8349d3",
+      "risk_values": {
+        "raw_cache_policy": [
+          "\"ignored_local_only\""
+        ],
+        "licence_policy": [
+          "\"download_does_not_grant_redistribution_rights\""
+        ]
+      }
+    },
+    "data/derived/historical_sources/pbs_archive_v1/targets_summary.json": {
+      "fields": [
+        "payload_format",
+        "period_end",
+        "period_start",
+        "publication_effect",
+        "raw_cache_policy",
+        "schema_version",
+        "structured_api_equivalence",
+        "target_count",
+        "unknown_period_count"
+      ],
+      "approved_sha256": "f93bc4623376c7fd74ceb12d4f8f6df1a86976a646fb37ac25fd81162fc3df45",
+      "risk_values": {
+        "raw_cache_policy": [
+          "\"ignored_local_only\""
+        ],
+        "structured_api_equivalence": [
+          "false"
+        ],
+        "publication_effect": [
+          "\"none\""
+        ]
+      }
+    },
+    "data/derived/source_downloads/download_plans.csv": {
+      "fields": [
+        "auth_env_var",
+        "captures_headers",
+        "command",
+        "etag_path",
+        "header_path",
+        "licence_gate",
+        "metadata_path",
+        "method",
+        "notes",
+        "should_execute",
+        "source_file_id",
+        "supports_resume",
+        "target_path"
+      ],
+      "approved_sha256": "dfbf82a474da0e6ec3fec9b28a9de97bd31f5806904b9743d7202361462ececf",
+      "risk_values": {
+        "licence_gate": [
+          "\"metadata_only\"",
+          "\"permissive_candidate\"",
+          "\"public_reuse_review\"",
+          "\"restricted_or_licence_review\""
+        ],
+        "source_file_id": [
+          "\"au_mbs_1989_2010_previous_downloads_page\"",
+          "\"au_mbs_2010_2019_downloads_page\"",
+          "\"au_mbs_20260701_desc_txt\"",
+          "\"au_mbs_20260701_imap_txt\"",
+          "\"au_mbs_20260701_xml\"",
+          "\"au_pbs_api_csv_download_page\"",
+          "\"au_pbs_api_v3_documentation\"",
+          "\"au_pbs_historical_structured_archive\"",
+          "\"au_services_australia_pbs_item_report\"",
+          "\"us_cms_asp_july_2026_payment_limit_page\"",
+          "\"us_cms_clfs_26clabq3_ama_zip\"",
+          "\"us_cms_clfs_26clabq3_page\"",
+          "\"us_cms_pfs_rvu26c_page\""
+        ]
+      }
+    },
+    "data/derived/source_downloads/download_plans.jsonl": {
+      "fields": [
+        "auth_env_var",
+        "captures_headers",
+        "command",
+        "etag_path",
+        "header_path",
+        "licence_gate",
+        "metadata_path",
+        "method",
+        "notes",
+        "should_execute",
+        "source_file_id",
+        "supports_resume",
+        "target_path"
+      ],
+      "approved_sha256": "faad224660889d09484f5b2d6bfc2e36901bbb6813f7e19ae1aaaf2407e16e8b",
+      "risk_values": {
+        "licence_gate": [
+          "\"metadata_only\"",
+          "\"permissive_candidate\"",
+          "\"public_reuse_review\"",
+          "\"restricted_or_licence_review\""
+        ],
+        "source_file_id": [
+          "\"au_mbs_1989_2010_previous_downloads_page\"",
+          "\"au_mbs_2010_2019_downloads_page\"",
+          "\"au_mbs_20260701_desc_txt\"",
+          "\"au_mbs_20260701_imap_txt\"",
+          "\"au_mbs_20260701_xml\"",
+          "\"au_pbs_api_csv_download_page\"",
+          "\"au_pbs_api_v3_documentation\"",
+          "\"au_pbs_historical_structured_archive\"",
+          "\"au_services_australia_pbs_item_report\"",
+          "\"us_cms_asp_july_2026_payment_limit_page\"",
+          "\"us_cms_clfs_26clabq3_ama_zip\"",
+          "\"us_cms_clfs_26clabq3_page\"",
+          "\"us_cms_pfs_rvu26c_page\""
+        ]
+      }
+    },
+    "data/derived/source_validation/source_content_validation.csv": {
+      "fields": [
+        "byte_size",
+        "checksum_sha256",
+        "expected_format",
+        "expected_record_count",
+        "id",
+        "issues",
+        "local_target_ref",
+        "observed_record_count",
+        "recommended_action",
+        "source_file_id",
+        "source_id",
+        "source_version_id",
+        "validation_status"
+      ],
+      "approved_sha256": "ebf7c8a0cb01943b42ba6cc9fe2645bc3f6267abb1c239a1879577137140182a",
+      "risk_values": {
+        "source_id": [
+          "\"au_aihw_mbs_pbs_stats\"",
+          "\"au_mbs\"",
+          "\"au_pbs\"",
+          "\"us_cms_asp\"",
+          "\"us_cms_clfs\"",
+          "\"us_cms_pfs\""
+        ],
+        "source_file_id": [
+          "\"au_mbs_1989_2010_previous_downloads_page\"",
+          "\"au_mbs_2010_2019_downloads_page\"",
+          "\"au_mbs_20260701_desc_txt\"",
+          "\"au_mbs_20260701_imap_txt\"",
+          "\"au_mbs_20260701_xml\"",
+          "\"au_pbs_api_csv_download_page\"",
+          "\"au_pbs_api_v3_documentation\"",
+          "\"au_pbs_historical_structured_archive\"",
+          "\"au_services_australia_pbs_item_report\"",
+          "\"us_cms_asp_july_2026_payment_limit_page\"",
+          "\"us_cms_clfs_26clabq3_ama_zip\"",
+          "\"us_cms_clfs_26clabq3_page\"",
+          "\"us_cms_pfs_rvu26c_page\""
+        ]
+      }
+    },
+    "data/derived/source_validation/source_content_validation.jsonl": {
+      "fields": [
+        "byte_size",
+        "checksum_sha256",
+        "expected_format",
+        "expected_record_count",
+        "id",
+        "issues",
+        "local_target_ref",
+        "observed_record_count",
+        "recommended_action",
+        "source_file_id",
+        "source_id",
+        "source_version_id",
+        "validation_status"
+      ],
+      "approved_sha256": "7ca644f2b4ebece108d094279ccaa26aadd89a575937e410ed52b855f6626ac7",
+      "risk_values": {
+        "source_id": [
+          "\"au_aihw_mbs_pbs_stats\"",
+          "\"au_mbs\"",
+          "\"au_pbs\"",
+          "\"us_cms_asp\"",
+          "\"us_cms_clfs\"",
+          "\"us_cms_pfs\""
+        ],
+        "source_file_id": [
+          "\"au_mbs_1989_2010_previous_downloads_page\"",
+          "\"au_mbs_2010_2019_downloads_page\"",
+          "\"au_mbs_20260701_desc_txt\"",
+          "\"au_mbs_20260701_imap_txt\"",
+          "\"au_mbs_20260701_xml\"",
+          "\"au_pbs_api_csv_download_page\"",
+          "\"au_pbs_api_v3_documentation\"",
+          "\"au_pbs_historical_structured_archive\"",
+          "\"au_services_australia_pbs_item_report\"",
+          "\"us_cms_asp_july_2026_payment_limit_page\"",
+          "\"us_cms_clfs_26clabq3_ama_zip\"",
+          "\"us_cms_clfs_26clabq3_page\"",
+          "\"us_cms_pfs_rvu26c_page\""
+        ]
+      }
+    },
+    "data/seed/historical_mbs_archive_targets.jsonl": {
+      "fields": [
+        "archive_page",
+        "archive_page_id",
+        "archive_period",
+        "download_policy",
+        "file_kind",
+        "file_name",
+        "file_url",
+        "id",
+        "licence_gate",
+        "notes",
+        "source_id",
+        "source_version_id",
+        "status"
+      ],
+      "approved_sha256": "a348e253ba87f94d30786392adba6055f69eb75d87aca2cc2598a1f0798ce9d7",
+      "risk_values": {
+        "licence_gate": [
+          "\"public_reuse_review\""
+        ],
+        "source_id": [
+          "\"au_mbs\""
+        ],
+        "download_policy": [
+          "\"manual_review_only\""
+        ]
+      }
+    },
+    "data/seed/historical_pbs_archive_targets.jsonl": {
+      "fields": [
+        "archive_page",
+        "archive_period",
+        "download_policy",
+        "file_kind",
+        "file_name",
+        "file_url",
+        "id",
+        "licence_gate",
+        "notes",
+        "source_id",
+        "source_version_id",
+        "status"
+      ],
+      "approved_sha256": "acba22bc74529fa24cc39e3eaa39671c2822873c526d7c05fca3f25eb07641e0",
+      "risk_values": {
+        "licence_gate": [
+          "\"public_reuse_review\""
+        ],
+        "source_id": [
+          "\"au_pbs\""
+        ],
+        "download_policy": [
+          "\"download_for_local_review\""
+        ]
+      }
+    }
+  }
+}

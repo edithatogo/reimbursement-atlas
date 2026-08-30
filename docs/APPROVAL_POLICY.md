@@ -1,5 +1,20 @@
 # Approval policy
 
+## Owner delegation effective 2026-08-30 (supersedes stricter wording below)
+
+`data/licence_review/standing_scope.json` records the owner's explicit delegation:
+the 19 approved metadata paths renew automatically within their enumerated fields,
+source families, risk-bearing values and rights-evidence contract. Checksum churn
+is provenance, not a reason to ask again. New paths, fields, sources or changed
+rights evidence require one grouped material-scope decision. No raw rights are granted.
+
+Passing dashboard reruns within the approved route/browser scope renew automatically,
+including routine UI and dependency changes. The historical owner receipt remains
+immutable; renewal is automation, not another human review. Failed checks require
+remediation; missing or stale packets require fresh hosted evidence, not owner sign-off.
+Expanded claims, routes/browser scope, restricted content and unauthorized external
+mutations remain gated. Universal accessibility and manual VoiceOver are not claimed.
+
 This repository minimises approval prompts without treating automation as external authorization.
 Every gate uses the lowest-friction tier that still fails closed for its risk.
 
@@ -8,8 +23,8 @@ Every gate uses the lowest-friction tier that still fails closed for its risk.
 | Tier | Requirement | Examples |
 | --- | --- | --- |
 | Automatic policy | No accountable prompt. Deterministic checks and repository policy decide. | Apache-2.0 project code, architecture reports, SBOMs, quality reports and release-control metadata. |
-| Standing scoped approval | Reuse a prior bounded approval while its immutable scope and machine evidence remain valid. | Dashboard visual/accessibility approval when the reviewed UI fingerprint, routes and browser matrix are unchanged and the current automated, provenance and prohibited-content checks pass. |
-| Accountable review | One grouped decision for a material risk boundary. | A new source-rights or derived-field scope, a research or policy claim, a material dashboard UI/scope change, or a protocol interpretation. |
+| Standing scoped approval | Reuse an owner-delegated contract while scope and machine evidence remain valid. | Enumerated metadata renewal and passing dashboard reruns within the approved route/browser scope. |
+| Accountable review | One grouped decision for a material risk boundary. | A new source-rights or derived-field scope, a research or policy claim, an expanded dashboard scope, or a protocol interpretation. |
 | Explicit external mutation | A separately authorized high-impact action. | Publishing or changing a Hugging Face, Zenodo, DOI, release or registration record. OSF is retained as historical evidence only. |
 
 ## Reapproval triggers
@@ -18,8 +33,7 @@ Accountable reapproval is required only when at least one of these events occurs
 
 - a source licence, rights scope, permitted field set or restricted-content rule changes;
 - a checksum-bound source-derived artefact changes and no standing source-scope contract covers it;
-- dashboard implementation bytes, declared routes or browser-project scope change;
-- current dashboard automation, provenance parity or prohibited-content checks fail;
+- declared routes, browser-project scope or claim scope expands;
 - a new or materially changed causal, coverage, price-equivalence, reimbursement or accessibility claim is proposed;
 - an external publication target, payload scope or mutation changes.
 
@@ -33,21 +47,22 @@ The current dashboard validator may carry a prior `approved_within_scope` record
 
 1. Git history contains the exact reviewed automated and owner packets.
 2. Both historical packet SHA-256 values match the accountable record.
-3. Historical and current dashboard source fingerprints match. Only exact, code-declared,
-   regression-tested low-risk copy migrations may normalize to the reviewed fingerprint.
+3. Historical and current dashboard source fingerprints match, or the owner delegates
+   renewal to passing automation through the integrity-bound standing scope contract.
 4. Historical and current route and browser-project matrices match the declared contract.
 5. The current 64-test browser matrix, displayed-data parity, provenance assertions and
    prohibited-content checks pass.
 
-Any failed condition invalidates the standing approval and produces one grouped accountable
-review request. A standing approval never establishes universal WCAG conformance or independent
+Failed automation requires remediation, not approval. Stale packets require automatic refresh.
+Only a material scope change produces a grouped accountable request.
+A standing approval never establishes universal WCAG conformance or independent
 manual assistive-technology review.
 
 ## Source-rights boundary
 
 Project-owned operational evidence is Apache-2.0 output and never enters the provider-rights
-queue. Source-derived candidates remain checksum-bound and fail closed unless their exact current
-checksum has an approved decision. Raw payloads, restricted descriptors, secrets and local paths
+queue. Other source-derived candidates remain checksum-bound; enumerated standing metadata
+renews under the field/source/rights contract above. Raw payloads, restricted descriptors, secrets and local paths
 remain excluded regardless of approval tier.
 
 ## Prompting contract

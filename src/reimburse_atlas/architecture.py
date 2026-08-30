@@ -48,6 +48,7 @@ _LAYER_BY_ROOT_MODULE: dict[str, ArchitectureLayer] = {
     "quality": "foundation",
     "validation": "foundation",
     "licensing": "foundation",
+    "standing_approval": "foundation",
     "repo_policy": "foundation",
     "toolchain": "foundation",
     "parsers": "parsing",

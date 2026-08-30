@@ -1,5 +1,14 @@
 # Decision log
 
+## 2026-08-30 - Owner-delegated low-risk renewal
+
+Owner approved the 19-row reviewer packet and hosted dashboard packets for cd41e79a
+and run 33289906841, recorded with original hashes in standing_scope.json. Issue #789
+implements the explicit instruction to stop routine prompts. Metadata checksums may
+change within the field/source/rights contract; dashboard reruns may renew within
+the approved scope. Machine failures require fixes, not more owner approval. New
+rights, restricted content, expanded claims and external mutations remain gated.
+
 ## 2026-08-26: Reconcile every open GitHub issue by evidence scope
 
 - Close #21 because the current MBS XML parser has real-source, checksum,

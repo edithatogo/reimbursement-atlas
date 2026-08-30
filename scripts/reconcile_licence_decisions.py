@@ -7,6 +7,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from reimburse_atlas.registry import project_root
+from reimburse_atlas.standing_approval import metadata_scope_valid
 
 
 def reconcile(root: Path | None = None) -> int:
@@ -43,6 +44,21 @@ def reconcile(root: Path | None = None) -> int:
                 "Not approved for publication until the new checksum is reviewed."
             )
             changed += 1
+        if current and metadata_scope_valid(repo, str(decision["relative_path"])):
+            decision["decision"] = "approved"
+            decision["reviewer"] = "standing-scope-policy"
+            decision["evidence"] = (
+                "Automatic renewal under owner-authorized data/licence_review/standing_scope.json; "
+                "field set, source families and rights evidence unchanged. Not a new human review."
+            )
+            decision["redistribution_permission"] = (
+                "Operational metadata only under standing scope; "
+                "no raw payloads or restricted descriptors."
+            )
+        elif decision.get("reviewer") == "standing-scope-policy":
+            decision["decision"] = "blocked"
+            decision["evidence"] = "Standing scope no longer valid; material scope review required."
+            decision["redistribution_permission"] = "Blocked pending material scope review."
         decisions[str(decision["relative_path"])] = decision
 
     # Keep the human ledger total with the generated queue. New candidates must

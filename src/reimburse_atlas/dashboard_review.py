@@ -10,6 +10,8 @@ import subprocess  # nosec B404 - fixed git reader; commit and path are constrai
 from pathlib import Path
 from typing import Any, cast
 
+from reimburse_atlas.standing_approval import standing_policy
+
 AUTOMATED_PATH = Path("data/derived/dashboard_review/automated_review_packet.json")
 OWNER_PATH = Path("data/derived/dashboard_review/owner_review_packet.json")
 HUMAN_PATH = Path("data/derived/dashboard_review/human_review.json")
@@ -489,6 +491,16 @@ def _self_attestation_commit(repo: Path, human: dict[str, Any]) -> str | None:
     return reviewed_commit if isinstance(reviewed_commit, str) else None
 
 
+def _delegated_renewal(repo: Path, human: dict[str, Any]) -> bool:
+    raw = standing_policy(repo).get("dashboard", {})
+    delegated = cast("dict[str, Any]", raw) if isinstance(raw, dict) else {}
+    return bool(
+        delegated.get("renew_with_passing_automation") is True
+        and delegated.get("automated_packet_sha256") == human.get("automated_packet_sha256")
+        and delegated.get("owner_packet_sha256") == human.get("owner_packet_sha256")
+    )
+
+
 def _standing_approval_valid(
     repo: Path,
     *,
@@ -541,6 +553,7 @@ def _standing_approval_valid(
                 and reviewed_owner.get("source_fingerprint") == source_fingerprint
             )
             or _implementation_unchanged_since(repo, reviewed_commit, tested_commit)
+            or _delegated_renewal(repo, human)
         )
         and automated.get("source_fingerprint") == source_fingerprint
         and owner.get("source_fingerprint") == source_fingerprint

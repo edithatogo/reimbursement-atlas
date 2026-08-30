@@ -1,6 +1,22 @@
 version: 2
 updated: "2026-07-31"
 epics:
+  - id: STANDING-001
+    title: Standing low-risk authorization
+    phase: hardening
+    workstream: governance
+    priority: must
+    track_id: standing_low_risk_authorization_20260830
+    issues:
+      - title: Eliminate routine checksum and dashboard approval prompts
+        labels: ["type:repo-automation", "type:governance", "status:implemented"]
+        status: implemented
+        github_issue: 789
+        acceptance:
+          - "Approved metadata renews within exact field/source/rights scope without owner prompts."
+          - "Passing dashboard reruns renew within approved route/browser scope without a new human review."
+          - "New rights, claims and restricted-content boundaries remain fail closed."
+        blockers: []
   - id: BACKLOG-REC-001
     title: Backlog state reconciliation
     phase: hardening
