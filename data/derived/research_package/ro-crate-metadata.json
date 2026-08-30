@@ -1886,20 +1886,20 @@
     {
       "@id": "data/derived/architecture/import_edges.jsonl",
       "@type": "File",
-      "contentSize": 67696,
+      "contentSize": 67697,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "import_edges",
-      "sha256": "daf2584a2ae015d73092706025ecc7074c5321497cf08150dd32a2d2fdf30a5d"
+      "sha256": "4fe0c0b5a91eaf3853481e61fc399ccaf80596f3fbf852a2f341fc65889b8560"
     },
     {
       "@id": "data/derived/architecture/import_edges.csv",
       "@type": "File",
-      "contentSize": 35818,
+      "contentSize": 35819,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "import_edges",
-      "sha256": "597743f572c5276e35b4d90f4e9a55d620dd154f98264eed7f47670aaf47279c"
+      "sha256": "cf7c7c642a8957010b2b82184ca4bbdc3e27bb8dede3ba04f6878cb70b7bf07a"
     },
     {
       "@id": "data/derived/architecture/layer_policy.jsonl",
