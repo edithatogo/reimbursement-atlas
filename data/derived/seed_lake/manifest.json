@@ -353,15 +353,15 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 45,
-      "sha256": "462d30b40a41a42310807708358f4ed95cde7c48c97a348a9b5e1e344bb80217"
+      "sha256": "983e0bf01e90470cda7036485ca90bdfda295354a9bdecfdd9246abe1919a8e6"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
       "jsonl_path": "source_download_plans/source_download_plans.jsonl",
       "name": "source_download_plans",
       "parquet_path": "source_download_plans/source_download_plans.parquet",
-      "rows": 11,
-      "sha256": "c3123c44ee2400edfb00b36b8ded6126345c7384bd4edb887247e0bd2c6bb99f"
+      "rows": 13,
+      "sha256": "faad224660889d09484f5b2d6bfc2e36901bbb6813f7e19ae1aaaf2407e16e8b"
     },
     {
       "csv_path": "source_download_attempts/source_download_attempts.csv",
@@ -377,7 +377,7 @@
       "name": "source_content_validation",
       "parquet_path": "source_content_validation/source_content_validation.parquet",
       "rows": 13,
-      "sha256": "15354a7332ff51344438731ef2d4763a60e94a63f1736eceb91555d5ff88e0ee"
+      "sha256": "b9371a67d6a7f9fad06b3432f6e87ad7b878d4b126d048a02d35e6d05d99e6ab"
     },
     {
       "csv_path": "source_contract_validation/source_contract_validation.csv",
@@ -393,7 +393,7 @@
       "name": "bronze_source_index",
       "parquet_path": "bronze_source_index/bronze_source_index.parquet",
       "rows": 64,
-      "sha256": "5bec64100e99665fee49cf97e63e0084aa6e4b8275c9d2922543f2baa8183c76"
+      "sha256": "d1c44e8b3a5ec0b83caa972e12a29b86864cd2a3985cb38edc114f67463a3403"
     },
     {
       "csv_path": "bronze_acquisition_ledger/bronze_acquisition_ledger.csv",
@@ -401,15 +401,15 @@
       "name": "bronze_acquisition_ledger",
       "parquet_path": "bronze_acquisition_ledger/bronze_acquisition_ledger.parquet",
       "rows": 2077,
-      "sha256": "e7ace382f07cdb4cf25c70bae2e55ff03a716402a296cc13e57be4ca3f5ba5ac"
+      "sha256": "ec9958e16d0ecb36de1ab5d80e4568694d9e3481f70c8a9da64b6e732bf51de3"
     },
     {
       "csv_path": "bronze_evidence/bronze_evidence.csv",
       "jsonl_path": "bronze_evidence/bronze_evidence.jsonl",
       "name": "bronze_evidence",
       "parquet_path": "bronze_evidence/bronze_evidence.parquet",
-      "rows": 2056,
-      "sha256": "d7d33a8b0b6bd5cf507639286348b53e79d76e59347ef9575ff555a1e66f68c5"
+      "rows": 2058,
+      "sha256": "19aa024b2301746a5174cbaa0fcfa71a567f6af4bfce31a8729fb7abffe7cd01"
     },
     {
       "csv_path": "medallion_artifacts/medallion_artifacts.csv",
@@ -425,7 +425,7 @@
       "name": "medallion_promotion_decisions",
       "parquet_path": "medallion_promotion_decisions/medallion_promotion_decisions.parquet",
       "rows": 2146,
-      "sha256": "f7c9f105ceee5e6ce5d997ac088583017a4a0e46c33a1f8878593af5ae23ae8a"
+      "sha256": "ec359709bd841eca9a549d9ce067359de9280f9b47a680b5c90c3cdfaad22f81"
     },
     {
       "csv_path": "github_project_items/github_project_items.csv",
@@ -441,7 +441,7 @@
       "name": "final_handoff_tasks",
       "parquet_path": "final_handoff_tasks/final_handoff_tasks.parquet",
       "rows": 11,
-      "sha256": "ecaf15060066fef886583718addd238efed45d5c17705ae087b96e1ca505e334"
+      "sha256": "2873b38f14aff3a7745a6b4af5c04cc8bb40ae332033a7274d0157325a299530"
     },
     {
       "csv_path": "protocol_status/protocol_status.csv",
@@ -481,7 +481,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "c720f15fe567f729e330e3ce334c21adb52584f3b7a1faa80d44a1d4f2ad1b1d"
+      "sha256": "24300a380a609fa91e8e6775bd721994ffff081c2f8af388b6b52ac7a430dd32"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
@@ -489,7 +489,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 276,
-      "sha256": "523da2c58f4dc02f33862c3f6423ed76ceb5054e35638814a642e25cf1da979d"
+      "sha256": "78c5ebb3e8764c694e8b1e62b2ea76f1a4c436d4f8250b183b05bbedd2e83d46"
     }
   ]
 }

@@ -10,9 +10,9 @@ checksum-bound row-level record.
 
 ## Current batches
 
-- `permissive_candidate` / `public_derived_candidate`: 139 artefacts, 190329407 bytes
+- `permissive_candidate` / `public_derived_candidate`: 135 artefacts, 190294683 bytes
 - `permissive_candidate` / `public_metadata_candidate`: 30 artefacts, 231553 bytes
-- `public_reuse_review` / `public_derived_candidate`: 13 artefacts, 4104362 bytes
+- `public_reuse_review` / `public_derived_candidate`: 17 artefacts, 4144158 bytes
 - `public_reuse_review` / `public_metadata_candidate`: 2 artefacts, 938312 bytes
 
 Total candidate artefacts: 184. Neutral generated row markers are not approval
