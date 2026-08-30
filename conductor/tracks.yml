@@ -4,11 +4,11 @@ tracks:
   - id: standing_low_risk_authorization_20260830
     title: "Standing low-risk authorization"
     priority: must
-    phase: hardening
+    phase: archived
     workstream: governance
     goal: "Replace routine checksum and dashboard approval prompts with bounded owner-delegated renewal."
-    spec: "conductor/tracks/standing_low_risk_authorization_20260830/spec.md"
-    plan: "conductor/tracks/standing_low_risk_authorization_20260830/plan.md"
+    spec: "conductor/archive/standing_low_risk_authorization_20260830/spec.md"
+    plan: "conductor/archive/standing_low_risk_authorization_20260830/plan.md"
     issues: [789]
   - id: pbs_lifecycle_utilisation_evidence_20260829
     title: "PBS lifecycle and utilisation evidence"
