@@ -1,5 +1,14 @@
 # Current focus
 
+## 2026-08-30 - Standing evidence renewal and continuous execution
+
+PR #790 merged at `b098cb28`; routine in-scope metadata and dashboard renewal is
+delegated to machine validation. Issue #791 follows through with hosted run
+33295830383, without another human review. The execution queue and bounded
+external contingencies are in `docs/AUTONOMOUS_CONTINUATION.md`. Historical
+entries below are provenance snapshots, not instructions to repeat completed
+publication, holdout evaluation or owner approval.
+
 The common authoritative release snapshot for current-state documentation is
 `dd7c7592d07e12fcdbba8c5ca12db5b3d091a0d6`. Later entries below retain older
 commit-bound review evidence as historical provenance, not as the current release head.

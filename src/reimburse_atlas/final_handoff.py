@@ -174,14 +174,21 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "GitHub Actions with configured HF_TOKEN, HF_DATASET_REPO and HF_SPACE_REPO "
                 "targets, plus licence and evidence review."
             ),
-            command="gh workflow run huggingface.yml",
+            command=(
+                "gh workflow view huggingface.yml"
+                if _huggingface_external_state(repo) == "published"
+                else "gh workflow run huggingface.yml"
+            ),
             evidence_path=".github/workflows/huggingface.yml",
             unblock_condition=(
                 "Licence, evidence, policy and research gates pass and publication is explicitly "
                 "approved."
             ),
             recommended_action=(
-                "The dry run has passed; inspect the candidate bundle and publish only after "
+                "Preserve the published receipt and verify remote parity read-only; "
+                "do not republish unchanged artifacts."
+                if _huggingface_external_state(repo) == "published"
+                else "The dry run has passed; inspect the candidate bundle and publish only after "
                 "the remaining review gates are approved."
             ),
             reason_code=_huggingface_reason_code(repo),
@@ -213,8 +220,10 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "adjudication is frozen, and the untouched holdout is evaluated exactly once."
             ),
             recommended_action=(
-                f"Preserve prior cycles as immutable evidence. Complete {mapping_cycle} under its "
-                "bounded codebook; do not disclose or evaluate its holdout early."
+                "Preserve the accepted evaluation and immutable holdout; do not reevaluate it."
+                if _mapping_evaluation_accepted(repo)
+                else f"Preserve prior cycles as immutable evidence. Complete {mapping_cycle} "
+                "under its bounded codebook; do not disclose or evaluate its holdout early."
             ),
             reason_code=(
                 "mapping_holdout_accepted"
@@ -357,7 +366,9 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "confirmation value."
             ),
             command=(
-                "gh workflow run zenodo-preflight.yml -f mode=draft "
+                "gh workflow run zenodo-preflight.yml -f mode=plan"
+                if _zenodo_handoff_status(repo) == "complete"
+                else "gh workflow run zenodo-preflight.yml -f mode=draft "
                 "-f confirm=CREATE_ZENODO_DRAFT -f release_tag=v0.1.0"
             ),
             evidence_path="data/derived/zenodo/external_state.json",
@@ -366,15 +377,25 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "token-gated draft mutation; publication and DOI minting remain separate."
             ),
             recommended_action=(
-                "Replace the malformed ZENODO_TOKEN secret, rerun draft mode, and record "
-                "the returned deposition identifier without publishing it."
+                "Preserve the existing deposition and verify its metadata and checksums "
+                "read-only; do not create another draft or repeat publication."
+                if _zenodo_handoff_status(repo) == "complete"
+                else "Inspect current preflight evidence, remedy only the reported failure, "
+                "then resume the authorized draft operation without publishing it."
             ),
             reason_code=_zenodo_handoff_reason_code(repo),
             gate_evidence=(
                 "data/derived/zenodo/preflight.json",
                 "data/derived/zenodo/external_state.json",
             ),
-            external_state="pending",
+            external_state=(
+                "published"
+                if _read_json(repo / "data/derived/zenodo/external_state.json").get("status")
+                in {"published", "verified_public"}
+                else "ready"
+                if _zenodo_handoff_status(repo) == "complete"
+                else "pending"
+            ),
         ),
     ]
 
@@ -399,8 +420,9 @@ def write_final_handoff_tasks(
         "complete": sum(row.status == "complete" for row in rows),
         "download_ready": True,
         "download_ready_note": (
-            "Repo archive is ready; remaining tasks require network, credentials, or "
-            "human licence/research review."
+            "Repository handoff is available. Follow each incomplete task's evidence-derived "
+            "action; routine refreshes use standing authorization. Source coverage, rights "
+            "and external publication remain distinct gates."
         ),
     }
     summary_path = output_dir / "summary.json"

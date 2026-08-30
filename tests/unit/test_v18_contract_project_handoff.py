@@ -691,6 +691,7 @@ def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) ->
     assert "final_osf_protocol_pack" not in rows
     assert "final_osf_registration_drift_check" not in rows
     assert rows["final_mapping_calibration_review"].status == "complete"
+    assert "do not reevaluate" in rows["final_mapping_calibration_review"].recommended_action
     assert rows["final_historical_source_expansion"].status == "complete"
     assert "1,048 PBS PDFs" in rows["final_historical_source_expansion"].recommended_action
     assert (
@@ -712,6 +713,21 @@ def test_final_handoff_review_states_transition_from_evidence(tmp_path: Path) ->
     rows = {row.id: row for row in build_final_handoff_tasks(tmp_path)}
     assert rows["final_release_candidate"].status == "complete"
     assert rows["final_release_candidate"].external_state == "published"
+    assert rows["final_zenodo_draft"].external_state == "published"
+    assert "mode=plan" in rows["final_zenodo_draft"].command
+    assert "do not create another draft" in rows["final_zenodo_draft"].recommended_action
+
+
+def test_published_huggingface_handoff_does_not_request_republication(tmp_path: Path) -> None:
+    publication = tmp_path / "data/derived/publication"
+    publication.mkdir(parents=True, exist_ok=True)
+    (publication / "huggingface_remote_receipt.json").write_text(
+        json.dumps({"status": "published", "remote_parity_verified": True}), encoding="utf-8"
+    )
+    rows = {row.id: row for row in build_final_handoff_tasks(tmp_path)}
+    assert rows["final_hf_dataset_space"].status == "complete"
+    assert rows["final_hf_dataset_space"].command == "gh workflow view huggingface.yml"
+    assert "do not republish" in rows["final_hf_dataset_space"].recommended_action
 
 
 def test_mbs_descriptor_contract_passes_fixture() -> None:
