@@ -262,7 +262,7 @@
       "version": "0.3.2"
     },
     {
-      "bom-ref": "pkg:npm/@astrojs/internal-helpers@0.10.3",
+      "bom-ref": "pkg:npm/@astrojs/internal-helpers@0.10.4",
       "licenses": [
         {
           "license": {
@@ -274,12 +274,12 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-HIx/t1NywcqSTFaVwZh15n8JsC3YQdCaJZDaTS/aurYTEvNiWDXUGS3Z9uQX3bFB+B1pCgN/nljckkzYTpHZ2w=="
+          "value": "sha512-nozZSy/mKYLqe4YrqbKtdOszedAfXYCtw3wZ0d+CAjz4GqQ4L9rl1ltIL5BlgwmYVinJg/RZ0MgGuWOdlyRZlA=="
         }
       ],
-      "purl": "pkg:npm/@astrojs/internal-helpers@0.10.3",
+      "purl": "pkg:npm/@astrojs/internal-helpers@0.10.4",
       "type": "library",
-      "version": "0.10.3"
+      "version": "0.10.4"
     },
     {
       "bom-ref": "pkg:npm/@astrojs/internal-helpers/node_modules/js-yaml@",
@@ -316,7 +316,7 @@
       "version": "2.16.11"
     },
     {
-      "bom-ref": "pkg:npm/@astrojs/markdown-satteri@0.3.6",
+      "bom-ref": "pkg:npm/@astrojs/markdown-satteri@0.3.7",
       "licenses": [
         {
           "license": {
@@ -328,12 +328,12 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-kkeWP4Lh6Do/qz2R0DIAtPWCh6WPr1J4UrzDItVmHMK1HwyLHxG4JxM8uBNavhD7ivGOO9BUTsAP5D7ppa68CA=="
+          "value": "sha512-NHcHbrKW/opbZnTZQ5nH293BdcK2VV0tjuzI88CLnvy2njiEJVwUQ5KFnYd4NoWgHJCY/I1CyjGWCR4Vv3khXQ=="
         }
       ],
-      "purl": "pkg:npm/@astrojs/markdown-satteri@0.3.6",
+      "purl": "pkg:npm/@astrojs/markdown-satteri@0.3.7",
       "type": "library",
-      "version": "0.3.6"
+      "version": "0.3.7"
     },
     {
       "bom-ref": "pkg:npm/@astrojs/prism@4.0.2",
@@ -356,7 +356,7 @@
       "version": "4.0.2"
     },
     {
-      "bom-ref": "pkg:npm/@astrojs/react@6.0.3",
+      "bom-ref": "pkg:npm/@astrojs/react@6.0.4",
       "licenses": [
         {
           "license": {
@@ -368,12 +368,12 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-u4jhlM3D6YyeUgL0EJbyRHPlP0JZ4bN+97vOO2+QmCwf/IYvQJwnSVwn1T3k82c4JkYJU4Snd2v4aBMlGsWirg=="
+          "value": "sha512-0PDs0gM00vbUnw84Dh+YaxYaZzlppyzJub0J8wOO8/8AG4gV8L8X1ttiRp8cbSBGiWcu3UuspCaqIDO31ta8Uw=="
         }
       ],
-      "purl": "pkg:npm/@astrojs/react@6.0.3",
+      "purl": "pkg:npm/@astrojs/react@6.0.4",
       "type": "library",
-      "version": "6.0.3"
+      "version": "6.0.4"
     },
     {
       "bom-ref": "pkg:npm/@astrojs/telemetry@3.3.3",
@@ -809,7 +809,7 @@
       "version": "7.29.7"
     },
     {
-      "bom-ref": "pkg:npm/@bruits/satteri-darwin-arm64@0.9.5",
+      "bom-ref": "pkg:npm/@bruits/satteri-darwin-arm64@0.10.5",
       "licenses": [
         {
           "license": {
@@ -821,15 +821,15 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-iw4nZgx9v30lWo/MTngQqi1pI78KI0DnkSm+lVJGYdmPLgAyDNJigVhpG42/Iq55A6c1Ll8q66ljyyRiQUxwow=="
+          "value": "sha512-27KTVl4TJkVahMy/ohyA7qd4938G5UNneFUz/PsScYfpIhj0IVAS23mpcJXdPF44sa6nva198lmV/cKIb2YPyA=="
         }
       ],
-      "purl": "pkg:npm/@bruits/satteri-darwin-arm64@0.9.5",
+      "purl": "pkg:npm/@bruits/satteri-darwin-arm64@0.10.5",
       "type": "library",
-      "version": "0.9.5"
+      "version": "0.10.5"
     },
     {
-      "bom-ref": "pkg:npm/@bruits/satteri-darwin-x64@0.9.5",
+      "bom-ref": "pkg:npm/@bruits/satteri-darwin-x64@0.10.5",
       "licenses": [
         {
           "license": {
@@ -841,15 +841,15 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-6T26Z5Kf3cFW2PSlk9p7zT7yVxvuBSiJvYyz9u8KjYwMTqZyIDOj2wDyNpxKV4+6yUVG7rddq2QwvG/8LJA2+Q=="
+          "value": "sha512-IjnLe3nKspq6qaeqGgjT7MT8VrTV74yWRlaag7ZdNsI8TDAYZ0iPxMCo+9KQZHUk5EyVB+reBI/PFWL5KuFw9Q=="
         }
       ],
-      "purl": "pkg:npm/@bruits/satteri-darwin-x64@0.9.5",
+      "purl": "pkg:npm/@bruits/satteri-darwin-x64@0.10.5",
       "type": "library",
-      "version": "0.9.5"
+      "version": "0.10.5"
     },
     {
-      "bom-ref": "pkg:npm/@bruits/satteri-linux-arm64-gnu@0.9.5",
+      "bom-ref": "pkg:npm/@bruits/satteri-linux-arm64-gnu@0.10.5",
       "licenses": [
         {
           "license": {
@@ -861,15 +861,15 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-u51id17uJwNEMK9nBlICsq6U31c+XVqQueVBkwRIzZG+gMpS8TOJctt5h5Wz33Z8xnMdTd+adtACVz0yHgGuOA=="
+          "value": "sha512-glkYXZCJywjP13v67eAyAMSJdF+ncvEbYvgi/wOtffL9tQ27lr/zsyzUfgs+ovjJ9d8JNQKiXeiArJcX8PJL9w=="
         }
       ],
-      "purl": "pkg:npm/@bruits/satteri-linux-arm64-gnu@0.9.5",
+      "purl": "pkg:npm/@bruits/satteri-linux-arm64-gnu@0.10.5",
       "type": "library",
-      "version": "0.9.5"
+      "version": "0.10.5"
     },
     {
-      "bom-ref": "pkg:npm/@bruits/satteri-linux-arm64-musl@0.9.5",
+      "bom-ref": "pkg:npm/@bruits/satteri-linux-arm64-musl@0.10.5",
       "licenses": [
         {
           "license": {
@@ -881,15 +881,15 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-v39HxiwGC5Rqm01HksP6+5Y+xKLPlsuVFgIgpEAo+SiQ22c+mJVhS3u7Z6ePAKdhL5NJoK1xq70kLz3L13AhpQ=="
+          "value": "sha512-yWdgG1g17Nh2QyGVlFUxGRa3FEFwiMcpZEyMNWkbM3deC94cmVc+/i9OuyFpdKuWo3GkgoCtYVOoxk1uCnCZIA=="
         }
       ],
-      "purl": "pkg:npm/@bruits/satteri-linux-arm64-musl@0.9.5",
+      "purl": "pkg:npm/@bruits/satteri-linux-arm64-musl@0.10.5",
       "type": "library",
-      "version": "0.9.5"
+      "version": "0.10.5"
     },
     {
-      "bom-ref": "pkg:npm/@bruits/satteri-linux-x64-gnu@0.9.5",
+      "bom-ref": "pkg:npm/@bruits/satteri-linux-x64-gnu@0.10.5",
       "licenses": [
         {
           "license": {
@@ -901,15 +901,15 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-F3uO8uFp3pAP5ZGXttwvh57GS7s0lL953tnNdyI2gRyP4kOOkp6pyGojNJzCjkDvWI2Cvb9iNrKok3aqQPauAw=="
+          "value": "sha512-FVaLoPT1fBgGl0J+AYebyyXJYBachGl8Oyyrf1lye4RTqCB4S0Gwkj1uM9RJyThUOvx5VUmAT1CnNh1SFHA+kw=="
         }
       ],
-      "purl": "pkg:npm/@bruits/satteri-linux-x64-gnu@0.9.5",
+      "purl": "pkg:npm/@bruits/satteri-linux-x64-gnu@0.10.5",
       "type": "library",
-      "version": "0.9.5"
+      "version": "0.10.5"
     },
     {
-      "bom-ref": "pkg:npm/@bruits/satteri-linux-x64-musl@0.9.5",
+      "bom-ref": "pkg:npm/@bruits/satteri-linux-x64-musl@0.10.5",
       "licenses": [
         {
           "license": {
@@ -921,15 +921,15 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-bicEqglLlz++mWyADaZoP0JY20s4vDfLjaPYgQqC+NI4zZLTOOg1T4GB8aqtc822Pqji8SQBmSrTb7CrP8i08Q=="
+          "value": "sha512-EHpVAx2bqW3GINHTKkljtxVfQmVDGWIuwOYOP5YghTj+0PkBa2o8oKPRtQ9Kbsr1Fye8jtUcDjhwj2jMNugZKg=="
         }
       ],
-      "purl": "pkg:npm/@bruits/satteri-linux-x64-musl@0.9.5",
+      "purl": "pkg:npm/@bruits/satteri-linux-x64-musl@0.10.5",
       "type": "library",
-      "version": "0.9.5"
+      "version": "0.10.5"
     },
     {
-      "bom-ref": "pkg:npm/@bruits/satteri-wasm32-wasi@0.9.5",
+      "bom-ref": "pkg:npm/@bruits/satteri-wasm32-wasi@0.10.5",
       "licenses": [
         {
           "license": {
@@ -941,12 +941,12 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-zauAuMwfPnKPUkd4AFixRFpXdgKwP2mKgxrIIo2gJzW0/ZneF9dbHnLkojSpaBnCCp7VUL1hIi5WWZvB1CqmAQ=="
+          "value": "sha512-ypz8c/Zmipxp4IoeDa228Gstv6TLzVmNs3yC6wKCoNSOjx1iwpgzu87Y3hTkXFdwChVGU85qeUDuOIarGUZQLw=="
         }
       ],
-      "purl": "pkg:npm/@bruits/satteri-wasm32-wasi@0.9.5",
+      "purl": "pkg:npm/@bruits/satteri-wasm32-wasi@0.10.5",
       "type": "library",
-      "version": "0.9.5"
+      "version": "0.10.5"
     },
     {
       "bom-ref": "pkg:npm/@bruits/satteri-wasm32-wasi/node_modules/@emnapi/core@1.11.1",
@@ -989,7 +989,7 @@
       "version": "1.11.1"
     },
     {
-      "bom-ref": "pkg:npm/@bruits/satteri-win32-arm64-msvc@0.9.5",
+      "bom-ref": "pkg:npm/@bruits/satteri-win32-arm64-msvc@0.10.5",
       "licenses": [
         {
           "license": {
@@ -1001,15 +1001,15 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-SrfE7NEsgZjBvU3c+RR6oQRu0ToXY5uVJEbieXEF0YTctIV2zAVlbaMjWLts074QCgh3a+XHWkR/lWh2VH2LUg=="
+          "value": "sha512-siTV88nb0LRqNpkL2gXboqCwVdq95sLtzMHS1/3eONV2gLbB3NAK46wmSMvCO/yquBvI2lvaFIfd8P12ecsxBw=="
         }
       ],
-      "purl": "pkg:npm/@bruits/satteri-win32-arm64-msvc@0.9.5",
+      "purl": "pkg:npm/@bruits/satteri-win32-arm64-msvc@0.10.5",
       "type": "library",
-      "version": "0.9.5"
+      "version": "0.10.5"
     },
     {
-      "bom-ref": "pkg:npm/@bruits/satteri-win32-x64-msvc@0.9.5",
+      "bom-ref": "pkg:npm/@bruits/satteri-win32-x64-msvc@0.10.5",
       "licenses": [
         {
           "license": {
@@ -1021,12 +1021,12 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-5Kw9ZAtTGS8WHizyn+CJhjjfIQrw+7jcZodpmpXJjefnO15M8UexIi6JR2E5thyvsmHyhL6ZDDMUNR4bKJPd4g=="
+          "value": "sha512-C3IfPvfvMXmlzBxaMPKFS1XiuV9pu2mC7YqkPk7PSvTgPZ8gbdASIpHpztDLvTTQjqZ0z1Ol8tK5X+V6XXC0wQ=="
         }
       ],
-      "purl": "pkg:npm/@bruits/satteri-win32-x64-msvc@0.9.5",
+      "purl": "pkg:npm/@bruits/satteri-win32-x64-msvc@0.10.5",
       "type": "library",
-      "version": "0.9.5"
+      "version": "0.10.5"
     },
     {
       "bom-ref": "pkg:npm/@capsizecss/unpack@4.0.1",
@@ -4521,7 +4521,7 @@
       "version": "3.1.0"
     },
     {
-      "bom-ref": "pkg:npm/astro@7.2.3",
+      "bom-ref": "pkg:npm/astro@7.2.4",
       "licenses": [
         {
           "license": {
@@ -4533,12 +4533,12 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-CDf55Cw2nOev5BAM72yn7JQMpK/ByTY5tLSybbHbtZNSiMKk0OeyvCjA2foEUXfHXbATpHQQPBgfuXL8PdofcA=="
+          "value": "sha512-+cuLsBns2wwUHI9a10xZMbjrF91m7+QNwqTVeljTx0B8Lf+8h0LgVGjdVIL2FALDKD2I565lczeeS3BFC+KdZg=="
         }
       ],
-      "purl": "pkg:npm/astro@7.2.3",
+      "purl": "pkg:npm/astro@7.2.4",
       "type": "library",
-      "version": "7.2.3"
+      "version": "7.2.4"
     },
     {
       "bom-ref": "pkg:npm/astro/node_modules/semver@7.8.5",
@@ -6874,66 +6874,6 @@
       "version": "4.0.0"
     },
     {
-      "bom-ref": "pkg:npm/hast-util-from-html@2.0.3",
-      "licenses": [
-        {
-          "license": {
-            "name": "MIT"
-          }
-        }
-      ],
-      "name": "hast-util-from-html",
-      "properties": [
-        {
-          "name": "npm:integrity",
-          "value": "sha512-CUSRHXyKjzHov8yKsQjGOElXy/3EKpyX56ELnkHH34vDVw1N1XSQ1ZcAvTyAPtGqLTuKP/uxM+aLkSPqF/EtMw=="
-        }
-      ],
-      "purl": "pkg:npm/hast-util-from-html@2.0.3",
-      "type": "library",
-      "version": "2.0.3"
-    },
-    {
-      "bom-ref": "pkg:npm/hast-util-from-parse5@8.0.3",
-      "licenses": [
-        {
-          "license": {
-            "name": "MIT"
-          }
-        }
-      ],
-      "name": "hast-util-from-parse5",
-      "properties": [
-        {
-          "name": "npm:integrity",
-          "value": "sha512-3kxEVkEKt0zvcZ3hCRYI8rqrgwtlIOFMWkbclACvjlDw8Li9S2hk/d51OI0nr/gIpdMHNepwgOKqZ/sy0Clpyg=="
-        }
-      ],
-      "purl": "pkg:npm/hast-util-from-parse5@8.0.3",
-      "type": "library",
-      "version": "8.0.3"
-    },
-    {
-      "bom-ref": "pkg:npm/hast-util-parse-selector@4.0.0",
-      "licenses": [
-        {
-          "license": {
-            "name": "MIT"
-          }
-        }
-      ],
-      "name": "hast-util-parse-selector",
-      "properties": [
-        {
-          "name": "npm:integrity",
-          "value": "sha512-wkQCkSYoOGCRKERFWcxMVMOcYE2K1AaNLU8DXS9arxnLOUEWbOXKXiJUNzEpqZ3JOKpnha3jkFrumEjVliDe7A=="
-        }
-      ],
-      "purl": "pkg:npm/hast-util-parse-selector@4.0.0",
-      "type": "library",
-      "version": "4.0.0"
-    },
-    {
       "bom-ref": "pkg:npm/hast-util-to-html@9.0.5",
       "licenses": [
         {
@@ -6972,26 +6912,6 @@
       "purl": "pkg:npm/hast-util-whitespace@3.0.0",
       "type": "library",
       "version": "3.0.0"
-    },
-    {
-      "bom-ref": "pkg:npm/hastscript@9.0.1",
-      "licenses": [
-        {
-          "license": {
-            "name": "MIT"
-          }
-        }
-      ],
-      "name": "hastscript",
-      "properties": [
-        {
-          "name": "npm:integrity",
-          "value": "sha512-g7df9rMFX/SPi34tyGCyUBREQoKkapwdY/T04Qn9TDWfHhAYt4/I0gMVirzK5wEzeUqIjEB+LXC/ypb7Aqno5w=="
-        }
-      ],
-      "purl": "pkg:npm/hastscript@9.0.1",
-      "type": "library",
-      "version": "9.0.1"
     },
     {
       "bom-ref": "pkg:npm/html-escaper@3.0.3",
@@ -8260,46 +8180,6 @@
       "version": "5.6.0"
     },
     {
-      "bom-ref": "pkg:npm/parse5@7.3.0",
-      "licenses": [
-        {
-          "license": {
-            "name": "MIT"
-          }
-        }
-      ],
-      "name": "parse5",
-      "properties": [
-        {
-          "name": "npm:integrity",
-          "value": "sha512-IInvU7fabl34qmi9gY8XOVxhYyMyuH2xUNpb2q8/Y+7552KlejkRvqvD19nMoUW/uQGGbqNpA6Tufu5FL5BZgw=="
-        }
-      ],
-      "purl": "pkg:npm/parse5@7.3.0",
-      "type": "library",
-      "version": "7.3.0"
-    },
-    {
-      "bom-ref": "pkg:npm/parse5/node_modules/entities@6.0.1",
-      "licenses": [
-        {
-          "license": {
-            "name": "BSD-2-Clause"
-          }
-        }
-      ],
-      "name": "parse5/node_modules/entities",
-      "properties": [
-        {
-          "name": "npm:integrity",
-          "value": "sha512-aN97NXWF6AWBTahfVOIrB/NShkzi5H7F9r1s9mD3cDj4Ko5f2qhhVoYMibXF7GlLveb/D2ioWay8lxI97Ven3g=="
-        }
-      ],
-      "purl": "pkg:npm/parse5/node_modules/entities@6.0.1",
-      "type": "library",
-      "version": "6.0.1"
-    },
-    {
       "bom-ref": "pkg:npm/path-browserify@1.0.1",
       "licenses": [
         {
@@ -8893,7 +8773,7 @@
       "version": "2.1.2"
     },
     {
-      "bom-ref": "pkg:npm/satteri@0.9.5",
+      "bom-ref": "pkg:npm/satteri@0.10.5",
       "licenses": [
         {
           "license": {
@@ -8905,12 +8785,12 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-ZuWVl+vnM64y+/TtX8Kosv2c00W+hLQiiwnEL6H0UKVVrxFqMw4D2CJHHQaouVd89OAhtBBfjWLqhKi3TVUV4w=="
+          "value": "sha512-Ao1LKpAEa9Wdg0otgbVKViZHEq9ebdXe4DMrp3s9vQAU0HNIuHnFEuMuOcm0ZIXyV0Yzxj91NvhLpvXZJO/5ZQ=="
         }
       ],
-      "purl": "pkg:npm/satteri@0.9.5",
+      "purl": "pkg:npm/satteri@0.10.5",
       "type": "library",
-      "version": "0.9.5"
+      "version": "0.10.5"
     },
     {
       "bom-ref": "pkg:npm/sax@1.6.0",
@@ -9879,26 +9759,6 @@
       "version": "6.0.3"
     },
     {
-      "bom-ref": "pkg:npm/vfile-location@5.0.3",
-      "licenses": [
-        {
-          "license": {
-            "name": "MIT"
-          }
-        }
-      ],
-      "name": "vfile-location",
-      "properties": [
-        {
-          "name": "npm:integrity",
-          "value": "sha512-5yXvWDEgqeiYiBe1lbxYF7UMAIm/IcopxMHrMQDq3nvKcjPKIhZklUKL+AE7J7uApI4kwe2snsK+eI6UTj9EHg=="
-        }
-      ],
-      "purl": "pkg:npm/vfile-location@5.0.3",
-      "type": "library",
-      "version": "5.0.3"
-    },
-    {
       "bom-ref": "pkg:npm/vfile-message@4.0.3",
       "licenses": [
         {
@@ -10390,26 +10250,6 @@
       "purl": "pkg:npm/vscode-uri@3.1.0",
       "type": "library",
       "version": "3.1.0"
-    },
-    {
-      "bom-ref": "pkg:npm/web-namespaces@2.0.1",
-      "licenses": [
-        {
-          "license": {
-            "name": "MIT"
-          }
-        }
-      ],
-      "name": "web-namespaces",
-      "properties": [
-        {
-          "name": "npm:integrity",
-          "value": "sha512-bKr1DkiNa2krS7qxNtdrtHAmzuYGFQLiQ13TsorsdT6ULTkPLKuu5+GsFpDlg6JFjUTwX2DyhMPG2be8uPrqsQ=="
-        }
-      ],
-      "purl": "pkg:npm/web-namespaces@2.0.1",
-      "type": "library",
-      "version": "2.0.1"
     },
     {
       "bom-ref": "pkg:npm/wgsl_reflect@1.5.0",

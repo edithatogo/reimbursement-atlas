@@ -1,10 +1,10 @@
 {
   "blocked_count": 0,
   "evidence_release_ready": true,
-  "fail_count": 0,
+  "fail_count": 1,
   "gate_count": 45,
   "missing_count": 0,
-  "pass_count": 40,
+  "pass_count": 39,
   "policy_claims_ready": false,
   "repository_release_ready": true,
   "required_blocker_count": 0,
