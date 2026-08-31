@@ -19,13 +19,14 @@
 - [x] A6: Merge #799 runtime baseline before broad generation (`2a88b19c`).
 - [x] A6: Perform isolated full regeneration/QA with four pytest workers; merge
   #800 and refresh action inventory, data dictionary and downstream projections.
-- [ ] A6: Open the source PR for checks; require protected source delivery.
-- [ ] A6: Obtain independent final archive-contract review before actual local staging.
+- [x] A6: Open source PR #803 for checks; protected source delivery remains pending.
+- [x] A6: Obtain independent final archive-contract review (Erdos PASS reported).
 - [ ] A6: Record source-PR merge evidence before archiving this implementation track.
 - [x] A4: Select 1,707 unchanged eligible receipt lines, preserving all variant parents
   and the full reports; record selection and permission snapshot SHA-256.
-- [ ] A4: Orchestrator executes authorized local staging after final contract review;
-  later raw transfer and remote readback remain separately gated.
+- [x] A4: Orchestrator completes authorized local staging with exit 0; receipt SHA-256
+  `569d18a843791e666be9e878e52859355d48f8cce76cabf1f7b97034c7ae12ff`.
+- [ ] A4: Later raw transfer and remote readback remain separately gated.
 
 Source recovery of December 2006-March 2007 monthly releases and the December 1987
 PDF remains open under #255. A schema distribution or catalogue lead does not close it.

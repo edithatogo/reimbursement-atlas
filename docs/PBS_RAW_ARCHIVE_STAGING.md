@@ -90,11 +90,30 @@ original receipt lines for all 1,707 eligible rows, including parents and varian
 Its SHA-256 is `66ea4886c44096642dddfaaf80662696237f88170ed814e7155f082aad6a8f19`.
 The permission snapshot SHA-256 is
 `ad60a2faa3ba5e2544f85e1a4ddb012f3caf2657719c817029aa3af26e5d6d3a`.
-No real stage has yet been created; local staging is authorized after contract
-review and tests, without another owner approval.
+At the initial source handoff, no real stage had been created; local staging was
+authorized after contract review and tests, without another owner approval.
 Never edit the original receipt collections to erase omissions. Retain the initial
 and superseding full dry-run errors/coverage separately from an eligible subset and
 bind them in any later publication receipt. Selection is explicit, not automatic.
+
+### Current local stage (2026-08-31)
+
+The orchestrator completed local staging with exit 0 at
+`data/local/pbs-raw-archive-stage-20260831-reviewed`, using the unchanged selection
+above. Its report is `data/local/pbs-raw-archive-stage-20260831-reviewed-report.json`.
+The report and staged `raw/pbs/manifest.json` both hash to
+`569d18a843791e666be9e878e52859355d48f8cce76cabf1f7b97034c7ae12ff`.
+The verified batch contains 1,707 payloads, 9,216,771,435 bytes and zero failures;
+the orchestrator reports 1,709 files including manifest and README. README SHA-256
+is `23b4877003f27f1b6dea3019bb25a300ea20bbcc85a7a4b04eb89a1d1b70b53f`.
+The permission checksum matches the snapshot above. Erdos's final README/manifest
+review was reported PASS. The worker inspected only receipt/metadata hashes and
+did not alter or duplicate the stage.
+
+`publication_state` remains `not_asserted`: remote upload and remote readback have
+not occurred. The two full-corpus omissions and all historical no-stage dry-run
+observations remain retained. Protected source-PR delivery and a separate later
+publication/readback receipt remain required.
 
 A new stage contains only `raw/pbs/payloads/`, `raw/pbs/manifest.json`, and a
 checksum-bound `raw/pbs/README.md`. Readback reconstructs the expected stage from
