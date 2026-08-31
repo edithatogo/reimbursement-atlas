@@ -22,7 +22,9 @@ both official-host CDX lookups returned no matching PDF captures. Official XML
 documentation narrows the structured-history gap to December 2006-March 2007,
 with release-specific schemas still required. Both alternative MBS TXT URLs
 also returned 404. The grouped publisher request is prepared, not sent, and
-raw redistribution permission is still absent. See
+raw redistribution permission was absent at that observation. Superseded on
+2026-08-31 by the owner's accepted raw PBS redistribution attestation; no further
+per-file permission approval is required. See
 `docs/HISTORICAL_SOURCE_BOUNDARIES.md`. MBS identity reconciliation distinguishes
 341 direct historical receipts plus two already-reviewed TXT snapshots from
 the two failed locators: all 343 identities have acquisition evidence, without

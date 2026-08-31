@@ -55,8 +55,10 @@ repeat draft creation or publication because an older failed receipt remains.
   commit rather than pretending the old packet tests new content.
 - Publisher 403/404 or missing archive bytes: preserve the verified corpus and
   exact unresolved target; prepare a publisher request rather than invent data.
-- Raw redistribution: an applicable licence or publisher permission is needed.
-  Another owner checksum approval cannot supply third-party rights.
+- Raw PBS redistribution: apply the owner's 2026-08-31 permission attestation in
+  `data/licence_review/pbs_raw_permission.json`; do not request another document
+  or per-file approval. Preserve notices and provenance, and verify external
+  publication separately. Other sources retain their own rights boundaries.
 - Credentials: use configured secret channels without logging values. Stop only
   when remediation genuinely needs account-owner interaction.
 - Papers/preprints, new rights/claims, destructive changes and external actions

@@ -46,7 +46,7 @@ mcp = [
 ]
 dev = [
   "basedpyright>=1.35.0",
-  "ruff==0.16.3",
+  "ruff==0.16.4",
   "pytest>=9.0.0",
   "pytest-cov>=7.0.0",
   "pytest-xdist>=3.8.0",
@@ -83,7 +83,7 @@ platforms = ["osx-arm64", "linux-64", "linux-aarch64"]
 python = ">=3.14"
 setuptools = ">=83.0.0"
 uv = ">=0.11.0"
-ruff = "==0.16.2"
+ruff = "==0.16.4"
 basedpyright = ">=1.35.0"
 pytest = ">=9.0.0"
 pytest-cov = ">=7.0.0"

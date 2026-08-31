@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse, urlunparse
 
+from reimburse_atlas.licence_review import pbs_raw_redistribution_status
 from reimburse_atlas.registry import project_root
 
 OUTPUT = project_root() / "data/derived/historical_sources/pbs_archive_verification_v1"
@@ -125,7 +126,9 @@ def plan_variants(
             "archive_replay_url": replay_url(timestamp, capture_url),
             "archive_timestamp": timestamp,
             "archive_checksum_sha1_base32": digest,
-            "raw_redistribution_status": "blocked_pending_explicit_permission",
+            "raw_redistribution_status": pbs_raw_redistribution_status(
+                str(verification["source_url"])
+            ),
         })
     return sorted(planned, key=lambda row: str(row["id"]))
 

@@ -37,8 +37,8 @@
     {
       "id": "pbs_raw_redistribution_permission",
       "kind": "rights",
-      "status": "blocked",
-      "evidence": "docs/PBS_RAW_REDISTRIBUTION_PERMISSION.md"
+      "status": "allowed_owner_attested_permission",
+      "evidence": "Superseded 2026-08-31 by data/licence_review/pbs_raw_permission.json; historical observation retained in the track narrative."
     }
   ]
 }
