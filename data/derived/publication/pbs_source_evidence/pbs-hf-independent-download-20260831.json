@@ -1,0 +1,21 @@
+{
+  "all_metadata_revisions_match": true,
+  "artifact_count": 1709,
+  "canonical_readback_performed_by_this_script": false,
+  "download_exit_code": 0,
+  "exact_metadata_inventory": true,
+  "force_download": true,
+  "include_prefix": "raw/pbs/",
+  "manifest_sha256": "569d18a843791e666be9e878e52859355d48f8cce76cabf1f7b97034c7ae12ff",
+  "metadata_count": 1709,
+  "metadata_inventory_sha256": "8e4649dbab7f3f347431404f2ba430bf209bd6d084e1429734477ce6a7573054",
+  "origin": "independent_fresh_fixed_revision_download",
+  "payload_bytes": 9216771435,
+  "payload_count": 1707,
+  "repo_id": "edithatogo/reimbursement-atlas",
+  "revision": "8e062578f14e12cf3238700a93946339da9c5d88",
+  "schema_version": "pbs-fresh-download-v1",
+  "source": "hf download with fresh local directory, not staging-copy readback",
+  "status": "verified",
+  "xet_disabled": true
+}

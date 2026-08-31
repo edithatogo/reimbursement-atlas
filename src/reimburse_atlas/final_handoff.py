@@ -12,6 +12,7 @@ from typing import Literal, cast
 from reimburse_atlas.dashboard_review import dashboard_renewal_delegated
 from reimburse_atlas.dashboard_review import dashboard_review_approved as dashboard_gate_approved
 from reimburse_atlas.io import write_csv, write_jsonl
+from reimburse_atlas.licence_review import pbs_raw_permission_status
 from reimburse_atlas.mapping_study_paths import latest_mapping_study_cycle, mapping_study_paths
 from reimburse_atlas.models import FinalHandoffTaskRecord
 from reimburse_atlas.registry import project_root
@@ -27,6 +28,9 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
     mapping_cycle = latest_mapping_study_cycle(repo)
     mapping_paths = mapping_study_paths(mapping_cycle)
     zenodo_verify_command = _zenodo_verify_command(repo)
+    pbs_permission_allowed = (
+        pbs_raw_permission_status(root=repo) == "allowed_owner_attested_permission"
+    )
     return [
         FinalHandoffTaskRecord(
             id="final_source_downloads",
@@ -246,9 +250,14 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             title="Review historical MBS/PBS source expansion and licence scope",
             status="complete" if _historical_review_complete(repo) else "partial",
             required_environment=(
-                "Publisher action for the missing December 1987 bytes and written raw-"
-                "redistribution permission; source discovery for optional pre-2007 structured "
-                "parity."
+                "Publisher/source access for the missing December 1987 bytes and optional "
+                "pre-2007 structured parity. "
+                + (
+                    "The active owner-attested PBS permission already covers eligible schedule "
+                    "artefacts; no repeated approval is required within that scope."
+                    if pbs_permission_allowed
+                    else "Validate a permission basis before any new raw redistribution."
+                )
             ),
             command=(
                 "pixi run historical-sources && pixi run source-download-plan && "
@@ -256,13 +265,25 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
             ),
             evidence_path="data/derived/historical_sources/summary.json",
             unblock_condition=(
-                "Obtain and validate the December 1987 bytes, and obtain written permission or "
-                "an applicable open licence before redistributing raw PBS payloads."
+                "Obtain and validate the December 1987 bytes and any claimed early monthly "
+                "releases. "
+                + (
+                    "Retain the current scoped permission and source-specific restrictions; "
+                    "permission does not prove acquisition or publication."
+                    if pbs_permission_allowed
+                    else "Raw redistribution remains unavailable without a valid permission basis."
+                )
             ),
             recommended_action=(
                 "Preserve the verified 341 MBS snapshots, 1,048 PBS PDFs and 655 structured PBS "
-                "packages in ignored storage; publish only governed provenance and permitted "
-                "derived fields. Treat December 1987 and optional pre-2007 structured parity as "
+                "packages in ignored storage. "
+                + (
+                    "Use the active owner-attested permission and checksum-bound artefact gates "
+                    "for eligible PBS raw schedules, not other sources or out-of-scope notices. "
+                    if pbs_permission_allowed
+                    else "Publish only governed provenance and permitted derived fields. "
+                )
+                + "Treat December 1987 and optional pre-2007 structured parity as "
                 "external source gaps, not as missing acquisition of the verified corpus."
             ),
             reason_code=(
@@ -275,6 +296,10 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "data/derived/historical_sources/pbs_publication_archive_v1/acquisition_summary.json",
                 "data/derived/historical_sources/pbs_structured_archive_v1/acquisition_summary.json",
                 "data/derived/historical_sources/pbs_archive_verification_v1/summary.json",
+                "data/licence_review/pbs_raw_permission.json",
+            ),
+            review_record=(
+                "data/licence_review/pbs_raw_permission.json" if pbs_permission_allowed else None
             ),
             external_state="not_applicable",
         ),
@@ -300,7 +325,8 @@ def build_final_handoff_tasks(root: Path | None = None) -> list[FinalHandoffTask
                 "Current machine checks pass and the existing standing scope validates."
             ),
             recommended_action=(
-                "Refresh the 11-route, 64-test, four-project hosted packet automatically; "
+                "Refresh the current 11-route, four-project hosted packet automatically using "
+                "its declared test-count contract; "
                 "reuse standing authorization. Manual VoiceOver is outside scope. "
                 "Ask only for expanded rights or claims, not changed packet hashes."
             ),

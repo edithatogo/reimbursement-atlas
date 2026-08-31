@@ -24,14 +24,14 @@ This issue was generated from `conductor/backlog.yml`. Refine the acceptance cri
 - [ ] Recover the December 1987 RPBS PDF: canonical URL returned HTTP 404 and the variant returned HTTP 403; the NLA holdings lead remains uninspected, with no publisher/library contact claimed.
 - [ ] Recover December 2006-March 2007 XML payloads and release-specific schema/DTD/XSL, amendment and version metadata; do not infer field parity.
 - [x] Accept and apply the owner's 2026-08-31 raw PBS redistribution attestation in data/licence_review/pbs_raw_permission.json; no per-file approval required.
-- [x] Close permission implementation through PR #801 (`02116d73`), independently of the active source archive track `track_pbs_raw_archive_20260831`.
+- [x] Close permission implementation through PR #801 (`02116d73`), independently of the archived source implementation track `track_pbs_raw_archive_20260831`.
 - [x] Implement offline staging and exact-inventory readback with duplicate-key rejection, original filenames, permission-record SHA and CDX-bound replay identity.
 - [x] Retain initial and superseding full-corpus dry runs: 1,707 of 1,709 receipts verify after the identity fix; missing 1987 acquisition and the excluded format notice remain explicit. At those dry runs, no actual staging or upload occurred.
-- [x] Subsequently verify the orchestrator's local stage: 1,707 payloads, 9,216,771,435 bytes, zero failures; report and manifest SHA-256 `569d18a843791e666be9e878e52859355d48f8cce76cabf1f7b97034c7ae12ff`. Remote upload/readback have not occurred; publication remains `not_asserted`.
+- [x] Subsequently verify the orchestrator's local stage: 1,707 payloads, 9,216,771,435 bytes, zero failures; report and manifest SHA-256 `569d18a843791e666be9e878e52859355d48f8cce76cabf1f7b97034c7ae12ff`. Subsequent independent fixed-revision remote readback verified all raw bytes; the separate portable receipt records `published_verified`.
 - [x] Integrate two early schema distributions and three verified HTML indexes as metadata only; no missing monthly release, schema compilation or RPBS PDF recovery.
 - [x] Prepare conditional raw/pbs dataset-card documentation while retaining all eight derived configs and the existing derived workflow's raw rejection.
 - [x] Complete isolated source regeneration and the 27 native quality gates; refresh action inventory and downstream projections after PR #800.
 - [x] Complete independent archive-contract and concurrent-push preservation review (Erdos PASS reported).
-- [ ] Complete protected source-PR delivery; selected subsets must retain full omission evidence.
-- [ ] Transfer raw PBS files to governed external storage with manifest and checksum readback; permission alone is not evidence of publication.
+- [x] Complete protected source delivery in PR #803 (`e5c3190e`); full omission evidence is retained.
+- [x] Transfer raw PBS files at HF revision `8e062578f14e12cf3238700a93946339da9c5d88` and independently download/read back all 1,707 payloads. Portable proof: `data/derived/publication/pbs_source_publication_receipt.json`. Original strict metadata failure is preserved with bounded additive-LFS reconciliation: 23/24 nonraw files byte-identical, `.gitattributes` exception. Viewer observation 03 reports eight configs available at its dated, unpinned scope.
 - [x] Promote only independently licence-reviewed permitted metadata or derived fields; GitHub Actions run 33237003418 published the governed Hugging Face configurations without raw payloads or the legacy seed tree.

@@ -1,0 +1,117 @@
+{
+  "archive_prefix": "raw/pbs",
+  "canonical_receipts": [
+    {
+      "path": "data/derived/historical_sources/pbs_archive_v1/historical_source_downloads.jsonl",
+      "sha256": "aff99a68d7f7af7e7d2766b80599f75365c06f8c7620f317cf4b15104473772e"
+    },
+    {
+      "path": "data/derived/historical_sources/pbs_structured_archive_v1/historical_source_downloads.jsonl",
+      "sha256": "597831281f9f3dea5b83c9af2fe02ca6d6165626b139899244789a4053917ee8"
+    },
+    {
+      "path": "data/derived/historical_sources/pbs_archive_verification_v1/internet_archive_variant_receipts.jsonl",
+      "sha256": "e9059e17bf78c099f0350610487bbc78e5b51c8e9d49726b0b117e01e3c4d0db"
+    }
+  ],
+  "closeout_delivery": null,
+  "fresh_readback": {
+    "all_payload_hashes_verified": true,
+    "artifact_count": 1709,
+    "canonical_bound_readback_verified": true,
+    "download_report": {
+      "path": "data/derived/publication/pbs_source_evidence/pbs-hf-independent-download-20260831.json",
+      "sha256": "38727f7ab590384f77bada045aeab2a06c412230e2aadd27edc9b40d8d300524"
+    },
+    "exact_inventory_verified": true,
+    "manifest_sha256": "569d18a843791e666be9e878e52859355d48f8cce76cabf1f7b97034c7ae12ff",
+    "origin": "independent_fresh_fixed_revision_download",
+    "payload_bytes": 9216771435,
+    "payload_count": 1707,
+    "permission_and_readme_verified": true,
+    "report": {
+      "path": "data/derived/publication/pbs_source_evidence/pbs-hf-independent-readback-20260831.json",
+      "sha256": "b0b259acc58b02b46203f734cbfb7b605362b51f87b5eb469617963f0ee851d6"
+    },
+    "revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+  },
+  "full_corpus_reports": [
+    {
+      "path": "data/derived/publication/pbs_source_evidence/pbs-raw-archive-full-dry-run-20260831T033612Z.json",
+      "sha256": "91b90bfa4b94acb8d464e7816c9cb1543e1e511571b264bcba44d3b382f198fb"
+    },
+    {
+      "path": "data/derived/publication/pbs_source_evidence/pbs-raw-archive-full-dry-run-20260831T044559Z.json",
+      "sha256": "708eee4d600b8c5003736f4b15342c4130889b7d9e231bc1a26bc685daec7432"
+    }
+  ],
+  "historical_completeness_asserted": false,
+  "manifest_sha256": "569d18a843791e666be9e878e52859355d48f8cce76cabf1f7b97034c7ae12ff",
+  "metadata_reconciliation": {
+    "added_exact_lfs_rules": 963,
+    "baseline_revision": "8b947a79d82eabcc9265bd81ea71cbfa2a71d951",
+    "eight_configs_and_root_card_unchanged": true,
+    "exception_path": ".gitattributes",
+    "lfs_payloads": 1615,
+    "nonraw_byte_identical": 23,
+    "nonraw_effective_attributes_preserved": true,
+    "nonraw_total": 24,
+    "only_expected_raw_lfs_rules_added": true,
+    "original_attribute_bytes_preserved": true,
+    "original_strict_failure": {
+      "path": "data/derived/publication/pbs_source_evidence/remote-8e062578-inventory.receipt.json",
+      "sha256": "58cbbab91caa17c8133425012d4b12e24b19179cd445303907d0dfe2958640b8"
+    },
+    "regular_payloads": 92,
+    "regular_payloads_not_marked_lfs": true,
+    "report": {
+      "path": "data/derived/publication/pbs_source_evidence/additive-lfs-reconciliation.receipt.json",
+      "sha256": "7ff2c16934b79dd9ee7fff4e00de749201fa952ec68a54a312917c17c168444a"
+    },
+    "revision": "8e062578f14e12cf3238700a93946339da9c5d88",
+    "status": "bounded_reconciliation_pass"
+  },
+  "payload_bytes": 9216771435,
+  "payload_count": 1707,
+  "permission": {
+    "path": "data/licence_review/pbs_raw_permission.json",
+    "sha256": "ad60a2faa3ba5e2544f85e1a4ddb012f3caf2657719c817029aa3af26e5d6d3a"
+  },
+  "publication_state": "published_verified",
+  "readme_sha256": "23b4877003f27f1b6dea3019bb25a300ea20bbcc85a7a4b04eb89a1d1b70b53f",
+  "remote_inventory": {
+    "artifact_count": 1709,
+    "manifest_sha256": "569d18a843791e666be9e878e52859355d48f8cce76cabf1f7b97034c7ae12ff",
+    "payload_bytes": 9216771435,
+    "payload_count": 1707,
+    "report": {
+      "path": "data/derived/publication/pbs_source_evidence/remote-8e062578-inventory.receipt.json",
+      "sha256": "58cbbab91caa17c8133425012d4b12e24b19179cd445303907d0dfe2958640b8"
+    },
+    "revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+  },
+  "repo_id": "edithatogo/reimbursement-atlas",
+  "retained_omissions": [
+    "december_1987_rpbs_not_acquired",
+    "updated_pbs_text_files_notice_excluded"
+  ],
+  "schema_version": "pbs-source-publication-receipt-v1",
+  "selection": {
+    "path": "data/derived/publication/pbs_source_evidence/pbs-raw-archive-selected-20260831T044559Z.jsonl",
+    "sha256": "66ea4886c44096642dddfaaf80662696237f88170ed814e7155f082aad6a8f19"
+  },
+  "source_delivery_evidence": {
+    "path": "data/derived/publication/pbs_source_evidence/pr803-merged.json",
+    "sha256": "940b6a28dc58960598cc86155de53acb653ebf98e2f3eb1eca9555fa83a922f3"
+  },
+  "source_merge": "e5c3190efd044fe3bd6b677bb9cf576210d5f9bf",
+  "upload_revision": "8e062578f14e12cf3238700a93946339da9c5d88",
+  "viewer_causal_claim": "none",
+  "viewer_observation": {
+    "path": "data/derived/publication/pbs_source_evidence/viewer-observation-03.json",
+    "sha256": "48e24a1449a4e67b32bb85bc4b4ecf2a9adb08fa3134802e8f8933950153651f"
+  },
+  "viewer_observed_at": "2026-08-31T11:51:58.610635+00:00",
+  "viewer_revision_pinned": false,
+  "viewer_status": "available"
+}

@@ -343,7 +343,7 @@ manual_review,,,,,,,,,mapping_resource:map_who_atc_ddd,,,mapping_resource,WHO AT
 ,,,,,,,,,track:track_mcp2_typed_migration_20260824,,,conductor_track,MCP 2 typed API migration,,,,,,,hardening,,should,,,,,runtime
 ,,,,,,,,,track:track_osf_deprecation_20260820,,,conductor_track,OSF destination deprecation,,,,,,,hardening,,must,,,,,governance
 ,,,,,,,,,track:track_osf_registration_record_quality,,,conductor_track,Historical OSF registration evidence,,,,,,,research,,could,,,,,research
-,,,,,,,,,track:track_pbs_raw_archive_20260831,,,conductor_track,PBS source archive staging and early-schema evidence,,,,,,,hardening,,must,,,,,data
+,,,,,,,,,track:track_pbs_raw_archive_20260831,,,conductor_track,PBS source archive staging and early-schema evidence,,,,,,,archived,,must,,,,,data
 ,,,,,,,,,track:track_policy_demonstrators,,,conductor_track,First policy demonstrators,,,,,,,analysis,,must,,,,,analytics
 ,,,,,,,,,track:track_public_product_citation_dashboard,,,conductor_track,"Public product, citation and dashboard maturity",,,,,,,implementation,,must,,,,,dashboard
 ,,,,,,,,,track:track_publication_hf_spaces,,,conductor_track,Hugging Face dataset and Spaces publication,,,,,,,implementation,,must,,,,,publication

@@ -97,7 +97,7 @@
       "name": "conductor_tracks",
       "parquet_path": "conductor_tracks/conductor_tracks.parquet",
       "rows": 32,
-      "sha256": "603db583fd1084f123e06a8f0192a09ac0dcf1f61d734239b9fe7708a27887a8"
+      "sha256": "d84eb15b15713b69229acbbcfb0c00f5da732498fab85e2c13d57007c34b5c38"
     },
     {
       "csv_path": "roadmap_functions/roadmap_functions.csv",
@@ -328,8 +328,8 @@
       "jsonl_path": "architecture_import_edges/architecture_import_edges.jsonl",
       "name": "architecture_import_edges",
       "parquet_path": "architecture_import_edges/architecture_import_edges.parquet",
-      "rows": 248,
-      "sha256": "45d322b3de319b1f14443609bf171e0d11665fa1f618a5eb0d04bd1cbf9b3ce8"
+      "rows": 249,
+      "sha256": "ef01001a2a24c38b79578eab166c9eed42b83ea63ccc9d490e4f914d10314d75"
     },
     {
       "csv_path": "architecture_layer_policy/architecture_layer_policy.csv",
@@ -337,7 +337,7 @@
       "name": "architecture_layer_policy",
       "parquet_path": "architecture_layer_policy/architecture_layer_policy.parquet",
       "rows": 22,
-      "sha256": "77ea4952b41e3ba79531048edf2da90159276aff440b3dda76c3f81e303830d8"
+      "sha256": "dc48708958bfca41b3921829191c429848c118685df678ed3cb2a2e9b60745ee"
     },
     {
       "csv_path": "architecture_import_cycles/architecture_import_cycles.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 45,
-      "sha256": "90d72d66495156db118036f3e85bc3be1845e4c014c0b2a3ca6de537c567f70f"
+      "sha256": "003b73d75063c34158809c6d8d4723f6c7ebf2fcf4c04aaca953dfd89d8c42ab"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -433,7 +433,7 @@
       "name": "github_project_items",
       "parquet_path": "github_project_items/github_project_items.parquet",
       "rows": 269,
-      "sha256": "f5ff4bd8580bda618b1784712efc3cf9a1105c611b21fc34d12872070976c400"
+      "sha256": "6c9cffb1fa2d0f0f999fe9ba918e6ef11b83df9f0edf1b66110cdb06c95d07bf"
     },
     {
       "csv_path": "final_handoff_tasks/final_handoff_tasks.csv",
@@ -441,7 +441,7 @@
       "name": "final_handoff_tasks",
       "parquet_path": "final_handoff_tasks/final_handoff_tasks.parquet",
       "rows": 11,
-      "sha256": "46b6a687e470cf72f58dcbf9e6b7a783993847933b360ac6a5183a4897e7e3cb"
+      "sha256": "189782d86ff30240446176da1cbd1b9dc6438bdbd276330f36c36653d80370d1"
     },
     {
       "csv_path": "protocol_status/protocol_status.csv",
@@ -481,7 +481,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "f0e1ffecdd0ab07af04e2111dcb73df205d8d14b5d749e5648c8e0bc57bd0f3c"
+      "sha256": "14a6b74d9c09ff13ed90a86ca8d97133603bc70454f7d7b81c10da880434306d"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
@@ -489,7 +489,7 @@
       "name": "data_dictionary",
       "parquet_path": "data_dictionary/data_dictionary.parquet",
       "rows": 276,
-      "sha256": "8d0ff5b3ed815267d2a8aacbaed4a13397f44f9596165a8a6989392706f65d89"
+      "sha256": "5a59590f719907d7f827f1281bdf538a2c70447a9181516c858c33ea5a55871f"
     }
   ]
 }

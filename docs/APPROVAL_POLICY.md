@@ -50,7 +50,8 @@ The current dashboard validator may carry a prior `approved_within_scope` record
 3. Historical and current dashboard source fingerprints match, or the owner delegates
    renewal to passing automation through the integrity-bound standing scope contract.
 4. Historical and current route and browser-project matrices match the declared contract.
-5. The current 64-test browser matrix, displayed-data parity, provenance assertions and
+5. The current v3 browser matrix (68 tests, 44 screenshots, 11 routes, four projects),
+   displayed-data parity, provenance assertions and
    prohibited-content checks pass.
 
 Failed automation requires remediation, not approval. Stale packets require automatic refresh.
