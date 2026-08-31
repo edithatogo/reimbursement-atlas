@@ -78,7 +78,7 @@ def test_only_digest_mismatches_are_planned() -> None:
 
     assert len(planned) == 1
     assert planned[0]["id"] == "two_20260101000000_ABC"
-    assert planned[0]["raw_redistribution_status"] == "allowed_owner_attested_permission"
+    assert planned[0]["raw_redistribution_status"] == "outside_pbs_permission_scope"
 
 
 def test_http_capture_is_planned_for_https_mismatch() -> None:

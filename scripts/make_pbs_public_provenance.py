@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from reimburse_atlas.licence_review import pbs_raw_redistribution_status
+from reimburse_atlas.licence_review import pbs_raw_permission_status, pbs_raw_redistribution_status
 from reimburse_atlas.registry import project_root
 
 ROOT = project_root()
@@ -111,7 +111,7 @@ def main() -> None:
         "internet_archive_variant_count": len(variant_rows),
         "raw_payload_count": 0,
         "raw_publication_status": "not_published_by_this_metadata_product",
-        "raw_redistribution_status": pbs_raw_redistribution_status(PBS_COPYRIGHT_URL),
+        "raw_redistribution_status": pbs_raw_permission_status(),
         "permission_record": "data/licence_review/pbs_raw_permission.json",
         "rights_source": PBS_COPYRIGHT_URL,
         "claim_boundary": (

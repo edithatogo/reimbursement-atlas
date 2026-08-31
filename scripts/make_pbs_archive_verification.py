@@ -15,7 +15,7 @@ from typing import Any, cast
 from urllib.parse import urlencode, urlparse, urlunparse
 from urllib.request import Request, urlopen
 
-from reimburse_atlas.licence_review import pbs_raw_redistribution_status
+from reimburse_atlas.licence_review import pbs_raw_permission_status, pbs_raw_redistribution_status
 from reimburse_atlas.registry import project_root
 
 OUTPUT = project_root() / "data/derived/historical_sources/pbs_archive_verification_v1"
@@ -230,7 +230,7 @@ def write_outputs(
             "not_in_inventory",
         ),
         "raw_publication_status": "not_published_by_this_metadata_product",
-        "raw_redistribution_status": pbs_raw_redistribution_status(PBS_COPYRIGHT_URL),
+        "raw_redistribution_status": pbs_raw_permission_status(),
         "permission_record": "data/licence_review/pbs_raw_permission.json",
         "public_product_scope": "checksums_provenance_archive_observations_and_permitted_metadata",
         "copyright_url": PBS_COPYRIGHT_URL,
