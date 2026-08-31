@@ -274,8 +274,19 @@ def native_case(complete: dict[str, Any], tmp_path: Path) -> dict[str, Any]:
     meta.update(lfs_payloads=1, regular_payloads=1, added_exact_lfs_rules=1)
     write_proof(tmp_path, row["permission"], {"schema_version": "pbs-raw-permission-v2"})
     selected = [
-        {"id": identity, "byte_size": 4, "checksum_sha256": "a" * 64}
-        for identity in ("first", "second")
+        {
+            "id": identity,
+            "source_id": "au_pbs",
+            "source_version_id": f"pbs_{identity}_202608",
+            "citation_key": f"pbs_{identity}_citation",
+            "source_url": f"https://www.pbs.gov.au/publication/schedule/2026/08/{identity}{suffix}",
+            "file_name": f"{identity}{suffix}",
+            "status": "downloaded",
+            "cache_path": f"data/raw_live/historical_sources/{identity}{suffix}",
+            "byte_size": 4,
+            "checksum_sha256": "a" * 64,
+        }
+        for identity, suffix in (("first", ".pdf"), ("second", ".zip"))
     ]
     for ref, rows in zip(
         row["canonical_receipts"], [selected, [{"id": "missing"}], []], strict=True
@@ -360,7 +371,7 @@ def native_case(complete: dict[str, Any], tmp_path: Path) -> dict[str, Any]:
                 "file": ".gitattributes",
                 "added_exact_raw_lfs_rules": 1,
                 "removed_or_changed_original_bytes": 0,
-                "added_paths": ["raw/pbs/payloads/first/hash.pdf"],
+                "added_paths": [f"raw/pbs/payloads/first/{'a' * 64}.pdf"],
             },
             "card": {"parsed_card_exact": True, "root_readme_exact": True},
         },
@@ -386,15 +397,25 @@ def native_case(complete: dict[str, Any], tmp_path: Path) -> dict[str, Any]:
         },
         "files": [
             {
-                "id": identity,
-                "archive_path": f"raw/pbs/payloads/{identity}/hash.pdf",
-                "byte_size": 4,
-                "checksum_sha256": "a" * 64,
+                "id": item["id"],
+                "source_id": item["source_id"],
+                "source_version_id": item["source_version_id"],
+                "citation_key": item["citation_key"],
+                "source_url": item["source_url"],
+                "original_source_filename": item["file_name"],
+                "acquisition_status": item["status"],
+                "archive_path": (
+                    f"raw/pbs/payloads/{item['id']}/{item['checksum_sha256']}"
+                    f"{Path(item['file_name']).suffix}"
+                ),
+                "byte_size": item["byte_size"],
+                "checksum_sha256": item["checksum_sha256"],
             }
-            for identity in ("first", "second")
+            for item in selected
         ],
     }
     stage = (json.dumps({**readback, "mode": "stage"}, indent=2, sort_keys=True) + "\n").encode()
+    bind_full_corpus_files(tmp_path, row, readback["files"])
     row["manifest_sha256"] = hashlib.sha256(stage).hexdigest()
     for proof in (row["remote_inventory"], row["fresh_readback"]):
         proof["manifest_sha256"] = row["manifest_sha256"]
@@ -683,17 +704,235 @@ def test_readback_fingerprint_must_match_selection_even_with_rebound_manifest(
     ref = native_case["fresh_readback"]["report"]
     report = json.loads((tmp_path / ref["path"]).read_text())
     report["files"][0][field] = value
+    rebind_readback(tmp_path, native_case, report)
+    assert evidence_errors(PublicationReceipt.model_validate(native_case), tmp_path) == [
+        "invalid_canonical_readback_proof"
+    ]
+
+
+def rebind_readback(root: Path, receipt: dict[str, Any], report: dict[str, Any]) -> None:
+    """Rebind every downstream digest so only semantic provenance checks can fail."""
     total = sum(file["byte_size"] for file in report["files"])
     stage = (json.dumps({**report, "mode": "stage"}, indent=2, sort_keys=True) + "\n").encode()
     digest = hashlib.sha256(stage).hexdigest()
-    native_case.update(manifest_sha256=digest, payload_bytes=total)
-    for proof in (native_case["remote_inventory"], native_case["fresh_readback"]):
+    receipt.update(manifest_sha256=digest, payload_bytes=total)
+    for proof in (receipt["remote_inventory"], receipt["fresh_readback"]):
         proof.update(manifest_sha256=digest, payload_bytes=total)
-    write_proof(tmp_path, ref, report)
-    download = native_case["fresh_readback"]["download_report"]
-    document = json.loads((tmp_path / download["path"]).read_text())
+    write_proof(root, receipt["fresh_readback"]["report"], report)
+    download = receipt["fresh_readback"]["download_report"]
+    document = json.loads((root / download["path"]).read_text())
     document.update(manifest_sha256=digest, payload_bytes=total)
-    write_proof(tmp_path, download, document)
+    write_proof(root, download, document)
+
+
+def bind_full_corpus_files(
+    root: Path, receipt: dict[str, Any], files: list[dict[str, Any]]
+) -> None:
+    """Retain native verified rows alongside the full batch's preserved failures."""
+    for ref in receipt["full_corpus_reports"]:
+        document = json.loads((root / ref["path"]).read_text())
+        document["files"] = files
+        write_proof(root, ref, document)
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("archive_path", f"raw/pbs/payloads/renamed/{'a' * 64}.pdf"),
+        ("archive_path", f"raw/pbs/payloads/first/{'a' * 64}.zip"),
+        ("archive_path", "../../outside.pdf"),
+        ("original_source_filename", "different-schedule.pdf"),
+        ("source_url", "https://www.pbs.gov.au/publication/schedule/2026/09/first.pdf"),
+        ("source_version_id", "pbs_other_202609"),
+        ("source_id", "other_source"),
+        ("citation_key", "other_citation"),
+        ("acquisition_status", "cached"),
+    ],
+)
+@pytest.mark.parametrize("mutation", ["replace", "remove"])
+def test_readback_provenance_must_match_selection_even_with_rebound_manifest(
+    native_case: dict[str, Any],
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+    field: str,
+    value: object,
+    mutation: str,
+) -> None:
+    native_case.update(publication_state="published_verified", closeout_delivery=None)
+    assert evidence_errors(PublicationReceipt.model_validate(native_case), tmp_path) == []
+    ref = native_case["fresh_readback"]["report"]
+    report = json.loads((tmp_path / ref["path"]).read_text())
+    if mutation == "replace":
+        report["files"][0][field] = value
+    else:
+        del report["files"][0][field]
+    rebind_readback(tmp_path, native_case, report)
+    assert evidence_errors(PublicationReceipt.model_validate(native_case), tmp_path) == [
+        "invalid_canonical_readback_proof"
+    ]
+    path = tmp_path / "receipt.json"
+    path.write_text(json.dumps(native_case))
+    monkeypatch.setattr("sys.argv", ["check", str(path), "--evidence-root", str(tmp_path)])
+    assert main() == 1
+    result = json.loads(capsys.readouterr().out)
+    assert result["status"] == "blocked"
+    assert result["publication_state"] == "not_asserted"
+    assert result["publication_blockers"] == ["invalid_canonical_readback_proof"]
+
+
+@pytest.fixture
+def native_variant_case(native_case: dict[str, Any], tmp_path: Path) -> dict[str, Any]:
+    """An exact-replay variant inherits edition and citation from its selected parent."""
+    selected = [
+        json.loads(line)
+        for line in (tmp_path / native_case["selection"]["path"]).read_text().splitlines()
+    ]
+    parent = selected[0]
+    variant = {
+        "id": "second",
+        "source_id": parent["id"],
+        "official_source_url": parent["source_url"] + "?variant=1",
+        "archive_timestamp": "20260801000000",
+        "archive_replay_url": (
+            "https://web.archive.org/web/20260801000000id_/" + parent["source_url"]
+        ),
+        "archive_digest_verified": True,
+        "status": "downloaded",
+        "cache_path": "data/raw_live/historical_sources/second.pdf",
+        "byte_size": 4,
+        "checksum_sha256": "a" * 64,
+    }
+    write_proof(tmp_path, native_case["canonical_receipts"][0], [parent])
+    write_proof(tmp_path, native_case["canonical_receipts"][2], [variant])
+    write_proof(tmp_path, native_case["selection"], [parent, variant])
+    ref = native_case["fresh_readback"]["report"]
+    report = json.loads((tmp_path / ref["path"]).read_text())
+    report["files"][1] = {
+        **report["files"][0],
+        "id": variant["id"],
+        "source_url": variant["official_source_url"],
+        "archive_path": f"raw/pbs/payloads/second/{'a' * 64}.pdf",
+        "archive_timestamp": variant["archive_timestamp"],
+        "archive_replay_url": variant["archive_replay_url"],
+        "archive_original_url": parent["source_url"],
+        "archive_identity_basis": "exact_replay_url",
+    }
+    rebind_readback(tmp_path, native_case, report)
+    bind_full_corpus_files(tmp_path, native_case, report["files"])
+    return native_case
+
+
+def test_native_variant_provenance_passes(
+    native_variant_case: dict[str, Any], tmp_path: Path
+) -> None:
+    assert evidence_errors(PublicationReceipt.model_validate(native_variant_case), tmp_path) == []
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("archive_timestamp", "20260802000000"),
+        ("archive_replay_url", "https://web.archive.org/web/20260802000000id_/different.pdf"),
+        ("archive_original_url", "https://www.pbs.gov.au/publication/schedule/2026/09/first.pdf"),
+        ("archive_identity_basis", "exact_cdx_capture_and_payload_digests"),
+        ("source_version_id", "pbs_variant_invented_edition"),
+        ("citation_key", "pbs_variant_invented_citation"),
+        ("original_source_filename", "second.pdf"),
+    ],
+)
+@pytest.mark.parametrize("mutation", ["replace", "remove"])
+def test_variant_provenance_cannot_be_rebound(
+    native_variant_case: dict[str, Any],
+    tmp_path: Path,
+    field: str,
+    value: object,
+    mutation: str,
+) -> None:
+    assert evidence_errors(PublicationReceipt.model_validate(native_variant_case), tmp_path) == []
+    ref = native_variant_case["fresh_readback"]["report"]
+    report = json.loads((tmp_path / ref["path"]).read_text())
+    if mutation == "replace":
+        report["files"][1][field] = value
+    else:
+        del report["files"][1][field]
+    rebind_readback(tmp_path, native_variant_case, report)
+    assert evidence_errors(PublicationReceipt.model_validate(native_variant_case), tmp_path) == [
+        "invalid_canonical_readback_proof"
+    ]
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("archive_path", f"raw/pbs/payloads/substituted/{'a' * 64}.pdf"),
+        ("original_source_filename", "substituted.pdf"),
+        ("source_url", "https://www.pbs.gov.au/publication/schedule/2026/09/first.pdf"),
+        ("source_version_id", "pbs_other_edition"),
+        ("citation_key", "other_citation"),
+        ("acquisition_status", "cached"),
+    ],
+)
+def test_rebinding_full_report_cannot_override_canonical_provenance(
+    native_case: dict[str, Any], tmp_path: Path, field: str, value: object
+) -> None:
+    assert evidence_errors(PublicationReceipt.model_validate(native_case), tmp_path) == []
+    ref = native_case["fresh_readback"]["report"]
+    report = json.loads((tmp_path / ref["path"]).read_text())
+    report["files"][0][field] = value
+    bind_full_corpus_files(tmp_path, native_case, report["files"])
+    rebind_readback(tmp_path, native_case, report)
+    assert evidence_errors(PublicationReceipt.model_validate(native_case), tmp_path) == [
+        "invalid_canonical_readback_proof"
+    ]
+
+
+def test_extra_readback_provenance_rejected_after_rebinding(
+    native_case: dict[str, Any], tmp_path: Path
+) -> None:
+    ref = native_case["fresh_readback"]["report"]
+    report = json.loads((tmp_path / ref["path"]).read_text())
+    report["files"][0]["unsubstantiated_provenance"] = "claimed"
+    rebind_readback(tmp_path, native_case, report)
+    assert evidence_errors(PublicationReceipt.model_validate(native_case), tmp_path) == [
+        "invalid_canonical_readback_proof"
+    ]
+
+
+@pytest.mark.parametrize(
+    "malformation",
+    [
+        "duplicate_ids",
+        "missing_id",
+        "missing_files",
+        "null",
+        "dict",
+        "string",
+        "number",
+        "nonobjects",
+    ],
+)
+def test_malformed_latest_full_corpus_files_fail_closed(
+    native_case: dict[str, Any], tmp_path: Path, malformation: str
+) -> None:
+    assert evidence_errors(PublicationReceipt.model_validate(native_case), tmp_path) == []
+    ref = native_case["full_corpus_reports"][-1]
+    document = json.loads((tmp_path / ref["path"]).read_text())
+    if malformation == "duplicate_ids":
+        document["files"].append(dict(document["files"][0]))
+    elif malformation == "missing_id":
+        del document["files"][0]["id"]
+    elif malformation == "missing_files":
+        del document["files"]
+    else:
+        document["files"] = {
+            "null": None,
+            "dict": {"first": document["files"][0]},
+            "string": "not a file list",
+            "number": 2,
+            "nonobjects": ["first", "second"],
+        }[malformation]
+    write_proof(tmp_path, ref, document)
     assert evidence_errors(PublicationReceipt.model_validate(native_case), tmp_path) == [
         "invalid_canonical_readback_proof"
     ]

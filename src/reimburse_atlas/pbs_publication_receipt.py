@@ -5,8 +5,9 @@ from __future__ import annotations
 import hashlib
 import json
 from datetime import datetime
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Annotated, Any, Literal, Self, cast
+from urllib.parse import urlsplit
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -518,6 +519,44 @@ def fresh_download_valid(receipt: PublicationReceipt, docs: dict[str, Any]) -> b
     )
 
 
+def canonical_file_fields(source: dict[str, Any], selected: dict[str, Any]) -> dict[str, Any]:
+    """Derive public identity fields without trusting a parent-filled readback row."""
+    variant = "official_source_url" in source
+    parent = selected[source["source_id"]] if variant else source
+    if parent["source_id"] != "au_pbs":
+        message = "non-PBS canonical parent"
+        raise ValueError(message)
+    url = source["official_source_url" if variant else "source_url"]
+    if not isinstance(url, str):
+        message = "canonical URL must be text"
+        raise TypeError(message)
+    url_path = PurePosixPath(urlsplit(url).path)
+    filename = url_path.name
+    if parent.get("file_name", filename) != filename:
+        message = "canonical filename mismatch"
+        raise ValueError(message)
+    expected = {
+        "id": source["id"],
+        "source_id": "au_pbs",
+        "source_version_id": parent["source_version_id"],
+        "citation_key": parent["citation_key"],
+        "source_url": url,
+        "original_source_filename": filename,
+        "byte_size": source["byte_size"],
+        "checksum_sha256": source["checksum_sha256"],
+        "acquisition_status": source["status"],
+        "archive_path": (
+            f"raw/pbs/payloads/{source['id']}/{source['checksum_sha256']}{url_path.suffix.lower()}"
+        ),
+    }
+    if variant:
+        expected.update(
+            archive_timestamp=source["archive_timestamp"],
+            archive_replay_url=source["archive_replay_url"],
+        )
+    return expected
+
+
 def canonical_readback_valid(receipt: PublicationReceipt, docs: dict[str, Any]) -> bool:
     """Verify native readback results and reconstruct the exact staged manifest binding."""
     proof = receipt.fresh_readback
@@ -531,15 +570,18 @@ def canonical_readback_valid(receipt: PublicationReceipt, docs: dict[str, Any]) 
     if len(files) != receipt.payload_count:
         return False
     selected = {item["id"]: item for item in docs[receipt.selection.path]}
-    if set(selected) != {file["id"] for file in files} or not all(
-        fields_match(
-            file,
-            {
-                "checksum_sha256": selected[file["id"]]["checksum_sha256"],
-                "byte_size": selected[file["id"]]["byte_size"],
-            },
+    # The superseding full-corpus report also binds CDX-derived identity fields.
+    # Preserve all of its row fields, not merely the payload digest and size.
+    corpus_rows = cast("list[dict[str, Any]]", docs[receipt.full_corpus_reports[-1].path]["files"])
+    corpus = {item["id"]: item for item in corpus_rows}
+    if (
+        len(corpus) != len(corpus_rows)
+        or set(selected) != {file["id"] for file in files}
+        or not all(
+            fields_match(file, canonical_file_fields(selected[file["id"]], selected))
+            and same_json(file, corpus.get(file["id"]))
+            for file in files
         )
-        for file in files
     ):
         return False
     if any(type(file.get("byte_size")) is not int or file["byte_size"] <= 0 for file in files):

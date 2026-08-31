@@ -76,8 +76,13 @@ Download proof must be `pbs-fresh-download-v1`, with successful forced non-XET
 download, exact metadata inventory/count/revision, and matching manifest/counts/bytes.
 Readback must be native v2, verified/readback mode, zero failures and empty errors,
 matching counts/byte sum, unique IDs/paths and exact README/permission hashes.
-Its exact ID set and each file's SHA-256/byte size must also match the selected
-full canonical receipt rows; another legitimate canonical selection cannot substitute. The
+Its exact ID set and each file's SHA-256/byte size, source/version/citation,
+original filename, acquisition status and deterministic archive path must match
+the selected canonical receipts. Archive variants also bind their selected parent,
+timestamp and replay URL. Every complete readback row must equal its row in the
+superseding full-corpus report, preserving CDX identity fields and rejecting
+unbound extra provenance. Rehashing a fabricated readback does not substitute for
+these canonical comparisons. Another legitimate canonical selection cannot substitute. The
 checker reconstructs stage-mode serialization to verify the staged manifest hash.
 Source delivery must contain the native merged PR SHA and successful check results.
 The strict metadata failure is accepted only as raw-inventory evidence alongside
