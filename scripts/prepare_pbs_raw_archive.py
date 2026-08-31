@@ -7,6 +7,16 @@ the original cache need not remain present. It does not establish remote publica
 Never upload the raw cache
 wholesale: only the successfully staged directory is a candidate for later governed upload.
 The raw/pbs/ prefix is additive; do not replace a dataset card, configs, or derived manifests.
+
+Bounded subsets: the default full batch must fail while the December 1987 RPBS
+payload is missing and updated-pbs-text-files.pdf is excluded by the artefact gate.
+Retain the complete dry-run JSON (errors AND coverage) outside the staged subset,
+in ignored local evidence storage and later in the parent's publication evidence.
+Parent may then provide --receipts with unchanged eligible receipt rows only,
+including official parent receipts for variants, and use that same selection for
+readback. Never delete source receipts or silently erase omissions: subset success
+means only that the selected batch verified, not that historical coverage is complete.
+This utility does not create that selection or replace the full-corpus error report.
 """
 
 from __future__ import annotations
@@ -130,6 +140,14 @@ def check_bytes(path: Path, row: dict[str, Any]) -> None:
         raise ArchiveError("sha256_mismatch")
 
 
+def source_filename(url: str, receipt: dict[str, Any]) -> str:
+    """Preserve the official URL basename; reject conflicting receipt filenames."""
+    filename = PurePosixPath(urlsplit(url).path).name
+    if receipt.get("file_name", filename) != filename:
+        raise ArchiveError("source_filename_mismatch")
+    return filename
+
+
 def receipt_entry(
     root: Path,
     receipt: dict[str, Any],
@@ -165,6 +183,7 @@ def receipt_entry(
         "source_version_id": version,
         "citation_key": citation,
         "source_url": url,
+        "original_source_filename": source_filename(url, parent),
         "byte_size": size,
         "checksum_sha256": digest,
         "acquisition_status": receipt["status"],
@@ -259,6 +278,9 @@ def prepare(
             issue["source_url"] = source_url(
                 receipt.get("official_source_url", receipt.get("source_url"))
             )
+    permission_checksum = (
+        fingerprint(safe_path(root, PERMISSION, ignored=False))[1] if not errors else None
+    )
     manifest = {
         "schema_version": "pbs-raw-archive-staging-v1",
         "mode": "readback" if readback else "stage" if stage else "dry_run",
@@ -274,6 +296,7 @@ def prepare(
             "historical_completeness_asserted": False,
         },
         "permission_record": PERMISSION,
+        "permission_record_checksum_sha256": permission_checksum,
         "permission_basis": "owner_attestation",
         "attribution": "Australian Government Pharmaceutical Benefits Scheme (PBS).",
         "rights_source": "https://www.pbs.gov.au/info/general/copyright",

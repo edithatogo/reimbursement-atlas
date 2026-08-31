@@ -222,6 +222,7 @@ def test_source_identified_variant(case: tuple[Path, dict[str, Any]]) -> None:
     result = archive.prepare(root, [receipt, variant])
     assert result["status"] == "verified"
     assert result["files"][1]["source_version_id"] == receipt["source_version_id"]
+    assert result["files"][1]["original_source_filename"] == ("2020-01-01-general-schedule.pdf")
     assert archive.prepare(root, [variant])["status"] == "blocked"
     variant["archive_replay_url"] = str(variant["archive_replay_url"]) + "?secret=abc"
     assert (
@@ -255,6 +256,7 @@ def test_structured_package_is_not_extracted(case: tuple[Path, dict[str, Any]]) 
     assert result["status"] == "verified"
     staged = root / "data/local/package" / result["files"][0]["archive_path"]
     assert staged.suffix == ".zip"
+    assert result["files"][0]["original_source_filename"] == "2020-01-01-xml-V3.zip"
     assert staged.read_bytes() == payload
 
 
@@ -311,3 +313,60 @@ def test_permission_helper_is_authoritative_for_format_notices(
     result = archive.prepare(root, [receipt])
     assert result["errors"][0]["source_url"] == receipt["source_url"]
     assert result["coverage"]["complete_for_requested_batch"] is False
+
+
+def test_permission_checksum_binds_complete_record_bytes(case: tuple[Path, dict[str, Any]]) -> None:
+    root, receipt = case
+    permission = root / archive.PERMISSION
+    original = permission.read_bytes()
+    result = archive.prepare(root, [receipt])
+    assert result["permission_record_checksum_sha256"] == hashlib.sha256(original).hexdigest()
+    assert result["permission_record"] == archive.PERMISSION
+    assert result["publication_state"] == "not_asserted"
+
+    # Even JSON whitespace changes affect the binding: hash exact complete bytes,
+    # not a selected subset of permission fields or reserialized JSON.
+    permission.write_bytes(original + b"\n ")
+    staged = archive.prepare(root, [receipt], stage="data/local/stage")
+    checksum = hashlib.sha256(permission.read_bytes()).hexdigest()
+    assert staged["permission_record_checksum_sha256"] == checksum
+    assert checksum != result["permission_record_checksum_sha256"]
+    manifest = json.loads((root / "data/local/stage/raw/pbs/manifest.json").read_text())
+    assert manifest == staged
+    verified = archive.prepare(root, [receipt], readback="data/local/stage")
+    assert verified["permission_record_checksum_sha256"] == checksum
+    assert verified["publication_state"] == "not_asserted"
+    assert str(root) not in archive.serialize(staged)
+
+
+def test_original_source_filename_retained(case: tuple[Path, dict[str, Any]]) -> None:
+    root, receipt = case
+    filename = "2020-01-01-general-schedule.PDF"
+    receipt["file_name"] = filename
+    receipt["source_url"] = (
+        f"https://www.pbs.gov.au/publication/schedule/2020/01/{filename}?variant=3"
+    )
+    result = archive.prepare(root, [receipt], stage="data/local/stage")
+    assert result["status"] == "verified"
+    row = result["files"][0]
+    assert row["original_source_filename"] == filename
+    assert row["archive_path"].endswith(".pdf")
+    assert receipt["cache_path"].split("/")[-1] != filename
+    manifest = json.loads((root / "data/local/stage/raw/pbs/manifest.json").read_text())
+    assert manifest["files"][0]["original_source_filename"] == filename
+
+
+def test_conflicting_source_filename_fails_closed(case: tuple[Path, dict[str, Any]]) -> None:
+    root, receipt = case
+    receipt["file_name"] = "different-schedule.pdf"
+    assert error(root, receipt) == "source_filename_mismatch"
+
+
+def test_blocked_batch_does_not_assert_permission_checksum(
+    case: tuple[Path, dict[str, Any]],
+) -> None:
+    root, receipt = case
+    (root / archive.PERMISSION).unlink()
+    result = archive.prepare(root, [receipt])
+    assert result["status"] == "blocked"
+    assert result["permission_record_checksum_sha256"] is None
