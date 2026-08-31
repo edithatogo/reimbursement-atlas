@@ -21,7 +21,7 @@ This issue was generated from `conductor/backlog.yml`. Refine the acceptance cri
 - [x] Rights states, provenance and non-publication boundaries remain explicit.
 - [x] Tests cover historical indexing, deterministic replay, source contracts and raw path exclusion.
 - [x] Recover all 110 bounded PBS timeout failures through a low-concurrency retry.
-- [ ] Reconcile the remaining December 1987 official HTTP 403 with the publisher.
+- [ ] Recover the December 1987 RPBS PDF: canonical URL returned HTTP 404 and the variant returned HTTP 403; the NLA holdings lead remains uninspected, with no publisher/library contact claimed.
 - [ ] Recover December 2006-March 2007 XML payloads and release-specific schema/DTD/XSL, amendment and version metadata; do not infer field parity.
 - [x] Accept and apply the owner's 2026-08-31 raw PBS redistribution attestation in data/licence_review/pbs_raw_permission.json; no per-file approval required.
 - [x] Close permission implementation through PR #801 (`02116d73`), independently of the active source archive track `track_pbs_raw_archive_20260831`.
@@ -29,6 +29,7 @@ This issue was generated from `conductor/backlog.yml`. Refine the acceptance cri
 - [x] Retain initial and superseding full-corpus dry runs: 1,707 of 1,709 receipts verify after the identity fix; missing 1987 acquisition and the excluded format notice remain explicit. No actual staging or upload is claimed.
 - [x] Integrate two early schema distributions and three verified HTML indexes as metadata only; no missing monthly release, schema compilation or RPBS PDF recovery.
 - [x] Prepare conditional raw/pbs dataset-card documentation while retaining all eight derived configs and the existing derived workflow's raw rejection.
-- [ ] Parent completes deferred canonical regeneration, independent review and protected source-PR delivery; selected subsets must retain full omission evidence.
+- [x] Complete isolated source regeneration and the 27 native quality gates; refresh action inventory and downstream projections after PR #800.
+- [ ] Complete independent archive-contract review and protected source-PR delivery; selected subsets must retain full omission evidence.
 - [ ] Transfer raw PBS files to governed external storage with manifest and checksum readback; permission alone is not evidence of publication.
 - [x] Promote only independently licence-reviewed permitted metadata or derived fields; GitHub Actions run 33237003418 published the governed Hugging Face configurations without raw payloads or the legacy seed tree.

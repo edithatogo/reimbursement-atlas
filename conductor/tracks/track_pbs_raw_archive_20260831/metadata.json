@@ -4,14 +4,14 @@
   "status": "in_progress",
   "description": "PBS source archive staging, strict local readback and bounded early-schema evidence",
   "created_at": "2026-08-31T04:45:59Z",
-  "updated_at": "2026-08-31T05:00:40Z",
+  "updated_at": "2026-08-31T05:26:00Z",
   "evidence_schema": "1.0",
   "github_issues": [255],
   "publication_performed": false,
-  "global_regeneration_performed": false,
+  "global_regeneration_performed": true,
   "gates": [
     {"id": "permission_implementation", "kind": "protected_merge", "status": "pass", "evidence": "PR 801, merge 02116d73, 25 successful checks and equal head/merge tree"},
-    {"id": "parent_source_delivery", "kind": "protected_merge", "status": "pending", "evidence": "Parent integration after sequential 799/800; no source PR delivery claimed"},
+    {"id": "parent_source_delivery", "kind": "protected_merge", "status": "pending", "evidence": "799/800 merged; isolated regeneration and 27 native quality gates passed; protected source-PR delivery remains pending"},
     {"id": "raw_transfer_readback", "kind": "publication", "status": "pending", "evidence": "No actual staging, upload or remote readback in this worker"}
   ]
 }

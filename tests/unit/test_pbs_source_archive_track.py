@@ -92,6 +92,10 @@ def test_project_issue_rendering_retains_remaining_source_and_transfer_gates() -
         "No actual staging",
         "two early schema",
         "eight derived configs",
+        "canonical URL returned HTTP 404",
+        "variant returned HTTP 403",
+        "NLA holdings lead remains uninspected",
+        "no publisher/library contact claimed",
     ):
         assert text in rendered
     assert "- [ ] Transfer raw PBS" in rendered

@@ -121,7 +121,10 @@ Existing derived workflows and raw rejection are unchanged. Any later raw transf
 uses a distinct reviewed path after independent review and protected source-PR
 green/merge, preserving existing dataset configs/card. A separate parent publication
 receipt must bind the merged implementation, transfer and independent readback.
-The updated execution scope includes isolated source-PR regeneration and full QA
-after merging #799, with four pytest workers; source merge waits for #800 and
-protected checks. Publisher/library contacts, raw upload and new owner approval
+Isolated full regeneration completed after merging #799, with all 27 native
+CI-profile quality gates passing and pytest bounded to four workers. PR #800 merged
+as `5bb88f2b`; action inventory and downstream projections were refreshed before
+source-PR push. The final four-worker suite passed 916 tests with 90.29% coverage.
+Protected source checks and delivery remain separate from
+local validation. Publisher/library contacts, raw upload and new owner approval
 are not part of this worker's implementation evidence.

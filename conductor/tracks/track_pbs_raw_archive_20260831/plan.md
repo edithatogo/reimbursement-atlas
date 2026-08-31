@@ -17,8 +17,9 @@
 ## Parent delivery and separate execution
 
 - [x] A6: Merge #799 runtime baseline before broad generation (`2a88b19c`).
-- [ ] A6: Perform isolated full regeneration/QA with four pytest workers and open
-  the source PR for checks; hold merge until #800 delivery and protected checks.
+- [x] A6: Perform isolated full regeneration/QA with four pytest workers; merge
+  #800 and refresh action inventory, data dictionary and downstream projections.
+- [ ] A6: Open the source PR for checks; require protected source delivery.
 - [ ] A6: Obtain independent final archive-contract review before actual local staging.
 - [ ] A6: Record source-PR merge evidence before archiving this implementation track.
 - [x] A4: Select 1,707 unchanged eligible receipt lines, preserving all variant parents
