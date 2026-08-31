@@ -550,10 +550,32 @@ def canonical_file_fields(source: dict[str, Any], selected: dict[str, Any]) -> d
         ),
     }
     if variant:
+        stamp, replay = source["archive_timestamp"], source["archive_replay_url"]
+        prefix = f"https://web.archive.org/web/{stamp}id_/"
+        if not isinstance(replay, str) or not replay.startswith(prefix):
+            message = "canonical replay identity mismatch"
+            raise ValueError(message)
+        original = replay[len(prefix) :]
+        official = url.split("?", maxsplit=1)[0]
         expected.update(
-            archive_timestamp=source["archive_timestamp"],
-            archive_replay_url=source["archive_replay_url"],
+            archive_timestamp=stamp,
+            archive_replay_url=replay,
+            archive_original_url=original,
+            archive_identity_basis="exact_replay_url",
         )
+        if original != official:
+            captured, publisher = urlsplit(original), urlsplit(official)
+            if (
+                captured.scheme == publisher.scheme
+                or publisher._replace(scheme=captured.scheme) != captured
+                or source["archive_checksum_sha1_base32"] != source["checksum_sha1_base32"]
+            ):
+                message = "canonical CDX identity mismatch"
+                raise ValueError(message)
+            expected.update(
+                archive_identity_basis="exact_cdx_capture_and_payload_digests",
+                archive_cdx_digest_sha1_base32=source["archive_checksum_sha1_base32"],
+            )
     return expected
 
 

@@ -887,6 +887,35 @@ def test_rebinding_full_report_cannot_override_canonical_provenance(
     ]
 
 
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("archive_original_url", "https://www.pbs.gov.au/publication/schedule/2026/09/first.pdf"),
+        ("archive_identity_basis", "exact_cdx_capture_and_payload_digests"),
+    ],
+)
+@pytest.mark.parametrize("mutation", ["replace", "remove"])
+def test_rebinding_full_report_cannot_override_variant_replay_identity(
+    native_variant_case: dict[str, Any],
+    tmp_path: Path,
+    field: str,
+    value: object,
+    mutation: str,
+) -> None:
+    assert evidence_errors(PublicationReceipt.model_validate(native_variant_case), tmp_path) == []
+    ref = native_variant_case["fresh_readback"]["report"]
+    report = json.loads((tmp_path / ref["path"]).read_text())
+    if mutation == "replace":
+        report["files"][1][field] = value
+    else:
+        del report["files"][1][field]
+    bind_full_corpus_files(tmp_path, native_variant_case, report["files"])
+    rebind_readback(tmp_path, native_variant_case, report)
+    assert evidence_errors(PublicationReceipt.model_validate(native_variant_case), tmp_path) == [
+        "invalid_canonical_readback_proof"
+    ]
+
+
 def test_extra_readback_provenance_rejected_after_rebinding(
     native_case: dict[str, Any], tmp_path: Path
 ) -> None:
