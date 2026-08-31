@@ -9,6 +9,22 @@ import yaml
 from reimburse_atlas.registry import project_root
 
 
+def test_ruff_pins_match_between_uv_and_pixi() -> None:
+    """Local Pixi linting and uv CI must use the same pinned Ruff version."""
+    root = project_root()
+    config = tomllib.loads((root / "pyproject.toml").read_text(encoding="utf-8"))
+    uv_pin = next(
+        dependency.removeprefix("ruff")
+        for dependency in config["project"]["optional-dependencies"]["dev"]
+        if dependency.startswith("ruff==")
+    )
+    assert config["tool"]["pixi"]["dependencies"]["ruff"] == uv_pin
+    uv_lock = tomllib.loads((root / "uv.lock").read_text(encoding="utf-8"))
+    assert next(
+        package["version"] for package in uv_lock["package"] if package["name"] == "ruff"
+    ) == uv_pin.removeprefix("==")
+
+
 def test_dependabot_defers_typescript7_to_compatibility_canary() -> None:
     """Dependabot must not bypass the explicit TypeScript compatibility gate."""
     config = yaml.safe_load((project_root() / ".github/dependabot.yml").read_text())
