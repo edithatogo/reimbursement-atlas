@@ -1,0 +1,17 @@
+{
+  "track_id": "track_pbs_raw_archive_20260831",
+  "type": "feature",
+  "status": "in_progress",
+  "description": "PBS source archive staging, strict local readback and bounded early-schema evidence",
+  "created_at": "2026-08-31T04:45:59Z",
+  "updated_at": "2026-08-31T05:52:36Z",
+  "evidence_schema": "1.0",
+  "github_issues": [255],
+  "publication_performed": false,
+  "global_regeneration_performed": true,
+  "gates": [
+    {"id": "permission_implementation", "kind": "protected_merge", "status": "pass", "evidence": "PR 801, merge 02116d73, 25 successful checks and equal head/merge tree"},
+    {"id": "parent_source_delivery", "kind": "protected_merge", "status": "pending", "evidence": "799/800 merged; isolated regeneration and 27 native quality gates passed; protected source-PR delivery remains pending"},
+    {"id": "raw_transfer_readback", "kind": "publication", "status": "pending", "evidence": "Orchestrator local stage verified: 1707 payloads, receipt SHA 569d18a843791e666be9e878e52859355d48f8cce76cabf1f7b97034c7ae12ff; no remote upload or remote readback"}
+  ]
+}

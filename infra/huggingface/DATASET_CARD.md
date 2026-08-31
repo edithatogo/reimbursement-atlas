@@ -49,3 +49,25 @@ No configuration contains ignored raw source payloads, restricted descriptors,
 credentials or local absolute paths. Gold and Platinum records retain their
 bounded permitted scope and prohibited claims. Hugging Face is a distribution
 destination, not the acquisition origin or evidentiary source of truth.
+
+## Separate PBS source archive
+
+When present, files under `raw/pbs/` form a separately governed source archive,
+not a ninth derived configuration. This description does not assert that raw files
+have currently been uploaded or independently read back. The eight explicit
+configurations above and the existing derived workflow's raw-payload rejection
+remain unchanged; source transfer must use a distinct reviewed path.
+
+When present, `raw/pbs/manifest.json` and its checksum-bound `raw/pbs/README.md`
+govern the exact archive inventory, original filenames, source/replay URLs, edition
+identities, byte sizes, payload checksums and complete permission-record SHA-256.
+Preserve original source bytes, embedded notices, attribution and disclaimers.
+Permission is an owner attestation, not an independently verified publisher grant;
+the software Apache-2.0 licence does not apply to PBS source payloads.
+
+An eligible subset is not complete historical coverage. Retain the full dry-run
+errors and coverage separately, including missing December 1987 RPBS acquisition
+and the excluded format notice. Early schema distributions and illustrative XML
+are distinct from missing monthly releases and are not schedule-archive payloads.
+Only a separate protected-delivery, transfer and independent-readback receipt can
+establish publication; staging manifests deliberately retain `not_asserted`.

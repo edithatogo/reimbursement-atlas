@@ -1,0 +1,16 @@
+{
+  "track_id": "pbs_raw_permission_20260831",
+  "status": "completed",
+  "type": "fix",
+  "created_at": "2026-08-30T21:47:35Z",
+  "updated_at": "2026-08-31T04:45:59Z",
+  "completed_at": "2026-08-31T04:38:08Z",
+  "github_pr": 801,
+  "merge_commit": "02116d73da8a8f5dee96009b1ec33691d2704062",
+  "validated_head": "3c54e4e9eb0b612520c64b1b553ad15f9a919b55",
+  "validated_tree": "999415853772673847aed633f6e35f118e0e4204",
+  "hosted_successful_checks": 25,
+  "github_issues": [255],
+  "permission_record": "data/licence_review/pbs_raw_permission.json",
+  "publication_performed": false
+}
