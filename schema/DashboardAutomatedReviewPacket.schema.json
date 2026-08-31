@@ -6,7 +6,7 @@
   "additionalProperties": false,
   "required": ["schema_version", "status", "tested_commit", "source_fingerprint", "data_fingerprint", "test_count", "expected_test_count", "junit", "routes", "projects", "route_count", "project_count", "coverage_complete", "screenshot_count", "screenshots", "workflow", "report_error", "automated_scope", "human_review_required"],
   "properties": {
-    "schema_version": {"const": "dashboard-automated-review-v2"},
+    "schema_version": {"enum": ["dashboard-automated-review-v2", "dashboard-automated-review-v3"]},
     "status": {"enum": ["pass", "fail", "missing_artifacts"]},
     "tested_commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
     "source_fingerprint": {
@@ -18,7 +18,7 @@
       "pattern": "^[a-f0-9]{64}$"
     },
     "test_count": {"type": "integer", "minimum": 0},
-    "expected_test_count": {"const": 64},
+    "expected_test_count": {"enum": [64, 68]},
     "junit": {
       "type": "object",
       "additionalProperties": false,
@@ -87,11 +87,23 @@
   },
   "allOf": [
     {
+      "if": {"properties": {"schema_version": {"const": "dashboard-automated-review-v2"}}},
+      "then": {
+        "properties": {"expected_test_count": {"const": 64}},
+        "if": {"properties": {"status": {"const": "pass"}}},
+        "then": {"properties": {"test_count": {"const": 64}, "junit": {"properties": {"tests": {"const": 64}}}}}
+      },
+      "else": {
+        "properties": {"expected_test_count": {"const": 68}},
+        "if": {"properties": {"status": {"const": "pass"}}},
+        "then": {"properties": {"test_count": {"const": 68}, "junit": {"properties": {"tests": {"const": 68}}}}}
+      }
+    },
+    {
       "if": {"properties": {"status": {"const": "pass"}}, "required": ["status"]},
       "then": {
         "properties": {
-          "test_count": {"const": 64},
-          "junit": {"properties": {"tests": {"const": 64}, "failures": {"const": 0}, "errors": {"const": 0}, "skipped": {"const": 0}}},
+          "junit": {"properties": {"failures": {"const": 0}, "errors": {"const": 0}, "skipped": {"const": 0}}},
           "coverage_complete": {"const": true},
           "screenshot_count": {"const": 44},
           "screenshots": {"minItems": 44},

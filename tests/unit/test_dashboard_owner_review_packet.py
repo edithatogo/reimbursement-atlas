@@ -17,7 +17,7 @@ from reimburse_atlas.dashboard_review import (
     resolve_repo_head,
 )
 from scripts.make_dashboard_owner_review_packet import PROVENANCE_INPUTS, build_packet
-from scripts.make_dashboard_review_packet import PROJECTS, ROUTES
+from scripts.make_dashboard_review_packet import EXPECTED_TEST_COUNT, PROJECTS, ROUTES
 from scripts.make_public_status_manifest import build_public_status_manifest
 
 
@@ -40,7 +40,7 @@ def _machine_ready_root(tmp_path: Path) -> Path:
             "coverage_complete": True,
             "routes": list(ROUTES),
             "projects": list(PROJECTS),
-            "test_count": 64,
+            "test_count": EXPECTED_TEST_COUNT,
             "screenshots": [
                 {"route": route, "project": project} for route in ROUTES for project in PROJECTS
             ],
@@ -139,7 +139,12 @@ def test_current_owner_packet_is_ready_for_bounded_accountable_review() -> None:
     }
     assert packet["routes"] == list(ROUTES)
     assert packet["screenshot_count"] == 44
-    assert packet["automated_test_count"] == 64
+    automated = json.loads(
+        Path("data/derived/dashboard_review/automated_review_packet.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert packet["automated_test_count"] == automated["expected_test_count"]
     assert len(packet["provenance_inputs"]) >= 4
 
 
