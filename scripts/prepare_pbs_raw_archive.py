@@ -25,6 +25,7 @@ from __future__ import annotations
 # Error strings are stable machine-readable codes, not user-facing exception prose.
 # ruff: file-ignore[raw-string-in-exception]
 import argparse
+import base64
 import hashlib
 import json
 import re
@@ -41,6 +42,10 @@ from reimburse_atlas.licence_review import pbs_raw_redistribution_status
 RAW = "data/raw_live/historical_sources"
 PERMISSION = "data/licence_review/pbs_raw_permission.json"
 ARCHIVE_PREFIX = "raw/pbs"
+CDX_OBSERVATIONS = (
+    "data/derived/historical_sources/pbs_archive_verification_v1/"
+    "internet_archive_cdx_observations.jsonl"
+)
 DEFAULT_RECEIPTS = (
     "data/derived/historical_sources/pbs_archive_v1/historical_source_downloads.jsonl",
     "data/derived/historical_sources/pbs_structured_archive_v1/historical_source_downloads.jsonl",
@@ -159,6 +164,64 @@ def source_filename(url: str, receipt: dict[str, Any]) -> str:
     return filename
 
 
+def archive_identity(
+    root: Path,
+    receipt: dict[str, Any],
+    official_url: str,
+    payload: Path,
+) -> dict[str, str]:
+    """Accept a scheme difference only with an exact CDX capture and actual payload digest."""
+    stamp = receipt["archive_timestamp"]
+    replay = receipt.get("archive_replay_url")
+    prefix = f"https://web.archive.org/web/{stamp}id_/"
+    if not isinstance(replay, str) or not replay.startswith(prefix):
+        raise ArchiveError("unverified_archive_identity")
+    try:
+        original = source_url(replay[len(prefix) :])
+    except ArchiveError:
+        raise ArchiveError("unverified_archive_identity") from None
+    official = official_url.split("?", maxsplit=1)[0]
+    if original == official:
+        return {"archive_original_url": original, "archive_identity_basis": "exact_replay_url"}
+    source = urlsplit(official)
+    captured = urlsplit(original)
+    if source.scheme == captured.scheme or source._replace(scheme=captured.scheme) != captured:
+        raise ArchiveError("unverified_archive_identity")
+    observations = load_receipts(root, [CDX_OBSERVATIONS])
+    matches = [
+        row
+        for row in observations
+        if row.get("original") == original and row.get("timestamp") == stamp
+    ]
+    if len(matches) != 1:
+        raise ArchiveError("unverified_archive_identity")
+    capture = matches[0]
+    digest = capture.get("digest")
+    if (
+        capture.get("statuscode") != "200"
+        or capture.get("mimetype") != "application/pdf"
+        or not isinstance(digest, str)
+        or not re.fullmatch(r"[A-Z2-7]{32}", digest)
+        or (receipt.get("archive_checksum_sha1_base32"), receipt.get("checksum_sha1_base32"))
+        != (digest, digest)
+    ):
+        raise ArchiveError("unverified_archive_identity")
+    actual = hashlib.sha1(usedforsecurity=False)
+    with payload.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            actual.update(block)
+    if base64.b32encode(actual.digest()).decode("ascii").rstrip("=") != digest:
+        raise ArchiveError("archive_sha1_mismatch")
+    return {
+        "archive_original_url": original,
+        "archive_identity_basis": "exact_cdx_capture_and_payload_digests",
+        "archive_cdx_digest_sha1_base32": digest,
+        "archive_cdx_observation_checksum_sha256": hashlib.sha256(
+            serialize(capture).encode("utf-8")
+        ).hexdigest(),
+    }
+
+
 def receipt_entry(
     root: Path,
     receipt: dict[str, Any],
@@ -206,10 +269,7 @@ def receipt_entry(
         replay = receipt.get("archive_replay_url")
         if not isinstance(stamp, str) or not re.fullmatch(r"[0-9]{14}", stamp):
             raise ArchiveError("invalid_archive_timestamp")
-        if (
-            replay != f"https://web.archive.org/web/{stamp}id_/{url.split('?')[0]}"
-            or receipt.get("archive_digest_verified") is not True
-        ):
+        if receipt.get("archive_digest_verified") is not True:
             raise ArchiveError("unverified_archive_identity")
         row.update(archive_timestamp=stamp, archive_replay_url=replay)
         cache = receipt.get("cache_path", f"{RAW}/pbs_internet_archive_variants/{identity}.pdf")
@@ -218,12 +278,13 @@ def receipt_entry(
     if not isinstance(cache, str) or not cache.startswith(f"{RAW}/"):
         raise ArchiveError("unsafe_cache_path")
     path = safe_path(root, cache)
-    if not readback:
-        check_bytes(path, row)
     suffix = Path(urlsplit(url).path).suffix.lower()
     row["archive_path"] = f"{ARCHIVE_PREFIX}/payloads/{identity}/{digest}{suffix}"
     if readback:
-        check_bytes(safe_path(root, f"{readback}/{row['archive_path']}"), row)
+        path = safe_path(root, f"{readback}/{row['archive_path']}")
+    check_bytes(path, row)
+    if variant:
+        row.update(archive_identity(root, receipt, url, path))
     return row, cache
 
 

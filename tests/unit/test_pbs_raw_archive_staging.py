@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import base64
 import hashlib
 import json
 import shutil
@@ -559,3 +560,107 @@ def test_readback_accepts_manifest_whitespace_only(case: tuple[Path, dict[str, A
     result = archive.prepare(root, [receipt], readback="data/local/stage")
     assert result["status"] == "verified"
     assert result["coverage"]["failed_operations"] == 0
+
+
+@pytest.fixture
+def scheme_variant(case: tuple[Path, dict[str, Any]]) -> tuple[Path, list[dict[str, Any]]]:
+    root, parent = case
+    original = parent["source_url"].split("?")[0].replace("https://", "http://", 1)
+    payload = (root / parent["cache_path"]).read_bytes()
+    digest = base64.b32encode(hashlib.sha1(payload, usedforsecurity=False).digest()).decode()
+    stamp = "20200101000000"
+    variant = {
+        **parent,
+        "id": "au_pbs_http_variant",
+        "source_id": parent["id"],
+        "official_source_url": parent["source_url"].split("?")[0],
+        "archive_timestamp": stamp,
+        "archive_replay_url": f"https://web.archive.org/web/{stamp}id_/{original}",
+        "archive_digest_verified": True,
+        "archive_checksum_sha1_base32": digest,
+        "checksum_sha1_base32": digest,
+    }
+    observation = {
+        "original": original,
+        "timestamp": stamp,
+        "digest": digest,
+        "statuscode": "200",
+        "mimetype": "application/pdf",
+        "length": "123",
+    }
+    cdx = root / archive.CDX_OBSERVATIONS
+    cdx.parent.mkdir(parents=True)
+    cdx.write_text(json.dumps(observation) + "\n")
+    return root, [parent, variant]
+
+
+def test_scheme_difference_requires_exact_cdx_and_actual_digests(
+    scheme_variant: tuple[Path, list[dict[str, Any]]],
+) -> None:
+    root, receipts = scheme_variant
+    result = archive.prepare(root, receipts, stage="data/local/stage")
+    assert result["status"] == "verified"
+    row = next(item for item in result["files"] if "archive_original_url" in item)
+    assert row["archive_original_url"].startswith("http://")
+    assert row["source_url"].startswith("https://")
+    assert row["archive_identity_basis"] == "exact_cdx_capture_and_payload_digests"
+    observation = json.loads((root / archive.CDX_OBSERVATIONS).read_text())
+    assert (
+        row["archive_cdx_observation_checksum_sha256"]
+        == hashlib.sha256(archive.serialize(observation).encode()).hexdigest()
+    )
+    assert archive.prepare(root, receipts, readback="data/local/stage")["status"] == "verified"
+
+
+@pytest.mark.parametrize(
+    "mutation",
+    [
+        "missing_cdx",
+        "duplicate_capture",
+        "timestamp",
+        "original",
+        "digest",
+        "statuscode",
+        "mimetype",
+        "receipt_digest",
+        "payload_digest",
+        "host",
+        "path",
+        "query",
+    ],
+)
+def test_scheme_difference_is_not_blind_normalization(
+    scheme_variant: tuple[Path, list[dict[str, Any]]],
+    mutation: str,
+) -> None:
+    root, receipts = scheme_variant
+    parent, variant = receipts
+    path = root / archive.CDX_OBSERVATIONS
+    observation = json.loads(path.read_text())
+    if mutation == "missing_cdx":
+        path.unlink()
+    elif mutation == "duplicate_capture":
+        path.write_text(path.read_text() * 2)
+    elif mutation in {"timestamp", "original", "digest", "statuscode", "mimetype"}:
+        observation[mutation] = "invalid"
+        path.write_text(json.dumps(observation))
+    elif mutation == "receipt_digest":
+        variant["checksum_sha1_base32"] = "A" * 32
+    elif mutation == "payload_digest":
+        payload = b"%PDF-1.7 different bytes with a self-consistent SHA256 receipt"
+        (root / parent["cache_path"]).write_bytes(payload)
+        for receipt in receipts:
+            receipt.update(
+                byte_size=len(payload), checksum_sha256=hashlib.sha256(payload).hexdigest()
+            )
+    else:
+        old, new = {
+            "host": ("www.pbs.gov.au", "m.pbs.gov.au"),
+            "path": ("general-schedule.pdf", "dental-book.pdf"),
+            "query": ("general-schedule.pdf", "general-schedule.pdf?variant=3"),
+        }[mutation]
+        variant["archive_replay_url"] = variant["archive_replay_url"].replace(old, new)
+    result = archive.prepare(root, receipts, stage="data/local/stage")
+    assert result["status"] == "blocked"
+    assert not (root / "data/local/stage").exists()
+    assert result["publication_state"] == "not_asserted"
