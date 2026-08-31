@@ -107,6 +107,36 @@ constitute merge approval or publication authorization.
 The parent subsequently authorized pushing the reviewed repair to trigger CI
 while #801 is pending. Neither #799 nor #800 may be merged before #801.
 
+## Sequential strict-base repair
+
+The initial hosted runs 33354886976 and 33354886982 failed generated-artifact
+parity, not dependency or security checks. Action-resolution inventory grew from
+113 to 119 rows, but the initial scoped sequence omitted `data-dictionary`.
+Its two inventory entries and total row count therefore remained stale, cascading
+into release gates, research-package hashes, seed-lake and dashboard projections.
+The repeated partial sequence above did not establish full regeneration parity.
+
+PR #801 merged as `02116d73da8a8f5dee96009b1ec33691d2704062`, with tested and
+merged tree `999415853772673847aed633f6e35f118e0e4204`. PR #799 then passed all
+required checks on strict head `c095002986f77aac8ed09ba51f7534559a189b59` and
+merged normally as `1f1285847e61e86c9ed5eaa987fc36a3c6508ba4`; its tested and
+merged tree was `085b6d1bf948488b6ce4f5a1b733b9215680afd5`.
+
+This branch merges that committed main as
+`46f6fa9c9e7420092d89884676194094812204e4`, preserving both plan histories.
+Use an isolated `uv sync --locked --all-extras` environment now that the branch
+inherits #799's Python updates. Regenerate `repo-automation`,
+`action-pin-resolution`, then **`data-dictionary` before** the two downstream
+receipt passes listed above. No raw-cache acquisition or unrelated full local
+regeneration is needed. Fresh required hosted checks, zero outstanding review
+threads and exact-head protected merge remain the delivery gates for this repair.
+
+Strict-base local checks: 23 focused action/workflow/dependency tests passed;
+actionlint, SHA-pin policy, and Ruff lint/format passed. The dictionary correction
+changes only its two action-resolution entries from 113 to 119 rows; after #801,
+the documented total changes from 248632 to 248644. No additional source or test
+changes are needed for this projection-only repair.
+
 ## Remaining #797 drift
 
 Rechecked official npm latest endpoints during preparation. Main already contains
