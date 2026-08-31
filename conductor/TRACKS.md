@@ -1,7 +1,7 @@
 # Project Tracks
 
-- [~] **Track: PBS source archive staging and early-schema evidence**
-  *Link: [./tracks/track_pbs_raw_archive_20260831/index.md](./tracks/track_pbs_raw_archive_20260831/index.md)*
+- [x] **Track: PBS source archive staging and early-schema evidence**
+  *Link: [./archive/track_pbs_raw_archive_20260831/index.md](./archive/track_pbs_raw_archive_20260831/index.md)*
 
 - [x] **Track: PBS owner-attested raw redistribution**
   *Link: [./archive/pbs_raw_permission_20260831/index.md](./archive/pbs_raw_permission_20260831/index.md)*

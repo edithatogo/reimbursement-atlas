@@ -1,0 +1,1881 @@
+{
+  "all_config_info_complete": true,
+  "completed_at": "2026-08-31T11:51:58.610635+00:00",
+  "discovered_configs": [
+    "acquisition_b1",
+    "catalogue_b0",
+    "evidence_b2",
+    "gold",
+    "lineage",
+    "platinum",
+    "promotion_decisions",
+    "silver"
+  ],
+  "failed_configs": [],
+  "final_bounded_observation": true,
+  "first_rows_summary": {
+    "acquisition_b1": {
+      "error_code": null,
+      "http_status": 200,
+      "preview_evidence": {
+        "body_keys": [
+          "config",
+          "dataset",
+          "features",
+          "rows",
+          "split",
+          "truncated"
+        ],
+        "feature_names": [
+          "acquisition_id",
+          "admission_state",
+          "byte_size",
+          "event_id",
+          "evidence_disposition",
+          "media_type",
+          "notes",
+          "outcome",
+          "payload_sha256",
+          "predecessor_event_sha256",
+          "retrieved_at",
+          "rights_state",
+          "source_id",
+          "source_locator",
+          "source_published_at",
+          "source_version_id"
+        ],
+        "partial": null,
+        "returned_row_count": 100,
+        "row_values_retained": false,
+        "rows_field_present": true,
+        "truncated": true,
+        "truncated_row_count": 0
+      },
+      "row_count": 100
+    },
+    "catalogue_b0": {
+      "error_code": null,
+      "http_status": 200,
+      "preview_evidence": {
+        "body_keys": [
+          "config",
+          "dataset",
+          "features",
+          "rows",
+          "split",
+          "truncated"
+        ],
+        "feature_names": [
+          "acquisition_status",
+          "authoritative_locator",
+          "credential_state",
+          "expected_media_types",
+          "indexed_at",
+          "notes",
+          "rights_state",
+          "source_id",
+          "source_version_id"
+        ],
+        "partial": null,
+        "returned_row_count": 64,
+        "row_values_retained": false,
+        "rows_field_present": true,
+        "truncated": false,
+        "truncated_row_count": 0
+      },
+      "row_count": 64
+    },
+    "evidence_b2": {
+      "error_code": null,
+      "http_status": 200,
+      "preview_evidence": {
+        "body_keys": [
+          "config",
+          "dataset",
+          "features",
+          "rows",
+          "split",
+          "truncated"
+        ],
+        "feature_names": [
+          "acquisition_id",
+          "byte_size",
+          "evidence_id",
+          "evidence_kind",
+          "fixity_verified_at",
+          "immutable_locator",
+          "notes",
+          "payload_sha256",
+          "rights_state",
+          "source_id",
+          "source_locator",
+          "source_version_id"
+        ],
+        "partial": null,
+        "returned_row_count": 100,
+        "row_values_retained": false,
+        "rows_field_present": true,
+        "truncated": true,
+        "truncated_row_count": 0
+      },
+      "row_count": 100
+    },
+    "gold": {
+      "error_code": null,
+      "http_status": 200,
+      "preview_evidence": {
+        "body_keys": [
+          "config",
+          "dataset",
+          "features",
+          "rows",
+          "split",
+          "truncated"
+        ],
+        "feature_names": [
+          "artifact_id",
+          "contract_id",
+          "generated_at",
+          "input_artifact_ids",
+          "input_sha256",
+          "layer",
+          "notes",
+          "promotion_status",
+          "relative_path",
+          "rights_state",
+          "sha256"
+        ],
+        "partial": null,
+        "returned_row_count": 2,
+        "row_values_retained": false,
+        "rows_field_present": true,
+        "truncated": false,
+        "truncated_row_count": 0
+      },
+      "row_count": 2
+    },
+    "lineage": {
+      "error_code": null,
+      "http_status": 200,
+      "preview_evidence": {
+        "body_keys": [
+          "config",
+          "dataset",
+          "features",
+          "rows",
+          "split",
+          "truncated"
+        ],
+        "feature_names": [
+          "code_version",
+          "input_sha256",
+          "output_dataset",
+          "output_field",
+          "output_sha256",
+          "record_id",
+          "rights_decision_id",
+          "source_dataset",
+          "source_field",
+          "transformation_id"
+        ],
+        "partial": null,
+        "returned_row_count": 17,
+        "row_values_retained": false,
+        "rows_field_present": true,
+        "truncated": false,
+        "truncated_row_count": 0
+      },
+      "row_count": 17
+    },
+    "platinum": {
+      "error_code": null,
+      "http_status": 200,
+      "preview_evidence": {
+        "body_keys": [
+          "config",
+          "dataset",
+          "features",
+          "rows",
+          "split",
+          "truncated"
+        ],
+        "feature_names": [
+          "artifact_id",
+          "contract_id",
+          "generated_at",
+          "input_artifact_ids",
+          "input_sha256",
+          "layer",
+          "notes",
+          "promotion_status",
+          "relative_path",
+          "rights_state",
+          "sha256"
+        ],
+        "partial": null,
+        "returned_row_count": 3,
+        "row_values_retained": false,
+        "rows_field_present": true,
+        "truncated": false,
+        "truncated_row_count": 0
+      },
+      "row_count": 3
+    },
+    "promotion_decisions": {
+      "error_code": null,
+      "http_status": 200,
+      "preview_evidence": {
+        "body_keys": [
+          "config",
+          "dataset",
+          "features",
+          "rows",
+          "split",
+          "truncated"
+        ],
+        "feature_names": [
+          "decided_at",
+          "decision_id",
+          "from_layer",
+          "input_sha256",
+          "passed_gate_ids",
+          "reason_codes",
+          "required_gate_ids",
+          "scope_notes",
+          "status",
+          "subject_id",
+          "to_layer"
+        ],
+        "partial": null,
+        "returned_row_count": 100,
+        "row_values_retained": false,
+        "rows_field_present": true,
+        "truncated": true,
+        "truncated_row_count": 0
+      },
+      "row_count": 100
+    },
+    "silver": {
+      "error_code": null,
+      "http_status": 200,
+      "preview_evidence": {
+        "body_keys": [
+          "config",
+          "dataset",
+          "features",
+          "rows",
+          "split",
+          "truncated"
+        ],
+        "feature_names": [
+          "artifact_id",
+          "contract_id",
+          "generated_at",
+          "input_artifact_ids",
+          "input_sha256",
+          "layer",
+          "notes",
+          "promotion_status",
+          "relative_path",
+          "rights_state",
+          "sha256"
+        ],
+        "partial": null,
+        "returned_row_count": 17,
+        "row_values_retained": false,
+        "rows_field_present": true,
+        "truncated": false,
+        "truncated_row_count": 0
+      },
+      "row_count": 17
+    }
+  },
+  "hub_metadata_requests": {
+    "archive": {
+      "authenticated": false,
+      "body": {
+        "_id": "6a4b8dda1c7e1a87c904b8a7",
+        "cardData": {
+          "configs": [
+            {
+              "config_name": "catalogue_b0",
+              "data_files": "data/medallion/catalogue_b0/data.jsonl"
+            },
+            {
+              "config_name": "acquisition_b1",
+              "data_files": "data/medallion/acquisition_b1/data.jsonl"
+            },
+            {
+              "config_name": "evidence_b2",
+              "data_files": "data/medallion/evidence_b2/data.jsonl"
+            },
+            {
+              "config_name": "silver",
+              "data_files": "data/medallion/silver/data.jsonl"
+            },
+            {
+              "config_name": "gold",
+              "data_files": "data/medallion/gold/data.jsonl"
+            },
+            {
+              "config_name": "platinum",
+              "data_files": "data/medallion/platinum/data.jsonl"
+            },
+            {
+              "config_name": "lineage",
+              "data_files": "data/medallion/lineage/data.jsonl"
+            },
+            {
+              "config_name": "promotion_decisions",
+              "data_files": "data/medallion/promotion_decisions/data.jsonl"
+            }
+          ],
+          "license": "other",
+          "pretty_name": "Reimbursement Atlas Derived Medallion Dataset",
+          "tags": [
+            "health-economics",
+            "reimbursement",
+            "public-policy",
+            "cms",
+            "mbs",
+            "pbs"
+          ]
+        },
+        "id": "edithatogo/reimbursement-atlas",
+        "sha": "8e062578f14e12cf3238700a93946339da9c5d88",
+        "tags": [
+          "license:other",
+          "region:us",
+          "health-economics",
+          "reimbursement",
+          "public-policy",
+          "cms",
+          "mbs",
+          "pbs"
+        ]
+      },
+      "body_bytes": 1060,
+      "body_sha256": "26cbd08e07c79a4bf5df4476a142b5edd327b6547e60f55288166ae73e678530",
+      "completed_at": "2026-08-31T11:51:58.607941+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:58 GMT"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": [
+        [
+          "expand",
+          "sha"
+        ],
+        [
+          "expand",
+          "cardData"
+        ],
+        [
+          "expand",
+          "tags"
+        ]
+      ],
+      "requested_at": "2026-08-31T11:51:58.247880+00:00",
+      "requested_revision": "8e062578f14e12cf3238700a93946339da9c5d88",
+      "url": "https://huggingface.co/api/datasets/edithatogo/reimbursement-atlas/revision/8e062578f14e12cf3238700a93946339da9c5d88"
+    },
+    "baseline": {
+      "authenticated": false,
+      "body": {
+        "_id": "6a4b8dda1c7e1a87c904b8a7",
+        "cardData": {
+          "configs": [
+            {
+              "config_name": "catalogue_b0",
+              "data_files": "data/medallion/catalogue_b0/data.jsonl"
+            },
+            {
+              "config_name": "acquisition_b1",
+              "data_files": "data/medallion/acquisition_b1/data.jsonl"
+            },
+            {
+              "config_name": "evidence_b2",
+              "data_files": "data/medallion/evidence_b2/data.jsonl"
+            },
+            {
+              "config_name": "silver",
+              "data_files": "data/medallion/silver/data.jsonl"
+            },
+            {
+              "config_name": "gold",
+              "data_files": "data/medallion/gold/data.jsonl"
+            },
+            {
+              "config_name": "platinum",
+              "data_files": "data/medallion/platinum/data.jsonl"
+            },
+            {
+              "config_name": "lineage",
+              "data_files": "data/medallion/lineage/data.jsonl"
+            },
+            {
+              "config_name": "promotion_decisions",
+              "data_files": "data/medallion/promotion_decisions/data.jsonl"
+            }
+          ],
+          "license": "other",
+          "pretty_name": "Reimbursement Atlas Derived Medallion Dataset",
+          "tags": [
+            "health-economics",
+            "reimbursement",
+            "public-policy",
+            "cms",
+            "mbs",
+            "pbs"
+          ]
+        },
+        "id": "edithatogo/reimbursement-atlas",
+        "sha": "8b947a79d82eabcc9265bd81ea71cbfa2a71d951",
+        "tags": [
+          "license:other",
+          "region:us",
+          "health-economics",
+          "reimbursement",
+          "public-policy",
+          "cms",
+          "mbs",
+          "pbs"
+        ]
+      },
+      "body_bytes": 1060,
+      "body_sha256": "df19cd91197c5401e98f6d7b5604098357892c999e66c000f4c6874ba1d5a83c",
+      "completed_at": "2026-08-31T11:51:58.247854+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:58 GMT"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": [
+        [
+          "expand",
+          "sha"
+        ],
+        [
+          "expand",
+          "cardData"
+        ],
+        [
+          "expand",
+          "tags"
+        ]
+      ],
+      "requested_at": "2026-08-31T11:51:57.840795+00:00",
+      "requested_revision": "8b947a79d82eabcc9265bd81ea71cbfa2a71d951",
+      "url": "https://huggingface.co/api/datasets/edithatogo/reimbursement-atlas/revision/8b947a79d82eabcc9265bd81ea71cbfa2a71d951"
+    }
+  },
+  "observation_number": 3,
+  "parquet_summary": {
+    "failed": [],
+    "file_count": 8,
+    "http_status": 200,
+    "listed_configs": [
+      "acquisition_b1",
+      "catalogue_b0",
+      "evidence_b2",
+      "gold",
+      "lineage",
+      "platinum",
+      "promotion_decisions",
+      "silver"
+    ],
+    "parquet_files_downloaded": false,
+    "partial": false,
+    "pending": []
+  },
+  "pending_configs": [],
+  "publication_acceptance_asserted": false,
+  "raw_download_or_canonical_readback_performed": false,
+  "remote_mutations_performed": false,
+  "repo_id": "edithatogo/reimbursement-atlas",
+  "request_count": 21,
+  "response_not_ready_count": 0,
+  "retries": 0,
+  "schema_version": "pbs-viewer-observation-v1",
+  "started_at": "2026-08-31T11:50:41.009319+00:00",
+  "status": "completed",
+  "tag_comparison": {
+    "historical_tags": [
+      "license:other",
+      "size_categories:1K<n<10K",
+      "format:json",
+      "modality:text",
+      "library:datasets",
+      "library:pandas",
+      "library:polars",
+      "library:mlcroissant",
+      "region:us",
+      "health-economics",
+      "reimbursement",
+      "public-policy",
+      "cms",
+      "mbs",
+      "pbs"
+    ],
+    "live_archive_historical_equal": false,
+    "live_archive_tags": [
+      "license:other",
+      "region:us",
+      "health-economics",
+      "reimbursement",
+      "public-policy",
+      "cms",
+      "mbs",
+      "pbs"
+    ],
+    "live_baseline_archive_equal": true,
+    "live_baseline_tags": [
+      "license:other",
+      "region:us",
+      "health-economics",
+      "reimbursement",
+      "public-policy",
+      "cms",
+      "mbs",
+      "pbs"
+    ],
+    "note": "Live tags are service metadata observed now, not immutable historical tag snapshots; no causal attribution.",
+    "parsed_archive_card_equal": true
+  },
+  "viewer_discovery_cleared": true,
+  "viewer_requests": {
+    "first-rows:acquisition_b1": {
+      "authenticated": false,
+      "body_bytes": 90388,
+      "body_sha256": "25acf6623302f7daf7ba5f5942fa48d6ca565c42fdc2e3b7376dcffd29c8061b",
+      "completed_at": "2026-08-31T11:51:54.726941+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:54 GMT",
+        "x-revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": {
+        "config": "acquisition_b1",
+        "dataset": "edithatogo/reimbursement-atlas",
+        "split": "train"
+      },
+      "preview_evidence": {
+        "body_keys": [
+          "config",
+          "dataset",
+          "features",
+          "rows",
+          "split",
+          "truncated"
+        ],
+        "feature_names": [
+          "acquisition_id",
+          "admission_state",
+          "byte_size",
+          "event_id",
+          "evidence_disposition",
+          "media_type",
+          "notes",
+          "outcome",
+          "payload_sha256",
+          "predecessor_event_sha256",
+          "retrieved_at",
+          "rights_state",
+          "source_id",
+          "source_locator",
+          "source_published_at",
+          "source_version_id"
+        ],
+        "partial": null,
+        "returned_row_count": 100,
+        "row_values_retained": false,
+        "rows_field_present": true,
+        "truncated": true,
+        "truncated_row_count": 0
+      },
+      "requested_at": "2026-08-31T11:51:54.181728+00:00",
+      "url": "https://datasets-server.huggingface.co/first-rows"
+    },
+    "first-rows:catalogue_b0": {
+      "authenticated": false,
+      "body_bytes": 29578,
+      "body_sha256": "bfc1e1ec4b7916a632ebeed2b06e21db454300661f52a8abe74ba4106a8cea5e",
+      "completed_at": "2026-08-31T11:51:54.181686+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:54 GMT",
+        "x-revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": {
+        "config": "catalogue_b0",
+        "dataset": "edithatogo/reimbursement-atlas",
+        "split": "train"
+      },
+      "preview_evidence": {
+        "body_keys": [
+          "config",
+          "dataset",
+          "features",
+          "rows",
+          "split",
+          "truncated"
+        ],
+        "feature_names": [
+          "acquisition_status",
+          "authoritative_locator",
+          "credential_state",
+          "expected_media_types",
+          "indexed_at",
+          "notes",
+          "rights_state",
+          "source_id",
+          "source_version_id"
+        ],
+        "partial": null,
+        "returned_row_count": 64,
+        "row_values_retained": false,
+        "rows_field_present": true,
+        "truncated": false,
+        "truncated_row_count": 0
+      },
+      "requested_at": "2026-08-31T11:51:53.706531+00:00",
+      "url": "https://datasets-server.huggingface.co/first-rows"
+    },
+    "first-rows:evidence_b2": {
+      "authenticated": false,
+      "body_bytes": 89125,
+      "body_sha256": "9052a430d4dbf1bc052fe809c99b92465628501d921bbcdfa6a5cad297e603c4",
+      "completed_at": "2026-08-31T11:51:55.294377+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:55 GMT",
+        "x-revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": {
+        "config": "evidence_b2",
+        "dataset": "edithatogo/reimbursement-atlas",
+        "split": "train"
+      },
+      "preview_evidence": {
+        "body_keys": [
+          "config",
+          "dataset",
+          "features",
+          "rows",
+          "split",
+          "truncated"
+        ],
+        "feature_names": [
+          "acquisition_id",
+          "byte_size",
+          "evidence_id",
+          "evidence_kind",
+          "fixity_verified_at",
+          "immutable_locator",
+          "notes",
+          "payload_sha256",
+          "rights_state",
+          "source_id",
+          "source_locator",
+          "source_version_id"
+        ],
+        "partial": null,
+        "returned_row_count": 100,
+        "row_values_retained": false,
+        "rows_field_present": true,
+        "truncated": true,
+        "truncated_row_count": 0
+      },
+      "requested_at": "2026-08-31T11:51:54.726988+00:00",
+      "url": "https://datasets-server.huggingface.co/first-rows"
+    },
+    "first-rows:gold": {
+      "authenticated": false,
+      "body_bytes": 4343,
+      "body_sha256": "0a330d32f426bb63071e8f2a6a1f5c83beaeb5174c3a57f7b00bc3d520d8fa38",
+      "completed_at": "2026-08-31T11:51:56.123688+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:56 GMT",
+        "x-revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": {
+        "config": "gold",
+        "dataset": "edithatogo/reimbursement-atlas",
+        "split": "train"
+      },
+      "preview_evidence": {
+        "body_keys": [
+          "config",
+          "dataset",
+          "features",
+          "rows",
+          "split",
+          "truncated"
+        ],
+        "feature_names": [
+          "artifact_id",
+          "contract_id",
+          "generated_at",
+          "input_artifact_ids",
+          "input_sha256",
+          "layer",
+          "notes",
+          "promotion_status",
+          "relative_path",
+          "rights_state",
+          "sha256"
+        ],
+        "partial": null,
+        "returned_row_count": 2,
+        "row_values_retained": false,
+        "rows_field_present": true,
+        "truncated": false,
+        "truncated_row_count": 0
+      },
+      "requested_at": "2026-08-31T11:51:55.711595+00:00",
+      "url": "https://datasets-server.huggingface.co/first-rows"
+    },
+    "first-rows:lineage": {
+      "authenticated": false,
+      "body_bytes": 12096,
+      "body_sha256": "e6e6bbbb2829928f3d90789a8ad1b143157818bc8a7688dc2744fb9f2ee3da38",
+      "completed_at": "2026-08-31T11:51:56.990806+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:56 GMT",
+        "x-revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": {
+        "config": "lineage",
+        "dataset": "edithatogo/reimbursement-atlas",
+        "split": "train"
+      },
+      "preview_evidence": {
+        "body_keys": [
+          "config",
+          "dataset",
+          "features",
+          "rows",
+          "split",
+          "truncated"
+        ],
+        "feature_names": [
+          "code_version",
+          "input_sha256",
+          "output_dataset",
+          "output_field",
+          "output_sha256",
+          "record_id",
+          "rights_decision_id",
+          "source_dataset",
+          "source_field",
+          "transformation_id"
+        ],
+        "partial": null,
+        "returned_row_count": 17,
+        "row_values_retained": false,
+        "rows_field_present": true,
+        "truncated": false,
+        "truncated_row_count": 0
+      },
+      "requested_at": "2026-08-31T11:51:56.588959+00:00",
+      "url": "https://datasets-server.huggingface.co/first-rows"
+    },
+    "first-rows:platinum": {
+      "authenticated": false,
+      "body_bytes": 3213,
+      "body_sha256": "3889b643b6d5e10551397840dde5981a02e7789544ba2188163491b11c241ed7",
+      "completed_at": "2026-08-31T11:51:56.588936+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:56 GMT",
+        "x-revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": {
+        "config": "platinum",
+        "dataset": "edithatogo/reimbursement-atlas",
+        "split": "train"
+      },
+      "preview_evidence": {
+        "body_keys": [
+          "config",
+          "dataset",
+          "features",
+          "rows",
+          "split",
+          "truncated"
+        ],
+        "feature_names": [
+          "artifact_id",
+          "contract_id",
+          "generated_at",
+          "input_artifact_ids",
+          "input_sha256",
+          "layer",
+          "notes",
+          "promotion_status",
+          "relative_path",
+          "rights_state",
+          "sha256"
+        ],
+        "partial": null,
+        "returned_row_count": 3,
+        "row_values_retained": false,
+        "rows_field_present": true,
+        "truncated": false,
+        "truncated_row_count": 0
+      },
+      "requested_at": "2026-08-31T11:51:56.123710+00:00",
+      "url": "https://datasets-server.huggingface.co/first-rows"
+    },
+    "first-rows:promotion_decisions": {
+      "authenticated": false,
+      "body_bytes": 57131,
+      "body_sha256": "b9eb35ffad4181ca2a57f3a18002135d8bb8201a4f2d98f4507839087e2f5dfb",
+      "completed_at": "2026-08-31T11:51:57.443581+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:57 GMT",
+        "x-revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": {
+        "config": "promotion_decisions",
+        "dataset": "edithatogo/reimbursement-atlas",
+        "split": "train"
+      },
+      "preview_evidence": {
+        "body_keys": [
+          "config",
+          "dataset",
+          "features",
+          "rows",
+          "split",
+          "truncated"
+        ],
+        "feature_names": [
+          "decided_at",
+          "decision_id",
+          "from_layer",
+          "input_sha256",
+          "passed_gate_ids",
+          "reason_codes",
+          "required_gate_ids",
+          "scope_notes",
+          "status",
+          "subject_id",
+          "to_layer"
+        ],
+        "partial": null,
+        "returned_row_count": 100,
+        "row_values_retained": false,
+        "rows_field_present": true,
+        "truncated": true,
+        "truncated_row_count": 0
+      },
+      "requested_at": "2026-08-31T11:51:56.990828+00:00",
+      "url": "https://datasets-server.huggingface.co/first-rows"
+    },
+    "first-rows:silver": {
+      "authenticated": false,
+      "body_bytes": 14126,
+      "body_sha256": "91fae7720a9516cbdeaf97a1c0c73bd50b519744845f7b4ac464e61d56203a43",
+      "completed_at": "2026-08-31T11:51:55.711569+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:55 GMT",
+        "x-revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": {
+        "config": "silver",
+        "dataset": "edithatogo/reimbursement-atlas",
+        "split": "train"
+      },
+      "preview_evidence": {
+        "body_keys": [
+          "config",
+          "dataset",
+          "features",
+          "rows",
+          "split",
+          "truncated"
+        ],
+        "feature_names": [
+          "artifact_id",
+          "contract_id",
+          "generated_at",
+          "input_artifact_ids",
+          "input_sha256",
+          "layer",
+          "notes",
+          "promotion_status",
+          "relative_path",
+          "rights_state",
+          "sha256"
+        ],
+        "partial": null,
+        "returned_row_count": 17,
+        "row_values_retained": false,
+        "rows_field_present": true,
+        "truncated": false,
+        "truncated_row_count": 0
+      },
+      "requested_at": "2026-08-31T11:51:55.294424+00:00",
+      "url": "https://datasets-server.huggingface.co/first-rows"
+    },
+    "info:acquisition_b1": {
+      "authenticated": false,
+      "body": {
+        "dataset_info": {
+          "builder_name": "json",
+          "citation": "",
+          "config_name": "acquisition_b1",
+          "dataset_name": "reimbursement-atlas",
+          "dataset_size": 1225885,
+          "description": "",
+          "features": {
+            "acquisition_id": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "admission_state": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "byte_size": {
+              "_type": "Value",
+              "dtype": "int64"
+            },
+            "event_id": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "evidence_disposition": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "media_type": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "notes": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "outcome": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "payload_sha256": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "predecessor_event_sha256": {
+              "_type": "Value",
+              "dtype": "null"
+            },
+            "retrieved_at": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "rights_state": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "source_id": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "source_locator": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "source_published_at": {
+              "_type": "Value",
+              "dtype": "null"
+            },
+            "source_version_id": {
+              "_type": "Value",
+              "dtype": "string"
+            }
+          },
+          "homepage": "",
+          "license": "",
+          "splits": {
+            "train": {
+              "dataset_name": "reimbursement-atlas",
+              "name": "train",
+              "num_bytes": 1225885,
+              "num_examples": 2076
+            }
+          },
+          "version": {
+            "major": 0,
+            "minor": 0,
+            "patch": 0,
+            "version_str": "0.0.0"
+          }
+        },
+        "partial": false
+      },
+      "body_bytes": 1207,
+      "body_sha256": "ce968918f43d50b42545199dedfdb7f7b7ea3c31cad290f6101c576d9b62e620",
+      "completed_at": "2026-08-31T11:51:51.213265+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:51 GMT",
+        "x-revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": {
+        "config": "acquisition_b1",
+        "dataset": "edithatogo/reimbursement-atlas"
+      },
+      "requested_at": "2026-08-31T11:51:50.789658+00:00",
+      "url": "https://datasets-server.huggingface.co/info"
+    },
+    "info:catalogue_b0": {
+      "authenticated": false,
+      "body": {
+        "dataset_info": {
+          "builder_name": "json",
+          "citation": "",
+          "config_name": "catalogue_b0",
+          "dataset_name": "reimbursement-atlas",
+          "dataset_size": 15763,
+          "description": "",
+          "features": {
+            "acquisition_status": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "authoritative_locator": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "credential_state": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "expected_media_types": [
+              {
+                "_type": "Value",
+                "dtype": "string"
+              }
+            ],
+            "indexed_at": {
+              "_type": "Value",
+              "dtype": "timestamp[s]"
+            },
+            "notes": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "rights_state": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "source_id": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "source_version_id": {
+              "_type": "Value",
+              "dtype": "string"
+            }
+          },
+          "homepage": "",
+          "license": "",
+          "splits": {
+            "train": {
+              "dataset_name": "reimbursement-atlas",
+              "name": "train",
+              "num_bytes": 15763,
+              "num_examples": 64
+            }
+          },
+          "version": {
+            "major": 0,
+            "minor": 0,
+            "patch": 0,
+            "version_str": "0.0.0"
+          }
+        },
+        "partial": false
+      },
+      "body_bytes": 865,
+      "body_sha256": "f6be5682e5c7f4fe1e5870ee891cdfe262870bad9e60000a627340e2e4b59e9a",
+      "completed_at": "2026-08-31T11:51:50.789639+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:50 GMT",
+        "x-revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": {
+        "config": "catalogue_b0",
+        "dataset": "edithatogo/reimbursement-atlas"
+      },
+      "requested_at": "2026-08-31T11:51:50.398430+00:00",
+      "url": "https://datasets-server.huggingface.co/info"
+    },
+    "info:evidence_b2": {
+      "authenticated": false,
+      "body": {
+        "dataset_info": {
+          "builder_name": "json",
+          "citation": "",
+          "config_name": "evidence_b2",
+          "dataset_name": "reimbursement-atlas",
+          "dataset_size": 1350303,
+          "description": "",
+          "features": {
+            "acquisition_id": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "byte_size": {
+              "_type": "Value",
+              "dtype": "int64"
+            },
+            "evidence_id": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "evidence_kind": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "fixity_verified_at": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "immutable_locator": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "notes": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "payload_sha256": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "rights_state": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "source_id": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "source_locator": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "source_version_id": {
+              "_type": "Value",
+              "dtype": "string"
+            }
+          },
+          "homepage": "",
+          "license": "",
+          "splits": {
+            "train": {
+              "dataset_name": "reimbursement-atlas",
+              "name": "train",
+              "num_bytes": 1350303,
+              "num_examples": 2056
+            }
+          },
+          "version": {
+            "major": 0,
+            "minor": 0,
+            "patch": 0,
+            "version_str": "0.0.0"
+          }
+        },
+        "partial": false
+      },
+      "body_bytes": 1000,
+      "body_sha256": "e773c5ca3e838b65c6c6dcd425e9898555d3fd53cb8c104c79369046a871727d",
+      "completed_at": "2026-08-31T11:51:51.628638+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:51 GMT",
+        "x-revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": {
+        "config": "evidence_b2",
+        "dataset": "edithatogo/reimbursement-atlas"
+      },
+      "requested_at": "2026-08-31T11:51:51.213300+00:00",
+      "url": "https://datasets-server.huggingface.co/info"
+    },
+    "info:gold": {
+      "authenticated": false,
+      "body": {
+        "dataset_info": {
+          "builder_name": "json",
+          "citation": "",
+          "config_name": "gold",
+          "dataset_name": "reimbursement-atlas",
+          "dataset_size": 2911,
+          "description": "",
+          "features": {
+            "artifact_id": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "contract_id": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "generated_at": {
+              "_type": "Value",
+              "dtype": "timestamp[s]"
+            },
+            "input_artifact_ids": [
+              {
+                "_type": "Value",
+                "dtype": "string"
+              }
+            ],
+            "input_sha256": [
+              {
+                "_type": "Value",
+                "dtype": "string"
+              }
+            ],
+            "layer": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "notes": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "promotion_status": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "relative_path": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "rights_state": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "sha256": {
+              "_type": "Value",
+              "dtype": "string"
+            }
+          },
+          "homepage": "",
+          "license": "",
+          "splits": {
+            "train": {
+              "dataset_name": "reimbursement-atlas",
+              "name": "train",
+              "num_bytes": 2911,
+              "num_examples": 2
+            }
+          },
+          "version": {
+            "major": 0,
+            "minor": 0,
+            "patch": 0,
+            "version_str": "0.0.0"
+          }
+        },
+        "partial": false
+      },
+      "body_bytes": 925,
+      "body_sha256": "5d15c0ab8639b092948a7a8f58ddd7c44036d89a52d87b7fc60d2e8f73664f4d",
+      "completed_at": "2026-08-31T11:51:52.427148+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:52 GMT",
+        "x-revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": {
+        "config": "gold",
+        "dataset": "edithatogo/reimbursement-atlas"
+      },
+      "requested_at": "2026-08-31T11:51:52.031268+00:00",
+      "url": "https://datasets-server.huggingface.co/info"
+    },
+    "info:lineage": {
+      "authenticated": false,
+      "body": {
+        "dataset_info": {
+          "builder_name": "json",
+          "citation": "",
+          "config_name": "lineage",
+          "dataset_name": "reimbursement-atlas",
+          "dataset_size": 7805,
+          "description": "",
+          "features": {
+            "code_version": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "input_sha256": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "output_dataset": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "output_field": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "output_sha256": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "record_id": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "rights_decision_id": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "source_dataset": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "source_field": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "transformation_id": {
+              "_type": "Value",
+              "dtype": "string"
+            }
+          },
+          "homepage": "",
+          "license": "",
+          "splits": {
+            "train": {
+              "dataset_name": "reimbursement-atlas",
+              "name": "train",
+              "num_bytes": 7805,
+              "num_examples": 17
+            }
+          },
+          "version": {
+            "major": 0,
+            "minor": 0,
+            "patch": 0,
+            "version_str": "0.0.0"
+          }
+        },
+        "partial": false
+      },
+      "body_bytes": 893,
+      "body_sha256": "b28a036ecfc3352610134598173b636b710324c4148ad2780246a3fbcb8dff79",
+      "completed_at": "2026-08-31T11:51:53.238172+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:53 GMT",
+        "x-revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": {
+        "config": "lineage",
+        "dataset": "edithatogo/reimbursement-atlas"
+      },
+      "requested_at": "2026-08-31T11:51:52.841267+00:00",
+      "url": "https://datasets-server.huggingface.co/info"
+    },
+    "info:platinum": {
+      "authenticated": false,
+      "body": {
+        "dataset_info": {
+          "builder_name": "json",
+          "citation": "",
+          "config_name": "platinum",
+          "dataset_name": "reimbursement-atlas",
+          "dataset_size": 1554,
+          "description": "",
+          "features": {
+            "artifact_id": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "contract_id": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "generated_at": {
+              "_type": "Value",
+              "dtype": "timestamp[s]"
+            },
+            "input_artifact_ids": [
+              {
+                "_type": "Value",
+                "dtype": "string"
+              }
+            ],
+            "input_sha256": [
+              {
+                "_type": "Value",
+                "dtype": "string"
+              }
+            ],
+            "layer": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "notes": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "promotion_status": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "relative_path": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "rights_state": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "sha256": {
+              "_type": "Value",
+              "dtype": "string"
+            }
+          },
+          "homepage": "",
+          "license": "",
+          "splits": {
+            "train": {
+              "dataset_name": "reimbursement-atlas",
+              "name": "train",
+              "num_bytes": 1554,
+              "num_examples": 3
+            }
+          },
+          "version": {
+            "major": 0,
+            "minor": 0,
+            "patch": 0,
+            "version_str": "0.0.0"
+          }
+        },
+        "partial": false
+      },
+      "body_bytes": 929,
+      "body_sha256": "89116880904444bf852ab591bddd312eebbca30518661e0ec28ced6b55f2b689",
+      "completed_at": "2026-08-31T11:51:52.841247+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:52 GMT",
+        "x-revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": {
+        "config": "platinum",
+        "dataset": "edithatogo/reimbursement-atlas"
+      },
+      "requested_at": "2026-08-31T11:51:52.427169+00:00",
+      "url": "https://datasets-server.huggingface.co/info"
+    },
+    "info:promotion_decisions": {
+      "authenticated": false,
+      "body": {
+        "dataset_info": {
+          "builder_name": "json",
+          "citation": "",
+          "config_name": "promotion_decisions",
+          "dataset_name": "reimbursement-atlas",
+          "dataset_size": 945542,
+          "description": "",
+          "features": {
+            "decided_at": {
+              "_type": "Value",
+              "dtype": "timestamp[s]"
+            },
+            "decision_id": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "from_layer": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "input_sha256": [
+              {
+                "_type": "Value",
+                "dtype": "string"
+              }
+            ],
+            "passed_gate_ids": [
+              {
+                "_type": "Value",
+                "dtype": "string"
+              }
+            ],
+            "reason_codes": [
+              {
+                "_type": "Value",
+                "dtype": "string"
+              }
+            ],
+            "required_gate_ids": [
+              {
+                "_type": "Value",
+                "dtype": "string"
+              }
+            ],
+            "scope_notes": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "status": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "subject_id": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "to_layer": {
+              "_type": "Value",
+              "dtype": "string"
+            }
+          },
+          "homepage": "",
+          "license": "",
+          "splits": {
+            "train": {
+              "dataset_name": "reimbursement-atlas",
+              "name": "train",
+              "num_bytes": 945542,
+              "num_examples": 2145
+            }
+          },
+          "version": {
+            "major": 0,
+            "minor": 0,
+            "patch": 0,
+            "version_str": "0.0.0"
+          }
+        },
+        "partial": false
+      },
+      "body_bytes": 952,
+      "body_sha256": "34285fcba3bdb3eea89db722ebbe04bf33ee692a21b5721a92782a0ca09249b2",
+      "completed_at": "2026-08-31T11:51:53.706495+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:53 GMT",
+        "x-revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": {
+        "config": "promotion_decisions",
+        "dataset": "edithatogo/reimbursement-atlas"
+      },
+      "requested_at": "2026-08-31T11:51:53.238192+00:00",
+      "url": "https://datasets-server.huggingface.co/info"
+    },
+    "info:silver": {
+      "authenticated": false,
+      "body": {
+        "dataset_info": {
+          "builder_name": "json",
+          "citation": "",
+          "config_name": "silver",
+          "dataset_name": "reimbursement-atlas",
+          "dataset_size": 9706,
+          "description": "",
+          "features": {
+            "artifact_id": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "contract_id": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "generated_at": {
+              "_type": "Value",
+              "dtype": "timestamp[s]"
+            },
+            "input_artifact_ids": [
+              {
+                "_type": "Value",
+                "dtype": "string"
+              }
+            ],
+            "input_sha256": [
+              {
+                "_type": "Value",
+                "dtype": "string"
+              }
+            ],
+            "layer": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "notes": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "promotion_status": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "relative_path": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "rights_state": {
+              "_type": "Value",
+              "dtype": "string"
+            },
+            "sha256": {
+              "_type": "Value",
+              "dtype": "string"
+            }
+          },
+          "homepage": "",
+          "license": "",
+          "splits": {
+            "train": {
+              "dataset_name": "reimbursement-atlas",
+              "name": "train",
+              "num_bytes": 9706,
+              "num_examples": 17
+            }
+          },
+          "version": {
+            "major": 0,
+            "minor": 0,
+            "patch": 0,
+            "version_str": "0.0.0"
+          }
+        },
+        "partial": false
+      },
+      "body_bytes": 928,
+      "body_sha256": "5a11e2b307161cc84c27a7950a5a74ec84d7abcc4c871cd3d009176ac57b2058",
+      "completed_at": "2026-08-31T11:51:52.031247+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:51 GMT",
+        "x-revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": {
+        "config": "silver",
+        "dataset": "edithatogo/reimbursement-atlas"
+      },
+      "requested_at": "2026-08-31T11:51:51.628656+00:00",
+      "url": "https://datasets-server.huggingface.co/info"
+    },
+    "is-valid": {
+      "authenticated": false,
+      "body": {
+        "filter": true,
+        "preview": true,
+        "search": true,
+        "statistics": true,
+        "viewer": true
+      },
+      "body_bytes": 76,
+      "body_sha256": "43203b08ebe297d116d215e33cd2f232e5d8611404c2c814693d6f3379713165",
+      "completed_at": "2026-08-31T11:51:50.397520+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:50 GMT",
+        "x-revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": {
+        "dataset": "edithatogo/reimbursement-atlas"
+      },
+      "requested_at": "2026-08-31T11:51:50.003727+00:00",
+      "url": "https://datasets-server.huggingface.co/is-valid"
+    },
+    "parquet": {
+      "authenticated": false,
+      "body": {
+        "failed": [],
+        "parquet_files": [
+          {
+            "config": "acquisition_b1",
+            "dataset": "edithatogo/reimbursement-atlas",
+            "filename": "0000.parquet",
+            "size": 526767,
+            "split": "train",
+            "url": "https://huggingface.co/datasets/edithatogo/reimbursement-atlas/resolve/refs%2Fconvert%2Fparquet/acquisition_b1/train/0000.parquet"
+          },
+          {
+            "config": "catalogue_b0",
+            "dataset": "edithatogo/reimbursement-atlas",
+            "filename": "0000.parquet",
+            "size": 10354,
+            "split": "train",
+            "url": "https://huggingface.co/datasets/edithatogo/reimbursement-atlas/resolve/refs%2Fconvert%2Fparquet/catalogue_b0/train/0000.parquet"
+          },
+          {
+            "config": "evidence_b2",
+            "dataset": "edithatogo/reimbursement-atlas",
+            "filename": "0000.parquet",
+            "size": 639843,
+            "split": "train",
+            "url": "https://huggingface.co/datasets/edithatogo/reimbursement-atlas/resolve/refs%2Fconvert%2Fparquet/evidence_b2/train/0000.parquet"
+          },
+          {
+            "config": "gold",
+            "dataset": "edithatogo/reimbursement-atlas",
+            "filename": "0000.parquet",
+            "size": 9554,
+            "split": "train",
+            "url": "https://huggingface.co/datasets/edithatogo/reimbursement-atlas/resolve/refs%2Fconvert%2Fparquet/gold/train/0000.parquet"
+          },
+          {
+            "config": "lineage",
+            "dataset": "edithatogo/reimbursement-atlas",
+            "filename": "0000.parquet",
+            "size": 8213,
+            "split": "train",
+            "url": "https://huggingface.co/datasets/edithatogo/reimbursement-atlas/resolve/refs%2Fconvert%2Fparquet/lineage/train/0000.parquet"
+          },
+          {
+            "config": "platinum",
+            "dataset": "edithatogo/reimbursement-atlas",
+            "filename": "0000.parquet",
+            "size": 7935,
+            "split": "train",
+            "url": "https://huggingface.co/datasets/edithatogo/reimbursement-atlas/resolve/refs%2Fconvert%2Fparquet/platinum/train/0000.parquet"
+          },
+          {
+            "config": "promotion_decisions",
+            "dataset": "edithatogo/reimbursement-atlas",
+            "filename": "0000.parquet",
+            "size": 570447,
+            "split": "train",
+            "url": "https://huggingface.co/datasets/edithatogo/reimbursement-atlas/resolve/refs%2Fconvert%2Fparquet/promotion_decisions/train/0000.parquet"
+          },
+          {
+            "config": "silver",
+            "dataset": "edithatogo/reimbursement-atlas",
+            "filename": "0000.parquet",
+            "size": 12113,
+            "split": "train",
+            "url": "https://huggingface.co/datasets/edithatogo/reimbursement-atlas/resolve/refs%2Fconvert%2Fparquet/silver/train/0000.parquet"
+          }
+        ],
+        "partial": false,
+        "pending": []
+      },
+      "body_bytes": 2110,
+      "body_sha256": "d81083a80e53928578eefe1599e0d023c435d40f3276acd5507097167a41e2fc",
+      "completed_at": "2026-08-31T11:51:57.840775+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:57 GMT",
+        "x-revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": {
+        "dataset": "edithatogo/reimbursement-atlas"
+      },
+      "requested_at": "2026-08-31T11:51:57.443639+00:00",
+      "url": "https://datasets-server.huggingface.co/parquet"
+    },
+    "splits": {
+      "authenticated": false,
+      "body": {
+        "failed": [],
+        "pending": [],
+        "splits": [
+          {
+            "config": "acquisition_b1",
+            "dataset": "edithatogo/reimbursement-atlas",
+            "split": "train"
+          },
+          {
+            "config": "catalogue_b0",
+            "dataset": "edithatogo/reimbursement-atlas",
+            "split": "train"
+          },
+          {
+            "config": "evidence_b2",
+            "dataset": "edithatogo/reimbursement-atlas",
+            "split": "train"
+          },
+          {
+            "config": "gold",
+            "dataset": "edithatogo/reimbursement-atlas",
+            "split": "train"
+          },
+          {
+            "config": "lineage",
+            "dataset": "edithatogo/reimbursement-atlas",
+            "split": "train"
+          },
+          {
+            "config": "platinum",
+            "dataset": "edithatogo/reimbursement-atlas",
+            "split": "train"
+          },
+          {
+            "config": "promotion_decisions",
+            "dataset": "edithatogo/reimbursement-atlas",
+            "split": "train"
+          },
+          {
+            "config": "silver",
+            "dataset": "edithatogo/reimbursement-atlas",
+            "split": "train"
+          }
+        ]
+      },
+      "body_bytes": 702,
+      "body_sha256": "12621b35e8fcce8653bf9b896d5f4aad98fc981dba3c5ab96d2229165e2299fe",
+      "completed_at": "2026-08-31T11:51:50.003696+00:00",
+      "headers": {
+        "date": "Mon, 31 Aug 2026 11:51:49 GMT",
+        "x-revision": "8e062578f14e12cf3238700a93946339da9c5d88"
+      },
+      "http_status": 200,
+      "method": "GET",
+      "params": {
+        "dataset": "edithatogo/reimbursement-atlas"
+      },
+      "requested_at": "2026-08-31T11:51:49.421787+00:00",
+      "url": "https://datasets-server.huggingface.co/splits"
+    }
+  },
+  "viewer_revision_pinned": false,
+  "viewer_validity": {
+    "filter": true,
+    "preview": true,
+    "search": true,
+    "statistics": true,
+    "viewer": true
+  }
+}

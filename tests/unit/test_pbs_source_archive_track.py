@@ -28,7 +28,8 @@ def test_native_seed_models_link_source_scope_and_permission_closeout() -> None:
     tracks = {
         row.id: row for row in load_conductor_tracks(ROOT / "data/seed/conductor_tracks.jsonl")
     }
-    assert tracks[TRACK].github_project_status == "in_progress"
+    assert tracks[TRACK].github_project_status == "done"
+    assert tracks[TRACK].phase == "archived"
     assert tracks[TRACK].depends_on == (PERMISSION,)
     assert tracks[PERMISSION].phase == "archived"
     assert tracks[PERMISSION].github_project_status == "done"
@@ -41,7 +42,7 @@ def test_native_seed_models_link_source_scope_and_permission_closeout() -> None:
 def test_registry_paths_and_permission_delivery_evidence() -> None:
     registry = yaml.safe_load((ROOT / "conductor/tracks.yml").read_text())
     tracks = {row["id"]: row for row in registry["tracks"]}
-    for track_id, directory in ((TRACK, "tracks"), (PERMISSION, "archive")):
+    for track_id, directory in ((TRACK, "archive"), (PERMISSION, "archive")):
         path = ROOT / "conductor" / directory / track_id
         assert tracks[track_id]["spec"] == str((path / "spec.md").relative_to(ROOT))
         assert tracks[track_id]["plan"] == str((path / "plan.md").relative_to(ROOT))
@@ -56,7 +57,7 @@ def test_registry_paths_and_permission_delivery_evidence() -> None:
     registry_md = (ROOT / "conductor/TRACKS.md").read_text()
     assert "[x] **Track: PBS owner-attested raw redistribution**" in registry_md
     assert f"./archive/{PERMISSION}/index.md" in registry_md
-    assert "[~] **Track: PBS source archive staging and early-schema evidence**" in registry_md
+    assert "[x] **Track: PBS source archive staging and early-schema evidence**" in registry_md
 
 
 def test_changed_seed_rows_match_csv_in_all_fields() -> None:
@@ -92,7 +93,7 @@ def test_project_issue_rendering_retains_remaining_source_and_transfer_gates() -
         "1,707 of 1,709",
         "At those dry runs, no actual staging or upload occurred",
         "Subsequently verify the orchestrator's local stage",
-        "Remote upload/readback have not occurred",
+        "independent fixed-revision remote readback verified all raw bytes",
         STAGE_SHA,
         "two early schema",
         "eight derived configs",
@@ -102,7 +103,7 @@ def test_project_issue_rendering_retains_remaining_source_and_transfer_gates() -
         "no publisher/library contact claimed",
     ):
         assert text in rendered
-    assert "- [ ] Transfer raw PBS" in rendered
+    assert "- [x] Transfer raw PBS" in rendered
     generated = next(row for row in generated_track_issues(ROOT) if row.title == TITLE)
     assert generated.epic_id == TRACK.upper()
     assert generated.status == "blocked"
@@ -125,7 +126,8 @@ def test_current_source_status_matches_all_track_projections() -> None:
     assert "independent archive-contract review PASS" in seed.notes
     assert "Local stage verified: 1707 payloads" in seed.notes
     assert STAGE_SHA in seed.notes
-    assert "Protected source delivery and remote raw upload/readback pending" in seed.notes
+    assert "published_verified" in seed.notes
+    assert "#255 and #362 remain open" in seed.notes
     for relative in (
         "data/seed/conductor_tracks.csv",
         "data/derived/seed_lake/conductor_tracks/conductor_tracks.csv",
@@ -134,7 +136,7 @@ def test_current_source_status_matches_all_track_projections() -> None:
         with (ROOT / relative).open(newline="") as handle:
             row = next(row for row in csv.DictReader(handle) if row["id"] == TRACK)
         assert row["notes"] == seed.notes
-        assert row["github_project_status"] == "in_progress"
+        assert row["github_project_status"] == "done"
     lake = next(
         row
         for row in load_conductor_tracks(
@@ -172,7 +174,7 @@ def test_hf_card_keeps_eight_explicit_derived_configs_and_conditional_archive() 
 
 
 def test_source_evidence_retains_initial_omissions_and_superseding_report() -> None:
-    path = ROOT / "conductor/tracks" / TRACK / "evidence.jsonl"
+    path = ROOT / "conductor/archive" / TRACK / "evidence.jsonl"
     events = [json.loads(line) for line in path.read_text().splitlines()]
     initial = next(row for row in events if row["event"] == "initial_actual_cache_dry_run")
     updated = next(row for row in events if row["event"] == "superseding_actual_cache_dry_run")

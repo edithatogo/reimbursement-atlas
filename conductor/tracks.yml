@@ -4,11 +4,11 @@ tracks:
   - id: track_pbs_raw_archive_20260831
     title: "PBS source archive staging and early-schema evidence"
     priority: must
-    phase: hardening
+    phase: archived
     workstream: data
     goal: "Verify bounded raw PBS staging and readback, preserve omissions and early-schema evidence, and keep protected delivery and raw transfer separate."
-    spec: "conductor/tracks/track_pbs_raw_archive_20260831/spec.md"
-    plan: "conductor/tracks/track_pbs_raw_archive_20260831/plan.md"
+    spec: "conductor/archive/track_pbs_raw_archive_20260831/spec.md"
+    plan: "conductor/archive/track_pbs_raw_archive_20260831/plan.md"
     issues: [255]
   - id: pbs_raw_permission_20260831
     title: "PBS owner-attested raw redistribution"
