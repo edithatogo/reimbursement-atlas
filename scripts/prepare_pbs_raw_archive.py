@@ -42,6 +42,29 @@ from reimburse_atlas.licence_review import pbs_raw_redistribution_status
 RAW = "data/raw_live/historical_sources"
 PERMISSION = "data/licence_review/pbs_raw_permission.json"
 ARCHIVE_PREFIX = "raw/pbs"
+ARCHIVE_README = """# PBS source archive
+
+This directory is a bounded source archive, separate from derived dataset configs.
+Its presence does not establish upload verification or complete historical coverage.
+The accompanying manifest governs the exact files, original source filenames,
+edition identities, source/replay URLs, attribution and payload SHA-256/byte sizes.
+
+Source: Australian Government Pharmaceutical Benefits Scheme (PBS).
+Rights source: https://www.pbs.gov.au/info/general/copyright
+Permission is the repository owner's attestation, not an independently verified
+publisher grant. The manifest binds the complete permission record by SHA-256.
+The software Apache-2.0 licence does not apply to these source payloads.
+Original bytes, embedded copyright notices and disclaimers are preserved unchanged.
+
+Selected-batch completeness is not historical completeness. The full-corpus
+dry-run errors/coverage must be retained separately as publication evidence,
+including missing December 1987 RPBS bytes and the excluded format notice.
+Early schema distributions and illustrative XML do not recover missing monthly
+releases and are not included in this schedule-only archive staging scope.
+
+Manifest publication_state remains not_asserted. A separate governed publication
+receipt must establish protected implementation, transfer and independent readback.
+"""
 CDX_OBSERVATIONS = (
     "data/derived/historical_sources/pbs_archive_verification_v1/"
     "internet_archive_cdx_observations.jsonl"
@@ -360,6 +383,7 @@ def prepare(
         "publication_state": "not_asserted",
         "network_publication_performed": False,
         "archive_prefix": ARCHIVE_PREFIX,
+        "archive_readme_checksum_sha256": hashlib.sha256(ARCHIVE_README.encode()).hexdigest(),
         "coverage": {
             "requested_receipts": len(receipts),
             "verified_files": len(rows),
@@ -387,6 +411,9 @@ def prepare(
         try:
             for row in rows:
                 copy_payload(root, str(stage), files[row["id"]], row)
+            (destination / ARCHIVE_PREFIX / "README.md").write_text(
+                ARCHIVE_README, encoding="utf-8"
+            )
             (destination / ARCHIVE_PREFIX / "manifest.json").write_text(
                 serialize(manifest), encoding="utf-8"
             )
@@ -422,7 +449,14 @@ def verify_readback(root: Path, readback: str, manifest: dict[str, Any]) -> None
     # Canonical JSON comparison also distinguishes booleans from numeric lookalikes.
     if serialize(downloaded) != serialize(expected):
         raise ArchiveError("readback_manifest_mismatch")
-    expected_files = {str(row["archive_path"]) for row in manifest["files"]} | {manifest_name}
+    readme_name = f"{ARCHIVE_PREFIX}/README.md"
+    readme = safe_path(root, f"{readback}/{readme_name}")
+    if not readme.is_file() or readme.read_bytes() != ARCHIVE_README.encode("utf-8"):
+        raise ArchiveError("readback_readme_mismatch")
+    expected_files = {str(row["archive_path"]) for row in manifest["files"]} | {
+        manifest_name,
+        readme_name,
+    }
     expected_dirs = {
         str(parent)
         for name in expected_files

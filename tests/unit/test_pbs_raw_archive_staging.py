@@ -562,6 +562,27 @@ def test_readback_accepts_manifest_whitespace_only(case: tuple[Path, dict[str, A
     assert result["coverage"]["failed_operations"] == 0
 
 
+@pytest.mark.parametrize("mutation", ["missing", "tampered"])
+def test_readback_requires_bound_archive_readme(
+    case: tuple[Path, dict[str, Any]],
+    mutation: str,
+) -> None:
+    root, receipt = case
+    result = archive.prepare(root, [receipt], stage="data/local/stage")
+    readme = root / "data/local/stage/raw/pbs/README.md"
+    assert (
+        result["archive_readme_checksum_sha256"] == hashlib.sha256(readme.read_bytes()).hexdigest()
+    )
+    assert "not an independently verified" in readme.read_text()
+    if mutation == "missing":
+        readme.unlink()
+    else:
+        readme.write_text("Published without gaps")
+    assert_readback_blocked(
+        archive.prepare(root, [receipt], readback="data/local/stage"), "readback_readme_mismatch"
+    )
+
+
 @pytest.fixture
 def scheme_variant(case: tuple[Path, dict[str, Any]]) -> tuple[Path, list[dict[str, Any]]]:
     root, parent = case
