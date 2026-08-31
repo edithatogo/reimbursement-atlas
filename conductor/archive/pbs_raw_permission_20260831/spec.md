@@ -13,3 +13,5 @@ software licensing separate. No raw payloads enter Git. Permission does not
 create missing bytes or imply external publication, research claims or papers.
 
 Issue #255 continues to track missing sources and external raw transfer/readback.
+Permission implementation closed through merged PR #801; transfer is not part of
+this archived permission track's completion claim.

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import subprocess
 from dataclasses import dataclass
 from pathlib import Path
@@ -13,9 +14,28 @@ from reimburse_atlas.action_pins import (
     resolve_action_pin,
     resolve_action_pins,
 )
-from reimburse_atlas.automation import WorkflowPinClass, WorkflowUseRecord
+from reimburse_atlas.automation import WorkflowPinClass, WorkflowUseRecord, scan_workflow_uses
 from scripts.apply_action_pin_resolutions import apply_resolutions
 from scripts.check_action_sha_pins import find_unpinned_actions
+
+
+def test_codeql_resolution_evidence_matches_current_workflows() -> None:
+    """CodeQL upgrades must refresh the resolution inventory, not just workflow uses."""
+    root = Path(__file__).resolve().parents[2]
+    current = {
+        (record.workflow, record.uses, record.ref)
+        for record in scan_workflow_uses(root)
+        if record.action.startswith("github/codeql-action/")
+    }
+    path = root / "data/derived/repo_automation/action_pin_resolution.jsonl"
+    rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line]
+    recorded = {
+        (row["workflow"], row["current_uses"], row["ref"])
+        for row in rows
+        if row["action"].startswith("github/codeql-action/")
+    }
+    assert current
+    assert recorded == current
 
 
 @dataclass(frozen=True)

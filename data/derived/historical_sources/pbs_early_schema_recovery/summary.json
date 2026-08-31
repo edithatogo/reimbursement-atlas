@@ -1,0 +1,167 @@
+{
+  "schema_version": "pbs-early-schema-recovery-v1",
+  "observed_on": "2026-08-31",
+  "base_origin_main_commit": "9e5d082ed93a50747bcd7c19182691eccf08281a",
+  "evidence_scope": "bounded_public_metadata_only",
+  "integration_status": "isolated_local_commit_for_parent_integration_after_801",
+  "acquisition_receipts": "acquisition_receipts.jsonl",
+  "counts": {
+    "recovered_schema_packages": 2,
+    "recovered_monthly_releases": 0,
+    "recovered_rpbs_1987_pdfs": 0,
+    "cdx_verified_archive_indexes": 3
+  },
+  "claim_boundaries": {
+    "sample_xml_is_monthly_release_evidence": false,
+    "monthly_release_schema_assignment_verified": false,
+    "missing_month_amendments_recovered": false,
+    "standalone_dtd_or_xsl_recovered": false,
+    "structured_api_equivalence": false,
+    "archive_schema_payload_digest_verified": false,
+    "nla_target_issue_inspected": false,
+    "raw_content_in_git": false,
+    "publisher_contact_made": false,
+    "uploaded_or_published": false,
+    "exhaustive_archive_absence_proven": false
+  },
+  "source_index": {
+    "url": "https://data.pbs.gov.au/downloads/schema-archive.html",
+    "observed_at": "2026-08-31T02:58:35.610140+00:00",
+    "byte_size": 66453,
+    "checksum_sha256": "ff312d0dcc1bf28ec24d96a2d8f13b7ac8f992ad5986ce6704d1c3a31ba55150",
+    "broken_legacy_url": "https://data.pbs.gov.au/ps/data_source/website/website/downloads/schema-archive.html",
+    "broken_legacy_http_status": 404
+  },
+  "archive_index_verifications": [
+    {
+      "artifact_kind": "archive_index_html",
+      "original_url": "http://www.pbs.gov.au:80/html/healthpro/publication/list",
+      "capture_timestamp": "20070117165023",
+      "replay_url": "https://web.archive.org/web/20070117165023id_/http://www.pbs.gov.au:80/html/healthpro/publication/list",
+      "acquired_at": "2026-08-31T02:58:34.345493+00:00",
+      "byte_size": 19498,
+      "checksum_sha256": "ce052c5d88a2d6e0d8ea80f8642307ddf0a77eb4dd41eb5562dafe58a6c3bf56",
+      "cdx_query_url": "https://web.archive.org/cdx/search/cdx?url=www.pbs.gov.au/html/healthpro/publication/list&output=json&fl=timestamp,original,statuscode,mimetype,digest&to=2008&collapse=timestamp:4&limit=10",
+      "cdx_response_checksum_sha256": "d047f44b5be58345279598a8eb83fd18fd1b692fbb2891f827143d038e34007f",
+      "cdx_digest_sha1_base32": "B64NEBSXS6XW23DK7T4LHVH2DA3GXSKE",
+      "replay_digest_sha1_base32": "B64NEBSXS6XW23DK7T4LHVH2DA3GXSKE",
+      "checksum_match": true,
+      "verification_method": "base64.b32encode(hashlib.sha1(replay_bytes).digest()) compared to CDX digest",
+      "verification_scope": "index_html_only_not_linked_payloads"
+    },
+    {
+      "artifact_kind": "archive_index_html",
+      "original_url": "http://www.pbs.gov.au:80/html/healthpro/publication/list",
+      "capture_timestamp": "20070221223532",
+      "replay_url": "https://web.archive.org/web/20070221223532id_/http://www.pbs.gov.au:80/html/healthpro/publication/list",
+      "acquired_at": "2026-08-31T03:06:19.460144+00:00",
+      "byte_size": 20991,
+      "checksum_sha256": "cdd055a2d0aadce230e4aa7f39ec218ac90da64130abc59fb91d614ca5d15389",
+      "cdx_query_url": "https://web.archive.org/cdx/search/cdx?url=www.pbs.gov.au/html/healthpro/publication/list&output=json&fl=timestamp,original,statuscode,mimetype,digest&from=200702&to=200704&limit=5",
+      "cdx_response_checksum_sha256": "a574818657d1f4ce6a595f3767f41565123aec1fbe42c6952665098366de475c",
+      "cdx_digest_sha1_base32": "T22SJSY3YQREGOBZK4OY2TAQYSORH6WT",
+      "replay_digest_sha1_base32": "T22SJSY3YQREGOBZK4OY2TAQYSORH6WT",
+      "checksum_match": true,
+      "verification_method": "base64.b32encode(hashlib.sha1(replay_bytes).digest()) compared to CDX digest",
+      "verification_scope": "index_html_only_not_linked_payloads"
+    },
+    {
+      "artifact_kind": "archive_index_html",
+      "original_url": "https://data.pbs.gov.au/downloads/schema-archive.html",
+      "capture_timestamp": "20230529194213",
+      "replay_url": "https://web.archive.org/web/20230529194213id_/https://data.pbs.gov.au/downloads/schema-archive.html",
+      "acquired_at": "2026-08-31T03:02:33.856513+00:00",
+      "byte_size": 60629,
+      "checksum_sha256": "4393fb14e1ec4bea04c42327a033100993730b69973dd3e17eb6e7c54cfd4b2e",
+      "cdx_query_url": "https://web.archive.org/cdx/search/cdx?url=data.pbs.gov.au/downloads/&matchType=prefix&filter=original:.*schema.*&output=json&fl=timestamp,original,statuscode,mimetype,digest&collapse=urlkey&limit=80",
+      "cdx_response_checksum_sha256": "fc5e946e7c997e458650f7fc27ec59ccc054f34a64afca356f2128dd21399d8a",
+      "cdx_digest_sha1_base32": "KUM6VHDJG5KDXITU53USPMFL7QEMQQ3K",
+      "replay_digest_sha1_base32": "KUM6VHDJG5KDXITU53USPMFL7QEMQQ3K",
+      "checksum_match": true,
+      "verification_method": "base64.b32encode(hashlib.sha1(replay_bytes).digest()) compared to CDX digest",
+      "verification_scope": "index_html_only_not_linked_payloads"
+    }
+  ],
+  "nla_holdings_lead": {
+    "catalogue_url": "https://catalogue.nla.gov.au/catalog/2271286",
+    "holdings_url": "https://catalogue.nla.gov.au/catalog/2271286/request",
+    "observed_at": "2026-08-31T03:02:34.720555+00:00",
+    "holdings_response_checksum_sha256": "6d961abf606ea73da30d36abef6841fd8451c0ea8186baeb88af2f13d4253d00",
+    "serial_issn": "0811-7705",
+    "call_number": "N 615.10994 REP",
+    "location": "Main Reading Room",
+    "catalogue_status": "Available",
+    "holdings_periods": [
+      "1983 no. 1 through 1985 no. 2",
+      "August 1985 through December 1987"
+    ],
+    "target_edition": "1987-12",
+    "target_month_in_catalogued_range": true,
+    "evidence_class": "physical_serial_holdings_lead_only",
+    "target_issue_inspected": false,
+    "digitised_copy_acquired": false,
+    "order_or_contact_made": false
+  },
+  "unresolved_targets": {
+    "monthly_releases": [
+      "2006-12",
+      "2007-01",
+      "2007-02",
+      "2007-03"
+    ],
+    "monthly_release_specific_schema_assignment": "unverified",
+    "rpbs_pdf_url": "https://www.pbs.gov.au/publication/schedule/1951-2002/1987-12-01-RPBS-Schedule.PDF",
+    "rpbs_pdf_http_status": 404,
+    "rpbs_pdf_variant_url": "https://www.pbs.gov.au/publication/schedule/1951-2002/1987-12-01-RPBS-Schedule.PDF?variant=3",
+    "rpbs_pdf_variant_http_status": 403,
+    "alternate_monthly_urls": [
+      {
+        "url": "https://www.pbs.gov.au/publications/2006/2006-12-01.xml",
+        "basis": "dated_schema_documentation_link",
+        "http_status": 404
+      },
+      {
+        "url": "https://www.pbs.gov.au/publications/2006/2006-12-01-G2B.xml",
+        "basis": "illustrative_sample_reference",
+        "http_status": 404
+      },
+      {
+        "url": "https://www.pbs.gov.au/publications/2007/2007-01-01-G2B.xml",
+        "basis": "inferred_name_not_confirmed_release",
+        "http_status": 404
+      },
+      {
+        "url": "https://www.pbs.gov.au/publications/2007/2007-02-01-G2B.xml",
+        "basis": "illustrative_sample_reference",
+        "http_status": 404
+      },
+      {
+        "url": "https://www.pbs.gov.au/publications/2007/2007-03-01-G2B.xml",
+        "basis": "inferred_name_not_confirmed_release",
+        "http_status": 404
+      }
+    ],
+    "alternate_response_class": "website_xml_error_not_pbs_schedule"
+  },
+  "limitations": [
+    "Schema source dates identify index entries, not monthly deployment.",
+    "Version 1.2 ZIP member timestamps include 2007-03-01 despite the 2007-02-06 index date.",
+    "Index CDX matches do not verify linked schema ZIPs.",
+    "No complete monthly release or missing-month amendment was acquired.",
+    "CDX included timeouts/503 and bounded empty responses; initial unsuitable wildcard queries were excluded from absence reasoning.",
+    "Trove/NLA web replay returned client-rendered shells; Arquivo.pt timed out and Internet Archive item search failed TLS.",
+    "No canonical inventories, rights records or historical coverage claims were updated."
+  ],
+  "request_bounds": {
+    "scripted_attempts": 57,
+    "attempts_rejected_before_network": 1,
+    "connection_timeout_seconds": 10,
+    "normal_total_timeout_seconds": 30,
+    "schema_followup_timeout_seconds": 90,
+    "automatic_retries": 0,
+    "explicit_schema_followups": 2,
+    "max_redirects": 3,
+    "max_response_bytes": 30000000,
+    "web_search_and_open_calls_additional": true
+  }
+}
