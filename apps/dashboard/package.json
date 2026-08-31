@@ -8,15 +8,16 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "test:browser": "playwright test"
+    "test:browser": "playwright test",
+    "test:dependencies": "node --test tests/unit/dependency-compatibility.test.mjs"
   },
   "dependencies": {
     "@astrojs/check": "0.9.10",
     "@astrojs/react": "6.0.4",
-    "@cosmograph/react": "2.3.3",
-    "astro": "7.2.4",
-    "js-yaml-orig": "npm:js-yaml@5.3.0",
-    "papaparse": "5.6.0",
+    "@cosmograph/react": "2.5.1",
+    "astro": "7.2.9",
+    "js-yaml-orig": "npm:js-yaml@5.4.1",
+    "papaparse": "5.7.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "typescript": "6.0.3"

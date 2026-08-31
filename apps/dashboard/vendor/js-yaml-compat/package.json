@@ -1,6 +1,6 @@
 {
   "name": "js-yaml",
-  "version": "5.3.0-compat.0",
+  "version": "5.4.1-compat.0",
   "private": true,
   "license": "MIT",
   "type": "module",
@@ -12,6 +12,6 @@
     }
   },
   "dependencies": {
-    "js-yaml-orig": "npm:js-yaml@5.3.0"
+    "js-yaml-orig": "npm:js-yaml@5.4.1"
   }
 }
