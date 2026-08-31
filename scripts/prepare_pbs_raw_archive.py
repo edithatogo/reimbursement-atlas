@@ -3,7 +3,8 @@
 Run with PYTHONPATH=src:. python scripts/prepare_pbs_raw_archive.py --help.
 --stage creates a NEW ignored directory containing raw/pbs/payloads and raw/pbs/manifest.json.
 --readback checks an independently obtained local copy against the acquisition receipts;
-the original cache need not remain present. It does not establish remote publication.
+it requires the exact staging manifest, permission-record hash and file inventory.
+The original cache need not remain present. It does not establish remote publication.
 Never upload the raw cache
 wholesale: only the successfully staged directory is a candidate for later governed upload.
 The raw/pbs/ prefix is additive; do not replace a dataset card, configs, or derived manifests.
@@ -32,7 +33,7 @@ import subprocess  # nosec B404
 from contextlib import suppress
 from operator import itemgetter
 from pathlib import Path, PurePosixPath
-from typing import Any, cast
+from typing import Any, NoReturn, cast
 from urllib.parse import urlsplit
 
 from reimburse_atlas.licence_review import pbs_raw_redistribution_status
@@ -52,6 +53,16 @@ DEFAULT_RECEIPTS = (
 
 class ArchiveError(ValueError):
     """A fixed, non-sensitive failure code safe for a manifest."""
+
+
+def unique_json_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    """Reject all duplicate keys, including nested keys, before a value can be lost."""
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise ArchiveError("duplicate_json_key")
+        result[key] = value
+    return result
 
 
 def token(value: Any) -> str:
@@ -282,7 +293,7 @@ def prepare(
         fingerprint(safe_path(root, PERMISSION, ignored=False))[1] if not errors else None
     )
     manifest = {
-        "schema_version": "pbs-raw-archive-staging-v1",
+        "schema_version": "pbs-raw-archive-staging-v2",
         "mode": "readback" if readback else "stage" if stage else "dry_run",
         "status": "blocked" if errors else "verified",
         "publication_state": "not_asserted",
@@ -292,6 +303,7 @@ def prepare(
             "requested_receipts": len(receipts),
             "verified_files": len(rows),
             "failed_receipts": len(errors),
+            "failed_operations": 0,
             "complete_for_requested_batch": not errors,
             "historical_completeness_asserted": False,
         },
@@ -307,6 +319,8 @@ def prepare(
         "files": sorted(rows, key=itemgetter("id")),
         "errors": sorted(errors, key=itemgetter("id", "error")),
     }
+    if readback and not errors:
+        check_readback(root, readback, manifest)
     if destination and not errors:
         destination.mkdir(parents=True, exist_ok=False)
         try:
@@ -318,10 +332,65 @@ def prepare(
         except OSError, ArchiveError:
             # Only this invocation's newly created staging tree is removed.
             shutil.rmtree(destination)
-            manifest["status"] = "blocked"
-            errors.append({"id": "batch", "error": "staging_failed"})
-            manifest["errors"] = errors
+            block_operation(manifest, "staging_failed")
     return manifest
+
+
+def block_operation(manifest: dict[str, Any], error: str) -> None:
+    """Keep receipt verification counts distinct from failed staging/readback operations."""
+    manifest["status"] = "blocked"
+    manifest["errors"].append({"id": "batch", "error": error})
+    manifest["coverage"]["failed_operations"] += 1
+    manifest["coverage"]["complete_for_requested_batch"] = False
+
+
+def reject_unreadable_tree(_error: OSError) -> NoReturn:
+    """Directory traversal must not silently skip unreadable subtrees."""
+    raise ArchiveError("unreadable_readback_inventory")
+
+
+def verify_readback(root: Path, readback: str, manifest: dict[str, Any]) -> None:
+    """Verify all provenance and exact inventory, never trust downloaded paths or claims."""
+    directory = safe_path(root, readback)
+    manifest_name = f"{ARCHIVE_PREFIX}/manifest.json"
+    path = safe_path(root, f"{readback}/{manifest_name}")
+    if not path.is_file():
+        raise ArchiveError("readback_manifest_missing")
+    downloaded = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique_json_keys)
+    expected = {**manifest, "mode": "stage"}
+    # Canonical JSON comparison also distinguishes booleans from numeric lookalikes.
+    if serialize(downloaded) != serialize(expected):
+        raise ArchiveError("readback_manifest_mismatch")
+    expected_files = {str(row["archive_path"]) for row in manifest["files"]} | {manifest_name}
+    expected_dirs = {
+        str(parent)
+        for name in expected_files
+        for parent in PurePosixPath(name).parents
+        if str(parent) != "."
+    }
+    observed: set[str] = set()
+    for folder, dirs, files in directory.walk(on_error=reject_unreadable_tree):
+        for name in dirs:
+            child = safe_path(root, (folder / name).relative_to(root).as_posix())
+            if child.relative_to(directory).as_posix() not in expected_dirs:
+                raise ArchiveError("readback_inventory_mismatch")
+        for name in files:
+            child = safe_path(root, (folder / name).relative_to(root).as_posix())
+            if not child.is_file():
+                raise ArchiveError("readback_inventory_mismatch")
+            observed.add(child.relative_to(directory).as_posix())
+    if observed != expected_files:
+        raise ArchiveError("readback_inventory_mismatch")
+
+
+def check_readback(root: Path, readback: str, manifest: dict[str, Any]) -> None:
+    """Represent any manifest/inventory failure as a blocked operation, with no path leaks."""
+    try:
+        verify_readback(root, readback, manifest)
+    except ArchiveError as exc:
+        block_operation(manifest, str(exc))
+    except OSError, ValueError:
+        block_operation(manifest, "invalid_readback_manifest_or_inventory")
 
 
 def copy_payload(root: Path, stage: str, cache: str, row: dict[str, Any]) -> None:
@@ -345,7 +414,7 @@ def load_receipts(root: Path, paths: list[str]) -> list[dict[str, Any]]:
         path = safe_path(root.resolve(), relative, ignored=False)
         for line in path.read_text(encoding="utf-8").splitlines():
             if line.strip():
-                row = json.loads(line)
+                row = json.loads(line, object_pairs_hook=unique_json_keys)
                 if not isinstance(row, dict):
                     raise ArchiveError("invalid_receipt_object")
                 receipts.append(cast("dict[str, Any]", row))

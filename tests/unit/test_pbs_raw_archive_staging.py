@@ -11,6 +11,7 @@ from typing import Any, BinaryIO
 
 import pytest
 
+from reimburse_atlas import licence_review
 from scripts import prepare_pbs_raw_archive as archive
 
 
@@ -20,7 +21,9 @@ def case(tmp_path: Path) -> tuple[Path, dict[str, Any]]:
     (tmp_path / ".gitignore").write_text("data/raw_live/\ndata/local/\n")
     permission = tmp_path / archive.PERMISSION
     permission.parent.mkdir(parents=True)
-    shutil.copyfile(Path(__file__).resolve().parents[2] / archive.PERMISSION, permission)
+    # Match the complete permission record to the helper actually selected by PYTHONPATH.
+    helper_root = Path(licence_review.__file__).resolve().parents[2]
+    shutil.copyfile(helper_root / archive.PERMISSION, permission)
     payload = b"%PDF-1.7 original PBS copyright and disclaimer\n"
     cache = f"{archive.RAW}/pbs_archive/au_pbs_test.pdf"
     path = tmp_path / cache
@@ -182,6 +185,7 @@ def test_batch_failure_stages_nothing(case: tuple[Path, dict[str, Any]]) -> None
         "requested_receipts": 2,
         "verified_files": 1,
         "failed_receipts": 1,
+        "failed_operations": 0,
         "complete_for_requested_batch": False,
         "historical_completeness_asserted": False,
     }
@@ -289,6 +293,10 @@ def test_copy_corruption_cleans_only_new_stage(
     result = archive.prepare(root, [receipt], stage="data/local/stage")
     assert result["status"] == "blocked"
     assert result["errors"] == [{"id": "batch", "error": "staging_failed"}]
+    assert result["coverage"]["failed_receipts"] == 0
+    assert result["coverage"]["failed_operations"] == 1
+    assert result["coverage"]["complete_for_requested_batch"] is False
+    assert result["coverage"]["verified_files"] == 1
     assert not (root / "data/local/stage").exists()
     assert (root / receipt["cache_path"]).read_bytes() == original
 
@@ -370,3 +378,184 @@ def test_blocked_batch_does_not_assert_permission_checksum(
     result = archive.prepare(root, [receipt])
     assert result["status"] == "blocked"
     assert result["permission_record_checksum_sha256"] is None
+
+
+@pytest.mark.parametrize("reverse", [False, True])
+@pytest.mark.parametrize(
+    ("key", "other"),
+    [
+        ("status", "download_failed"),
+        ("source_id", "au_mbs"),
+        ("byte_size", 0),
+        ("checksum_sha256", "0" * 64),
+        ("cache_path", "data/raw_live/../../secret"),
+        ("archive_digest_verified", False),
+    ],
+)
+def test_duplicate_receipt_keys_rejected_in_both_orders(
+    case: tuple[Path, dict[str, Any]],
+    key: str,
+    other: Any,
+    reverse: bool,
+) -> None:
+    root, receipt = case
+    receipt["archive_digest_verified"] = True
+    duplicate = f"{json.dumps(key)}:{json.dumps(other)}"
+    body = json.dumps(receipt)[1:-1]
+    content = "{" + (f"{duplicate},{body}" if reverse else f"{body},{duplicate}") + "}\n"
+    (root / "receipts.jsonl").write_text(content)
+    with pytest.raises(archive.ArchiveError, match="duplicate_json_key"):
+        archive.load_receipts(root, ["receipts.jsonl"])
+
+
+@pytest.mark.parametrize(
+    "content",
+    [
+        '{"metadata":{"status":"failed","status":"cached"}}',
+        '{"metadata":{"status":"cached","status":"failed"}}',
+        '{"status":"cached","sta\\u0074us":"cached"}',
+    ],
+)
+def test_duplicate_nested_or_escaped_keys_rejected(tmp_path: Path, content: str) -> None:
+    (tmp_path / "receipts.jsonl").write_text(content)
+    with pytest.raises(archive.ArchiveError, match="duplicate_json_key"):
+        archive.load_receipts(tmp_path, ["receipts.jsonl"])
+
+
+def test_cli_duplicate_keys_do_not_stage(
+    case: tuple[Path, dict[str, Any]],
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    root, receipt = case
+    (root / "receipts.jsonl").write_text('{"status":"download_failed",' + json.dumps(receipt)[1:])
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "prepare",
+            "--root",
+            str(root),
+            "--receipts",
+            "receipts.jsonl",
+            "--stage",
+            "data/local/stage",
+        ],
+    )
+    assert archive.main() == 1
+    assert json.loads(capsys.readouterr().out)["status"] == "blocked"
+    assert not (root / "data/local/stage").exists()
+
+
+def assert_readback_blocked(result: dict[str, Any], error: str) -> None:
+    assert result["status"] == "blocked"
+    assert result["errors"] == [{"id": "batch", "error": error}]
+    assert result["coverage"]["failed_receipts"] == 0
+    assert result["coverage"]["failed_operations"] == 1
+    assert result["coverage"]["complete_for_requested_batch"] is False
+    assert result["publication_state"] == "not_asserted"
+
+
+def test_readback_missing_manifest(case: tuple[Path, dict[str, Any]]) -> None:
+    root, receipt = case
+    archive.prepare(root, [receipt], stage="data/local/stage")
+    (root / "data/local/stage/raw/pbs/manifest.json").unlink()
+    assert_readback_blocked(
+        archive.prepare(root, [receipt], readback="data/local/stage"), "readback_manifest_missing"
+    )
+
+
+@pytest.mark.parametrize(
+    "field",
+    [
+        "attribution",
+        "permission_record_checksum_sha256",
+        "publication_state",
+        "source_url",
+        "original_source_filename",
+        "checksum_sha256",
+        "coverage",
+        "extra_key",
+        "file_order",
+    ],
+)
+def test_readback_tampered_manifest(case: tuple[Path, dict[str, Any]], field: str) -> None:
+    root, receipt = case
+    receipts = [receipt, {**receipt, "id": "au_pbs_other"}]
+    manifest = archive.prepare(root, receipts, stage="data/local/stage")
+    if field in {"source_url", "original_source_filename", "checksum_sha256"}:
+        manifest["files"][0][field] = "tampered"
+    elif field == "coverage":
+        manifest["coverage"]["complete_for_requested_batch"] = 1
+    elif field == "file_order":
+        manifest["files"].reverse()
+    else:
+        manifest[field] = "tampered"
+    (root / "data/local/stage/raw/pbs/manifest.json").write_text(archive.serialize(manifest))
+    assert_readback_blocked(
+        archive.prepare(root, receipts, readback="data/local/stage"), "readback_manifest_mismatch"
+    )
+
+
+def test_readback_binds_current_complete_permission_record(
+    case: tuple[Path, dict[str, Any]],
+) -> None:
+    root, receipt = case
+    archive.prepare(root, [receipt], stage="data/local/stage")
+    path = root / archive.PERMISSION
+    path.write_bytes(path.read_bytes() + b"\n")
+    assert_readback_blocked(
+        archive.prepare(root, [receipt], readback="data/local/stage"), "readback_manifest_mismatch"
+    )
+
+
+@pytest.mark.parametrize("reverse", [False, True])
+def test_readback_rejects_duplicate_manifest_keys(
+    case: tuple[Path, dict[str, Any]],
+    reverse: bool,
+) -> None:
+    root, receipt = case
+    manifest = archive.prepare(root, [receipt], stage="data/local/stage")
+    body = json.dumps(manifest)[1:-1]
+    duplicate = '"publication_state":"published"'
+    content = "{" + (f"{duplicate},{body}" if reverse else f"{body},{duplicate}") + "}"
+    (root / "data/local/stage/raw/pbs/manifest.json").write_text(content)
+    assert_readback_blocked(
+        archive.prepare(root, [receipt], readback="data/local/stage"), "duplicate_json_key"
+    )
+
+
+@pytest.mark.parametrize("extra", ["extra.txt", "raw/pbs/extra.txt", "raw/pbs/payloads/extra.txt"])
+def test_readback_rejects_extra_files(case: tuple[Path, dict[str, Any]], extra: str) -> None:
+    root, receipt = case
+    archive.prepare(root, [receipt], stage="data/local/stage")
+    (root / "data/local/stage" / extra).write_text("not in manifest")
+    assert_readback_blocked(
+        archive.prepare(root, [receipt], readback="data/local/stage"), "readback_inventory_mismatch"
+    )
+
+
+@pytest.mark.parametrize("kind", ["manifest_symlink", "extra_symlink", "extra_directory"])
+def test_readback_rejects_unsafe_inventory(case: tuple[Path, dict[str, Any]], kind: str) -> None:
+    root, receipt = case
+    archive.prepare(root, [receipt], stage="data/local/stage")
+    directory = root / "data/local/stage"
+    if kind == "manifest_symlink":
+        path = directory / "raw/pbs/manifest.json"
+        backup = root / "manifest-backup.json"
+        path.rename(backup)
+        path.symlink_to(backup)
+    elif kind == "extra_symlink":
+        (directory / "extra").symlink_to(root, target_is_directory=True)
+    else:
+        (directory / "extra").mkdir()
+    expected = "readback_inventory_mismatch" if kind == "extra_directory" else "symlink_path"
+    assert_readback_blocked(archive.prepare(root, [receipt], readback="data/local/stage"), expected)
+
+
+def test_readback_accepts_manifest_whitespace_only(case: tuple[Path, dict[str, Any]]) -> None:
+    root, receipt = case
+    staged = archive.prepare(root, [receipt], stage="data/local/stage")
+    (root / "data/local/stage/raw/pbs/manifest.json").write_text(json.dumps(staged))
+    result = archive.prepare(root, [receipt], readback="data/local/stage")
+    assert result["status"] == "verified"
+    assert result["coverage"]["failed_operations"] == 0
