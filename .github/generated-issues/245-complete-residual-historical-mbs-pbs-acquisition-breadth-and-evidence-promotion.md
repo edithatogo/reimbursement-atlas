@@ -23,5 +23,6 @@ This issue was generated from `conductor/backlog.yml`. Refine the acceptance cri
 - [x] Recover all 110 bounded PBS timeout failures through a low-concurrency retry.
 - [ ] Reconcile the remaining December 1987 official HTTP 403 with the publisher.
 - [ ] Recover December 2006-March 2007 XML payloads and release-specific schema/DTD/XSL, amendment and version metadata; do not infer field parity.
-- [ ] Obtain explicit permission before redistributing raw PBS payloads; public download availability does not grant republication rights.
+- [x] Accept and apply the owner's 2026-08-31 raw PBS redistribution attestation in data/licence_review/pbs_raw_permission.json; no per-file approval required.
+- [ ] Transfer raw PBS files to governed external storage with manifest and checksum readback; permission alone is not evidence of publication.
 - [x] Promote only independently licence-reviewed permitted metadata or derived fields; GitHub Actions run 33237003418 published the governed Hugging Face configurations without raw payloads or the legacy seed tree.

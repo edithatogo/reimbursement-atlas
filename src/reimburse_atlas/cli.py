@@ -1756,6 +1756,7 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
     )
     from reimburse_atlas.field_lineage import FieldLineageRecord
     from reimburse_atlas.ingest import IngestionTaskRecord
+    from reimburse_atlas.licence_review import PBSRawPermission
     from reimburse_atlas.medallion import (
         BronzeAcquisitionReceipt,
         BronzeEvidenceRecord,
@@ -1795,6 +1796,7 @@ def export_schema(output_dir: Annotated[Path, typer.Argument()] = Path("schema")
 
     output_dir.mkdir(parents=True, exist_ok=True)
     models = (
+        PBSRawPermission,
         SourceRecord,
         SourceStatusRecord,
         SourceFileRecord,

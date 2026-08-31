@@ -1,5 +1,8 @@
 # Project Tracks
 
+- [ ] **Track: PBS owner-attested raw redistribution**
+  *Link: [./tracks/pbs_raw_permission_20260831/index.md](./tracks/pbs_raw_permission_20260831/index.md)*
+
 - [ ] **Track: Dependency refresh and generated-evidence convergence**
   *Link: [./tracks/dependency_refresh_20260831/index.md](./tracks/dependency_refresh_20260831/index.md)*
 
