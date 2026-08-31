@@ -2,10 +2,10 @@
   "blocked_network": 0,
   "blocked_review": 0,
   "blocked_secret": 0,
-  "complete": 7,
+  "complete": 8,
   "download_ready": true,
   "download_ready_note": "Repository handoff is available. Follow each incomplete task's evidence-derived action; routine refreshes use standing authorization. Source coverage, rights and external publication remain distinct gates.",
-  "partial": 3,
+  "partial": 2,
   "ready_local": 1,
   "task_count": 11
 }
