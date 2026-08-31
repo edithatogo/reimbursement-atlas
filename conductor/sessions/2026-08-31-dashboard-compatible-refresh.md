@@ -1,5 +1,25 @@
 # Compatible dashboard dependency refresh
 
+## Post-source integration
+
+Source PR #803 merged normally as `e5c3190efd044fe3bd6b677bb9cf576210d5f9bf`
+from reviewed head `2a3a9b1b989f3af005a57cf5c72615187fbcd2b5`. The dashboard
+branch incorporates that committed base. Conflicts were restricted to the two
+research-package descriptors and seed-lake manifest, resolved by native generation.
+The owner now authorizes normal #804 merge only after regenerated evidence and
+all exact-head checks pass. Earlier hold instructions below describe prior stages.
+Final dashboard review packets remain untouched until all dependency changes
+settle; the paused heartbeat is not resumed. Post-source logs are retained in
+canonical ignored `data/local/retained-worker-evidence/dashboard-20260831/`.
+
+Post-source validation: the complete native harness passed all 27 quality gates
+with `PYTEST_ADDOPTS='-n 4 --dist worksteal'`, including full coverage and build.
+Both built-in reconciliation passes completed; generated files compare identical
+to merge checkpoint `d9cef91d` (zero diff across generated issues, public dashboard,
+data, schema and docs). The three Node dependency tests passed. No additional
+broad QA loop was run. Automated, owner and historical human dashboard packets
+retain their pre-integration bytes; final renewal is deferred by owner instruction.
+
 ## Integration continuation
 
 The owner subsequently authorized native regeneration, normal branch push and PR
