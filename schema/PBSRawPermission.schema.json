@@ -1,0 +1,147 @@
+{
+  "additionalProperties": false,
+  "description": "Complete owner attestation; never a publisher grant or publication receipt.",
+  "properties": {
+    "schema_version": {
+      "const": "pbs-raw-permission-v2",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_id": {
+      "const": "au_pbs",
+      "title": "Source Id",
+      "type": "string"
+    },
+    "decision": {
+      "const": "allow_raw_redistribution",
+      "title": "Decision",
+      "type": "string"
+    },
+    "permission_basis": {
+      "const": "owner_attestation",
+      "title": "Permission Basis",
+      "type": "string"
+    },
+    "permission_status": {
+      "const": "active",
+      "title": "Permission Status",
+      "type": "string"
+    },
+    "revoked_at": {
+      "title": "Revoked At",
+      "type": "null"
+    },
+    "accountable_party": {
+      "const": "repository-owner",
+      "title": "Accountable Party",
+      "type": "string"
+    },
+    "recorded_at": {
+      "format": "date",
+      "title": "Recorded At",
+      "type": "string"
+    },
+    "owner_statements": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "minItems": 2,
+      "title": "Owner Statements",
+      "type": "array"
+    },
+    "scope": {
+      "const": "Raw PBS schedule PDFs and machine-readable schedule packages, including historical editions and source-identified archived variants.",
+      "title": "Scope",
+      "type": "string"
+    },
+    "per_file_owner_approval_required": {
+      "const": false,
+      "title": "Per File Owner Approval Required",
+      "type": "boolean"
+    },
+    "publisher_permission_document_verified": {
+      "const": false,
+      "title": "Publisher Permission Document Verified",
+      "type": "boolean"
+    },
+    "licence_identifier": {
+      "title": "Licence Identifier",
+      "type": "null"
+    },
+    "preservation_controls": {
+      "maxItems": 4,
+      "minItems": 4,
+      "prefixItems": [
+        {
+          "const": "Preserve original bytes, notices, attribution and source disclaimers.",
+          "type": "string"
+        },
+        {
+          "const": "Record source URL, retrieval evidence, edition identity, size and checksum.",
+          "type": "string"
+        },
+        {
+          "const": "Keep source payloads out of the software Git repository; use governed external archive storage.",
+          "type": "string"
+        },
+        {
+          "const": "Do not apply the software Apache-2.0 licence to PBS payloads.",
+          "type": "string"
+        }
+      ],
+      "title": "Preservation Controls",
+      "type": "array"
+    },
+    "exclusions": {
+      "maxItems": 4,
+      "minItems": 4,
+      "prefixItems": [
+        {
+          "const": "Non-PBS sources",
+          "type": "string"
+        },
+        {
+          "const": "Credentials",
+          "type": "string"
+        },
+        {
+          "const": "Papers and preprints",
+          "type": "string"
+        },
+        {
+          "const": "Unsupported research claims",
+          "type": "string"
+        }
+      ],
+      "title": "Exclusions",
+      "type": "array"
+    },
+    "publication_state": {
+      "const": "not_asserted",
+      "title": "Publication State",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "source_id",
+    "decision",
+    "permission_basis",
+    "permission_status",
+    "revoked_at",
+    "accountable_party",
+    "recorded_at",
+    "owner_statements",
+    "scope",
+    "per_file_owner_approval_required",
+    "publisher_permission_document_verified",
+    "licence_identifier",
+    "preservation_controls",
+    "exclusions",
+    "publication_state"
+  ],
+  "title": "PBSRawPermission",
+  "type": "object"
+}

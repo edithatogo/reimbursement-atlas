@@ -1,5 +1,7 @@
 {
-  "schema_version": "pbs-raw-permission-v1",
+  "schema_version": "pbs-raw-permission-v2",
+  "permission_status": "active",
+  "revoked_at": null,
   "source_id": "au_pbs",
   "decision": "allow_raw_redistribution",
   "permission_basis": "owner_attestation",

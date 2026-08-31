@@ -12,7 +12,7 @@ def test_public_projection_omits_raw_cache_paths_and_failure_details() -> None:
             "archive_page": "https://www.pbs.gov.au/archive",
             "archive_period": "2025-01-01",
             "file_name": "source.zip",
-            "file_url": "https://www.pbs.gov.au/source.zip?variant=3",
+            "file_url": "https://www.pbs.gov.au/publication/schedule/2025/01/2025-01-01-xml.zip?variant=3",
             "licence_gate": "public_reuse_review",
             "source_version_id": "pbs_one",
             "structured_format": "xml_zip",

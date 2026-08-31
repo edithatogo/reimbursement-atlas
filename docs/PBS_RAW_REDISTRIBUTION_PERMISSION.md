@@ -8,6 +8,10 @@ or apply terms. Raw PBS redistribution is allowed on this owner attestation.
 No further per-file or checksum approval is required.
 
 The machine-readable record is `data/licence_review/pbs_raw_permission.json`.
+Its complete v2 contract is exported as `schema/PBSRawPermission.schema.json`:
+all fields are required, status must be active and revocation absent. Truncated,
+malformed, duplicate-key or broadened records fail closed without requesting
+routine approvals. Duplicate keys cannot conceal a preceding revocation value.
 Its basis is `owner_attestation`, not a publisher document independently verified
 by the project. No grantor identity, open licence, expiry or new terms are invented.
 This decision supersedes the former permission request, retained in Git history.
@@ -25,6 +29,14 @@ transfer requires a manifest and checksum readback before claiming publication.
 Raw payloads remain outside the software Git repository. Missing December 1987
 RPBS bytes and early XML/schema recovery remain source gaps, not approval gaps.
 Papers and preprints remain excluded.
+
+Artefact eligibility additionally requires a schedule publication path and a
+recognised complete filename family for a schedule PDF, amendment or structured
+package. Only case and numeric date/version runs are generalized; newly catalogued
+filenames do not authorize themselves. Same-host HTML,
+copyright pages and unrelated downloads are not approved by hostname alone. The
+catalogued `updated-pbs-text-files.pdf` format notice remains metadata-only under
+this bounded schedule-artifact contract, not a newly approved schedule payload.
 
 ## Remaining source recovery
 
