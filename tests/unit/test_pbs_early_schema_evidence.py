@@ -118,7 +118,7 @@ def test_archive_digests_and_nla_lead_do_not_become_payload_claims():
             assert re.fullmatch(r"[0-9a-f]{64}", row[key])
         assert row["byte_size"] > 0
         assert "hashlib.sha1" in row["verification_method"]
-        assert urlsplit(row["cdx_query_url"]).hostname == "web.archive.org"
+        assert urlsplit(str(row["cdx_query_url"])).hostname == "web.archive.org"
         assert row["replay_url"] == (
             f"https://web.archive.org/web/{row['capture_timestamp']}id_/{row['original_url']}"
         )

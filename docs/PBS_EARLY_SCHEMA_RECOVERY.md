@@ -4,6 +4,12 @@ Observation date: 31 August 2026. This isolated evidence package is for parent
 integration into the later source/archive track after #801. It does not update
 canonical inventories, permission records, coverage projections or track status.
 
+The parent-authorized isolated source integration now links this retained evidence
+to [PBS archive staging](PBS_RAW_ARCHIVE_STAGING.md) and
+`conductor/tracks/track_pbs_raw_archive_20260831/`. This superseding integration
+note does not rewrite the original investigation's observations or claim recovery
+of any missing monthly release or RPBS PDF.
+
 ## Acquisition outcome
 
 | Evidence class | Recovered |

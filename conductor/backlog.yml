@@ -1,6 +1,25 @@
 version: 2
-updated: "2026-07-31"
+updated: "2026-08-31"
 epics:
+  - id: PBS-RAW-ARCHIVE-001
+    title: PBS source archive staging and early-schema evidence
+    phase: hardening
+    workstream: data
+    priority: must
+    track_id: track_pbs_raw_archive_20260831
+    existing_github_issue: 255
+    canonical_issue_seed: func_historical_mbs_pbs_bundles
+    issues: []
+    scope:
+      - "Use the existing roadmap issue and its source-specific renderer; do not create another issue 255 draft."
+      - "Permission implementation closed via PR 801; raw staging and transfer remain separate."
+      - "Retain complete full-corpus errors and coverage outside any eligible subset; 1707 of 1709 receipts verify."
+      - "Two early schema distributions and three HTML indexes do not establish four missing monthly releases or a recovered RPBS PDF."
+      - "Keep eight explicit derived HF configs and raw rejection; raw/pbs is a separate conditional archive."
+      - "Orchestrator performs local staging under existing authorization after contract review and tests; network publication awaits protected source delivery."
+    blockers:
+      - "December 1987 RPBS PDF and December 2006-March 2007 monthly payloads remain unrecovered."
+      - "Deferred generation, protected source delivery and separately recorded raw transfer/readback remain pending."
   - id: STANDING-001
     title: Standing low-risk authorization
     phase: hardening
