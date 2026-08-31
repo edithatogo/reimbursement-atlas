@@ -175,3 +175,39 @@ Issue #362 remains open, the weekly workflow remains enabled in source, and
 compatibility outcomes retain their non-release-blocking governance treatment.
 Parent requested full native quality and projection regeneration after these
 fixes. Results are recorded below when complete; no merge is authorized.
+
+## Native parity and parent-authorized integration
+
+At `00615f1c444c6237a91f65cb7dbd594a1edb6f2c`, all 24 hosted checks passed.
+The native full profile passed 26 gates and timed out on serial coverage after
+600 seconds. A coverage-only rerun through the native gate runner passed with
+`COVERAGE_CORE=sysmon`, two workers, bounded numerical threads and the unchanged
+90 percent coverage threshold and timeout. The resulting native profile is
+27/27 passed; the original timeout receipt remains in ignored local evidence.
+The canonical harness projection sequence, reusing those completed quality
+results and including both receipt passes, completed with zero tracked diff.
+Tested tree: `d41de3a6fa7707a247f12c3789b4b96db86b20fb`.
+
+The parent subsequently authorized a normal protected merge only after #804
+merges, this branch is updated and regenerated, all required exact-head checks
+pass, and the review thread is resolved. This supersedes the earlier merge hold;
+it does not authorize TypeScript 7 adoption or external publication.
+
+PR #804 merged as `a566c425dbf025ac58219912cde72c58a1e8ea0c`.
+Its tested head `53d2c4d1ce8295e22008d27a969898cf34e5c8dc` and merged commit
+both have tree `b3a1c10c265ec5aa1612670711140c9912fde391`.
+The canary branch incorporated that main head without conflicts. The 131 focused
+tests passed again with four workers on the updated base; typecheck reported
+zero errors, warnings or notes, and Ruff lint/format passed. Affected operational,
+governance, package, seed-lake and dashboard projections were regenerated with
+the canonical two receipt-reconciliation passes and left zero generated diff.
+Unchanged mapping generation
+and the full quality suite are not redundantly repeated. Hosted exact-head
+checks remain the final integrated full-quality and deterministic-parity gate.
+
+After both merges are verified, the parent also authorizes closing #797 with
+exact merged references: @astrojs/react 6.0.4 from #798, and Cosmograph 2.5.1,
+Astro 7.2.9, js-yaml 5.4.1 and PapaParse 5.7.0 from #804. TypeScript stays at
+6.0.3; unsupported 7.0.2 remains the explicit open #362 watch. This is resolution
+of the dated drift report, not an assertion that every dependency is latest.
+HF upload remains parent-owned.
