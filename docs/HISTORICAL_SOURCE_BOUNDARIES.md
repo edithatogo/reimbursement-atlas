@@ -53,12 +53,14 @@ version identifiers. Any recovered release must have signature/archive-member
 validation, checksums, provenance, rights review and a version-specific parser
 contract before it is treated as a structured historical dataset.
 
-## Remaining authority boundary
+## Remaining source boundary
 
-The [publisher request](PBS_RAW_REDISTRIBUTION_PERMISSION.md) groups missing
-source bytes, schema history and raw redistribution terms. It is prepared, not
-sent. There is no new permission receipt. Keep raw files ignored and unpublished;
-continue publishing only already permitted metadata and derived products.
+Raw PBS redistribution is allowed on the owner's 2026-08-31 attestation, recorded
+in [the permission documentation](PBS_RAW_REDISTRIBUTION_PERMISSION.md).
+No additional owner permission receipt or per-file approval is required. This is
+not represented as a publisher document independently verified by the project.
 
-Publisher byte availability and third-party redistribution permission remain
-external gates. An additional repository-owner hash approval cannot supply either.
+Publisher byte availability and release-specific schema recovery remain external
+gaps. The source recovery request is prepared, not sent. Permission does not prove
+acquisition or publication: keep raw files outside Git and verify any external
+archive transfer separately.

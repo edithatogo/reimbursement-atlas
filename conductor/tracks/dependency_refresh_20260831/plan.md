@@ -1,6 +1,6 @@
 # Plan
 
-- [ ] Review #798, regenerate dashboard SBOM and downstream evidence, validate and merge.
+- [x] Review #798, regenerate dashboard SBOM and downstream evidence, validate and merge.
 - [ ] Review #799 against updated main, regenerate Python evidence, validate and merge.
 - [ ] Review #800 against updated main, regenerate action inventory, validate and merge.
 - [ ] Reconcile remaining #797 drift; retain incompatible TypeScript under #362.
@@ -19,7 +19,9 @@ canonical evidence, not the approval records by hand.
 PR #798 local validation: all 27 native `local-quality` gates passed, including
 Python 3.14, coverage, typing, security, package build and dashboard build/audit.
 Generated projections are refreshed using the hosted harness sequence. Protected
-exact-head hosted checks and merge remain required before marking delivery done.
+exact-head hosted checks passed. PR #798 merged as `9e5d082ed93a50747bcd7c19182691eccf08281a`;
+tested and merged trees both equal `3013916d2c21b7f8989ea1156a66880df638fc6c`.
+The merged local feature branch was removed; #799 and #800 remain separate pending work.
 
 ## PR #799 isolated preparation
 
