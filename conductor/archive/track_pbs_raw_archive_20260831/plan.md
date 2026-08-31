@@ -21,7 +21,7 @@
 
 ## Parent delivery and separate execution
 
-### Source publication accepted; closeout delivery pending
+### Source publication accepted; PR #805 closeout delivered
 
 - [x] Prepare the offline [receipt contract](../../../docs/PBS_SOURCE_PUBLICATION_RECEIPT.md)
   and `publication-receipt.pending.json` after source merge `e5c3190e`.
@@ -35,11 +35,15 @@
   Source publication acceptance is met: the portable receipt records
   `published_verified`; `publication-receipt.pending.json` remains a historical,
   non-promoted preparation fixture.
-- [ ] Parent completes regeneration and records exact-head validation and protected
-  PR delivery of this closeout change. The implementation archive is prepared here,
-  pending that protected delivery; this plan does not claim the change is merged.
-  `closeout_delivery` remains null, and no validated commit is asserted. Prior
-  source QA and publication readback do not validate this change's exact head.
+- [x] PR #805 delivered the implementation archive through protected merge
+  `c7f0560bb0bbe524dcc89de177863be4dace4262` at `2026-08-31T13:59:14Z`.
+  All 25 hosted checks passed on final head
+  `52b0d4af2616844effcd16afde98075df4bc6724`; its tree and the merged tree both
+  equal `9c9f2332bd1a9e91d63c5c210be54df2c4aad907`.
+  The publication receipt's optional `closeout_delivery` remains null; observed
+  PR delivery is recorded separately, not fabricated as a local validation envelope.
+  The subsequent dashboard refresh still requires its own checks and protected
+  delivery; PR #805 checks do not validate that later change.
 
 The bounded additive-LFS reconciliation has passed; the original strict inventory
 failure and 23/24 nonraw-byte-parity exception remain retained. Viewer observation 03
