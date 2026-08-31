@@ -14,6 +14,15 @@ from reimburse_atlas.registry import project_root, repo_relative
 
 NpmView = Callable[[str, str], tuple[object, str | None]]
 MAX_PEER_RANGE_LENGTH = 512
+_NUMBER = r"(?:0|[1-9][0-9]*)"
+_VERSION_TOKEN = (
+    rf"(?:v?{_NUMBER}(?:\.{_NUMBER}){{0,2}}"
+    rf"|v?{_NUMBER}\.(?:[xX*](?:\.[xX*])?|{_NUMBER}\.[xX*])"
+    r"|[xX*](?:\.[xX*]){0,2})"
+)
+_COMPARATOR_TOKEN = rf"(?:<=|>=|<|>|=|~|\^)?\s*{_VERSION_TOKEN}"
+_COMPARATOR_SET = re.compile(rf"{_COMPARATOR_TOKEN}(?:\s+{_COMPARATOR_TOKEN})*", re.ASCII)
+_HYPHEN_PAIR = re.compile(rf"{_VERSION_TOKEN}\s+-\s+{_VERSION_TOKEN}", re.ASCII)
 
 
 def _npm_view(spec: str, field: str, *, cwd: Path) -> tuple[object, str | None]:
@@ -40,13 +49,15 @@ def _npm_view(spec: str, field: str, *, cwd: Path) -> tuple[object, str | None]:
 
 
 def _peer_range_input_supported(value: str) -> bool:
-    """Bound npm input lexically, without interpreting semver range semantics."""
-    return bool(
-        value
-        and len(value) <= MAX_PEER_RANGE_LENGTH
-        and not value.startswith("-")
-        and re.fullmatch(r"[0-9xXvV.*~^<>=|\s-]+", value, flags=re.ASCII)
-        and re.search(r"[0-9xX*]", value)
+    """Accept limited stable-range syntax; npm owns comparator semantics."""
+    if not value or len(value) > MAX_PEER_RANGE_LENGTH or not value.isascii():
+        return False
+    # Reserve one safe-integer increment for npm's shorthand range expansion.
+    if any(int(number) >= 2**53 - 1 for number in re.findall(r"[0-9]+", value)):
+        return False
+    return all(
+        _COMPARATOR_SET.fullmatch(clause.strip()) or _HYPHEN_PAIR.fullmatch(clause.strip())
+        for clause in value.split("||")
     )
 
 

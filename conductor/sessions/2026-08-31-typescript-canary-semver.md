@@ -85,7 +85,7 @@ Hosted PR CI is the selected generated-parity check; no hosted success is claime
 at preparation time. No canonical generator, full local regeneration, workflow
 dispatch, publication or merge was performed.
 
-## PR 802 lexical input boundary
+## PR 802 initial lexical input boundary (superseded)
 
 Automated review identified that npm accepts package specs other than ranges.
 The parent authorized a bounded lexical input allowlist, not a semantic parser:
@@ -104,3 +104,36 @@ bounded, hyphen, tilde, v-prefixed and x-range inputs retain npm evaluation.
 The expanded four-module suite passes 80 tests. No new dependency, install,
 release gate or owner approval is introduced. Merge remains held for the parent
 and #362 remains an open external watch.
+
+## Constrained stable-range token grammar
+
+Erdos demonstrated that the character allowlist still accepted tag-like `x7`,
+`xx`, `x-7` and `7-7`. It is replaced with a deliberately limited token grammar:
+
+- One to three canonical numeric segments with no leading zeroes.
+- Optional lowercase `v` only before numeric versions; no `vx` or uppercase `V`.
+- Wildcard segments `x`, `X` or `*` only as a trailing suffix, never followed by
+  a numeric segment.
+- Explicit single comparator operators `<`, `<=`, `>`, `>=`, `=`, `~`, `^`;
+  whitespace-separated comparator sets and nonempty `||` alternatives.
+- Hyphen pairs require whitespace on both sides of the hyphen and bare version
+  tokens at both ends; `7-7` is unsupported, not a prerelease or tag lookup.
+- The 512-character ASCII bound remains. Numeric components must be below the
+  JavaScript safe-integer maximum, reserving one increment for npm shorthand
+  range expansion.
+
+This checks supported token syntax, not comparator satisfaction or intersection.
+Npm still owns those semantics. Unsupported syntax returns `unknown` without the
+third lookup. Alphabetic prerelease ranges remain deliberately unsupported for
+the stable 7.x canary; no dependency is added.
+
+Validation: 114 targeted tests across the four documented modules. Regression
+cases cover all four Erdos probes, leading zeroes, unknown alphabetic tokens,
+misplaced wildcards, invalid operators/OR/hyphens, numeric bounds, `vx`, uppercase
+`V`, and current `^5.0.0||^6.0.0` routing to npm. A development-only cross-check
+of 1,050 accepted comparator/token combinations against the already installed
+Node semver module found no invalid ranges after the numeric boundary correction.
+That module is not imported or installed by the canary or its Python tests.
+
+The reopened bot thread must remain unresolved until Erdos reviews this final
+grammar. No merge is authorized; source/dashboard sequencing remains with parent.
