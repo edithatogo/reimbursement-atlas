@@ -72,6 +72,11 @@ def test_typescript7_canary_redacts_lookup_errors_to_summaries(tmp_path: Path) -
         (">=7", ["7.0.2", "8.0.0"], "upgrade_available"),
         ("*", ["5.9.3", "7.0.2"], "upgrade_available"),
         ("^5 || ^6", ["5.9.3", "6.0.3"], "blocked_peer"),
+        ("^6.0.0 || ^7.0.0", "7.0.2", "upgrade_available"),
+        ("7.0.0 - 7.9.0", "7.0.2", "upgrade_available"),
+        ("7.x", "7.0.2", "upgrade_available"),
+        ("~7.0.0", "7.0.2", "upgrade_available"),
+        ("v7.0.2", "7.0.2", "upgrade_available"),
     ],
 )
 def test_range_is_resolved_by_npm_and_intersected_with_observed_candidates(
@@ -160,6 +165,46 @@ def test_missing_or_malformed_peer_does_not_query_a_range(tmp_path: Path, peer: 
     report = build_report(tmp_path, npm_view=view)
     assert report["status"] == "unknown"
     assert report["upgrade_recommended"] is False
+
+
+@pytest.mark.parametrize(
+    "peer",
+    [
+        "file:/tmp/pkg",
+        "/example/pkg",
+        "../pkg",
+        "git+https://example.invalid/typescript.git",
+        "git://example.invalid/typescript.git",
+        "https://example.invalid/typescript.tgz",
+        "typescript-7.0.2.tgz",
+        "npm:other-package@7",
+        "--registry=https://example.invalid",
+        "--7",
+        "",
+        "latest",
+        "beta7",
+        "^7.0.0-beta.1",
+        "7.0.0+build.1",
+        "^\u0667.0.0",
+        "7\u00a0-\u00a08",
+        "7" * 513,
+    ],
+)
+def test_unsupported_peer_spec_is_unknown_without_third_lookup(tmp_path: Path, peer: str) -> None:
+    _package(tmp_path)
+    calls: list[tuple[str, str]] = []
+
+    def view(spec: str, field: str) -> tuple[object, str | None]:
+        calls.append((spec, field))
+        if field == "peerDependencies":
+            return {"typescript": peer}, None
+        assert spec == "typescript@7"
+        return "7.0.2", None
+
+    report = build_report(tmp_path, npm_view=view)
+    assert report["status"] == "unknown"
+    assert report["upgrade_recommended"] is False
+    assert calls == [("@astrojs/check@0.9.9", "peerDependencies"), ("typescript@7", "version")]
 
 
 @pytest.mark.parametrize(

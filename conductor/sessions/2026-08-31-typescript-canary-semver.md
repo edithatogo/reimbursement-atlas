@@ -53,7 +53,7 @@ env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src \
 git diff --check
 ```
 
-Results: 57 tests passed; Ruff lint and formatting passed; diff whitespace check
+Initial results: 57 tests passed; Ruff lint and formatting passed; diff whitespace check
 passed. Tests include full-range query arguments, wildcard/contradictory/bounded
 ranges, exact candidate intersection, scalar/list metadata, invalid metadata,
 lookup errors, fixed argv/timeout and non-release-blocking governance behavior.
@@ -84,3 +84,23 @@ are confirmed ignored and excluded from the commit. Live metadata returned:
 Hosted PR CI is the selected generated-parity check; no hosted success is claimed
 at preparation time. No canonical generator, full local regeneration, workflow
 dispatch, publication or merge was performed.
+
+## PR 802 lexical input boundary
+
+Automated review identified that npm accepts package specs other than ranges.
+The parent authorized a bounded lexical input allowlist, not a semantic parser:
+at most 512 characters; ASCII digits, x/X, v/V, dots, wildcard, range operators,
+ASCII whitespace and hyphens; at least one version digit or wildcard; no leading
+hyphen. Rejected input is `unknown` and never reaches the third npm lookup.
+Npm still evaluates accepted range semantics. This is deliberately not a claim
+that the allowlist validates the full semver grammar.
+
+Tests explicitly reject file/local paths, Git/HTTPS/tarball specs, npm aliases,
+option-like inputs, ordinary dist-tags, empty/oversized/non-ASCII input and
+alphabetic prerelease ranges. Prerelease selection is not needed for the stable
+7.x canary; unsupported forms remain non-upgrade outcomes. Valid caret, OR,
+bounded, hyphen, tilde, v-prefixed and x-range inputs retain npm evaluation.
+
+The expanded four-module suite passes 80 tests. No new dependency, install,
+release gate or owner approval is introduced. Merge remains held for the parent
+and #362 remains an open external watch.

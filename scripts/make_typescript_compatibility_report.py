@@ -13,6 +13,7 @@ from typing import Any, cast
 from reimburse_atlas.registry import project_root, repo_relative
 
 NpmView = Callable[[str, str], tuple[object, str | None]]
+MAX_PEER_RANGE_LENGTH = 512
 
 
 def _npm_view(spec: str, field: str, *, cwd: Path) -> tuple[object, str | None]:
@@ -36,6 +37,17 @@ def _npm_view(spec: str, field: str, *, cwd: Path) -> tuple[object, str | None]:
         return json.loads(completed.stdout), None
     except json.JSONDecodeError:
         return completed.stdout.strip(), None
+
+
+def _peer_range_input_supported(value: str) -> bool:
+    """Bound npm input lexically, without interpreting semver range semantics."""
+    return bool(
+        value
+        and len(value) <= MAX_PEER_RANGE_LENGTH
+        and not value.startswith("-")
+        and re.fullmatch(r"[0-9xXvV.*~^<>=|\s-]+", value, flags=re.ASCII)
+        and re.search(r"[0-9xX*]", value)
+    )
 
 
 def _stable_versions(value: object) -> list[str] | None:
@@ -75,13 +87,14 @@ def build_report(  # ruff:ignore[too-many-locals] - fields mirror the compatibil
     )
     raw_peer_range = peer_dependencies.get("typescript", "")
     peer_range = raw_peer_range.strip() if isinstance(raw_peer_range, str) else ""
+    peer_input_supported = _peer_range_input_supported(peer_range)
     candidate_value, candidate_error = view("typescript@7", "version")
     candidates = _stable_versions(candidate_value)
     if candidates is not None and any(not item.startswith("7.") for item in candidates):
         candidates = None
     admitted: list[str] | None = None
     errors = [error for error in (peer_error, candidate_error) if error]
-    if not errors and peer_range and candidates:
+    if not errors and peer_input_supported and candidates:
         admitted_value, admitted_error = view(f"typescript@{peer_range}", "version")
         admitted = _stable_versions(admitted_value)
         if admitted_error:
@@ -90,9 +103,9 @@ def build_report(  # ruff:ignore[too-many-locals] - fields mirror the compatibil
     candidate_typescript = ", ".join(eligible or candidates or [])
     if errors:
         status = "blocked_network" if "timed out" not in " ".join(errors) else "unknown"
-    elif not peer_range or not candidates or admitted is None:
+    elif not peer_input_supported or not candidates or admitted is None:
         status = "unknown"
-        errors.append("npm metadata did not provide a valid peer range and stable version lists")
+        errors.append("npm metadata has unsupported peer input or invalid stable version lists")
     elif eligible:
         status = "upgrade_available"
     else:
