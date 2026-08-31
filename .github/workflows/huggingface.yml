@@ -126,7 +126,7 @@ jobs:
           fi
           test "$(git rev-parse --is-shallow-repository)" = false
           GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
-            git push --force-with-lease="refs/heads/main:$(git rev-parse FETCH_HEAD)" \
+            git push \
             origin HEAD:main
 
   publish-space:
@@ -192,5 +192,5 @@ jobs:
           fi
           test "$(git rev-parse --is-shallow-repository)" = false
           GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
-            git push --force-with-lease="refs/heads/main:$(git rev-parse FETCH_HEAD)" \
+            git push \
             origin HEAD:main
