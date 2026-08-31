@@ -117,7 +117,7 @@ to the schedule-only staging utility and receive no automatic artefact approval.
 
 The [dataset card](../infra/huggingface/DATASET_CARD.md) adds conditional `raw/pbs/`
 documentation while retaining all eight explicit derived configs and `license: other`.
-Existing derived workflows and raw rejection are unchanged. Any later raw transfer
+Existing derived allowlists and raw rejection are unchanged. Any later raw transfer
 uses a distinct reviewed path after independent review and protected source-PR
 green/merge, preserving existing dataset configs/card. A separate parent publication
 receipt must bind the merged implementation, transfer and independent readback.
@@ -128,3 +128,9 @@ source-PR push. The final four-worker suite passed 916 tests with 90.29% coverag
 Protected source checks and delivery remain separate from
 local validation. Publisher/library contacts, raw upload and new owner approval
 are not part of this worker's implementation evidence.
+
+The derived dataset workflow clones with `GIT_LFS_SKIP_SMUDGE=1`, so a future raw
+archive remains as Git LFS pointers during derived-only publication rather than
+downloading its payloads. The guard applies only to the dataset clone, not the
+Space clone. It adds no deletion or raw-allowlist exception and preserves the
+existing raw pointer tree.
