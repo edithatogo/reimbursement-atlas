@@ -1570,20 +1570,20 @@
       }
     },
     {
-      "bytes": 18069,
+      "bytes": 18087,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "0c050e7a4036eab5fbe4491606901c38daf994a8044c1554ea515a0485d2a6dd",
+      "hash": "abb9e576bf31cb34c9979501dddc39bd336a809d4c789cdb38d445ed560f8c97",
       "mediatype": "application/json",
       "name": "medallion-artifacts",
       "path": "data/derived/medallion/medallion_artifacts.jsonl",
       "schema": {}
     },
     {
-      "bytes": 14173,
+      "bytes": 14191,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "31b44e4e5a3732da6bba975d5a40d12b3d432de9c1184cb70ea2311fde9772f3",
+      "hash": "c6da8c5bfdd16285dbe4b77a1d3b9c5570eeada9bb82716c9a376c782e388b69",
       "mediatype": "text/csv",
       "name": "medallion-artifacts",
       "path": "data/derived/medallion/medallion_artifacts.csv",
@@ -1595,20 +1595,20 @@
       }
     },
     {
-      "bytes": 1321647,
+      "bytes": 1321765,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "ba97828d298aa068239573f14d8fe9972fba627f0a8af19404629619f712f33f",
+      "hash": "1e63b10fe151acfc8ea60df787c5628327092695a5e7e14a95b1841c323f6c48",
       "mediatype": "application/json",
       "name": "promotion-decisions",
       "path": "data/derived/medallion/promotion_decisions.jsonl",
       "schema": {}
     },
     {
-      "bytes": 952160,
+      "bytes": 952284,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "c58a548a1c5e713e01a826d1546a781b526e8afd5325fa371d96a529f3bfd5e8",
+      "hash": "557fd668d6564e31d52d5f880c859e5078fee64c909a91511179fa014f136c28",
       "mediatype": "text/csv",
       "name": "promotion-decisions",
       "path": "data/derived/medallion/promotion_decisions.csv",
@@ -1620,10 +1620,10 @@
       }
     },
     {
-      "bytes": 388,
+      "bytes": 387,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "json",
-      "hash": "4d753146d75087594c597ed3085fbb9eb65347c928ff75706c20720c6520f0b9",
+      "hash": "1efd37bbdfca94156c24d38d50feb4359a356a2ef6faa79a75980dbabd0cc20d",
       "mediatype": "application/json",
       "name": "summary",
       "path": "data/derived/medallion/summary.json",
