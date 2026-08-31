@@ -10,6 +10,14 @@
 
 ## Initial diagnosis
 
+Dashboard remaining-drift work is tracked in
+[the integration session](../../sessions/2026-08-31-dashboard-compatible-refresh.md).
+Commit `6ff49b6a` updates the four compatible dashboard dependencies, retains
+TypeScript 6, and introduces the strict v3/68 browser packet contract without
+changing the four-project, eleven-route matrix. Integration merged current main
+`1f128584` (including #799 and `02116d73`) before native regeneration. #800 and
+hosted exact-head checks remain merge prerequisites; this linkage does not close #797.
+
 PR #798 changes Astro 7.2.3 to 7.2.4 and @astrojs/react 6.0.3 to 6.0.4.
 Hosted run 33308373236 reports deterministic SBOM and downstream readiness,
 research-package, source-drift and dashboard/seed-lake differences. No application
