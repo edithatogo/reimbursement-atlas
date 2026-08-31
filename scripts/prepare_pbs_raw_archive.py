@@ -17,7 +17,9 @@ Parent may then provide --receipts with unchanged eligible receipt rows only,
 including official parent receipts for variants, and use that same selection for
 readback. Never delete source receipts or silently erase omissions: subset success
 means only that the selected batch verified, not that historical coverage is complete.
-This utility does not create that selection or replace the full-corpus error report.
+The CLI requires every selected full row to match a unique canonical acquisition
+row in DEFAULT_RECEIPTS, even for readback. All canonical receipt files must remain
+available. This utility does not create the selection or replace the full-corpus report.
 """
 
 from __future__ import annotations
@@ -516,12 +518,39 @@ def load_receipts(root: Path, paths: list[str]) -> list[dict[str, Any]]:
     return receipts
 
 
+def load_bound_receipts(root: Path, paths: list[str] | None = None) -> list[dict[str, Any]]:
+    """Bind custom subsets to unique, unchanged full rows in all canonical collections."""
+    canonical = load_receipts(root, list(DEFAULT_RECEIPTS))
+    identities: dict[str, str] = {}
+    for row in canonical:
+        identity = token(row.get("id"))
+        if identity in identities:
+            raise ArchiveError("duplicate_canonical_receipt_identity")
+        identities[identity] = serialize(row)
+    if paths is None:
+        return canonical
+    selected = load_receipts(root, paths)
+    seen: set[str] = set()
+    for row in selected:
+        identity = token(row.get("id"))
+        if identity in seen:
+            raise ArchiveError("duplicate_selected_receipt_identity")
+        seen.add(identity)
+        # Compare the entire JSON value, including fields not projected to the manifest.
+        # Canonical serialization preserves numeric/boolean distinctions and ignores key order.
+        if identities.get(identity) != serialize(row):
+            raise ArchiveError("selection_not_canonical")
+    return selected
+
+
 def main() -> int:
     """CLI: print only bounded metadata; return nonzero for every blocked batch."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument(
-        "--receipts", action="append", help="Repo-relative JSONL; repeat for variants and parents"
+        "--receipts",
+        action="append",
+        help="Repo-relative unchanged canonical subset JSONL; repeat for variants and parents",
     )
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--stage", help="New ignored repo-relative output directory")
@@ -530,7 +559,7 @@ def main() -> int:
     )
     args = parser.parse_args()
     try:
-        receipts = load_receipts(args.root, args.receipts or list(DEFAULT_RECEIPTS))
+        receipts = load_bound_receipts(args.root, args.receipts)
         manifest = prepare(args.root, receipts, stage=args.stage, readback=args.readback)
     except OSError, ValueError:
         print(

@@ -13,6 +13,11 @@
   1,707/1,709 receipts, 9,216,771,435 bytes, two preserved exclusions.
 - [x] A5/A6: Reconcile source docs, dataset card, Conductor and seed/backlog; run bounded
   native model, seed-pair, source-track and provenance tests without global generation.
+- [x] PR #803 review remediation: bind custom selections to unique full canonical
+  acquisition rows, require all canonical collections, and correct both documented
+  selection paths. Targeted tests: 117 passed; quick/full native quality: 17/17 and
+  27/27 passed, with full-suite pytest bounded to four workers. Parent local
+  canonical-bound readback report independently inspected; no duplicate payload run.
 
 ## Parent delivery and separate execution
 

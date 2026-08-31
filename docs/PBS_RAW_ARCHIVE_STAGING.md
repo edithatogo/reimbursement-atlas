@@ -75,12 +75,12 @@ PYTHONPATH=src:. python scripts/prepare_pbs_raw_archive.py
 # After independent review: orchestrator uses the existing owner authorization.
 # Include official parent receipts for every selected archived variant.
 PYTHONPATH=src:. python scripts/prepare_pbs_raw_archive.py \
-  --receipts data/local/pbs-eligible-receipts.jsonl \
+  --receipts data/local/pbs-raw-archive-selected-20260831T044559Z.jsonl \
   --stage data/local/pbs-stage
 
 # Separately obtained local copy of that same bounded stage; no network in this command.
 PYTHONPATH=src:. python scripts/prepare_pbs_raw_archive.py \
-  --receipts data/local/pbs-eligible-receipts.jsonl \
+  --receipts data/local/pbs-raw-archive-selected-20260831T044559Z.jsonl \
   --readback data/local/pbs-readback
 ```
 
@@ -96,6 +96,14 @@ Never edit the original receipt collections to erase omissions. Retain the initi
 and superseding full dry-run errors/coverage separately from an eligible subset and
 bind them in any later publication receipt. Selection is explicit, not automatic.
 
+The CLI compares every selected row, including all non-projected provenance fields,
+with its unique full row in the three canonical `DEFAULT_RECEIPTS` collections.
+Modified or unknown rows and duplicate identities fail closed. JSON whitespace and
+key order may vary; values and fields may not. All three canonical receipt files
+must remain available, including during readback; an ignored selection file alone
+is not acquisition evidence. This guard does not change manifest bytes. Source and
+selection file hashes remain bindings for the later publication receipt.
+
 ### Current local stage (2026-08-31)
 
 The orchestrator completed local staging with exit 0 at
@@ -109,6 +117,14 @@ is `23b4877003f27f1b6dea3019bb25a300ea20bbcc85a7a4b04eb89a1d1b70b53f`.
 The permission checksum matches the snapshot above. Erdos's final README/manifest
 review was reported PASS. The worker inspected only receipt/metadata hashes and
 did not alter or duplicate the stage.
+
+The parent subsequently reported exit 0 for local readback using the canonical-row
+guard. The inspected report is
+`data/local/pbs-raw-archive-canonical-bound-readback-20260831.json`, SHA-256
+`b0b259acc58b02b46203f734cbfb7b605362b51f87b5eb469617963f0ee851d6`.
+It records readback mode, 1,707/1,707 verified payloads, zero failed receipts or
+operations, `publication_state: not_asserted`, and no network publication.
+This worker inspected only that report, without repeating the payload readback.
 
 `publication_state` remains `not_asserted`: remote upload and remote readback have
 not occurred. The two full-corpus omissions and all historical no-stage dry-run

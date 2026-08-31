@@ -249,6 +249,184 @@ def test_cli_missing_receipts_fails_without_path_leak(
     assert json.loads(output)["publication_state"] == "not_asserted"
 
 
+@pytest.fixture
+def canonical_case(case: tuple[Path, dict[str, Any]]) -> tuple[Path, dict[str, Any], str]:
+    root, receipt = case
+    receipt["retrieval_metadata"] = {"checked": True}
+    omitted = {**receipt, "id": "au_pbs_missing", "status": "download_failed"}
+    for relative, rows in zip(archive.DEFAULT_RECEIPTS, ([receipt], [omitted], []), strict=True):
+        path = root / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("".join(json.dumps(row) + "\n" for row in rows))
+    selection = "data/local/selection.jsonl"
+    (root / selection).parent.mkdir(parents=True, exist_ok=True)
+    (root / selection).write_text(json.dumps(receipt) + "\n")
+    return root, receipt, selection
+
+
+def test_exact_subset_is_canonical_and_full_batch_keeps_omissions(
+    canonical_case: tuple[Path, dict[str, Any], str],
+) -> None:
+    root, receipt, selection = canonical_case
+    (root / selection).write_text(
+        json.dumps(dict(reversed(list(receipt.items()))), indent=0).replace("\n", " ") + "\n"
+    )
+    assert archive.load_bound_receipts(root, [selection]) == [receipt]
+    assert len(archive.load_bound_receipts(root)) == 2
+    assert archive.prepare(root, archive.load_bound_receipts(root))["status"] == "blocked"
+    assert (
+        archive.prepare(root, archive.load_bound_receipts(root, [selection]))["status"]
+        == "verified"
+    )
+
+
+@pytest.mark.parametrize(
+    "change", ["unknown_id", "url", "size", "checksum", "extra", "missing", "nested", "bool_number"]
+)
+def test_selected_full_row_must_be_unchanged(
+    canonical_case: tuple[Path, dict[str, Any], str],
+    change: str,
+) -> None:
+    root, receipt, selection = canonical_case
+    edited = json.loads(json.dumps(receipt))
+    if change == "unknown_id":
+        edited["id"] = "au_pbs_invented"
+    elif change == "url":
+        edited["source_url"] = receipt["source_url"].replace("2020/01", "2020/02")
+    elif change == "size":
+        edited["byte_size"] += 1
+    elif change == "checksum":
+        edited["checksum_sha256"] = "a" * 64
+    elif change == "extra":
+        edited["invented_provenance"] = "not acquired"
+    elif change == "missing":
+        del edited["retrieval_metadata"]
+    else:
+        edited["retrieval_metadata"]["checked"] = 1 if change == "bool_number" else False
+    (root / selection).write_text(json.dumps(edited) + "\n")
+    with pytest.raises(archive.ArchiveError, match="selection_not_canonical"):
+        archive.load_bound_receipts(root, [selection])
+
+
+@pytest.mark.parametrize("mode", ["--stage", "--readback"])
+def test_cli_rejects_self_consistent_arbitrary_payload_selection(
+    canonical_case: tuple[Path, dict[str, Any], str],
+    mode: str,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    root, receipt, selection = canonical_case
+    arbitrary = b"Not an acquired PBS payload\n"
+    cache = f"{archive.RAW}/pbs_archive/invented.pdf"
+    (root / cache).write_bytes(arbitrary)
+    edited = {
+        **receipt,
+        "cache_path": cache,
+        "byte_size": len(arbitrary),
+        "checksum_sha256": hashlib.sha256(arbitrary).hexdigest(),
+    }
+    (root / selection).write_text(json.dumps(edited) + "\n")
+    monkeypatch.setattr(
+        "sys.argv",
+        ["prepare", "--root", str(root), "--receipts", selection, mode, "data/local/stage"],
+    )
+    assert archive.main() == 1
+    output = capsys.readouterr().out
+    assert json.loads(output)["status"] == "blocked"
+    assert json.loads(output)["publication_state"] == "not_asserted"
+    assert str(root) not in output
+    assert not (root / "data/local/stage").exists()
+
+
+@pytest.mark.parametrize("missing", archive.DEFAULT_RECEIPTS)
+def test_selection_requires_every_canonical_collection(
+    canonical_case: tuple[Path, dict[str, Any], str],
+    missing: str,
+) -> None:
+    root, _, selection = canonical_case
+    (root / missing).unlink()
+    with pytest.raises(FileNotFoundError):
+        archive.load_bound_receipts(root, [selection])
+
+
+@pytest.mark.parametrize("conflicting", [False, True])
+def test_duplicate_canonical_identity_blocks_even_an_unselected_row(
+    canonical_case: tuple[Path, dict[str, Any], str],
+    conflicting: bool,
+) -> None:
+    root, receipt, selection = canonical_case
+    duplicate: dict[str, Any] = {**receipt, "id": "au_pbs_missing", "status": "download_failed"}
+    if conflicting:
+        duplicate["byte_size"] += 1
+    (root / archive.DEFAULT_RECEIPTS[2]).write_text(json.dumps(duplicate) + "\n")
+    with pytest.raises(archive.ArchiveError, match="duplicate_canonical_receipt_identity"):
+        archive.load_bound_receipts(root, [selection])
+
+
+def test_repeated_selected_identity_across_files_is_rejected(
+    canonical_case: tuple[Path, dict[str, Any], str],
+) -> None:
+    root, _, selection = canonical_case
+    with pytest.raises(archive.ArchiveError, match="duplicate_selected_receipt_identity"):
+        archive.load_bound_receipts(root, [selection, selection])
+
+
+@pytest.mark.parametrize("canonical", [False, True])
+@pytest.mark.parametrize("prefix", [True, False])
+def test_selection_binding_rejects_duplicate_json_keys_in_both_sources(
+    canonical_case: tuple[Path, dict[str, Any], str],
+    canonical: bool,
+    prefix: bool,
+) -> None:
+    root, receipt, selection = canonical_case
+    content = json.dumps(receipt)
+    content = (
+        '{"status":"download_failed",' + content[1:]
+        if prefix
+        else content[:-1] + ',"status":"download_failed"}'
+    )
+    path = archive.DEFAULT_RECEIPTS[0] if canonical else selection
+    (root / path).write_text(content + "\n")
+    with pytest.raises(archive.ArchiveError, match="duplicate_json_key"):
+        archive.load_bound_receipts(root, [selection])
+
+
+@pytest.mark.parametrize("mode", ["stage", "readback"])
+def test_bound_cli_preserves_manifest_bytes(
+    canonical_case: tuple[Path, dict[str, Any], str],
+    mode: str,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    root, receipt, selection = canonical_case
+    expected = archive.prepare(root, [receipt], stage="data/local/existing-stage")
+    manifest = root / "data/local/existing-stage/raw/pbs/manifest.json"
+    before = manifest.read_bytes()
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "prepare",
+            "--root",
+            str(root),
+            "--receipts",
+            selection,
+            f"--{mode}",
+            "data/local/existing-stage" if mode == "readback" else "data/local/new-stage",
+        ],
+    )
+    assert archive.main() == 0
+    assert json.loads(capsys.readouterr().out) == {**expected, "mode": mode}
+    assert manifest.read_bytes() == before
+    if mode == "stage":
+        assert (root / "data/local/new-stage/raw/pbs/manifest.json").read_bytes() == before
+
+
+def test_documented_cli_uses_the_prepared_selection() -> None:
+    doc = (Path(__file__).resolve().parents[2] / "docs/PBS_RAW_ARCHIVE_STAGING.md").read_text()
+    assert "pbs-eligible-receipts.jsonl" not in doc
+    assert doc.count("--receipts data/local/pbs-raw-archive-selected-20260831T044559Z.jsonl") == 2
+
+
 def test_structured_package_is_not_extracted(case: tuple[Path, dict[str, Any]]) -> None:
     root, receipt = case
     receipt["source_url"] = (
