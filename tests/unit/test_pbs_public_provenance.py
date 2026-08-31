@@ -12,7 +12,7 @@ def test_public_projection_omits_raw_cache_paths_and_failure_details() -> None:
             "archive_page": "https://www.pbs.gov.au/archive",
             "archive_period": "2025-01-01",
             "file_name": "source.zip",
-            "file_url": "https://www.pbs.gov.au/source.zip?variant=3",
+            "file_url": "https://www.pbs.gov.au/publication/schedule/2025/01/2025-01-01-xml.zip?variant=3",
             "licence_gate": "public_reuse_review",
             "source_version_id": "pbs_one",
             "structured_format": "xml_zip",
@@ -35,7 +35,7 @@ def test_public_projection_omits_raw_cache_paths_and_failure_details() -> None:
     assert "detail" not in row
     assert row["checksum_sha256"] == "a" * 64
     assert row["raw_payload_included"] is False
-    assert row["raw_redistribution_status"] == "blocked_pending_explicit_permission"
+    assert row["raw_redistribution_status"] == "allowed_owner_attested_permission"
 
 
 def test_projection_keeps_missing_payload_explicit() -> None:

@@ -4,14 +4,223 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from dataclasses import asdict, dataclass
+from datetime import date
 from operator import itemgetter
 from pathlib import Path
-from typing import Any
+from typing import Annotated, Any, Literal
+from urllib.parse import parse_qsl, urlsplit
+
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBool,
+    StringConstraints,
+    ValidationError,
+    field_validator,
+)
 
 from reimburse_atlas.io import write_csv, write_jsonl
 from reimburse_atlas.publication import PublicationManifest, build_publication_manifest
 from reimburse_atlas.registry import project_root
+
+# Reviewed complete filename families from the historical PBS inventories.
+# Only case and numeric runs vary; inventory additions never authorize themselves.
+PBS_RAW_FILENAME_FAMILIES = frozenset({
+    "#-#-#--chemotherapy-booklet.pdf",
+    "#-#-#-addendum.pdf",
+    "#-#-#-chemotherapy-book.pdf",
+    "#-#-#-chemotherapy-booklet-erratum.pdf",
+    "#-#-#-chemotherapy-booklet.pdf",
+    "#-#-#-chemotherapy-erratum.pdf",
+    "#-#-#-consolidated-schedules.pdf",
+    "#-#-#-data-erratum.pdf",
+    "#-#-#-dental-book-soc.pdf",
+    "#-#-#-dental-book.pdf",
+    "#-#-#-efc-errata.pdf",
+    "#-#-#-efc-erratum-docetaxel.pdf",
+    "#-#-#-efc-erratum.pdf",
+    "#-#-#-efc-schedule-addendum.pdf",
+    "#-#-#-efc-schedule-soc.pdf",
+    "#-#-#-efc-schedule.pdf",
+    "#-#-#-efc-soc.pdf",
+    "#-#-#-efc-summary-of-changes.pdf",
+    "#-#-#-efc.pdf",
+    "#-#-#-efficient-funding-of-chemotherapy-erratum.pdf",
+    "#-#-#-efficient-funding-of-chemotherapy.pdf",
+    "#-#-#-errata-#-pricing-of-fluticasone-propionate-with-formoterol.pdf",
+    "#-#-#-errata-general-schedule.pdf",
+    "#-#-#-errata-notes.pdf",
+    "#-#-#-errata.pdf",
+    "#-#-#-erratum-blinatumomab-restriction.pdf",
+    "#-#-#-erratum.pdf",
+    "#-#-#-general-schedule-errata.pdf",
+    "#-#-#-general-schedule-erratum-risedronate.pdf",
+    "#-#-#-general-schedule-erratum.pdf",
+    "#-#-#-general-schedule-r#-volume-#.pdf",
+    "#-#-#-general-schedule-soc-addendum.pdf",
+    "#-#-#-general-schedule-soc.pdf",
+    "#-#-#-general-schedule-vol-#.pdf",
+    "#-#-#-general-schedule-volume-#.pdf",
+    "#-#-#-general-schedule.pdf",
+    "#-#-#-general-soc.pdf",
+    "#-#-#-general-volume-#.pdf",
+    "#-#-#-hsd-schedule.pdf",
+    "#-#-#-main-soc.pdf",
+    "#-#-#-pbs-general-schedule.pdf",
+    "#-#-#-pbs-schedule-approved-pharmacists.pdf",
+    "#-#-#-pbs-schedule-medical-practitioners.pdf",
+    "#-#-#-pbs-schedule.pdf",
+    "#-#-#-pbs-summary-of-changes.pdf",
+    "#-#-#-rpbs-schedule.pdf",
+    "#-#-#-section#-schedule-vol-#.pdf",
+    "#-#-#-section#-volume-#.pdf",
+    "#-efc-soc.pdf",
+    "addendum-#-september-#-benzathine-benzylpenicillin.pdf",
+    "addendum-for-#-#-#.pdf",
+    "errata-error-in-methylphenidate-listings-#-january-#.pdf",
+    "errata-for-#-#-#-abemaciclib.pdf",
+    "errata-for-#-#-#-migalastat-and-price-amoxicillin-with-clavulanic-acid.pdf",
+    "errata-for-#-#-#.pdf",
+    "#-#-#-chemotherapy-extracts.zip",
+    "#-#-#-chemotherapy-xml.zip",
+    "#-#-#-efc-extracts.zip",
+    "#-#-#-efc-xml.zip",
+    "#-#-#-efficient-funding-of-chemotherapy-extracts.zip",
+    "#-#-#-efficient-funding-of-chemotherapy-xml.zip",
+    "#-#-#-extracts-down-converted.zip",
+    "#-#-#-extracts.zip",
+    "#-#-#-general-schedule-ascii.zip",
+    "#-#-#-general-schedule-xml.zip",
+    "#-#-#-pbs-api-csv-files.zip",
+    "#-#-#-pbs-api-csv.zip",
+    "#-#-#-v#-down-converted-release-#.zip",
+    "#-#-#-v#-down-converted.zip",
+    "#-#-#-v#extracts-r#.zip",
+    "#-#-#-v#extracts-release-#.zip",
+    "#-#-#-v#extracts.zip",
+    "#-#-#-v#soextracts-r#.zip",
+    "#-#-#-v#soextracts-release-#.zip",
+    "#-#-#-v#soextracts-supply-only.zip",
+    "#-#-#-v#soextracts.zip",
+    "#-#-#-xml-v#-down-converted.zip",
+    "#-#-#-xml-v#-release-#.zip",
+    "#-#-#-xml-v#.zip",
+    "#-#-#-xml.zip",
+    "#-supply-only-listings-july-#-public.csv",
+    "supply-only-listings-dec-#-public.csv",
+    "supply-only-listings-nov-#-public.csv",
+})
+
+
+class PBSRawPermission(BaseModel):
+    """Complete owner attestation; never a publisher grant or publication receipt."""
+
+    model_config = ConfigDict(extra="forbid", strict=True)
+    schema_version: Literal["pbs-raw-permission-v2"]
+    source_id: Literal["au_pbs"]
+    decision: Literal["allow_raw_redistribution"]
+    permission_basis: Literal["owner_attestation"]
+    permission_status: Literal["active"]
+    revoked_at: None
+    accountable_party: Literal["repository-owner"]
+    recorded_at: date
+    owner_statements: Annotated[
+        list[Annotated[str, StringConstraints(min_length=1, pattern=r"\S")]], Field(min_length=2)
+    ]
+    scope: Literal[
+        "Raw PBS schedule PDFs and machine-readable schedule packages, "
+        "including historical editions and source-identified archived variants."
+    ]
+    per_file_owner_approval_required: StrictBool = Field(json_schema_extra={"const": False})
+    publisher_permission_document_verified: StrictBool = Field(json_schema_extra={"const": False})
+    licence_identifier: None
+    preservation_controls: tuple[
+        Literal["Preserve original bytes, notices, attribution and source disclaimers."],
+        Literal["Record source URL, retrieval evidence, edition identity, size and checksum."],
+        Literal[
+            "Keep source payloads out of the software Git repository; "
+            "use governed external archive storage."
+        ],
+        Literal["Do not apply the software Apache-2.0 licence to PBS payloads."],
+    ]
+    exclusions: tuple[
+        Literal["Non-PBS sources"],
+        Literal["Credentials"],
+        Literal["Papers and preprints"],
+        Literal["Unsupported research claims"],
+    ]
+    publication_state: Literal["not_asserted"]
+
+    @field_validator("per_file_owner_approval_required", "publisher_permission_document_verified")
+    @classmethod
+    def require_false(cls, value: bool) -> bool:
+        """This attestation requires neither new approvals nor claimed publisher verification."""
+        if value:
+            message = "Owner attestation flags must remain false."
+            raise ValueError(message)
+        return value
+
+
+def _unique_permission_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    """Reject ambiguous objects before JSON parsing can conceal revocation."""
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            message = "Duplicate permission record key."
+            raise ValueError(message)
+        result[key] = value
+    return result
+
+
+def pbs_raw_permission_status(*, root: Path | None = None) -> str:
+    """Validate the entire active permission record independently of any artefact."""
+    path = (root or project_root()) / "data/licence_review/pbs_raw_permission.json"
+    try:
+        content = path.read_text(encoding="utf-8")
+        json.loads(content, object_pairs_hook=_unique_permission_keys)
+        # Preserve strict JSON date/tuple semantics after checking key uniqueness.
+        PBSRawPermission.model_validate_json(content)
+    except OSError, ValueError, ValidationError:
+        return "blocked_pending_explicit_permission"
+    return "allowed_owner_attested_permission"
+
+
+def pbs_raw_redistribution_status(source_url: str, *, root: Path | None = None) -> str:
+    """Limit permission to schedule artefact paths and categories, not whole PBS hosts."""
+    try:
+        parsed = urlsplit(source_url)
+        port = parsed.port
+    except ValueError:
+        return "outside_pbs_permission_scope"
+    if (
+        parsed.scheme not in {"http", "https"}
+        or parsed.hostname
+        not in {"pbs.gov.au", "www.pbs.gov.au", "m.pbs.gov.au", "data.pbs.gov.au"}
+        or parsed.username is not None
+        or parsed.password is not None
+        or port not in {None, 80, 443}
+    ):
+        return "outside_pbs_permission_scope"
+    if parsed.fragment or any(
+        key != "variant" or value != "3"
+        for key, value in parse_qsl(parsed.query, keep_blank_values=True)
+    ):
+        return "outside_pbs_permission_scope"
+    match = re.fullmatch(
+        r"/publication/schedule/(?:[0-9]{4}(?:/[0-9]{2})?|1951-2002)/"
+        r"([A-Za-z0-9_-]+)\.(pdf|zip|xml|txt|csv)",
+        parsed.path,
+        re.IGNORECASE,
+    )
+    if match is None:
+        return "outside_pbs_permission_scope"
+    filename = ".".join(match.groups()).lower()
+    if re.sub(r"[0-9]+", "#", filename) not in PBS_RAW_FILENAME_FAMILIES:
+        return "outside_pbs_permission_scope"
+    return pbs_raw_permission_status(root=root)
 
 
 @dataclass(frozen=True)

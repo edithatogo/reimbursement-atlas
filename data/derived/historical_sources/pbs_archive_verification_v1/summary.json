@@ -4,8 +4,10 @@
   "december_1987_source_byte_status": "no_archive_capture",
   "internet_archive_capture_count": 1033,
   "observed_at": "2026-08-29T03:43:01.133988+00:00",
+  "permission_record": "data/licence_review/pbs_raw_permission.json",
   "public_product_scope": "checksums_provenance_archive_observations_and_permitted_metadata",
-  "raw_publication_status": "blocked_pending_explicit_permission",
+  "raw_publication_status": "not_published_by_this_metadata_product",
+  "raw_redistribution_status": "allowed_owner_attested_permission",
   "schema_version": "pbs-archive-verification-v1",
   "target_count": 1049,
   "verification_status_counts": {

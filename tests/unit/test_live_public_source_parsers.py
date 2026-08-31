@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from zipfile import ZipFile
 
 import polars as pl
 import pytest
@@ -14,6 +15,60 @@ from reimburse_atlas.parsers.nhs_genomic_directory_xlsx import (
 from reimburse_atlas.parsers.nhs_payment_scheme_xlsx import parse_nhs_payment_scheme_xlsx
 from reimburse_atlas.parsers.ohip_master_text import parse_ohip_master_text
 from reimburse_atlas.parsers.pharmac_xml import parse_pharmac_xml
+
+
+def test_nhs_genomic_workbook_uses_real_excel_reader(tmp_path: Path) -> None:
+    """Exercise Polars and fastexcel together using a synthetic OOXML workbook."""
+    source = tmp_path / "genomic.xlsx"
+    with ZipFile(source, "w") as workbook:
+        workbook.writestr(
+            "[Content_Types].xml",
+            '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
+            '<Default Extension="rels" '
+            'ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
+            '<Default Extension="xml" ContentType="application/xml"/>'
+            '<Override PartName="/xl/workbook.xml" '
+            'ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>'
+            '<Override PartName="/xl/worksheets/sheet1.xml" '
+            'ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>'
+            "</Types>",
+        )
+        for filename, target, relation in (
+            ("_rels/.rels", "xl/workbook.xml", "officeDocument"),
+            ("xl/_rels/workbook.xml.rels", "worksheets/sheet1.xml", "worksheet"),
+        ):
+            workbook.writestr(
+                filename,
+                '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+                f'<Relationship Id="rId1" Target="{target}" '
+                f'Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/{relation}"/>'
+                "</Relationships>",
+            )
+        workbook.writestr(
+            "xl/workbook.xml",
+            '<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" '
+            'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'
+            '<sheets><sheet name="R&amp;ID indications" sheetId="1" r:id="rId1"/></sheets>'
+            "</workbook>",
+        )
+        workbook.writestr(
+            "xl/worksheets/sheet1.xml",
+            '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'
+            '<sheetData><row r="1">'
+            '<c r="A1" t="inlineStr"><is><t>Clinical indication ID</t></is></c>'
+            '<c r="B1" t="inlineStr"><is><t>Test ID</t></is></c>'
+            '<c r="C1" t="inlineStr"><is><t>Clinical Indication</t></is></c>'
+            '</row><row r="2">'
+            '<c r="A2" t="inlineStr"><is><t>R1</t></is></c>'
+            '<c r="B2" t="inlineStr"><is><t>R1.1</t></is></c>'
+            '<c r="C2" t="inlineStr"><is><t>Synthetic indication</t></is></c>'
+            "</row></sheetData></worksheet>",
+        )
+    records = parse_nhs_genomic_directory_xlsx(source)
+    assert len(records) == 1
+    assert records[0].decision_id == "R1.1"
+    assert records[0].technology_name == "Synthetic indication"
+    assert records[0].decision_status == "covered_with_restrictions"
 
 
 def test_pharmac_xml_parses_public_subsidy(tmp_path: Path) -> None:
