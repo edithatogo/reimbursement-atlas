@@ -16,10 +16,10 @@ epics:
       - "Retain complete full-corpus errors and coverage outside any eligible subset; 1707 of 1709 receipts verify."
       - "Two early schema distributions and three HTML indexes do not establish four missing monthly releases or a recovered RPBS PDF."
       - "Keep eight explicit derived HF configs and raw rejection; raw/pbs is a separate conditional archive."
-      - "Orchestrator performs local staging under existing authorization after contract review and tests; network publication awaits protected source delivery."
+      - "Global generation and independent archive-contract review complete; orchestrator local stage verified with 1707 payloads and receipt SHA-256 569d18a843791e666be9e878e52859355d48f8cce76cabf1f7b97034c7ae12ff."
     blockers:
       - "December 1987 RPBS PDF and December 2006-March 2007 monthly payloads remain unrecovered."
-      - "Deferred generation, protected source delivery and separately recorded raw transfer/readback remain pending."
+      - "Protected source delivery and separately recorded remote raw upload/readback remain pending; verified local staging is not publication."
   - id: STANDING-001
     title: Standing low-risk authorization
     phase: hardening

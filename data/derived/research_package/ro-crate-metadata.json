@@ -1004,20 +1004,20 @@
     {
       "@id": "data/seed/conductor_tracks.jsonl",
       "@type": "File",
-      "contentSize": 23284,
+      "contentSize": 23467,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "jsonl",
       "name": "conductor_tracks",
-      "sha256": "19d04a85a9c8b382b72a15e6da0780e6f65860c686026b2a14d5c3ba71dec197"
+      "sha256": "64e180b8e985dc8517adbe5feffc15381822115cb172bea28c7c9dc17f21004c"
     },
     {
       "@id": "data/seed/conductor_tracks.csv",
       "@type": "File",
-      "contentSize": 19262,
+      "contentSize": 19454,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "encodingFormat": "csv",
       "name": "conductor_tracks",
-      "sha256": "4fc4b4d6009f9ebc35ece413b347cf6fe7c36e75a9e1a03c0986a5af34cb1616"
+      "sha256": "8443f862f063edb4867a9c73bba9d78fb1156974ddfbe5ae16ea3ba16dbc070a"
     },
     {
       "@id": "data/seed/roadmap_functions.jsonl",

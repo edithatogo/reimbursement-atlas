@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[2]
 TRACK = "track_pbs_raw_archive_20260831"
 PERMISSION = "pbs_raw_permission_20260831"
 TITLE = "Complete residual historical MBS/PBS acquisition breadth and evidence promotion"
+STAGE_SHA = "569d18a843791e666be9e878e52859355d48f8cce76cabf1f7b97034c7ae12ff"
 
 
 def test_native_seed_models_link_source_scope_and_permission_closeout() -> None:
@@ -89,7 +90,10 @@ def test_project_issue_rendering_retains_remaining_source_and_transfer_gates() -
     rendered = render_issue(issue)
     for text in (
         "1,707 of 1,709",
-        "No actual staging",
+        "At those dry runs, no actual staging or upload occurred",
+        "Subsequently verify the orchestrator's local stage",
+        "Remote upload/readback have not occurred",
+        STAGE_SHA,
         "two early schema",
         "eight derived configs",
         "canonical URL returned HTTP 404",
@@ -102,6 +106,49 @@ def test_project_issue_rendering_retains_remaining_source_and_transfer_gates() -
     generated = next(row for row in generated_track_issues(ROOT) if row.title == TITLE)
     assert generated.epic_id == TRACK.upper()
     assert generated.status == "blocked"
+    drafts = list(
+        (ROOT / ".github/generated-issues").glob(
+            "*-complete-residual-historical-mbs-pbs-acquisition-breadth-and-evidence-promotion.md"
+        )
+    )
+    assert len(drafts) == 1
+    assert drafts[0].read_text() == rendered
+
+
+def test_current_source_status_matches_all_track_projections() -> None:
+    seed = next(
+        row
+        for row in load_conductor_tracks(ROOT / "data/seed/conductor_tracks.jsonl")
+        if row.id == TRACK
+    )
+    assert "Global generation complete" in seed.notes
+    assert "independent archive-contract review PASS" in seed.notes
+    assert "Local stage verified: 1707 payloads" in seed.notes
+    assert STAGE_SHA in seed.notes
+    assert "Protected source delivery and remote raw upload/readback pending" in seed.notes
+    for relative in (
+        "data/seed/conductor_tracks.csv",
+        "data/derived/seed_lake/conductor_tracks/conductor_tracks.csv",
+        "apps/dashboard/public/data/conductor_tracks.csv",
+    ):
+        with (ROOT / relative).open(newline="") as handle:
+            row = next(row for row in csv.DictReader(handle) if row["id"] == TRACK)
+        assert row["notes"] == seed.notes
+        assert row["github_project_status"] == "in_progress"
+    lake = next(
+        row
+        for row in load_conductor_tracks(
+            ROOT / "data/derived/seed_lake/conductor_tracks/conductor_tracks.jsonl"
+        )
+        if row.id == TRACK
+    )
+    assert lake == seed
+    backlog = yaml.safe_load((ROOT / "conductor/backlog.yml").read_text())
+    epic = next(row for row in backlog["epics"] if row.get("track_id") == TRACK)
+    assert epic["existing_github_issue"] == 255
+    assert epic["issues"] == []
+    assert STAGE_SHA in " ".join(epic["scope"])
+    assert "Deferred generation" not in " ".join(epic["blockers"])
 
 
 def test_hf_card_keeps_eight_explicit_derived_configs_and_conditional_archive() -> None:

@@ -97,7 +97,7 @@
       "name": "conductor_tracks",
       "parquet_path": "conductor_tracks/conductor_tracks.parquet",
       "rows": 32,
-      "sha256": "452ef7366bed611aa3f223be57a928ee0775bcdf9690580389e46be00ee065ce"
+      "sha256": "603db583fd1084f123e06a8f0192a09ac0dcf1f61d734239b9fe7708a27887a8"
     },
     {
       "csv_path": "roadmap_functions/roadmap_functions.csv",

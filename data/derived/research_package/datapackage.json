@@ -265,20 +265,20 @@
       }
     },
     {
-      "bytes": 23284,
+      "bytes": 23467,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "jsonl",
-      "hash": "19d04a85a9c8b382b72a15e6da0780e6f65860c686026b2a14d5c3ba71dec197",
+      "hash": "64e180b8e985dc8517adbe5feffc15381822115cb172bea28c7c9dc17f21004c",
       "mediatype": "application/json",
       "name": "conductor-tracks",
       "path": "data/seed/conductor_tracks.jsonl",
       "schema": {}
     },
     {
-      "bytes": 19262,
+      "bytes": 19454,
       "description": "Project-authored operational metadata; covered by the repository Apache-2.0 licence.",
       "format": "csv",
-      "hash": "4fc4b4d6009f9ebc35ece413b347cf6fe7c36e75a9e1a03c0986a5af34cb1616",
+      "hash": "8443f862f063edb4867a9c73bba9d78fb1156974ddfbe5ae16ea3ba16dbc070a",
       "mediatype": "text/csv",
       "name": "conductor-tracks",
       "path": "data/seed/conductor_tracks.csv",
