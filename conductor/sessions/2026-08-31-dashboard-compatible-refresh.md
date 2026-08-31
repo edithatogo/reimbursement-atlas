@@ -74,6 +74,15 @@ test selection or code, with output in `final-tests-rerun.log`. That rerun passe
 deadline change was introduced. The full hosted browser matrix remains pending
 on the PR; no auto-merge is enabled and #803 must merge first.
 
+While #804's hosted runners were queued, inspection found that the new Firefox
+test incorrectly awaited canvas-only "Loaded" text before checking the intentional
+fallback. The test now checks nonzero graph counts in the fallback region for
+Firefox and retains the loaded-text/canvas assertions for other browsers. No
+application behavior, project, route, screenshot requirement or skip policy changes.
+Focused Chromium and Firefox runs both passed with retries disabled (2 tests).
+The full suite remains 68 tests. The historical human-review file is unchanged:
+SHA-256 `473b53b82bf7d97a57770689cb63611f8fbcb1f231092651b837e0beda1c0c4d`.
+
 ## Scope and base
 
 Local isolated branch `codex/dashboard-compatible-refresh`, based on fetched,
