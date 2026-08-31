@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import subprocess  # nosec B404 - fixed npm metadata commands below
 from collections.abc import Callable
 from pathlib import Path
@@ -37,12 +38,16 @@ def _npm_view(spec: str, field: str, *, cwd: Path) -> tuple[object, str | None]:
         return completed.stdout.strip(), None
 
 
-def _peer_supports_typescript7(peer_range: str) -> bool:
-    """Conservatively recognise peer ranges that explicitly admit TypeScript 7."""
-    normalised = peer_range.replace(" ", "")
-    if "*" in normalised or ">=7" in normalised or ">7" in normalised:
-        return True
-    return any(token in normalised for token in ("^7", "~7", "7.x", "7.*"))
+def _stable_versions(value: object) -> list[str] | None:
+    """Accept concrete stable versions only; npm, not this helper, parses ranges."""
+    values = value if isinstance(value, list) else [value]
+    if not all(
+        isinstance(item, str)
+        and re.fullmatch(r"(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)", item)
+        for item in values
+    ):
+        return None
+    return list(dict.fromkeys(cast("list[str]", values)))
 
 
 def build_report(  # ruff:ignore[too-many-locals] - fields mirror the compatibility contract
@@ -68,17 +73,27 @@ def build_report(  # ruff:ignore[too-many-locals] - fields mirror the compatibil
     peer_dependencies = (
         cast("dict[str, object]", peer_value) if isinstance(peer_value, dict) else {}
     )
-    peer_range = str(peer_dependencies.get("typescript", ""))
+    raw_peer_range = peer_dependencies.get("typescript", "")
+    peer_range = raw_peer_range.strip() if isinstance(raw_peer_range, str) else ""
     candidate_value, candidate_error = view("typescript@7", "version")
-    candidate_typescript = (
-        ", ".join(str(item) for item in cast("list[object]", candidate_value))
-        if isinstance(candidate_value, list)
-        else str(candidate_value or "")
-    )
+    candidates = _stable_versions(candidate_value)
+    if candidates is not None and any(not item.startswith("7.") for item in candidates):
+        candidates = None
+    admitted: list[str] | None = None
     errors = [error for error in (peer_error, candidate_error) if error]
+    if not errors and peer_range and candidates:
+        admitted_value, admitted_error = view(f"typescript@{peer_range}", "version")
+        admitted = _stable_versions(admitted_value)
+        if admitted_error:
+            errors.append(admitted_error)
+    eligible = [item for item in candidates or [] if item in (admitted or [])]
+    candidate_typescript = ", ".join(eligible or candidates or [])
     if errors:
         status = "blocked_network" if "timed out" not in " ".join(errors) else "unknown"
-    elif _peer_supports_typescript7(peer_range) and candidate_typescript:
+    elif not peer_range or not candidates or admitted is None:
+        status = "unknown"
+        errors.append("npm metadata did not provide a valid peer range and stable version lists")
+    elif eligible:
         status = "upgrade_available"
     else:
         status = "blocked_peer"
