@@ -331,3 +331,117 @@ def test_native_npm_range_response_fails_closed(
     assert report["mutation_performed"] is False
     if returncode:
         assert report["errors"] == [stderr]
+
+
+def test_native_bare_wildcard_uses_range_not_default_tag(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    _package(tmp_path)
+    calls: list[list[str]] = []
+
+    def run(argv: list[str], **_kwargs: object) -> subprocess.CompletedProcess[str]:
+        calls.append(argv)
+        if argv[3] == "peerDependencies":
+            value: object = {"typescript": "*"}
+        elif argv[2] == "typescript@7":
+            value = "7.0.2"
+        elif argv[2] == "typescript@x":
+            value = ["6.0.3", "7.0.2", "8.0.0"]
+        else:
+            value = "8.0.0"
+        return subprocess.CompletedProcess(argv, 0, json.dumps(value), "")
+
+    monkeypatch.setattr(compatibility.subprocess, "run", run)
+    report = build_report(tmp_path)
+    assert report["status"] == "upgrade_available"
+    assert report["candidate_typescript7"] == "7.0.2"
+    assert calls[-1] == ["npm", "view", "typescript@x", "version", "--json"]
+
+
+@pytest.mark.parametrize("peer", [" * ", "x", "X", "*.*", "^7", ">=7 <8"])
+def test_native_range_query_only_rewrites_bare_wildcard(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, peer: str
+) -> None:
+    _package(tmp_path)
+    calls: list[list[str]] = []
+
+    def run(argv: list[str], **_kwargs: object) -> subprocess.CompletedProcess[str]:
+        calls.append(argv)
+        value = {"typescript": peer} if argv[3] == "peerDependencies" else "7.0.2"
+        return subprocess.CompletedProcess(argv, 0, json.dumps(value), "")
+
+    monkeypatch.setattr(compatibility.subprocess, "run", run)
+    assert build_report(tmp_path)["status"] == "upgrade_available"
+    expected = "x" if peer.strip() == "*" else peer
+    assert calls[-1] == ["npm", "view", f"typescript@{expected}", "version", "--json"]
+
+
+def test_native_missing_seven_channel_remains_unknown(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    _package(tmp_path)
+    calls: list[list[str]] = []
+
+    def run(argv: list[str], **_kwargs: object) -> subprocess.CompletedProcess[str]:
+        calls.append(argv)
+        if argv[3] == "peerDependencies":
+            return subprocess.CompletedProcess(argv, 0, '{"typescript": "*"}', "")
+        assert argv[2] == "typescript@7"
+        error = {"code": "E404", "summary": "No match found for version 7"}
+        return subprocess.CompletedProcess(argv, 1, json.dumps({"error": error}), "npm error")
+
+    monkeypatch.setattr(compatibility.subprocess, "run", run)
+    report = build_report(tmp_path)
+    assert report["status"] == "unknown"
+    assert report["upgrade_recommended"] is False
+    assert len(calls) == 2
+
+
+@pytest.mark.parametrize(
+    ("spec", "field"),
+    [("other@7", "version"), ("typescript@next", "version"), ("typescript@7", "dist-tags")],
+)
+def test_no_match_error_conversion_is_limited_to_typescript_ranges(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, spec: str, field: str
+) -> None:
+    def run(argv: list[str], **_kwargs: object) -> subprocess.CompletedProcess[str]:
+        error = {"code": "E404", "summary": f"No match found for version {spec.split('@')[1]}"}
+        return subprocess.CompletedProcess(argv, 1, json.dumps({"error": error}), "npm error")
+
+    monkeypatch.setattr(compatibility.subprocess, "run", run)
+    # Exercise the subprocess adapter's package/field boundary directly.
+    result = compatibility._npm_view(  # ruff:ignore[private-member-access]
+        spec, field, cwd=tmp_path
+    )
+    assert result == (None, "npm error")
+
+
+@pytest.mark.parametrize(
+    ("error", "status"),
+    [
+        ({"code": "E404", "summary": "No match found for version >=7 <7"}, "blocked_peer"),
+        ({"code": "E404", "summary": "Package not found"}, "blocked_network"),
+        ({"code": "E404", "summary": "No match found for version ^8"}, "blocked_network"),
+        ({"code": "E401", "summary": "No match found for version >=7 <7"}, "blocked_network"),
+        ({"code": "E404"}, "blocked_network"),
+        ("E404", "blocked_network"),
+    ],
+)
+def test_native_no_matching_range_is_empty_not_network_failure(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, error: object, status: str
+) -> None:
+    _package(tmp_path)
+
+    def run(argv: list[str], **_kwargs: object) -> subprocess.CompletedProcess[str]:
+        if argv[3] == "peerDependencies":
+            return subprocess.CompletedProcess(argv, 0, '{"typescript": ">=7 <7"}', "")
+        if argv[2] == "typescript@7":
+            return subprocess.CompletedProcess(argv, 0, '"7.0.2"', "")
+        assert argv == ["npm", "view", "typescript@>=7 <7", "version", "--json"]
+        return subprocess.CompletedProcess(argv, 1, json.dumps({"error": error}), "npm error")
+
+    monkeypatch.setattr(compatibility.subprocess, "run", run)
+    report = build_report(tmp_path)
+    assert report["status"] == status
+    assert report["upgrade_recommended"] is False
+    assert report["errors"] == ([] if status == "blocked_peer" else ["npm error"])

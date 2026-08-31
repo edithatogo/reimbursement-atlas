@@ -137,3 +137,41 @@ That module is not imported or installed by the canary or its Python tests.
 
 The reopened bot thread must remain unresolved until Erdos reviews this final
 grammar. No merge is authorized; source/dashboard sequencing remains with parent.
+
+## Takeover: native wildcard, empty-range and typing corrections
+
+Independent review accepted the constrained token grammar at `043ffc3e`.
+Takeover preserved the pending wildcard/E404 implementation and expanded its
+regression coverage. Inspection of installed npm's `view` implementation confirms
+that raw `*` selects the configured default tag rather than all stable versions.
+Only `typescript@*` version lookups are rewritten to the equivalent `x` range;
+other supported ranges remain unchanged. This avoids a false `blocked_peer`
+when the default tag points outside the independently observed 7.x candidates.
+
+Only a structured E404 with the exact `No match found for version <range>`
+summary for a supported TypeScript version range becomes an empty version list.
+A contradictory peer range therefore yields `blocked_peer`, not a network
+failure. A missing 7.x candidate channel remains `unknown`; registry/package
+errors, authentication failures, malformed errors and mismatched summaries are
+not swallowed. No install or TypeScript upgrade is performed by the canary.
+
+The five failing hosted contexts at `043ffc3e` stopped at BasedPyright: Python CI
+reported partially unknown list elements, while the four composite quality and
+regeneration jobs reported 26/27 passing gates with only BasedPyright failing.
+Explicit object collection types fix that issue and the newly parsed error
+payload without relaxing runtime validation or type-checking rules.
+
+Validation before native projection regeneration:
+
+- 131 targeted tests across the four modules documented above passed.
+- Worktree-local `pixi run typecheck`: zero errors, warnings or notes.
+- Ruff lint, formatting and `git diff --check` passed.
+- `pixi run local-quality-quick`: all 17 gates passed.
+- Live metadata-only report in ignored `data/local/canary-semver-takeover-20260831`
+  observed TypeScript 6.0.3, checker 0.9.10, peer `^5.0.0 || ^6.0.0`, candidate
+  7.0.2, `blocked_peer`, no errors and no upgrade recommendation.
+
+Issue #362 remains open, the weekly workflow remains enabled in source, and
+compatibility outcomes retain their non-release-blocking governance treatment.
+Parent requested full native quality and projection regeneration after these
+fixes. Results are recorded below when complete; no merge is authorized.

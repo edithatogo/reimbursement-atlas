@@ -27,6 +27,9 @@ _HYPHEN_PAIR = re.compile(rf"{_VERSION_TOKEN}\s+-\s+{_VERSION_TOKEN}", re.ASCII)
 
 def _npm_view(spec: str, field: str, *, cwd: Path) -> tuple[object, str | None]:
     """Read public npm metadata without invoking install or lifecycle scripts."""
+    # npm view treats raw '*' as the default tag, whereas 'x' is a true range.
+    if spec == "typescript@*" and field == "version":
+        spec = "typescript@x"
     try:
         completed = subprocess.run(  # nosec B603, B607 - fixed npm metadata command
             ["npm", "view", spec, field, "--json"],
@@ -40,12 +43,28 @@ def _npm_view(spec: str, field: str, *, cwd: Path) -> tuple[object, str | None]:
         return None, "npm executable is unavailable"
     except subprocess.TimeoutExpired:
         return None, "npm metadata lookup timed out"
-    if completed.returncode != 0:
-        return None, completed.stderr.strip() or f"npm view exited {completed.returncode}"
     try:
-        return json.loads(completed.stdout), None
+        value = json.loads(completed.stdout)
     except json.JSONDecodeError:
-        return completed.stdout.strip(), None
+        value = completed.stdout.strip()
+    if completed.returncode != 0:
+        payload = cast("dict[str, object]", value) if isinstance(value, dict) else {}
+        raw_error = payload.get("error")
+        error = cast("dict[str, object]", raw_error) if isinstance(raw_error, dict) else {}
+        version_range = spec.removeprefix("typescript@")
+        range_query = (
+            spec.startswith("typescript@")
+            and field == "version"
+            and _peer_range_input_supported(version_range)
+        )
+        if (
+            range_query
+            and error.get("code") == "E404"
+            and error.get("summary") == f"No match found for version {version_range}"
+        ):
+            return [], None
+        return None, completed.stderr.strip() or f"npm view exited {completed.returncode}"
+    return value, None
 
 
 def _peer_range_input_supported(value: str) -> bool:
@@ -63,7 +82,7 @@ def _peer_range_input_supported(value: str) -> bool:
 
 def _stable_versions(value: object) -> list[str] | None:
     """Accept concrete stable versions only; npm, not this helper, parses ranges."""
-    values = value if isinstance(value, list) else [value]
+    values = cast("list[object]", value) if isinstance(value, list) else [value]
     if not all(
         isinstance(item, str)
         and re.fullmatch(r"(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)", item)
