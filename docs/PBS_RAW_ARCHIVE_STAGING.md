@@ -121,5 +121,7 @@ Existing derived workflows and raw rejection are unchanged. Any later raw transf
 uses a distinct reviewed path after independent review and protected source-PR
 green/merge, preserving existing dataset configs/card. A separate parent publication
 receipt must bind the merged implementation, transfer and independent readback.
-No global generation, external contacts, raw upload or new owner approval is part
-of this worker's implementation evidence.
+The updated execution scope includes isolated source-PR regeneration and full QA
+after merging #799, with four pytest workers; source merge waits for #800 and
+protected checks. Publisher/library contacts, raw upload and new owner approval
+are not part of this worker's implementation evidence.

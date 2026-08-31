@@ -16,8 +16,10 @@
 
 ## Parent delivery and separate execution
 
-- [ ] A6: Parent integrates after sequential #799/#800 delivery, performs deferred
-  canonical generation/full QA, obtains independent review and protected source-PR checks.
+- [x] A6: Merge #799 runtime baseline before broad generation (`2a88b19c`).
+- [ ] A6: Perform isolated full regeneration/QA with four pytest workers and open
+  the source PR for checks; hold merge until #800 delivery and protected checks.
+- [ ] A6: Obtain independent final archive-contract review before actual local staging.
 - [ ] A6: Record source-PR merge evidence before archiving this implementation track.
 - [x] A4: Select 1,707 unchanged eligible receipt lines, preserving all variant parents
   and the full reports; record selection and permission snapshot SHA-256.

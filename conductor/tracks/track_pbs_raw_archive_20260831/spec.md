@@ -5,8 +5,10 @@
 Implement a bounded offline source-archive utility and cohesive evidence handoff
 for issue #255. The owner's current instruction authorizes these repository changes,
 including local staging after contract review and tests under the existing owner
-authorization. Network publication, external contacts and global regeneration
-remain excluded from this worker's execution scope.
+authorization. The updated instruction also authorizes isolated full regeneration
+and source-PR checks after merging #799, with four pytest workers. Network raw
+publication and publisher/library contacts remain excluded. Source merge must wait
+for sequential #800 delivery and protected checks.
 
 - `data/licence_review/pbs_raw_permission.json` and the shared helper at PR #801
   merge `02116d73da8a8f5dee96009b1ec33691d2704062` govern artefact scope.
@@ -35,7 +37,7 @@ remain excluded from this worker's execution scope.
 - A5: Two historical schema distributions remain metadata-only evidence, not four
   recovered monthly releases, schema compilation, API equivalence or a recovered PDF.
 - A6: Permission track closes on observed #801 evidence; source track stays active
-  pending parent integration/regeneration and protected source-PR delivery.
+  pending regeneration and protected source-PR delivery.
 
 ## Exclusions and external gates
 

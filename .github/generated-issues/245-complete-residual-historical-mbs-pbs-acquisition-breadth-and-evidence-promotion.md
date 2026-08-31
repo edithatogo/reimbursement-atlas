@@ -1,6 +1,6 @@
 # Complete residual historical MBS/PBS acquisition breadth and evidence promotion
 
-Epic: `TRACK_LIVE_SOURCE_INGESTION` — Evidence-grade live source ingestion
+Epic: `TRACK_PBS_RAW_ARCHIVE_20260831` — PBS source archive staging and early-schema evidence
 
 Labels: type:roadmap-function, priority:must, interface:data_pipeline, status:blocked
 
@@ -24,5 +24,11 @@ This issue was generated from `conductor/backlog.yml`. Refine the acceptance cri
 - [ ] Reconcile the remaining December 1987 official HTTP 403 with the publisher.
 - [ ] Recover December 2006-March 2007 XML payloads and release-specific schema/DTD/XSL, amendment and version metadata; do not infer field parity.
 - [x] Accept and apply the owner's 2026-08-31 raw PBS redistribution attestation in data/licence_review/pbs_raw_permission.json; no per-file approval required.
+- [x] Close permission implementation through PR #801 (`02116d73`), independently of the active source archive track `track_pbs_raw_archive_20260831`.
+- [x] Implement offline staging and exact-inventory readback with duplicate-key rejection, original filenames, permission-record SHA and CDX-bound replay identity.
+- [x] Retain initial and superseding full-corpus dry runs: 1,707 of 1,709 receipts verify after the identity fix; missing 1987 acquisition and the excluded format notice remain explicit. No actual staging or upload is claimed.
+- [x] Integrate two early schema distributions and three verified HTML indexes as metadata only; no missing monthly release, schema compilation or RPBS PDF recovery.
+- [x] Prepare conditional raw/pbs dataset-card documentation while retaining all eight derived configs and the existing derived workflow's raw rejection.
+- [ ] Parent completes deferred canonical regeneration, independent review and protected source-PR delivery; selected subsets must retain full omission evidence.
 - [ ] Transfer raw PBS files to governed external storage with manifest and checksum readback; permission alone is not evidence of publication.
 - [x] Promote only independently licence-reviewed permitted metadata or derived fields; GitHub Actions run 33237003418 published the governed Hugging Face configurations without raw payloads or the legacy seed tree.
