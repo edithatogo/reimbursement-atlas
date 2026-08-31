@@ -328,7 +328,7 @@ manual_review,,,,,,,,,mapping_resource:map_who_atc_ddd,,,mapping_resource,WHO AT
 ,,,,,,,,,track:medallion_bronze_evidence_20260825,,,conductor_track,Medallion Bronze evidence alignment,,,,,,,hardening,,must,,,,,data
 ,,,,,,,,,track:medallion_platinum_projection_20260825,,,conductor_track,Medallion Platinum product projection,,,,,,,hardening,,must,,,,,product
 ,,,,,,,,,track:medallion_silver_gold_promotion_20260825,,,conductor_track,Medallion Silver and Gold promotion,,,,,,,hardening,,must,,,,,research
-,,,,,,,,,track:pbs_raw_permission_20260831,,,conductor_track,PBS owner-attested raw redistribution,,,,,,,hardening,,must,,,,,data
+,,,,,,,,,track:pbs_raw_permission_20260831,,,conductor_track,PBS owner-attested raw redistribution,,,,,,,archived,,must,,,,,data
 ,,,,,,,,,track:source_acquisition_status_reconciliation_20260826,,,conductor_track,Source acquisition status reconciliation,,,,,,,hardening,,must,,,,,data
 ,,,,,,,,,track:standing_low_risk_authorization_20260830,,,conductor_track,Standing low-risk authorization,,,,,,,archived,,must,,,,,governance
 ,,,,,,,,,track:track_approval_friction_reduction_20260820,,,conductor_track,Risk-tiered approval friction reduction,,,,,,,hardening,,must,,,,,governance
@@ -343,6 +343,7 @@ manual_review,,,,,,,,,mapping_resource:map_who_atc_ddd,,,mapping_resource,WHO AT
 ,,,,,,,,,track:track_mcp2_typed_migration_20260824,,,conductor_track,MCP 2 typed API migration,,,,,,,hardening,,should,,,,,runtime
 ,,,,,,,,,track:track_osf_deprecation_20260820,,,conductor_track,OSF destination deprecation,,,,,,,hardening,,must,,,,,governance
 ,,,,,,,,,track:track_osf_registration_record_quality,,,conductor_track,Historical OSF registration evidence,,,,,,,research,,could,,,,,research
+,,,,,,,,,track:track_pbs_raw_archive_20260831,,,conductor_track,PBS source archive staging and early-schema evidence,,,,,,,hardening,,must,,,,,data
 ,,,,,,,,,track:track_policy_demonstrators,,,conductor_track,First policy demonstrators,,,,,,,analysis,,must,,,,,analytics
 ,,,,,,,,,track:track_public_product_citation_dashboard,,,conductor_track,"Public product, citation and dashboard maturity",,,,,,,implementation,,must,,,,,dashboard
 ,,,,,,,,,track:track_publication_hf_spaces,,,conductor_track,Hugging Face dataset and Spaces publication,,,,,,,implementation,,must,,,,,publication

@@ -15,7 +15,13 @@ from scripts.make_dashboard_review_packet import (
 )
 
 
-def _write_reports(report: Path, *, failed: bool = False, omit_pair: bool = False) -> None:
+def _write_reports(
+    report: Path,
+    *,
+    failed: bool = False,
+    omit_pair: bool = False,
+    test_count: int = EXPECTED_TEST_COUNT,
+) -> None:
     report.mkdir(parents=True)
     tests: list[dict[str, object]] = []
     for project in PROJECTS:
@@ -57,7 +63,7 @@ def _write_reports(report: Path, *, failed: bool = False, omit_pair: bool = Fals
                     }
                 ],
             })
-    while len(tests) < EXPECTED_TEST_COUNT:
+    while len(tests) < test_count:
         tests.append({
             "projectName": PROJECTS[len(tests) % len(PROJECTS)],
             "results": [{"status": "passed", "attachments": []}],
@@ -96,6 +102,10 @@ def test_dashboard_packet_parses_attributable_complete_matrix(tmp_path: Path, mo
     )
 
     assert packet["status"] == "pass"
+    assert packet["schema_version"] == "dashboard-automated-review-v3"
+    assert packet["test_count"] == EXPECTED_TEST_COUNT == 68
+    assert len(PROJECTS) == 4
+    assert len(ROUTES) == 11
     assert packet["screenshot_count"] == 44
     assert packet["coverage_complete"] is True
     screenshots = packet["screenshots"]
@@ -113,6 +123,40 @@ def test_dashboard_packet_parses_attributable_complete_matrix(tmp_path: Path, mo
     assert not list(
         Draft202012Validator(schema, format_checker=FormatChecker()).iter_errors(packet)
     )
+
+
+def test_legacy_count_cannot_pass_current_generator(tmp_path: Path) -> None:
+    _write_reports(tmp_path / "legacy", test_count=64)
+    packet = build_packet(tmp_path / "legacy", "a" * 40)
+    assert packet["coverage_complete"] is True
+    assert packet["status"] == "fail"
+
+
+def test_packet_schema_preserves_history_without_weakening_current_contract(tmp_path: Path) -> None:
+    _write_reports(tmp_path / "report")
+    packet = build_packet(tmp_path / "report", "a" * 40)
+    schema = json.loads(
+        Path("schema/DashboardAutomatedReviewPacket.schema.json").read_text(encoding="utf-8")
+    )
+    validator = Draft202012Validator(schema)
+    assert validator.is_valid(packet)
+    packet["test_count"] = 64
+    packet["expected_test_count"] = 64
+    packet["junit"]["tests"] = 64
+    assert not validator.is_valid(packet)
+    packet["schema_version"] = "dashboard-automated-review-v2"
+    assert validator.is_valid(packet)
+    packet["junit"]["skipped"] = 1
+    assert not validator.is_valid(packet)
+
+
+def test_added_behavioral_test_cannot_be_skipped(tmp_path: Path) -> None:
+    _write_reports(tmp_path / "report")
+    result = tmp_path / "report/results.json"
+    report = json.loads(result.read_text(encoding="utf-8"))
+    report["suites"][0]["specs"][0]["tests"][-1]["results"][0]["status"] = "skipped"
+    result.write_text(json.dumps(report), encoding="utf-8")
+    assert build_packet(tmp_path / "report", "a" * 40)["status"] == "fail"
 
 
 def test_dashboard_packet_fails_when_tests_or_coverage_fail(tmp_path: Path) -> None:

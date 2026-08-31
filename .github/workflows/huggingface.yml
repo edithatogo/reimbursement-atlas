@@ -89,7 +89,7 @@ jobs:
           test -n "$HF_TOKEN"
           test -n "$HF_DATASET_REPO"
           export HF_USERNAME="${HF_DATASET_REPO%%/*}"
-          git -c http.extraheader="Authorization: Bearer $HF_TOKEN" \
+          GIT_LFS_SKIP_SMUDGE=1 git -c http.extraheader="Authorization: Bearer $HF_TOKEN" \
             clone "https://huggingface.co/datasets/${HF_DATASET_REPO}" hf-dataset
           git -C hf-dataset remote set-url origin "https://huggingface.co/datasets/${HF_DATASET_REPO}"
           rsync -av infra/huggingface/ hf-dataset/
@@ -126,7 +126,7 @@ jobs:
           fi
           test "$(git rev-parse --is-shallow-repository)" = false
           GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
-            git push --force-with-lease="refs/heads/main:$(git rev-parse FETCH_HEAD)" \
+            git push \
             origin HEAD:main
 
   publish-space:
@@ -192,5 +192,5 @@ jobs:
           fi
           test "$(git rev-parse --is-shallow-repository)" = false
           GIT_ASKPASS="$RUNNER_TEMP/hf-askpass" GIT_TERMINAL_PROMPT=0 \
-            git push --force-with-lease="refs/heads/main:$(git rev-parse FETCH_HEAD)" \
+            git push \
             origin HEAD:main

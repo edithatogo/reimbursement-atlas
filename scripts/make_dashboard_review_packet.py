@@ -38,7 +38,8 @@ PROJECTS = (
     "desktop-firefox",
     "desktop-webkit",
 )
-EXPECTED_TEST_COUNT = 64
+# Eleven route tests and six behavioral tests in each of four projects.
+EXPECTED_TEST_COUNT = (len(ROUTES) + 6) * len(PROJECTS)
 
 
 class GitHeadResolutionError(ValueError):
@@ -239,7 +240,7 @@ def _packet(
     data_fingerprint: str | None,
 ) -> dict[str, object]:
     return {
-        "schema_version": "dashboard-automated-review-v2",
+        "schema_version": "dashboard-automated-review-v3",
         "status": status,
         "tested_commit": tested_commit,
         "source_fingerprint": source_fingerprint,
