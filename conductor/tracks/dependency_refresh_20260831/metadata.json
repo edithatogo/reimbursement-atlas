@@ -1,0 +1,10 @@
+{
+  "track_id": "dependency_refresh_20260831",
+  "status": "in_progress",
+  "type": "chore",
+  "created_at": "2026-08-31",
+  "updated_at": "2026-08-31",
+  "github_issues": [797, 362],
+  "pull_requests": [798, 799, 800],
+  "gates": [{"id": "typescript7_astro_peer_support", "kind": "external_compatibility", "status": "blocked", "evidence": "Issue #362; retain TypeScript 6 until the supported checker peer range expands."}]
+}
