@@ -63,6 +63,7 @@ jobs:
           pixi run source-validation
           pixi run source-contracts
           pixi run pbs-archive-verification
+          pixi run pbs-gap-research
           pixi run pbs-public-provenance
           pixi run medallion-projection
           pixi run medallion-federation
@@ -113,6 +114,9 @@ jobs:
           # rather than a valid but transient intermediate state.
           for reconciliation_pass in 1 2; do
             echo "release receipt reconciliation pass ${reconciliation_pass}/2"
+            # Standing-scope licence reconciliation can change promotion eligibility.
+            # Recompute medallion status before its canonical release summary.
+            pixi run medallion-projection
             pixi run release-readiness
             pixi run final-handoff
             pixi run source-drift

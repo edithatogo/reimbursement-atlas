@@ -18,7 +18,7 @@ epics:
       - "Keep eight explicit derived HF configs and raw rejection; raw/pbs is a separate conditional archive."
       - "Global generation and independent archive-contract review complete; orchestrator local stage verified with 1707 payloads and receipt SHA-256 569d18a843791e666be9e878e52859355d48f8cce76cabf1f7b97034c7ae12ff."
     blockers:
-      - "December 1987 RPBS PDF and December 2006-March 2007 monthly payloads remain unrecovered."
+      - "The NLA catalogue lead is inspected and confirms reading-room-only physical access; the December 1987 RPBS issue and December 2006-March 2007 monthly structured payloads remain unrecovered."
     publication_evidence: "data/derived/publication/pbs_source_publication_receipt.json"
   - id: STANDING-001
     title: Standing low-risk authorization

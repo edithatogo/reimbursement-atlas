@@ -70,6 +70,20 @@ their CDX digests. The December 1987 RPBS URL has no Internet Archive capture. S
 exposes text from that publication and the official archive lists its identity, but neither
 observation verifies the missing source bytes.
 
+A bounded follow-up on 2026-09-01 inspected the NLA catalogue and request records. The serial is
+available for use in the Main Reading Room and its holdings range includes December 1987, but the
+record exposes no digitised copy. A targeted Internet Archive item search returned zero matches.
+This changes the status from an uninspected catalogue lead to an inspected physical-access lead;
+the target issue itself remains uninspected and unrecovered.
+
+The same follow-up verified checksum-bound January and February 2007 archive indexes. They expose
+December 2006, January 2007 and February 2007 FlashPaper publication views, not XML distributions.
+Three bounded CDX prefix searches found no captured structured payloads under the tested historical
+publication paths. This narrows the search boundary but does not prove that the releases never
+existed. December 2006 through March 2007 monthly structured releases and release-specific
+schema/DTD/XSL assignments therefore remain unrecovered. The deterministic receipt is
+`data/derived/historical_sources/pbs_gap_research_v1/summary.json`.
+
 This is broad publication and structured-package coverage, not a complete or schema-homogeneous
 historical PBS dataset.
 

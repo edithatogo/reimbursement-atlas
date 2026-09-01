@@ -265,7 +265,7 @@
       "name": "repo_workflow_uses",
       "parquet_path": "repo_workflow_uses/repo_workflow_uses.parquet",
       "rows": 119,
-      "sha256": "bfb0b9c4dfdc7e23415f174d5835a01b60d2998a2cea978f9e2c9b99dc6a1852"
+      "sha256": "e4c272bc5fd610669dd263b35346de314d8a71853b9451a5d371dc8f2562cc64"
     },
     {
       "csv_path": "repo_workflow_policy/repo_workflow_policy.csv",
@@ -353,7 +353,7 @@
       "name": "release_readiness_gates",
       "parquet_path": "release_readiness_gates/release_readiness_gates.parquet",
       "rows": 45,
-      "sha256": "f4d2367b784e017c231d6e13cd3b6219581fedf17959efc7d8e9af0b63f12e91"
+      "sha256": "dadf0e1741a7b43a8b32b2f24ae9c3eec90bf5015caa94f45035e60ace71befd"
     },
     {
       "csv_path": "source_download_plans/source_download_plans.csv",
@@ -417,7 +417,7 @@
       "name": "medallion_artifacts",
       "parquet_path": "medallion_artifacts/medallion_artifacts.parquet",
       "rows": 22,
-      "sha256": "abb9e576bf31cb34c9979501dddc39bd336a809d4c789cdb38d445ed560f8c97"
+      "sha256": "04ea2d168ea2fc05cfdff3c6c6d210913df3d564aff79880f50ac0e0808f736c"
     },
     {
       "csv_path": "medallion_promotion_decisions/medallion_promotion_decisions.csv",
@@ -441,7 +441,7 @@
       "name": "final_handoff_tasks",
       "parquet_path": "final_handoff_tasks/final_handoff_tasks.parquet",
       "rows": 11,
-      "sha256": "8c28a5dba8b5e7b2b57d10a432d303900b63da3310653457c4167191a58cf5fc"
+      "sha256": "189782d86ff30240446176da1cbd1b9dc6438bdbd276330f36c36653d80370d1"
     },
     {
       "csv_path": "protocol_status/protocol_status.csv",
@@ -481,7 +481,7 @@
       "name": "source_drift_report",
       "parquet_path": "source_drift_report/source_drift_report.parquet",
       "rows": 9,
-      "sha256": "1d4166d447a4bd07971b86e01ebfc4c29602f0f7c0c98d9d3e63f8c467e3ad5f"
+      "sha256": "14a6b74d9c09ff13ed90a86ca8d97133603bc70454f7d7b81c10da880434306d"
     },
     {
       "csv_path": "data_dictionary/data_dictionary.csv",
