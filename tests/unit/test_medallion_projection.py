@@ -124,6 +124,16 @@ def test_projection_uses_canonical_release_readiness(tmp_path: Path) -> None:
     assert medallion.evidence_release_ready == release.summary.evidence_release_ready
 
 
+def test_committed_medallion_and_release_summaries_share_readiness() -> None:
+    """Checked-in public summaries must never expose contradictory readiness."""
+    medallion = json.loads(Path("data/derived/medallion/summary.json").read_text(encoding="utf-8"))
+    release = json.loads(
+        Path("data/derived/release_readiness/summary.json").read_text(encoding="utf-8")
+    )
+
+    assert medallion["evidence_release_ready"] == release["evidence_release_ready"]
+
+
 def test_source_transparency_has_one_bounded_platinum_promotion(  # ruff: ignore[too-many-locals]
     tmp_path: Path,
 ) -> None:

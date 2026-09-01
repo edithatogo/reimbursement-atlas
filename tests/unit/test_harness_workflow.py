@@ -6,6 +6,7 @@ from pathlib import Path
 def test_harness_reconciles_release_receipts_after_dashboard_inputs_settle() -> None:
     workflow = Path(".github/workflows/harness-assurance.yml").read_text(encoding="utf-8")
     final_pass = [
+        "pixi run medallion-projection",
         "pixi run release-readiness",
         "pixi run final-handoff",
         "pixi run source-drift",

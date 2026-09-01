@@ -38,6 +38,7 @@ jobs:
           pixi run source-validation
           pixi run source-contracts
           pixi run pbs-archive-verification
+          pixi run pbs-gap-research
           pixi run pbs-public-provenance
           pixi run medallion-projection
           pixi run medallion-federation

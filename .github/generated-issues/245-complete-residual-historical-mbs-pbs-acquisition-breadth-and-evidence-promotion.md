@@ -21,8 +21,9 @@ This issue was generated from `conductor/backlog.yml`. Refine the acceptance cri
 - [x] Rights states, provenance and non-publication boundaries remain explicit.
 - [x] Tests cover historical indexing, deterministic replay, source contracts and raw path exclusion.
 - [x] Recover all 110 bounded PBS timeout failures through a low-concurrency retry.
-- [ ] Recover the December 1987 RPBS PDF: canonical URL returned HTTP 404 and the variant returned HTTP 403; the NLA holdings lead remains uninspected, with no publisher/library contact claimed.
+- [ ] Recover the December 1987 RPBS PDF: canonical URL returned HTTP 404 and the variant returned HTTP 403. The NLA catalogue and request records confirm reading-room-only physical access, but the target issue remains uninspected and no publisher/library contact is claimed.
 - [ ] Recover December 2006-March 2007 XML payloads and release-specific schema/DTD/XSL, amendment and version metadata; do not infer field parity.
+- [x] Preserve the 2026-09-01 checksum-bound gap search: archived publication indexes expose FlashPaper views, not structured releases, and bounded CDX prefix queries returned no matching monthly payloads.
 - [x] Accept and apply the owner's 2026-08-31 raw PBS redistribution attestation in data/licence_review/pbs_raw_permission.json; no per-file approval required.
 - [x] Close permission implementation through PR #801 (`02116d73`), independently of the archived source implementation track `track_pbs_raw_archive_20260831`.
 - [x] Implement offline staging and exact-inventory readback with duplicate-key rejection, original filenames, permission-record SHA and CDX-bound replay identity.

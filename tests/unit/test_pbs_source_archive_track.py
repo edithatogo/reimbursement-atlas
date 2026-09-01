@@ -99,8 +99,11 @@ def test_project_issue_rendering_retains_remaining_source_and_transfer_gates() -
         "eight derived configs",
         "canonical URL returned HTTP 404",
         "variant returned HTTP 403",
-        "NLA holdings lead remains uninspected",
-        "no publisher/library contact claimed",
+        "reading-room-only physical access",
+        "target issue remains uninspected",
+        "no publisher/library contact is claimed",
+        "checksum-bound gap search",
+        "FlashPaper views, not structured releases",
     ):
         assert text in rendered
     assert "- [x] Transfer raw PBS" in rendered
