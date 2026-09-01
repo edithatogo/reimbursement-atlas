@@ -46,7 +46,7 @@ def build_query_receipts() -> list[dict[str, object]]:
             9,
         ),
     ]
-    receipts = []
+    receipts: list[dict[str, object]] = []
     for identifier, pattern, query_class, match_count in definitions:
         empty = match_count == 0
         receipts.append({
