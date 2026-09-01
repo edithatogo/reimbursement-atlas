@@ -26,6 +26,7 @@
         "response_sha256": "cdd055a2d0aadce230e4aa7f39ec218ac90da64130abc59fb91d614ca5d15389"
       }
     ],
+    "archive_query_receipts": "archive_query_receipts.jsonl",
     "dtd_or_xsl_recovered": false,
     "monthly_releases_recovered": 0,
     "monthly_schema_assignment_verified": false,
@@ -33,7 +34,9 @@
     "structured_api_equivalence": false,
     "structured_payload_prefix_matches": 0,
     "structured_payload_prefix_queries": 3,
-    "structured_payload_query_response_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "structured_payload_query_response_sha256": [
+      "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    ],
     "target_periods": [
       "2006-12",
       "2007-01",

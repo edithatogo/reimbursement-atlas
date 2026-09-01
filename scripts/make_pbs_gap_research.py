@@ -4,14 +4,86 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from typing import cast
+from urllib.parse import urlencode
 
 from reimburse_atlas.registry import project_root
 
 OUTPUT = project_root() / "data/derived/historical_sources/pbs_gap_research_v1/summary.json"
+QUERY_RECEIPTS = OUTPUT.with_name("archive_query_receipts.jsonl")
+EMPTY_CDX_SHA256 = "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
 
 
-def build_summary() -> dict[str, object]:
+def _cdx_url(pattern: str) -> str:
+    params = [
+        ("url", pattern),
+        ("output", "json"),
+        ("fl", "timestamp,original,statuscode,mimetype,digest,length"),
+        ("filter", "statuscode:200"),
+        ("collapse", "urlkey"),
+        ("from", "2006"),
+        ("to", "2008"),
+        ("limit", "5000"),
+    ]
+    return f"https://web.archive.org/cdx/search/cdx?{urlencode(params)}"
+
+
+def build_query_receipts() -> list[dict[str, object]]:
+    """Return path-free receipts for every bounded CDX prefix request."""
+    definitions = [
+        ("structured_2006", "www.pbs.gov.au/publications/2006/*", "structured_payload", 0),
+        ("structured_2007", "www.pbs.gov.au/publications/2007/*", "structured_payload", 0),
+        (
+            "structured_schedule_2007",
+            "www.pbs.gov.au/publication/schedule/2007/*",
+            "structured_payload",
+            0,
+        ),
+        (
+            "publication_views",
+            "www.pbs.gov.au/html/healthpro/publication/*",
+            "publication_view",
+            9,
+        ),
+    ]
+    receipts = []
+    for identifier, pattern, query_class, match_count in definitions:
+        empty = match_count == 0
+        receipts.append({
+            "id": identifier,
+            "observed_on": "2026-09-01",
+            "query_class": query_class,
+            "query_url": _cdx_url(pattern),
+            "http_status": 200,
+            "response_byte_size": 3 if empty else 1706,
+            "response_sha256": (
+                EMPTY_CDX_SHA256
+                if empty
+                else "a46c008e959f71db687b6f5fd245a3449e1620747ba1a6386abb451577a9d1f5"
+            ),
+            "match_count": match_count,
+            "raw_response_policy": "ignored_local_only",
+        })
+    return receipts
+
+
+def _structured_observations(receipts: list[dict[str, object]]) -> tuple[int, int, list[str]]:
+    ids = [str(row.get("id", "")) for row in receipts]
+    if len(ids) != len(set(ids)):
+        message = "duplicate archive query receipt id"
+        raise ValueError(message)
+    structured = [row for row in receipts if row.get("query_class") == "structured_payload"]
+    matches = sum(int(cast("int", row.get("match_count", 0))) for row in structured)
+    digests = sorted({str(row["response_sha256"]) for row in structured})
+    return len(structured), matches, digests
+
+
+def build_summary(
+    query_receipts: list[dict[str, object]] | None = None,
+) -> dict[str, object]:
     """Return the immutable observations without converting absence into recovery."""
+    receipts = query_receipts if query_receipts is not None else build_query_receipts()
+    query_count, match_count, response_digests = _structured_observations(receipts)
     return {
         "schema_version": "pbs-gap-research-v1",
         "observed_on": "2026-09-01",
@@ -66,11 +138,10 @@ def build_summary() -> dict[str, object]:
                 },
             ],
             "observed_endpoint_kind": "flashpaper_publication_view",
-            "structured_payload_prefix_queries": 3,
-            "structured_payload_prefix_matches": 0,
-            "structured_payload_query_response_sha256": (
-                "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
-            ),
+            "archive_query_receipts": "archive_query_receipts.jsonl",
+            "structured_payload_prefix_queries": query_count,
+            "structured_payload_prefix_matches": match_count,
+            "structured_payload_query_response_sha256": response_digests,
             "monthly_releases_recovered": 0,
             "monthly_schema_assignment_verified": False,
             "dtd_or_xsl_recovered": False,
@@ -96,8 +167,13 @@ def build_summary() -> dict[str, object]:
 def main(output: Path = OUTPUT) -> None:
     """Write the deterministic gap-research summary."""
     output.parent.mkdir(parents=True, exist_ok=True)
+    receipts = build_query_receipts()
+    receipt_path = output.with_name("archive_query_receipts.jsonl")
+    receipt_path.write_text(
+        "".join(json.dumps(row, sort_keys=True) + "\n" for row in receipts), encoding="utf-8"
+    )
     output.write_text(
-        json.dumps(build_summary(), indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        json.dumps(build_summary(receipts), indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
 
 
