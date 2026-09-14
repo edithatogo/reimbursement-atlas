@@ -28,7 +28,7 @@
     "@types/papaparse": "^5.5.2"
   },
   "overrides": {
-    "fast-uri": "3.1.5",
+    "fast-uri": "4.1.4",
     "dompurify": "3.4.13",
     "@astrojs/internal-helpers": {
       "js-yaml": "file:vendor/js-yaml-compat"
@@ -37,6 +37,9 @@
       "js-yaml": "file:vendor/js-yaml-compat"
     },
     "js-yaml": "file:vendor/js-yaml-compat",
-    "nanoid": "3.3.18"
+    "nanoid": "3.3.18",
+    "browserslist": "4.28.9",
+    "baseline-browser-mapping": "2.11.1",
+    "svgo": "4.1.0"
   }
 }
