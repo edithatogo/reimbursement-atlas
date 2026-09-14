@@ -19,6 +19,7 @@ class GmaContractError(ValueError):
 @dataclass(frozen=True)
 class GmaContractBinding:
     """One immutable Global Medicines Atlas identity for a consumer."""
+
     producer_repository: str
     dataset: str
     revision: str
@@ -35,7 +36,7 @@ def bind_gma_contract(contract: bytes) -> GmaContractBinding:
         producer = document["authority"]["producer_repository"]
         location = document["location"]
         source = document["source"]
-    except (KeyError, TypeError, json.JSONDecodeError):
+    except KeyError, TypeError, json.JSONDecodeError:
         message = "invalid GMA contract"
         raise GmaContractError(message) from None
     if producer != _PRODUCER:
@@ -50,10 +51,7 @@ def bind_gma_contract(contract: bytes) -> GmaContractBinding:
         message = "GMA object digest is invalid"
         raise GmaContractError(message)
     fields = ("dataset", "path")
-    if any(
-        not isinstance(location.get(field), str) or not location[field]
-        for field in fields
-    ):
+    if any(not isinstance(location.get(field), str) or not location[field] for field in fields):
         message = "GMA location is invalid"
         raise GmaContractError(message)
     if any(
