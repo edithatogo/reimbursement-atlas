@@ -39,6 +39,9 @@ def bind_gma_contract(contract: bytes) -> GmaContractBinding:
     except KeyError, TypeError, json.JSONDecodeError:
         message = "invalid GMA contract"
         raise GmaContractError(message) from None
+    if not isinstance(location, dict) or not isinstance(source, dict):
+        message = "invalid GMA contract"
+        raise GmaContractError(message)
     if producer != _PRODUCER:
         message = "GMA producer identity is required"
         raise GmaContractError(message)

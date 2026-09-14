@@ -37,3 +37,12 @@ def test_rejects_mutable_or_non_gma_identity() -> None:
     foreign["authority"]["producer_repository"] = "example/producer"
     with pytest.raises(ValueError, match="producer"):
         bind_gma_contract(json.dumps(foreign).encode())
+
+
+@pytest.mark.parametrize("field", ["location", "source"])
+def test_rejects_non_object_contract_sections(field: str) -> None:
+    malformed = json.loads(contract())
+    malformed[field] = []
+
+    with pytest.raises(ValueError, match="invalid GMA contract"):
+        bind_gma_contract(json.dumps(malformed).encode())
