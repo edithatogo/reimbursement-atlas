@@ -44,17 +44,17 @@ jobs:
           pixi run medallion-federation
           pixi run historical-sources
           pixi run backfill-replay
-          pixi run local-quality
           pixi run dataset-candidate-assessments
           pixi run project-issues
           pixi run github-project-export
           pixi run protocol-status
           pixi run roadmap-linkages
           pixi run data-quality
-          pixi run data-dictionary
           pixi run research-claim-packages
           pixi run evidence-readiness
           pixi run source-drift
+          pixi run local-quality
+          pixi run data-dictionary
           pixi run governance-monitoring
           pixi run release-readiness || true
           pixi run field-lineage

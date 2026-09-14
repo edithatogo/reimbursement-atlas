@@ -74,7 +74,6 @@ jobs:
           pixi run protocol-status
           pixi run roadmap-linkages
           pixi run data-quality
-          pixi run data-dictionary
           pixi run research-claim-packages
           pixi run evidence-readiness
           pixi run source-drift
@@ -104,6 +103,7 @@ jobs:
           # Run the full suite only after every generated input it validates has
           # reached its final state; release reconciliation then consumes it.
           pixi run local-quality
+          pixi run data-dictionary
           pixi run seed-lake
           pixi run dashboard-seed
           # Generate status only after the final checksum-bound queue exists.
