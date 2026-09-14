@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@astrojs/check": "0.9.10",
-    "@astrojs/react": "6.0.4",
+    "@astrojs/react": "6.0.5",
     "@cosmograph/react": "2.5.1",
     "astro": "7.2.9",
     "js-yaml-orig": "npm:js-yaml@5.4.1",
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
-    "@playwright/test": "^1.62.1",
+    "@playwright/test": "^1.63.0",
     "@types/papaparse": "^5.5.2"
   },
   "overrides": {
