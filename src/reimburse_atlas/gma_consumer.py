@@ -36,26 +36,32 @@ def bind_gma_contract(contract: bytes) -> GmaContractBinding:
         location = document["location"]
         source = document["source"]
     except (KeyError, TypeError, json.JSONDecodeError):
-        raise GmaContractError("invalid GMA contract") from None
+        message = "invalid GMA contract"
+        raise GmaContractError(message) from None
     if producer != _PRODUCER:
-        raise GmaContractError("GMA producer identity is required")
+        message = "GMA producer identity is required"
+        raise GmaContractError(message)
     revision = location.get("revision")
     digest = location.get("sha256")
     if not isinstance(revision, str) or _COMMIT.fullmatch(revision) is None:
-        raise GmaContractError("GMA revision must be immutable")
+        message = "GMA revision must be immutable"
+        raise GmaContractError(message)
     if not isinstance(digest, str) or _DIGEST.fullmatch(digest) is None:
-        raise GmaContractError("GMA object digest is invalid")
+        message = "GMA object digest is invalid"
+        raise GmaContractError(message)
     fields = ("dataset", "path")
     if any(
         not isinstance(location.get(field), str) or not location[field]
         for field in fields
     ):
-        raise GmaContractError("GMA location is invalid")
+        message = "GMA location is invalid"
+        raise GmaContractError(message)
     if any(
         not isinstance(source.get(field), str) or not source[field]
         for field in ("source_id", "layer")
     ):
-        raise GmaContractError("GMA source identity is invalid")
+        message = "GMA source identity is invalid"
+        raise GmaContractError(message)
     return GmaContractBinding(
         producer,
         location["dataset"],
