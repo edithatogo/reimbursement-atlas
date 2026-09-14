@@ -4628,7 +4628,7 @@
       "version": "2.0.2"
     },
     {
-      "bom-ref": "pkg:npm/baseline-browser-mapping@2.10.41",
+      "bom-ref": "pkg:npm/baseline-browser-mapping@2.11.1",
       "licenses": [
         {
           "license": {
@@ -4640,12 +4640,12 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-WwS7MHhqGHHlaVsqRZnhvCEMS0owDX+SxRlve7JkuH7My1Ara3ZriTmCQupPfYjxMZ8I/tgxtJYr2t7taHaH4A=="
+          "value": "sha512-HYXq73DDpCtNzOmrFsm9eSwCvWCql0RzqjpDzXN9EadiLJ4DNat0nsZ/Bzmy+Ud12mb4/zKDY0cQ805ZzN+i0A=="
         }
       ],
-      "purl": "pkg:npm/baseline-browser-mapping@2.10.41",
+      "purl": "pkg:npm/baseline-browser-mapping@2.11.1",
       "type": "library",
-      "version": "2.10.41"
+      "version": "2.11.1"
     },
     {
       "bom-ref": "pkg:npm/binary-search-bounds@2.0.5",
@@ -4688,7 +4688,7 @@
       "version": "1.0.0"
     },
     {
-      "bom-ref": "pkg:npm/browserslist@4.28.4",
+      "bom-ref": "pkg:npm/browserslist@4.28.9",
       "licenses": [
         {
           "license": {
@@ -4700,15 +4700,15 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-MTc8i/x9jBQd1iMw2CFGS+rwMa07eYjLR0CCTLDACl9xhxy+nIs3KeML/biicXtk9JrZ6dnnTatmc7ErPXIxqw=="
+          "value": "sha512-EWazOblFYUvlGZcfGhPUPmYh3nikUxBVb+y9MJun5f3hBi812X+8MSQTujLBtgK3cf51fJWbWfOjyeO954d+Eg=="
         }
       ],
-      "purl": "pkg:npm/browserslist@4.28.4",
+      "purl": "pkg:npm/browserslist@4.28.9",
       "type": "library",
-      "version": "4.28.4"
+      "version": "4.28.9"
     },
     {
-      "bom-ref": "pkg:npm/caniuse-lite@1.0.30001800",
+      "bom-ref": "pkg:npm/caniuse-lite@1.0.30001810",
       "licenses": [
         {
           "license": {
@@ -4720,12 +4720,12 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-MMHtuAz9Ys840zAY5F4k6fV5GaivZ9sPk+nz0mY+GYVzRBnYkN0mpqkSR92oWRQ19yQWo4HvBV/FnC16AJX8MA=="
+          "value": "sha512-TITQPUkaz+aVk5GL6NhOdwk1aEaNTSDPsGFWrTuhKGtjTF70jL/Oht2W4c6rXUe5fu7Ie19VIahAXHIIiWWNeg=="
         }
       ],
-      "purl": "pkg:npm/caniuse-lite@1.0.30001800",
+      "purl": "pkg:npm/caniuse-lite@1.0.30001810",
       "type": "library",
-      "version": "1.0.30001800"
+      "version": "1.0.30001810"
     },
     {
       "bom-ref": "pkg:npm/ccount@2.0.1",
@@ -5188,7 +5188,7 @@
       "version": "0.3.5"
     },
     {
-      "bom-ref": "pkg:npm/css-select@5.2.2",
+      "bom-ref": "pkg:npm/css-select@6.0.0",
       "licenses": [
         {
           "license": {
@@ -5200,12 +5200,12 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-TizTzUddG/xYLA3NXodFM0fSbNizXjOKhqiQQwvhlspadZokn1KDy0NZFS0wuEubIYAV5/c1/lAr0TaaFXEXzw=="
+          "value": "sha512-rZZVSLle8v0+EY8QAkDWrKhpgt6SA5OtHsgBnsj6ZaLb5dmDVOWUDtQitd9ydxxvEjhewNudS6eTVU7uOyzvXw=="
         }
       ],
-      "purl": "pkg:npm/css-select@5.2.2",
+      "purl": "pkg:npm/css-select@6.0.0",
       "type": "library",
-      "version": "5.2.2"
+      "version": "6.0.0"
     },
     {
       "bom-ref": "pkg:npm/css-tree@3.2.1",
@@ -5228,7 +5228,7 @@
       "version": "3.2.1"
     },
     {
-      "bom-ref": "pkg:npm/css-what@6.2.2",
+      "bom-ref": "pkg:npm/css-what@7.0.0",
       "licenses": [
         {
           "license": {
@@ -5240,12 +5240,12 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-u/O3vwbptzhMs3L1fQE82ZSLHQQfto5gyZzwteVIEyeaY5Fc7R4dapF/BvRoSYFeqfBk4m0V1Vafq5Pjv25wvA=="
+          "value": "sha512-wD5oz5xibMOPHzy13CyGmogB3phdvcDaB5t0W/Nr5Z2O/agcB8YwOz6e2Lsp10pNDzBoDO9nVa3RGs/2BttpHQ=="
         }
       ],
-      "purl": "pkg:npm/css-what@6.2.2",
+      "purl": "pkg:npm/css-what@7.0.0",
       "type": "library",
-      "version": "6.2.2"
+      "version": "7.0.0"
     },
     {
       "bom-ref": "pkg:npm/csso@5.0.5",
@@ -6241,7 +6241,7 @@
       "version": "3.1.4"
     },
     {
-      "bom-ref": "pkg:npm/electron-to-chromium@1.5.386",
+      "bom-ref": "pkg:npm/electron-to-chromium@1.5.427",
       "licenses": [
         {
           "license": {
@@ -6253,12 +6253,12 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-f9yJE+9dJy+B4QC1iTu+mVP/KWLZviG5u/qtRwdBF0zPt3etWa1HSY1lMuWw0Nt8/KpLCY6ok+XlKHOs6ZhxSA=="
+          "value": "sha512-n14zb3FdsChZ2BNobqNHAJMcP3ifFv4paox2LvCrfVAQcqGiSURgbJl+PfMpHVCNFkStnNc+RRVtPBTVW5PDgw=="
         }
       ],
-      "purl": "pkg:npm/electron-to-chromium@1.5.386",
+      "purl": "pkg:npm/electron-to-chromium@1.5.427",
       "type": "library",
-      "version": "1.5.386"
+      "version": "1.5.427"
     },
     {
       "bom-ref": "pkg:npm/emmet@2.4.11",
@@ -6481,7 +6481,7 @@
       "version": "3.0.2"
     },
     {
-      "bom-ref": "pkg:npm/fast-uri@3.1.5",
+      "bom-ref": "pkg:npm/fast-uri@4.1.4",
       "licenses": [
         {
           "license": {
@@ -6493,12 +6493,12 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-gHwA1O9LDIcKunMKhObS/HimwtehO1nPUECKAu5TpKgaO19fcWEl4bliWe1jWxVFvIXztJjjQ4L8XQ1EU9f7Jw=="
+          "value": "sha512-dODXrIxlS9JSdgAnhIUKOosKV1oMtU2VtVw87QRaHzyl5jxO290Ii5tEZfCfzfWNHi3jKWwBSdQj0qIyshdZdQ=="
         }
       ],
-      "purl": "pkg:npm/fast-uri@3.1.5",
+      "purl": "pkg:npm/fast-uri@4.1.4",
       "type": "library",
-      "version": "3.1.5"
+      "version": "4.1.4"
     },
     {
       "bom-ref": "pkg:npm/fast-wrap-ansi@0.2.2",
@@ -7907,7 +7907,7 @@
       "version": "1.0.4"
     },
     {
-      "bom-ref": "pkg:npm/node-releases@2.0.50",
+      "bom-ref": "pkg:npm/node-releases@2.0.55",
       "licenses": [
         {
           "license": {
@@ -7919,12 +7919,12 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-J6l92tKHX6w8Jy5nO1Vuc01NoIiRGi/d6qBKVxh+IQ8Cr3b6HbVNfKiF8ZpFKufTwpwxMmce2W3iQZ861ZRyTg=="
+          "value": "sha512-mIrE/Cw9y+9Au6dS5vDKDhQza9YvG6w+ZrS6X+ZzA7yFW/soAeaups4Qzn1bL6g5FVy8WtP79+0j82oPIbqRjQ=="
         }
       ],
-      "purl": "pkg:npm/node-releases@2.0.50",
+      "purl": "pkg:npm/node-releases@2.0.55",
       "type": "library",
-      "version": "2.0.50"
+      "version": "2.0.55"
     },
     {
       "bom-ref": "pkg:npm/normalize-path@3.0.0",
@@ -8780,7 +8780,7 @@
       "version": "0.10.5"
     },
     {
-      "bom-ref": "pkg:npm/sax@1.6.0",
+      "bom-ref": "pkg:npm/sax@1.6.1",
       "licenses": [
         {
           "license": {
@@ -8792,12 +8792,12 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-6R3J5M4AcbtLUdZmRv2SygeVaM7IhrLXu9BmnOGmmACak8fiUtOsYNWUS4uK7upbmHIBbLBeFeI//477BKLBzA=="
+          "value": "sha512-42tBVwLWnaQvW5zc4HbZrTuWccECCZfBi92FDuwtqxasH+JbPB3/FOKb1m222K42R4WxuxzzMsTswfzgtSu64Q=="
         }
       ],
-      "purl": "pkg:npm/sax@1.6.0",
+      "purl": "pkg:npm/sax@1.6.1",
       "type": "library",
-      "version": "1.6.0"
+      "version": "1.6.1"
     },
     {
       "bom-ref": "pkg:npm/scheduler@0.27.0",
@@ -9080,7 +9080,7 @@
       "version": "7.2.0"
     },
     {
-      "bom-ref": "pkg:npm/svgo@4.0.2",
+      "bom-ref": "pkg:npm/svgo@4.1.0",
       "licenses": [
         {
           "license": {
@@ -9092,12 +9092,12 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-ekx94z1rRc5LDi6oSUaeRnYhd0UOJxdtQCL2rF8xpWxD3TPAsISWOrxezqGovqS38GRZOdpDfvQe3ts6F7nsng=="
+          "value": "sha512-bkxnTg1kSU0guhIBmibA6UUhrQmPVA1XsQLN+ylCd+UWzbnLkySOcXpyk1mrl05f+pcaCx2eHb+sp6BgMZWX+Q=="
         }
       ],
-      "purl": "pkg:npm/svgo@4.0.2",
+      "purl": "pkg:npm/svgo@4.1.0",
       "type": "library",
-      "version": "4.0.2"
+      "version": "4.1.0"
     },
     {
       "bom-ref": "pkg:npm/svgo/node_modules/commander@11.1.0",
@@ -9706,7 +9706,7 @@
       "version": "5.0.0"
     },
     {
-      "bom-ref": "pkg:npm/update-browserslist-db@1.2.3",
+      "bom-ref": "pkg:npm/update-browserslist-db@1.3.3",
       "licenses": [
         {
           "license": {
@@ -9718,12 +9718,12 @@
       "properties": [
         {
           "name": "npm:integrity",
-          "value": "sha512-Js0m9cx+qOgDxo0eMiFGEueWztz+d4+M3rGlmKPT+T4IS/jP4ylw3Nwpu6cpTTP8R1MAC1kF4VbdLt3ARf209w=="
+          "value": "sha512-pJ2sYawQS0R/WI928Gj5GlPhTGzbMelq0+4INtSYNDV9ErKJcX6xjGWkoG/VnB3dpUm00zALaqkrUD77pO5TDQ=="
         }
       ],
-      "purl": "pkg:npm/update-browserslist-db@1.2.3",
+      "purl": "pkg:npm/update-browserslist-db@1.3.3",
       "type": "library",
-      "version": "1.2.3"
+      "version": "1.3.3"
     },
     {
       "bom-ref": "pkg:npm/vfile@6.0.3",

@@ -148,6 +148,7 @@ def default_quality_gate_specs(root: Path | None = None) -> list[QualityGateSpec
                 "--cov-report=term-missing",
                 "--cov-report=xml",
                 "--cov-fail-under=90",
+                "--randomly-seed=0",
                 "-q",
             ),
             timeout_seconds=600,

@@ -1,0 +1,76 @@
+"""Pinned Global Medicines Atlas v4 identity consumer."""
+
+from __future__ import annotations
+
+import json
+import re
+from dataclasses import dataclass
+from typing import Any, cast
+
+_COMMIT = re.compile(r"[0-9a-f]{40}")
+_DIGEST = re.compile(r"[0-9a-f]{64}")
+_PRODUCER = "edithatogo/global-medicines-atlas"
+
+
+class GmaContractError(ValueError):
+    """Raised when a consumer contract cannot prove its pinned GMA identity."""
+
+
+@dataclass(frozen=True)
+class GmaContractBinding:
+    """One immutable Global Medicines Atlas identity for a consumer."""
+
+    producer_repository: str
+    dataset: str
+    revision: str
+    path: str
+    object_sha256: str
+    source_id: str
+    layer: str
+
+
+def bind_gma_contract(contract: bytes) -> GmaContractBinding:
+    """Bind a parsed GMA contract without acquiring or republishing data."""
+    try:
+        document: dict[str, Any] = json.loads(contract)
+        producer = document["authority"]["producer_repository"]
+        location = document["location"]
+        source = document["source"]
+    except KeyError, TypeError, json.JSONDecodeError:
+        message = "invalid GMA contract"
+        raise GmaContractError(message) from None
+    if not isinstance(location, dict) or not isinstance(source, dict):
+        message = "invalid GMA contract"
+        raise GmaContractError(message)
+    location = cast("dict[str, Any]", location)
+    source = cast("dict[str, Any]", source)
+    if producer != _PRODUCER:
+        message = "GMA producer identity is required"
+        raise GmaContractError(message)
+    revision = location.get("revision")
+    digest = location.get("sha256")
+    if not isinstance(revision, str) or _COMMIT.fullmatch(revision) is None:
+        message = "GMA revision must be immutable"
+        raise GmaContractError(message)
+    if not isinstance(digest, str) or _DIGEST.fullmatch(digest) is None:
+        message = "GMA object digest is invalid"
+        raise GmaContractError(message)
+    fields = ("dataset", "path")
+    if any(not isinstance(location.get(field), str) or not location[field] for field in fields):
+        message = "GMA location is invalid"
+        raise GmaContractError(message)
+    if any(
+        not isinstance(source.get(field), str) or not source[field]
+        for field in ("source_id", "layer")
+    ):
+        message = "GMA source identity is invalid"
+        raise GmaContractError(message)
+    return GmaContractBinding(
+        producer,
+        location["dataset"],
+        revision,
+        location["path"],
+        digest,
+        source["source_id"],
+        source["layer"],
+    )

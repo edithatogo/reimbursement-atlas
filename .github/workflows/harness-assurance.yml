@@ -68,14 +68,12 @@ jobs:
           pixi run medallion-projection
           pixi run medallion-federation
           pixi run historical-sources
-          pixi run local-quality
           pixi run dataset-candidate-assessments
           pixi run project-issues
           pixi run github-project-export
           pixi run protocol-status
           pixi run roadmap-linkages
           pixi run data-quality
-          pixi run data-dictionary
           pixi run research-claim-packages
           pixi run evidence-readiness
           pixi run source-drift
@@ -102,6 +100,10 @@ jobs:
           pixi run mapping-active-evaluation
           pixi run mapping-cycle-registry
           pixi run fuzzy-benchmark
+          # Run the full suite only after every generated input it validates has
+          # reached its final state; release reconciliation then consumes it.
+          pixi run local-quality
+          pixi run data-dictionary
           pixi run seed-lake
           pixi run dashboard-seed
           # Generate status only after the final checksum-bound queue exists.

@@ -62,6 +62,7 @@ _LAYER_BY_ROOT_MODULE: dict[str, ArchitectureLayer] = {
     "demonstrators": "analysis",
     "graph": "analysis",
     "gold_standard": "analysis",
+    "gma_consumer": "foundation",
     "policy_metrics": "analysis",
     "review_queue": "analysis",
     "scoring": "analysis",
