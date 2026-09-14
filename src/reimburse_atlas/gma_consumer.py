@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, cast
 
 _COMMIT = re.compile(r"[0-9a-f]{40}")
 _DIGEST = re.compile(r"[0-9a-f]{64}")
@@ -42,6 +42,8 @@ def bind_gma_contract(contract: bytes) -> GmaContractBinding:
     if not isinstance(location, dict) or not isinstance(source, dict):
         message = "invalid GMA contract"
         raise GmaContractError(message)
+    location = cast("dict[str, Any]", location)
+    source = cast("dict[str, Any]", source)
     if producer != _PRODUCER:
         message = "GMA producer identity is required"
         raise GmaContractError(message)
