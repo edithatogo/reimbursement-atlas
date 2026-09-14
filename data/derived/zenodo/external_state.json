@@ -7,12 +7,15 @@
   "paper_or_preprint_included": false,
   "publication_gate": {
     "evidence": "data/derived/release_readiness/summary.json",
-    "missing_or_false": [],
-    "reason_code": "archive_publication_gates_pass",
-    "status": "ready",
+    "missing_or_false": [
+      "repository_release_ready",
+      "evidence_release_ready"
+    ],
+    "reason_code": "archive_upstream_gates_pending",
+    "status": "blocked",
     "summary": {
-      "evidence_release_ready": true,
-      "repository_release_ready": true
+      "evidence_release_ready": false,
+      "repository_release_ready": false
     }
   },
   "record_url": null,
