@@ -28,7 +28,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
         # Commit-bound review receipts require ancestry validation.
-      - uses: prefix-dev/setup-pixi@f00437f565399d418b0acc85936d12c1fb668347 # v0.10.1
+      - uses: prefix-dev/setup-pixi@d3f436a425481402e6a95a1d1fc10331c708cd9e # v0.10.2
       - name: Require release governance gates
         env:
           PYTHONPATH: src
@@ -59,7 +59,7 @@ jobs:
         with:
           ref: ${{ inputs.release_tag != '' && format('refs/tags/{0}', inputs.release_tag) || github.ref }}
           persist-credentials: false
-      - uses: prefix-dev/setup-pixi@f00437f565399d418b0acc85936d12c1fb668347 # v0.10.1
+      - uses: prefix-dev/setup-pixi@d3f436a425481402e6a95a1d1fc10331c708cd9e # v0.10.2
       - name: Generate SBOMs
         run: pixi run sbom
       - name: Build package
@@ -121,7 +121,7 @@ jobs:
               --format json \
               > "data/derived/attestations/$(basename "$artifact").json"
           done
-      - uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # v3
+      - uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3
         with:
           tag_name: ${{ env.RELEASE_TAG }}
           files: |
