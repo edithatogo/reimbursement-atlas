@@ -29,7 +29,7 @@
   },
   "overrides": {
     "fast-uri": "4.1.4",
-    "dompurify": "3.4.13",
+    "dompurify": "3.4.16",
     "@astrojs/internal-helpers": {
       "js-yaml": "file:vendor/js-yaml-compat"
     },
