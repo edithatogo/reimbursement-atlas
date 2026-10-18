@@ -13,18 +13,18 @@
   },
   "dependencies": {
     "@astrojs/check": "0.9.10",
-    "@astrojs/react": "6.0.4",
+    "@astrojs/react": "7.0.1",
     "@cosmograph/react": "2.5.1",
-    "astro": "7.2.9",
+    "astro": "7.3.8",
     "js-yaml-orig": "npm:js-yaml@5.4.1",
     "papaparse": "5.7.0",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "typescript": "6.0.3"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
-    "@playwright/test": "^1.62.1",
+    "@playwright/test": "^1.64.0",
     "@types/papaparse": "^5.5.2"
   },
   "overrides": {
