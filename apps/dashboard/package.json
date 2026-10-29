@@ -13,14 +13,14 @@
   },
   "dependencies": {
     "@astrojs/check": "0.9.10",
-    "@astrojs/react": "6.0.4",
+    "@astrojs/react": "7.1.2",
     "@cosmograph/react": "2.5.1",
     "astro": "7.2.9",
     "js-yaml-orig": "npm:js-yaml@5.4.1",
     "papaparse": "5.7.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
@@ -37,7 +37,7 @@
       "js-yaml": "file:vendor/js-yaml-compat"
     },
     "js-yaml": "file:vendor/js-yaml-compat",
-    "nanoid": "3.3.18",
+    "nanoid": "6.0.2",
     "browserslist": "4.28.9",
     "baseline-browser-mapping": "2.11.1",
     "svgo": "4.1.0"
