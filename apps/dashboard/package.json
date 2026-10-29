@@ -12,14 +12,14 @@
     "test:dependencies": "node --test tests/unit/dependency-compatibility.test.mjs"
   },
   "dependencies": {
-    "@astrojs/check": "0.9.10",
-    "@astrojs/react": "6.0.4",
+    "@astrojs/check": "0.9.12",
+    "@astrojs/react": "6.0.6",
     "@cosmograph/react": "2.5.1",
     "astro": "7.2.9",
-    "js-yaml-orig": "npm:js-yaml@5.4.1",
+    "js-yaml-orig": "npm:js-yaml@5.5.0",
     "papaparse": "5.7.0",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
     "typescript": "6.0.3"
   },
   "devDependencies": {
@@ -37,9 +37,9 @@
       "js-yaml": "file:vendor/js-yaml-compat"
     },
     "js-yaml": "file:vendor/js-yaml-compat",
-    "nanoid": "3.3.18",
-    "browserslist": "4.28.9",
-    "baseline-browser-mapping": "2.11.1",
+    "nanoid": "3.3.20",
+    "browserslist": "4.29.5",
+    "baseline-browser-mapping": "2.11.34",
     "svgo": "4.1.0"
   }
 }
