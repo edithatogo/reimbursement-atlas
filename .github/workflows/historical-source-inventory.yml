@@ -28,7 +28,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-      - uses: prefix-dev/setup-pixi@f00437f565399d418b0acc85936d12c1fb668347 # v0.10.1
+      - uses: prefix-dev/setup-pixi@9936258fee697aff89b3fed6ca1f80a382ef694e # v0.11.3
       - name: Refresh metadata-only inventory
         run: pixi run python scripts/make_historical_source_index.py --refresh
       - name: Detect inventory changes
