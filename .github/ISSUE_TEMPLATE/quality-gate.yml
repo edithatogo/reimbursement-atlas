@@ -1,5 +1,5 @@
 name: Quality gate or automation
-about: Add or harden CI/CD, security, supply-chain or repo automation
+description: Add or harden CI/CD, security, supply-chain or repo automation
 title: "Quality gate: <gate name>"
 labels: ["automation", "quality"]
 body:
