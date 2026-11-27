@@ -1,6 +1,15 @@
 version: 1
-updated: "2026-08-31"
+updated: "2026-11-27"
 tracks:
+  - id: casemix_handoff_20261127
+    title: "Casemix metadata receiving adapter"
+    priority: must
+    phase: hardening
+    workstream: data
+    goal: "Validate reference-only Casemix handoffs without granting source redistribution or artifact promotion."
+    spec: "conductor/tracks/casemix_handoff_20261127/spec.md"
+    plan: "conductor/tracks/casemix_handoff_20261127/plan.md"
+    issues: []
   - id: track_pbs_raw_archive_20260831
     title: "PBS source archive staging and early-schema evidence"
     priority: must

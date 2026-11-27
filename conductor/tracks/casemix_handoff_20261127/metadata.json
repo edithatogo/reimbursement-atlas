@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-11-27",
+  "description": "Reference-only Casemix metadata receiving adapter with provenance and promotion gates.",
+  "evidence_schema": "1.0",
+  "gates": [
+    {
+      "evidence": "No checksum-bound human decisions for new source products; metadata intake does not authorize promotion.",
+      "id": "casemix_new_source_scope",
+      "kind": "accountable_review",
+      "status": "blocked"
+    }
+  ],
+  "github_issues": [
+    880
+  ],
+  "status": "in_progress",
+  "track_id": "casemix_handoff_20261127",
+  "type": "feature",
+  "updated_at": "2026-11-27"
+}

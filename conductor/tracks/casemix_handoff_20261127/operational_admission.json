@@ -1,0 +1,11 @@
+{
+  "counts": {
+    "acquisition_receipts": 243,
+    "artifacts": 11,
+    "evidence": 224,
+    "promotion_decisions": 11,
+    "source_index": 243
+  },
+  "handoff_sha256": "ddbc63840ff2adfe816aa4348fe5c7a49aea8baecbdb4c50ca9b660dec325f58",
+  "source_commit": "4d926892efdd9cc904372102d135c8a937bf7b04"
+}

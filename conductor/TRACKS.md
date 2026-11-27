@@ -1,5 +1,8 @@
 # Project Tracks
 
+- [ ] **Track: Casemix metadata receiving adapter**
+  *Link: [./tracks/casemix_handoff_20261127/index.md](./tracks/casemix_handoff_20261127/index.md)*
+
 - [x] **Track: PBS source archive staging and early-schema evidence**
   *Link: [./archive/track_pbs_raw_archive_20260831/index.md](./archive/track_pbs_raw_archive_20260831/index.md)*
 
